@@ -2,10 +2,10 @@ package seedu.travelr.storage;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.UserPrefs;
-import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.travelr.commons.core.GuiSettings;
+import seedu.travelr.commons.exceptions.DataConversionException;
+import seedu.travelr.model.UserPrefs;
+import seedu.travelr.storage.JsonUserPrefsStorage;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class JsonUserPrefsStorageTest {
 
@@ -30,7 +30,7 @@ public class JsonUserPrefsStorageTest {
 
     private Optional<UserPrefs> readUserPrefs(String userPrefsFileInTestDataFolder) throws DataConversionException {
         Path prefsFilePath = addToTestDataPathIfNotNull(userPrefsFileInTestDataFolder);
-        return new seedu.address.storage.JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
+        return new seedu.travelr.storage.JsonUserPrefsStorage(prefsFilePath).readUserPrefs(prefsFilePath);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class JsonUserPrefsStorageTest {
      */
     private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
-            new seedu.address.storage.JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
+            new seedu.travelr.storage.JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
                     .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
@@ -106,7 +106,7 @@ public class JsonUserPrefsStorageTest {
         original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
 
         Path pefsFilePath = testFolder.resolve("TempPrefs.json");
-        seedu.address.storage.JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
+        seedu.travelr.storage.JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(pefsFilePath);
 
         //Try writing when the file doesn't exist
         jsonUserPrefsStorage.saveUserPrefs(original);

@@ -1,45 +1,45 @@
 package seedu.travelr.storage;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.AddressBook;
-import seedu.address.testutil.TypicalPersons;
+import seedu.travelr.commons.exceptions.IllegalValueException;
+import seedu.travelr.commons.util.JsonUtil;
+import seedu.travelr.model.AddressBook;
+import seedu.travelr.testutil.TypicalTrips;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TYPICAL_TRIPS_FILE = TEST_DATA_FOLDER.resolve("typicalTripsAddressBook.json");
+    private static final Path INVALID_TRIP_FILE = TEST_DATA_FOLDER.resolve("invalidTripAddressBook.json");
+    private static final Path DUPLICATE_TRIP_FILE = TEST_DATA_FOLDER.resolve("duplicateTripAddressBook.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        seedu.address.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
-                seedu.address.storage.JsonSerializableAddressBook.class).get();
+    public void toModelType_typicalTripsFile_success() throws Exception {
+        seedu.travelr.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TRIPS_FILE,
+                seedu.travelr.storage.JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        AddressBook typicalTripsAddressBook = TypicalTrips.getTypicalAddressBook();
+        assertEquals(addressBookFromFile, typicalTripsAddressBook);
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        seedu.address.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
-                seedu.address.storage.JsonSerializableAddressBook.class).get();
+    public void toModelType_invalidTripFile_throwsIllegalValueException() throws Exception {
+        seedu.travelr.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_TRIP_FILE,
+                seedu.travelr.storage.JsonSerializableAddressBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        seedu.address.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
-                seedu.address.storage.JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, seedu.address.storage.JsonSerializableAddressBook.MESSAGE_DUPLICATE_PERSON,
+    public void toModelType_duplicateTrips_throwsIllegalValueException() throws Exception {
+        seedu.travelr.storage.JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TRIP_FILE,
+                seedu.travelr.storage.JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, seedu.travelr.storage.JsonSerializableAddressBook.MESSAGE_DUPLICATE_TRIP,
                 dataFromFile::toModelType);
     }
 
