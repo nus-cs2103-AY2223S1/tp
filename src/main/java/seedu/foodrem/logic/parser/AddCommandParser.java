@@ -6,8 +6,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-
-import java.util.stream.Stream;
+import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -22,14 +21,6 @@ import seedu.foodrem.model.item.ItemUnit;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
