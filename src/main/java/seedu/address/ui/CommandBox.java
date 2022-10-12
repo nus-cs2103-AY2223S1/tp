@@ -3,10 +3,13 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.history.CommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +20,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+
+    private CommandHistory commandHistoryStorage = new CommandHistory();
 
     @FXML
     private TextField commandTextField;
@@ -37,6 +42,7 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
+        System.out.println(commandText);
         if (commandText.equals("")) {
             return;
         }
@@ -46,6 +52,50 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    /**
+     * Handles the Enter button, Up button and Down button pressed events.
+     */
+    @FXML
+    private void handleButtonPressed(KeyEvent event) {
+
+        KeyCode keyPressed = event.getCode();
+        switch (keyPressed) {
+
+        case ENTER:
+            String commandText = commandTextField.getText();
+            System.out.println(commandText);
+            if (commandText.equals("")) {
+                return;
+            }
+
+            try {
+                commandHistoryStorage.add(commandText);
+                commandExecutor.execute(commandText);
+                commandTextField.setText("");
+            } catch (CommandException | ParseException e) {
+                setStyleToIndicateCommandFailure();
+            }
+            break;
+        case UP:
+            String prevCommand = commandHistoryStorage.up();
+            if (prevCommand.equals("")) {
+                return;
+            }
+            commandTextField.setText(prevCommand);
+            break;
+        case DOWN:
+            String nextCommand = commandHistoryStorage.down();
+            if (nextCommand.equals("")) {
+                commandTextField.setText("");
+                return;
+            }
+            commandTextField.setText(nextCommand);
+            break;
+        default:
+            return;
         }
     }
 
