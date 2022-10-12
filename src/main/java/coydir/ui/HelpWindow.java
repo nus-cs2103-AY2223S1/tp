@@ -49,6 +49,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        this.initAllTableViews();
     }
 
     /**
@@ -101,6 +102,15 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    private void initAllTableViews() {
+        this.initTableView(this.basicTableView, CommandFormat.getBasicCommands());
+        this.initTableView(this.advancedTableView, CommandFormat.getAdvancedCommands());
+    }
+
+    private void initTableView(TableView<Command> tableView, ObservableList<CommandFormat> commands) {
+
     }
 
     /**
