@@ -11,6 +11,8 @@ public class ItemUnitValidator implements Validator {
 
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
             "The item unit should only contain alphanumeric characters and spaces.";
+    public static final String MESSAGE_FOR_UNIT_IS_BLANK =
+            "The item unit should not be blank.";
     // Validation for characters used in unit
     private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
     // Validation for unit length
@@ -23,9 +25,11 @@ public class ItemUnitValidator implements Validator {
      *
      * @param unitString String representation of item unit to validate against.
      */
-    public static void validate(String unitString) {
+    public static Void validate(String unitString) {
         checkArgument(isUnitContainingOnlyValidCharacters(unitString), MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
         checkArgument(isUnitLengthLessThanEqualMaxLength(unitString), MESSAGE_FOR_NAME_TOO_LONG);
+        checkArgument(isUnitPresent(unitString), MESSAGE_FOR_UNIT_IS_BLANK);
+        return null;
     }
 
     /**
@@ -45,5 +49,14 @@ public class ItemUnitValidator implements Validator {
      */
     private static boolean isUnitLengthLessThanEqualMaxLength(String itemUnit) {
         return itemUnit.length() <= MAX_LENGTH;
+    }
+
+    /**
+     * Returns true if an item unit is return false for {@link String#isBlank()}, false otherwise.
+     *
+     * @param itemUnit string that represents the name of the {@link Item}.
+     */
+    private static boolean isUnitPresent(String itemUnit) {
+        return !itemUnit.isBlank();
     }
 }
