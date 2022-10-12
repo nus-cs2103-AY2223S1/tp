@@ -3,10 +3,14 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_DATE_MEETING1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_MEETING1;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BENSON;
+import static seedu.address.testutil.TypicalMeetings.MEETING1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +20,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.MyInsuRecBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +97,35 @@ public class ModelManagerTest {
     @Test
     public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
+    }
+
+    @Test
+    public void getFilteredMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredMeetingList().remove(0));
+    }
+
+    @Test
+    public void getDetailedMeetingList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getDetailedMeetingList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredMeetingList_setEmpty_success() {
+        MyInsuRec myInsuRec = new MyInsuRecBuilder().withClient(ALICE).withClient(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(myInsuRec, userPrefs);
+        Meeting meeting1 = new MeetingBuilder(MEETING1)
+                .withDescription(VALID_DESCRIPTION_MEETING1)
+                .withMeetingDate(VALID_MEETING_DATE_MEETING1)
+                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withClient(ALICE)
+                .build();
+        modelManager.addMeeting(meeting1);
+        assertEquals(modelManager.getFilteredMeetingList().size(), 1);
+        modelManager.updateFilteredMeetingList(unused -> false);
+        assertEquals(modelManager.getFilteredMeetingList().size(), 0);
     }
 
     @Test

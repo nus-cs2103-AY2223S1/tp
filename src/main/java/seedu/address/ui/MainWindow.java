@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
+    private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -126,6 +127,8 @@ public class MainWindow extends UiPart<Stage> {
         // Depend on the command called, clientListPanel/meetingListPanel will swap with the panel in placeholder.
         // However, we will start with clientListPanel.
 
+        meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -210,6 +213,11 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }
 
+    private void setListPanelToMeetingDetailed() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -233,6 +241,8 @@ public class MainWindow extends UiPart<Stage> {
                 setListPanelToClient();
             } else if (commandResult.isMeetingSpecific()) {
                 setListPanelToMeeting();
+            } else if (commandResult.isDetailedMeetingSpecific()) {
+                setListPanelToMeetingDetailed();
             }
 
             return commandResult;

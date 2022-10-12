@@ -56,8 +56,7 @@ public class AddMeetingCommand extends Command {
         newClient.setMeeting(meetingToAdd);
         model.addMeeting(meetingToAdd);
         model.setClient(oldClient, newClient);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd),
-                false, false, false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd), CommandSpecific.MEETING);
     }
 
 }

@@ -71,6 +71,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Meeting> getDetailedMeetingList() {
+        return model.getDetailedMeetingList();
+    }
+
+    @Override
     public Path getMyInsuRecFilePath() {
         return model.getMyInsuRecFilePath();
     }
