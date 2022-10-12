@@ -11,7 +11,7 @@
 
 </div>
 
-Rapportbook aims to be the ideal client management application for new and tech-savy financial advisors.
+Rapportbook is the ideal client management application for new and tech-savy financial advisors.
 
 ## Promises
 
