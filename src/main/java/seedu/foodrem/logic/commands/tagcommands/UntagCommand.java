@@ -1,5 +1,12 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+
+import java.util.List;
+import java.util.Set;
+
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
@@ -8,13 +15,9 @@ import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
-
+/**
+ * Untags an item with a Tag.
+ */
 public class UntagCommand extends Command {
 
     public static final String COMMAND_WORD = "untag";
