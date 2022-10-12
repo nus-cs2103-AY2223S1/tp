@@ -17,7 +17,7 @@ import seedu.address.model.person.Remark;
  * Changes the remark of an existing person in the address book.
  */
 public class RemarkCommand extends Command {
-    public static final String COMMAND_WORD = "remark";
+    public static final CommandWord COMMAND_WORD = new CommandWord("remark", "r");
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"

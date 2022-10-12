@@ -49,53 +49,38 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-        case SortCommand.COMMAND_WORD:
+
+        if (SortCommand.COMMAND_WORD.matches(commandWord)) {
             return new SortCommandParser().parse(arguments);
-
-        case AddPersonCommand.COMMAND_WORD:
+        } else if (AddPersonCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddPersonCommandParser().parse(arguments);
-
-        case AddAppointmentCommand.COMMAND_WORD:
+        } else if (AddAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddAppointmentCommandParser().parse(arguments);
-
-        case EditAppointmentCommand.COMMAND_WORD:
+        } else if (EditAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditAppointmentCommandParser().parse(arguments);
-
-        case EditPersonCommand.COMMAND_WORD:
+        } else if (EditPersonCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditPersonCommandParser().parse(arguments);
-
-        case DeleteAppointmentCommand.COMMAND_WORD:
+        } else if (DeleteAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeleteAppointmentCommandParser().parse(arguments);
-
-        case DeletePatientCommand.COMMAND_WORD:
+        } else if (DeletePatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeletePatientCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
+        } else if (ClearCommand.COMMAND_WORD.matches(commandWord)) {
             return new ClearCommand();
-
-        case FilterNameCommand.COMMAND_WORD:
+        } else if (FilterNameCommand.COMMAND_WORD.matches(commandWord)) {
             return new FilterNameCommandParser().parse(arguments);
-
-        case FilterTagCommand.COMMAND_WORD:
+        } else if (FilterTagCommand.COMMAND_WORD.matches(commandWord)) {
             return new FilterTagCommandParser().parse(arguments);
-
-        case RemarkCommand.COMMAND_WORD:
+        } else if (RemarkCommand.COMMAND_WORD.matches(commandWord)) {
             return new RemarkCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
+        } else if (ListCommand.COMMAND_WORD.matches(commandWord)) {
             return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
+        } else if (ExitCommand.COMMAND_WORD.matches(commandWord)) {
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
+        } else if (HelpCommand.COMMAND_WORD.matches(commandWord)) {
             return new HelpCommand();
-
-        case SelectPersonCommand.COMMAND_WORD:
+        } else if (SelectPersonCommand.COMMAND_WORD.matches(commandWord)) {
             return new SelectPersonCommandParser().parse(arguments);
-
-        default:
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

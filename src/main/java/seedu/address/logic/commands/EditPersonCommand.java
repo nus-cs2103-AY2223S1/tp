@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
  */
 public class EditPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "editpatient";
+    public static final CommandWord COMMAND_WORD = new CommandWord("editpatient", "ep");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patient list. "
