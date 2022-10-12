@@ -33,8 +33,6 @@ public class DeleteCommand extends Command {
         List<UserModule> lastShownList = model.getFilteredUserModuleList();
         String msg = target.getUserModuleCode();
 
-        System.out.println(lastShownList.contains(target));
-
         if (!lastShownList.contains(target)) {
             return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, msg));
         }
