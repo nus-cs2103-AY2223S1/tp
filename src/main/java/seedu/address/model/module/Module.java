@@ -4,11 +4,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.link.Link;
-import seedu.address.model.task.Task;
+import seedu.address.model.module.task.Task;
+import seedu.address.model.module.task.TaskList;
 
 /**
  * Represents a Module in the address book.
@@ -24,18 +27,32 @@ public class Module {
 
     // Data fields
     private final ModuleTitle moduleTitle;
-    private final Set<Task> tasks = new HashSet<>();
+    private final TaskList tasks;
     private final Set<Link> links = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Task> tasks,
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
+                  List<Task> tasks,
                   Set<Link> links) {
         requireAllNonNull(moduleCode, moduleTitle, tasks, links);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
-        this.tasks.addAll(tasks);
+        this.tasks = new TaskList(tasks);
+        this.links.addAll(links);
+    }
+
+    /**
+     * Adds a {@code Module} with module code, title and links but without
+     * any tasks.
+     */
+    public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
+                  Set<Link> links) {
+        requireAllNonNull(moduleCode, moduleTitle, links);
+        this.moduleCode = moduleCode;
+        this.moduleTitle = moduleTitle;
+        this.tasks = new TaskList();
         this.links.addAll(links);
     }
 
@@ -44,7 +61,7 @@ public class Module {
      * associated tasks and links.
      */
     public Module(ModuleCode moduleCode) {
-        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>(), new HashSet<>());
+        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
     }
 
     /**
@@ -52,7 +69,7 @@ public class Module {
      * associated tasks and links.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
-        this(moduleCode, moduleTitle, new HashSet<>(), new HashSet<>());
+        this(moduleCode, moduleTitle, new HashSet<>());
     }
 
     public ModuleCode getModuleCode() {
@@ -86,12 +103,19 @@ public class Module {
     }
 
     /**
-     * Returns an immutable task set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an unmodifiable {@code ObservableList} of the tasks available.
      */
-    public Set<Task> getTasks() {
-        return Collections.unmodifiableSet(tasks);
+    public ObservableList<Task> getTasks() {
+        return tasks.asUnmodifiableObservableList();
     }
+
+    /**
+     * Returns true if the task list contains duplicates.
+     */
+    public Boolean hasDuplicateTasks() {
+        return tasks.containsDuplicate();
+    }
+
 
     /**
      * Returns true if both modules have the same moduleCode.
@@ -149,7 +173,7 @@ public class Module {
             links.forEach(builder::append);
         }
 
-        Set<Task> tasks = getTasks();
+        List<Task> tasks = getTasks();
         if (!tasks.isEmpty()) {
             builder.append("; Tasks: ");
             tasks.forEach(builder::append);

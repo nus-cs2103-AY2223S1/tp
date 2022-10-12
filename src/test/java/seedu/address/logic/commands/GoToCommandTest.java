@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_LISTED;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalModules.CS2106;
 import static seedu.address.testutil.TypicalModules.MA2001;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;

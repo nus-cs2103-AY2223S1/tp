@@ -51,8 +51,8 @@
         </StackPane>
 
         <HBox VBox.vgrow="ALWAYS">
-          <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="340"
-                prefWidth="340" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+          <VBox fx:id="moduleList" styleClass="pane-with-border" minWidth="400"
+                prefWidth="400" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
@@ -61,7 +61,7 @@
           </VBox>
 
           <VBox fx:id="personList" styleClass="pane-with-border"
-                minWidth="340" prefWidth="340" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                minWidth="200" prefWidth="250" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>

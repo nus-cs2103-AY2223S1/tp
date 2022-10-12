@@ -1,11 +1,14 @@
 package seedu.address.ui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.task.Task;
 
 /**
  * A UI component that displays information of a {@code Module}.
@@ -37,6 +40,10 @@ public class ModuleCard extends UiPart<Region> {
     private FlowPane tasks;
     @FXML
     private FlowPane links;
+    // Independent UI parts
+    private TaskListPanel taskListPanel;
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     /**
      * Creates a {@code ModuleCode} with the given {@code Module} and index to
@@ -48,7 +55,10 @@ public class ModuleCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCodeAsUpperCaseString());
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
-        // ToDo: Add Ui components for tasks and links.
+        ObservableList<Task> taskList = module.getTasks();
+        taskListPanel = new TaskListPanel(taskList);
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        // ToDo: Add Ui components for links.
     }
 
     @Override

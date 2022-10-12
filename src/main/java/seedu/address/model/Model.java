@@ -109,6 +109,14 @@ public interface Model {
      */
     void addModule(Module module);
 
+    /**
+     * Replaces the given module {@code target} in the list with {@code
+     * editedModule}. {@code target} must exist in the address book.
+     * The person identity of {@code editedModule} must not be the same as
+     * another existing person in the address book.
+     */
+    void setModule(Module target, Module editedModule);
+
     void updateFilteredModuleList(Predicate<Module> predicate);
 
     /** Returns an unmodifiable view of the filtered module list */
