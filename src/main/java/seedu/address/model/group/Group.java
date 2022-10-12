@@ -11,18 +11,59 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class Group extends AbstractContainerItem {
 
+    public static final String MESSAGE_CONSTRAINTS = "A group name should only consist "
+            + "of alphanumeric characters, underscores and hyphens only.\n";
+
+    public static final String VALIDATION_REGEX = "[a-zA-Z0-9_-]+";
+
     private final String groupName;
-    private final Group parent;
     private final UniqueTaskList taskList;
 
-    Group(String groupName) {
-        this(groupName, null);
+    /**
+     * Constructs a group.
+     *
+     * @param groupName that will be displayed for this group.
+     */
+    public Group(String groupName) {
+        this(groupName, null, null);
     }
 
-    Group(String groupName, Group parent) {
+    /**
+     * Constructs a group.
+     *
+     * @param groupName that will be displayed for this group.
+     * @param parent that this group will be nested under.
+     * @param fullPath that leads to this group through the nesting of parent groups.
+     */
+    public Group(String groupName, Group parent, String fullPath) {
+        super(parent, fullPath);
         this.groupName = groupName;
-        this.parent = parent;
         taskList = new UniqueTaskList();
+    }
+
+    /**
+     * Checks if the group name is valid. A group name is valid
+     * if the group name is fully alphanumeric.
+     *
+     * @param groupName for a specific team.
+     * @return true if the group name is valid, false otherwise.
+     */
+    public static boolean isValidGroupName(String groupName) {
+        return groupName.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Gets the full path to the group inclusive of the group itself.
+     *
+     * @return a string indicating the full path of the group, inclusive of the group name.
+     */
+    public String getFullPathNameInclusive() {
+        String fullPathExclusive = getFullPathName();
+        if (fullPathExclusive == null) {
+            return groupName;
+        }
+
+        return String.format("%s/%s", fullPathExclusive, groupName);
     }
 
     /**
@@ -82,14 +123,6 @@ public class Group extends AbstractContainerItem {
             return false;
         }
         return stronglyEqual((Group) obj);
-    }
-
-    @Override
-    public boolean isPartOfContext(DisplayItem o) {
-        if (parent != null) {
-            return parent.equals(o);
-        }
-        return o == null;
     }
 
     @Override
