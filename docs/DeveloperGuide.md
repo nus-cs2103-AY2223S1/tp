@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same title as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command title e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -257,71 +257,79 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to keep track of their bucket lists
+* wants to manage travel itineraries, bookings, and costs efficiently
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage trips itineraries, bookings, and costs faster than a typical mouse/GUI driven app.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                    | So that I can…​                                         |
+|----------|------------------------------------|---------------------------------|---------------------------------------------------------|
+| `* * *`  | user                               | add events and trips            | keep track of what I want to do                         |
+| `* * *`  | user                               | view all the events in the list | refer to it whenever I want                             |
+| `* * *`  | user                               | save events into local storage  | access the data whenever I want                         |
+| `* * *`  | user                               | delete events and trips         | remove the unwanted event and trips                     |
+| `* *`    | user                               | hide private contact details    | minimize chance of someone else seeing them by accident |
+| `* *`    | user who often change his/her mind | update the details              | easily change things                                    |
+| `* *`    | user                               | categorize my events            | keep track of each category                             |
+| `*`      | user                               | reuse past itineraries          | use it when I want to                                   |
+| `*`      | user                               | view the total budget needed    | keep track of the budget                                |
 
 *{More to be added}*
 
-### Use cases
+### Use Cases
+Software System: Travelr
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+**Use case: UC01 Delete a Trip**
+**Actor: User**
 
-**Use case: Delete a person**
+**MSS :**
+1. User request the list of trips
+2. Travelr lists the trips.
+3. User requests to delete a certain trip.
+4. Travelr deletes the specified trip.
 
-**MSS**
+   Use case ends
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
+**Extensions:**
 
 * 2a. The list is empty.
 
   Use case ends.
+* 3a. The requested trip doesn't exist
+    * 3a1. Travelr shows an error message.
 
-* 3a. The given index is invalid.
+      Use case ends
 
-    * 3a1. AddressBook shows an error message.
+* 3b. Invalid input
+    * 3b1. Travelr shows an error message.
 
-      Use case resumes at step 2.
+      Use Case Ends
 
-*{More to be added}*
+*{More TBA}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 2000 events without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+4.  The UI should be resizable as users will likely be referencing other tabs while using this product.
+5.  Should respond immediately to user input, as user will likely be using multiple commands.
+6.  Should be usable by novice travelers that have never planned a trip.
+7.  Should be able to work offline
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **UI**: The User Interface that users will see when they use the product.
 
 --------------------------------------------------------------------------------------------------------------------
 
