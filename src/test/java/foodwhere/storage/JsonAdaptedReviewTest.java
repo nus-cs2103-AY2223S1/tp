@@ -14,19 +14,17 @@ import foodwhere.commons.exceptions.IllegalValueException;
 import foodwhere.model.commons.Name;
 
 public class JsonAdaptedReviewTest {
-    private static final String INVALID_DETAIL = "#friend";
+    private static final String INVALID_TAG = "#friend";
 
     private static final Name VALID_NAME = new Name(BENSON.getName().fullName);
     private static final String VALID_DATE = "1/1/1";
     private static final String VALID_CONTENT = BENSON.getContent().toString();
-    private static final List<JsonAdaptedDetail> VALID_DETAILS = BENSON.getDetails().stream()
-            .map(JsonAdaptedDetail::new)
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+            .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-    /**
-     * Test will be added back when Review class is added properly.
-     */
-    public void toModelType_validReviewDetails_returnsReview() throws Exception {
+    @Test
+    public void toModelType_validReviewTags_returnsReview() throws Exception {
         JsonAdaptedReview review = new JsonAdaptedReview(BENSON);
         assertEquals(BENSON, review.toModelType(VALID_NAME));
     }
@@ -40,11 +38,11 @@ public class JsonAdaptedReviewTest {
     }
 
     @Test
-    public void toModelType_invalidDetails_throwsIllegalValueException() {
-        List<JsonAdaptedDetail> invalidDetails = new ArrayList<>(VALID_DETAILS);
-        invalidDetails.add(new JsonAdaptedDetail(INVALID_DETAIL));
+    public void toModelType_invalidTags_throwsIllegalValueException() {
+        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_CONTENT,
-                invalidDetails);
+                invalidTags);
         assertThrows(IllegalValueException.class, () -> review.toModelType(null));
     }
 

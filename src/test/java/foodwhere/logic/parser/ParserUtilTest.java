@@ -13,20 +13,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
 import foodwhere.testutil.TypicalIndexes;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_DETAIL = "#friend";
+    private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_DETAIL_1 = "friend";
-    private static final String VALID_DETAIL_2 = "neighbour";
+    private static final String VALID_TAG_1 = "friend";
+    private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -52,7 +52,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -97,50 +97,50 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDetail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDetail(null));
+    public void parseTag_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
     }
 
     @Test
-    public void parseDetail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDetail(INVALID_DETAIL));
+    public void parseTag_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
     }
 
     @Test
-    public void parseDetail_validValueWithoutWhitespace_returnsDetail() throws Exception {
-        Detail expectedDetail = new Detail(VALID_DETAIL_1);
-        assertEquals(expectedDetail, ParserUtil.parseDetail(VALID_DETAIL_1));
+    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
+        Tag expectedTag = new Tag(VALID_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
     }
 
     @Test
-    public void parseDetail_validValueWithWhitespace_returnsTrimmedDetail() throws Exception {
-        String detailWithWhitespace = WHITESPACE + VALID_DETAIL_1 + WHITESPACE;
-        Detail expectedDetail = new Detail(VALID_DETAIL_1);
-        assertEquals(expectedDetail, ParserUtil.parseDetail(detailWithWhitespace));
+    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
+        Tag expectedTag = new Tag(VALID_TAG_1);
+        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
-    public void parseDetails_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDetails(null));
+    public void parseTags_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
     }
 
     @Test
-    public void parseDetails_collectionWithInvalidDetails_throwsParseException() {
+    public void parseTags_collectionWithInvalidTags_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseDetails(Arrays.asList(VALID_DETAIL_1, INVALID_DETAIL)));
+                ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
     }
 
     @Test
-    public void parseDetails_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseDetails(Collections.emptyList()).isEmpty());
+    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseDetails_collectionWithValidDetails_returnsDetailSet() throws Exception {
-        Set<Detail> actualDetailSet = ParserUtil.parseDetails(Arrays.asList(VALID_DETAIL_1, VALID_DETAIL_2));
-        Set<Detail> expectedDetailSet = new HashSet<Detail>(Arrays.asList(new Detail(VALID_DETAIL_1),
-                new Detail(VALID_DETAIL_2)));
+    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
+        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1),
+                new Tag(VALID_TAG_2)));
 
-        assertEquals(expectedDetailSet, actualDetailSet);
+        assertEquals(expectedTagSet, actualTagSet);
     }
 }

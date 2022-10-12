@@ -3,8 +3,8 @@ package foodwhere.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
@@ -20,7 +20,7 @@ public class StallBuilder {
 
     private Name name;
     private Address address;
-    private Set<Detail> details;
+    private Set<Tag> tags;
     private Set<Review> reviews;
 
     /**
@@ -29,7 +29,7 @@ public class StallBuilder {
     public StallBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
-        details = new HashSet<>();
+        tags = new HashSet<>();
         reviews = new HashSet<>();
     }
 
@@ -39,7 +39,7 @@ public class StallBuilder {
     public StallBuilder(Stall stallToCopy) {
         name = stallToCopy.getName();
         address = stallToCopy.getAddress();
-        details = new HashSet<>(stallToCopy.getDetails());
+        tags = new HashSet<>(stallToCopy.getTags());
         reviews = new HashSet<>(stallToCopy.getReviews());
     }
 
@@ -52,10 +52,10 @@ public class StallBuilder {
     }
 
     /**
-     * Parses the {@code details} into a {@code Set<Detail>} and set it to the {@code Stall} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Stall} that we are building.
      */
-    public StallBuilder withDetails(String ... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+    public StallBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -76,7 +76,7 @@ public class StallBuilder {
     }
 
     public Stall build() {
-        return new Stall(name, address, details, reviews);
+        return new Stall(name, address, tags, reviews);
     }
 
 }

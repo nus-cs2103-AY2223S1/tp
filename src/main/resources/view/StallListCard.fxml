@@ -36,9 +36,9 @@
               </rowConstraints>
               <children>
                 <Label fx:id="addressLabel" styleClass="cell_small_label" text="Address:" translateX="10.0" />
-                <Label fx:id="detailsLabel" styleClass="cell_small_label" text="Details:" translateX="10.0" GridPane.rowIndex="1" />
+                <Label fx:id="tagsLabel" styleClass="cell_small_label" text="Tags:" translateX="10.0" GridPane.rowIndex="1" />
                 <Label fx:id="address" styleClass="cell_small_label" translateX="10.0" wrapText="true" GridPane.columnIndex="1" />
-                <Label fx:id="details" styleClass="cell_small_label" translateX="10.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="tags" styleClass="cell_small_label" translateX="10.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
               </children>
             </GridPane>
           </children>

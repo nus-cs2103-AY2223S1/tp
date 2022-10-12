@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 
 /**
  * Represents a Review in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: tags are present and not null, field values are validated, immutable.
  */
 public class Review {
 
@@ -22,17 +22,17 @@ public class Review {
     // Data fields
     private final Date date;
     private final Content content;
-    private final Set<Detail> details = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Review(Name name, Date date, Content content, Set<Detail> details) {
-        requireAllNonNull(name, date, content, details);
+    public Review(Name name, Date date, Content content, Set<Tag> tags) {
+        requireAllNonNull(name, date, content, tags);
         this.name = name;
         this.date = date;
         this.content = content;
-        this.details.addAll(details);
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -48,11 +48,11 @@ public class Review {
     }
 
     /**
-     * Returns an immutable detail set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Detail> getDetails() {
-        return Collections.unmodifiableSet(details);
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -68,7 +68,7 @@ public class Review {
                 && otherReview.getName().equals(getName())
                 && otherReview.getDate().equals(getDate())
                 && otherReview.getContent().equals(getContent())
-                && otherReview.getDetails().equals(getDetails());
+                && otherReview.getTags().equals(getTags());
     }
 
     /**
@@ -89,13 +89,13 @@ public class Review {
         return otherStall.getName().equals(getName())
                 && otherStall.getDate().equals(getDate())
                 && otherStall.getContent().equals(getContent())
-                && otherStall.getDetails().equals(getDetails());
+                && otherStall.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, content, details);
+        return Objects.hash(name, date, content, tags);
     }
 
     @Override
@@ -107,10 +107,10 @@ public class Review {
                 .append("; Content: ")
                 .append(getContent());
 
-        Set<Detail> details = getDetails();
-        if (!details.isEmpty()) {
-            builder.append("; Details: ");
-            details.forEach(builder::append);
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
         }
         return builder.toString();
     }

@@ -10,8 +10,8 @@ import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
@@ -29,13 +29,13 @@ public class RAddCommand extends Command {
             + CliSyntax.PREFIX_STALL_INDEX + "STALL_INDEX "
             + CliSyntax.PREFIX_DATE + "DATE "
             + CliSyntax.PREFIX_CONTENT + "CONTENT "
-            + "[" + CliSyntax.PREFIX_DETAIL + "DETAIL]...\n"
+            + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_STALL_INDEX + "3 "
             + CliSyntax.PREFIX_DATE + "2022-09-20 "
             + CliSyntax.PREFIX_CONTENT + "The food was good, the chicken rice was fresh.\n"
-            + CliSyntax.PREFIX_DETAIL + "opensDaily "
-            + CliSyntax.PREFIX_DETAIL + "worthyTrip";
+            + CliSyntax.PREFIX_TAG + "opensDaily "
+            + CliSyntax.PREFIX_TAG + "worthyTrip";
 
 
     public static final String MESSAGE_SUCCESS = "New review added: %1$s";
@@ -44,17 +44,17 @@ public class RAddCommand extends Command {
     private final Index stallIndex;
     private final Date date;
     private final Content content;
-    private final Set<Detail> detailList;
+    private final Set<Tag> tagList;
 
     /**
      * Creates an RAddCommand to add the specified {@code Review}
      */
-    public RAddCommand(Index stallIndex, Date date, Content content, Set<Detail> detailList) {
+    public RAddCommand(Index stallIndex, Date date, Content content, Set<Tag> tagList) {
         requireNonNull(stallIndex);
         this.stallIndex = stallIndex;
         this.date = date;
         this.content = content;
-        this.detailList = detailList;
+        this.tagList = tagList;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class RAddCommand extends Command {
 
         Name name = stall.getName();
 
-        Review toAdd = new Review(name, date, content, detailList);
+        Review toAdd = new Review(name, date, content, tagList);
 
         if (model.hasReview(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_REVIEW);

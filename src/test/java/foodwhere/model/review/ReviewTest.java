@@ -15,7 +15,7 @@ public class ReviewTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Review review = new ReviewBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> review.getDetails().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> review.getTags().remove(0));
     }
 
     @Test
@@ -38,8 +38,8 @@ public class ReviewTest {
         editedAlice = new ReviewBuilder(TypicalReviews.ALICE).withContent(CommandTestUtil.VALID_CONTENT_BOB).build();
         assertFalse(TypicalReviews.ALICE.equals(editedAlice));
 
-        // different details -> returns false
-        editedAlice = new ReviewBuilder(TypicalReviews.ALICE).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+        // different tags -> returns false
+        editedAlice = new ReviewBuilder(TypicalReviews.ALICE).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         assertFalse(TypicalReviews.ALICE.equals(editedAlice));
     }
 
@@ -73,8 +73,8 @@ public class ReviewTest {
         editedAlice = new ReviewBuilder(TypicalReviews.ALICE).withContent(CommandTestUtil.VALID_CONTENT_BOB).build();
         assertFalse(TypicalReviews.ALICE.equals(editedAlice));
 
-        // different details -> returns false
-        editedAlice = new ReviewBuilder(TypicalReviews.ALICE).withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+        // different tags -> returns false
+        editedAlice = new ReviewBuilder(TypicalReviews.ALICE).withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         assertFalse(TypicalReviews.ALICE.equals(editedAlice));
     }
 }

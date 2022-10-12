@@ -3,65 +3,65 @@
   "stalls" : [ {
     "name" : "Alice Pauline",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "details" : [ "friends" ],
+    "tags" : [ "friends" ],
     "reviews" : [ {
       "date" : "1/1/2020",
       "content" : "123, Jurong West Ave 6, #08-111",
-      "details" : [ "friends" ]
+      "tags" : [ "friends" ]
     } ]
   }, {
     "name" : "Benson Meier",
     "address" : "311, Clementi Ave 2, #02-25",
-    "details" : [ "owesMoney", "friends" ],
+    "tags" : [ "owesMoney", "friends" ],
     "reviews" : [ {
       "date" : "31/12/2021",
       "content" : "311, Clementi Ave 2, #02-25",
-      "details" : [ "owesMoney", "friends" ]
+      "tags" : [ "owesMoney", "friends" ]
     } ]
   }, {
     "name" : "Carl Kurz",
     "address" : "wall street",
-    "details" : [ ],
+    "tags" : [ ],
     "reviews" : [ {
       "date" : "1/4/2020",
       "content" : "wall street",
-      "details" : [ ]
+      "tags" : [ ]
     } ]
   }, {
     "name" : "Daniel Meier",
     "address" : "10th street",
-    "details" : [ "friends" ],
+    "tags" : [ "friends" ],
     "reviews" : [ {
       "date" : "29/2/2020",
       "content" : "10th street",
-      "details" : [ "friends" ]
+      "tags" : [ "friends" ]
     } ]
   }, {
     "name" : "Elle Meyer",
     "address" : "michegan ave",
-    "details" : [ ],
+    "tags" : [ ],
     "reviews" : [ {
       "date" : "29/9/2003",
       "content" : "michegan ave",
-      "details" : [ ]
+      "tags" : [ ]
     } ]
   }, {
     "name" : "Fiona Kunz",
     "address" : "little tokyo",
-    "details" : [ ],
+    "tags" : [ ],
     "reviews" : [ {
       "date" : "6/6/2007",
       "content" : "little tokyo",
-      "details" : [ ]
+      "tags" : [ ]
     } ]
   }, {
     "name" : "George Best",
     "address" : "4th street",
-    "details" : [ ],
+    "tags" : [ ],
     "reviews" : [ {
       "date" : "20/7/2017",
       "content" : "4th street",
-      "details" : [ ]
+      "tags" : [ ]
     } ]
   } ]
 }

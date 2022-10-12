@@ -41,7 +41,7 @@ public class EditStallDescriptorTest {
 
         // different details -> returns false
         editedAmy = new EditStallDescriptorBuilder(CommandTestUtil.DESC_AMY)
-                .withDetails(CommandTestUtil.VALID_DETAIL_HUSBAND).build();
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
         assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
     }
 }

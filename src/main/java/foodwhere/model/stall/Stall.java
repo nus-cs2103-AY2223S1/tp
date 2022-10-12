@@ -7,13 +7,13 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import foodwhere.model.commons.Detail;
 import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 
 /**
  * Represents a Stall in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: tags are present and not null, field values are validated, immutable.
  */
 public class Stall {
 
@@ -22,27 +22,27 @@ public class Stall {
 
     // Data fields
     private final Address address;
-    private final Set<Detail> details = new HashSet<>();
+    private final Set<Tag> tags = new HashSet<>();
     private final Set<Review> reviews = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Stall(Name name, Address address, Set<Detail> details) {
-        requireAllNonNull(name, address, details);
+    public Stall(Name name, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
-        this.details.addAll(details);
+        this.tags.addAll(tags);
     }
 
     /**
      * Constructor with reviews, reviews can be empty as it is optional
      */
-    public Stall(Name name, Address address, Set<Detail> details, Set<Review> reviews) {
-        requireAllNonNull(name, address, details);
+    public Stall(Name name, Address address, Set<Tag> tags, Set<Review> reviews) {
+        requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
-        this.details.addAll(details);
+        this.tags.addAll(tags);
         if (!reviews.isEmpty()) {
             this.reviews.addAll(reviews);
         }
@@ -57,11 +57,11 @@ public class Stall {
     }
 
     /**
-     * Returns an immutable detail set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Detail> getDetails() {
-        return Collections.unmodifiableSet(details);
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -102,14 +102,14 @@ public class Stall {
         Stall otherStall = (Stall) other;
         return otherStall.getName().equals(getName())
                 && otherStall.getAddress().equals(getAddress())
-                && otherStall.getDetails().equals(getDetails())
+                && otherStall.getTags().equals(getTags())
                 && otherStall.getReviews().equals(getReviews());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, details, reviews);
+        return Objects.hash(name, address, tags, reviews);
     }
 
     @Override
@@ -119,10 +119,10 @@ public class Stall {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Detail> details = getDetails();
-        if (!details.isEmpty()) {
-            builder.append("; Details: ");
-            details.forEach(builder::append);
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
         }
 
         Set<Review> reviews = getReviews();
