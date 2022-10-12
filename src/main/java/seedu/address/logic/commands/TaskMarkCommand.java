@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
 import java.util.List;
 
@@ -20,27 +21,27 @@ public class TaskMarkCommand extends Command {
     public static final String COMMAND_WORD = "taskmark";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the specified task to the team as done "
             + "by the index number used in the displayed team list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_NAME + "TASK-NAME]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASK_NAME + "Create GUI for AddressBook";
-    public static final String MESSAGE_SUCCESS = "New task marked as done: %1$s";
+            + "Parameters: " + PREFIX_TEAM_INDEX + "TEAM-INDEX (must be a positive integer), "
+            + PREFIX_TASK_INDEX + "TASK-INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TEAM_INDEX + "1 "
+            + PREFIX_TASK_INDEX + "3";
+    public static final String MESSAGE_SUCCESS = "Task marked as done: %1$s";
 
-    private final Index index;
-    private final Task toMark;
+    private final Index taskIndex;
+    private final Index teamIndex;
 
     /**
      * Creates a TaskMarkCommand to mark the specified {@code Task} as done
      *
-     * @param index of the team in the filtered team list to edit.
-     * @param task task to be marked.
+     * @param teamIndex of the team in the filtered team list to edit.
+     * @param taskIndex index of the task to be marked as done.
      */
-    public TaskMarkCommand(Index index, Task task) {
-        requireNonNull(index);
-        requireNonNull(task);
+    public TaskMarkCommand(Index teamIndex, Index taskIndex) {
+        requireNonNull(taskIndex);
+        requireNonNull(teamIndex);
 
-        this.index = index;
-        this.toMark = task;
+        this.teamIndex = teamIndex;
+        this.taskIndex = taskIndex;
     }
 
     @Override
@@ -48,18 +49,24 @@ public class TaskMarkCommand extends Command {
         requireNonNull(model);
         List<Team> lastShownTeamList = model.getFilteredTeamList();
 
-        if (index.getZeroBased() >= lastShownTeamList.size()) {
+        if (teamIndex.getZeroBased() >= lastShownTeamList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        model.markTask(index, toMark);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toMark));
+        if (taskIndex.getZeroBased() >= lastShownTeamList.get(teamIndex.getZeroBased()).getTasks().getSize()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        Task taskToMark = lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased());
+        model.markTask(teamIndex, taskIndex);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskToMark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskMarkCommand // instanceof handles nulls
-                && toMark.equals(((TaskMarkCommand) other).toMark));
+                && taskIndex.equals(((TaskMarkCommand) other).taskIndex)
+                && teamIndex.equals(((TaskMarkCommand) other).teamIndex));
     }
 }

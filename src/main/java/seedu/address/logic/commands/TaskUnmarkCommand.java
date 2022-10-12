@@ -52,7 +52,7 @@ public class TaskUnmarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        model.markTask(index, toUnmark);
+        model.unmarkTask(index, toUnmark);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toUnmark));
     }
 

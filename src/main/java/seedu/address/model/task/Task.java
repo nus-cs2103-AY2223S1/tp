@@ -99,7 +99,7 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("[" + getStatusIcon() + "]" + getName());
+        builder.append("[" + getStatusIcon() + "] " + getName());
         return builder.toString();
     }
 
