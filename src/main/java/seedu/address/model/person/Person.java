@@ -22,10 +22,25 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Gender gender; // add gender attribute for person
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * Overloaded constructor that takes in optional parameter gender
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Gender gender) {
+        requireAllNonNull(name, phone, email, address, tags, gender);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tags.addAll(tags);
+        this.gender = gender;
+    }
+
+    /**
      * Every field must be present and not null.
+     * Gender field is added at the end of each method.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -34,6 +49,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.gender = Gender.getNoGender();
     }
 
     public Name getName() {
@@ -50,6 +66,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Gender getGender() {
+        return gender;
     }
 
     /**
@@ -92,13 +112,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getGender().equals(getGender()); // add gender field for comparison
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, gender); //add gender field
     }
 
     @Override
@@ -117,6 +138,9 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        // add gender field in toString method
+        builder.append("; Gender: ").append(getGender());
         return builder.toString();
     }
 

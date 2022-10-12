@@ -98,6 +98,16 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts the list in-place using the specified {@code SortField}.
+     *
+     * @param sortField field to sort by.
+     */
+    public void sort(SortField sortField) {
+        requireNonNull(sortField);
+        internalList.sort(sortField.getComparator());
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
