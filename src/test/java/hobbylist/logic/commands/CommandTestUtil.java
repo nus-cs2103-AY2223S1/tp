@@ -13,7 +13,7 @@ import hobbylist.logic.parser.CliSyntax;
 import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
 import hobbylist.model.activity.Activity;
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 import hobbylist.testutil.Assert;
 import hobbylist.testutil.EditActivityDescriptorBuilder;
 
@@ -110,7 +110,7 @@ public class CommandTestUtil {
 
         Activity activity = model.getFilteredActivityList().get(targetIndex.getZeroBased());
         final String[] splitName = activity.getName().fullName.split("\\s+");
-        model.updateFilteredActivityList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredActivityList(new NameOrDescContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredActivityList().size());
     }

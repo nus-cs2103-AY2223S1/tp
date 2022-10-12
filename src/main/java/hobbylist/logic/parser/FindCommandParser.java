@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import hobbylist.logic.commands.FindCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new NameOrDescContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

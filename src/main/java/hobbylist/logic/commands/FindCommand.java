@@ -4,24 +4,24 @@ import static java.util.Objects.requireNonNull;
 
 import hobbylist.commons.core.Messages;
 import hobbylist.model.Model;
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 
 /**
- * Finds and lists all activities in HobbyList whose name contains any of the argument keywords.
+ * Finds and lists all activities in HobbyList whose name or description contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " sleep exercise code";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameOrDescContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(NameOrDescContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
