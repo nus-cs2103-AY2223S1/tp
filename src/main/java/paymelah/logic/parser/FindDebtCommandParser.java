@@ -15,7 +15,7 @@ public class FindDebtCommandParser implements Parser<FindDebtCommand> {
      * Parses the given {@code String} of arguments in the context of the
      * {@link FindDebtCommand}
      * and returns a {@link FindDebtCommand} object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindDebtCommand parse(String args) throws ParseException {
