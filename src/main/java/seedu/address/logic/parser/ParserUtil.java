@@ -15,6 +15,9 @@ import seedu.address.model.poc.Email;
 import seedu.address.model.poc.PersonName;
 import seedu.address.model.poc.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Goods;
+import seedu.address.model.transaction.Price;
+import seedu.address.model.transaction.Quantity;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -136,5 +139,50 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String goods} into an {@code Goods}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code goods} is invalid.
+     */
+    public static Goods parseGoods(String goods) throws ParseException {
+        requireNonNull(goods);
+        String trimmedGoods = goods.trim();
+        if (!Goods.isValidName(trimmedGoods)) {
+            throw new ParseException(Goods.MESSAGE_CONSTRAINTS);
+        }
+        return new Goods(goods);
+    }
+
+    /**
+     * Parses a {@code String price} into an {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(trimmedPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(price);
+    }
+
+    /**
+     * Parses a {@code String quantity} into an {@code Quantity}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseQuantity(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantity(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(quantity);
     }
 }

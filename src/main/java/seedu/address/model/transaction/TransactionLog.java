@@ -38,6 +38,9 @@ public class TransactionLog {
      */
     public double calculateNetTransacted() {
         double result = 0;
+        if (transactionList.isEmpty()) {
+            return result;
+        }
         for (Transaction t : transactionList) {
             result += t.totalCost();
         }

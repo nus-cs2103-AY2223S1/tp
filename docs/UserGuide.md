@@ -223,17 +223,17 @@ Format: `view INDEX`
 
 Coming soon.
 
-### Creating a Transaction: `transaction`
+### Creating a Transaction: `buy` or `sell`
 
 Creates a transaction related to a company (buy/sell).
 
 Format:
-- `transaction coy/COMPANY_NAME  g/GOODS  q/QUANTITY  pr/PRICE d/BUY`
-- `transaction coy/COMPANY_NAME  g/GOODS q/QUANTITY  pr/PRICE d/SELL`
+- `buy INDEX coy/COMPANY_NAME  g/GOODS  q/QUANTITY  price/PRICE`
+- `sell INDEX coy/COMPANY_NAME  g/GOODS q/QUANTITY  price/PRICE`
 
 Examples:
-- `transaction coy/McDonalds g/apples q/100 pr/1.5 d/BUY`
-- `transaction coy/KFC g/Chicken q/50 pr/5.55 d/SELL`
+- `buy 3 g/apples q/100 price/1.5`
+- `sell 3 g/Chicken q/50 price/5.55`
 
 ### Saving the data
 
@@ -262,6 +262,24 @@ _Details coming soon ..._
 
 ## Command summary
 
+<<<<<<< HEAD
+| Action         | Format, Examples                                                                                                           |
+|----------------|----------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/COMPANY a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                         |
+| **Clear**      | `clear` followed by `confirm`                                                                                              |
+ | **Create**     | `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`<br> e.g., `create n/James coy/MacDonalds p/82692192 e/James@example.com` |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                        |
+| **Edit**       | Coming Soon                                                                                                                |
+| **Exit**       | `exit`                                                                                                                     |
+| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                 |
+| **Filter**     | Coming Soon                                                                                                                |
+| **List**       | `list`                                                                                                                     |
+| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                   |
+| **Sort**       | Coming Soon                                                                                                                |
+| **Buy**        | `buy INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `buy 2 g/apples q/100 price/1.5`                                      |
+| **Sell**       | `sell INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `sell 2 g/apples q/100 price/1.5`                                    |
+| **User Guide** | `user_guide`                                                                                                               |
+=======
 | Action          | Format, Examples                                                                                                                                                                                                                                                           |
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/COMPANY a/ADDRESS [t/TAG] `<br> e.g., `add n/KFC a/Yishun Street 81 t/FavouriteFood`                                                                                                                                                                                |
@@ -278,4 +296,5 @@ _Details coming soon ..._
 | **Sort**        | Coming Soon                                                                                                                                                                                                                                                                |
 | **Transaction** | `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/BUY` <br/> e.g `transaction coy/McDonalds g/apples q/100 pr/1.5 d/buy` <br/> `transaction coy/COMPANY_NAME g/GOODS q/QUANTITY pr/PRICE d/SELL` <br/> e.g. `transaction coy/KFC g/Chickens q/50 pr/2.55 d/SELL` |
 | **User Guide**  | `user_guide`                                                                                                                                                                                                                                                               |
+>>>>>>> 78b6ac43588d9cbbfef5505a01a268dd1c451564
 
