@@ -12,6 +12,8 @@ import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.TagName;
 
+import java.util.stream.Stream;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -106,5 +108,13 @@ public class ParserUtil {
             throw new ParseException(TagName.MESSAGE_CONSTRAINTS);
         }
         return new TagName(trimmedName);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

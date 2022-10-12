@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.stream.Stream;
 
@@ -36,12 +37,5 @@ public class UntagCommandParser implements Parser<UntagCommand> {
         return new UntagCommand(name, index);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 
 }
