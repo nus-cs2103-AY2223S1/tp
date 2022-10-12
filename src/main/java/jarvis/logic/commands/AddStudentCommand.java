@@ -41,7 +41,7 @@ public class AddStudentCommand extends Command {
         }
 
         model.addStudent(studentToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd), true, false);
     }
 
     @Override
