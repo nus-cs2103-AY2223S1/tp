@@ -144,9 +144,9 @@ public class MainWindow extends UiPart<Stage> {
                 getTagSet("colleagues", "friends")));
 
         try {
-            internalList.add(new Meeting(myArray,"Study Session" , "06-10-2022 2015", "UTown"));
-            internalList.add(new Meeting(myArray,"Ice Skating" , "15-10-2022 2000", "Jurong East"));
-        } catch(Exception e) {
+            internalList.add(new Meeting(myArray, "Study Session", "06-10-2022 2015", "UTown"));
+            internalList.add(new Meeting(myArray, "Ice Skating", "15-10-2022 2000", "Jurong East"));
+        } catch (Exception e) {
             System.out.println("Exception: " + e);
         }
 

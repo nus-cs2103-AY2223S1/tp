@@ -71,14 +71,14 @@ public class ModelManager implements Model {
         filteredMeetings = new FilteredList<>(internalList);
     }
 
+    public ModelManager() {
+        this(new AddressBook(), new UserPrefs());
+    }
+
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
-    }
-
-    public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

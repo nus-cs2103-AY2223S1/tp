@@ -15,9 +15,4 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
 
-    /**
-     * Returns an unmodifiable view of the meetings list.
-     * This list will not contain any duplicate meetings.
-     */
-    ObservableList<Meeting> getMeetingList();
 }
