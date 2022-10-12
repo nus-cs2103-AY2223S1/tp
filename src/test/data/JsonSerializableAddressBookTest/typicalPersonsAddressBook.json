@@ -7,6 +7,7 @@
     "position" : "TA",
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark": "",
+    "details": "available",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -15,6 +16,7 @@
     "position" : "Student",
     "address" : "311, Clementi Ave 2, #02-25",
     "remark": "",
+    "details": "attendance - 0/0, grade - 0/0",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -23,6 +25,7 @@
     "position" : "Professor",
     "address" : "wall street",
     "remark": "",
+    "details": "Coordinator",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -31,6 +34,7 @@
     "position" : "TA",
     "address" : "10th street",
     "remark": "",
+    "details": "unavailable",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -39,6 +43,7 @@
     "position" : "Student",
     "address" : "michegan ave",
     "remark": "",
+    "details": "attendance - 10/10, grade - 45/50",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -47,6 +52,7 @@
     "position" : "Professor",
     "address" : "little tokyo",
     "remark": "",
+    "details": "",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -55,6 +61,7 @@
     "position" : "TA",
     "address" : "4th street",
     "remark": "",
+    "details": "unavailable",
     "tagged" : [ ]
   } ]
 }

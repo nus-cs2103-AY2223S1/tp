@@ -3,9 +3,10 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
-    "position" : "Student",
+    "position" : "Professor",
     "address": "123, Jurong West Ave 6, #08-111",
     "remark": "",
+    "details": "Coordinator",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -13,6 +14,7 @@
     "email": "pauline@example.com",
     "position" : "TA",
     "address": "4th street",
-    "remark": ""
+    "remark": "",
+    "details": "available"
   } ]
 }

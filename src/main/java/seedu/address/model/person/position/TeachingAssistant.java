@@ -29,7 +29,8 @@ public class TeachingAssistant extends Position {
         availability = "unavailable";
     }
 
-    public void setAvailability(String availability) {
+    @Override
+    public void setDetails(String availability) {
         requireNonNull(availability);
         this.availability = availability;
     }
@@ -39,6 +40,7 @@ public class TeachingAssistant extends Position {
      * Returns true if a given string is a valid availability.
      */
     public static boolean isValidAvailability(String test) {
+
         for (Availability availability: Availability.values()) {
             if (availability.name().equalsIgnoreCase(test)) {
                 return true;
@@ -60,5 +62,10 @@ public class TeachingAssistant extends Position {
     @Override
     public int hashcode() {
         return 0;
+    }
+
+    @Override
+    public String getDetails() {
+        return availability;
     }
 }

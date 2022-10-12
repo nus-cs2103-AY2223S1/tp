@@ -65,7 +65,7 @@ public class AvailabilityCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_TA);
         }
         TeachingAssistant currPosition = (TeachingAssistant) personToEdit.getPosition();
-        currPosition.setAvailability(availability);
+        currPosition.setDetails(availability);
         Person editedPerson = personToEdit;
 
         model.setPerson(personToEdit, editedPerson);

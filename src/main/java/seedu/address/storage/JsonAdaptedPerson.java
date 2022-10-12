@@ -23,16 +23,17 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link Person}.
  */
 class JsonAdaptedPerson {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;
     private final String email;
     private final String position;
+    private final String details;
     private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,12 +42,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("position") String position,
             @JsonProperty("address") String address, @JsonProperty("remark") String remark,
+                             @JsonProperty("details") String details,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
 
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.position = position;
+        this.details = details;
         this.address = address;
         this.remark = remark;
         if (tagged != null) {
@@ -62,6 +65,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         position = source.getPosition().value;
+        details = source.getDetails();
         address = source.getAddress().value;
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
@@ -127,6 +131,11 @@ class JsonAdaptedPerson {
                     Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
+
+        if (details == null) {
+            throw new IllegalValueException(Position.DETAILS_MESSAGE_CONSTRAINTS);
+        }
+        modelPosition.setDetails(details);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelPosition, modelAddress, modelRemark, modelTags);
