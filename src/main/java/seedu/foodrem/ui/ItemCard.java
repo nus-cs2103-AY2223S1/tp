@@ -53,7 +53,6 @@ public class ItemCard extends UiPart<Region> {
         quantityAndUnit.setText(item.getQuantityAndUnitToListView());
         bought.setText(item.getBoughtDateToListView());
         expiry.setText(item.getExpiryDateToListView());
-        // TODO: Add tags into card once tags in item
         item.getTagSet().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName.fullName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName.fullName)));
