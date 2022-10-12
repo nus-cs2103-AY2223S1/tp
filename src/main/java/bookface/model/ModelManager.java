@@ -139,9 +139,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void returnLoan(Book book) {
+    public void returnLoanedBook(Book book) {
         CollectionUtil.requireAllNonNull(book);
-        bookFace.returnLoan(book);
+        bookFace.returnLoanedBook(book);
     }
 
     //=========== Filtered Person List Accessors =============================================================

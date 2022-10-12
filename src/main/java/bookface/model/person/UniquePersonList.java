@@ -149,12 +149,13 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns the {@code book} loan.
      */
-    public void returnLoan(Book book) {
+    public void returnLoanedBook(Book book) {
         CollectionUtil.requireAllNonNull(book);
         for (int i = 0; i < internalList.size(); i++) {
             //todo this for-loop is inefficient, try to return loan from person without a loop
             Person person = internalList.get(i);
-            if (person.returnLoan(book)) {
+            if (person.hasPersonLoanedThisBook(book)) {
+                person.returnLoanedBook(book);
                 int index = internalList.indexOf(person);
                 internalList.set(index, person);
                 break;

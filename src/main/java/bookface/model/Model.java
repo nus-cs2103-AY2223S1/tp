@@ -97,7 +97,7 @@ public interface Model {
     /**
      * Returns the {@code book} loan.
      */
-    void returnLoan(Book book);
+    void returnLoanedBook(Book book);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

@@ -181,7 +181,7 @@ public class AddUserCommandTest {
         }
 
         @Override
-        public void returnLoan(Book book) {
+        public void returnLoanedBook(Book book) {
             throw new AssertionError("This method should not be called");
         }
     }

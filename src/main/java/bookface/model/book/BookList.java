@@ -120,9 +120,9 @@ public class BookList implements Iterable<Book> {
     /**
      * Returns loan of a book {@code book} .
      */
-    public void returnLoan(Book book) {
+    public void returnLoanedBook(Book book) {
         CollectionUtil.requireAllNonNull(book);
-        book.returnLoan(book);
+        book.markBookAsReturned();
         int index = internalList.indexOf(book);
         internalList.set(index, book);
     }

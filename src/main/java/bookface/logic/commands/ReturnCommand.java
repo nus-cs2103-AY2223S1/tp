@@ -51,7 +51,7 @@ public class ReturnCommand extends Command {
             throw new CommandException(NOT_ON_LOAN);
         }
 
-        model.returnLoan(bookToReturn);
+        model.returnLoanedBook(bookToReturn);
         model.updateFilteredBookList(Model.PREDICATE_SHOW_ALL_BOOKS);
         return new CommandResult(String.format(MESSAGE_RETURN_SUCCESS, bookToReturn.getTitle()));
     }

@@ -4,7 +4,7 @@ import bookface.model.BookFace;
 import bookface.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building BookFace objects.
  * Example usage: <br>
  *     {@code BookFace ab = new BookFaceBuilder().withPerson("John", "Doe").build();}
  */

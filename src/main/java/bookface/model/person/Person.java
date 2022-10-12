@@ -64,8 +64,12 @@ public class Person {
         loanedBooks.add(book);
     }
 
-    public boolean returnLoan(Book book) {
-        return this.loanedBooks.remove(book);
+    public void returnLoanedBook(Book book) {
+        this.loanedBooks.remove(book);
+    }
+
+    public boolean hasPersonLoanedThisBook(Book book) {
+        return this.loanedBooks.contains(book);
     }
 
     /**

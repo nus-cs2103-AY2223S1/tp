@@ -59,10 +59,8 @@ public class Book {
 
     /**
      * Return this loaned book .
-     *
-     * @param book the loaned boook
      */
-    public void returnLoan(Book book) {
+    public void markBookAsReturned() {
         this.loanee = null;
     }
 
