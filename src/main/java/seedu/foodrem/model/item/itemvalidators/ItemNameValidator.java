@@ -11,7 +11,8 @@ public class ItemNameValidator implements Validator {
 
     // Validation for characters in name
     public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME =
-            "The item name should only contain alphanumeric characters and spaces.";
+            "The item name should only contain alphanumeric characters and spaces. It should not start with a blank "
+                    + "space.";
     public static final String MESSAGE_FOR_NAME_IS_BLANK =
             "The item name should not be blank.";
     private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
@@ -26,10 +27,11 @@ public class ItemNameValidator implements Validator {
      *
      * @param itemName String representation of item name to validate against.
      */
-    public static void validate(String itemName) {
+    public static Void validate(String itemName) {
         checkArgument(isNameContainingOnlyValidCharacters(itemName), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
         checkArgument(isNameLengthLessThanEqualMaxLength(itemName), MESSAGE_FOR_NAME_TOO_LONG);
         checkArgument(isNamePresent(itemName), MESSAGE_FOR_NAME_IS_BLANK);
+        return null;
     }
 
     /**

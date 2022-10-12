@@ -13,7 +13,7 @@ import seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator;
  */
 public class ItemExpiryDate {
 
-    public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-yyyy";
+    public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(EXPIRY_DATE_PATTERN_REGEX);
     private final LocalDate expiryDate;

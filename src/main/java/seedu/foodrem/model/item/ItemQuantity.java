@@ -2,6 +2,7 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+import java.text.DecimalFormat;
 import java.util.function.BiFunction;
 
 import seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator;
@@ -13,6 +14,7 @@ import seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator;
  */
 public class ItemQuantity {
 
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.####");
     private static final double DEFAULT_QUANTITY = 0;
 
     private final double itemQuantity;
@@ -37,7 +39,7 @@ public class ItemQuantity {
                                                           ItemQuantity itemQuantity2,
                                                           BiFunction<Double, Double, Double> op) {
         double newQuantity = op.apply(itemQuantity1.itemQuantity, itemQuantity2.itemQuantity);
-        return new ItemQuantity(String.valueOf(newQuantity));
+        return new ItemQuantity(DECIMAL_FORMAT.format(newQuantity));
     }
 
     /**
@@ -55,16 +57,10 @@ public class ItemQuantity {
      * A value less than 0 is returned if the quantity is less than the other quantity and
      * a value greater than 0 if the quantity is greater than the other quantity.
      *
-     * @param other The ItemQuanitty to compare this ItemQuantity against.
+     * @param other The ItemQuantity to compare this ItemQuantity against.
      */
     public int compareTo(ItemQuantity other) {
-        if (itemQuantity < other.itemQuantity) {
-            return -1;
-        } else if (itemQuantity > other.itemQuantity) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return Double.compare(itemQuantity, other.itemQuantity);
     }
 
     /**
@@ -72,6 +68,6 @@ public class ItemQuantity {
      */
     @Override
     public String toString() {
-        return String.valueOf(itemQuantity);
+        return DECIMAL_FORMAT.format(itemQuantity);
     }
 }
