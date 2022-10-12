@@ -9,7 +9,6 @@ import static seedu.address.model.person.testutil.TypicalPersons.ALICE;
 import static seedu.address.model.person.testutil.TypicalPersons.BOB;
 import static seedu.address.model.person.testutil.TypicalPersons.CARL;
 import static seedu.address.model.person.testutil.TypicalPersons.DANIEL;
-import static seedu.address.model.person.testutil.TypicalPersons.getTypicalPersons;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -30,7 +29,6 @@ import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.GroupBuilder;
-import seedu.address.model.person.testutil.PersonBuilder;
 
 public class AddGroupCommandTest {
 
@@ -38,7 +36,7 @@ public class AddGroupCommandTest {
     public void constructor_nullGroup_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddGroupCommand(null));
     }
-    
+
     @Test
     public void execute_groupAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingGroupAdded modelStub = new ModelStubAcceptingGroupAdded();

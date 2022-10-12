@@ -229,7 +229,7 @@ public class ModelManagerTest {
 
     @Test
     public void setGroup_nullGroup_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setGroup( TEAM_PROJECT, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setGroup(TEAM_PROJECT, null));
     }
 
     @Test

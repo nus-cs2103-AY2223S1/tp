@@ -1,5 +1,7 @@
 package seedu.address.model.group.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_IP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_TP;
 import static seedu.address.model.person.testutil.TypicalPersons.ALICE;
 import static seedu.address.model.person.testutil.TypicalPersons.BENSON;
 import static seedu.address.model.person.testutil.TypicalPersons.CARL;
@@ -8,8 +10,6 @@ import static seedu.address.model.person.testutil.TypicalPersons.ELLE;
 import static seedu.address.model.person.testutil.TypicalPersons.FIONA;
 import static seedu.address.model.person.testutil.TypicalPersons.GEORGE;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalPersons;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_TP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUPNAME_IP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
