@@ -2,6 +2,7 @@ package seedu.taassist.storage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +13,9 @@ import seedu.taassist.commons.exceptions.IllegalValueException;
 import seedu.taassist.model.ReadOnlyTaAssist;
 import seedu.taassist.model.TaAssist;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * An Immutable TaAssist that is serializable to JSON format.
@@ -23,6 +26,8 @@ class JsonSerializableTaAssist {
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_MODULE_CLASS = "The class list contains duplicate class(es).";
     public static final String MESSAGE_CLASS_NOT_FOUND = "Class for some student(s) not found in the class list.";
+    public static final String MESSAGE_SESSION_NOT_FOUND =
+            "Session for some student(s) not found in the session list for the corresponding class.";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();
@@ -68,11 +73,28 @@ class JsonSerializableTaAssist {
             if (taAssist.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            for (ModuleClass moduleClass : student.getModuleClasses()) {
+
+            // Check if the module classes are valid
+            Set<ModuleClass> moduleClasses = student.getModuleClasses();
+            for (ModuleClass moduleClass : moduleClasses) {
                 if (!taAssist.hasModuleClass(moduleClass)) {
                     throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
                 }
             }
+
+            // Check if the module data are valid
+            for (StudentModuleData moduleData : student.getModuleData()) {
+                ModuleClass moduleClass = moduleData.getModuleClass();
+                if (!taAssist.hasModuleClass(moduleClass)) {
+                    throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
+                }
+                for (SessionData sessionData : moduleData.getSessionData()) {
+                    if (!moduleClass.hasSession(sessionData.getSession())) {
+                        throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
+                    }
+                }
+            }
+
             taAssist.addStudent(student);
         }
         return taAssist;

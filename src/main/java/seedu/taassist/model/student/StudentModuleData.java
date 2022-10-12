@@ -44,7 +44,7 @@ public class StudentModuleData implements Identity<StudentModuleData> {
     /**
      * Returns an immutable session data list.
      */
-    public List<SessionData> getSessionDataList() {
+    public List<SessionData> getSessionData() {
         return sessionDataList.asUnmodifiableObservableList();
     }
 

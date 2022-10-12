@@ -40,7 +40,7 @@ class JsonAdaptedStudentModuleData {
      */
     public JsonAdaptedStudentModuleData(StudentModuleData source) {
         className = source.getModuleClass().getClassName();
-        sessionDataList.addAll(source.getSessionDataList().stream()
+        sessionDataList.addAll(source.getSessionData().stream()
                 .map(JsonAdaptedSessionData::new)
                 .collect(Collectors.toList()));
     }
