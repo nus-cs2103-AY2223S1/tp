@@ -171,7 +171,7 @@ public class ParserUtil {
     public static NameContainsKeywordsPredicate parseNameContainsKeywordsPredicate(String s) throws ParseException {
         requireNonNull(s);
         String trimmed = s.trim();
-        if (s.isEmpty()) {
+        if (trimmed.isEmpty()) {
             throw new ParseException(NameContainsKeywordsPredicate.MESSAGE_CONSTRAINTS);
         }
         return new NameContainsKeywordsPredicate(Arrays.asList(trimmed.split("\\s+")));
@@ -183,7 +183,7 @@ public class ParserUtil {
     public static DebtContainsKeywordsPredicate parseDebtContainsKeywordsPredicate(String s) throws ParseException {
         requireNonNull(s);
         String trimmed = s.trim();
-        if (s.isEmpty()) {
+        if (trimmed.isEmpty()) {
             throw new ParseException(DebtContainsKeywordsPredicate.MESSAGE_CONSTRAINTS);
         }
         return new DebtContainsKeywordsPredicate(Arrays.asList(trimmed.split("\\s+")));
