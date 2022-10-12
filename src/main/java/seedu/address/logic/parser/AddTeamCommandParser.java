@@ -13,7 +13,7 @@ public class AddTeamCommandParser implements Parser<AddTeamCommand> {
      * Parses the given {@code String} of arguments in the context of the AddTeamCommand
      * and returns a AddTeamCommand object for execution.
      *
-     * @throws ParseException if user input does not conform the expected format
+     * @throws ParseException if user input does not conform to the expected format
      */
     @Override
     public AddTeamCommand parse(String args) throws ParseException {

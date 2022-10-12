@@ -14,7 +14,7 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddMemberCommand
      * and returns a AddMemberCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public AddMemberCommand parse(String args) throws ParseException {
         try {

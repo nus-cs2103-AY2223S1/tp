@@ -14,7 +14,7 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
      * Parses the given {@code String} of arguments in the context of the DeleteTeamCommand
      * and returns a DeleteTeamCommand object for execution.
      *
-     * @throws ParseException if user input does not conform the expected format
+     * @throws ParseException if user input does not conform to the expected format
      */
     @Override
     public DeleteTeamCommand parse(String args) throws ParseException {
