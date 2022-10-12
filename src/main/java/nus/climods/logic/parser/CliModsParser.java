@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 import nus.climods.logic.commands.Command;
 import nus.climods.logic.commands.LsCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.logic.parser.parameters.FacultyCodeParameter;
+import nus.climods.logic.parser.parameters.UserFlagParameter;
 
 /**
  * Parses user input.
@@ -38,7 +40,8 @@ public class CliModsParser {
 
         switch (commandWord) {
         case LsCommand.COMMAND_WORD:
-            return new ListCommandParser().parse(arguments);
+            String trimmedArgs = arguments.trim();
+            return new LsCommand(new FacultyCodeParameter(trimmedArgs), new UserFlagParameter(trimmedArgs));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
