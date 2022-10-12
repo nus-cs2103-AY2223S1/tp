@@ -21,10 +21,11 @@ import seedu.foodrem.model.item.ItemQuantity;
 public class IncrementCommand extends Command {
     public static final String COMMAND_WORD = "inc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Increments the quantity of the ttem identified"
-            + "by the index number used in the displayed item list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Increments the quantity of the item identified "
+            + "by the index number used in the displayed item list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
+            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
             + "Example: " + COMMAND_WORD + " 10 ";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Incremented Item: %1$s";
@@ -51,7 +52,13 @@ public class IncrementCommand extends Command {
     private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) {
         assert itemToIncrement != null;
 
-        ItemQuantity incrementedQuantity = itemToIncrement.getQuantity().incrementQuantity(quantity);
+        ItemQuantity incrementedQuantity;
+        try {
+            incrementedQuantity = ItemQuantity.performArithmeticOperation(
+                    itemToIncrement.getQuantity(), quantity, Double::sum);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("(Final Quantity) " + e.getMessage());
+        }
 
         return new Item(itemToIncrement.getName(),
                 incrementedQuantity,

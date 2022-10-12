@@ -52,7 +52,13 @@ public class DecrementCommand extends Command {
     private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) {
         assert itemToDecrement != null;
 
-        ItemQuantity decrementedQuantity = itemToDecrement.getQuantity().decrementQuantity(quantity);
+        ItemQuantity decrementedQuantity;
+        try {
+            decrementedQuantity = ItemQuantity.performArithmeticOperation(
+                    itemToDecrement.getQuantity(), quantity, (x, y) -> x - y);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("(Final Quantity) " + e.getMessage());
+        }
 
         return new Item(itemToDecrement.getName(),
                 decrementedQuantity,

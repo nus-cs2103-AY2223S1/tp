@@ -2,6 +2,8 @@ package seedu.foodrem.model.item;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.BiFunction;
+
 import seedu.foodrem.model.item.itemvalidator.ItemQuantityValidator;
 
 
@@ -29,38 +31,13 @@ public class ItemQuantity {
     }
 
     /**
-     * Overloaded constructor that returns an ItemQuantity from a specified item quantity (double).
+     * Returns an itemQuantity after performing an arithmetic operation on them.
      */
-    public ItemQuantity(double itemQuantityDouble) {
-        requireNonNull(itemQuantityDouble);
-        // TODO: Add validation
-        this.itemQuantity = itemQuantityDouble;
-    }
-
-    /**
-     * Factory method that increments the ItemQuantity by a specified amount and returns a new ItemQuantity object
-     * with the quantity incremented.
-     *
-     * @param increment ItemQuantity amount to increment by.
-     * @return New ItemQuantity with quantity incremented.
-     */
-    public ItemQuantity incrementQuantity(ItemQuantity increment) {
-        // TODO: Needs validation to ensure item can be incremented with a valid amount, and final result is not
-        //  beyond the boundaries provided.
-        return new ItemQuantity(increment.itemQuantity + itemQuantity);
-    }
-
-    /**
-     * Factory method that decrements the ItemQuantity by a specified amount and returns a new ItemQuantity object
-     * with the quantity decremented..
-     *
-     * @param increment ItemQuantity amount to decrement by.
-     * @return New ItemQuantity with quantity decremented..
-     */
-    public ItemQuantity decrementQuantity(ItemQuantity increment) {
-        // TODO: Needs validation to ensure item can be incremented with a valid amount, and final result is not
-        //  beyond the boundaries provided.
-        return new ItemQuantity(itemQuantity - increment.itemQuantity);
+    public static ItemQuantity performArithmeticOperation(ItemQuantity itemQuantity1,
+                                                          ItemQuantity itemQuantity2,
+                                                          BiFunction<Double, Double, Double> op) {
+        double newQuantity = op.apply(itemQuantity1.itemQuantity, itemQuantity2.itemQuantity);
+        return new ItemQuantity(String.valueOf(newQuantity));
     }
 
     /**
