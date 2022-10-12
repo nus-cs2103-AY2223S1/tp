@@ -122,6 +122,8 @@ public interface Model {
 
     public Team getTeamUsingIndex(Index teamIndex);
 
+    public Team hasMember(Person p);
+
     void addTask(Index index, Task task);
 
     void markTask(Index teamIndex, Index taskIndex);
