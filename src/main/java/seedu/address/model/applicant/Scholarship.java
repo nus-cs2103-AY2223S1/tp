@@ -58,28 +58,4 @@ public class Scholarship {
         return value.hashCode();
     }
 
-    /**
-     * Tests that a {@code Applicant}'s {@code Status} matches the keyword given.
-     */
-    public static class StatusContainsKeywordPredicate implements Predicate<Applicant> {
-        private final String keyword;
-
-        public StatusContainsKeywordPredicate(String keyword) {
-            this.keyword = keyword;
-        }
-
-        @Override
-        public boolean test(Applicant applicant) {
-            return StringUtil.containsWordIgnoreCase(applicant.getApplicationStatus().applicationStatus, keyword);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            return other == this // short circuit if same object
-                    || (other instanceof StatusContainsKeywordPredicate // instanceof handles nulls
-                    && keyword.equals(((StatusContainsKeywordPredicate) other).keyword)); // state check
-        }
-
-
-    }
 }
