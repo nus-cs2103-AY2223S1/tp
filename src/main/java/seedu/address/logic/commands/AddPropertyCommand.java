@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 
 /**
- * Adds a person to the address book.
+ * Adds a property to the address book.
  */
 public class AddPropertyCommand extends Command {
 
