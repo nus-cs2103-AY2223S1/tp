@@ -36,6 +36,15 @@ public class Description {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given description is the same as this description. (case-insensitive)
+     *
+     * @param otherDescription Description to compare with.
+     */
+    public boolean equalsIgnoreCase(Description otherDescription) {
+        return taskDescription.equalsIgnoreCase(otherDescription.taskDescription);
+    }
+
     @Override
     public String toString() {
         return taskDescription;

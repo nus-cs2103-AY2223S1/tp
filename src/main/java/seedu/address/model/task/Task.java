@@ -10,7 +10,6 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
-
 /**
  * Represents a Task in the TaskList.
  * Guarantees: description is present and not null, field values are validated, immutable.
@@ -88,14 +87,28 @@ public class Task {
      * @param deadlineKeywords Possibly empty list containing keywords for {@code Deadline}.
      * @return boolean indicating if task contains supplied keywords.
      */
-    public boolean containsKeywords(List<Description> descriptionKeywords, List<Deadline> deadlineKeywords) {
-        return (descriptionKeywords.isEmpty() || descriptionKeywords.contains(description))
+    public boolean containsKeywordsCaseInsensitive(List<Description> descriptionKeywords,
+                                                   List<Deadline> deadlineKeywords) {
+        return (descriptionKeywords.isEmpty() || descriptionKeywords.stream().anyMatch(description::equalsIgnoreCase))
                 && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline));
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both tasks have the same name.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        return otherTask != null
+                && description.equalsIgnoreCase(otherTask.getDescription());
+    }
+
+    /**
+     * Returns true if both tasks have the same fields.
+     * This defines a stronger notion of equality between two tasks.
      */
     @Override
     public boolean equals(Object other) {
