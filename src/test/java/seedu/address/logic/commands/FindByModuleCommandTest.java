@@ -26,18 +26,18 @@ import seedu.address.model.person.Person;
  * Contains integration tests (interaction with the model) for {@code FindByModuleCommand}.
  */
 public class FindByModuleCommandTest {
-    List<Person> testTAList = Arrays.asList(IDA, HOON, JACKSON);
+    private List<Person> testTaList = Arrays.asList(IDA, HOON, JACKSON);
 
-    private AddressBook getTestTAAddressBook() {
-        AddressBook testTAAddressBook = new AddressBook();
-        for (Person person : testTAList) {
-            testTAAddressBook.addPerson(person);
+    private AddressBook getTestTaAddressBook() {
+        AddressBook testTaAddressBook = new AddressBook();
+        for (Person person : testTaList) {
+            testTaAddressBook.addPerson(person);
         }
-        return testTAAddressBook;
+        return testTaAddressBook;
     }
 
-    private Model model = new ModelManager(getTestTAAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTestTAAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTestTaAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTestTaAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {

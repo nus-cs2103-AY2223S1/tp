@@ -54,7 +54,7 @@ public class ModuleContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_ModuleDoesNotContainKeywords_returnFalse() {
+    public void test_moduleDoesNotContainKeywords_returnFalse() {
         // Zero keywords
         ModuleContainsKeywordPredicate predicate =
                 new ModuleContainsKeywordPredicate(Collections.emptyList());
