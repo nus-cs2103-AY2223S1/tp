@@ -29,10 +29,13 @@ public class DeleteRecordCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredRecordList_success() {
+        // Setting up test models
         model.setFilteredRecordList(BENSON);
+        model.setRecordListDisplayed(true);
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        // Deleting record with valid index
         Record recordToDelete = model.getFilteredRecordList().get(FIRST_INDEX.getZeroBased());
         DeleteRecordCommand deleteRecordCommand = new DeleteRecordCommand(FIRST_INDEX);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteRecord(recordToDelete);
         String expectedMessage = String.format(DeleteRecordCommand.MESSAGE_DELETE_RECORD_SUCCESS, recordToDelete);
         assertCommandSuccess(deleteRecordCommand, model, expectedMessage, expectedModel);
@@ -49,6 +52,11 @@ public class DeleteRecordCommandTest {
 
     @Test
     public void execute_validIndexFilteredRecordList_success() {
+        // Setting up test models
+        model.setFilteredRecordList(BENSON);
+        model.setRecordListDisplayed(true);
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
         showRecordAtIndex(model, FIRST_INDEX);
 
         Record recordToDelete = model.getFilteredRecordList().get(FIRST_INDEX.getZeroBased());
@@ -56,7 +64,6 @@ public class DeleteRecordCommandTest {
 
         String expectedMessage = String.format(DeleteRecordCommand.MESSAGE_DELETE_RECORD_SUCCESS, recordToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteRecord(recordToDelete);
         showNoRecord(expectedModel);
 
@@ -65,6 +72,10 @@ public class DeleteRecordCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredRecordList_throwsCommandException() {
+        // Setting up test models
+        model.setFilteredRecordList(BENSON);
+        model.setRecordListDisplayed(true);
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showRecordAtIndex(model, FIRST_INDEX);
 
         Index outOfBoundIndex = SECOND_INDEX;
