@@ -7,7 +7,9 @@ import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.parser.exceptions.ParseException;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Property;
 
 /**
@@ -37,6 +39,21 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getPropertyDirectoryFilePath();
+
+    /**
+     * Returns the ClientDirectory.
+     *
+     * @see seedu.condonery.model.Model#getClientDirectory()
+     */
+    ReadOnlyClientDirectory getClientDirectory();
+
+    /** Returns an unmodifiable view of the filtered list of clients*/
+    ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getClientDirectoryFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

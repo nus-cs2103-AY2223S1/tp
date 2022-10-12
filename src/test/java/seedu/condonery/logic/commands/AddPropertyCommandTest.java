@@ -16,18 +16,21 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.logic.commands.exceptions.CommandException;
+import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.ReadOnlyUserPrefs;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.testutil.PropertyBuilder;
 
-public class AddCommandTest {
+public class AddPropertyCommandTest {
 
     @Test
     public void constructor_nullProperty_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPropertyCommand(null));
     }
 
     @Test
@@ -35,34 +38,35 @@ public class AddCommandTest {
         ModelStubAcceptingPropertyAdded modelStub = new ModelStubAcceptingPropertyAdded();
         Property validProperty = new PropertyBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validProperty).execute(modelStub);
+        CommandResult commandResult = new AddPropertyCommand(validProperty).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validProperty), commandResult.getFeedbackToUser());
+        assertEquals(String.format(
+                AddPropertyCommand.MESSAGE_SUCCESS, validProperty), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validProperty), modelStub.propertiesAdded);
     }
 
     @Test
     public void execute_duplicateProperty_throwsCommandException() {
         Property validProperty = new PropertyBuilder().build();
-        AddCommand addCommand = new AddCommand(validProperty);
+        AddPropertyCommand addCommand = new AddPropertyCommand(validProperty);
         ModelStub modelStub = new ModelStubWithProperty(validProperty);
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DUPLICATE_PROPERTY, () -> addCommand.execute(modelStub));
+                AddPropertyCommand.MESSAGE_DUPLICATE_PROPERTY, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Property alice = new PropertyBuilder().withName("Alice").build();
         Property bob = new PropertyBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddPropertyCommand addAliceCommand = new AddPropertyCommand(alice);
+        AddPropertyCommand addBobCommand = new AddPropertyCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddPropertyCommand addAliceCommandCopy = new AddPropertyCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -146,6 +150,56 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPropertyList(Predicate<Property> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getClientDirectoryFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClientDirectoryFilePath(Path propertyDirectoryFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClient(Client property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClientDirectory(ReadOnlyClientDirectory newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyClientDirectory getClientDirectory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClient(Client person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteClient(Client target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setClient(Client target, Client editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Client> getFilteredClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
