@@ -41,6 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<ModuleClass> moduleClassList = ParserUtil.parseModuleClasses(argMultimap.getAllValues(PREFIX_MODULE_CLASS));
+        // Module data cannot be added through add command
 
         Student student = new Student(name, phone, email, address, moduleClassList);
 

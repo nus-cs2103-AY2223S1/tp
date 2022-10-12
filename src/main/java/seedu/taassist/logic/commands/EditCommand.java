@@ -105,6 +105,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<ModuleClass> updatedModuleClasses = editStudentDescriptor.getModuleClasses()
                 .orElse(studentToEdit.getModuleClasses());
+        // Module data cannot be edited through edit command.
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModuleClasses);
     }

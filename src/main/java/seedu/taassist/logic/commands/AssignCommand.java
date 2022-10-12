@@ -71,7 +71,8 @@ public class AssignCommand extends Command {
                     student.getPhone(),
                     student.getEmail(),
                     student.getAddress(),
-                    newModuleClasses);
+                    newModuleClasses,
+                    student.getModuleData());
             model.setStudent(student, editedStudent);
         }
 
