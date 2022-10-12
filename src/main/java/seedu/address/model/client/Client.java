@@ -76,7 +76,7 @@ public class Client {
      */
     public static class EmptyClient extends Client {
         public static final Client EMPTY_CLIENT = new EmptyClient();
-        public EmptyClient() {
+        private EmptyClient() {
             super(Name.EmptyName.EMPTY_NAME);
         }
 
@@ -153,21 +153,4 @@ public class Client {
             return false;
         }
     }
-
-
-    //    /**
-    //     * Returns a list containing the projects the client is associated with.
-    //     * @return String representing client's projects.
-    //     */
-    //    public String getClientProjectList() {
-    //        return this.projects.listAllProjects();
-    //    }
-    //
-    //    /**
-    //     * Returns the type of the client.
-    //     * @return String representing client type
-    //     */
-    //    public String getClientType() {
-    //        return this.type.toString();
-    //    }
 }

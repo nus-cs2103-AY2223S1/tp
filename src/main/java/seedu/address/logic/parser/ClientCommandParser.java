@@ -1,7 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.client.AddClientCommand;
@@ -10,6 +17,12 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Name;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.project.Project;
 
 /**
  * Parser to parse any commands related to Client
@@ -46,12 +59,53 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      *
-     * @param args string of arguments
+     * @param arguments string of arguments
      * @return an AddClientCommand object
      * @throws ParseException if the user input does not conform the expected format
      */
-    private AddClientCommand parseAddClientCommand(String args) throws ParseException {
-        return null;
+    private AddClientCommand parseAddClientCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE,
+                        PREFIX_CLIENT_EMAIL);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_NAME)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
+        }
+
+        List<Project> projects = new ArrayList<>();
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
+            //projects already empty
+        } else {
+            Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+            projects.add(project);
+        }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get());
+        ClientPhone phone;
+        ClientEmail email;
+
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
+            phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        } else {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+        }
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+            email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
+        } else {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        }
+
+        //todo: replace with actual implementation
+        ClientId clientId = new ClientId(-1);
+
+        Client client = new Client(name, phone, email, projects, clientId);
+
+        return new AddClientCommand(client);
     }
 
     // TODO: revise syntax
