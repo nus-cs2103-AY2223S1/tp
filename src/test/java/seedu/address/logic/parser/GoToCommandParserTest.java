@@ -69,7 +69,5 @@ public class GoToCommandParserTest {
         // leading and trailing whitespaces
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + MODULE_CODE_STR_CS2106 + PREAMBLE_WHITESPACE,
                 expectedGoToCommand);
-
-        //
     }
 }
