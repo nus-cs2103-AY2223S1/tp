@@ -82,11 +82,20 @@ public class FindCommand extends Command {
             FindCommand otherFind = (FindCommand) other;
 
             if (this.studentPredicate != null && otherFind.studentPredicate != null) {
-                return this.studentPredicate.equals(((FindCommand) other).studentPredicate);
-            } else if (this.tutorPredicate != null && otherFind.tutorPredicate != null) {
-                return this.tutorPredicate.equals(otherFind.tutorPredicate);
-            } else if (this.classPredicate != null && otherFind.classPredicate != null) {
-                return this.classPredicate.equals(otherFind.classPredicate);
+                if (otherFind.studentPredicate != null) {
+                    return this.studentPredicate.equals(((FindCommand) other).studentPredicate);
+                }
+                return false;
+            } else if (this.tutorPredicate != null) {
+                if (otherFind.tutorPredicate != null) {
+                    return this.tutorPredicate.equals(otherFind.tutorPredicate);
+                }
+                return false;
+            } else if (this.classPredicate != null) {
+                if (otherFind.classPredicate != null) {
+                    return this.classPredicate.equals(otherFind.classPredicate);
+                }
+                return false;
             } else {
                 return this.keywords.equals(otherFind.keywords);
             }

@@ -66,6 +66,11 @@ public class FindCommandTest {
         // FindCommand test for Student List
         model.updateCurrentListType(Model.ListType.STUDENT_LIST);
         findFirstCommand.execute(model);
+
+        // second command studentPredicate not initialized -> return false;
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        // Initialize the second command
         findSecondCommand.execute(model);
 
         // same object -> returns true
@@ -100,6 +105,11 @@ public class FindCommandTest {
         // FindCommand test for Student List
         model.updateCurrentListType(Model.ListType.TUTOR_LIST);
         findFirstCommand.execute(model);
+
+        // second command tutorPredicate not initialized -> return false;
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        // Initialize the second command
         findSecondCommand.execute(model);
 
         // same object -> returns true
@@ -134,6 +144,11 @@ public class FindCommandTest {
         // FindCommand test for Student List
         model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         findFirstCommand.execute(model);
+
+        // second command tuitionClassPredicate not initialized -> return false;
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        // Initialize the second command
         findSecondCommand.execute(model);
 
         // same object -> returns true
