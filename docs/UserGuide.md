@@ -89,16 +89,18 @@ Examples:
 
 ### Listing a single student: `view`
 
-Shows the full record of a student, including all stored details, using the given student's name or student's id.
+Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple 
+students by including more keywords
 
-Format: `view n/[name]` or `view id/[id]`
+Format: `view nm/[name]` or `view id/[id]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only the name or the id is searched, depending on the given input.
 * Only full names / full ids will be matched e.g. `Han` will not match `Hans`
 
 Examples:
-* `view n/John` returns the record for the student named `john`
+* `view nm/John` returns the record for the student named `john`
+* `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
 ### Deleting individual student record : `delete`
 
@@ -146,7 +148,7 @@ Class-ify will discard all data and start with an empty data file at the next ru
 |:-------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
 |         Add individual student        | `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]` | _addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18_ |
 |      View all student information     | `view all`                                                                                                                      | _view all_                                                                                            |
-|  View individual student information  | `view n/[name]` or `view id/[id]`                                                                                               | _view n/Jonathan Tan_                                                                                 |
+|  View individual student information  | `view nm/[name]` or `view id/[id]`                                                                                              | _view n/Jonathan Tan_                                                                                 |
 | Update individual student information | `update [index] n/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                             | _update 1 a/Kent Ridge View_                                                                          |
 |       Delete individual student       | `delete n/[name]` or `delete id/[id]`                                                                                           | _delete n/Jonathan Tan *or* delete id/123A_                                                           |
 |                  Exit                 | `exit`                                                                                                                          | _exit_                                                                                                |
