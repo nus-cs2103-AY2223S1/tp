@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.ParserUtil.parseTagsQueryPredicate;
 
 import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -52,9 +53,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         // no clear specifier
         if (commandSpecifier == null) {
-            return new FilterCommand(parseSearchKeywords(arguments));
+            return new FilterCommand(parseSearchKeywords(arguments, createParseException(FilterCommand.MESSAGE_USAGE)));
         }
-        return hasArguments(arguments) ? new FilterClearCommand(parseSearchKeywords(arguments))
+        return hasArguments(arguments)
+                ? new FilterClearCommand(
+                        parseSearchKeywords(arguments, createParseException(FilterClearCommand.MESSAGE_USAGE)))
                 : new FilterClearCommand();
     }
 
@@ -62,16 +65,18 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * Parses keywords given in {@code args} into a {@code FilterCommandPredicate}.
      *
      * @param args Keywords arguments.
-     * @return FilterCommandPredicate used for filtering
+     * @param exception ParseException to throw if the parse fails.
+     * @return FilterCommandPredicate used for filtering.
      * @throws ParseException When no relevant keywords were found in {@code args}.
      */
-    private FilterCommandPredicate parseSearchKeywords(String args) throws ParseException {
+    private FilterCommandPredicate parseSearchKeywords(String args, Supplier<ParseException> exception)
+            throws ParseException {
         ArgumentMultimap argMultimap = parseNameAndTagsTokens(args);
         Set<NameContainsKeywordsPredicate> nameQueryPredicates = constructNameQueryPredicate(argMultimap);
         Set<TagMatchesQueryPredicate> tagsQueryPredicates = constructTagsQueryPredicate(argMultimap);
 
         if (!isAnyNonNull(nameQueryPredicates, tagsQueryPredicates)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            throw exception.get();
         }
         return new FilterCommandPredicate(nameQueryPredicates, tagsQueryPredicates);
     }
@@ -146,6 +151,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return parseCommaSeparatedKeywords(values);
     }
 
+    private static Supplier<ParseException> createParseException(String errorMessage) {
+        return () -> new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, errorMessage));
+    }
 }
 
 

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -15,11 +16,10 @@ public class FilterClearCommand extends FilterCommand {
     public static final String COMMAND_SPECIFIER = "clear";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + COMMAND_SPECIFIER
-            + ": Removes filter of the specified name"
-            + " and tags (case-insensitive) and displays the contacts without the filter applied \n"
-            + "Parameters: " + PREFIX_NAME + "NAME ...\n" + "Example: " + COMMAND_WORD + " " + COMMAND_SPECIFIER + " "
-            + PREFIX_NAME
-            + "alice";
+            + ": Removes filter of the specified name and tags (both case-insensitive) \n"
+            + "and displays the contacts without the filter applied \n"
+            + "Parameters: [" + PREFIX_NAME + "NAME1,NAME2,...] [" + PREFIX_TAG + "TAG1,TAG2,...] \n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_SPECIFIER + " " + PREFIX_NAME + "alice";
 
     public FilterClearCommand(FilterCommandPredicate predicate) {
         super(predicate);
