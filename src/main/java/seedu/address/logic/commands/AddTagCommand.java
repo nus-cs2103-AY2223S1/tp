@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEGREETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTYPETAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SKILLTAG;
@@ -45,8 +46,7 @@ public class AddTagCommand extends Command {
      * Creates an AddTagCommand to add the specified {@code Tag}
      */
     public AddTagCommand(Index targetIndex, UniqueTagTypeMap toAdd) {
-        requireNonNull(targetIndex);
-        requireNonNull(toAdd);
+        requireAllNonNull(targetIndex, toAdd);
         this.targetIndex = targetIndex;
         this.toAdd = toAdd;
         editPersonDescriptor = new EditCommand.EditPersonDescriptor();

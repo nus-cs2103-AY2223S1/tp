@@ -124,9 +124,11 @@ public class ParserUtil {
         final UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         Map<TagType, UniqueTagList> tagTypeMap = new HashMap<>();
         for (Prefix tagName : tags.keySet()) {
-            tagTypeMap.put(UniqueTagTypeMap.getTagType(tagName), parseTagList(tags.get(tagName)));
+            if (tags.get(tagName).size() != 0) {
+                tagTypeMap.put(UniqueTagTypeMap.getTagType(tagName), parseTagList(tags.get(tagName)));
+            }
         }
-        tagMap.setTagTypeMap(tagMap);
+        tagMap.setTagTypeMap(tagTypeMap);
         return tagMap;
     }
 

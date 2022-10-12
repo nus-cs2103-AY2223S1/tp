@@ -56,7 +56,7 @@ public class TagType {
      * Format state as text for viewing.
      */
     public String toString() {
-        return String.format("%s %s", tagType, p.toString());
+        return tagType;
     }
     public String getTagTypeName() {
         return this.tagType;

@@ -120,8 +120,8 @@ public class Person {
         ObservableMap<TagType, UniqueTagList> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach((tagType, tagList) -> builder.append("/n/t" + tagType.toString()
-                    + ":/n/t/t" + tagList.toString()));
+            tags.forEach((tagType, tagList) -> builder.append(String.format("%s: %s", tagType.toString(),
+                    tagList.toString())));
         }
         return builder.toString();
     }
