@@ -7,6 +7,8 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  * Represents a Weight object
  */
 public class Weight {
+    public static final int MAX_WEIGHT = 200;
+    public static final int MIN_WEIGHT = 0;
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String MESSAGE_CONSTRAINTS = "Weight must take on a positive number that is not too large.";
     public final String value;
@@ -30,7 +32,7 @@ public class Weight {
         if (!weight.isEmpty() && weight.matches(VALIDATION_REGEX)) {
             try {
                 Integer weightValue = Integer.parseInt(weight);
-                return weightValue >= 0 && weightValue < 200;
+                return weightValue >= MIN_WEIGHT && weightValue < MAX_WEIGHT;
             } catch (NumberFormatException e) {
                 return false;
             }

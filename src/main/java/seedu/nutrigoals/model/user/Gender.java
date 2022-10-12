@@ -31,7 +31,8 @@ public class Gender {
         return (!gender.isEmpty() && gender.matches(VALIDATION_REGEX));
     }
 
-    @Override public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj) {
         if (obj instanceof Gender) {
             Gender other = (Gender) obj;
             return this.value.equals(other.value);

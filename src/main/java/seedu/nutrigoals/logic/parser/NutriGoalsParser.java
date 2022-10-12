@@ -76,7 +76,7 @@ public class NutriGoalsParser {
 
         case SetupCommand.COMMAND_WORD:
             return new SetupCommandParser().parse(arguments);
-            
+
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommand();
 

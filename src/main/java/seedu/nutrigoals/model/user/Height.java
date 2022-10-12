@@ -7,6 +7,8 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
  * Represents a Height object
  */
 public class Height {
+    public static final int MAX_HEIGHT = 220;
+    public static final int MIN_HEIGHT = 0;
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String MESSAGE_CONSTRAINTS = "Height must take on a positive number that is not too large.";
     public final String value;
@@ -30,7 +32,7 @@ public class Height {
         if (!height.isEmpty() && height.matches(VALIDATION_REGEX)) {
             try {
                 Integer heightValue = Integer.parseInt(height);
-                return heightValue >= 0 && heightValue < 220;
+                return heightValue >= MIN_HEIGHT && heightValue < MAX_HEIGHT;
             } catch (NumberFormatException e) {
                 return false;
             }

@@ -34,10 +34,10 @@ public class ArgumentMultimap {
         List<String> argValues = getAllValues(prefix);
         if (argValues.size() > 0) {
             throw new ParseException(MESSAGE_MULTIPLE_TAGS_ERROR);
-        } else {
-            argValues.add(argValue);
-            argMultimap.put(prefix, argValues);
         }
+        argValues.add(argValue);
+        argMultimap.put(prefix, argValues);
+
 
 
     }
