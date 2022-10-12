@@ -13,8 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_SORT = new Prefix("s/");
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
-    public static final Prefix PREFIX_DOB = new Prefix("d/");
 
     // Prefix associated with Event
     public static final Prefix PREFIX_DATE = new Prefix("d/");

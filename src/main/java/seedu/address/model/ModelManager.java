@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortField;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -134,6 +135,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
+    }
+
+    public void sortPersons(SortField sortField) {
+        requireNonNull(sortField);
+        addressBook.sortPersons(sortField);
     }
 
     //=========== Filtered Person List Accessors =============================================================

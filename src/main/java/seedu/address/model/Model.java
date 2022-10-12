@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortField;
 
 /**
  * The API of the Model component.
@@ -88,6 +89,11 @@ public interface Model {
      * The event must exist in the address book.
      */
     void deleteEvent(Event event);
+
+    /**
+     * Sorts all the persons in the addres book by the given {@code SortField}.
+     */
+    void sortPersons(SortField sortField);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
