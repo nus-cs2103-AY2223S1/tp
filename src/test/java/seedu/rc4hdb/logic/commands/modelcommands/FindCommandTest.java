@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 import static seedu.rc4hdb.testutil.TypicalResidents.CARL;
 import static seedu.rc4hdb.testutil.TypicalResidents.ELLE;
 import static seedu.rc4hdb.testutil.TypicalResidents.FIONA;
+import static seedu.rc4hdb.testutil.TypicalResidents.GEORGE;
 import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import java.util.Arrays;
@@ -62,6 +64,46 @@ public class FindCommandTest {
         expectedModel.updateFilteredResidentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredResidentList());
+    }
+
+    @Test
+    public void execute_partialKeyword_onePersonFound() {
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("eorge");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(GEORGE), model.getFilteredResidentList());
+    }
+
+    @Test
+    public void execute_partialKeyword_multiplePersonFound() {
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Ku");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredResidentList());
+    }
+
+    @Test
+    public void execute_multiplePartialKeyword_multiplePersonFound() {
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Ku On");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, CARL, FIONA), model.getFilteredResidentList());
+    }
+
+    @Test
+    public void execute_onePartialOneInvalidKeyword_multiplePersonFound() {
+        String expectedMessage = String.format(MESSAGE_RESIDENTS_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Ku Bestie");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredResidentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredResidentList());
     }
 
     @Test
