@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_RECORDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.RECORD1;
+import static seedu.address.testutil.TypicalPersons.RECORD2;
+import static seedu.address.testutil.TypicalPersons.RECORD3;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -24,7 +27,11 @@ import seedu.address.model.person.RecordContainsKeywordsPredicate;
 public class FindRecordCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
+    private void prepareModel() {
+        expectedModel.setFilteredRecordList(BENSON);
+        model.setFilteredRecordList(BENSON);
+        model.setRecordListDisplayed(true);
+    }
     @Test
     public void equals() {
         RecordContainsKeywordsPredicate firstPredicate =
@@ -63,7 +70,7 @@ public class FindRecordCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredRecordList());
     }
 
-    /*
+
     @Test
     public void execute_multipleKeywords_multipleRecordsFound() {
         prepareModel();
@@ -74,7 +81,7 @@ public class FindRecordCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(RECORD1, RECORD2, RECORD3), model.getFilteredRecordList());
     }
-    */
+
 
     /**
      * Parses {@code userInput} into a {@code RecordContainsKeywordsPredicate}.
@@ -83,8 +90,5 @@ public class FindRecordCommandTest {
         return new RecordContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 
-    private void prepareModel() {
-        model.setFilteredRecordList(BENSON);
-        model.setRecordListDisplayed(true);
-    }
+
 }
