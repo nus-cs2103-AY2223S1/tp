@@ -34,7 +34,8 @@ public class ListCommandTest {
 
     @Test
     public void execute_noFiltersApplied_showsEverything() {
-        Command listCommand = new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        Command listCommand = new ListCommand(Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
         assertCommandSuccess(listCommand,
                 model, String.format(ListCommand.MESSAGE_SUCCESS, "NIL", "NIL", "NIL", "NIL"), expectedModel);
     }
@@ -44,7 +45,8 @@ public class ListCommandTest {
         Predicate<Person> predicate = x -> x.getAddress().value.contains("Jurong");
         expectedModel.updateFilteredPersonList(predicate);
 
-        Command listCommand = new ListCommand(Optional.of(new Address("Jurong")), Optional.empty(), Optional.empty(), Optional.empty());
+        Command listCommand = new ListCommand(Optional.of(new Address("Jurong")), Optional.empty(),
+                Optional.empty(), Optional.empty());
         assertCommandSuccess(listCommand,
                 model, String.format(ListCommand.MESSAGE_SUCCESS, "Jurong", "NIL", "NIL", "NIL"), expectedModel);
     }
@@ -54,7 +56,8 @@ public class ListCommandTest {
         Predicate<Person> predicate = x -> x.getCategory().equals(new Category(Category.PATIENT_SYMBOL));
         expectedModel.updateFilteredPersonList(predicate);
 
-        Command listCommand = new ListCommand(Optional.empty(), Optional.of(new Category(Category.PATIENT_SYMBOL)), Optional.empty(), Optional.empty());
+        Command listCommand = new ListCommand(Optional.empty(), Optional.of(new Category(Category.PATIENT_SYMBOL)),
+                Optional.empty(), Optional.empty());
         assertCommandSuccess(listCommand,
                 model, String.format(ListCommand.MESSAGE_SUCCESS, "NIL", "P", "NIL", "NIL"), expectedModel);
     }
@@ -64,7 +67,8 @@ public class ListCommandTest {
         Predicate<Person> predicate = x -> x.getGender().equals(new Gender(Gender.MALE_SYMBOL));
         expectedModel.updateFilteredPersonList(predicate);
 
-        Command listCommand = new ListCommand(Optional.empty(), Optional.empty(), Optional.of(new Gender(Gender.MALE_SYMBOL)), Optional.empty());
+        Command listCommand = new ListCommand(Optional.empty(), Optional.empty(),
+                Optional.of(new Gender(Gender.MALE_SYMBOL)), Optional.empty());
         assertCommandSuccess(listCommand,
                 model, String.format(ListCommand.MESSAGE_SUCCESS, "NIL", "NIL", "M", "NIL"), expectedModel);
     }
@@ -74,7 +78,8 @@ public class ListCommandTest {
         Predicate<Person> predicate = x -> x.getTags().stream().anyMatch(y -> y.tagName == "friends");
         expectedModel.updateFilteredPersonList(predicate);
 
-        Command listCommand = new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.of(new Tag("friends")));
+        Command listCommand = new ListCommand(Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.of(new Tag("friends")));
         assertCommandSuccess(listCommand,
                 model, String.format(ListCommand.MESSAGE_SUCCESS, "NIL", "NIL", "NIL", "friends"), expectedModel);
     }
