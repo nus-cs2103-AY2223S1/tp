@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: #FAFAFA; /* Used in the default.html file */
 }
 
 .label {
@@ -8,6 +8,7 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
+    -fx-background-color: #FFFFFF;
 }
 
 .label-bright {
@@ -100,36 +101,54 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #fcfcfc;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #fefefe;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #F0ECFF;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
+    -fx-border-color: #6D28D9;
     -fx-border-width: 1;
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
 }
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: black;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #64748B;
+}
+
+.sub_heading {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 11px;
+    -fx-text-fill: #A1A1AA;
+    -fx-background-color: transparent;
+}
+
+.cell_small_flowPane .label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #AFB4FF;
+    -fx-background-color: #AFB4FF;
+}
+
+.tags_pane .label {
+    -fx-font-fill: #00FFFF;
+    -fx-background-color: #00FFFF;
 }
 
 .stack-pane {
@@ -145,14 +164,14 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #6D28D9;
 }
 
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: 7C3AED;
+    -fx-text-fill: #7C3AED;
 }
 
 .result-display .label {
@@ -164,6 +183,7 @@
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
+    -fx-background-color: #6D28D9;
 }
 
 .status-bar-with-border {
@@ -207,7 +227,7 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #FAFAFA;
 }
 
 /*
