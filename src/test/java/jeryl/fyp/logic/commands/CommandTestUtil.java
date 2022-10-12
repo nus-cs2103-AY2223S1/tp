@@ -53,7 +53,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_STUDENT_ID_DESC = " " + PREFIX_STUDENT_ID + "911a"; // 'a' not allowed in student ID
+    public static final String INVALID_STUDENT_ID_DESC = " " + PREFIX_STUDENT_ID + "a"; // 'a' invalidates student ID
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     // empty str not allowed for projects
     public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_PROJECT_NAME;
