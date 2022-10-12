@@ -44,7 +44,7 @@
 //        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
 //        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 //
-//        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
 //    }
 //
 //    @Test
@@ -73,7 +73,7 @@
 //
 //        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 //
-//        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
 //    }
 //
 //    @Test

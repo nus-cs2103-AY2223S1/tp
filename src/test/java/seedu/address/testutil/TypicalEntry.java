@@ -51,7 +51,7 @@ public class TypicalEntry {
             .build();
     // add typical income
 
-    public static PennyWise getTypicalAddressBook() {
+    public static PennyWise getTypicalPennyWise() {
         PennyWise ab = new PennyWise();
 
         for (Expenditure expenditure : getTypicalExpenditure()) {

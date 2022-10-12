@@ -63,7 +63,7 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editEntryDescriptor = new EditEntryDescriptor(editEntryDescriptor);
-        this.entryType = editEntryDescriptor.getEntryType().get();
+        this.entryType = editEntryDescriptor.getType().get();
     }
 
     // TODO: Might have to edit
@@ -85,7 +85,7 @@ public class EditCommand extends Command {
 
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
@@ -165,6 +165,7 @@ public class EditCommand extends Command {
          */
         public EditEntryDescriptor(EditEntryDescriptor toCopy) {
             setDescription(toCopy.description);
+            setType(toCopy.entryType);
             setAmount(toCopy.amount);
             setDate(toCopy.date);
             setTags(toCopy.tags);
@@ -181,7 +182,7 @@ public class EditCommand extends Command {
             this.entryType = entryType;
         }
 
-        public Optional<EntryType> getEntryType() {
+        public Optional<EntryType> getType() {
             return Optional.ofNullable(entryType);
         }
 
@@ -242,6 +243,7 @@ public class EditCommand extends Command {
             EditEntryDescriptor e = (EditEntryDescriptor) other;
 
             return getDescription().equals(e.getDescription())
+                    && getType().equals(e.getType())
                     && getAmount().equals(e.getAmount())
                     && getDate().equals(e.getDate())
                     && getTags().equals(e.getTags());

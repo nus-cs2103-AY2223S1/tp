@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntry.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
 //import java.util.Arrays;
 //import java.util.Collection;
@@ -36,7 +36,7 @@ public class PennyWiseTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        PennyWise newData = getTypicalAddressBook();
+        PennyWise newData = getTypicalPennyWise();
         pennyWise.resetData(newData);
         assertEquals(newData, pennyWise);
     }

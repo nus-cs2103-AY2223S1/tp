@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.GROCERIES;
 import static seedu.address.testutil.TypicalEntry.SUPPER;
-import static seedu.address.testutil.TypicalEntry.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 //import static seedu.address.testutil.TypicalPersons.ALICE;
 //import static seedu.address.testutil.TypicalPersons.HOON;
 //import static seedu.address.testutil.TypicalPersons.IDA;
@@ -67,7 +67,7 @@ public class JsonPennyWiseStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        PennyWise original = getTypicalAddressBook();
+        PennyWise original = getTypicalPennyWise();
         JsonPennyWiseStorage jsonAddressBookStorage = new JsonPennyWiseStorage(filePath);
 
         // Save in new file and read back

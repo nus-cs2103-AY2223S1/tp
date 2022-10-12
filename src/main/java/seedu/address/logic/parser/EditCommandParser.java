@@ -61,7 +61,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
 
-        if (!editEntryDescriptor.isAnyFieldEdited()) {
+        if (!editEntryDescriptor.isAnyFieldEdited() || argMultimap.getValue(PREFIX_TYPE).isEmpty()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
