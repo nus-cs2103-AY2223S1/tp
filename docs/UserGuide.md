@@ -16,6 +16,7 @@ Yellow Pages (YP) is a desktop app for managing contacts, optimised for use via 
   * Deleting a contact
   * Clearing all contacts
   * Adding a meeting
+  * Listing all meetings
   * Searching meetings
   * Filtering meetings
   * Exiting the program
@@ -180,6 +181,10 @@ Adds a meeting to the meeting list.
 Format: `addmeeting MEETING_TITLE /at MEETING_DATE [/description MEETING_DESCRIPTION] [/contact INDEX]`
 
 * `index` must be a positive integer corresponding to a contact
+
+### Listing all meetings : `listmeeting`
+
+Shows a list of all meetings in the address book and console.
 
 ### Searching a meeting: `searchmeeting`
 
