@@ -25,7 +25,7 @@ public class TypicalPersons {
 
     public static final Patient ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withPhone("94351253").withTasks("Change dressing")
             .withTags("friends").build();
     public static final Patient BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
