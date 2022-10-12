@@ -12,7 +12,7 @@ import java.util.function.Predicate;
  * @author albertZhangTJ
  */
 public class NameSoundsSimilarToPredicate implements Predicate<Person> {
-    private final static List<List<String>> soundexMapping = List.of(
+    private static final List<List<String>> soundexMapping = List.of(
             List.of("a", "e", "i", "o", "u", "y", "h", "w"), //0
             List.of("b", "f", "p", "v"), //1
             List.of("c", "g", "j", "k", "q", "s", "x", "z"), //2
@@ -150,8 +150,8 @@ public class NameSoundsSimilarToPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.person.NameSoundsSimilarToPredicate // instanceof handles nulls
-                && keywords.equals(
-                        ((seedu.address.model.person.NameSoundsSimilarToPredicate) other).keywords
+                && keywords.equals((
+                        (seedu.address.model.person.NameSoundsSimilarToPredicate) other).keywords
                 )); // state check
     }
 

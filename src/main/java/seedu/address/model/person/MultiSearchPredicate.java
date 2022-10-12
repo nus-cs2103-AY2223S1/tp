@@ -10,6 +10,11 @@ public class MultiSearchPredicate implements Predicate<Person> {
     private final AllInfoContainsKeywordsPredicate matchPredicate;
     private final NameSoundsSimilarToPredicate fuzzyPredicate;
 
+    /**
+     * Initialize the two sub-predicates
+     *
+     * @param keywords
+     */
     public MultiSearchPredicate(List<String> keywords) {
         this.matchPredicate = new AllInfoContainsKeywordsPredicate(keywords);
         this.fuzzyPredicate = new NameSoundsSimilarToPredicate(keywords);
