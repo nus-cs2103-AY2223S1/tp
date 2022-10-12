@@ -148,10 +148,24 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredExpenditureList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the expenditure at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showExpenditureAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
+
+        Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
+        final String[] splitName = entry.toString().split("\\s+");
+        model.updateFilteredEntryList(
+                new NameContainsKeywordsPredicate(Arrays.asList(splitName[0].replace(";", ""))));
+        assertEquals(1, model.getFilteredExpenditureList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the income at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showIncomeeAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredExpenditureList().size());
 
         Entry entry = model.getFilteredExpenditureList().get(targetIndex.getZeroBased());
