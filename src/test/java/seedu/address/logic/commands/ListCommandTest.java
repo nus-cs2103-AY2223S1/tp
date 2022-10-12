@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.ComparableCategory;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -35,5 +36,20 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFilteredNotReverse_showsEverything() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        ListCommand newCommand = new ListCommand(ComparableCategory.NULL, false);
+        assertCommandSuccess(newCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_listIsFilteredReverse_showsEverything() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        ListCommand newCommand = new ListCommand(ComparableCategory.NULL, true);
+        expectedModel.reverseList();
+        assertCommandSuccess(newCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

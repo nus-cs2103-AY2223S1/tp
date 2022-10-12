@@ -77,6 +77,28 @@ public class Person {
         return applicationProcess;
     }
 
+
+    /**
+     * Compares two person based on the category to be compared by
+     * @param o The other person to be compared to
+     * @param category The category to be compared by
+     * @return a non-negative number if this person is before the other and negative number otherwise
+     */
+    public int compareTo(Person o, ComparableCategory category) {
+        switch (category) {
+        case NAME:
+            return this.getName().compareTo(o.getName());
+        case APPLICATION_PROCESS:
+            return this.getApplicationProcess().compareTo(o.getApplicationProcess());
+        case POSITION:
+            return this.getPosition().compareTo(o.getPosition());
+        case DATE:
+            return this.getDate().compareTo(o.getDate());
+        default:
+            return 0;
+        }
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

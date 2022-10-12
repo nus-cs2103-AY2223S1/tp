@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Represents an internship's application process state in the list.
  */
-public class ApplicationProcess {
+public class ApplicationProcess extends ComparableModel {
 
     /**
      * Represents the possible state of application process of an internship.
@@ -45,6 +45,14 @@ public class ApplicationProcess {
     public static boolean isValidApplicationProcess(String test) {
         String upperCasedTest = test.toUpperCase();
         return ApplicationProcessState.isInApplicationProcessState(upperCasedTest);
+    }
+
+    @Override
+    public int compareTo(ComparableModel other) {
+        if (other instanceof ApplicationProcess) {
+            return this.toString().compareTo(((ApplicationProcess) other).toString());
+        }
+        return 0;
     }
 
     @Override
