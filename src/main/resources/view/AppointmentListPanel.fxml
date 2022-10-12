@@ -27,7 +27,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-    <Label fx:id="medicalTest" minHeight="30.0" styleClass="cell_small_label" text="Medical Test" GridPane.columnIndex="1">
+    <Label fx:id="medicalTest" minHeight="30.0" styleClass="cell_small_label"
+           text="Medical Test" GridPane.columnIndex="1">
          <font>
             <Font size="16.0" />
          </font></Label>
