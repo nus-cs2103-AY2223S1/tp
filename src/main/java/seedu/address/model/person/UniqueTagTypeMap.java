@@ -51,7 +51,8 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     /**
      * Adds a new tag type to the existing TAG_TYPES.
      */
-    public static void createTagType(Prefix prefix, TagType tagType) {
+    public static void createTagType(Prefix prefix, TagType tagType) throws DuplicatePrefixException,
+            DuplicateTagTypeException {
         if (prefixMap.keySet().contains(prefix)) {
             throw new DuplicatePrefixException();
         } else if (prefixMap.values().contains(tagType)) {
@@ -61,13 +62,17 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
     }
 
-    public static void removeExistingTagType(TagType tagType) {
-        prefixMap.remove(tagType);
+    public static void removeExistingTagType(TagType tagType) throws TagTypeNotFoundException {
+        if (prefixMap.values().contains(tagType)) {
+            prefixMap.remove(tagType);
+        } else {
+            throw new TagTypeNotFoundException();
+        }
     }
 
     public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType) {
         prefixMap.remove(toRemovePrefix);
-        createTagType(prefix, tagType);
+        UniqueTagTypeMap.createTagType(prefix, tagType);
     }
 
     /**

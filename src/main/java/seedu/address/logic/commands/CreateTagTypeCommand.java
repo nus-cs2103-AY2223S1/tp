@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.address.model.Model;
 import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.tag.TagType;
 
 /**
@@ -39,7 +41,11 @@ public class CreateTagTypeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UniqueTagTypeMap.createTagType(prefix, toAdd);
+        try {
+            UniqueTagTypeMap.createTagType(prefix, toAdd);
+        } catch (DuplicatePrefixException | DuplicateTagTypeException d) {
+            throw new CommandException(d.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

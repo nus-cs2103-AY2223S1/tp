@@ -15,7 +15,7 @@ public class CreateTagTypeCommandParser implements Parser<CreateTagTypeCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public CreateTagTypeCommand parse(String args) throws ParseException {
-        String[] tagTypeAndPrefix = args.split("\\s+", 2);
+        String[] tagTypeAndPrefix = args.trim().split("\\s+", 2);
         if (tagTypeAndPrefix.length != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateTagTypeCommand.MESSAGE_USAGE));
         }

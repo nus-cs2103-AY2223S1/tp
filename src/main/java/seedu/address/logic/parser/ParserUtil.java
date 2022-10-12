@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -154,7 +155,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tagType} is invalid.
      */
     public static TagType parseTagType(String tagType, String prefix) throws ParseException {
-        requireNonNull(tagType);
+        requireAllNonNull(tagType, prefix);
         String trimmedTagType = tagType.trim();
         if (!TagType.isValidTagType(trimmedTagType)) {
             throw new ParseException(TagType.MESSAGE_CONSTRAINTS);
