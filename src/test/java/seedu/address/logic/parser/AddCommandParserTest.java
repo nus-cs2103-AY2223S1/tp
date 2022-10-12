@@ -110,7 +110,7 @@ public class AddCommandParserTest {
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PLANNED_MODULE_DESC_1 + PLANNED_MODULE_DESC_2,
-                new AddCommand(expectedPersonMultiplePreviousModules));
+                new AddCommand(expectedPersonMultiplePlannedModules));
 
     }
 

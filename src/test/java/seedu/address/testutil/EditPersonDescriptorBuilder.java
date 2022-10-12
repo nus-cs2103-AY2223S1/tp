@@ -88,18 +88,19 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code currModules} into a {@code Set<CurrentModule>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withCurrentModules(String... currentModules) {
         Set<CurrentModule> currentModuleSet = Stream.of(currentModules)
                 .map(CurrentModule::new).collect(Collectors.toSet());
+        System.out.println("withCurrentModules");
         descriptor.setCurrModules(currentModuleSet);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code prevModules} into a {@code Set<PreviousModule>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withPreviousModules(String... previousModules) {
@@ -110,7 +111,7 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code planModules} into a {@code Set<PlannedModule>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withPlannedModules(String... plannedModules) {
