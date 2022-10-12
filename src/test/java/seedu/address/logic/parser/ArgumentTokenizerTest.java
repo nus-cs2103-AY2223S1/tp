@@ -26,8 +26,10 @@ public class ArgumentTokenizerTest {
     @Test
     public void tokenize_stringWithNestedQuotes_returnsTokens() {
         String[] tokens = ArgumentTokenizer.tokenize("space separated string with '\"nested\" quoted' tokens");
-        assertArrayEquals(tokens, new String[] { "space", "separated", "string", "with", "\"nested\" quoted", "tokens" });
+        assertArrayEquals(tokens,
+                new String[] { "space", "separated", "string", "with", "\"nested\" quoted", "tokens" });
         String[] tokens2 = ArgumentTokenizer.tokenize("space separated string with \"'nested' quoted\" tokens");
-        assertArrayEquals(tokens2, new String[] { "space", "separated", "string", "with", "'nested' quoted", "tokens" });
+        assertArrayEquals(tokens2,
+                new String[] { "space", "separated", "string", "with", "'nested' quoted", "tokens" });
     }
 }
