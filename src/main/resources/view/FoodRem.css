@@ -1,3 +1,7 @@
+.label {
+  -fx-font-size: 11pt;
+}
+
 .menu-bar {
   -fx-alignment: center-right;
   -fx-background-color: #f1e4c2;
