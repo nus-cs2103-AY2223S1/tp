@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
@@ -64,6 +65,21 @@ public class ParserUtil {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
         return new Id(trimmedId);
+    }
+
+    /**
+     * Parses a {@code String className} into a {@code Class}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code className} is invalid.
+     */
+    public static Class parseClass(String className) throws ParseException {
+        requireNonNull(className);
+        String trimmedClassName = className.trim();
+        if (!Class.isValidClassName(trimmedClassName)) {
+            throw new ParseException(Class.MESSAGE_CONSTRAINTS);
+        }
+        return new Class(trimmedClassName);
     }
 
     /**

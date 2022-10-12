@@ -24,16 +24,21 @@ public class Student {
     private final Phone phone;
     private final Address address;
 
+    // Class
+    private final Class className;
+
     // Additional fields - may not be implemented
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name studentName, Id id, Name parentName, Phone phone, Address address, Set<Tag> tags) {
-        requireAllNonNull(studentName, id, parentName, phone, address, tags);
+    public Student(Name studentName, Id id, Class className, Name parentName, Phone phone,
+                   Address address, Set<Tag> tags) {
+        requireAllNonNull(studentName, id, className, parentName, phone, address, tags);
         this.studentName = studentName;
         this.id = id;
+        this.className = className;
         this.parentName = parentName;
         this.phone = phone;
         this.address = address;
@@ -46,6 +51,10 @@ public class Student {
 
     public Id getId() {
         return id;
+    }
+
+    public Class getClassName() {
+        return className;
     }
 
     public Name getParentName() {
@@ -83,7 +92,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same identity and parent fields.
+     * Returns true if both students have the same identity, class and parent fields.
      * This defines a stronger notion of equality between two students.
      */
     @Override
@@ -99,6 +108,7 @@ public class Student {
         Student otherStudent = (Student) other;
         return otherStudent.getStudentName().equals(getStudentName())
                 && otherStudent.getId().equals(getId())
+                && otherStudent.getClassName().equals(getClassName())
                 && otherStudent.getParentName().equals(getParentName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getAddress().equals(getAddress())
@@ -108,7 +118,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(studentName, id, parentName, phone, address, tags);
+        return Objects.hash(studentName, id, className, parentName, phone, address, tags);
     }
 
     @Override
@@ -117,6 +127,8 @@ public class Student {
         builder.append(getStudentName())
                 .append("; Id: ")
                 .append(getId())
+                .append("; Class: ")
+                .append(getClassName())
                 .append("; Parent Name: ")
                 .append(getParentName())
                 .append("; Phone: ")

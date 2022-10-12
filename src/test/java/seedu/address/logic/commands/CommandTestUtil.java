@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -35,6 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_ID_AMY = "498C";
     public static final String VALID_ID_BOB = "883A";
+    public static final String VALID_CLASS_AMY = "20A68";
+    public static final String VALID_CLASS_BOB = "20A70";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -48,6 +51,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String ID_DESC_AMY = " " + PREFIX_ID + VALID_ID_AMY;
     public static final String ID_DESC_BOB = " " + PREFIX_ID + VALID_ID_BOB;
+    public static final String CLASS_DESC_AMY = " " + PREFIX_CLASS + VALID_CLASS_AMY;
+    public static final String CLASS_DESC_BOB = " " + PREFIX_CLASS + VALID_CLASS_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -57,6 +62,7 @@ public class CommandTestUtil {
     public static final String INVALID_PARENT_NAME_DESC = " " + PREFIX_PARENT_NAME + "JC!"; // '!' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "461"; // missing last character
+    public static final String INVALID_CLASS_DESC = " " + PREFIX_CLASS; // empty string not allowed in class names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -70,6 +76,7 @@ public class CommandTestUtil {
         DESC_AMY = new EditStudentDescriptorBuilder()
                 .withStudentName(VALID_STUDENT_NAME_AMY)
                 .withId(VALID_ID_AMY)
+                .withClassName(VALID_CLASS_AMY)
                 .withParentName(VALID_PARENT_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY)
                 .withAddress(VALID_ADDRESS_AMY)

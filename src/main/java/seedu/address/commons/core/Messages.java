@@ -11,4 +11,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_STUDENT_ID = "The student ID provided does not exist!";
     public static final String MESSAGE_INVALID_STUDENT_NAME = "The student name provided does not exist!";
+    public static final String MESSAGE_PERSONS_LISTED_IN_CLASS = "There are %1$d students in this class!";
+
 }

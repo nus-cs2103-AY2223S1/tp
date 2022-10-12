@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -26,6 +27,7 @@ class JsonAdaptedStudent {
 
     private final String studentName;
     private final String id;
+    private final String className;
     private final String parentName;
     private final String phone;
     private final String address;
@@ -36,11 +38,13 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("studentName") String studentName, @JsonProperty("id") String id,
-                              @JsonProperty("parentName") String parentName, @JsonProperty("phone") String phone,
-                              @JsonProperty("address") String address,
+                              @JsonProperty("className") String className,
+                              @JsonProperty("parentName") String parentName,
+                              @JsonProperty("phone") String phone, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.studentName = studentName;
         this.id = id;
+        this.className = className;
         this.parentName = parentName;
         this.phone = phone;
         this.address = address;
@@ -55,6 +59,7 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(Student source) {
         studentName = source.getStudentName().fullName;
         id = source.getId().value;
+        className = source.getClassName().className;
         parentName = source.getParentName().fullName;
         phone = source.getPhone().value;
         address = source.getAddress().value;
@@ -90,6 +95,14 @@ class JsonAdaptedStudent {
         }
         final Id modelId = new Id(id);
 
+        if (className == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Class.class.getSimpleName()));
+        }
+        if (!Class.isValidClassName(className)) {
+            throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
+        }
+
+        final Class modelClassName = new Class(className);
         if (parentName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -107,7 +120,8 @@ class JsonAdaptedStudent {
         final Phone modelPhone = new Phone(phone);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -115,7 +129,8 @@ class JsonAdaptedStudent {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
-        return new Student(modelStudentName, modelId, modelParentName, modelPhone, modelAddress, modelTags);
+        return new Student(modelStudentName, modelId, modelClassName, modelParentName, modelPhone,
+                modelAddress, modelTags);
     }
 
 }

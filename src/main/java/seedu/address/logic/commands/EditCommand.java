@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Address;
+import seedu.address.model.student.Class;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -40,6 +42,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_STUDENT_NAME + "STUDENT NAME] "
             + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_CLASS + "CLASS] "
             + "[" + PREFIX_PARENT_NAME + "PARENT NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -96,12 +99,14 @@ public class EditCommand extends Command {
 
         Name updatedStudentName = editStudentDescriptor.getStudentName().orElse(studentToEdit.getStudentName());
         Id updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
+        Class updatedClassName = editStudentDescriptor.getClassName().orElse(studentToEdit.getClassName());
         Name updatedParentName = editStudentDescriptor.getParentName().orElse(studentToEdit.getParentName());
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedStudentName, updatedId, updatedParentName, updatedPhone, updatedAddress, updatedTags);
+        return new Student(updatedStudentName, updatedId, updatedClassName, updatedParentName, updatedPhone,
+                updatedAddress, updatedTags);
     }
 
     @Override
@@ -129,6 +134,7 @@ public class EditCommand extends Command {
     public static class EditStudentDescriptor {
         private Name studentName;
         private Id id;
+        private Class className;
         private Name parentName;
         private Phone phone;
         private Address address;
@@ -143,6 +149,7 @@ public class EditCommand extends Command {
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setStudentName(toCopy.studentName);
             setId(toCopy.id);
+            setClassName(toCopy.className);
             setParentName(toCopy.parentName);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
@@ -153,7 +160,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(studentName, id, parentName, phone, address, tags);
+            return CollectionUtil.isAnyNonNull(studentName, id, className, parentName, phone, address, tags);
         }
 
         public void setStudentName(Name studentName) {
@@ -170,6 +177,14 @@ public class EditCommand extends Command {
 
         public Optional<Id> getId() {
             return Optional.ofNullable(id);
+        }
+
+        public void setClassName(Class className) {
+            this.className = className;
+        }
+
+        public Optional<Class> getClassName() {
+            return Optional.ofNullable(className);
         }
 
         public void setParentName(Name parentName) {
@@ -230,6 +245,7 @@ public class EditCommand extends Command {
 
             return getStudentName().equals(e.getStudentName())
                     && getId().equals((e.getId()))
+                    && getClassName().equals((e.getClassName()))
                     && getParentName().equals(e.getParentName())
                     && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())

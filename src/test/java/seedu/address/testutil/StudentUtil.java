@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,6 +34,7 @@ public class StudentUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_STUDENT_NAME + student.getStudentName().fullName + " ");
         sb.append(PREFIX_ID + student.getId().value + " ");
+        sb.append(PREFIX_CLASS + student.getClassName().className + " ");
         sb.append(PREFIX_PARENT_NAME + student.getParentName().fullName + " ");
         sb.append(PREFIX_PHONE + student.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + student.getAddress().value + " ");
@@ -48,6 +50,7 @@ public class StudentUtil {
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getStudentName().ifPresent(name -> sb.append(PREFIX_STUDENT_NAME).append(name.fullName).append(" "));
+        descriptor.getClassName().ifPresent(name -> sb.append(PREFIX_CLASS).append(name.className).append(" "));
         descriptor.getId().ifPresent(id -> sb.append(PREFIX_ID).append(id.value).append(" "));
         descriptor.getParentName().ifPresent(name -> sb.append(PREFIX_PARENT_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

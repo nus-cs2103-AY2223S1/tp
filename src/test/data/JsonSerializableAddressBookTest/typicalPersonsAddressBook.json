@@ -3,6 +3,7 @@
   "students" : [ {
     "studentName" : "Alice Pauline",
     "id": "123A",
+    "className" : "4A1",
     "parentName": "May Pauline",
     "phone" : "94351253",
     "address" : "123, Jurong West Ave 6, #08-111",
@@ -10,6 +11,7 @@
   }, {
     "studentName" : "Benson Meier",
     "id": "345B",
+    "className" : "4A2",
     "parentName": "Johnson Meier",
     "phone" : "98765432",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -17,6 +19,7 @@
   }, {
     "studentName" : "Carl Kurz",
     "id": "567F",
+    "className" : "4B1",
     "parentName": "Kenn Kurz",
     "phone" : "95352563",
     "address" : "wall street",
@@ -24,6 +27,7 @@
   }, {
     "studentName" : "Daniel Meier",
     "id": "678D",
+    "className" : "3A1",
     "parentName": "Benn Meier",
     "phone" : "87652533",
     "address" : "10th street",
@@ -31,6 +35,7 @@
   }, {
     "studentName" : "Elle Meyer",
     "id": "890A",
+    "className" : "3A1",
     "parentName": "James Meyer",
     "phone" : "9482224",
     "address" : "michegan ave",
@@ -38,6 +43,7 @@
   }, {
     "studentName" : "Fiona Kunz",
     "id": "789C",
+    "className" : "Charity 1",
     "parentName": "Gordon Kunz",
     "phone" : "9482427",
     "address" : "little tokyo",
@@ -45,6 +51,7 @@
   }, {
     "studentName" : "George Best",
     "id": "912B",
+    "className" : "17S68",
     "parentName": "Henry Best",
     "phone" : "9482442",
     "address" : "4th street",

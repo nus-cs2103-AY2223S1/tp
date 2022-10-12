@@ -2,6 +2,7 @@
   "students": [ {
     "studentName": "Alice Pauline",
     "id": "123A",
+    "className" : "1A",
     "parentName": "Jace Pauline",
     "phone": "94351253",
     "address": "123, Jurong West Ave 6, #08-111",
@@ -9,6 +10,7 @@
   }, {
     "studentName": "Alice Pauline",
     "id": "456B",
+    "className" : "1A",
     "parentName": "Jace Pauline",
     "phone": "94351253",
     "address": "4th street"
