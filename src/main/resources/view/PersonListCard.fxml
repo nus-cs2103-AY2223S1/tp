@@ -46,7 +46,7 @@
                   <graphic>
                      <Label>
                         <graphic>
-                           <Circle fill="#afb4ff" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
+                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
                         </graphic>
                      </Label>
                   </graphic>
@@ -58,7 +58,7 @@
                   <graphic>
                      <Label>
                         <graphic>
-                           <Circle fill="#afb4ff" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
+                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
                         </graphic>
                      </Label>
                   </graphic>
@@ -67,7 +67,7 @@
                   <graphic>
                      <Label>
                         <graphic>
-                           <Circle fill="#afb4ff" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
+                           <Circle fill="#6d28d9" radius="4.0" stroke="WHITE" strokeType="INSIDE" />
                         </graphic>
                      </Label>
                   </graphic>
