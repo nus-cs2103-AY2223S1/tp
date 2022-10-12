@@ -1,10 +1,13 @@
 package nus.climods.logic.parser;
 
-import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.logic.commands.ExitCommand;
-
 import java.util.stream.Stream;
 
+import nus.climods.logic.commands.ExitCommand;
+import nus.climods.logic.parser.exceptions.ParseException;
+
+/**
+ * Parser that parses the exit command from user.
+ */
 public class ExitCommandParser {
 
     /**
@@ -24,5 +27,4 @@ public class ExitCommandParser {
     public ExitCommand parse(String args) throws ParseException {
         return new ExitCommand();
     }
-
 }

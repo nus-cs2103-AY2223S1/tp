@@ -3,9 +3,9 @@ package nus.climods.ui;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.animation.PauseTransition;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
@@ -187,7 +187,7 @@ public class MainWindow extends UiPart<Stage> {
             (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         PauseTransition delay = new PauseTransition(Duration.seconds(2));
-        delay.setOnFinished( event -> primaryStage.close() );
+        delay.setOnFinished(event -> primaryStage.close());
         delay.play();
     }
 
