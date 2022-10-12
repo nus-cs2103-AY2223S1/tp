@@ -18,14 +18,17 @@ public class PropertyNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PropertyNameContainsKeywordsPredicate firstPredicate = new PropertyNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        PropertyNameContainsKeywordsPredicate secondPredicate = new PropertyNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        PropertyNameContainsKeywordsPredicate firstPredicate =
+                new PropertyNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        PropertyNameContainsKeywordsPredicate secondPredicate =
+                new PropertyNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PropertyNameContainsKeywordsPredicate firstPredicateCopy = new PropertyNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        PropertyNameContainsKeywordsPredicate firstPredicateCopy =
+                new PropertyNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class PropertyNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        PropertyNameContainsKeywordsPredicate predicate = new PropertyNameContainsKeywordsPredicate(Collections.singletonList("Peak"));
+        PropertyNameContainsKeywordsPredicate predicate =
+                new PropertyNameContainsKeywordsPredicate(Collections.singletonList("Peak"));
         assertTrue(predicate.test(new PropertyBuilder().withName("Peak Residence").build()));
 
         // Multiple keywords
@@ -60,7 +64,8 @@ public class PropertyNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        PropertyNameContainsKeywordsPredicate predicate = new PropertyNameContainsKeywordsPredicate(Collections.emptyList());
+        PropertyNameContainsKeywordsPredicate predicate =
+                new PropertyNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PropertyBuilder().withName("Peak Residence").build()));
 
         // Non-matching keyword
