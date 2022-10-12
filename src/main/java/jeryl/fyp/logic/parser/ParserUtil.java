@@ -13,7 +13,7 @@ import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Phone;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -145,12 +145,12 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static StudentID parseStudentID(String studentID) throws ParseException {
-        requireNonNull(studentID);
-        String trimmedID = studentID.trim();
-        if (!StudentID.isValidStudentID(trimmedID)) {
-            throw new ParseException(StudentID.MESSAGE_CONSTRAINTS);
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedId = studentId.trim();
+        if (!StudentId.isValidStudentId(trimmedId)) {
+            throw new ParseException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        return new StudentID(trimmedID);
+        return new StudentId(trimmedId);
     }
 }

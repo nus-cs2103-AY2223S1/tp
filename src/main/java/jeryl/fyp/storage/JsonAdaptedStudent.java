@@ -14,7 +14,7 @@ import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -35,7 +35,7 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentID") String id,
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String id,
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("projectName") String projectName,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -54,7 +54,7 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
-        id = source.getStudentID().id;
+        id = source.getStudentId().id;
         email = source.getEmail().value;
         address = source.getAddress().value;
         projectName = source.getProjectName();
@@ -84,12 +84,12 @@ class JsonAdaptedStudent {
 
         if (id == null) {
             throw new IllegalValueException(String.format(
-                    MISSING_FIELD_MESSAGE_FORMAT, StudentID.class.getSimpleName()));
+                    MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName()));
         }
-        if (!StudentID.isValidStudentID(id)) {
-            throw new IllegalValueException(StudentID.MESSAGE_CONSTRAINTS);
+        if (!StudentId.isValidStudentId(id)) {
+            throw new IllegalValueException(StudentId.MESSAGE_CONSTRAINTS);
         }
-        final StudentID modelStudentID = new StudentID(id);
+        final StudentId modelStudentId = new StudentId(id);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -120,7 +120,7 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
-        return new Student(modelName, modelStudentID, modelEmail, modelAddress, modelProjectName, modelTags);
+        return new Student(modelName, modelStudentId, modelEmail, modelAddress, modelProjectName, modelTags);
     }
 
 }

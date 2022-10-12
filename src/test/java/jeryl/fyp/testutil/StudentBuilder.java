@@ -7,7 +7,7 @@ import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -23,7 +23,7 @@ public class StudentBuilder {
     public static final String DEFAULT_PROJECTNAME = "CS2103 SE";
 
     private Name name;
-    private StudentID id;
+    private StudentId id;
     private Email email;
     private Address address;
     private String projectName;
@@ -34,7 +34,7 @@ public class StudentBuilder {
      */
     public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
-        id = new StudentID(DEFAULT_STUDENTID);
+        id = new StudentId(DEFAULT_STUDENTID);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         projectName = DEFAULT_PROJECTNAME;
@@ -46,7 +46,7 @@ public class StudentBuilder {
      */
     public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
-        id = studentToCopy.getStudentID();
+        id = studentToCopy.getStudentId();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
         projectName = studentToCopy.getProjectName();
@@ -78,10 +78,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code StudentID} of the {@code Student} that we are building.
+     * Sets the {@code StudentId} of the {@code Student} that we are building.
      */
-    public StudentBuilder withStudentID(String id) {
-        this.id = new StudentID(id);
+    public StudentBuilder withStudentId(String id) {
+        this.id = new StudentId(id);
         return this;
     }
 

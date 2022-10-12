@@ -32,7 +32,7 @@ public class StudentTest {
         assertFalse(ALICE.isSameStudent(null));
 
         // same name, all other attributes different -> returns true
-        Student editedAlice = new StudentBuilder(ALICE).withStudentID(VALID_STUDENTID_BOB).withEmail(VALID_EMAIL_BOB)
+        Student editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameStudent(editedAlice));
 
@@ -72,8 +72,8 @@ public class StudentTest {
         Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different studentID -> returns false
-        editedAlice = new StudentBuilder(ALICE).withStudentID(VALID_STUDENTID_BOB).build();
+        // different studentId -> returns false
+        editedAlice = new StudentBuilder(ALICE).withStudentId(VALID_STUDENTID_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false

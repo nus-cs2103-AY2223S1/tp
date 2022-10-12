@@ -15,7 +15,7 @@ import jeryl.fyp.commons.exceptions.IllegalValueException;
 import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
@@ -26,7 +26,7 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_STUDENTID = BENSON.getStudentID().toString();
+    private static final String VALID_STUDENTID = BENSON.getStudentId().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_PROJECTNAME = BENSON.getProjectName();
@@ -58,19 +58,19 @@ public class JsonAdaptedStudentTest {
     }
 
     @Test
-    public void toModelType_invalidStudentID_throwsIllegalValueException() {
+    public void toModelType_invalidStudentId_throwsIllegalValueException() {
         JsonAdaptedStudent student =
                 new JsonAdaptedStudent(VALID_NAME, INVALID_STUDENTID, VALID_EMAIL, VALID_ADDRESS, VALID_PROJECTNAME,
                         VALID_TAGS);
-        String expectedMessage = StudentID.MESSAGE_CONSTRAINTS;
+        String expectedMessage = StudentId.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 
     @Test
-    public void toModelType_nullStudentID_throwsIllegalValueException() {
+    public void toModelType_nullStudentId_throwsIllegalValueException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
                 VALID_PROJECTNAME, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentID.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
     }
 

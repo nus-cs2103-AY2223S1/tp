@@ -17,7 +17,7 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    private final StudentID id;
+    private final StudentId id;
     private final Email email;
     private final String projectName;
 
@@ -28,7 +28,7 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, StudentID id, Email email, Address address, String projectName, Set<Tag> tags) {
+    public Student(Name name, StudentId id, Email email, Address address, String projectName, Set<Tag> tags) {
         requireAllNonNull(name, id, email, address, projectName, tags);
         this.name = name;
         this.id = id;
@@ -42,7 +42,7 @@ public class Student {
         return name;
     }
 
-    public StudentID getStudentID() {
+    public StudentId getStudentId() {
         return id;
     }
 
@@ -95,7 +95,7 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
-                && otherStudent.getStudentID().equals(getStudentID())
+                && otherStudent.getStudentId().equals(getStudentId())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
                 && otherStudent.getProjectName().equals(getProjectName())
@@ -113,7 +113,7 @@ public class Student {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Student ID: ")
-                .append(getStudentID())
+                .append(getStudentId())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")

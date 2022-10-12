@@ -8,7 +8,7 @@ import jeryl.fyp.commons.exceptions.IllegalValueException;
 import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.commands.MarkCommand.Status;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Parses input arguments and creates a new {@code MarkCommand} object
@@ -23,15 +23,15 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
 
-        StudentID studentID;
+        StudentId studentId;
         try {
-            studentID = ParserUtil.parseStudentID(argMultimap.getPreamble());
+            studentId = ParserUtil.parseStudentId(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), ive);
         }
 
         Status status = argMultimap.getStatus(PREFIX_STATUS);
 
-        return new MarkCommand(studentID, status);
+        return new MarkCommand(studentId, status);
     }
 }

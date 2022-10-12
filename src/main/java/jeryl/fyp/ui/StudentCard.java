@@ -33,7 +33,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label studentID;
+    private Label studentId;
     @FXML
     private Label address;
     @FXML
@@ -51,7 +51,7 @@ public class StudentCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        studentID.setText(student.getStudentID().id);
+        studentId.setText(student.getStudentId().id);
         address.setText(student.getAddress().value);
         email.setText(student.getEmail().value);
         projectName.setText(student.getProjectName());

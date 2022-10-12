@@ -17,7 +17,7 @@ import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -41,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        StudentID id = ParserUtil.parseStudentID(argMultimap.getValue(PREFIX_STUDENTID).get());
+        StudentId id = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENTID).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         String projectName = ParserUtil.parseProjectName(argMultimap.getValue(PREFIX_PROJECTNAME).get());

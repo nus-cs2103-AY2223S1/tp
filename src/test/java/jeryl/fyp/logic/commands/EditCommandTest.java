@@ -54,11 +54,11 @@ public class EditCommandTest {
         Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
-        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withStudentID(VALID_STUDENTID_BOB)
+        Student editedStudent = studentInList.withName(VALID_NAME_BOB).withStudentId(VALID_STUDENTID_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withStudentID(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);

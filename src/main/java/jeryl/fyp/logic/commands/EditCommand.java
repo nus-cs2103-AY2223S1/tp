@@ -24,7 +24,7 @@ import jeryl.fyp.model.student.Address;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.Student;
-import jeryl.fyp.model.student.StudentID;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -96,13 +96,13 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        StudentID updatedStudentID = editStudentDescriptor.getStudentID().orElse(studentToEdit.getStudentID());
+        StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         String updatedProjectName = editStudentDescriptor.getProjectName().orElse(studentToEdit.getProjectName());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedStudentID, updatedEmail, updatedAddress,
+        return new Student(updatedName, updatedStudentId, updatedEmail, updatedAddress,
                 updatedProjectName, updatedTags);
     }
 
@@ -130,7 +130,7 @@ public class EditCommand extends Command {
      */
     public static class EditStudentDescriptor {
         private Name name;
-        private StudentID id;
+        private StudentId id;
         private Email email;
         private Address address;
         private String projectName;
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
-            setStudentID(toCopy.id);
+            setStudentId(toCopy.id);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setProjectName(toCopy.projectName);
@@ -166,11 +166,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setStudentID(StudentID id) {
+        public void setStudentId(StudentId id) {
             this.id = id;
         }
 
-        public Optional<StudentID> getStudentID() {
+        public Optional<StudentId> getStudentId() {
             return Optional.ofNullable(id);
         }
 
@@ -231,7 +231,7 @@ public class EditCommand extends Command {
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getStudentID().equals(e.getStudentID())
+                    && getStudentId().equals(e.getStudentId())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getProjectName().equals(e.getProjectName())
