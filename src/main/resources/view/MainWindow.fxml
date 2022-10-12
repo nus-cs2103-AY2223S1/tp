@@ -6,21 +6,23 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="700" minWidth="500" onCloseRequest="#handleExit" title="MyInsuRec" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="mainScene">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@LightTheme.css" />
+        <URL value="@ExtensionsLight.css" />
       </stylesheets>
 
       <VBox>
@@ -28,30 +30,51 @@
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
+               <Menu mnemonicParsing="false" text="View">
+                  <items>
+                     <MenuItem mnemonicParsing="false" onAction="#handleLightTheme" text="Light Mode" />
+                     <MenuItem mnemonicParsing="false" onAction="#handleDarkTheme" text="Dark Mode" />
+                  </items>
+               </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+            <HBox prefHeight="25.0" spacing="5.0" styleClass="status-bar">
+               <children>
+                  <ToggleButton mnemonicParsing="false" onAction="#setListPanelToClient" styleClass="button" text="Clients">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="panel" />
+                     </toggleGroup>
+                  </ToggleButton>
+                  <ToggleButton mnemonicParsing="false" onAction="#setListPanelToMeeting" styleClass="button" text="Meetings">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="panel1" />
+                     </toggleGroup>
+                  </ToggleButton>
+               </children>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding></HBox>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <VBox fx:id="clientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
+
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

@@ -4,12 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
-
 
 /**
  * Panel containing the list of meetings.
@@ -21,6 +21,9 @@ public class MeetingListPanel extends UiPart<Region> {
     @FXML
     private ListView<Meeting> meetingListView;
 
+    @FXML
+    private Label numMeetings;
+
     /**
      * Creates a {@code MeetingListPanel} with the given {@code ObservableList}.
      */
@@ -28,6 +31,7 @@ public class MeetingListPanel extends UiPart<Region> {
         super(FXML);
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
+        numMeetings.setText(Integer.toString(meetingList.size()) + " Records");
     }
 
     /**

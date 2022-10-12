@@ -8,13 +8,11 @@ import seedu.address.model.meeting.Meeting;
 /**
  * An UI component that displays information of a {@code Meeting}.
  */
-public class MeetingCard extends UiPart<Region> {
+public class MeetingCondensedView extends UiPart<Region> {
 
-    private static final String FXML = "MeetingListCard.fxml";
+    private static final String FXML = "MeetingCondensedView.fxml";
     private final Meeting meeting;
 
-    @FXML
-    private Label id;
     @FXML
     private Label description;
     @FXML
@@ -23,12 +21,11 @@ public class MeetingCard extends UiPart<Region> {
     private Label time;
 
     /**
-     * Creates a {@code MeetingCard} with the given {@code Meeting} and index to display.
+     * Creates a {@code MeetingCard} with the given {@code Meeting} to display.
      */
-    public MeetingCard(Meeting meeting, int displayedIndex) {
+    public MeetingCondensedView(Meeting meeting) {
         super(FXML);
         this.meeting = meeting;
-        id.setText(displayedIndex + ". ");
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getMeetingDate().toString());
         time.setText(meeting.getMeetingTime().toString());
@@ -42,13 +39,12 @@ public class MeetingCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MeetingCard)) {
+        if (!(other instanceof MeetingCondensedView)) {
             return false;
         }
 
         // state check
-        MeetingCard card = (MeetingCard) other;
-        return id.getText().equals(card.id.getText())
-                && meeting.equals(card.meeting);
+        MeetingCondensedView card = (MeetingCondensedView) other;
+        return meeting.equals(card.meeting);
     }
 }

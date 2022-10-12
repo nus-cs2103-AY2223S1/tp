@@ -111,9 +111,6 @@ public interface Model {
      */
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
-    /** Returns an unmodifiable view of the client list, used to view one client in details at a time. **/
-    ObservableList<Client> getDetailedClientList();
-
     /**
      * Updates the detailedClientList to show the given {@code Client} in details.
      * @throws NullPointerException if {@code Client} is null.
@@ -128,4 +125,8 @@ public interface Model {
      * @throws NullPointerException if {@code Meeting} is null.
      */
     void setDetailedMeeting(Meeting meeting);
+
+    /** Returns an unmodifiable view of the client list, used to view one meeting in details at a time. **/
+    ObservableList<Client> getDetailedClientList();
+
 }

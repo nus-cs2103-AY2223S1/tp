@@ -41,11 +41,8 @@ public class ModelManager implements Model {
         filteredClients = new FilteredList<>(this.myInsuRec.getClientList());
         filteredMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
 
-        detailedClients = new FilteredList<>(this.myInsuRec.getClientList());
-        this.setDetailedClient(null);
-
         detailedMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
-        this.setDetailedMeeting(null);
+        detailedClients = new FilteredList<>(this.myInsuRec.getClientList());
     }
 
     public ModelManager() {
@@ -158,6 +155,18 @@ public class ModelManager implements Model {
         filteredClients.setPredicate(predicate);
     }
 
+    //=========== Detailed Client List Accessors ==============================================================
+
+    @Override
+    public ObservableList<Client> getDetailedClientList() {
+        return detailedClients;
+    }
+
+    @Override
+    public void setDetailedClient(Client client) {
+        detailedClients.setPredicate(x -> x.equals(client));
+    }
+
     //=========== Filtered Meeting List Accessors =============================================================
 
     /**
@@ -173,22 +182,6 @@ public class ModelManager implements Model {
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
-    }
-
-    //=========== Detailed Client List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Client} to be viewed in details backed by the internal
-     * list of {@code versionedMyInsuRec}. By default, no client are set to be viewed in detail.
-     */
-    @Override
-    public ObservableList<Client> getDetailedClientList() {
-        return detailedClients;
-    }
-
-    @Override
-    public void setDetailedClient(Client client) {
-        detailedClients.setPredicate(x -> x.equals(client));
     }
 
     //=========== Detailed Meeting List Accessors =============================================================

@@ -1,18 +1,16 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
-import seedu.address.model.meeting.Meeting;
 
 /**
- * GridPane containing a detailed view of a client.
+ * Panel containing a detailed view of a client.
  */
 public class ClientDetailedView extends UiPart<Region> {
     private static final String FXML = "ClientDetailedView.fxml";
@@ -21,21 +19,17 @@ public class ClientDetailedView extends UiPart<Region> {
 
     private final Logger logger = LogsCenter.getLogger(ClientDetailedView.class);
 
-
     @FXML
     private Label clientName;
 
     @FXML
-    private Label phone;
+    private Label phoneNumber;
 
     @FXML
     private Label email;
 
     @FXML
-    private Label nextMeeting;
-
-    @FXML
-    private FlowPane tags;
+    private VBox meetings;
 
     /**
      * Creates a {@code ClientDetailedView} with the given {@code Client}.
@@ -44,16 +38,10 @@ public class ClientDetailedView extends UiPart<Region> {
         super(FXML);
         this.client = client;
         clientName.setText(client.getName().toString());
-        phone.setText(client.getPhone().toString());
+        phoneNumber.setText(client.getPhone().toString());
         email.setText(client.getEmail().toString());
-        if (client.hasMeeting()) {
-            Meeting meeting = client.getMeeting();
-            nextMeeting.setText(meeting.getMeetingDate().toString() + ", " + meeting.getMeetingTime().toString());
-        } else {
-            nextMeeting.setText("There are no upcoming meetings.");
+        if (client.getMeeting() != null) {
+            meetings.getChildren().add(new MeetingCondensedView(client.getMeeting()).getRoot());
         }
-        client.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }

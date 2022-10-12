@@ -2,8 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -22,15 +23,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" GridPane.columnSpan="2">
          <children>
-            <Label text="View Client:">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <Label fx:id="clientName" text="\$clientName">
+            <Label fx:id="clientName" styleClass="label-header" text="\$clientName">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -45,38 +38,45 @@
       </HBox>
       <VBox GridPane.rowIndex="1">
          <children>
+            <Label styleClass="label-subheader" text="Information" />
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="88.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="212.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="143.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="137.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Information" />
-                  <Label text="Phone:" GridPane.rowIndex="1" />
-                  <Label fx:id="phone" text="\$phone" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
+                  <Label fx:id="phoneNumber" prefHeight="20.0" prefWidth="263.0" text="\$phoneNumber" GridPane.columnSpan="2">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/phone.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
-                  <Label text="Email:" GridPane.rowIndex="2" />
-                  <Label text="Next meeting:" GridPane.rowIndex="3" />
-                  <Label fx:id="email" text="\$email" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label fx:id="nextMeeting" text="\$nextMeeting" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="5.0" />
-                     </GridPane.margin>
+                  <Label fx:id="email" prefHeight="20.0" prefWidth="263.0" text="\$email" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/email.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
                   </Label>
                </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </GridPane>
          </children>
          <GridPane.margin>
@@ -84,24 +84,13 @@
          </GridPane.margin>
       </VBox>
       <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label styleClass="label-subheader" text="Upcoming meeting:" />
+            <VBox fx:id="meetings" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+         </children>
          <GridPane.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
          </GridPane.margin>
-         <children>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label text="Tags:" />
-                  <FlowPane fx:id="tags" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-         </children>
       </VBox>
    </children>
 </GridPane>

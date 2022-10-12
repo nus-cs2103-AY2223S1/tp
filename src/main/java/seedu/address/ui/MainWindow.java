@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -24,6 +25,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String DARK_CSS = "/view/DarkTheme.css";
+    private static final String LIGHT_CSS = "/view/LightTheme.css";
+    private static final String DARK_EXTENSION_CSS = "/view/ExtensionsDark.css";
+    private static final String LIGHT_EXTENSION_CSS = "/view/ExtensionsLight.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -37,6 +42,9 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    @FXML
+    private Scene mainScene;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -121,6 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         // However, we will start with clientListPanel.
 
         meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
+        clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
 
         clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
 
@@ -174,28 +183,50 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Loads the light themed css.
+     */
+    @FXML
+    public void handleLightTheme() {
+        mainScene.getStylesheets().clear();
+        mainScene.getStylesheets().add(getClass().getResource(LIGHT_CSS).toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource(LIGHT_EXTENSION_CSS).toExternalForm());
+    }
+
+    /**
+     * Loads the dark themed css.
+     */
+    @FXML
+    public void handleDarkTheme() {
+        mainScene.getStylesheets().clear();
+        mainScene.getStylesheets().add(getClass().getResource(DARK_CSS).toExternalForm());
+        mainScene.getStylesheets().add(getClass().getResource(DARK_EXTENSION_CSS).toExternalForm());
+    }
+
     public ClientListPanel getClientListPanel() {
         return clientListPanel;
     }
 
-    private void setListPanelToClient() {
+    @FXML
+    public void setListPanelToClient() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
-    private void setListPanelToMeeting() {
+    @FXML
+    public void setListPanelToMeeting() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
-    }
-
-    private void setListPanelToClientDetailed() {
-        clientListPanelPlaceholder.getChildren().clear();
-        clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
     }
 
     private void setListPanelToMeetingDetailed() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
+    }
+
+    private void setListPanelToClientDetailed() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanelPlaceholder.getChildren().add(clientDetailedViewPanel.getRoot());
     }
 
     /**
@@ -217,14 +248,20 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isClientSpecific()) {
+            switch (commandResult.getCommandSpecific()) {
+            case CLIENT:
                 setListPanelToClient();
-            } else if (commandResult.isMeetingSpecific()) {
+                break;
+            case MEETING:
                 setListPanelToMeeting();
-            } else if (commandResult.isDetailedClientSpecific()) {
-                setListPanelToClientDetailed();
-            } else if (commandResult.isDetailedMeetingSpecific()) {
+                break;
+            case DETAILED_MEETING:
                 setListPanelToMeetingDetailed();
+                break;
+            case DETAILED_CLIENT:
+                setListPanelToClientDetailed();
+                break;
+            default:
             }
 
             return commandResult;

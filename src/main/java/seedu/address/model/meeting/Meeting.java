@@ -45,6 +45,7 @@ public class Meeting {
 
     public Description getDescription() {
         return description;
+        // return new Description(String.format("Meeting with %s", client.getName().toString()));
     }
 
     public MeetingDate getMeetingDate() {
