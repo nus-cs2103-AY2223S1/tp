@@ -310,8 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions:**
 
 * 1a. HR Pro Max++ detects error in add project command.
-    * 1a1. HR Pro Max++ shows error.
-    
+    * 1a1. HR Pro Max++ shows error
+
       Use case resume at step 1.
 
 **Use case: UC02- Add staff member to project**
@@ -367,8 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User add a project(UC01).
 2. User request to edit project in Project list with new arguments.
-3. HR Pro Max++ records the change in local storage and display project.
-with updated details.
+3. HR Pro Max++ records the change in local storage and display project with updated details.
 
    Use case ends.
 
@@ -381,14 +380,15 @@ with updated details.
 3. User realises staff detail is wrong.
 4. User delete staff detail.
 5. User add staff with updated detail.
-6. HR Pro Max++ displays updated staff member added and stores them. <br>
-Steps 3-6 are repeated until staff member detail is correct.
+6. HR Pro Max++ displays updated staff member added and stores them. 
+
+    Steps 3-6 are repeated until staff member detail is correct.
 
 **Extensions:**
 
 * 1a. The given project is invalid.
     * 1a1. HR Pro Max++ shows error.
-
+    
       Use case resume at step 1.
 * 4a. The given project is invalid.
     * 4a1 HR Pro Max++ shows error.
@@ -402,7 +402,7 @@ Steps 3-6 are repeated until staff member detail is correct.
     * 5a1. HR Pro Max++ shows error.
 
       Use case resume at step 5.
-  
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

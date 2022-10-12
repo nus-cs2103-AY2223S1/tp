@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedProject.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.BANANA;
+import static seedu.address.testutil.TypicalStaff.NEVER;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,10 +23,17 @@ public class JsonAdaptedProjectTest {
     private static final String INVALID_BUDGET = "+651234";
     private static final String INVALID_DEADLINE = "2022-05";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_STAFF_INSURANCE = "Invalid";
 
     private static final String VALID_NAME = BANANA.getProjectName().toString();
     private static final String VALID_BUDGET = BANANA.getBudget().toString();
     private static final String VALID_DEADLINE = BANANA.getDeadline().toString();
+    private static final String VALID_STAFF_NAME = NEVER.getStaffName().toString();
+    private static final String VALID_STAFF_CONTACT = NEVER.getStaffContact().toString();
+    private static final String VALID_STAFF_TITLE = NEVER.getStaffTitle().toString();
+    private static final String VALID_STAFF_DEPARTMENT = NEVER.getStaffDepartment().toString();
+    private static final String VALID_STAFF_INSURANCE = NEVER.getStaffInsurance().toString();
+    private static final List<JsonAdaptedStaff> VALID_STAFF = Arrays.asList(new JsonAdaptedStaff(NEVER));
     private static final List<JsonAdaptedTag> VALID_TAGS = BANANA.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -38,29 +47,31 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(INVALID_NAME, VALID_BUDGET, VALID_DEADLINE, VALID_TAGS);
+                new JsonAdaptedProject(INVALID_NAME, VALID_BUDGET, VALID_DEADLINE, VALID_TAGS, VALID_STAFF);
         String expectedMessage = ProjectName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_BUDGET, VALID_DEADLINE, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ProjectName.class.getSimpleName());
+        JsonAdaptedProject project = new JsonAdaptedProject(null, VALID_BUDGET,
+                VALID_DEADLINE, VALID_TAGS, VALID_STAFF);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                ProjectName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_invalidBudget_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_NAME, INVALID_BUDGET, VALID_DEADLINE, VALID_TAGS);
+                new JsonAdaptedProject(VALID_NAME, INVALID_BUDGET, VALID_DEADLINE, VALID_TAGS, VALID_STAFF);
         String expectedMessage = Budget.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_nullBudget_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(VALID_NAME, null, VALID_DEADLINE, VALID_TAGS);
+        JsonAdaptedProject project = new JsonAdaptedProject(VALID_NAME, null, VALID_DEADLINE, VALID_TAGS, VALID_STAFF);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Budget.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
@@ -68,16 +79,26 @@ public class JsonAdaptedProjectTest {
     @Test
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, INVALID_DEADLINE, VALID_TAGS);
+                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, INVALID_DEADLINE, VALID_TAGS, VALID_STAFF);
         String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
     }
 
     @Test
     public void toModelType_nullDeadline_throwsIllegalValueException() {
-        JsonAdaptedProject project = new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, null, VALID_TAGS);
+        JsonAdaptedProject project = new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, null, VALID_TAGS, VALID_STAFF);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, project::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidStaffList_throwsIllegalValueException() {
+        List<JsonAdaptedStaff> invalidStaff = new ArrayList<>(VALID_STAFF);
+        invalidStaff.add(new JsonAdaptedStaff(VALID_STAFF_NAME, VALID_STAFF_CONTACT,
+                VALID_STAFF_TITLE, VALID_STAFF_DEPARTMENT, INVALID_STAFF_INSURANCE, null));
+        JsonAdaptedProject project =
+                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, VALID_DEADLINE, VALID_TAGS, invalidStaff);
+        assertThrows(IllegalValueException.class, project::toModelType);
     }
 
     @Test
@@ -85,7 +106,7 @@ public class JsonAdaptedProjectTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedProject project =
-                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, VALID_DEADLINE, invalidTags);
+                new JsonAdaptedProject(VALID_NAME, VALID_BUDGET, VALID_DEADLINE, invalidTags, VALID_STAFF);
         assertThrows(IllegalValueException.class, project::toModelType);
     }
 

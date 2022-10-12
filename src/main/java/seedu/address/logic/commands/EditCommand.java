@@ -22,6 +22,8 @@ import seedu.address.model.project.Budget;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -95,7 +97,15 @@ public class EditCommand extends Command {
         Deadline updatedDeadline = editProjectDescriptor.getDeadline().orElse(projectToEdit.getDeadline());
         Set<Tag> updatedTags = editProjectDescriptor.getTags().orElse(projectToEdit.getTags());
 
-        return new Project(updatedProjectName, updatedBudget, updatedDeadline, updatedTags);
+        UniqueStaffList previousStaffList = projectToEdit.getStaffList();
+
+        Project newProject = new Project(updatedProjectName, updatedBudget, updatedDeadline, updatedTags);
+
+        for (Staff staff : previousStaffList) {
+            newProject.getStaffList().add(staff);
+        }
+
+        return newProject;
     }
 
     @Override
@@ -169,6 +179,7 @@ public class EditCommand extends Command {
         public Optional<Deadline> getDeadline() {
             return Optional.ofNullable(deadline);
         }
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

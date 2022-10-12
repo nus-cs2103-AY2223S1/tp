@@ -26,38 +26,40 @@ public class TypicalStaff {
 
     public static final Staff NEVER = new StaffBuilder().withStaffName("Alice Pauline")
             .withStaffContact("94351253").withStaffTitle("Project Manager")
-            .withStaffInsurance("insured").withStaffDepartment("Human resources")
+            .withStaffInsurance("true").withStaffDepartment("Human resources")
             .withTags("friends").build();
     public static final Staff GONNA = new StaffBuilder().withStaffName("Benson Meier")
             .withStaffContact("98765432").withStaffTitle("Senior Software Engineer")
-            .withStaffInsurance("insured").withStaffDepartment("IT Department")
+            .withStaffInsurance("false").withStaffDepartment("IT Department")
             .withTags("owesMoney", "friends").build();
     public static final Staff GIVE = new StaffBuilder().withStaffName("Coconut")
             .withStaffContact("95352563").withStaffTitle("Software Engineer")
-            .withStaffInsurance("insured").withStaffDepartment("IT Department")
+            .withStaffInsurance("true").withStaffDepartment("IT Department")
             .build();
     public static final Staff YOU = new StaffBuilder().withStaffName("Daniel Meier")
             .withStaffContact("87652533").withStaffTitle("UX Designer")
-            .withStaffInsurance("insured").withStaffDepartment("IT Department")
+            .withStaffInsurance("true").withStaffDepartment("IT Department")
             .withTags("friends").build();
     public static final Staff UP = new StaffBuilder().withStaffName("Elle Meyer")
             .withStaffContact("9482224").withStaffTitle("Senior UX Designer")
-            .withStaffInsurance("insured").withStaffDepartment("IT Department")
+            .withStaffInsurance("false").withStaffDepartment("IT Department")
             .build();
     public static final Staff SOMEBODY = new StaffBuilder().withStaffName("Fiona Kunz")
             .withStaffContact("9482427").withStaffTitle("Marketing Manager")
-            .withStaffInsurance("insured").withStaffDepartment("Marketing Department")
+            .withStaffInsurance("true").withStaffDepartment("Marketing Department")
             .build();
     public static final Staff SHREK = new StaffBuilder().withStaffName("George Best")
             .withStaffContact("9482442").withStaffTitle("Senior Marketing Manager")
-            .withStaffInsurance("insured").withStaffDepartment("Marketing Department")
+            .withStaffInsurance("false").withStaffDepartment("Marketing Department")
             .build();
 
     // Manually added
     public static final Staff HOON = new StaffBuilder().withStaffName("Hungry")
-            .withStaffContact("8482424").withStaffTitle("2021-11-24").build();
+            .withStaffContact("8482424").withStaffTitle("Hello").withStaffDepartment("Any department")
+            .withStaffInsurance("true").build();
     public static final Staff IDA = new StaffBuilder().withStaffName("Ida Mueller")
-            .withStaffContact("8482131").withStaffTitle("2016-05-21").build();
+            .withStaffContact("8482131").withStaffTitle("Bye").withStaffDepartment("This department")
+            .withStaffInsurance("false").build();
 
     // Manually added - Staff's details found in {@code CommandTestUtil}
     public static final Staff AMY = new StaffBuilder().withStaffName(VALID_STAFFNAME_AMY)
@@ -75,19 +77,6 @@ public class TypicalStaff {
     private TypicalStaff() {
     } // prevents instantiation
 
-
-    /**
-     * Returns a {@code Project} with all the typical Staff.
-     */
-    /*
-    public static Project getTypicalProject() {
-        Project proj = new Project();
-        for (Staff s : getTypicalStaff()) {
-            proj.addStaff(s);
-        }
-        return proj;
-    }
-    */
     public static List<Staff> getTypicalStaff() {
         return new ArrayList<>(Arrays.asList(NEVER, GONNA, GIVE, YOU, UP, SOMEBODY, SHREK));
     }
