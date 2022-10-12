@@ -1,23 +1,25 @@
 package seedu.foodrem.logic.parser;
 
-import org.junit.jupiter.api.Test;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_NUMBERS;
-import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
-import seedu.foodrem.model.tag.Tag;
 import static seedu.foodrem.model.tag.Tag.EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS;
 import static seedu.foodrem.model.tag.TagName.MESSAGE_CONSTRAINTS;
-import seedu.foodrem.testutil.TagBuilder;
 import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 import static seedu.foodrem.testutil.TypicalTags.FRUITS_WITH_WHITESPACE;
 import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
+import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
+import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.testutil.TagBuilder;
 
 
 public class AddTagCommandParserTest {

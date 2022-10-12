@@ -3,7 +3,6 @@ package seedu.foodrem.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItems;
-import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 
 import java.nio.file.Path;
 

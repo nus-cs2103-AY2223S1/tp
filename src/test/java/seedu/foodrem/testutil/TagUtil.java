@@ -1,7 +1,8 @@
 package seedu.foodrem.testutil;
 
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
-import static seedu.foodrem.logic.parser.CliSyntax.*;
 import seedu.foodrem.model.tag.Tag;
 
 /**

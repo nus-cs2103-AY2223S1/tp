@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES;
 import static seedu.foodrem.testutil.Assert.assertThrows;
-import static seedu.foodrem.testutil.TypicalItems.POTATOES;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
+import static seedu.foodrem.testutil.TypicalItems.POTATOES;
 
 import java.util.Arrays;
 import java.util.Collection;

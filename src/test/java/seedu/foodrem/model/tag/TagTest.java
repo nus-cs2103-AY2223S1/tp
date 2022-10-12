@@ -1,6 +1,5 @@
 package seedu.foodrem.model.tag;
 
-import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_TAG_NAME_DISALLOWED_PUNCTUATION;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_TAG_NAME_EXCEED_CHAR_LIMIT;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR;

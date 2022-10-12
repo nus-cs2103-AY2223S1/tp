@@ -1,8 +1,8 @@
 package seedu.foodrem.logic.parser;
 
-import java.util.stream.Stream;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.stream.Stream;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.commons.util.StringUtil;

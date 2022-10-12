@@ -1,14 +1,17 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
+import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static seedu.foodrem.logic.commands.CommandTestUtil.*;
+
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
-import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddTagCommand}.

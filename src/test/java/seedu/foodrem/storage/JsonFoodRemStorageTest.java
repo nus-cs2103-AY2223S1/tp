@@ -6,7 +6,6 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItems;
 import static seedu.foodrem.testutil.TypicalItems.CARROTS;
 import static seedu.foodrem.testutil.TypicalItems.POTATOES;
-import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 
 import java.io.IOException;
 import java.nio.file.Path;

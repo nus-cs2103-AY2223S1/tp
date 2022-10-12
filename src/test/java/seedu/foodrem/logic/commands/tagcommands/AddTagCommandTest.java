@@ -1,15 +1,19 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.foodrem.testutil.Assert.assertThrows;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import javafx.collections.ObservableList;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -19,7 +23,6 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
-import static seedu.foodrem.testutil.Assert.assertThrows;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class AddTagCommandTest {
@@ -45,7 +48,8 @@ public class AddTagCommandTest {
         AddTagCommand addTagCommand = new AddTagCommand(validTag);
         ModelStub modelStub = new ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class, AddTagCommand.MESSAGE_DUPLICATE_TAG, () -> addTagCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTagCommand.MESSAGE_DUPLICATE_TAG, () -> addTagCommand.execute(modelStub));
     }
 
     @Test

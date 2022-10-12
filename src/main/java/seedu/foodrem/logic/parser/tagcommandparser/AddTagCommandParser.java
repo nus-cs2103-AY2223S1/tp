@@ -1,10 +1,11 @@
 package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
-import static seedu.foodrem.logic.parser.CliSyntax.*;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;

@@ -1,10 +1,13 @@
 package seedu.foodrem.testutil;
 
+import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_FRUITS;
+import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_FRUITS_WITH_WHITESPACES;
+import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_NUMBERS;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.foodrem.logic.commands.CommandTestUtil.*;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -12,7 +15,8 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class TypicalTags {
     public static final Tag FRUITS = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
-    public static final Tag FRUITS_WITH_WHITESPACE = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS_WITH_WHITESPACES).build();
+    public static final Tag FRUITS_WITH_WHITESPACE = new TagBuilder()
+            .withTagName(VALID_TAG_NAME_FRUITS_WITH_WHITESPACES).build();
     public static final Tag NUMBERS = new TagBuilder().withTagName(VALID_TAG_NAME_NUMBERS).build();
 
     private TypicalTags() {

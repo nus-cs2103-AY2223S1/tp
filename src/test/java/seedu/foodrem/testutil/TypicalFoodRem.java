@@ -1,10 +1,11 @@
 package seedu.foodrem.testutil;
 
+import static seedu.foodrem.testutil.TypicalItems.getTypicalItems;
+import static seedu.foodrem.testutil.TypicalTags.getTypicalTags;
+
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalItems;
-import static seedu.foodrem.testutil.TypicalTags.getTypicalTags;
 
 /**
  * A utility class containing a list of {@code item} and {@code tag} objects to be used in tests.
