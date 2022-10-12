@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortField;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -114,6 +115,33 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void addEvent(Event event) {
+        requireNonNull(event);
+        addressBook.addEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event event) {
+        requireNonNull(event);
+        addressBook.deleteEvent(event);
+    }
+
+    //=========== Filtered Event List Accessor =================
+    /**
+     * Returns an unmodifiable view of the list of Events backed by the internal list present in the AddressBook
+     */
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void sortPersons(SortField sortField) {
+        requireNonNull(sortField);
+        addressBook.sortPersons(sortField);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -129,10 +157,6 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
      */
-    @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return filteredEvents;
-    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {

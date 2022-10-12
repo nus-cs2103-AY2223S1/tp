@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortField;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -69,6 +70,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         setEvents(newData.getEventList());
     }
 
+    /**
+     * Sorts the persons by the given {@code SortField}.
+     *
+     * @param sortField field to sort by.
+     */
+    public void sortPersons(SortField sortField) {
+        requireNonNull(sortField);
+
+        persons.sort(sortField);
+    }
+
+
+
     //// person-level operations
 
     /**
@@ -104,6 +118,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// event-level operations
+
+    public void addEvent(Event e) {
+        this.events.add(e);
+    }
+
+    public void deleteEvent(Event e) {
+        this.events.remove(e);
     }
 
     //// util methods

@@ -22,7 +22,7 @@ public class UniqueEventList implements Iterable<Event> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the events to checks in already present in its internal list.
+     * Returns true if the events to be checked is already present in its internal list.
      * @param toCheck event to be checked if a duplicate is present in the list.
      */
     public boolean contains(Event toCheck) {
@@ -81,7 +81,7 @@ public class UniqueEventList implements Iterable<Event> {
     //TODO: add method for editing Event at specified index here
 
     /**
-     * Deletes and event from the internal list
+     * Deletes an event from the internal list
      * @param toRemove Event to be deleted
      */
     public void remove(Event toRemove) {

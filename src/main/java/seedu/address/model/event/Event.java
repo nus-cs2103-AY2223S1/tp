@@ -6,20 +6,29 @@ package seedu.address.model.event;
 public class Event {
     //Temporary representation with String
     //TODO: create Data Structure for each field; Single DateTime object for Date & Time?
-    private final String event_title;
+
+    private final String eventTitle;
     private final String date;
     private final String time;
     private final String purpose;
 
-    public Event(String event_title, String date, String time, String purpose) {
-        this.event_title = event_title;
+
+    /**
+     * Constructor to create new Event object
+     * @param eventTitle title of marketing event
+     * @param date date when marketing event occurs
+     * @param time time when marketing event occurs
+     * @param purpose summary of what the marketing is about
+     */
+    public Event(String eventTitle, String date, String time, String purpose) {
+        this.eventTitle = eventTitle;
         this.date = date;
         this.time = time;
         this.purpose = purpose;
     }
 
     public String getEventTitle() {
-        return this.event_title;
+        return this.eventTitle;
     }
 
     public String getDate() {
