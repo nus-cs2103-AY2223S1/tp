@@ -90,7 +90,7 @@ public class AssignTaskCommand extends TaskCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkTaskCommand)) {
+        if (!(other instanceof AssignTaskCommand)) {
             return false;
         }
 
