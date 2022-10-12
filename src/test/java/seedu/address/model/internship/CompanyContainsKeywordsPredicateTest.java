@@ -46,34 +46,35 @@ public class CompanyContainsKeywordsPredicateTest {
         // One keyword
         CompanyContainsKeywordsPredicate predicate =
                 new CompanyContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompany("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompany("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompany("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new InternshipBuilder().withCompany("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         CompanyContainsKeywordsPredicate predicate = new CompanyContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new InternshipBuilder().withCompany("Alice").build()));
 
         // Non-matching keyword
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new InternshipBuilder().withCompany("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new InternshipBuilder().withName("Alice").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("5 Oct 2022").build()));
+        assertFalse(predicate.test(new InternshipBuilder().withCompany("Alice").withLink("12345")
+                .withDescription("alice@email.com").withAppliedDate("5 Oct 2022").build()));
+
     }
 }

@@ -17,11 +17,11 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class InternshipBuilder {
 
-    public static final String DEFAULT_NAME = "Google";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "careers@google.com";
+    public static final String DEFAULT_COMPANY = "Google";
+    public static final String DEFAULT_LINK = "https://careers.google.com/jobs/results/97935383573996230/";
+    public static final String DEFAULT_DESCRIPTION = "Software Engineering Intern, BS, Summer 2023";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
-    public static final String DEFAULT_ADDRESS = "25 Oct 2022";
+    public static final String DEFAULT_APPLIED_DATE = "25 Oct 2022";
 
     private Company company;
     private Link link;
@@ -34,11 +34,11 @@ public class InternshipBuilder {
      * Creates a {@code InternshipBuilder} with the default details.
      */
     public InternshipBuilder() {
-        company = new Company(DEFAULT_NAME);
-        link = new Link(DEFAULT_PHONE);
-        description = new Description(DEFAULT_EMAIL);
+        company = new Company(DEFAULT_COMPANY);
+        link = new Link(DEFAULT_LINK);
+        description = new Description(DEFAULT_DESCRIPTION);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
-        appliedDate = new AppliedDate(DEFAULT_ADDRESS);
+        appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
         tags = new HashSet<>();
     }
 
@@ -57,8 +57,8 @@ public class InternshipBuilder {
     /**
      * Sets the {@code Company} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withName(String name) {
-        this.company = new Company(name);
+    public InternshipBuilder withCompany(String company) {
+        this.company = new Company(company);
         return this;
     }
 
@@ -73,24 +73,24 @@ public class InternshipBuilder {
     /**
      * Sets the {@code AppliedDate} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withAddress(String address) {
-        this.appliedDate = new AppliedDate(address);
+    public InternshipBuilder withAppliedDate(String appliedDate) {
+        this.appliedDate = new AppliedDate(appliedDate);
         return this;
     }
 
     /**
      * Sets the {@code Link} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withPhone(String phone) {
-        this.link = new Link(phone);
+    public InternshipBuilder withLink(String link) {
+        this.link = new Link(link);
         return this;
     }
 
     /**
      * Sets the {@code Description} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withEmail(String email) {
-        this.description = new Description(email);
+    public InternshipBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 

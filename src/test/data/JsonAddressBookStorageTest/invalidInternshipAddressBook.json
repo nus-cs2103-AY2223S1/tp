@@ -1,9 +1,9 @@
 {
   "internships": [ {
-    "name": "Internship with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
+    "company": "Internship with invalid company field: Ha!ns Mu@ster",
+    "link": "https://careers.alibaba.com/positionDetail",
+    "description": "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "address": "30 Oct 2022"
+    "appliedDate": "30 Oct 2022"
   } ]
 }

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Internship lastInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
-        Internship editedInternship = internshipInList.withName(VALID_NAME_TIKTOK).withPhone(VALID_PHONE_TIKTOK)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Internship editedInternship = internshipInList.withCompany(VALID_COMPANY_TIKTOK).withLink(VALID_LINK_TIKTOK)
+                .withTags(VALID_TAG_BACKEND).build();
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_TIKTOK)
-                .withPhone(VALID_PHONE_TIKTOK).withTags(VALID_TAG_HUSBAND).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_TIKTOK)
+                .withLink(VALID_LINK_TIKTOK).withTags(VALID_TAG_BACKEND).build();
         EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
@@ -88,9 +88,9 @@ public class EditCommandTest {
         Internship internshipInFilteredList =
                 model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         Internship editedInternship =
-                new InternshipBuilder(internshipInFilteredList).withName(VALID_NAME_TIKTOK).build();
+                new InternshipBuilder(internshipInFilteredList).withCompany(VALID_COMPANY_TIKTOK).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
-                new EditInternshipDescriptorBuilder().withName(VALID_NAME_TIKTOK).build());
+                new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_TIKTOK).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
@@ -125,7 +125,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_TIKTOK).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder()
+                .withCompany(VALID_COMPANY_TIKTOK).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
@@ -143,7 +144,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getInternshipList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditInternshipDescriptorBuilder().withName(VALID_NAME_TIKTOK).build());
+                new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_TIKTOK).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }

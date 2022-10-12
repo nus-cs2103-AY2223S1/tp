@@ -1,9 +1,9 @@
 {
   "internships": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
+    "company": "Hans Muster",
+    "link": "9482424",
+    "description": "invalid@email!3e",
     "applicationStatus" : "applied",
-    "address": "4th street"
+    "appliedDate": "4th street"
   } ]
 }

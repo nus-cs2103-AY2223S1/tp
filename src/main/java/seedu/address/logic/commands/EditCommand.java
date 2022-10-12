@@ -38,14 +38,14 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed internship list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_COMPANY + "NAME] "
-            + "[" + PREFIX_LINK + "PHONE] "
-            + "[" + PREFIX_DESCRIPTION + "EMAIL] "
-            + "[" + PREFIX_APPLIED_DATE + "ADDRESS] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_LINK + "LINK] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LINK + "91234567 "
-            + PREFIX_DESCRIPTION + "johndoe@example.com";
+            + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
+            + PREFIX_DESCRIPTION + "Global e-Commerce";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditInternshipDescriptor(EditInternshipDescriptor toCopy) {
-            setName(toCopy.company);
+            setCompany(toCopy.company);
             setLink(toCopy.link);
             setDescription(toCopy.description);
             setAppliedDate(toCopy.appliedDate);
@@ -163,7 +163,7 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, tags);
         }
 
-        public void setName(Company company) {
+        public void setCompany(Company company) {
             this.company = company;
         }
 

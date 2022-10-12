@@ -1,15 +1,16 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_TIKTOK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AI;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,45 +25,59 @@ import seedu.address.model.internship.Internship;
  */
 public class TypicalInternships {
 
-    public static final Internship ALIBABA = new InternshipBuilder().withName("Alibaba")
-            .withAddress("30 Oct 2022").withEmail("careers@alibaba.com")
-            .withPhone("94351253").withApplicationStatus(ApplicationStatus.Applied)
-            .withTags("friends").build();
-    public static final Internship BINANCE = new InternshipBuilder().withName("Binance")
-            .withAddress("5 Oct 2022")
-            .withEmail("careers@binance.com").withPhone("98765432").withApplicationStatus(ApplicationStatus.Applied)
-            .withTags("owesMoney", "friends").build();
-    public static final Internship CITADEL = new InternshipBuilder().withName("Citadel").withPhone("95352563")
-            .withEmail("careers@citadel.com").withAddress("23 Oct 2022")
-            .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship DELL = new InternshipBuilder().withName("Dell").withPhone("87652533")
-            .withEmail("careers@dell.com").withAddress("30 Sep 2022")
-            .withApplicationStatus(ApplicationStatus.Applied).withTags("friends").build();
-    public static final Internship EBAY = new InternshipBuilder().withName("Ebay").withPhone("9482224")
-            .withEmail("careers@ebay.com").withAddress("27 Oct 2022")
-            .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship FACEBOOK = new InternshipBuilder().withName("Facebook").withPhone("9482427")
-            .withEmail("careers@facebook.com").withAddress("3 Nov 2022")
-            .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship GOLDMAN = new InternshipBuilder().withName("Goldman Sachs").withPhone("9482442")
-            .withEmail("careers@goldmansachs.com").withAddress("21 Oct 2022")
-            .withApplicationStatus(ApplicationStatus.Applied).build();
+    public static final Internship ALIBABA = new InternshipBuilder().withCompany("Alibaba")
+            .withAppliedDate("30 Oct 2022").withDescription("Software Engineering Intern")
+            .withLink("https://careers.alibaba.com/positionDetail")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Ecommerce").build();
+    public static final Internship BINANCE = new InternshipBuilder().withCompany("Binance")
+            .withAppliedDate("5 Oct 2022")
+            .withDescription("Software Engineering Internship (6 months)")
+            .withLink("https://careers.binance.com/positionDetail")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Crypto").build();
+    public static final Internship CITADEL = new InternshipBuilder().withCompany("Citadel")
+            .withLink("https://careers.Citadel.com/positionDetail")
+            .withDescription("Software Engineer Intern").withAppliedDate("23 Oct 2022")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Backend").build();
+    public static final Internship DELL = new InternshipBuilder().withCompany("Dell")
+            .withLink("https://careers.Dell.com/positionDetail")
+            .withDescription("Software Developer Intern").withAppliedDate("30 Sep 2022")
+            .withApplicationStatus(ApplicationStatus.Applied).withTags("Backend").build();
+    public static final Internship EBAY = new InternshipBuilder().withCompany("Ebay")
+            .withLink("https://careers.Ebay.com/positionDetail")
+            .withDescription("Software Engineer Intern 2023").withAppliedDate("27 Oct 2022")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Ecommerce").build();
+    public static final Internship FACEBOOK = new InternshipBuilder().withCompany("Facebook")
+            .withLink("https://careers.Facebook.com/positionDetail")
+            .withDescription("Software Engineer Intern - Mobile (Flutter)").withAppliedDate("3 Nov 2022")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Frontend").build();
+    public static final Internship GOLDMAN = new InternshipBuilder().withCompany("Goldman Sachs")
+            .withLink("https://careers.GoldmanSachs.com/positionDetail")
+            .withDescription("Software Engineer Program - Summer Analyst").withAppliedDate("21 Oct 2022")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Backend").build();
 
     // Manually added
-    public static final Internship HUAWEI = new InternshipBuilder().withName("Huawei").withPhone("8482424")
-            .withEmail("careers@huawei.com").withAddress("15 Oct 2022")
+    public static final Internship HUAWEI = new InternshipBuilder().withCompany("Huawei")
+            .withLink("https://careers.Huawei.com/positionDetail")
+            .withDescription("").withAppliedDate("15 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
-    public static final Internship INDEED = new InternshipBuilder().withName("Indeed").withPhone("8482131")
-            .withEmail("careers@indeed.com").withAddress("29 Sep 2022")
+    public static final Internship INDEED = new InternshipBuilder().withCompany("Indeed")
+            .withLink("https://careers.Indeed.com/positionDetail")
+            .withDescription("").withAppliedDate("29 Sep 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
-    public static final Internship GOOGLE = new InternshipBuilder().withName(VALID_NAME_GOOGLE)
-            .withPhone(VALID_PHONE_GOOGLE).withEmail(VALID_EMAIL_GOOGLE)
-            .withAddress(VALID_ADDRESS_GOOGLE).withTags(VALID_TAG_FRIEND).build();
-    public static final Internship TIKTOK = new InternshipBuilder().withName(VALID_NAME_TIKTOK)
-            .withPhone(VALID_PHONE_TIKTOK).withEmail(VALID_EMAIL_TIKTOK)
-            .withAddress(VALID_ADDRESS_TIKTOK).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+    public static final Internship GOOGLE = new InternshipBuilder().withCompany(VALID_COMPANY_GOOGLE)
+            .withLink(VALID_LINK_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
+            .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withTags(VALID_TAG_FRONTEND).build();
+    public static final Internship TIKTOK = new InternshipBuilder().withCompany(VALID_COMPANY_TIKTOK)
+            .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
+            .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_BACKEND, VALID_TAG_AI)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
