@@ -35,6 +35,7 @@ public class IncomeTest {
         // valid income values
         assertTrue(Income.isValidIncome("$5")); // 1 number
         assertTrue(Income.isValidIncome("$901"));
-        assertTrue(Income.isValidIncome("$999082365910")); // long income value
+        assertTrue(Income.isValidIncome("$999999"));
+        assertTrue(Income.isValidIncome("$999082365912956280")); // long income value
     }
 }
