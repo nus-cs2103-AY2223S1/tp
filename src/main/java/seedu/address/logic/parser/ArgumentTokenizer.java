@@ -27,7 +27,7 @@ public class ArgumentTokenizer {
                     && (!inQuote || currentChar == quoteChar)) { // Only close quotes if quoteChar is matching
                 inQuote = !inQuote;
                 quoteChar = currentChar;
-            } else if (currentChar == ' ' && !inQuote) {
+            } else if (Character.isWhitespace(currentChar) && !inQuote) {
                 if (currentToken.length() > 0) {
                     results.add(currentToken.toString().trim());
                 }

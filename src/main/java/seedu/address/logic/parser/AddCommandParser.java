@@ -18,6 +18,8 @@ import java.util.Set;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.MissingArgumentException;
+import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 import seedu.address.logic.commands.AddCommand;
@@ -54,6 +56,10 @@ public class AddCommandParser implements Parser<AddCommand> {
             String[] argsArray = ArgumentTokenizer.tokenize(args);
             CommandLine cmd = parser.parse(options, argsArray);
 
+            if (cmd.getArgs().length > 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
+
             Name name = ParserUtil.parseName(cmd.getOptionValue(FLAG_NAME_STR));
             Phone phone = ParserUtil.parsePhone(cmd.getOptionValue(FLAG_PHONE_STR));
             Email email = ParserUtil.parseEmail(cmd.getOptionValue(FLAG_EMAIL_STR));
@@ -62,6 +68,20 @@ public class AddCommandParser implements Parser<AddCommand> {
 
             Person person = new Person(name, phone, email, address, tagList);
             return new AddCommand(person);
+        } catch (MissingArgumentException e) {
+            Option opt = e.getOption();
+            switch (opt.getOpt()) {
+            case FLAG_NAME_STR:
+                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            case FLAG_PHONE_STR:
+                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            case FLAG_EMAIL_STR:
+                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            case FLAG_ADDRESS_STR:
+                throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            default:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            }
         } catch (org.apache.commons.cli.ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
