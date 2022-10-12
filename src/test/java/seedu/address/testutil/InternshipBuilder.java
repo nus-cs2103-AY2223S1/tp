@@ -21,7 +21,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_LINK = "https://careers.google.com/jobs/results/97935383573996230/";
     public static final String DEFAULT_DESCRIPTION = "Software Engineering Intern, BS, Summer 2023";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
-    public static final String DEFAULT_APPLIED_DATE = "12/10/2022";
+    public static final String DEFAULT_APPLIED_DATE = "25 Oct 2022";
 
     private Company company;
     private Link link;
@@ -74,6 +74,7 @@ public class InternshipBuilder {
      * Sets the {@code AppliedDate} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withAppliedDate(String appliedDate) {
+        System.out.println(appliedDate);
         this.appliedDate = new AppliedDate(appliedDate);
         return this;
     }

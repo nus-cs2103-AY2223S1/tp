@@ -34,7 +34,7 @@
       <FlowPane fx:id="tags" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label styleClass="cell_small_label" text="Applied: " />
+        <Label styleClass="cell_small_label" text="Applied:" />
         <Label fx:id="appliedDate" styleClass="cell_small_label" text="\$appliedDate" />
       </HBox>
     </VBox>

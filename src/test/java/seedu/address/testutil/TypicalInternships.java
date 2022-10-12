@@ -26,49 +26,49 @@ import seedu.address.model.internship.Internship;
 public class TypicalInternships {
 
     public static final Internship ALIBABA = new InternshipBuilder().withCompany("Alibaba")
-            .withAppliedDate("01/10/2022").withDescription("Software Engineering Intern")
+            .withAppliedDate("30 Oct 2022").withDescription("Software Engineering Intern")
             .withLink("https://careers.alibaba.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Ecommerce").build();
     public static final Internship BINANCE = new InternshipBuilder().withCompany("Binance")
-            .withAppliedDate("02/10/2022")
+            .withAppliedDate("5 Oct 2022")
             .withDescription("Software Engineering Internship (6 months)")
             .withLink("https://careers.binance.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Crypto").build();
     public static final Internship CITADEL = new InternshipBuilder().withCompany("Citadel")
             .withLink("https://careers.Citadel.com/positionDetail")
-            .withDescription("Software Engineer Intern").withAppliedDate("03/10/2022")
+            .withDescription("Software Engineer Intern").withAppliedDate("23 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Backend").build();
     public static final Internship DELL = new InternshipBuilder().withCompany("Dell")
             .withLink("https://careers.Dell.com/positionDetail")
-            .withDescription("Software Developer Intern").withAppliedDate("04/10/2022")
+            .withDescription("Software Developer Intern").withAppliedDate("30 Sep 2022")
             .withApplicationStatus(ApplicationStatus.Applied).withTags("Backend").build();
     public static final Internship EBAY = new InternshipBuilder().withCompany("Ebay")
             .withLink("https://careers.Ebay.com/positionDetail")
-            .withDescription("Software Engineer Intern 2023").withAppliedDate("05/10/2022")
+            .withDescription("Software Engineer Intern 2023").withAppliedDate("27 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Ecommerce").build();
     public static final Internship FACEBOOK = new InternshipBuilder().withCompany("Facebook")
             .withLink("https://careers.Facebook.com/positionDetail")
-            .withDescription("Software Engineer Intern - Mobile (Flutter)").withAppliedDate("06/10/2022")
+            .withDescription("Software Engineer Intern - Mobile (Flutter)").withAppliedDate("3 Nov 2022")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Frontend").build();
     public static final Internship GOLDMAN = new InternshipBuilder().withCompany("Goldman Sachs")
             .withLink("https://careers.GoldmanSachs.com/positionDetail")
-            .withDescription("Software Engineer Program - Summer Analyst").withAppliedDate("07/10/2022")
+            .withDescription("Software Engineer Program - Summer Analyst").withAppliedDate("21 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Backend").build();
 
     // Manually added
     public static final Internship HUAWEI = new InternshipBuilder().withCompany("Huawei")
             .withLink("https://careers.Huawei.com/positionDetail")
-            .withDescription("").withAppliedDate("08/10/2022")
+            .withDescription("").withAppliedDate("15 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
     public static final Internship INDEED = new InternshipBuilder().withCompany("Indeed")
             .withLink("https://careers.Indeed.com/positionDetail")
-            .withDescription("").withAppliedDate("09/10/2022")
+            .withDescription("").withAppliedDate("29 Sep 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}

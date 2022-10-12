@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_TIKTOK = "Frontend Engineer Intern (Global e-Commerce) - 2023";
     public static final String VALID_APPLICATION_STATUS_GOOGLE = "applied";
     public static final String VALID_APPLICATION_STATUS_TIKTOK = "applied";
-    public static final String VALID_APPLIED_DATE_GOOGLE = "12/10/2022";
-    public static final String VALID_APPLIED_DATE_TIKTOK = "01/09/2022";
+    public static final String VALID_APPLIED_DATE_GOOGLE = "30 Oct 2022";
+    public static final String VALID_APPLIED_DATE_TIKTOK = "2 Nov 2022";
     public static final String VALID_TAG_FRONTEND = "Frontend";
     public static final String VALID_TAG_BACKEND = "Backend";
     public static final String VALID_TAG_AI = "AI";

@@ -74,6 +74,7 @@ public class CompanyContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new CompanyContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new InternshipBuilder().withCompany("Alice").withLink("12345")
-                .withDescription("alice@email.com").withAppliedDate("Main Street").build()));
+                .withDescription("alice@email.com").withAppliedDate("5 Oct 2022").build()));
+
     }
 }

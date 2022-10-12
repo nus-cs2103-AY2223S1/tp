@@ -28,15 +28,13 @@ public class ParserUtilTest {
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_TAG = "#Frontend";
     private static final String INVALID_APPLICATION_STATUS = "waiting";
-
     private static final String VALID_COMPANY = "Alibaba";
     private static final String VALID_LINK = "https://careers.alibaba.com/positionDetail";
-    private static final String VALID_APPLIED_DATE = "01/10/2022";
+    private static final String VALID_APPLIED_DATE = "5 Oct 2022";
     private static final String VALID_DESCRIPTION = "Software Engineering Intern";
     private static final String VALID_TAG_1 = "Frontend";
     private static final String VALID_TAG_2 = "Backend";
     private static final String VALID_APPLICATION_STATUS = "accepted";
-
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
