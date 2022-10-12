@@ -6,11 +6,8 @@ import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.util.Set;
-
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -49,14 +46,6 @@ public class StudentUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
-        if (descriptor.getModuleClasses().isPresent()) {
-            Set<ModuleClass> moduleClasses = descriptor.getModuleClasses().get();
-            if (moduleClasses.isEmpty()) {
-                sb.append(PREFIX_MODULE_CLASS);
-            } else {
-                moduleClasses.forEach(s -> sb.append(PREFIX_MODULE_CLASS).append(s.getClassName()).append(" "));
-            }
-        }
         return sb.toString();
     }
 }

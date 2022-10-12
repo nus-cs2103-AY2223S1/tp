@@ -2,7 +2,6 @@ package seedu.taassist.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -74,23 +73,16 @@ class JsonSerializableTaAssist {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
 
-            // Check if the module classes are valid
-            Set<ModuleClass> moduleClasses = student.getModuleClasses();
-            for (ModuleClass moduleClass : moduleClasses) {
-                if (!taAssist.hasModuleClass(moduleClass)) {
-                    throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
-                }
-            }
-
             // Check if the module data are valid
             for (StudentModuleData moduleData : student.getModuleData()) {
                 ModuleClass moduleClass = moduleData.getModuleClass();
                 if (!taAssist.hasModuleClass(moduleClass)) {
                     throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
                 }
+                ModuleClass realModuleClass = taAssist.findModuleClass(moduleClass);
                 for (SessionData sessionData : moduleData.getSessionData()) {
-                    if (!moduleClass.hasSession(sessionData.getSession())) {
-                        throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
+                    if (!realModuleClass.hasSession(sessionData.getSession())) {
+                        throw new IllegalValueException(MESSAGE_SESSION_NOT_FOUND);
                     }
                 }
             }

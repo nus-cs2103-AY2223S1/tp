@@ -2,11 +2,9 @@ package seedu.taassist.model.student;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.uniquelist.Identity;
@@ -25,34 +23,18 @@ public class Student implements Identity<Student> {
 
     // Data fields
     private final Address address;
-    private final Set<ModuleClass> moduleClasses = new HashSet<>();
     private final UniqueList<StudentModuleData> moduleData = new UniqueList<>();
 
     /**
      * Constructor for Student.
      */
-    public Student(Name name, Phone phone, Email email, Address address,
-                   Set<ModuleClass> moduleClasses, List<StudentModuleData> moduleData) {
-        requireAllNonNull(name, phone, email, address, moduleClasses, moduleData);
+    public Student(Name name, Phone phone, Email email, Address address, List<StudentModuleData> moduleData) {
+        requireAllNonNull(name, phone, email, address, moduleData);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.moduleClasses.addAll(moduleClasses);
         this.moduleData.setElements(moduleData);
-    }
-
-    /**
-     * Constructor for Student without module data.
-     */
-    public Student(Name name, Phone phone, Email email, Address address,
-                   Set<ModuleClass> moduleClasses) {
-        requireAllNonNull(name, phone, email, address, moduleClasses);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.moduleClasses.addAll(moduleClasses);
     }
 
     public Name getName() {
@@ -72,18 +54,19 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns an immutable moduleClass set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<ModuleClass> getModuleClasses() {
-        return Collections.unmodifiableSet(moduleClasses);
-    }
-
-    /**
      * Returns an immutable moduleData set as an Unmodifiable ObservableList.
      */
     public List<StudentModuleData> getModuleData() {
         return moduleData.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a list of module classes that the student is enrolled in.
+     */
+    public List<ModuleClass> getModuleClasses() {
+        return getModuleData().stream()
+            .map(StudentModuleData::getModuleClass)
+            .collect(Collectors.toList());
     }
 
     /**
@@ -119,14 +102,13 @@ public class Student implements Identity<Student> {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getModuleClasses().equals(getModuleClasses())
                 && otherStudent.getModuleData().equals(getModuleData());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, moduleClasses, moduleData);
+        return Objects.hash(name, phone, email, address, moduleData);
     }
 
     @Override
@@ -137,7 +119,7 @@ public class Student implements Identity<Student> {
         Phone phone = getPhone();
         Email email = getEmail();
         Address address = getAddress();
-        Set<ModuleClass> moduleClasses = getModuleClasses();
+        List<StudentModuleData> moduleData = getModuleData();
 
         if (phone.isPresent()) {
             builder.append("; Phone: ").append(phone);
@@ -148,9 +130,9 @@ public class Student implements Identity<Student> {
         if (address.isPresent()) {
             builder.append("; Address: ").append(address);
         }
-        if (!moduleClasses.isEmpty()) {
+        if (!moduleData.isEmpty()) {
             builder.append("; Classes: ");
-            moduleClasses.forEach(builder::append);
+            moduleData.stream().map(StudentModuleData::getModuleClass).forEach(builder::append);
         }
         return builder.toString();
     }

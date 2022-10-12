@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
@@ -16,6 +15,7 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentModuleData;
 
 /**
  * Assigns students to a class.
@@ -64,15 +64,14 @@ public class AssignCommand extends Command {
         }
 
         for (Student student : studentsToAssign) {
-            Set<ModuleClass> newModuleClasses = new HashSet<>(student.getModuleClasses());
-            newModuleClasses.add(moduleClassToAssign);
+            List<StudentModuleData> newModuleData = new ArrayList<>(student.getModuleData());
+            newModuleData.add(new StudentModuleData(moduleClassToAssign));
             Student editedStudent = new Student(
                     student.getName(),
                     student.getPhone(),
                     student.getEmail(),
                     student.getAddress(),
-                    newModuleClasses,
-                    student.getModuleData());
+                    newModuleData);
             model.setStudent(student, editedStudent);
         }
 
