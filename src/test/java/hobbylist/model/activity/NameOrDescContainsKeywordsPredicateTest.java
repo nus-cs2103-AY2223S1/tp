@@ -18,16 +18,16 @@ public class NameOrDescContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameOrDescContainsKeywordsPredicate firstPredicate = 
+        NameOrDescContainsKeywordsPredicate firstPredicate =
                 new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameOrDescContainsKeywordsPredicate secondPredicate = 
+        NameOrDescContainsKeywordsPredicate secondPredicate =
                 new NameOrDescContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameOrDescContainsKeywordsPredicate firstPredicateCopy = 
+        NameOrDescContainsKeywordsPredicate firstPredicateCopy =
                 new NameOrDescContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -44,7 +44,7 @@ public class NameOrDescContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameOrDescContainsKeywordsPredicate predicate = 
+        NameOrDescContainsKeywordsPredicate predicate =
                 new NameOrDescContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
 
@@ -68,14 +68,14 @@ public class NameOrDescContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameOrDescContainsKeywordsPredicate predicate = 
+        NameOrDescContainsKeywordsPredicate predicate =
                 new NameOrDescContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ActivityBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob").build()));
-        
+
         // Non-matching keyword in name and description
         predicate = new NameOrDescContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new ActivityBuilder().withName("Alice Bob").withDescription("Charlie David").build()));
