@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,8 +17,20 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t11-4.github.io/tp/UserGuide.html\n";
+    public static final String COMMAND_SUMMARY = "\nCOMMAND SUMMARY\n"
+            + "– help\n"
+            + "– add: add n/NAME g/GITHUB_REPO_LINK [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]\n"
+            + "– list\n"
+            + "– edit: edit INDEX [n/NAME] [g/GITHUB_REPO_LINK] [p/PHONE] [e/EMAIL] [t/TAG]\n"
+            + "– sort: sort TAG\n"
+            + "– find: find KEYWORD\n"
+            + "– delete: delete INDEX\n"
+            + "– exit\n";
+    public static final String HELP_MESSAGE = "Refer to the user guide for more details: "
+            + USERGUIDE_URL
+            + COMMAND_SUMMARY;
+
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -90,13 +104,10 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
-     * Copies the URL to the user guide to the clipboard.
+     * Opens the user guide in the browser.
      */
     @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
+    private void openGuide() throws URISyntaxException, IOException {
+        Desktop.getDesktop().browse(new URI("https://ay2223s1-cs2103t-t11-4.github.io/tp/UserGuide.html"));
     }
 }

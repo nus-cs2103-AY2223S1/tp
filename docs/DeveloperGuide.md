@@ -257,27 +257,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* CS2103T students in a tutorial group <br>
+Students can search for their teammates, view their repos and view each other’s code reviews (with their information such as GitHub repos etc).
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**: All your contacts and projects in one place.
+* Provides more convenience for both instructors and students.
+* Promotes peer interaction and review as students can find each other’s work and leave constructive feedback with greater ease.
+* Promotes self-learning as students can see how others write their code.
+* Easier for instructors to keep track of students’ progress.
+* Saves time.
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​          | I want to …​                             | So that I can…​                                                            |
+|----------|------------------|------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
+| `* * *`  | student          | add a classmate to the addressbook       | conveniently refer to their contact details all in one place               |
+| `* * *`  | student          | list all classmates                      | see a list of all classmates in my class                                   |
+| `* * *`  | student          | edit a classmate                         | change their details without deleting them                                 |
+| `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
+| `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
+| `* * *`  | student          | tag a classmate with a tag               | find them easily                                                           |
+| `* * *`  | student          | find classmates using specified tags     | locate classmates with the specified tag easily                            |
+| `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
+| `* *`    | technical person | close the App using a command            | close the App easily                                                       |
 
 *{More to be added}*
 
@@ -343,6 +351,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       \
       Use case ends.
 
+<<<<<<< HEAD
+=======
+
+* 2a. The list is empty.
+\
+Use case ends.
+
+>>>>>>> 8050db7c092d22b0767d27a660bf4b9d337e9ee1
 **Use case 4: Add a tag to a batchmate**
 
 **MSS**
@@ -470,6 +486,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The GUI should work well with standard screen resolutions 1920x1080 and higher. i.e. GUI does not appear to be cut or distorted.
+5.  For every action by the user, the result should be visible within 5 seconds.
+6.  The project should not depend on any remote servers.
+7.  The software and documentation should be accessible to users with a basic command of English.
+8.  The packaged JAR file should not exceed 100MB.
+9.  The software should work without the need for an installer.
 
 *{More to be added}*
 
@@ -477,6 +499,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Command Line Interface (CLI)**: A text of lines input by the users to send instructions to the system.
+* **Graphical User Interface (GUI)**: A means, supported by visuals, for the users to send instructions to the system.
+* **Student**: The main user.
+* **Classmate**: The people whom the users need to link to and interact with.
 
 --------------------------------------------------------------------------------------------------------------------
 
