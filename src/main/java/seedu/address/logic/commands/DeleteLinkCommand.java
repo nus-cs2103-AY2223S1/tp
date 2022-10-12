@@ -35,7 +35,7 @@ public class DeleteLinkCommand extends Command {
 
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted link from module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be deleted.";
-    public static final String MESSAGE_MISSING_LINK = "This link does not currently exist in module index ";
+    public static final String MESSAGE_MISSING_LINK = "This link does not currently exist in module index [";
 
     private final Index index;
     private final Set<Link> links;
@@ -89,7 +89,7 @@ public class DeleteLinkCommand extends Command {
             throws CommandException {
         for (Link link : linksToRemove) {
             if (!originalLinksCopy.contains(link)) {
-                throw new CommandException(MESSAGE_MISSING_LINK + index.getOneBased() + " [" + link.linkName + "]");
+                throw new CommandException(MESSAGE_MISSING_LINK + index.getOneBased() + "] [" + link.linkName + "]");
             }
         }
         originalLinksCopy.removeAll(linksToRemove);

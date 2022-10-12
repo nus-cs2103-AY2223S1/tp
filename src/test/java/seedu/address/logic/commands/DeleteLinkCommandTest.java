@@ -63,7 +63,7 @@ public class DeleteLinkCommandTest {
                 new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK_2))));
         assertCommandFailure(deleteLinkCommand, model,
                 DeleteLinkCommand.MESSAGE_MISSING_LINK + INDEX_FIRST_MODULE.getOneBased()
-                        + " [" + VALID_MODULE_LINK_2 + "]");
+                        + "] [" + VALID_MODULE_LINK_2 + "]");
     }
 
     @Test

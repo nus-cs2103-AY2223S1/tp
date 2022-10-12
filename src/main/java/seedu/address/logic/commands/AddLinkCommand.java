@@ -36,7 +36,7 @@ public class AddLinkCommand extends Command {
 
     public static final String MESSAGE_ADD_LINK_SUCCESS = "Added link to module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be added.";
-    public static final String MESSAGE_DUPLICATE_LINK = "The link/s already exists in the module index ";
+    public static final String MESSAGE_DUPLICATE_LINK = "The link/s already exists in the module index [";
 
     private final Index index;
     private final Set<Link> links;
@@ -64,7 +64,7 @@ public class AddLinkCommand extends Command {
         Module editedModule = createEditedModule(moduleToEdit, links);
 
         if (moduleToEdit.getLinks().equals(editedModule.getLinks())) {
-            throw new CommandException(MESSAGE_DUPLICATE_LINK + index.getOneBased());
+            throw new CommandException(MESSAGE_DUPLICATE_LINK + index.getOneBased() + "]");
         }
 
         model.setModule(moduleToEdit, editedModule);

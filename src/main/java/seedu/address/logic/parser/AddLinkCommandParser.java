@@ -46,7 +46,9 @@ public class AddLinkCommandParser implements Parser<AddLinkCommand> {
      */
     private Optional<Set<Link>> parseLinksToAdd(Collection<String> links) throws ParseException {
         assert links != null;
-        if (links.isEmpty() || (links.size() == 1 && links.contains(""))) {
+        boolean isLinksEmpty = links.isEmpty();
+        boolean hasOnlyOneEmptyLink = links.size() == 1 && links.contains("");
+        if (isLinksEmpty || hasOnlyOneEmptyLink) {
             return Optional.empty();
         }
         return Optional.of(ParserUtil.parseLinks(links));

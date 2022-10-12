@@ -32,7 +32,7 @@ import seedu.address.model.module.task.Task;
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
  */
 public class AddLinkCommandTest {
-    private static final int MODULE_INDEX_NONEXISTENT = 999999;
+    private static final int MODULE_INDEX_NONEXISTENT_LARGE = 999999;
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -61,13 +61,14 @@ public class AddLinkCommandTest {
         AddLinkCommand addLinkCommand = new AddLinkCommand(INDEX_FIRST_MODULE, link);
 
         assertCommandFailure(addLinkCommand, model,
-                AddLinkCommand.MESSAGE_DUPLICATE_LINK + INDEX_FIRST_MODULE.getOneBased());
+                AddLinkCommand.MESSAGE_DUPLICATE_LINK + INDEX_FIRST_MODULE.getOneBased() + "]");
     }
 
     @Test
-    public void execute_nonExistentModuleFilteredList_failure() {
+    public void execute_nonExistentLargeModuleIndexFilteredList_failure() {
         Set<Link> links = new HashSet<Link>(Arrays.asList(new Link(VALID_MODULE_LINK)));
-        AddLinkCommand addLinkCommand = new AddLinkCommand(Index.fromOneBased(MODULE_INDEX_NONEXISTENT), links);
+        AddLinkCommand addLinkCommand = new AddLinkCommand(
+                Index.fromOneBased(MODULE_INDEX_NONEXISTENT_LARGE), links);
 
         assertCommandFailure(addLinkCommand, model,
                 Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
