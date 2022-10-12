@@ -116,7 +116,7 @@
                         <Insets top="16" bottom="8" />
                     </VBox.margin>
                 </Label>
-                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
+                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS" minHeight="300">
                     <placeholder>
                         <HBox alignment="TOP_CENTER">
                             <Label styleClass="noSuchData" text="No iterations found"
