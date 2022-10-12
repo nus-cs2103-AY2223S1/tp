@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
-import seedu.condonery.model.property.Address;
-import seedu.condonery.model.property.Name;
+import seedu.condonery.model.fields.Address;
+import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 

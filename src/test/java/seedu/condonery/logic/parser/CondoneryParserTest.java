@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.AddCommand;
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.DeleteCommand;
 import seedu.condonery.logic.commands.EditCommand;
@@ -22,6 +21,8 @@ import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.ListCommand;
+import seedu.condonery.logic.commands.client.AddClientCommand;
+import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
@@ -36,8 +37,8 @@ public class CondoneryParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Property property = new PropertyBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PropertyUtil.getAddCommand(property));
-        assertEquals(new AddCommand(property), command);
+        AddPropertyCommand command = (AddPropertyCommand) parser.parseCommand(PropertyUtil.getAddCommand(property));
+        assertEquals(new AddPropertyCommand(property), command);
     }
 
     @Test
