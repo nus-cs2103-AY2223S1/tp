@@ -244,7 +244,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         if (listings.asUnmodifiableObservableList().isEmpty() && offers.asUnmodifiableObservableList().isEmpty()) {
             return persons.hashCode();
-        } else if (offers.asUnmodifiableObservableList().isEmpty()){
+        } else if (offers.asUnmodifiableObservableList().isEmpty()) {
             return listings.hashCode();
         } else {
             return offers.hashCode();

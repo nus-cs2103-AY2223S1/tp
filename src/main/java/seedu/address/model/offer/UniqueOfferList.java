@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.offer.Offer;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -91,7 +90,7 @@ public class UniqueOfferList implements Iterable<Offer> {
      */
     public void setOffers(List<Offer> Offers) {
         requireAllNonNull(Offers);
-        if (!OffersAreUnique(Offers)) {
+        if (!offersAreUnique(Offers)) {
             throw new DuplicatePersonException();
         }
 
@@ -125,7 +124,7 @@ public class UniqueOfferList implements Iterable<Offer> {
     /**
      * Returns true if {@code persons} contains only unique Offers.
      */
-    private boolean OffersAreUnique(List<Offer> offers) {
+    private boolean offersAreUnique(List<Offer> offers) {
         for (int i = 0; i < offers.size() - 1; i++) {
             for (int j = i + 1; j < offers.size(); j++) {
                 if (offers.get(i).isSameOffer(offers.get(j))) {
