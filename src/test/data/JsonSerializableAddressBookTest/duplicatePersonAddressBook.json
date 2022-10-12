@@ -4,11 +4,28 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "currModules": [ "CS2103T" ],
+    "prevModules": [ "CS2040S" ],
+    "planModules": [ "CS2109S" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
-  } ]
+    "address": "4th street",
+    "tagged": [ "friends" ],
+    "currModules": [ "CS2103T" ],
+    "prevModules": [ "CS2040S" ],
+    "planModules": [ "CS2109S" ]
+  } ],
+  "jsonAdaptedUser" : {
+    "name" : "",
+    "phone" : "empty",
+    "email" : "",
+    "address" : "",
+    "currModules" : [ ],
+    "prevModules" : [ ],
+    "planModules" : [ ],
+    "emptyUser" : { }
+  }
 }

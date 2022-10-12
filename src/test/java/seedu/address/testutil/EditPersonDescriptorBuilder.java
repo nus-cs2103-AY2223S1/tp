@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -37,6 +40,9 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setCurrModules(person.getCurrModules());
+        descriptor.setPrevModules(person.getPrevModules());
+        descriptor.setPlanModules(person.getPlanModules());
     }
 
     /**
@@ -78,6 +84,40 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code currModules} into a {@code Set<CurrentModule>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withCurrentModules(String... currentModules) {
+        Set<CurrentModule> currentModuleSet = Stream.of(currentModules)
+                .map(CurrentModule::new).collect(Collectors.toSet());
+        System.out.println("withCurrentModules");
+        descriptor.setCurrModules(currentModuleSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code prevModules} into a {@code Set<PreviousModule>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPreviousModules(String... previousModules) {
+        Set<PreviousModule> previousModuleSet = Stream.of(previousModules)
+                .map(PreviousModule::new).collect(Collectors.toSet());
+        descriptor.setPrevModules(previousModuleSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code planModules} into a {@code Set<PlannedModule>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withPlannedModules(String... plannedModules) {
+        Set<PlannedModule> plannedModuleSet = Stream.of(plannedModules)
+                .map(PlannedModule::new).collect(Collectors.toSet());
+        descriptor.setPlanModules(plannedModuleSet);
         return this;
     }
 

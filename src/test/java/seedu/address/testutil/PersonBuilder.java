@@ -3,6 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.PlannedModule;
+import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -26,6 +29,9 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private Set<CurrentModule> currModules;
+    private Set<PreviousModule> prevModules;
+    private Set<PlannedModule> planModules;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +42,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        currModules = new HashSet<>();
+        prevModules = new HashSet<>();
+        planModules = new HashSet<>();
     }
 
     /**
@@ -47,6 +56,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        currModules = new HashSet<>(personToCopy.getCurrModules());
+        prevModules = new HashSet<>(personToCopy.getPrevModules());
+        planModules = new HashSet<>(personToCopy.getPlanModules());
     }
 
     /**
@@ -89,8 +101,35 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code current modules} into a {@code Set<CurrentModule>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withCurrentModules(String ... currentModules) {
+        this.currModules = SampleDataUtil.getCurrentModuleSet(currentModules);
+        return this;
+    }
+
+    /**
+     * Parses the {@code planned modules} into a {@code Set<PlannedModule>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPlannedModules(String ... plannedModules) {
+        this.planModules = SampleDataUtil.getPlannedModuleSet(plannedModules);
+        return this;
+    }
+
+    /**
+     * Parses the {@code previous modules} into a {@code Set<PreviousModule>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPreviousModules(String ... previousModules) {
+        this.prevModules = SampleDataUtil.getPreviousModuleSet(previousModules);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, currModules, prevModules, planModules);
     }
 
 }

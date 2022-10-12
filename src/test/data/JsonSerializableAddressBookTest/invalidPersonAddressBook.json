@@ -3,6 +3,20 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
-  } ]
+    "address": "4th street",
+    "tagged": [ "friends" ],
+    "currModules": [ "CS2103T" ],
+    "prevModules": [ "CS2040S" ],
+    "planModules": [ "CS2109S" ]
+  } ],
+  "jsonAdaptedUser" : {
+    "name" : "",
+    "phone" : "empty",
+    "email" : "",
+    "address" : "",
+    "currModules" : [ ],
+    "prevModules" : [ ],
+    "planModules" : [ ],
+    "emptyUser" : { }
+  }
 }

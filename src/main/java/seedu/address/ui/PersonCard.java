@@ -79,12 +79,6 @@ public class PersonCard extends UiPart<Region> {
         person.getPlanModules().stream()
                 .sorted(Comparator.comparing(mod -> mod.moduleName))
                 .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
-        person.getPrevModules().stream()
-                .sorted(Comparator.comparing(mod -> mod.moduleName))
-                .forEach(mod -> prevModulesTags.getChildren().add(new Label(mod.moduleName)));
-        person.getPlanModules().stream()
-                .sorted(Comparator.comparing(mod -> mod.moduleName))
-                .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
     }
 
     @Override
