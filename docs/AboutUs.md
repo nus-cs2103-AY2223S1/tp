@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/jasonchristopher21.png" width="200px">
 
-[[github](http://github.com/jasonchristopher21)] 
+[[github](http://github.com/jasonchristopher21)]
 [[portfolio](team/jasonchristopher21.md)]
 
 * Role: Developer
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/connlim.png" width="200px">
 
-[[github](https://github.com/connlim)] 
+[[github](https://github.com/connlim)]
 [[portfolio](team/connlim.md)]
 
 * Role: Developer

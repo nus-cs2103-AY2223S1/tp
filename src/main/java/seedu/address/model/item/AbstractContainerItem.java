@@ -15,8 +15,35 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
  */
 public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem> implements DisplayItem {
 
-    protected AbstractContainerItem parent = null;
-    protected String fullPath = null;
+    private static final String PATH_VALIDATION_REGEX = "([a-zA-Z0-9_-]+\\/?)+([a-zA-Z0-9_-]+)";
+
+    protected AbstractContainerItem parent;
+    protected String fullPath;
+
+    public AbstractContainerItem(AbstractContainerItem parent) {
+        this(parent, null);
+    }
+
+    /**
+     * Constructs an AbstractContainerItem.
+     *
+     * @param parent reference that will be containing this current AbstractContainerItem.
+     * @param fullPath that includes all parents from root to this AbstractContainerItem.
+     */
+    public AbstractContainerItem(AbstractContainerItem parent, String fullPath) {
+        this.parent = parent;
+        this.fullPath = fullPath;
+    }
+
+    /**
+     * Checks if the path is valid. Only alphanumeric, hyphen, underscore and slash are allowed.
+     *
+     * @param path to reach the current AbstractContainerItem.
+     * @return true if path is valid, false otherwise.
+     */
+    public static boolean isValidPath(String path) {
+        return path.matches(PATH_VALIDATION_REGEX);
+    }
 
     @Override
     public void add(DisplayItem toAdd) {
@@ -74,5 +101,23 @@ public abstract class AbstractContainerItem extends DisplayItemList<DisplayItem>
             throw new ItemCannotBeParentException(o);
         }
         parent = (AbstractContainerItem) o;
+    }
+
+    public AbstractContainerItem getParent() {
+        return parent;
+    }
+
+    @Override
+    public boolean isPartOfContext(DisplayItem o) {
+        AbstractContainerItem temp = parent;
+        while (parent != null) {
+            if (parent.equals(o)) {
+                return true;
+            }
+
+            temp = temp.getParent();
+        }
+
+        return o == null;
     }
 }

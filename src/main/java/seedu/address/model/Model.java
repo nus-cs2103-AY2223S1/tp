@@ -138,5 +138,24 @@ public interface Model {
 
     void updateFilteredTeamList(List<Predicate<Group>> predicates);
 
+    /**
+     * Checks if context can be changed from the current context to another group.
+     *
+     * @param path the path to be switched to.
+     * @return true if context can be changed to path, false otherwise.
+     */
+    boolean canChangeContext(String path);
+
+    /**
+     * Changes current context to the specified path
+     *
+     * @param path that will be the new current context.
+     */
+    void changeContext(String path);
+
+    boolean isInSamePath(String path);
+
+    AbstractContainerItem getCurrentContext();
+
     ObservableList<Group> getFilteredTeamList();
 }
