@@ -5,7 +5,9 @@
     "email": "alice@example.com",
     "module": "CS2103T",
     "year": "4",
+    "studentId": "A1234567X",
     "address": "123, Jurong West Ave 6, #08-111",
+    "comment" : "",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -13,6 +15,8 @@
     "email": "pauline@example.com",
     "module": "CS2100",
     "year": "3",
-    "address": "4th street"
+    "studentId": "A1234566P",
+    "address": "4th street",
+    "comment" : ""
   } ]
 }
