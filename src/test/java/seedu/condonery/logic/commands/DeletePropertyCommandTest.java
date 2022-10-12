@@ -23,11 +23,7 @@ import seedu.condonery.model.property.Property;
  */
 public class DeletePropertyCommandTest {
 
-<<<<<<< HEAD:src/test/java/seedu/condonery/logic/commands/DeleteCommandTest.java
-    private final Model model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
-=======
     private final Model model = new ModelManager(getTypicalPropertyDirectory(),getTypicalClientDirectory(),  new UserPrefs());
->>>>>>> yuehernkang/week9/fix-add-property-test-errors:src/test/java/seedu/condonery/logic/commands/DeletePropertyCommandTest.java
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

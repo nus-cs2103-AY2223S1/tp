@@ -57,7 +57,7 @@ public class JsonPropertyDirectoryStorageTest {
 
     @Test
     public void readPropertyDirectory_invalidPersonPropertyDirectory_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPropertyDirectory("invalidPersonPropertyDirectory.json"));
+        assertThrows(DataConversionException.class, () -> readPropertyDirectory("invalidPropertyDirectory.json"));
     }
 
     @Test
