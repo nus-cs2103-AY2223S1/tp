@@ -17,8 +17,12 @@ public class TagTest {
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
         String emptyTag = "";
         String snack = "snack";
+        String breakfastRepeated = "breakfast Breakfast";
+        String lunchRepeated = "lunchLUNCH";
         assertThrows(IllegalArgumentException.class, () -> new Tag(emptyTag));
         assertThrows(IllegalArgumentException.class, () -> new Tag(snack));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(breakfastRepeated));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(lunchRepeated));
     }
 
     @Test

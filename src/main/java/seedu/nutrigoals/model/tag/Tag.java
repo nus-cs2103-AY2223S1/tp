@@ -10,9 +10,9 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be either breakfast, lunch or dinner";
-    public static final String BREAKFAST_REGEX = "\\s*((?i)breakfast)\\s*";
-    public static final String LUNCH_REGEX = "\\s*((?i)lunch)\\s*";
-    public static final String DINNER_REGEX = "\\s*((?i)dinner)\\s*";
+    public static final String BREAKFAST_REGEX = "^\\s*(?i)breakfast\\s*$";
+    public static final String LUNCH_REGEX = "^\\s*(?i)lunch\\s*$";
+    public static final String DINNER_REGEX = "^\\s*(?i)dinner\\s*$";
 
     public final String tagName;
 
