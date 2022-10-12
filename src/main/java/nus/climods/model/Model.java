@@ -45,6 +45,11 @@ public interface Model {
      */
     boolean hasUserModule(UserModule module);
 
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the filtered user module list
+     */
+    boolean filteredListhasUserModule(UserModule module);
+
 
     /**
      * Deletes the given module. The module must exist in the address book.

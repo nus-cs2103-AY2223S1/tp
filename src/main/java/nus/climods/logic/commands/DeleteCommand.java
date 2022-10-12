@@ -24,16 +24,17 @@ public class DeleteCommand extends Command {
     private final UserModule target;
 
     public DeleteCommand(UserModule target) {
+        requireNonNull(target);
         this.target = target;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<UserModule> lastShownList = model.getFilteredUserModuleList();
+//        List<UserModule> lastShownList = model.getFilteredUserModuleList();
         String msg = target.getUserModuleCode();
 
-        if (!lastShownList.contains(target)) {
+        if (!model.filteredListhasUserModule(target)) {
             return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, msg));
         }
 

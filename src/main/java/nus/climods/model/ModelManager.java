@@ -52,6 +52,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean filteredListhasUserModule(UserModule module) {
+        return this.getFilteredUserModuleList().contains(module);
+    }
+
+    @Override
     public void deleteUserModule(UserModule target) {
         requireNonNull(target);
         uniqueUserModuleList.remove(target);
