@@ -30,6 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Team> filteredTeams;
+    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
 
     }
 
@@ -167,9 +169,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTask(Index index, Task task) {
-        requireAllNonNull(index, task);
-        addressBook.deleteTask(index, task);
+    public void deleteTask(Index teamIndex, Index taskIndex) {
+        requireAllNonNull(teamIndex, taskIndex);
+        addressBook.deleteTask(teamIndex, taskIndex);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -193,6 +195,12 @@ public class ModelManager implements Model {
     public void updateFilteredTeamList(Predicate<Team> predicate) {
         requireNonNull(predicate);
         filteredTeams.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     @Override
@@ -234,6 +242,10 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
     public Team getTeam(seedu.address.model.team.Name name) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(name);

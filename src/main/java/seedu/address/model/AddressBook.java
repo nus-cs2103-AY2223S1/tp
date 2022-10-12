@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.UniqueTaskList;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -19,6 +20,7 @@ import seedu.address.model.team.UniqueTeamList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueTaskList tasks;
     private final UniqueTeamList teams;
 
     /*
@@ -31,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
+        tasks = new UniqueTaskList();
     }
 
     public AddressBook() {}
@@ -157,8 +160,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// task-level operations
 
-    public void deleteTask(Index index, Task task) {
-        teams.deleteTask(index.getZeroBased(), task);
+    public void deleteTask(Index teamIndex, Index taskIndex) {
+        teams.deleteTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
     }
 
     //// util methods
@@ -177,6 +180,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Team> getTeamList() {
         return teams.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return tasks.asUnmodifiableObservableList();
     }
 
     @Override

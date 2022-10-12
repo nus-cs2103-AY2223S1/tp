@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.model.team.Team;
 
 /**
@@ -15,5 +16,6 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Person> getPersonList();
     ObservableList<Team> getTeamList();
+    ObservableList<Task> getTaskList();
 
 }

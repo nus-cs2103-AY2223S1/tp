@@ -18,6 +18,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Team> PREDICATE_SHOW_ALL_TEAMS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -109,9 +110,13 @@ public interface Model {
 
     void updateFilteredTeamList(Predicate<Team> predicate);
 
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
     ObservableList<Team> getFilteredTeamList();
 
     public Team getTeam(Name name);
+
+    ObservableList<Task> getFilteredTaskList();
 
     public Name getTeamName(Index teamIndex);
 
@@ -123,6 +128,6 @@ public interface Model {
 
     void unmarkTask(Index index, Task task);
 
-    void deleteTask(Index index, Task task);
+    void deleteTask(Index teamIndex, Index taskIndex);
 
 }

@@ -198,7 +198,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Team> getFilteredTeamList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,7 +243,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteTask(Index index, Task task) {
+        public void deleteTask(Index teamIndex, Index taskIndex) {
             throw new AssertionError("This method should not be called.");
         }
     }

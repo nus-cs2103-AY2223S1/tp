@@ -53,6 +53,10 @@ public class Team {
         return tasks;
     }
 
+    public Task getTask(int n) {
+        return tasks.get(n);
+    }
+
     public void addMember(Person p) {
         members.add(p);
     }
@@ -106,10 +110,10 @@ public class Team {
 
     /**
      * Deletes a task to this team.
-     * @param t
+     * @param index The index of the {@code task} to be deleted.
      */
-    public void deleteTask(Task t) {
-        tasks.delete(t);
+    public void deleteTask(int index) {
+        tasks.delete(index);
     }
 
     /**
