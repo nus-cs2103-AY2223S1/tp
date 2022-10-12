@@ -88,15 +88,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Date_of_birth} into a {@code DateOfBirth}.
+     * Parses a {@code String dob} into a {@code DateOfBirth}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code Date_of_birth} is invalid.
+     * @throws ParseException if the given {@code dob} is invalid.
      */
     public static DateOfBirth parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!DateOfBirth.isValidDate(dob)) {
+        if (!DateOfBirth.isValidDateOfBirth(dob)) {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
         return new DateOfBirth(trimmedDob);
