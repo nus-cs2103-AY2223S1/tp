@@ -24,7 +24,7 @@ public class UiManager implements Ui {
 
     private Logic logic;
     private MainWindow mainWindow;
-    private Login login;
+    private LoginWindow login;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
@@ -42,7 +42,7 @@ public class UiManager implements Ui {
 
         try {
             // Login page implemented (v1.2)
-            login = new Login(primaryStage, logic);
+            login = new LoginWindow(primaryStage, logic);
             login.show();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

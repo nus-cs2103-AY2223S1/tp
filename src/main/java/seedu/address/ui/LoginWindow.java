@@ -17,7 +17,7 @@ import seedu.address.logic.Logic;
 /**
  * Class that handles the login window.
  */
-public class Login extends UiPart<Stage> {
+public class LoginWindow extends UiPart<Stage> {
 
     private static final String FXML = "Login.fxml";
 
@@ -27,9 +27,9 @@ public class Login extends UiPart<Stage> {
     private LoginErrorWindow loginErrorWindow;
 
     /**
-     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     * Creates a {@code LoginWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public Login(Stage primaryStage, Logic logic) {
+    public LoginWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
         // Set dependencies
         this.primaryStage = primaryStage;
