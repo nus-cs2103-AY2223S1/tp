@@ -25,8 +25,12 @@ public class MeetingDate {
     public MeetingDate(String date) {
         if (date != null && !date.isEmpty()) {
             checkArgument(isValidMeetingDate(date), MESSAGE_CONSTRAINTS);
+            this.value = date;
         }
-        this.value = date;
+        else {
+            this.value = "TBC";
+        }
+
     }
 
     /**

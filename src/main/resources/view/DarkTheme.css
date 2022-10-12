@@ -78,20 +78,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: #13315C;
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent transparent #EEF4ED;
 }
 
 .split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: #13315C;
+    -fx-background-color: #EEF4ED;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #13315C;
+    -fx-background-color: #EEF4ED;
 }
 
 .list-cell {
@@ -131,6 +131,7 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #0B2545;
     -fx-font-size: 16px;
+    -fx-max-height: Infinity;
 }
 
 .stack-pane {
@@ -352,8 +353,8 @@
     -fx-text-fill: #0B2545;
     -fx-background-color: #8DA9C4;
     -fx-padding: 3 5 3 5;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
     -fx-font-size: 14;
 }
 
@@ -369,11 +370,7 @@
     -fx-background-color: #13315C;
 }
 
-#personDetails {
-    -fx-background-color: #EEF4ED;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-}
+
 
 #address, #email, #income, #meetingDate {
      -fx-font-family: "Segoe UI Semibold";
@@ -386,4 +383,31 @@
      -fx-text-fill: #0B2545;
      -fx-font-size: 20px;
 }
+
+#personDetails {
+    -fx-background-color: #EEF4ED;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+#personDetails2 {
+    -fx-background-color: #EEF4ED;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.cell_label_tags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+.cell_label_tags .label{
+    -fx-text-fill: #0B2545;
+    -fx-background-color: #8DA9C4;
+    -fx-padding: 3 5 3 5;
+    -fx-background-radius: 7;
+    -fx-font-size: 14;
+    -fx-border-radius: 7;
+}
+
 

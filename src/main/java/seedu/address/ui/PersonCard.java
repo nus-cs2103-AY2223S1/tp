@@ -60,7 +60,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getMeetingDate().value != null) {
             meetingDate.setText(person.getMeetingDate().value);
         } else {
-            meetingDate.setText("");
+            meetingDate.setText("TBC");
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
