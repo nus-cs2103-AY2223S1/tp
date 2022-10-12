@@ -792,7 +792,7 @@ Something goes here...
 > A value that is passed into a command.
 
 Example:
-`tag create food`, where food is the argument to the command `tag create`
+`tag create food`, where `food` is the argument to the command `tag create`
 
 ### B
 
@@ -805,7 +805,11 @@ Example:
 #### Command
 
 > A feature or function that FoodRem can perform.
->
+
+#### Command Line
+
+> The interface that you, the user, interacts with FoodREM with. The Command Line is the box where you type your commands into.
+
 
 ### E
 
@@ -840,12 +844,20 @@ Example: Creating a `potato` item
 > The result of calling a Command.
 > Results are displayed in the GUI, here: (ADD SCREENSHOT)
 
+### P
+
+#### Parameter
+> Parameters identify values passed into your Commands. For example, when calling `add n/ItemName`, the parameter here is `n/ItemName`.
 ### Q
 
 #### Quantity
 
 > The frequency of item(s) kept track by FoodRem.
 
+### S
+
+#### Syntax
+> The structure of statements you type into the Command Line. 
 ### T
 
 #### Tag
