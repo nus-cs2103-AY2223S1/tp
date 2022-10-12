@@ -48,6 +48,6 @@ public class AddcCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddcCommand // instanceof handles nulls
-                && moduleClass.isSameModuleClass(((AddcCommand) other).moduleClass));
+                && moduleClass.isSame(((AddcCommand) other).moduleClass));
     }
 }

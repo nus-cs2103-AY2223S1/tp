@@ -58,16 +58,16 @@ public class ModuleClassTest {
     @Test
     public void isSame_sameModuleClassName_returnsTrue() {
         // same object -> returns true
-        assertTrue(CS1101S.isSameModuleClass(CS1101S));
+        assertTrue(CS1101S.isSame(CS1101S));
 
         // same name -> returns true
         ModuleClass cs1101sCopy = new ModuleClass(CS1101S.getClassName());
-        assertTrue(cs1101sCopy.isSameModuleClass(CS1101S));
+        assertTrue(cs1101sCopy.isSame(CS1101S));
     }
 
     @Test
     public void isSame_differentModuleClassName_returnsFalse() {
-        assertFalse(CS1231S.isSameModuleClass(CS1101S));
+        assertFalse(CS1231S.isSame(CS1101S));
     }
 
     @Test
@@ -77,6 +77,6 @@ public class ModuleClassTest {
 
         // same name and sessions -> returns true
         ModuleClass cs1101sCopy = new ModuleClass(CS1101S.getClassName(), CS1101S.getSessions());
-        assertTrue(cs1101sCopy.isSameModuleClass(CS1101S));
+        assertTrue(cs1101sCopy.isSame(CS1101S));
     }
 }

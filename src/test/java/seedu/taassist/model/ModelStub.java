@@ -11,7 +11,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Student;
 
 /**
- * A stub for Model that causes all methods to fail.
+ * A default model stub that has all the methods failing.
  */
 public class ModelStub implements Model {
     @Override
@@ -114,6 +114,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
     public ObservableList<ModuleClass> getModuleClassList() {
         throw new AssertionError("This method should not be called.");
     }

@@ -31,7 +31,7 @@ public class IsPartOfClassPredicate implements Predicate<Student> {
     @Override
     public boolean test(Student student) {
         return student.getModuleClasses().stream()
-                .anyMatch(moduleClass -> moduleClass.isSameModuleClass(targetClass));
+                .anyMatch(moduleClass -> moduleClass.isSame(targetClass));
     }
 
     @Override

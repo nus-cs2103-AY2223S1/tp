@@ -223,13 +223,13 @@ Example:
 The following commands are only available in **focus mode.**
 
 | Command   | Format                               |
-| --------- | ------------------------------------ |
+|-----------|--------------------------------------|
 | `list`    | `list`                               |
 | `session` | `session s/SESSION_NAME [d/DATE]`    |
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
 | `view`    | `view INDEX s/SESSION_NAME`          |
 | `lists`   | `lists`                              |
-| `back`    | `back`                               |
+| `unfocus` | `unfocus`                            |
 
 ### List all students in the class: `list`
 
@@ -300,14 +300,14 @@ Format: `lists`
 
 - List the sessions that have been created for the class.
 
-### Exit focus mode: `back`
+### Exit focus mode: `unfocus`
 
 <aside>
 ℹ️ Exits focus mode on a class.
 
 </aside>
 
-Format: `back`
+Format: `unfocus`
 
 ## FAQ
 
