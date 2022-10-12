@@ -6,8 +6,8 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -19,7 +19,7 @@ public class ItemUtil {
      * Returns an add command string for adding the {@code item}.
      */
     public static String getAddCommand(Item item) {
-        return AddCommand.COMMAND_WORD + " " + getItemDetails(item);
+        return NewCommand.COMMAND_WORD + " " + getItemDetails(item);
     }
 
     /**

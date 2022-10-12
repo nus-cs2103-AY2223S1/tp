@@ -9,7 +9,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 
 import java.util.stream.Stream;
 
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
@@ -21,7 +21,7 @@ import seedu.foodrem.model.item.ItemUnit;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser implements Parser<NewCommand> {
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -35,9 +35,9 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public NewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_ITEM_NAME,
@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ITEM_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE));
         }
 
         ItemName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
@@ -67,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Item item = new Item(name, itemQuantity, itemUnit, itemBoughtDate, itemExpiryDate);
 
-        return new AddCommand(item);
+        return new NewCommand(item);
     }
 
 }

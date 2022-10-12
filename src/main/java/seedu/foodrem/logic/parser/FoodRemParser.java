@@ -10,11 +10,11 @@ import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.ClearCommand;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
-import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
+import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,7 +45,7 @@ public class FoodRemParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
+        case NewCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
