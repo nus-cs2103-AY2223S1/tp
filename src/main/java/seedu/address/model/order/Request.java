@@ -15,6 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 public class Request {
 
     public static final String MESSAGE_USAGE = "The usage of a request is as follows: \n"
+            + "add-r"
             + PREFIX_PET_SPECIES + "SPECIES "
             + PREFIX_ORDER_AGE + "AGE "
             + PREFIX_PET_COLOR + "COLOR "

@@ -32,11 +32,11 @@ public class AddOrderCommand {
 
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ORDER_STATUS + "Pending "
-            + PREFIX_ORDER_REQUESTS + "It should be a chihuahua. "
+            + PREFIX_ORDER_REQUESTS + "...(Request fields) "
             + PREFIX_ORDER_PRICE + "6.8 "
-            + PREFIX_ORDER_PRICE_RANGE + "5.4-8.0 "
+            + PREFIX_ORDER_PRICE_RANGE + "5.4,8.0 "
             + PREFIX_ORDER_DATE + "2022-09-30 "
             + PREFIX_ORDER_PET + "(...Pet fields) "
-            + PREFIX_ORDER_ADDITIONAL_REQUESTS + "Free delivery"
+            + PREFIX_ORDER_ADDITIONAL_REQUESTS + "Free delivery "
             + PREFIX_ORDER_ADDITIONAL_REQUESTS + "Vaccination certified";
 }

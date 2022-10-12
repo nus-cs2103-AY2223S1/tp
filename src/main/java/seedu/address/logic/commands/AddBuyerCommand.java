@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.PersonCategory;
+import seedu.address.model.pet.Pet;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -59,7 +61,23 @@ public class AddBuyerCommand extends AddPersonCommand {
         }
 
         model.addBuyer(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        int numOrdersAdded = 0;
+        int numPetsAdded = 0;
+        for (Order order : toAdd.getOrders()) {
+            model.addOrder(order);
+            numOrdersAdded++;
+            Pet pet = order.getPet();
+            if (pet != null) {
+                model.addPet(pet);
+                numPetsAdded++;
+            }
+        }
+
+        return new CommandResult("\n"
+                + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n"
+                + numPetsAdded + (numPetsAdded == 1 ? " pet" : " pets") + " added\n\n"
+                + String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
