@@ -35,14 +35,12 @@
         </MenuBar>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-      
               <VBox fx:id="personList" styleClass="patient-list" HBox.hgrow="SOMETIMES">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-      
                  <VBox fx:id="appointmentList" styleClass="appointment-list" HBox.hgrow="SOMETIMES">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
