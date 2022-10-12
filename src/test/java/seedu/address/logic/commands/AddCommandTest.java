@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -139,12 +142,73 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTask(seedu.address.model.task.Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(seedu.address.model.task.Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(seedu.address.model.task.Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPersonList(List<Predicate<Person>> predicates) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void updateContextContainer(AbstractContainerItem container) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public boolean hasTeam(Group grp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTeam(Group grp) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void addTeam(Group grp) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void updateFilteredTeamList(Predicate<Group> predicate) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void updateFilteredTeamList(List<Predicate<Group>> predicates) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public ObservableList<Group> getFilteredTeamList() {
             throw new AssertionError("This method should not be called.");
         }
     }

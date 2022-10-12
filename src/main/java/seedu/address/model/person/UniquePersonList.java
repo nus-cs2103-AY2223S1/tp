@@ -6,27 +6,26 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import seedu.address.model.item.DisplayItemList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A list of persons that enforces uniqueness between its elements and does not
+ * allow nulls.
+ * A person is considered unique by comparing using
+ * {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that
+ * the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of
+ * a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
  */
-public class UniquePersonList implements Iterable<Person> {
-
-    private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+public class UniquePersonList extends DisplayItemList<Person> {
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -51,7 +50,8 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the list.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
@@ -95,13 +95,6 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
-    }
-
-    /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
-     */
-    public ObservableList<Person> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
     }
 
     @Override

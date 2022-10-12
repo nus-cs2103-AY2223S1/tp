@@ -29,11 +29,22 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: Something
 
+### Jason Christopher
+
+<img src="images/jasonchristopher21.png" width="200px">
+
+[[github](http://github.com/jasonchristopher21)] 
+[[portfolio](team/jasonchristopher21.md)]
+
+* Role: Developer
+* Responsibilities: TBA
+
 ### Connor Lim
 
 <img src="images/connlim.png" width="200px">
 
-[[github](https://github.com/connlim)] [[portfolio](team/connlim.md)]
+[[github](https://github.com/connlim)] 
+[[portfolio](team/connlim.md)]
 
 * Role: Developer
 * Responsibilities: In charge of Tasks, Quality Assurance
@@ -48,13 +59,3 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Basic Functions
 
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-- Role: Developer
-- Responsibilities: UI

@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +27,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Group> filteredTeams;
+    private Optional<AbstractContainerItem> currentContext = Optional.empty();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,13 +41,15 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTeams = new FilteredList<>(this.addressBook.getTeamsList());
     }
 
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -75,7 +84,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== AddressBook
+    // ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -86,6 +96,8 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
+
+    //// person level methods and accessors
 
     @Override
     public boolean hasPerson(Person person) {
@@ -111,10 +123,51 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //// group level methods and accessors
+
+    @Override
+    public boolean hasTeam(Group grp) {
+        requireNonNull(grp);
+        return addressBook.hasGroup(grp);
+    }
+
+    @Override
+    public void deleteTeam(Group grp) {
+        addressBook.removeTeam(grp);
+    }
+
+    @Override
+    public void addTeam(Group grp) {
+        addressBook.addGroup(grp);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    //// task level methods and accessors
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return addressBook.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task task) {
+        requireNonNull(task);
+        addressBook.removeTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        addressBook.addTask(task);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
      * {@code versionedAddressBook}
      */
     @Override
@@ -125,7 +178,48 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        updateFilteredPersonList(List.of(predicate));
+    }
+
+    @Override
+    public void updateFilteredPersonList(List<Predicate<Person>> predicates) {
+        requireNonNull(predicates);
+        Predicate<Person> predicate = p -> {
+            return currentContext.map(cxt -> p.isPartOfContext(cxt)).orElse(true)
+                    && predicates.stream().map(pred -> pred.test(p)).allMatch(res -> res == true);
+        };
+
         filteredPersons.setPredicate(predicate);
+    }
+
+    // =========== Filtered Teams List Accessors
+    // =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Group> getFilteredTeamList() {
+        return filteredTeams;
+    }
+
+    @Override
+    public void updateFilteredTeamList(Predicate<Group> predicate) {
+        requireNonNull(predicate);
+        updateFilteredTeamList(List.of(predicate));
+    }
+
+    @Override
+    public void updateFilteredTeamList(List<Predicate<Group>> predicates) {
+        requireNonNull(predicates);
+        Predicate<Group> predicate = g -> {
+            return currentContext.map(cxt -> g.isPartOfContext(cxt)).orElse(true)
+                    && predicates.stream().map(pred -> pred.test(g)).allMatch(res -> res == true);
+        };
+
+        filteredTeams.setPredicate(predicate);
     }
 
     @Override
@@ -144,7 +238,14 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTeams.equals(other.filteredTeams);
     }
 
+    @Override
+    public void updateContextContainer(AbstractContainerItem container) {
+        currentContext = Optional.ofNullable(container);
+        updateFilteredPersonList(List.of());
+        updateFilteredTeamList(List.of());
+    }
 }
