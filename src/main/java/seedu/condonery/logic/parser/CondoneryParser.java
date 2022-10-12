@@ -8,17 +8,22 @@ import java.util.regex.Pattern;
 
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.DeleteCommand;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.property.FilterPropertyCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
-import seedu.condonery.logic.commands.ListCommand;
+import seedu.condonery.logic.commands.client.AddClientCommand;
+import seedu.condonery.logic.commands.client.ListClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.DeletePropertyCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
+import seedu.condonery.logic.parser.client.AddClientCommandParser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
 import seedu.condonery.logic.parser.property.FilterPropertyCommandParser;
+import seedu.condonery.logic.parser.property.DeletePropertyCommandParser;
+
 
 /**
  * Parses user input.
@@ -46,17 +51,20 @@ public class CondoneryParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-
+        
         switch (commandWord) {
-
+        //CHECKSTYLE.ON: Regexp
         case AddPropertyCommand.COMMAND_WORD:
             return new AddPropertyCommandParser().parse(arguments);
+
+        case AddClientCommand.COMMAND_WORD:
+            return new AddClientCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeletePropertyCommand.COMMAND_WORD:
+            return new DeletePropertyCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -64,8 +72,11 @@ public class CondoneryParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListPropertyCommand.COMMAND_WORD:
+            return new ListPropertyCommand();
+
+        case ListClientCommand.COMMAND_WORD:
+            return new ListClientCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -80,5 +91,4 @@ public class CondoneryParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
