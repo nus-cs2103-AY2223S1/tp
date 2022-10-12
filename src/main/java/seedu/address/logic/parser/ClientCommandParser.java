@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 
@@ -75,9 +75,19 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                     AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
         }
 
+        List<Project> projects = new ArrayList<>();
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
+            //projects already empty
+        } else {
+            Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+            projects.add(project);
+        }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get());
         ClientPhone phone;
         ClientEmail email;
+
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
             phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
