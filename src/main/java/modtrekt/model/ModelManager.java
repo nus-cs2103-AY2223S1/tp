@@ -108,7 +108,6 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteTask(Task target) {
-        System.out.println(target.toString());
         taskBook.removeTask(target);
         updateModuleRemoveTask(target);
     }
