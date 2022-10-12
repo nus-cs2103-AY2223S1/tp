@@ -16,10 +16,6 @@ import seedu.taassist.model.session.Session;
 
 public class JsonAdaptedModuleClassTest {
     private static final String INVALID_CLASSNAME = "C#@@";
-    private static final List<Session> INVALID_SESSIONS = new ArrayList<>();
-
-
-    private static final String VALID_CLASSNAME = CS1231S.getClassName();
     private static final List<Session> VALID_SESSIONS = CS1231S.getSessions();
 
 
@@ -52,18 +48,5 @@ public class JsonAdaptedModuleClassTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleClass.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, moduleClass::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidSessionList_throwsIllegalValueException() {
-        List<JsonAdaptedSession> sessions = new ArrayList<>();
-        for (Session session : INVALID_SESSIONS) {
-            sessions.add(new JsonAdaptedSession(session));
-        }
-        JsonAdaptedModuleClass moduleClass =
-                new JsonAdaptedModuleClass(VALID_CLASSNAME, sessions);
-        String expectedMessage = Session.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, moduleClass::toModelType);
-    }
-
 
 }

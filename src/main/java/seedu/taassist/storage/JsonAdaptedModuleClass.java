@@ -60,10 +60,6 @@ class JsonAdaptedModuleClass {
             throw new IllegalValueException(ModuleClass.MESSAGE_CONSTRAINTS);
         }
 
-        if (sessions.isEmpty()) {
-            throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
-        }
-
         List<Session> sessionList = new ArrayList<>();
         for (JsonAdaptedSession session : sessions) {
             sessionList.add(session.toModelType());
