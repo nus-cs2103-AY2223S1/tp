@@ -7,7 +7,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
-import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.foodrem.logic.commands.itemcommands.AddCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
