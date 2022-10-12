@@ -5,11 +5,13 @@ import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
+
+import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.model.module.CodeContainsKeywordsPredicate;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 
@@ -21,7 +23,7 @@ public class ModelManager implements Model {
     private final ModuleList moduleList;
     private final UserPrefs userPrefs;
     // The current module list based on filters applied
-    private ModuleList filteredModuleList;
+    private FilteredList<Module> filteredModuleList;
     /**
      * Initializes a ModelManager with the given module list and userPrefs.
      */
@@ -31,7 +33,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
-        this.filteredModuleList = this.moduleList;
+        this.filteredModuleList = new FilteredList<>(moduleList.getModules());
         this.userPrefs = new UserPrefs(userPrefs);
     }
 
@@ -54,12 +56,8 @@ public class ModelManager implements Model {
      */
     public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
         // TODO: Implement filtering for saved modules
-        if (facultyCode.isPresent()) {
-            Pattern faculty_code_regex = Pattern.compile(String.format("^(?i)%s(?-i)$", facultyCode.get()));
-            this.filteredModuleList = new ModuleList(filteredModuleList.getModules().stream().filter(
-                            module -> faculty_code_regex.matcher(module.getCode()).find())
-                    .collect(Collectors.toList()));
-        }
+        CodeContainsKeywordsPredicate predicate = new CodeContainsKeywordsPredicate(facultyCode);
+        filteredModuleList.setPredicate(predicate);
     }
 
     @Override
@@ -76,5 +74,10 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyModuleList getModuleList() {
         return moduleList;
+    }
+
+    @Override
+    public FilteredList<Module> getFilteredModuleList() {
+        return filteredModuleList;
     }
 }

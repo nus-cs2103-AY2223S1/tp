@@ -1,6 +1,8 @@
 package nus.climods.model;
 
+import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 
 import java.util.Optional;
@@ -33,4 +35,6 @@ public interface Model {
     ReadOnlyModuleList getModuleList();
 
     void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
+
+    FilteredList<Module> getFilteredModuleList();
 }
