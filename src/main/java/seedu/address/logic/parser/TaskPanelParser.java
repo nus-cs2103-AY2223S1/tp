@@ -15,9 +15,9 @@ import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.logic.commands.task.MarkTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
+import seedu.address.logic.parser.task.AssignTaskCommandParser;
 import seedu.address.logic.parser.task.DeleteTaskCommandParser;
 import seedu.address.logic.parser.task.MarkTaskCommandParser;
-import seedu.address.logic.parser.task.AssignTaskCommandParser;
 
 /**
  * Parses user input for all task-related commands (starting with "tasks").

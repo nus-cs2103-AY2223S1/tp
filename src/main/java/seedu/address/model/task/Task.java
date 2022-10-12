@@ -1,12 +1,12 @@
 package seedu.address.model.task;
 
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Task in the task list.
@@ -18,7 +18,7 @@ public class Task {
     private final Title title;
     private final boolean marked;
 
-    private final Set<Person> assignedPersons = new HashSet<>();;
+    private final Set<Person> assignedPersons = new HashSet<>();
 
     /**
      * Creates a new Task with no assigned contacts. (Used when a new task is added)

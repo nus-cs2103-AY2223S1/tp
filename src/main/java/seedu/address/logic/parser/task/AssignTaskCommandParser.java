@@ -1,18 +1,17 @@
 package seedu.address.logic.parser.task;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.task.AssignTaskCommand;
-
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.TaskParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 
 import java.util.Set;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.task.AssignTaskCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.TaskParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new AssignTaskCommand object
