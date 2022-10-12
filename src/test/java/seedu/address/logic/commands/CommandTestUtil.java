@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -39,6 +40,11 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRONTEND = "Frontend";
     public static final String VALID_TAG_BACKEND = "Backend";
     public static final String VALID_TAG_AI = "AI";
+    public static final String VALID_APPLICATION_STATUS_APPLIED = "applied";
+    public static final String VALID_APPLICATION_STATUS_ACCEPTED = "accepted";
+    public static final String VALID_APPLICATION_STATUS_INTERVIEWED = "interviewed";
+    public static final String VALID_APPLICATION_STATUS_REJECTED = "rejected";
+
 
     public static final String COMPANY_DESC_GOOGLE = " " + PREFIX_COMPANY + VALID_COMPANY_GOOGLE;
     public static final String COMPANY_DESC_TIKTOK = " " + PREFIX_COMPANY + VALID_COMPANY_TIKTOK;
@@ -51,6 +57,15 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRONTEND = " " + PREFIX_TAG + VALID_TAG_FRONTEND;
     public static final String TAG_DESC_BACKEND = " " + PREFIX_TAG + VALID_TAG_BACKEND;
     public static final String TAG_DESC_AI = " " + PREFIX_TAG + VALID_TAG_AI;
+    public static final String APPLICATION_STATUS_APPLIED = " " + PREFIX_APPLICATION_STATUS
+            + VALID_APPLICATION_STATUS_APPLIED;
+    public static final String APPLICATION_STATUS_ACCEPTED = " " + PREFIX_APPLICATION_STATUS
+            + VALID_APPLICATION_STATUS_ACCEPTED;
+    public static final String APPLICATION_STATUS_INTERVIEWED = " " + PREFIX_APPLICATION_STATUS
+            + VALID_APPLICATION_STATUS_INTERVIEWED;
+    public static final String APPLICATION_STATUS_REJECTED = " " + PREFIX_APPLICATION_STATUS
+            + VALID_APPLICATION_STATUS_REJECTED;
+    public static final String APPLICATION_STATUS_INVALID = " s/apply already";
 
     // To change
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "Meta&"; // '&' not allowed in names

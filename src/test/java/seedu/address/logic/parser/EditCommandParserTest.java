@@ -128,9 +128,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + LINK_DESC_TIKTOK + DESCRIPTION_DESC_GOOGLE;
+        String userInput = targetIndex.getOneBased() + LINK_DESC_GOOGLE + DESCRIPTION_DESC_GOOGLE;
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_TIKTOK)
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_GOOGLE)
                 .withDescription(VALID_DESCRIPTION_GOOGLE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
