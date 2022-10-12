@@ -32,7 +32,8 @@ FindMyIntern helps students who are applying for internships keep track of their
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will list all internship applications.<br>
    Some example commands you can try:
 
-   * **`add software engineer internship at Apple`** : Adds an internship application titled “software engineer internship at Apple”.
+   * **`add c/APPLE l/https://jobs.apple.com/en-sg d/Software Engineering Internship a/11/10/2022`** :
+     Adds an internship application for Apple to the tracker.
 
    * **`mark 3 s/interviewed`** : Marks the 3rd application shown in the current list as interviewed.
 
