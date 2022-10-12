@@ -5,6 +5,7 @@ import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
+import jeryl.fyp.model.student.StudentId;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.logic.commands.DeleteCommand;
@@ -20,9 +21,11 @@ public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 
+    final StudentId STUDENT_ID = new StudentId("A0123456G");
+
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_STUDENT));
+        assertParseSuccess(parser, "1", new DeleteCommand(STUDENT_ID));
     }
 
     @Test

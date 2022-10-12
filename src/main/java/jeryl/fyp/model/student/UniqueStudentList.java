@@ -147,4 +147,14 @@ public class UniqueStudentList implements Iterable<Student> {
         }
         return student;
     }
+
+    public int getIndexByStudentId(StudentId studentId) {
+        int index = 0;
+        for (int i = 0; i < internalList.size() - 1; i++) {
+            if (internalList.get(i).getStudentId().equals(studentId)) {
+                index = i;
+            }
+        }
+        return index;
+    }
 }

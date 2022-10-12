@@ -38,6 +38,11 @@ public class FypManagerParserTest {
 
     private final FypManagerParser parser = new FypManagerParser();
 
+    final StudentId STUDENT_ID = new StudentId("A0123456G");
+
+    final StudentId INVALID_STUDENT_ID = new StudentId("ABCDEFG");
+
+
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
@@ -55,7 +60,7 @@ public class FypManagerParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+        assertEquals(new DeleteCommand(STUDENT_ID), command);
     }
 
     @Test

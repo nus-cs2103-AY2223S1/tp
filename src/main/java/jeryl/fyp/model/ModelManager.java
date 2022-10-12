@@ -119,6 +119,13 @@ public class ModelManager implements Model {
         return fypManager.getStudentByStudentId(studentId);
     }
 
+    @Override
+    public int getIndexByStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+
+        return fypManager.getIndexByStudentId(studentId);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

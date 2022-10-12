@@ -9,6 +9,7 @@ import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Deletes a student identified using it's unique StudentID.
@@ -24,17 +25,18 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
-    private final Index targetIndex;
+    private final StudentId studentId;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(StudentId studentId) {
+        this.studentId = studentId;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
-
+        int index = model.getIndexByStudentId(studentId);
+        Index targetIndex = new Index(index);
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
@@ -48,6 +50,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && studentId.equals(((DeleteCommand) other).studentId)); // state check
     }
 }

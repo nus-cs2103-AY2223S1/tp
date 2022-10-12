@@ -84,6 +84,12 @@ public interface Model {
      */
     Student getStudentByStudentId(StudentId studentId);
 
+    /**
+     * Gets the index position in UniqueStudentList with the specified StudentId
+     * {@code studentId} is unique so it should output 1 student only
+     */
+    int getIndexByStudentId(StudentId studentId);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 

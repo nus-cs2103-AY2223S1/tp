@@ -5,6 +5,7 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.DeleteCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -18,8 +19,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      */
     public DeleteCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteCommand(index);
+            StudentId studentId = ParserUtil.parseStudentId(args);
+            return new DeleteCommand(studentId);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);

@@ -104,6 +104,12 @@ public class FypManager implements ReadOnlyFypManager {
         return students.getStudentByStudentId(studentId);
     }
 
+    public int getIndexByStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+
+        return students.getIndexByStudentId(studentId);
+    }
+
     //// util methods
 
     @Override

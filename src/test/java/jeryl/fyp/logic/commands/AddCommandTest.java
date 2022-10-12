@@ -153,6 +153,11 @@ public class AddCommandTest {
         public Student getStudentByStudentId(StudentId studentId) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getIndexByStudentId(StudentId studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
