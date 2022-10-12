@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.FilterPredicate;
 import seedu.address.model.task.TaskBelongsToModulePredicate;
 
 /**
@@ -18,20 +19,25 @@ public class FilterTasksCommand extends Command {
             + "Parameters: "
             + PREFIX_MODULE + "MODULE";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tasks for module: %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed all tasks with following constraints:%1$s";
 
-    public static final String MESSAGE_NO_RESULTS = "No tasks found for module: %1$s";
+    public static final String MESSAGE_NO_RESULTS = "No tasks found with following constraints:%1$s";
 
     public static final String MODULE_NOT_FOUND = "This module does not exist";
 
-    private final TaskBelongsToModulePredicate predicate;
+//    private final TaskBelongsToModulePredicate predicate;
+    private final FilterPredicate predicate;
 
     /**
      * Constructor of the FilterTaskCommand class which filters the task list by module.
      *
      * @param predicate
      */
-    public FilterTasksCommand(TaskBelongsToModulePredicate predicate) {
+//    public FilterTasksCommand(TaskBelongsToModulePredicate predicate) {
+//        this.predicate = predicate;
+//    }
+
+    public FilterTasksCommand(FilterPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -40,14 +46,14 @@ public class FilterTasksCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
 
-        if (!model.hasModule(predicate.getToCheck())) {
+        if (predicate.hasModuleToCheck() && !model.hasModule(predicate.getModuleToCheck())) {
             throw new CommandException(MODULE_NOT_FOUND);
         }
 
         if (model.getFilteredTaskList().isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_NO_RESULTS, predicate.getToCheck()));
+            return new CommandResult(String.format(MESSAGE_NO_RESULTS, predicate));
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, predicate.getToCheck()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, predicate));
     }
 
     @Override
