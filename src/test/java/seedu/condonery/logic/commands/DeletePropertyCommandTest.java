@@ -6,6 +6,7 @@ import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
+import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,9 +21,13 @@ import seedu.condonery.model.property.Property;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
-public class DeleteCommandTest {
+public class DeletePropertyCommandTest {
 
+<<<<<<< HEAD:src/test/java/seedu/condonery/logic/commands/DeleteCommandTest.java
     private final Model model = new ModelManager(getTypicalPropertyDirectory(), getTypicalClientDirectory(), new UserPrefs());
+=======
+    private final Model model = new ModelManager(getTypicalPropertyDirectory(),getTypicalClientDirectory(),  new UserPrefs());
+>>>>>>> yuehernkang/week9/fix-add-property-test-errors:src/test/java/seedu/condonery/logic/commands/DeletePropertyCommandTest.java
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
