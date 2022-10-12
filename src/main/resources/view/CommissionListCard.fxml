@@ -18,20 +18,26 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
+            <HBox spacing="5" alignment="CENTER_LEFT" id="cell_id_title_container">
+                <Label fx:id="id" id="cell_id_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" text="\$title" styleClass="cell_big_label" />
+                <Label fx:id="title" text="\$title" id="cell_title_label" />
+                <VBox.margin>
+                    <Insets bottom="4"/>
+                </VBox.margin>
             </HBox>
-            <FlowPane fx:id="tags" styleClass="commissionTags" />
-            <Label fx:id="description" text="\$description" styleClass="cell_small_label" />
-            <Label fx:id="deadline" text="\$deadline" styleClass="cell_small_label" />
-            <Label fx:id="fee" text="\$fee" styleClass="cell_small_label" />
-            <Label fx:id="completionStatus" text="\$completionStatus" styleClass="cell_small_label" />
+            <FlowPane fx:id="tags" styleClass="commissionTags">
+                <VBox.margin>
+                    <Insets bottom="4" />
+                </VBox.margin>
+            </FlowPane>
+            <Label fx:id="deadline" text="\$deadline" id="cell_field_label" />
+            <Label fx:id="fee" text="\$fee" id="cell_field_label" />
+            <Label fx:id="completionStatus" text="\$completionStatus" id="cell_field_label" />
         </VBox>
     </GridPane>
 </HBox>

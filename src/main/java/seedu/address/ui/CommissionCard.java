@@ -8,7 +8,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.Description;
 
 /**
  * An UI component that displays information of a {@code Commission}.
@@ -34,8 +33,6 @@ public class CommissionCard extends UiPart<Region> {
     @FXML
     private Label title;
     @FXML
-    private Label description;
-    @FXML
     private Label deadline;
     @FXML
     private Label fee;
@@ -52,7 +49,6 @@ public class CommissionCard extends UiPart<Region> {
         this.commission = commission;
         id.setText(displayedIndex + ". ");
         title.setText(commission.getTitle().title);
-        description.setText(commission.getDescription().orElse(Description.NO_DESCRIPTION).description);
         deadline.setText(commission.getDeadline().deadline.toString());
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         completionStatus.setText("completed: " + commission.getCompletionStatus().isCompleted);
