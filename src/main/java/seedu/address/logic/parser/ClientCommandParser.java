@@ -2,10 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,21 @@ import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
+import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Status;
+import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 
 /**
@@ -65,45 +75,32 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      */
     private AddClientCommand parseAddClientCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_NAME, PREFIX_CLIENT_PHONE,
-                        PREFIX_CLIENT_EMAIL);
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_PHONE,
+                        PREFIX_CLIENT_EMAIL, PREFIX_PROJECT_ID);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROJECT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
         }
 
-        List<Project> projects = new ArrayList<>();
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_ID)) {
-            //projects already empty
-        } else {
-            Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
-            projects.add(project);
-        }
-
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT_NAME).get());
-        ClientPhone phone;
-        ClientEmail email;
-
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-            phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
-        } else {
+        ClientPhone phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-            email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
-        } else {
+        ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        //todo: replace with actual implementation
-        ClientId clientId = new ClientId(-1);
+        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        List<Project> projectList = new ArrayList<>();
+        projectList.add(project);
+        ClientId clientId = new ClientId(UniqueClientList.generateId());
 
-        Client client = new Client(name, phone, email, projects, clientId);
+        Client client = new Client(name, phone, email, projectList, clientId);
 
         return new AddClientCommand(client);
     }

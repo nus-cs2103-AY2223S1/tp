@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.exceptions.ClientNotFoundException;
 import seedu.address.model.client.exceptions.DuplicateClientException;
+import seedu.address.model.issue.Issue;
 
 
 /**
@@ -24,7 +25,7 @@ import seedu.address.model.client.exceptions.DuplicateClientException;
  * @see Client#isSameClient(Client)
  */
 public class UniqueClientList implements Iterable<Client> {
-    private final ObservableList<Client> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -86,6 +87,23 @@ public class UniqueClientList implements Iterable<Client> {
             }
         }
         return Client.EmptyClient.EMPTY_CLIENT;
+    }
+
+    /**
+     * Generates an object id based on the current highest object id
+     */
+    public static int generateId() {
+        if (internalList.size() == 0) {
+            return 1;
+        } else {
+            int count = 0;
+            for (Client i: internalList) {
+                if (i.getClientId().getIdInt() > count) {
+                    count = i.getClientId().getIdInt();
+                }
+            }
+            return count + 1;
+        }
     }
 
     public void setClients(UniqueClientList replacement) {
