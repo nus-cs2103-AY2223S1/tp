@@ -19,11 +19,11 @@ public class ItemBoughtDateValidator implements Validator {
             String.format("The item bought date must follow the format %s.", BOUGHT_DATE_PATTERN_REGEX);
 
     // Validation for year
-    private static final int MIN_YEAR = 1000;
+    private static final int MIN_YEAR = 1900;
     private static final String MESSAGE_FOR_YEAR_TOO_SMALL =
             String.format("The year for item bought date should be larger than %d.", MIN_YEAR);
 
-    private static final int MAX_YEAR = 2100;
+    private static final int MAX_YEAR = 2300;
     private static final String MESSAGE_FOR_YEAR_TOO_LARGE =
             String.format("The year for ite bought date should be less than %d.", MAX_YEAR);
 
