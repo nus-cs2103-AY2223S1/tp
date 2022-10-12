@@ -9,13 +9,18 @@ import java.util.Set;
  * The 3 types of gender enum are: MALE, FEMALE, NA
  */
 public enum GenderType {
-    MALE("Male"),
+
+    // Declaration order defines the natural order of GenderType
+    // Natural order is used in the compareTo() method
+
+    NO_GENDER("NA"), //NA is the default gender option
     FEMALE("Female"),
-    NO_GENDER("NA"); //NA is the default gender option
+    MALE("Male");
 
     private static final Set<String> MALE_GENDERS = new HashSet<>(Arrays.asList("m", "male", "M", "Male"));
     private static final Set<String> FEMALE_GENDERS = new HashSet<>(Arrays.asList("F", "Female", "f", "female"));
     private String gender;
+
 
     GenderType(String gender) {
         this.gender = gender;
