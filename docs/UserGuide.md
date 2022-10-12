@@ -95,7 +95,7 @@ It is necessary for a scholarship application to have both an applicant’s name
 
 Examples:
 * `add n/John Cena e/johnCena@yahoo.com`
-* `add n/Samuel Cheong t/international student e/samuelcheong1234@gmail.com p/65782310`
+* `add n/Samuel Cheong t/international student e/samuelcheong1234@gmail.com p/65782310 s/Merit as/pending`
 
 ### Listing all scholarship application : `list`
 
@@ -121,9 +121,9 @@ Examples:
 
 *  `edit 2 n/Samuel Cheong t/` Edits the name of the 2nd applicant to be `Samuel Cheong` and clears all existing tags.
 
-### Locating application status by name : `find`
+### Locating applicants by name : `find`
 
-Finds scholarship applications whose names contain any of the given keywords.
+Finds scholarship applicants whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -137,6 +137,19 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`
+
+### Filtering scholarship applicants by application status: `filter`
+
+Filters scholarship applications based on the given keywords.
+
+Format: `filter KEYWORD`
+
+* The search is case-insensitive. e.g `pEnDiNg` will match `pending`
+* Only full words will be matched e.g. `pen` will not match `pending`
+* Only 3 keywords are accepted i.e. `pending`, `accepted`, `rejected`
+
+Examples:
+* `filter pending` displays all applicants with the application status `pending`
 
 
 ### Deleting a scholarship application : `delete`
@@ -188,13 +201,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [a/ADDRESS] [t/TAG] …`
-**Clear** | `clear`
-**Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`
-**List** | `list`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                |
+|------------|-----------------------------------------------------------------|
+| **Add**    | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [s/SCHOLARSHIP] [t/TAG] …` |
+| **Clear**  | `clear`                                                         |
+| **Delete** | `delete INDEX`                                                  |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`      |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                  |
+| **filter** | `filter KEYWORD`                                                |
+| **List**   | `list`                                                          |
+| **Help**   | `help`                                                          |
+| **Exit**   | `exit`                                                          |
