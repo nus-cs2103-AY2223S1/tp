@@ -88,13 +88,13 @@ public class UniqueOfferList implements Iterable<Offer> {
      * Replaces the contents of this list with {@code Offers}.
      * {@code Offers} must not contain duplicate Offers.
      */
-    public void setOffers(List<Offer> Offers) {
-        requireAllNonNull(Offers);
-        if (!offersAreUnique(Offers)) {
+    public void setOffers(List<Offer> offers) {
+        requireAllNonNull(offers);
+        if (!offersAreUnique(offers)) {
             throw new DuplicatePersonException();
         }
 
-        internalList.setAll(Offers);
+        internalList.setAll(offers);
     }
 
     /**
