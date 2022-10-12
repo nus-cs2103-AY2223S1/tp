@@ -1,8 +1,10 @@
 package nus.climods.model.module;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.openapitools.client.model.ModuleInformationSemesterDataInner;
@@ -67,5 +69,11 @@ public class Module {
         List<ModuleInformationSemesterDataInner> apiSemesterData = apiModuleInfo.getSemesterData();
         return apiSemesterData.stream().map(ModuleInformationSemesterDataInner::getSemester).filter(Objects::nonNull)
             .map(BigDecimal::intValue).collect(Collectors.toList());
+    }
+
+    public boolean containsKeyword(Pattern keywordPattern) {
+        List<String> searchRange = Arrays.asList(getCode(), getTitle());
+
+        return searchRange.stream().anyMatch(range -> keywordPattern.asPredicate().test(range));
     }
 }
