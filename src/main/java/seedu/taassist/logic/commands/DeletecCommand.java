@@ -45,7 +45,7 @@ public class DeletecCommand extends Command {
                     model.getModuleClassList()));
         }
 
-        List<Student> students = model.getFilteredStudentList();
+        List<Student> students = model.getTaAssist().getStudentList();
         for (Student student : students) {
             if (!Collections.disjoint(student.getModuleClasses(), moduleClasses)) {
                 Set<ModuleClass> assignedClasses = new HashSet<>();
