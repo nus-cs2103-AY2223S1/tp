@@ -50,7 +50,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Index linkIndex = ParserUtil.parseLinkIndex(Objects.requireNonNull(argMultimap
-                .getValue(PREFIX_LINK_INDEX).orElse(null)));
+                .getValue(PREFIX_LINK_INDEX)).orElse(null));
 
         return new AddPersonCommand(name, phone, email, internshipId, tagList, linkIndex);
     }
