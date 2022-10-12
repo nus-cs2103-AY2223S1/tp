@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.SplitPane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -33,15 +34,36 @@
         <Insets top="10" right="10" bottom="10" left="10" />
       </padding>
       </FlowPane>
-      <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-        <padding>
-          <Insets top="10" right="10" bottom="10" left="30" />
-        </padding>
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-        <Label fx:id="income" styleClass="cell_small_label" text="\$income" />
-        <Label fx:id="meetingDate" styleClass="cell_small_label" text="\$meetingDate" />
+      <VBox fx:id="personDetailsBox" alignment="CENTER_LEFT" minHeight="105" minWidth="300" GridPane.columnIndex="0">
+        <SplitPane>
+          <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" minWidth="300" prefHeight="150" prefWidth="300" GridPane.columnIndex="0">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="30" />
+            </padding>
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true"/>
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true"/>
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true"/>
+          </VBox>
+          <VBox fx:id="personDetails2" alignment="CENTER_LEFT" minHeight="105" minWidth="150" maxWidth="150" GridPane.columnIndex="0">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="30" />
+            </padding>
+            <FlowPane styleClass="cell_label_tags">
+              <padding>
+                <Insets top="3" right="3" bottom="3" left="3" />
+              </padding>
+              <Label fx:id="income" text="\$income" />
+            </FlowPane>
+
+            <FlowPane styleClass="cell_label_tags">
+              <padding>
+                <Insets top="3" right="3" bottom="3" left="3" />
+              </padding>
+              <Label fx:id="meetingDate" text="\$meetingDate" />
+            </FlowPane>
+
+          </VBox>
+        </SplitPane>
       </VBox>
     </VBox>
   </GridPane>
