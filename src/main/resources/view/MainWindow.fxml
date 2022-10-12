@@ -24,7 +24,7 @@
 
       <VBox>
         <!-- Menu Bar -->
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" styleClass="menu-bar">
           <Menu text="File">
             <MenuItem onAction="#handleExit" text="Exit"/>
           </Menu>
