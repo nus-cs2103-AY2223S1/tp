@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches all the tags given.
+ * Tests that a {@code Person}'s {@code Tag} matches all the tags (case-insensitive) specified by Student.
  */
 public class PersonContainsTagPredicate implements Predicate<Person> {
     private final List<String> keywords;
@@ -18,13 +18,23 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
 
+        if (keywords.isEmpty()) { //keywords = trimmed user input
+            return false;
+        }
+
         Set<String> personTagNameSet = person
                 .getTags()
                 .stream()
                 .map(tag -> tag.tagName)
+                .map(String::toLowerCase)
                 .collect(Collectors.toSet());
 
-        return personTagNameSet.containsAll(keywords);
+        Set<String> lowerCaseKeywords = keywords //to be case-insensitive
+                .stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toSet());
+
+        return personTagNameSet.containsAll(lowerCaseKeywords);
     }
 
     @Override
