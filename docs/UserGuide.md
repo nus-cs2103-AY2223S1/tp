@@ -26,7 +26,7 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
 
    * **`slist`** : Lists all food stalls.
 
-   * **`sadd`**`n/John Doe Eatery a/Blk 123 Bedok South d/halal`: Adds a food stall named John Doe Eatery to
+   * **`sadd`**`n/John Doe Eatery a/Blk 123 Bedok South t/halal`: Adds a food stall named John Doe Eatery to
      the list of food stalls.
 
    * **`sdel`**`3` : Deletes the 3rd food stall shown in the current list.
@@ -47,10 +47,10 @@ FoodWhere (FW) is a **desktop app for managing food reviews, optimized for use v
   e.g. in `sadd n/NAME a/ADDRESS`, `NAME` and `ADDRESS` are parameters which can be used as `sadd n/John Doe a/ABC Ave`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAGS]` can be used as `n/John Doe d/opensDaily` or as `n/John Doe`.
+  e.g `n/NAME [t/TAGS]` can be used as `n/John Doe t/opensDaily` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAGS]…​` can be used as ` ` (i.e. 0 times), `d/opendaily`, `d/petfriendly` etc.
+  e.g. `[t/TAGS]…​` can be used as ` ` (i.e. 0 times), `t/opendaily`, `t/petfriendly` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME t/TAGS`, `t/TAGS n/NAME` is also acceptable.
@@ -79,7 +79,7 @@ Adds a stall.
 Format: `sadd n/NAME a/ADDRESS [t/TAGS]...`
 
 Examples:
-* `sadd n/John Doe Eatery a/Blk 123 Bedok South d/VeryNice`
+* `sadd n/John Doe Eatery a/Blk 123 Bedok South t/VeryNice`
 
 ![sadd](images/sadd.png)
 
@@ -169,6 +169,6 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!`          |
 | **rDel**  | `rdel INDEX`                                                                                            |
 | **rList** | `rlist`                                                                                                 |
-| **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South d/veryNice` |
+| **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice` |
 | **sDel**  | `sdel INDEX`                                                                                            |
 | **sList** | `slist`                                                                                                 |
