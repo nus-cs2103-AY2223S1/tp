@@ -2,14 +2,18 @@ package nus.climods.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.ReadOnlyAddressBook;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
+import nus.climods.model.module.Module;
+import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.storage.module.ModuleListStorage;
+import nus.climods.storage.module.user.UserModuleListStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -17,15 +21,20 @@ import nus.climods.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+
     private UserPrefsStorage userPrefsStorage;
+    private ModuleListStorage moduleListStorage;
+    private UserModuleListStorage userModuleListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
-        this.addressBookStorage = addressBookStorage;
+    public StorageManager(ModuleListStorage moduleListStorage, UserModuleListStorage userModuleListStorage,
+        UserPrefsStorage userPrefsStorage) {
         this.userPrefsStorage = userPrefsStorage;
+
+        this.moduleListStorage = moduleListStorage;
+        this.userModuleListStorage = userModuleListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -45,33 +54,29 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-    // ================ AddressBook methods ==============================
-
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getModuleListFilePath() {
+        return null;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyModuleList> readModuleList(String academicYear) throws DataConversionException {
+        return Optional.empty();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+    public Optional<ReadOnlyModuleList> readModuleList(String academicYear, Path filePath)
+            throws DataConversionException {
+        return Optional.empty();
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveModuleList(List<Module> modules) throws IOException {
+
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
-    }
+    public void saveModuleList(List<Module> modules, Path filePath) throws IOException {
 
+    }
 }

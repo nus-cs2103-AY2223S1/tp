@@ -46,7 +46,7 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
         requireNonNull(filePath);
 
         Optional<JsonSerializableUserModuleList> jsonUserModuleList = JsonUtil.readJsonFile(
-                filePath, JsonSerializableUserModuleList.class);
+            filePath, JsonSerializableUserModuleList.class);
         if (jsonUserModuleList.isEmpty()) {
             return Optional.empty();
         }

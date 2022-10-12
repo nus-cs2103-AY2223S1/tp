@@ -14,8 +14,8 @@ public class Pill extends Button {
     /**
      * Constructor for Pill class.
      *
-     * @param text button text
-     * @param bgColor background color
+     * @param text      button text
+     * @param bgColor   background color
      * @param textColor text color
      */
     public Pill(String text, String bgColor, String textColor) {
@@ -26,10 +26,10 @@ public class Pill extends Button {
     /**
      * Constructor for Pill class.
      *
-     * @param text button text
-     * @param bgColor background color
+     * @param text      button text
+     * @param bgColor   background color
      * @param textColor text color
-     * @param fontSize font size
+     * @param fontSize  font size
      */
     public Pill(String text, String bgColor, String textColor, int fontSize) {
         this(text, bgColor, textColor);

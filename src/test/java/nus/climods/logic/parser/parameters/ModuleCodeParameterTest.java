@@ -11,6 +11,7 @@ import nus.climods.logic.parser.exceptions.ParseException;
  * Tests for ModuleCodeParameter class
  */
 public class ModuleCodeParameterTest {
+
     private static final String EMPTY_INPUT_MESSAGE = "Empty module code is not valid";
 
     private ModuleCodeParameter createModuleCodeParameter(String argsString) {
@@ -34,7 +35,6 @@ public class ModuleCodeParameterTest {
     public void parseModuleCode_validInputWithoutSpace_returnsModuleCode() {
         String argsString = "CS2103";
         ModuleCodeParameter mcp = createModuleCodeParameter(argsString);
-
 
         try {
             String mc = mcp.getArgValue();

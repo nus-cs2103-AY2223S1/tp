@@ -3,7 +3,6 @@ package nus.climods.storage.module;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import nus.climods.model.module.Module;
 import org.openapitools.client.model.ModuleInformation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;

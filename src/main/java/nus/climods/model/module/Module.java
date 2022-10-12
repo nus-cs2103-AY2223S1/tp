@@ -69,3 +69,4 @@ public class Module {
                 .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 }
+

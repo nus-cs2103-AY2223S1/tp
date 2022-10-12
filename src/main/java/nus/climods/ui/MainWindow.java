@@ -1,5 +1,6 @@
 package nus.climods.ui;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -128,19 +129,19 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() throws ParseException{
         modulesPane = new SplitPane();
 
-        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getModuleList().getModules());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        savedModuleListPanel = new SavedModuleListPanel(logic.getFilteredSavedModuleList());
+        savedModuleListPanel = new SavedModuleListPanel(logic.getUserModuleList());
         savedModuleListPanelPlaceholder.getChildren().add(savedModuleListPanel.getRoot());
 
         modulesPane.getItems().addAll(moduleListPanelPlaceholder, savedModuleListPanelPlaceholder);
 
         // TODO: Resolve logic issue - null pointer exception
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(Path.of(""));
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

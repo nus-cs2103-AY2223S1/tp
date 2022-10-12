@@ -8,25 +8,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18"
-  xmlns:fx="http://javafx.com/fxml/1">
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" xmlns="http://javafx.com/javafx/18"
+  fx:id="cardPane">
   <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
-    </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox GridPane.columnIndex="0" alignment="CENTER_LEFT" minHeight="105">
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label style="-fx-font-size: 20;" maxHeight="1.7976931348623157E308"
+          maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+          text="\$moduleCode" fx:id="moduleCode"/>
+        <FlowPane alignment="CENTER_LEFT" hgap="5" fx:id="moduleInfo"/>
+      </HBox>
+      <Label style="-fx-font-size: 15;" text="\$title" fx:id="title"/>
+      <Label style="-fx-font-size: 15;" text="\$department" fx:id="department"/>
       <padding>
         <Insets bottom="5" left="15" right="5" top="5"/>
       </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="moduleCode" maxHeight="1.7976931348623157E308"
-          maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
-          style="-fx-font-size: 20;" text="\$moduleCode"/>
-        <FlowPane fx:id="moduleInfo" alignment="CENTER_LEFT" hgap="5"/>
-      </HBox>
-      <Label fx:id="title" style="-fx-font-size: 15;" text="\$title"/>
-      <Label fx:id="department" style="-fx-font-size: 15;" text="\$department"/>
     </VBox>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="100"/>
+    </columnConstraints>
     <rowConstraints>
       <RowConstraints/>
     </rowConstraints>

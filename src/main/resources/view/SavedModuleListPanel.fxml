@@ -4,12 +4,12 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 25;" text="My Modules">
-      <VBox.margin>
-         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-      </VBox.margin>
-   </Text>
-  <ListView fx:id="moduleListView" VBox.vgrow="ALWAYS" />
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+  <Text style="-fx-font-size: 25;" fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE"
+    strokeWidth="0.0" text="My Modules">
+    <VBox.margin>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+    </VBox.margin>
+  </Text>
+  <ListView VBox.vgrow="ALWAYS" fx:id="moduleListView"/>
 </VBox>
