@@ -1,9 +1,9 @@
 package seedu.address.model.internship;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Objects;
 
 /**
  * Represents an Internship's application status.
@@ -18,7 +18,7 @@ public class Status {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public String status;
+    public final String status;
 
     /**
      * Constructs an {@code Status}.
@@ -55,7 +55,7 @@ public class Status {
 
     @Override
     public String toString() {
-        return status.toString();
+        return status;
     }
 
     @Override
