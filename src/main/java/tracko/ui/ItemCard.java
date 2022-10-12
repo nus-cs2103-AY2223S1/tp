@@ -10,7 +10,7 @@ import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
 
 /**
- * An UI component that displays information of an {@code Item}.
+ * A UI component that displays information of an {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
 
@@ -26,7 +26,7 @@ public class ItemCard extends UiPart<Region> {
 
     public final Item item;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label itemName;

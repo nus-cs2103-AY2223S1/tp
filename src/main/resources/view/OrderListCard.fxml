@@ -9,6 +9,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Button?>
 <HBox id="cardPane" styleClass="card-pane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane prefWidth="175.0" HBox.hgrow="ALWAYS" vgap="10">
     <columnConstraints>
@@ -28,9 +31,18 @@
         <Label fx:id="name" styleClass="cell_big_label_order" text="\$first" />
       </HBox>
       <VBox>
-        <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="phoneIcon"/>
+          <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="addressIcon"/>
         <Label fx:id="address" styleClass="cell_small_label_order" text="\$address" />
-        <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="emailIcon"/>
+          <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
+        </HBox>
       </VBox>
       <VBox fx:id="items" styleClass="cell_small_label_order"/>
     </VBox>

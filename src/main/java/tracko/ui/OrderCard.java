@@ -67,6 +67,8 @@ public class OrderCard extends UiPart<Region> {
         email.setText(order.getEmail().value);
         email.setWrapText(true);
         email.setPadding(new Insets(0,10,0,0));
+
+        items.setPadding(new Insets(10,10,10,10));
         order.getItemList().stream()
                 .forEach(item -> items.getChildren().add(
                         constructItemLabel("\u2022 " + item.getQuantity() + " * " + item.getItem())));
@@ -78,7 +80,7 @@ public class OrderCard extends UiPart<Region> {
      */
     public Label constructItemLabel(String text) {
         Label itemLabel = new Label(text);
-        itemLabel.getStyleClass().add("cell_small_label_order");
+        itemLabel.getStyleClass().add("order-item-list");
         itemLabel.setWrapText(true);
         itemLabel.setPadding(new Insets(0,10,0,0));
         return itemLabel;
