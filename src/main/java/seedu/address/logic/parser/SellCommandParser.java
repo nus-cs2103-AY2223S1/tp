@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SellCommand;
@@ -47,7 +46,7 @@ public class SellCommandParser implements Parser<SellCommand> {
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
 
 
-        Transaction transaction =  new SellTransaction(goods, price, quantity);
+        Transaction transaction = new SellTransaction(goods, price, quantity);
 
         return new SellCommand(index, transaction);
     }

@@ -1,7 +1,5 @@
 package seedu.address.model.transaction;
 
-import seedu.address.model.poc.Poc;
-
 /**
  * Store the buy transaction process.
  */

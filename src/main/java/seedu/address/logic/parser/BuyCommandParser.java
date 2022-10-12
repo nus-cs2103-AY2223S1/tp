@@ -47,7 +47,7 @@ public class BuyCommandParser implements Parser<BuyCommand> {
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).orElse(""));
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
 
-        Transaction transaction =  new BuyTransaction(goods, price, quantity);
+        Transaction transaction = new BuyTransaction(goods, price, quantity);
 
         return new BuyCommand(index, transaction);
     }
