@@ -321,7 +321,7 @@ Use case ends.
 
 1. User selects a specific itinerary.
 2. User enters new details of the itinerary.
-3. Waddle updates the details and provides a confirmation to the user.<br>
+3. Waddle updates the itinerary details and provides a confirmation to the user.<br>
 Use case ends.
 
 **Extensions**
@@ -339,12 +339,13 @@ Use case ends.
 2. User requests to delete the itinerary.
 3. Waddle requests for user confirmation.
 4. User confirms intention to delete itinerary.
-5. Waddle deletes the itinerary.
+5. Waddle deletes the itinerary.<br>
 Use case ends.
 
 **Extensions**
-* 4a. User decides against deleting the itinerary.
+* 4a. User decides against deleting the itinerary.<br>
   Use case ends.
+
 
 **Use case: Add an item to an itinerary**
 
@@ -353,13 +354,48 @@ Use case ends.
 1. User selects a specific itinerary.
 2. User requests to add an item.
 3. User enters details of the item.
-5. Waddle adds the item and provides confirmation to the user.
+4. Waddle adds the item and provides confirmation to the user.<br>
    Use case ends.
 
 **Extensions**
 * 3a. The item details are incomplete.
   * Waddle shows an error message.<br>
   Use case resumes at step 3.
+
+
+**Use case: Add an item to an itinerary**
+
+**MSS**
+
+1. User selects a specific itinerary.
+2. User requests to edit a chosen item.
+3. User enters new details of the item.
+4. Waddle updates the item details and provides confirmation to the user.<br>
+   Use case ends.
+
+**Extensions**
+* 3a. The item details are incomplete.
+    * Waddle shows an error message.<br>
+      Use case resumes at step 3.
+
+
+**Use case: Delete an item from an itinerary**
+
+**MSS**
+
+1. User selects a specific itinerary.
+2. User requests to delete a chosen item.
+3. Waddle requests for user confirmation.
+4. User confirms intention to delete chosen item.
+5. Waddle deletes the item from the itinerary.<br>
+Use case ends.
+
+**Extensions**
+* 2a. User does not provide index of item.
+    * Waddle shows an error message.<br>
+      Use case resumes from step 2.
+* 4a. User decides against deleting the item.<br>
+  Use case ends.
 
 
 *{More to be added}*
