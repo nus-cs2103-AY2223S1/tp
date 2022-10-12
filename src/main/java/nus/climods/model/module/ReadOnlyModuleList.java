@@ -1,8 +1,10 @@
 package nus.climods.model.module;
 
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 
-import java.util.Optional;
+
 
 /**
  * Unmodifiable view of a module list
