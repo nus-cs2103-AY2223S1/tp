@@ -10,9 +10,9 @@ import seedu.taassist.model.moduleclass.ModuleClass;
 /**
  * Exits focus mode.
  */
-public class BackCommand extends Command {
+public class UnfocusCommand extends Command {
 
-    public static final String COMMAND_WORD = "back";
+    public static final String COMMAND_WORD = "unfocus";
 
     public static final String MESSAGE_SUCCESS = "Exited focus mode for %s";
 
