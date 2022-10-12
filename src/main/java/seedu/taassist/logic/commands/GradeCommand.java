@@ -29,7 +29,7 @@ public class GradeCommand extends Command {
 
     public static final String COMMAND_WORD = "grade";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a grade to a student. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a grade to a student for a session. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_SESSION + "SESSION (must be a valid session)\n"
             + PREFIX_GRADE + "GRADE (must be a valid grade) "
