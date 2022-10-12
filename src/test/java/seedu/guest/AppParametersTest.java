@@ -41,11 +41,23 @@ public class AppParametersTest {
 
     @Test
     public void equals() {
+        AppParameters testAppParameters = new AppParameters();
+
+        // same values -> returns true
+        assertTrue(expected.equals(testAppParameters));
+
         // same object -> returns true
         assertTrue(expected.equals(expected));
 
         // null -> returns false
         assertFalse(expected.equals(null));
+
+        // different types -> returns false
+        assertFalse(expected.equals(0.5f));
+
+        // different configPath -> returns false
+        testAppParameters.setConfigPath(Paths.get("test.json"));
+        assertFalse(expected.equals(testAppParameters));
     }
 
     private static class ParametersStub extends Application.Parameters {
