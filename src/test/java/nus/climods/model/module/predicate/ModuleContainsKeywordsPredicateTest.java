@@ -61,7 +61,7 @@ class ModuleContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_moduleDoesNotContainKeywords_returnsFalse() {
         Module testModule = new ModuleStub("Software Engineering", "CS2103");
 
         // Zero keywords

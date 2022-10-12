@@ -15,7 +15,7 @@ import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of module list data.
  */
 public class ModelManager implements Model {
 
@@ -26,12 +26,12 @@ public class ModelManager implements Model {
     private final FilteredList<Module> filteredModuleList;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given moduleList and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(moduleList, userPrefs);
 
-        logger.fine("Initializing with address book: " + moduleList + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = new ModuleList(moduleList);
