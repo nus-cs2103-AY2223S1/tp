@@ -64,7 +64,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             Phone phone = ParserUtil.parsePhone(cmd.getOptionValue(FLAG_PHONE_STR));
             Email email = ParserUtil.parseEmail(cmd.getOptionValue(FLAG_EMAIL_STR));
             Address address = ParserUtil.parseAddress(cmd.getOptionValue(FLAG_ADDRESS_STR));
-            Set<Tag> tagList = cmd.hasOption(FLAG_TAG_STR) ? ParserUtil.parseTags(Arrays.asList(cmd.getOptionValues(FLAG_TAG_STR))) : Set.of();
+            Set<Tag> tagList = cmd.hasOption(FLAG_TAG_STR)
+                    ? ParserUtil.parseTags(Arrays.asList(cmd.getOptionValues(FLAG_TAG_STR)))
+                    : Set.of();
 
             Person person = new Person(name, phone, email, address, tagList);
             return new AddCommand(person);

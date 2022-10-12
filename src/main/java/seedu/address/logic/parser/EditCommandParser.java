@@ -49,7 +49,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         options.addOption(FLAG_PHONE_STR, FLAG_PHONE_STR_LONG, true, "Phone of person");
         options.addOption(FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG, true, "Email of person");
         options.addOption(FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG, true, "Address of person");
-        options.addOption(Option.builder().option(FLAG_TAG_STR).longOpt(FLAG_TAG_STR_LONG).optionalArg(true).hasArgs().desc("Tags of person").build());
+        options.addOption(Option.builder()
+                .option(FLAG_TAG_STR)
+                .longOpt(FLAG_TAG_STR_LONG)
+                .optionalArg(true)
+                .hasArgs()
+                .desc("Tags of person")
+                .build());
 
         try {
             CommandLineParser parser = new DefaultParser();
