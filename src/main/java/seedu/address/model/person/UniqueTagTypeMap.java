@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -55,24 +56,31 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             DuplicateTagTypeException {
         if (prefixMap.keySet().contains(prefix)) {
             throw new DuplicatePrefixException();
-        } else if (prefixMap.values().contains(tagType)) {
+        } else if (prefixMap.values().stream().anyMatch(val -> val.getTagTypeName().equals(tagType.getTagTypeName()))) {
             throw new DuplicateTagTypeException();
         } else {
             prefixMap.put(prefix, tagType);
+            CliSyntax.addTagPrefix(prefix);
         }
     }
 
     public static void removeExistingTagType(TagType tagType) throws TagTypeNotFoundException {
         if (prefixMap.values().contains(tagType)) {
-            prefixMap.remove(tagType);
+            Prefix prefix = prefixMap.keySet().stream().filter(key -> prefixMap.get(key).equals(tagType))
+                    .collect(Collectors.toList()).get(0);
+            prefixMap.remove(prefix);
+            CliSyntax.removeTagPrefix(prefix);
         } else {
             throw new TagTypeNotFoundException();
         }
     }
 
-    public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType) {
+    public static void setExistingTagType(Prefix toRemovePrefix, Prefix prefix, TagType tagType)
+            throws TagTypeNotFoundException, DuplicatePrefixException {
         prefixMap.remove(toRemovePrefix);
         UniqueTagTypeMap.createTagType(prefix, tagType);
+        CliSyntax.removeTagPrefix(toRemovePrefix);
+        CliSyntax.addTagPrefix(prefix);
     }
 
     /**
