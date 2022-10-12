@@ -28,6 +28,7 @@ import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.storage.ClassStorage;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -56,6 +57,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_CLASS_CONFLICT = "There is a conflict between the class timings.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -87,6 +89,9 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+        ClassStorage.saveClass(editedPerson);
+        ClassStorage.removeExistingClass(personToEdit);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

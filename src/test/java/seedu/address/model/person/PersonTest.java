@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -77,4 +78,30 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
     }
+
+    @Test
+    public void allEqualsExceptClass() throws ParseException {
+        Person billy = new PersonBuilder().withName("Billy").withPhone("81234567")
+                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-05 1200-1400")
+                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
+        Person billyWithDifferentClass = new PersonBuilder().withName("Billy").withPhone("81234567")
+                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-04 1100-1200")
+                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
+        Person billyWithDifferentPhone = new PersonBuilder().withName("Billy").withPhone("91234567")
+                .withEmail("Billy@gmail.com").withAddress("Street 20 Building A").withClass("2022-05-04 1100-1200")
+                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("").build();
+
+        // same object -> returns true
+        assertTrue(billy.allEqualsExceptClass(billy));
+
+        // different class -> returns true
+        assertTrue(billy.allEqualsExceptClass(billyWithDifferentClass));
+
+        // different phone -> returns false
+        assertFalse(billy.allEqualsExceptClass(billyWithDifferentPhone));
+
+        // compared with null -> returns false
+        assertFalse(billy.allEqualsExceptClass(null));
+    }
+
 }
