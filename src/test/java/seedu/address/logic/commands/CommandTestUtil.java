@@ -111,8 +111,10 @@ public class CommandTestUtil {
     public static final String LEVEL_DESC_CLASS2 = " " + PREFIX_LEVEL + VALID_LEVEL_CLASS2;
     public static final String DAY_DESC_CLASS1 = " " + PREFIX_DAY + VALID_DAY_CLASS1;
     public static final String DAY_DESC_CLASS2 = " " + PREFIX_DAY + VALID_DAY_CLASS2;
-    public static final String TIME_DESC_CLASS1 = " " + PREFIX_TIME + VALID_STARTTIME_CLASS1 + "-" + VALID_ENDTIME_CLASS1;
-    public static final String TIME_DESC_CLASS2 = " " + PREFIX_TIME + VALID_STARTTIME_CLASS2 + "-" + VALID_ENDTIME_CLASS2;
+    public static final String TIME_DESC_CLASS1 = " " + PREFIX_TIME + VALID_STARTTIME_CLASS1 + "-"
+            + VALID_ENDTIME_CLASS1;
+    public static final String TIME_DESC_CLASS2 = " " + PREFIX_TIME + VALID_STARTTIME_CLASS2 + "-"
+            + VALID_ENDTIME_CLASS2;
 
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -125,16 +127,25 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_SCHOOL_DESC = " " + PREFIX_SCHOOL + "& Primary School"; // '&' not allowed in school name
-    public static final String INVALID_LEVEL_DESC = " " + PREFIX_LEVEL + "Kindergarten1"; //outside p1-6, s1-4 not allowed
-    public static final String INVALID_NEXTOFKIN_DESC = " " + PREFIX_NEXTOFKIN + "& Doe"; // '&' now allowed in nok names
-    public static final String INVALID_QUALIFICATION_DESC = " " + PREFIX_QUALIFICATION + "M&c"; // '&' not allowed in qualifications name
-    public static final String INVALID_INSTITUTION_DESC = " " + PREFIX_INSTITUTION + "& University"; // '&' not allowed in institutions name
+    public static final String INVALID_SCHOOL_DESC =
+            " " + PREFIX_SCHOOL + "& Primary School"; // '&' not allowed in school name
+    public static final String INVALID_LEVEL_DESC =
+            " " + PREFIX_LEVEL + "Kindergarten1"; //outside p1-6, s1-4 not allowed
+    public static final String INVALID_NEXTOFKIN_DESC =
+            " " + PREFIX_NEXTOFKIN + "& Doe"; // '&' now allowed in nok names
+    public static final String INVALID_QUALIFICATION_DESC =
+            " " + PREFIX_QUALIFICATION + "M&c"; // '&' not allowed in qualifications name
+    public static final String INVALID_INSTITUTION_DESC =
+            " " + PREFIX_INSTITUTION + "& University"; // '&' not allowed in institutions name
 
-    public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT + "Philosophy"; //outside set subjects not allowed
-    public static final String INVALID_DAY_DESC = " " + PREFIX_DAY + "Newday"; // only allow 'monday' to 'sunday'
-    public static final String INVALID_TIME1_DESC = " " + PREFIX_TIME + "12:00to13:00"; // only allow dash separation
-    public static final String INVALID_TIME2_DESC = " " + PREFIX_TIME + "12:00-11:00"; // go back in time not allowed
+    public static final String INVALID_SUBJECT_DESC =
+            " " + PREFIX_SUBJECT + "Philosophy"; //outside set subjects not allowed
+    public static final String INVALID_DAY_DESC =
+            " " + PREFIX_DAY + "Newday"; // only allow 'monday' to 'sunday'
+    public static final String INVALID_TIME1_DESC =
+            " " + PREFIX_TIME + "12:00to13:00"; // only allow dash separation
+    public static final String INVALID_TIME2_DESC =
+            " " + PREFIX_TIME + "12:00-11:00"; // go back in time not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

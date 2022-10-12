@@ -74,8 +74,8 @@ public class PersonUtil {
         sb.append(PREFIX_NAME + tuitionClass.getName().name + " ");
         sb.append(PREFIX_SUBJECT + tuitionClass.getSubject().subject + " ");
         sb.append(PREFIX_LEVEL + tuitionClass.getLevel().level + " ");
-        sb.append(PREFIX_DAY+ tuitionClass.getDay().day + " ");
-        sb.append(PREFIX_TIME+ tuitionClass.getTime().timeFrame + " ");
+        sb.append(PREFIX_DAY + tuitionClass.getDay().day + " ");
+        sb.append(PREFIX_TIME + tuitionClass.getTime().timeFrame + " ");
         tuitionClass.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

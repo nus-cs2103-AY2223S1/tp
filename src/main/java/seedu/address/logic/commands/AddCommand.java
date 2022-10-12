@@ -27,6 +27,9 @@ import seedu.address.model.tuitionclass.TuitionClass;
  */
 public class AddCommand extends Command {
 
+    /**
+     * Accepted entity to add types.
+     */
     public enum Entity {
         STUDENT,
         TUTOR,
@@ -39,6 +42,9 @@ public class AddCommand extends Command {
             return test.matches(VALIDATION_REGEX);
         }
 
+        /**
+         * Returns a {@code Entity} from {@code String entity}.
+         */
         public static Entity fromString(String entity) {
             if (entity.matches(("(?i)student"))) {
                 return STUDENT;
@@ -55,7 +61,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    //TODO
+    //improve in future
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds either a student, a tutor or a class to the database.\n"
             + "Parameters:"
@@ -109,6 +115,9 @@ public class AddCommand extends Command {
         this.classToAdd = null;
     }
 
+    /**
+     * Creates and returns a {@code AddCommand} to add the specified {@code Person}
+     */
     public static AddCommand of(Person person) {
         requireNonNull(person);
         AddCommand addCommand = new AddCommand();
@@ -116,6 +125,10 @@ public class AddCommand extends Command {
         return addCommand;
     }
 
+
+    /**
+     * Creates and returns a {@code AddCommand} to add the specified {@code TuitionClass}
+     */
     public static AddCommand of(TuitionClass tuitionClass) {
         requireNonNull(tuitionClass);
         AddCommand addCommand = new AddCommand();

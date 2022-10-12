@@ -71,8 +71,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             TuitionClass tuitionClass = extractFromMapForClass(argMultimap);
             return AddCommand.of(tuitionClass);
 
+        default:
+            return null;
         }
-        return null;
     }
 
     private Student extractFromMapForStudent(ArgumentMultimap argMultimap) throws ParseException {
@@ -116,14 +117,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         if ((!areAllPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUBJECT, PREFIX_LEVEL, PREFIX_DAY, PREFIX_TIME))
                 || (areAnyPrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_SCHOOL,
                 PREFIX_NEXTOFKIN, PREFIX_QUALIFICATION, PREFIX_INSTITUTION))) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE)); //todo message usage
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         seedu.address.model.tuitionclass.Name name = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_NAME).get());
         Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         Level level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
         Day day = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        Set<Tag> tagList= ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         return new TuitionClass(name, subject, level, day, time, tagList);
     }

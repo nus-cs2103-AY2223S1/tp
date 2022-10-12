@@ -35,17 +35,17 @@ public enum Level {
         throw new InvalidLevelException(); //change to return null?
     }
 
-    /**
-     * Returns true if a given string is a valid value in enum Level
-     */
-//    public static boolean isValidLevel(String level) {
-//        for (Level l : Level.values()) {
-//            if (l.name().equals(level)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    //    /**
+    //     * Returns true if a given string is a valid value in enum Level
+    //     */
+    //    public static boolean isValidLevel(String level) {
+    //        for (Level l : Level.values()) {
+    //            if (l.name().equals(level)) {
+    //                return true;
+    //            }
+    //        }
+    //        return false;
+    //    }
 
     @Override
     public String toString() {
@@ -53,6 +53,9 @@ public enum Level {
                 + " " + name().charAt(name().length() - 1);
     }
 
+    /**
+     * Returns true if a given string is a valid value in enum Level
+     */
     public static boolean isValidLevel(String test) {
         return test.matches(VALIDATION_REGEX);
     }

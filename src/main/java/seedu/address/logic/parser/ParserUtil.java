@@ -2,14 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.AddCommand.Entity;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
@@ -20,7 +19,6 @@ import seedu.address.model.person.student.School;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
 import seedu.address.model.tag.Tag;
-import seedu.address.logic.commands.AddCommand.Entity;
 import seedu.address.model.tuitionclass.Day;
 import seedu.address.model.tuitionclass.Subject;
 import seedu.address.model.tuitionclass.Time;
@@ -45,6 +43,11 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code String entity} into an {@code Entity} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified {@code entity} is not one of the accepted entity types.
+     */
     public static Entity parseEntity(String entity) throws ParseException {
         requireNonNull(entity);
         String trimmedEntity = entity.trim();
@@ -54,6 +57,11 @@ public class ParserUtil {
         return Entity.fromString(trimmedEntity);
     }
 
+    /**
+     * Parses {@code String school} into an {@code School} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the given {@code school} is invalid.
+     */
     public static School parseSchool(String school) throws ParseException {
         requireNonNull(school);
         String trimmedSchool = school.trim();
@@ -63,6 +71,11 @@ public class ParserUtil {
         return new School(trimmedSchool);
     }
 
+    /**
+     * Parses {@code String level} into an {@code Level} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the given {@code level} is invalid.
+     */
     public static Level parseLevel(String level) throws ParseException {
         requireNonNull(level);
         String trimmedLevel = level.trim();
@@ -72,6 +85,11 @@ public class ParserUtil {
         return Level.createLevel(trimmedLevel);
     }
 
+    /**
+     * Parses {@code String nextOfKin} into an {@code NextOfKin} and returns it. Leading and trailing whitespaces will
+     * be trimmed.
+     * @throws ParseException if the given {@code nextOfKin} is invalid.
+     */
     public static NextOfKin parseNextOfKin(String nextOfKin) throws ParseException {
         requireNonNull(nextOfKin);
         String trimmedNextOfKin = nextOfKin.trim();
@@ -81,6 +99,11 @@ public class ParserUtil {
         return new NextOfKin(trimmedNextOfKin);
     }
 
+    /**
+     * Parses {@code String qualification} into an {@code Qualification} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
+     * @throws ParseException if the given {@code qualification} is invalid.
+     */
     public static Qualification parseQualification(String qualification) throws ParseException {
         requireNonNull(qualification);
         String trimmedQualification = qualification.trim();
@@ -90,6 +113,11 @@ public class ParserUtil {
         return new Qualification(trimmedQualification);
     }
 
+    /**
+     * Parses {@code String institution} into an {@code Institution} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     * @throws ParseException if the given {@code institution} is invalid.
+     */
     public static Institution parseInstitution(String institution) throws ParseException {
         requireNonNull(institution);
         String trimmedInstitution = institution.trim();
@@ -99,6 +127,11 @@ public class ParserUtil {
         return new Institution(trimmedInstitution);
     }
 
+    /**
+     * Parses {@code String subject} into an {@code Subject} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
         String trimmedSubject = subject.trim();
@@ -108,6 +141,11 @@ public class ParserUtil {
         return Subject.createSubject(trimmedSubject);
     }
 
+    /**
+     * Parses {@code String day} into an {@code Day} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the given {@code day} is invalid.
+     */
     public static Day parseDay(String day) throws ParseException {
         requireNonNull(day);
         String trimmedDay = day.trim();
@@ -117,6 +155,11 @@ public class ParserUtil {
         return Day.createDay(trimmedDay);
     }
 
+    /**
+     * Parses {@code String time} into an {@code Time} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the given {@code time} is invalid.
+     */
     public static Time parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
@@ -127,7 +170,6 @@ public class ParserUtil {
         return new Time(splitTime[0], splitTime[1]);
     }
 
-    
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -143,6 +185,12 @@ public class ParserUtil {
         return new seedu.address.model.person.Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static seedu.address.model.tuitionclass.Name parseClassName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();

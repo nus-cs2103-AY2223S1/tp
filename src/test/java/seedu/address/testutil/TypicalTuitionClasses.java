@@ -4,8 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ENDTIME_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LEVEL_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STARTTIME_CLASS1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CLASS1;
 
 import java.util.ArrayList;
 import java.util.Arrays;

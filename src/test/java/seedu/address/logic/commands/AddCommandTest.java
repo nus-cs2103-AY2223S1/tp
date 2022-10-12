@@ -25,7 +25,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
 import seedu.address.testutil.TutorBuilder;
@@ -83,13 +82,15 @@ public class AddCommandTest {
         AddCommand addCommandForStudent = AddCommand.of(validStudent);
         ModelStub modelStubForStudent = new ModelStubWithPerson(validStudent);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommandForStudent.execute(modelStubForStudent));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommandForStudent.execute(modelStubForStudent));
 
         Tutor validTutor = new TutorBuilder().build();
         AddCommand addCommandForTutor = AddCommand.of(validTutor);
         ModelStub modelStubForTutor = new ModelStubWithPerson(validTutor);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommandForTutor.execute(modelStubForTutor));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommandForTutor.execute(modelStubForTutor));
     }
 
 
@@ -99,7 +100,8 @@ public class AddCommandTest {
         AddCommand addCommandForClass = AddCommand.of(validClass);
         ModelStub modelStubForClass = new ModelStubWithClass(validClass);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CLASS, () -> addCommandForClass.execute(modelStubForClass));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_CLASS, () -> addCommandForClass.execute(modelStubForClass));
     }
 
     @Test
@@ -392,9 +394,9 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             if (person instanceof Student) {
-                studentsAdded.add((Student)person);
+                studentsAdded.add((Student) person);
             } else if (person instanceof Tutor) {
-                tutorsAdded.add((Tutor)person);
+                tutorsAdded.add((Tutor) person);
             } else {
                 personsAdded.add(person);
             }

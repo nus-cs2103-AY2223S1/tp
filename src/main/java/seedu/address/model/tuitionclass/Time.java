@@ -9,13 +9,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Represents the timeslot of the tuition class.
  */
 public class Time {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Time should be in LocalTime parsable format separted by dash \"-\"";
+    public static final String VALIDATION_REGEX = "\\p{Digit}{2}:\\p{Digit}{2}-\\p{Digit}{2}:\\p{Digit}{2}";
+
+    public final String timeFrame;
 
     private final LocalTime startTime;
     private final LocalTime endTime;
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be in LocalTime parsable format separted by dash \"-\"";
-    public static final String VALIDATION_REGEX = "\\p{Digit}{2}:\\p{Digit}{2}-\\p{Digit}{2}:\\p{Digit}{2}";
-    public final String timeFrame;
 
 
     /**

@@ -124,8 +124,9 @@ public class AddCommandParserTest {
                 AddCommand.of(expectedStudent));
 
         // multiple tags - all accepted
-        Student expectedStudentMultipleTags = new StudentBuilder(BOB_STUDENT).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Student expectedStudentMultipleTags = new StudentBuilder(BOB_STUDENT)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+
         assertParseSuccess(parser, ENTITY_DESC_STUDENT + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB
                 + NEXTOFKIN_DESC_BOB, AddCommand.of(expectedStudentMultipleTags));
@@ -255,7 +256,7 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, ENTITY_DESC_STUDENT + PHONE_DESC_BOB +  " " + VALID_NAME_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, ENTITY_DESC_STUDENT + PHONE_DESC_BOB + " " + VALID_NAME_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB, expectedMessage);
 
         // missing phone prefix
