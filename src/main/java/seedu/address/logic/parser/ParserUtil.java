@@ -123,7 +123,7 @@ public class ParserUtil {
     }
 
     /**
-     * Returns the String evenTitle passed to it.
+     * Returns the String eventTitle passed to it.
      */
     public static String parseEventTitle(String eventTitle) {
         requireNonNull(eventTitle);

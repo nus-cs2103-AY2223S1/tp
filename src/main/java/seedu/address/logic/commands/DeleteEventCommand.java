@@ -27,6 +27,10 @@ public class DeleteEventCommand extends Command {
 
     private final Index targetEventIndex;
 
+    /**
+     * Constructor for DeleteEventCommand
+     * @param targetEventIndex location of Event to be deleted
+     */
     public DeleteEventCommand(Index targetEventIndex) {
         this.targetEventIndex = targetEventIndex;
     }

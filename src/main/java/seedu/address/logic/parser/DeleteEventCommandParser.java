@@ -20,10 +20,9 @@ public class DeleteEventCommandParser {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteEventCommand(index);
-        } catch (ParseException e) {
+        } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE), e
-            );
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE), pe);
         }
     }
 }

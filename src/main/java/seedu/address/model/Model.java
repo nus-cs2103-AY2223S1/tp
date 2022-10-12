@@ -77,8 +77,16 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Adds the given event.
+     * {@code event} must not already exist in the address book.
+     */
     void addEvent(Event event);
 
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
     void deleteEvent(Event event);
 
     /** Returns an unmodifiable view of the filtered person list */
@@ -90,8 +98,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    /**
-     * Returns an unmodifiable view of the filtered event list
-     */
+    /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 }
