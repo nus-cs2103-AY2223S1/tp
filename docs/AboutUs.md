@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: Scheduling and tracking, code quality, Main reviewer for Hong Sheng
 * In-charge of features: sort
 
-### Colin Toh 
+### Colin Toh
 <img src="images/cowlinn.png" width="200px">
 
 [[github](http://github.com/cowlinn)]
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities:Integration, Testing, Main Reviewer for Marcus
-* In-Charge of Features: Client Class Management 
+* In-Charge of Features: Client Class Management
 
 ### Marcus Chua
 

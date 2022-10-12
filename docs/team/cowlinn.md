@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks 
+    * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks
     * TODO
   * Developer Guide:
     * TODO
