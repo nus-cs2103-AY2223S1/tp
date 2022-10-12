@@ -17,8 +17,6 @@ public class Student {
     // Data fields
     private final Response response;
     private final Attendance attendance;
-//    private final HelpTag helpTag;
-
 
     /**
      * Name, Telegram and Email field must not be null.
