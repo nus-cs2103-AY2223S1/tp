@@ -36,6 +36,8 @@ public class LogicManager implements Logic {
         this.storage = storage;
     }
 
+    public ObservableList<Module> getFilteredModuleList() { return model.getFilteredModuleList(); }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("[User Command] " + commandText);
@@ -46,8 +48,6 @@ public class LogicManager implements Logic {
 
         return commandResult;
     }
-
-    public ObservableList<Module> getFilteredModuleList() { return model.getFilteredModuleList(); }
 
     @Override
     public ReadOnlyModuleList getModuleList() {
