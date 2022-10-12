@@ -30,7 +30,7 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for {@code AddTaskCommand}.
  */
 public class AddTaskCommandTest {
-    private final String TASK_DESCRIPTION_STUB = "Change dressing";
+    private static final String TASK_DESCRIPTION_STUB = "Change dressing";
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
