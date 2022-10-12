@@ -67,6 +67,6 @@ public class ModuleContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match module
         predicate = new ModuleContainsKeywordPredicate(Arrays.asList("99999999", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("99999999")
-                .withEmail("alice@email.com").withAddress("Main Street").withModule("cs2105").build()));
+                .withEmail("alice@email.com").withModule("cs2105").build()));
     }
 }
