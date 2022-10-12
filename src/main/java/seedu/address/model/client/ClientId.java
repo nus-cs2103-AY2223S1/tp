@@ -39,7 +39,7 @@ public class ClientId {
     public static class EmptyClientId extends ClientId {
         public static final ClientId EMPTY_CLIENT_ID = new EmptyClientId();
         public EmptyClientId() {
-            super(3);
+            super(-1);
         }
 
         /**
