@@ -71,6 +71,8 @@ Adds a batchmate to the application.
 
 Format: `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]... [m/MODULE]...`
 
+* Modules added to a batchmate will be automatically categorised according to their prefixes. e.g. `cs2103t` will be tagged as `Computer Science`.  `ma1521` will be tagged as `Mathematics`. For modules that are not identified by Mass Linkers, they will be tagged as `Others`.
+
 Examples:
 * `add n/John Doe t/johnxyz`
 * `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com tag/friends tag/owesMoney`
@@ -98,21 +100,27 @@ Examples:
 *  `edit 1 g/john_doe p/91234567 e/johndoe@example.com` Edits the github username, phone number and email address of the 1st batchmate in the currently displayed list to be `john_doe`, `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Bob Tan t/` Edits the name of the 2nd batchmate in the currently displayed list to be `Bob Tan` and clears all existing tags.
 
-### Finding a batchmate by name: `find`
+### Finding a batchmate: `find`
 
-Finds batchmates whose names contain __any__ of the given keywords.
+Finds batchmates whose details contain __any__ of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
+* `NAME`, `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL` are searched.
+* The search is case-insensitive. e.g `Hans` will return `hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will return both `Hans Bo` and `Bo Hans`.
+* To search using `NAME`, only __full words__ will be matched. e.g. `Ha` will not return a batchmate with the name `Hans`.
+* To search using `TELEGRAM`, `GITHUB`, `PHONE` and `EMAIL`, partial words are accepted. E.g. `boh` will return `bohans`.
 * Batchmates matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
-* `find John` returns `john` and `John Doe`.
-* `find alex david` returns `Alex Tan`, `David Chua`.
+* When you want to search using `NAME`:
+  * `find John` returns `john` and `John Doe`.
+  * `find alex david` returns `Alex Tan`, `David Chua`.
+* When you want to search using `TELEGRAM`, `GITHUB` or `EMAIL`:
+  * `find boh` returns the batchmates with the telegram, github or email containing `boh`, e.g. `bohans`.
+* When you want to search using `PHONE`:
+  * `find 999` returns the batchmates with the phone number `69998888`, `89991234` or `99912345`.
 
 ### Finding batchmates by tags: `findTag`
 
@@ -228,7 +236,7 @@ Data in Mass Linkers is saved in the hard disk automatically after executing any
 | **Add**           | `add n/NAME t/TELEGRAM [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]... [m/MODULE]...` <br> Example: `add n/John Doe t/johnxyz g/john_doe p/98765432 e/johnd@example.com tag/friends tag/owesMoney m/cs2103t m/cs2101` |
 | **List**          | `list`                                                                                                                                                                                                            |
 | **Edit**          | `edit INDEX [n/NAME] [t/TELEGRAM] [g/GITHUB] [p/PHONE] [e/EMAIL] [tag/TAG]...`<br> Example: `edit 1 g/john_doe p/91234567 e/johndoe@example.com`                                                                  |
-| **Find by name**  | `find KEYWORD [MORE_KEYWORDS]...` <br> Example: `find alex david`                                                                                                                                                 |
+| **Find**          | `find KEYWORD [MORE_KEYWORDS]...` <br> Example: `find Alex david`                                                                                                                                                 |
 | **Find by tag**   | `findTag TAG [MORE_TAGS]...` <br> Example: `findTag friend classmate`                                                                                                                                             |
 | **Delete**        | `delete INDEX` <br> Example: `delete 2`                                                                                                                                                                           |
 | **Add module**    | `mod add INDEX MODULE [MORE_MODULES]...` <br> Example: `mod add 3 cs2100 cs2103t cs2101 cs2105`                                                                                                                   |
