@@ -3,6 +3,7 @@ package nus.climods.model.module;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.openapitools.client.ApiException;
@@ -54,6 +55,13 @@ public class ModuleList implements ReadOnlyModuleList {
     @Override
     public ObservableList<Module> getModules() {
         return internalUnmodifiableList;
+    }
+
+    @Override
+    public Optional<Module> getListModule(String moduleCode) {
+        return internalUnmodifiableList.stream()
+                .filter(mod -> mod.getCode().equals(moduleCode))
+                .findFirst();
     }
 
     @Override
