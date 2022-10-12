@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.logic.commands.FindCommand;
@@ -39,16 +40,14 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
                 PREFIX_REASON, PREFIX_DATE_START, PREFIX_DATE_END);
 
-        /*
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(""));
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
+        Optional<String> name = argMultimap.getValue(PREFIX_NAME);
+        Optional<String> phone = argMultimap.getValue(PREFIX_PHONE);
+        Optional<String> email = argMultimap.getValue(PREFIX_EMAIL);
+        Optional<String> address = argMultimap.getValue(PREFIX_ADDRESS);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        String reason = argMultimap.getValue(PREFIX_EMAIL).orElse("");
-        // LocalDateTime startDate =
-        // LocalDateTime endDate =
-         */
+        Optional<String> reason = argMultimap.getValue(PREFIX_EMAIL);
+        Optional<String> startDate = argMultimap.getValue(PREFIX_DATE_START);
+        Optional<String> endDate = argMultimap.getValue(PREFIX_DATE_END);
 
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {

@@ -39,23 +39,23 @@ public class StringUtil {
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 
-    /*
-    public static boolean containsSequenceIgnoreCase(String sentence, String word) {
+    /**
+     *
+     *
+     * @param sentence cannot be null
+     * @param sequence cannot be null
+     * @return
+     */
+    public static boolean containsSequenceIgnoreCase(String sentence, String sequence) {
         requireNonNull(sentence);
-        requireNonNull(word);
+        requireNonNull(sequence);
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+        String preppedSequence = sequence.trim();
+        checkArgument(!preppedSequence.isEmpty(), "Sequence parameter cannot be empty");
 
         // Solution below adapted from https://stackoverflow.com/a/86832
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(x -> Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE).matcher(sentence).find());
+        return Pattern.compile(Pattern.quote(sequence), Pattern.CASE_INSENSITIVE).matcher(sentence).find();
     }
-     */
 
     /**
      * Returns a detailed message of the t, including the stack trace.
