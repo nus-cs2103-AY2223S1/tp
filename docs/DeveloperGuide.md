@@ -222,7 +222,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations
+#### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -261,12 +261,13 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 Purchasing managers who are proficient with typing for small F&B businesses
 
-**Value proposition**:
+
+**Value proposition**:  
 This application will help small businesses to manage perishable goods within a single inventory
 (no support for multiple inventories).
 
-### User stories
 
+### User stories
 Add Inventory Item:
 
 Delete Inventory Item:
@@ -481,7 +482,7 @@ _{More to be added}_
 1. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
 1. A user should be able to use the app after reading the help instructions.
 
-### Glossary
+## Glossary
 
 ### A
 
@@ -490,15 +491,13 @@ _{More to be added}_
 > A value that is passed into a command.
 
 Example:
-`tag create food`, where food is the argument to the command `tag create`
+`tag create food`, where `food` is the argument to the command `tag create`
 
 ### B
 
 #### Bought Date
 
-> Date where an item was purchased. Usually in the format dd/mm/yyyy.
-
-_TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
+> Date where an item was purchased. Bought date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
 
 ### C
 
@@ -506,21 +505,22 @@ _TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
 
 > A feature or function that FoodRem can perform.
 
+#### Command Line
+
+> The interface that the user interacts FoodREM with. It is represented as the box where the user types in commands into.
+
 ### E
 
 #### Expiry Date
 
-> Date where an item spoils, expires, or becomes unusable. Usually in the format dd/mm/yyyy.
+> Date where an item spoils, expires, or becomes unusable. Expiry date is in the format "year-month-date", represented in the "yyyy-mm-dd" format.
 >
-> _TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
 
 ### F
 
 #### Flag
 
 > A marker or delimiter signifying a potentially optional argument to a command.
-
-MISSING EXAMPLE
 
 ### I
 
@@ -535,6 +535,12 @@ MISSING EXAMPLE
 Example: Creating a `potato` item
 `[item] new n/potato`
 
+### M
+
+#### MSS (Main Success Scenario)
+
+> The Main Success Scenario (MSS) describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+
 ### O
 
 #### Output
@@ -542,11 +548,27 @@ Example: Creating a `potato` item
 > The result of calling a Command.
 > Results are displayed in the GUI, here: (ADD SCREENSHOT)
 
+### P
+
+#### Parameter
+
+> Parameters identify values passed into your Commands. For example, when calling `add n/ItemName`, the parameter here is `n/ItemName`.
+
+#### Purchasing Manager
+
+> A purchasing manager, also known as a purchasing director or supply manager, heads a team responsible for procuring goods and services for resale or company use.
+
 ### Q
 
 #### Quantity
 
 > The frequency of item(s) kept track by FoodRem.
+
+### S
+
+#### Syntax
+
+> The structure of statements users type into the Command Line.
 
 ### T
 
@@ -557,6 +579,16 @@ Example: Creating a `potato` item
 Example:
 Tagging an item in the first index as the tag `ingredient`:
 `tag 1 ingredient`
+
+### U
+
+#### Use Case
+
+> A use case describes an interaction between the user and the system for a specific functionality of the system.
+
+#### User Story
+
+> User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. Typically in the format "As a {user type/role} I can {function} so that {benefit}".
 
 ---
 
