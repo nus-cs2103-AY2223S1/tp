@@ -4,11 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.student.Student;
 
 /**
  * Deletes a moduleClass identified using it's className from TA-Assist.
@@ -39,6 +43,18 @@ public class DeletecCommand extends Command {
         if (!model.hasModuleClasses(moduleClasses)) {
             throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
                     model.getModuleClassList()));
+        }
+
+        List<Student> students = model.getFilteredStudentList();
+        for (Student student : students) {
+            if (!Collections.disjoint(student.getModuleClasses(), moduleClasses)) {
+                Set<ModuleClass> assignedClasses = new HashSet<>();
+                assignedClasses.addAll(student.getModuleClasses());
+                assignedClasses.removeAll(moduleClasses);
+                Student editedStudent = new Student(student.getName(), student.getPhone(), student.getEmail(),
+                        student.getAddress(), assignedClasses);
+                model.setStudent(student, editedStudent);
+            }
         }
 
         model.deleteModuleClasses(moduleClasses);
