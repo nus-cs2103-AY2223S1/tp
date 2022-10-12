@@ -9,14 +9,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
 import hobbylist.commons.core.GuiSettings;
-import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 import hobbylist.testutil.Assert;
 import hobbylist.testutil.HobbyListBuilder;
 import hobbylist.testutil.TypicalActivities;
+import hobbylist.model.activity.NameContainsKeywordsPredicate;
 
 public class ModelManagerTest {
 

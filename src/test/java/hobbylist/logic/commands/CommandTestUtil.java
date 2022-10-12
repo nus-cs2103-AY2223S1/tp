@@ -14,7 +14,6 @@ import hobbylist.model.HobbyList;
 import hobbylist.model.Model;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.NameContainsKeywordsPredicate;
-import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 import hobbylist.testutil.Assert;
 import hobbylist.testutil.EditActivityDescriptorBuilder;
 
