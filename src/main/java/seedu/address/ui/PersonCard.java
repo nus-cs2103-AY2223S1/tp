@@ -46,6 +46,10 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private GridPane tagPane;
+    @FXML
+    private Label note;
+    @FXML
+    private Label status;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -58,17 +62,6 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        // update tags
-        //        person.getTags().keySet().stream()
-        //                .sorted(Comparator.comparing(tagType -> tagType.getTagTypeName()))
-        //                .forEach(tagType ->
-        //                {
-        //                    Region newline = new Region();
-        //                    newline.setPrefSize(Double.MAX_VALUE, 0.0);
-        //                    person.getTags().get(tagType).toStream().forEach(tag -> tags.getChildren()
-        //                        .add(new Label(tag.tagName)));
-        //                    tags.getChildren().add(newline);
-        //                });
         ObservableMap<TagType, UniqueTagList> tagTypeMap = person.getTags();
         List<TagType> tagTypeList = tagTypeMap.keySet().stream()
                 .sorted(Comparator.comparing(tagType -> tagType.getTagTypeName())).collect(Collectors.toList());
@@ -81,6 +74,8 @@ public class PersonCard extends UiPart<Region> {
             }
         }
         tagPane.setHgap(5);
+        status.setText(person.getStatus().status);
+        note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
     }
 
     @Override

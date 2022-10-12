@@ -23,19 +23,37 @@ public class Person {
 
     // Data fields
     private final Address address;
-
     private UniqueTagTypeMap tagTypeMap;
+    private final Status status;
+    private final Note note;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap) {
-        requireAllNonNull(name, phone, email, address, tagTypeMap);
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap, Status status) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tagTypeMap = tagTypeMap;
+        this.status = status;
+        this.note = new Note("");
+    }
+
+    /**
+     * Overloaded constructor for Person when note is provided.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
+                  Status status, Note note) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tagTypeMap = tagTypeMap;
+        this.status = status;
+        this.note = note;
     }
 
     public Name getName() {
@@ -53,9 +71,8 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-
-    public String getDetailsAsString() {
-        return String.format("%s %s %s %s %s", name, phone, email, address, tagTypeMap);
+    public Note getNote() {
+        return note;
     }
 
     /**
@@ -64,6 +81,10 @@ public class Person {
      */
     public ObservableMap<TagType, UniqueTagList> getTags() {
         return tagTypeMap.asUnmodifiableObservableMap();
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -98,13 +119,20 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getNote().equals(getNote())
+                && otherPerson.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tagTypeMap);
+        return Objects.hash(name, phone, email, address, tagTypeMap, status, note);
+    }
+
+    public String getDetailsAsString() {
+        return String.format("%s %s %s %s %s %s %s", name, phone, email, address, status,
+                tagTypeMap, note);
     }
 
     @Override
@@ -124,6 +152,13 @@ public class Person {
             tags.forEach((tagType, tagList) -> builder.append(String.format("%s: %s", tagType.toString(),
                     tagList.toString())));
         }
+
+        builder.append("; Status: ")
+                .append(getStatus());
+
+        builder.append("; Note: ")
+                .append(getNote());
+
         return builder.toString();
     }
 

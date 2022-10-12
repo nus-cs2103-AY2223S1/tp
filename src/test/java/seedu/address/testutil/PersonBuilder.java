@@ -3,9 +3,15 @@ package seedu.address.testutil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+<<<<<<< HEAD
 import seedu.address.model.person.UniqueTagTypeMap;
+=======
+import seedu.address.model.person.Status;
+import seedu.address.model.tag.Tag;
+>>>>>>> master
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -17,12 +23,19 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_STATUS = "Application Received";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+<<<<<<< HEAD
     private UniqueTagTypeMap tags;
+=======
+    private Set<Tag> tags;
+    private Status status;
+    private Note note;
+>>>>>>> master
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -32,7 +45,13 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+<<<<<<< HEAD
         tags = new UniqueTagTypeMap();
+=======
+        tags = new HashSet<>();
+        status = new Status(DEFAULT_STATUS);
+        note = new Note("");
+>>>>>>> master
     }
 
     /**
@@ -43,9 +62,15 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+<<<<<<< HEAD
         UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
         tagTypeMap.setTagTypeMap(personToCopy.getTags());
         tags = tagTypeMap;
+=======
+        tags = new HashSet<>(personToCopy.getTags());
+        status = personToCopy.getStatus();
+        note = personToCopy.getNote();
+>>>>>>> master
     }
 
     /**
@@ -89,11 +114,29 @@ public class PersonBuilder {
     }
 
     /**
+<<<<<<< HEAD
      * To be given.
      * @return To be given.
      */
+=======
+     * Sets the {@code Status} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStatus(String status) {
+        this.status = new Status(status);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNote(String note) {
+        this.note = new Note(note);
+        return this;
+    }
+
+>>>>>>> master
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, status, note);
     }
 
 }
