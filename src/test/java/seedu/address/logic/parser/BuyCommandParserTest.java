@@ -24,7 +24,7 @@ import seedu.address.model.transaction.Goods;
 public class BuyCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, BuyCommand.MESSAGE_TRANSACTION_INVALID);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, BuyCommand.MESSAGE_USAGE);
     private BuyCommandParser parser = new BuyCommandParser();
 
     @Test

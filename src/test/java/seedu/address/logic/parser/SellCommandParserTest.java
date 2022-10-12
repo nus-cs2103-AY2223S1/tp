@@ -64,8 +64,6 @@ public class SellCommandParserTest {
         // goods and price but no quantity
         assertParseFailure(parser, "1" + VALID_GOODS_SELL_PAPAYA + VALID_PRICE_SELL_PAPAYA,
                MESSAGE_INVALID_FORMAT);
-
-
     }
 
     @Test

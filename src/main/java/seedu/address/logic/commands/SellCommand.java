@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
 
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class SellCommand extends Command {
             + PREFIX_GOODS + "Apples "
             + PREFIX_PRICE + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "New transaction created: \nSold %2$s %3$s from %1$s for %4$s each";
+    public static final String MESSAGE_SUCCESS = "New transaction created: \nSold %2$s %3$s to %1$s for %4$s each";
     public static final String MESSAGE_TRANSACTION_INVALID = "Transaction cannot be created. "
             + "Enter a valid transaction:\n"
             + "index "
@@ -50,12 +49,8 @@ public class SellCommand extends Command {
     public SellCommand(Index index, Transaction transaction) {
         requireNonNull(index);
         requireNonNull(transaction);
-
         this.index = index;
         this.transaction = transaction;
-
-
-
     }
 
     @Override
@@ -73,9 +68,8 @@ public class SellCommand extends Command {
         Company editedCompany = companyToEdit;
         editedCompany.addTransaction(transaction);
         model.setCompany(companyToEdit, editedCompany);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany, transaction.getQuantity(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany.getName(), transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
     }
 
