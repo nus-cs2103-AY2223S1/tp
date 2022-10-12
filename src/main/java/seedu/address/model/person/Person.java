@@ -76,6 +76,10 @@ public class Person implements DisplayItem {
         return fields;
     }
 
+    public void addField(String fieldName) {
+        fields.addField(fieldName);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

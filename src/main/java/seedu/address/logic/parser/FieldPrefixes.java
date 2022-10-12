@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 
 public class FieldPrefixes {
 
@@ -20,7 +21,7 @@ public class FieldPrefixes {
         return prefixes.contains(prefix);
     }
 
-    public void addPrefix(Prefix prefix, String name) throws ParseException {
+    public void addPrefix(Prefix prefix, String name, Model model) throws ParseException {
         if (prefixes.contains(prefix)) {
             throw new ParseException("Prefix has been stored previously. Enter a different prefix");
         }
@@ -28,6 +29,7 @@ public class FieldPrefixes {
             throw new ParseException("Field has been stored previously. Enter a different field");
         }
         prefixes.add(prefix);
+        model.addField(name);
         map.put(prefix, name);
     }
 

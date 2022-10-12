@@ -167,6 +167,14 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new ItemNotFoundException();
         }
     }
+
+    /**
+     * Adds a {@code field} to the each person in the address book.
+     * Field must not exist in the address book.
+     */
+    public void addField(String fieldName) {
+        persons.addField(fieldName);
+    }
     //// util methods
 
     @Override

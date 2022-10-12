@@ -104,6 +104,13 @@ public interface Model {
      */
     void addTask(Task task);
 
+    /**
+     * Adds a field to the Fields of each person
+     * {@code field name} must not already exist in the address book.
+     * @param fieldName the field name to add
+     */
+    void addField(String fieldName);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
