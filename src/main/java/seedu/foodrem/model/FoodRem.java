@@ -142,6 +142,11 @@ public class FoodRem implements ReadOnlyFoodRem {
      * {@code key} must exist in the address book.
      */
     public void removeTag(Tag key) {
+        for (Item i : items) {
+            if (i.containsTag(key)) {
+                i.removeItemTag(key);
+            }
+        }
         tags.remove(key);
     }
 
