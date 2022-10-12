@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -7,8 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ta.TeachingAssistant;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of teaching assistants.
@@ -31,7 +31,8 @@ public class TeachingAssistantListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code TeachingAssistant} using a {@code TeachingAssistantCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code TeachingAssistant}
+     * using a {@code TeachingAssistantCard}.
      */
     class TeachingAssistantListViewCell extends ListCell<TeachingAssistant> {
         @Override
