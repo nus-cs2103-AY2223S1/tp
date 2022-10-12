@@ -161,7 +161,6 @@ public class ModelManager implements Model {
             UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
             tagTypeMap.setTagTypeMap(p.getTags());
             tagTypeMap.setTagType(toEdit, editTo);
-
         }
     }
 
