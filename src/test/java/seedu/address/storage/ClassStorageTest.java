@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -50,6 +51,17 @@ public class ClassStorageTest {
         ClassStorage classStorage = new ClassStorage(addressBookFromFile);
         // Throws an exception because Alex Yeoh in personsAddressBook has class timing conflict with Daniel Tan.
         assertThrows(CommandException.class, () -> classStorage.saveClass(person, 3));
+    }
+
+    @Test
+    public void execute_getIndexSuccess() throws Exception {
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807")
+                .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableAddressBook.class).get();
+        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        ClassStorage classStorage = new ClassStorage(addressBookFromFile);
+        assertEquals(1, ClassStorage.getIndex(person));
     }
 
 }
