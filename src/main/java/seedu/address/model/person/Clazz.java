@@ -14,10 +14,10 @@ public class Clazz {
     public static final String MESSAGE_CONSTRAINTS =
             "Class should only contain numbers and decimal, and it should not be blank";
 
-    public final String className;
-
     public static final String VALIDATION_REGEX = "^[a-zA-Z]*$";
 
+    public final String className;
+  
     private ArrayList<Person> personsInClass;
 
     /**
