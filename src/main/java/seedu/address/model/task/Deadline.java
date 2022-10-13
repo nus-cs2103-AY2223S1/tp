@@ -17,7 +17,7 @@ public class Deadline {
      * Date should be in the format DD-MM-YYYY.
      * Validation will be handled by DateTimeFormatter util class.
      */
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd MM yyyy");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private final LocalDate date;
 
@@ -30,7 +30,7 @@ public class Deadline {
         requireNonNull(deadline);
         //TODO Fix isValidDeadline
         //checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        date = LocalDate.parse(deadline);
+        date = LocalDate.parse(deadline, DATE_TIME_FORMATTER);
     }
 
     /**
@@ -39,7 +39,7 @@ public class Deadline {
     public static boolean isValidDeadline(String test) {
         // TODO: Try-catch used as control flow, refactor
         try {
-            DATE_TIME_FORMATTER.parse(test);
+            LocalDate.parse(test, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
             return false;
         }
