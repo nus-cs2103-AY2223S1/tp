@@ -36,7 +36,7 @@ public class DeletePropertyCommand extends Command {
         List<Property> lastShownPropertyList = model.getFilteredPropertyList();
 
         if (targetIndex.getZeroBased() >= lastShownPropertyList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
         Property propertyToDelete = lastShownPropertyList.get(targetIndex.getZeroBased());

@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertPropertyCommand
 import static seedu.address.logic.commands.CommandTestUtil.showPropertyAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.property.Property;
  */
 public class DeletePropertyCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
