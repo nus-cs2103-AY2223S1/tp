@@ -3,6 +3,7 @@ package seedu.foodrem.model.util;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Validates if a date is parsable according to the dateFormatter provided.
@@ -10,6 +11,10 @@ import java.time.format.DateTimeParseException;
  * if it is parsable.
  */
 public class DateParser {
+    /**
+     * Java 8 uses 'uuuu' for year, not 'yyyy'. In Java 8, ‘yyyy’ means “year of era” (BC or AD).
+     */
+    private static final DateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     private final DateTimeFormatter dateTimeFormatter;
 
     /**
@@ -32,7 +37,7 @@ public class DateParser {
      */
     public boolean isParsableDateString(String dateString) {
         try {
-            LocalDate.parse(dateString, dateTimeFormatter);
+            LocalDate.parse(dateString, dateTimeFormatter.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
             return false;
         }
