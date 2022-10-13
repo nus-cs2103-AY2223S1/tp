@@ -1,22 +1,61 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a deliverer.
+ */
 public class Deliverer extends Person {
 
-    private final ArrayList<Order> orders;
-    public Deliverer(PersonCategory personCategory, Name name, Phone phone, Email email, Address address,
-                     Set<Tag> tags, ArrayList<Order> orders) {
-        super(personCategory, name, phone, email, address, tags);
+    private final List<Order> orders;
+
+    /**
+     * Constructs a deliverer object.
+     *
+     * @param personCategory By default, it should be PersonCategory.Deliverer
+     * @param name The name of this person.
+     * @param phone The phone number in string.
+     * @param email The email, which will be checked against regex.
+     * @param address The address of this person, which will be checked against the regex.
+     * @param tags The tags of this person.
+     * @param orders The orders that this deliverer is dispatched.
+     */
+    public Deliverer(PersonCategory personCategory,
+                     Name name,
+                     Phone phone,
+                     Email email,
+                     Address address,
+                     Set<Tag> tags, List<Order> orders) {
+        super(PersonCategory.DELIVERER, name, phone, email, address, tags);
         this.orders = orders;
     }
 
-    public ArrayList<Order> getOrders() {
+    /**
+     * Constructs a deliverer object.
+     * By default, it should be PersonCategory.Deliverer
+     *
+     * @param name The name of this person.
+     * @param phone The phone number in string.
+     * @param email The email, which will be checked against regex.
+     * @param address The address of this person, which will be checked against the regex.
+     * @param tags The tags of this person.
+     * @param orders The orders that this deliverer is dispatched.
+     */
+    public Deliverer(Name name,
+                     Phone phone,
+                     Email email,
+                     Address address,
+                     Set<Tag> tags, List<Order> orders) {
+        super(PersonCategory.DELIVERER, name, phone, email, address, tags);
+        this.orders = orders;
+    }
+
+    public List<Order> getOrders() {
         return orders;
     }
 
