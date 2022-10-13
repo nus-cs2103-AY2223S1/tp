@@ -4,8 +4,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingList;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -22,6 +25,8 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    private static final Logger logger = LogsCenter.getLogger(SampleDataUtil.class);
+
     static Person a = new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
             new Address("Blk 30 Geylang Street 29, #06-40"),
             getTagSet("friends"));
@@ -71,12 +76,13 @@ public class SampleDataUtil {
         Meeting[] m;
         try {
             m = getSampleMeetings();
+            for (Meeting sampleMeeting :m) {
+                sampleML.addMeeting(sampleMeeting);
+            }
         } catch (ParseException e) {
-            m = null;
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
         }
-        for (Meeting sampleMeeting :m) {
-            sampleML.addMeeting(sampleMeeting);
-        }
+
         return sampleML;
     }
     /**
