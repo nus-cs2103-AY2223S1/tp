@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,14 +22,14 @@ public class ModDeleteCommand extends ModCommand {
     public static final String MESSAGE_INVALID_MOD = "This person is not taking all of the modules specified."
             + "\nPlease check your list of mods and try again.";
     private final Index targetIndex;
-    private final Set<Mod> mods;
+    private final ObservableList<Mod> mods;
 
     /**
      * Constructs a command that deletes all mods specified from the list of the person at the target index.
      * @param index The index of the person to add to.
      * @param mods The set of mods to be deleted.
      */
-    public ModDeleteCommand(Index index, Set<Mod> mods) {
+    public ModDeleteCommand(Index index, ObservableList<Mod> mods) {
         requireNonNull(index);
         requireNonNull(mods);
 
