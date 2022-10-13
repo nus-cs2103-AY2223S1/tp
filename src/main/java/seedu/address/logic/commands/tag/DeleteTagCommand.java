@@ -45,7 +45,8 @@ public class DeleteTagCommand extends Command {
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag: %1$s";
     public static final String MESSAGE_TAG_NOT_DELETED = "At least 1 tag to delete must be provided.";
-    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove are not found on the selected contact/task.";
+    public static final String MESSAGE_TAGS_DO_NOT_EXIST = "The tag(s) you want to remove are not found " +
+     "on the selected contact/task.";
     public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
     private final Index contactIndex;
