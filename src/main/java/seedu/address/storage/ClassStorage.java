@@ -10,9 +10,9 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
-import seedu.address.model.Model;
 
 /**
  * Manages storage of AddressBook class data.
@@ -23,7 +23,7 @@ public class ClassStorage {
     private static AddressBook addressBook;
 
     /**
-     * Constructs a {@code ClassStorage} with the given addressBook.
+     * Constructs a {@code ClassStorage} with the given model.
      *
      * @param model Model object.
      */
@@ -126,7 +126,6 @@ public class ClassStorage {
      * @return int.
      */
     public static int getIndex(Person person) {
-        System.out.println(addressBook.getInternalList());
         for (int i = 0; i < addressBook.getInternalList().size(); i++) {
             if (addressBook.getInternalList().get(i).isSamePerson(person)) {
                 return i + 1;
