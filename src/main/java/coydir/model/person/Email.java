@@ -49,7 +49,7 @@ public class Email {
      * Bypass input validation, allows actual null values.
      */
     public Email() {
-        this.value = "N/A"; 
+        this.value = "N/A";
     }
 
     public Email getNullEmail() {
