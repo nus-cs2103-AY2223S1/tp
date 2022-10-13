@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.exceptions.DuplicateStudentException;
 import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
 
@@ -148,13 +149,13 @@ public class UniqueStudentList implements Iterable<Student> {
         return student;
     }
 
-    public int getIndexByStudentId(StudentId studentId) {
+    public Index getIndexByStudentId(StudentId studentId) {
         int index = 0;
         for (int i = 0; i < internalList.size() - 1; i++) {
             if (internalList.get(i).getStudentId().equals(studentId)) {
                 index = i;
             }
         }
-        return index;
+        return new Index(index);
     }
 }

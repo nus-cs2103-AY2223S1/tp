@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
+import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -120,7 +121,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int getIndexByStudentId(StudentId studentId) {
+    public Index getIndexByStudentId(StudentId studentId) {
         requireNonNull(studentId);
 
         return fypManager.getIndexByStudentId(studentId);

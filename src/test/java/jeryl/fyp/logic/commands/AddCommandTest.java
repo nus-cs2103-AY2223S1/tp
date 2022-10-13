@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import jeryl.fyp.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -155,7 +156,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public int getIndexByStudentId(StudentId studentId) {
+        public Index getIndexByStudentId(StudentId studentId) {
             throw new AssertionError("This method should not be called.");
         }
     }
