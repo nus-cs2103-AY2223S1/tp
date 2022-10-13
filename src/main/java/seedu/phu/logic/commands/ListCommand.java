@@ -59,4 +59,22 @@ public class ListCommand extends Command {
                 : " sorted by " + this.category.toString();
         return new CommandResult(MESSAGE_SUCCESS + additionalMessage);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListCommand)) {
+            return false;
+        }
+
+        // state check
+        ListCommand l = (ListCommand) other;
+        return category.equals(l.category)
+                && descending == l.descending;
+    }
 }
