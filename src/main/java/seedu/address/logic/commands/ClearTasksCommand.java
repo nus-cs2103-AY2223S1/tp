@@ -18,10 +18,13 @@ public class ClearTasksCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ObservableList<Module> moduleList =  model.getAddressBook().getModuleList();
+        ObservableList<Module> moduleList = model.getAddressBook().getModuleList();
+
         AddressBook newAddressBook = new AddressBook();
         newAddressBook.setModules(moduleList);
+
         model.setAddressBook(newAddressBook);
+
         return new CommandResult(MESSAGE_SUCCESSS);
     }
 }
