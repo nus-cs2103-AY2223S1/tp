@@ -46,7 +46,7 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
-        moduleData = new ArrayList<>(studentToCopy.getModuleData());
+        moduleData = new ArrayList<>(studentToCopy.getModuleDataList());
     }
 
     /**

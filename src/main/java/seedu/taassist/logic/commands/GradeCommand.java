@@ -15,11 +15,8 @@ import seedu.taassist.logic.parser.ParserStudentIndexUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
-import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
-import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Gives a grade to student for a session.
@@ -76,66 +73,11 @@ public class GradeCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX));
         }
 
-        Student newStudent = updatedStudent(oldStudent, moduleClass, session, grade);
+        Student newStudent = Student.getUpdatedStudent(oldStudent, moduleClass, session, grade);
 
         model.setStudent(oldStudent, newStudent);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newStudent));
     }
-
-    private Student updatedStudent(Student oldStudent, ModuleClass moduleClass, Session session, double grade) {
-        List<StudentModuleData> oldModuleData = oldStudent.getModuleData();
-        List<StudentModuleData> newModuleData = updatedModuleData(oldModuleData, moduleClass, session, grade);
-        return new Student(
-                oldStudent.getName(),
-                oldStudent.getPhone(),
-                oldStudent.getEmail(),
-                oldStudent.getAddress(),
-                newModuleData);
-    }
-
-    private List<StudentModuleData> updatedModuleData(List<StudentModuleData> oldModuleData,
-            ModuleClass moduleClass, Session session, double grade) {
-        StudentModuleData oldStudentModuleData = oldModuleData.stream()
-                .filter(studentModuleData -> studentModuleData.getModuleClass().isSame(moduleClass))
-                .findFirst().get(); // must exist since we are in focus mode
-        StudentModuleData newStudentModuleData = updateStudentModuleData(oldStudentModuleData, session, grade);
-        UniqueList<StudentModuleData> newModuleData = new UniqueList<>();
-        newModuleData.setElements(oldModuleData);
-        newModuleData.setElement(oldStudentModuleData, newStudentModuleData);
-        return newModuleData.asUnmodifiableObservableList();
-
-    }
-
-    private StudentModuleData updateStudentModuleData(StudentModuleData oldStudentModuleData,
-            Session session, double grade) {
-        List<SessionData> oldSessions = oldStudentModuleData.getSessionData();
-        List<SessionData> newSessions = updatedSessions(oldSessions, session, grade);
-        return new StudentModuleData(oldStudentModuleData.getModuleClass(), newSessions);
-    }
-
-    /**
-     * Updates the session data of the student with the new grade.
-     * If the session does not exist then a new entry is created.
-     */
-    private List<SessionData> updatedSessions(List<SessionData> oldSessions, Session session, double grade) {
-        SessionData oldSessionData = oldSessions.stream()
-                .filter(sessionData -> sessionData.getSession().isSame(session))
-                .findFirst().orElse(null);
-
-        SessionData newSessionData = new SessionData(session, grade);
-
-        UniqueList<SessionData> newSessionDataList = new UniqueList<>();
-        newSessionDataList.setElements(oldSessions);
-
-        if (oldSessionData == null) {
-            newSessionDataList.add(newSessionData);
-        } else {
-            newSessionDataList.setElement(oldSessionData, newSessionData);
-        }
-
-        return newSessionDataList.asUnmodifiableObservableList();
-    }
-
 
     @Override
     public boolean equals(Object other) {

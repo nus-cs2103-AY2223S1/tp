@@ -54,7 +54,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        moduleData.addAll(source.getModuleData().stream()
+        moduleData.addAll(source.getModuleDataList().stream()
                 .map(JsonAdaptedStudentModuleData::new)
                 .collect(Collectors.toList()));
     }

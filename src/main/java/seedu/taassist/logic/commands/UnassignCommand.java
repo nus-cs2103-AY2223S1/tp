@@ -64,7 +64,7 @@ public class UnassignCommand extends Command {
         }
 
         for (Student student : studentsToUnassign) {
-            List<StudentModuleData> newModuleData = student.getModuleData().stream()
+            List<StudentModuleData> newModuleData = student.getModuleDataList().stream()
                     .filter(moduleData -> !moduleData.getModuleClass().isSame(moduleClassToUnassign))
                     .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
             Student editedStudent = new Student(

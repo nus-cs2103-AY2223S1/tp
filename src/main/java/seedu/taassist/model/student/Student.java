@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.StudentModuleData;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
 
@@ -24,18 +25,18 @@ public class Student implements Identity<Student> {
 
     // Data fields
     private final Address address;
-    private final UniqueList<StudentModuleData> moduleData = new UniqueList<>();
+    private final UniqueList<StudentModuleData> moduleDataList = new UniqueList<>();
 
     /**
      * Constructor for Student.
      */
-    public Student(Name name, Phone phone, Email email, Address address, List<StudentModuleData> moduleData) {
-        requireAllNonNull(name, phone, email, address, moduleData);
+    public Student(Name name, Phone phone, Email email, Address address, List<StudentModuleData> moduleDataList) {
+        requireAllNonNull(name, phone, email, address, moduleDataList);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.moduleData.setElements(moduleData);
+        this.moduleDataList.setElements(moduleDataList);
     }
 
     public Name getName() {
@@ -57,15 +58,15 @@ public class Student implements Identity<Student> {
     /**
      * Returns an Unmodifiable ObservableList of module data.
      */
-    public List<StudentModuleData> getModuleData() {
-        return moduleData.asUnmodifiableObservableList();
+    public List<StudentModuleData> getModuleDataList() {
+        return moduleDataList.asUnmodifiableObservableList();
     }
 
     /**
      * Returns a list of module classes that the student is enrolled in.
      */
     public List<ModuleClass> getModuleClasses() {
-        return getModuleData().stream()
+        return getModuleDataList().stream()
             .map(StudentModuleData::getModuleClass)
             .collect(Collectors.toList());
     }
@@ -74,7 +75,24 @@ public class Student implements Identity<Student> {
      * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
      */
     public StudentModuleData findStudentModuleData(ModuleClass targetClass) {
-        return moduleData.findElement(new StudentModuleData(targetClass));
+        return moduleDataList.findElement(new StudentModuleData(targetClass));
+    }
+
+    /**
+     * Returns a student by updating {@code oldStudent}'s grade for the given {@code session} in {@code moduleClass}.
+     */
+    public static Student getUpdatedStudent(Student oldStudent,
+            ModuleClass moduleClass, Session session, double grade) {
+        requireAllNonNull(oldStudent, moduleClass, session);
+        List<StudentModuleData> oldModuleDataList = oldStudent.getModuleDataList();
+        List<StudentModuleData> newModuleDataList =
+                StudentModuleData.getUpdatedModuleDataList(oldModuleDataList, moduleClass, session, grade);
+        return new Student(
+                oldStudent.getName(),
+                oldStudent.getPhone(),
+                oldStudent.getEmail(),
+                oldStudent.getAddress(),
+                newModuleDataList);
     }
 
     /**
@@ -110,13 +128,13 @@ public class Student implements Identity<Student> {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getModuleData().equals(getModuleData());
+                && otherStudent.getModuleDataList().equals(getModuleDataList());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, moduleData);
+        return Objects.hash(name, phone, email, address, moduleDataList);
     }
 
     @Override
@@ -127,7 +145,7 @@ public class Student implements Identity<Student> {
         Phone phone = getPhone();
         Email email = getEmail();
         Address address = getAddress();
-        List<StudentModuleData> moduleData = getModuleData();
+        List<StudentModuleData> moduleData = getModuleDataList();
 
         if (phone.isPresent()) {
             builder.append("; Phone: ").append(phone);

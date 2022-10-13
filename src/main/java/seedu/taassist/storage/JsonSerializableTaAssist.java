@@ -74,13 +74,13 @@ class JsonSerializableTaAssist {
             }
 
             // Check if the module data are valid
-            for (StudentModuleData moduleData : student.getModuleData()) {
+            for (StudentModuleData moduleData : student.getModuleDataList()) {
                 ModuleClass moduleClass = moduleData.getModuleClass();
                 if (!taAssist.hasModuleClass(moduleClass)) {
                     throw new IllegalValueException(MESSAGE_CLASS_NOT_FOUND);
                 }
                 ModuleClass realModuleClass = taAssist.findModuleClass(moduleClass);
-                for (SessionData sessionData : moduleData.getSessionData()) {
+                for (SessionData sessionData : moduleData.getSessionDataList()) {
                     if (!realModuleClass.hasSession(sessionData.getSession())) {
                         throw new IllegalValueException(MESSAGE_SESSION_NOT_FOUND);
                     }

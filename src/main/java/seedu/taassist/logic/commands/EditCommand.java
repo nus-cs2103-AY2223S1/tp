@@ -92,7 +92,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        List<StudentModuleData> moduleData = studentToEdit.getModuleData(); // not editable
+        List<StudentModuleData> moduleData = studentToEdit.getModuleDataList(); // not editable
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, moduleData);
     }
