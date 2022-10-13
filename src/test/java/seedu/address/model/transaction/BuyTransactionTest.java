@@ -34,4 +34,14 @@ class BuyTransactionTest {
         assertTrue(transaction.toString().equals("You bought 10 quantity of Apple at $0.8 each"));
     }
 
+    @Test
+    public void testEquals() {
+        Goods goods = new Goods("Apple");
+        Price price = new Price("0.8");
+        Quantity quantity = new Quantity("10");
+
+        Transaction transaction = new BuyTransaction(goods, price, quantity);
+        assertEquals(transaction, new BuyTransaction(goods, price, quantity));
+        assertFalse(transaction.equals(new Object()));
+    }
 }

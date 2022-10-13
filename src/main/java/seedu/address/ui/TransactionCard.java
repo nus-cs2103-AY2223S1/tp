@@ -44,7 +44,7 @@ public class TransactionCard extends UiPart<Region> {
     private Label sell = new Label("Sell");
 
     /**
-     * Creates a {@code TransactionCode} with the given {@code Transaction} and index to display
+     * Creates a {@code TransactionCode} with the given {@code Transaction} and index to display.
      */
     public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);

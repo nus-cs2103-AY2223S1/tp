@@ -4,9 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
 import static seedu.address.testutil.TypicalPoc.ALICE;
+import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -24,15 +29,22 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.NameContainsKeywordsPredicate;
+import seedu.address.model.transaction.Goods;
+import seedu.address.model.transaction.Price;
+import seedu.address.model.transaction.Quantity;
+import seedu.address.model.transaction.SellTransaction;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 import seedu.address.testutil.PocUtil;
+import seedu.address.testutil.TransactionUtil;
 
 public class JeeqTrackerParserTest {
 
@@ -122,5 +134,26 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_buy() throws Exception {
+        BuyCommand command = (BuyCommand) parser.parseCommand(
+                TransactionUtil.getBuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE));
+        assertEquals(new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE), command);
+    }
+
+    @Test
+    public void parseCommand_sell() throws Exception {
+
+        Goods goods = new Goods("Orange");
+        Price price = new Price("2.5");
+        Quantity quantity = new Quantity("200");
+        Transaction transaction = new SellTransaction(goods, price, quantity);
+        SellCommand command = (SellCommand) parser.parseCommand(SellCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_COMPANY.getOneBased() + " " + PREFIX_QUANTITY + "200 " + PREFIX_GOODS + "Orange "
+                + PREFIX_PRICE
+                + "2.5 ");
+        assertEquals(new SellCommand(INDEX_FIRST_COMPANY, transaction), command);
     }
 }

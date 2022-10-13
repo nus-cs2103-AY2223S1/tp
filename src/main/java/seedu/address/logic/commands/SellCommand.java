@@ -20,7 +20,6 @@ import seedu.address.model.transaction.Transaction;
 public class SellCommand extends Command {
     public static final String COMMAND_WORD = "sell";
 
-    //Update here
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
             + "Parameters: "
             + "Index "
@@ -32,7 +31,7 @@ public class SellCommand extends Command {
             + PREFIX_GOODS + "Apples "
             + PREFIX_PRICE + "2 ";
 
-    public static final String MESSAGE_SUCCESS = "New transaction created: \nSold %2$s %3$s from %1$s for %4$s each";
+    public static final String MESSAGE_SUCCESS = "New transaction created: \nSold %2$s %3$s to %1$s for %4$s each";
     public static final String MESSAGE_TRANSACTION_INVALID = "Transaction cannot be created. "
             + "Enter a valid transaction:\n"
             + "index "
@@ -50,10 +49,8 @@ public class SellCommand extends Command {
     public SellCommand(Index index, Transaction transaction) {
         requireNonNull(index);
         requireNonNull(transaction);
-
         this.index = index;
         this.transaction = transaction;
-
     }
 
     @Override
@@ -72,7 +69,7 @@ public class SellCommand extends Command {
         editedCompany.addTransaction(transaction);
         model.setCompany(companyToEdit, editedCompany);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany, transaction.getQuantity(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany.getName(), transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
     }
 
@@ -85,3 +82,4 @@ public class SellCommand extends Command {
     }
 
 }
+

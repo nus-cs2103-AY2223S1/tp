@@ -67,12 +67,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane landingArea;
 
-    @FXML
-    private ImageView backgroundImage;
-
-    @FXML
-    private ImageView jeepImage;
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -101,7 +95,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -194,10 +188,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles changes to the UI whenever the POC or Transaction information is updated in a company
-     * @param commandResult the result of command executed
+     * Handles changes to the UI whenever the POC or Transaction information is updated in a company.
+     * @param commandResult the result of command executed.
      */
-    private void handleCompanyInfoUpdate(CommandResult commandResult) {
+    private void handleCompanyDetailsUpdate(CommandResult commandResult) {
         ObservableList<Company> companies = logic.getFilteredCompanyList();
 
         if (companies.size() != 1) {
@@ -212,12 +206,6 @@ public class MainWindow extends UiPart<Stage> {
         ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
         transactionListPanel.setTransactionList(transactions);
-    }
-
-    @FXML
-    private void landingPageUpdate() {
-        backgroundImage.setVisible(false);
-        jeepImage.setVisible(false);
     }
 
     /**
@@ -239,8 +227,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            handleCompanyInfoUpdate(commandResult);
-            landingPageUpdate();
+            handleCompanyDetailsUpdate(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {
