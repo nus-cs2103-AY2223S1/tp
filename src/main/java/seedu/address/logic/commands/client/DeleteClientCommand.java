@@ -50,6 +50,9 @@ public class DeleteClientCommand extends ClientCommand {
             }
         }
 
+        ui.showClients();
+        model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
+
         throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 
     }

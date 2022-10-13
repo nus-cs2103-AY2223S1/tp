@@ -91,7 +91,7 @@ public class ClientEmail {
      * @return String representing email
      */
     public String getEmailRepresentation() {
-        return "Client Email: " + this.email;
+        return "Email: " + this.email;
     }
 
     /**

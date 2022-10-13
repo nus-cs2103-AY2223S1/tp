@@ -96,7 +96,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         Client client = new Client(name, phone, email, projectList, clientId);
 
-        return new AddClientCommand(client);
+        return new AddClientCommand(client, project);
     }
 
     // TODO: revise syntax

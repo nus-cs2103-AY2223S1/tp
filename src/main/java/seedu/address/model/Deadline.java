@@ -69,7 +69,7 @@ public class Deadline {
     }
 
     public String uiRepresentation() {
-        return deadline.toString();
+        return "Due by: " + this.getFormattedDeadline();
     }
 
     @Override

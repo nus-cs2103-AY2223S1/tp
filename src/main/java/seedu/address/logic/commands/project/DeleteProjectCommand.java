@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import java.util.List;
 
@@ -9,8 +10,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
@@ -48,9 +50,22 @@ public class DeleteProjectCommand extends ProjectCommand {
         Project projectToDelete = lastShownList.get(targetIndex.getZeroBased());
         List<Issue> listOfIssuesToDelete = projectToDelete.getIssueList();
         for (Issue i : listOfIssuesToDelete) {
-            UniqueIssueList.remove(i);
+            model.deleteIssue(i);
         }
         model.deleteProject(projectToDelete);
+
+        Client projectClient = projectToDelete.getClient();
+
+        if (!projectClient.isEmpty()) {
+            projectClient.removeProject(projectToDelete);
+            if (projectClient.getProjectListSize() == 0) {
+                UniqueClientList.remove(projectClient);
+            }
+        }
+
+        ui.showProjects();
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+
 
         return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete));
     }

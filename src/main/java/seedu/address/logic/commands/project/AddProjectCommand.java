@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -34,7 +35,7 @@ public class AddProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
-    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "New project added to the address book";
+    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "New project added: %1$s";
 
     private final Project toAddProject;
     private final Client projectClient;
@@ -56,12 +57,14 @@ public class AddProjectCommand extends ProjectCommand {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
-        if (toAddProject.hasValidClientId()) {
+        if (!toAddProject.getClient().isEmpty()) {
             projectClient.addProjects(toAddProject);
             model.setClient(projectClient, projectClient);
         }
 
         model.addProject(toAddProject);
+        ui.showProjects();
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_ADD_PROJECT_SUCCESS, toAddProject));
     }
 
