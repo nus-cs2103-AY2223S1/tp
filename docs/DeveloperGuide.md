@@ -340,10 +340,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  HR Pro Max++ shows a list of persons
-3.  User requests to delete a specific project in the list
-4.  HR Pro Max++ deletes the project
+1.  User requests to list persons.
+2.  HR Pro Max++ shows a list of persons.
+3.  User requests to delete a specific project in the list.
+4.  HR Pro Max++ deletes the project.
 
     Use case ends.
 
@@ -366,19 +366,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User add a project(UC01).
-2. User request to edit project in Project list with new arguments
-3. HR Pro Max++ records the change in local storage and display project
-with updated details.
+2. User request to edit project in Project list with new arguments.
+3. HR Pro Max++ records the change in local storage and display project with updated details.
 
    Use case ends.
 
+**Use case: UC05- Edit Staff details**
+
+**MSS**
+
+1. User add staff to project(UC02).
+2. HR Pro Max++ displays staff member added and stores them.
+3. User realises staff detail is wrong.
+4. User delete staff detail.
+5. User add staff with updated detail.
+6. HR Pro Max++ displays updated staff member added and stores them. 
+
+    Steps 3-6 are repeated until staff member detail is correct.
+
 **Extensions:**
 
-* 3a. HR Pro Max++ detects error in edit project command.
-    * 3a1. HR Pro Max++ shows error
+* 1a. The given project is invalid.
+    * 1a1. HR Pro Max++ shows error.
+    
+      Use case resume at step 1.
+* 4a. The given project is invalid.
+    * 4a1 HR Pro Max++ shows error.
+  
+      Use case resume at step 4.
+* 4b. The given staff is invalid.
+    * 4b1 HR Pro Max++ shows error.
+  
+      Use case resume at step 4.
+* 5a. The given project is invalid.
+    * 5a1. HR Pro Max++ shows error.
 
-      Use case resume at step 2.
-
+      Use case resume at step 5.
+    
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
