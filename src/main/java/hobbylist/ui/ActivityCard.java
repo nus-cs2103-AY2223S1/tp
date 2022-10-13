@@ -3,14 +3,11 @@ package hobbylist.ui;
 import java.util.Comparator;
 
 import hobbylist.model.activity.Activity;
-import hobbylist.model.tag.Tag;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 
 /**
  * An UI component that displays information of a {@code Activity}.
@@ -38,7 +35,7 @@ public class ActivityCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label tags;
+    private FlowPane tags;
 
     /**
      * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
@@ -51,14 +48,15 @@ public class ActivityCard extends UiPart<Region> {
         description.setText(activity.getDescription().value);
         activity.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.setText(tag.tagName));
-        activity.getTags().stream()
-                .forEach(tag -> tags.setBackground(new Background(
-                        new BackgroundFill(Color.web(intToHexColor(tag)), null, null))));
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().forEach(child -> {
+            Label tagLabel = (Label) child;
+            tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
+        });
     }
 
-    private String intToHexColor(Tag tag) {
-        return String.format("#%06X", (0xFFFFFF & tag.hashCode() ));
+    private String intToHexColor(String tag) {
+        return String.format("#%06X", (0xFFFFFF & tag.hashCode()));
     }
 
     @Override
