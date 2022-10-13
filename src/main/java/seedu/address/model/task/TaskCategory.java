@@ -8,8 +8,8 @@ public class TaskCategory {
     public static final String MESSAGE_CONSTRAINTS =
             "Category must be one of the following: " + TaskCategoryType.getValidTaskCategories();
 
-    private int level;
-    private TaskCategoryType taskCategoryType;
+    private final int level;
+    private final TaskCategoryType taskCategoryType;
 
     /**
      * Constructor for TaskCategory
@@ -56,7 +56,7 @@ public class TaskCategory {
      */
     @Override
     public String toString() {
-        return level + taskCategoryType.name();
+        return taskCategoryType.name();
     }
 
     /**
