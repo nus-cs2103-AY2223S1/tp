@@ -12,7 +12,7 @@
     <tr>
       <td>INDEX</td>
       <td>id/</td>
-      <td>The INDEX of an item is the number to the left of the item name in the List Component.<br>INDEX is a whole number larger than 0. <br/><br/><br><strong>IMPORTANT</strong>: <br>The index of an item is dependent on the current search performed.<br>There is a limit of 10000 for the index.<br>Do not include thousands separators. <br><br/><strong>Valid Examples</strong>:<br>1<br>124<br><br/><strong>Invalid Examples:</strong><br>-1<br>1.5<br>1,132<br>1 132<br>10001</td>
+      <td markdown="1">{% include_relative _ug/placeholders/INDEX.md %}</td>
     </tr>
     <tr>
       <td>INDEX_LIST</td>
