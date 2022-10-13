@@ -11,8 +11,6 @@ import nus.climods.logic.commands.FindCommand;
 import nus.climods.logic.commands.HelpCommand;
 import nus.climods.logic.commands.ListCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.logic.parser.parameters.FacultyCodeParameter;
-import nus.climods.logic.parser.parameters.UserFlagParameter;
 
 /**
  * Parses user input.
