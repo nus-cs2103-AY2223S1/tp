@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;

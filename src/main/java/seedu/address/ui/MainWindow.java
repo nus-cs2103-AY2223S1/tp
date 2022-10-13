@@ -181,6 +181,10 @@ public class MainWindow extends UiPart<Stage> {
             break;
         case DetailHelp:
             panelToSwitch = detailHelpPanel;
+            break;
+        default:
+            panelToSwitch = personListPanel;
+            break;
         }
 
         assert panelToSwitch != null;
