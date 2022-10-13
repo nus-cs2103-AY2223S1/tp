@@ -25,6 +25,7 @@ class JsonAdaptedPerson {
     private final String id;
     private final String phone;
     private final String email;
+    private final String telegram;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -33,12 +34,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
                              @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email,
+            @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
+        this.telegram = telegram;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -52,6 +54,7 @@ class JsonAdaptedPerson {
         id = source.getId().id;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        telegram = source.getTelegram().telegram;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -100,8 +103,16 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
+        if (telegram == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName()));
+        }
+        if (!Telegram.isValidTelegram(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        final Telegram modelTelegram = new Telegram(telegram);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelId, modelPhone, modelEmail, modelTags);
+        return new Student(modelName, modelId, modelPhone, modelEmail, modelTelegram, modelTags);
     }
 
 }

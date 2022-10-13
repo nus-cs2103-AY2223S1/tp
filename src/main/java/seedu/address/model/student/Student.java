@@ -20,7 +20,7 @@ public class Student {
     private final ID id;
     private final Phone phone;
     private final Email email;
-    //private final Telegram telegram;
+    private final Telegram telegram;
 
     // Data fields
     //private final Tutorial tutorial;
@@ -32,12 +32,13 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, ID id, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, tags);
+    public Student(Name name, ID id, Phone phone, Email email, Telegram telegram, Set<Tag> tags) {
+        requireAllNonNull(name, id, phone, email, telegram, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
+        this.telegram = telegram;
         this.tags.addAll(tags);
     }
 
@@ -55,6 +56,9 @@ public class Student {
         return email;
     }
 
+    public Telegram getTelegram() {
+        return telegram;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -95,6 +99,7 @@ public class Student {
         return otherStudent.getName().equals(getName())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getTags().equals(getTags());
     }
 
@@ -108,10 +113,14 @@ public class Student {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; ID: ")
+                .append(getId())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; Telegram Handle: ")
+                .append(getTelegram());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

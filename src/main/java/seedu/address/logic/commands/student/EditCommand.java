@@ -96,9 +96,10 @@ public class EditCommand extends Command {
         ID updatedId = editPersonDescriptor.getId().orElse(studentToEdit.getId());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedId, updatedPhone, updatedEmail, updatedTags);
+        return new Student(updatedName, updatedId, updatedPhone, updatedEmail, updatedTelegram, updatedTags);
     }
 
     @Override
@@ -128,6 +129,7 @@ public class EditCommand extends Command {
         private ID id;
         private Phone phone;
         private Email email;
+        private Telegram telegram;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -140,6 +142,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setTelegram(toCopy.telegram);
             setTags(toCopy.tags);
         }
 
@@ -182,6 +185,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
+        }
+
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -219,5 +230,6 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags());
         }
+
     }
 }

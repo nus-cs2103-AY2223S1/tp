@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label telegram;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -49,9 +51,10 @@ public class PersonCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        stuId.setText(student.getId().id);
-        phone.setText(student.getPhone().value);
-        email.setText(student.getEmail().value);
+        stuId.setText("Student ID: " + student.getId().id);
+        phone.setText("Phone: " + student.getPhone().value);
+        email.setText("Email: " + student.getEmail().value);
+        telegram.setText("Telegram: @" + student.getTelegram().telegram);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
