@@ -66,28 +66,29 @@ Format: `help`
 
 Adds a person to InterNUS.
 
-Format: `addp n/NAME e/EMAIL [p/PHONE_NUMBER] [i/INTERNSHIP] [t/TAG]…​`
+Format: `addp n/NAME e/EMAIL [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0). Phone number is optional, and internship is optional too.
+A person can have any number of tags (including 0). Phone number is optional, and link index is optional too.
 </div>
 
 Examples:
-* `addp n/John Doe e/johnd@example.com p/98765432 i/Shopee_Front End Engineer`
+* `addp n/John Doe e/johnd@example.com p/98765432 l/1`
 * `addp n/Betsy Crowe t/friend e/betsycrowe@example.com`
 
 ### Adding an Internship: `addi`
 
 Adds an Internship to InterNUS.
 
-Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW]…​`
+Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
+Link index is optional too.
 </div>
 
 Examples:
-* `addi n/TikTok r/Data Engineer s/rejected`
+* `addi n/TikTok r/Data Engineer s/rejected l/1`
 * `addi n/Grab r/Full Stack Developer s/awaiting interview d/2020-12-20`
 
 ### Listing all persons : `list -p`
