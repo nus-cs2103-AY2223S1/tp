@@ -10,6 +10,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -32,9 +33,20 @@ public class MeetingListPanel extends UiPart<Region> {
         super(FXML);
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
-        numMeetings.setText(Integer.toString(meetingList.size()) + " Records");
+        numMeetings.setText(numMeetingsString(meetingList));
         meetingList.addListener((ListChangeListener<? super Meeting>)
-                c -> numMeetings.setText(Integer.toString(meetingList.size()) + " Records"));
+                c -> numMeetings.setText(numMeetingsString(meetingList)));
+    }
+
+    /**
+     * Returns a string denoting the number of records for {@code Meeting} currently shown in the {@code meetingList}.
+     */
+    private String numMeetingsString(ObservableList<Meeting> meetingList) {
+        if (meetingList.size() == 1) {
+            return "1 record";
+        } else {
+            return meetingList.size() + " records";
+        }
     }
 
     /**

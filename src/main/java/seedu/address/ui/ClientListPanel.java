@@ -32,9 +32,20 @@ public class ClientListPanel extends UiPart<Region> {
         super(FXML);
         clientListView.setItems(clientList);
         clientListView.setCellFactory(listView -> new PersonListViewCell());
-        numClients.setText(Integer.toString(clientList.size()) + " Records");
+        numClients.setText(numClientsString(clientList));
         clientList.addListener((ListChangeListener<? super Client>)
-                c -> numClients.setText(Integer.toString(clientList.size()) + " Records"));
+                c -> numClients.setText(numClientsString(clientList)));
+    }
+
+    /**
+     * Returns a string denoting the number of records for {@code Client} currently shown in the {@code clientList}.
+     */
+    private String numClientsString(ObservableList<Client> clientList) {
+        if (clientList.size() == 1) {
+            return "1 record";
+        } else {
+            return clientList.size() + " records";
+        }
     }
 
     /**
