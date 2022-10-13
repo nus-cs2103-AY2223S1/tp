@@ -10,6 +10,18 @@ import seedu.address.model.tag.Tag;
 public class Deliverer extends Person {
 
     private final ArrayList<Order> orders;
+
+    /**
+     * Constructs a {@code Deliverer}.
+     *
+     * @param personCategory Category the deliverer belongs to.
+     * @param name Name of the deliverer.
+     * @param phone Phone of the deliverer.
+     * @param email Email of the deliverer.
+     * @param address Address of the deliverer.
+     * @param tags Tags that the deliverer has.
+     * @param orders Orders that the deliverer is in charge of.
+     */
     public Deliverer(PersonCategory personCategory, Name name, Phone phone, Email email, Address address,
                      Set<Tag> tags, ArrayList<Order> orders) {
         super(personCategory, name, phone, email, address, tags);

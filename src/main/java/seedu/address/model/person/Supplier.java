@@ -11,6 +11,17 @@ public class Supplier extends Person {
 
     private final ArrayList<Pet> petsOnSale;
 
+    /**
+     * Constructs a {@code Supplier}.
+     *
+     * @param personCategory Category the supplier belongs to.
+     * @param name Name of the supplier.
+     * @param phone Phone of the supplier.
+     * @param email Email of the supplier.
+     * @param address Address of the supplier.
+     * @param tags Tags the supplier has.
+     * @param petsOnSale Pets that the supplier sells.
+     */
     public Supplier(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
                     ArrayList<Pet> petsOnSale) {
         super(personCategory, name, phone, email, address, tags);

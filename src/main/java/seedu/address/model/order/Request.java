@@ -27,6 +27,14 @@ public class Request {
     private final ColorPattern colorPattern;
     private final Species species;
 
+    /**
+     * Constructs a {@code request}.
+     *
+     * @param age Age of the pet.
+     * @param color Color of the pet.
+     * @param colorPattern Color pattern of the pet.
+     * @param species Species the pet belongs to.
+     */
     public Request(Age age, Color color, ColorPattern colorPattern,
                    Species species) {
         this.age = age;

@@ -12,6 +12,17 @@ public class Buyer extends Person {
 
     private final List<Order> orders = new ArrayList<>();
 
+    /**
+     * Constructs a {@code Buyer}
+     *
+     * @param personCategory Category the buyer belongs to.
+     * @param name Name of the buyer.
+     * @param phone Phone of the buyer.
+     * @param email Email of the buyer.
+     * @param address Address of the buyer.
+     * @param tags Tags the buyer has.
+     * @param orders Orders the buyer has.
+     */
     public Buyer(PersonCategory personCategory,
                  Name name,
                  Phone phone,
