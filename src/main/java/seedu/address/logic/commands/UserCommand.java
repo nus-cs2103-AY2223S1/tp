@@ -59,9 +59,9 @@ public class UserCommand extends Command {
 
         if (model.hasUser()) {
             throw new CommandException(MESSAGE_USER_EXISTS);
+        } else {
+            model.addUser(toAdd);
         }
-
-        model.addUser(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

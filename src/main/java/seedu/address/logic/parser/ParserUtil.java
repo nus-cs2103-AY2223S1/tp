@@ -147,6 +147,7 @@ public class ParserUtil {
     public static Set<CurrentModule> parseCurrentModules(Collection<String> mods) throws ParseException {
         requireNonNull(mods);
         final Set<CurrentModule> modSet = new HashSet<>();
+
         for (String modCode : mods) {
             modSet.add(parseCurrentModule(modCode));
         }
