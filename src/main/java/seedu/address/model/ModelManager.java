@@ -160,12 +160,14 @@ public class ModelManager implements Model {
     public void markTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.markTask(teamIndex, taskIndex);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
     public void unmarkTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.unmarkTask(teamIndex, taskIndex);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
