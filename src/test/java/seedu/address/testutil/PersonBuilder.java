@@ -13,6 +13,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 /**
  * A utility class to help with building Person objects.
  */
@@ -39,6 +41,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
     }
 
     /**
@@ -101,11 +104,18 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Returns a Person with the respective arguments as fields
+     * By default, the set of appointments field is created but is empty
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }
 
-    public Person buildWithoutAppointments() {
-        return new Person(name, phone, email, address, tags, null);
+    public Person buildWithAppointments() {
+        return new Person(name, phone, email, address, tags, appointments);
     }
+
+
 }

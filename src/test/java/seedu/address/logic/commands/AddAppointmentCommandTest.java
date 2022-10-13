@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_210_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -56,8 +57,9 @@ public class AddAppointmentCommandTest {
         assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(null, null));
     }
 
+
     @Test
-    public void execute_addOneAppointment_success() {
+    public void execute_addOneAppointmentAcceptedByModel_success() {
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         expectedModel.addPerson(new PersonBuilder().build());
@@ -100,6 +102,24 @@ public class AddAppointmentCommandTest {
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
         assertCommandSuccess(addAppointmentCommand, actualModel , expectedMessage, actualModel);
+    }
+
+    @Test
+    public void execute_addDuplicateAppointment_failure() {
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        testModel.addPerson(new PersonBuilder().build());
+
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+                VALID_APPOINTMENT_21_JAN_2023))));
+        Person testPerson = testModel.getAddressBook().getPersonList().get(0);
+        testPerson.setAppointments(appointments);
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
     @Test

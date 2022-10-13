@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
 import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -10,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.util.MaximumSortedList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -131,9 +134,9 @@ public class EditPersonDescriptor {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with a new appointment from {@code editPersonDescriptor}.
+     * edited with appointments added from {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonWithNewAppointment(
+    public static Person createEditedPersonByAddingAppointments(
             Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
         assert personToEdit != null;
 
@@ -145,12 +148,11 @@ public class EditPersonDescriptor {
                 .map(updatedAppointments::add).reduce((x, y) -> x || y);
 
         if (hasAppointment.isEmpty() || hasAppointment.get()) {
-            throw new ParseException("You have entered a duplicate appointment for this client");
+            throw new ParseException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         if (isAppointmentsEdited.isEmpty() || !isAppointmentsEdited.get()) {
-            throw new ParseException("You have already reached the maximum number of appointments ("
-                    + MAXIMUM_APPOINTMENTS + ") for this client");
+            throw new ParseException(MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS);
         }
 
         Name name = personToEdit.getName();
@@ -158,9 +160,26 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags);
+        Person newPerson = new Person(name, phone, email, address, tags, updatedAppointments);
+        return newPerson;
+    }
 
-        newPerson.setAppointments(updatedAppointments);
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * overwritten with appointments from {@code editPersonDescriptor}.
+     */
+    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
+                                                                   EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
+        MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
+        Person newPerson = new Person(name, phone, email, address, tags, newAppointmentsOnly);
+
         return newPerson;
     }
 
