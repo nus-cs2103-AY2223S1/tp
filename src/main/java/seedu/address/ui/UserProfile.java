@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.user.EmptyUser;
 import seedu.address.model.person.user.ExistingUser;
 import seedu.address.model.person.user.User;
 
