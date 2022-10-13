@@ -133,6 +133,9 @@ Exits the program.
 
 Format: `exit`
 
+### Returning to a previous command : `up`/`down` keys 
+Loads previous command into the text input box. 
+
 ### Saving the data
 
 NotioNUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
