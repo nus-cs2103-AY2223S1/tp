@@ -29,6 +29,8 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private HBox quantityRow;
+    @FXML
     private Label itemName;
     @FXML
     private Label id;
@@ -53,6 +55,7 @@ public class ItemCard extends UiPart<Region> {
         id.setAlignment(Pos.TOP_LEFT);
 
         quantity.setText(item.getQuantity().toString());
+        quantityRow.setMaxSize(HBox.USE_PREF_SIZE, HBox.USE_PREF_SIZE);
 
         description.setText(item.getDescription().value);
         description.setWrapText(true);
