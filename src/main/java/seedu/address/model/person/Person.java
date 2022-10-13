@@ -123,6 +123,15 @@ public class Person {
     }
 
     /**
+     * Determines whether the person owes money.
+     *
+     * @return true if the person owes money
+     */
+    public boolean owesMoney() {
+        return moneyOwed.isGreaterThanZero();
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
