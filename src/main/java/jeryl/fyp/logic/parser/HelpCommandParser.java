@@ -1,12 +1,7 @@
 package jeryl.fyp.logic.parser;
 
-import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-import java.util.Arrays;
-
 import jeryl.fyp.logic.commands.*;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
-import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new HelpCommand object
