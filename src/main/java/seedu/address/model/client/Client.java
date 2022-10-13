@@ -73,6 +73,10 @@ public class Client {
         return false;
     }
 
+    public int getProjectListSize() {
+        return this.projects.size();
+    }
+
     /**
      * Represents an Empty Client.
      */
@@ -132,6 +136,19 @@ public class Client {
         projects.add(project);
     }
 
+    /**
+     * Returns the string for display in the UI
+     *
+     * @return String for display in the UI
+     */
+    public String uiRepresentation() {
+        return this.name.toString() + " " + this.phone.toString();
+    }
+
+    public void removeProject(Project p) {
+        this.projects.remove(p);
+    }
+
 
     /**
      * Returns true if both clients have the same name.
@@ -154,6 +171,11 @@ public class Client {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.name.getFullNameRepresentation();
     }
 
     /**

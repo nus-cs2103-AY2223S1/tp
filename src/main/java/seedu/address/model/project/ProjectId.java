@@ -69,7 +69,7 @@ public class ProjectId {
     }
 
     public String uiRepresentation() {
-        return "(#" + toString() + ")";
+        return "(#" + this + ")";
     }
     @Override
     public String toString() {

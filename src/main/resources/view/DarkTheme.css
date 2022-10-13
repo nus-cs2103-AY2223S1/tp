@@ -337,16 +337,21 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#tags, #projects {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#tags .label, #projects .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#repository {
+    -fx-padding: 0;
+    -fx-text-fill: white;
 }
