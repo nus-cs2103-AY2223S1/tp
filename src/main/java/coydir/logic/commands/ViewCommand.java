@@ -11,7 +11,7 @@ import coydir.model.Model;
 import coydir.model.person.Person;
 
 /**
- * view a person's particular identified using it's displayed index from the address book.
+ * view a person's particular identified using it's displayed index from the database.
  */
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";

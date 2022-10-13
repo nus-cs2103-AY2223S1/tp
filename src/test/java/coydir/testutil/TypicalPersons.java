@@ -79,9 +79,9 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code database} with all the typical persons.
      */
-    public static Database getTypicalAddressBook() {
+    public static Database getTypicalDatabase() {
         Database ab = new Database();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

@@ -4,7 +4,7 @@ import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.ALICE;
 import static coydir.testutil.TypicalPersons.HOON;
 import static coydir.testutil.TypicalPersons.IDA;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -20,7 +20,7 @@ import coydir.model.Database;
 import coydir.model.ReadOnlyDatabase;
 
 public class JsonDatabaseStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDatabaseStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -47,23 +47,23 @@ public class JsonDatabaseStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatDatabase.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonDatabase.json"));
     }
 
     @Test
     public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonDatabase.json"));
     }
 
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
-        Database original = getTypicalAddressBook();
+        Database original = getTypicalDatabase();
         JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 
         // Save in new file and read back

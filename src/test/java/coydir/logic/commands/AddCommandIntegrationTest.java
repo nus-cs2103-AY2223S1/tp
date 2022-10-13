@@ -2,7 +2,7 @@ package coydir.logic.commands;
 
 import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
     }
 
     @Test

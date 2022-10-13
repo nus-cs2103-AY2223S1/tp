@@ -3,7 +3,7 @@ package coydir.logic.commands;
 import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
         expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
     }
 

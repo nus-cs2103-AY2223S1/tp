@@ -5,7 +5,7 @@ import static coydir.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static coydir.testutil.TypicalPersons.CARL;
 import static coydir.testutil.TypicalPersons.ELLE;
 import static coydir.testutil.TypicalPersons.FIONA;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,8 +24,8 @@ import coydir.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void equals() {

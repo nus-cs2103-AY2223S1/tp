@@ -4,7 +4,7 @@ import static coydir.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.ALICE;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -38,7 +38,7 @@ public class DatabaseTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Database newData = getTypicalAddressBook();
+        Database newData = getTypicalDatabase();
         database.resetData(newData);
         assertEquals(newData, database);
     }

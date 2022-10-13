@@ -13,13 +13,13 @@ import coydir.model.Model;
 import coydir.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the database.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the database. \n"
             + "** Employee NAME and POSITION are required **\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "

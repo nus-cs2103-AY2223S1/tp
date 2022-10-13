@@ -6,7 +6,7 @@ import static coydir.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.ID_SECOND_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,7 +25,7 @@ import coydir.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

@@ -1,6 +1,6 @@
 package coydir.storage;
 
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        Database original = getTypicalAddressBook();
+        Database original = getTypicalDatabase();
         storageManager.saveDatabase(original);
         ReadOnlyDatabase retrieved = storageManager.readDatabase().get();
         assertEquals(original, new Database(retrieved));
