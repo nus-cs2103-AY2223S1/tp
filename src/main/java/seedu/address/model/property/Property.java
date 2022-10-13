@@ -26,17 +26,21 @@ public class Property {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
 
+    // private final Seller seller;
+    private final String seller;    // TODO: change to Seller object
+
     /**
      * Every field must be present and not null.
      */
     public Property(PropertyName propertyName, Price price, Address address, Description description,
-                    Set<Tag> tags) {
-        requireAllNonNull(propertyName, price, address, description, tags);
+                    Set<Tag> tags, String seller) {
+        requireAllNonNull(propertyName, price, address, description, tags, seller);
         this.propertyName = propertyName;
         this.price = price;
         this.address = address;
         this.description = description;
         this.tags.addAll(tags);
+        this.seller = seller;
     }
 
     public PropertyName getName() {
@@ -50,6 +54,7 @@ public class Property {
     public Price getPrice() {
         return price;
     }
+
     public Description getDescription() {
         return description;
     }
@@ -60,6 +65,10 @@ public class Property {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public String getSeller() {
+        return seller;
     }
 
     /**
@@ -78,7 +87,7 @@ public class Property {
 
     /**
      * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two properties.
      */
     @Override
     public boolean equals(Object other) {
@@ -94,13 +103,14 @@ public class Property {
         return otherProperty.getName().equals(getName())
                 && otherProperty.getPrice().equals(getPrice())
                 && otherProperty.getAddress().equals(getAddress())
-                && otherProperty.getDescription().equals(getDescription());
+                && otherProperty.getDescription().equals(getDescription())
+                && otherProperty.getSeller().equals(getSeller());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(propertyName, price, address, description, tags);
+        return Objects.hash(propertyName, price, address, description, tags, seller);
     }
 
     @Override
@@ -112,7 +122,9 @@ public class Property {
                 .append("; Price: ")
                 .append(getPrice())
                 .append("; Description: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Seller: ")
+                .append(getSeller());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
