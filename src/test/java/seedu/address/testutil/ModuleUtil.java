@@ -1,6 +1,12 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.COMMAND_IDENTIFIER_MODULE;
+import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.module.Module;
+import seedu.address.model.tag.Tag;
+
+import java.util.Set;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
@@ -10,13 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
-
-import java.util.Set;
-
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.module.Module;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -28,7 +27,7 @@ public class ModuleUtil {
      * Returns an add command string for adding the {@code module}.
      */
     public static String getAddModuleCommand(Module module) {
-        return AddModuleCommand.COMMAND_WORD + " " + COMMAND_IDENTIFIER_MODULE + getModuleDetails(module);
+        return AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(module);
     }
 
     /**
