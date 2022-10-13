@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.tag.Medication;
 
 /**
@@ -28,6 +31,7 @@ public class Person {
     private final Optional<FloorNumber> floorNumber;
     private final Optional<WardNumber> wardNumber;
     private final Set<Medication> medications = new HashSet<>();
+    private final List<PastAppointment> pastAppointments;
 
     /**
      * Every field must be present and not null.
@@ -45,6 +49,7 @@ public class Person {
         this.floorNumber = Optional.ofNullable(floorNumber);
         this.wardNumber = Optional.ofNullable(wardNumber);
         this.medications.addAll(medications);
+        this.pastAppointments = new ArrayList<>();
     }
 
     public Name getName() {
@@ -130,6 +135,30 @@ public class Person {
         return isEqual;
     }
 
+    /**
+     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
+     * @param appt the {@code PastAppointment} to be added
+     */
+    public void addPastAppointment(PastAppointment appt) {
+        pastAppointments.add(appt);
+    }
+
+    /**
+     * Returns count of {@code PastAppointment}s to this patient.
+     * @return the count of {@code PastAppointment}s
+     */
+    public int getPastAppointmentCount() {
+        return pastAppointments.size();
+    }
+
+    /**
+     * Returns list of {@Code PastAppointment}s tagged to this patient.
+     * @return the list of {@code PastAppointment}s
+     */
+    public List<PastAppointment> getPastAppointments() {
+        return pastAppointments;
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -165,6 +194,7 @@ public class Person {
             builder.append("; Medications: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Past Appointments: ").append(getPastAppointmentCount());
         return builder.toString();
     }
 

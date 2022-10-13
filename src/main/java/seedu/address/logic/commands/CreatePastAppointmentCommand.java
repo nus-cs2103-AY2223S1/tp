@@ -29,7 +29,7 @@ public class CreatePastAppointmentCommand extends Command {
             + PREFIX_DATE + "01-01-2001 "
             + PREFIX_MEDICATION + "ibuprofen "
             + PREFIX_DIAGNOSIS + "headache, medicine given for 3 days ";
-    public static final String MESSAGE_SUCCESS = "Past appointment created: %1$s";
+    public static final String MESSAGE_SUCCESS = "Past appointment created for %1$s.\n";
     public static final String MESSAGE_NOT_CREATED = "Missing fields, please try again!";
     private final Index index;
     private final PastAppointment appt;
@@ -52,6 +52,7 @@ public class CreatePastAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person patient = lastShownList.get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appt));
+        patient.addPastAppointment(appt);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()) + appt);
     }
 }

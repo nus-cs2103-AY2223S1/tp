@@ -1,6 +1,7 @@
 package seedu.address.model.appointment;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.address.model.tag.Medication;
@@ -44,7 +45,7 @@ public class PastAppointment extends Appointment {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("On: ").append(getDate().toString());
+        builder.append("On: ").append(getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
         builder.append("; Diagnosis: ").append(this.diagnosis);
         Set<Medication> tags = getMedication();
         if (!tags.isEmpty()) {

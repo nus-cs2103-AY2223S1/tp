@@ -40,7 +40,7 @@ public class CreatePastAppointmentCommandParser implements Parser<CreatePastAppo
         Set<Medication> medicationSet = new HashSet<>();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_MEDICATION)).ifPresent(medicationSet::addAll);
         PastAppointment appt = new PastAppointment(
-                LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), DateTimeFormatter.ofPattern("ddMMyy")),
                 medicationSet, argMultimap.getValue(PREFIX_DIAGNOSIS).get());
 
         return new CreatePastAppointmentCommand(index, appt);
