@@ -9,7 +9,7 @@
    <AnchorPane styleClass="label-bright">
       <children>
          <Label styleClass="label-header" text="Clients" />
-         <Label fx:id="numClients" text="\$Num" AnchorPane.rightAnchor="10.0" />
+         <Label fx:id="numClients" styleClass="label-bright" text="\$Num" AnchorPane.rightAnchor="10.0" />
       </children>
    </AnchorPane>
   <ListView fx:id="clientListView" VBox.vgrow="ALWAYS" />

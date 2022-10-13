@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +11,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -32,6 +35,8 @@ public class MeetingListPanel extends UiPart<Region> {
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
         numMeetings.setText(Integer.toString(meetingList.size()) + " Records");
+        meetingList.addListener((ListChangeListener<? super Meeting>)
+                c -> numMeetings.setText(Integer.toString(meetingList.size()) + " Records"));
     }
 
     /**

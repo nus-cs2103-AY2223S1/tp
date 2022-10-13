@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -32,6 +34,8 @@ public class ClientListPanel extends UiPart<Region> {
         clientListView.setItems(clientList);
         clientListView.setCellFactory(listView -> new PersonListViewCell());
         numClients.setText(Integer.toString(clientList.size()) + " Records");
+        clientList.addListener((ListChangeListener<? super Client>)
+                c -> numClients.setText(Integer.toString(clientList.size()) + " Records"));
     }
 
     /**
