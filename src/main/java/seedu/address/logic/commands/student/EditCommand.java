@@ -20,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.student.*;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
@@ -102,10 +101,13 @@ public class EditCommand extends Command {
                 .orElse(studentToEdit.getTutorialModule());
         TutorialName updatedTutorialName = editPersonDescriptor.getTutorialName()
                 .orElse(studentToEdit.getTutorialName());
+        Grade updatedGrade = editPersonDescriptor.getGrade()
+                .orElse(studentToEdit.getGrade());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedId, updatedPhone,
-                updatedEmail, updatedTelegram, updatedTutorialModule, updatedTutorialName, updatedTags);
+                updatedEmail, updatedTelegram, updatedTutorialModule,
+                updatedTutorialName, updatedGrade, updatedTags);
     }
 
     @Override
@@ -138,6 +140,7 @@ public class EditCommand extends Command {
         private Telegram telegram;
         private TutorialModule tutorialModule;
         private TutorialName tutorialName;
+        private Grade grade;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -148,11 +151,13 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setId(toCopy.id);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTelegram(toCopy.telegram);
             setTutorialModule(toCopy.tutorialModule);
             setTutorialName(toCopy.tutorialName);
+            setGrade(toCopy.grade);
             setTags(toCopy.tags);
         }
 
@@ -219,6 +224,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tutorialName);
         }
 
+        public void setGrade(Grade grade) {
+            this.grade = grade;
+        }
+
+        public Optional<Grade> getGrade() {
+            return Optional.ofNullable(grade);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -258,6 +271,7 @@ public class EditCommand extends Command {
                     && getTelegram().equals(e.getTelegram())
                     && getTutorialModule().equals(e.getTutorialModule())
                     && getTutorialName().equals(e.getTutorialName())
+                    && getGrade().equals(e.getGrade())
                     && getTags().equals(e.getTags());
         }
 

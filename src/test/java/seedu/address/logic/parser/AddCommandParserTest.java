@@ -35,6 +35,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.student.AddCommand;
+import seedu.address.logic.parser.student.AddCommandParser;
 import seedu.address.model.student.*;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;

@@ -304,4 +304,10 @@ public class ParserUtil {
         }
         return new Telegram(trimmedTelegram);
     }
+
+    public static Grade parseGrade(String grade) throws ParseException {
+        requireNonNull(grade);
+        String trimmedGrade = grade.trim();
+        return new Grade(trimmedGrade);
+    }
 }

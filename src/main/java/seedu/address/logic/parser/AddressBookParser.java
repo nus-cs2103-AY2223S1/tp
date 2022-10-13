@@ -11,7 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.student.DeleteCommand;
 import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.student.FindCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
@@ -20,6 +20,9 @@ import seedu.address.logic.commands.tutorial.DeleteTutorialCommand;
 import seedu.address.logic.parser.consultation.AddConsultationCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
+import seedu.address.logic.parser.student.AddCommandParser;
+import seedu.address.logic.parser.student.DeleteCommandParser;
+import seedu.address.logic.parser.student.EditCommandParser;
 import seedu.address.logic.parser.tutorial.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorial.DeleteTutorialCommandParser;
 

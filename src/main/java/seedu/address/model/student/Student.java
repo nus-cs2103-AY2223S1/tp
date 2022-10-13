@@ -27,7 +27,7 @@ public class Student {
     // Data fields
     private final TutorialModule tutorialModule;
     private final TutorialName tutorialName;
-    //private final Grade grade;
+    private final Grade grade;
     //private final Attendance attendance;
     //private final Participation participation;
     private final Set<Tag> tags = new HashSet<>();
@@ -36,8 +36,9 @@ public class Student {
      * Every field must be present and not null.
      */
     public Student(Name name, ID id, Phone phone, Email email,
-                   Telegram telegram, TutorialModule tutorialModule, TutorialName tutorialName, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, telegram, tutorialModule, tutorialName, tags);
+                   Telegram telegram, TutorialModule tutorialModule,
+                   TutorialName tutorialName, Grade grade, Set<Tag> tags) {
+        requireAllNonNull(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
@@ -45,6 +46,7 @@ public class Student {
         this.telegram = telegram;
         this.tutorialModule = tutorialModule;
         this.tutorialName = tutorialName;
+        this.grade = grade;
         this.tags.addAll(tags);
     }
 
@@ -69,6 +71,10 @@ public class Student {
     public TutorialModule getTutorialModule() { return tutorialModule; }
 
     public TutorialName getTutorialName() { return tutorialName; }
+
+    public Grade getGrade() {
+        return grade;
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -112,13 +118,14 @@ public class Student {
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getTutorialModule().equals(getTutorialModule())
                 && otherStudent.getTutorialName().equals(getTutorialName())
+                && otherStudent.getGrade().equals(getGrade())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, phone, email, telegram, tutorialModule, tutorialName, tags);
+        return Objects.hash(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
     }
 
     @Override
@@ -136,7 +143,9 @@ public class Student {
                 .append("; Tutorial: ")
                 .append(getTutorialModule())
                 .append(" ")
-                .append(getTutorialName());
+                .append(getTutorialName())
+                .append("; Grade: ")
+                .append(getGrade());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
