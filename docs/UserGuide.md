@@ -85,7 +85,7 @@ Examples:
 Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
 
 Format:
-* `add_member INDEX`
+* `add_member TASK_INDEX`
 
 Examples:
 * `add_member 1`
@@ -116,7 +116,7 @@ Format: `list_members`
 
 Add a new task to the current team.
 
-Format: `add_task “TASK_NAME”`
+Format: `add_task "TASK_NAME"`
 
 Examples:
 *  `add task “bake with butter”`
@@ -127,31 +127,30 @@ Examples:
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign task “TASK_INDEX” “TEAM_MEMBER_NAME”`
+Format: `assign_task TASK_INDEX "TEAM_MEMBER_NAME"`
 
 Examples:
 * `assign task 1 Alex` assigns the first task on the task list to a member in the team named Alex
 * `assign task 2 Bernice` assigns the second task on the task list to a member in the team named Bernice
 
-### Set Deadline for task: `set deadline`
+### Set Deadline for task: `set_deadline`
 
 Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If 
 deadline has been set for the task before, a new deadline will be set if command is run again.
 
-Format: `set deadline TASK_INDEX DEADLINE`
+Format: `set_deadline TASK_INDEX DEADLINE`
 
 Examples:
-* `set deadline 1 2023-12-25 23:59`sets the deadline for the first task on the task list as 25 December 2023 11.59pm
+* `set_deadline 1 2023-12-25 23:59`sets the deadline for the first task on the task list as 25 December 2023 11.59pm
 
-### Delete task from team : `delete task`
+### Delete task from team : `delete_task`
 
-Delete an existing task from the team. Will display an error message if the task is not found in the user’s team.
+Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
 
-Format: `delete task “TASK_NAME”`
+Format: `delete_task TASK_INDEX`
 
 Examples:
-* `delete task fry`
-* `delete task “bake with butter”`
+* `delete task 1`
 
 ### List tasks in team: `list_tasks`
 
