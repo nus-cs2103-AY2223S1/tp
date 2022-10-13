@@ -14,6 +14,7 @@ import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -136,6 +137,17 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String PersonGroup} into a {@code PersonGroup}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static PersonGroup parsePersonGroup(String personGroup) {
+        requireNonNull(personGroup);
+        String trimmedPersonGroup = personGroup.trim();
+
+        return new PersonGroup(trimmedPersonGroup);
+    }
+
+    /**
      * Parses a {@code String groupname} into a {@code GroupName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -145,7 +157,7 @@ public class ParserUtil {
         requireNonNull(groupname);
         String trimmedName = groupname.trim();
         if (!GroupName.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(GroupName.MESSAGE_CONSTRAINTS);
         }
         return new GroupName(trimmedName);
     }
