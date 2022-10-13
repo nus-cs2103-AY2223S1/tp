@@ -42,6 +42,8 @@ public class PropertyCard extends UiPart<Region> {
     private Label description;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label seller;
 
     /**
      * Creates a {@code PropertyCard} with the given {@code Property} and index to display.
@@ -57,6 +59,7 @@ public class PropertyCard extends UiPart<Region> {
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        seller.setText(property.getSeller());
     }
 
     @Override
