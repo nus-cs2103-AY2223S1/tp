@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -88,6 +89,31 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
 
     public Person build() {
         return new Person(name, phone, email, address, tags);

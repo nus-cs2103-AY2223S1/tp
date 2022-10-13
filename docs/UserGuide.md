@@ -146,18 +146,18 @@ Example:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 * `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
 
-### Duplicate a person : `duplicate`
+### Clone a person : `clone`
 
 Clones a specified person from the address book.
 
-Format: `duplicate INDEX`
+Format: `clone INDEX`
 
 * Clones the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* Use `find Alex` to list all the persons whose name contains Alex, followed by `duplicate 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
+* Use `find Alex` to list all the persons whose name contains Alex, followed by `clone 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
 
 
 ### Viewing a person: `view`
