@@ -14,7 +14,7 @@ import seedu.address.model.person.FloorNumberContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new GetFloorNumberCommand object
  */
-public class GetFloorNumberParser implements Parser<GetFloorNumberCommand> {
+public class GetFloorNumberCommandParser implements Parser<GetFloorNumberCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the GetFloorNumberCommand
