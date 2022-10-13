@@ -5,12 +5,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
@@ -69,7 +67,7 @@ public class ModCommandParserTest {
         String userInput = ModAddCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
                 + " " + VALID_MOD_STRING_CS2103T;
 
-        Set<Mod> mods = Collections.singleton(new Mod(VALID_MOD_STRING_CS2103T));
+        ObservableList<Mod> mods = FXCollections.singletonObservableList(new Mod(VALID_MOD_STRING_CS2103T));
         ModAddCommand expectedCommand = new ModAddCommand(targetIndex, mods);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -83,10 +81,10 @@ public class ModCommandParserTest {
                 + " " + VALID_MOD_STRING_CS2101
                 + " " + VALID_MOD_STRING_CS2100;
 
-        Set<Mod> mods = new HashSet<>();
+        ObservableList<Mod> mods = FXCollections.observableArrayList();
+        mods.add(new Mod(VALID_MOD_STRING_CS2100));
         mods.add(new Mod(VALID_MOD_STRING_CS2103T));
         mods.add(new Mod(VALID_MOD_STRING_CS2101));
-        mods.add(new Mod(VALID_MOD_STRING_CS2100));
         ModAddCommand expectedCommand = new ModAddCommand(targetIndex, mods);
 
         assertParseSuccess(parser, userInput, expectedCommand);

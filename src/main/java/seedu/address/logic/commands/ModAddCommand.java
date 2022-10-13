@@ -3,24 +3,25 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.ui.MainWindow;
 
 /**
  * Appends new mods to the person.
  */
 public class ModAddCommand extends ModCommand {
-
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_SUCCESS = "Successfully added the specified mods.";
+    private MainWindow mainWindow;
     private final Index targetIndex;
-    private final Set<Mod> mods;
+    private final ObservableList<Mod> mods;
 
     /**
      * Constructs a command that adds a set of mods to the person
@@ -28,7 +29,7 @@ public class ModAddCommand extends ModCommand {
      * @param index The index of the person to add to.
      * @param mods The set of mods to add to.
      */
-    public ModAddCommand(Index index, Set<Mod> mods) {
+    public ModAddCommand(Index index, ObservableList<Mod> mods) {
         requireNonNull(index);
         requireNonNull(mods);
 
@@ -54,7 +55,6 @@ public class ModAddCommand extends ModCommand {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         personToEdit.addMods(mods);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
     }
 

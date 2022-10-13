@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -104,7 +106,7 @@ public class EditCommand extends Command {
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         GitHub updatedGitHub = editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Mod> mods = personToEdit.getMods();
+        ObservableList<Mod> mods = personToEdit.getMods();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub, updatedTags, mods);
     }
@@ -138,7 +140,7 @@ public class EditCommand extends Command {
         private Telegram handle;
         private GitHub username;
         private Set<Tag> tags;
-        private Set<Mod> mods;
+        private ObservableList<Mod> mods;
 
         public EditPersonDescriptor() {}
 
@@ -223,8 +225,8 @@ public class EditCommand extends Command {
          * Sets {@code mods} to this object's {@code mods}.
          * A defensive copy of {@code mods} is used internally.
          */
-        public void setMods(Set<Mod> tags) {
-            this.mods = (mods != null) ? new HashSet<>(mods) : null;
+        public void setMods(ObservableList<Mod> tags) {
+            this.mods = (mods != null) ? FXCollections.observableArrayList(mods) : null;
         }
 
         /**
@@ -232,8 +234,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code mods} is null.
          */
-        public Optional<Set<Mod>> getMods() {
-            return (mods != null) ? Optional.of(Collections.unmodifiableSet(mods)) : Optional.empty();
+        public Optional<ObservableList<Mod>> getMods() {
+            return (mods != null) ? Optional.of(FXCollections.unmodifiableObservableList(mods)) : Optional.empty();
         }
 
         @Override

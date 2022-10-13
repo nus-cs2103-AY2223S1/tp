@@ -7,12 +7,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Collections;
-import java.util.HashSet;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -38,7 +36,7 @@ public class ModAddCommandTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ModAddCommand(null, new HashSet<>()));
+        assertThrows(NullPointerException.class, () -> new ModAddCommand(null, FXCollections.observableArrayList()));
     }
 
     @Test
@@ -56,7 +54,7 @@ public class ModAddCommandTest {
         // execute ModAddCommand on the test person
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         ModAddCommand commandToExceute = new ModAddCommand(indexLastPerson,
-                Collections.singleton(VALID_MOD_CS2101));
+                FXCollections.singletonObservableList(VALID_MOD_CS2101));
         CommandResult commandResult = commandToExceute.execute(model);
         // get the edited person from ModAddCommand
         Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
@@ -73,7 +71,8 @@ public class ModAddCommandTest {
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() throws CommandException {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        ModAddCommand invalidCommand = new ModAddCommand(indexOutOfBounds, Collections.singleton(VALID_MOD_CS2100));
+        ModAddCommand invalidCommand = new ModAddCommand(indexOutOfBounds,
+                FXCollections.singletonObservableList(VALID_MOD_CS2100));
         assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 

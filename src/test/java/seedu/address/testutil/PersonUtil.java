@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Mod;
@@ -66,7 +67,7 @@ public class PersonUtil {
             }
         }
         if (descriptor.getMods().isPresent()) {
-            Set<Mod> mods = descriptor.getMods().get();
+            ObservableList<Mod> mods = descriptor.getMods().get();
             if (mods.isEmpty()) {
                 sb.append(PREFIX_MOD);
             } else {

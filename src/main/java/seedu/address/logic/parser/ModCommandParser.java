@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
@@ -65,7 +66,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         String trimmedArgs = args.trim();
         String indexFromCommand = getIndexFromCommand(trimmedArgs);
         Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
-        Optional<Set<Mod>> mods = parseMods(modsFromCommand);
+        Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
         if (mods.isEmpty()) {
             throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
         }
@@ -85,7 +86,7 @@ public class ModCommandParser implements Parser<ModCommand> {
      * @return A set of mods.
      * @throws ParseException When mod names are of incorrect format.
      */
-    private Optional<Set<Mod>> parseMods(Collection<String> mods) throws ParseException {
+    private Optional<ObservableList<Mod>> parseMods(Collection<String> mods) throws ParseException {
         assert mods != null;
 
         if (mods.isEmpty()) {
