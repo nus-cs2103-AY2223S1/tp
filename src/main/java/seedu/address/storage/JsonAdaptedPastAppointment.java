@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.PastAppointment;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Medication;
 
 /**
@@ -63,7 +62,8 @@ public class JsonAdaptedPastAppointment {
         if (pastAppointmentDate == null) {
             throw new IllegalValueException(String.format(APPT_MISSING_FIELD_MESSAGE_FORMAT, "date"));
         }
-        final LocalDate modelPastAppointmentDate = LocalDate.parse(pastAppointmentDate, DateTimeFormatter.ofPattern("ddMMyy"));
+        final LocalDate modelPastAppointmentDate = LocalDate.parse(pastAppointmentDate,
+                DateTimeFormatter.ofPattern("ddMMyy"));
         if (pastAppointmentMedication == null) {
             throw new IllegalValueException(String.format(APPT_MISSING_FIELD_MESSAGE_FORMAT,
                     Medication.class.getSimpleName()));
