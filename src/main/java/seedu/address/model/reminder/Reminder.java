@@ -1,18 +1,18 @@
 package seedu.address.model.reminder;
 
-import java.util.Objects;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reminder {
-    
+
     // Identity fields
     private final ReminderName name;
-    
+
     //Data fields
     private final ReminderDeadline deadline;
     private final ReminderDescription details;
@@ -71,9 +71,8 @@ public class Reminder {
                 .append(getDeadline())
                 .append("; Details: ")
                 .append(getDetails());
-        
+
         return builder.toString();
     }
 
-    
 }
