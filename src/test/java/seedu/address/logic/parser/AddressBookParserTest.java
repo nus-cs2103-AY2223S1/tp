@@ -7,10 +7,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.AddBuyerCommand;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -28,10 +32,6 @@ import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.TypicalBuyers;
 import seedu.address.testutil.TypicalPersonCategories;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AddressBookParserTest {
 
