@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 
 /**
- * Adds a person to the address book.
+ * Adds a property to the address book.
  */
 public class AddPropertyCommand extends Command {
 
@@ -50,11 +50,11 @@ public class AddPropertyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // if (model.hasProperty(toAdd)) {
-        //     throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
-        // }
+        if (model.hasProperty(property)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        }
 
-        // model.addProperty(toAdd);
+        model.addProperty(property);
         return new CommandResult(String.format(MESSAGE_SUCCESS, property));
     }
 

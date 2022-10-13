@@ -20,27 +20,31 @@ import seedu.address.model.property.Property;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final PersonBook personBook;
+    private final PropertyBook propertyBook;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Property> filteredProperties;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given personBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyPersonBook personModel, ReadOnlyPropertyBook propertyModel,
+                        ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(personModel, propertyModel, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with person model: " + personModel + " and property model: " + propertyModel
+                + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.personBook = new PersonBook(personModel);
+        this.propertyBook = new PropertyBook(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredProperties = new FilteredList<>(this.addressBook.getPropertyList());
+        filteredPersons = new FilteredList<>(this.personBook.getPersonList());
+        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new PersonBook(), new PropertyBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -68,54 +72,60 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPersonModelFilePath() {
+        return userPrefs.getPersonBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setPersonModelFilePath(Path personModelFilePath) {
+        requireNonNull(personModelFilePath);
+        userPrefs.setPersonBookFilePath(personModelFilePath);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public Path getPropertyModelFilePath() {
+        return userPrefs.getPropertyBookFilePath();
+    }
+
+    @Override
+    public void setPropertyModelFilePath(Path propertyModelFilePath) {
+        requireNonNull(propertyModelFilePath);
+        userPrefs.setPropertyBookFilePath(propertyModelFilePath);
+    }
+
+    //=========== PersonBook ================================================================================
+
+    @Override
+    public void setPersonModel(ReadOnlyPersonBook personModel) {
+        this.personBook.resetData(personModel);
+    }
+
+    @Override
+    public ReadOnlyPersonBook getPersonModel() {
+        return personBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return personBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void deleteProperty(Property target) {
-        addressBook.removeProperty(target);
+        personBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        personBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
+        personBook.setPerson(target, editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -130,14 +140,55 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Property> getFilteredPropertyList() {
-        return filteredProperties;
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== PropertyBook ================================================================================
+
+    @Override
+    public void setPropertyModel(ReadOnlyPropertyBook propertyModel) {
+        this.propertyBook.resetData(propertyModel);
+    }
+
+    @Override
+    public ReadOnlyPropertyBook getPropertyModel() {
+        return propertyBook;
+    }
+
+    @Override
+    public boolean hasProperty(Property property) {
+        requireNonNull(property);
+        return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public void deleteProperty(Property target) {
+        propertyBook.removeProperty(target);
+    }
+
+    @Override
+    public void addProperty(Property property) {
+        propertyBook.addProperty(property);
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+    }
+
+    @Override
+    public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
+        propertyBook.setProperty(target, editedProperty);
+    }
+
+    //=========== Filtered Property List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
+     * {@code PropertyBook}
+     */
+    @Override
+    public ObservableList<Property> getFilteredPropertyList() {
+        return filteredProperties;
     }
 
     @Override
@@ -160,8 +211,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
+
+        return userPrefs.equals(other.userPrefs)
+                && personBook.equals(other.personBook)
+                && propertyBook.equals(other.propertyBook)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredProperties.equals(other.filteredProperties);
     }
