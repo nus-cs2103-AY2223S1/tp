@@ -11,15 +11,15 @@ import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Finds and lists all persons and their appointments in address book whose name contains any of the argument keywords.
+ * Hides all persons and their appointments in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterPatientsCommand extends Command {
+public class HidePatientsCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "hide";
     public static final String DESCRIPTOR_WORD = "patients";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose names or tags contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Hides all persons whose names or tags contain any of "
             + "the specified keywords (case-insensitive) and displays them and their appointments as 2 lists with "
             + "index numbers. Also able to filter by dates and \n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
@@ -27,7 +27,7 @@ public class FilterPatientsCommand extends Command {
 
     private Predicate<Person> predicate;
 
-    public FilterPatientsCommand(Predicate<Person> predicate) {
+    public HidePatientsCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
@@ -51,7 +51,7 @@ public class FilterPatientsCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterPatientsCommand // instanceof handles nulls
-                && predicate.equals(((FilterPatientsCommand) other).predicate)); // state check
+                || (other instanceof HidePatientsCommand // instanceof handles nulls
+                && predicate.equals(((HidePatientsCommand) other).predicate)); // state check
     }
 }

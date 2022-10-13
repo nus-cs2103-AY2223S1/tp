@@ -29,7 +29,7 @@ import seedu.address.model.person.TagContainsKeywordsPredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FilterPatientsCommandTest {
+public class HidePatientsCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -40,31 +40,31 @@ public class FilterPatientsCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FilterPatientsCommand filterFirstCommand = new FilterPatientsCommand(firstPredicate);
-        FilterPatientsCommand filterSecondCommand = new FilterPatientsCommand(secondPredicate);
+        HidePatientsCommand hideFirstCommand = new HidePatientsCommand(firstPredicate);
+        HidePatientsCommand hideSecondCommand = new HidePatientsCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(filterFirstCommand.equals(filterFirstCommand));
+        assertTrue(hideFirstCommand.equals(hideFirstCommand));
 
         // same values -> returns true
-        FilterPatientsCommand filterFirstCommandCopy = new FilterPatientsCommand(firstPredicate);
-        assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
+        HidePatientsCommand hideFirstCommandCopy = new HidePatientsCommand(firstPredicate);
+        assertTrue(hideFirstCommand.equals(hideFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(filterFirstCommand.equals(1));
+        assertFalse(hideFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(filterFirstCommand.equals(null));
+        assertFalse(hideFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(filterFirstCommand.equals(filterSecondCommand));
+        assertFalse(hideFirstCommand.equals(hideSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 0, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FilterPatientsCommand command = new FilterPatientsCommand(predicate);
+        HidePatientsCommand command = new HidePatientsCommand(predicate);
 
         expectedModel.updateFilteredPersonList(predicate);
         List<Person> validPersons = expectedModel.getFilteredPersonList();
@@ -80,7 +80,7 @@ public class FilterPatientsCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 4, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz Benson");
-        FilterPatientsCommand command = new FilterPatientsCommand(predicate);
+        HidePatientsCommand command = new HidePatientsCommand(predicate);
 
         expectedModel.updateFilteredPersonList(predicate);
         List<Person> validPersons = expectedModel.getFilteredPersonList();
@@ -103,7 +103,7 @@ public class FilterPatientsCommandTest {
     public void execute_filterByTag_success() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 3, 1);
         Predicate<Person> predicate = new TagContainsKeywordsPredicate("friends");
-        FilterPatientsCommand command = new FilterPatientsCommand(predicate);
+        HidePatientsCommand command = new HidePatientsCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         List<Person> validPersons = expectedModel.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
