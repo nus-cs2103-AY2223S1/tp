@@ -160,7 +160,8 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags, currentAppointments);
+        IncomeLevel income = personToEdit.getIncome();
+        Person newPerson = new Person(name, phone, email, address, income, tags, currentAppointments);
         return newPerson;
     }
 
@@ -178,6 +179,7 @@ public class EditPersonDescriptor {
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
         IncomeLevel income = personToEdit.getIncome();
+        Set<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
         Person newPerson = new Person(name, phone, email, address, income, tags, newAppointmentsOnly);
 
         return newPerson;
