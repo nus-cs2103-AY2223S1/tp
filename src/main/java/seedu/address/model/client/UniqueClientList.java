@@ -88,6 +88,23 @@ public class UniqueClientList implements Iterable<Client> {
         return Client.EmptyClient.EMPTY_CLIENT;
     }
 
+    /**
+     * Generates an object id based on the current highest object id
+     */
+    public static int generateId() {
+        if (internalList.size() == 0) {
+            return 1;
+        } else {
+            int count = 0;
+            for (Client i: internalList) {
+                if (i.getClientId().getIdInt() > count) {
+                    count = i.getClientId().getIdInt();
+                }
+            }
+            return count + 1;
+        }
+    }
+
     public void setClients(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

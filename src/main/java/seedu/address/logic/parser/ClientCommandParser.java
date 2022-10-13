@@ -1,15 +1,31 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.client.AddClientCommand;
 import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Name;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.project.Project;
 
 /**
  * Parser to parse any commands related to Client
@@ -46,12 +62,41 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      *
-     * @param args string of arguments
+     * @param arguments string of arguments
      * @return an AddClientCommand object
      * @throws ParseException if the user input does not conform the expected format
      */
-    private AddClientCommand parseAddClientCommand(String args) throws ParseException {
-        return null;
+    private AddClientCommand parseAddClientCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_PHONE,
+                        PREFIX_CLIENT_EMAIL, PREFIX_PROJECT_ID);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROJECT_ID)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
+        }
+
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+
+        ClientPhone phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+        }
+
+        ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        }
+
+        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        List<Project> projectList = new ArrayList<>();
+        projectList.add(project);
+        ClientId clientId = new ClientId(UniqueClientList.generateId());
+
+        Client client = new Client(name, phone, email, projectList, clientId);
+
+        return new AddClientCommand(client);
     }
 
     // TODO: revise syntax
@@ -75,12 +120,18 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      * and returns a DeleteCommand object for execution.
      * From original AB3 code
      *
-     * @param args string of arguments
+     * @param arguments string of arguments
      * @return return statement
      * @throws ParseException if the user input does not conform the expected format
      */
-    private DeleteClientCommand parseDeleteClientCommand(String args) throws ParseException {
-        return null;
+    private DeleteClientCommand parseDeleteClientCommand(String arguments) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(arguments);
+            return new DeleteClientCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     private ListClientCommand parseListClientCommand(String args) throws ParseException {
