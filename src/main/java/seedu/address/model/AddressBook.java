@@ -20,10 +20,6 @@ import seedu.address.model.project.UniqueProjectList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private int projectCount = 1;
-    private int clientCount = 1;
-    private int issueCount = 1;
-
     private final UniquePersonList persons;
     private final UniqueProjectList projects;
     private final UniqueIssueList issues;
@@ -274,30 +270,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return clients.asUnmodifiableObservableList();
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public String getProjectCount() {
-        return String.valueOf(this.projectCount);
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String getIssueCount() {
-        return String.valueOf(this.issueCount);
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String getClientCount() {
-        return String.valueOf(this.clientCount);
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -309,16 +281,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         // TODO: Check for appropriate hashcode
         return clients.hashCode();
-    }
-
-    public void setCounts(String clientCount, String projectCount, String issueCount) {
-        try {
-            this.clientCount = Integer.parseInt(clientCount);
-            this.projectCount = Integer.parseInt(projectCount);
-            this.issueCount = Integer.parseInt(issueCount);
-        } catch (NumberFormatException e) {
-            // TODO: Show logger that no previous counts recorded
-            return;
-        }
     }
 }

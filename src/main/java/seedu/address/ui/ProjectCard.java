@@ -50,7 +50,7 @@ public class ProjectCard extends UiPart<Region> {
                 : project.getRepository().getRepositoryUrl());
         deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"
                 : project.getDeadline().getFormattedDeadline());
-        client.setText(project.getClient().isEmpty() ? "No Client Set" : project.getClient().toString());
+        client.setText(project.getClient().isEmpty() ? "No Client Set" : project.getClient().uiRepresentation());
         issueCount.setText("Issue Count: " + project.getIssueList().size());
 
     }
