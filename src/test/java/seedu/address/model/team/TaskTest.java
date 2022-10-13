@@ -38,6 +38,6 @@ public class TaskTest {
 
     @Test
     public void valid_toString_equalNames() {
-        assertEquals("task", TASK_1.toString());
+        assertEquals("task (Not assigned to any member yet)", TASK_1.toString());
     }
 }

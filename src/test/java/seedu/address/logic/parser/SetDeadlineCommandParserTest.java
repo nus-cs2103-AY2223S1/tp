@@ -16,7 +16,7 @@ class SetDeadlineCommandParserTest {
     @Test
     public void parse_validArgs_returnsSetDeadlineCommand() {
         assertParseSuccess(parser, " 1 2022-12-25 23:59", new SetDeadlineCommand(0,
-                LocalDateTime.parse("2022-12-25 23:59")));
+                LocalDateTime.parse("2022-12-25T23:59")));
     }
 
     @Test

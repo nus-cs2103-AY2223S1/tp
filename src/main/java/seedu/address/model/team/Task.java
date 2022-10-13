@@ -106,7 +106,7 @@ public class Task {
             || (other instanceof Task // instanceof handles nulls
             && name.equals(((Task) other).name))
                 && assignees.equals(((Task) other).assignees)
-                && deadline.equals(((Task) other).deadline); // state check
+                && this.getDeadline().equals(((Task) other).getDeadline()); // state check
     }
 
     @Override
