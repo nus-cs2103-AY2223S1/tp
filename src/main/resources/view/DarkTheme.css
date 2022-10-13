@@ -99,33 +99,43 @@
     -fx-padding: 0 0 0 0;
 }
 
+/* Sets the colour for each of the entry shown to #AB8C6B (Lighter shade of brown)
+if it is even, for e.g. the customers in the 0th, 2nd, 4th,... positions are set to this colour. */
 .list-cell:filled:even {
     -fx-background-color: #AB8C6B;
 }
 
+/* Sets the colour for each of the entry shown to #81684D (Darker shade of brown)
+if it is even, for e.g. the customers in the 1st, 3rd, 5th,... positions are set to this colour. */
 .list-cell:filled:odd {
     -fx-background-color: #81684D;
 }
 
+/* Sets the colour shown for when we select(mouse click) each of the customer entry on the GUI */
 .list-cell:filled:selected {
     -fx-background-color: #6C6053;
 }
 
+/* Sets the colour & width of the border of the selection frame when we select(mouse click)
+each of the customer entry on the GUI */
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #4D3D3D;
     -fx-border-width: 1;
 }
 
+/* Sets the font-colour of the Customer's details shown in each row */
 .list-cell .label {
     -fx-text-fill: white;
 }
 
+/* Sets the font formatting for the big labels (aka the NAME formatting of each customer) */
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
+/* Sets the font formatting for the small labels (aka the PHONE NUMBER, EMAIL, REWARDS, ... of each customer) */
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
@@ -143,6 +153,7 @@
      -fx-border-top-width: 1px;
 }
 
+/* Sets styling for the box containing the result-display */
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
@@ -154,10 +165,12 @@
     -fx-text-fill: black !important;
 }
 
+/* Sets the bottom status bar to #4D3D3D (Dark Reddish-Brown) colour */
 .status-bar {
     -fx-background-color: #4D3D3D;
 }
 
+/* Sets the CSS elements of the status bar */
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
@@ -185,18 +198,22 @@
     -fx-background-color: derive(#EDE0D4, 30%);
 }
 
+/* Sets the colour of the menu item after drop down to #4D3D3D (a lighter shade of dark reddish-brown) */
 .context-menu {
     -fx-background-color: derive(#4D3D3D, 50%);
+    -fx-highlight-fill: red;
 }
 
 .context-menu .label {
     -fx-text-fill: white;
 }
 
+/* Sets the top menu-bar (with File & Help) to #DDB892 (Burlywood) colour */
 .menu-bar {
     -fx-background-color: #DDB892;
 }
 
+/* Sets the CSS elements within the menu-bar */
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
@@ -206,6 +223,16 @@
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+/* Sets the hovering colour of the menu buttons for File & Help */
+.menu:hover {
+    -fx-background-color: #B08968;
+}
+
+/* Sets the hovering colour of the menu items within each menu button */
+.menu-item:hover {
+    -fx-background-color: derive(#4D3D3D, 20%);
 }
 
 /*
@@ -282,10 +309,12 @@
     -fx-text-fill: white;
 }
 
+/* Sets the background of the scroll bar to #EDE0D4 (very light shade of orange/whitish-beige) colour */
 .scroll-bar {
     -fx-background-color: derive(#EDE0D4, 20%);
 }
 
+/* Sets the scroll bar to #4D3D3D (Dark reddish-brown but lighter shade 50%) colour */
 .scroll-bar .thumb {
     -fx-background-color: derive(#4D3D3D, 50%);
     -fx-background-insets: 3;
@@ -308,11 +337,13 @@
     -fx-padding: 8 1 8 1;
 }
 
+/* CSS elements for the placeholder containing the command box */
 #commandBoxPlaceholder {
     -fx-background-color: #e6ccb2;
     -fx-border-radius: 10;
 }
 
+/* Sets every card (aka a rectangle box containing customer data in each row) to have a transparent background */
 #cardPane {
     -fx-background-color: transparent;
 }
@@ -322,6 +353,7 @@
     -fx-text-fill: #F70D1A;
 }
 
+/* CSS styling for the Command Field */
 #commandTextField {
     -fx-background-color: #ddb892;
     -fx-background-insets: 0;
@@ -340,20 +372,25 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+/* Sets the background of the result display to #4D3D3D (Dark reddish-brown) colour */
 #resultDisplay .content {
     -fx-background-color: #4D3D3D;
 }
 
+/* CSS styling for the frame surrounding the result display box */
 #resultDisplayPlaceholder {
     -fx-background-color: #e6ccb2;
     -fx-border-radius: 10;
 }
 
+/* CSS styling for the gap between each tags that the customer has, where hgap is (horizontal gap)
+and vgap is (vertical gap) */
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
+/* CSS styling (Colour of text, font size, background colour, etc) for labels */
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
