@@ -93,20 +93,6 @@ public class JsonUtilTest {
         assertEquals(test.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
     }
 
-//    @Test
-//    public void jsonUtil_readFromOtherFiles() {
-//        Path path = Paths.get(TestUtil.SANDBOX_FOLDER.toString(), "noFile.txt");
-//        Optional<SerializableTestClass> serializableTestClass = null;
-//        try {
-//            serializableTestClass = JsonUtil.readJsonFile(path, SerializableTestClass.class);
-//        } catch (DataConversionException e) {
-//            return;
-//        }
-//        if (serializableTestClass != null) {
-//            fail();
-//        }
-//    }
-
     @Test
     public void jsonUtil_readFromNotExistFiles() {
         Path path = Paths.get(TestUtil.SANDBOX_FOLDER.toString(), "hahahahha");
