@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonWithNewAppointment;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointments;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -18,20 +18,19 @@ import seedu.address.model.person.Person;
  * Adds appointment(s) for a particular client.
  */
 public class AddAppointmentCommand extends Command {
-    public static final String COMMAND_WORD = "addappt";
+    public static final String COMMAND_WORD = "aa";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Schedules an appointment with a specific client "
-            + "by the index number used in the displayed person list"
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add appointment/s with a specific client "
+            + "by the index number used in the displayed person list \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE AND TIME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + "21-Jan-2023 12:30 PM ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled "
-            + "an appointment at this timing for this client";
-    public static final String FIELD_NOT_INCLUDED = "At least one field must be provided.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled this "
+                                                                + "appointment for the client";
+    public static final String MESSAGE_DATE_FIELD_NOT_INCLUDED = "Date field must be provided.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -61,7 +60,8 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonWithNewAppointment(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPersonByAddingAppointments(personToEdit, editPersonDescriptor);
+
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);

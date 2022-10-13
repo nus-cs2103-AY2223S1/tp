@@ -32,7 +32,7 @@ public class AppointmentTest {
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
         Appointment newAppointment = new Appointment(new DateTimeStub());
-        Assertions.assertEquals("Appointment at 1-Apr-2023 12:30 PM", newAppointment.toString());
+        Assertions.assertEquals("1-Apr-2023 12:30 PM", newAppointment.toString());
     }
 
     @Test
