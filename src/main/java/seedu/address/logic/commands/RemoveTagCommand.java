@@ -20,6 +20,7 @@ import seedu.address.model.tag.Tag;
 public class RemoveTagCommand extends TagCommandGroup {
 
     public static final String COMMAND_SPECIFIER = "remove";
+    public static final String COMMAND_SPECIFIER_ALIAS = "r";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Remove tags of the person identified "

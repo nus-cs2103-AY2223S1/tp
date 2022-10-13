@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD_ALIAS = "f";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Filters for contacts with the specified name and tags (both case-insensitive) \n"

@@ -16,6 +16,7 @@ import seedu.address.model.tag.Tag;
 public class CreateTagCommand extends TagCommandGroup {
 
     public static final String COMMAND_SPECIFIER = "create";
+    public static final String COMMAND_SPECIFIER_ALIAS = "c";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates tags with the names given. "
