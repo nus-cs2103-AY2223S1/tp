@@ -3,10 +3,15 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -17,6 +22,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -25,6 +32,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String CONTACT_COMMAND_IDENTIFIER = " c";
+    public static final String MODULE_COMMAND_IDENTIFIER = " m";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -37,6 +47,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
+    public static final String VALID_MODULE_CODE_CS2100 = "CS2100";
+    public static final String VALID_LECTURE_DETAILS_CS2103T = "Every friday";
+    public static final String VALID_LECTURE_DETAILS_CS2100 = "Every tuesday";
+    public static final String VALID_TUTORIAL_DETAILS_CS2103T = "Every wednesday";
+    public static final String VALID_TUTORIAL_DETAILS_CS2100 = "Every friday";
+    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
+    public static final String VALID_ZOOM_LINK_CS2100 = "https://nus-sg.zoom.us/CS2100";
+    public static final String VALID_ASSIGNMENT_DETAILS_HARD = "hard";
+    public static final String VALID_ASSIGNMENT_DETAILS_NORMAL = "normal";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -48,11 +69,29 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String MODULE_CODE_CS2103T = " " + PREFIX_MODULE + VALID_MODULE_CODE_CS2103T;
+    public static final String MODULE_CODE_CS2100 = " " + PREFIX_MODULE + VALID_MODULE_CODE_CS2100;
+    public static final String LECTURE_DETAILS_CS2103T = " " + PREFIX_LECTURE + VALID_LECTURE_DETAILS_CS2103T;
+    public static final String LECTURE_DETAILS_CS2100 = " " + PREFIX_LECTURE + VALID_LECTURE_DETAILS_CS2100;
+    public static final String TUTORIAL_DETAILS_CS2103T = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_DETAILS_CS2103T;
+    public static final String TUTORIAL_DETAILS_CS2100 = " " + PREFIX_TUTORIAL + VALID_TUTORIAL_DETAILS_CS2100;
+    public static final String ZOOM_LINK_CS2103T = " " + PREFIX_ZOOM + VALID_ZOOM_LINK_CS2103T;
+    public static final String ZOOM_LINK_CS2100 = " " + PREFIX_ZOOM + VALID_ZOOM_LINK_CS2100;
+    public static final String ASSIGNMENT_DETAILS_HARD = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_HARD;
+    public static final String ASSIGNMENT_DETAILS_NORMAL = " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DETAILS_NORMAL;
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // only alphanumerics allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // only alphanumerics allowed in tags
+
+    //TODO to update invalid module details after parsing updated
+    public static final String INVALID_MODULE_CODE = " " + PREFIX_MODULE + "CS2103T%"; // only alphanumerics allowed
+    public static final String INVALID_LECTURE_DETAILS = " " + PREFIX_LECTURE + " "; //empty string not allowed
+    public static final String INVALID_TUTORIAL_DETAILS = " " + PREFIX_TUTORIAL + " "; //empty string not allowed
+    public static final String INVALID_ZOOM_LINK = " " + PREFIX_ZOOM + "zoom.com"; // TODO add reason
+    public static final String INVALID_ASSIGNMENT_DETAILS = " " + PREFIX_ASSIGNMENT + "hard&"; // only alphanumerics
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -62,11 +101,11 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -75,7 +114,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -90,7 +129,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -111,6 +150,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -123,6 +163,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getModuleCode().moduleCode.split("\\s+");
+        model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredModuleList().size());
     }
 
 }

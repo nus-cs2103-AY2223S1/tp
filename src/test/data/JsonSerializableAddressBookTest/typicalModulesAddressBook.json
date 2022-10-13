@@ -1,0 +1,10 @@
+{
+  "_comment": "AddressBook save file which contains the same Module values as in TypicalModules#getTypicalAddressBook()",
+  "modules" : [ {
+    "lectureDetails" : "Every Friday",
+    "moduleCode" : "CS2103T",
+    "tutorialDetails" : "Every wednesday 12-1",
+    "zoomLink" : "SOME ZOOM LINK",
+    "assignmentDetails" : ["difficult", "weekly"]
+  } ]
+}

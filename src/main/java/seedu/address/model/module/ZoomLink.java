@@ -17,8 +17,9 @@ public class ZoomLink {
     /*
      * Checks for whether the input by the user is a valid Url.
      */
-    public static final String VALIDATION_REGEX = "\"^https?:\\\\/\\\\/(?:www\\\\.)?[-a-zA-Z0-9@:%._\\\\+~#=]{1,256}"
-            + "\\\\.[a-zA-Z0-9()]{1,6}\\\\b(?:[-a-zA-Z0-9()@:%_\\\\+.~#?&\\\\/=]*)$\"";
+    public static final String VALIDATION_REGEX =
+            "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]"
+                    + "{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
 
     public final String zoomLink;
 

@@ -9,6 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.assignmentdetails.AssignmentDetails;
+import seedu.address.model.module.LectureDetails;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.TutorialDetails;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -25,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -120,5 +126,92 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String module} into a {@code Module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
+     */
+    public static ModuleCode parseModuleCode(String module) throws ParseException {
+        requireNonNull(module);
+        String trimmedModule = module.trim();
+        if (!ModuleCode.isValidModuleCode(trimmedModule)) {
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleCode(trimmedModule);
+    }
+
+    /**
+     * Parses a {@code String lecture} into a {@code Lecture}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lecture} is invalid.
+     */
+    public static LectureDetails parseLectureDetails(String lecture) throws ParseException {
+        requireNonNull(lecture);
+        String trimmedLecture = lecture.trim();
+        if (!LectureDetails.areValidLectureDetails(trimmedLecture)) {
+            throw new ParseException(LectureDetails.MESSAGE_CONSTRAINTS);
+        }
+        return new LectureDetails(trimmedLecture);
+    }
+
+    /**
+     * Parses a {@code String tutorial} into a {@code Tutorial}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutorial} is invalid.
+     */
+    public static TutorialDetails parseTutorialDetails(String tutorial) throws ParseException {
+        requireNonNull(tutorial);
+        String trimmedTutorial = tutorial.trim();
+        if (!TutorialDetails.areValidTutorialDetails(trimmedTutorial)) {
+            throw new ParseException(TutorialDetails.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialDetails(trimmedTutorial);
+    }
+
+    /**
+     * Parses a {@code String module} into a {@code Module}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module} is invalid.
+     */
+    public static ZoomLink parseZoomLink(String zoom) throws ParseException {
+        requireNonNull(zoom);
+        String trimmedZoom = zoom.trim();
+        if (!ZoomLink.isValidUrl(trimmedZoom)) {
+            throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
+        }
+        return new ZoomLink(trimmedZoom);
+    }
+
+    /**
+     * Parses a {@code String assignment} into a {@code Assignment}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code assignment} is invalid.
+     */
+    public static AssignmentDetails parseAssignmentDetail(String assignment) throws ParseException {
+        requireNonNull(assignment);
+        String trimmedAssignment = assignment.trim();
+        if (!AssignmentDetails.areValidAssignmentDetails(trimmedAssignment)) {
+            throw new ParseException(AssignmentDetails.MESSAGE_CONSTRAINTS);
+        }
+        return new AssignmentDetails(trimmedAssignment);
+    }
+
+    /**
+     * Parses {@code Collection<String> assignment} into a {@code Set<Assignment>}.
+     */
+    public static Set<AssignmentDetails> parseAssignmentDetails(Collection<String> assignment) throws ParseException {
+        requireNonNull(assignment);
+        final Set<AssignmentDetails> assignmentSet = new HashSet<>();
+        for (String assignmentName : assignment) {
+            assignmentSet.add(parseAssignmentDetail(assignmentName));
+        }
+        return assignmentSet;
     }
 }

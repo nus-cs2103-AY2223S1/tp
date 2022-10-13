@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleCode {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Module Codes should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -45,8 +46,8 @@ public class ModuleCode {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof ModuleCode
-                && moduleCode.equals(((ModuleCode) other).moduleCode));
+            || (other instanceof ModuleCode
+            && moduleCode.equals(((ModuleCode) other).moduleCode));
     }
 
     @Override
