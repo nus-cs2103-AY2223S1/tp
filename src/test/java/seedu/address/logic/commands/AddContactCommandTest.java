@@ -153,7 +153,7 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void addT(Task task) {
+        public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -36,6 +37,17 @@ public class TaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(task);
+    }
+
+    /**
+     * Deletes a Task from the TaskList.
+     * @param toRemove The Task to be added.
+     */
+    public void remove(Task toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new TaskNotFoundException();
+        }
     }
 
     /**

@@ -156,11 +156,16 @@ public class ModelManager implements Model {
                 && filteredTags.equals(other.filteredTags);
     }
 
-    //=========== TaskList ======================================================================
+    //=========== TaskList =================================================================================
 
     @Override
-    public void addT(Task task) {
+    public void addTask(Task task) {
         addressBook.addTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        addressBook.removeTask(target);
     }
 
     @Override
