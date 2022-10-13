@@ -17,9 +17,11 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Inventory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInventory;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskList;
@@ -84,6 +86,8 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialTasks;
+        Optional<ReadOnlyInventory> inventoryOptional;
+        ReadOnlyInventory initialInventory;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -98,17 +102,26 @@ public class MainApp extends Application {
             }
             // TODO: SampleDataUtil::getSampleTaskList
             initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+
+            inventoryOptional = storage.readInventory();
+            if (!inventoryOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Inventory");
+                FileUtil.createIfMissing(Path.of("data\\inventory.json"));
+            }
+            initialInventory = inventoryOptional.orElseGet(SampleDataUtil::getSampleInventory);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialTasks = new TaskList();
+            initialInventory = new Inventory();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialTasks = new TaskList();
+            initialInventory = new Inventory();
         }
 
-        return new ModelManager(initialData, userPrefs, initialTasks);
+        return new ModelManager(initialData, userPrefs, initialTasks,initialInventory);
     }
 
     private void initLogging(Config config) {

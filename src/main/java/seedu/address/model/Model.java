@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.supplyItem.SupplyItem;
 import seedu.address.model.task.Task;
 
 /**
@@ -18,6 +19,9 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<SupplyItem> PREDICATE_SHOW_ALL_SUPPLYITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -60,6 +64,9 @@ public interface Model {
     /** Returns the TaskList */
     ReadOnlyTaskList getTaskList();
 
+    /** Returns the Inventory */
+    ReadOnlyInventory getInventory();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -82,21 +89,43 @@ public interface Model {
      */
     void addTask(Task task);
 
+
+    /**
+     * Adds a new item to inventory
+     */
+    void addItem(SupplyItem item);
+
     /**
      * Return true if there is duplicated task in the taskList
      */
     boolean hasTask(Task task);
 
     /**
+     * Return true if there is duplicated item in the inventory
+     */
+    boolean hasItem(SupplyItem item);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code task} must exist in the task list.
      */
     void setTask(Task task, Index targetIndex);
+    /**
+     * Replaces the given item {@code target} with {@code editedItem}.
+     * {@code task} must exist in the task list.
+     */
+    void setItem(SupplyItem item, Index targetIndex);
+
 
     /**
      * Deletes the task at the specified {@code Index}.
      */
     void deleteTask(Index index);
+
+    /**
+     * Deletes the item at the specified {@code Index}.
+     */
+    void deleteItem(Index index);
 
     /**
      * Adds the given person.
@@ -117,6 +146,10 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
+
+    /** Returns an unmodifiable view of the filtered inventory */
+    ObservableList<SupplyItem> getFilteredInventory();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -128,4 +161,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered inventory to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredInventory(Predicate<SupplyItem> predicate);
 }

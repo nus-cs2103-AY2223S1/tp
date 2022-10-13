@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
+import seedu.address.model.supplyItem.SupplyItem;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,13 +25,16 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final TaskList taskList;
+    private final Inventory inventory;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<SupplyItem> filteredInventory;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList,
+                        ReadOnlyInventory inventory) {
         requireAllNonNull(addressBook, userPrefs, taskList);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs
@@ -39,12 +43,15 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.taskList = new TaskList(taskList);
+        this.inventory = new Inventory(inventory);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        filteredInventory = new FilteredList<>(this.inventory.getInventory());
+
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new TaskList());
+        this(new AddressBook(), new UserPrefs(), new TaskList(), new Inventory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -108,6 +115,33 @@ public class ModelManager implements Model {
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
+    //=========== Inventory ===================================================================================
+    @Override
+    public void addItem(SupplyItem item) {
+        inventory.addItem(item);
+        updateFilteredInventory(PREDICATE_SHOW_ALL_SUPPLYITEMS);
+    }
+
+    @Override
+    public boolean hasItem(SupplyItem item) {
+        return inventory.hasItem(item);
+    }
+
+    @Override
+    public void setItem(SupplyItem item, Index targetIndex) {
+        inventory.setItem(item, targetIndex);
+    }
+
+    @Override
+    public void deleteItem(Index index) {
+        inventory.deleteItem(index);
+    }
+
+    @Override
+    public ReadOnlyInventory getInventory() {
+        return inventory;
+    }
+
 
     //=========== AddressBook ================================================================================
 
@@ -179,6 +213,17 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+    //=========== Filtered Inventory Accessors =============================================================
+    @Override
+    public ObservableList<SupplyItem> getFilteredInventory() {
+        return filteredInventory;
+    }
+
+    @Override
+    public void updateFilteredInventory(Predicate<SupplyItem> predicate) {
+        requireNonNull(predicate);
+        filteredInventory.setPredicate(predicate);
     }
 
     @Override
