@@ -30,7 +30,7 @@ public abstract class Contact {
      * @param value Name or information for the contact
      * @return the Contact
      */
-    public static Contact New(ContactType type, String value) {
+    public static Contact of(ContactType type, String value) {
         switch (type) {
         case TELEGRAM:
             return new Telegram(value);
