@@ -97,8 +97,8 @@ public class Team {
     }
 
     /**
-     * Removes {@code Person} from this {@code Team}.
-     * {@code person} must exist in the address book.
+     * Removes {@code Task} from this {@code Team}.
+     * {@code task} must exist in the address book.
      */
     public void removeTask(Task task) {
         taskList.remove(task);
