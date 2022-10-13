@@ -12,6 +12,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.DistinctTaskList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Wraps all data at the address-book level
@@ -141,6 +142,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireAllNonNull(target, editedTask);
 
         tasks.setTask(target, editedTask);
+    }
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     *
+     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
+     * in the list (other than {@code target}).
+     */
+    public void replaceTask(Task target, Task editedTask) throws DuplicateTaskException {
+        requireAllNonNull(target, editedTask);
+
+        tasks.replaceTask(target, editedTask);
     }
 
     public void setTasks(List<Task> tasks) {

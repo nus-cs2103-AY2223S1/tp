@@ -76,6 +76,26 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     *
+     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
+     * in the list (other than {@code target}).
+     */
+    public void replaceTask(Task target, Task editedTask) throws DuplicateTaskException {
+        requireAllNonNull(target, editedTask);
+
+        int index = taskList.indexOf(target);
+        if (index == -1) {
+            throw new TaskNotFoundException();
+        }
+        if (contains(editedTask) && !editedTask.isSameTask(target)) {
+            throw new DuplicateTaskException();
+        }
+        taskList.set(index, editedTask);
+    }
+
+    /**
      * Removes the equivalent task from the tasklist.
      * The task must exist in the list.
      */
