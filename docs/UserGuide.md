@@ -120,7 +120,7 @@ Find profiles whose names contain any of the given keywords.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `profile -f John` returns `john` and `John Doe`
+* `profile -f Jane` returns `jane` and `Jane Doe`
 * `profile -f alex david john` returns `Alex Yeoh`, `David Li`, `Johnny Smith`<br>
   ![result for 'profile -f alex david john'](images/findAlexDavidJohnResult.png)
 
