@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
 
 public class AssignTaskCommandParserTest {
@@ -32,7 +33,12 @@ public class AssignTaskCommandParserTest {
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
-        // no group tag
+        // invalid group
+        assertParseFailure(parser, " " + "Alex Yeoh" + " "
+                        + PREFIX_GROUP + " " + " " + PREFIX_TASK + "Task",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupName.MESSAGE_CONSTRAINTS));
+
+        // no group prefix
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + "Group" + " " + PREFIX_TASK + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
@@ -40,7 +46,12 @@ public class AssignTaskCommandParserTest {
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
-        // no task tag
+        // invalid task
+        assertParseFailure(parser, " " + "Alex Yeoh" + " "
+                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + " ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Assignment.MESSAGE_CONSTRAINTS));
+
+        // no task prefix
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " " + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
     }

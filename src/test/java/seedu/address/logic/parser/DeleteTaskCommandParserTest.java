@@ -9,6 +9,7 @@ import static seedu.address.model.person.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Name;
@@ -32,6 +33,10 @@ public class DeleteTaskCommandParserTest {
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
 
+        // no group prefix
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + "Group" + " " + PREFIX_TASK + "Task",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+
         // no group tag
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + "Group" + " " + PREFIX_TASK + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
@@ -40,9 +45,14 @@ public class DeleteTaskCommandParserTest {
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
 
+        // no task prefix
+        assertParseFailure(parser, " " + "Alex Yeoh" + " "
+                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + " ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Assignment.MESSAGE_CONSTRAINTS));
+
         // no task tag
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " " + "Task",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));;
     }
 
     @Test

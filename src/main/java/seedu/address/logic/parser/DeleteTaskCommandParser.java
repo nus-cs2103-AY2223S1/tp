@@ -46,8 +46,8 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             inputName = ParserUtil.parseName(name);
             inputGroup = ParserUtil.parseGroupName(group);
             inputTask = ParserUtil.parseAssignment(task);
-        } catch (NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), e);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }
 
         return new DeleteTaskCommand(inputName, group, inputTask);
