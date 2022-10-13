@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPropertyAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.showPropertyAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyModel;
 
@@ -31,7 +31,7 @@ public class ListPropertiesCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPropertyAtIndex(model, INDEX_FIRST_PERSON);
+        showPropertyAtIndex(model, INDEX_FIRST_ITEM);
         assertCommandSuccess(new ListPropertiesCommand(), model, ListPropertiesCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

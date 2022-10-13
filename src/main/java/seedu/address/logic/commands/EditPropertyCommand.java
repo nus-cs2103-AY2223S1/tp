@@ -76,30 +76,30 @@ public class EditPropertyCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
-        Property PropertyToEdit = lastShownList.get(index.getZeroBased());
-        Property editedProperty = createEditedProperty(PropertyToEdit, editPropertyDescriptor);
+        Property propertyToEdit = lastShownList.get(index.getZeroBased());
+        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
 
-        if (!PropertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
+        if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        model.setProperty(PropertyToEdit, editedProperty);
+        model.setProperty(propertyToEdit, editedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
         return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty));
     }
 
     /**
      * Creates and returns a {@code Property} with the details of {@code propertyToEdit}
-     * edited with {@code editPropertyDescriptor}.
+     * edited with {@code descriptor}.
      */
-    private static Property createEditedProperty(Property propertyToEdit, EditPropertyDescriptor editPropertyDescriptor) {
+    private static Property createEditedProperty(Property propertyToEdit, EditPropertyDescriptor descriptor) {
         assert propertyToEdit != null;
 
-        PropertyName updatedPropertyName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
-        Price updatedPrice = editPropertyDescriptor.getPrice().orElse(propertyToEdit.getPrice());
-        Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
-        Description updatedDescription = editPropertyDescriptor.getDescription().orElse(propertyToEdit.getDescription());
-        Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+        PropertyName updatedPropertyName = descriptor.getName().orElse(propertyToEdit.getName());
+        Price updatedPrice = descriptor.getPrice().orElse(propertyToEdit.getPrice());
+        Address updatedAddress = descriptor.getAddress().orElse(propertyToEdit.getAddress());
+        Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
+        Set<Tag> updatedTags = descriptor.getTags().orElse(propertyToEdit.getTags());
 
         return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription, updatedTags);
     }
@@ -155,7 +155,7 @@ public class EditPropertyCommand extends Command {
         }
 
         public void setName(PropertyName propertyName) {
-            this.name =  propertyName;
+            this.name = propertyName;
         }
 
         public Optional<PropertyName> getName() {

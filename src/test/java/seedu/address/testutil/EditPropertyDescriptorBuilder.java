@@ -12,6 +12,9 @@ import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A utility class to help with building EditPropertyDescriptor objects.
+ */
 public class EditPropertyDescriptorBuilder {
 
     private EditPropertyDescriptor descriptor;
