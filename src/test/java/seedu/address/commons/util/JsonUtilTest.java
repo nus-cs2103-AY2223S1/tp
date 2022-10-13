@@ -96,12 +96,15 @@ public class JsonUtilTest {
     @Test
     public void jsonUtil_readFromOtherFiles() {
         Path path = Paths.get(TestUtil.SANDBOX_FOLDER.toString(), "noFile.txt");
+        Optional<SerializableTestClass> serializableTestClass = null;
         try {
-            JsonUtil.readJsonFile(path, SerializableTestClass.class);
+            serializableTestClass = JsonUtil.readJsonFile(path, SerializableTestClass.class);
         } catch (DataConversionException e) {
             return;
         }
-        fail();
+        if (serializableTestClass != null) {
+            fail();
+        }
     }
 
     @Test
