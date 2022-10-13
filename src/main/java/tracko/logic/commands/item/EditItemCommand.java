@@ -63,23 +63,23 @@ public class EditItemCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-         requireNonNull(model);
-         ObservableList<Item> lastShownList = model.getInventoryList();
+        requireNonNull(model);
+        ObservableList<Item> lastShownList = model.getInventoryList();
 
-         if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
-         }
+        }
 
-         Item itemToEdit = lastShownList.get(index.getZeroBased());
-         Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+        Item itemToEdit = lastShownList.get(index.getZeroBased());
+        Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
 
-         if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
+        if (!itemToEdit.isSameItem(editedItem) && model.hasItem(editedItem)) {
             throw new CommandException(MESSAGE_DUPLICATE_ITEM);
-         }
+        }
 
-         model.setItem(itemToEdit, editedItem);
-         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
-         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+        model.setItem(itemToEdit, editedItem);
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
+        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
     /**

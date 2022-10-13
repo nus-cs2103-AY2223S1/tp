@@ -48,10 +48,12 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
             editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getValue(CliSyntax.PREFIX_ITEM).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_QUANTITY).isPresent()) {
-            editItemDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(CliSyntax.PREFIX_QUANTITY).get()));
+            editItemDescriptor.setQuantity(ParserUtil
+                    .parseQuantity(argMultimap.getValue(CliSyntax.PREFIX_QUANTITY).get()));
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).isPresent()) {
-            editItemDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get()));
+            editItemDescriptor.setDescription(ParserUtil
+                    .parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
