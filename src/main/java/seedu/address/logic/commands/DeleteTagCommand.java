@@ -63,7 +63,7 @@ public class DeleteTagCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        editPersonDescriptor.setOldTagTypeMap(toDelete);
+        editPersonDescriptor.setNewTagTypeMap(toDelete);
 
         try {
             Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
@@ -88,7 +88,7 @@ public class DeleteTagCommand extends Command {
         assert personToEdit != null;
         UniqueTagTypeMap updatedTags = new UniqueTagTypeMap();
         updatedTags.setTagTypeMap(personToEdit.getTags());
-        updatedTags.removeTags(editPersonDescriptor.getOldTagTypeMap().get());
+        updatedTags.removeTags(editPersonDescriptor.getNewTagTypeMap().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote());
