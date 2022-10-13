@@ -151,11 +151,11 @@ Example:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 - `delete ra/Chinese re/christian` Deletes all surveyees that are Chinese and Christian.
 
-### Duplicate a person : `duplicate`
+### Clone a person : `clone`
 
 Clones a specified person in the app.
 
-Format: `duplicate INDEX`
+Format: `clone INDEX`
 
 - Clones the person at the specified `INDEX`.
 - The index refers to the index number shown in the displayed person list.
@@ -163,7 +163,7 @@ Format: `duplicate INDEX`
 
 Examples:
 
-- Use `find Alex` to list all the persons whose name contains Alex, followed by `duplicate 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
+* Use `find Alex` to list all the persons whose name contains Alex, followed by `clone 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
 
 ### Viewing a person: `view`
 
@@ -183,37 +183,7 @@ view g/female ra/chinese re/christian
 > Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
 ```
 
-### Duplicate a person : `duplicate`
 
-Clones a specified person from the app.
-
-Format: `duplicate INDEX`
-
-- Clones the person at the specified `INDEX`.
-- The index refers to the index number shown in the displayed person list.
-- The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-- Use `find Alex` to list all the persons whose name contains Alex, followed by `duplicate 1` to clone the first person in the result and finally use edit command to edit the data of the cloned person.
-
-### Viewing a person: `view`
-
-Views the attributes of all surveyees with some specified attributes.
-
-Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Fields must be non-empty.
-</div>
-
-Examples:
-
-```
-view g/female ra/chinese re/christian
-> Index: 15 Jane Doe 91234567 jane_doe@example.com, …
-> Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
-```
 
 ### Clearing all entries : `clear`
 
