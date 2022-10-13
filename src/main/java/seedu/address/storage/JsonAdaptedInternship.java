@@ -61,7 +61,7 @@ class JsonAdaptedInternship {
         position = source.getPosition().positionName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        status = source.getStatus().status;
+        status = source.getStatus().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

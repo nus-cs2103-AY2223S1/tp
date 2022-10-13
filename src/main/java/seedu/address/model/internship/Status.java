@@ -18,7 +18,7 @@ public class Status {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String status;
+    public final String value;
 
     /**
      * Constructs an {@code Status}.
@@ -30,16 +30,16 @@ public class Status {
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
         switch (status.toUpperCase()) {
         case "OFFERED":
-            this.status = "Offered";
+            this.value = "Offered";
             break;
         case "PROGRESS":
-            this.status = "Progress";
+            this.value = "Progress";
             break;
         case "REJECTED":
-            this.status = "Rejected";
+            this.value = "Rejected";
             break;
         default:
-            this.status = "Progress";
+            this.value = "Progress";
         }
     }
 
@@ -55,18 +55,18 @@ public class Status {
 
     @Override
     public String toString() {
-        return status;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Status // instanceof handles nulls
-                && status.equals(((Status) other).status)); // state check
+                && value.equals(((Status) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return status.hashCode();
+        return value.hashCode();
     }
 }
