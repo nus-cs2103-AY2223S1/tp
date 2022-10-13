@@ -22,6 +22,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -161,6 +163,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getModuleCode().moduleCode.split("\\s+");
+        model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredModuleList().size());
     }
 
 }
