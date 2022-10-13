@@ -1,14 +1,17 @@
 package seedu.address.logic.commands.getcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.GetCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Finds and lists all persons in checkUp whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class GetNameCommand extends GetCommand {
 
     public static final String NAME_PREFIX = "/n";

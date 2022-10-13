@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.getcommands.GetFloorNumberCommand.FLOOR_NUMBER_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetHospitalWingCommand.HOSPITAL_WING_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetInpatientCommand.INPATIENT_PREFIX;
+import static seedu.address.logic.commands.getcommands.GetNameCommand.NAME_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetOutpatientCommand.OUTPATIENT_PREFIX;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,7 +28,8 @@ public class GetCommand extends Command {
             + COMMAND_WORD + " " + OUTPATIENT_PREFIX + ", "
             + COMMAND_WORD + " " + INPATIENT_PREFIX + ", "
             + COMMAND_WORD + " " + FLOOR_NUMBER_PREFIX + " 3 5 9, "
-            + COMMAND_WORD + " " + HOSPITAL_WING_PREFIX + " south";
+            + COMMAND_WORD + " " + HOSPITAL_WING_PREFIX + " south"
+            + COMMAND_WORD + " " + NAME_PREFIX + " alice bob charlie";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
