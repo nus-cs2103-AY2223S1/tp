@@ -114,7 +114,7 @@ public class CommandTestUtil {
     public static final String INVALID_AMT = " " + PREFIX_AMOUNT + "12.20a "; // 'a' not allowed in amount
     public static final String INVALID_DATE = " " + PREFIX_DATE + "32-32-3232 "; // only valid date strings allowed
     public static final String INVALID_TAG = " " + PREFIX_TAG + "tag* "; // '*' not allowed in tags
-    public static final String INVALID_MONTH = " " + PREFIX_MONTH + "2022-00"; // only valid month and year combinations allowed
+    public static final String INVALID_MONTH = " " + PREFIX_MONTH + "2022-00"; // only valid month and year allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
