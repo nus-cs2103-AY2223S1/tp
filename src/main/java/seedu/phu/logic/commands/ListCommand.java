@@ -17,10 +17,10 @@ public class ListCommand extends Command {
             + "List of internships can be sorted "
             + "specified by the category (case-insensitive) in ascending or descending order "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: [c/CATEGORY] [REVERSE] "
-            + "Examples:\n "
+            + "Parameters: [c/CATEGORY [DESCENDING = false]]\n"
+            + "Examples:\n"
             + COMMAND_WORD + "\n"
-            + COMMAND_WORD + " c/website true \n"
+            + COMMAND_WORD + " c/pr true \n"
             + COMMAND_WORD + " c/p \n";
 
     public static final String MESSAGE_SUCCESS = "Listed all internships";
@@ -32,7 +32,7 @@ public class ListCommand extends Command {
      * Creates a ListCommand
      */
     public ListCommand() {
-        this.category = null;
+        this.category = ComparableCategory.NULL;
         this.descending = false;
     }
 
@@ -54,6 +54,8 @@ public class ListCommand extends Command {
                 model.reverseList();
             }
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        String additionalMessage = (this.category == ComparableCategory.NULL) ? ""
+                : " sorted by " + this.category.toString();
+        return new CommandResult(MESSAGE_SUCCESS + additionalMessage);
     }
 }
