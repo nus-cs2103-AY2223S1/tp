@@ -12,7 +12,7 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -96,7 +96,7 @@ public class TagCommand extends Command {
 
         Name name = eateryToTag.getName();
         Phone phone = eateryToTag.getPhone();
-        Email email = eateryToTag.getEmail();
+        Cuisine email = eateryToTag.getCuisine();
         Location location = eateryToTag.getLocation();
         Set<Tag> tags = new HashSet<>(eateryToTag.getTags()); //hashset supports addAll()
 
