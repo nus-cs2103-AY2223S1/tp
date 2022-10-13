@@ -179,7 +179,7 @@ public class AssignTaskCommandTest {
     @Test
     public void execute_personNotInGroup_throwsCommandExceptionWithInvalidPersonNotInGroupMessage() {
         Person personToAssignTask = model.getPersonWithName(ELLE.getName()).get(0);
-        Person editedPerson = new PersonBuilder(personToAssignTask).withGroups("Alpha")
+        Person editedPerson = new PersonBuilder(personToAssignTask).withGroups(new String[]{"Alpha"})
                 .withAssignments(new String[]{"Alpha"},
                         new String[][]{{"Team Project, Team A"}}).build();
 

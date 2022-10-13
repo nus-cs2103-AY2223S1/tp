@@ -11,8 +11,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
+import static seedu.address.model.person.testutil.TypicalPersons.ALPHA;
+import static seedu.address.model.person.testutil.TypicalPersons.BETA;
 import static seedu.address.model.person.testutil.TypicalPersons.ELLE;
 import static seedu.address.model.person.testutil.TypicalPersons.ORAL_PRESENTATION;
+import static seedu.address.model.person.testutil.TypicalPersons.TEAM_PROJECT;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBookWithGroups;
 
 import org.junit.jupiter.api.Test;
@@ -112,13 +115,15 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_deleteTaskInvalidGroup_throwsCommandExceptionWithInvalidGroupMessage() {
+    public void execute_deleteTaskInvalidGroup_throwsCommandExceptionWithGroupNotFoundMessage() {
         Person personToDeleteTask = model.getPersonWithName(ELLE.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToDeleteTask)
-                .withAssignments(new String[]{"Alpha", "Beta"},
+                .withGroups(new String[]{ORAL_PRESENTATION.getName().toString(),
+                        ALPHA.getName().toString(), BETA.getName().toString()})
+                .withAssignments(new String[]{ALPHA.getName().toString(), BETA.getName().toString()},
                         new String[][]{{"Team Project", "Team A"}, {"Team Beta"}}).build();
 
-        String groupName = ORAL_PRESENTATION.getName().toString();
+        String groupName = "InvalidGroup";
         String assignmentName = "Team A";
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 ELLE.getName(),
@@ -138,6 +143,7 @@ public class DeleteTaskCommandTest {
     public void execute_deleteTaskInvalidTask_throwsCommandExceptionWithInvalidTaskMessage() {
         Person personToDeleteTask = model.getPersonWithName(ELLE.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToDeleteTask)
+                .withGroups(new String[]{"Alpha"})
                 .withAssignments(new String[]{"Alpha", "Beta"},
                         new String[][]{{"Team Project", "Team A"}, {"Team Beta"}}).build();
 
@@ -155,6 +161,52 @@ public class DeleteTaskCommandTest {
 
         assertThrows(CommandException.class,
                 DeleteTaskCommand.MESSAGE_ASSIGNMENT_NOT_FOUND, () -> deleteTaskCommand.execute(model));
+    }
+
+    @Test
+    public void execute_deleteTaskInGroupNoTask_throwsCommandExceptionWithTaskNotFoundMessage() {
+        Person personToDeleteTask = model.getPersonWithName(ELLE.getName()).get(0);
+        Person editedPerson = new PersonBuilder(personToDeleteTask)
+                .withGroups(new String[]{ORAL_PRESENTATION.getName().toString(),
+                ALPHA.getName().toString(), BETA.getName().toString()})
+                .withAssignments(new String[]{"Alpha", "Beta"},
+                        new String[][]{{"Team Project", "Team A"}, {"Team Beta"}}).build();
+
+        String groupName = ORAL_PRESENTATION.getName().toString();
+        String assignmentName = "InvalidTask";
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
+                ELLE.getName(),
+                groupName,
+                new Assignment(assignmentName)
+        );
+
+        model.setPerson(personToDeleteTask, editedPerson);
+
+        assertCommandFailure(deleteTaskCommand, model, DeleteTaskCommand.MESSAGE_ASSIGNMENT_NOT_FOUND);
+
+        assertThrows(CommandException.class,
+                DeleteTaskCommand.MESSAGE_ASSIGNMENT_NOT_FOUND, () -> deleteTaskCommand.execute(model));
+    }
+
+    @Test
+    public void execute_deleteTaskPersonNotInGroup_throwsCommandExceptionWithPersonNotInGroupMessage() {
+        Person personToDeleteTask = model.getPersonWithName(ELLE.getName()).get(0);
+        Person editedPerson = new PersonBuilder(personToDeleteTask).build();
+
+        String groupName = TEAM_PROJECT.getName().toString();
+        String assignmentName = "InvalidTask";
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
+                ELLE.getName(),
+                groupName,
+                new Assignment(assignmentName)
+        );
+
+        model.setPerson(personToDeleteTask, editedPerson);
+
+        assertCommandFailure(deleteTaskCommand, model, DeleteTaskCommand.MESSAGE_INVALID_PERSON_NOT_IN_GROUP);
+
+        assertThrows(CommandException.class,
+                DeleteTaskCommand.MESSAGE_INVALID_PERSON_NOT_IN_GROUP, () -> deleteTaskCommand.execute(model));
     }
 
     @Test

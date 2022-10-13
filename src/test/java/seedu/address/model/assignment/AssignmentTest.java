@@ -1,16 +1,16 @@
 package seedu.address.model.assignment;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
-
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.assignment.exceptions.AssignmentNotFoundException;
+
 public class AssignmentTest {
-    Assignment assignment = new Assignment("Assignment");
-    Assignment assignDifferent = new Assignment("Different");
-    Assignment assignSame = new Assignment("Assignment");
+    private Assignment assignment = new Assignment("Assignment");
+    private Assignment assignDifferent = new Assignment("Different");
+    private Assignment assignSame = new Assignment("Assignment");
 
     @Test
     public void isValidAssignmentTest() {
