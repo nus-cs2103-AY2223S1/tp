@@ -3,10 +3,12 @@
     "company": "Valid Internship",
     "role": "Software Engineer",
     "phone": "9482424",
-    "email": "hans@example.com"
+    "email": "hans@example.com",
+    "stage": "Technical Interview"
   }, {
     "company": "Internship With Missing Role",
     "phone": "9482424",
-    "email": "hans@example.com"
+    "email": "hans@example.com",
+    "stage": "Technical Interview"
   } ]
 }

@@ -5,6 +5,7 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -24,6 +25,7 @@ import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
+import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_STAGE + "STAGE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -98,9 +101,10 @@ public class EditCommand extends Command {
         Role updatedRole = editInternshipDescriptor.getRole().orElse(internshipToEdit.getRole());
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
+        Stage updatedStage = editInternshipDescriptor.getStage().orElse(internshipToEdit.getStage());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedRole, updatedPhone, updatedEmail, updatedTags);
+        return new Internship(updatedCompany, updatedRole, updatedPhone, updatedEmail, updatedStage, updatedTags);
     }
 
     @Override
@@ -130,6 +134,7 @@ public class EditCommand extends Command {
         private Role role;
         private Phone phone;
         private Email email;
+        private Stage stage;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {
@@ -144,6 +149,7 @@ public class EditCommand extends Command {
             setRole(toCopy.role);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setStage(toCopy.stage);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, role, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(company, role, phone, email, stage, tags);
         }
 
         public void setCompany(Company company) {
@@ -184,6 +190,13 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+        public void setStage(Stage stage) {
+            this.stage = stage;
+        }
+
+        public Optional<Stage> getStage() {
+            return Optional.ofNullable(stage);
         }
 
 
@@ -223,6 +236,7 @@ public class EditCommand extends Command {
                     && getRole().equals(e.getRole())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getStage().equals(e.getStage())
                     && getTags().equals(e.getTags());
         }
     }
