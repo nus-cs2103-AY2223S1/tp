@@ -28,10 +28,10 @@ public enum OrderStatus {
     }
 
     /**
-     * Checks whether a string represents one of the constants of this enum.
+     * Checks if an order status is valid.
      *
-     * @param input The string to be checked.
-     * @return True iff the string does represent one constant.
+     * @param input A string indicating the order status.
+     * @return True if the input status is a valid status, false otherwise.
      */
     public static boolean isValidOrderStatus(String input) {
         return Arrays

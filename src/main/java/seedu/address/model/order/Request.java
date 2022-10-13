@@ -31,12 +31,12 @@ public class Request {
     private final Species species;
 
     /**
-     * Constructs a Request object.
+     * Constructs a {@code request}.
      *
-     * @param age The age of the pet desired.
-     * @param color The color of the pet desired.
-     * @param colorPattern The color pattern of the pet desired.
-     * @param species The species wanted.
+     * @param age Age of the pet.
+     * @param color Color of the pet.
+     * @param colorPattern Color pattern of the pet.
+     * @param species Species the pet belongs to.
      */
     public Request(Age age,
                    Color color,
