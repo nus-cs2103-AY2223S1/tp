@@ -28,12 +28,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = trimmedArgs.split("/", 2);
-        if (nameKeywords.length < 2) {
+        if (nameKeywords.length < 2 || nameKeywords[1].length() == 0) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         String[] queries = nameKeywords[1].trim().split("\\s+");
-        System.out.println(queries[0]);
         switch (nameKeywords[0]) {
             case "b":
                 return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
