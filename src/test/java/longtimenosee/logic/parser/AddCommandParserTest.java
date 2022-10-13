@@ -129,12 +129,12 @@ public class AddCommandParserTest {
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND+ BIRTHDAY_DESC_BOB + INCOME_DESC_BOB + RISK_APPETITE_DESC_BOB,
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BIRTHDAY_DESC_BOB + INCOME_DESC_BOB + RISK_APPETITE_DESC_BOB,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND+ BIRTHDAY_DESC_BOB + INCOME_DESC_BOB + RISK_APPETITE_DESC_BOB,
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + BIRTHDAY_DESC_BOB + INCOME_DESC_BOB + RISK_APPETITE_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address

@@ -67,7 +67,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         birthday.setText("Birthday: " + person.getBirthday().toString());
-        income.setText("Income: " + person.getIncome().value);
+        income.setText(person.getIncome().toString());
         riskAppetite.setText("Risk Appetite: " + person.getRiskAppetite().toString());
     }
 
