@@ -114,7 +114,7 @@ public class ParserUtil {
      * Parses a {@code String position} into an {@code Position}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code position} is invalid.
+     * @throws ParseException if the  given {@code position} is invalid.
      */
     public static Position parsePosition(String position) throws ParseException {
         requireNonNull(position);
@@ -124,6 +124,7 @@ public class ParserUtil {
         }
         return new Position(trimmedPosition);
     }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -150,5 +151,14 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static String parseFileName(String filename) throws ParseException {
+        requireNonNull(filename);
+        String trimmedFileName = filename.trim();
+        if (trimmedFileName == "hello"){
+            throw new ParseException("Fail");
+        }
+        return trimmedFileName;
     }
 }

@@ -4,6 +4,7 @@ import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -102,6 +103,14 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void batchAdd(String filename) {
+        Path file = Paths.get("data","coydir.csv");
+
+        String line = "";
+        
     }
 
     @Override

@@ -6,15 +6,7 @@ import static coydir.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import coydir.logic.commands.AddCommand;
-import coydir.logic.commands.ClearCommand;
-import coydir.logic.commands.Command;
-import coydir.logic.commands.DeleteCommand;
-import coydir.logic.commands.EditCommand;
-import coydir.logic.commands.ExitCommand;
-import coydir.logic.commands.FindCommand;
-import coydir.logic.commands.HelpCommand;
-import coydir.logic.commands.ListCommand;
+import coydir.logic.commands.*;
 import coydir.logic.parser.exceptions.ParseException;
 
 /**
@@ -68,6 +60,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case BatchAddCommand.COMMAND_WORD:
+                return new BatchAddCommandParser().parse(arguments);
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
         }
