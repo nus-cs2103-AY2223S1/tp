@@ -13,7 +13,6 @@ public class Status {
 
     public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
 
-
     /*
      * The first character of the status must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -35,12 +34,10 @@ public class Status {
         case "OFFERED":
             this.value = "Offered";
             break;
-        case "PROGRESS":
-            this.value = "Progress";
-            break;
         case "REJECTED":
             this.value = "Rejected";
             break;
+        case "PROGRESS":
         default:
             this.value = "Progress";
         }

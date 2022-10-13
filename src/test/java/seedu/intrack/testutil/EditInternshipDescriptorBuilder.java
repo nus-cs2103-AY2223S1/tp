@@ -11,7 +11,6 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
-import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -38,7 +37,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setPosition(internship.getPosition());
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
-        descriptor.setStatus(internship.getStatus());
+        //descriptor.setStatus(internship.getStatus());
         descriptor.setAddress(internship.getAddress());
         descriptor.setTags(internship.getTags());
     }
@@ -83,13 +82,13 @@ public class EditInternshipDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Status} of the {@code EditInternshipDescriptor} that we are building.
-     */
-    public EditInternshipDescriptorBuilder withStatus(String status) {
-        descriptor.setStatus(new Status(status));
-        return this;
-    }
+    ///**
+    // * Sets the {@code Status} of the {@code EditInternshipDescriptor} that we are building.
+    // */
+    // public EditInternshipDescriptorBuilder withStatus(String status) {
+    // descriptor.setStatus(new Status(status));
+    // return this;
+    // }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditInternshipDescriptor}

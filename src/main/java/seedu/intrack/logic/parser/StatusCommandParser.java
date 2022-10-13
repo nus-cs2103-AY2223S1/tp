@@ -21,42 +21,30 @@ public class StatusCommandParser implements Parser<StatusCommand> {
      */
     public StatusCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        System.out.println("COMMAND IS:" + args);
-        //ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_STATUS);
-        String[] splitedCommand = args.split("\\s+");
+        String[] splitCommand = args.split("\\s+");
 
         Index index;
+
+        if (splitCommand.length != 3) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE));
+        }
+
         try {
-            //commented out parts are for if we wish to use prefix s/ in the future
-            //index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            index = ParserUtil.parseIndex(splitedCommand[1]);
+            index = ParserUtil.parseIndex(splitCommand[1]);
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE), ive);
         }
 
-        //this is the user input
-        //String status = argMultimap.getValue(PREFIX_STATUS).orElse("");
-        String status = splitedCommand[2];
-        String value;
-
-        System.out.println("INDEX IS:" + index);
-        System.out.println("STATUS IS:" + status);
-
-        if (status.equals("r") || status.equals("R")) {
-            value = "Rejected";
-        } else if (status.equals("o") || status.equals("O")) {
-            value = "Offered";
-        } else {
-            value = "Progressing";
-        }
-        System.out.println("VALUE IS:" + value);
-
-        //checks if the status command word is within the constraints set
-        if (!status.equals("p") && !status.equals("P") && !status.equals("o")
-                && !status.equals("O") && !status.equals("r") && !status.equals("R")) {
+        switch (splitCommand[2].toUpperCase()) {
+        case "O":
+            return new StatusCommand(index, new Status("OFFERED"));
+        case "P":
+            return new StatusCommand(index, new Status("PROGRESS"));
+        case "R":
+            return new StatusCommand(index, new Status("REJECTED"));
+        default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     StatusCommand.STATUS_COMMAND_CONSTRAINTS));
         }
-        return new StatusCommand(index, new Status(value));
     }
 }

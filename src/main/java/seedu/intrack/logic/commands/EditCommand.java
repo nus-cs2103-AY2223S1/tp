@@ -6,7 +6,6 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -31,29 +30,30 @@ import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
 /**
- * Edits the details of an existing internship in the internship tracker.
+ * Edits the details of an existing internship in the tracker.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified "
-            + "by the index number used in the displayed internship list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the internship identified by "
+            + "the index number used in the displayed list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "newemail@example.com";
 
-    public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
+    public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited internship: %1$s";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker.";
 
     private final Index index;
@@ -104,7 +104,7 @@ public class EditCommand extends Command {
         Position updatedPosition = editInternshipDescriptor.getPosition().orElse(internshipToEdit.getPosition());
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
-        Status updatedStatus = editInternshipDescriptor.getStatus().orElse(internshipToEdit.getStatus());
+        Status updatedStatus = internshipToEdit.getStatus();
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
@@ -139,7 +139,6 @@ public class EditCommand extends Command {
         private Position position;
         private Phone phone;
         private Email email;
-        private Status status;
         private Address address;
         private Set<Tag> tags;
 
@@ -154,7 +153,6 @@ public class EditCommand extends Command {
             setPosition(toCopy.position);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setStatus(toCopy.status);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -163,7 +161,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, position, phone, email, status, address, tags);
+            return CollectionUtil.isAnyNonNull(name, position, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -196,14 +194,6 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
-        }
-
-        public void setStatus(Status status) {
-            this.status = status;
-        }
-
-        public Optional<Status> getStatus() {
-            return Optional.ofNullable(status);
         }
 
         public void setAddress(Address address) {
@@ -250,9 +240,9 @@ public class EditCommand extends Command {
                     && getPosition().equals(e.getPosition())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getStatus().equals(e.getStatus())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }
+
 }

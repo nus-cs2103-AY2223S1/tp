@@ -9,8 +9,7 @@ import static seedu.intrack.commons.util.AppUtil.checkArgument;
  */
 public class Position {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Positions should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Positions can take any values, and it should not be blank";
 
     /*
      * The first character of the position must not be a whitespace,

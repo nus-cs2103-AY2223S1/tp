@@ -6,7 +6,6 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.intrack.logic.commands.exceptions.CommandException;
@@ -20,26 +19,24 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an internship to the tracker.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_STATUS + "STATUS "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_POSITION + "Software Engineer"
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_STATUS + "p "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Google "
+            + PREFIX_POSITION + "SWE "
+            + PREFIX_PHONE + "65025300002 "
+            + PREFIX_EMAIL + "support@google.com "
+            + PREFIX_ADDRESS + "1600 Amphitheatre Parkway "
+            + PREFIX_TAG + "Urgent";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker";
 
     private final Internship toAdd;
@@ -70,4 +67,5 @@ public class AddCommand extends Command {
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd));
     }
+
 }

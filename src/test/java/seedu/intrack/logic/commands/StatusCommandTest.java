@@ -1,7 +1,7 @@
 package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.intrack.logic.commands.CommandTestUtil.showInternshipAtIndex;
@@ -42,8 +42,7 @@ class StatusCommandTest {
         StatusCommand statusCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP,
                 new Status(editedInternship.getStatus().value));
 
-        String expectedMessage = String.format(statusCommand.MESSAGE_UPDATE_STATUS_SUCCESS,
-                editedInternship);
+        String expectedMessage = String.format(statusCommand.MESSAGE_UPDATE_STATUS_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()),
                 new UserPrefs());
@@ -75,7 +74,7 @@ class StatusCommandTest {
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        StatusCommand statusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_BOB));
+        StatusCommand statusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_MSFT));
 
         assertCommandFailure(statusCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
@@ -91,7 +90,7 @@ class StatusCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInTrack().getInternshipList().size());
 
-        StatusCommand statusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_BOB));
+        StatusCommand statusCommand = new StatusCommand(outOfBoundIndex, new Status(VALID_STATUS_MSFT));
 
         assertCommandFailure(statusCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
