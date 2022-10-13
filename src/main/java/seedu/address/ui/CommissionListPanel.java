@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 
 /**
@@ -29,12 +30,15 @@ public class CommissionListPanel extends UiPart<Region> {
      * Creates a {@code CommissionListPanel} with the given {@code ObservableList}.
      */
     public CommissionListPanel(ObservableValue<FilteredList<Commission>> observableCommissionList,
-                               Consumer<Commission> selectCommission) {
+                               Consumer<Commission> selectCommission,
+                               ObservableObject<Commission> selectedCommission) {
         super(FXML);
         this.updateUI(observableCommissionList.getValue());
         this.selectCommission = selectCommission;
 
         observableCommissionList.addListener((observable, oldValue, newValue) -> this.updateUI(newValue));
+        selectedCommission.addListener(((observable, oldValue, newValue) ->
+                commissionListView.getSelectionModel().select(newValue)));
     }
 
 

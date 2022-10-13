@@ -9,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.customer.Customer;
 
 /**
@@ -25,11 +26,14 @@ public class CustomerListPanel extends UiPart<Region> {
     /**
      * Creates a {@code CustomerListPanel} with the given {@code ObservableList}.
      */
-    public CustomerListPanel(ObservableList<Customer> customerList, Consumer<Customer> selectCustomer) {
+    public CustomerListPanel(ObservableList<Customer> customerList, Consumer<Customer> selectCustomer,
+                             ObservableObject<Customer> selectedCustomer) {
         super(FXML);
         customerListView.setItems(customerList);
         customerListView.setCellFactory(listView -> new CustomerListViewCell());
         this.selectCustomer = selectCustomer;
+        selectedCustomer.addListener((observable, oldValue, newValue) ->
+                customerListView.getSelectionModel().select(newValue));
     }
 
     /**
