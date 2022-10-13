@@ -22,7 +22,7 @@ public class DeleteTaskCommandTest {
     private Model model = new ModelManager(new AddressBook(getTypicalAddressBook()), new UserPrefs());
 
     @Test
-    public void execute_deleteTask_success() {
+    public void execute_deleteTaskSuccess_commandSuccessful() {
         Person personToDeleteTask = model.getPersonWithName(ELLE.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToDeleteTask)
                 .withAssignments(new String[]{"Alpha", "Beta"},
