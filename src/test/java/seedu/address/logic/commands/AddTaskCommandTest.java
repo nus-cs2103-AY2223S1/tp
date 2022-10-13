@@ -1,36 +1,50 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.task.*;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.*;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.task.Description;
+import seedu.address.logic.task.Priority;
+import seedu.address.logic.task.PriorityEnum;
+import seedu.address.logic.task.Task;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.TaskCategoryType;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.TaskList;
+import seedu.address.logic.task.TaskName;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+
+
+
+
 public class AddTaskCommandTest {
-    TaskList testList = new TaskList();
-    TaskName testName = new TaskName("Test");
-    TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
-    Description testDisc = new Description("Test");
-    Priority testPriority = new Priority(PriorityEnum.MEDIUM);
-    TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
-    Person testPerson = new Person(new Name("test"), new Phone("99999999"), new Email("test@gmail.com"),new Address("test"), new HashSet());
-    Task testTask = new Task(testName,testCat,testDisc,testPriority, testDeadline,testPerson,true);
+    private final TaskList testList = new TaskList();
+    private final TaskName testName = new TaskName("Test");
+    private final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private final Description testDisc = new Description("Test");
+    private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
+    private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
+    private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
+            new Email("test@gmail.com"), new Address("test"), new HashSet());
+    private final Task testTask = new Task(testName, testCat, testDisc, testPriority, testDeadline, testPerson, true);
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -47,17 +61,18 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand(testTask);
         ModelStub modelStub = new ModelStubWithTask(testTask);
 
-        assertThrows(CommandException.class, AddTaskCommand.MESSAGE_DUPLICATE_TASK, () -> addTaskCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTaskCommand
+                .MESSAGE_DUPLICATE_TASK, () -> addTaskCommand.execute(modelStub));
     }
 
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -87,12 +102,12 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,6 +166,7 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
+
     private class ModelStubWithTask extends AddTaskCommandTest.ModelStub {
         private final Task task;
 

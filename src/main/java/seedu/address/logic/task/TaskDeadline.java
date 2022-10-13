@@ -1,19 +1,20 @@
 package seedu.address.logic.task;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.task.exceptions.DatePastException;
 
 import java.time.LocalDate;
 
-import seedu.address.logic.task.exceptions.DatePastException;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents the deadline of a task
  */
 public class TaskDeadline {
-    private LocalDate deadline;
+    private final LocalDate deadline;
 
     /**
      * constructor for deadline
+     *
      * @param date
      */
     public TaskDeadline(LocalDate date) {
@@ -42,6 +43,7 @@ public class TaskDeadline {
     public int hashCode() {
         return this.deadline.hashCode();
     }
+
     /**
      * Returns the string representation of the task deadline.
      *

@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -10,16 +13,35 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.task.*;
+import seedu.address.logic.task.Description;
+import seedu.address.logic.task.Priority;
+import seedu.address.logic.task.PriorityEnum;
+import seedu.address.logic.task.Task;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.TaskCategoryType;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.TaskName;
+import seedu.address.logic.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
+
+
 
 /**
  * Contains helper methods for testing commands.
@@ -57,16 +79,16 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    static TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
-    static Description testDisc = new Description("Test");
-    static Priority testPriority = new Priority(PriorityEnum.MEDIUM);
-    static TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
-    static Person testPerson = new Person(new Name("test"), new Phone("99999999"), new Email("test@gmail.com"),new Address("test"), new HashSet());
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditTaskCommand.EditTaskDescriptor DESC_ONE;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TWO;
+    private static TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private static Description testDisc = new Description("Test");
+    private static Priority testPriority = new Priority(PriorityEnum.MEDIUM);
+    private static TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
+    private static Person testPerson = new Person(new Name("test"), new Phone("99999999"),
+            new Email("test@gmail.com"), new Address("test"), new HashSet());
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -76,10 +98,10 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        Task ALICE = new Task(new TaskName("A"),testCat,testDisc,testPriority, testDeadline,testPerson,false);
+        Task a = new Task(new TaskName("A"), testCat, testDisc, testPriority, testDeadline, testPerson, false);
 
-        DESC_ONE = new EditTaskDescriptorBuilder(ALICE).withName("A").build();
-        DESC_TWO = new EditTaskDescriptorBuilder(ALICE).withName("B").build();
+        DESC_ONE = new EditTaskDescriptorBuilder(a).withName("A").build();
+        DESC_TWO = new EditTaskDescriptorBuilder(a).withName("B").build();
 
     }
 
@@ -89,10 +111,11 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(expectedModel.getFilteredTaskList().toString().equals(actualModel.getFilteredTaskList().toString()));
+            System.out.println(expectedModel.getFilteredTaskList().toString()
+                    .equals(actualModel.getFilteredTaskList().toString()));
             System.out.println(expectedModel.getFilteredTaskList().toString());
             System.out.println(actualModel.getFilteredTaskList().toString());
 
@@ -108,7 +131,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -129,6 +152,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -138,11 +162,15 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
     public static void showTaskAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
 

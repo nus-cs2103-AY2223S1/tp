@@ -1,6 +1,23 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_TWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
@@ -13,18 +30,13 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
 
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditTaskCommand.
  */
 public class EditTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
 
     @Test
@@ -47,8 +59,8 @@ public class EditTaskCommandTest {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
-        TaskBuilder TaskInList = new TaskBuilder(lastTask);
-        Task editedTask = TaskInList.withName(VALID_NAME_BOB).withDescription(VALID_PHONE_BOB).build();
+        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Task editedTask = taskInList.withName(VALID_NAME_BOB).withDescription(VALID_PHONE_BOB).build();
 
 
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
@@ -67,8 +79,8 @@ public class EditTaskCommandTest {
     public void execute_filteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
-        Task TaskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(TaskInFilteredList).withName(VALID_NAME_BOB).build();
+        Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_NAME_BOB).build();
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -96,9 +108,9 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         // edit Task in filtered list into a duplicate in address book
-        Task TaskInList = model.getAddressBook().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Task taskInList = model.getAddressBook().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
-                new EditTaskDescriptorBuilder(TaskInList).build());
+                new EditTaskDescriptorBuilder(taskInList).build());
 
         assertCommandFailure(editTaskCommand, model, EditTaskCommand.MESSAGE_DUPLICATE_TASK);
     }
@@ -106,7 +118,8 @@ public class EditTaskCommandTest {
     @Test
     public void execute_invalidTaskIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
+                .withName(VALID_NAME_BOB).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -136,21 +149,21 @@ public class EditTaskCommandTest {
         // same values -> returns true
         EditTaskCommand.EditTaskDescriptor copyDescriptor = new EditTaskCommand.EditTaskDescriptor(DESC_ONE);
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_SECOND_PERSON, DESC_ONE)));
+        assertNotEquals(standardCommand, new EditTaskCommand(INDEX_SECOND_PERSON, DESC_ONE));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditTaskCommand(INDEX_FIRST_PERSON, DESC_TWO)));
+        assertNotEquals(standardCommand, new EditTaskCommand(INDEX_FIRST_PERSON, DESC_TWO));
     }
 }

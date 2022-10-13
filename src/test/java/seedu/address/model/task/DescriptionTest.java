@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.task.Description;
+
+
 
 public class DescriptionTest {
 
@@ -16,14 +19,14 @@ public class DescriptionTest {
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidDescription= "";
+        String invalidDescription = "";
         assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
     }
 
     @Test
     public void isValidTaskDescription() {
-        String invalidDescription= "";
-        String validDescription= "Test";
+        String invalidDescription = "";
+        String validDescription = "Test";
         assertTrue(Description.isValidTaskDescription(validDescription));
         assertFalse(Description.isValidTaskDescription(invalidDescription));
     }

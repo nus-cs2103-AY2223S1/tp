@@ -3,27 +3,33 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.util.HashSet;
 
-import seedu.address.logic.task.*;
+import seedu.address.logic.task.Description;
+import seedu.address.logic.task.Priority;
+import seedu.address.logic.task.PriorityEnum;
+import seedu.address.logic.task.Task;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.TaskCategoryType;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.TaskName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 
+
 /**
  * A utility class to help with building Person objects.
  */
 public class TaskBuilder {
 
-    private final String DEFAULT_NAME = "Test";
-    private final TaskCategoryType DEFAULT_CAT_TYPE =TaskCategoryType.OTHERS;
-    private final String DEFAULT_DESCRIPTION = "Test";
-    private final PriorityEnum DEFAULT_PRIORITY = PriorityEnum.MEDIUM;
-    private final LocalDate DEFAULT_LOCAL_DATE = LocalDate.now();
+    private final String defaultName = "Test";
+    private final TaskCategoryType defaultCatType = TaskCategoryType.OTHERS;
+    private final String defaultDescription = "Test";
+    private final PriorityEnum defaultPriority = PriorityEnum.MEDIUM;
+    private final LocalDate defaultLocalDate = LocalDate.now();
 
-    private final boolean DEFAULT_STATUS = true;
-
-
+    private final boolean defaultStatus = true;
 
 
     private TaskName taskName;
@@ -38,13 +44,14 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        taskName = new TaskName (DEFAULT_NAME);
-        taskCategory = new TaskCategory(3,DEFAULT_CAT_TYPE);
-        taskDescription = new Description(DEFAULT_DESCRIPTION);
-        taskPriority = new Priority(DEFAULT_PRIORITY);
-        taskDeadline = new TaskDeadline(DEFAULT_LOCAL_DATE);
-        taskPerson = new Person(new Name("test"), new Phone("99999999"), new Email("test@gmail.com"),new Address("test"), new HashSet());
-        taskStatus = DEFAULT_STATUS;
+        taskName = new TaskName(defaultName);
+        taskCategory = new TaskCategory(3, defaultCatType);
+        taskDescription = new Description(defaultDescription);
+        taskPriority = new Priority(defaultPriority);
+        taskDeadline = new TaskDeadline(defaultLocalDate);
+        taskPerson = new Person(new Name("test"), new Phone("99999999"),
+                new Email("test@gmail.com"), new Address("test"), new HashSet());
+        taskStatus = defaultStatus;
     }
 
     /**
@@ -108,13 +115,21 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Status} of the {@code Person} that we are building.
+     */
     public TaskBuilder withStatus(boolean status) {
         this.taskStatus = status;
         return this;
     }
 
+    /**
+     * Builds a Task
+     * @return the task to be builtF
+     */
+
     public Task build() {
-        return new Task(taskName,taskCategory,taskDescription,taskPriority, taskDeadline,taskPerson,taskStatus);
+        return new Task(taskName, taskCategory, taskDescription, taskPriority, taskDeadline, taskPerson, taskStatus);
     }
 
 }

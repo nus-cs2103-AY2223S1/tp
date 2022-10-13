@@ -1,14 +1,13 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.task.TaskDeadline;
 import seedu.address.logic.task.exceptions.DatePastException;
-
-import java.time.LocalDate;
 
 public class TaskDeadlineTest {
 

@@ -1,7 +1,12 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.logic.task.*;
+import seedu.address.logic.task.Description;
+import seedu.address.logic.task.Priority;
+import seedu.address.logic.task.Task;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.TaskName;
 import seedu.address.model.person.Person;
 
 /**
@@ -9,7 +14,7 @@ import seedu.address.model.person.Person;
  */
 public class EditTaskDescriptorBuilder {
 
-    private EditTaskDescriptor descriptor;
+    private final EditTaskDescriptor descriptor;
 
     public EditTaskDescriptorBuilder() {
         descriptor = new EditTaskDescriptor();
@@ -78,8 +83,8 @@ public class EditTaskDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditTaskDescriptor}
      * that we are building.
      */
-    public EditTaskDescriptorBuilder withPerson(Person Person) {
-        descriptor.setPerson(Person);
+    public EditTaskDescriptorBuilder withPerson(Person person) {
+        descriptor.setPerson(person);
         return this;
     }
 
