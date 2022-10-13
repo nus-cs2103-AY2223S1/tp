@@ -21,31 +21,42 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.student.Student;
-
+import seedu.address.model.student.TutorialGroup;
 
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalStudents {
-
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
+            .withTutorialGroup("T01")
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
+            .withTutorialGroup("T01")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
+            .withTutorialGroup("T02")
+            .withPhone("95352563")
             .withEmail("heinz@example.com").build();
-    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
+            .withTutorialGroup("T02")
+            .withPhone("87652533")
             .withEmail("cornelia@example.com").withTags("friends").build();
-    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
+            .withTutorialGroup("T03")
+            .withPhone("9482224")
             .withEmail("werner@example.com").build();
-    public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz")
+            .withTutorialGroup("T03")
+            .withPhone("9482427")
             .withEmail("lydia@example.com").build();
-    public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
+    public static final Student GEORGE = new StudentBuilder().withName("George Best")
+            .withTutorialGroup("T04")
+            .withPhone("9482442")
             .withEmail("anna@example.com").build();
 
     // Manually added
@@ -79,13 +90,17 @@ public class TypicalStudents {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Student student : getTypicalPersons()) {
+        for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }
+        ab.addTutorialGroup(new TutorialGroup("T01"));
+        ab.addTutorialGroup(new TutorialGroup("T02"));
+        ab.addTutorialGroup(new TutorialGroup("T03"));
+
         return ab;
     }
 
-    public static List<Student> getTypicalPersons() {
+    public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

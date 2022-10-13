@@ -139,6 +139,7 @@ public class ModelManager implements Model {
         updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIAL_GROUPS);
     }
 
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

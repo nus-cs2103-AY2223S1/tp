@@ -107,6 +107,10 @@ public class Student {
                 && otherStudent.getTags().equals(getTags());
     }
 
+    public boolean belongsTo(TutorialGroup group) {
+        return group.equals(this.tutorialGroup);
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

@@ -23,6 +23,7 @@ import seedu.address.logic.commands.task.TaskAddCommand;
 import seedu.address.logic.commands.task.TaskEditCommand;
 import seedu.address.logic.commands.tutorialgroup.TutorialGroupAddCommand;
 import seedu.address.logic.commands.tutorialgroup.TutorialGroupDeleteCommand;
+import seedu.address.logic.commands.tutorialgroup.TutorialGroupFilterCommand;
 import seedu.address.logic.commands.tutorialgroup.TutorialGroupListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.student.StudentAddCommandParser;
@@ -101,6 +102,9 @@ public class AddressBookParser {
 
         case TutorialGroupListCommand.COMMAND_WORD:
             return new TutorialGroupListCommand();
+
+        case TutorialGroupFilterCommand.COMMAND_WORD:
+            return new TutorialGroupFilterCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
