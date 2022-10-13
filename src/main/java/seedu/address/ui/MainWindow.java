@@ -34,13 +34,14 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private DetailPanel detailPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private HelpPanel helpPanel;
     private DetailHelpPanel detailHelpPanel;
 
-    private MainPanel currentMainPanel;
-    private Stack<MainPanel> mainPanelHistory = new Stack<>();
+    private MainPanelName currentMainPanel;
+    private Stack<MainPanelName> mainPanelHistory = new Stack<>();
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -120,10 +121,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this::switchPersonDetailPanel);
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this::selectPerson);
 
-        currentMainPanel = personListPanel;
+        currentMainPanel = MainPanelName.List;
         mainPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        detailPanel = new DetailPanel(logic.getSelectedPerson());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -150,22 +153,44 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Switch between different main panels
      *
-     * @param panel to be switched
+     * @param mainPanelName to be switched
      * @param recordHistory flag to indicate whether this action need
      *                      to be stored
      */
-    private void switchMainPanel(MainPanel panel, boolean recordHistory) {
-        if (currentMainPanel == panel) {
+    private void switchMainPanel(MainPanelName mainPanelName, boolean recordHistory) {
+        if (currentMainPanel.equals(mainPanelName)) {
             return;
         }
 
         if (recordHistory) {
+            // Record the current panel before proceed to next panel;
             mainPanelHistory.push(currentMainPanel);
         }
+        currentMainPanel = mainPanelName;
 
-        currentMainPanel = panel;
+        MainPanel panelToSwitch = null;
+        switch (mainPanelName) {
+        case List:
+            panelToSwitch = personListPanel;
+            break;
+        case Help:
+            panelToSwitch = helpPanel;
+            break;
+        case Detail:
+            panelToSwitch = detailPanel;
+            break;
+        case DetailHelp:
+            panelToSwitch = detailHelpPanel;
+            break;
+        default:
+            panelToSwitch = personListPanel;
+            break;
+        }
+
+        assert panelToSwitch != null;
+
         mainPanelPlaceholder.getChildren().clear();
-        mainPanelPlaceholder.getChildren().add(panel.getRoot());
+        mainPanelPlaceholder.getChildren().add(panelToSwitch.getRoot());
     }
 
     /**
@@ -173,10 +198,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (currentMainPanel.getPanelName() == MainPanelName.List) {
-            switchMainPanel(helpPanel, true);
-        } else if (currentMainPanel.getPanelName() == MainPanelName.Detail) {
-            switchMainPanel(detailHelpPanel, true);
+        if (currentMainPanel.equals(MainPanelName.List)) {
+            switchMainPanel(MainPanelName.Help, true);
+        } else if (currentMainPanel.equals(MainPanelName.Detail)) {
+            switchMainPanel(MainPanelName.DetailHelp, true);
         }
     }
 
@@ -209,11 +234,11 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.address.logic.Logic#execute(String)
+     * @see seedu.address.logic.Logic#execute(String, MainPanelName)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText, this.currentMainPanel.getPanelName());
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -237,8 +262,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void switchPersonDetailPanel(Person person) {
-        Person selectedPerson = personListPanel.getSelectedPerson();
-        switchMainPanel(new DetailPanel(selectedPerson), true);
+    private void selectPerson(Person person) {
+        logic.setSelectedPerson(person);
+        switchMainPanel(MainPanelName.Detail, true);
     }
 }
