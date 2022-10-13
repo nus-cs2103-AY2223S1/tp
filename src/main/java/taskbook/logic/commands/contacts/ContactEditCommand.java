@@ -1,4 +1,4 @@
-package taskbook.logic.commands;
+package taskbook.logic.commands.contacts;
 
 import static java.util.Objects.requireNonNull;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -16,6 +16,8 @@ import java.util.Set;
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.commons.util.CollectionUtil;
+import taskbook.logic.commands.Command;
+import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.Model;
 import taskbook.model.person.Address;
@@ -28,7 +30,7 @@ import taskbook.model.tag.Tag;
 /**
  * Edits the details of an existing person in the task book.
  */
-public class EditCommand extends Command {
+public class ContactEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -56,7 +58,7 @@ public class EditCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public ContactEditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -109,12 +111,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof ContactEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        ContactEditCommand e = (ContactEditCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

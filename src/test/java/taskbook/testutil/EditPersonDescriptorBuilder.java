@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import taskbook.logic.commands.EditCommand;
+import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
@@ -17,21 +17,21 @@ import taskbook.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditCommand.EditPersonDescriptor descriptor;
+    private ContactEditCommand.EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new ContactEditCommand.EditPersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditPersonDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditPersonDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(ContactEditCommand.EditPersonDescriptor descriptor) {
+        this.descriptor = new ContactEditCommand.EditPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Person person) {
-        descriptor = new EditCommand.EditPersonDescriptor();
+        descriptor = new ContactEditCommand.EditPersonDescriptor();
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
@@ -81,7 +81,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditPersonDescriptor build() {
+    public ContactEditCommand.EditPersonDescriptor build() {
         return descriptor;
     }
 }
