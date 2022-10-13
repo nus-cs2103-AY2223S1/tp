@@ -90,7 +90,7 @@ public class EditCommand extends Command {
 
     @Override
     public boolean canExecuteAt(MainPanelName name) {
-        return name == MainPanelName.List;
+        return name.equals(MainPanelName.List);
     }
 
     /**
