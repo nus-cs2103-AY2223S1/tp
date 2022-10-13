@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -82,6 +83,12 @@ public interface Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
+
+    void setStudents(List<Student> persons);
+
+    void setTutors(List<Tutor> tutors);
+
+    void setTuitionClasses(List<TuitionClass> tuitionClasses);
 
     /**
      * Returns true if a tuition class with the same identity as {@code tuitionClass}
