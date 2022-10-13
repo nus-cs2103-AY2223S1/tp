@@ -1,11 +1,11 @@
 package nus.climods.logic;
 
-
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 
@@ -23,12 +23,9 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
-
-
     ReadOnlyModuleList getModuleList();
-
     ObservableList<UserModule> getFilteredUserModuleList();
-
+    ObservableList<Module> getFilteredModuleList();
     /**
      * Returns the user prefs' GUI settings.
      */
@@ -38,4 +35,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }

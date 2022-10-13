@@ -27,10 +27,14 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     // Validates user entered module codes at parsing stage.
     public static final Pattern MODULE_CODE_PATTERN = Pattern.compile("[A-Z]{0,3}\\d{4}");
-
+    // Validates user flag, case insensitive
+    public static final Pattern USER_FLAG_PATTERN = Pattern.compile("(?i)--user(?-i)");
+    // Validates faculty code, case insensitive and matches between 2-3 chars
+    public static final Pattern FACULTY_CODE_PATTERN = Pattern.compile("^[A-Za-z]{2,3}$");
+    // TODO: Change this to a less hacky solution
+    public static final String FAULTY_FACULTY_CODE = "zzz";
     /**
      * Returns List of whitespace-delimited arguments given arguments string supplied by the user
-     *
      * @param arguments String supplied by user as arguments after preamble
      * @return List of arguments provided
      */
@@ -74,7 +78,31 @@ public class ParserUtil {
         return Optional.of(input);
     }
 
+    /**
+     * Parse user flag according to user input
+     * @param input Input string from user containing --user. Case insensitive
+     * @return Empty optional if input string does not contain --user, else Optional of --user flag
+     */
+    public static Optional<Boolean> parseUserFlag(String input) {
+        if (!USER_FLAG_PATTERN.matcher(input.trim()).find()) {
+            return Optional.empty();
+        }
+        return Optional.of(Boolean.TRUE);
+    }
 
+    /**
+     * Parse faculty code according to user input
+     * @param input Input string from user containing faculty code
+     * @return
+     */
+    public static Optional<String> parseFacultyCode(String input) {
+        if (input.length() == 0) {
+            return Optional.empty();
+        }
+        input = !FACULTY_CODE_PATTERN.matcher(input.trim()).find() ? FAULTY_FACULTY_CODE : input;
+        return Optional.of(input);
+    }
+    // TODO: Remove addressbook code
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.

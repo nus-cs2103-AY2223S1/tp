@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import nus.climods.logic.commands.Command;
 import nus.climods.logic.parser.exceptions.ParseException;
 
-
 /**
  * Contains helper methods for testing command parsers.
  */
@@ -16,7 +15,7 @@ public class CommandParserTestUtil {
      * equals to {@code expectedCommand}.
      */
     public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
-            Command expectedCommand) {
+        Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);

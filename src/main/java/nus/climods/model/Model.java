@@ -1,9 +1,11 @@
 package nus.climods.model;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 
@@ -71,4 +73,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredUserModuleList(Predicate<UserModule> predicate);
+    void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
+
+    ObservableList<Module> getFilteredModuleList();
+
+    void setFilteredModuleList(Predicate<Module> predicate);
 }

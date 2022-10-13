@@ -128,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() throws ParseException {
         modulesPane = new SplitPane();
-        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getModuleList().getModules());
+        ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -166,6 +166,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            helpWindow.setWindowDefaultSize(logic.getGuiSettings());
         } else {
             helpWindow.focus();
         }

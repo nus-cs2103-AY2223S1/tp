@@ -5,6 +5,7 @@ package nus.climods.logic.parser;
  */
 public class CliSyntax {
 
+    /* Address book prefixes*/
     /* Prefix definitions */
     public static final Prefix PREFIX_CODE = new Prefix("c/");
     public static final Prefix PREFIX_TUTORIAL = new Prefix("t/");
@@ -17,5 +18,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
+
+    /* CLI mods prefixes */
 
 }

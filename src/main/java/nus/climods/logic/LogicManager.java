@@ -11,6 +11,7 @@ import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.CliModsParser;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 import nus.climods.storage.Storage;
@@ -49,6 +50,11 @@ public class LogicManager implements Logic {
 
     public ReadOnlyModuleList getModuleList() {
         return model.getModuleList();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
