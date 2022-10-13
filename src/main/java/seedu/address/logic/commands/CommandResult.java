@@ -58,13 +58,6 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        System.out.println(feedbackToUser);
-        System.out.println(otherCommandResult.feedbackToUser);
-        System.out.println(otherCommandResult.feedbackToUser);
-        System.out.println(this.showHelp);
-        System.out.println(otherCommandResult.showHelp);
-        System.out.println(this.exit);
-        System.out.println(otherCommandResult.exit);
 
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp

@@ -6,8 +6,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -69,6 +69,21 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
+        //        if (tags.length == 0) {
+        //            return this;
+        //        }
+        //        String tagTypeName = tags[0];
+        //        Prefix p = UniqueTagTypeMap.getPrefixFromTagType(tagTypeName);
+        //        TagType tagType;
+        //        try {
+        //            tagType = ParserUtil.parseTagType(tagTypeName, p);
+        //        } catch (ParseException pe) {
+        //            return this;
+        //        }
+        //        for (int i = 1; i < tags.length; i++) {
+        //            Tag tag = new Tag(tags[i]);
+        //            this.tags.mergeTag(tagType, tag);
+        //        }
         this.tags = SampleDataUtil.getTagTypeMap(tags);
         return this;
     }

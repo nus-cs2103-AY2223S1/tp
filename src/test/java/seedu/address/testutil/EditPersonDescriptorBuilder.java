@@ -87,7 +87,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-//        descriptor.setTags(tagSet);
+        //        descriptor.setTags(tagSet);
         return this;
     }
 

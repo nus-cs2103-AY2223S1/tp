@@ -117,6 +117,7 @@ public class EditCommand extends Command {
         original.setTagTypeMap(personToEditTags);
         UniqueTagTypeMap toEdit = editPersonDescriptor.getOldTagTypeMap().get();
         UniqueTagTypeMap editTo = editPersonDescriptor.getNewTagTypeMap().get();
+
         original.removeTags(toEdit);
         original.mergeTagTypeMap(editTo);
         UniqueTagTypeMap updatedTags = original;
@@ -154,8 +155,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private UniqueTagTypeMap oldTagTypeMap;
-        private UniqueTagTypeMap newTagTypeMap;
+        private UniqueTagTypeMap oldTagTypeMap = new UniqueTagTypeMap();
+        private UniqueTagTypeMap newTagTypeMap = new UniqueTagTypeMap();
         private Status status;
         private Note note;
 
@@ -180,7 +181,10 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, newTagTypeMap, status, note);
+            if (!newTagTypeMap.isEmpty() || !oldTagTypeMap.isEmpty()) {
+                return true;
+            }
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note);
         }
 
         public void setName(Name name) {
