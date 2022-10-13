@@ -72,7 +72,6 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessageTitle.setText(HELP_MESSAGE_TITLE);
         helpMessageBody.setText(HELP_MESSAGE_BODY);
-        helpMessageBody.setBackground(Background.fill(Color.rgb(77, 77, 77)));
     }
 
     /**
