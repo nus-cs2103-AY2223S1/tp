@@ -11,6 +11,7 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.UniqueStudentList;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.person.tutor.UniqueTutorList;
+import seedu.address.model.tuitionclass.Name;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.model.tuitionclass.UniqueTuitionClassList;
 
@@ -197,6 +198,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeTuitionClass(TuitionClass key) {
         tuitionClasses.remove(key);
+    }
+
+    /**
+     * Returns the tuition class from the tuition class list if the tuition class name
+     * matches the specified {@code name}.
+     * @return the tuition class that has the same name as the specified {@code name}.
+     */
+    public TuitionClass getTuitionClass(Name name) {
+        return tuitionClasses.getTuitionClass(name);
     }
 
     //// util methods
