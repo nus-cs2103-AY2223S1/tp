@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_HOME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HOME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HOME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_HOME;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_HOME;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_DESCRIPTION_HOME;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_HOME;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_HOME;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public class TypicalProperties {
     /**
      * Returns a {@code PropertyBook} with all the typical properties.
      */
-    public static PropertyBook getTypicalPropertyModel() {
+    public static PropertyBook getTypicalPropertyBook() {
         PropertyBook propertyBook = new PropertyBook();
         for (Property property : getTypicalProperties()) {
             propertyBook.addProperty(property);

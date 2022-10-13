@@ -3,12 +3,12 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESIRED_CHARACTERISTICS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PRICE_RANGE_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.DESIRED_CHARACTERISTICS_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.PRICE_RANGE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -33,7 +33,6 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
-
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
