@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a deliverer to the address book.
  */
-public class AddCommand extends Command {
+public class AddDelivererCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -39,9 +39,9 @@ public class AddCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddDelivererCommand to add the specified {@code Deliverer}
      */
-    public AddCommand(Person person) {
+    public AddDelivererCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -49,19 +49,20 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        //TODO
+        //        if (model.hasPerson(toAdd)) {
+        //            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        //        }
+        //TODO
+        //        model.addPerson(toAdd);
+        //        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return null;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddDelivererCommand // instanceof handles nulls
+                && toAdd.equals(((AddDelivererCommand) other).toAdd));
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonCategory;
 
 public class FindCommandParserTest {
 
@@ -21,14 +22,50 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_emptyArg_throwsParseException2() {
+        assertParseFailure(parser, "Buyer", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindCommandBuyer() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Buyer", "Alice", "Bob")),
+                        PersonCategory.BUYER);
+        assertParseSuccess(parser, "Buyer Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "Buyer \n Alice \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindCommandDeliverer() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Deliverer", "Charlie", "Bob")),
+                        PersonCategory.DELIVERER);
+        assertParseSuccess(parser, "Deliverer Charlie Bob", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "Deliverer \n Charlie \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindCommandSupplier() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
+                        new NameContainsKeywordsPredicate<>(Arrays.asList("Supplier", "Charlie", "Bob")),
+                        PersonCategory.SUPPLIER);
+        assertParseSuccess(parser, "Supplier Charlie Bob", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "Supplier \n Charlie \n \t Bob  \t", expectedFindCommand);
     }
 
 }

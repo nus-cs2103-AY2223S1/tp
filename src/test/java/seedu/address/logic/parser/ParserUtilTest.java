@@ -193,4 +193,10 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    //TODO Uncomment this
+    //    @Test
+    //    public void parseOrder_null_throws() throws Exception {
+    //        assertThrows(NullPointerException.class, "", () -> ParserUtil.parseOrder(null, null));
+    //    }
 }

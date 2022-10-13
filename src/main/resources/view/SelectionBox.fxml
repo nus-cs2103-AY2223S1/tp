@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <Button fx:id="all" mnemonicParsing="false" onAction="#switchToAll" text="All" />
+            <Button fx:id="buyer" mnemonicParsing="false" onAction="#switchToBuyer" text="Buyer" />
+            <Button fx:id="supplier" alignment="CENTER" mnemonicParsing="false" onAction="#switchToSupplier" text="Supplier" />
+            <Button fx:id="deliverer" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#switchToDeliverer" text="Delivery" />
+            <Button fx:id="pet" mnemonicParsing="false" onAction="#switchToPet" text="Pet" />
+            <Button fx:id="order" mnemonicParsing="false" onAction="#switchToOrder" text="Order" />
+         </children>
+      </HBox>
+   </children>
+</StackPane>
