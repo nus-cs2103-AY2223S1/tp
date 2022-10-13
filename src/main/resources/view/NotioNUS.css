@@ -229,6 +229,14 @@
     -fx-background-color: black;
 }
 
+.menu-button:hover {
+     -fx-background-color: -cell-even-selected;
+}
+
+.menu-button:armed {
+    -fx-font-family: "Quicksand Bold";
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -247,12 +255,14 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #CECDCA;
+    -fx-font-family: "Quicksand Bold"
 }
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
   -fx-text-fill: -font-color;
+  -fx-font-family: "Quicksand Bold"
 }
 
 .button:focused {
@@ -270,12 +280,12 @@
 }
 
 .button:default {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: #FFFFFF;
     -fx-text-fill: -font-color;
 }
 
 .button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
+    -fx-background-color: derive(#CECDCA, 30%);
 }
 
 .dialog-pane {
