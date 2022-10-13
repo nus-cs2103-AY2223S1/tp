@@ -27,9 +27,9 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
      * Every field must be non-null.
      */
     public PersonContainsAttributePredicate(List<String> nameList, List<String> phoneList, List<String> emailList,
-                                            List<String> addressList, List<String> genderList, List<String> birthdateList,
-                                            List<String> raceList, List<String> religionList, List<String> surveyList,
-                                            Set<Tag> tagsList) {
+                                        List<String> addressList, List<String> genderList, List<String> birthdateList,
+                                        List<String> raceList, List<String> religionList, List<String> surveyList,
+                                        Set<Tag> tagsList) {
 
         this.nameList = nameList;
         this.phoneList = phoneList;

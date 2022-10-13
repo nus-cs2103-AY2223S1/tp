@@ -70,8 +70,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
     /**
      * Parses the given (possibly empty) {@code attributeStringOptional} of a given prefix.
-     * @return A list of {@code String} of keywords associated to the given prefix.
-     * If no keywords were specified, returns an empty {@code ArrayList)
+     * @return A list of {@code String} of keywords associated to the given prefix and returns
+     * an empty {@code ArrayList) if {@code attributeStringOptional} is empty.
      */
     private static List<String> getKeywordsAsList(Optional<String> attributeStringOptional) {
         return attributeStringOptional
