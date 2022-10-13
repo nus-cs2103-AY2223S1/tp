@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.model.person.CombinedAppointmentPredicate;
@@ -24,7 +25,9 @@ public class PredicateUtil {
      */
     public static CombinedPersonPredicate generateCombinedPersonPredicate(String name, String phone, String email,
                                                                     String address, String tagString) {
-        List<String> tagList = Arrays.asList(tagString.split("\\s+"));
+        List<String> tagList = tagString.isEmpty()
+                ? Collections.emptyList()
+                : Arrays.asList(tagString.split("\\s+"));
         return new CombinedPersonPredicate(name, phone, email, address, tagList);
     }
 
