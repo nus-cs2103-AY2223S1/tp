@@ -81,12 +81,31 @@ you can try:
 
 ## Features
 
+**Before we begin, let us understand the technical terminologies used:**
+
+| Word         | Meaning                                                                                                                                                                                   |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command      | A sentence which the user inputs to                                                                                                                                                       |
+| Command word | The first word of every command.                                                                                                                                                          |
+| Option       | Part of the user input specifying the options for a command, which is preceded by a flag.                                                                                                 |
+| Flag         | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`.                   |
+| Parameter    | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                         |
+| Prefix       | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`. |
+
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* All flags and options must be specified before any prefix or parameter.
+
+* Flags can be in any order.<br>
+  e.g. if the command specifies `-p PATIENT_INDEX -t TASK_INDEX`, `-t TASK_INDEX -p PATIENT_INDEX` is also acceptable.
+
+* There must be a space separating a flag and an option.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -114,21 +133,21 @@ Format: `help`
 ![help message](images/helpMessage.png)
 _Help window displayed after running the `help` command_
 
-### Adding a patient: `addPatient`
+### Adding a patient: `add`
 
 Adds a patient to the patient list.
 
-Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…`
 
 Examples:
-* `addPatient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine [t/Severe]`
-* `addPatient n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm [t/Low Risk]`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine [t/Severe]`
+* `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm [t/Low Risk]`
 
-### Editing a patient’s details : `editPatient`
+### Editing a patient’s details : `edit -p`
 
 Edits an existing patient in the patient list.
 
-Format: `editPatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `edit -p INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 * Edits the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
@@ -140,22 +159,22 @@ Format: `editPatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 
 Example:
 
-* `editPatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-* `editPatient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+* `edit -p 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+* `edit -p 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-### Deleting a patient: `deletePatient`
+### Deleting a patient: `delete -p`
 
 Deletes the specified patient from the patient list.
 
-Format: `deletePatient INDEX`
+Format: `delete -p INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `deletePatient 2` deletes the 2nd patient in the patient book.
-* `find Betsy` followed by `deletePatient 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete -p 2` deletes the 2nd patient in the patient book.
+* `find Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
 
 ### Listing all patients: `list`
 
@@ -181,25 +200,25 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
   _Contact list displayed after running the `find alex david` command_
 
-### Adding a task: `addTask`
+### Adding a task: `add -p`
 
 Adds a task associated with a patient.
 
-Format: `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`
+Format: `add -p PATIENT_INDEX [d/TASK_DESCRIPTION]`
 
 * Adds a task to a patient at the specified `PATIENT_INDEX`.
 * The patient index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `addTask 1 d/Administer 3ml of example medicine` adds a task to the 1st person in the patient list.
-* `find Betsy` followed by `addTask 2 d/Change dressing on left arm` adds a task to the 2nd person in results of the `find` command.
+* `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st person in the patient list.
+* `find Betsy` followed by `add -p 2 d/Change dressing on left arm` adds a task to the 2nd person in results of the `find` command.
 
-### Editing a task: `editTask`
+### Editing a task: `edit -p -t`
 
 Edits the specified task associated with a patient.
 
-Format: `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`
+Format: `edit -p PATIENT_INDEX -t TASK_INDEX [d/TASK_DESCRIPTION]`
 
 * Edits the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
 * The task index refers to the index number shown in the task list of a patient.
@@ -207,14 +226,14 @@ Format: `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `editTask 1 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st person in the patient list.
-* `find Betsy` followed by `editTask 2 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd person in results of the `find` command.
+* `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st person in the patient list.
+* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd person in results of the `find` command.
 
-### Deleting a task: `deleteTask`
+### Deleting a task: `delete -p -t`
 
 Deletes the specified task associated with a patient.
 
-Format: `deleteTask PATIENT_INDEX TASK_INDEX`
+Format: `delete -p PATIENT_INDEX -t TASK_INDEX`
 
 * Deletes the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
 * The task index refers to the index number shown in the task list of a patient.
@@ -222,8 +241,8 @@ Format: `deleteTask PATIENT_INDEX TASK_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `deleteTask 2 3` deletes the 3rd task of the 2nd person in the patient list.
-* `find Betsy` followed by `deleteTask 1 2` deletes the 2nd task of the 1st person in results of the `find` command.
+* `list` followed by `delete -p 2 -t 3` deletes the 3rd task of the 2nd person in the patient list.
+* `find Betsy` followed by `delete -p 1 -t 2` deletes the 2nd task of the 1st person in results of the `find` command.
 
 ### Listing all tasks: `listTask`
 
@@ -235,9 +254,9 @@ Examples:
 
 Suppose the following patients were added.
 
-`addPatient n/John Doe d/Administer 3ml of example medicine`
+`add n/John Doe d/Administer 3ml of example medicine`
 
-`addPatient n/Betsy Crowe d/Change dressing on left arm`
+`add n/Betsy Crowe d/Change dressing on left arm`
 * `listTask` will display:
   * `Administer 3ml of example medicine FOR John Doe`
   * `Change dressing on left arm FOR Betsy Crowe`
@@ -252,9 +271,9 @@ Examples:
 
 Suppose the following patients were added.
 
-`addPatient n/John Doe d/Administer 3ml of example medicine`
+`add n/John Doe d/Administer 3ml of example medicine`
 
-`addPatient n/Betsy Crowe d/Change dressing on left arm`
+`add n/Betsy Crowe d/Change dressing on left arm`
 * `viewTask 1` will display:
   * `Administer 3ml of example medicine`
 * `viewTask 2` will display:
@@ -306,19 +325,19 @@ the data of your previous UniNurse home folder.
 
 ## Command summary
 
-| Action                          | Format                                                                              |
-|---------------------------------|-------------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                              |
-| **Add patient**                 | `addPatient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…` |
-| **Edit patient**                | `editPatient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`        |
-| **Delete patient**              | `deletePatient INDEX`                                                               |
-| **List all patients**           | `list`                                                                              |
-| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                                      |
-| **Add task**                    | `addTask PATIENT_INDEX [d/TASK_DESCRIPTION]`                                        |
-| **Edit task**                   | `editTask PATIENT_INDEX TASK_INDEX [d/TASK_DESCRIPTION]`                            |
-| **Delete task**                 | `deleteTask PATIENT_INDEX TASK_INDEX`                                               |
-| **List all tasks**              | `listTask`                                                                          |
-| **View all tasks of a patient** | `viewTask INDEX`                                                                    |
-| **Clear all patients**          | `clear`                                                                             |
-| **Exit**                        | `exit`                                                                              |
+| Action                          | Format                                                                       |
+|---------------------------------|------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                       |
+| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…` |
+| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`     |
+| **Delete patient**              | `delete -p INDEX`                                                            |
+| **List all patients**           | `list`                                                                       |
+| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                               |
+| **Add task**                    | `add -p PATIENT_INDEX [d/TASK_DESCRIPTION]`                                  |
+| **Edit task**                   | `edit -p PATIENT_INDEX -t TASK_INDEX [d/TASK_DESCRIPTION]`                   |
+| **Delete task**                 | `delete -p PATIENT_INDEX -t TASK_INDEX`                                      |
+| **List all tasks**              | `listTask`                                                                   |
+| **View all tasks of a patient** | `viewTask INDEX`                                                             |
+| **Clear all patients**          | `clear`                                                                      |
+| **Exit**                        | `exit`                                                                       |
 
