@@ -51,12 +51,16 @@ public class TaskList {
         return new TaskList(updatedTasks);
     }
 
-    // TODO: update delete method to return a new TaskList
     /**
-     * Removes the task from the list.
+     * Removes a task from the {@code TaskList}.
+     *
+     * @param index The index of the task to be deleted.
+     * @return The updated {@code TaskList}.
      */
-    public Task delete(int index) {
-        return internalTaskList.remove(index);
+    public TaskList delete(int index) {
+        ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
+        updatedTasks.remove(index);
+        return new TaskList(updatedTasks);
     }
 
     /**

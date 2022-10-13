@@ -63,6 +63,11 @@ public class EditTaskCommand extends EditGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+
+        if (taskIndex.getZeroBased() >= patientToEdit.getTasks().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
+        }
+
         Patient editedPatient = createEditedPatient(patientToEdit, taskIndex, updatedTask);
 
         model.setPerson(patientToEdit, editedPatient);
@@ -71,7 +76,7 @@ public class EditTaskCommand extends EditGenericCommand {
     }
 
     /**
-     * creates an edited person with the updated Task.
+     * Creates an edited person with the updated Task.
      *
      * @param patientToEdit the patient associated with the task to edit.
      * @param indexOfTask the index of the task to be edited.
