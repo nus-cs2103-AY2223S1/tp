@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.Collections;
@@ -33,7 +34,11 @@ public class DeletecCommand extends Command {
 
     private final Set<ModuleClass> moduleClasses;
 
+    /**
+     * Creates a DeletecCommand to delete the given classes.
+     */
     public DeletecCommand(Set<ModuleClass> moduleClasses) {
+        requireAllNonNull(moduleClasses);
         this.moduleClasses = moduleClasses;
     }
 
