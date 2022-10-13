@@ -36,7 +36,7 @@ public class TypicalProperties {
     /**
      * Returns a {@code PropertyBook} with all the typical properties.
      */
-    public static PropertyBook getTypicalPropertyModel() {
+    public static PropertyBook getTypicalPropertyBook() {
         PropertyBook propertyBook = new PropertyBook();
         for (Property property : getTypicalProperties()) {
             propertyBook.addProperty(property);

@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuc
 import static seedu.address.logic.commands.BuyerCommandTestUtil.showPropertyAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyModel;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class ListPropertiesCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), getTypicalPropertyModel(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), getTypicalPropertyBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
     }
 

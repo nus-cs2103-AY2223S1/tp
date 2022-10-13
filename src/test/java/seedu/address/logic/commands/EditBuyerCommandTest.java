@@ -13,7 +13,7 @@ import static seedu.address.logic.commands.BuyerCommandTestUtil.showPersonAtInde
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyModel;
+import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +34,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditBuyerCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalPropertyModel(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalPropertyBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -95,7 +95,7 @@ public class EditBuyerCommandTest {
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_PERSON,
+        EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditBuyerCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
