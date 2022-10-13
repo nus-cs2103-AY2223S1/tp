@@ -1,7 +1,7 @@
 package seedu.address.model.order;
 
 /**
- * A class that represents the final settled price of an order.
+ * Represents the final settled price of an order.
  */
 public class Price implements Comparable<Price> {
 

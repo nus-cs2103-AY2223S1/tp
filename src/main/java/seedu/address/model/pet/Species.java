@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * A class that represents the species (kind) of a pet.
+ * Represents the species (kind) of a pet.
  */
 public class Species {
     private final String species;

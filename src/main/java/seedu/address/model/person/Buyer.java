@@ -9,7 +9,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
 /**
- * A class that represents a buyer that is also a person.
+ * Represents a buyer that is also a person.
  */
 public class Buyer extends Person {
 

@@ -3,7 +3,7 @@ package seedu.address.model.order;
 import java.util.Arrays;
 
 /**
- * An enum that represents that current status of an order.
+ * Represents that current status of an order.
  */
 public enum OrderStatus {
     PENDING("Pending"),

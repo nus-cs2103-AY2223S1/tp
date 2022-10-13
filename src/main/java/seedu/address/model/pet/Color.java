@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 import java.util.Objects;
 
 /**
- * A class that abstracts the color of a pet.
+ * Abstracts the color of a pet.
  */
 public class Color {
     private final String color;
