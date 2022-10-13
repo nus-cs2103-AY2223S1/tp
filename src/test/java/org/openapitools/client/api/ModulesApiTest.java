@@ -11,7 +11,6 @@ import org.openapitools.client.model.Module;
 import org.openapitools.client.model.ModuleCondensed;
 import org.openapitools.client.model.ModuleInformation;
 
-
 /**
  * API tests for ModulesApi
  */
