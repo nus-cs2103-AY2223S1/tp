@@ -85,6 +85,7 @@ public class UniqueScheduleList implements Iterable<Person> {
     public void setPersons(UniqueScheduleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        updateInternalListRef();
     }
 
     /**
@@ -98,6 +99,7 @@ public class UniqueScheduleList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+        updateInternalListRef();
     }
 
     /**
