@@ -82,7 +82,7 @@ public class Field {
     }
 
     public boolean isNameMatch(String test) {
-        return test.toLowerCase().equals(name.toLowerCase());
+        return test.equalsIgnoreCase(name);
     }
 
     public String getValue() {
@@ -108,9 +108,18 @@ public class Field {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Field // instanceof handles nulls
-                && value.equals(((Field) other).value)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof Field) {
+            Field castedOther = (Field) other;
+            if (castedOther.value == null && value == null) {
+                return true;
+            } else if (castedOther.value == null || value == null) {
+                return false;
+            }
+            return name.equalsIgnoreCase(castedOther.name) && value.equals(castedOther.value);
+        }
+        return false;
     }
 
     @Override

@@ -87,7 +87,7 @@ public class FieldPrefixes {
     public void removeField(String fieldName, Model model) throws ParseException {
         Prefix prefix;
         List<Prefix> lst = map.entrySet().stream()
-                .filter(entry -> fieldName.equals(entry.getValue()))
+                .filter(entry -> fieldName.equalsIgnoreCase(entry.getValue()))
                 .map(entry -> entry.getKey())
                 .collect(Collectors.toList());
         if (lst.isEmpty()) {

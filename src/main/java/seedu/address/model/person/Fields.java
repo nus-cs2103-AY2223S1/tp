@@ -61,6 +61,7 @@ public class Fields {
                 fieldsToRemove.add(field);
             }
         }
+
         fields.removeAll(fieldsToRemove);
     }
 
