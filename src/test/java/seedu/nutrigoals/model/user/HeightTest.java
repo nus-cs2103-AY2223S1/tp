@@ -1,5 +1,6 @@
 package seedu.nutrigoals.model.user;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
@@ -19,12 +20,20 @@ public class HeightTest {
     }
 
     @Test
+    public void constructor_emptyConstructorPass() {
+        Height defaultHeight = new Height("0");
+        assertEquals(defaultHeight, new Height());
+    }
+
+    @Test
     public void isValidHeight() {
         assertTrue(Height.isValidHeight("170"));
         assertTrue(Height.isValidHeight("120"));
         assertTrue(Height.isValidHeight("190"));
         assertFalse(Height.isValidHeight("-123"));
         assertFalse(Height.isValidHeight("123456"));
+        assertFalse(Height.isValidHeight("abcdefg"));
+        assertFalse(Height.isValidHeight("1.0"));
     }
 
     @Test

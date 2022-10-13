@@ -1,5 +1,6 @@
 package seedu.nutrigoals.model.user;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
@@ -21,6 +22,12 @@ public class GenderTest {
     }
 
     @Test
+    public void constructor_emptyConstructorPass() {
+        Gender gender = new Gender("m");
+        assertEquals(gender, new Gender());
+    }
+
+    @Test
     public void isValidGender() {
         assertTrue(Gender.isValidGender("M"));
         assertTrue(Gender.isValidGender("m"));
@@ -30,6 +37,8 @@ public class GenderTest {
         assertFalse(Gender.isValidGender("female"));
         assertFalse(Gender.isValidGender("m1"));
         assertFalse(Gender.isValidGender("f3"));
+        assertFalse(Gender.isValidGender(""));
+        assertThrows(NullPointerException.class, () -> Gender.isValidGender(null));
     }
 
     @Test

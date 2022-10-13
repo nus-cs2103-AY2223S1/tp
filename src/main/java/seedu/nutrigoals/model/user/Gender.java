@@ -32,7 +32,7 @@ public class Gender {
      * @return true if specified string is either M, m, F or f
      */
     public static boolean isValidGender(String gender) {
-        return (!gender.isEmpty() && gender.matches(VALIDATION_REGEX));
+        return (gender.matches(VALIDATION_REGEX));
     }
 
     @Override
