@@ -18,11 +18,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
      * and returns a HelpCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public HelpCommand parse(String args) throws ParseException {
+    public HelpCommand parse(String args) {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            return new HelpCommand();
-        }
 
         switch (trimmedArgs) {
 
@@ -42,8 +39,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpMarkCommand();
 
         default:
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            return new HelpCommand();
         }
 
     }
