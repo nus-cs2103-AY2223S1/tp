@@ -96,11 +96,11 @@ Shows a list of all persons in InterNUS.
 
 Format: `list -p`
 
-### Listing all internships : `list -i`
+### Listing all internships : `listi`
 
 Shows a list of all internships in InterNUS.
 
-Format: `list -i`
+Format: `listi`
 
 ### Editing a person or internship : `edit`
 
@@ -131,19 +131,28 @@ Examples:
 - `find -p John` returns **john** and **John Doe**
 
 
-### Locating internships by name : `find -i`
+### Locating internships by name : `findi`
 
-Finds internships whose names contain any of the given keywords.
+Finds internships whose company names contain any of the given keywords.
 
-Format: `find -i KEYWORD`
-- The search is case-insensitive. e.g **abc pte ltd_software engineer** will match **ABC Pte Ltd_Software Engineer**
-- Only the internship name is searched.
-- Partial words will be matched e.g. **ltd** will match **XYZ Ltd_Full Stack**
+Format: `findi KEYWORD`
+- The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**
+- Only the company name is searched.
+- Partial names will be matched if the name contains the word perfectly e.g. **ltd** will match **XYZ Ltd**, but **lt** will not match **XYZ Ltd**
+- This search returns all internships with company names that has words that perfectly match at least 1 of the keywords.
 
-Examples:
-- `find -i` **Shopee** returns **Shopee_Front End Engineer** and **Shopee_Full Stack**
-- `find -i` **Shopee_Front** returns **Shopee_Front End Engineer**
-- `find -i` **Back End** returns **ByteDance_Back End Engineer** and **Google_Back End Engineer**
+Example of usage:
+The app contains the following company names in the internship list.
+- SBS Transit Ltd
+- SMRT Buses
+- SMRT Trains Ltd
+- Tower Transit Singapore
+- ABC Pte Ltd
+
+Then,
+- `findi Transit` returns **SBS Transit Ltd** and **Tower Transit Singapore**
+- `findi Buses Trains` returns **SMRT Buses** and **SMRT Trains Ltd**
+- `findi ABC Pte Ltd` returns **SBS Transit Ltd**, **SMRT Trains Ltd** and **ABC Pte Ltd**
 
 
 ### Deleting a person or internship by index : `delete`
