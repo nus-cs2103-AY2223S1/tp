@@ -1,53 +1,41 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-<!-- markdownlint-disable-file no-inline-html -->
-<table>
-  <thead>
-    <tr>
-      <th>Placeholders</th>
-      <th>Related Flags</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>INDEX</td>
-      <td>id/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/INDEX.md %}</td>
-    </tr>
-    <tr>
-      <td>INDEX_LIST</td>
-      <td>id/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/INDEX_LIST.md %}</td>
-    </tr>
-    <tr>
-      <td>ITEM_NAME</td>
-      <td>n/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/ITEM_NAME.md %}</td>
-    </tr>
-    <tr>
-      <td>TAG_NAME</td>
-      <td>n/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/TAG_NAME.md %}</td>
-    </tr>
-    <tr>
-      <td>QUANTITY</td>
-      <td>qty/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/QUANTITY.md %}</td>
-    </tr>
-    <tr>
-      <td>UNIT</td>
-      <td>unit/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/UNIT.md %}</td>
-    </tr>
-    <tr>
-      <td>BOUGHT_DATE</td>
-      <td>bgt/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/BOUGHT_DATE.md %}</td>
-    </tr>
-    <tr>
-      <td>EXPIRY_DATE</td>
-      <td>exp/</td>
-      <td markdown="1">{% include_relative _ug/placeholders/EXPIRY_DATE.md %}</td>
-    </tr>
-  </tbody>
-</table>
+
+<!-- ===== DECLARE VARIABLES ===== -->
+<!-- markdownlint-disable no-space-in-emphasis -->
+{% capture INDEX %}{% include_relative _ug/placeholders/INDEX.md %}{% endcapture %}
+{% capture INDEX_LIST %}{% include_relative _ug/placeholders/INDEX_LIST.md %}{% endcapture %}
+{% capture ITEM_NAME %}{% include_relative _ug/placeholders/ITEM_NAME.md %}{% endcapture %}
+{% capture TAG_NAME %}{% include_relative _ug/placeholders/TAG_NAME.md %}{% endcapture %}
+{% capture QUANTITY %}{% include_relative _ug/placeholders/QUANTITY.md %}{% endcapture %}
+{% capture UNIT %}{% include_relative _ug/placeholders/UNIT.md %}{% endcapture %}
+{% capture BOUGHT_DATE %}{% include_relative _ug/placeholders/BOUGHT_DATE.md %}{% endcapture %}
+{% capture EXPIRY_DATE %}{% include_relative _ug/placeholders/EXPIRY_DATE.md %}{% endcapture %}
+<!-- markdownlint-enable no-space-in-emphasis -->
+
+<!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
+<!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
+{% capture TABLE %}
+| Placeholders | Related Flags | Description   |
+|--------------|---------------|---------------|
+| INDEX        | id/           | :INDEX:       |
+| INDEX_LIST   | id/           | :INDEX_LIST:  |
+| ITEM_NAME    | n/            | :ITEM_NAME:   |
+| TAG_NAME     | n/            | :TAG_NAME:    |
+| QUANTITY     | qty/          | :QUANTITY:    |
+| UNIT         | unit/         | :UNIT:        |
+| BOUGHT_DATE  | bgt/          | :BOUGHT_DATE: |
+| EXPIRY_DATE  | exp/          | :EXPIRY_DATE: |
+{% endcapture %}
+
+<!-- ===== RENDER THE ACTUAL TABLE ===== -->
+{{ TABLE
+  | markdownify
+  | replace: ":INDEX:", INDEX
+  | replace: ":INDEX_LIST:", INDEX_LIST
+  | replace: ":ITEM_NAME:", ITEM_NAME
+  | replace: ":TAG_NAME:", TAG_NAME
+  | replace: ":QUANTITY:", QUANTITY
+  | replace: ":UNIT:", UNIT
+  | replace: ":BOUGHT_DATE:", BOUGHT_DATE
+  | replace: ":EXPIRY_DATE:", EXPIRY_DATE
+}}
