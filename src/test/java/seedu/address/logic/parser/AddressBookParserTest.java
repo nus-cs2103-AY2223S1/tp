@@ -8,19 +8,26 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEXES_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.keyword.Keyword;
+import seedu.address.commons.core.keyword.KeywordList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-// import seedu.address.logic.commands.FindCommand;s
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-// import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.FindableCategory;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -64,15 +71,22 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-    /*
-//    @Test
-//    public void parseCommand_find() throws Exception {
-//        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-//        FindCommand command = (FindCommand) parser.parseCommand(
-//                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-//        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-//    }
-    */
+
+    @Test
+    public void parseCommand_find() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        KeywordList keywordList = new KeywordList();
+
+        for (String s : keywords) {
+            keywordList.addKeyword(new Keyword(s));
+        }
+
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_CATEGORY + "n "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new ContainsKeywordsPredicate(
+                keywordList, FindableCategory.COMPANY_NAME)), command);
+    }
 
     @Test
     public void parseCommand_help() throws Exception {
