@@ -132,11 +132,14 @@ public class ParserUtil {
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }
-
-    public static IncomeLevel parseIncomeLevel(String incomeLevel) throws ParseException {
-        requireNonNull(incomeLevel);
-        String trimmedIncome = incomeLevel.trim();
-        if (!IncomeLevel.isValidIncome(incomeLevel)) {
+    /**
+     * Parses a {@code String income} into an {@code IncomeLevel}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static IncomeLevel parseIncomeLevel(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!IncomeLevel.isValidIncome(income)) {
             throw new ParseException(IncomeLevel.MESSAGE_CONSTRAINTS);
         }
         return new IncomeLevel(trimmedIncome);

@@ -95,7 +95,11 @@ public class PersonBuilder {
         this.email = new Email(email);
         return this;
     }
-    public PersonBuilder withIncome (String income) {
+
+    /**
+     * Sets the {@code Income} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withIncome(String income) {
         this.income = new IncomeLevel(income);
         return this;
     }

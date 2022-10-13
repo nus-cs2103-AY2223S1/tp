@@ -75,6 +75,10 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(new Address(address));
         return this;
     }
+
+    /**
+     * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withIncome(String income) {
         descriptor.setIncome(new IncomeLevel(income));
         return this;
