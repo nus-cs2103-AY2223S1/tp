@@ -162,6 +162,9 @@ public class Person implements DisplayItem {
 
     @Override
     public void setParent(DisplayItem o) throws ItemCannotBeParentException {
+        if (o == null) {
+            return;
+        }
         if (!(o instanceof AbstractContainerItem) || parents.contains(o)) {
             throw new ItemCannotBeParentException(o);
         }
@@ -169,19 +172,20 @@ public class Person implements DisplayItem {
         parents.add((AbstractContainerItem) o);
     }
 
+    public void removeParent(AbstractContainerItem deletedParent) {
+        parents.removeIf(p -> (p.equals(deletedParent) || p.isPartOfContext(deletedParent)));
+    }
+
     @Override
     public boolean isPartOfContext(DisplayItem o) {
-
-        if (parents.contains(o)) {
+        if (o == null || parents.contains(o)) {
             return true;
         }
-
-        for (AbstractContainerItem item : parents) {
-            if (item.isPartOfContext(o)) {
+        for (AbstractContainerItem parent : parents) {
+            if (parent.isPartOfContext(o)) {
                 return true;
             }
         }
-
         return false;
     }
 }

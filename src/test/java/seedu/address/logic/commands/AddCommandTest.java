@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -207,40 +208,38 @@ public class AddCommandTest {
 
         }
 
-        /**
-         * Checks if context can be changed from the current context to another group.
-         *
-         * @param path the path to be switched to.
-         * @return true if context can be changed to path, false otherwise.
-         */
         @Override
-        public boolean canChangeContext(String path) {
-            return false;
-        }
-
-        /**
-         * Changes current context to the specified path
-         *
-         * @param path that will be the new current context.
-         */
-        @Override
-        public void changeContext(String path) {
+        public ObservableList<Group> getFilteredTeamList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean isInSamePath(String path) {
-            return false;
-        }
-
-        @Override
-        public AbstractContainerItem getCurrentContext() {
+        public AbstractContainerItem getContextContainer() {
             return null;
         }
 
         @Override
-        public ObservableList<Group> getFilteredTeamList() {
-            throw new AssertionError("This method should not be called.");
+        public ObservableList<Task> getFilteredTaskList() {
+            // TODO Auto-generated method stub
+            return null;
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void updateFilteredTaskList(List<Predicate<Task>> predicates) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public void setTask(Task target, Task editedTask) {
+            // TODO Auto-generated method stub
+
         }
 
         @Override

@@ -26,6 +26,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Group> filteredTeams;
     private Optional<AbstractContainerItem> currentContext = Optional.empty();
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTeams = new FilteredList<>(this.addressBook.getTeamsList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTasksList());
     }
 
     public ModelManager() {
@@ -113,7 +115,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(List.of());
     }
 
     @Override
@@ -132,14 +134,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteTeam(Group grp) {
-        addressBook.removeTeam(grp);
+    public void deleteTeam(Group target) {
+        // delete all subteams
+        addressBook.removeTeamIf(grp -> grp.isPartOfContext(target));
+        addressBook.removeTaskIf(tsks -> tsks.isPartOfContext(target));
+        addressBook.forEachPerson(p -> p.removeParent(target));
+        addressBook.removeTeam(target);
     }
 
     @Override
     public void addTeam(Group grp) {
-        addressBook.addGroup(grp);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        addressBook.addTeam(grp);
+        updateFilteredTeamList(List.of());
     }
 
     //// task level methods and accessors
@@ -159,7 +165,19 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         addressBook.addTask(task);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(List.of());
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        addressBook.setTask(target, editedTask);
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
     }
 
     // field level methods and accessors
@@ -229,6 +247,24 @@ public class ModelManager implements Model {
         filteredTeams.setPredicate(predicate);
     }
 
+    // filtered tasks list accessors ========
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        updateFilteredTaskList(List.of(predicate));
+    }
+
+    @Override
+    public void updateFilteredTaskList(List<Predicate<Task>> predicates) {
+        requireNonNull(predicates);
+        Predicate<Task> predicate = t -> {
+            return currentContext.map(cxt -> t.isPartOfContext(cxt)).orElse(true)
+                    && predicates.stream().map(pred -> pred.test(t)).allMatch(res -> res == true);
+        };
+
+        filteredTasks.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -254,41 +290,12 @@ public class ModelManager implements Model {
         currentContext = Optional.ofNullable(container);
         updateFilteredPersonList(List.of());
         updateFilteredTeamList(List.of());
+        updateFilteredTaskList(List.of());
     }
 
     @Override
-    public boolean isInSamePath(String path) {
-        AbstractContainerItem currContext = currentContext.orElse(null);
-
-        if (currContext != null) {
-            return path == currContext.getFullPathName();
-        }
-        return false;
-    }
-
-    @Override
-    public boolean canChangeContext(String path) {
-        ObservableList<Group> groupList = addressBook.getTeamsList();
-        for (Group group : groupList) {
-            if (path.equals(group.getFullPathNameInclusive())) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    @Override
-    public void changeContext(String path) {
-        ObservableList<Group> groupList = addressBook.getTeamsList();
-        for (Group group : groupList) {
-            if (path.equals(group.getFullPathNameInclusive())) {
-                updateContextContainer(group);
-            }
-        }
-    }
-
-    public AbstractContainerItem getCurrentContext() {
+    public AbstractContainerItem getContextContainer() {
         return currentContext.orElse(null);
     }
+
 }

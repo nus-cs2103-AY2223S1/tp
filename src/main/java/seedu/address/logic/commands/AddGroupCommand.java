@@ -43,7 +43,7 @@ public class AddGroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_GROUP);
         }
 
-        AbstractContainerItem currentContext = model.getCurrentContext();
+        AbstractContainerItem currentContext = model.getContextContainer();
 
         if (currentContext != null) {
             toAdd.setParent(currentContext);

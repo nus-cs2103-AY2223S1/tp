@@ -36,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jasonchristopher21)]
 [[portfolio](team/jasonchristopher21.md)]
 
-* Role: Developer
-* Responsibilities: TBA
+- Role: Developer
+- Responsibilities: TBA
 
 ### Connor Lim
 
@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/connlim)]
 [[portfolio](team/connlim.md)]
 
-* Role: Developer
-* Responsibilities: In charge of Tasks, Quality Assurance
+- Role: Developer
+- Responsibilities: In charge of Tasks, Quality Assurance
 
 ### Mohamed Safwan
 
@@ -56,6 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/mohamedsaf1)]
 [[portfolio](team/mohamedsaf1.md)]
 
-* Role: Developer
-* Responsibilities: Basic Functions
-
+- Role: Developer
+- Responsibilities: Basic Functions
