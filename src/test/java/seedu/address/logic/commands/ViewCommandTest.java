@@ -12,8 +12,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
