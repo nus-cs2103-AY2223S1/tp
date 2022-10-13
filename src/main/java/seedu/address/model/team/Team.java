@@ -1,5 +1,6 @@
 package seedu.address.model.team;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.Objects;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -75,6 +78,15 @@ public class Team {
      * Returns list of members in the team
      * @return members
      */
+    public void setMember(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        members.setPerson(target, editedPerson);
+    }
+
+    public boolean containMember(Person p) {
+        return members.contains(p);
+    }
+
 
     public UniquePersonList getMembers() {
         return members;
