@@ -14,7 +14,7 @@ import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.model.task.Task;
 
 /**
- * Contains unit tests for {@code EditTaskCommandParser).
+ * Contains unit tests for {@code EditTaskCommandParser}.
  */
 class EditTaskCommandParserTest {
 
