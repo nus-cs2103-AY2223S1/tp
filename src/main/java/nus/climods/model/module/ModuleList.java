@@ -60,7 +60,7 @@ public class ModuleList implements ReadOnlyModuleList {
     @Override
     public Optional<Module> getListModule(String moduleCode) {
         return internalUnmodifiableList.stream()
-                .filter(mod -> mod.getCode().equals(moduleCode.toUpperCase()))
+                .filter(mod -> mod.getCode().equalsIgnoreCase(moduleCode))
                 .findFirst();
     }
 
