@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.commons.exceptions.IllegalValueException;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -21,12 +21,13 @@ public class JsonAdaptedEateryTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+
+    private static final String INVALID_CUISINE = "e$$x$$$ample.co$$m";
     private static final String INVALID_TAG = "friènd";
 
     private static final String VALID_NAME = TypicalEateries.BENSON.getName().toString();
     private static final String VALID_PHONE = TypicalEateries.BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = TypicalEateries.BENSON.getEmail().toString();
+    private static final String VALID_EMAIL = TypicalEateries.BENSON.getCuisine().toString();
     private static final String VALID_ADDRESS = TypicalEateries.BENSON.getLocation().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalEateries.BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -48,7 +49,8 @@ public class JsonAdaptedEateryTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedEatery eatery = new JsonAdaptedEatery(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEatery eatery =
+                new JsonAdaptedEatery(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
@@ -63,23 +65,25 @@ public class JsonAdaptedEateryTest {
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedEatery eatery = new JsonAdaptedEatery(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedEatery eatery =
+                new JsonAdaptedEatery(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 
     @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
+    public void toModelType_invalidCuisine_throwsIllegalValueException() {
         JsonAdaptedEatery eatery =
-                new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, INVALID_CUISINE, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = Cuisine.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedEatery eatery = new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        JsonAdaptedEatery eatery =
+                new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Cuisine.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }
 
@@ -93,7 +97,8 @@ public class JsonAdaptedEateryTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedEatery eatery = new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
+        JsonAdaptedEatery eatery =
+                new JsonAdaptedEatery(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Location.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, eatery::toModelType);
     }

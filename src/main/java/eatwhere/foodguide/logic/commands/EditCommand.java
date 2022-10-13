@@ -1,7 +1,7 @@
 package eatwhere.foodguide.logic.commands;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
@@ -18,8 +18,8 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.commons.util.CollectionUtil;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -38,12 +38,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_CUISINE + "EMAIL] "
+            + "[" + PREFIX_LOCATION + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_CUISINE + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_EATERY_SUCCESS = "Edited Eatery: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -94,11 +94,11 @@ public class EditCommand extends Command {
 
         Name updatedName = editEateryDescriptor.getName().orElse(eateryToEdit.getName());
         Phone updatedPhone = editEateryDescriptor.getPhone().orElse(eateryToEdit.getPhone());
-        Email updatedEmail = editEateryDescriptor.getEmail().orElse(eateryToEdit.getEmail());
+        Cuisine updatedCuisine = editEateryDescriptor.getEmail().orElse(eateryToEdit.getCuisine());
         Location updatedLocation = editEateryDescriptor.getAddress().orElse(eateryToEdit.getLocation());
         Set<Tag> updatedTags = editEateryDescriptor.getTags().orElse(eateryToEdit.getTags());
 
-        return new Eatery(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedTags);
+        return new Eatery(updatedName, updatedPhone, updatedCuisine, updatedLocation, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
     public static class EditEateryDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
+        private Cuisine cuisine;
         private Location location;
         private Set<Tag> tags;
 
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         public EditEateryDescriptor(EditEateryDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setEmail(toCopy.email);
+            setCuisine(toCopy.cuisine);
             setAddress(toCopy.location);
             setTags(toCopy.tags);
         }
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, location, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, cuisine, location, tags);
         }
 
         public void setName(Name name) {
@@ -167,12 +167,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
-            this.email = email;
+        public void setCuisine(Cuisine cuisine) {
+            this.cuisine = cuisine;
         }
 
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+        public Optional<Cuisine> getEmail() {
+            return Optional.ofNullable(cuisine);
         }
 
         public void setAddress(Location location) {

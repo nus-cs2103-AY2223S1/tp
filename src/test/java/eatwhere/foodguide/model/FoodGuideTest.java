@@ -46,7 +46,7 @@ public class FoodGuideTest {
     public void resetData_withDuplicateEateries_throwsDuplicateEateryException() {
         // Two eateries with the same identity fields
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withLocation(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Eatery> newEateries = Arrays.asList(TypicalEateries.ALICE, editedAlice);
@@ -75,7 +75,7 @@ public class FoodGuideTest {
     public void hasEatery_eateryWithSameIdentityFieldsInFoodGuide_returnsTrue() {
         foodGuide.addEatery(TypicalEateries.ALICE);
         Eatery editedAlice = new EateryBuilder(TypicalEateries.ALICE)
-                .withAddress(VALID_ADDRESS_BOB)
+                .withLocation(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(foodGuide.hasEatery(editedAlice));

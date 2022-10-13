@@ -9,7 +9,7 @@ import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.CommandTestUtil;
 import eatwhere.foodguide.logic.commands.EditCommand;
 import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -64,7 +64,7 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         CommandParserTestUtil.assertParseFailure(parser,
-                "1" + CommandTestUtil.INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+                "1" + CommandTestUtil.INVALID_CUISINE_DESC, Cuisine.MESSAGE_CONSTRAINTS); // invalid email
         CommandParserTestUtil.assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_ADDRESS_DESC, Location.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser,
@@ -72,7 +72,7 @@ public class EditCommandParserTest {
 
         // invalid phone followed by valid email
         CommandParserTestUtil.assertParseFailure(parser,
-                "1" + CommandTestUtil.INVALID_PHONE_DESC + CommandTestUtil.EMAIL_DESC_AMY,
+                "1" + CommandTestUtil.INVALID_PHONE_DESC + CommandTestUtil.CUISINE_DESC_AMY,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
@@ -95,7 +95,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         CommandParserTestUtil.assertParseFailure(parser,
-                "1" + CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.INVALID_EMAIL_DESC
+                "1" + CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.INVALID_CUISINE_DESC
                         + CommandTestUtil.VALID_ADDRESS_AMY + CommandTestUtil.VALID_PHONE_AMY,
                         Name.MESSAGE_CONSTRAINTS);
     }
@@ -105,11 +105,11 @@ public class EditCommandParserTest {
         Index targetIndex = TypicalIndexes.INDEX_SECOND_EATERY;
         String userInput = targetIndex.getOneBased()
                 + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND
-                + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
+                + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
                 + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND;
 
         EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_AMY)
-                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_AMY)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_CUISINE_AMY)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -120,10 +120,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_EATERY;
-        String userInput = targetIndex.getOneBased() + CommandTestUtil.PHONE_DESC_BOB + CommandTestUtil.EMAIL_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + CommandTestUtil.PHONE_DESC_BOB
+                + CommandTestUtil.CUISINE_DESC_AMY;
 
         EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder().withPhone(CommandTestUtil.VALID_PHONE_BOB)
-                .withEmail(CommandTestUtil.VALID_EMAIL_AMY).build();
+                .withEmail(CommandTestUtil.VALID_CUISINE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -146,8 +147,8 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
-        userInput = targetIndex.getOneBased() + CommandTestUtil.EMAIL_DESC_AMY;
-        descriptor = new EditEateryDescriptorBuilder().withEmail(CommandTestUtil.VALID_EMAIL_AMY).build();
+        userInput = targetIndex.getOneBased() + CommandTestUtil.CUISINE_DESC_AMY;
+        descriptor = new EditEateryDescriptorBuilder().withEmail(CommandTestUtil.VALID_CUISINE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -168,13 +169,14 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = TypicalIndexes.INDEX_FIRST_EATERY;
         String userInput = targetIndex.getOneBased()
-                + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.EMAIL_DESC_AMY
+                + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY + CommandTestUtil.CUISINE_DESC_AMY
                 + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PHONE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY
-                + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PHONE_DESC_BOB
-                + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.TAG_DESC_HUSBAND;
+                + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.TAG_DESC_FRIEND + CommandTestUtil.PHONE_DESC_BOB
+                + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.CUISINE_DESC_BOB
+                + CommandTestUtil.TAG_DESC_HUSBAND;
 
         EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder().withPhone(CommandTestUtil.VALID_PHONE_BOB)
-                .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withEmail(CommandTestUtil.VALID_CUISINE_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -194,10 +196,10 @@ public class EditCommandParserTest {
 
         // other valid values specified
         userInput = targetIndex.getOneBased()
-                + CommandTestUtil.EMAIL_DESC_BOB + CommandTestUtil.INVALID_PHONE_DESC
+                + CommandTestUtil.CUISINE_DESC_BOB + CommandTestUtil.INVALID_PHONE_DESC
                 + CommandTestUtil.ADDRESS_DESC_BOB + CommandTestUtil.PHONE_DESC_BOB;
         descriptor = new EditEateryDescriptorBuilder()
-                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_EMAIL_BOB)
+                .withPhone(CommandTestUtil.VALID_PHONE_BOB).withEmail(CommandTestUtil.VALID_CUISINE_BOB)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
