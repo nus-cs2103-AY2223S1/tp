@@ -1,11 +1,13 @@
 package nus.climods.logic.commands;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyUserPrefs;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 
@@ -72,6 +74,21 @@ class ModelStub implements Model {
 
     @Override
     public void updateFilteredUserModuleList(Predicate<UserModule> predicate) {
+
+    }
+
+    @Override
+    public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
+
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return null;
+    }
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate) {
 
     }
 }
