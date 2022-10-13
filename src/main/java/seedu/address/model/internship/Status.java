@@ -3,15 +3,16 @@ package seedu.address.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Objects;
+
 /**
  * Represents an Internship's application status.
  * Guarantees: details are present and not null
  */
 public class Status {
-    enum StatusType {
-        PROGRESS, OFFERED, REJECTED
-    }
-    public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progressing, Offered, Rejected";
+
+    public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
+
 
     /*
      * The first character of the status must not be a whitespace,
@@ -24,25 +25,40 @@ public class Status {
     /**
      * Constructs an {@code Status}.
      *
-     * @param status A valid address.
+     * @param status A valid status.
      */
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        value = status;
 
+        switch (status.toUpperCase()) {
+        case "OFFERED":
+            this.value = "Offered";
+            break;
+        case "PROGRESS":
+            this.value = "Progress";
+            break;
+        case "REJECTED":
+            this.value = "Rejected";
+            break;
+        default:
+            this.value = "Progress";
+        }
     }
 
     /**
      * Returns true if a given string is a valid status.
      */
     public static boolean isValidStatus(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+                && (Objects.equals(test.toUpperCase(), "OFFERED")
+                || Objects.equals(test.toUpperCase(), "PROGRESS")
+                || Objects.equals(test.toUpperCase(), "REJECTED"));
     }
 
     @Override
     public String toString() {
-        return value.toString();
+        return value;
     }
 
     @Override
