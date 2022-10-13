@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.offer.Offer;
-import seedu.address.model.person.Person;
 
 /**
  * Panel containing the list of offers.
