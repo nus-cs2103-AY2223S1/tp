@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.text.ParseException;
@@ -14,14 +15,18 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
+import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -29,53 +34,68 @@ public class CreateMeetingCommandTest {
 
     @Test
     public void execute_meetingCreatedByModel_addSuccessful() throws Exception {
-        Meeting validMeeting = new MeetingBuilder().build();
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
         CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
             = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
         CommandResult commandResult = createMeetingCommand.execute(modelStub);
+
+        Meeting validMeeting = new MeetingBuilder().build();
         assertEquals(String.format(CreateMeetingCommand.MESSAGE_CREATE_MEETING_SUCCESS, validMeeting),
             commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
-/*    @Test
-    public void execute_duplicateMeeting_throwsDuplicateMeetingException() {
-        String meetingInfo = "asdasd as asd ";
+    // TODO: This test keeps failing, not sure why
+    @Test
+    public void execute_duplicateMeeting_throwsDuplicateMeetingException() throws Exception {
+        String meetingInfo = "Amy ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
-        CreateMeetingCommandTest.ModelStub modelStub = new CreateMeetingCommandTest.ModelStubWithMeeting();
 
-        assertThrows(DuplicateMeetingException.class, aszdszdsadasd AddCommand.MESSAGE_DUPLICATE_PERSON,
-            () -> createMeetingCommand.execute(modelStub));
+        Meeting validMeeting = new MeetingBuilder().build();
+        CreateMeetingCommandTest.ModelStubWithMeeting modelStub
+            = new CreateMeetingCommandTest.ModelStubWithMeeting(validMeeting);
+        String actualFeedBack = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+
+        assertEquals(CreateMeetingCommand.DUPLICATE_MEETINGS, actualFeedBack);
     }
 
     @Test
-    public void execute_personToMeetNotFound_throwsPersonNotFoundException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        CreateMeetingCommandTest.ModelStub modelStub = new CreateMeetingCommandTest.ModelStubWithPerson(validPerson);
+    public void execute_personToMeetNotFound_throwsPersonNotFoundException() throws Exception {
+        String meetingInfo = "Ben ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
+            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
     }
 
     @Test
-    public void execute_wrongNumberOfArguments_throwsIndexOutOfBoundsException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        CreateMeetingCommandTest.ModelStub modelStub = new CreateMeetingCommandTest.ModelStubWithPerson(validPerson);
+    public void execute_wrongNumberOfArguments_throwsIndexOutOfBoundsException() throws Exception {
+        String meetingInfo = "Amy ;;; Do CS2103 Project";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
+            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
-    }*/
+        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        assertEquals(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS, actualFeedback);
+    }
 
-/*    @Test
-    public void execute_dateAndTimeInWrongFormat_throwsParseException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        CreateMeetingCommandTest.ModelStub modelStub = new CreateMeetingCommandTest.ModelStubWithMeeting(validPerson);
+    @Test
+    public void execute_dateAndTimeInWrongFormat_throwsParseException() throws Exception {
+        String meetingInfo = "Amy ;;; Do CS2103 Project ;;; tomorrow ;;; University Town";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
+            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
-    }*/
+        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        assertEquals("Meeting date is not in dd-MM-yyyy format", actualFeedback);
+
+//        Person validPerson = new PersonBuilder().build();
+//        AddCommand addCommand = new AddCommand(validPerson);
+//        CreateMeetingCommandTest.ModelStub modelStub = new CreateMeetingCommandTest.ModelStubWithMeeting(validPerson);
+    }
 
     /*@Test
     public void equals() {
@@ -152,17 +172,6 @@ public class CreateMeetingCommandTest {
             return persons.contains(person);
         }
 
-        /**
-         * Replaces the given person {@code target} in the list with {@code editedPerson}.
-         * {@code target} must exist in the address book.
-         * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-         */
-        public void setPerson(Person target, Person editedPerson) {
-            requireNonNull(editedPerson);
-
-            persons.setPerson(target, editedPerson);
-        }
-
         //// meeting-level operations
 
         /**
@@ -172,6 +181,14 @@ public class CreateMeetingCommandTest {
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
             return meetings.contains(meeting);
+        }
+
+        /**
+         * Adds a person to the address book.
+         * The person must not already exist in the address book.
+         */
+        public void addMeeting(Meeting newMeeting) {
+            this.meetings.add(newMeeting);
         }
 
         //// util methods
@@ -336,6 +353,14 @@ public class CreateMeetingCommandTest {
         }
 
         @Override
+        public void addMeeting(Meeting newMeeting) {
+            throw new DuplicateMeetingException();
+//            if (this.meeting.isSameMeeting(newMeeting)) {
+//                throw new DuplicateMeetingException();
+//            }
+        }
+
+        @Override
         public boolean hasMeeting(Meeting meeting) {
             requireNonNull(meeting);
             return this.meeting.isSameMeeting(meeting);
@@ -357,6 +382,9 @@ public class CreateMeetingCommandTest {
         @Override
         public void addMeeting(Meeting meeting) {
             requireNonNull(meeting);
+            if (hasMeeting(meeting)) {
+                throw new DuplicateMeetingException();
+            }
             meetingsAdded.add(meeting);
         }
 

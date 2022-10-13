@@ -33,6 +33,15 @@ public class CreateMeetingCommand extends Command {
 
     public static final String MESSAGE_CREATE_MEETING_SUCCESS = "Created meeting with: \n%1$s";
 
+    public static final String INCORRECT_NUMBER_OF_ARGUMENTS = "Make sure you have entered "
+        + "the correct amount of information correctly separated!";
+
+    public static final String PERSON_NOT_FOUND = "Oops! The person you are meeting with doesn't exist "
+        + "in the address book. Do check if you have entered their name correctly.";
+
+    public static final String DUPLICATE_MEETINGS = "Oops! Seems that you have already scheduled to meet "
+        + "the same person(s) at the same time";
+
     private final String meetingInfo;
 
     public CreateMeetingCommand(String meetingInfo) {
@@ -103,19 +112,16 @@ public class CreateMeetingCommand extends Command {
             );
 
         } catch (ParseException e) {
-            return new CommandResult(e.toString());
+            return new CommandResult(e.getMessage());
 
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult("Make sure you have entered "
-                + "the correct amount of information correctly separated!");
+            return new CommandResult(INCORRECT_NUMBER_OF_ARGUMENTS);
 
         } catch (PersonNotFoundException e) {
-            return new CommandResult("Oops! The person you are meeting with doesn't exist"
-                + " in the address book. Do check if you have entered their name correctly.");
+            return new CommandResult(PERSON_NOT_FOUND);
 
         } catch (DuplicateMeetingException e) {
-            return new CommandResult("Oops! Seems that you have already scheduled to meet the same person(s)"
-                + " at the same time");
+            return new CommandResult(DUPLICATE_MEETINGS);
         }
     }
 
