@@ -40,8 +40,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
-        // TODO: Implement deadline, isdone, description, tags
-        Deadline deadline = new Deadline("");
+        // TODO: fix deadline
+        Deadline deadline = new Deadline("2020-11-11");
         Boolean isDone = false;
         Set<Tag> tags = new HashSet<>();
 

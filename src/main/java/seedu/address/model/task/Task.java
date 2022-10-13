@@ -57,6 +57,14 @@ public class Task {
     }
 
     /**
+     * Returns an icon representing if the task is done.
+     * @return String representation of an icon.
+     */
+    public String getStatusIcon() {
+        return (isDone ? "[X]" : "[ ]");
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
