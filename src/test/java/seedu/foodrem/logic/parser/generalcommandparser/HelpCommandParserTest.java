@@ -41,6 +41,8 @@ import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
+import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
+import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
@@ -59,13 +61,13 @@ class HelpCommandParserTest {
                 + "https://se-education.org/addressbook-level3/UserGuide.html", MORE_INFORMATION);
 
         assertEquals("help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag",
+                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag",
                 CommandWord.listAllCommandWords());
 
         assertEquals("To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\n\n"
+                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
                         + "For more information please head to:\n"
                         + "https://se-education.org/addressbook-level3/UserGuide.html",
                 HELP_FOR_ALL_COMMANDS);
@@ -73,7 +75,7 @@ class HelpCommandParserTest {
         assertEquals("hehe\n\nTo receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\n\n"
+                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
                         + "For more information please head to:\n"
                         + "https://se-education.org/addressbook-level3/UserGuide.html",
                 String.format(HELP_FOR_SPECIFIC_COMMAND, "hehe"));
@@ -83,7 +85,8 @@ class HelpCommandParserTest {
                 "\"testing\" is not a valid command\n\n"
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
-                        + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\n\n"
+                        + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
+                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
                         + "For more information please head to:\n"
                         + "https://se-education.org/addressbook-level3/UserGuide.html");
     }
@@ -196,6 +199,10 @@ class HelpCommandParserTest {
                 getHelp(getCommandWordFromCommandWordString("tag")));
         assertEquals(UntagCommand.MESSAGE_USAGE,
                 getHelp(getCommandWordFromCommandWordString("untag")));
+        assertEquals(DeleteTagCommand.MESSAGE_USAGE,
+                getHelp(getCommandWordFromCommandWordString("deletetag")));
+        assertEquals(ListTagCommand.MESSAGE_USAGE,
+                getHelp(getCommandWordFromCommandWordString("listtag")));
     }
 
     @Test
