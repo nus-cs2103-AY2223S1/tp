@@ -66,20 +66,20 @@ public class ModelManager implements Model {
 
     @Override
     public Path getFoodGuideFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getFoodGuideFilePath();
     }
 
     @Override
     public void setFoodGuideFilePath(Path foodGuideFilePath) {
         requireNonNull(foodGuideFilePath);
-        userPrefs.setAddressBookFilePath(foodGuideFilePath);
+        userPrefs.setFoodGuideFilePath(foodGuideFilePath);
     }
 
     //=========== FoodGuide ================================================================================
 
     @Override
-    public void setFoodGuide(ReadOnlyFoodGuide addressBook) {
-        this.foodGuide.resetData(addressBook);
+    public void setFoodGuide(ReadOnlyFoodGuide foodGuide) {
+        this.foodGuide.resetData(foodGuide);
     }
 
     @Override
@@ -115,7 +115,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Eatery} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFoodGuide}
      */
     @Override
     public ObservableList<Eatery> getFilteredEateryList() {

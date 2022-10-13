@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newEatery_success() {
         Eatery validEatery = new EateryBuilder().build();
 
         Model expectedModel = new ModelManager(model.getFoodGuide(), new UserPrefs());
@@ -39,7 +39,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateEatery_throwsCommandException() {
         Eatery eateryInList = model.getFoodGuide().getEateryList().get(0);
-        assertCommandFailure(new AddCommand(eateryInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(eateryInList), model, AddCommand.MESSAGE_DUPLICATE_EATERY);
     }
 
 }

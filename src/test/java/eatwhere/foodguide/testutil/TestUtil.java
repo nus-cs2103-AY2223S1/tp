@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the eatery in the {@code model}'s eatery list at {@code index}.
      */
-    public static Eatery getPerson(Model model, Index index) {
+    public static Eatery getEatery(Model model, Index index) {
         return model.getFilteredEateryList().get(index.getZeroBased());
     }
 }

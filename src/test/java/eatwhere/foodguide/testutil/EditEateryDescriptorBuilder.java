@@ -14,7 +14,7 @@ import eatwhere.foodguide.model.eatery.Phone;
 import eatwhere.foodguide.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditEateryDescriptor objects.
  */
 public class EditEateryDescriptorBuilder {
 
@@ -29,7 +29,7 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code eatery}'s details
+     * Returns an {@code EditEateryDescriptor} with fields containing {@code eatery}'s details
      */
     public EditEateryDescriptorBuilder(Eatery eatery) {
         descriptor = new EditEateryDescriptor();
@@ -41,7 +41,7 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditEateryDescriptor} that we are building.
      */
     public EditEateryDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -49,7 +49,7 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditEateryDescriptor} that we are building.
      */
     public EditEateryDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -57,7 +57,7 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditEateryDescriptor} that we are building.
      */
     public EditEateryDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -65,7 +65,7 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Location} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Location} of the {@code EditEateryDescriptor} that we are building.
      */
     public EditEateryDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Location(address));
@@ -73,7 +73,7 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditEateryDescriptor}
      * that we are building.
      */
     public EditEateryDescriptorBuilder withTags(String... tags) {
