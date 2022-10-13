@@ -1,0 +1,84 @@
+.label,
+.result-box > TextArea {
+  -fx-font-size: 11pt;
+}
+
+.menu-bar {
+  -fx-alignment: center-right;
+  -fx-background-color: #f1e4c2;
+}
+
+.main-body {
+  -fx-background-color: #fdf6e3;
+  -fx-padding: 16;
+}
+
+// Unused as of now. TODO: Delete
+/* JavaFX CSS does not support `+` selector, so
+ * we cannot use `column > * + *` here */
+.margin-top {
+  /* Workaround nonexistent -fx-margin */
+  -fx-padding: 12 0 0 0;
+  -fx-border-insets: 12 0 0 0;
+  -fx-background-insets: 12 0 0 0;
+}
+
+.command-placeholder,
+.command-box > TextField,
+.result-placeholder,
+.result-box > TextArea {
+  -fx-focus-color: transparent;
+  -fx-text-box-border: transparent;
+  -fx-background-color: transparent;
+}
+
+.command-placeholder,
+.list-placeholder,
+.result-placeholder {
+  -fx-border-color: black;
+  -fx-border-radius: 5;
+  -fx-border-width: 1;
+  -fx-padding: 12;
+
+  -fx-min-width: 340;
+  -fx-pref-width: 340;
+}
+
+.command-placeholder {
+  -fx-background-color: #eee;
+}
+
+.list-placeholder,
+.result-placeholder {
+  -fx-background-color: white;
+}
+
+.result-placeholder {
+  -fx-min-height: 100;
+  -fx-pref-height: 100;
+}
+
+.command-box > TextField,
+.result-box > TextArea {
+  -fx-text-fill: black;
+  -fx-highlight-fill: brown; // TODO
+  -fx-highlight-text-fill: pink; // TODO
+
+  -fx-padding: 0;
+}
+
+.command-box > TextField {
+  /* TODO: Mono font */
+  -fx-font-family: Menlo;
+  -fx-prompt-text-fill: #363636;
+}
+
+.result-box > TextArea {
+  -fx-focus-traversable: false;
+}
+
+/* TODO: Find out what this element actually is */
+.result-box > TextArea * {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+}
