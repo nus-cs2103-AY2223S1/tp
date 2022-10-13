@@ -12,10 +12,9 @@ import seedu.address.model.team.Team;
  */
 public class TeamCard extends UiPart<Region> {
     private static final String FXML = "TeamListCard.fxml";
-
     public final Team team;
-
     private PersonListPanel personListPanel;
+    private TaskListPanel taskListPanel;
 
     @FXML
     private Label name;
@@ -44,8 +43,9 @@ public class TeamCard extends UiPart<Region> {
         personListPanel = new PersonListPanel(team.getMemberList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        taskListPanel = new TaskListPanel(team.getTasksList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        //todo popoulate teamlistpanelplaceholder
 
 
         this.team = team;
