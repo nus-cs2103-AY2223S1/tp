@@ -9,7 +9,6 @@ import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
@@ -88,16 +87,25 @@ public class EditStudentDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code School} of the {@code EditStudentDescriptor} that we are building.
+     */
     public EditStudentDescriptorBuilder withSchool(String school) {
         descriptor.setSchool(new School(school));
         return this;
     }
 
+    /**
+     * Sets the {@code Level} of the {@code EditStudentDescriptor} that we are building.
+     */
     public EditStudentDescriptorBuilder withLevel(String level) {
         descriptor.setLevel(Level.createLevel(level));
         return this;
     }
 
+    /**
+     * Sets the {@code NextOfKin} of the {@code EditStudentDescriptor} that we are building.
+     */
     public EditStudentDescriptorBuilder withNextOfKin(String nextOfKin) {
         descriptor.setNextOfKin(new NextOfKin(nextOfKin));
         return this;

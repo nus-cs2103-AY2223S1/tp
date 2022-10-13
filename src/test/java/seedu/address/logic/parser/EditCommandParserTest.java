@@ -87,8 +87,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
 import seedu.address.logic.commands.EditCommand.EditTuitionClassDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
@@ -117,7 +117,8 @@ public class EditCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(Model.ListType.TUTOR_LIST));
 
     private static final String MESSAGE_INVALID_FORMAT_CLASS =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(Model.ListType.TUITIONCLASS_LIST));
+            String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(Model.ListType.TUITIONCLASS_LIST));
 
     private EditCommandParser parserWhenStudent = new EditCommandParser(Model.ListType.STUDENT_LIST);
     private EditCommandParser parserWhenTutor = new EditCommandParser(Model.ListType.TUTOR_LIST);
@@ -275,8 +276,8 @@ public class EditCommandParserTest {
         EditCommand expectedCommand;
 
         // student
-        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY
-                + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB;
+        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + NAME_DESC_AMY + TAG_DESC_FRIEND + SCHOOL_DESC_BOB + LEVEL_DESC_BOB + NEXTOFKIN_DESC_BOB;
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -287,8 +288,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parserWhenStudent, userInput, expectedCommand);
 
         // tutor
-        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY
-                + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB;
+        userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + NAME_DESC_AMY + TAG_DESC_FRIEND + QUALIFICATION_DESC_BOB + INSTITUTION_DESC_BOB;
 
         EditTutorDescriptor editTutorDescriptor = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -556,7 +557,8 @@ public class EditCommandParserTest {
 
         // student
         userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_AMY;
-        EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        EditStudentDescriptor editStudentDescriptor =
+                new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, editStudentDescriptor);
 
         assertParseSuccess(parserWhenStudent, userInput, expectedCommand);
@@ -587,7 +589,8 @@ public class EditCommandParserTest {
 
         // class
         userInput = targetIndex.getOneBased() + INVALID_DAY_DESC + DAY_DESC_CLASS1;
-        EditTuitionClassDescriptor editTuitionClassDescriptor = new EditTuitionClassDescriptorBuilder().withDay(VALID_DAY_CLASS1).build();
+        EditTuitionClassDescriptor editTuitionClassDescriptor =
+                new EditTuitionClassDescriptorBuilder().withDay(VALID_DAY_CLASS1).build();
         expectedCommand = new EditCommand(targetIndex, editTuitionClassDescriptor);
 
         assertParseSuccess(parserWhenClass, userInput, expectedCommand);

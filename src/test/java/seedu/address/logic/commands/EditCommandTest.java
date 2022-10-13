@@ -2,20 +2,16 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_CLASS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_STUDENT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY_TUTOR;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_CLASS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_STUDENT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB_TUTOR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CLASS2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUALIFICATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUALIFICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CLASS1;
@@ -23,11 +19,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showTuitionClassAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
@@ -36,23 +31,19 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
 import seedu.address.logic.commands.EditCommand.EditTuitionClassDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.EditTuitionClassDescriptorBuilder;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.TuitionClassBuilder;
 import seedu.address.testutil.TutorBuilder;
@@ -95,20 +86,21 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
         //cant test this now coz edit does not account for list of students and tutors fields of class
-//        model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
-//        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-//
-//        TuitionClass editedClass = new TuitionClassBuilder().build();
-//        EditTuitionClassDescriptor classDescriptor = new EditTuitionClassDescriptorBuilder(editedClass).build();
-//        editCommand = new EditCommand(INDEX_FIRST_PERSON, classDescriptor);
-//
-//        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
-//
-//        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-//        expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-//        expectedModel.setTuitionClass(model.getFilteredTuitionClassList().get(0), editedClass);
-//
-//        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        //
+        //model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
+        //model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        //
+        //TuitionClass editedClass = new TuitionClassBuilder().build();
+        //EditTuitionClassDescriptor classDescriptor = new EditTuitionClassDescriptorBuilder(editedClass).build();
+        //editCommand = new EditCommand(INDEX_FIRST_PERSON, classDescriptor);
+        //
+        //expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
+        //
+        //expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        //expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        //expectedModel.setTuitionClass(model.getFilteredTuitionClassList().get(0), editedClass);
+        //
+        //assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -378,7 +370,8 @@ public class EditCommandTest {
         model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         outOfBoundIndex = Index.fromOneBased(model.getFilteredTuitionClassList().size() + 1);
-        EditTuitionClassDescriptor classDescriptor = new EditTuitionClassDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditTuitionClassDescriptor classDescriptor =
+                new EditTuitionClassDescriptorBuilder().withName(VALID_NAME_BOB).build();
         editCommand = new EditCommand(outOfBoundIndex, classDescriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

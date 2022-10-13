@@ -5,22 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTuitionClassDescriptor;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.level.Level;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Day;
 import seedu.address.model.tuitionclass.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
-import seedu.address.model.person.student.School;
-import seedu.address.model.person.student.Student;
-import seedu.address.model.person.tutor.Institution;
-import seedu.address.model.person.tutor.Qualification;
-import seedu.address.model.person.tutor.Tutor;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tuitionclass.Subject;
 import seedu.address.model.tuitionclass.Time;
 import seedu.address.model.tuitionclass.TuitionClass;
@@ -61,21 +50,33 @@ public class EditTuitionClassDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Subject} of the {@code EditTuitionClassDescriptor} that we are building.
+     */
     public EditTuitionClassDescriptorBuilder withSubject(String subject) {
         descriptor.setSubject(Subject.createSubject(subject));
         return this;
     }
 
+    /**
+     * Sets the {@code Level} of the {@code EditTuitionClassDescriptor} that we are building.
+     */
     public EditTuitionClassDescriptorBuilder withLevel(String level) {
         descriptor.setLevel(Level.createLevel(level));
         return this;
     }
 
+    /**
+     * Sets the {@code Day} of the {@code EditTuitionClassDescriptor} that we are building.
+     */
     public EditTuitionClassDescriptorBuilder withDay(String day) {
         descriptor.setDay(Day.createDay(day));
         return this;
     }
 
+    /**
+     * Sets the {@code Time} of the {@code EditTuitionClassDescriptor} that we are building.
+     */
     public EditTuitionClassDescriptorBuilder withTime(String startTime, String endTime) {
         try {
             descriptor.setTime(new Time(startTime, endTime));

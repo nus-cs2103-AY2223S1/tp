@@ -265,6 +265,10 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
@@ -275,6 +279,10 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredStudentList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the tutor at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
     public static void showTutorAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorList().size());
 
@@ -285,12 +293,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredTutorList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the tuition class at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
     public static void showTuitionClassAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTuitionClassList().size());
 
         TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
         final String[] splitName = tuitionClass.getName().name.split("\\s+");
-        model.updateFilteredTuitionClassList(new NameContainsKeywordsPredicate<TuitionClass>(Arrays.asList(splitName[0])));
+        model.updateFilteredTuitionClassList(
+                new NameContainsKeywordsPredicate<TuitionClass>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTuitionClassList().size());
     }

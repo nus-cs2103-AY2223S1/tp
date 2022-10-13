@@ -5,16 +5,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
-import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.address.model.level.Level;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.student.NextOfKin;
-import seedu.address.model.person.student.School;
-import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
 import seedu.address.model.person.tutor.Tutor;
@@ -91,11 +85,17 @@ public class EditTutorDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Qualification} of the {@code EditTutorDescriptor} that we are building.
+     */
     public EditTutorDescriptorBuilder withQualification(String qualification) {
         descriptor.setQualification(new Qualification(qualification));
         return this;
     }
 
+    /**
+     * Sets the {@code Institution} of the {@code EditTutorDescriptor} that we are building.
+     */
     public EditTutorDescriptorBuilder withInstitution(String institution) {
         descriptor.setInstitution(new Institution(institution));
         return this;

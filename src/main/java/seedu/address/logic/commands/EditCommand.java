@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUITIONCLASS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTOR;
@@ -67,6 +66,27 @@ public class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the database.";
+    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the database.";
+
+    private final Index index;
+    private final EditDescriptor editDescriptor;
+
+    /**
+     * @param index of the person in the filtered person list to edit
+     * @param editDescriptor details to edit the person with
+     */
+    public EditCommand(Index index, EditDescriptor editDescriptor) {
+        requireNonNull(index);
+        requireNonNull(editDescriptor);
+
+        this.index = index;
+        this.editDescriptor = editDescriptor;
+    }
 
     public static String getMessageUsage(Model.ListType listType) {
         switch (listType) {
@@ -124,27 +144,6 @@ public class EditCommand extends Command {
         default:
             return MESSAGE_USAGE;
         }
-    }
-
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_EDIT_CLASS_SUCCESS = "Edited Class: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the database.";
-    public static final String MESSAGE_DUPLICATE_CLASS = "This class already exists in the database.";
-
-    private final Index index;
-    private final EditDescriptor editDescriptor;
-
-    /**
-     * @param index of the person in the filtered person list to edit
-     * @param editDescriptor details to edit the person with
-     */
-    public EditCommand(Index index, EditDescriptor editDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editDescriptor);
-
-        this.index = index;
-        this.editDescriptor = editDescriptor;
     }
 
     @Override
@@ -269,7 +268,7 @@ public class EditCommand extends Command {
     /**
      * Abstract class that will store the details to edit.
      */
-    public static abstract class EditDescriptor {
+    public abstract static class EditDescriptor {
         public abstract boolean isAnyFieldEdited();
     }
 
@@ -382,7 +381,7 @@ public class EditCommand extends Command {
      * Stores the details to edit the student with. Each non-empty field value will replace the
      * corresponding field value of the student.
      */
-    public static class EditStudentDescriptor extends  EditPersonDescriptor {
+    public static class EditStudentDescriptor extends EditPersonDescriptor {
         private School school;
         private Level level;
         private NextOfKin nextOfKin;
