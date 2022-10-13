@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,14 +33,24 @@ public class InternshipTest {
         // null -> returns false
         assertFalse(ALICE.isSameInternship(null));
 
-        // same name, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withStatus(VALID_STATUS_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameInternship(editedAlice));
+        // same name, all other attributes different -> returns false
+        Internship editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withStatus(VALID_STATUS_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.isSameInternship(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new InternshipBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameInternship(editedAlice));
+
+        // different position, all other attributes same -> returns false
+        editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_BOB).build();
+        assertFalse(ALICE.isSameInternship(editedAlice));
+
+        // same name, same position, all other attributes different -> returns true
+        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withStatus(VALID_STATUS_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        assertTrue(ALICE.isSameInternship(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Internship editedBob = new InternshipBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
