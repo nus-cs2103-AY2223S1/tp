@@ -70,7 +70,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public boolean isDone() {
+    public Boolean isDone() {
         return isDone;
     }
 
