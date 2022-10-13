@@ -1,3 +1,5 @@
+<!-- markdownlint-disable-file first-line-h1 -->
+<!-- markdownlint-disable-file no-inline-html -->
 <table>
   <thead>
     <tr>
