@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommand;
+package seedu.rc4hdb.logic.commands.storagemodelcommands;
 
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;

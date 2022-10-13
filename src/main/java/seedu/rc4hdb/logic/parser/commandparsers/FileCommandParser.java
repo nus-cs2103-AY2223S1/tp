@@ -1,19 +1,19 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
+import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommand.FileCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommand.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommand.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommand.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-
-import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses input arguments and creates a new FileCommand object.
@@ -30,8 +30,7 @@ public class FileCommandParser implements CommandParser<FileCommand> {
         }
 
         final String secondCommandWord = matcher.group("secondCommandWord");
-        final String arguments = matcher.group("arguments").trim();
-        final Path jsonPath = Paths.get("data", arguments + ".json");
+        final Path jsonPath = Paths.get("data", matcher.group("arguments").trim() + ".json");
         switch (secondCommandWord) {
 
         case FileSwitchCommand.COMMAND_WORD:

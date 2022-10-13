@@ -16,7 +16,7 @@ import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommand.FileCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;

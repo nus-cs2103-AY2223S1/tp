@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommand;
+package seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands;
 
 import java.nio.file.Path;
 

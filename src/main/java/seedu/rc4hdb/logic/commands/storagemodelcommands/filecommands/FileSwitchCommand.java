@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommand;
+package seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
@@ -10,6 +10,7 @@ import java.util.Optional;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.StorageModelCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.storage.Storage;
