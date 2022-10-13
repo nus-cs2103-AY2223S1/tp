@@ -45,8 +45,10 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format("Hello from view! you accessed index " + index.getOneBased()));
+        Person personToView = lastShownList.get(index.getZeroBased());
+
+        model.updateViewedPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName().fullName));
     }
 
 }
