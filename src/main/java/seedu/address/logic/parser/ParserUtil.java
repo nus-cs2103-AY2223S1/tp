@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -130,6 +131,15 @@ public class ParserUtil {
         String trimmedDateAndTime = dateAndTime.trim();
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
+    }
+
+    public static IncomeLevel parseIncomeLevel(String incomeLevel) throws ParseException {
+        requireNonNull(incomeLevel);
+        String trimmedIncome = incomeLevel.trim();
+        if (!IncomeLevel.isValidIncome(incomeLevel)) {
+            throw new ParseException(IncomeLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new IncomeLevel(trimmedIncome);
     }
 
     /**
