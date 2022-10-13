@@ -14,10 +14,9 @@
   <GridPane HBox.hgrow="ALWAYS">
     <VBox GridPane.columnIndex="0" alignment="CENTER_LEFT" minHeight="85" prefWidth="199.0">
       <HBox alignment="CENTER_LEFT" spacing="5.0">
-        <FlowPane alignment="CENTER_LEFT" fx:id="ayData"/>
         <Label style="-fx-font-size: 17;" maxWidth="1.7976931348623157E308" minWidth="-Infinity"
-          text="\$moduleCode" fx:id="moduleCode">
-        </Label>
+          text="\$moduleCode" fx:id="moduleCode"/>
+          <FlowPane alignment="CENTER_LEFT" fx:id="ayData"/>
       </HBox>
       <Label text="\$lecture" fx:id="lecture"/>
       <Label text="\$tutorial" fx:id="tutorial"/>
