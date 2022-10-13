@@ -1,0 +1,22 @@
+{
+  "internships": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "remark": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "friends" ],
+    "position" : "Backend Intern",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLY"
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "remark": "4th street",
+    "position" : "Backend Intern",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLY"
+  } ]
+}
