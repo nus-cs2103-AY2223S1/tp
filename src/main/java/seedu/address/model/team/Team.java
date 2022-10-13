@@ -53,6 +53,11 @@ public class Team {
         return tasks;
     }
 
+    public ObservableList<Task> getTasksList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+
     public Task getTask(int n) {
         return tasks.get(n);
     }
