@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final String floorNumber;
     private final String wardNumber;
     private final List<JsonAdaptedMedication> medications = new ArrayList<>();
+    private final List<PastAppointment> pastAppointments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
