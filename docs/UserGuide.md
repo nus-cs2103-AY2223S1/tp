@@ -84,7 +84,7 @@ Examples:
 
 Adds multiple employees to Coydir all at once.
 
-:warning: **Make sure to have uploaded exactly 1 CSV file to make use of this command**: CSV file can be uploaded under the 'data' folder of Coydir.
+:warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
 
 This command results in one of two cases below:
 
@@ -97,7 +97,11 @@ if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will re
 if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
 prompt the user to upload it.
 
-Format: `batchadd`
+Format: `batchadd FILENAME`
+
+Example:
+
+- `batchadd employees.csv`
 
 ### Listing all employees : `list`
 
@@ -111,7 +115,7 @@ Views the details of an existing employee in the current list.
 
 Format: `view INDEX`
 
-Examples:
+Example:
 
 - `view 2` returns the details of the second employee in the current list.
 
@@ -131,7 +135,7 @@ Otherwise, if Coydir has more than 1 entry that matches the specified name, Coyd
 
 Format: `delete ID`
 
-Examples:
+Example:
 
 - `delete 1` deletes the employee with employee ID of 1.
 
@@ -170,8 +174,9 @@ _Details coming soon ..._
 
 | Action           | Format, Examples                                                                                                                                                      |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **View Details** | `view n/NAME`                                                                                                                                                         |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Batch Add** | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                         |
+| **View Details** | `view ID` <br> e.g. `view 1`                                                                                                                                                    |
+| **Delete**       | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
 | **List**         | `list`                                                                                                                                                                |
 | **Help**         | `help`                                                                                                                                                                |
