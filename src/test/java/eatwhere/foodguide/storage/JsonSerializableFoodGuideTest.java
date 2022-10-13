@@ -15,10 +15,10 @@ import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class JsonSerializableFoodGuideTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_FOODGUIDE_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_FOODGUIDE_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_FOODGUIDE_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableFoodGuideTest");
+    private static final Path TYPICAL_FOODGUIDE_FILE = TEST_DATA_FOLDER.resolve("typicalEateriesFoodGuide.json");
+    private static final Path INVALID_FOODGUIDE_FILE = TEST_DATA_FOLDER.resolve("invalidEateryFoodGuide.json");
+    private static final Path DUPLICATE_FOODGUIDE_FILE = TEST_DATA_FOLDER.resolve("duplicateEateryFoodGuide.json");
 
     @Test
     public void toModelType_typicalFoodGuideFile_success() throws Exception {

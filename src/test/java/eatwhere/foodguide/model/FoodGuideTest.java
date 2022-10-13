@@ -61,7 +61,7 @@ public class FoodGuideTest {
     }
 
     @Test
-    public void hasEatery_eateryNotInAddressBook_returnsFalse() {
+    public void hasEatery_eateryNotInFoodGuide_returnsFalse() {
         assertFalse(foodGuide.hasEatery(TypicalEateries.ALICE));
     }
 

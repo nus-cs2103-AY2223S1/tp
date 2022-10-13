@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New eatery added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This eatery already exists in the food guide";
+    public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide";
 
     private final Eatery toAdd;
 
@@ -51,7 +51,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasEatery(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_EATERY);
         }
 
         model.addEatery(toAdd);

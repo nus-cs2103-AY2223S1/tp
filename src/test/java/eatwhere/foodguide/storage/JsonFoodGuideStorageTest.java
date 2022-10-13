@@ -17,7 +17,7 @@ import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.TypicalEateries;
 
 public class JsonFoodGuideStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFoodGuideStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -44,23 +44,23 @@ public class JsonFoodGuideStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        Assert.assertThrows(DataConversionException.class, () -> readFoodGuide("notJsonFormatAddressBook.json"));
+        Assert.assertThrows(DataConversionException.class, () -> readFoodGuide("notJsonFormatFoodGuide.json"));
     }
 
     @Test
     public void readFoodGuide_invalidFoodGuide_throwDataConversionException() {
-        Assert.assertThrows(DataConversionException.class, () -> readFoodGuide("invalidPersonAddressBook.json"));
+        Assert.assertThrows(DataConversionException.class, () -> readFoodGuide("invalidEateryFoodGuide.json"));
     }
 
     @Test
     public void readFoodGuide_invalidAndValidFoodGuide_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readFoodGuide("invalidAndValidPersonAddressBook.json"));
+                -> readFoodGuide("invalidAndValidEateryFoodGuide.json"));
     }
 
     @Test
     public void readAndSaveFoodGuide_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path filePath = testFolder.resolve("TempFoodGuide.json");
         FoodGuide original = TypicalEateries.getTypicalFoodGuide();
         JsonFoodGuideStorage jsonFoodGuideStorage = new JsonFoodGuideStorage(filePath);
 
@@ -90,7 +90,7 @@ public class JsonFoodGuideStorageTest {
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code foodGuide} at the specified {@code filePath}.
      */
     private void saveFoodGuide(ReadOnlyFoodGuide foodGuide, String filePath) {
         try {

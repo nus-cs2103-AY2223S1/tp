@@ -42,12 +42,12 @@ public interface Model {
     /**
      * Sets the user prefs' food guide file path.
      */
-    void setFoodGuideFilePath(Path addressBookFilePath);
+    void setFoodGuideFilePath(Path foodGuideFilePath);
 
     /**
      * Replaces food guide data with the data in {@code foodGuide}.
      */
-    void setFoodGuide(ReadOnlyFoodGuide addressBook);
+    void setFoodGuide(ReadOnlyFoodGuide foodGuide);
 
     /** Returns the FoodGuide */
     ReadOnlyFoodGuide getFoodGuide();

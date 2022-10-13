@@ -77,7 +77,7 @@ public class UniqueEateryListTest {
     }
 
     @Test
-    public void setEatery_editedEateryIsSamePerson_success() {
+    public void setEatery_editedEateryIsSameEatery_success() {
         uniqueEateryList.add(TypicalEateries.ALICE);
         uniqueEateryList.setEatery(TypicalEateries.ALICE, TypicalEateries.ALICE);
         UniqueEateryList expectedUniqueEateryList = new UniqueEateryList();

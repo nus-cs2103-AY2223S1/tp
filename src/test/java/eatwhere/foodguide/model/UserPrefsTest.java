@@ -13,9 +13,9 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFoodGuideFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-        Assert.assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
+        Assert.assertThrows(NullPointerException.class, () -> userPrefs.setFoodGuideFilePath(null));
     }
 
 }
