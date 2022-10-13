@@ -43,8 +43,6 @@ public class BuyCommandParserTest {
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
-
-    //DONE
     @Test
     public void parse_invalidBuyFields_failure() {
         // invalid price
@@ -66,8 +64,6 @@ public class BuyCommandParserTest {
         // goods and price but no quantity
         assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE_BUY_ORANGE,
                 MESSAGE_INVALID_FORMAT);
-
-
     }
 
     @Test
@@ -92,7 +88,6 @@ public class BuyCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_GOODS + VALID_GOODS_BUY_ORANGE + VALID_QUANTITY_BUY_ORANGE,
                 MESSAGE_INVALID_FORMAT);
-
     }
 
 }

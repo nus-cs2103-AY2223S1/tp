@@ -40,9 +40,7 @@ public class SellCommandParserTest {
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
-
-
-    //DONE
+    
     @Test
     public void parse_invalidSellFields_failure() {
         // invalid price
@@ -88,7 +86,6 @@ public class SellCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_GOODS + VALID_GOODS_SELL_PAPAYA + VALID_QUANTITY_SELL_PAPAYA,
                 MESSAGE_INVALID_FORMAT);
-
     }
 
 
