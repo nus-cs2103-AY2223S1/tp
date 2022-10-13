@@ -107,8 +107,8 @@ public class ApplicationBookTest {
     private static class ApplicationBookStub implements ReadOnlyApplicationBook {
         private final ObservableList<Application> applications = FXCollections.observableArrayList();
 
-        ApplicationBookStub(Collection<Application> Applications) {
-            this.applications.setAll(Applications);
+        ApplicationBookStub(Collection<Application> applications) {
+            this.applications.setAll(applications);
         }
 
         @Override
