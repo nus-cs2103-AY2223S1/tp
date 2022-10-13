@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_TAGS;
 
 import java.util.List;
+
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
