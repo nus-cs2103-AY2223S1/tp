@@ -8,30 +8,54 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="80" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="title" text="\$title" styleClass="cell_big_label" />
+            <HBox spacing="5" alignment="TOP_LEFT" id="cell_id_title_container" HBox.hgrow="ALWAYS">
+                <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
+                    <BorderPane>
+                        <left>
+                            <Label fx:id="id" id="cell_id_label">
+                                <minWidth>
+                                    <!-- Ensures that the label text is never truncated -->
+                                    <Region fx:constant="USE_PREF_SIZE" />
+                                </minWidth>
+                            </Label>
+                        </left>
+                        <center>
+                            <VBox alignment="TOP_LEFT" spacing="8">
+                                <Label fx:id="title" text="\$title" id="cell_title_label"/>
+                                <FlowPane fx:id="tags" styleClass="commissionTags"/>
+                                <BorderPane.margin>
+                                    <Insets left="8" right="16"/>
+                                </BorderPane.margin>
+                            </VBox>
+                        </center>
+                        <right>
+                            <VBox spacing="4" alignment="TOP_LEFT">
+                                <HBox alignment="CENTER_LEFT" spacing="8">
+                                    <!-- workaround to buggy ui when using a shape node: use an empty rounded label -->
+                                    <Label fx:id="completionStatusCircle" id="completionStatusCircle"
+                                           minWidth="8" minHeight="8" maxWidth="8" maxHeight="8" />
+                                    <Label fx:id="completionStatus" id="cell_completion_label"
+                                           text="\$completionStatus" />
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <Label fx:id="deadline" id="cell_secondary_field_label" text="\$deadline"/>
+                                </HBox>
+                            </VBox>
+                        </right>
+                    </BorderPane>
+                </VBox>
             </HBox>
-            <FlowPane fx:id="tags" />
-            <Label fx:id="description" text="\$description" styleClass="cell_small_label" />
-            <Label fx:id="deadline" text="\$deadline" styleClass="cell_small_label" />
-            <Label fx:id="fee" text="\$fee" styleClass="cell_small_label" />
-            <Label fx:id="completionStatus" text="\$completionStatus" styleClass="cell_small_label" />
         </VBox>
     </GridPane>
 </HBox>

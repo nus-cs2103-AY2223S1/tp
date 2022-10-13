@@ -40,7 +40,7 @@
                         <Insets bottom="8.0" />
                     </VBox.margin>
                 </HBox>
-                <FlowPane fx:id="tags">
+                <FlowPane fx:id="tags" styleClass="commissionTags">
                     <VBox.margin>
                         <Insets bottom="8.0" />
                     </VBox.margin>
@@ -54,17 +54,6 @@
                     <Label fx:id="completionStatus" styleClass="cell_small_label" text="\$completionStatus" />
                     <VBox.margin>
                         <Insets bottom="8.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox>
-                    <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true">
-                        <minHeight>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE" />
-                        </minHeight>
-                    </Label>
-                    <VBox.margin>
-                        <Insets bottom="8" />
                     </VBox.margin>
                 </HBox>
                 <HBox>
@@ -110,9 +99,31 @@
                         <Insets bottom="8.0" />
                     </VBox.margin>
                 </HBox>
-                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS">
+                <Label styleClass="cell_h2_label" text="Description">
+                    <VBox.margin>
+                        <Insets top="16" bottom="8" />
+                    </VBox.margin>
+                </Label>
+                <HBox id="descriptionField">
+                    <Label fx:id="description" text="\$description" wrapText="true"
+                           HBox.hgrow="ALWAYS" minWidth="300" VBox.vgrow="ALWAYS" prefWidth="0">
+                        <minHeight>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minHeight>
+                    </Label>
+                    <VBox.margin>
+                        <Insets bottom="8" />
+                    </VBox.margin>
+                </HBox>
+                <Label styleClass="cell_h2_label" text="Iterations">
+                    <VBox.margin>
+                        <Insets top="16" bottom="8" />
+                    </VBox.margin>
+                </Label>
+                <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS" minHeight="300">
                     <placeholder>
-                        <HBox>
+                        <HBox alignment="TOP_CENTER">
                             <Label styleClass="noSuchData" text="No iterations found"
                                    VBox.vgrow="ALWAYS" minHeight="80" minWidth="300" textAlignment="CENTER"
                                    alignment="CENTER" style="-fx-text-fill: #6F747E;">

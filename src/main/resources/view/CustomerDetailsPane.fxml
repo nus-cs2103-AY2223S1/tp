@@ -34,7 +34,7 @@
                     </minHeight>
                 </Label>
             </HBox>
-            <FlowPane fx:id="tags"/>
+            <FlowPane fx:id="tags" styleClass="customerTags" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
                 <minHeight>
                     <!-- Ensures that the label text is never truncated -->
