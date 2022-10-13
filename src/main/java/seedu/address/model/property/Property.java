@@ -27,7 +27,7 @@ public class Property {
     private final Set<Tag> tags = new HashSet<>();
 
     // private final Seller seller;
-    private final String seller;    // TODO: change to Seller object
+    private final String seller; // TODO: change to Seller object
 
     /**
      * Every field must be present and not null.

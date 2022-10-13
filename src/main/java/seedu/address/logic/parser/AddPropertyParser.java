@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SELLER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -31,10 +32,11 @@ public class AddPropertyParser extends Parser<AddPropertyCommand> {
     public AddPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS,
-                        PREFIX_DESCRIPTION, PREFIX_TAG);
+                        PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_SELLER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(
+                argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_ADDRESS, PREFIX_DESCRIPTION, PREFIX_SELLER)
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE));
         }
 
@@ -43,8 +45,9 @@ public class AddPropertyParser extends Parser<AddPropertyCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        String seller = ParserUtil.parseSellerName(argMultimap.getValue(PREFIX_SELLER).get());
 
-        Property property = new Property(propertyName, price, address, description, tagList);
+        Property property = new Property(propertyName, price, address, description, tagList, seller);
 
         return new AddPropertyCommand(property);
     }

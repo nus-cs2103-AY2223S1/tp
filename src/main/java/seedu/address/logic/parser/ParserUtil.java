@@ -218,5 +218,16 @@ public class ParserUtil {
         }
         return new PropertyName(trimmedPropertyName);
     }
+
+    /**
+     * Returns a string representing a seller's name
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseSellerName(String seller) throws ParseException {
+        requireNonNull(seller);
+        String trimmedSeller = seller.trim();
+
+        return trimmedSeller;
+    }
 }
 
