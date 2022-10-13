@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
-import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {

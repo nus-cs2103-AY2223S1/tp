@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,7 +8,6 @@ import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
-import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

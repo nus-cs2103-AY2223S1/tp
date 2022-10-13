@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT;
@@ -17,7 +17,6 @@ import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
-import seedu.foodrem.logic.parser.tagcommandparser.NewTagCommandParser;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 

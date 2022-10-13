@@ -18,6 +18,7 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     // To be displayed in a new help window
+    // TODO: Update this to match user guide
     public static final String USER_GUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
     public static final String MORE_INFORMATION = "For more information please head to:\n" + USER_GUIDE_URL;
 
@@ -45,5 +46,12 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, message);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof HelpCommand // instanceof handles nulls
+                && message.equals(((HelpCommand) other).message)); // state check
     }
 }

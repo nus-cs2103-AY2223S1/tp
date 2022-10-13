@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION;
@@ -15,7 +15,6 @@ import static seedu.foodrem.testutil.TypicalTags.FRUITS_WITH_WHITESPACE;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
-import seedu.foodrem.logic.parser.tagcommandparser.RenameTagCommandParser;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
