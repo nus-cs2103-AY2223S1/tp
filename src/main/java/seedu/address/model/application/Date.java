@@ -16,7 +16,8 @@ public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format of yyyy-mm-dd with proper month and leap year support";
-    private static final DateTimeFormatter commandDateFormatter = DateTimeFormatter.ISO_LOCAL_DATE;
+    private static final DateTimeFormatter COMMAND_DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+    private static final DateTimeFormatter DISPLAY_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy");
     public final LocalDate value;
 
     /**
@@ -35,7 +36,7 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            commandDateFormatter.parse(test);
+            COMMAND_DATE_FORMATTER.parse(test);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -43,7 +44,7 @@ public class Date {
     }
 
     private LocalDate parseLocalDate(String dateString) {
-        return LocalDate.parse(dateString, commandDateFormatter);
+        return LocalDate.parse(dateString, COMMAND_DATE_FORMATTER);
     }
 
     /**
@@ -52,13 +53,12 @@ public class Date {
      * @return The command string that corresponds to this {@code Date}.
      */
     public String toCommandString() {
-        return commandDateFormatter.format(value);
+        return COMMAND_DATE_FORMATTER.format(value);
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        return this.value.format(formatter);
+        return this.value.format(DISPLAY_DATE_FORMATTER);
     }
 
     @Override
