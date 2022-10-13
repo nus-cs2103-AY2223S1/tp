@@ -28,6 +28,14 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
+    /**
+     * Creates a defensive copy of the {@code StorageManager}.
+     * @return the defensive copy.
+     */
+    public StorageManager getCopy() {
+        return new StorageManager(residentBookStorage, userPrefsStorage);
+    }
+
     // ================ UserPrefs methods ==============================
 
     @Override
@@ -77,6 +85,24 @@ public class StorageManager implements Storage {
     public void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         residentBookStorage.saveResidentBook(residentBook, filePath);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof StorageManager)) {
+            return false;
+        }
+
+        // state check
+        StorageManager other = (StorageManager) obj;
+        return residentBookStorage.equals(other.residentBookStorage)
+                && userPrefsStorage.equals(other.userPrefsStorage);
     }
 
 }
