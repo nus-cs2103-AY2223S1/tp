@@ -271,7 +271,7 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                                     | So that I can…​                                                        |
-| -------- |--------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------------|
+|----------|--------------------------------------------|------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | new user                                   | see usage instructions                                           | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person                                                 |                                                                        |
 | `* * *`  | user who uses github                       | add a new person by github username                              | have their details without fill in manually                            |
@@ -288,27 +288,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `GithubContact` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `GithubContact` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC-01 - Find a person by name or GitHub username**
 
 **MSS:**
-1. User search people by their name or GitHub username.
+1. User searches for person by their name or GitHub username.
 2. System shows a list of person related to the name or GitHub username.
-
-   Use case ends.
-
-**Extensions:**
-- 2a. The list is empty
-
-  Use case ends
-
-
-**Use case: UC-01 - Find a person by name or GitHub username**
-
-**MSS:**
-1. User search repository by name.
-2. System shows a list of repositories related to the user's query.
 
    Use case ends.
 
@@ -321,17 +307,89 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC-03 - Add a new person by GitHub username**
 
-**Use case: UC-04 - Add contact to a person**
+**Use case: UC-04 - View a person's Contact Detail Page**
 
-**Use case: UC-05 - Delete contact from a person**
+**Preconditions:** Person has been added to the system.
 
-**Use case: UC-06 - Set timezone to a person**
+**MSS**
+1. User enters a person's contact detail page.
+2. System displays all the contacts related to the person.
 
-**Use case: UC-07 - Delete timezone from a person**
+Use case ends.
 
-**Use case: UC-08 - Set role to a person**
+**Use case: UC-05 - Add a new contact address to a person**
 
-**Use case: UC-09 - Delete role from a person**
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User adds a new contact to the person.
+2. System is updated to reflect the person's new contact.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. The contact already exists for that person.
+    * 1a1. System shows an error message.
+    Use case resumes at step 1.
+
+* 1b. The name of the given contact is invalid.
+    * 1b1. System shows an error message.
+    Use case resumes at step 1.
+
+**Use case: UC-06 - Update a person's contact address**
+
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User updates an existing contact of the person.
+2. System is updated to reflect the person's new contact.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. The contact does not exist for that person.
+    * 1a1. System shows an error message.
+      Use case resumes at step 1.
+
+* 1b. The name of the given contact is invalid.
+    * 1b1. System shows an error message.
+      Use case resumes at step 1.
+
+**Use case: UC-07 - Delete a contact address from a person**
+
+**Preconditions:** 
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User deletes an existing contact of the person.
+2. System is updated to reflect the removal.
+3. System shows the updated Contact Detail Page.
+
+Use Case ends.
+
+**Extensions**
+* 1a. The contact does not exist for that person.
+    * 1a1. System shows an error message.
+      Use case resumes at step 1.
+
+* 1b. The name of the given contact is invalid.
+    * 1b1. System shows an error message.
+      Use case resumes at step 1.
+
+**Use case: UC-08 - Set timezone to a person**
+
+**Use case: UC-09 - Delete timezone from a person**
+
+**Use case: UC-10 - Set role to a person**
+
+**Use case: UC-11 - Delete role from a person**
 
 ### Non-Functional Requirements
 
