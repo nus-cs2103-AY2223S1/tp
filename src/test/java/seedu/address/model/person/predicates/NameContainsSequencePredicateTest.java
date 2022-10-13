@@ -49,6 +49,7 @@ class NameContainsSequencePredicateTest {
     @Test
     public void test_nameDoesNotContainSequence_returnsFalse() {
         Person personToTest = generatePersonWithName("John Doe");
+
         // Non-matching sequence
         NameContainsSequencePredicate predicate = new NameContainsSequencePredicate("Alice");
         assertFalse(predicate.test(personToTest));
