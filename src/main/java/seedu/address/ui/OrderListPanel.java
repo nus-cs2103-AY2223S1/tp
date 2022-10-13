@@ -9,7 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
 
 
 /**
@@ -49,5 +48,4 @@ public class OrderListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

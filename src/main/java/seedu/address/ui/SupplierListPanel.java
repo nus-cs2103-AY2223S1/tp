@@ -26,9 +26,9 @@ public class SupplierListPanel extends UiPart<Region> {
     /**
      * Creates a {@code SupplierListPanel} with the given {@code ObservableList}.
      */
-    public SupplierListPanel(ObservableList<Supplier> SupplierList) {
+    public SupplierListPanel(ObservableList<Supplier> supplierList) {
         super(FXML);
-        supplierListView.setItems(SupplierList);
+        supplierListView.setItems(supplierList);
         supplierListView.setCellFactory(listView -> new SupplierListViewCell());
     }
 
@@ -48,5 +48,4 @@ public class SupplierListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

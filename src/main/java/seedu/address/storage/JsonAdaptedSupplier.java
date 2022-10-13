@@ -126,5 +126,4 @@ class JsonAdaptedSupplier {
 
         return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
     }
-
 }

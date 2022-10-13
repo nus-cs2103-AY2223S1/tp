@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.Order;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Email;
@@ -128,5 +127,4 @@ class JsonAdaptedDeliverer {
         return new Deliverer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress,
                 modelTags, null);
     }
-
 }

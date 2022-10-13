@@ -43,7 +43,13 @@ public class Supplier extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), petsOnSale);
+        return Objects.hash(getPersonCategory(),
+                getName(),
+                getPhone(),
+                getEmail(),
+                getAddress(),
+                getTags(),
+                petsOnSale);
     }
 
     @Override
