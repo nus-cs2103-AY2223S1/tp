@@ -23,7 +23,7 @@
 }
 
 .command-placeholder,
-.command-placeholder * {
+.command-box > TextField {
   -fx-focus-color: transparent;
   -fx-text-box-border: transparent;
   -fx-background-color: transparent;
