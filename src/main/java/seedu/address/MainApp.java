@@ -1,5 +1,7 @@
 package seedu.address;
 
+import static seedu.address.model.util.SampleDataUtil.getSamplePropertyModel;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -18,7 +20,6 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PersonBook;
-import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -78,7 +79,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPersonBook> personModelOptional;
         ReadOnlyPersonBook personModel;
-        ReadOnlyPropertyBook emptyPropertyModel = new PropertyBook(); // TODO: read property model from storage
+        ReadOnlyPropertyBook emptyPropertyModel = getSamplePropertyModel(); // TODO: read property model from storage
 
         try {
             personModelOptional = storage.readAddressBook();
