@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Internship Tracker ] =============================");
+        logger.info("============================ [ Stopping InTrack ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
