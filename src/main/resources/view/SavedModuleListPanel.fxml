@@ -5,8 +5,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
-  <Text style="-fx-font-size: 25;" fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE"
-    strokeWidth="0.0" text="My Modules">
+  <Text style="-fx-font-size: 18;" fill="#E06C75" fontSmoothingType="LCD" strokeType="OUTSIDE"
+    strokeWidth="0.0" text="My Modules" textAlignment="CENTER">
     <VBox.margin>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </VBox.margin>
