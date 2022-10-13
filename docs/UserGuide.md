@@ -27,7 +27,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to bobaBot.
 
-    * **`delete`**`n/Charlie Puth` : Deletes the 3rd customer with name Charlie Puth shown in the current list.
+    * **`delete`**`p/98765432` : Deletes the customer with the corresponding phone number (aka John Doe).
 
     * **`clear`** : Deletes all customers.
 
@@ -131,18 +131,14 @@ Removes a Customer from bobaBot.
 
 Format:
 
-`delete n/NAME` or
-
 `delete p/PHONE_NUMBER` or
 
 `delete e/EMAIL`
 
-* Deletes the Customer with the following `NAME` when `n/` specified.
 * Deletes the Customer with the following `PHONE_NUMBER` when `p/` specified.
 * Deletes the Customer with the following `EMAIL` when `e/` specified.
 
 Examples:
-* `delete n/Alex Yeoh` removes the Customer with the name `Alex Yeoh`.
 * `delete p/87438807` removes the Customer with the phone number `87438807`.
 * `delete e/alexyeoh@example.com` removes the Customer with the email `alexyeoh@example.com`.
 
@@ -189,7 +185,7 @@ _Details coming soon ..._
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                    |
 | **Edit**   | `edit n/NAME` or `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit n/John Doe p/91234567 e/johndoe@example.com r/1000` |
-| **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                                 |
+| **Delete** | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                                                                          |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                           |
 | **Clear**  | `clear`                                                                                                                                                                              |
 | **List**   | `list`                                                                                                                                                                               |
