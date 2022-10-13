@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -12,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -49,6 +54,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setMoneyOwed(person.getMoneyOwed());
         descriptor.setMoneyPaid(person.getMoneyPaid());
         descriptor.setAdditionalNotes(person.getAdditionalNotes());
+        descriptor.setTags(person.getTags());
     }
 
     /**
@@ -128,6 +134,16 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAdditionalNotes(String additionalNotes) {
         descriptor.setAdditionalNotes(new AdditionalNotes(additionalNotes));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 
