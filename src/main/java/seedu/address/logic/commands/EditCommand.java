@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
@@ -115,7 +116,8 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation);
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername);
     }
 
     /**
@@ -132,9 +134,10 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation);
+            updatedLocation, updatedUsername);
     }
 
     /**
@@ -152,9 +155,9 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-            updatedEmail, updatedGender, updatedTags, updatedLocation);
+            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername);
     }
 
 
@@ -188,6 +191,7 @@ public class EditCommand extends Command {
         private Gender gender;
         private Set<Tag> tags;
         private Location location;
+        private GithubUsername githubUsername;
 
         public EditPersonDescriptor() {
         }
@@ -204,6 +208,7 @@ public class EditCommand extends Command {
             setGender(toCopy.gender);
             setTags(toCopy.tags);
             setLocation(toCopy.location);
+            setGithubUsername(toCopy.githubUsername);
         }
 
         /**
@@ -259,6 +264,14 @@ public class EditCommand extends Command {
 
         public void setLocation(Location location) {
             this.location = location;
+        }
+
+        public Optional<GithubUsername> getGithubUsername() {
+            return Optional.ofNullable(githubUsername);
+        }
+
+        public void setGithubUsername(GithubUsername username) {
+            this.githubUsername = username;
         }
 
         /**

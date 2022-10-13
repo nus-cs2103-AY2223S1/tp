@@ -13,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
@@ -172,7 +173,7 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
-        if (location == DEFAULT_LOC_STRING) {
+        if (location.equals(DEFAULT_LOC_STRING)) {
             return new Location("NUS");
         }
         String trimmedLocation = location.trim();
@@ -181,5 +182,21 @@ public class ParserUtil {
         }
         return new Location(trimmedLocation);
     }
+
+    /**
+     * Parses a {@code String username} into an {@code GithubUsername}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code GithubUsername} is invalid.
+     */
+    public static GithubUsername parseGitHubUsername(String username) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!GithubUsername.isValidUsername(username)) {
+            throw new ParseException(GithubUsername.MESSAGE_CONSTRAINTS);
+        }
+        return new GithubUsername(trimmedUsername);
+    }
+
 
 }

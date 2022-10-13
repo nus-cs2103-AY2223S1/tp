@@ -13,8 +13,9 @@ public class Student extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags, Location location) {
-        super(name, phone, email, gender, tags, location);
+    public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags,
+                   Location location, GithubUsername username) {
+        super(name, phone, email, gender, tags, location, username);
     }
 
     @Override
@@ -30,7 +31,9 @@ public class Student extends Person {
                 .append("; Gender: ")
                 .append(getGender())
                 .append("; Location: ")
-                .append(getLocation());
+                .append(getLocation())
+                .append("; Github Username: ")
+                .append(getUsername());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

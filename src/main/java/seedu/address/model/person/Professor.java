@@ -17,8 +17,8 @@ public class Professor extends Person {
      * Every field must be present and not null.
      */
     public Professor(Name name, ModuleCode moduleCode, Phone phone, Email email, Gender gender, Set<Tag> tags,
-                     Location location) {
-        super(name, phone, email, gender, tags, location);
+                     Location location,GithubUsername username) {
+        super(name, phone, email, gender, tags, location, username);
         this.moduleCode = moduleCode;
     }
 

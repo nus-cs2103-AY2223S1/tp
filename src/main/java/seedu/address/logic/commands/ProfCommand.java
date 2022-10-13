@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -37,7 +38,8 @@ public class ProfCommand extends Command {
             + PREFIX_GENDER + "M "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_LOCATION + "COM2 LT4";
+            + PREFIX_LOCATION + "COM2 LT4 "
+            + PREFIX_GITHUBUSERNAME + "WongWong";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";
     public static final String MESSAGE_SUCCESS = "New professor added: %1$s";
