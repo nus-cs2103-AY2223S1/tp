@@ -1,7 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.DuplicatePrefixException;
 import seedu.address.model.Model;
+import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.DuplicateTagTypeException;
 import seedu.address.model.tag.TagType;
 
 /**
@@ -15,23 +21,32 @@ public class CreateTagTypeCommand extends Command {
             + "Parameters: "
             + "TAG_TYPE TAG_ALIAS\n"
             + "Example: " + COMMAND_WORD + " "
-            + "Grage grdt";
+            + "Grade grdt";
 
     public static final String MESSAGE_SUCCESS = "New tag type created: %1$s";
     public static final String MESSAGE_DUPLICATE_TAG_TYPE = "This tag type already exists";
 
     private final TagType toAdd;
+    private final Prefix prefix;
 
     /**
      * Creates a CreateTagTypeCommand to add the specified {@code TagType}
      */
-    public CreateTagTypeCommand(TagType toAdd) {
+    public CreateTagTypeCommand(TagType toAdd, Prefix prefix) {
+        requireNonNull(toAdd);
         this.toAdd = toAdd;
+        this.prefix = prefix;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+        try {
+            UniqueTagTypeMap.createTagType(prefix, toAdd);
+        } catch (DuplicatePrefixException | DuplicateTagTypeException d) {
+            throw new CommandException(d.getMessage());
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

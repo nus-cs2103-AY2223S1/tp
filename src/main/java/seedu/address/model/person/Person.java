@@ -2,12 +2,13 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import javafx.collections.ObservableMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
+import seedu.address.model.tag.TagType;
+import seedu.address.model.tag.UniqueTagList;
+
 
 /**
  * Represents a Person in the address book.
@@ -22,20 +23,20 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private UniqueTagTypeMap tagTypeMap;
     private final Status status;
     private final Note note;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Status status) {
-        requireAllNonNull(name, phone, email, address, tags, status);
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap, Status status) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tagTypeMap = tagTypeMap;
         this.status = status;
         this.note = new Note("");
     }
@@ -43,13 +44,14 @@ public class Person {
     /**
      * Overloaded constructor for Person when note is provided.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Status status, Note note) {
-        requireAllNonNull(name, phone, email, address, tags, status);
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
+                  Status status, Note note) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.tagTypeMap = tagTypeMap;
         this.status = status;
         this.note = note;
     }
@@ -69,7 +71,6 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-
     public Note getNote() {
         return note;
     }
@@ -78,8 +79,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public ObservableMap<TagType, UniqueTagList> getTags() {
+        return tagTypeMap.asUnmodifiableObservableMap();
     }
 
     public Status getStatus() {
@@ -126,12 +127,12 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, status, note);
+        return Objects.hash(name, phone, email, address, tagTypeMap, status, note);
     }
 
     public String getDetailsAsString() {
         return String.format("%s %s %s %s %s %s %s", name, phone, email, address, status,
-                tags, note);
+                tagTypeMap, note);
     }
 
     @Override
@@ -145,10 +146,11 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
+        ObservableMap<TagType, UniqueTagList> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            tags.forEach((tagType, tagList) -> builder.append(String.format("%s: %s", tagType.toString(),
+                    tagList.toString())));
         }
 
         builder.append("; Status: ")
@@ -160,4 +162,19 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Deletes tagType for the person if present.
+     */
+    public void deleteTagType(TagType tagType) throws TagTypeNotFoundException {
+        if (this.tagTypeMap.contains(tagType)) {
+            this.tagTypeMap.removeTagType(tagType);
+        }
+    }
+
+    /**
+     * Sets tagTypeMap for the person.
+     */
+    public void setTagTypeMap(UniqueTagTypeMap tagTypeMap) throws TagTypeNotFoundException {
+        this.tagTypeMap.setTagTypeMap(tagTypeMap);
+    }
 }

@@ -1,14 +1,15 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.ObservableMap;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -17,7 +18,10 @@ import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagType;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -30,7 +34,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<List<JsonAdaptedTag>> tags = new ArrayList<>();
     private final String status;
     private final String note;
 
@@ -40,16 +44,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("status") String status,
+            @JsonProperty("tags") List<List<JsonAdaptedTag>> tags, @JsonProperty("status") String status,
             @JsonProperty("note") String note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.note = note;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
+        this.note = note;
         this.status = status;
     }
 
@@ -61,9 +65,15 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        ObservableMap<TagType, UniqueTagList> map = source.getTags();
+        for (TagType t: map.keySet()) {
+            Tag tagtype = new Tag(t.getTagTypeName());
+            JsonAdaptedTag jTagType = new JsonAdaptedTag(tagtype);
+            List<JsonAdaptedTag> list = new ArrayList<>();
+            list.add(jTagType);
+            list.addAll(map.get(t).toStream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+            tags.add(list);
+        }
         status = source.getStatus().status;
         note = source.getNote().value;
     }
@@ -74,9 +84,20 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final Map<TagType, UniqueTagList> personTags = new HashMap<>();
+
+        for (List<JsonAdaptedTag> tags : tags) {
+            String tagType = tags.get(0).toModelType().toString();
+            tagType = tagType.substring(1, tagType.length() - 1);
+            TagType t = new TagType(tagType, UniqueTagTypeMap.getPrefixFromTagType(tagType));
+            List<Tag> tagList = new ArrayList<>();
+            for (JsonAdaptedTag jsonAdaptedTag : tags.subList(1, tags.size())) {
+                Tag toModelType = jsonAdaptedTag.toModelType();
+                tagList.add(toModelType);
+            }
+            UniqueTagList uniqueTagList = new UniqueTagList();
+            uniqueTagList.setTags(tagList);
+            personTags.put(t, uniqueTagList);
         }
 
         if (name == null) {
@@ -111,7 +132,8 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final UniqueTagTypeMap modelTags = new UniqueTagTypeMap();
+        modelTags.setTagTypeMap(personTags);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
@@ -130,3 +152,5 @@ class JsonAdaptedPerson {
     }
 
 }
+
+

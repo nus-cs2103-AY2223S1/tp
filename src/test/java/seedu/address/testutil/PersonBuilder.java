@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -10,7 +7,7 @@ import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -28,7 +25,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private UniqueTagTypeMap tags;
     private Status status;
     private Note note;
 
@@ -40,7 +37,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        tags = new UniqueTagTypeMap();
         status = new Status(DEFAULT_STATUS);
         note = new Note("");
     }
@@ -53,7 +50,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+        tagTypeMap.setTagTypeMap(personToCopy.getTags());
+        tags = tagTypeMap;
         status = personToCopy.getStatus();
         note = personToCopy.getNote();
     }
@@ -70,7 +69,22 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        //        if (tags.length == 0) {
+        //            return this;
+        //        }
+        //        String tagTypeName = tags[0];
+        //        Prefix p = UniqueTagTypeMap.getPrefixFromTagType(tagTypeName);
+        //        TagType tagType;
+        //        try {
+        //            tagType = ParserUtil.parseTagType(tagTypeName, p);
+        //        } catch (ParseException pe) {
+        //            return this;
+        //        }
+        //        for (int i = 1; i < tags.length; i++) {
+        //            Tag tag = new Tag(tags[i]);
+        //            this.tags.mergeTag(tagType, tag);
+        //        }
+        this.tags = SampleDataUtil.getTagTypeMap(tags);
         return this;
     }
 
