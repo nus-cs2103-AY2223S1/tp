@@ -5,17 +5,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindPetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonCategory;
-import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -34,23 +31,24 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         String[] queries = nameKeywords[1].trim().split("\\s+");
         switch (nameKeywords[0]) {
-            case "b":
-                return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        PersonCategory.getFromString("Buyer"));
-            case "d":
-                return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        PersonCategory.getFromString("Deliverer"));
-            case "s":
-                return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
-                        PersonCategory.getFromString("Supplier"));
+        case "b":
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    PersonCategory.getFromString("Buyer"));
+        case "d":
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    PersonCategory.getFromString("Deliverer"));
+        case "s":
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    PersonCategory.getFromString("Supplier"));
+        default:
+            return null;
         }
-        return null;
     }
 
 }
