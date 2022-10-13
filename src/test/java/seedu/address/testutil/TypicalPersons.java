@@ -120,7 +120,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code PersonBook} with all the typical persons.
      */
-    public static PersonBook getTypicalAddressBook() {
+    public static PersonBook getTypicalPersonsBook() {
         PersonBook ab = new PersonBook();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);

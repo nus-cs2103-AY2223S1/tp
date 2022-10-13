@@ -142,11 +142,6 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public boolean hasProperty(Property property) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -154,11 +149,6 @@ public class AddPersonCommandTest {
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setProperty(Property propertyToEdit, Property editedProperty) {
-
         }
 
         @Override
