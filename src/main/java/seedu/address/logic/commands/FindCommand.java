@@ -14,6 +14,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
+import seedu.address.model.person.CombinedAppointmentPredicate;
+import seedu.address.model.person.CombinedPersonPredicate;
 import seedu.address.model.person.Person;
 
 /**

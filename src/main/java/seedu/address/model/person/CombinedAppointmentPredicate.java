@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.model.person;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
@@ -6,10 +6,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTimeWithinRangePredicate;
-import seedu.address.model.person.ReasonContainsSequencePredicate;
 
 public class CombinedAppointmentPredicate implements Predicate<Appointment> {
     private final String reason;

@@ -1,17 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.model.person;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-
-import seedu.address.model.person.AddressContainsSequencePredicate;
-import seedu.address.model.person.EmailContainsSequencePredicate;
-import seedu.address.model.person.NameContainsSequencePredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonContainsTagsPredicate;
-import seedu.address.model.person.PhoneContainsSequencePredicate;
 
 public class CombinedPersonPredicate implements Predicate<Person> {
     private final String name;
