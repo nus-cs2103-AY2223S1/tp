@@ -21,9 +21,6 @@ public class ProjectId {
         this.projectId = id;
     }
 
-    public int getIdInt() {
-        return this.projectId;
-    }
 
     /**
      * Checks if this ProjectID is empty.
@@ -65,6 +62,10 @@ public class ProjectId {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public int getIdInt() {
+        return this.projectId;
     }
 
     public String uiRepresentation() {

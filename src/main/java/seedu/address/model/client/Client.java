@@ -13,6 +13,8 @@ import seedu.address.model.project.Project;
  */
 public class Client {
 
+    public static final String MESSAGE_INVALID = "Client does not exist in the project.";
+
     //Represents the Client's name
     private Name name;
 
@@ -52,8 +54,8 @@ public class Client {
         this.phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
         this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         this.projects = new ArrayList<>();
+        this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
     }
-
 
     public ClientId getClientId() {
         return this.clientId;
@@ -115,8 +117,19 @@ public class Client {
         return this.phone;
     }
 
+    /**
+     * Returns the list of projects under the client.
+     * @return String representing client's phone.
+     */
     public List<Project> getProjects() {
-        return projects;
+        return this.projects;
+    }
+
+    /**
+     * Add A project to the client's project list.
+     */
+    public void addProjects(Project project) {
+        projects.add(project);
     }
 
 
@@ -131,6 +144,16 @@ public class Client {
 
         return otherClient != null
                 && otherClient.getClientName().equals(getClientName());
+    }
+
+    /**
+     * Returns true if client is valid and exists.
+     */
+    public static boolean isValidClient(Client client) {
+        if (client == EmptyClient.EMPTY_CLIENT) {
+            return false;
+        }
+        return true;
     }
 
     /**

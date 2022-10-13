@@ -24,7 +24,7 @@ public class AddClientCommand extends ClientCommand {
             + PREFIX_CLIENT_NAME + "NAME "
             + PREFIX_CLIENT_PHONE + "PHONE "
             + PREFIX_CLIENT_EMAIL + "EMAIL "
-            + PREFIX_PROJECT_ID + "CLIENT ID: "
+            + PREFIX_PROJECT_ID + "PROJECT ID: "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT_NAME + "John Doe "
             + PREFIX_CLIENT_PHONE + "98765432 "
@@ -44,7 +44,6 @@ public class AddClientCommand extends ClientCommand {
         toAddClient = client;
     }
 
-    // TODO: revise implementation
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);

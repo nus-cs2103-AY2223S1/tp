@@ -24,14 +24,14 @@ import seedu.address.model.client.exceptions.DuplicateClientException;
  * @see Client#isSameClient(Client)
  */
 public class UniqueClientList implements Iterable<Client> {
-    private final ObservableList<Client> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent client as the given argument.
      */
-    public boolean contains(Client toCheck) {
+    public static boolean contains(Client toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameClient);
     }
@@ -79,13 +79,30 @@ public class UniqueClientList implements Iterable<Client> {
         }
     }
 
-    public Client getClient(ClientId id) {
+    public static Client getClient(ClientId id) {
         for (Client c: internalList) {
             if (c.getClientId().equals(id)) {
                 return c;
             }
         }
         return Client.EmptyClient.EMPTY_CLIENT;
+    }
+
+    /**
+     * Generates an object id based on the current highest object id
+     */
+    public static int generateId() {
+        if (internalList.size() == 0) {
+            return 1;
+        } else {
+            int count = 0;
+            for (Client i: internalList) {
+                if (i.getClientId().getIdInt() > count) {
+                    count = i.getClientId().getIdInt();
+                }
+            }
+            return count + 1;
+        }
     }
 
     public void setClients(UniqueClientList replacement) {

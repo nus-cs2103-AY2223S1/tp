@@ -29,7 +29,7 @@ public class Project {
      */
     public Project(Name name, Repository repository, Deadline deadline,
                    Client client, List<Issue> issueList, ProjectId projectId) {
-        requireAllNonNull(name, repository, deadline, client);
+        requireAllNonNull(name);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
@@ -70,6 +70,7 @@ public class Project {
     public ProjectId getId() {
         return projectId;
     }
+
     public Name getProjectName() {
         return name;
     }
@@ -90,6 +91,10 @@ public class Project {
         return issueList;
     }
 
+    public void removeClient() {
+        this.client = Client.EmptyClient.EMPTY_CLIENT;
+    }
+
     /**
      * Checks if this Project is empty.
      * @return true if the Project is empty.
@@ -101,6 +106,9 @@ public class Project {
     //todo: create and replace with emptyProject inner class
     public static boolean isValidProject(Project p) {
         return !p.equals(null);
+    }
+    public boolean hasValidClientId() {
+        return !this.getClient().getClientId().isEmpty();
     }
     /**
      * Returns true if both projects have the same identity and data fields.

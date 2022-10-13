@@ -30,14 +30,6 @@ public class UniqueProjectList implements Iterable<Project> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent project as the given argument.
-     */
-    public static boolean contains(Project toCheck) {
-        requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameProject);
-    }
-
-    /**
      * Method to generate a project id temporarily
      *
      * @return project id
@@ -50,6 +42,14 @@ public class UniqueProjectList implements Iterable<Project> {
             }
         }
         return count + 1;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent project as the given argument.
+     */
+    public static boolean contains(Project toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameProject);
     }
 
     /**
@@ -84,15 +84,23 @@ public class UniqueProjectList implements Iterable<Project> {
         internalList.set(index, editedProject);
     }
 
-    // TODO: temporary getter for project, can be deleted when alt method to retrieve project is implemented
+
     public static Project getProject(int projectId) {
         for (Project p : internalList) {
-            ProjectId id = new ProjectId(projectId);
-            if (p.getId().equals(id)) {
+            if (p.getId().getIdInt() == projectId) {
                 return p;
             }
         }
         return null;
+    }
+
+    public static Project getProject(ProjectId id) {
+        for (Project p: internalList) {
+            if (p.getId().equals(id)) {
+                return p;
+            }
+        }
+        return Project.EmptyProject.EMPTY_PROJECT;
     }
 
 
@@ -123,15 +131,6 @@ public class UniqueProjectList implements Iterable<Project> {
         }
 
         internalList.setAll(projects);
-    }
-
-    public static Project getProject(ProjectId id) {
-        for (Project p: internalList) {
-            if (p.getId().equals(id)) {
-                return p;
-            }
-        }
-        return Project.EmptyProject.EMPTY_PROJECT;
     }
 
     /**
