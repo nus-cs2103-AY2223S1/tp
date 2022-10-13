@@ -15,11 +15,11 @@ import seedu.condonery.model.tag.Tag;
  */
 public class TypicalClients {
 
-    public static final Client ALICE_CLIENT = new ClientBuilder().withName("Pinnacle@Duxton")
+    public static final Client ALICE_CLIENT = new ClientBuilder().withName("Alice")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withTags("friends").build();
 
-    public static final Client BOB_CLIENT = new ClientBuilder().withName("Oasis")
+    public static final Client BOB_CLIENT = new ClientBuilder().withName("Bob")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").build();
 

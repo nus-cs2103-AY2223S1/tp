@@ -27,17 +27,17 @@ public class ClientTest {
         assertFalse(ALICE_CLIENT.isSameClient(null));
 
         // same name, all other attributes different -> returns true
-        Client editedAlice = new ClientBuilder(ALICE_CLIENT).withName(VALID_NAME_BOB)
+        Client editedAlice = new ClientBuilder().withName("Alice")
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags("tag1", "tag2").build();
         assertTrue(ALICE_CLIENT.isSameClient(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new ClientBuilder(ALICE_CLIENT).withName(VALID_NAME_BOB).build();
+        editedAlice = new ClientBuilder().withName(VALID_NAME_BOB).build();
         assertFalse(ALICE_CLIENT.isSameClient(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Client editedBob = new ClientBuilder(BOB_CLIENT).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Client editedBob = new ClientBuilder().withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB_CLIENT.isSameClient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
