@@ -97,12 +97,14 @@ public class ModelManagerTest {
     public void equals() {
         PropertyDirectory propertyDirectory =
             new PropertyDirectoryBuilder().withProperty(PINNACLE).withProperty(OASIS).build();
+        ClientDirectory clientDirectory =
+            new ClientDirectory(); // to create new ClientDirectoryBuilder()
         PropertyDirectory differentPropertyDirectory = new PropertyDirectory();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(propertyDirectory, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(propertyDirectory, userPrefs);
+        modelManager = new ModelManager(propertyDirectory, clientDirectory, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(propertyDirectory, clientDirectory, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -115,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different propertyDirectory -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentPropertyDirectory, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentPropertyDirectory, clientDirectory, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = PINNACLE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(propertyDirectory, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(propertyDirectory, clientDirectory, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
@@ -128,6 +130,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setPropertyDirectoryFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(propertyDirectory, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(propertyDirectory, clientDirectory, differentUserPrefs)));
     }
 }

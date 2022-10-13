@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.commons.core.Messages.MESSAGE_PROPERTIES_LISTED_OVERVIEW;
+import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
 import static seedu.condonery.testutil.TypicalProperties.CARL;
 import static seedu.condonery.testutil.TypicalProperties.ELLE;
 import static seedu.condonery.testutil.TypicalProperties.FIONA;
@@ -23,8 +24,10 @@ import seedu.condonery.model.property.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private final Model model = new ModelManager(getTypicalPropertyDirectory(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalPropertyDirectory(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalPropertyDirectory(),
+            getTypicalClientDirectory(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalPropertyDirectory(),
+            getTypicalClientDirectory(), new UserPrefs());
 
     @Test
     public void equals() {

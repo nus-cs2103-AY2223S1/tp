@@ -14,7 +14,7 @@ import seedu.condonery.model.util.SampleDataUtil;
  */
 public class PropertyBuilder {
 
-    public static final String DEFAULT_NAME = "Pinnacle@Duxton";
+    public static final String DEFAULT_NAME = "Bishan";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;

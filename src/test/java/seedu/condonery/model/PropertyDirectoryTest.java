@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.condonery.model.person.exceptions.DuplicatePersonException;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.exceptions.DuplicatePropertyException;
 import seedu.condonery.testutil.PropertyBuilder;
 
 public class PropertyDirectoryTest {
@@ -44,7 +44,7 @@ public class PropertyDirectoryTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateProperties_throwsDuplicatePropertyException() {
         // Two persons with the same identity fields
         Property editedPinnacle = new PropertyBuilder(PINNACLE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
@@ -52,7 +52,7 @@ public class PropertyDirectoryTest {
         List<Property> newProperties = Arrays.asList(PINNACLE, editedPinnacle);
         PropertyDirectoryStub newData = new PropertyDirectoryStub(newProperties);
 
-        assertThrows(DuplicatePersonException.class, () -> propertyDirectory.resetData(newData));
+        assertThrows(DuplicatePropertyException.class, () -> propertyDirectory.resetData(newData));
     }
 
     @Test

@@ -56,16 +56,16 @@ public class JsonPropertyDirectoryStorageTest {
     }
 
     @Test
-    public void readPropertyDirectory_invalidPersonPropertyDirectory_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readPropertyDirectory("invalidPersonPropertyDirectory.json"));
+    public void readPropertyDirectory_invalidPropertyDirectory_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readPropertyDirectory("invalidPropertyDirectory.json"));
     }
 
     @Test
-    public void readPropertyDirectory_invalidAndValidPersonPropertyDirectory_throwDataConversionException() {
+    public void readPropertyDirectory_invalidAndValidPropertyDirectory_throwDataConversionException() {
         assertThrows(
                 DataConversionException.class,
                 //CHECKSTYLE.OFF: SeparatorWrap
-                () -> readPropertyDirectory("invalidAndValidPersonPropertyDirectory.json")
+                () -> readPropertyDirectory("invalidAndValidPropertyDirectory.json")
         //CHECKSTYLE.ON: SeparatorWrap
         );
     }

@@ -19,9 +19,10 @@ public class DeletePropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "delete -p";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete a property from Condonery. "
-            + "Parameters: "
-            + "<INDEX>";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Delete a property from Condonery.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Property successfully deleted: %1$s";
 
@@ -31,7 +32,6 @@ public class DeletePropertyCommand extends Command {
      * Creates an DeleteCommand to delete the specified {@code Property}
      */
     public DeletePropertyCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -49,5 +49,12 @@ public class DeletePropertyCommand extends Command {
         model.deleteProperty(propertyToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete));
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeletePropertyCommand // instanceof handles nulls
+                && targetIndex.equals(((DeletePropertyCommand) other).targetIndex)); // state check
     }
 }

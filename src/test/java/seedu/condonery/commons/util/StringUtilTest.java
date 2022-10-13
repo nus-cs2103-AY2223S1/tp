@@ -73,7 +73,7 @@ public class StringUtilTest {
 
     @Test
     public void containsWordIgnoreCase_nullSentence_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase(null, "abc"));
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWordIgnoreCase((String) null, "abc"));
     }
 
     /*

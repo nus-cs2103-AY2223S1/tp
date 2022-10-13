@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.logic.commands.ClearCommand;
-import seedu.condonery.logic.commands.DeleteCommand;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
-import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.DeletePropertyCommand;
+import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
@@ -48,9 +48,9 @@ public class CondoneryParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PROPERTY.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PROPERTY), command);
+        DeletePropertyCommand command = (DeletePropertyCommand) parser.parseCommand(
+            DeletePropertyCommand.COMMAND_WORD + " " + INDEX_FIRST_PROPERTY.getOneBased());
+        assertEquals(new DeletePropertyCommand(INDEX_FIRST_PROPERTY), command);
     }
 
     @Test
