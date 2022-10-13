@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800" minWidth="1000" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="850" minWidth="1150" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -54,6 +54,13 @@
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
           </VBox>
+          <VBox fx:id="inventoryList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <TextField alignment="CENTER" disable="true" text="Inventory" />
+          <StackPane fx:id="inventoryPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+          </padding>
+        </VBox>
           <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <TextField alignment="CENTER" disable="true" text="Tasks" />
             <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />

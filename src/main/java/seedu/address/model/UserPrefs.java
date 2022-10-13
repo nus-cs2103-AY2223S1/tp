@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path taskListFilePath = Paths.get("data", "tasklist.json");
+    private Path inventoryFilePath = Paths.get("data", "inventory.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -38,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setTaskListFilePath(newUserPrefs.getTaskListFilePath());
+        setInventoryFilePath(newUserPrefs.getInventoryFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -68,6 +70,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     @Override
+    public Path getInventoryFilePath() {
+        return inventoryFilePath;
+    }
+
+    public void setInventoryFilePath(Path inventoryFilePath) {
+        requireNonNull(inventoryFilePath);
+        this.inventoryFilePath = inventoryFilePath;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -80,12 +92,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-                && taskListFilePath.equals(o.taskListFilePath);
+                && taskListFilePath.equals(o.taskListFilePath)
+                && inventoryFilePath.equals(o.inventoryFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, taskListFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, taskListFilePath, inventoryFilePath);
     }
 
     @Override
@@ -94,6 +107,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
         sb.append(", " + taskListFilePath);
+        sb.append(", " + inventoryFilePath);
         return sb.toString();
     }
 
