@@ -9,8 +9,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class Sets {
 
-    public static final String MESSAGE_CONSTRAINTS = "Sets can only take non negative integer values";
-    public static final String VALIDATION_REGEX = "^[0-9]\\d*$";
+    public static final String MESSAGE_CONSTRAINTS = "Sets can only take positive integer values, up to 3 digits";
+    public static final String VALIDATION_REGEX = "^(?:([1-9])|([1-9][0-9])|([1-9][0-9][0-9]))$";
+
 
     public final String value;
 
