@@ -71,6 +71,6 @@ public class Session implements Identity<Session> {
      * Formats state as text for viewing.
      */
     public String toString() {
-        return sessionName;
+        return "[" + sessionName + "]";
     }
 }

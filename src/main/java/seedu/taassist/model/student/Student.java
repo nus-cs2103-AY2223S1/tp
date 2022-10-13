@@ -55,7 +55,7 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns an immutable moduleData set as an Unmodifiable ObservableList.
+     * Returns an Unmodifiable ObservableList of module data.
      */
     public List<StudentModuleData> getModuleData() {
         return moduleData.asUnmodifiableObservableList();
@@ -73,8 +73,8 @@ public class Student implements Identity<Student> {
     /**
      * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
      */
-    public StudentModuleData findStudentModuleData(ModuleClass focusedClass) {
-        return moduleData.findElement(new StudentModuleData(focusedClass));
+    public StudentModuleData findStudentModuleData(ModuleClass targetClass) {
+        return moduleData.findElement(new StudentModuleData(targetClass));
     }
 
     /**

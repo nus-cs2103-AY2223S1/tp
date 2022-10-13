@@ -1,5 +1,6 @@
 package seedu.taassist.model.moduleclass;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -15,25 +16,23 @@ import seedu.taassist.model.uniquelist.UniqueList;
 public class StudentModuleData implements Identity<StudentModuleData> {
 
     private final ModuleClass moduleClass;
-    private UniqueList<SessionData> sessionDataList = new UniqueList<>();
+    private final UniqueList<SessionData> sessionDataList = new UniqueList<>();
 
     /**
-     * Constructs a {@code StudentModuleData} with the given module class and a empty session data list.
+     * Constructs a {@code StudentModuleData} with an empty session data list for the given module class.
      */
     public StudentModuleData(ModuleClass moduleClass) {
-        requireAllNonNull(moduleClass);
+        requireNonNull(moduleClass);
         this.moduleClass = moduleClass;
     }
 
     /**
-     * constructs a {@code studentmoduledata} with the given module class and session data list.
+     * Constructs a {@code StudentModuleData} with the given module class and list of session data.
      */
     public StudentModuleData(ModuleClass moduleClass, List<SessionData> sessionDataList) {
         requireAllNonNull(moduleClass, sessionDataList);
         this.moduleClass = moduleClass;
-        if (sessionDataList != null) {
-            this.sessionDataList.setElements(sessionDataList);
-        }
+        this.sessionDataList.setElements(sessionDataList);
     }
 
     public ModuleClass getModuleClass() {
@@ -41,13 +40,11 @@ public class StudentModuleData implements Identity<StudentModuleData> {
     }
 
     /**
-     * Returns an immutable session data list.
+     * Returns an immutable list of session data.
      */
     public List<SessionData> getSessionData() {
         return sessionDataList.asUnmodifiableObservableList();
     }
-
-
 
     @Override
     public boolean isSame(StudentModuleData other) {

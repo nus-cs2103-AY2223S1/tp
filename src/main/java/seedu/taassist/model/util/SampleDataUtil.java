@@ -54,10 +54,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a {@code StudentModuleData} list containing the list of modules and a session for each.
+     * Returns a list of {@code StudentModuleData}, containing the list of modules given.
+     * The modules will not contain any sessions.
      */
-    public static List<StudentModuleData> getModuleDataList(String... strings) {
-        return Arrays.stream(strings)
+    public static List<StudentModuleData> getModuleDataList(String... modules) {
+        return Arrays.stream(modules)
                 .map(name -> new ModuleClass(name, List.of()))
                 .map(StudentModuleData::new)
                 .collect(Collectors.toList());

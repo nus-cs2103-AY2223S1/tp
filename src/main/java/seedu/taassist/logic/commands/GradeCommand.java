@@ -31,14 +31,14 @@ public class GradeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a grade to a student for a session. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_SESSION + "SESSION (must be a valid session)\n"
-            + PREFIX_GRADE + "GRADE (must be a valid grade) "
+            + PREFIX_GRADE + "GRADE (must be a non-negative number) "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSION + "Tutorial1 "
             + PREFIX_GRADE + "100";
 
 
     public static final String MESSAGE_SUCCESS = "Grade given to student: %1$s";
-    public static final String MESSAGE_INVALID_SESSION = "The session provided is invalid: %1$s";
+    public static final String MESSAGE_INVALID_SESSION = "The session %1$s does not exist in class %2$s.";
 
     private final Index index;
     private final Session session;
@@ -65,7 +65,7 @@ public class GradeCommand extends Command {
 
         ModuleClass moduleClass = model.getFocusedClass();
         if (!moduleClass.hasSession(session)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session));
+            throw new CommandException(String.format(MESSAGE_INVALID_SESSION, session, moduleClass));
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();

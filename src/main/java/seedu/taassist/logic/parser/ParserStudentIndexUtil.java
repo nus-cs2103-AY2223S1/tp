@@ -36,7 +36,7 @@ public class ParserStudentIndexUtil {
     }
 
     /**
-     * Retrieve the student at the relative one-based index from the list.
+     * Retrieves the student at the relative one-based index from the list.
      */
     public static Student parseStudentFromIndex(Index index, List<Student> students) throws ParseException {
         final int listSize = students.size();

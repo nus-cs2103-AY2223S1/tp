@@ -7,7 +7,7 @@ import seedu.taassist.logic.commands.ViewCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ViewCommand object
+ * Parses input arguments and creates a new ViewCommand object.
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
 

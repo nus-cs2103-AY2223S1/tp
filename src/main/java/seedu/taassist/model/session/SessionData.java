@@ -15,7 +15,7 @@ public class SessionData implements Identity<SessionData> {
     private final double grade;
 
     /**
-     * Constructs a {@code SessionData} with the given session and student session data.
+     * Constructs a {@code SessionData} with the given session and grade.
      */
     public SessionData(Session session, double grade) {
         requireAllNonNull(session);
@@ -34,7 +34,7 @@ public class SessionData implements Identity<SessionData> {
     @Override
     public boolean isSame(SessionData other) {
         return other == this
-                || (other != null && other.session.equals(this.session));
+                || (other != null && other.session.isSame(this.session));
     }
 
     @Override
