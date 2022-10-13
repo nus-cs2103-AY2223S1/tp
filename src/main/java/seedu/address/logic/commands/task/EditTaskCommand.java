@@ -18,6 +18,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
@@ -84,10 +85,11 @@ public class EditTaskCommand extends Command {
         assert taskToEdit != null;
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        //TODO Copy tags to edited Task
-        // Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Boolean updatedIsDone = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
+        Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        return new Task(updatedDescription);
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
     }
 
     @Override
@@ -114,6 +116,8 @@ public class EditTaskCommand extends Command {
      */
     public static class EditTaskDescriptor {
         private Description description;
+        private Deadline deadline;
+        private Boolean isDone;
         private Set<Tag> tags;
 
         public EditTaskDescriptor() {}
@@ -124,6 +128,8 @@ public class EditTaskCommand extends Command {
          */
         public EditTaskDescriptor(EditTaskCommand.EditTaskDescriptor toCopy) {
             setDescription(toCopy.description);
+            setDeadline(toCopy.deadline);
+            setStatus(toCopy.isDone);
             setTags(toCopy.tags);
         }
 
@@ -140,6 +146,22 @@ public class EditTaskCommand extends Command {
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
+        }
+
+        public void setDeadline(Deadline deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Deadline> getDeadline() {
+            return Optional.ofNullable(deadline);
+        }
+
+        public void setStatus(Boolean isDone) {
+            this.isDone = isDone;
+        }
+
+        public Optional<Boolean> getStatus() {
+            return Optional.ofNullable(isDone);
         }
 
         /**

@@ -115,19 +115,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    @Override
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        addressBook.setTask(target, editedTask);
-    }
-
-    @Override
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return addressBook.hasTask(task);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
