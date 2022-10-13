@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -24,27 +25,32 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final TaskList taskList;
+    private final Inventory inventory;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<SupplyItem> filteredSupplyItems;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList) {
-        requireAllNonNull(addressBook, userPrefs, taskList);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyTaskList taskList, ReadOnlyInventory inventory) {
+        requireAllNonNull(addressBook, userPrefs, taskList, inventory);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs
-                + " and tasks " + taskList);
+        logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs
+                + " , tasks " + taskList + " and inventory " + inventory);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.taskList = new TaskList(taskList);
+        this.inventory = new Inventory(inventory);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
+        filteredSupplyItems = new FilteredList<>(this.inventory.getSupplyItems());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new TaskList());
+        this(new AddressBook(), new UserPrefs(), new TaskList(), new Inventory());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -80,6 +86,33 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    //=========== Inventory ==================================================================================
+    @Override
+    public void addSupplyItem(SupplyItem item) {
+        inventory.addSupplyItem(item);
+        updateFilteredSupplyItemList(PREDICATE_SHOW_ALL_SUPPLY_ITEMS);
+    }
+
+    @Override
+    public boolean hasSupplyItem(SupplyItem item) {
+        return inventory.hasSupplyItem(item);
+    }
+
+    @Override
+    public void setSupplyItem(SupplyItem item, Index targetIndex) {
+        inventory.setSupplyItem(item, targetIndex);
+    }
+
+    @Override
+    public void deleteSupplyItem(Index index) {
+        inventory.deleteTask(index);
+    }
+
+    @Override
+    public ReadOnlyInventory getInventory() {
+        return this.inventory;
     }
 
     //=========== TaskList ===================================================================================
@@ -181,6 +214,18 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    //=========== Filtered SupplyItem List Accessors =======================================================
+    @Override
+    public ObservableList<SupplyItem> getFilteredSupplyItemList() {
+        return filteredSupplyItems;
+    }
+
+    @Override
+    public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
+        requireNonNull(predicate);
+        filteredSupplyItems.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -197,7 +242,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredSupplyItems.equals(other.filteredSupplyItems);
     }
 
 }
