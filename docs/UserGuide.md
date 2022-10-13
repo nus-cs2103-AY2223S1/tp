@@ -4,8 +4,7 @@ title: User Guide
 ---
 
 TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your
-contact management tasks done faster than traditional GUI apps.
+(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TruthTable can get your task management done faster than traditional GUI apps.
 
 * Table of Contents
   {:toc}
@@ -28,7 +27,9 @@ app contains some sample data.<br>
 open the help window.<br>
 Some example commands you can try:
 
-    * <TO_BE_IMPLEMENTED>
+    * `list_members`
+    * `list_tasks`
+    * `add_task My First Task`
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -40,14 +41,16 @@ Some example commands you can try:
 
 **:information_source: Notes about the command format:**<br>
 
-*  Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent)
-* Double Tab to autocomplete string values
-* Arguments are delimited with flags (`add member "egg" --email="asd@a.com"`)
+*  Quotes optional for string arguments (i.e. `add member "egg"` and `add_member egg` are equivalent) when there is only one string argument.
+* Double Tab to autocomplete string values (Coming soon!)
+* Arguments are delimited with flags (`add member "egg" --email="asd@a.com"`) (Coming soon!)
 </div>
 
 ### Viewing help : `help`
 
-[Coming Soon]
+Format:
+* `help`
+
 ### Creating a new team `add_team`
 
 Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name.
@@ -56,17 +59,17 @@ Format:
 * `add_team TEAM_NAME`
 
 Examples:
-* `add_team CS2103`
+* `add_team CS2103` will create a new team by the name of "CS2103"
 
 ### Set a new team `set_team`
 
-Sets the application to an existing team. Will throw an error if the team does not exist
+Sets the application to an existing team, i.e., changes the current "working" team to another. Will throw an error if the team does not exist
 
 Format:
 * `set_team TEAM_NAME`
 
 Examples:
-* `set_team CS2103`
+* `set_team CS2103` will change the current working team to be the "CS2103" team.
 
 ### Delete an existing team `delete_team`
 
@@ -78,7 +81,7 @@ Format:
 * `delete_team TEAM_NAME`
 
 Examples:
-* `delete_team CS2103`
+* `delete_team CS2103` will delete the team with the name "CS2103"
 
 ### Adding a new member to the team `add_member`
 
@@ -88,20 +91,20 @@ Format:
 * `add_member TASK_INDEX`
 
 Examples:
-* `add_member 1`
+* `add_member 1` will add the first person in the list of people as a member of the current team. 
 
-### Delete a member from team `delete member`
+### Delete a member from team `delete_member`
 
 Delete a team member from the user’s team. Will throw an error if no member with that name is found. Take note that
 names are case-sensitive.
 
 Format:
-* `delete member “MEMBER_NAME”`
-* `delete member --index=INDEX`
-* `delete member -i INDEX`
+* `delete_member TEAM_MEMBER_INDEX`
+* `delete_member --index=INDEX` (Coming soon!)
+* `delete_member -i INDEX` (Coming soon!)
 
 Examples:
-* `delete member “potato”`
+* `delete member 2` will delete the second member of the current team.
 * `delete member --index=2`
 * `delete member -i 2`
 
@@ -110,65 +113,71 @@ Examples:
 
 View all the members currently in the team, in the form of a list.
 
-Format: `list_members`
+Format: 
+* `list_members`
 
 ### Add task to team : `add_task`
 
 Add a new task to the current team.
 
-Format: `add_task "TASK_NAME"`
+Format: 
+* `add_task TASK_NAME`
 
 Examples:
-*  `add task “bake with butter”`
-*  `add task fry`
+*  `add_task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
+*  `add_task fry` will add a task with the name "fry" to the current team's task list.
 
-### Assign task to team member: `assign task`
+### Assign task to team member: `assign_task`
 
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign_task TASK_INDEX "TEAM_MEMBER_NAME"`
+Format: `assign_task TASK_INDEX TEAM_MEMBER_NAME`
 
 Examples:
-* `assign task 1 Alex` assigns the first task on the task list to a member in the team named Alex
-* `assign task 2 Bernice` assigns the second task on the task list to a member in the team named Bernice
+* `assign_task 1 Alex` will assign the first task on the task list to a member in the team named Alex.
+* `assign_task 2 Bernice` will assign the second task on the task list to a member in the team named Bernice.
 
 ### Set Deadline for task: `set_deadline`
 
 Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If 
-deadline has been set for the task before, a new deadline will be set if command is run again.
+deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
 
 Format: `set_deadline TASK_INDEX DEADLINE`
 
 Examples:
-* `set_deadline 1 2023-12-25 23:59`sets the deadline for the first task on the task list as 25 December 2023 11.59pm
+* `set_deadline 1 2023-12-25 23:59` will set the deadline for the first task on the task list as 25 December 2023 11.59pm.
 
 ### Delete task from team : `delete_task`
 
 Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
 
-Format: `delete_task TASK_INDEX`
+Format: 
+* `delete_task TASK_INDEX`
 
 Examples:
-* `delete task 1`
+* `delete task 1` will delete the first task of the current team.
 
 ### List tasks in team: `list_tasks`
 
 View all the tasks currently in the user’s team in the form of a list.
 
-Format: `list_tasks`
+Format: 
+* `list_tasks` will list all the tasks of the current team.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the list.
+Deletes all the people from the application.
 
-Format: `clear`
+Format: 
+* `clear`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+Format: 
+* `exit`
 
 ### Saving the data
 
