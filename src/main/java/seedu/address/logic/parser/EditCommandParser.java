@@ -35,16 +35,13 @@ import seedu.address.model.person.Phone;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+    private final Options options;
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
-     *
-     * @throws ParseException if the user input does not conform to the expected format
+     * Creates an EditCommandParser with default options
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditCommandParser() {
         Options options = new Options();
-
         options.addOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of person");
         options.addOption(FLAG_PHONE_STR, FLAG_PHONE_STR_LONG, true, "Phone of person");
         options.addOption(FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG, true, "Email of person");
@@ -56,7 +53,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .hasArgs()
                 .desc("Tags of person")
                 .build());
+        this.options = options;
+    }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * and returns an EditCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform to the expected format
+     */
+    public EditCommand parse(String args) throws ParseException {
         try {
             CommandLineParser parser = new DefaultParser();
             String[] argsArray = ArgumentTokenizer.tokenize(args);

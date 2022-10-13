@@ -35,6 +35,20 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
+    private final Options options;
+
+    /**
+     * Creates an AddCommandParser with default options
+     */
+    public AddCommandParser() {
+        Options options = new Options();
+        options.addRequiredOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of person");
+        options.addRequiredOption(FLAG_PHONE_STR, FLAG_PHONE_STR_LONG, true, "Phone of person");
+        options.addRequiredOption(FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG, true, "Email of person");
+        options.addRequiredOption(FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG, true, "Address of person");
+        options.addOption(FLAG_TAG_STR, FLAG_TAG_STR_LONG, true, "Tag of person");
+        this.options = options;
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -43,14 +57,6 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        Options options = new Options();
-
-        options.addRequiredOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of person");
-        options.addRequiredOption(FLAG_PHONE_STR, FLAG_PHONE_STR_LONG, true, "Phone of person");
-        options.addRequiredOption(FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG, true, "Email of person");
-        options.addRequiredOption(FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG, true, "Address of person");
-        options.addOption(FLAG_TAG_STR, FLAG_TAG_STR_LONG, true, "Tag of person");
-
         try {
             CommandLineParser parser = new DefaultParser();
             String[] argsArray = ArgumentTokenizer.tokenize(args);
