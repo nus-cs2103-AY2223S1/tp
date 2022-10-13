@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -47,6 +48,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskBook(model.getTaskBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -63,6 +65,11 @@ public class LogicManager implements Logic {
 
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return model.getTaskList();
     }
 
     @Override

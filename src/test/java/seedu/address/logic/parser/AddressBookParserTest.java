@@ -4,16 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
 import java.util.List;
+//import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.commands.ClassGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -24,6 +27,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentContainsKeywordsPredicate;
@@ -35,6 +39,13 @@ public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
+    @Test
+    public void parseCommand_attendance() throws Exception {
+        final String attendance = "0";
+        AttendanceCommand command = (AttendanceCommand) parser.parseCommand(AttendanceCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_ATTENDANCE + attendance.toString());
+        assertEquals(new AttendanceCommand(INDEX_FIRST_STUDENT, new Attendance(attendance)), command);
+    }
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();

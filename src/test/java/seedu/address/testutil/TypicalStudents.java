@@ -28,10 +28,13 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withStudentId("e0123456").withEmail("alice@example.com")
             .withPhone("94351253").withClassGroup("CS2030 Lab 2")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withAttendance("0")
+            .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withStudentId("e0354264").withClassGroup("CS2040 Tutorial 32")
-            .withEmail("johnd@example.com").withPhone("98765432").withTags("owesMoney", "friends").build();
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").withAttendance("1").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withClassGroup("CS2030 Lab 2")
             .withPhone("95352563").withEmail("heinz@example.com").withStudentId("e0023682").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withClassGroup("CS2030 Lab 2")

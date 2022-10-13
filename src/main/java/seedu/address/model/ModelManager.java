@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,22 +23,25 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final TaskBook taskBook;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, taskBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyTaskBook taskBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, taskBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + "task book: " + taskBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        this.taskBook = new TaskBook(taskBook);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new TaskBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -117,6 +121,41 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+    //=========== TaskBook ================================================================================
+
+    @Override
+    public void setTaskBook(ReadOnlyTaskBook taskBook) {
+        this.taskBook.resetData(taskBook);
+    }
+
+    @Override
+    public ReadOnlyTaskBook getTaskBook() {
+        return taskBook;
+    }
+
+    @Override
+    public ObservableList<Task> getTaskList() {
+        return taskBook.getTaskList();
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskBook.hasTask(task);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        requireNonNull(task);
+        taskBook.addTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        requireNonNull(target);
+        taskBook.deleteTask(target);
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -150,7 +189,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && taskBook.equals(other.taskBook);
     }
 
 }

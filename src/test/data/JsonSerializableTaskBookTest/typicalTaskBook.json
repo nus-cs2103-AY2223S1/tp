@@ -1,0 +1,19 @@
+{
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
+  "tasks" : [ {
+    "title" : "Grade assignments",
+    "description" : "Complete by tonight"
+  }, {
+    "title" : "Prepare slides for studio",
+    "description" : "Topic Environment Model"
+  }, {
+    "title" : "Review CS1101S topics with Adam",
+    "description" : "Essence of Recursion"
+  }, {
+    "title" : "Collect robot",
+    "description" : "At MakersLab"
+  }, {
+    "title" : "Go through tutorial sheet",
+    "description" : "By this friday"
+  } ]
+}

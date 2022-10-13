@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -36,21 +37,20 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                         PREFIX_EMAIL, PREFIX_CLASS_GROUP, PREFIX_ID, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID,
-                PREFIX_CLASS_GROUP, PREFIX_PHONE, PREFIX_EMAIL)
-
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        ClassGroup classGroup = ParserUtil.parseClassGroup(argMultimap.getValue(PREFIX_CLASS_GROUP).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE));
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL));
+        ClassGroup classGroup = ParserUtil.parseClassGroup(argMultimap.getValue(PREFIX_CLASS_GROUP));
         StudentId studentId = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ID).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Attendance attendance = new Attendance("0"); //empty attendance
 
-        Student student = new Student(name, phone, email, classGroup, studentId, tagList);
+        Student student = new Student(name, phone, email, classGroup, studentId, tagList, attendance);
 
         return new AddCommand(student);
     }
