@@ -18,13 +18,14 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
-     * and returns an DeleteCommand object for execution.
+     * and returns an DeleteTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         Index targetIndex;
+
         try {
             targetIndex = TaskParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {

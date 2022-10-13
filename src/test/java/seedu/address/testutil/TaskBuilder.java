@@ -1,7 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Task objects.
@@ -11,12 +16,16 @@ public class TaskBuilder {
     public static final String DEFAULT_TITLE = "Add task functionality to Arrow";
 
     private Title title;
+    private final boolean isCompleted;
+    private Set<Contact> contacts;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
+        isCompleted = false;
+        contacts = new HashSet<>();
     }
 
     /**
@@ -24,6 +33,8 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
+        isCompleted = taskToCopy.getCompleted();
+        contacts = new HashSet<>(taskToCopy.getAssignedContacts());
     }
 
     /**
@@ -34,7 +45,15 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code contacts} into a {@code Set<Contact>} and set it to the {@code Task} that we are building.
+     */
+    public TaskBuilder withContacts(String... contacts) {
+        this.contacts = SampleDataUtil.getContactSet(contacts);
+        return this;
+    }
+
     public Task build() {
-        return new Task(title, false);
+        return new Task(title);
     }
 }

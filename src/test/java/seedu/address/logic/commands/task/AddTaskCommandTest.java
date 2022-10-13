@@ -8,7 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ public class AddTaskCommandTest {
         CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        assertEquals(Collections.singletonList(validTask), modelStub.tasksAdded);
     }
 
     @Test

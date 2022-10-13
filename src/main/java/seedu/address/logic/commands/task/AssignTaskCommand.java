@@ -2,6 +2,7 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Contact;
 import seedu.address.model.task.Task;
 
 /**
@@ -42,9 +44,10 @@ public class AssignTaskCommand extends TaskCommand {
     private final Set<Index> personIndexes = new HashSet<>();
 
     /**
-     * Creates AssignTaskCommand to the specific task and persons.
-     * @param taskIndex of the task to be updated.
-     * @param personsIndexes of all persons to be assigned to task.
+     * Creates an AssignTaskCommand to assign persons to the given task.
+     *
+     * @param taskIndex of the task to be updated
+     * @param personsIndexes of all persons to be assigned to task
      */
     public AssignTaskCommand(Index taskIndex, Set<Index> personsIndexes) {
         requireNonNull(taskIndex);
@@ -63,18 +66,20 @@ public class AssignTaskCommand extends TaskCommand {
         Task taskToAssignTo = lastShownTaskList.get(taskIndex.getZeroBased());
 
         List<Person> lastShownPersonsList = model.getFilteredPersonList();
-        Set<Person> assignedPersons = new HashSet<>();
+        Set<Contact> assignedContacts = new HashSet<>();
         for (Index personIndex : personIndexes) {
             if (personIndex.getZeroBased() >= lastShownPersonsList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
-            Person personToAssign = lastShownPersonsList.get(personIndex.getZeroBased());
-            assignedPersons.add(personToAssign);
+            Contact contactToAssign =
+                new Contact(lastShownPersonsList.get(personIndex.getZeroBased()).getName().fullName);
+            assignedContacts.add(contactToAssign);
         }
 
-        Task editedTask = new Task(taskToAssignTo.getTitle(), taskToAssignTo.getMarkStatus(), assignedPersons);
+        Task editedTask = new Task(taskToAssignTo.getTitle(), taskToAssignTo.getCompleted(), assignedContacts);
 
         model.setTask(taskToAssignTo, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         if (personIndexes.isEmpty()) {
             return new CommandResult(String.format(MESSAGE_RESET_SUCCESS, taskIndex.getOneBased()));
@@ -105,8 +110,8 @@ public class AssignTaskCommand extends TaskCommand {
             return false;
         }
 
-        Set<Integer> firstSetValues = firstSet.stream().map(x -> x.getZeroBased()).collect(Collectors.toSet());
-        Set<Integer> secondSetValues = secondSet.stream().map(x -> x.getZeroBased()).collect(Collectors.toSet());
+        Set<Integer> firstSetValues = firstSet.stream().map(Index::getZeroBased).collect(Collectors.toSet());
+        Set<Integer> secondSetValues = secondSet.stream().map(Index::getZeroBased).collect(Collectors.toSet());
 
         return firstSetValues.equals(secondSetValues);
     }

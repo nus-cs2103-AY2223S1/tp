@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -20,21 +21,20 @@ public class TaskPanelParserTest {
     private final TaskPanelParser parser = new TaskPanelParser();
 
     @Test
-    public void parseCommand_addTask() throws Exception {
+    public void parse_addTask() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parse(TaskUtil.getAddTaskCommand(task));
         assertEquals(new AddTaskCommand(task), command);
     }
 
     @Test
-    public void parseCommand_listTasks() throws Exception {
-        Task task = new TaskBuilder().build();
-        ListTasksCommand command = (ListTasksCommand) parser.parse(TaskUtil.getListTasksCommand());
-        assertEquals(new ListTasksCommand(), command);
+    public void parse_listTasks() throws Exception {
+        assertTrue(parser.parse(ListTasksCommand.COMMAND_WORD_FULL) instanceof ListTasksCommand);
+        assertTrue(parser.parse(ListTasksCommand.COMMAND_WORD_FULL + " 3") instanceof ListTasksCommand);
     }
 
     @Test
-    public void parseCommand_unrecognisedInput_throwsParseException() {
+    public void parseC_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
             -> parser.parse(""));
     }

@@ -1,7 +1,11 @@
 {
   "tasks": [ {
-    "title": "Assign task to Alex"
+    "title": "Assign task to Alex",
+    "isCompleted": "false",
+    "contacts": [ "Alex Yeoh" ]
   }, {
-    "title": "Assign task to Alex"
+    "title": "Assign task to Alex",
+    "isCompleted": "false",
+    "contacts": [ "Alex Yeoh" ]
   } ]
 }
