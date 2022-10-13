@@ -3,13 +3,12 @@ package nus.climods.model;
 import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.model.module.CodeContainsKeywordsPredicate;
@@ -53,6 +52,7 @@ public class ModelManager implements Model {
 
     /**
      * Filter the list by faculty Code
+     *
      * @return
      */
     public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
@@ -78,14 +78,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public FilteredList<Module> getFilteredModuleList() {
+    public ObservableList<Module> getFilteredModuleList() {
         return filteredModuleList;
 
-    public ObservableList<Module> getFilteredModuleList() {
-        return this.filteredModuleList;
+
     }
 
-    @Override
     public void setFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         this.filteredModuleList.setPredicate(predicate);
