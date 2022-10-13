@@ -132,7 +132,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editStudentDescriptor.setLevel(ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get()));
         }
         if (argMultimap.getValue(PREFIX_NEXTOFKIN).isPresent()) {
-            editStudentDescriptor.setNextOfKin(ParserUtil.parseNextOfKin(argMultimap.getValue(PREFIX_SCHOOL).get()));
+            editStudentDescriptor.setNextOfKin(ParserUtil.parseNextOfKin(argMultimap.getValue(PREFIX_NEXTOFKIN).get()));
         }
         return editStudentDescriptor;
     }

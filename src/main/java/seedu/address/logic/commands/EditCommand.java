@@ -15,6 +15,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUITIONCLASS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTOR;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -154,8 +157,7 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        switch (model.getCurrentListType()) {
-        case TUITIONCLASS_LIST:
+        if (model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST) {
             TuitionClass classToEdit = (TuitionClass) lastShownList.get(index.getZeroBased());
             TuitionClass editedClass = createEditedClass(classToEdit, editDescriptor);
 
@@ -164,23 +166,24 @@ public class EditCommand extends Command {
             }
 
             model.setTuitionClass(classToEdit, editedClass);
+            model.updateFilteredTuitionClassList(PREDICATE_SHOW_ALL_TUITIONCLASS);
             return new CommandResult(String.format(MESSAGE_EDIT_CLASS_SUCCESS, editedClass));
-
-        case STUDENT_LIST:
-
-        case TUTOR_LIST:
-
-        default:
-            Person personToEdit = (Person) lastShownList.get(index.getZeroBased());
-            Person editedPerson = createEditedPerson(personToEdit, editDescriptor);
-
-            if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-            }
-
-            model.setPerson(personToEdit, editedPerson);
-            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         }
+
+        Person personToEdit = (Person) lastShownList.get(index.getZeroBased());
+        Person editedPerson = createEditedPerson(personToEdit, editDescriptor);
+
+        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        model.setPerson(personToEdit, editedPerson);
+        if (model.getCurrentListType() == Model.ListType.STUDENT_LIST) {
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENT);
+        } else {
+            model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTOR);
+        }
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
