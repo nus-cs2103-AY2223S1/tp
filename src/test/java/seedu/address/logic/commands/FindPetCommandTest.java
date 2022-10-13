@@ -1,28 +1,20 @@
 package seedu.address.logic.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.FindPetCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.*;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
-import seedu.address.testutil.TypicalBuyers;
-import seedu.address.testutil.TypicalDeliverers;
 import seedu.address.testutil.TypicalPets;
-import seedu.address.testutil.TypicalSuppliers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class FindPetCommandTest {
     private Model model = new ModelManager(TypicalPets.getTypicalPetsAddressBook(), new UserPrefs());
@@ -53,24 +45,32 @@ public class FindPetCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate<Buyer> preparePredicateBuyer(String userInput) {
-        return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
+    @Test
+    public void execute_zeroKeywords_noPetFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        PetNameContainsKeywordsPredicate<Pet> predicate = preparePredicatePet("    ");
+        FindPetCommand command = new FindPetCommand(predicate);
+        expectedModel.updateFilteredPetList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPetList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multiplePetsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        PetNameContainsKeywordsPredicate<Pet> predicate = preparePredicatePet("doja plum");
+        FindPetCommand command = new FindPetCommand(predicate);
+        expectedModel.updateFilteredPetList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalPets.DOJA, TypicalPets.PLUM),
+                model.getFilteredPetList());
     }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate<Deliverer> preparePredicateDeliverer(String userInput) {
-        return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
+    private PetNameContainsKeywordsPredicate<Pet> preparePredicatePet(String userInput) {
+        return new PetNameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
     }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate<Supplier> preparePredicateSupplier(String userInput) {
-        return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
-    }
 }
