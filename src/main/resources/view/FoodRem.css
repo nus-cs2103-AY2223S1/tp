@@ -76,3 +76,13 @@
   -fx-font-family: Menlo;
   -fx-prompt-text-fill: #363636;
 }
+
+.result-box > TextArea {
+  -fx-focus-traversable: false;
+}
+
+/* TODO: Find out what this element actually is */
+.result-box > TextArea * {
+  -fx-padding: 0;
+  -fx-background-color: transparent;
+}
