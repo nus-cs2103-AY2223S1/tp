@@ -13,7 +13,8 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all internships "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all internships\n"
+            + "List of internships can be sorted "
             + "specified by the category (case-insensitive) in ascending or descending order "
             + "and displays them as a list with index numbers.\n"
             + "Parameters: [c/CATEGORY] [REVERSE] "
@@ -25,22 +26,22 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 
     private final ComparableCategory category;
-    private final boolean reverse;
+    private final boolean descending;
 
     /**
      * Creates a ListCommand
      */
     public ListCommand() {
         this.category = null;
-        this.reverse = false;
+        this.descending = false;
     }
 
     /**
      * Creates a ListCommand sorted by the category in ascending or descending order
      */
-    public ListCommand(ComparableCategory category, boolean reverse) {
+    public ListCommand(ComparableCategory category, boolean descending) {
         this.category = category;
-        this.reverse = reverse;
+        this.descending = descending;
     }
 
     @Override
@@ -49,9 +50,9 @@ public class ListCommand extends Command {
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         if (category != null) {
             model.sortList(category);
-        }
-        if (reverse) {
-            model.reverseList();
+            if (descending) {
+                model.reverseList();
+            }
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }
