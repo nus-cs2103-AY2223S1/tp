@@ -67,6 +67,8 @@ TutHub is a **desktop app for NUS School of Computing professors who have to kee
 
 Displays a table consisting of the summary of commands available in Tuthub.
 
+![helpMessage](images/helpMessage.png)
+
 Format: `help`
 
 ### Adding a tutor: `add`
