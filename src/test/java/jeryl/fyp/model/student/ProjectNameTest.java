@@ -7,8 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class ProjectNameTest {
-
-
+    
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new ProjectName(null));
@@ -32,6 +31,7 @@ public class ProjectNameTest {
         assertFalse(ProjectName.isValidProjectName("^")); // only non-alphanumeric characters
         assertFalse(ProjectName.isValidProjectName("+dsdw+")); // starting with non-alphanumeric characters
         assertFalse(ProjectName.isValidProjectName("Machine Learn -- practical guide to data science."));
+
         // valid name
         assertTrue(ProjectName.isValidProjectName("some random alphabets")); // alphabets only
         assertTrue(ProjectName.isValidProjectName("12345")); // numbers only
