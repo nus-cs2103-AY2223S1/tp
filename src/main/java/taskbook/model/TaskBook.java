@@ -173,11 +173,12 @@ public class TaskBook implements ReadOnlyTaskBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaskBook // instanceof handles nulls
-                && persons.equals(((TaskBook) other).persons));
+                && persons.equals(((TaskBook) other).persons)
+                && tasks.equals(((TaskBook) other).tasks));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, tasks);
     }
 }
