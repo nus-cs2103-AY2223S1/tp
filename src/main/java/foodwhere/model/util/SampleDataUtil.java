@@ -12,6 +12,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
+import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
@@ -36,9 +37,9 @@ public class SampleDataUtil {
     public static Review[] getSampleReviews() {
         return new Review[] {
             new Review(new Name("Alex Chicken Rice"), new Date("2022-09-20"),
-                    new Content("Very tasty. Worth the trip"), getTagSet("travelworthy")),
+                    new Content("Very tasty. Worth the trip"), new Rating(5), getTagSet("travelworthy")),
             new Review(new Name("Irfan Muslim Food"), new Date("2022-09-20"),
-                    new Content("Very affordable"), getTagSet("halal"))
+                    new Content("Very affordable"), new Rating(3), getTagSet("halal"))
         };
     }
 

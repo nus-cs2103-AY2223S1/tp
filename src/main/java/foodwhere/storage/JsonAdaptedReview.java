@@ -14,6 +14,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
+import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
 
 /**
@@ -25,6 +26,7 @@ class JsonAdaptedReview {
 
     private final String date;
     private final String content;
+    private final Integer rating;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -33,9 +35,11 @@ class JsonAdaptedReview {
     @JsonCreator
     public JsonAdaptedReview(@JsonProperty("date") String date,
                              @JsonProperty("content") String content,
+                             @JsonProperty("rating") Integer rating,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.date = date;
         this.content = content;
+        this.rating = rating;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -47,6 +51,7 @@ class JsonAdaptedReview {
     public JsonAdaptedReview(Review source) {
         this.date = source.getDate().value;
         this.content = source.getContent().value;
+        this.rating = source.getRating().value;
         this.tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -84,11 +89,20 @@ class JsonAdaptedReview {
         if (!Content.isValidContent(content)) {
             throw new IllegalValueException(Content.MESSAGE_CONSTRAINTS);
         }
-        final Content modelContent = new Content(content); // to add later
+        final Content modelContent = new Content(content);
+
+        if (rating == null) {
+            throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Content.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(rating);
 
         final Set<Tag> modelTags = new HashSet<>(reviewTags);
 
-        return new Review(modelName, modelDate, modelContent, modelTags);
+        return new Review(modelName, modelDate, modelContent, modelRating, modelTags);
     }
 
 }

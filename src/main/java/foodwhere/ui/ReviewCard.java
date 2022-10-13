@@ -38,6 +38,8 @@ public class ReviewCard extends UiPart<Region> {
     @FXML
     private Label content;
     @FXML
+    private Label rating;
+    @FXML
     private Label tags;
     @FXML
     private Label tagsLabel;
@@ -51,6 +53,7 @@ public class ReviewCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(review.getName().fullName);
         date.setText(review.getDate().value);
+        rating.setText(String.valueOf(review.getRating().value));
         content.setText(review.getContent().value);
 
         if (!review.getTags().isEmpty()) {

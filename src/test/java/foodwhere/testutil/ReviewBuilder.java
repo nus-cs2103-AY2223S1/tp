@@ -7,6 +7,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
+import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
 import foodwhere.model.util.SampleDataUtil;
 
@@ -18,10 +19,12 @@ public class ReviewBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_DATE = "1/1/2020";
     public static final String DEFAULT_CONTENT = "123, Jurong West Ave 6, #08-111";
+    public static final Integer DEFAULT_RATING = 3;
 
     private Name name;
     private Date date;
     private Content content;
+    private Rating rating;
     private Set<Tag> tags;
 
     /**
@@ -31,6 +34,7 @@ public class ReviewBuilder {
         name = new Name(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
         content = new Content(DEFAULT_CONTENT);
+        rating = new Rating(DEFAULT_RATING);
         tags = new HashSet<>();
     }
 
@@ -41,6 +45,7 @@ public class ReviewBuilder {
         name = new Name(reviewToCopy.getName().fullName);
         date = reviewToCopy.getDate();
         content = reviewToCopy.getContent();
+        rating = reviewToCopy.getRating();
         tags = new HashSet<>(reviewToCopy.getTags());
     }
 
@@ -69,6 +74,14 @@ public class ReviewBuilder {
     }
 
     /**
+     * Sets the {@code Rating} of the {@code Review} that we are building.
+     */
+    public ReviewBuilder withRating(Integer rating) {
+        this.rating = new Rating(rating);
+        return this;
+    }
+
+    /**
      * Parses the {@code tag} into a {@code Set<Tag>} and set it to the {@code Review} that we are building.
      */
     public ReviewBuilder withTags(String ... tags) {
@@ -77,7 +90,7 @@ public class ReviewBuilder {
     }
 
     public Review build() {
-        return new Review(name, date, content, tags);
+        return new Review(name, date, content, rating, tags);
     }
 
 }

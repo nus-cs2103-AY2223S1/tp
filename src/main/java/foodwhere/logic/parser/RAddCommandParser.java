@@ -11,6 +11,7 @@ import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
+import foodwhere.model.review.Rating;
 
 /**
  * Parses input arguments and creates a new RAddCommand object
@@ -28,12 +29,14 @@ public class RAddCommandParser implements Parser<RAddCommand> {
                         CliSyntax.PREFIX_STALL_INDEX,
                         CliSyntax.PREFIX_DATE,
                         CliSyntax.PREFIX_CONTENT,
+                        CliSyntax.PREFIX_RATING,
                         CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_STALL_INDEX,
                 CliSyntax.PREFIX_DATE,
-                CliSyntax.PREFIX_CONTENT)
+                CliSyntax.PREFIX_CONTENT,
+                CliSyntax.PREFIX_RATING)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RAddCommand.MESSAGE_USAGE));
         }
@@ -48,10 +51,11 @@ public class RAddCommandParser implements Parser<RAddCommand> {
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(CliSyntax.PREFIX_CONTENT).get());
+        Rating rating = ParserUtil.parseRating(Integer.valueOf(argMultimap.getValue(CliSyntax.PREFIX_RATING).get()));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
 
-        return new RAddCommand(stallIndex, date, content, tagList);
+        return new RAddCommand(stallIndex, date, content, rating, tagList);
     }
 
     /**

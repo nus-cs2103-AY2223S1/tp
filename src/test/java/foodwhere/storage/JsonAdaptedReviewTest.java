@@ -19,6 +19,7 @@ public class JsonAdaptedReviewTest {
     private static final Name VALID_NAME = new Name(BENSON.getName().fullName);
     private static final String VALID_DATE = "1/1/1";
     private static final String VALID_CONTENT = BENSON.getContent().toString();
+    private static final Integer VALID_RATING = BENSON.getRating().value;
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -31,7 +32,7 @@ public class JsonAdaptedReviewTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_CONTENT, new ArrayList<>());
+        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_CONTENT, VALID_RATING, new ArrayList<>());
         String expectedMessage =
                 String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, () -> review.toModelType(null));
@@ -41,7 +42,7 @@ public class JsonAdaptedReviewTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_CONTENT,
+        JsonAdaptedReview review = new JsonAdaptedReview(VALID_DATE, VALID_CONTENT, VALID_RATING,
                 invalidTags);
         assertThrows(IllegalValueException.class, () -> review.toModelType(null));
     }
