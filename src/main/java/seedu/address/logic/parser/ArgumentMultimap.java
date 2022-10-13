@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,9 @@ import java.util.Optional;
  */
 public class ArgumentMultimap {
 
-    /** Prefixes mapped to their respective arguments**/
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
@@ -68,5 +71,21 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Returns the {@code prefix} if there is only one prefix in the argument multimap.
+     * Otherwise, return nothing.
+     */
+    public Optional<Prefix> getOnlyPrefixPresent() {
+
+        ArrayList<String> empty = new ArrayList<>(Collections.singleton(""));
+        
+        argMultimap.values().removeAll(Collections.singleton(empty));
+        if (argMultimap.size() == 1) {
+            return Optional.of(argMultimap.keySet().iterator().next());
+        } else {
+            return Optional.empty();
+        }
     }
 }
