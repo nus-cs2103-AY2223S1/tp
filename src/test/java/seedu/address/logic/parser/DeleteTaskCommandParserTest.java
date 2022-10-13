@@ -9,6 +9,7 @@ import static seedu.address.model.person.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Name;
@@ -27,6 +28,10 @@ public class DeleteTaskCommandParserTest {
         // no name
         assertParseFailure(parser, "" + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
+
+        // empty name
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // no group
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task",
