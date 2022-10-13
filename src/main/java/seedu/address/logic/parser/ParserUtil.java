@@ -1,6 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
@@ -9,7 +15,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.GradeProgress;
@@ -25,6 +30,10 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EDIT_COMMAND_FORMAT = "The correct format for an edit is:\n"
+            + "edit [" + PREFIX_NAME + PREFIX_PHONE + PREFIX_LESSON_PLAN + "]NEW_FIELD, or\n"
+            + "edit [" + PREFIX_HOMEWORK + PREFIX_GRADEPROGRESS + PREFIX_ATTENDANCE + "]INDEX NEW_FIELD\n"
+            + "Example: edit " + PREFIX_HOMEWORK + "2 Maths worksheet";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -99,7 +108,7 @@ public class ParserUtil {
     public static String[] parseHomeworkInfo(String homeworkInfo) throws ParseException {
         String[] args = homeworkInfo.split(" ", 2);
         if (args.length < 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
         return args;
     }
@@ -123,7 +132,7 @@ public class ParserUtil {
     public static String[] parseGradeProgressInfo(String gradeProgressInfo) throws ParseException {
         String[] args = gradeProgressInfo.split(" ", 2);
         if (args.length < 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
         return args;
     }
@@ -147,7 +156,7 @@ public class ParserUtil {
     public static String[] parseAttendanceInfo(String attendanceInfo) throws ParseException {
         String[] args = attendanceInfo.split(" ", 2);
         if (args.length < 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
         return args;
     }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a Person's homework list in the address book.
@@ -56,12 +55,19 @@ public class HomeworkList {
      * @param index of homework to be edited
      * @param homework that replaces the old homework
      */
-    public void editAtIndex(Index index, Homework homework) throws CommandException {
+    public void editAtIndex(Index index, Homework homework) {
         int indexToEdit = index.getZeroBased();
         if (indexToEdit >= homeworkList.size()) {
-            throw new CommandException(MESSAGE_INVALID_HOMEWORK_INDEX);
+            throw new IllegalArgumentException(MESSAGE_INVALID_HOMEWORK_INDEX);
         }
         homeworkList.set(indexToEdit, homework);
+    }
+
+    /**
+     * Returns true if a given {@code Index} is a valid index in the list.
+     */
+    public boolean isValidIndex(Index index) {
+        return index.getZeroBased() < homeworkList.size();
     }
 
     /**

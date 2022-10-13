@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -44,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_LESSON_PLAN + "LESSON PLAN] "
+            + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
@@ -100,13 +102,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         LessonPlan updatedLessonPlan = editPersonDescriptor.getLessonPlan()
                                         .orElse(personToEdit.getLessonPlan());
-
-        HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
-        Optional<Homework> homework = editPersonDescriptor.getHomework();
-        Optional<Index> homeworkIndex = editPersonDescriptor.getHomeworkIndex();
-        if (homework.isPresent() && homeworkIndex.isPresent()) {
-            updatedHomeworkList.editAtIndex(homeworkIndex.get(), homework.get());
-        }
+        HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToEdit, editPersonDescriptor);
 
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
         Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
@@ -125,6 +121,21 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedPhone, updatedLessonPlan,
                 updatedHomeworkList, updatedAttendanceList, updatedGradeProgressList, updatedTags);
+    }
+
+    public static HomeworkList getUpdatedHomeworkList(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
+        HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
+        Optional<Homework> homework = editPersonDescriptor.getHomework();
+        Optional<Index> homeworkIndex = editPersonDescriptor.getHomeworkIndex();
+        if (homeworkIndex.isEmpty() || homework.isEmpty()) {
+            return updatedHomeworkList;
+        }
+        if (!updatedHomeworkList.isValidIndex(homeworkIndex.get())) {
+            throw new CommandException(HomeworkList.MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        updatedHomeworkList.editAtIndex(homeworkIndex.get(), homework.get());
+        return updatedHomeworkList;
     }
 
     @Override
