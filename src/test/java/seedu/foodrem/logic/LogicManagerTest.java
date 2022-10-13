@@ -9,7 +9,7 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_NAME_
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES;
 import static seedu.foodrem.testutil.Assert.assertThrows;
-import static seedu.foodrem.testutil.TypicalItems.POTATOES;
+import static seedu.foodrem.testutil.TypicalItems.POTATOES_WITHOUT_TAG;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -85,7 +85,7 @@ public class LogicManagerTest {
                 + VALID_DESC_ITEM_UNIT_POTATOES
                 + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
                 + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
-        Item expectedItem = new ItemBuilder(POTATOES).build();
+        Item expectedItem = new ItemBuilder(POTATOES_WITHOUT_TAG).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

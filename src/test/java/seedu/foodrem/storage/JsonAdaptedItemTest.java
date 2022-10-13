@@ -10,6 +10,11 @@ import static seedu.foodrem.storage.JsonAdaptedItem.MISSING_FIELD_MESSAGE_FORMAT
 import static seedu.foodrem.testutil.Assert.assertThrows;
 import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.model.item.ItemBoughtDate;
@@ -17,6 +22,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
+import seedu.foodrem.testutil.TypicalTags;
 
 public class JsonAdaptedItemTest {
     private static final String INVALID_NAME = "Po|a|oes\\";
@@ -30,6 +36,10 @@ public class JsonAdaptedItemTest {
     private static final String VALID_UNIT = "kg";
     private static final String VALID_BOUGHT_DATE = "11-11-2022";
     private static final String VALID_EXPIRY_DATE = "11-11-2022";
+    private static final String INVALID_TAG = "//";
+    private static final List<JsonAdaptedTag> VALID_TAG_SET = Stream.of(TypicalTags.FRUITS, TypicalTags.VEGETABLES)
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toCollection(ArrayList::new));
 
     @Test
     public void toModelType_validItemDetails_returnsItem() {
@@ -40,7 +50,8 @@ public class JsonAdaptedItemTest {
     @Test
     public void toModelType_invalidName_throwsIllegalArgumentException() {
         JsonAdaptedItem item =
-                new JsonAdaptedItem(INVALID_NAME, VALID_QUANTITY, VALID_UNIT, VALID_BOUGHT_DATE, VALID_EXPIRY_DATE);
+                new JsonAdaptedItem(INVALID_NAME, VALID_QUANTITY, VALID_UNIT, VALID_BOUGHT_DATE,
+                        VALID_EXPIRY_DATE, VALID_TAG_SET);
         assertThrows(IllegalArgumentException.class, MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME, item::toModelType);
         assert true;
     }
@@ -51,7 +62,8 @@ public class JsonAdaptedItemTest {
                 VALID_QUANTITY,
                 VALID_UNIT,
                 VALID_BOUGHT_DATE,
-                VALID_EXPIRY_DATE);
+                VALID_EXPIRY_DATE,
+                VALID_TAG_SET);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemName.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -63,7 +75,8 @@ public class JsonAdaptedItemTest {
                         INVALID_QUANTITY,
                         VALID_UNIT,
                         VALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+                        VALID_EXPIRY_DATE,
+                        VALID_TAG_SET);
         assertThrows(IllegalArgumentException.class, MESSAGE_FOR_NOT_A_NUMBER, item::toModelType);
         assert true;
     }
@@ -75,7 +88,8 @@ public class JsonAdaptedItemTest {
                 null,
                 VALID_UNIT,
                 VALID_BOUGHT_DATE,
-                VALID_EXPIRY_DATE);
+                VALID_EXPIRY_DATE,
+                VALID_TAG_SET);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemQuantity.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -87,7 +101,8 @@ public class JsonAdaptedItemTest {
                         VALID_QUANTITY,
                         INVALID_UNIT,
                         VALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+                        VALID_EXPIRY_DATE,
+                        VALID_TAG_SET);
         assertThrows(IllegalArgumentException.class, MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT, item::toModelType);
         assert true;
     }
@@ -98,7 +113,8 @@ public class JsonAdaptedItemTest {
                 VALID_QUANTITY,
                 null,
                 VALID_BOUGHT_DATE,
-                VALID_EXPIRY_DATE);
+                VALID_EXPIRY_DATE,
+                VALID_TAG_SET);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemUnit.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -110,7 +126,8 @@ public class JsonAdaptedItemTest {
                         VALID_QUANTITY,
                         VALID_UNIT,
                         INVALID_BOUGHT_DATE,
-                        VALID_EXPIRY_DATE);
+                        VALID_EXPIRY_DATE,
+                        VALID_TAG_SET);
         assertThrows(IllegalArgumentException.class, MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE, item::toModelType);
     }
 
@@ -120,7 +137,8 @@ public class JsonAdaptedItemTest {
                 VALID_QUANTITY,
                 VALID_UNIT,
                 null,
-                VALID_EXPIRY_DATE);
+                VALID_EXPIRY_DATE,
+                VALID_TAG_SET);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemBoughtDate.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
@@ -132,7 +150,8 @@ public class JsonAdaptedItemTest {
                         VALID_QUANTITY,
                         VALID_UNIT,
                         VALID_BOUGHT_DATE,
-                        INVALID_EXPIRY_DATE);
+                        INVALID_EXPIRY_DATE,
+                        VALID_TAG_SET);
         assertThrows(IllegalArgumentException.class, MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE, item::toModelType);
     }
 
@@ -142,18 +161,25 @@ public class JsonAdaptedItemTest {
                 VALID_QUANTITY,
                 VALID_UNIT,
                 VALID_BOUGHT_DATE,
-                null);
+                null,
+                VALID_TAG_SET);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ItemExpiryDate.class.getSimpleName());
         assertThrows(IllegalArgumentException.class, expectedMessage, item::toModelType);
     }
 
-    //@Test
-    //public void toModelType_invalidTags_throwsIllegalArgumentException() {
-    //    List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-    //    invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-    //    JsonAdaptedItem item =
-    //            new JsonAdaptedItem(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
-    //    assertThrows(IllegalArgumentException.class, item::toModelType);
-    //}
+    @Test
+    public void toModelType_invalidTags_throwsIllegalArgumentException() {
+        List<JsonAdaptedTag> invalidTags = VALID_TAG_SET;
+
+        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        JsonAdaptedItem item =
+                new JsonAdaptedItem(VALID_NAME,
+                        VALID_QUANTITY,
+                        VALID_UNIT,
+                        VALID_BOUGHT_DATE,
+                        VALID_EXPIRY_DATE,
+                        invalidTags);
+        assertThrows(IllegalArgumentException.class, item::toModelType);
+    }
 
 }
