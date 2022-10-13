@@ -26,7 +26,7 @@ import seedu.address.testutil.InternshipBuilder;
  */
 class StatusCommandTest {
 
-    private static final String STATUS_STUB = "PROGRESSING";
+    private static final String STATUS_STUB = "PROGRESS";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
