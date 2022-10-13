@@ -22,7 +22,7 @@ public class SellCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
             + "Parameters: "
-            + "Index "
+            + "Index (must be a positive integer) "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
             + PREFIX_PRICE + "PRICE\n"

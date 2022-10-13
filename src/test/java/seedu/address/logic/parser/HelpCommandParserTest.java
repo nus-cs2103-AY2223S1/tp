@@ -6,12 +6,18 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
+import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class HelpCommandParserTest {
@@ -80,4 +86,45 @@ public class HelpCommandParserTest {
 
         assertThrows(ParseException.class, errorMessage, () -> parser.parse("help unknownCommand"));
     }
+
+    @Test
+    public void parse_buyArg_returnsHelpCommandWithBuyMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(BuyCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, BuyCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
+    @Test
+    public void parse_createArg_returnsHelpCommandWithCreateMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(CreateCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, CreateCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
+    @Test
+    public void parse_editArg_returnsHelpCommandWithEditMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(EditCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, EditCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
+    @Test
+    public void parse_findArg_returnsHelpCommandWithFindMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(FindCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, FindCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+    @Test
+    public void parse_sellArg_returnsHelpCommandWithSellMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(SellCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, SellCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+    @Test
+    public void parse_viewArg_returnsHelpCommandWithViewMessageUsage() {
+        HelpCommand expectedHelpCommand = new HelpCommand(ViewCommand.MESSAGE_USAGE);
+
+        assertParseSuccess(parser, ViewCommand.COMMAND_WORD, expectedHelpCommand);
+    }
+
 }
