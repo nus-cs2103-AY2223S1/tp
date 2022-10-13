@@ -1,7 +1,6 @@
 package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,7 +28,8 @@ public class Deadline {
      */
     public Deadline(String deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+        //TODO Fix isValidDeadline
+        //checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         date = LocalDate.parse(deadline);
     }
 
