@@ -93,6 +93,9 @@ public class MainApp extends Application {
         } catch (IllegalValueException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+        } catch (IOException e) {
+            logger.warning("Was not able to create missing file");
+            initialData = new AddressBook();
         }
 
         return new ModelManager(initialData, userPrefs);

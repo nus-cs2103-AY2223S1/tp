@@ -53,7 +53,8 @@ public interface AddressBookStorage {
      * @see #getAddressBookFilePath(AddressBookCategories)
      *      A single addressBook for Tutors, Students and TuitionClasses.
      */
-    Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException;
+    Optional<ReadOnlyAddressBook> readAllAddressBook()
+            throws DataConversionException, IllegalValueException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyAddressBook} to the proper storage.

@@ -55,7 +55,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException {
+    public Optional<ReadOnlyAddressBook> readAllAddressBook()
+            throws DataConversionException, IllegalValueException, IOException {
         return addressBookStorage.readAllAddressBook();
     }
 
