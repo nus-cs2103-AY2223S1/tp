@@ -16,9 +16,11 @@ import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommand.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FileSwitchCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
@@ -77,6 +79,9 @@ public class ResidentBookParser {
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+
+        case FileSwitchCommand.COMMAND_WORD:
+            return new FileSwitchCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
