@@ -129,7 +129,7 @@ public class Project {
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getClient().equals(getClient())
                 && otherProject.getIssueList().equals(getIssueList())
-                && otherProject.getId().equals(getId());
+                && otherProject.getProjectId().equals(getProjectId());
     }
 
     /**
