@@ -10,7 +10,6 @@ import seedu.address.logic.commands.FilterTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.FilterPredicate;
-import seedu.address.model.task.TaskBelongsToModulePredicate;
 import seedu.address.model.task.TaskStatus;
 
 /**
@@ -36,12 +35,10 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
         if (hasPrefix(argMultimap, PREFIX_MODULE)) {
             module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         }
-//        module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
 
         if (hasPrefix(argMultimap, PREFIX_STATUS)) {
             status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         }
-//        status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
 
         return new FilterTasksCommand(new FilterPredicate(module, status));
     }

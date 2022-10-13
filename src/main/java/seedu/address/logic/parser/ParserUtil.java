@@ -173,6 +173,12 @@ public class ParserUtil {
         return new TaskDescription(trimmedDescription);
     }
 
+    /**
+     * Parses a {@code String status} into a {@code TaskStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
     public static TaskStatus parseStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();

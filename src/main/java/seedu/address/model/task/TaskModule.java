@@ -35,7 +35,7 @@ public class TaskModule {
      * Returns true if a given string is a valid module.
      */
     public static boolean isValidModule(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() >= 6;
     }
 
     @Override

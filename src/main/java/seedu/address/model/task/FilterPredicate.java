@@ -14,6 +14,11 @@ public class FilterPredicate implements Predicate<Task> {
     private final TaskStatus statusToCheck;
     private boolean hasStatusToCheck = false;
 
+    /**
+     * Tests that a {@code Task} matches all the module and status contraints given.
+     * @param module
+     * @param status
+     */
     public FilterPredicate(Module module, TaskStatus status) {
         if (module != null) {
             hasModuleToCheck = true;
@@ -32,10 +37,6 @@ public class FilterPredicate implements Predicate<Task> {
     public boolean hasModuleToCheck() {
         return hasModuleToCheck;
     }
-
-//    public TaskStatus getStatusToCheck() {
-//        return statusToCheck;
-//    }
 
     @Override
     public boolean test(Task task) {
