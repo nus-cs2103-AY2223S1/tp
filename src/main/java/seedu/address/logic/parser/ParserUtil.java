@@ -141,9 +141,12 @@ public class ParserUtil {
      * Parses a {@code String attendance} into an {@code Attendance}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Attendance parseAttendance(String attendance) {
+    public static Attendance parseAttendance(String attendance) throws ParseException {
         requireNonNull(attendance);
         String trimmedAttendance = attendance.trim();
+        if (!Attendance.isValidAttendance(attendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
         return new Attendance(trimmedAttendance);
     }
 
