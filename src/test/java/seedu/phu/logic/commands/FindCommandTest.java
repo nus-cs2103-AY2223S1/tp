@@ -25,14 +25,13 @@ import seedu.phu.model.UserPrefs;
 import seedu.phu.model.internship.ContainsKeywordsPredicate;
 import seedu.phu.model.internship.FindableCategory;
 
-
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
-    
+
     @Test
     public void equals() {
         KeywordList firstKeywords = prepareKeywords("optiver", "jane");

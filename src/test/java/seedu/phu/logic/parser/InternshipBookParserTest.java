@@ -14,42 +14,25 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/phu/logic/parser/InternshipBookParserTest.java
+import seedu.phu.commons.core.keyword.Keyword;
+import seedu.phu.commons.core.keyword.KeywordList;
 import seedu.phu.logic.commands.AddCommand;
 import seedu.phu.logic.commands.ClearCommand;
 import seedu.phu.logic.commands.DeleteCommand;
 import seedu.phu.logic.commands.EditCommand;
 import seedu.phu.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.phu.logic.commands.ExitCommand;
-// import seedu.internship.logic.commands.FindCommand;s
+import seedu.phu.logic.commands.FindCommand;
 import seedu.phu.logic.commands.HelpCommand;
 import seedu.phu.logic.commands.ListCommand;
 import seedu.phu.logic.parser.exceptions.ParseException;
-// import seedu.internship.model.internship.NameContainsKeywordsPredicate;
+import seedu.phu.model.internship.ContainsKeywordsPredicate;
+import seedu.phu.model.internship.FindableCategory;
 import seedu.phu.model.internship.Internship;
 import seedu.phu.testutil.EditInternshipDescriptorBuilder;
 import seedu.phu.testutil.InternshipBuilder;
 import seedu.phu.testutil.InternshipUtil;
-=======
-import seedu.address.commons.core.keyword.Keyword;
-import seedu.address.commons.core.keyword.KeywordList;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.ContainsKeywordsPredicate;
-import seedu.address.model.person.FindableCategory;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
->>>>>>> master:src/test/java/seedu/address/logic/parser/AddressBookParserTest.java
+
 
 public class InternshipBookParserTest {
 

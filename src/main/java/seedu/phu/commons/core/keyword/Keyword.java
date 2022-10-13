@@ -1,6 +1,7 @@
 package seedu.phu.commons.core.keyword;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.phu.model.internship.Date;
 
 
