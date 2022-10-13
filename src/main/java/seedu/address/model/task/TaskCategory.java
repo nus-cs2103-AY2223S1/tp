@@ -7,8 +7,11 @@ import static java.util.Objects.requireNonNull;
  * Represents the category of a task.
  */
 public class TaskCategory {
-    private int level;
-    private TaskCategoryType taskCategoryType;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Category must be one of the following: " + TaskCategoryType.getValidTaskCategories();
+
+    private final int level;
+    private final TaskCategoryType taskCategoryType;
 
     /**
      * Constructor for TaskCategory
@@ -59,7 +62,7 @@ public class TaskCategory {
      */
     @Override
     public String toString() {
-        return level + taskCategoryType.name();
+        return taskCategoryType.name();
     }
 
     /**
