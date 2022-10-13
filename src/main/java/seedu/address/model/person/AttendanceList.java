@@ -58,7 +58,7 @@ public class AttendanceList {
     }
 
     /**
-     * Edits the homework at the given index with the new given homework.
+     * Edits the attendance at the given index with the new given attendance.
      *
      * @param index of attendance to be edited
      * @param attendance that replaces the old attendance
