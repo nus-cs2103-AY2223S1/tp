@@ -76,7 +76,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Email newParseEmail(String email) throws ParseException {
+    public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
@@ -168,7 +168,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static seedu.address.model.person.Email parseEmail(String email) throws ParseException {
+    public static seedu.address.model.person.Email oldParseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!seedu.address.model.person.Email.isValidEmail(trimmedEmail)) {
