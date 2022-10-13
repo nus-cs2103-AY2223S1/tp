@@ -1,5 +1,9 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,7 +16,6 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.testutil.SerializableTestClass;
 import seedu.address.testutil.TestUtil;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests JSON Read and Write
