@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
   * 2a.1 ModtRekt displays "No active tasks or deadlines".
-  
+
     Use case ends
 
 **Use case: Add a task**
