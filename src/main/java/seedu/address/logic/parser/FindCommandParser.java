@@ -10,14 +10,13 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonCategory;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -25,18 +24,31 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        if (nameKeywords.length < 2 || !PersonCategory.isValidPersonCategory(nameKeywords[0])) {
+        String[] nameKeywords = trimmedArgs.split("/", 2);
+        if (nameKeywords.length < 2 || nameKeywords[1].length() == 0) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
-                new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
-                new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
-                PersonCategory.getFromString(nameKeywords[0]));
+        String[] queries = nameKeywords[1].trim().split("\\s+");
+        switch (nameKeywords[0]) {
+        case "b":
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    PersonCategory.getFromString("Buyer"));
+        case "d":
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    PersonCategory.getFromString("Deliverer"));
+        case "s":
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    new NameContainsKeywordsPredicate<>(Arrays.asList(queries)),
+                    PersonCategory.getFromString("Supplier"));
+        default:
+            return null;
+        }
     }
 
 }

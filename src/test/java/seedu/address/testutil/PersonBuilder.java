@@ -7,12 +7,12 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Supplier;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -38,7 +38,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        personCategory = PersonCategory.getFromString(DEFAULT_PERSON_CATEGORY); // Person Category to be instantiated later
+        personCategory = PersonCategory.getFromString(DEFAULT_PERSON_CATEGORY); // Person Category instantiated later
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
@@ -107,19 +107,31 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(personCategory,name, phone, email, address, tags);
+        return new Person(personCategory, name, phone, email, address, tags);
     }
 
+    /**
+     * Builds {@code Buyer} with the specified Buyer attributes.
+     * @return Created Buyer object.
+     */
     public Buyer buildBuyer() {
         personCategory = PersonCategory.BUYER;
         return new Buyer(personCategory, name, phone, email, address, tags, new ArrayList<>());
     }
 
+    /**
+     * Builds {@code Deliverer} with the specified Deliverer attributes.
+     * @return Created Deliverer object.
+     */
     public Deliverer buildDeliverer() {
         personCategory = PersonCategory.DELIVERER;
         return new Deliverer(personCategory, name, phone, email, address, tags, new ArrayList<>());
     }
 
+    /**
+     * Builds {@code Supplier} with the specified Supplier attributes.
+     * @return Created Supplier object.
+     */
     public Supplier buildSupplier() {
         personCategory = PersonCategory.SUPPLIER;
         return new Supplier(personCategory, name, phone, email, address, tags, new ArrayList<>());

@@ -25,6 +25,9 @@ public class FilterLocCommand extends Command {
     private final LocationContainsKeywordsPredicate<Deliverer> dPredicate;
     private final LocationContainsKeywordsPredicate<Supplier> sPredicate;
 
+    /**
+     * Creates a FilterLocCommand to filter the specified {@code Location}.
+     */
     public FilterLocCommand(LocationContainsKeywordsPredicate<Buyer> bPredicate,
                             LocationContainsKeywordsPredicate<Deliverer> dPredicate,
                             LocationContainsKeywordsPredicate<Supplier> sPredicate) {

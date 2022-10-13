@@ -45,7 +45,7 @@ public class AddBuyerCommand extends AddPersonCommand {
     private final Buyer toAdd;
 
     /**
-     * Creates an AddBuyerCommand to add the specified {@code Buyer}
+     * Creates an AddBuyerCommand to add the specified {@code Buyer}.
      */
     public AddBuyerCommand(Buyer buyer) {
         requireNonNull(buyer);
