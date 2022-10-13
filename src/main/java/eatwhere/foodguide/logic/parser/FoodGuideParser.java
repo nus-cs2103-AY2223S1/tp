@@ -49,13 +49,13 @@ public class FoodGuideParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-            
+
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
 
         case UntagCommand.COMMAND_WORD:
             return new UntagCommandParser().parse(arguments);
-            
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
