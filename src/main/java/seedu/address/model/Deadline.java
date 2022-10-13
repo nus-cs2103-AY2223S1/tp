@@ -18,7 +18,7 @@ public class Deadline {
         public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
-            super("1970-01-01");
+            super("0001-01-01");
         }
 
         @Override
@@ -53,7 +53,9 @@ public class Deadline {
         this.deadline = LocalDate.parse(deadline);
     }
 
-    public Deadline() {}
+    public boolean isEmpty() {
+        return false;
+    }
 
     /**
      * Returns true if a given string is a valid deadline.
@@ -64,10 +66,6 @@ public class Deadline {
 
     public String getFormattedDeadline() {
         return deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-    }
-
-    public boolean isEmpty() {
-        return false;
     }
 
     public String uiRepresentation() {

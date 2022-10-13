@@ -31,7 +31,7 @@ public class UniqueClientList implements Iterable<Client> {
     /**
      * Returns true if the list contains an equivalent client as the given argument.
      */
-    public boolean contains(Client toCheck) {
+    public static boolean contains(Client toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameClient);
     }
@@ -79,7 +79,7 @@ public class UniqueClientList implements Iterable<Client> {
         }
     }
 
-    public Client getClient(ClientId id) {
+    public static Client getClient(ClientId id) {
         for (Client c: internalList) {
             if (c.getClientId().equals(id)) {
                 return c;

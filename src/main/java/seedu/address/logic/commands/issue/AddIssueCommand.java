@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECTID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,12 +23,12 @@ public class AddIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an issue to the address book. "
             + "Parameters: "
-            + PREFIX_PROJECTID + "PROJECT_ID "
+            + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_PRIORITY + "PRIORITY(0, 1, 2) \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECTID + "1 "
+            + PREFIX_PROJECT_ID + "1 "
             + PREFIX_DESCRIPTION + "to create a person class which stores all relevant person data "
             + PREFIX_DEADLINE + "2022-12-10 "
             + PREFIX_PRIORITY + "0 ";
@@ -53,6 +54,9 @@ public class AddIssueCommand extends IssueCommand {
         if (model.hasIssue(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
+
+        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+        ui.showProjects();
 
         model.addIssue(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all projects in the address book to the user.
  */
 public class ListProjectCommand extends ProjectCommand {
 
@@ -16,7 +16,6 @@ public class ListProjectCommand extends ProjectCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all projects";
 
-    // TODO: revise implementation
     @Override
     public CommandResult execute(Model model, Ui ui) {
         requireNonNull(model);
