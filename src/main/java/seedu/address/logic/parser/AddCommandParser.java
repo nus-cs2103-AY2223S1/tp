@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -71,7 +72,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Person person = new Person(name, phone, email, nextOfKin, patientType, hospitalWing,
-                floorNumber, wardNumber, medicationList);
+                floorNumber, wardNumber, medicationList, new ArrayList<>());
 
         return new AddCommand(person);
     }

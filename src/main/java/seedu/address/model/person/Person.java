@@ -2,7 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -38,8 +37,8 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, NextOfKin nextOfKin, PatientType patientType,
                   HospitalWing hospitalWing, FloorNumber floorNumber,
-                  WardNumber wardNumber, Set<Medication> medications) {
-        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications);
+                  WardNumber wardNumber, Set<Medication> medications, List<PastAppointment> pastAppointments) {
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications, pastAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,7 +48,7 @@ public class Person {
         this.floorNumber = Optional.ofNullable(floorNumber);
         this.wardNumber = Optional.ofNullable(wardNumber);
         this.medications.addAll(medications);
-        this.pastAppointments = new ArrayList<>();
+        this.pastAppointments = pastAppointments;
     }
 
     public Name getName() {

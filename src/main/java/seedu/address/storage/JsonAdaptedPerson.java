@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     private final String floorNumber;
     private final String wardNumber;
     private final List<JsonAdaptedMedication> medications = new ArrayList<>();
-    private final List<PastAppointment> pastAppointments = new ArrayList<>();
+    private final List<JsonAdaptedPastAppointment> pastAppointments = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,7 +51,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("hospitalWing") String hospitalWing,
                              @JsonProperty("floorNumber") String floorNumber,
                              @JsonProperty("wardNumber") String wardNumber,
-                             @JsonProperty("medications") List<JsonAdaptedMedication> medications) {
+                             @JsonProperty("medications") List<JsonAdaptedMedication> medications,
+                             @JsonProperty("pastAppointments") List<JsonAdaptedPastAppointment> pastAppointments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -62,6 +63,9 @@ class JsonAdaptedPerson {
         this.wardNumber = wardNumber;
         if (medications != null) {
             this.medications.addAll(medications);
+        }
+        if (pastAppointments != null) {
+            this.pastAppointments.addAll(pastAppointments);
         }
     }
 
@@ -92,6 +96,9 @@ class JsonAdaptedPerson {
         medications.addAll(source.getMedications().stream()
                 .map(JsonAdaptedMedication::new)
                 .collect(Collectors.toList()));
+        pastAppointments.addAll(source.getPastAppointments().stream()
+                .map(JsonAdaptedPastAppointment::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -103,6 +110,10 @@ class JsonAdaptedPerson {
         final List<Medication> personMedications = new ArrayList<>();
         for (JsonAdaptedMedication medication : medications) {
             personMedications.add(medication.toModelType());
+        }
+        final List<PastAppointment> personPastAppointments = new ArrayList<>();
+        for (JsonAdaptedPastAppointment pastAppointment : pastAppointments) {
+            personPastAppointments.add(pastAppointment.toModelType());
         }
 
         if (name == null) {
@@ -204,9 +215,9 @@ class JsonAdaptedPerson {
         final WardNumber modelWardNumber = wardNumber == null ? null : new WardNumber(wN);
 
         final Set<Medication> modelMedication = new HashSet<>(personMedications);
+        final List<PastAppointment> modelPastAppointments = new ArrayList<>(personPastAppointments);
 
         return new Person(modelName, modelPhone, modelEmail, modelNextOfKin, modelPatientType,
-                modelHospitalWing, modelFloorNumber, modelWardNumber, modelMedication);
+                modelHospitalWing, modelFloorNumber, modelWardNumber, modelMedication, modelPastAppointments);
     }
-
 }

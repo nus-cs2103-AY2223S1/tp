@@ -23,6 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -129,9 +130,10 @@ public class EditCommand extends Command {
         }
         Set<Medication> updatedMedications = editPersonDescriptor.getMedications()
                 .orElse(personToEdit.getMedications());
+        List<PastAppointment> pastAppointments = personToEdit.getPastAppointments();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedNextOfKin, updatedPatientType,
-                updatedHospitalWing, updatedFloorNumber, updatedWardNumber, updatedMedications);
+                updatedHospitalWing, updatedFloorNumber, updatedWardNumber, updatedMedications, pastAppointments);
     }
 
     @Override
