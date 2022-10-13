@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -21,7 +22,6 @@ public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 
-    final StudentId STUDENT_ID = new StudentId("A0123456G");
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {

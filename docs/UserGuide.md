@@ -28,7 +28,7 @@ title: User Guide
 
    * **`add id/A0123456G n/John Doe proj/Automation of Selenium`** - adds the FYP project of the student named John Doe with ID A0123456G titled _Automation of Selenium_
 
-   * **`delete A0123456G`** - deletes the FYP project of the student with ID A0123456G
+   * **`delete id/A0123456G`** - deletes the FYP project of the student with ID A0123456G
 
    * **`mark A0123456G IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
@@ -92,7 +92,7 @@ Format: `delete STUDENT_ID`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
 Example:
-* `delete A0123456G`
+* `delete id/A0123456G`
 
 ### Marking project status: `mark`
 

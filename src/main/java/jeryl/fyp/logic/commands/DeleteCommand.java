@@ -12,7 +12,7 @@ import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
 /**
- * Deletes a student identified using it's unique StudentID.
+ * Deletes a student identified using it's unique StudentId.
  */
 public class DeleteCommand extends Command {
 

@@ -19,6 +19,7 @@ import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.NameContainsKeywordsPredicate;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -60,6 +61,10 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final StudentId STUDENT_ID = new StudentId("A0123456G");
+
+    public static final StudentId INVALID_STUDENT_ID = new StudentId("BCDEDIT");
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;

@@ -2,6 +2,7 @@ package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.testutil.Assert.assertThrows;
@@ -37,11 +38,6 @@ import jeryl.fyp.testutil.StudentUtil;
 public class FypManagerParserTest {
 
     private final FypManagerParser parser = new FypManagerParser();
-
-    final StudentId STUDENT_ID = new StudentId("A0123456G");
-
-    final StudentId INVALID_STUDENT_ID = new StudentId("ABCDEFG");
-
 
     @Test
     public void parseCommand_add() throws Exception {
