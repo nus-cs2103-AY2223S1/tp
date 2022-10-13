@@ -9,7 +9,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
@@ -37,6 +36,7 @@ public class CommissionListPanel extends UiPart<Region> {
         this.selectCommission = selectCommission;
 
         observableCommissionList.addListener((observable, oldValue, newValue) -> this.updateUI(newValue));
+        commissionListView.getSelectionModel().select(selectedCommission.getValue());
         selectedCommission.addListener(((observable, oldValue, newValue) ->
                 commissionListView.getSelectionModel().select(newValue)));
     }
@@ -62,7 +62,7 @@ public class CommissionListPanel extends UiPart<Region> {
                 setGraphic(new CommissionCard(commission, getIndex() + 1).getRoot());
             }
 
-            addEventHandler(MouseEvent.MOUSE_PRESSED, e -> selectCommission.accept(commission));
+            setOnMousePressed(e -> selectCommission.accept(commission));
         }
     }
 
