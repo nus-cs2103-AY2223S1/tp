@@ -4,6 +4,7 @@ import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
@@ -33,6 +34,7 @@ public class EditGuestDescriptorBuilder {
         descriptor.setEmail(guest.getEmail());
         descriptor.setDateRange(guest.getDateRange());
         descriptor.setNumberOfGuests(guest.getNumberOfGuests());
+        descriptor.setIsRoomClean(guest.getIsRoomClean());
     }
 
     /**
@@ -72,6 +74,14 @@ public class EditGuestDescriptorBuilder {
      */
     public EditGuestDescriptorBuilder withNumberOfGuests(String numberOfGuests) {
         descriptor.setNumberOfGuests(new NumberOfGuests(numberOfGuests));
+        return this;
+    }
+
+    /**
+     * Sets the {@code IsRoomClean} of the {@code EditGuestDescriptor} that we are building.
+     */
+    public EditGuestDescriptorBuilder withIsRoomClean(String isRoomClean) {
+        descriptor.setIsRoomClean(new IsRoomClean(isRoomClean));
         return this;
     }
 

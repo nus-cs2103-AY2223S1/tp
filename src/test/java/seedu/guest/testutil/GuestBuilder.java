@@ -3,6 +3,7 @@ package seedu.guest.testutil;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
@@ -17,12 +18,14 @@ public class GuestBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_DATE_RANGE = "13/09/22 - 15/09/22";
     public static final String DEFAULT_NUMBER_OF_GUESTS = "1";
+    public static final String DEFAULT_IS_ROOM_CLEAN = "yes";
 
     private Name name;
     private Phone phone;
     private Email email;
     private DateRange dateRange;
     private NumberOfGuests numberOfGuests;
+    private IsRoomClean isRoomClean;
 
     /**
      * Creates a {@code GuestBuilder} with the default details.
@@ -33,6 +36,7 @@ public class GuestBuilder {
         email = new Email(DEFAULT_EMAIL);
         dateRange = new DateRange(DEFAULT_DATE_RANGE);
         numberOfGuests = new NumberOfGuests(DEFAULT_NUMBER_OF_GUESTS);
+        isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
     }
 
     /**
@@ -44,6 +48,7 @@ public class GuestBuilder {
         email = guestToCopy.getEmail();
         dateRange = guestToCopy.getDateRange();
         numberOfGuests = guestToCopy.getNumberOfGuests();
+        isRoomClean = guestToCopy.getIsRoomClean();
     }
 
     /**
@@ -86,8 +91,16 @@ public class GuestBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code IsRoomClean} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withIsRoomClean(String isRoomClean) {
+        this.isRoomClean = new IsRoomClean(isRoomClean);
+        return this;
+    }
+
     public Guest build() {
-        return new Guest(name, phone, email, dateRange, numberOfGuests);
+        return new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean);
     }
 
 }

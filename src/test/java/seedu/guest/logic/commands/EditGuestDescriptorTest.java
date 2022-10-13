@@ -6,6 +6,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_IS_ROOM_CLEAN_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -53,6 +54,10 @@ public class EditGuestDescriptorTest {
 
         // different number of guests -> returns false
         editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different is room clean -> returns false
+        editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

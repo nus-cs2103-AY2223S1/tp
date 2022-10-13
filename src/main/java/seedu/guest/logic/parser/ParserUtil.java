@@ -7,6 +7,7 @@ import seedu.guest.commons.util.StringUtil;
 import seedu.guest.logic.parser.exceptions.ParseException;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
+import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
@@ -104,5 +105,20 @@ public class ParserUtil {
             throw new ParseException(NumberOfGuests.MESSAGE_CONSTRAINTS);
         }
         return new NumberOfGuests(trimmedNumberOfGuests);
+    }
+
+    /**
+     * Parses a {@code String isRoomClean} into an {@code IsRoomClean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isRoomClean} is invalid.
+     */
+    public static IsRoomClean parseIsRoomClean(String isRoomClean) throws ParseException {
+        requireNonNull(isRoomClean);
+        String trimmedIsRoomClean = isRoomClean.trim();
+        if (!IsRoomClean.isValidIsRoomClean(trimmedIsRoomClean)) {
+            throw new ParseException(IsRoomClean.MESSAGE_CONSTRAINTS);
+        }
+        return new IsRoomClean(trimmedIsRoomClean);
     }
 }

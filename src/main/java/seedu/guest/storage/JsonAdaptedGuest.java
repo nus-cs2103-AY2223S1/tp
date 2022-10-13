@@ -7,6 +7,7 @@ import seedu.guest.commons.exceptions.IllegalValueException;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
@@ -23,6 +24,7 @@ class JsonAdaptedGuest {
     private final String email;
     private final String dateRange;
     private final String numberOfGuests;
+    private final String isRoomClean;
 
     /**
      * Constructs a {@code JsonAdaptedGuest} with the given guest details.
@@ -30,12 +32,14 @@ class JsonAdaptedGuest {
     @JsonCreator
     public JsonAdaptedGuest(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("dateRange") String dateRange,
-            @JsonProperty("numberOfGuests") String numberOfGuests) {
+            @JsonProperty("numberOfGuests") String numberOfGuests,
+            @JsonProperty("isRoomClean") String isRoomClean) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
+        this.isRoomClean = isRoomClean;
     }
 
     /**
@@ -47,6 +51,7 @@ class JsonAdaptedGuest {
         email = source.getEmail().value;
         dateRange = source.getDateRange().value;
         numberOfGuests = source.getNumberOfGuests().value;
+        isRoomClean = source.getIsRoomClean().value;
     }
 
     /**
@@ -98,6 +103,15 @@ class JsonAdaptedGuest {
         }
         final NumberOfGuests modelNumberOfGuests = new NumberOfGuests(numberOfGuests);
 
-        return new Guest(modelName, modelPhone, modelEmail, modelDateRange, modelNumberOfGuests);
+        if (isRoomClean == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    IsRoomClean.class.getSimpleName()));
+        }
+        if (!IsRoomClean.isValidIsRoomClean(isRoomClean)) {
+            throw new IllegalValueException(IsRoomClean.MESSAGE_CONSTRAINTS);
+        }
+        final IsRoomClean modelIsRoomClean = new IsRoomClean(isRoomClean);
+
+        return new Guest(modelName, modelPhone, modelEmail, modelDateRange, modelNumberOfGuests, modelIsRoomClean);
     }
 }
