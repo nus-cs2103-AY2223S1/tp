@@ -112,6 +112,7 @@ public class Exercise {
         builder.append(getName())
                 .append("; Weight: ")
                 .append(getWeight())
+                .append("kg")
                 .append("; Sets: ")
                 .append(getSets())
                 .append("; Reps: ")
@@ -119,7 +120,7 @@ public class Exercise {
 
         Date date = getDate();
         if (!(date == null)) {
-            builder.append("; Dates: ");
+            builder.append("; Date: ");
             builder.append(date);
         }
         return builder.toString();
