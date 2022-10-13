@@ -193,16 +193,13 @@
     -fx-background-color: transparent;
 }
 
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
-
 .context-menu .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #3C3C3C;
 }
 
 .menu-bar {
     -fx-background-color: #3C3C3C;
+    -fx-selection-bar:#707BE3;
 }
 
 .menu-bar .label {
@@ -212,6 +209,15 @@
     -fx-opacity: 1;
 }
 
+.menu-item:focused {
+    -fx-background-color:#707BE3;
+    -fx-focus-color: #707BE3;
+}
+
+.context-menu:focused {
+    -fx-background-color:#3C3C3C;
+    -fx-focus-color:#3C3C3C;
+}
 .menu .left-container {
     -fx-background-color: #FFF2E7;
 }
