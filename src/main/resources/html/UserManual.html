@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <h1>User Manual</h1>
+</head>
+<body>
+
+<h3 id="user-manual-help-">User Manual: <code>help</code></h3>
+<p>Format: <code>help [COMMAND-NAME]</code></p>
+<p>Optional Arguments:</p>
+<ul>
+    <li><code>COMMAND-NAME</code>
+        <ul>
+            <li>If not supplied, <code>help</code> returns the list of all commands available</li>
+        </ul>
+    </li>
+</ul>
+<p>Provides the user manual for the given command and an explanation on the associated faculty/module
+    prefix and optional arguments.</p>
+<h3 id="listing-modules-ls-">Listing modules: <code>ls</code></h3>
+<p>Format: <code>ls [FACULTY-PREFIX] [--user]</code></p>
+<p>Optional Arguments:</p>
+<ul>
+    <li><code>FACULTY-PREFIX</code>
+        <ul>
+            <li>e.g. <code>CS</code>, <code>CEG</code></li>
+        </ul>
+    </li>
+    <li><code>--user</code>
+        <ul>
+            <li>A flag that narrows the list of modules to user&#39;s own list of chosen modules</li>
+        </ul>
+    </li>
+</ul>
+<p>Shows the entire list of modules offered by NUS with the option to also filter it by faculty (via
+    module prefix e.g. CS, CEG).</p>
+<h3 id="searching-for-modules-find-">Searching for modules: <code>find</code></h3>
+<p>Format: <code>find KEYWORD</code></p>
+<p>Required Arguments:</p>
+<ul>
+    <li><code>KEYWORD</code>
+        <ul>
+            <li>Any keyword to search against the list of modules</li>
+        </ul>
+    </li>
+</ul>
+<p>Search for a (list of) module in the entire list of modules offered by NUS.</p>
+<h3 id="view-module-details-view-">View module details: <code>view</code></h3>
+<p>Format: <code>view MODULE-CODE</code></p>
+<p>Required Arguments:</p>
+<ul>
+    <li><code>MODULE-CODE</code>
+        <ul>
+            <li>e.g. <code>CS2103</code></li>
+        </ul>
+    </li>
+</ul>
+<p>View full details (e.g. description, workload) of a module via its module code.</p>
+<h3 id="add-modules-to-user-list-add-">Add modules to user list: <code>add</code></h3>
+<p>Format: <code>add MODULE-CODE</code></p>
+<p>Required Arguments:</p>
+<ul>
+    <li><code>MODULE-CODE</code>
+        <ul>
+            <li>e.g. <code>CS2103</code></li>
+        </ul>
+    </li>
+</ul>
+<p>Add a module to the user&#39;s own list of modules.</p>
+<h3 id="delete-a-module-from-user-list-rm-">Delete a module from user list: <code>rm</code></h3>
+<p>Format: <code>rm MODULE-CODE</code></p>
+<p>Required Arguments:</p>
+<ul>
+    <li><code>MODULE-CODE</code>
+        <ul>
+            <li>e.g. <code>CS2103</code></li>
+        </ul>
+    </li>
+</ul>
+<p>Delete a module to the user&#39;s own list of modules.</p>
+<h3 id="exiting-the-program-exit-">Exiting the program: <code>exit</code></h3>
+<p>Format: <code>exit</code></p>
+<p>Exits the program</p>
+<hr>
+<h2 id="command-summary">Command summary</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Action</th>
+        <th>Format, Examples</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><strong>help</strong></td>
+        <td><code>help [COMMAND-NAME]</code><br> e.g. <code>help find</code></td>
+    </tr>
+    <tr>
+        <td><strong>ls</strong></td>
+        <td><code>ls [FACULTY-PREFIX] [--user]</code><br> e.g. <code>ls</code>, <code>ls CS</code>, <code>ls MA
+            --user</code></td>
+    </tr>
+    <tr>
+        <td><strong>find</strong></td>
+        <td><code>find KEYWORD</code><br> e.g. <code>find compilers</code></td>
+    </tr>
+    <tr>
+        <td><strong>view</strong></td>
+        <td><code>view MODULE-CODE</code><br> e.g. <code>view CS2103</code></td>
+    </tr>
+    <tr>
+        <td><strong>add</strong></td>
+        <td><code>add MODULE-CODE</code><br> e.g. <code>add CS2103</code></td>
+    </tr>
+    <tr>
+        <td><strong>rm</strong></td>
+        <td><code>rm MODULE-CODE</code><br> e.g. <code>rm CS2103</code></td>
+    </tr>
+    <tr>
+        <td><strong>exit</strong></td>
+        <td><code>exit</code></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

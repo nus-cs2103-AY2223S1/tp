@@ -167,6 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            helpWindow.setWindowDefaultSize(logic.getGuiSettings());
         } else {
             helpWindow.focus();
         }
