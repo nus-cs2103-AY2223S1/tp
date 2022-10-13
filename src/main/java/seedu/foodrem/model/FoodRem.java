@@ -144,7 +144,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     public void removeTag(Tag key) {
         for (Item i : items) {
             if (i.containsTag(key)) {
-                i.removeItemTag(key);
+                setItem(i, Item.createUntaggedItem(i, key));
             }
         }
         tags.remove(key);

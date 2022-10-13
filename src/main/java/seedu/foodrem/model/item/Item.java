@@ -1,5 +1,7 @@
 package seedu.foodrem.model.item;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 import static seedu.foodrem.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
@@ -72,6 +74,27 @@ public class Item {
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
         this.tagSet = tagSet;
+    }
+
+    /**
+     * Creates and returns a {@code Item} with the tagSet of {@code itemToUntag}
+     * edited
+     */
+    public static Item createUntaggedItem(Item itemToUntag, Tag tag) {
+        requireNonNull(itemToUntag);
+        requireNonNull(tag);
+
+        checkArgument(itemToUntag.containsTag(tag));
+
+        itemToUntag.removeItemTag(tag);
+
+        return new Item(itemToUntag.getName(),
+                itemToUntag.getQuantity(),
+                itemToUntag.getUnit(),
+                itemToUntag.getBoughtDate(),
+                itemToUntag.getExpiryDate(),
+                itemToUntag.getTagSet()
+        );
     }
 
 
