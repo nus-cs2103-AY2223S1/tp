@@ -11,7 +11,7 @@ import seedu.address.model.Model;
  */
 public class ListAllCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "a";
+    public static final String COMMAND_WORD = "-a";
 
     public ListAllCommand() {}
 
