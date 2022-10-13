@@ -8,7 +8,7 @@ import java.util.Comparator;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Sorts data in Address Book.
@@ -60,9 +60,9 @@ public class SortCommand extends Command {
     /**
      * Compares two persons by name.
      */
-    public class NameComparator implements Comparator<Person> {
+    public class NameComparator implements Comparator<Patient> {
         @Override
-        public int compare(Person first, Person second) {
+        public int compare(Patient first, Patient second) {
             return first.getName().toString().compareTo(second.getName().toString());
         }
     }
@@ -70,9 +70,9 @@ public class SortCommand extends Command {
     /**
      * Compares two persons by phone.
      */
-    public class PhoneComparator implements Comparator<Person> {
+    public class PhoneComparator implements Comparator<Patient> {
         @Override
-        public int compare(Person first, Person second) {
+        public int compare(Patient first, Patient second) {
             return first.getPhone().toString().compareTo(second.getPhone().toString());
         }
     }
@@ -80,9 +80,9 @@ public class SortCommand extends Command {
     /**
      * Compares two persons by email.
      */
-    public class EmailComparator implements Comparator<Person> {
+    public class EmailComparator implements Comparator<Patient> {
         @Override
-        public int compare(Person first, Person second) {
+        public int compare(Patient first, Patient second) {
             return first.getEmail().toString().compareTo(second.getEmail().toString());
         }
     }
@@ -90,9 +90,9 @@ public class SortCommand extends Command {
     /**
      * Compares two persons by address.
      */
-    public class AddressComparator implements Comparator<Person> {
+    public class AddressComparator implements Comparator<Patient> {
         @Override
-        public int compare(Person first, Person second) {
+        public int compare(Patient first, Patient second) {
             return first.getAddress().toString().compareTo(second.getAddress().toString());
         }
     }

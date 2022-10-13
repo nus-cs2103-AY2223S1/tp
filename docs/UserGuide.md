@@ -40,13 +40,13 @@ Contact number: 91234567
 Appointment Date: 5/10/22
 ````
 
-### Editing a person: `edit`
+### Editing a patient: `edit`
 
 Edit a patient’s information, such as age, contact number, appointment date and doctor’s notes.
 
 Format: `edit Person Title: content`
 
-* If there is no such person or task to edit, it will show an error.
+* If there is no such patient or task to edit, it will show an error.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -55,7 +55,7 @@ Examples:
 * `edit John date: 2019-12-25` John’s appointment date has been changed to Dec 25th, 2019.
 * `edit John note: use medicine` Doctor’s notes for John has been changed to use medicine.
 
-### Filtering a person: `filter` [coming soon]
+### Filtering a patient: `filter` [coming soon]
 
 Shows the patients that satisfy given condition
 
