@@ -21,7 +21,7 @@ public class DatabaseBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code database} that we are building.
      */
     public DatabaseBuilder withPerson(Person person) {
         database.addPerson(person);

@@ -26,11 +26,11 @@ public class JsonDatabaseStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readDatabase_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readDatabase(null));
     }
 
-    private java.util.Optional<ReadOnlyDatabase> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyDatabase> readDatabase(String filePath) throws Exception {
         return new JsonDatabaseStorage(Paths.get(filePath)).readDatabase(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -42,27 +42,27 @@ public class JsonDatabaseStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readDatabase("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatDatabase.json"));
+        assertThrows(DataConversionException.class, () -> readDatabase("notJsonFormatDatabase.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonDatabase.json"));
+    public void readDatabase_invalidPersonDatabase_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readDatabase("invalidPersonDatabase.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonDatabase.json"));
+    public void readDatabase_invalidAndValidPersonDatabase_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readDatabase("invalidAndValidPersonDatabase.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+    public void readAndSaveDatabase_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempDatabase.json");
         Database original = getTypicalDatabase();
         JsonDatabaseStorage jsonDatabaseStorage = new JsonDatabaseStorage(filePath);
 
@@ -87,24 +87,24 @@ public class JsonDatabaseStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveDatabase_nullDatabase_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveDatabase(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code database} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyDatabase addressBook, String filePath) {
+    private void saveDatabase(ReadOnlyDatabase database, String filePath) {
         try {
             new JsonDatabaseStorage(Paths.get(filePath))
-                    .saveDatabase(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveDatabase(database, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Database(), null));
+    public void saveDatabase_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveDatabase(new Database(), null));
     }
 }

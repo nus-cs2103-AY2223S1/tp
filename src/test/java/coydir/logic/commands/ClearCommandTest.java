@@ -13,7 +13,7 @@ import coydir.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyDatabase_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,7 +21,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyDatabase_success() {
         Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalDatabase(), new UserPrefs());
         expectedModel.setDatabase(new Database());

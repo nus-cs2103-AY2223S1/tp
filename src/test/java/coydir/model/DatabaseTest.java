@@ -37,7 +37,7 @@ public class DatabaseTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyDatabase_replacesData() {
         Database newData = getTypicalDatabase();
         database.resetData(newData);
         assertEquals(newData, database);
@@ -60,18 +60,18 @@ public class DatabaseTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInDatabase_returnsFalse() {
         assertFalse(database.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInDatabase_returnsTrue() {
         database.addPerson(ALICE);
         assertTrue(database.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInDatabase_returnsTrue() {
         database.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -84,7 +84,7 @@ public class DatabaseTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyDatabase whose persons list can violate interface constraints.
      */
     private static class DatabaseStub implements ReadOnlyDatabase {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();

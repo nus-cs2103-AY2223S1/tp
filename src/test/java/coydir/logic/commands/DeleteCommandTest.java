@@ -68,7 +68,7 @@ public class DeleteCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(2 < model.getDatabase().getPersonList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("2"));
