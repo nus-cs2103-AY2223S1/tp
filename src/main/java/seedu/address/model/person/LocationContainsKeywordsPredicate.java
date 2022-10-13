@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code Location} matches any of the keywords given.
+ */
 public class LocationContainsKeywordsPredicate<T extends Person> implements Predicate<T> {
     private final String keyword;
 

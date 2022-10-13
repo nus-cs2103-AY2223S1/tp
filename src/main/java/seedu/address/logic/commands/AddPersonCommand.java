@@ -40,18 +40,18 @@ public abstract class AddPersonCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     /**
-     * Construct a default base AddPersonCommand
+     * Construct a default base AddPersonCommand.
      */
     public AddPersonCommand() {}
 
     /**
      * Returns the command result to display.
      * This is an abstract method that requires its subclasses,
-     * such as {@code AddBuyerCommand, AddDelivererCommand, AddSupplierCommand}, to implement
+     * such as {@code AddBuyerCommand, AddDelivererCommand, AddSupplierCommand}, to implement.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult the result to be displayed
-     * @throws CommandException if the command cannot work
+     * @return CommandResult the result to be displayed.
+     * @throws CommandException if the command cannot work.
      */
     @Override
     public abstract CommandResult execute(Model model) throws CommandException;
