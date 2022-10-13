@@ -31,10 +31,10 @@ public class User {
      * Default constructor of user sets height, weight, ideal weight to 0 and gender to M
      */
     public User() {
-        this.height = new Height("0");
-        this.weight = new Weight("0");
-        this.idealWeight = new Weight("0");
-        this.gender = new Gender("M");
+        this.height = new Height();
+        this.weight = new Weight();
+        this.idealWeight = new Weight();
+        this.gender = new Gender();
     }
 
     public Weight getWeight() {
@@ -55,6 +55,9 @@ public class User {
 
     @Override
     public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
         if (other instanceof User) {
             User u = (User) other;
             return (this.weight.equals(u.weight) && this.height.equals(u.height)

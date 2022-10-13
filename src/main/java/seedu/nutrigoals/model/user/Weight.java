@@ -9,6 +9,7 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 public class Weight {
     public static final int MAX_WEIGHT = 200;
     public static final int MIN_WEIGHT = 0;
+    public static final String DEFAULT_VALUE = "0";
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String MESSAGE_CONSTRAINTS = "Weight must take on a positive number that is not too large.";
     public final String value;
@@ -21,6 +22,10 @@ public class Weight {
         requireNonNull(weight);
         checkArgument(isValidWeight(weight), MESSAGE_CONSTRAINTS);
         value = weight;
+    }
+
+    public Weight() {
+        value = DEFAULT_VALUE;
     }
 
     /**
@@ -42,6 +47,9 @@ public class Weight {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
         if (obj instanceof Weight) {
             Weight other = (Weight) obj;
             return this.value.equals(other.value);

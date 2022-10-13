@@ -9,6 +9,7 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 public class Gender {
     public static final String VALIDATION_REGEX = "^[m,M,f,F]$";
     public static final String MESSAGE_CONSTRAINTS = "Gender must be a single char, either M or F";
+    public static final String DEFAULT_VALUE = "M";
     public final String value;
 
     /**
@@ -21,18 +22,24 @@ public class Gender {
         value = gender.toUpperCase();
     }
 
+    public Gender() {
+        value = DEFAULT_VALUE;
+    }
+
     /**
      * Checks if specified gender is valid
      * @param gender
      * @return true if specified string is either M, m, F or f
      */
     public static boolean isValidGender(String gender) {
-        System.out.println(gender.matches(VALIDATION_REGEX));
         return (!gender.isEmpty() && gender.matches(VALIDATION_REGEX));
     }
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
         if (obj instanceof Gender) {
             Gender other = (Gender) obj;
             return this.value.equals(other.value);

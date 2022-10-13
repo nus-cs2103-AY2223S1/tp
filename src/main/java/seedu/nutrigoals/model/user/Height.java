@@ -9,6 +9,7 @@ import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 public class Height {
     public static final int MAX_HEIGHT = 220;
     public static final int MIN_HEIGHT = 0;
+    public static final String DEFAULT_VALUE = "0";
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String MESSAGE_CONSTRAINTS = "Height must take on a positive number that is not too large.";
     public final String value;
@@ -21,6 +22,10 @@ public class Height {
         requireNonNull(height);
         checkArgument(isValidHeight(height), MESSAGE_CONSTRAINTS);
         value = height;
+    }
+
+    public Height() {
+        value = DEFAULT_VALUE;
     }
 
     /**
@@ -42,6 +47,9 @@ public class Height {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
         if (obj instanceof Height) {
             Height other = (Height) obj;
             return this.value.equals(other.value);

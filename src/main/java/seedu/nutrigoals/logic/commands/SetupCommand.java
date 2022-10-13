@@ -18,17 +18,17 @@ public class SetupCommand extends Command {
 
     public static final String COMMAND_WORD = "setup";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets up the users profile for the tracker. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets up the users profile for the tracker. \n"
             + "Parameters: "
             + PREFIX_GENDER + "Gender "
             + PREFIX_HEIGHT + "Height "
-            + PREFIX_WEIGHT + "Weight"
-            + PREFIX_IDEAL_WEIGHT + "Ideal Weight"
+            + PREFIX_WEIGHT + "Weight "
+            + PREFIX_IDEAL_WEIGHT + "Ideal Weight\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GENDER + "M "
             + PREFIX_HEIGHT + "170 "
-            + PREFIX_WEIGHT + "70"
-            + PREFIX_IDEAL_WEIGHT + "65";
+            + PREFIX_WEIGHT + "70 "
+            + PREFIX_IDEAL_WEIGHT + "65 ";
 
     public static final String MESSAGE_SUCCESS = "Successfully set up user profile";
 

@@ -55,6 +55,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         requireNonNull(newData);
         setCalorieTarget(newData.getCalorieTarget());
         setFoods(newData.getFoodList());
+        setUser(newData.getUser());
     }
 
     //// food-level operations
@@ -100,6 +101,10 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     public void setUser(User user) {
         requireNonNull(user);
         this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     /**
