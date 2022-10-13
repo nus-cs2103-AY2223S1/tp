@@ -181,6 +181,18 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+## Miscellaneous Information
+
+### Accepted Date Formats
+
+The following date formats are accepted:
+
+* yyyy-MM-dd (2022-10-31)
+* MMM dd yyyy (Oct 31 2022)
+* MM dd yyyy (10 31 2022)
+* dd MMM yyyy (31 Oct 2022)
+* dd MM yyyy (31 10 2022)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
