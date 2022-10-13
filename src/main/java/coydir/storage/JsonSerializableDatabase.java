@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import coydir.commons.exceptions.IllegalValueException;
-import coydir.model.AddressBook;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.Database;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable database that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "database")
+class JsonSerializableDatabase {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -26,41 +26,41 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableDatabase} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("maxID") int maxID) {
+    public JsonSerializableDatabase(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                    @JsonProperty("maxID") int maxID) {
         this.persons.addAll(persons);
         this.maxID = maxID;
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyDatabase} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableDatabase}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source, int maxID) {
+    public JsonSerializableDatabase(ReadOnlyDatabase source, int maxID) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         this.maxID = maxID;
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this database into the model's {@code database} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
+    public Database toModelType() throws IllegalValueException {
         EmployeeId.setCount(maxID);
-        AddressBook addressBook = new AddressBook();
+        Database database = new Database();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (database.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            database.addPerson(person);
         }
-        return addressBook;
+        return database;
     }
 
 }

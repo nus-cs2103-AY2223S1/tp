@@ -6,7 +6,7 @@ import coydir.commons.core.GuiSettings;
 import coydir.logic.commands.CommandResult;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.exceptions.ParseException;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the database.
      *
-     * @see coydir.model.Model#getAddressBook()
+     * @see coydir.model.Model#getDatabase()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyDatabase getDatabase();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' database file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

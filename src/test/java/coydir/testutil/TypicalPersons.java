@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import coydir.model.AddressBook;
+import coydir.model.Database;
 import coydir.model.person.Person;
 
 /**
@@ -81,8 +81,8 @@ public class TypicalPersons {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Database getTypicalAddressBook() {
+        Database ab = new Database();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

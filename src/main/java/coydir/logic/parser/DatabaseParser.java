@@ -20,7 +20,7 @@ import coydir.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class DatabaseParser {
 
     /**
      * Used for initial separation of command word and args.

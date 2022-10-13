@@ -4,7 +4,7 @@ import static coydir.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's position in the address book.
+ * Represents a Person's position in the database.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
  */
 public class Position {

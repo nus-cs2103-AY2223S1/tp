@@ -35,44 +35,44 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' database file path.
      */
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' database file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setDatabaseFilePath(Path databaseFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces database data with the data in {@code database}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setDatabase(ReadOnlyDatabase database);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the database */
+    ReadOnlyDatabase getDatabase();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the database.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the database.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the database.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the database.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the database.
      */
     void setPerson(Person target, Person editedPerson);
 

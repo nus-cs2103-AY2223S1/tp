@@ -30,9 +30,9 @@ import coydir.testutil.EditPersonDescriptorBuilder;
 import coydir.testutil.PersonBuilder;
 import coydir.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class DatabaseParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final DatabaseParser parser = new DatabaseParser();
 
     @Test
     public void parseCommand_add() throws Exception {
