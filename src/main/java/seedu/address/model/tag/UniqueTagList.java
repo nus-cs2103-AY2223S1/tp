@@ -202,6 +202,9 @@ public class UniqueTagList implements Iterable<Tag> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         internalList.forEach(tag -> builder.append(", " + tag.toString()));
+        if (builder.toString().length() < 2) {
+            return builder.toString();
+        }
         return builder.substring(2);
     }
 }

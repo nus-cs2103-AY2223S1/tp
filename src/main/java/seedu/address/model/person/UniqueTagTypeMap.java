@@ -131,6 +131,9 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
                 throw new TagTypeNotFoundException();
             }
             this.getTagList(t).removeAll(tagTypeMap.getTagList(t));
+            if (this.getTagList(t).getCount() == 0) {
+                this.removeTagType(t);
+            }
         }
     }
 
