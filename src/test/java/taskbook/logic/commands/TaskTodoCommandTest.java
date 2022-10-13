@@ -11,7 +11,7 @@ import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 
-public class TaskAddCommandTest {
+public class TaskTodoCommandTest {
 
     private static final Name NAME_AMY = new Name("Amy");
     private static final Name NAME_BOB = new Name("Bob");
@@ -37,38 +37,38 @@ public class TaskAddCommandTest {
 
     @Test
     public void equals() {
-        // 2 tasks with different descriptions
-        TaskTodoCommand addTaskCommandOne = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskTodoCommand addTaskCommandTwo = new TaskTodoCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
+        // 2 to-dos with different descriptions
+        TaskTodoCommand addTodoCommandOne = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTodoCommandTwo = new TaskTodoCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
 
-        // 2 tasks with different names
-        TaskTodoCommand addTaskCommandThree = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskTodoCommand addTaskCommandFour = new TaskTodoCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        // 2 to-dos with different names
+        TaskTodoCommand addTodoCommandThree = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTodoCommandFour = new TaskTodoCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
 
-        // 2 tasks with different assignments
-        TaskTodoCommand addTaskCommandFive = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskTodoCommand addTaskCommandSix = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
+        // 2 to-dos with different assignments
+        TaskTodoCommand addTodoCommandFive = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTodoCommandSix = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
 
         // same object -> returns true
-        assertTrue(addTaskCommandOne.equals(addTaskCommandOne));
+        assertTrue(addTodoCommandOne.equals(addTodoCommandOne));
 
         // same values -> returns true
         TaskTodoCommand addTaskCommandOneCopy = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        assertTrue(addTaskCommandOne.equals(addTaskCommandOneCopy));
+        assertTrue(addTodoCommandOne.equals(addTaskCommandOneCopy));
 
         // different types -> returns false
-        assertFalse(addTaskCommandOne.equals(1));
+        assertFalse(addTodoCommandOne.equals(1));
 
         // null -> returns false
-        assertFalse(addTaskCommandOne.equals(null));
+        assertFalse(addTodoCommandOne.equals(null));
 
         // different description -> returns false
-        assertFalse(addTaskCommandOne.equals(addTaskCommandTwo));
+        assertFalse(addTodoCommandOne.equals(addTodoCommandTwo));
 
         // different name -> returns false
-        assertFalse(addTaskCommandThree.equals(addTaskCommandFour));
+        assertFalse(addTodoCommandThree.equals(addTodoCommandFour));
 
         // different assignment -> returns false
-        assertFalse(addTaskCommandFive.equals(addTaskCommandSix));
+        assertFalse(addTodoCommandFive.equals(addTodoCommandSix));
     }
 }
