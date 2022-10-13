@@ -78,7 +78,6 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddTagCommand.COMMAND_WORD:
-            System.out.println("hello");
             return new AddTagCommandParser().parse(arguments);
 
         case DeleteTagCommand.COMMAND_WORD:
@@ -94,7 +93,6 @@ public class AddressBookParser {
             return new EditTagTypeCommandParser().parse(arguments);
 
         default:
-            System.out.println("hello");
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

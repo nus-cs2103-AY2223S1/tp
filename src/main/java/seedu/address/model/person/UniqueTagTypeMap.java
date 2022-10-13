@@ -61,7 +61,6 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
             throw new DuplicateTagTypeException();
         } else {
             prefixMap.put(prefix, tagType);
-            System.out.println("create method" + prefixMap);
             CliSyntax.addTagPrefix(prefix);
         }
     }
@@ -252,7 +251,6 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
     }
 
     public static Prefix getPrefixFromTagType(String tagType) throws TagTypeNotFoundException {
-        System.out.println(prefixMap);
         for (Prefix pref: prefixMap.keySet()) {
             if (prefixMap.get(pref).getTagTypeName().equals(tagType)) {
                 return pref;
