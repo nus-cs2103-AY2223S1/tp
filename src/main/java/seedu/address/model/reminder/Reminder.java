@@ -15,12 +15,12 @@ public class Reminder {
     
     //Data fields
     private final ReminderDeadline deadline;
-    private final ReminderDetails details;
+    private final ReminderDescription details;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDetails details) {
+    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details) {
         requireAllNonNull(name, deadline, details);
         this.name = name;
         this.deadline = deadline;
@@ -35,7 +35,7 @@ public class Reminder {
         return deadline;
     }
 
-    public ReminderDetails getDetails() {
+    public ReminderDescription getDetails() {
         return details;
     }
 
