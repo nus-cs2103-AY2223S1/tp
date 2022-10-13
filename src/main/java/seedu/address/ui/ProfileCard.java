@@ -35,9 +35,9 @@ public class ProfileCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
+    private HBox phone;
     @FXML
-    private Label email;
+    private HBox email;
     @FXML
     private HBox telegram;
     @FXML
@@ -48,6 +48,16 @@ public class ProfileCard extends UiPart<Region> {
      */
     public ProfileCard(Profile profile, int displayedIndex) {
         super(FXML);
+        ImageView phoneIcon = new ImageView("/images/phone_icon.png");
+        phoneIcon.setFitHeight(15);
+        phoneIcon.setFitWidth(15);
+        Label phoneLabel = new Label(profile.getPhone().value);
+
+        ImageView emailIcon = new ImageView("/images/email_icon.png");
+        emailIcon.setFitHeight(15);
+        emailIcon.setFitWidth(15);
+        Label emailLabel = new Label(profile.getEmail().value);
+
         ImageView telegramIcon = new ImageView("/images/telegram_icon.png");
         telegramIcon.setFitHeight(15);
         telegramIcon.setFitWidth(15);
@@ -55,8 +65,11 @@ public class ProfileCard extends UiPart<Region> {
         this.profile = profile;
         id.setText(displayedIndex + ". ");
         name.setText(profile.getName().fullName);
-        phone.setText(profile.getPhone().value);
-        email.setText(profile.getEmail().value);
+        phone.getChildren().add(phoneIcon);
+        phone.getChildren().add(phoneLabel);
+        email.getChildren().add(emailIcon);
+        email.getChildren().add(emailLabel);
+
         if (!profile.getTelegram().isEmpty()) {
             telegram.getChildren().add(telegramIcon);
             Label telegramLabel = new Label(Telegram.PREFIX + profile.getTelegram().value);
