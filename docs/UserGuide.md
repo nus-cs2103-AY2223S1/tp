@@ -57,7 +57,7 @@ InterNUS is a desktop app for **managing internship applications, optimized for 
 
 Displays a list of commands and a link to the user guide.
 
-`Screen shot to be added soon`
+![](../src/main/resources/images/help_summary.png)
 
 Format: `help`
 
