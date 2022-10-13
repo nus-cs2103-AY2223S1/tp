@@ -43,7 +43,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
         if (argMultimap.isValuePresent(CliSyntax.PREFIX_NAME)) {
-            editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getPresentValue(CliSyntax.PREFIX_NAME)));
+            editItemDescriptor.setItemName(
+                    ParserUtil.parseItemName(argMultimap.getPresentValue(CliSyntax.PREFIX_NAME)));
         }
         if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_QUANTITY)) {
             editItemDescriptor.setItemQuantity(
