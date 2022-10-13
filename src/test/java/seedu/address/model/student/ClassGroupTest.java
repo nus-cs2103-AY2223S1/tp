@@ -17,10 +17,10 @@ class ClassGroupTest {
         assertTrue(new ClassGroup("cs2030 lab 31").contains(""));
 
         // Exact keyword
-        assertTrue(new ClassGroup("cs2030 lab 31").contains("cs2030 lab 3"));
+        assertTrue(new ClassGroup("cs2030 lab 31").contains("cs2030"));
 
         // Partial matching keyword
-        assertTrue(new ClassGroup("cs2030 lab 31").contains("cs2030"));
+        assertTrue(new ClassGroup("cs2030 lab 31").contains("2030"));
     }
 
     @Test
