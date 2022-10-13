@@ -3,6 +3,7 @@ package taskbook.testutil;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -65,6 +66,6 @@ public class TaskBuilder {
      * @return Task, built from the parameters provided.
      */
     public Task build() {
-        return new Task(person, assignment, description, isDone);
+        return new Todo(person, assignment, description, isDone);
     }
 }
