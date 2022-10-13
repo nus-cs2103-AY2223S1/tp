@@ -4,6 +4,7 @@ import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
+import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 
@@ -25,6 +26,8 @@ public class ContactCategoryParser {
         switch (commandWord) {
         case ContactAddCommand.COMMAND_WORD:
             return new ContactAddCommandParser().parse(arguments);
+        case ContactEditCommand.COMMAND_WORD:
+            return new ContactEditCommandParser().parse(arguments);
         case ContactDeleteCommand.COMMAND_WORD:
             return new ContactDeleteCommandParser().parse(arguments);
         case ContactListCommand.COMMAND_WORD:
