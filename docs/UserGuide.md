@@ -48,7 +48,7 @@ InterNUS is a desktop app for **managing internship applications, optimized for 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -102,20 +102,33 @@ Shows a list of all internships in InterNUS.
 
 Format: `list -i`
 
-### Editing a person or internship : `edit`
+### Editing a person : `editp`
 
-Edits an existing person or internship in InterNUS, depending on the type of list currently displayed in InterNUS.
+Edits an existing person in InterNUS.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-- Edits the person or internship at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
-- Existing values will be updated to the input values. However, compulsory fields when adding the person or internship cannot be edited to be empty.
+Format: `editp INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 - You can remove all the person’s tags by typing `t/` without specifying any tags after it.
-- You can remove the person’s phone number or internship associated with the person by typing `p/` or `i/` without specifying any text after it, respectively.
+
 Examples:
-- `list -p` followed by `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-- `list -p` followed by `edit 2 n/Betsy Crower t/ p/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags, as well as deleting the phone number associated with the person, without deleting the internship associated with the person.
-- `list -i` followed by `edit 2 s/Rejected d/` Edits the status of the 2nd internship to `Rejected` and deletes the date of interview.
+- `listp` followed by `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+- `listp` followed by `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Editing an internship : `editi`
+
+Edits an existing internship in InterNUS.
+
+Format: `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`
+- Edits the internship at the specified `INDEX`. The index refers to the index number shown in the displayed internship list. The index must be a positive integer 1, 2, 3, …
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+
+Examples:
+- `listi` followed by `edit 1 s/ACCEPTED` Edits the status of the 1st internship to be `ACCEPTED`.
+- `listi` followed by `edit 2 s/REJECTED` Edits the status of the 2nd internship to `REJECTED`.
 
 
 ### Locating persons by name : `find -p`
@@ -146,23 +159,23 @@ Examples:
 - `find -i` **Back End** returns **ByteDance_Back End Engineer** and **Google_Back End Engineer**
 
 
-### Deleting a person or internship by index : `delete`
+### Deleting a person by index : `deletep`
 
-Deletes the specified person or internship from InterNUS.
+Deletes the specified person from InterNUS.
 
-Format: `delete INDEX`
+Format: `deletep INDEX`
 
-* Deletes the person or internship with the specific `INDEX` in the currently displayed list.
-* The index refers to the index number shown in the currently displayed list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the person with the specific `INDEX` in the person list.
+* The index refers to the index number shown in the currently displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list -i` followed by `delete 2` deletes the 2nd internship in InterNUS.
-* `find -p Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `listp` followed by `deletep 2` deletes the 2nd person in InterNUS.
+* `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from InterNUS.
+Clears all person and internship entries from InterNUS.
 
 Format: `clear`
 
@@ -185,27 +198,28 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, InterNUS will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InterNUS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find -i/p KEYWORD`<br> e.g., `find -p James Jake`, `find -i frontend engineer`                                                                                       |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action                | Format, Examples                                                                                                                          |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**        | `addp n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [l/LINK_INDEX]` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com l/3`            |
+| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`      |
+| **Clear**             | `clear`                                                                                                                                   |
+| **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                     |
+| **Delete internship** | `deletei INDEX`<br> e.g., `deletei 1`                                                                                                     |
+| **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                          |
+| **Edit internship**   | `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`<br> e.g.,`editi 2 s/REJECTED`, `editi 3 d/2023-01-01 13:30`      |
+| **Find person**       | `findi KEYWORD` <br> e.g., `findp James`                                                                                                  |
+| **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                 |
+| **List persons**      | `listp`                                                                                                                                   |
+| **List internships**  | `listi`                                                                                                                                   |
+| **Help**              | `help`                                                                                                                                    |
