@@ -78,9 +78,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getMeetingListFilePath() {
+        return userPrefs.getMeetingListFilePath();
+    }
+
+    @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setMeetingListFilePath(Path meetingListFilePath) {
+        requireNonNull(meetingListFilePath);
+        userPrefs.setMeetingListFilePath(meetingListFilePath);
     }
 
     //=========== AddressBook ================================================================================
