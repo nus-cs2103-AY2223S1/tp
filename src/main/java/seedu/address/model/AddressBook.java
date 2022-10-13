@@ -51,7 +51,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the mod list with {@code persons}.
+     * Replaces the contents of the mod list with {@code mods}.
      * {@code persons} must not contain duplicate mods.
      */
     public void setMods(List<Mod> modules) {
@@ -70,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// person-level operations
 
     /**
-     * Returns true if a mod with the same identity as {@code person} exists in the address book.
+     * Returns true if a mod with the same identity as {@code mod} exists in the address book.
      */
     public boolean hasMod(Mod mod) {
         requireNonNull(mod);

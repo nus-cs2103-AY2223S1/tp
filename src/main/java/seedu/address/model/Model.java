@@ -77,6 +77,10 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /**
+     * Updates the filter of the filtered mod list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredModList(Predicate<Mod> predicate);
 
     /** Returns an unmodifiable view of the filtered person list */
