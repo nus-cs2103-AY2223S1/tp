@@ -21,8 +21,13 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.list.ListAllCommand;
+import seedu.address.logic.commands.list.ListCommand;
+import seedu.address.logic.commands.list.ListModuleCommand;
+import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.ModuleContainsKeywordsPredicate;
+import seedu.address.model.task.ModuleIsDonePredicate;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -85,9 +90,30 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listAll() throws Exception {
+        String str = ListCommand.COMMAND_WORD + " " + ListAllCommand.COMMAND_WORD;
+        assertTrue(parser.parseCommand(str) instanceof ListAllCommand);
+        assertTrue(parser.parseCommand(str + " 3") instanceof ListAllCommand);
+    }
+
+    @Test
+    public void parseCommand_listUnmarked() throws Exception {
+        List<String> isDone = List.of("false");
+        String str = ListCommand.COMMAND_WORD + " " + ListUnmarkedCommand.COMMAND_WORD;
+        ListUnmarkedCommand command = (ListUnmarkedCommand) parser.parseCommand(str + " " + isDone
+                .stream()
+                .collect(Collectors.joining(" ")));
+        assertEquals(new ListUnmarkedCommand(new ModuleIsDonePredicate(isDone)), command);
+    }
+
+    @Test
+    public void parseCommand_listModule() throws Exception {
+        List<String> module = List.of("CS2100");
+        String str = ListCommand.COMMAND_WORD + " " + ListModuleCommand.COMMAND_WORD;
+        ListModuleCommand command = (ListModuleCommand) parser.parseCommand(str + " " + module
+                .stream()
+                .collect(Collectors.joining(" ")));
+        assertEquals(new ListModuleCommand(new ModuleContainsKeywordsPredicate(module)), command);
     }
 
     @Test
