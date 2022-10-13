@@ -3,8 +3,10 @@ package paymelah.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static paymelah.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static paymelah.logic.parser.ParserUtil.prepareDebtContainsKeywordsPredicate;
 import static paymelah.testutil.TypicalPersons.BENSON;
 import static paymelah.testutil.TypicalPersons.GEORGE;
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
@@ -14,13 +16,15 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
-import paymelah.model.person.DebtsContainsKeywordsPredicate;
+import paymelah.model.person.DebtContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindDebtCommand}.
+ * Contains integration tests (interaction with the Model) for
+ * {@code FindDebtCommand}.
  */
 public class FindDebtCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -28,10 +32,10 @@ public class FindDebtCommandTest {
 
     @Test
     public void equals() {
-        DebtsContainsKeywordsPredicate firstPredicate =
-                new DebtsContainsKeywordsPredicate(Collections.singletonList("first"));
-        DebtsContainsKeywordsPredicate secondPredicate =
-                new DebtsContainsKeywordsPredicate(Collections.singletonList("second"));
+        DebtContainsKeywordsPredicate firstPredicate = new DebtContainsKeywordsPredicate(
+                Collections.singletonList("first"));
+        DebtContainsKeywordsPredicate secondPredicate = new DebtContainsKeywordsPredicate(
+                Collections.singletonList("second"));
 
         FindDebtCommand findDebtFirstCommand = new FindDebtCommand(firstPredicate);
         FindDebtCommand findDebtSecondCommand = new FindDebtCommand(secondPredicate);
@@ -56,27 +60,28 @@ public class FindDebtCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        DebtsContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindDebtCommand command = new FindDebtCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        try {
+            DebtContainsKeywordsPredicate predicate = prepareDebtContainsKeywordsPredicate("NonExistentDebt");
+            FindDebtCommand command = new FindDebtCommand(predicate);
+            expectedModel.updateFilteredPersonList(predicate);
+            assertCommandSuccess(command, model, expectedMessage, expectedModel);
+            assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        } catch (ParseException e) {
+            fail("Invalid predicate");
+        }
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        DebtsContainsKeywordsPredicate predicate = preparePredicate("burger");
-        FindDebtCommand command = new FindDebtCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, GEORGE), model.getFilteredPersonList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private DebtsContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new DebtsContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        try {
+            DebtContainsKeywordsPredicate predicate = prepareDebtContainsKeywordsPredicate("burger");
+            FindDebtCommand command = new FindDebtCommand(predicate);
+            expectedModel.updateFilteredPersonList(predicate);
+            assertCommandSuccess(command, model, expectedMessage, expectedModel);
+            assertEquals(Arrays.asList(BENSON, GEORGE), model.getFilteredPersonList());
+        } catch (ParseException e) {
+            fail("Invalid predicate");
+        }
     }
 }
