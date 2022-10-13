@@ -45,9 +45,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
-        Phone phone = new Phone("00000000");
-        Email email = new Email("null@null.com");
-        Address address = new Address("null");
+        Phone phone = new Phone().getNullPhone();
+        Email email = new Email().getNullEmail();
+        Address address = new Address().getNullAddress();
         Set<Tag> tagList = new HashSet<>();
         EmployeeId employeeId = new EmployeeId();
 

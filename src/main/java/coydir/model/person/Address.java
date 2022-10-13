@@ -17,6 +17,8 @@ public class Address {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    private static final Address NULL = new Address();
+
     public final String value;
 
     /**
@@ -28,6 +30,17 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Address() {
+        this.value = "N/A";
+    }
+
+    public Address getNullAddress() {
+        return Address.NULL;
     }
 
     /**
