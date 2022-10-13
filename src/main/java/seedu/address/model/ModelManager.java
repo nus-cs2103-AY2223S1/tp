@@ -116,6 +116,7 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    //=========== ArtBuddy ================================================================================
     @Override
     public void selectTab(GuiTab tab) {
         selectedTab = tab;
