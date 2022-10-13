@@ -37,11 +37,11 @@ public class JsonTaskStorage implements TaskStorage {
 
     /**
      * Similar to {@link #readTaskList()}
-     * @param tasksFilePath location of the data. Cannot be null.
+     * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file format is not as expected.
      */
     @Override
-    public Optional<ReadOnlyTaskList> readTaskList(Path tasksFilePath) throws DataConversionException {
+    public Optional<ReadOnlyTaskList> readTaskList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTaskList> jsonTaskList = JsonUtil.readJsonFile(
