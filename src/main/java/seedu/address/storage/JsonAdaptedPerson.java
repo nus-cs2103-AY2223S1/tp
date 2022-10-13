@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -40,6 +43,7 @@ class JsonAdaptedPerson {
     private final String wardNumber;
     private final List<JsonAdaptedMedication> medications = new ArrayList<>();
     private final List<JsonAdaptedPastAppointment> pastAppointments = new ArrayList<>();
+    private final String upcomingAppointment;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -52,7 +56,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("floorNumber") String floorNumber,
                              @JsonProperty("wardNumber") String wardNumber,
                              @JsonProperty("medications") List<JsonAdaptedMedication> medications,
-                             @JsonProperty("pastAppointments") List<JsonAdaptedPastAppointment> pastAppointments) {
+                             @JsonProperty("pastAppointments") List<JsonAdaptedPastAppointment> pastAppointments,
+                             @JsonProperty("upcomingAppointment") String upcomingAppointment) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -67,6 +72,7 @@ class JsonAdaptedPerson {
         if (pastAppointments != null) {
             this.pastAppointments.addAll(pastAppointments);
         }
+        this.upcomingAppointment = upcomingAppointment;
     }
 
     /**
@@ -99,6 +105,11 @@ class JsonAdaptedPerson {
         pastAppointments.addAll(source.getPastAppointments().stream()
                 .map(JsonAdaptedPastAppointment::new)
                 .collect(Collectors.toList()));
+        if (source.getUpcomingAppointment().isPresent()) {
+            upcomingAppointment = source.getUpcomingAppointment().get().value;
+        } else {
+            upcomingAppointment = null;
+        }
     }
 
     /**
@@ -113,7 +124,11 @@ class JsonAdaptedPerson {
         }
         final List<PastAppointment> personPastAppointments = new ArrayList<>();
         for (JsonAdaptedPastAppointment pastAppointment : pastAppointments) {
-            personPastAppointments.add(pastAppointment.toModelType());
+            try {
+                personPastAppointments.add(pastAppointment.toModelType());
+            } catch (DateTimeParseException e) {
+                throw new IllegalValueException(UpcomingAppointment.MESSAGE_CONSTRAINTS);
+            }
         }
 
         if (name == null) {
@@ -216,8 +231,17 @@ class JsonAdaptedPerson {
 
         final Set<Medication> modelMedication = new HashSet<>(personMedications);
         final List<PastAppointment> modelPastAppointments = new ArrayList<>(personPastAppointments);
+        final UpcomingAppointment modelUpcomingAppointment;
+        if (upcomingAppointment == null) {
+            modelUpcomingAppointment = new UpcomingAppointment((LocalDate) null);
+        } else if (!UpcomingAppointment.isValidDate(upcomingAppointment)) {
+            throw new IllegalValueException(UpcomingAppointment.MESSAGE_CONSTRAINTS);
+        } else {
+            modelUpcomingAppointment = new UpcomingAppointment(upcomingAppointment);
+        }
 
         return new Person(modelName, modelPhone, modelEmail, modelNextOfKin, modelPatientType,
-                modelHospitalWing, modelFloorNumber, modelWardNumber, modelMedication, modelPastAppointments);
+                modelHospitalWing, modelFloorNumber, modelWardNumber, modelMedication, modelPastAppointments,
+                modelUpcomingAppointment);
     }
 }

@@ -17,6 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEDICATION = new Prefix("m/");
     public static final Prefix PREFIX_DATE = new Prefix("on/");
     public static final Prefix PREFIX_DIAGNOSIS = new Prefix("diag/");
-
+    public static final Prefix PREFIX_UPCOMING_APPOINTMENT = new Prefix("upcoming/");
 
 }

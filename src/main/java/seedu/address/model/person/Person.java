@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.tag.Medication;
 
 /**
@@ -31,14 +32,17 @@ public class Person {
     private final Optional<WardNumber> wardNumber;
     private final Set<Medication> medications = new HashSet<>();
     private final List<PastAppointment> pastAppointments;
+    private final Optional<UpcomingAppointment> upcomingAppointment;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, NextOfKin nextOfKin, PatientType patientType,
-                  HospitalWing hospitalWing, FloorNumber floorNumber,
-                  WardNumber wardNumber, Set<Medication> medications, List<PastAppointment> pastAppointments) {
-        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications, pastAppointments);
+                  HospitalWing hospitalWing, FloorNumber floorNumber, WardNumber wardNumber,
+                  Set<Medication> medications, List<PastAppointment> pastAppointments,
+                  UpcomingAppointment upcomingAppointment) {
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications,
+                pastAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +53,7 @@ public class Person {
         this.wardNumber = Optional.ofNullable(wardNumber);
         this.medications.addAll(medications);
         this.pastAppointments = pastAppointments;
+        this.upcomingAppointment = Optional.ofNullable(upcomingAppointment);
     }
 
     public Name getName() {
@@ -158,6 +163,10 @@ public class Person {
         return pastAppointments;
     }
 
+    public Optional<UpcomingAppointment> getUpcomingAppointment() {
+        return upcomingAppointment;
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -194,6 +203,7 @@ public class Person {
             tags.forEach(builder::append);
         }
         builder.append("; Past Appointments: ").append(getPastAppointmentCount());
+        builder.append(" Upcoming Appointment: ").append(getUpcomingAppointment());
         return builder.toString();
     }
 

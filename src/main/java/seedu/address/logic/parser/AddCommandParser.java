@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -71,8 +72,10 @@ public class AddCommandParser implements Parser<AddCommand> {
             wardNumber = ParserUtil.parseWardNumber(argMultimap.getValue(PREFIX_WARD_NUMBER).get());
         }
 
+        UpcomingAppointment upcomingAppointment = null;
+
         Person person = new Person(name, phone, email, nextOfKin, patientType, hospitalWing,
-                floorNumber, wardNumber, medicationList, new ArrayList<>());
+                floorNumber, wardNumber, medicationList, new ArrayList<>(), upcomingAppointment);
 
         return new AddCommand(person);
     }

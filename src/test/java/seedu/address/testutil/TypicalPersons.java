@@ -35,7 +35,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com").withNextOfKin("Daniel Meier, Husband, 81273546")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south").withFloorNumber(1).withWardNumber(26)
             .withMedication("Paracetamol", "Xanax").withPastAppointment("120622", "Paracetamol Ibuprofen", "Sick")
-            .withPastAppointment("140622", "Chlormine Amoxycillin", "Sick").build();
+            .withPastAppointment("140622", "Chlormine Amoxycillin", "Sick").withUpcomingAppointment("120622").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withNextOfKin("Charlie Pauline, Brother, 81273645")
             .withPatientType(PatientTypes.OUTPATIENT).build();

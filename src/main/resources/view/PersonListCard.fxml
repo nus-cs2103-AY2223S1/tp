@@ -32,6 +32,7 @@
       <Label fx:id="nextOfKin" styleClass="cell_small_label" text="\$nextOfKin" />
       <Label fx:id="patientType" styleClass="cell_small_label" text="\$patientType" />
       <Label fx:id="appointments" styleClass="cell_small_label" text="\$appointments" />
+      <Label fx:id="upcomingAppointment" styleClass="cell_small_label" text="\$upcomingAppointment" />
       <FlowPane fx:id="medications" />
       <Label fx:id="hospitalWing" styleClass="cell_small_label" text="\$hospitalWing" />
       <Label fx:id="floorNumber" styleClass="cell_small_label" text="\$floorNumber" />

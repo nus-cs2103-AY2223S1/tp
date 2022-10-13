@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPCOMING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -24,6 +25,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -54,6 +56,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_HOSPITAL_WING + "HOSPITAL WING] "
             + "[" + PREFIX_FLOOR_NUMBER + "FLOOR NUMBER] "
             + "[" + PREFIX_WARD_NUMBER + "WARD NUMBER] "
+            + "[" + PREFIX_UPCOMING_APPOINTMENT + "UPCOMING APPOINTMENT DATE] "
             + "[" + PREFIX_MEDICATION + "MEDICATION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -131,9 +134,12 @@ public class EditCommand extends Command {
         Set<Medication> updatedMedications = editPersonDescriptor.getMedications()
                 .orElse(personToEdit.getMedications());
         List<PastAppointment> pastAppointments = personToEdit.getPastAppointments();
+        UpcomingAppointment updatedUpcomingAppointment = editPersonDescriptor.getUpcomingAppointment()
+                .orElse(personToEdit.getUpcomingAppointment().orElse(null));
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedNextOfKin, updatedPatientType,
-                updatedHospitalWing, updatedFloorNumber, updatedWardNumber, updatedMedications, pastAppointments);
+                updatedHospitalWing, updatedFloorNumber, updatedWardNumber, updatedMedications, pastAppointments,
+                updatedUpcomingAppointment);
     }
 
     @Override
@@ -168,6 +174,7 @@ public class EditCommand extends Command {
         private FloorNumber floorNumber;
         private WardNumber wardNumber;
         private Set<Medication> medications;
+        private UpcomingAppointment upcomingAppointment;
 
         public EditPersonDescriptor() {}
 
@@ -185,6 +192,7 @@ public class EditCommand extends Command {
             setFloorNumber(toCopy.floorNumber);
             setWardNumber(toCopy.wardNumber);
             setMedications(toCopy.medications);
+            setUpcomingAppointment(toCopy.upcomingAppointment);
         }
 
         /**
@@ -192,7 +200,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, nextOfKin, patientType,
-                    hospitalWing, floorNumber, wardNumber, medications);
+                    hospitalWing, floorNumber, wardNumber, medications, upcomingAppointment);
         }
 
         public void setName(Name name) {
@@ -276,6 +284,13 @@ public class EditCommand extends Command {
             return (medications != null) ? Optional.of(Collections.unmodifiableSet(medications)) : Optional.empty();
         }
 
+        public void setUpcomingAppointment(UpcomingAppointment upcomingAppointment) {
+            this.upcomingAppointment = upcomingAppointment;
+        }
+
+        public Optional<UpcomingAppointment> getUpcomingAppointment() {
+            return Optional.ofNullable(upcomingAppointment);
+        }
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

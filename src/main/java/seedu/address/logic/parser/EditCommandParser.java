@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEXT_OF_KIN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_UPCOMING_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WARD_NUMBER;
 
 import java.util.Collection;
@@ -39,7 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_NEXT_OF_KIN,
                         PREFIX_PATIENT_TYPE, PREFIX_HOSPITAL_WING, PREFIX_FLOOR_NUMBER,
-                        PREFIX_WARD_NUMBER, PREFIX_MEDICATION);
+                        PREFIX_WARD_NUMBER, PREFIX_MEDICATION, PREFIX_UPCOMING_APPOINTMENT);
 
         Index index;
         try {
@@ -77,6 +78,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_WARD_NUMBER).isPresent()) {
             editPersonDescriptor.setWardNumber(ParserUtil.parseWardNumber(
                     argMultimap.getValue(PREFIX_WARD_NUMBER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_UPCOMING_APPOINTMENT).isPresent()) {
+            editPersonDescriptor.setUpcomingAppointment(ParserUtil.parseUpcomingAppointment(
+                    argMultimap.getValue(PREFIX_UPCOMING_APPOINTMENT).get()));
         }
 
         /*
