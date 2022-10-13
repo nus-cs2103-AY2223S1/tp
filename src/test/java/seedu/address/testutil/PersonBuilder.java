@@ -23,7 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_REMARK = "winter internship '22";
     public static final String DEFAULT_POSITION = "Software Intern";
     public static final String DEFAULT_APPLICATION_PROCESS = "interview";
     public static final String DEFAULT_DATE = "01-12-2022";
@@ -47,7 +47,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        remark = new Remark(DEFAULT_ADDRESS);
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>();
         position = new Position(DEFAULT_POSITION);
         applicationProcess = new ApplicationProcess(DEFAULT_APPLICATION_PROCESS);
@@ -87,10 +87,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
-        this.remark = new Remark(address);
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
         return this;
     }
 
