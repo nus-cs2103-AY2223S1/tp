@@ -17,9 +17,8 @@ import paymelah.model.AddressBook;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
-import paymelah.model.debt.DebtList;
 import paymelah.model.person.Person;
-
+import paymelah.testutil.PersonBuilder;
 
 
 /**
@@ -35,9 +34,7 @@ public class ClearDebtsCommandTest {
         Person debtorToClear = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ClearDebtsCommand clearDebtsCommand = new ClearDebtsCommand(INDEX_FIRST_PERSON);
 
-        Person clearedDebtor = new Person(debtorToClear.getName(), debtorToClear.getPhone(),
-                debtorToClear.getEmail(), debtorToClear.getAddress(), debtorToClear.getTags(),
-                new DebtList());
+        Person clearedDebtor = new PersonBuilder(debtorToClear).withDebts().build();
 
         String expectedMessage = String.format(ClearDebtsCommand.MESSAGE_CLEAR_DEBTS_SUCCESS,
                 clearedDebtor.getName());
@@ -62,9 +59,7 @@ public class ClearDebtsCommandTest {
         Person debtorToClear = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         ClearDebtsCommand clearDebtsCommand = new ClearDebtsCommand(INDEX_SECOND_PERSON);
 
-        Person clearedDebtor = new Person(debtorToClear.getName(), debtorToClear.getPhone(),
-                debtorToClear.getEmail(), debtorToClear.getAddress(), debtorToClear.getTags(),
-                new DebtList());
+        Person clearedDebtor = new PersonBuilder(debtorToClear).withDebts().build();
 
         String expectedMessage = String.format(ClearDebtsCommand.MESSAGE_CLEAR_DEBTS_SUCCESS,
                 clearedDebtor.getName());
