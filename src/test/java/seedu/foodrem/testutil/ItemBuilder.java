@@ -1,11 +1,15 @@
 package seedu.foodrem.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * A utility class to help with building Item objects.
@@ -25,7 +29,7 @@ public class ItemBuilder {
     private ItemUnit unit;
     private ItemBoughtDate boughtDate;
     private ItemExpiryDate expiryDate;
-    // TODO: Implement Item with Tags
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -36,6 +40,7 @@ public class ItemBuilder {
         unit = new ItemUnit(DEFAULT_ITEM_UNIT);
         boughtDate = new ItemBoughtDate(DEFAULT_BOUGHT_DATE);
         expiryDate = new ItemExpiryDate(DEFAULT_EXPIRY_DATE);
+        tags = new HashSet<>();
     }
 
     /**
@@ -47,6 +52,7 @@ public class ItemBuilder {
         unit = itemToCopy.getUnit();
         boughtDate = itemToCopy.getBoughtDate();
         expiryDate = itemToCopy.getExpiryDate();
+        tags = new HashSet<>(itemToCopy.getTagSet());
     }
 
     /**
@@ -89,17 +95,19 @@ public class ItemBuilder {
         return this;
     }
 
-    ///**
-    // * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
-    // */
-    //public ItemBuilder withTags(String... tags) {
-    //    this.tags = SampleDataUtil.getTagSet(tags);
-    //    return this;
-    //}
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
+     */
+    public ItemBuilder withTags(String... tagNames) {
+        for (String tagName : tagNames) {
+            this.tags.add(new TagBuilder().withTagName(tagName).build());
+        }
+        return this;
+    }
 
 
     public Item build() {
-        return new Item(name, quantity, unit, boughtDate, expiryDate);
+        return new Item(name, quantity, unit, boughtDate, expiryDate, tags);
     }
 
 }

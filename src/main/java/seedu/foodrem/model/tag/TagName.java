@@ -29,7 +29,7 @@ public class TagName {
             ALLOWED_PUNCTUATION_REGEX
     );
 
-    public final String fullName;
+    private final String fullName;
 
     /**
      * Constructs a {@code Name}.

@@ -12,7 +12,7 @@ public class Tag {
 
     private static final int MAX_CHAR_LIMIT = 30;
 
-    public final TagName tagName;
+    private final TagName tagName;
 
     /**
      * Constructs a {@code Tag}.

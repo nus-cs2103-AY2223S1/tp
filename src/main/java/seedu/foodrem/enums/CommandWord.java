@@ -26,6 +26,8 @@ public enum CommandWord {
     RENAME_TAG_COMMAND("renametag"),
     TAG_COMMAND("tag"),
     UNTAG_COMMAND("untag"),
+    DELETE_TAG_COMMAND("deletetag"),
+    LIST_TAG_COMMAND("listtag"),
 
     // INVALID
     DEFAULT("default");

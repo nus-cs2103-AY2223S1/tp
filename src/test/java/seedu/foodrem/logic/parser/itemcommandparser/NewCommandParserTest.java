@@ -27,7 +27,7 @@ import static seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator.ME
 import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME;
 import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_NOT_A_NUMBER;
 import static seedu.foodrem.model.item.itemvalidators.ItemUnitValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT;
-import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS;
+import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS_WITHOUT_TAG;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class NewCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Item expectedItem = new ItemBuilder(CUCUMBERS).build();
+        Item expectedItem = new ItemBuilder(CUCUMBERS_WITHOUT_TAG).build();
 
         // whitespace only preamble
         assertParseSuccess(parser,

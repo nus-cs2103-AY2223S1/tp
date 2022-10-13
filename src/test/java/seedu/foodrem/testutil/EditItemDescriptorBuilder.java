@@ -76,17 +76,6 @@ public class EditItemDescriptorBuilder {
         return this;
     }
 
-
-    ///**
-    // * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditItemDescriptor}
-    // * that we are building.
-    // */
-    //public EditItemDescriptorBuilder withTags(String... tags) {
-    //    Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-    //    descriptor.setTags(tagSet);
-    //    return this;
-    //}
-
     public EditItemDescriptor build() {
         return descriptor;
     }

@@ -6,6 +6,7 @@ import static seedu.foodrem.logic.commands.CommandTestUtil.DESC_CUCUMBERS;
 import static seedu.foodrem.logic.commands.CommandTestUtil.DESC_POTATOES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS;
+import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.logic.commands.CommandTestUtil.showItemAtIndex;
@@ -37,7 +38,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Item editedItem = new ItemBuilder().build();
+        Item editedItem = new ItemBuilder().withTags(VALID_TAG_NAME_VEGETABLES).build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
@@ -91,9 +92,13 @@ public class EditCommandTest {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
 
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        Item editedItem = new ItemBuilder(itemInFilteredList).withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build();
+        Item editedItem = new ItemBuilder(itemInFilteredList)
+                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
-                new EditItemDescriptorBuilder().withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS).build());
+                new EditItemDescriptorBuilder()
+                        .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                        .build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 

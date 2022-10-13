@@ -55,8 +55,8 @@ public class ItemCard extends UiPart<Region> {
         expiry.setText(String.format("(Expiry Date: %s)",
                 String.valueOf(item.getExpiryDate()).isBlank() ? "Not Set" : item.getExpiryDate()));
         item.getTagSet().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName.fullName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName.fullName)));
+                .sorted(Comparator.comparing(tag -> tag.getName()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getName())));
 
     }
 

@@ -17,7 +17,8 @@ public class TypicalFoodRem {
     public static FoodRem getTypicalFoodRem() {
         FoodRem foodRem = new FoodRem();
         for (Item item : getTypicalItems()) {
-            foodRem.addItem(item);
+            Item i = new ItemBuilder(item).build();
+            foodRem.addItem(i);
         }
 
         for (Tag tag : getTypicalTags()) {
