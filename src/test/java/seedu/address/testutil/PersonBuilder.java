@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -89,8 +90,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Build the Person Model
+     * @return a Person
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        // Todo: add contact to person builder
+        return new Person(name, phone, email, address, tags, new HashMap<>());
     }
 
 }
