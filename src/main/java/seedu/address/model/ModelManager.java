@@ -246,5 +246,4 @@ public class ModelManager implements Model {
                 && filteredTasks.equals(other.filteredTasks)
                 && filteredSupplyItems.equals(other.filteredSupplyItems);
     }
-
 }
