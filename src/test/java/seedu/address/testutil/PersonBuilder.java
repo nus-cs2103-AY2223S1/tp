@@ -24,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
     public static final Integer DEFAULT_MONEY_PAID = 0;
+    public static final Integer DEFAULT_RATES_PER_CLASS = 40;
     public static final String DEFAULT_ADDITIONAL_NOTES = "";
 
     private Name name;
@@ -33,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Money moneyOwed;
     private Money moneyPaid;
+    private Money ratesPerClass;
     private AdditionalNotes additionalNotes;
     private Class aClass;
 
@@ -48,6 +50,7 @@ public class PersonBuilder {
         aClass = new Class();
         moneyOwed = new Money(DEFAULT_MONEY_OWED);
         moneyPaid = new Money(DEFAULT_MONEY_PAID);
+        ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
     }
 
@@ -63,6 +66,7 @@ public class PersonBuilder {
         aClass = personToCopy.getAClass();
         moneyOwed = personToCopy.getMoneyOwed();
         moneyPaid = personToCopy.getMoneyPaid();
+        ratesPerClass = personToCopy.getRatesPerClass();
         additionalNotes = personToCopy.getAdditionalNotes();
     }
 
@@ -131,6 +135,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code ratesPerClass} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRatesPerClass(Integer ratesPerClass) {
+        this.ratesPerClass = new Money(ratesPerClass);
+        return this;
+    }
+
+    /**
      * Sets the {@code AdditionalNotes} of the {@code Person} that we are building.
      */
     public PersonBuilder withAdditionalNotes(String additionalNotes) {
@@ -143,6 +155,12 @@ public class PersonBuilder {
      * @return Person object.
      */
     public Person build() {
+<<<<<<< HEAD
         return new Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
+||||||| 95746609
+        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
+=======
+        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
+>>>>>>> d67f5f49b3b12592ddb5a6a15a6bfbf127c49db5
     }
 }

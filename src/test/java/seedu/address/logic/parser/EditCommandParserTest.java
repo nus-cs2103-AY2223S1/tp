@@ -1,15 +1,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_NOTE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.CLASS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLASS_DATE_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_OWED_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MONEY_PAID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NOK_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RATES_PER_CLASS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_OWED_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.MONEY_PAID_DESC_AMY;
@@ -19,8 +25,11 @@ import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.RATES_PER_CLASS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_NOTES_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONEY_OWED_AMY;
@@ -32,6 +41,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RATES_PER_CLASS_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -48,6 +58,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
@@ -95,6 +106,11 @@ public class EditCommandParserTest {
                 parser, "1" + INVALID_NOK_PHONE_DESC, NokPhone.MESSAGE_CONSTRAINTS); // invalid nok phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_CLASS_DATE_TIME_DESC, Class.MESSAGE_CONSTRAINTS); // invalid class
+        assertParseFailure(parser, "1" + INVALID_MONEY_OWED_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money owed
+        assertParseFailure(parser, "1" + INVALID_MONEY_PAID_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money paid
+        assertParseFailure(parser,
+                "1" + INVALID_RATES_PER_CLASS_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money per class
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -117,13 +133,41 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
+<<<<<<< HEAD
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB;
+||||||| 95746609
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB;
+=======
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + CLASS_DESC_AMY
+                + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB
+                + RATES_PER_CLASS_DESC_AMY + ADDITIONAL_NOTE_DESC_AMY;
+>>>>>>> d67f5f49b3b12592ddb5a6a15a6bfbf127c49db5
 
+<<<<<<< HEAD
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withMoneyOwed(VALID_MONEY_OWED_BOB)
                 .withMoneyPaid(VALID_MONEY_PAID_BOB).build();
+||||||| 95746609
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB).build();
+=======
+        EditPersonDescriptor descriptor;
+        try {
+            descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                    .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                    .withClass(VALID_CLASS_AMY)
+                    .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB)
+                    .withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
+                    .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY).build();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+>>>>>>> d67f5f49b3b12592ddb5a6a15a6bfbf127c49db5
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
