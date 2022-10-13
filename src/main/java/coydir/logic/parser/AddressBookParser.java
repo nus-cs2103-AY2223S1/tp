@@ -15,6 +15,7 @@ import coydir.logic.commands.ExitCommand;
 import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
+import coydir.logic.commands.ViewCommand;
 import coydir.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
