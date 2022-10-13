@@ -7,10 +7,10 @@ import static seedu.phu.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_BOB;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_BOB;
 

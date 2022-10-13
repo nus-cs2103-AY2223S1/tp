@@ -46,8 +46,8 @@ import seedu.phu.logic.commands.AddCommand;
 import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Date;
 import seedu.phu.model.internship.Email;
-import seedu.phu.model.internship.Name;
 import seedu.phu.model.internship.Internship;
+import seedu.phu.model.internship.Name;
 import seedu.phu.model.internship.Phone;
 import seedu.phu.model.internship.Position;
 import seedu.phu.model.internship.Remark;
@@ -108,8 +108,8 @@ public class AddCommandParserTest {
                 + DATE_DESC_BOB + WEBSITE_DESC_AMY + WEBSITE_DESC_BOB, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
-        Internship expectedInternshipMultipleTags = new InternshipBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Internship expectedInternshipMultipleTags = new InternshipBuilder(BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + REMARK_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + POSITION_DESC_BOB + APPLICATION_PROCESS_DESC_BOB
                 + DATE_DESC_BOB + WEBSITE_DESC_BOB, new AddCommand(expectedInternshipMultipleTags));
