@@ -35,15 +35,12 @@
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="15" right="15" bottom="15" left="15" />
           </padding>
         </StackPane>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
                    minHeight="170" prefHeight="170" maxHeight="170">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
         </StackPane>
 
         <VBox fx:id="profileList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
