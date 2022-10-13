@@ -99,6 +99,14 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+<<<<<<< HEAD
+
+//        @Override
+//        public ObservableList<Meeting> getMeetingList() {
+//            return meetings;
+//        }
+=======
+>>>>>>> master
     }
 
 }

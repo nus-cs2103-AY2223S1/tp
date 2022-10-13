@@ -61,6 +61,7 @@ public interface Model {
      */
     ReadOnlyAddressBook getAddressBook();
 
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -129,5 +130,14 @@ public interface Model {
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
     void deleteMeeting(Meeting target);
+
+    void setMeetingList(ReadOnlyMeetingList meetingList);
+
+    ReadOnlyMeetingList getMeetingList();
+
+    Path getMeetingListFilePath();
+
+    void setMeetingListFilePath(Path meetingListFilePath);
+
 
 }
