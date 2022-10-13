@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.field.Field;
 
@@ -55,13 +56,9 @@ public class Fields {
      * @param fieldName The name of the field to be removed from the list.
      */
     public void removeField(String fieldName) {
-        List<Field> fieldsToRemove = new ArrayList<>();
-        for (Field field : fields) {
-            if (field.isNameMatch(fieldName)) {
-                fieldsToRemove.add(field);
-            }
-        }
-
+        List<Field> fieldsToRemove = fields.stream()
+                .filter(field -> field.isNameMatch(fieldName))
+                .collect(Collectors.toList());
         fields.removeAll(fieldsToRemove);
     }
 
@@ -77,7 +74,7 @@ public class Fields {
     }
 
     /**
-     * Retreive the value of a field given by a specified name.
+     * Retrieves the value of a field given by a specified name.
      *
      * @param name The name of the field to be searched.
      * @return the value of the field queried.
@@ -112,10 +109,21 @@ public class Fields {
         }
     }
 
+    /**
+     * Returns a List representation of the {@code Fields} instance.
+     *
+     * @return a List containing the {@code Field} instances.
+     */
     public List<Field> toList() {
         return fields;
     }
 
+    /**
+     * Checks if the {@code Fields} is empty.
+     *
+     * @return true if there are no {@code Field} instances stored in this {@code Fields}
+     * object, false otherwise.
+     */
     public boolean isEmpty() {
         return fields.isEmpty();
     }

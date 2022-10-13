@@ -101,9 +101,9 @@ public class Field {
      */
     public String toStringDisplay() {
         if (value == null) {
-            return "";
+            return name + ": ";
         }
-        return value.toString();
+        return name + ": " + value.toString();
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Field {
         } else if (other instanceof Field) {
             Field castedOther = (Field) other;
             if (castedOther.value == null && value == null) {
-                return true;
+                return castedOther.isNameMatch(name);
             } else if (castedOther.value == null || value == null) {
                 return false;
             }
