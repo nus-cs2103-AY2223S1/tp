@@ -1,5 +1,3 @@
-# Developer Guide
-
 # Product Scope
 
 ## Target User Profile
