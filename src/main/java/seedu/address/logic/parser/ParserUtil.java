@@ -236,4 +236,3 @@ public class ParserUtil {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }
-
