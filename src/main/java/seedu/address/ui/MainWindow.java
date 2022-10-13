@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         personViewPanel = new PersonViewPanel(logic.getViewedPersonList());
-        personListPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
+        personViewPanelPlaceholder.getChildren().add(personViewPanel.getRoot());
     }
 
     /**
