@@ -31,7 +31,6 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
         model.setTargetProject(project);
-        //UniqueStaffList list = project.getStaffList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
