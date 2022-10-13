@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Use case ends.
 
-**Use case: UC-05 - Add a new contact address to a person**
+**Use case: UC-05 - Add a new Contact to a Person**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -339,7 +339,7 @@ Use Case ends.
     * 1b1. System shows an error message.
     Use case resumes at step 1.
 
-**Use case: UC-06 - Update a person's contact address**
+**Use case: UC-06 - Update a person's Contact**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -361,7 +361,7 @@ Use Case ends.
     * 1b1. System shows an error message.
       Use case resumes at step 1.
 
-**Use case: UC-07 - Delete a contact address from a person**
+**Use case: UC-07 - Delete a Contact from a person**
 
 **Preconditions:** 
 * Person has been added to the system.
