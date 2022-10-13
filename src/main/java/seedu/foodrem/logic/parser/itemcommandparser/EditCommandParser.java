@@ -2,17 +2,13 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
+import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -32,11 +28,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_NAME,
-                        PREFIX_ITEM_QUANTITY,
-                        PREFIX_ITEM_UNIT,
-                        PREFIX_ITEM_BOUGHT_DATE,
-                        PREFIX_ITEM_EXPIRY_DATE);
+                        CliSyntax.PREFIX_NAME,
+                        CliSyntax.PREFIX_ITEM_QUANTITY,
+                        CliSyntax.PREFIX_ITEM_UNIT,
+                        CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
+                        CliSyntax.PREFIX_ITEM_EXPIRY_DATE);
         Index index;
 
         try {
@@ -46,24 +42,24 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
-        if (argMultimap.isValuePresent(PREFIX_NAME)) {
-            editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getPresentValue(PREFIX_NAME)));
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_NAME)) {
+            editItemDescriptor.setItemName(ParserUtil.parseItemName(argMultimap.getPresentValue(CliSyntax.PREFIX_NAME)));
         }
-        if (argMultimap.isValuePresent(PREFIX_ITEM_QUANTITY)) {
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_QUANTITY)) {
             editItemDescriptor.setItemQuantity(
-                    ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY)));
+                    ParserUtil.parseQuantity(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_QUANTITY)));
         }
-        if (argMultimap.isValuePresent(PREFIX_ITEM_UNIT)) {
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_UNIT)) {
             editItemDescriptor.setItemUnit(
-                    ParserUtil.parseUnit(argMultimap.getPresentValue(PREFIX_ITEM_UNIT)));
+                    ParserUtil.parseUnit(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_UNIT)));
         }
-        if (argMultimap.isValuePresent(PREFIX_ITEM_BOUGHT_DATE)) {
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_BOUGHT_DATE)) {
             editItemDescriptor.setItemBoughtDate(
-                    ParserUtil.parseBoughtDate(argMultimap.getPresentValue(PREFIX_ITEM_BOUGHT_DATE)));
+                    ParserUtil.parseBoughtDate(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_BOUGHT_DATE)));
         }
-        if (argMultimap.isValuePresent(PREFIX_ITEM_EXPIRY_DATE)) {
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_EXPIRY_DATE)) {
             editItemDescriptor.setItemExpiryDate(
-                    ParserUtil.parseExpiryDate(argMultimap.getPresentValue(PREFIX_ITEM_EXPIRY_DATE)));
+                    ParserUtil.parseExpiryDate(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_EXPIRY_DATE)));
         }
 
         if (!editItemDescriptor.isAnyFieldEdited()) {
