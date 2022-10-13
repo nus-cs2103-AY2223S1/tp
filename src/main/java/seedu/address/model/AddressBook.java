@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -116,14 +117,26 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddressBook)) {
+            return false;
+        }
+
+        // state check
+        AddressBook a = (AddressBook) other;
+        return persons.equals(a.persons)
+                && tasks.equals(a.tasks)
+                && tags.equals(a.tags);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(persons, tasks, tags);
     }
 
     //task methods
@@ -133,7 +146,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.asUnmodifiableObservableList();
     }
 
-    @Override
     public void addTask(Task task) {
         tasks.addTask(task);
     }

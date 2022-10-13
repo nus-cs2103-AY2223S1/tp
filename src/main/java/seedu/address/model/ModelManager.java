@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Tag> filteredTags;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredTags = new FilteredList<>(this.addressBook.getTagList());
     }
 
     public ModelManager() {
@@ -149,7 +151,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredTags.equals(other.filteredTags);
     }
 
     //=========== TaskList ======================================================================
@@ -190,6 +194,10 @@ public class ModelManager implements Model {
     }
 
     //=========== Tag List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
     public ObservableList<Tag> getTagList() {
         return addressBook.getTagList();

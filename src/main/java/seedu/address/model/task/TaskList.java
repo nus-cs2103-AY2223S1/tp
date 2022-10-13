@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,15 +28,14 @@ public class TaskList implements Iterable<Task> {
 
     /**
      * Adds a Task to the TaskList.
-     * @param task The Task tp be added.
-     * @return A String describing the number of tasks in the TaskList.
+     * @param task The Task to be added.
      */
-    public String addTask(Task task) {
+    public void addTask(Task task) {
         requireNonNull(task);
-
+        if (contains(task)) {
+            throw new DuplicateTaskException();
+        }
         internalList.add(task);
-
-        return TaskUi.addText(internalList.get(internalList.size() - 1).toString(), internalList.size());
     }
 
     /**
@@ -58,6 +58,24 @@ public class TaskList implements Iterable<Task> {
         internalList.set(index, editedTask);
     }
 
+    public void setTasks(TaskList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        requireAllNonNull(tasks);
+        if (!tasksAreUnique(tasks)) {
+            throw new DuplicateTaskException();
+        }
+
+        internalList.setAll(tasks);
+    }
+
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
@@ -69,5 +87,31 @@ public class TaskList implements Iterable<Task> {
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTask);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskList // instanceof handles nulls
+                && internalList.equals(((TaskList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code tasks} contains only unique tasks.
+     */
+    private boolean tasksAreUnique(List<Task> tasks) {
+        for (int i = 0; i < tasks.size() - 1; i++) {
+            for (int j = i + 1; j < tasks.size(); j++) {
+                if (tasks.get(i).isSameTask(tasks.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

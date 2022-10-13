@@ -4,17 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -42,18 +39,19 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
-    private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
+    private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editTaskDescriptor details to edit the person with
+     * Creates an EditTaskCommand object.
+     * @param index of the task in the filtered task list to edit.
+     * @param editTaskDescriptor details to edit the task with.
      */
-    public EditTaskCommand(Index index, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
+    public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
         requireNonNull(editTaskDescriptor);
 
         this.index = index;
-        this.editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor(editTaskDescriptor);
+        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
     @Override
@@ -62,7 +60,7 @@ public class EditTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
@@ -81,12 +79,12 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getStatus().orElse(taskToEdit.getStatus());
+        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
@@ -108,96 +106,5 @@ public class EditTaskCommand extends Command {
         EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index)
                 && editTaskDescriptor.equals(e.editTaskDescriptor);
-    }
-
-    /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the person.
-     */
-    public static class EditTaskDescriptor {
-        private Description description;
-        private Deadline deadline;
-        private Boolean isDone;
-        private Set<Tag> tags;
-
-        public EditTaskDescriptor() {}
-
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public EditTaskDescriptor(EditTaskCommand.EditTaskDescriptor toCopy) {
-            setDescription(toCopy.description);
-            setDeadline(toCopy.deadline);
-            setStatus(toCopy.isDone);
-            setTags(toCopy.tags);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, tags);
-        }
-
-        public void setDescription(Description description) {
-            this.description = description;
-        }
-
-        public Optional<Description> getDescription() {
-            return Optional.ofNullable(description);
-        }
-
-        public void setDeadline(Deadline deadline) {
-            this.deadline = deadline;
-        }
-
-        public Optional<Deadline> getDeadline() {
-            return Optional.ofNullable(deadline);
-        }
-
-        public void setStatus(Boolean isDone) {
-            this.isDone = isDone;
-        }
-
-        public Optional<Boolean> getStatus() {
-            return Optional.ofNullable(isDone);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTaskCommand.EditTaskDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTaskCommand.EditTaskDescriptor e = (EditTaskCommand.EditTaskDescriptor) other;
-
-            return getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
-        }
     }
 }
