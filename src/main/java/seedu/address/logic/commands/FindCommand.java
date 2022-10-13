@@ -42,13 +42,13 @@ public class FindCommand extends Command {
 
     private final CombinedPersonPredicate personPredicate;
     private final CombinedAppointmentPredicate appointmentPredicate;
-    private final boolean isAnyAppointmentFieldSpecified;
+    private final boolean isUsingAppointmentPredicate;
 
     public FindCommand(CombinedPersonPredicate personPredicate, CombinedAppointmentPredicate appointmentPredicate,
-                       boolean isAnyAppointmentFieldSpecified) {
+                       boolean isUsingAppointmentPredicate) {
         this.personPredicate = personPredicate;
         this.appointmentPredicate = appointmentPredicate;
-        this.isAnyAppointmentFieldSpecified = isAnyAppointmentFieldSpecified;
+        this.isUsingAppointmentPredicate = isUsingAppointmentPredicate;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class FindCommand extends Command {
         the appointmentPredicate if any input related to appointments are present (Reason, date),
         and updates the model accordingly.
          */
-        Predicate<Person> personFufillingBothPredicates = !isAnyAppointmentFieldSpecified
+        Predicate<Person> personFufillingBothPredicates = !isUsingAppointmentPredicate
                 ? personPredicate
                 : personPredicate.and(person -> person.getAppointments().stream().anyMatch(appointmentPredicate));
         model.updateFilteredPersonList(personFufillingBothPredicates);
@@ -77,8 +77,9 @@ public class FindCommand extends Command {
         Finds all appointments that satisfies the given appointmentPredicate whose patient matches the personPredicate,
         and updates the model accordingly.
          */
-        Predicate<Appointment> appointmentFufillingBothPredicates =
-                appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
+        Predicate<Appointment> appointmentFufillingBothPredicates = !isUsingAppointmentPredicate
+                ? appointmentOfFilteredPersonsPredicate
+                : appointmentOfFilteredPersonsPredicate.and(appointmentPredicate);
         model.updateFilteredAppointmentList(appointmentFufillingBothPredicates);
 
         return new CommandResult(
