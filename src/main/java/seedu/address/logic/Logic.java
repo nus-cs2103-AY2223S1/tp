@@ -67,4 +67,10 @@ public interface Logic {
     ObservableObject<Commission> getSelectedCommission();
 
     void selectCommission(Commission commission);
+
+    /** Selects a customer within the existing list */
+    void selectValidCustomer();
+
+    /** Selects a commission within the existing list */
+    void selectValidCommission();
 }
