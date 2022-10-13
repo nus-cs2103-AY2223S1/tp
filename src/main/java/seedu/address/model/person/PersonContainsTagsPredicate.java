@@ -9,14 +9,16 @@ import java.util.stream.Collectors;
  * word for word match.
  */
 public class PersonContainsTagsPredicate implements Predicate<Person> {
-    private final List<String> tagsToSearchInUpperCase;
+    private final List<String> tagsToSearch;
 
     public PersonContainsTagsPredicate(List<String> tagsToSearch) {
-        this.tagsToSearchInUpperCase = tagsToSearch.stream().map(String::toUpperCase).collect(Collectors.toList());
+        this.tagsToSearch = tagsToSearch;
     }
 
     @Override
     public boolean test(Person person) {
+        List<String> tagsToSearchInUpperCase =
+                tagsToSearch.stream().map(String::toUpperCase).collect(Collectors.toList());
         List<String> personTagsInUpperCase =
                 person.getTags().stream().map(tag -> tag.tagName.toUpperCase()).collect(Collectors.toList());
 
@@ -28,6 +30,6 @@ public class PersonContainsTagsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof PersonContainsTagsPredicate // instanceof handles nulls
                 // state check
-                && tagsToSearchInUpperCase.equals(((PersonContainsTagsPredicate) other).tagsToSearchInUpperCase));
+                && tagsToSearch.equals(((PersonContainsTagsPredicate) other).tagsToSearch));
     }
 }
