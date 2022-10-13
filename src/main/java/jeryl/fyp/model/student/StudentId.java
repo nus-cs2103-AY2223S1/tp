@@ -10,7 +10,7 @@ import static jeryl.fyp.commons.util.AppUtil.checkArgument;
 public class StudentId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should be of the format 'A' + (7 digits) + (1 letter) , and it should not be blank";
+            "ID should be of the format 'A' + (7 digits) + (1 letter), and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

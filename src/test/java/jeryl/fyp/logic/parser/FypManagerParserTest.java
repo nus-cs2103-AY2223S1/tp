@@ -2,7 +2,6 @@ package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.testutil.Assert.assertThrows;
@@ -54,9 +53,9 @@ public class FypManagerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(STUDENT_ID), command);
+        Student student = new StudentBuilder().build();
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(StudentUtil.getDeleteCommand(student));
+        assertEquals(new DeleteCommand(student.getStudentId()), command);
     }
 
     @Test

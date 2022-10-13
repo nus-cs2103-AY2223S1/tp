@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by it's unique student id.\n"
             + "Parameters: STUDENT_ID (must be a valid student id that is already in the FYP manager)\n"
-            + "Example: " + COMMAND_WORD + " A0123456G";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_STUDENT_ID + "A0123456G";
 
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Student: %1$s";
 
@@ -37,7 +39,7 @@ public class DeleteCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
         Index targetIndex = model.getIndexByStudentId(studentId);
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());

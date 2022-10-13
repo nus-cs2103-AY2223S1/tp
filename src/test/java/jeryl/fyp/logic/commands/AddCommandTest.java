@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import jeryl.fyp.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
+import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;

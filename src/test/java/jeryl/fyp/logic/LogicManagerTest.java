@@ -1,6 +1,6 @@
 package jeryl.fyp.logic;
 
-import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -58,8 +58,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        String deleteCommand = "delete id/A9999999Z";
+        assertCommandException(deleteCommand, MESSAGE_STUDENT_NOT_FOUND);
     }
 
     @Test

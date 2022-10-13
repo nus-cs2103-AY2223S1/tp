@@ -9,6 +9,7 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import jeryl.fyp.logic.commands.AddCommand;
+import jeryl.fyp.logic.commands.DeleteCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.tag.Tag;
@@ -23,6 +24,13 @@ public class StudentUtil {
      */
     public static String getAddCommand(Student student) {
         return AddCommand.COMMAND_WORD + " " + getStudentDetails(student);
+    }
+
+    /**
+     * Returns a delete command string for deleting the {@code student}.
+     */
+    public static String getDeleteCommand(Student student) {
+        return DeleteCommand.COMMAND_WORD + " " + PREFIX_STUDENT_ID + student.getStudentId();
     }
 
     /**

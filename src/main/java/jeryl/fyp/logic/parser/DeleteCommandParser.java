@@ -1,16 +1,13 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
-import jeryl.fyp.commons.core.index.Index;
+import java.util.stream.Stream;
+
 import jeryl.fyp.logic.commands.DeleteCommand;
-import jeryl.fyp.logic.commands.MarkCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.StudentId;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -28,7 +25,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
         return new DeleteCommand(studentId);
