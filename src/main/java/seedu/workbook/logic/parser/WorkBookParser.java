@@ -15,6 +15,7 @@ import seedu.workbook.logic.commands.ExitCommand;
 import seedu.workbook.logic.commands.FindCommand;
 import seedu.workbook.logic.commands.HelpCommand;
 import seedu.workbook.logic.commands.ListCommand;
+import seedu.workbook.logic.commands.UndoCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -61,6 +62,9 @@ public class WorkBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

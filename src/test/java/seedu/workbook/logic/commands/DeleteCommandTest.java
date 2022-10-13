@@ -35,6 +35,7 @@ public class DeleteCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getWorkBook(), new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
+        expectedModel.commitWorkBook();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -58,6 +59,7 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getWorkBook(), new UserPrefs());
         expectedModel.deleteInternship(internshipToDelete);
+        expectedModel.commitWorkBook();
         showNoInternship(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

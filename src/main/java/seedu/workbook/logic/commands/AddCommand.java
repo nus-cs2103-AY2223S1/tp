@@ -58,6 +58,7 @@ public class AddCommand extends Command {
         }
 
         model.addInternship(toAdd);
+        model.commitWorkBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

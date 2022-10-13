@@ -19,7 +19,7 @@ import seedu.workbook.model.internship.Internship;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final WorkBook workBook;
+    private final VersionedWorkBook versionedWorkBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
 
@@ -31,9 +31,9 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with work book: " + workBook + " and user prefs " + userPrefs);
 
-        this.workBook = new WorkBook(workBook);
+        versionedWorkBook = new VersionedWorkBook(workBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredInternships = new FilteredList<>(this.workBook.getInternshipList());
+        filteredInternships = new FilteredList<>(this.versionedWorkBook.getInternshipList());
     }
 
     public ModelManager() {
@@ -79,28 +79,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setWorkBook(ReadOnlyWorkBook workBook) {
-        this.workBook.resetData(workBook);
+        this.versionedWorkBook.resetData(workBook);
     }
 
     @Override
     public ReadOnlyWorkBook getWorkBook() {
-        return workBook;
+        return versionedWorkBook;
     }
 
     @Override
     public boolean hasInternship(Internship internship) {
         requireNonNull(internship);
-        return workBook.hasInternship(internship);
+        return versionedWorkBook.hasInternship(internship);
     }
 
     @Override
     public void deleteInternship(Internship target) {
-        workBook.removeInternship(target);
+        versionedWorkBook.removeInternship(target);
     }
 
     @Override
     public void addInternship(Internship internship) {
-        workBook.addInternship(internship);
+        versionedWorkBook.addInternship(internship);
         updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setInternship(Internship target, Internship editedInternship) {
         requireAllNonNull(target, editedInternship);
 
-        workBook.setInternship(target, editedInternship);
+        versionedWorkBook.setInternship(target, editedInternship);
     }
 
     //=========== Filtered Internship List Accessors =============================================================
@@ -120,6 +120,20 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Internship> getFilteredInternshipList() {
         return filteredInternships;
+    }
+
+    @Override
+    public boolean canUndoWorkBook() {
+        return versionedWorkBook.canUndo();
+    }
+    @Override
+    public void undoWorkBook() {
+        versionedWorkBook.undo();
+    }
+
+    @Override
+    public void commitWorkBook() {
+        versionedWorkBook.commit();
     }
 
     @Override
@@ -142,7 +156,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return workBook.equals(other.workBook)
+        return versionedWorkBook.equals(other.versionedWorkBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredInternships.equals(other.filteredInternships);
     }

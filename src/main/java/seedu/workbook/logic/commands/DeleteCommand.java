@@ -41,6 +41,7 @@ public class DeleteCommand extends Command {
 
         Internship internshipToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteInternship(internshipToDelete);
+        model.commitWorkBook();
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete));
     }
 

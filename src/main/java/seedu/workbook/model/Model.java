@@ -82,6 +82,21 @@ public interface Model {
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
+     * Returns true if the model has undone address book states to restore.
+     */
+    boolean canUndoWorkBook();
+
+    /**
+     * Restores the model's workbook back to its previous state.
+     */
+    void undoWorkBook();
+
+    /**
+     * Saves the current address book state for undo.
+     */
+    void commitWorkBook();
+
+    /**
      * Updates the filter of the filtered internship list to filter by the given
      * {@code predicate}.
      *

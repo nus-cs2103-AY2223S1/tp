@@ -45,6 +45,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.commitWorkBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -66,6 +67,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
         expectedModel.setInternship(lastInternship, editedInternship);
+        expectedModel.commitWorkBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -78,6 +80,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
+        expectedModel.commitWorkBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -97,6 +100,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        expectedModel.commitWorkBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
