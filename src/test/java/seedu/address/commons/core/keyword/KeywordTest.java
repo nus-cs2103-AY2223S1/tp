@@ -1,9 +1,9 @@
 package seedu.address.commons.core.keyword;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class KeywordTest {
     @Test

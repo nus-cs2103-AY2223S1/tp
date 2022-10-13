@@ -1,9 +1,9 @@
 package seedu.address.commons.core.keyword;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class KeywordListTest {
     @Test
@@ -77,7 +77,7 @@ public class KeywordListTest {
     private KeywordList prepareList(String ...args) {
         KeywordList keywords = new KeywordList();
 
-        for(String s : args) {
+        for (String s : args) {
             keywords.addKeyword(new Keyword(s));
         }
 

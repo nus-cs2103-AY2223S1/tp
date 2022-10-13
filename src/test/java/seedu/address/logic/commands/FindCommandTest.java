@@ -1,16 +1,21 @@
 package seedu.address.logic.commands;
 
- import static org.junit.jupiter.api.Assertions.assertEquals;
- import static org.junit.jupiter.api.Assertions.assertFalse;
- import static org.junit.jupiter.api.Assertions.assertTrue;
- import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
- import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
- import static seedu.address.testutil.TypicalPersons.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
- import java.util.Arrays;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-
 
 import seedu.address.commons.core.keyword.Keyword;
 import seedu.address.commons.core.keyword.KeywordList;
@@ -82,7 +87,7 @@ public class FindCommandTest {
     public void execute_companyNameCategory_multipleMatches() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.COMPANY_NAME ,"Kurz", "Elle",  "Kunz");
+                preparePredicate(FindableCategory.COMPANY_NAME, "Kurz", "Elle", "Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -93,7 +98,7 @@ public class FindCommandTest {
     public void execute_applicationProcessCategory_multipleMatches() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.APPLICATION_PROCESS ,"interview", "assessment");
+                preparePredicate(FindableCategory.APPLICATION_PROCESS, "interview", "assessment");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -104,7 +109,7 @@ public class FindCommandTest {
     public void execute_positionCategory_multipleMatches() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.POSITION ,"engin");
+                preparePredicate(FindableCategory.POSITION, "engin");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -115,7 +120,7 @@ public class FindCommandTest {
     public void execute_dateCategory_singleMatch() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.DATE ,"11-12-2022", "12-10-2022");
+                preparePredicate(FindableCategory.DATE, "11-12-2022", "12-10-2022");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -126,7 +131,7 @@ public class FindCommandTest {
     public void execute_tagsCategory_singleMatch() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         ContainsKeywordsPredicate predicate =
-                preparePredicate(FindableCategory.TAGS,"owes", "random", "sugiyem");
+                preparePredicate(FindableCategory.TAGS, "owes", "random", "sugiyem");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -144,7 +149,7 @@ public class FindCommandTest {
     private KeywordList prepareKeywords(String ...keywords) {
         KeywordList keywordList = new KeywordList();
 
-        for(String k : keywords) {
+        for (String k : keywords) {
             keywordList.addKeyword(new Keyword(k));
         }
 

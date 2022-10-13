@@ -3,8 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-// import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-// import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +12,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.InvalidCategoryException;
 import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.model.person.FindableCategory;
-
-import java.util.Arrays;
-import java.util.EnumSet;
 
 public class FindCommandParserTest {
 
@@ -44,9 +39,9 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
 
         // Tests all possible categories
-        FindableCategory Categories[] = FindableCategory.values();
+        FindableCategory[] categories = FindableCategory.values();
 
-        for(FindableCategory category : Categories) {
+        for (FindableCategory category : categories) {
             String input = CliSyntax.PREFIX_CATEGORY + category.name() + " 02-02-2022 10-12-2022";
             FindCommand expected = (new FindCommand(
                     new ContainsKeywordsPredicate(keywords2, category)
@@ -71,7 +66,7 @@ public class FindCommandParserTest {
     private KeywordList prepareKeywords(String ...keywords) {
         KeywordList keywordList = new KeywordList();
 
-        for(String k : keywords) {
+        for (String k : keywords) {
             keywordList.addKeyword(new Keyword(k));
         }
 
