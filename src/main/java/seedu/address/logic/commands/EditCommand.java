@@ -103,26 +103,17 @@ public class EditCommand extends Command {
         LessonPlan updatedLessonPlan = editPersonDescriptor.getLessonPlan()
                                         .orElse(personToEdit.getLessonPlan());
         HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToEdit, editPersonDescriptor);
-
-        AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
-        Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
-        Optional<Index> attendanceIndex = editPersonDescriptor.getAttendanceIndex();
-        if (attendance.isPresent() && attendanceIndex.isPresent()) {
-            updatedAttendanceList.editAtIndex(attendanceIndex.get(), attendance.get());
-        }
-
-        GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
-        Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
-        Optional<Index> gradeProgressIndex = editPersonDescriptor.getGradeProgressIndex();
-        if (gradeProgress.isPresent() && gradeProgressIndex.isPresent()) {
-            updatedGradeProgressList.editAtIndex(gradeProgressIndex.get(), gradeProgress.get());
-        }
+        AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToEdit, editPersonDescriptor);
+        GradeProgressList updatedGradeProgressList = getUpdatedGradeProgressList(personToEdit, editPersonDescriptor);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedLessonPlan,
                 updatedHomeworkList, updatedAttendanceList, updatedGradeProgressList, updatedTags);
     }
 
+    /**
+     * Returns the updated {@code HomeworkList} if edited, or the original list if not.
+     */
     public static HomeworkList getUpdatedHomeworkList(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
             throws CommandException {
         HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
@@ -136,6 +127,42 @@ public class EditCommand extends Command {
         }
         updatedHomeworkList.editAtIndex(homeworkIndex.get(), homework.get());
         return updatedHomeworkList;
+    }
+
+    /**
+     * Returns the updated {@code AttendanceList} if edited, or the original list if not.
+     */
+    public static AttendanceList getUpdatedAttendanceList(Person personToEdit,
+            EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
+        Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
+        Optional<Index> attendanceIndex = editPersonDescriptor.getAttendanceIndex();
+        if (attendanceIndex.isEmpty() || attendance.isEmpty()) {
+            return updatedAttendanceList;
+        }
+        if (!updatedAttendanceList.isValidIndex(attendanceIndex.get())) {
+            throw new CommandException(AttendanceList.MESSAGE_INVALID_ATTENDANCE_INDEX);
+        }
+        updatedAttendanceList.editAtIndex(attendanceIndex.get(), attendance.get());
+        return updatedAttendanceList;
+    }
+
+    /**
+     * Returns the updated {@code GradeProgressList} if edited, or the original list if not.
+     */
+    public static GradeProgressList getUpdatedGradeProgressList(Person personToEdit,
+            EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
+        Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
+        Optional<Index> gradeProgressIndex = editPersonDescriptor.getGradeProgressIndex();
+        if (gradeProgressIndex.isEmpty() || gradeProgress.isEmpty()) {
+            return updatedGradeProgressList;
+        }
+        if (!updatedGradeProgressList.isValidIndex(gradeProgressIndex.get())) {
+            throw new CommandException(GradeProgressList.MESSAGE_INVALID_GRADE_PROGRESS_INDEX);
+        }
+        updatedGradeProgressList.editAtIndex(gradeProgressIndex.get(), gradeProgress.get());
+        return updatedGradeProgressList;
     }
 
     @Override

@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents an Person's attendance list in the address book.
  */
 public class AttendanceList {
-    public static final String MESSAGE_INVALID_HOMEWORK_INDEX = "The homework index provided is invalid!";
+    public static final String MESSAGE_INVALID_ATTENDANCE_INDEX = "The attendance index provided is invalid!";
 
     public final List<Attendance> attendanceList;
 
@@ -63,12 +62,19 @@ public class AttendanceList {
      * @param index of attendance to be edited
      * @param attendance that replaces the old attendance
      */
-    public void editAtIndex(Index index, Attendance attendance) throws CommandException {
+    public void editAtIndex(Index index, Attendance attendance) {
         int indexToEdit = index.getZeroBased();
         if (indexToEdit >= attendanceList.size()) {
-            throw new CommandException(MESSAGE_INVALID_HOMEWORK_INDEX);
+            throw new IllegalArgumentException(MESSAGE_INVALID_ATTENDANCE_INDEX);
         }
         attendanceList.set(indexToEdit, attendance);
+    }
+
+    /**
+     * Returns true if a given {@code Index} is a valid index in the list.
+     */
+    public boolean isValidIndex(Index index) {
+        return index.getZeroBased() < attendanceList.size();
     }
 
     @Override

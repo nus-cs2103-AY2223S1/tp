@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a Person's GradeProgress list in the address book.
@@ -46,12 +45,19 @@ public class GradeProgressList {
      * @param index of grade to be edited
      * @param gradeProgress that replaces the old grade
      */
-    public void editAtIndex(Index index, GradeProgress gradeProgress) throws CommandException {
+    public void editAtIndex(Index index, GradeProgress gradeProgress) {
         int indexToEdit = index.getZeroBased();
         if (indexToEdit >= gradeProgressList.size()) {
-            throw new CommandException(MESSAGE_INVALID_GRADE_PROGRESS_INDEX);
+            throw new IllegalArgumentException(MESSAGE_INVALID_GRADE_PROGRESS_INDEX);
         }
         gradeProgressList.set(indexToEdit, gradeProgress);
+    }
+
+    /**
+     * Returns true if a given {@code Index} is a valid index in the list.
+     */
+    public boolean isValidIndex(Index index) {
+        return index.getZeroBased() < gradeProgressList.size();
     }
 
     @Override
