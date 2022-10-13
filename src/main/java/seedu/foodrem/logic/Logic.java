@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, IllegalArgumentException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the FoodRem.
      *
      * @see seedu.foodrem.model.Model#getFoodRem()
      */
-    ReadOnlyFoodRem getAddressBook();
+    ReadOnlyFoodRem getFoodRem();
 
     /**
      * Returns an unmodifiable view of the filtered list of items
@@ -40,7 +40,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getFoodRemFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

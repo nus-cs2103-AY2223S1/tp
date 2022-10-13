@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT;
@@ -16,14 +16,13 @@ import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
-import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
+import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
 
-public class AddTagCommandParserTest {
-    private final AddTagCommandParser parser = new AddTagCommandParser();
+public class NewTagCommandParserTest {
+    private final NewTagCommandParser parser = new NewTagCommandParser();
 
     @Test
     public void parse_tags_success() {
@@ -34,17 +33,17 @@ public class AddTagCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 VALID_DESC_TAG_NAME_FRUITS,
-                new AddTagCommand(fruitTag));
+                new NewTagCommand(fruitTag));
 
         // whitespace only preamble
         assertParseSuccess(parser,
                 VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
-                new AddTagCommand(fruitWithWhitespaceTag));
+                new NewTagCommand(fruitWithWhitespaceTag));
 
         // whitespace only preamble
         assertParseSuccess(parser,
                 VALID_DESC_TAG_NAME_NUMBERS,
-                new AddTagCommand(numbersTag));
+                new NewTagCommand(numbersTag));
     }
 
     @Test

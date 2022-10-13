@@ -2,35 +2,29 @@ package seedu.foodrem.logic.parser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.foodrem.enums.CommandWord.getCommandWordFromCommandWordString;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
-import seedu.foodrem.logic.commands.itemcommands.DecrementCommand;
-import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
-import seedu.foodrem.logic.commands.itemcommands.EditCommand;
-import seedu.foodrem.logic.commands.itemcommands.FindCommand;
-import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
-import seedu.foodrem.logic.commands.itemcommands.NewCommand;
-import seedu.foodrem.logic.commands.itemcommands.SortCommand;
-import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
-import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
-import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
-import seedu.foodrem.logic.commands.tagcommands.TagCommand;
-import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
+import seedu.foodrem.logic.parser.generalcommandparser.HelpCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.DecrementCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.DeleteCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.EditCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.IncrementCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
-import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.SortCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.DeleteTagCommandParser;
+import seedu.foodrem.logic.parser.tagcommandparser.NewTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.RenameTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.TagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.UntagCommandParser;
@@ -59,59 +53,61 @@ public class FoodRemParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWordString = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+        CommandWord commandWord = getCommandWordFromCommandWordString(commandWordString);
+
         switch (commandWord) {
 
-        case NewCommand.COMMAND_WORD:
+        case NEW_COMMAND:
             return new NewCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
+        case EDIT_COMMAND:
             return new EditCommandParser().parse(arguments);
 
-        case IncrementCommand.COMMAND_WORD:
+        case INCREMENT_COMMAND:
             return new IncrementCommandParser().parse(arguments);
 
-        case DecrementCommand.COMMAND_WORD:
+        case DECREMENT_COMMAND:
             return new DecrementCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DELETE_COMMAND:
             return new DeleteCommandParser().parse(arguments);
 
-        case AddTagCommand.COMMAND_WORD:
-            return new AddTagCommandParser().parse(arguments);
+        case NEW_TAG_COMMAND:
+            return new NewTagCommandParser().parse(arguments);
 
-        case DeleteTagCommand.COMMAND_WORD:
-            return new DeleteTagCommandParser().parse(arguments);
-
-        case RenameTagCommand.COMMAND_WORD:
+        case RENAME_TAG_COMMAND:
             return new RenameTagCommandParser().parse(arguments);
 
-        case ResetCommand.COMMAND_WORD:
+        case DELETE_TAG_COMMAND:
+            return new DeleteTagCommandParser().parse(arguments);
+
+        case RESET_COMMAND:
             return new ResetCommand();
 
-        case FindCommand.COMMAND_WORD:
+        case FIND_COMMAND:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
+        case LIST_COMMAND:
             return new ListCommand();
 
-        case SortCommand.COMMAND_WORD:
+        case SORT_COMMAND:
             return new SortCommandParser().parse(arguments);
 
-        case ExitCommand.COMMAND_WORD:
+        case EXIT_COMMAND:
             return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+        case HELP_COMMAND:
+            return new HelpCommandParser().parse(arguments);
 
-        case TagCommand.COMMAND_WORD:
+        case TAG_COMMAND:
             return new TagCommandParser().parse(arguments);
 
-        case UntagCommand.COMMAND_WORD:
+        case UNTAG_COMMAND:
             return new UntagCommandParser().parse(arguments);
 
-        case ListTagCommand.COMMAND_WORD:
+        case LIST_TAG_COMMAND:
             return new ListTagCommand();
 
         default:

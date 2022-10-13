@@ -74,19 +74,19 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFoodRem> addressBookOptional;
+        Optional<ReadOnlyFoodRem> foodRemOptional;
         ReadOnlyFoodRem initialData;
         try {
-            addressBookOptional = storage.readFoodRem();
-            if (addressBookOptional.isEmpty()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            foodRemOptional = storage.readFoodRem();
+            if (foodRemOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample FoodRem");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
+            initialData = foodRemOptional.orElseGet(SampleDataUtil::getSampleFoodRem);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty FoodRem");
             initialData = new FoodRem();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FoodRem");
             initialData = new FoodRem();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FoodRem");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting FoodRem " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Food Rem ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

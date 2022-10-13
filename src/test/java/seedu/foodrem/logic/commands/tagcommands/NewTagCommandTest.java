@@ -26,10 +26,10 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
-public class AddTagCommandTest {
+public class NewTagCommandTest {
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTagCommand(null));
+        assertThrows(NullPointerException.class, () -> new NewTagCommand(null));
     }
 
     @Test
@@ -37,20 +37,20 @@ public class AddTagCommandTest {
         ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
         Tag validTag = new TagBuilder().build();
 
-        CommandResult commandResult = new AddTagCommand(validTag).execute(modelStub);
+        CommandResult commandResult = new NewTagCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(AddTagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(String.format(NewTagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
         assertEquals(List.of(validTag), modelStub.tagsAdded);
     }
 
     @Test
     public void execute_duplicateItem_throwsCommandException() {
         Tag validTag = new TagBuilder().build();
-        AddTagCommand addTagCommand = new AddTagCommand(validTag);
+        NewTagCommand newTagCommand = new NewTagCommand(validTag);
         ModelStub modelStub = new ModelStubWithTag(validTag);
 
         assertThrows(CommandException.class,
-                AddTagCommand.MESSAGE_DUPLICATE_TAG, () -> addTagCommand.execute(modelStub));
+                NewTagCommand.MESSAGE_DUPLICATE_TAG, () -> newTagCommand.execute(modelStub));
     }
 
     @Test
@@ -58,14 +58,14 @@ public class AddTagCommandTest {
         Tag fruitsTag = new TagBuilder().withTagName("fruits").build();
         Tag vegetableTag = new TagBuilder().withTagName("vegetable").build();
 
-        AddTagCommand addFruitsTag = new AddTagCommand(fruitsTag);
-        AddTagCommand addVegetableTag = new AddTagCommand(vegetableTag);
+        NewTagCommand addFruitsTag = new NewTagCommand(fruitsTag);
+        NewTagCommand addVegetableTag = new NewTagCommand(vegetableTag);
 
         // same object -> returns true
         assertEquals(addFruitsTag, addFruitsTag);
 
         // same values -> returns true
-        AddTagCommand addFruitsTagCopy = new AddTagCommand(fruitsTag);
+        NewTagCommand addFruitsTagCopy = new NewTagCommand(fruitsTag);
         assertEquals(addFruitsTag, addFruitsTagCopy);
 
         // different types -> returns false

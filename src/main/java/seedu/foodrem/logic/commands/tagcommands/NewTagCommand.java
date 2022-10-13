@@ -3,6 +3,7 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -12,9 +13,9 @@ import seedu.foodrem.model.tag.Tag;
 /**
  * Adds a tag to FoodRem.
  */
-public class AddTagCommand extends Command {
+public class NewTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "newtag";
+    public static final String COMMAND_WORD = CommandWord.NEW_TAG_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to FoodRem. "
             + "Parameters: "
@@ -30,7 +31,7 @@ public class AddTagCommand extends Command {
     /**
      * Creates an AddTagCommand to add the specified {@code Tag}
      */
-    public AddTagCommand(Tag tag) {
+    public NewTagCommand(Tag tag) {
         requireNonNull(tag);
         toAdd = tag;
     }
@@ -51,7 +52,7 @@ public class AddTagCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 // instanceof handles nulls
-                || (other instanceof seedu.foodrem.logic.commands.tagcommands.AddTagCommand
-                && toAdd.equals(((seedu.foodrem.logic.commands.tagcommands.AddTagCommand) other).toAdd));
+                || (other instanceof NewTagCommand
+                && toAdd.equals(((NewTagCommand) other).toAdd));
     }
 }

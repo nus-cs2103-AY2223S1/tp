@@ -15,7 +15,8 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class ListTagCommand extends Command {
     public static final String COMMAND_WORD = "listtag";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all tags in FoodRem."
+            + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Listed all tags:\n";
 
 
@@ -27,7 +28,7 @@ public class ListTagCommand extends Command {
 
         StringBuilder allTagsList = new StringBuilder(MESSAGE_SUCCESS);
 
-        for (Tag tag: allTags) {
+        for (Tag tag : allTags) {
             allTagsList.append(tag.getName());
             allTagsList.append(System.getProperty("line.separator"));
         }

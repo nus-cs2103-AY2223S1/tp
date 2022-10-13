@@ -16,7 +16,7 @@ import seedu.foodrem.testutil.TagBuilder;
 /**
  * Contains integration tests (interaction with the Model) for {@code AddTagCommand}.
  */
-public class AddTagCommandIntegrationTest {
+public class NewTagCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
@@ -31,13 +31,13 @@ public class AddTagCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.addTag(validTag);
 
-        assertCommandSuccess(new AddTagCommand(validTag), model,
-                String.format(AddTagCommand.MESSAGE_SUCCESS, validTag), expectedModel);
+        assertCommandSuccess(new NewTagCommand(validTag), model,
+                String.format(NewTagCommand.MESSAGE_SUCCESS, validTag), expectedModel);
     }
 
     @Test
     public void execute_duplicateTag_throwsCommandException() {
         Tag tagInList = model.getFoodRem().getTagList().get(0);
-        assertCommandFailure(new AddTagCommand(tagInList), model, AddTagCommand.MESSAGE_DUPLICATE_TAG);
+        assertCommandFailure(new NewTagCommand(tagInList), model, NewTagCommand.MESSAGE_DUPLICATE_TAG);
     }
 }

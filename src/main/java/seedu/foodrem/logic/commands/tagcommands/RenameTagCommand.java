@@ -3,6 +3,7 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -14,7 +15,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class RenameTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "renametag";
+    public static final String COMMAND_WORD = CommandWord.RENAME_TAG_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Renames an existing tag in FoodRem. "
             + "Parameters: "

@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS;
@@ -32,7 +32,6 @@ import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS_WITHOUT_TAG;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
-import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
 

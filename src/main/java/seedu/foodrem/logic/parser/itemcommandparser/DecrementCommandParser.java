@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.itemcommandparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -7,6 +7,10 @@ import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.itemcommands.DecrementCommand;
+import seedu.foodrem.logic.parser.ArgumentMultimap;
+import seedu.foodrem.logic.parser.ArgumentTokenizer;
+import seedu.foodrem.logic.parser.Parser;
+import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.ItemQuantity;
 
