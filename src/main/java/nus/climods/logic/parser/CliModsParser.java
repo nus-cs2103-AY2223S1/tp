@@ -41,7 +41,7 @@ public class CliModsParser {
 
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommandParser().parse(commandWord);
+            return new ExitCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
         case (FindCommand.COMMAND_WORD):

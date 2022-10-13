@@ -20,10 +20,6 @@ public class ExitCommandParser implements Parser<ExitCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ExitCommand parse(String args) throws ParseException {
-        String trimmedInput = args.trim();
-        if (trimmedInput.isEmpty()) {
-            throw new ParseException(DEFAULT_ERROR_MESSAGE);
-        }
         return new ExitCommand();
     }
 }
