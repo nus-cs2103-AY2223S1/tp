@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
+    private Label status = new Label();
+    @FXML
     private FlowPane tags;
 
     /**
@@ -51,6 +53,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         deadline.setText(task.getDeadline().date);
         module.setText(task.getModule().fullName);
+        status.setText(task.isDone().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

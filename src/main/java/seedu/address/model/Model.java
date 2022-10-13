@@ -74,7 +74,19 @@ public interface Model {
      * {@code target} must exist in the address book.
      * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
      */
-    void setPerson(Task target, Task editedTask);
+    void setTask(Task target, Task editedTask);
+
+    /**
+     * Marks the given task as done.
+     * The task must exist in the address book.
+     */
+    void markTask(Task target);
+
+    /**
+     * Marks the given task as not done.
+     * The task must exist in the address book.
+     */
+    void unmarkTask(Task target);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredPersonList();
