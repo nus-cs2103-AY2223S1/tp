@@ -155,12 +155,7 @@ public class PersonBuilder {
      * @return Person object.
      */
     public Person build() {
-<<<<<<< HEAD
-        return new Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
-||||||| 95746609
-        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, additionalNotes);
-=======
-        return new Person(name, phone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
->>>>>>> d67f5f49b3b12592ddb5a6a15a6bfbf127c49db5
+        return new Person(
+                name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
     }
 }

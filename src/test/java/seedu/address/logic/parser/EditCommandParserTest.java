@@ -133,41 +133,22 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-<<<<<<< HEAD
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + NOK_PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB;
-||||||| 95746609
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB;
-=======
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + CLASS_DESC_AMY
                 + MONEY_OWED_DESC_BOB + MONEY_PAID_DESC_BOB
                 + RATES_PER_CLASS_DESC_AMY + ADDITIONAL_NOTE_DESC_AMY;
->>>>>>> d67f5f49b3b12592ddb5a6a15a6bfbf127c49db5
 
-<<<<<<< HEAD
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withMoneyOwed(VALID_MONEY_OWED_BOB)
-                .withMoneyPaid(VALID_MONEY_PAID_BOB).build();
-||||||| 95746609
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB).build();
-=======
         EditPersonDescriptor descriptor;
         try {
             descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                    .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                    .withClass(VALID_CLASS_AMY)
+                    .withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
+                    .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withClass(VALID_CLASS_AMY)
                     .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB)
                     .withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
                     .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY).build();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
->>>>>>> d67f5f49b3b12592ddb5a6a15a6bfbf127c49db5
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
