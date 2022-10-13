@@ -124,7 +124,7 @@ public interface Model {
      * {@code target} must exist in the task list.
      *
      * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
-     * in the list (other than {@code target}).
+     *     in the list (other than {@code target}).
      */
     void replaceTask(Task target, Task editedTask) throws DuplicateTaskException;
 

@@ -17,9 +17,9 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Edits the task with the specified index number in the displayed task list.
