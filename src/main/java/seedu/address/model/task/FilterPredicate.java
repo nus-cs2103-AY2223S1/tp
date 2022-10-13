@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.model.module.Module;
@@ -8,44 +9,35 @@ import seedu.address.model.module.Module;
  * Tests that a {@code Task} fulfils the given predicate
  */
 public class FilterPredicate implements Predicate<Task> {
-    private final Module moduleToCheck;
-    private boolean hasModuleToCheck = false;
-
-    private final TaskStatus statusToCheck;
-    private boolean hasStatusToCheck = false;
+    private final Optional<Module> moduleToCheck;
+    private final Optional<TaskStatus> statusToCheck;
 
     /**
-     * Tests that a {@code Task} matches all the module and status contraints given.
+     * Tests that a {@code Task} matches all the module and status constraints given.
      * @param module
      * @param status
      */
-    public FilterPredicate(Module module, TaskStatus status) {
-        if (module != null) {
-            hasModuleToCheck = true;
-        }
-        if (status != null) {
-            hasStatusToCheck = true;
-        }
+    public FilterPredicate(Optional<Module> module, Optional<TaskStatus> status) {
         this.moduleToCheck = module;
         this.statusToCheck = status;
     }
 
     public Module getModuleToCheck() {
-        return moduleToCheck;
+        return moduleToCheck.get();
     }
 
     public boolean hasModuleToCheck() {
-        return hasModuleToCheck;
+        return moduleToCheck.isPresent();
     }
 
     @Override
     public boolean test(Task task) {
         boolean result = true;
-        if (hasModuleToCheck) {
-            result &= task.getModule().equals(moduleToCheck);
+        if (moduleToCheck.isPresent()) {
+            result &= task.getModule().equals(moduleToCheck.get());
         }
-        if (hasStatusToCheck) {
-            result &= task.getStatus().equals(statusToCheck);
+        if (statusToCheck.isPresent()) {
+            result &= task.getStatus().equals(statusToCheck.get());
         }
         return result;
     }
@@ -61,11 +53,11 @@ public class FilterPredicate implements Predicate<Task> {
     @Override
     public String toString() {
         String result = "";
-        if (hasModuleToCheck) {
-            result += " Module: " + moduleToCheck;
+        if (moduleToCheck.isPresent()) {
+            result += " Module: " + moduleToCheck.get();
         }
-        if (hasStatusToCheck) {
-            result += " Status: " + statusToCheck;
+        if (statusToCheck.isPresent()) {
+            result += " Status: " + statusToCheck.get();
         }
         return result;
     }

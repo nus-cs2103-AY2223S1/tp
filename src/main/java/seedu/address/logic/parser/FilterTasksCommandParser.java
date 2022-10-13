@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterTasksCommand;
@@ -22,8 +23,8 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterTasksCommand parse(String args) throws ParseException {
-        Module module = null;
-        TaskStatus status = null;
+        Optional<Module> module = Optional.empty();
+        Optional<TaskStatus> status = Optional.empty();
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_STATUS);
@@ -33,11 +34,11 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
         }
 
         if (hasPrefix(argMultimap, PREFIX_MODULE)) {
-            module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+            module = Optional.of(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get()));
         }
 
         if (hasPrefix(argMultimap, PREFIX_STATUS)) {
-            status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
+            status = Optional.of(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
 
         return new FilterTasksCommand(new FilterPredicate(module, status));
@@ -51,6 +52,10 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if the prefix is not empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean hasPrefix(ArgumentMultimap argumentMultimap, Prefix prefix) {
         return argumentMultimap.getValue(prefix).isPresent();
     }
