@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.ModelStub;
@@ -51,7 +52,7 @@ public class AddcCommandTest {
         assertEquals(String.format(AddcCommand.MESSAGE_SUCCESS, validClassesStr), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(CS1101S), modelStub.moduleClassesAdded);
     }
-    /* TODO - not throwing now due to multi classes added
+
     @Test
     public void execute_duplicateModuleClass_throwsCommandException() throws Exception {
         Set<ModuleClass> dupModuleClasses = new HashSet<>();
@@ -61,18 +62,18 @@ public class AddcCommandTest {
 
         assertThrows(CommandException.class, AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS, () ->
                 addcCommand.execute(modelStub));
-    } */
+    }
 
     @Test
     public void equals() {
-        Set<ModuleClass> cs1101smoduleClasses = new HashSet<>();
-        cs1101smoduleClasses.add(CS1101S);
+        Set<ModuleClass> cs1101sModuleClasses = new HashSet<>();
+        cs1101sModuleClasses.add(CS1101S);
 
-        Set<ModuleClass> cs1231smoduleClasses = new HashSet<>();
-        cs1231smoduleClasses.add(CS1231S);
-        AddcCommand addCs1101sCommand = new AddcCommand(cs1101smoduleClasses);
-        AddcCommand addCs1101sCommandCopy = new AddcCommand(cs1101smoduleClasses);
-        AddcCommand addCs1231sCommand = new AddcCommand(cs1231smoduleClasses);
+        Set<ModuleClass> cs1231sModuleClasses = new HashSet<>();
+        cs1231sModuleClasses.add(CS1231S);
+        AddcCommand addCs1101sCommand = new AddcCommand(cs1101sModuleClasses);
+        AddcCommand addCs1101sCommandCopy = new AddcCommand(cs1101sModuleClasses);
+        AddcCommand addCs1231sCommand = new AddcCommand(cs1231sModuleClasses);
 
         // same object -> returns true
         assertTrue(addCs1101sCommand.equals(addCs1101sCommand));
@@ -118,9 +119,6 @@ public class AddcCommandTest {
 
     //==================================== Model Stubs ===============================================================
 
-    /**
-     * A Model stub that contains one module class.
-     */
     private class ModelStubWithModuleClass extends ModelStub {
         private final Set<ModuleClass> moduleClasses;
 
@@ -140,7 +138,6 @@ public class AddcCommandTest {
             return true;
         }
     }
-
     /**
      * A Model stub that always accepts the module class being added.
      */
