@@ -37,10 +37,10 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyGuestBook getSampleGuestBook() {
-        GuestBook sampleAb = new GuestBook();
+        GuestBook sampleGb = new GuestBook();
         for (Guest sampleGuest : getSampleGuests()) {
-            sampleAb.addGuest(sampleGuest);
+            sampleGb.addGuest(sampleGuest);
         }
-        return sampleAb;
+        return sampleGb;
     }
 }
