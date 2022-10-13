@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_FACEBOOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_FACEBOOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
 
-
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditCommand.EditApplicationDescriptor;
 import seedu.address.testutil.EditApplicationDescriptorBuilder;
 

@@ -6,14 +6,15 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_FACEBOOK;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showApplicationAtIndex;
+import static seedu.address.testutil.TypicalApplications.getTypicalApplicationBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
-import static seedu.address.testutil.TypicalApplications.getTypicalApplicationBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditApplicationDescriptor;
@@ -22,8 +23,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.application.Application;
-import seedu.address.testutil.EditApplicationDescriptorBuilder;
 import seedu.address.testutil.ApplicationBuilder;
+import seedu.address.testutil.EditApplicationDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
