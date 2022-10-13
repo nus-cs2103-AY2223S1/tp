@@ -3,6 +3,7 @@ package seedu.address.logic.commands.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditPersonDescriptor;
+import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -22,6 +24,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -41,42 +46,74 @@ public class DeleteTagCommand extends Command {
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Deleted tag: %1$s";
     public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTaskDescriptor editTaskDescriptor;
+    private final boolean deleteTagFromContact;
+    private final boolean deleteTagFromTask;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public DeleteTagCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public DeleteTagCommand(Index index, EditPersonDescriptor editPersonDescriptor,
+                            EditTaskDescriptor editTaskDescriptor, boolean deleteTagFromContact, boolean deleteTagFromTask) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
+        requireNonNull(editTaskDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.deleteTagFromContact = deleteTagFromContact;
+        this.deleteTagFromTask = deleteTagFromTask;
+        this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (deleteTagFromContact) {
+            List<Person> lastShownList = model.getFilteredPersonList();
+
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            Person personToEdit = lastShownList.get(index.getZeroBased());
+            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+
+            if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
+                    editPersonDescriptor.getTags().orElse(new HashSet<>())));
         }
+        if (deleteTagFromTask) {
+            List<Task> lastShownTaskList = model.getFilteredTaskList();
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+            if (index.getZeroBased() >= lastShownTaskList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            Task taskToEdit = lastShownTaskList.get(index.getZeroBased());
+            Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+            if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            model.setTask(taskToEdit, editedTask);
+            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
+                    editTaskDescriptor.getTags().orElse(new HashSet<>())));
         }
-
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
-        editPersonDescriptor.getTags().orElse(new HashSet<>())));
+        throw new CommandException(MESSAGE_MISSING_INDEX);
     }
 
     /**
@@ -99,6 +136,27 @@ public class DeleteTagCommand extends Command {
         }
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+    }
+
+    /**
+     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * edited with {@code editTaskDescriptor}.
+     */
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+        assert taskToEdit != null;
+
+        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        // TODO: Implement
+        Deadline updatedDeadline = new Deadline("");
+        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
+        Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
+        Set<Tag> updatedTags = new HashSet<>();
+        updatedTags.addAll(taskToEdit.getTags());
+        if (newTags.size() > 0) {
+            updatedTags.removeAll(newTags);
+        }
+
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
     }
 
     @Override
