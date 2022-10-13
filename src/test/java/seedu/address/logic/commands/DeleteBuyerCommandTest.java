@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.BuyerCommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyModel;
 
@@ -29,8 +29,8 @@ public class DeleteBuyerCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_PERSON);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -51,10 +51,10 @@ public class DeleteBuyerCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_PERSON);
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_ITEM.getZeroBased());
+        DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(DeleteBuyerCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -67,9 +67,9 @@ public class DeleteBuyerCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPersonModel().getPersonList().size());
 
@@ -80,14 +80,14 @@ public class DeleteBuyerCommandTest {
 
     @Test
     public void equals() {
-        DeleteBuyerCommand deleteFirstCommand = new DeleteBuyerCommand(INDEX_FIRST_PERSON);
-        DeleteBuyerCommand deleteSecondCommand = new DeleteBuyerCommand(INDEX_SECOND_PERSON);
+        DeleteBuyerCommand deleteFirstCommand = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
+        DeleteBuyerCommand deleteSecondCommand = new DeleteBuyerCommand(INDEX_SECOND_ITEM);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteBuyerCommand deleteFirstCommandCopy = new DeleteBuyerCommand(INDEX_FIRST_PERSON);
+        DeleteBuyerCommand deleteFirstCommandCopy = new DeleteBuyerCommand(INDEX_FIRST_ITEM);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
