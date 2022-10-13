@@ -35,9 +35,6 @@ public class JsonAdaptedTaskTest {
         Assertions.assertEquals(TypicalTaskBook.SLEEPING, task.toModelType());
     }
 
-    // TODO: Change Task implementation to contain task hashcode instead of Person
-    // so that Task::toModelType is a functional interface (no side effects)
-
     /*
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() throws IllegalValueException {
