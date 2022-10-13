@@ -111,4 +111,47 @@ public class AddCommandParserTest {
                 + CLASS_GROUP_DESC_BOB + STUDENTID_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_missingCompulsoryFields_failure() {
+        // missing name
+        assertParseFailure(parser, STUDENTID_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // missing student ID
+        assertParseFailure(parser, NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // missing both name and student ID
+        assertParseFailure(parser, PHONE_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // every field except for name
+        assertParseFailure(parser, STUDENTID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_GROUP_DESC_BOB,
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        //every field except for student ID
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_GROUP_DESC_BOB + NAME_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_optionalFieldsNotNeed_success() {
+        Student expectedStudent = new StudentBuilder(AMY).build();
+
+        // No Phone Number
+        assertParseSuccess(parser, NAME_DESC_AMY + STUDENTID_DESC_AMY + EMAIL_DESC_AMY + CLASS_GROUP_DESC_AMY,
+                            new AddCommand(expectedStudent));
+
+        // No Email
+        assertParseSuccess(parser, NAME_DESC_AMY + STUDENTID_DESC_AMY + PHONE_DESC_AMY + CLASS_GROUP_DESC_AMY,
+                            new AddCommand(expectedStudent));
+
+        // No Class Group
+        assertParseSuccess(parser, NAME_DESC_AMY + STUDENTID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY,
+                            new AddCommand(expectedStudent));
+
+        // Only name and Student ID
+        assertParseSuccess(parser, NAME_DESC_AMY + STUDENTID_DESC_AMY, new AddCommand(expectedStudent));
+    }
 }
