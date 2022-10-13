@@ -2,22 +2,6 @@ package seedu.foodrem.logic.parser.generalcommandparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.foodrem.enums.CommandWord.DECREMENT_COMMAND;
-import static seedu.foodrem.enums.CommandWord.DEFAULT;
-import static seedu.foodrem.enums.CommandWord.DELETE_COMMAND;
-import static seedu.foodrem.enums.CommandWord.EDIT_COMMAND;
-import static seedu.foodrem.enums.CommandWord.EXIT_COMMAND;
-import static seedu.foodrem.enums.CommandWord.FIND_COMMAND;
-import static seedu.foodrem.enums.CommandWord.HELP_COMMAND;
-import static seedu.foodrem.enums.CommandWord.INCREMENT_COMMAND;
-import static seedu.foodrem.enums.CommandWord.LIST_COMMAND;
-import static seedu.foodrem.enums.CommandWord.NEW_COMMAND;
-import static seedu.foodrem.enums.CommandWord.NEW_TAG_COMMAND;
-import static seedu.foodrem.enums.CommandWord.RENAME_TAG_COMMAND;
-import static seedu.foodrem.enums.CommandWord.RESET_COMMAND;
-import static seedu.foodrem.enums.CommandWord.SORT_COMMAND;
-import static seedu.foodrem.enums.CommandWord.TAG_COMMAND;
-import static seedu.foodrem.enums.CommandWord.UNTAG_COMMAND;
 import static seedu.foodrem.enums.CommandWord.getCommandWordFromCommandWordString;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.HELP_FOR_ALL_COMMANDS;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.HELP_FOR_SPECIFIC_COMMAND;
@@ -101,7 +85,7 @@ class HelpCommandParserTest {
     @Test
     void parse_notCommand() {
         // NOT_A_COMMAND
-        assertParseSuccess(parser, DEFAULT.getValue(),
+        assertParseSuccess(parser, CommandWord.DEFAULT.getValue(),
                 new HelpCommand(String.format(NOT_A_COMMAND, "default")));
         assertParseSuccess(parser, "helps",
                 new HelpCommand(String.format(NOT_A_COMMAND, "helps")));
@@ -110,13 +94,13 @@ class HelpCommandParserTest {
     @Test
     void parse_generalCommands() {
         // General Commands
-        assertParseSuccess(parser, HELP_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.HELP_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("help")))));
-        assertParseSuccess(parser, EXIT_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.EXIT_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("exit")))));
-        assertParseSuccess(parser, RESET_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.RESET_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("reset")))));
     }
@@ -124,28 +108,28 @@ class HelpCommandParserTest {
     @Test
     void parse_itemCommands() {
         // Item Commands
-        assertParseSuccess(parser, NEW_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.NEW_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("new")))));
-        assertParseSuccess(parser, EDIT_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.EDIT_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("edit")))));
-        assertParseSuccess(parser, INCREMENT_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.INCREMENT_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("inc")))));
-        assertParseSuccess(parser, DECREMENT_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.DECREMENT_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("dec")))));
-        assertParseSuccess(parser, DELETE_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.DELETE_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("del")))));
-        assertParseSuccess(parser, FIND_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.FIND_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("find")))));
-        assertParseSuccess(parser, LIST_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.LIST_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("list")))));
-        assertParseSuccess(parser, SORT_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.SORT_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("sort")))));
     }
@@ -153,16 +137,16 @@ class HelpCommandParserTest {
     @Test
     void parse_tagCommands() {
         // Tag Commands
-        assertParseSuccess(parser, NEW_TAG_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.NEW_TAG_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("newtag")))));
-        assertParseSuccess(parser, RENAME_TAG_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.RENAME_TAG_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("renametag")))));
-        assertParseSuccess(parser, TAG_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.TAG_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("tag")))));
-        assertParseSuccess(parser, UNTAG_COMMAND.getValue(),
+        assertParseSuccess(parser, CommandWord.UNTAG_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
                         getHelp(getCommandWordFromCommandWordString("untag")))));
     }
