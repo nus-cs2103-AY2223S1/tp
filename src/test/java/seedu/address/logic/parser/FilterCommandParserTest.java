@@ -20,7 +20,7 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommand =
                 new FilterCommand(new TagContainsKeywordPredicate("Alice"));
