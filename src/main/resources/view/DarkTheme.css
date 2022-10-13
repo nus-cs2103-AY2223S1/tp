@@ -5,28 +5,28 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
 }
 
 .tab-pane {
@@ -66,7 +66,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -122,21 +122,22 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Bold";
+    -fx-font-family: "Georgia";
     -fx-font-size: 25px;
 }
 
 .cell_module_label {
-    -fx-font-family: "Segoe UI Bold";
+    -fx-font-family: "Georgia";
     -fx-font-size: 14px;
     -fx-background-color: #c08189;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
+    -fx-text-fill: white;
 }
 
 .cell_small_label {
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Times New Roman";
     -fx-font-size: 13px;
 }
 
@@ -164,7 +165,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -174,7 +175,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -192,7 +193,7 @@
 
 .grid-pane {
     -fx-background-color: #F4E9E3;
-    -fx-border-color: #DBC4B;
+    -fx-border-color: #DBC4B2;
     -fx-border-width: 1px;
 }
 
@@ -214,7 +215,7 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -233,14 +234,14 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
 }
 
 .secondary-button {
     -fx-background-color: derive(#B1C5C3, 30%);
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-font-size: 11pt;
 }
 
@@ -302,12 +303,13 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#DBC4B2, 50%);
+    -fx-background-radius: 5;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: derive(#F4E9E3, 50%);
+    -fx-background-insets: 4;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -343,10 +345,10 @@
     -fx-border-color: #DBC4B2;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Courier New";
+    -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
-    -fx-prompt-text-fill: black;
+    -fx-prompt-text-fill: #696969;
 }
 
 #filterField, #tutorListPanel, #tutorWebpage {
@@ -364,8 +366,8 @@
 }
 
 #tags .label {
-    -fx-background-color: #3e7b91;
-    -fx-font-family: "Segoe UI Bold";
+    -fx-background-color: #C3A288;
+    -fx-font-family: "Georgia";
     -fx-font-size: 14px;
     -fx-text-fill: white;
     -fx-padding: 1 3 1 3;
