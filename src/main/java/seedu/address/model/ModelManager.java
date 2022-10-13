@@ -196,9 +196,23 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        moduleFilteredList.setPredicate(predicate);
+    }
+
+    @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
     }
+
+    @Override
+    public void replaceModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        addressBook.replaceModule(target, editedModule);
+    }
+
 
     //================================Task Commands=====================================
     @Override

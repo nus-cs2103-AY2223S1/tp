@@ -8,6 +8,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.DistinctModuleList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.DistinctTaskList;
@@ -206,6 +207,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.getUnmodifiableModuleList();
+    }
+
+    /**
+     * Replaces the given Module {@code target} with {@code editedModule}.
+     * {@code target} must exist in the module list.
+     *
+     * @throws DuplicateModuleException if module identity of {@code editedModule} is the same as another module
+     *     in the list (other than {@code target}).
+     */
+    public void replaceModule(Module target, Module editedModule) throws DuplicateModuleException {
+        requireAllNonNull(target, editedModule);
+
+        modules.replaceModule(target, editedModule);
     }
 
     @Override
