@@ -18,13 +18,14 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
+
 import seedu.address.logic.task.Description;
 import seedu.address.logic.task.Priority;
 import seedu.address.logic.task.Task;
 import seedu.address.logic.task.TaskCategory;
 import seedu.address.logic.task.TaskDeadline;
 import seedu.address.logic.task.TaskName;
+import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**

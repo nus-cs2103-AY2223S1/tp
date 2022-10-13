@@ -1,9 +1,11 @@
 package seedu.address.logic.task;
 import seedu.address.logic.task.exceptions.DatePastException;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 
-import static java.util.Objects.requireNonNull;
+
 
 /**
  * Represents the deadline of a task
@@ -11,9 +13,13 @@ import static java.util.Objects.requireNonNull;
 public class TaskDeadline {
     private LocalDate deadline;
 
+    /**
+     * constructor for deadline
+     * @param date
+     */
     public TaskDeadline(LocalDate date) {
         requireNonNull(date);
-        if(LocalDate.now().isAfter(date)) {
+        if (LocalDate.now().isAfter(date)) {
             throw new DatePastException();
         }
         this.deadline = date;
