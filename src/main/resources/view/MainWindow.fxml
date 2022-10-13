@@ -19,6 +19,7 @@
   <scene>
     <Scene>
       <stylesheets>
+        <URL value="@Extensions.css"/>
         <URL value="@FoodRem.css"/>
       </stylesheets>
 
