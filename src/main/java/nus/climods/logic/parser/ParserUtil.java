@@ -1,13 +1,8 @@
 package nus.climods.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-
-import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.model.module.ModuleCode;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -91,20 +86,6 @@ public class ParserUtil {
         }
         input = !FACULTY_CODE_PATTERN.matcher(input.trim()).find() ? FAULTY_FACULTY_CODE : input;
         return Optional.of(input);
-    }
-
-    /**
-     * Parses a {@code String moduleCode} into a {@code Name}. Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code moduleCode} is invalid.
-     */
-    public static ModuleCode parseCode(String moduleCode) throws ParseException {
-        requireNonNull(moduleCode);
-        String trimmedModuleCode = moduleCode.trim();
-        if (!ModuleCode.isValidName(trimmedModuleCode)) {
-            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
-        }
-        return new ModuleCode(trimmedModuleCode);
     }
 
 }

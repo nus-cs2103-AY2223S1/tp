@@ -1,8 +1,5 @@
 package nus.climods.model.module;
 
-import static java.util.Objects.requireNonNull;
-import static nus.climods.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Module's Code in the List of Modules. Guarantees: immutable
  */
