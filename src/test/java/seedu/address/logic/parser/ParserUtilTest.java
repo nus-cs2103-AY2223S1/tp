@@ -257,7 +257,7 @@ public class ParserUtilTest {
     public void parseMods_collectionWithValidMods_returnsModSet() throws Exception {
         ObservableList<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_2));
         ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(
-                new Mod(VALID_MOD_1), new Mod(VALID_MOD_2)));
+                new Mod(VALID_MOD_2), new Mod(VALID_MOD_1)));
 
         assertEquals(expectedModSet, actualModSet);
     }
