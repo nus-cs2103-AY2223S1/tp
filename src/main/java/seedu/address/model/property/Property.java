@@ -86,7 +86,7 @@ public class Property {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
+     * Returns true if both properties have the same identity and data fields.
      * This defines a stronger notion of equality between two properties.
      */
     @Override
