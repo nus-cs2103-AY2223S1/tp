@@ -76,9 +76,9 @@ public class ModCommandParserTest {
                 + " " + VALID_MOD_STRING_CS2100;
 
         ObservableList<Mod> mods = FXCollections.observableArrayList();
+        mods.add(new Mod(VALID_MOD_STRING_CS2100));
         mods.add(new Mod(VALID_MOD_STRING_CS2103T));
         mods.add(new Mod(VALID_MOD_STRING_CS2101));
-        mods.add(new Mod(VALID_MOD_STRING_CS2100));
         ModAddCommand expectedCommand = new ModAddCommand(targetIndex, mods);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -2,9 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -154,8 +152,9 @@ public class ParserUtil {
      * Parses {@code Collection<String> mods} into a {@code Set<Mod>}.
      */
     public static ObservableList<Mod> parseMods(Collection<String> mods) throws ParseException {
+        List<String> deDupStringList = new ArrayList<>(new HashSet<>(mods));
         final ObservableList<Mod> modSet = FXCollections.observableArrayList();
-        for (String modName : mods) {
+        for (String modName : deDupStringList) {
             modSet.add(parseMod(modName));
         }
         return modSet;
