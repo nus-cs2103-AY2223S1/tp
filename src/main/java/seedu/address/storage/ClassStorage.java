@@ -21,6 +21,7 @@ public class ClassStorage {
 
     private static HashMap<LocalDate, List<Person>> classes;
     private static AddressBook addressBook;
+    private static Model model;
 
     /**
      * Constructs a {@code ClassStorage} with the given model.
@@ -28,6 +29,7 @@ public class ClassStorage {
      * @param model Model object.
      */
     public ClassStorage(Model model) {
+        this.model = model;
         this.addressBook = (AddressBook) model.getAddressBook();
         this.classes = initialiseClass();
     }
@@ -120,14 +122,14 @@ public class ClassStorage {
     }
 
     /**
-     * Returns the index of person in the list.
+     * Returns the index of person in the current list shown on left UI panel.
      *
      * @param person Person object.
      * @return int.
      */
     public static int getIndex(Person person) {
-        for (int i = 0; i < addressBook.getInternalList().size(); i++) {
-            if (addressBook.getInternalList().get(i).isSamePerson(person)) {
+        for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
+            if (model.getFilteredPersonList().get(i).isSamePerson(person)) {
                 return i + 1;
             }
         }
