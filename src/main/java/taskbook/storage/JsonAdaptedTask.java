@@ -8,6 +8,7 @@ import taskbook.model.person.Email;
 import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -75,6 +76,6 @@ class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
-        return new Task(modelName, modelAssignment, modelDescription, isDone);
+        return new Todo(modelName, modelAssignment, modelDescription, isDone);
     }
 }

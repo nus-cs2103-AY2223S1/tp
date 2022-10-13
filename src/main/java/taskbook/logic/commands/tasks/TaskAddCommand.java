@@ -15,6 +15,7 @@ import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -64,7 +65,7 @@ public class TaskAddCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
-        Task newTask = new Task(personToAddTask, assignment, description, isDone);
+        Task newTask = new Todo(personToAddTask, assignment, description, isDone);
         model.addTask(newTask);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }

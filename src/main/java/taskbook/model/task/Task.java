@@ -11,7 +11,7 @@ import taskbook.model.task.enums.Assignment;
  * Represents a Task in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public abstract class Task {
 
     private final Name name;
     private final Assignment assignment;
@@ -21,7 +21,7 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Person person, Assignment assignment, Description description, boolean isDone) {
+    protected Task(Person person, Assignment assignment, Description description, boolean isDone) {
         CollectionUtil.requireAllNonNull(person, assignment, description, isDone);
         this.name = person.getName();
         this.assignment = assignment;
@@ -32,7 +32,7 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Name name, Assignment assignment, Description description, boolean isDone) {
+    protected Task(Name name, Assignment assignment, Description description, boolean isDone) {
         CollectionUtil.requireAllNonNull(name, assignment, description, isDone);
         this.name = name;
         this.assignment = assignment;

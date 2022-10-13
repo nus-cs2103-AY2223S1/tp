@@ -14,6 +14,7 @@ import taskbook.model.person.Phone;
 import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -51,11 +52,11 @@ public class SampleDataUtil {
             new Address("Blk 45 Aljunied Street 85, #11-31"),
             getTagSet("colleagues"));
 
-    public static final Task ALEX_TASK_SAMPLE = new Task(ALEX_SAMPLE,
+    public static final Task ALEX_TASK_SAMPLE = new Todo(ALEX_SAMPLE,
             Assignment.FROM,
             new Description("Complete presentation template."),
             false);
-    public static final Task BERNICE_TASK_SAMPLE = new Task(BERNICE_SAMPLE,
+    public static final Task BERNICE_TASK_SAMPLE = new Todo(BERNICE_SAMPLE,
             Assignment.TO,
             new Description("Send out marketing emails."),
             false);
