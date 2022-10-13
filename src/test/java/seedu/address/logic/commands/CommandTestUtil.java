@@ -274,6 +274,7 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
+
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate<Student>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
@@ -288,6 +289,7 @@ public class CommandTestUtil {
 
         Tutor tutor = model.getFilteredTutorList().get(targetIndex.getZeroBased());
         final String[] splitName = tutor.getName().fullName.split("\\s+");
+
         model.updateFilteredTutorList(new NameContainsKeywordsPredicate<Tutor>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTutorList().size());
@@ -302,6 +304,7 @@ public class CommandTestUtil {
 
         TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
         final String[] splitName = tuitionClass.getName().name.split("\\s+");
+
         model.updateFilteredTuitionClassList(
                 new NameContainsKeywordsPredicate<TuitionClass>(Arrays.asList(splitName[0])));
 

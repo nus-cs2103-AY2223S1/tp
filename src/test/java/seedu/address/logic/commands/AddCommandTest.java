@@ -181,7 +181,6 @@ public class AddCommandTest {
     }
 
 
-
     /**
      * A default model stub that have all of the methods failing.
      */
@@ -212,23 +211,23 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getStudentAddressBookFilePath() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
-        public Path getTuitionClassAddressBookFilePath() {
-            throw new AssertionError("This method should not be called");
-        }
-
-        @Override
         public void setTutorAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public Path getStudentAddressBookFilePath() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void setStudentAddressBookFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getTuitionClassAddressBookFilePath() {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -279,7 +278,7 @@ public class AddCommandTest {
         @Override
         public boolean hasTuitionClass(TuitionClass tuitionClass) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         @Override
         public void addTuitionClass(TuitionClass tuitionClass) {
@@ -287,7 +286,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTuitionClass(TuitionClass target, TuitionClass editedClass) {
+        public void setTuitionClass(TuitionClass target, TuitionClass editedTuitionClass) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTuitionClass(TuitionClass target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -341,6 +345,7 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+
         private ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
@@ -358,6 +363,7 @@ public class AddCommandTest {
      */
     private class ModelStubWithClass extends ModelStub {
         private final TuitionClass tuitionClass;
+
         private ModelStubWithClass(TuitionClass tuitionClass) {
             requireNonNull(tuitionClass);
             this.tuitionClass = tuitionClass;
