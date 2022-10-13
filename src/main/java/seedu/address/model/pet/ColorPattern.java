@@ -1,9 +1,17 @@
 package seedu.address.model.pet;
 
+/**
+ * A class the represents the color pattern of a pet. For example, stripped, grid, dark.
+ */
 public class ColorPattern {
 
     private final String colorPattern;
 
+    /**
+     * Constructs a ColorPattern object.
+     *
+     * @param colorPattern The string representation of color pattern.
+     */
     public ColorPattern(String colorPattern) {
         if (colorPattern == null) {
             this.colorPattern = "";
@@ -12,6 +20,11 @@ public class ColorPattern {
         }
     }
 
+    /**
+     * Gets the color pattern of a pet.
+     *
+     * @return The color pattern.
+     */
     public String getColorPattern() {
         return colorPattern;
     }
@@ -37,5 +50,4 @@ public class ColorPattern {
     public String toString() {
         return colorPattern;
     }
-
 }

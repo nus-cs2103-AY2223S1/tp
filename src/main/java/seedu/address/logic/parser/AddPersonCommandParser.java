@@ -26,11 +26,23 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
     public AddPersonCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ORDER);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_PERSON_CATEGORY,
+                        PREFIX_NAME,
+                        PREFIX_PHONE,
+                        PREFIX_EMAIL,
+                        PREFIX_ADDRESS,
+                        PREFIX_TAG,
+                        PREFIX_ORDER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap,
+                PREFIX_PERSON_CATEGORY,
+                PREFIX_NAME,
+                PREFIX_ADDRESS,
+                PREFIX_PHONE,
+                PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
         PersonCategory personCategory =
@@ -40,13 +52,13 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
         case BUYER:
             AddBuyerCommandParser addBuyerCommandParser = new AddBuyerCommandParser();
             return addBuyerCommandParser.parse(args);
-        //TODO Uncomment
-//        case DELIVERER:
-//        AddDelivererCommandParser addDelivererCommandParser = new AddDelivererCommandParser();
-//            return addDelivererCommandParser.parse(args);
-//        case SUPPLIER:
-//        AddSupplierCommandParser addSupplierCommandParser = new AddSupplierCommandParser();
-//            return addSupplierCommandParser.parse(args);
+            //TODO Uncomment
+            //        case DELIVERER:
+            //        AddDelivererCommandParser addDelivererCommandParser = new AddDelivererCommandParser();
+            //            return addDelivererCommandParser.parse(args);
+            //        case SUPPLIER:
+            //        AddSupplierCommandParser addSupplierCommandParser = new AddSupplierCommandParser();
+            //            return addSupplierCommandParser.parse(args);
         default:
             throw new ParseException(PersonCategory.MESSAGE_CONSTRAINTS);
         }

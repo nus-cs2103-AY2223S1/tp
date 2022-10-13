@@ -45,7 +45,8 @@
 //
 //        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CATEGORY)
 //                || !argMultimap.getPreamble().isEmpty()) {
-//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE)); //TODO Replace the MESSAGE_USAGE
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
+//            TODO Replace the MESSAGE_USAGE
 //        }
 //
 //        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

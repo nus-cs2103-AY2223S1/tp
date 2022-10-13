@@ -1,10 +1,17 @@
 package seedu.address.model.pet;
 
+/**
+ * A class that represents the vaccination status of a pet. Could be either true of false.
+ */
 public class VaccinationStatus {
 
     public static final String MESSAGE_USAGE = "The vaccination status should be either 'true' or 'false'";
     private final boolean isVaccinated;
 
+    /**
+     * Constructs the VaccinationStatus object.
+     * @param isVaccinated A boolean value that indicates whether the pet is vaccinated.
+     */
     public VaccinationStatus(boolean isVaccinated) {
         this.isVaccinated = isVaccinated;
     }
@@ -12,10 +19,10 @@ public class VaccinationStatus {
     public static VaccinationStatus defaultStatus() {
         return new VaccinationStatus(false);
     }
+
     public boolean getVaccinationStatus() {
         return isVaccinated;
     }
-
 
     @Override
     public boolean equals(Object other) {

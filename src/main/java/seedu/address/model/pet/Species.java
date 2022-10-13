@@ -1,8 +1,16 @@
 package seedu.address.model.pet;
 
+/**
+ * A class that represents the species (kind) of a pet.
+ */
 public class Species {
     private final String species;
 
+    /**
+     * Constructs the Species object.
+     *
+     * @param species The string representation of the species.
+     */
     public Species(String species) {
         if (species == null) {
             this.species = "";

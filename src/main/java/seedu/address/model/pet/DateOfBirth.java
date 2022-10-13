@@ -7,6 +7,9 @@ import java.time.format.DateTimeParseException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ModelManager;
 
+/**
+ * A class that abstracts the date of birth of a pet.
+ */
 public class DateOfBirth {
 
     public static final String MESSAGE_USAGE = "The date of birth should be in this format preferably: "
@@ -23,6 +26,13 @@ public class DateOfBirth {
         this.date = date;
     }
 
+    /**
+     * Parses the date from a string representation.
+     *
+     * @param toParse The string to be parsed.
+     * @return The DateOfBirth object.
+     * @throws IllegalValueException If the string cannot be parsed by any acceptable date format
+     */
     public static DateOfBirth parseString(String toParse) throws IllegalValueException {
         LocalDate output;
         for (String format: ACCEPTABLE_DATE_FORMATS) {

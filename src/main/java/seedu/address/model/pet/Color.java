@@ -1,14 +1,20 @@
 package seedu.address.model.pet;
 
+import java.util.Objects;
+
+/**
+ * A class that abstracts the color of a pet.
+ */
 public class Color {
     private final String color;
 
+    /**
+     * Constructs a color object.
+     *
+     * @param color The string representation of a color.
+     */
     public Color(String color) {
-        if (color == null) {
-            this.color = "";
-        } else {
-            this.color = color;
-        }
+        this.color = Objects.requireNonNullElse(color, "");
     }
 
     @Override
@@ -28,6 +34,11 @@ public class Color {
         return color;
     }
 
+    /**
+     * Gets the color of a pet.
+     *
+     * @return The color.
+     */
     public String getColor() {
         return color;
     }

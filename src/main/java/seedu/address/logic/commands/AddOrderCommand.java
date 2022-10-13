@@ -1,11 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.parser.Prefix;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
@@ -13,9 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+/**
+ * Adds an order to the
+ */
 public class AddOrderCommand {
 
     public static final String COMMAND_WORD = "add-o";
