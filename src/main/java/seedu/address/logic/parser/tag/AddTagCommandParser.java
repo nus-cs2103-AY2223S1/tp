@@ -37,15 +37,17 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CONTACT, PREFIX_TASK, PREFIX_TAG);
 
-        Index index;
+        Index contactIndex;
+        Index taskIndex;
 
         boolean addTagToContact = argMultimap.getValue(PREFIX_CONTACT).isPresent();
         boolean addTagToTask = argMultimap.getValue(PREFIX_TASK).isPresent();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).orElse("1"));
+            taskIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TASK).orElse("1"));
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -54,11 +56,12 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editPersonDescriptor.isAnyFieldEdited() && !editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
-        return new AddTagCommand(index, editPersonDescriptor, editTaskDescriptor, addTagToContact, addTagToTask);
+        return new AddTagCommand(contactIndex, taskIndex, editPersonDescriptor, editTaskDescriptor,
+            addTagToContact, addTagToTask);
     }
 
     /**

@@ -46,25 +46,28 @@ public class AddTagCommand extends Command {
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag: %1$s";
     public static final String MESSAGE_TAG_NOT_ADDED = "At least 1 tag to add must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
     public static final String MESSAGE_MISSING_INDEX = "At least 1 contact or task index must be provided.";
 
-    private final Index index;
+    private final Index contactIndex;
+    private final Index taskIndex;
     private final EditPersonDescriptor editPersonDescriptor;
     private final EditTaskDescriptor editTaskDescriptor;
     private final boolean addTagToContact;
     private final boolean addTagToTask;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param contactIndex of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public AddTagCommand(Index index, EditPersonDescriptor editPersonDescriptor, EditTaskDescriptor editTaskDescriptor,
+    public AddTagCommand(Index contactIndex, Index taskIndex, EditPersonDescriptor editPersonDescriptor, EditTaskDescriptor editTaskDescriptor,
         boolean addTagToContact, boolean addTagToTask) {
-        requireNonNull(index);
+        requireNonNull(contactIndex);
         requireNonNull(editPersonDescriptor);
         requireNonNull(editTaskDescriptor);
 
-        this.index = index;
+        this.contactIndex = contactIndex;
+        this.taskIndex = taskIndex;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
         this.addTagToContact = addTagToContact;
         this.addTagToTask = addTagToTask;
@@ -78,11 +81,11 @@ public class AddTagCommand extends Command {
         if (addTagToContact) {
             List<Person> lastShownPersonList = model.getFilteredPersonList();
 
-            if (index.getZeroBased() >= lastShownPersonList.size()) {
+            if (contactIndex.getZeroBased() >= lastShownPersonList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
 
-            Person personToEdit = lastShownPersonList.get(index.getZeroBased());
+            Person personToEdit = lastShownPersonList.get(contactIndex.getZeroBased());
             Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
             if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -97,15 +100,15 @@ public class AddTagCommand extends Command {
         if (addTagToTask) {
             List<Task> lastShownTaskList = model.getFilteredTaskList();
 
-            if (index.getZeroBased() >= lastShownTaskList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            if (taskIndex.getZeroBased() >= lastShownTaskList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
             }
 
-            Task taskToEdit = lastShownTaskList.get(index.getZeroBased());
+            Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
             Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
             if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+                throw new CommandException(MESSAGE_DUPLICATE_TASK);
             }
 
             model.setTask(taskToEdit, editedTask);
@@ -146,8 +149,7 @@ public class AddTagCommand extends Command {
         assert taskToEdit != null;
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        // TODO: Implement
-        Deadline updatedDeadline = new Deadline("");
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();
@@ -173,7 +175,9 @@ public class AddTagCommand extends Command {
 
         // state check
         AddTagCommand e = (AddTagCommand) other;
-        return index.equals(e.index)
+        return contactIndex.equals(e.contactIndex)
+                && taskIndex.equals(e.taskIndex)
+                && editTaskDescriptor.equals(e.editTaskDescriptor)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 }
