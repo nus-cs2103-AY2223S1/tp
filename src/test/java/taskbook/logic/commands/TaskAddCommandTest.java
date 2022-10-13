@@ -6,7 +6,7 @@ import static taskbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import taskbook.logic.commands.tasks.TaskAddCommand;
+import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
@@ -22,38 +22,38 @@ public class TaskAddCommandTest {
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskAddCommand(null, DESCRIPTION_ONE, ASSIGNMENT_TO));
+        assertThrows(NullPointerException.class, () -> new TaskTodoCommand(null, DESCRIPTION_ONE, ASSIGNMENT_TO));
     }
 
     @Test
     public void constructor_nullDescription_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskAddCommand(NAME_AMY, null, ASSIGNMENT_TO));
+        assertThrows(NullPointerException.class, () -> new TaskTodoCommand(NAME_AMY, null, ASSIGNMENT_TO));
     }
 
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, null));
+        assertThrows(NullPointerException.class, () -> new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, null));
     }
 
     @Test
     public void equals() {
         // 2 tasks with different descriptions
-        TaskAddCommand addTaskCommandOne = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskAddCommand addTaskCommandTwo = new TaskAddCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
+        TaskTodoCommand addTaskCommandOne = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTaskCommandTwo = new TaskTodoCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
 
         // 2 tasks with different names
-        TaskAddCommand addTaskCommandThree = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskAddCommand addTaskCommandFour = new TaskAddCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTaskCommandThree = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTaskCommandFour = new TaskTodoCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
 
         // 2 tasks with different assignments
-        TaskAddCommand addTaskCommandFive = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskAddCommand addTaskCommandSix = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
+        TaskTodoCommand addTaskCommandFive = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTaskCommandSix = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
 
         // same object -> returns true
         assertTrue(addTaskCommandOne.equals(addTaskCommandOne));
 
         // same values -> returns true
-        TaskAddCommand addTaskCommandOneCopy = new TaskAddCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand addTaskCommandOneCopy = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
         assertTrue(addTaskCommandOne.equals(addTaskCommandOneCopy));
 
         // different types -> returns false

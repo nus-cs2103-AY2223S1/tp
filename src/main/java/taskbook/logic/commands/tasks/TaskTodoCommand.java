@@ -19,19 +19,19 @@ import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
- * Adds a task to the task book.
+ * Adds a to-do to the task book.
  */
-public class TaskAddCommand extends Command {
+public class TaskTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "todo";
 
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
-            + ": Adds a task to the task book.\n"
+            + ": Adds a todo to the task book.\n"
             + "Parameters:\n"
             + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION";
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
 
     private final Name name;
@@ -40,16 +40,15 @@ public class TaskAddCommand extends Command {
     private final boolean isDone;
 
     /**
-     * Creates an TaskAddCommand to add a task with the specified
+     * Creates an TaskTodoCommand to add a task with the specified
      * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new task.
      * @param assignment Represents task assigned to user or others.
      */
-    public TaskAddCommand(Name name, Description description, Assignment assignment) {
+    public TaskTodoCommand(Name name, Description description, Assignment assignment) {
         requireAllNonNull(name, description, assignment);
-
         this.name = name;
         this.description = description;
         this.assignment = assignment;
@@ -76,8 +75,8 @@ public class TaskAddCommand extends Command {
             return true;
         }
 
-        if (other instanceof TaskAddCommand) {
-            TaskAddCommand otherCommand = (TaskAddCommand) other;
+        if (other instanceof TaskTodoCommand) {
+            TaskTodoCommand otherCommand = (TaskTodoCommand) other;
             return otherCommand.name.equals(name)
                     && otherCommand.description.equals(description)
                     && otherCommand.assignment.equals(assignment)

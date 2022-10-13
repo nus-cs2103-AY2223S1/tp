@@ -15,9 +15,9 @@ import taskbook.logic.commands.categoryless.ExitCommand;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
-import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
+import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
@@ -50,8 +50,8 @@ public class TaskBookParserTest {
     }
 
     @Test
-    public void parseCommand_task_add() throws Exception {
-        TaskAddCommand command = (TaskAddCommand) parseTaskCommand("add m/John d/Finish user guide");
+    public void parseCommand_task_todo() throws Exception {
+        TaskTodoCommand command = (TaskTodoCommand) parseTaskCommand("todo m/John d/Finish user guide");
         assertNotNull(command);
     }
 

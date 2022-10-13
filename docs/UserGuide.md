@@ -94,19 +94,19 @@ Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
  
-### Adding a task: `task add`
+### Adding a todo: `task todo`
 
-Adds a task into the task list.
+Adds a todo into the task list.
 
-Format:  `task add m/ASSIGNOR d/DESCRIPTION [MODIFIER]`
+Format:  `task todo m/ASSIGNOR d/DESCRIPTION [MODIFIER]`
 
-Format:  `task add o/ASSIGNEE d/DESCRIPTION [MODIFIER]`
+Format:  `task todo o/ASSIGNEE d/DESCRIPTION [MODIFIER]`
 
-* Adds a task with an assignor (m) or assignee (o), a description and an optional task modifier.
+* Adds a todo with an assignor (m) or assignee (o), a description and an optional todo modifier.
 
 Examples:
-* `task add m/John d/Finish user guide` adds a task called “Finish user guide” assigned by John to the user.
-* `task add o/Sam d/Finish the assignment` adds a task called “Finish the assignment” which is assigned to Sam.
+* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to the user.
+* `task todo o/Sam d/Finish the assignment` adds a todo called “Finish the assignment” which is assigned to Sam.
 
 ### Task Modifiers [coming soon]
 
@@ -210,8 +210,8 @@ The following date formats are accepted:
 | **View All Tasks**     | `task list`                                                                                                                                                        |
 | **View Contacts**      | `contact list`                                                                                                                                                     |
 | **Add Contact**        | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Add Task: Assignor** | `task add m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task add m/John d/Finish user guide`                                                                               |
-| **Add Task: Assignee** | `task add o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task add o/Sam d/Finish the assignment`                                                                            |
+| **Add Todo: Assignor** | `task todo m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task todo m/John d/Finish user guide`                                                                             |
+| **Add Todo: Assignee** | `task todo o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task todo o/Sam d/Finish the assignment`                                                                          |
 | **Delete Contact**     | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
 | **Delete Task**        | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
 | **Quit**               | `bye`                                                                                                                                                              |

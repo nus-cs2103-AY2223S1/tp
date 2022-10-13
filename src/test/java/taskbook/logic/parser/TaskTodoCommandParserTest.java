@@ -19,14 +19,14 @@ import static taskbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.Messages;
-import taskbook.logic.commands.tasks.TaskAddCommand;
-import taskbook.logic.parser.tasks.TaskAddCommandParser;
+import taskbook.logic.commands.tasks.TaskTodoCommand;
+import taskbook.logic.parser.tasks.TaskTodoCommandParser;
 import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 
-public class TaskAddCommandParserTest {
-    private TaskAddCommandParser parser = new TaskAddCommandParser();
+public class TaskTodoCommandParserTest {
+    private TaskTodoCommandParser parser = new TaskTodoCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -40,30 +40,30 @@ public class TaskAddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ASSIGN_FROM_DESC_AMY + DESCRIPTION_DESC_WORK,
-                new TaskAddCommand(expectedNameAmy, expectedDescriptionWork, expectedAssignmentFrom));
+                new TaskTodoCommand(expectedNameAmy, expectedDescriptionWork, expectedAssignmentFrom));
 
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + ASSIGN_TO_DESC_AMY + DESCRIPTION_DESC_WORK,
-                new TaskAddCommand(expectedNameAmy, expectedDescriptionWork, expectedAssignmentTo));
+                new TaskTodoCommand(expectedNameAmy, expectedDescriptionWork, expectedAssignmentTo));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, ASSIGN_FROM_DESC_AMY + ASSIGN_FROM_DESC_BOB + DESCRIPTION_DESC_WORK,
-                new TaskAddCommand(expectedNameBob, expectedDescriptionWork, expectedAssignmentFrom));
+                new TaskTodoCommand(expectedNameBob, expectedDescriptionWork, expectedAssignmentFrom));
 
         assertParseSuccess(parser, ASSIGN_TO_DESC_AMY + ASSIGN_TO_DESC_BOB + DESCRIPTION_DESC_WORK,
-                new TaskAddCommand(expectedNameBob, expectedDescriptionWork, expectedAssignmentTo));
+                new TaskTodoCommand(expectedNameBob, expectedDescriptionWork, expectedAssignmentTo));
 
         // multiple descriptions - last description accepted
         assertParseSuccess(parser, ASSIGN_FROM_DESC_AMY + DESCRIPTION_DESC_WORK + DESCRIPTION_DESC_STUDY,
-                new TaskAddCommand(expectedNameAmy, expectedDescriptionEat, expectedAssignmentFrom));
+                new TaskTodoCommand(expectedNameAmy, expectedDescriptionEat, expectedAssignmentFrom));
 
         assertParseSuccess(parser, ASSIGN_TO_DESC_AMY + DESCRIPTION_DESC_WORK + DESCRIPTION_DESC_STUDY,
-                new TaskAddCommand(expectedNameAmy, expectedDescriptionEat, expectedAssignmentTo));
+                new TaskTodoCommand(expectedNameAmy, expectedDescriptionEat, expectedAssignmentTo));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                TaskAddCommand.MESSAGE_USAGE);
+                TaskTodoCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_AMY + DESCRIPTION_DESC_WORK, expectedMessage);
