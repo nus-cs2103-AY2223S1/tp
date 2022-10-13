@@ -13,6 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.*;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -26,6 +28,8 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String telegram;
+    private final String tutorialModule;
+    private final String tutorialName;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -35,12 +39,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
                              @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
+            @JsonProperty("tutorialModule") String tutorialModule, @JsonProperty("tutorialName") String tutorialName,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.telegram = telegram;
+        this.tutorialModule = tutorialModule;
+        this.tutorialName = tutorialName;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +62,8 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         telegram = source.getTelegram().telegram;
+        tutorialModule = source.getTutorialModule().moduleName;
+        tutorialName = source.getTutorialName().fullName;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -111,8 +120,25 @@ class JsonAdaptedPerson {
         }
         final Telegram modelTelegram = new Telegram(telegram);
 
+        if (tutorialModule == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialModule.class.getSimpleName()));
+        }
+        if (!TutorialModule.isValidModule(tutorialModule)) {
+            throw new IllegalValueException(TutorialModule.MESSAGE_CONSTRAINTS);
+        }
+        final TutorialModule modelTutorialModule = new TutorialModule(tutorialModule);
+
+        if (tutorialName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialName.class.getSimpleName()));
+        }
+        if (!TutorialName.isValidName(tutorialName)) {
+            throw new IllegalValueException(TutorialName.MESSAGE_CONSTRAINTS);
+        }
+        final TutorialName modelTutorialName = new TutorialName(tutorialName);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelId, modelPhone, modelEmail, modelTelegram, modelTags);
+        return new Student(modelName, modelId, modelPhone, modelEmail,
+                modelTelegram, modelTutorialModule, modelTutorialName, modelTags);
     }
 
 }

@@ -9,6 +9,9 @@ import seedu.address.logic.commands.student.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -34,9 +37,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        TutorialModule tutorialModule = ParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
+        TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, id, phone, email, telegram, tagList);
+        Student student = new Student(name, id, phone, email, telegram, tutorialModule, tutorialName, tagList);
 
         return new AddCommand(student);
     }

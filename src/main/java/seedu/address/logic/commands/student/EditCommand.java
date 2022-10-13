@@ -1,11 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -24,6 +20,9 @@ import seedu.address.model.Model;
 import seedu.address.model.student.*;
 import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -40,6 +39,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
+            + "[" + PREFIX_TUTORIAL + "TUTORIAL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -97,9 +98,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(studentToEdit.getTelegram());
+        TutorialModule updatedTutorialModule = editPersonDescriptor.getTutorialModule()
+                .orElse(studentToEdit.getTutorialModule());
+        TutorialName updatedTutorialName = editPersonDescriptor.getTutorialName()
+                .orElse(studentToEdit.getTutorialName());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedId, updatedPhone, updatedEmail, updatedTelegram, updatedTags);
+        return new Student(updatedName, updatedId, updatedPhone,
+                updatedEmail, updatedTelegram, updatedTutorialModule, updatedTutorialName, updatedTags);
     }
 
     @Override
@@ -130,6 +136,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Telegram telegram;
+        private TutorialModule tutorialModule;
+        private TutorialName tutorialName;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -143,6 +151,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTelegram(toCopy.telegram);
+            setTutorialModule(toCopy.tutorialModule);
+            setTutorialName(toCopy.tutorialName);
             setTags(toCopy.tags);
         }
 
@@ -193,6 +203,22 @@ public class EditCommand extends Command {
             return Optional.ofNullable(telegram);
         }
 
+        public void setTutorialModule(TutorialModule tutorialModule) {
+            this.tutorialModule = tutorialModule;
+        }
+
+        public Optional<TutorialModule> getTutorialModule() {
+            return Optional.ofNullable(tutorialModule);
+        }
+
+        public void setTutorialName(TutorialName tutorialName) {
+            this.tutorialName = tutorialName;
+        }
+
+        public Optional<TutorialName> getTutorialName() {
+            return Optional.ofNullable(tutorialName);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -226,8 +252,12 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
+                    && getId().equals(e.getId())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getTelegram().equals(e.getTelegram())
+                    && getTutorialModule().equals(e.getTutorialModule())
+                    && getTutorialName().equals(e.getTutorialName())
                     && getTags().equals(e.getTags());
         }
 

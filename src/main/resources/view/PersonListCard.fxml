@@ -32,6 +32,8 @@
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
+      <Label fx:id="tutorialModule" styleClass="cell_small_label" text="\$tutorialModule" />
+      <Label fx:id="tutorialName" styleClass="cell_small_label" text="\$tutorialName" />
     </VBox>
   </GridPane>
 </HBox>

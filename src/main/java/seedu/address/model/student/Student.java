@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
 
 /**
  * Represents a Person in the address book.
@@ -23,7 +25,8 @@ public class Student {
     private final Telegram telegram;
 
     // Data fields
-    //private final Tutorial tutorial;
+    private final TutorialModule tutorialModule;
+    private final TutorialName tutorialName;
     //private final Grade grade;
     //private final Attendance attendance;
     //private final Participation participation;
@@ -32,13 +35,16 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, ID id, Phone phone, Email email, Telegram telegram, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, telegram, tags);
+    public Student(Name name, ID id, Phone phone, Email email,
+                   Telegram telegram, TutorialModule tutorialModule, TutorialName tutorialName, Set<Tag> tags) {
+        requireAllNonNull(name, id, phone, email, telegram, tutorialModule, tutorialName, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
         this.telegram = telegram;
+        this.tutorialModule = tutorialModule;
+        this.tutorialName = tutorialName;
         this.tags.addAll(tags);
     }
 
@@ -59,6 +65,10 @@ public class Student {
     public Telegram getTelegram() {
         return telegram;
     }
+
+    public TutorialModule getTutorialModule() { return tutorialModule; }
+
+    public TutorialName getTutorialName() { return tutorialName; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -100,13 +110,15 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTelegram().equals(getTelegram())
+                && otherStudent.getTutorialModule().equals(getTutorialModule())
+                && otherStudent.getTutorialName().equals(getTutorialName())
                 && otherStudent.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, tags);
+        return Objects.hash(name, id, phone, email, telegram, tutorialModule, tutorialName, tags);
     }
 
     @Override
@@ -120,7 +132,11 @@ public class Student {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Telegram Handle: ")
-                .append(getTelegram());
+                .append(getTelegram())
+                .append("; Tutorial: ")
+                .append(getTutorialModule())
+                .append(" ")
+                .append(getTutorialName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -17,4 +17,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_ID = new Prefix("i/");
     public static final Prefix PREFIX_TELEGRAM = new Prefix("h/");
+    public static final Prefix PREFIX_TUTORIAL = new Prefix("l/");
 }
