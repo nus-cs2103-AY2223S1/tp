@@ -3,7 +3,7 @@ package seedu.address.model.order;
 import java.util.Objects;
 
 /**
- * A class that represents the price range (lower bound, upper bound) of an order during negotiation.
+ * Represents the price range (lower bound, upper bound) of an order during negotiation.
  */
 public class PriceRange {
 

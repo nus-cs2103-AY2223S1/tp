@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ModelManager;
 
 /**
- * A class that abstracts the date of birth of a pet.
+ * Abstracts the date of birth of a pet.
  */
 public class DateOfBirth {
 

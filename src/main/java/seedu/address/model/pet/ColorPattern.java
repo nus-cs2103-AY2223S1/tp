@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * A class that represents the color pattern of a pet. For example, stripped, grid, dark.
+ * Represents the color pattern of a pet. For example, stripped, grid, dark.
  */
 public class ColorPattern {
 
