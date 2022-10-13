@@ -21,6 +21,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
@@ -210,6 +211,21 @@ public class ParserUtil {
             throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
         }
         return new TutorialTimeslot(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String day} into a {@code TutorialDay}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static TutorialDay parseTutorialDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedValue = day.trim();
+        if (!TutorialDay.isValidDay(trimmedValue)) {
+            throw new ParseException(TutorialDay.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialDay(trimmedValue);
     }
 
     /**

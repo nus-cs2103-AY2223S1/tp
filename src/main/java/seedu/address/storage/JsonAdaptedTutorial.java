@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
@@ -21,17 +22,20 @@ class JsonAdaptedTutorial {
     private final String module;
     private final String venue;
     private final String timeslot;
+    private final String day;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given tutorial details.
      */
     @JsonCreator
     public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot) {
+                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot,
+                               @JsonProperty("day") String day) {
         this.name = name;
         this.module = module;
         this.venue = venue;
         this.timeslot = timeslot;
+        this.day = day;
     }
 
     /**
@@ -42,6 +46,7 @@ class JsonAdaptedTutorial {
         module = source.getModule().moduleName;
         venue = source.getVenue().venue;
         timeslot = source.getTimeslot().timeslot;
+        day = source.getDay().toIntString();
     }
 
     /**
@@ -86,7 +91,12 @@ class JsonAdaptedTutorial {
         }
         final TutorialTimeslot modelTimeslot = new TutorialTimeslot(timeslot);
 
-        return new Tutorial(modelName, modelModule, modelVenue, modelTimeslot);
+        if (!TutorialDay.isValidDay(day)) {
+            throw new IllegalValueException(TutorialDay.MESSAGE_CONSTRAINTS);
+        }
+        final TutorialDay modelDay = new TutorialDay(day);
+
+        return new Tutorial(modelName, modelModule, modelVenue, modelTimeslot, modelDay);
     }
 
 }
