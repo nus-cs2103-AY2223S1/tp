@@ -40,6 +40,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
 
@@ -57,41 +58,48 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_addOneAppointment_success() {
-        Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
-        appointmentList.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(new PersonBuilder().build());
+        actualModel.addPerson(new PersonBuilder().build());
+
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        firstPerson.setAppointments(appointmentList);
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+
         EditPersonDescriptor descriptor = DESC_APPOINTMENT;
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, firstPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), firstPerson);
 
-        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_addMultipleAppointment_success() {
-        Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
-        appointmentList.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(new PersonBuilder().build());
+        actualModel.addPerson(new PersonBuilder().build());
+
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        appointmentList.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_22_JAN_2023))));
-        firstPerson.setAppointments(appointmentList);
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, firstPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), firstPerson);
-
-        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addAppointmentCommand, actualModel , expectedMessage, actualModel);
     }
 
     @Test
