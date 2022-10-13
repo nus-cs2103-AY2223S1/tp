@@ -38,7 +38,7 @@ public class CliModsParser {
 
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            return new ExitCommandParser().parse(commandWord);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
