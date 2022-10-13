@@ -139,16 +139,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void unmarkTask(Task target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Task> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -111,16 +111,6 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedTask);
     }
 
-    @Override
-    public void markTask(Task target) {
-        addressBook.markTask(target);
-    }
-
-    @Override
-    public void unmarkTask(Task target) {
-        addressBook.unmarkTask(target);
-    }
-
     //=========== Filtered Task List Accessors =============================================================
 
     /**

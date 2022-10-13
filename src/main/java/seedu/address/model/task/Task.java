@@ -19,7 +19,7 @@ public class Task {
     private final Module module;
     private final Deadline deadline;
     private final Set<Tag> tags = new HashSet<>();
-    private boolean isDone;
+    private final boolean isDone;
 
     /**
      * A convenience constructor for the {@code Task} class.
@@ -60,14 +60,6 @@ public class Task {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public void markAsDone() {
-        this.isDone = true;
-    }
-
-    public void markAsNotDone() {
-        this.isDone = false;
     }
 
     public Boolean isDone() {

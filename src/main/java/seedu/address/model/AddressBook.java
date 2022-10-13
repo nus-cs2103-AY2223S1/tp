@@ -93,22 +93,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    /**
-     * Marks {@code target} from this {@code AddressBook} as done.
-     * {@code target} must exist in the address book.
-     */
-    public void markTask(Task target) {
-        persons.markTaskAsDone(target);
-    }
-
-    /**
-     * Removes {@code target} from this {@code AddressBook} as not done.
-     * {@code target} must exist in the address book.
-     */
-    public void unmarkTask(Task target) {
-        persons.markTaskAsNotDone(target);
-    }
-
     //// util methods
 
     @Override
