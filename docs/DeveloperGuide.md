@@ -2,8 +2,19 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+
+## Table of contents
+* [Target User Profile](#target-user-profile)
+* [Value Proposition](#value-proposition)
+* [User Stories](#user-stories)
+* [Use Case](#use-case)
+    * [Use case: **Delete a student**](#use-case-delete-a-student)
+    * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
+    * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
+    * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
+* [Non-Functional Requirement](#non-functional-requirement)
+* [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Target User Profile
@@ -82,7 +93,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
       Use case resumes at step 2.
 
 [](#use-case-edit-a-student-contact-detail)
-### Use case: Edit a student contact detail
+### Use case: **Edit a student contact detail**
 
 **MSS**
 
@@ -124,7 +135,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
       Use case ends.
 
-### Use case: Mark student as present for class**
+### Use case: **Mark student as present for class**
 
 **MSS**
 
@@ -153,7 +164,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
         Use case resumes at step 2.
 
-### Use case: Allocate a slot for future class
+### Use case: **Allocate a slot for future class**
 
 **MSS**
 
