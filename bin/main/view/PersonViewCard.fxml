@@ -27,11 +27,12 @@
         </Label> -->
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <Label fx:id="job" style="-fx-font-weight: bold;" styleClass="cell_small_label" text="\$job">
+      <Label fx:id="job" style="-fx-font-weight: bold;" styleClass="cell_small_label" text="\$job" />
+      <FlowPane fx:id="tags">
         <padding>
-            <Insets bottom="8.0" />
+            <Insets bottom="4.0" top="4.0" />
         </padding>
-      </Label>
+      </FlowPane>
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
@@ -43,7 +44,6 @@
             <padding>
                <Insets bottom="8.0" />
             </padding></Label>
-      <FlowPane fx:id="tags" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

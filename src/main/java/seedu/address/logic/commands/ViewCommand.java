@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -10,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SamePersonPredicate;
 
 /**
  * Views the details of an existing person in the address book.
@@ -47,7 +47,7 @@ public class ViewCommand extends Command {
 
         Person personToView = lastShownList.get(index.getZeroBased());
 
-        model.updateViewedPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateViewedPersonList(new SamePersonPredicate(personToView));
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName().fullName));
     }
 
