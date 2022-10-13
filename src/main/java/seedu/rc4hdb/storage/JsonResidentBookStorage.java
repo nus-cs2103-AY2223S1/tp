@@ -76,4 +76,10 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(residentBook), filePath);
     }
 
+    @Override
+    public void setResidentBookFilePath(Path filePath) {
+        requireNonNull(filePath);
+        this.filePath = filePath;
+    }
+
 }

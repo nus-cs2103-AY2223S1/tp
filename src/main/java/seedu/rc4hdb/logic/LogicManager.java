@@ -15,6 +15,7 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.StorageModelCommand;
 import seedu.rc4hdb.logic.parser.ResidentBookParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
@@ -77,6 +78,9 @@ public class LogicManager implements Logic {
         }
         if (command instanceof StorageCommand) {
             return ((StorageCommand) command).execute(storage);
+        }
+        if (command instanceof StorageModelCommand) {
+            return ((StorageModelCommand) command).execute(storage, model);
         }
         throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
     }

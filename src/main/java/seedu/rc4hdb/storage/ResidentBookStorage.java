@@ -18,6 +18,11 @@ public interface ResidentBookStorage {
     Path getResidentBookFilePath();
 
     /**
+     * Sets the file path to the {@code filePath}.
+     */
+    void setResidentBookFilePath(Path filePath);
+
+    /**
      * Returns ResidentBook data as a {@link ReadOnlyResidentBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.

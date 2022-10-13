@@ -45,12 +45,16 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
-    // ================ AddressBook methods ==============================
+    // ================ ResidentBook methods =============================
 
     @Override
     public Path getResidentBookFilePath() {
         return residentBookStorage.getResidentBookFilePath();
+    }
+
+    @Override
+    public void setResidentBookFilePath(Path filePath) {
+        residentBookStorage.setResidentBookFilePath(filePath);
     }
 
     @Override

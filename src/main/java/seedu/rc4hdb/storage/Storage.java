@@ -24,6 +24,9 @@ public interface Storage extends ResidentBookStorage, UserPrefsStorage {
     Path getResidentBookFilePath();
 
     @Override
+    void setResidentBookFilePath(Path filePath);
+
+    @Override
     Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException, IOException;
 
     @Override
