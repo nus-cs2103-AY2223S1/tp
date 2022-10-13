@@ -73,6 +73,14 @@ public class Task {
         return new Task(module, description, TaskStatus.COMPLETE);
     }
 
+    /**
+     * Unmarks (labels as incomplete) the task
+     * and returns the task.
+     */
+    public Task unmark() {
+        return new Task(module, description, TaskStatus.INCOMPLETE);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
