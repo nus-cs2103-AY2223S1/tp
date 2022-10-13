@@ -47,7 +47,7 @@ public class InternshipTest {
         editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_BOB).build();
         assertFalse(ALICE.isSameInternship(editedAlice));
 
-        // same name, same position, all other attributes same -> returns true
+        // same name, same position, all other attributes different -> returns true
         editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withStatus(VALID_STATUS_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
