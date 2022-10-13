@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
@@ -24,8 +26,6 @@ public class AddTaskCommand extends Command {
             + PREFIX_DESCRIPTION + "lecture quiz";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
-    public static final String MODULE_NOT_FOUND = "This task's module does not exist";
 
     private final Task toAdd;
 
@@ -42,7 +42,7 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModule(toAdd.getModule())) {
-            throw new CommandException(MODULE_NOT_FOUND);
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         } else if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
