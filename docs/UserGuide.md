@@ -133,54 +133,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ### Item Commands
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Action</th>
-    <th>Format</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Create a new item</td>
-    <td><b>new n/ITEM_NAME [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]</b><br><br><u>Valid Example:</u><br>new n/Potato qty/70 unit/kg bgt/22-02-11 exp/22-03/11</td>
-  </tr>
-  <tr>
-    <td>List all items</td>
-    <td><b>list</b><br><br><u>Valid Example:</u><br>list</td>
-  </tr>
-  <tr>
-    <td>Search for an item</td>
-    <td><b>find n/ITEM_NAME</b><br><br><u>Valid Example:</u><br>find n/Potato</td>
-  </tr>
-  <tr>
-    <td>Sort an item by name, quantity, type, bought date or expiry date.</td>
-    <td><b>sort [n/] [qty/] [unit/] [bgt/] [exp/]</b><br><br><u>Valid Example:</u><br>sort n/<br>sort qty/<br>sort qty/ bgt/<br><br><u>Invalid Example:</u><br>sort</td>
-  </tr>
-  <tr>
-    <td>View information about an item</td>
-    <td><b>view id/INDEX</b><br><br><u>Valid Examples:</u><br>view id/1</td>
-  </tr>
-  <tr>
-    <td>Increase the quantity of an item</td>
-    <td><b>inc id/INDEX_LIST [qty/QUANTITY]</b><br><br><u>Valid Examples:</u><br>inc id/1 qty/100<br>inc id/1,2,3 qty/100</td>
-  </tr>
-  <tr>
-    <td>Decrease the quantity of an item</td>
-    <td><b>dec id/INDEX_LIST [qty/QUANTITY]</b><br><br><u>Valid Examples:</u><br>dec id/1 qty/100<br>dec id/1,2,3 qty/100</td>
-  </tr>
-  <tr>
-    <td>Update the information of an item</td>
-    <td><b>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]</b><br><br>❗ IMPORTANT:<br>Do not update multiple items to have the same name<br><br><u>Valid Examples:</u><br>set id/1 n/Potatoes qty/60 unit/kg<br>set id/1,2,3 qty/60</td>
-  </tr>
-  <tr>
-    <td>Delete an item</td>
-    <td><b>del id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>del id/1<br>del id/1,2,3</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+{% include_relative _ug/commandSummary/ItemCommands.md %}
 
 ### Tag Commands
 
