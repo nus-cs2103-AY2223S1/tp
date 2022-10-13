@@ -216,15 +216,15 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
-        private void setRiskAppetite(RiskAppetite ra) {
+        public void setRiskAppetite(RiskAppetite ra) {
             this.riskAppetite = ra;
         }
 
-        private void setIncome(Income income) {
+        public void setIncome(Income income) {
             this.income = income;
         }
 
-        private void setBirthday(Birthday birthday) {
+        public void setBirthday(Birthday birthday) {
             this.birthday = birthday;
         }
 
@@ -253,15 +253,15 @@ public class EditCommand extends Command {
                     && getRA().equals(e.getRA());
         }
 
-        private Optional<Birthday> getBirthday() {
+        public Optional<Birthday> getBirthday() {
             return Optional.ofNullable(birthday);
         }
 
-        private Optional<Income> getIncome() {
+        public Optional<Income> getIncome() {
             return Optional.ofNullable(income);
         }
 
-        private Optional<RiskAppetite> getRA() {
+        public Optional<RiskAppetite> getRA() {
             return Optional.ofNullable(riskAppetite);
         }
     }

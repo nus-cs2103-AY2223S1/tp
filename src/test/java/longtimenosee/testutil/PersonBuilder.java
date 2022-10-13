@@ -48,7 +48,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         birthday = new Birthday(DEFAULT_BIRTHDAY);
-        address = new Address(DEFAULT_ADDRESS);
+        income = new Income(DEFAULT_INCOME);
         riskAppetite = new RiskAppetite(DEFAULT_RISK_APPETITE);
     }
 

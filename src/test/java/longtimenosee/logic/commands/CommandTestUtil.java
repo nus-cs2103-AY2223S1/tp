@@ -1,9 +1,12 @@
 package longtimenosee.logic.commands;
 
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_INCOME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
 import static longtimenosee.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,8 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "2010-01-01";
     public static final String VALID_INCOME_AMY = "100.0";
     public static final String VALID_INCOME_BOB = "200.0";
-    public static final String VALID_RISK_APPETITE_AMY = "L";
-    public static final String VALID_RISK_APPETITE_BOB = "L";
+    public static final String VALID_RISK_APPETITE_AMY = "M";
+    public static final String VALID_RISK_APPETITE_BOB = "M";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -53,7 +56,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
+    public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
+    public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
 
+    public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
+    public static final String RISK_APPETITE_DESC_AMY = " " + PREFIX_RISK_APPETITE + VALID_RISK_APPETITE_AMY;
+
+    public static final String RISK_APPETITE_DESC_BOB = " " + PREFIX_RISK_APPETITE + VALID_RISK_APPETITE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -69,10 +79,14 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withBirthday(VALID_BIRTHDAY_AMY).withIncome(VALID_INCOME_AMY)
+                .withRiskAppetite(VALID_RISK_APPETITE_AMY).build();
+
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withBirthday(VALID_BIRTHDAY_BOB)
+                .withIncome(VALID_INCOME_BOB)
+                .withRiskAppetite(VALID_RISK_APPETITE_BOB).build();
     }
 
     /**

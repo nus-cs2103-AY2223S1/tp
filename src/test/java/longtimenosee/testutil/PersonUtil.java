@@ -1,9 +1,12 @@
 package longtimenosee.testutil;
 
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_INCOME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -37,6 +40,9 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_BIRTHDAY + person.getBirthday().value + " ");
+        sb.append(PREFIX_INCOME + person.getIncome().value + " ");
+        sb.append(PREFIX_RISK_APPETITE + person.getRiskAppetite().value + " ");
         return sb.toString();
     }
 
@@ -57,6 +63,10 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getBirthday().ifPresent(birthday -> sb.append(PREFIX_BIRTHDAY).append(birthday.value).append(" "));
+        descriptor.getIncome().ifPresent(income -> sb.append(PREFIX_INCOME).append(income.value).append(" "));
+        descriptor.getRA().ifPresent(riskAppetite -> sb.append(PREFIX_RISK_APPETITE)
+                .append(riskAppetite.value).append(" "));
         return sb.toString();
     }
 }
