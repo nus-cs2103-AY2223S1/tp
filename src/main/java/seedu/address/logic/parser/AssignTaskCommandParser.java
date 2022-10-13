@@ -26,7 +26,7 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
                         AssignTaskCommand.MESSAGE_USAGE));
             }
             int task = Integer.parseInt(indexes[1]) - 1;
-            int member = Integer.parseInt(indexes[2]) - 1;
+            String member = indexes[2];
             return new AssignTaskCommand(task, member);
         } catch (NumberFormatException pe) {
             throw new ParseException(

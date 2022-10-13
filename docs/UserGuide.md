@@ -97,11 +97,11 @@ Examples:
 Assign an existing task to a team member in the user’s team. Will display an error message if either the team member or
 the task is not found in the user’s team.
 
-Format: `assign task “TASK_INDEX” “TEAM_MEMBER_INDEX”`
+Format: `assign task “TASK_INDEX” “TEAM_MEMBER_NAME”`
 
 Examples:
-* `assign task 1 1` assigns the first task on the task list to the first member on the member list
-* `assign task 2 1` assigns the second task on the task list to the first member on the member list
+* `assign task 1 Alex` assigns the first task on the task list to a member in the team named Alex
+* `assign task 2 Bernice` assigns the second task on the task list to a member in the team named Bernice
 
 ### Set Deadline for task: `set deadline`
 

@@ -2,14 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 
 class AssignTaskCommandTest {
 
@@ -20,30 +14,8 @@ class AssignTaskCommandTest {
 
     private static final int FIRST_TASK = 1;
     private static final int SECOND_TASK = 2;
-    private static final int FIRST_PERSON = 1;
-    private static final int SECOND_PERSON = 2;
-
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
-    @Test
-    public void execute_invalidTaskIndexUnfilteredList_throwsCommandException() {
-        int outOfBoundTaskIndex = model.getTeam().getTaskList().size();
-        int validMemberIndex = 0;
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(outOfBoundTaskIndex, validMemberIndex);
-
-        assertCommandFailure(assignTaskCommand, model,
-                String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, outOfBoundTaskIndex + 1));
-    }
-
-    @Test
-    public void execute_invalidMemberIndexUnfilteredList_throwsCommandException() {
-        int outOfBoundMemberIndex = model.getTeam().getTeamMembers().size();
-        int validTaskIndex = 0;
-        AssignTaskCommand assignTaskCommand = new AssignTaskCommand(validTaskIndex, outOfBoundMemberIndex);
-
-        assertCommandFailure(assignTaskCommand, model,
-                String.format(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, outOfBoundMemberIndex + 1));
-    }
+    private static final String FIRST_PERSON = "Alex";
+    private static final String SECOND_PERSON = "Bernice";
 
     @Test
     public void equals() {

@@ -83,12 +83,11 @@ public class Team {
 
     /**
      * Sets a specified team member as the assignee for the task.
-     * @param task The index of the specified task
-     * @param person The index of the specified person
+     * @param task The specified task to be assigned
+     * @param person The specified member that task is assigned to
      */
-    public void assignTask(int task, int person) {
-        Person assignee = this.getTeamMembers().get(person);
-        this.getTaskList().get(task).assignTo(assignee);
+    public void assignTask(Task task, Person person) {
+        task.assignTo(person);
     }
 
     /**

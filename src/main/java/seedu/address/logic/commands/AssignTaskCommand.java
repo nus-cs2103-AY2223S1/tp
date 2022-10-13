@@ -17,27 +17,25 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Assigns a task to the specified member in the team.\n"
-        + "Parameters: INDEX of task (must be a positive integer) \n"
-            + "Parameters: INDEX of person (must be a positive integer) \n"
-        + "Example: " + COMMAND_WORD + " 1" + " 2";
+        + "Parameters: name of task \n"
+            + "Parameters: name of person \n"
+        + "Example: " + COMMAND_WORD + " Review PR" + " Bernice Yu";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned Task: %1$s assigned to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
-    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
-            + "There are less than %1$s tasks in your list.";
-    public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "This member does not exist. "
-            + "There are less than %1$s members in your team.";
+    public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. There are less than %1$s tasks in your list.";
+    public static final String MESSAGE_MEMBER_DOES_NOT_EXIST = "This member does not exist.";
     private final int taskIndex;
-    private final int memberIndex;
+    private final String memberName;
 
     /**
      * Returns a command that assigns a task to the specified member in the team.
      * @param taskIndex the index of the task to be added.
-     * @param memberIndex the index of the member that the task is assigned to.
+     * @param memberName the name of the member that the task is assigned to.
      */
-    public AssignTaskCommand(int taskIndex, int memberIndex) {
+    public AssignTaskCommand(int taskIndex, String memberName) {
         this.taskIndex = taskIndex;
-        this.memberIndex = memberIndex;
+        this.memberName = memberName;
     }
 
     @Override
@@ -45,17 +43,25 @@ public class AssignTaskCommand extends Command {
         requireNonNull(model);
         List<Task> taskList = model.getTeam().getTaskList();
         List<Person> memberList = model.getTeam().getTeamMembers();
+        Person currentPerson = null;
+        for (Person person : memberList) {
+            if (person.getName().fullName.equals(memberName)) {
+                currentPerson = person;
+                break;
+            }
+        }
         if (taskIndex >= taskList.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex + 1));
-        } else if (memberIndex >= memberList.size()) {
-            throw new CommandException(String.format(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, memberIndex + 1));
-        } else if (taskList.get(taskIndex).checkAssignee(memberList.get(memberIndex))) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT,
-                    memberList.get(memberIndex).getName()));
         }
-        model.getTeam().assignTask(taskIndex, memberIndex);
+        if (currentPerson == null) {
+            throw new CommandException(MESSAGE_MEMBER_DOES_NOT_EXIST);
+        }
+        if (taskList.get(taskIndex).checkAssignee(currentPerson)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_ASSIGNMENT, currentPerson.getName()));
+        }
+        model.getTeam().assignTask(taskList.get(taskIndex), currentPerson);
         return new CommandResult(String.format(MESSAGE_ASSIGN_TASK_SUCCESS,
-                taskList.get(taskIndex).getName(), memberList.get(memberIndex).getName()));
+                taskList.get(taskIndex).getName(), memberName));
     }
 
     @Override
@@ -63,6 +69,6 @@ public class AssignTaskCommand extends Command {
         return other == this // short circuit if same object
             || (other instanceof AssignTaskCommand // instanceof handles nulls
             && taskIndex == (((AssignTaskCommand) other).taskIndex)) // state check
-                && memberIndex == (((AssignTaskCommand) other).memberIndex); // state check
+                && memberName == (((AssignTaskCommand) other).memberName); // state check
     }
 }
