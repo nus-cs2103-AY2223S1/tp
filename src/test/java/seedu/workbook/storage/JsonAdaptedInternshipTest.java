@@ -60,7 +60,7 @@ public class JsonAdaptedInternshipTest {
     @Test
     public void toModelType_invalidRole_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, INVALID_ROLE, VALID_PHONE,
-                VALID_STAGE, VALID_EMAIL, VALID_TAGS);
+                VALID_EMAIL, VALID_STAGE, VALID_TAGS);
         String expectedMessage = Role.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -76,7 +76,7 @@ public class JsonAdaptedInternshipTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_ROLE, INVALID_PHONE,
-                VALID_STAGE, VALID_EMAIL, VALID_TAGS);
+                VALID_EMAIL, VALID_STAGE, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
