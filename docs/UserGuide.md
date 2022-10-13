@@ -6,8 +6,22 @@ Teacher’s Pet is a desktop application for managing contacts of students and c
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
+## Table of contents
+* [Quick Start](#quick-start)
+* [UI Overview](#ui-overview)
+* [Features](#features)
+    * [Viewing help: `help`](#viewing-help-help)
+    * [Adding a student: `add`](#adding-a-student-add)
+    * [Editing student details: `edit`](#editing-student-details-edit)
+    * [Viewing all students: `list`](#viewing-all-students-list)
+    * [Finding a student: `find`](#finding-a-student-find)
+    * [Deleting a student: `delete`](#deleting-a-student-delete)
+    * [Clearing all student: `clear`](#clearing-all-student-clear)
+    * [Exiting the program : `exit`](#exiting-the-program-exit)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,6 +61,8 @@ Basic Instructions:
     - `exit`: Exits the app.
 2. Refer to the Features below for details of each command.
 
+[Back to top](#table-of-contents)
+
 ---
 
 ## Features
@@ -65,7 +81,7 @@ Basic Instructions:
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
   be ignored. e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -73,9 +89,10 @@ Format: `help`
 
 ![Help](images/UiHelp.png)
 
+[Back to top](#table-of-contents)
+
 ---
 
-[](#adding-a-studentadd)
 ### Adding a student: `add`
 
 Adds a student to the Teacher’s Pet.
@@ -134,6 +151,8 @@ Example:
 Note: Amount paid, Amount owed, Additional notes fields are to be updated via `edit` command.
 ```
 
+[Back to top](#table-of-contents)
+
 ---
 
 ### Editing student details: `edit`
@@ -181,7 +200,10 @@ Example:
 
 ![UiEdit](images/UiEdit.png)
 
+[Back to top](#table-of-contents)
+
 ---
+
 ### Viewing all students: `list`
 
 Allows the user to view students and their information which includes:
@@ -199,8 +221,11 @@ Format: `list`
 
 ![UiUList](images/UiList.png)
 
+[Back to top](#table-of-contents)
+
 ---
-### Finding a student : `find`
+
+### Finding a student: `find`
 
 Finds students whose names contain any of the given keywords.
 
@@ -218,7 +243,10 @@ Example:
 
 ![UiFind](images/UiFind.png)
 
+[Back to top](#table-of-contents)
+
 ---
+
 ### Deleting a student: 'delete'
 
 Deletes the specified person from the student list.
@@ -237,7 +265,10 @@ Examples:
 ❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
 ```
 
+[Back to top](#table-of-contents)
+
 ---
+
 ### Clearing all student: 'clear'
 
 Clears all students and their details from the list.
@@ -248,16 +279,27 @@ Format: `clear`
 ❗ Caution: Clearing all students is irreversible!
 ```
 
+[Back to top](#table-of-contents)
+
 ---
-### Exiting the program : `exit`
+
+### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Back to top](#table-of-contents)
+
+---
+
 ### Saving the data
 
 Teacher’s Pet data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to top](#table-of-contents)
+
+---
 
 ### Editing the data file
 
@@ -267,6 +309,8 @@ Students' data is saved as a JSON file `[JAR file location]/data/addressbook.jso
 ❗ Caution: If your changes to the data file makes its format invalid, Teacher’s Pet will discard all data and start with an empty data file at the next run.
 ```
 
+[Back to top](#table-of-contents)
+
 ---
 
 ## FAQ
@@ -274,6 +318,8 @@ Students' data is saved as a JSON file `[JAR file location]/data/addressbook.jso
 Q: How do I transfer my data to another Computer?
 
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Teacher's Pet home folder.
+
+[Back to top](#table-of-contents)
 
 ---
 
@@ -290,3 +336,4 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Clear all students   | `clear`                                                                                                                                                                                            |
 | Exit the application | `exit`                                                                                                                                                                                             |
 
+[Back to top](#table-of-contents)
