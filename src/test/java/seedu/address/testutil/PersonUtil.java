@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
@@ -15,6 +16,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
@@ -37,7 +39,7 @@ public class PersonUtil {
      */
     public static String getPersonDetails(Person person) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_CATEGORY + person.getCategory() + " ");
+        sb.append(PREFIX_CATEGORY + person.getCategory().categoryName + " ");
         sb.append(PREFIX_UID + person.getUid().uid.toString() + " ");
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_GENDER + person.getGender().gender + " ");

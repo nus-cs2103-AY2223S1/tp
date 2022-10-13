@@ -25,11 +25,13 @@ import seedu.address.commons.core.index.ReverseIndexComparator;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -77,8 +79,8 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid               of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param targetUid            Uid of the person in the filtered person list to edit
+     * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(targetUid);
@@ -127,7 +129,7 @@ public class EditCommand extends Command {
             throws CommandException {
         assert personToEdit != null;
 
-        String updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
+        Category updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
         Uid uid = editPersonDescriptor.getUid().orElse(personToEdit.getUid());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
@@ -144,9 +146,15 @@ public class EditCommand extends Command {
                     toBeUpdateDateTime, toBeUpdateDateTimeIndexes);
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
                         updatedAddress, updatedTags, updatedDateTime);
+        } else if (updatedCategory.categoryName.equals("P")) {
+            List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes().orElse(null);
+            return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
+                    updatedAddress, updatedTags, updatedDateTime);
+        } else if (updatedCategory.categoryName.equals("N")) {
+            return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        } else {
+            throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
-
-        return new Person(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     private static List<DateTime> createEditedDateTimeList(List<DateTime> originalDateTime,
@@ -274,8 +282,8 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private Category category;
         private Uid uid;
-        private String category;
         private Name name;
         private Gender gender;
         private Phone phone;
@@ -309,15 +317,16 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
+        
             return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address,
                     tags, datesTimes, dateTimeIndexes);
         }
 
-        public void setCategory(String category) {
+        public void setCategory(Category category) {
             this.category = category;
         }
 
-        public Optional<String> getCategory() {
+        public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
         }
 
@@ -342,6 +351,7 @@ public class EditCommand extends Command {
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
+
         public void setGender(Gender gender) {
             this.gender = gender;
         }

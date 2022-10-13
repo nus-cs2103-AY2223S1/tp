@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
@@ -46,7 +49,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        if (person.getCategory().equals("P")) {
+        if (person.getCategory().categoryName.equals(PATIENT_SYMBOL)) {
             descriptor.setDatesTimes(((Patient) person).getDatesTimes());
             descriptor.setDateTimeIndexes(new ArrayList<Index>());
         }
@@ -56,7 +59,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Category} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withCategory(String category) {
-        descriptor.setCategory(category);
+        descriptor.setCategory(new Category(category));
         return this;
     }
 

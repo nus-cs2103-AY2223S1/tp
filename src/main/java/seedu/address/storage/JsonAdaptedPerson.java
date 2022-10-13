@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,11 +14,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -70,8 +75,8 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        category = source.getCategory();
-        boolean isPatient = category.equals("P");
+        category = source.getCategory().categoryName;
+        boolean isPatient = category.equals(PATIENT_SYMBOL);
 
         if (isPatient) {
             dateTimes.addAll(((Patient) source).getDatesTimes().stream()
@@ -159,15 +164,19 @@ class JsonAdaptedPerson {
 
         final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
 
-        if (category != null) {
-            if (!(category.equals("P") | category.equals("N"))) {
-                throw new IllegalValueException("Category can only be P or N. P for Patient, N for nurse");
-            }
+        if (category == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Category.class.getSimpleName()));
+        }
+        if (category.equals(NURSE_SYMBOL)) {
+            return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
+        } else if (category.equals(PATIENT_SYMBOL)) {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
                     modelAddress, modelTags, modelDatesTimes);
+        } else {
+            throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
         }
-        return new Person(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
-    }
 
+    }
 
 }

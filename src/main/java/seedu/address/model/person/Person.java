@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,7 +31,6 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-
     public Person(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(uid, name, phone, email, address, tags);
         this.uid = uid;
@@ -52,6 +52,7 @@ public class Person {
     public Name getName() {
         return name;
     }
+
     public Gender getGender() {
         return gender;
     }
@@ -67,7 +68,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-    public String getCategory() {
+    public Category getCategory() {
         return null;
     }
     public String getCategoryIndicator() {
@@ -129,7 +130,6 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-
         builder.append("Uid: ")
                 .append(getUid())
                 .append("; Name: ")
