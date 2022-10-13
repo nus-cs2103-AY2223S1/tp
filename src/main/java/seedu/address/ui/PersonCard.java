@@ -66,7 +66,9 @@ public class PersonCard extends UiPart<Region> {
         List<TagType> tagTypeList = tagTypeMap.keySet().stream()
                 .sorted(Comparator.comparing(tagType -> tagType.getTagTypeName())).collect(Collectors.toList());
         for (int i = 0; i < tagTypeList.size(); i++) {
-            tagPane.add(new Label(tagTypeList.get(i).getTagTypeName()), 0, i);
+            Label title = new Label(tagTypeList.get(i).getTagTypeName());
+            title.setStyle("-fx-background-color: #004999; -fx-text-fill: white;");
+            tagPane.add((title), 0, i);
             int idx = 1;
             for (Tag tag: tagTypeMap.get(tagTypeList.get(i))) {
                 tagPane.add(new Label(tag.tagName), idx, i);
@@ -74,6 +76,8 @@ public class PersonCard extends UiPart<Region> {
             }
         }
         tagPane.setHgap(5);
+        tagPane.setVgap(5);
+
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
     }

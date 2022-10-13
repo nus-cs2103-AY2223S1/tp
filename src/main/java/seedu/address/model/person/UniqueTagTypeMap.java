@@ -258,4 +258,7 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         throw new TagTypeNotFoundException();
     }
+    public boolean isEmpty() {
+        return internalMap.isEmpty();
+    }
 }
