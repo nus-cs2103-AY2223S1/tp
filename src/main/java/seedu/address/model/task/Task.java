@@ -77,6 +77,14 @@ public class Task {
     }
 
     /**
+     * Unmarks (labels as incomplete) the task
+     * and returns the task.
+     */
+    public Task unmark() {
+        return new Task(module, description, TaskStatus.INCOMPLETE);
+    }
+
+    /**
      * Creates and returns a {@code Task} with the details of {@code this}
      * edited with {@code editTaskDescriptor}.
      */
