@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -16,7 +15,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -42,18 +40,6 @@ public class MarkCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         //todo
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Task taskToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_AS_DONE_SUCCESS, taskToMark);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.markTask(taskToMark);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
