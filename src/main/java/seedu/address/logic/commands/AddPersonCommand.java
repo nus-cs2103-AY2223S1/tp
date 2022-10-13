@@ -43,7 +43,7 @@ public class AddPersonCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_TAG + "owesMoney "
             + PREFIX_LINK_INDEX + "1 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
