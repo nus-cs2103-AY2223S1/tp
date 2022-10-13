@@ -71,8 +71,9 @@ public class Buyer extends Person {
     }
 
     /**
+     * Adds all orders in a List.
      *
-     * @param orders
+     * @param orders The list of orders to be added.
      */
     public void addOrder(List<Order> orders) {
         if (orders != null) {

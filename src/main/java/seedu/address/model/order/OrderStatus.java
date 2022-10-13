@@ -2,6 +2,9 @@ package seedu.address.model.order;
 
 import java.util.Arrays;
 
+/**
+ * An enum that represents that current status of an order.
+ */
 public enum OrderStatus {
     PENDING("Pending"),
     NEGOTIATING("Negotiating"),
@@ -24,6 +27,12 @@ public enum OrderStatus {
         return status;
     }
 
+    /**
+     * Checks whether a string represents one of the constants of this enum.
+     *
+     * @param input The string to be checked.
+     * @return True iff the string does represent one constant.
+     */
     public static boolean isValidOrderStatus(String input) {
         return Arrays
                 .stream(OrderStatus.class.getEnumConstants())
