@@ -75,7 +75,7 @@ public class TaskList {
     }
 
     /**
-     * Returns true if the task list is empty/
+     * Returns true if the task list is empty.
      */
     public boolean isEmpty() {
         return this.internalTaskList.isEmpty();
