@@ -1,8 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Tags} has all the tags given; case-insensitive. Tags must be a full

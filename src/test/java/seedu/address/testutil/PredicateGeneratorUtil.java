@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import seedu.address.model.person.CombinedAppointmentPredicate;
-import seedu.address.model.person.CombinedPersonPredicate;
+import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
+import seedu.address.model.person.predicates.CombinedPersonPredicate;
 
 /**
  * A helper class consisting of methods to generate predicates more easily for testing without needing to create
  * classes to pass into the predicate constructor as arguments.
  */
-public class PredicateUtil {
+public class PredicateGeneratorUtil {
     /**
      * Provides a simple way to generate a {@code CombinedPersonPredicate} without needing to make a list from scratch.
      *

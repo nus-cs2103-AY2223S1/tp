@@ -1,7 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
+
+import seedu.address.model.person.Appointment;
 
 /**
  * Tests that an {@code Appointment}'s {@code dateTime} is within the range specified.

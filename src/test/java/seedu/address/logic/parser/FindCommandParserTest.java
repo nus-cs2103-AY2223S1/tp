@@ -9,8 +9,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.CombinedAppointmentPredicate;
-import seedu.address.model.person.CombinedPersonPredicate;
+import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
+import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.logic.commands.FindCommand;
 
 public class FindCommandParserTest {
