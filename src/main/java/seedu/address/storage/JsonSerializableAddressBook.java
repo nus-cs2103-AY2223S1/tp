@@ -14,7 +14,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Supplier;
 
 /**
@@ -56,7 +55,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         buyers.addAll(source.getBuyerList().stream().map(JsonAdaptedBuyer::new).collect(Collectors.toList()));
         suppliers.addAll(source.getSupplierList().stream().map(JsonAdaptedSupplier::new).collect(Collectors.toList()));
-        deliverers.addAll(source.getDelivererList().stream().map(JsonAdaptedDeliverer::new).collect(Collectors.toList()));
+        deliverers.addAll(source.getDelivererList().stream().map(JsonAdaptedDeliverer::new)
+                .collect(Collectors.toList()));
         orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 

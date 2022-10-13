@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 
-public class SelectionBox extends  UiPart<Region> {
+public class SelectionBox extends UiPart<Region> {
 
     private static final String FXML = "SelectionBox.fxml";
 

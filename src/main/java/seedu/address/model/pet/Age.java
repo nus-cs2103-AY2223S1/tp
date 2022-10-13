@@ -6,16 +6,30 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * Represents the age of a pet. Wraps a single integer.
+ * If the age does not match the date of birth, the age will change accordingly.
+ */
 public class Age {
 
     public static final String MESSAGE_USAGE =
             "Age should be a non-negative integer, such as 0, 5, and 10";
     private final int age;
 
+    /**
+     * Constructs the Age object.
+     * @param age The integer to be wrapped.
+     */
     public Age(int age) {
         this.age = age;
     }
 
+    /**
+     * Calculates the age based on date of birth.
+     *
+     * @param pet The pet that needs to be updated the age.
+     * @return Age in integer
+     */
     public int getPetAge(Pet pet) {
         requireNonNull(pet);
         LocalDate currentDate = LocalDate.now();
@@ -24,6 +38,10 @@ public class Age {
         return Period.between(dateOfBirth, currentDate).getYears();
     }
 
+    /**
+     * Gets the age.
+     * @return Age in integer
+     */
     public int getAge() {
         return age;
     }
@@ -49,5 +67,4 @@ public class Age {
     public String toString() {
         return Integer.toString(age);
     }
-
 }

@@ -1,12 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_ADDITIONAL_REQUESTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PET;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_PRICE_RANGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_CERTIFICATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
@@ -19,6 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 
+/**
+ * Adds a pet to the address book
+ */
 public class AddPetCommand {
     public static final String COMMAND_WORD = "add-pt";
     public static final String MESSAGE_USAGE = COMMAND_WORD

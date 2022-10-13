@@ -16,6 +16,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private Order order;
+
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -26,7 +28,7 @@ public class Person {
     private final Address address;
     private final Location location;
     private final Set<Tag> tags = new HashSet<>();
-    public Order order;
+
 
     /**
      * Every field must be present and not null, except Location, which is
@@ -46,7 +48,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Location location, Set<Tag> tags) {
+    public Person(PersonCategory personCategory,
+                  Name name,
+                  Phone phone,
+                  Email email,
+                  Address address,
+                  Location location,
+                  Set<Tag> tags) {
         requireAllNonNull(personCategory, name, phone, email, address, tags);
         this.personCategory = personCategory;
         this.name = name;
@@ -74,7 +82,9 @@ public class Person {
     }
 
 
-    public Location getLocation() { return location; }
+    public Location getLocation() {
+        return location;
+    }
 
     public PersonCategory getPersonCategory() {
         return personCategory;

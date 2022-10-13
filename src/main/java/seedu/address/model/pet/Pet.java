@@ -12,6 +12,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A class that represents a pet.
+ */
 public class Pet {
 
     private final Name name;
@@ -26,6 +29,21 @@ public class Pet {
     private final Set<Tag> tags = new HashSet<>();
     private final Set<PetCertificate> certificates = new HashSet<>();
 
+    /**
+     * Constructs a pet completely.
+     *
+     * @param name The name of this pet.
+     * @param owner The owner of this pet. Could be a Buyer or a Supplier.
+     * @param color The color of this pet. Could be red.
+     * @param colorPattern The color pattern. Could be stripped.
+     * @param dateOfBirth The date of birth.
+     * @param species Its species, for example, chihuahua.
+     * @param weight Its weight.
+     * @param height Its height (or length if it walks on fours).
+     * @param vaccinationStatus Its vaccination status (vaccinated or not).
+     * @param tags Its tags that describe its traits.
+     * @param certificates Its certificates, for example, noble blood.
+     */
     public Pet(Name name,
                Person owner,
                Color color,
@@ -51,6 +69,19 @@ public class Pet {
         this.certificates.addAll(certificates);
     }
 
+    /**
+     * Constructs a pet completely.
+     *
+     * @param name The name of this pet.
+     * @param color The color of this pet. Could be red.
+     * @param colorPattern The color pattern. Could be stripped.
+     * @param dateOfBirthString The date of birth in string.
+     * @param species Its species, for example, chihuahua.
+     * @param weight Its weight.
+     * @param height Its height (or length if it walks on fours).
+     * @param tags Its tags that describe its traits.
+     * @param certificates Its certificates, for example, noble blood.
+     */
     public Pet(Name name,
                Color color,
                ColorPattern colorPattern,
@@ -73,6 +104,17 @@ public class Pet {
                 certificates);
     }
 
+    /**
+     * Constructs a pet completely.
+     *
+     * @param name The name of this pet.
+     * @param color The color of this pet. Could be red.
+     * @param colorPattern The color pattern. Could be stripped.
+     * @param dateOfBirth The date of birth.
+     * @param species Its species, for example, chihuahua.
+     * @param weight Its weight.
+     * @param height Its height (or length if it walks on fours).
+     */
     public Pet(Name name,
                Color color,
                ColorPattern colorPattern,
@@ -93,6 +135,17 @@ public class Pet {
                 null);
     }
 
+    /**
+     * Constructs a pet completely.
+     *
+     * @param name The name of this pet.
+     * @param color The color of this pet. Could be red.
+     * @param colorPattern The color pattern. Could be stripped.
+     * @param dateOfBirthString The date of birth in string.
+     * @param species Its species, for example, chihuahua.
+     * @param weight Its weight.
+     * @param height Its height (or length if it walks on fours).
+     */
     public Pet(Name name,
                Color color,
                ColorPattern colorPattern,

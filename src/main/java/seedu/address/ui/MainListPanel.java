@@ -68,5 +68,4 @@ public class MainListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

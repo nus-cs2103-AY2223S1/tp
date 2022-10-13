@@ -1,23 +1,23 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.PersonCategory;
-import seedu.address.model.pet.Pet;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.order.Order;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.pet.Pet;
+
 /**
- * Adds a person to the address book.
+ * Adds a buyer to the address book.
+ * If this buyer comes with multiple orders (where one order can have a pet as well), these orders and pets
+ * will be also added to their respective unique lists.
  */
 public class AddBuyerCommand extends AddPersonCommand {
 

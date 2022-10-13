@@ -2,14 +2,17 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.UniqueOrderList;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.Supplier;
+import seedu.address.model.person.UniqueBuyerList;
+import seedu.address.model.person.UniqueDelivererList;
+import seedu.address.model.person.UniqueSupplierList;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.UniquePetList;
 

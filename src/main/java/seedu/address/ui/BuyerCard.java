@@ -48,7 +48,7 @@ public class BuyerCard extends UiPart<Region> {
      */
     public BuyerCard(Buyer buyer, int displayedIndex) {
         super(FXML);
-        this.buyer= buyer;
+        this.buyer = buyer;
         id.setText(displayedIndex + ". ");
         name.setText(buyer.getName().fullName);
         phone.setText(buyer.getPhone().value);

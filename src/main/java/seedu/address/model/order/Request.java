@@ -1,16 +1,16 @@
 package seedu.address.model.order;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
+
 import java.util.Objects;
 
 import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
 
 public class Request {
 
