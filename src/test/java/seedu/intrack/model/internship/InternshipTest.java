@@ -43,12 +43,12 @@ public class InternshipTest {
         assertFalse(ALICE.isSameInternship(editedAlice));
 
         // different position, all other attributes same -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_BOB).build();
+        editedAlice = new InternshipBuilder(ALICE).withPosition(VALID_POSITION_MSFT).build();
         assertFalse(ALICE.isSameInternship(editedAlice));
 
         // same name, same position, all other attributes different -> returns true
-        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withStatus(VALID_STATUS_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT)
+                .withStatus(VALID_STATUS_MSFT).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
