@@ -12,7 +12,7 @@ public abstract class Contact {
     private final String value;
 
     /**
-     * Initialize a contact instance
+     * Initialises a contact instance
      *
      * @param value Name or information of the contact
      * @param type  Type of contact (telegram, slack, etc.).
@@ -22,6 +22,25 @@ public abstract class Contact {
         this.contactType = type;
         this.value = value;
         this.link = link;
+    }
+
+    /**
+     * Constructs a contact instance
+     * @param type  Type of contact
+     * @param value Name or information for the contact
+     * @return the Contact
+     */
+    public static Contact of(ContactType type, String value) {
+        switch (type) {
+        case TELEGRAM:
+            return new Telegram(value);
+        case SLACK:
+            return new Slack(value);
+        case PHONE:
+            return new Phone(value);
+        default:
+            return new Email(value);
+        }
     }
 
     public ContactType getContactType() {
