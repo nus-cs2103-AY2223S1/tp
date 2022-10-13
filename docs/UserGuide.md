@@ -91,11 +91,11 @@ Examples:
 * `addi n/TikTok r/Data Engineer s/rejected l/1`
 * `addi n/Grab r/Full Stack Developer s/awaiting interview d/2020-12-20`
 
-### Listing all persons : `list -p`
+### Listing all persons : `listp`
 
 Shows a list of all persons in InterNUS.
 
-Format: `list -p`
+Format: `listp`
 
 ### Listing all internships : `list -i`
 
@@ -118,18 +118,30 @@ Examples:
 - `list -p` followed by `edit 2 n/Betsy Crower t/ p/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags, as well as deleting the phone number associated with the person, without deleting the internship associated with the person.
 - `list -i` followed by `edit 2 s/Rejected d/` Edits the status of the 2nd internship to `Rejected` and deletes the date of interview.
 
+### Editing a person or internship : `link` [coming soon]
 
-### Locating persons by name : `find -p`
+Links an existing person and internship together in InterNUS.
+
+Format: `link pi/PERSON_INDEX ii/INTERNSHIP_INDEX`
+- person at specified `PERSON_INDEX` and internship at specified `INTERNSHIP_INDEX` will be linked together such that 
+- person will be displayed as contact person of internship and internship will be displayed as internship of person
+
+Examples:
+- `link pi/2 ii/3` will link person at index **2** to internship at index **3**
+
+
+### Locating persons by name : `findp`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find -p KEYWORD`
+Format: `findp KEYWORD`
 - The search is case-insensitive. e.g **hans** will match **Hans**
+- The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
 - Only the person name is searched.
-- Partial words will be matched e.g. **Han** will match **Hans**
+- Only full words will be matched e.g. **Han** will not match **Hans**
 
 Examples:
-- `find -p John` returns **john** and **John Doe**
+- `findp John` returns **john** and **John Doe**
 
 
 ### Locating internships by name : `find -i`
