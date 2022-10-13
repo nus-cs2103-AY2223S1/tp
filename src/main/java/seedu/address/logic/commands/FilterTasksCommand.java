@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MODULE_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
@@ -42,7 +42,7 @@ public class FilterTasksCommand extends Command {
         requireNonNull(model);
 
         if (predicate.hasModuleToCheck() && !model.hasModule(predicate.getModuleToCheck())) {
-            throw new CommandException(MODULE_NOT_FOUND);
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
         model.updateFilteredTaskList(predicate);

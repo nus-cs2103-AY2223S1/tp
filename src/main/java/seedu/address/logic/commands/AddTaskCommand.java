@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
-import static seedu.address.commons.core.Messages.MODULE_NOT_FOUND;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
@@ -42,7 +42,7 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModule(toAdd.getModule())) {
-            throw new CommandException(MODULE_NOT_FOUND);
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         } else if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
