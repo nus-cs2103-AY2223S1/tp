@@ -80,8 +80,9 @@ public class ArgumentMultimap {
     public Optional<Prefix> getOnlyPrefixPresent() {
 
         ArrayList<String> empty = new ArrayList<>(Collections.singleton(""));
-        
+
         argMultimap.values().removeAll(Collections.singleton(empty));
+
         if (argMultimap.size() == 1) {
             return Optional.of(argMultimap.keySet().iterator().next());
         } else {
