@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tracko.logic.commands.item.exceptions.DuplicateItemException;
-import tracko.logic.commands.item.exceptions.ItemNotFoundException;
+import tracko.model.items.exceptions.DuplicateItemException;
+import tracko.model.items.exceptions.ItemNotFoundException;
 
 /**
  * Represents the list of items in the inventory.

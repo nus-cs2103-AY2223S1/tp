@@ -52,6 +52,7 @@ public class Item {
     }
 
     /**
+     * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
@@ -59,9 +60,8 @@ public class Item {
             return true;
         }
 
-        return this.equals(otherItem);
-
-        //ToDo implement a weaker notion of equality
+        return otherItem != null
+                && otherItem.getItemName().equals(getItemName());
     }
 
     /**
