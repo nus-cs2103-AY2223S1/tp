@@ -2,8 +2,6 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.Deadline;
-
 /**
  * Represents a Project's id.
  */

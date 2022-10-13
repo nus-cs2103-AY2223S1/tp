@@ -6,8 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import seedu.address.model.project.Repository;
-
 /**
  * Represents a deadline.
  */

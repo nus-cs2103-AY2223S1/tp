@@ -1,7 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_REPOSITORY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.REPOSITORY_DESC_REPOSITORY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOSITORY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -13,7 +22,6 @@ import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
-import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -28,8 +36,8 @@ class ProjectCommandParserTest {
                 new Deadline(VALID_DEADLINE), Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(),
                 new ProjectId(UniqueProjectList.generateId()));
         //compulsory and optional fields
-        assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB + REPOSITORY_DESC_REPOSITORY +
-                DEADLINE_DESC_DEADLINE, new AddProjectCommand(project));
+        assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB + REPOSITORY_DESC_REPOSITORY
+                + DEADLINE_DESC_DEADLINE, new AddProjectCommand(project));
     }
 
     @Test
