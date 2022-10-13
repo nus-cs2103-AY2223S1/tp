@@ -183,31 +183,50 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         primaryStage.hide();
     }
+
+    /**
+     * Displays all contacts in the app.
+     */
     public void showAll() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
     }
 
+    /**
+     * Displays all buyers in the app.
+     */
     public void showBuyer() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
     }
 
+    /**
+     * Displays all suppliers in the app.
+     */
     public void showSupplier() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
     }
 
+    /**
+     * Displays all deliverers in the app.
+     */
     public void showDeliverer() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(delivererListPanel.getRoot());
     }
 
+    /**
+     * Displays all pets in the app.
+     */
     public void showPet() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(petListPanel.getRoot());
     }
 
+    /**
+     * Displays all orders in the app.
+     */
     public void showOrder() {
         personListPanelPlaceholder.getChildren().clear();
         personListPanelPlaceholder.getChildren().add(orderListPanel.getRoot());

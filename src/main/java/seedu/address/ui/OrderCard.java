@@ -1,17 +1,14 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
 
 /**
- * An UI component that displays information of a {@code Buyer}.
+ * An UI component that displays information of a {@code Order}.
  */
 public class OrderCard extends UiPart<Region> {
 

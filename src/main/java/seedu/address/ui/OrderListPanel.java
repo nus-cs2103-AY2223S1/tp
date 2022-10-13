@@ -9,11 +9,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Buyer;
 
 
 /**
- * Panel containing the list of Buyers.
+ * Panel containing the list of Orders.
  */
 public class OrderListPanel extends UiPart<Region> {
     private static final String FXML = "OrderListPanel.fxml";
@@ -25,7 +24,7 @@ public class OrderListPanel extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code BuyerListPanel} with the given {@code ObservableList}.
+     * Creates a {@code OrderListPanel} with the given {@code ObservableList}.
      */
     public OrderListPanel(ObservableList<Order> orderList) {
         super(FXML);
@@ -34,7 +33,7 @@ public class OrderListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code BuyerCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
      */
     class OrderListViewCell extends ListCell<Order> {
         @Override

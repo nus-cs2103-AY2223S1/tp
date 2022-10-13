@@ -4,7 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 
-public class SelectionBox extends  UiPart<Region> {
+/**
+ * An UI component that allows the user to select
+ * the relevant list to be displayed.
+ */
+public class SelectionBox extends UiPart<Region> {
 
     private static final String FXML = "SelectionBox.fxml";
 
@@ -23,6 +27,9 @@ public class SelectionBox extends  UiPart<Region> {
     @FXML
     private Button order;
 
+    /**
+     * Creates a {@code SelectionBox} with the given {@code MainWindow}.
+     */
     public SelectionBox(MainWindow mainWindow) {
         super(FXML);
         this.mainWindow = mainWindow;

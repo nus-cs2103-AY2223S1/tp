@@ -14,7 +14,9 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
-
+/**
+ * Panel containing the list of all contacts.
+ */
 public class MainListPanel extends UiPart<Region> {
     private static final String FXML = "MainListPanel.fxml";
 
