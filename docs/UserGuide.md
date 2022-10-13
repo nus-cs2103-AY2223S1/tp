@@ -119,7 +119,7 @@ Examples:
 - `list -p` followed by `edit 2 n/Betsy Crower t/ p/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags, as well as deleting the phone number associated with the person, without deleting the internship associated with the person.
 - `list -i` followed by `edit 2 s/Rejected d/` Edits the status of the 2nd internship to `Rejected` and deletes the date of interview.
 
-### Editing a person or internship : `link` [coming soon]
+### Linking a person and an internship : `link` [coming soon]
 
 Links an existing person and internship together in InterNUS.
 
