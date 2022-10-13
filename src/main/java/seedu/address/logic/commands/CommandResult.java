@@ -50,6 +50,7 @@ public class CommandResult {
     public String toString() {
         return feedbackToUser;
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

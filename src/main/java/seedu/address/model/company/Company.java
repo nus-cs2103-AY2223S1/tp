@@ -175,9 +175,9 @@ public class Company implements ReadOnlyCompany {
         }
 
         TransactionLog transactions = getTransactions();
+
         builder.append("; Total transactions: $");
         if (!isNull(transactions) && !transactions.isEmpty()) {
-            System.out.println(transactions.calculateNetTransacted());
             builder.append(transactions.calculateNetTransacted());
         } else {
             builder.append("0");

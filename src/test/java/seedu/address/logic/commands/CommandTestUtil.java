@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -39,10 +42,16 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_GOODS_BUY_ORANGE = "orange";
+    public static final String VALID_GOODS = " " + PREFIX_GOODS + VALID_GOODS_BUY_ORANGE;
+
     public static final String VALID_GOODS_SELL_PAPAYA = "papaya";
     public static final String VALID_PRICE_BUY_ORANGE = "1";
+    public static final String VALID_PRICE = " " + PREFIX_PRICE + VALID_PRICE_BUY_ORANGE;
+
     public static final String VALID_PRICE_SELL_PAPAYA = "2.5";
     public static final String VALID_QUANTITY_BUY_ORANGE = "10101";
+    public static final String VALID_QUANTITY = " " + PREFIX_QUANTITY + VALID_QUANTITY_BUY_ORANGE;
+
     public static final String VALID_QUANTITY_SELL_PAPAYA = "11";
 
 
@@ -59,6 +68,12 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_QUANTITY = " " + PREFIX_QUANTITY + "J100"; // Characters not allowed in quantity
+
+    public static final String INVALID_PRICE = " " + PREFIX_PRICE + "i12.2"; // Characters not allowed in Price
+
+    public static final String INVALID_GOODS_EMPTY = " " + PREFIX_GOODS; // empty string not allowed for goods.
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
