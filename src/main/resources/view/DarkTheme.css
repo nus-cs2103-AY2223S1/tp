@@ -368,3 +368,50 @@ CommandBox
     -fx-text-fill: #2a2a2a;
     -fx-border-color: transparent;
 }
+
+/*ProfilePanel*/
+
+.profile-side-panel {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, #1d1d1d, 20, 0.2, 0, 10);
+    -fx-padding: 16px;
+    -fx-min-width:300px;
+    -fx-max-width: 300px !important;
+    -fx-min-height: 200px !important;
+}
+
+.course-name {
+    -fx-font-weight: bold;
+    -fx-text-fill: #94D8DA;
+    -fx-font-size: 18px !important;
+}
+
+.inspirational-quote {
+    -fx-padding: 12px 0px;
+    -fx-font-style: italic;
+    -fx-text-fill: #FFFFFF;
+    -fx-min-width: 250px;
+    -fx-max-width: 250px;
+    -fx-pref-width: 100px;
+    -fx-font-size: 14px !important;
+}
+
+.credits-count {
+    -fx-text-fill: #FFFFFF !important;
+    -fx-font-size: 13px !important;
+    -fx-padding: 12px 0px 4px 0px;
+}
+
+.progress-label {
+    -fx-font-size: 13px !important;
+    -fx-text-fill: #FFFFFF;
+}
+
+.progress-value {
+    -fx-font-size: 13px !important;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}

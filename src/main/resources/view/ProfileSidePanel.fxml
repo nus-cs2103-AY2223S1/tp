@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="profile-side-panel" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="4.0" VBox.vgrow="ALWAYS">
             <Label fx:id="courseNameLabel" styleClass="course-name" text="My Course" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
         </HBox>
-        <HBox alignment="CENTER" style="-fx-border-color: #4d4d4d; -fx-border-width: 0 0 2 0;" VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER" style="-fx-border-color: #FFFFFF; -fx-border-width: 0 0 2 0;" VBox.vgrow="ALWAYS">
             <Label fx:id="inspirationalQuote" alignment="CENTER" styleClass="inspirational-quote" text="&quot;Strive for progress, not perfection.&quot;" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
         </HBox>
         <VBox styleClass="progress-content">
@@ -24,10 +24,7 @@
             </font></Label>
         </VBox>
         <VBox>
-            <Label styleClass="progress-title" text="My Progress" textFill="WHITE" />
             <GridPane hgap="80.0" vgap="4.0">
-                <Label styleClass="progress-label" text="Semesters Left" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label fx:id="semesterLabel" styleClass="progress-value" text="-" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Label styleClass="progress-label" text="Current CAP" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <Label fx:id="currentCapLabel" styleClass="progress-value" text="-/5.0" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <columnConstraints>
