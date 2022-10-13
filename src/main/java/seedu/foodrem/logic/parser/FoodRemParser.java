@@ -20,6 +20,7 @@ import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
+import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -29,6 +30,7 @@ import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.AddTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.DeleteTagCommandParser;
+import seedu.foodrem.logic.parser.tagcommandparser.RenameTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.TagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.UntagCommandParser;
 
@@ -80,6 +82,9 @@ public class FoodRemParser {
 
         case DeleteTagCommand.COMMAND_WORD:
             return new DeleteTagCommandParser().parse(arguments);
+
+        case RenameTagCommand.COMMAND_WORD:
+            return new RenameTagCommandParser().parse(arguments);
 
         case ResetCommand.COMMAND_WORD:
             return new ResetCommand();

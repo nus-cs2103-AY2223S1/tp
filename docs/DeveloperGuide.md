@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedFoodRem`. It extends `FoodRem` with an undo/redo history, stored internally as an `foodRemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-*`VersionedFoodRem#commit()` — Saves the current address book state in its history.
+* `VersionedFoodRem#commit()` — Saves the current address book state in its history.
 * `VersionedFoodRem#undo()` — Restores the previous address book state from its history.
 * `VersionedFoodRem#redo()` — Restores a previously undone address book state from its history.
 
@@ -481,82 +481,9 @@ _{More to be added}_
 1. A user must be able to view at least 5 items with minimal scrolling if there are no tags added to each item.
 1. A user should be able to use the app after reading the help instructions.
 
-### Glossary
+## Glossary
 
-### A
-
-#### Argument
-
-> A value that is passed into a command.
-
-Example:
-`tag create food`, where food is the argument to the command `tag create`
-
-### B
-
-#### Bought Date
-
-> Date where an item was purchased. Usually in the format dd/mm/yyyy.
-
-_TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
-
-### C
-
-#### Command
-
-> A feature or function that FoodRem can perform.
-
-### E
-
-#### Expiry Date
-
-> Date where an item spoils, expires, or becomes unusable. Usually in the format dd/mm/yyyy.
->
-> _TODO: CHANGE FORMAT OF DATETIME AFTER CONFIRMING IMPLEMENTATION DETAILS._
-
-### F
-
-#### Flag
-
-> A marker or delimiter signifying a potentially optional argument to a command.
-
-MISSING EXAMPLE
-
-### I
-
-#### Input
-
-> The text that a user would enter into FoodRem.
-
-#### Item
-
-> Represents a thing that is stored and kept track by FoodRem.
-
-Example: Creating a `potato` item
-`[item] new n/potato`
-
-### O
-
-#### Output
-
-> The result of calling a Command.
-> Results are displayed in the GUI, here: (ADD SCREENSHOT)
-
-### Q
-
-#### Quantity
-
-> The frequency of item(s) kept track by FoodRem.
-
-### T
-
-#### Tag
-
-> The main method of categorizing items in FoodRem. A tag may be attached to zero or more items.
-
-Example:
-Tagging an item in the first index as the tag `ingredient`:
-`tag 1 ingredient`
+{% include_relative _Glossary.md %}
 
 ---
 
