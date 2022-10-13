@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 
@@ -14,15 +13,28 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddStaffCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteStaffCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
-import seedu.address.testutil.*;
+import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.ProjectBuilder;
+import seedu.address.testutil.ProjectUtil;
+import seedu.address.testutil.StaffBuilder;
+import seedu.address.testutil.StaffUtil;
 
 public class AddressBookParserTest {
 
@@ -61,7 +73,7 @@ public class AddressBookParserTest {
         StaffName staffName = staff.getStaffName();
         ProjectName projectName = new ProjectName("CS2103T TP");
         DeleteStaffCommand command = (DeleteStaffCommand) parser.parseCommand(
-                DeleteStaffCommand.COMMAND_WORD + " pn/" + projectName.fullName +" sn/" + staffName.staffName
+                DeleteStaffCommand.COMMAND_WORD + " pn/" + projectName.fullName + " sn/" + staffName.staffName
         );
         assertEquals(new DeleteStaffCommand(staffName, projectName), command);
     }

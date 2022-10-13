@@ -2,7 +2,6 @@ package seedu.address.model.staff;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_ANDY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_JAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFDEPARTMENT_ANDY;
@@ -14,8 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_ANDY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFTITLE_JAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStaff.STAFF_JAY;
 import static seedu.address.testutil.TypicalStaff.STAFF_1;
+import static seedu.address.testutil.TypicalStaff.STAFF_JAY;
 
 import org.junit.jupiter.api.Test;
 
@@ -39,32 +38,32 @@ public class StaffTest {
         assertFalse(STAFF_1.isSameStaff(null));
 
         // same name, all other attributes different -> returns true
-        Staff editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffContact(VALID_STAFFCONTACT_ANDY)
+        Staff editedStaff1 = new StaffBuilder(STAFF_1).withStaffContact(VALID_STAFFCONTACT_ANDY)
                 .withStaffTitle(VALID_STAFFTITLE_ANDY)
                 .withStaffDepartment(VALID_STAFFDEPARTMENT_ANDY)
                 .withStaffInsurance(VALID_STAFFINSURANCE_ANDY)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(STAFF_1.isSameStaff(editedSTAFF_1));
+        assertTrue(STAFF_1.isSameStaff(editedStaff1));
 
         // different name, all other attributes same -> returns false
-        editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffName(VALID_STAFFNAME_JAY).build();
-        assertFalse(STAFF_1.isSameStaff(editedSTAFF_1));
+        editedStaff1 = new StaffBuilder(STAFF_1).withStaffName(VALID_STAFFNAME_JAY).build();
+        assertFalse(STAFF_1.isSameStaff(editedStaff1));
 
         // name differs in case, all other attributes same -> returns false
-        Staff editedJAY = new StaffBuilder(STAFF_JAY).withStaffName(VALID_STAFFNAME_JAY.toLowerCase()).build();
-        assertFalse(STAFF_JAY.isSameStaff(editedJAY));
+        Staff editedJay = new StaffBuilder(STAFF_JAY).withStaffName(VALID_STAFFNAME_JAY.toLowerCase()).build();
+        assertFalse(STAFF_JAY.isSameStaff(editedJay));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_STAFFNAME_JAY + " ";
-        editedJAY = new StaffBuilder(STAFF_JAY).withStaffName(nameWithTrailingSpaces).build();
-        assertFalse(STAFF_JAY.isSameStaff(editedJAY));
+        editedJay = new StaffBuilder(STAFF_JAY).withStaffName(nameWithTrailingSpaces).build();
+        assertFalse(STAFF_JAY.isSameStaff(editedJay));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Staff STAFF_1Copy = new StaffBuilder(STAFF_1).build();
-        assertTrue(STAFF_1.equals(STAFF_1Copy));
+        Staff staff1Copy = new StaffBuilder(STAFF_1).build();
+        assertTrue(STAFF_1.equals(staff1Copy));
 
         // same object -> returns true
         assertTrue(STAFF_1.equals(STAFF_1));
@@ -79,27 +78,27 @@ public class StaffTest {
         assertFalse(STAFF_1.equals(TypicalStaff.STAFF_JAY));
 
         // different name -> returns false
-        Staff editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffName(VALID_STAFFNAME_JAY).build();
-        assertFalse(STAFF_1.equals(editedSTAFF_1));
+        Staff editedStaff1 = new StaffBuilder(STAFF_1).withStaffName(VALID_STAFFNAME_JAY).build();
+        assertFalse(STAFF_1.equals(editedStaff1));
 
         // different contact -> returns false
-        editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffContact(VALID_STAFFCONTACT_JAY).build();
-        assertFalse(STAFF_1.equals(editedSTAFF_1));
+        editedStaff1 = new StaffBuilder(STAFF_1).withStaffContact(VALID_STAFFCONTACT_JAY).build();
+        assertFalse(STAFF_1.equals(editedStaff1));
 
         // different title -> returns false
-        editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffTitle(VALID_STAFFTITLE_JAY).build();
-        assertFalse(STAFF_1.equals(editedSTAFF_1));
+        editedStaff1 = new StaffBuilder(STAFF_1).withStaffTitle(VALID_STAFFTITLE_JAY).build();
+        assertFalse(STAFF_1.equals(editedStaff1));
 
         //different department -> returns false;
-        editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffDepartment(VALID_STAFFDEPARTMENT_JAY).build();
-        assertFalse(STAFF_1.equals(editedSTAFF_1));
+        editedStaff1 = new StaffBuilder(STAFF_1).withStaffDepartment(VALID_STAFFDEPARTMENT_JAY).build();
+        assertFalse(STAFF_1.equals(editedStaff1));
 
         //different insurance -> returns false;
-        editedSTAFF_1 = new StaffBuilder(STAFF_1).withStaffInsurance(VALID_STAFFINSURANCE_JAY).build();
-        assertFalse(STAFF_1.equals(editedSTAFF_1));
+        editedStaff1 = new StaffBuilder(STAFF_1).withStaffInsurance(VALID_STAFFINSURANCE_JAY).build();
+        assertFalse(STAFF_1.equals(editedStaff1));
 
         // different tags -> returns false
-        editedSTAFF_1 = new StaffBuilder(STAFF_1).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(STAFF_1.equals(editedSTAFF_1));
+        editedStaff1 = new StaffBuilder(STAFF_1).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(STAFF_1.equals(editedStaff1));
     }
 }

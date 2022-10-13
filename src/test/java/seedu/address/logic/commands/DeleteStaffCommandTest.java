@@ -1,26 +1,31 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFCONTACT_JAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStaff.STAFF_ANDY;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Name;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.StaffName;
 import seedu.address.testutil.StaffBuilder;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
-import static seedu.address.testutil.TypicalProjects.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalStaff.STAFF_ANDY;
 
 public class DeleteStaffCommandTest {
 
@@ -34,13 +39,12 @@ public class DeleteStaffCommandTest {
         StaffName staffName = staff.getStaffName();
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(staffName, project.getProjectName());
 
-        String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS
-                , staff.getStaffName().staffName);
+        String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS,
+                staff.getStaffName().staffName);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased()).getStaffList().add(staff);
 
-        //System.out.println(expectedModel.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased()).getStaffList().asUnmodifiableObservableList().get(0));
         assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
     }
 

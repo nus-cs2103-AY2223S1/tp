@@ -41,9 +41,9 @@ public class UniqueStaffListTest {
     @Test
     public void contains_staffWithSameIdentityFieldsInList_returnsTrue() {
         uniqueStaffList.add(STAFF_HOON);
-        Staff editedSTAFF_HOON = new StaffBuilder(STAFF_HOON).withTags(VALID_TAG_HUSBAND)
+        Staff editedStaffHoon = new StaffBuilder(STAFF_HOON).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueStaffList.contains(editedSTAFF_HOON));
+        assertTrue(uniqueStaffList.contains(editedStaffHoon));
     }
 
     @Test
@@ -84,11 +84,11 @@ public class UniqueStaffListTest {
     @Test
     public void setStaff_editedStaffHasSameIdentity_success() {
         uniqueStaffList.add(STAFF_HOON);
-        Staff editedSTAFF_HOON = new StaffBuilder(STAFF_HOON).withTags(VALID_TAG_HUSBAND)
+        Staff editedStaffHoon = new StaffBuilder(STAFF_HOON).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueStaffList.setStaff(STAFF_HOON, editedSTAFF_HOON);
+        uniqueStaffList.setStaff(STAFF_HOON, editedStaffHoon);
         UniqueStaffList expectedUniqueStaffList = new UniqueStaffList();
-        expectedUniqueStaffList.add(editedSTAFF_HOON);
+        expectedUniqueStaffList.add(editedStaffHoon);
         assertEquals(expectedUniqueStaffList, uniqueStaffList);
     }
 
