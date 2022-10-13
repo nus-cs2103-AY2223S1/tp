@@ -61,12 +61,27 @@ public class Team {
         return teamMembers.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the team.
+     */
+    public boolean hasMember(Person person) {
+        return teamMembers.contains(person);
+    }
+
+    /**
+     * Adds a person to the team.
+     * The person must not already exist in the team.
+     */
     public void addMember(Person person) {
         teamMembers.add(person);
     }
 
-    public boolean hasMember(Person person) {
-        return teamMembers.contains(person);
+    /**
+     * Removes {@code Person} from this {@code Team}.
+     * {@code person} must exist in the address book.
+     */
+    public void removeMember(Person person) {
+        teamMembers.remove(person);
     }
 
     public ObservableList<Task> getTaskList() {
@@ -97,6 +112,18 @@ public class Team {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if both teams have the same name.
+     */
+    public boolean isSameTeam(Team otherTeam) {
+        if (otherTeam == this) {
+            return true;
+        } else {
+            return otherTeam != null
+                    && otherTeam.getTeamName().equals(this.getTeamName());
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -108,9 +135,7 @@ public class Team {
         }
 
         Team otherTeam = (Team) other;
-        return otherTeam.getTeamName().equals(getTeamName())
-                && otherTeam.getTeamMembers().equals(getTeamMembers())
-                && otherTeam.getTaskList().equals(getTaskList());
+        return otherTeam.getTeamName().equals(getTeamName());
     }
 
     @Override

@@ -2,13 +2,15 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.UniqueTeamList;
 
 /**
  * Wraps all data at the address-book level
@@ -17,7 +19,8 @@ import seedu.address.model.team.Team;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private Team team;
+    private final UniqueTeamList teams;
+    private ObjectProperty<Team> currentTeam = new SimpleObjectProperty<>();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,7 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        team = new Team("default", new ArrayList<>());
+        teams = new UniqueTeamList();
     }
 
     public AddressBook() {
@@ -58,6 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setPersons(newData.getPersonList());
+        setTeams(newData.getTeamList());
         setTeam(newData.getTeam());
     }
 
@@ -87,7 +91,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -102,11 +105,30 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// team-level operations
 
     public Team getTeam() {
-        return team;
+        return currentTeam.getValue();
+    }
+    public ObjectProperty<Team> getTeamAsProperty() {
+        return currentTeam;
     }
 
     public void setTeam(Team team) {
-        this.team = team;
+        currentTeam.set(team);
+    }
+
+    public void addTeam(Team teamToAdd) {
+        teams.add(teamToAdd);
+    }
+
+    public void deleteTeam(Team teamToDelete) {
+        teams.remove(teamToDelete);
+    }
+
+    /**
+     * Replaces the contents of the team list with {@code teams}.
+     * {@code teams} must not contain duplicate persons.
+     */
+    public void setTeams(List<Team> teams) {
+        this.teams.setTeams(teams);
     }
 
     //// util methods
@@ -122,6 +144,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+
+    @Override
+    public ObservableList<Team> getTeamList() {
+        return teams.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {

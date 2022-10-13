@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.DuplicateTaskException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
 
 /**
@@ -32,13 +33,13 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a task to the list.
+     * The task must not already exist in the list.
      */
     public void add(Task toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
     }
@@ -107,7 +108,8 @@ public class TaskList implements Iterable<Task> {
     @Override
     public String toString() {
         if (internalList.isEmpty()) {
-            return NO_TASKS;
+            //Set it to an empty string for now so that the team commands will only show the name of the team.
+            return ""; //return NO_TASKS;
         }
         StringBuilder sb = new StringBuilder();
         int i = 1;
