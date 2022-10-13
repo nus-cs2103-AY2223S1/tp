@@ -167,6 +167,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code appointmentData} into a {@code PastAppointment}
+     * and sets it to the {@code Persn} that we are building.
+     */
     public PersonBuilder withPastAppointment(String ... appointmentData) {
         this.pastAppointments.add(SampleDataUtil.getPastAppointment(appointmentData));
         return this;
