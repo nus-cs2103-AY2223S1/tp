@@ -1,9 +1,8 @@
 package seedu.phu.commons.core.keyword;
 
 import static java.util.Objects.requireNonNull;
-
-import seedu.phu.model.internship.ContainsKeywordsPredicate;
 import seedu.phu.model.internship.Date;
+
 
 /**
  * Represent a String of keyword.
@@ -11,10 +10,11 @@ import seedu.phu.model.internship.Date;
 public class Keyword {
     private String keyword;
 
+
     /**
-     * Constructs a new Keyword Object representing the given keyword.
+     * Constructs an instance representing the given keyword.
      *
-     * @param keyword a String.
+     * @param keyword a string.
      */
     public Keyword(String keyword) {
         requireNonNull(keyword);
@@ -25,14 +25,20 @@ public class Keyword {
         return string.toLowerCase().contains(keyword.toLowerCase());
     }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ContainsKeywordsPredicate // instanceof handles nulls
-                && keyword.equals(((Keyword) other).keyword)); // state check
-    }
-
     public boolean isDate() {
         return Date.isValidDate(keyword);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Keyword // instanceof handles nulls
+                && keyword.equals(((Keyword) other).keyword)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return keyword.hashCode();
+    }
+
 }
