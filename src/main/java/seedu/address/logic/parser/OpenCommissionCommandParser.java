@@ -7,14 +7,14 @@ import seedu.address.logic.commands.OpenCommissionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new OpenCommissionCommand object
+ * Parses input arguments and creates a new OpenCommissionCommand object.
  */
 public class OpenCommissionCommandParser implements Parser<OpenCommissionCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the OpenCommissionCommand
      * and returns a OpenCommissionCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public OpenCommissionCommand parse(String args) throws ParseException {
         try {

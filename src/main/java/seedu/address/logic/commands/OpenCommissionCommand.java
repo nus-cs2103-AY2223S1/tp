@@ -17,8 +17,7 @@ public class OpenCommissionCommand extends Command {
     public static final String COMMAND_WORD = "opencom";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Opens a commission and shows commission details"
-            + "and shows iterations of the commission.\n"
+            + ": Opens a commission and shows commission's details and iterations\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
