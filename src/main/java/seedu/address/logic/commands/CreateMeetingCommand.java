@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -109,6 +110,9 @@ public class CreateMeetingCommand extends Command {
         } catch (PersonNotFoundException e) {
             return new CommandResult("Oops! The person you are meeting with doesn't exist"
                 + "in the address book. Do check if you have entered their name correctly.");
+        } catch (DuplicatePersonException e) {
+            return new CommandResult("It looks like you are adding the same "
+                + "person to a meeting twice!");
         }
     }
 
