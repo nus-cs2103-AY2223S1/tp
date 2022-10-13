@@ -18,22 +18,13 @@ import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
-import seedu.address.logic.commands.issue.AddIssueCommand;
-import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.issue.Description;
-import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.IssueId;
-import seedu.address.model.issue.Priority;
-import seedu.address.model.issue.Status;
-import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 
 /**
@@ -82,7 +73,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PROJECT_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddClientCommand.MESSAGE_ADD_CLIENT_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

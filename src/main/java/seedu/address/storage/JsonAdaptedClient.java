@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -58,9 +57,9 @@ class JsonAdaptedClient {
         phone = source.getClientPhone().toString();
         email = source.getClientEmail().toString();
         clientId = source.getClientId().toString();
-//        projects.addAll(source.getProjects().stream()
-//                .map(JsonAdaptedProject::new)
-//                .collect(Collectors.toList()));
+        //        projects.addAll(source.getProjects().stream()
+        //                .map(JsonAdaptedProject::new)
+        //                .collect(Collectors.toList()));
     }
 
     /**
@@ -70,9 +69,9 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         final List<Project> clientProjects = new ArrayList<>();
-//        for (JsonAdaptedProject project : projects) {
-//            clientProjects.add(project.toModelType());
-//        }
+        //        for (JsonAdaptedProject project : projects) {
+        //            clientProjects.add(project.toModelType());
+        //        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
