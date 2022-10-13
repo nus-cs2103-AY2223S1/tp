@@ -61,10 +61,6 @@ public class Client {
         return this.clientId;
     }
 
-    public void setClientId(ClientId id) {
-        this.clientId = id;
-    }
-
     /**
      * Checks if this Client is empty.
      * @return true if the Client is empty.

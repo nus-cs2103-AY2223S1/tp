@@ -76,4 +76,11 @@ public class Deadline {
     public String toString() {
         return deadline.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Deadline // instanceof handles nulls
+                && deadline.equals(((Deadline) other).deadline)); // state check
+    }
 }

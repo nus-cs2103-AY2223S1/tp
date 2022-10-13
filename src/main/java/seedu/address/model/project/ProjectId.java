@@ -71,10 +71,17 @@ public class ProjectId {
     public String uiRepresentation() {
         return "(#" + this + ")";
     }
+
     @Override
     public String toString() {
         return String.valueOf(this.projectId);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ProjectId // instanceof handles nulls
+                && projectId == (((ProjectId) other).projectId)); // state check
+    }
 }
 
