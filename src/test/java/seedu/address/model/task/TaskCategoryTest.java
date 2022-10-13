@@ -15,7 +15,6 @@ public class TaskCategoryTest {
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskCategory(1,null));
     }
-
     @Test
     public void constructor_levelTooHigh() {
         assertThrows(LevelOutOfRangeException.class, () -> new TaskCategory(10,null));
