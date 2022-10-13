@@ -32,7 +32,7 @@ public class PersonListPanel extends MainPanel {
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
 
-        EventHandler keyEventHandler = new EventHandler<KeyEvent>() {
+        EventHandler<KeyEvent> keyEventHandler = new EventHandler<>() {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode().equals(KeyCode.ENTER)) {
@@ -42,7 +42,7 @@ public class PersonListPanel extends MainPanel {
         };
         setKeyEventHandler(keyEventHandler);
 
-        EventHandler clickEventHandler = new EventHandler<MouseEvent>() {
+        EventHandler<MouseEvent> clickEventHandler = new EventHandler<>() {
             @Override
             public void handle(MouseEvent event) {
                 // Double Click
