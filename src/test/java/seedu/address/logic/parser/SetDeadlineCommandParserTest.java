@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class SetDeadlineCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSetDeadlineCommand() {
-        assertParseSuccess(parser, " 1 2022-12-25", new SetDeadlineCommand(0, LocalDate.parse("2022-12-25")));
+        assertParseSuccess(parser, " 1 2022-12-25 23:59", new SetDeadlineCommand(0, LocalDateTime.parse("2022-12-25 23:59")));
     }
 
     @Test
