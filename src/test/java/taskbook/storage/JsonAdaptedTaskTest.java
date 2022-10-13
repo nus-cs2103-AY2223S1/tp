@@ -32,11 +32,8 @@ public class JsonAdaptedTaskTest {
         TaskBook taskBook = new TaskBook();
         taskBook.addPerson(TypicalTaskBook.BENSON);
         JsonAdaptedTask task = new JsonAdaptedTask(TypicalTaskBook.SLEEPING);
-        Assertions.assertEquals(TypicalTaskBook.SLEEPING, task.toModelType(taskBook));
+        Assertions.assertEquals(TypicalTaskBook.SLEEPING, task.toModelType());
     }
-
-    // TODO: Change Task implementation to contain task hashcode instead of Person
-    // so that Task::toModelType is a functional interface (no side effects)
 
     /*
     @Test

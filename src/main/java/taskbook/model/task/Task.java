@@ -3,6 +3,7 @@ package taskbook.model.task;
 import java.util.Objects;
 
 import taskbook.commons.util.CollectionUtil;
+import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.enums.Assignment;
 
@@ -12,7 +13,7 @@ import taskbook.model.task.enums.Assignment;
  */
 public class Task {
 
-    private final Person person;
+    private final Name name;
     private final Assignment assignment;
     private final Description description;
     private final boolean isDone;
@@ -22,14 +23,25 @@ public class Task {
      */
     public Task(Person person, Assignment assignment, Description description, boolean isDone) {
         CollectionUtil.requireAllNonNull(person, assignment, description, isDone);
-        this.person = person;
+        this.name = person.getName();
         this.assignment = assignment;
         this.description = description;
         this.isDone = isDone;
     }
 
-    public Person getPerson() {
-        return person;
+    /**
+     * Every field must be present and not null.
+     */
+    public Task(Name name, Assignment assignment, Description description, boolean isDone) {
+        CollectionUtil.requireAllNonNull(name, assignment, description, isDone);
+        this.name = name;
+        this.assignment = assignment;
+        this.description = description;
+        this.isDone = isDone;
+    }
+
+    public Name getName() {
+        return name;
     }
 
     public Assignment getAssignment() {
@@ -62,7 +74,7 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getPerson().equals(getPerson())
+                && otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
                 && otherTask.getDescription().equals(getDescription());
     }
@@ -83,7 +95,7 @@ public class Task {
 
         // TODO: Include isDone in equality check?
         Task otherTask = (Task) other;
-        return otherTask.getPerson().equals(getPerson())
+        return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
                 && otherTask.getDescription().equals(getDescription())
                 && (otherTask.isDone() == (isDone()));
@@ -92,7 +104,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(person, assignment, description, isDone);
+        return Objects.hash(name, assignment, description, isDone);
     }
 
     @Override
@@ -100,7 +112,7 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append(String.format("[%s]", isDone()))
                 .append(String.format("[%s]", getAssignment()))
-                .append(String.format("[%s]", getPerson().getName()))
+                .append(String.format("[%s]", getName()))
                 .append("\n")
                 .append(getDescription());
 

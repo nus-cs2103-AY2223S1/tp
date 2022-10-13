@@ -42,8 +42,8 @@ public class TaskListCard extends UiPart<Region> {
     public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
-        this.relatedParty.setText(task.getPerson().getName().fullName);
-        this.description.setText(task.getDescription().toString()); //TODO: Change to object
+        this.relatedParty.setText(task.getName().fullName);
+        this.description.setText(task.getDescription().toString());
         this.assignment.setText(task.getAssignment().toString());
         this.isDone.setText(task.getStatus());
         this.id.setText(displayedIndex + ". ");

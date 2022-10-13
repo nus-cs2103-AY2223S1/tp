@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import taskbook.commons.exceptions.IllegalValueException;
-import taskbook.model.TaskBook;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
-import taskbook.model.person.Person;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
@@ -18,7 +16,6 @@ import taskbook.model.task.enums.Assignment;
 class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-    public static final String MISSING_PERSON_MESSAGE_FORMAT = "Task cannot be created as %s does not exist!";
 
     private final String name;
     private final String assignment;
@@ -41,7 +38,7 @@ class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        name = source.getPerson().getName().fullName;
+        name = source.getName().fullName;
         assignment = source.getAssignment().name();
         description = source.getDescription().description;
         isDone = source.isDone();
@@ -50,10 +47,9 @@ class JsonAdaptedTask {
     /**
      * Converts this Jackson-friendly adapted Task object into the model's {@code Task} object.
      *
-     * @param taskBook Taskbook that has been filled with contacts so that Tasks can be generated with names.
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
-    public Task toModelType(TaskBook taskBook) throws IllegalValueException {
+    public Task toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -61,10 +57,6 @@ class JsonAdaptedTask {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-        if (taskBook.findPerson(modelName) == null) {
-            throw new IllegalValueException(String.format(MISSING_PERSON_MESSAGE_FORMAT, name));
-        }
-        final Person modelPerson = taskBook.findPerson(modelName);
 
         if (assignment == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -83,6 +75,6 @@ class JsonAdaptedTask {
         }
         final Description modelDescription = new Description(description);
 
-        return new Task(modelPerson, modelAssignment, modelDescription, isDone);
+        return new Task(modelName, modelAssignment, modelDescription, isDone);
     }
 }
