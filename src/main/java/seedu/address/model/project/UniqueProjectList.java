@@ -52,7 +52,6 @@ public class UniqueProjectList implements Iterable<Project> {
         return internalList.stream().anyMatch(toCheck::isSameProject);
     }
 
- 
     /**
      * Adds a project to the list.
      * The project must not already exist in the list.
