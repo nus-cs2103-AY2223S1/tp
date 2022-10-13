@@ -2,7 +2,9 @@ package taskbook.logic.parser.tasks;
 
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
+import taskbook.logic.commands.tasks.TaskDeadlineCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
+import taskbook.logic.commands.tasks.TaskEventCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.parser.exceptions.ParseException;
@@ -25,6 +27,10 @@ public class TaskCategoryParser {
         switch (commandWord) {
         case TaskTodoCommand.COMMAND_WORD:
             return new TaskTodoCommandParser().parse(arguments);
+        case TaskDeadlineCommand.COMMAND_WORD:
+            return new TaskDeadlineCommandParser().parse(arguments);
+        case TaskEventCommand.COMMAND_WORD:
+            return new TaskEventCommandParser().parse(arguments);
         case TaskDeleteCommand.COMMAND_WORD:
             return new TaskDeleteCommandParser().parse(arguments);
         case TaskListCommand.COMMAND_WORD:
