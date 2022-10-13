@@ -39,6 +39,19 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if {@code sentence} contains the {@code partialWord}.
+     * @param sentence cannot be null
+     * @param partialWord cannot be null, cannot be empty
+     * @return true if {@code sentence} contains the {@code partialWord}, otherwise false
+     */
+    public static boolean containsPartialWord(String sentence, String partialWord) {
+        requireNonNull(sentence);
+        requireNonNull(partialWord);
+        String preppedWord = partialWord.trim();
+        return sentence.contains(preppedWord);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

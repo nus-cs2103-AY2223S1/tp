@@ -35,9 +35,14 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
 
+    /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the sorted list of modules by the task description's length */
+    ObservableList<Task> getSortedBasedOnDescriptionLengthList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -53,4 +58,11 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the status of whether if Command is a Find Command
+     */
+    boolean isFindCommand();
+
+    void setFalseToIndicateCommandIsNotFindCommand();
 }

@@ -2,9 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.LogicManager;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
+
+import java.util.List;
 
 /**
  * Finds and lists all tasks in the task list whose description contains any of the argument keywords.
@@ -13,10 +20,10 @@ import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 public class FindTasksCommand extends Command {
     public static final String COMMAND_WORD = "findtasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose names contain partially or fully any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " task1 task2 task3";
+            + "Example: " + COMMAND_WORD + " task";
 
     private final DescriptionContainsKeywordsPredicate predicate;
 
@@ -28,6 +35,7 @@ public class FindTasksCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
+        model.sortTaskListBasedOnDescriptionLength();
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }

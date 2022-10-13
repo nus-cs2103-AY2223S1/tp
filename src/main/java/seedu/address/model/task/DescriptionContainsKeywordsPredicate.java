@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,7 +19,7 @@ public class DescriptionContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getDescription().description, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWord(task.getDescription().description, keyword));
     }
 
     @Override

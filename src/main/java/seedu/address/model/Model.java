@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -18,6 +19,8 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused-> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,6 +92,7 @@ public interface Model {
 
     ObservableList<Module> getFilteredModuleList();
 
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -109,11 +113,26 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
-    boolean hasModule(Module module);
+    /** Returns an unmodifiable view of the task list that is sorted based on the task description's length */
+    ObservableList<Task> getSortedBasedOnDescriptionLengthList();
 
+    boolean hasModule(Module module);
+    void updateFilteredModuleList(Predicate<Module>predicate);
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Sorts the filtered task list based on the tasks' description length from shortest to longest.
+     */
+    void sortTaskListBasedOnDescriptionLength();
+
+    /**
+     * Returns true if Command is a Find command.
+     */
+    boolean isFindCommand();
+
+    void setFalseToIndicateCommandIsNotFindCommand();
 }

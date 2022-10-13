@@ -77,6 +77,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Task> getSortedBasedOnDescriptionLengthList() {
+        return model.getSortedBasedOnDescriptionLengthList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -89,5 +94,14 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public boolean isFindCommand() {
+        return model.isFindCommand();
+    }
+    @Override
+    public void setFalseToIndicateCommandIsNotFindCommand() {
+         model.setFalseToIndicateCommandIsNotFindCommand();
     }
 }

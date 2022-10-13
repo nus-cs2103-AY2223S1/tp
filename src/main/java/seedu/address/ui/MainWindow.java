@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +18,12 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -58,6 +66,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane taskListPanelPlaceholder;
 
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -67,7 +76,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
@@ -181,10 +189,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            logic.setFalseToIndicateCommandIsNotFindCommand();
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            if (logic.isFindCommand() == true) {
+                taskListPanel = new TaskListPanel(logic.getSortedBasedOnDescriptionLengthList());
+            } else {
+                taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+            }
+            taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

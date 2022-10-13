@@ -6,14 +6,16 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,6 +30,10 @@ public class ModelManager implements Model {
     private final FilteredList<Module> moduleFilteredList;
 
     private final FilteredList<Task> taskFilteredList;
+    private final SortedList<Task> taskSortedByDescriptionLengthList;
+
+    boolean isFindCommand;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +48,8 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         moduleFilteredList = new FilteredList<>(this.addressBook.getModuleList());
         taskFilteredList = new FilteredList<>(this.addressBook.getTaskList());
+        taskSortedByDescriptionLengthList = new SortedList<>(taskFilteredList);
+        isFindCommand = false;
     }
 
     public ModelManager() {
@@ -116,7 +124,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -146,7 +153,6 @@ public class ModelManager implements Model {
     }
 
 
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -171,6 +177,12 @@ public class ModelManager implements Model {
         return moduleFilteredList;
     }
 
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        moduleFilteredList.setPredicate(predicate);
+    }
     //================================Task Commands=====================================
     @Override
     public ObservableList<Task> getFilteredTaskList() {
@@ -178,8 +190,32 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getSortedBasedOnDescriptionLengthList() {
+        return taskSortedByDescriptionLengthList;
+    }
+
+
+    @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         taskFilteredList.setPredicate(predicate);
     }
+
+    @Override
+    public void sortTaskListBasedOnDescriptionLength() {
+        taskSortedByDescriptionLengthList.setComparator(((str1, str2) ->
+                str1.getDescription().description.length() - str2.getDescription().description.length()));
+        isFindCommand = true;
+    }
+
+    @Override
+    public boolean isFindCommand() {
+        return isFindCommand;
+    }
+
+    @Override
+    public void setFalseToIndicateCommandIsNotFindCommand() {
+        isFindCommand = false;
+    }
+
 }
