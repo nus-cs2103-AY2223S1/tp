@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
+import seedu.address.model.person.CombinedAppointmentPredicate;
+import seedu.address.model.person.CombinedPersonPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -33,19 +36,35 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        CombinedPersonPredicate firstCombinedPersonPredicate =
+                new CombinedPersonPredicate("first", "", "", "" ,
+                        Collections.singletonList("test"));
+        CombinedAppointmentPredicate firstCombinedAppointmentPredicate
+                = new CombinedAppointmentPredicate("reason1", LocalDateTime.MIN, LocalDateTime.MAX);
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        CombinedPersonPredicate secondCombinedPersonPredicate =
+                new CombinedPersonPredicate("second", "", "", "" ,
+                        Collections.singletonList("test"));
+        CombinedAppointmentPredicate secondCombinedAppointmentPredicate
+                = new CombinedAppointmentPredicate("reason2", LocalDateTime.MIN, LocalDateTime.MAX);
+
+        FindCommand findFirstCommand =
+                new FindCommand(firstCombinedPersonPredicate, firstCombinedAppointmentPredicate,
+                        true);
+        FindCommand findSecondCommand =
+                new FindCommand(secondCombinedPersonPredicate, secondCombinedAppointmentPredicate,
+                        true);
+        FindCommand findFirstCommandWithFalseFlag =
+                new FindCommand(firstCombinedPersonPredicate, firstCombinedAppointmentPredicate,
+                        false);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy =
+                new FindCommand(firstCombinedPersonPredicate, firstCombinedAppointmentPredicate,
+                        true);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -54,12 +73,15 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different arguments -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+
+        // different boolean -> return false
+        assertFalse(findFirstCommand.equals(findFirstCommandWithFalseFlag));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noPersonOrAppointmentsFound() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 0, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);

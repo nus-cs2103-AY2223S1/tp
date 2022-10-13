@@ -105,6 +105,7 @@ public class FindCommand extends Command {
         // state check
         FindCommand otherFindCommand = (FindCommand) other;
         return personPredicate.equals(otherFindCommand.personPredicate)
-                && appointmentPredicate.equals(otherFindCommand.appointmentPredicate);
+                && appointmentPredicate.equals(otherFindCommand.appointmentPredicate)
+                && isUsingAppointmentPredicate == otherFindCommand.isUsingAppointmentPredicate;
     }
 }
