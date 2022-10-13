@@ -158,7 +158,7 @@ public class MainWindow extends UiPart<Stage> {
      *                      to be stored
      */
     private void switchMainPanel(MainPanelName mainPanelName, boolean recordHistory) {
-        if (currentMainPanel == mainPanelName) {
+        if (currentMainPanel.equals(mainPanelName)) {
             return;
         }
 
@@ -198,9 +198,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (currentMainPanel == MainPanelName.List) {
+        if (currentMainPanel.equals(MainPanelName.List)) {
             switchMainPanel(MainPanelName.Help, true);
-        } else if (currentMainPanel == MainPanelName.Detail) {
+        } else if (currentMainPanel.equals(MainPanelName.Detail)) {
             switchMainPanel(MainPanelName.DetailHelp, true);
         }
     }
