@@ -11,6 +11,9 @@ public class VersionedWorkBook extends WorkBook {
     private final List<ReadOnlyWorkBook> workBookStateList;
     private int currentStatePointer;
 
+    /**
+     * Creates a VersionedWorkBook using the Internships in the {@code initialState}
+     */
     public VersionedWorkBook(ReadOnlyWorkBook initialState) {
         super(initialState);
 

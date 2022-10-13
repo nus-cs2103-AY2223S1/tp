@@ -31,6 +31,7 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getWorkBook(), new UserPrefs());
         expectedModel.addInternship(validInternship);
+        expectedModel.commitWorkBook();
 
         assertCommandSuccess(new AddCommand(validInternship), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validInternship), expectedModel);
