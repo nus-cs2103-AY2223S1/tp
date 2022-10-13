@@ -2,6 +2,7 @@ package seedu.address.model.tag;
 
 import java.util.List;
 import java.util.function.Predicate;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
