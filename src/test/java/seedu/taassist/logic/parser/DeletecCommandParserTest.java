@@ -45,6 +45,4 @@ public class DeletecCommandParserTest {
     public void parse_invalidModuleClassName_failure() {
         assertParseFailure(parser, INVALID_CLASS_DESC, ModuleClass.MESSAGE_CONSTRAINTS);
     }
-
-
 }
