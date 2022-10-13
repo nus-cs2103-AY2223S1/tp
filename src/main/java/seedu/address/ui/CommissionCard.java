@@ -17,9 +17,9 @@ import seedu.address.model.iteration.Iteration;
 public class CommissionCard extends UiPart<Region> {
 
     private static final String FXML = "CommissionListCard.fxml";
-    private static final String COMPLETED_COLOR_STYLE = "-fx-background-color: #32AE46;";
-    private static final String IN_PROGRESS_COLOR_STYLE = "-fx-background-color: #548DE1";
-    private static final String NOT_STARTED_COLOR_STYLE = "-fx-background-color: B8B8B8";
+    private static final String COLOR_COMPLETED_STYLE = "-fx-background-color: #32AE46;";
+    private static final String COLOR_IN_PROGRESS_STYLE = "-fx-background-color: #548DE1";
+    private static final String COLOR_NOT_STARTED_STYLE = "-fx-background-color: B8B8B8";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -75,15 +75,15 @@ public class CommissionCard extends UiPart<Region> {
     private void updateProgress() {
         switch(commission.getCompletionStatusString()) {
         case COMPLETED:
-            completionStatusCircle.setStyle(COMPLETED_COLOR_STYLE);
+            completionStatusCircle.setStyle(COLOR_COMPLETED_STYLE);
             completionStatus.setText("Completed");
             break;
         case IN_PROGRESS:
-            completionStatusCircle.setStyle(IN_PROGRESS_COLOR_STYLE);
+            completionStatusCircle.setStyle(COLOR_IN_PROGRESS_STYLE);
             completionStatus.setText("In Progress");
             break;
         case NOT_STARTED:
-            completionStatusCircle.setStyle(NOT_STARTED_COLOR_STYLE);
+            completionStatusCircle.setStyle(COLOR_NOT_STARTED_STYLE);
             completionStatus.setText("Not Started");
             break;
         default:

@@ -24,14 +24,14 @@ import seedu.address.model.iteration.Iteration;
 public class CommissionDetailsPane extends UiPart<Region> {
 
     private static final String FXML = "CommissionDetailsPane.fxml";
-    private static final Image MONEY_BAG_ICON = new Image("/images/money bag.png");
-    private static final Image CALENDAR_ICON = new Image("/images/calendar dark.png");
-    private static final Image PERSON_ICON = new Image("/images/person silhouette.png");
-    private static final Color COMPLETED_COLOR = Color.rgb(50, 174, 70);
-    private static final Color IN_PROGRESS_COLOR = Color.rgb(84, 141, 225);
-    private static final Color NOT_STARTED_COLOR = Color.rgb(184, 184, 184);
-    private static final Paint EMPTY_STATE_TEXT_FILL = Paint.valueOf("#6F747E");
-    private static final Paint DEFAULT_STATE_TEXT_FILL = Paint.valueOf("#E8E8E8");
+    private static final Image ICON_MONEY_BAG = new Image("/images/money bag.png");
+    private static final Image ICON_CALENDAR = new Image("/images/calendar dark.png");
+    private static final Image ICON_PERSON = new Image("/images/person silhouette.png");
+    private static final Color COLOR_COMPLETED = Color.rgb(50, 174, 70);
+    private static final Color COLOR_IN_PROGRESS = Color.rgb(84, 141, 225);
+    private static final Color COLOR_NOT_STARTED = Color.rgb(184, 184, 184);
+    private static final Paint STATE_EMPTY_TEXT_FILL = Paint.valueOf("#6F747E");
+    private static final Paint STATE_DEFAULT_TEXT_FILL = Paint.valueOf("#E8E8E8");
 
     private final ObservableObject<Commission> commission;
 
@@ -95,7 +95,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private void resetAllFields() {
         title.setText("No commission selected");
         description.setText("No commission selected");
-        description.setTextFill(EMPTY_STATE_TEXT_FILL);
+        description.setTextFill(STATE_EMPTY_TEXT_FILL);
         fee.setText("");
         deadline.setText("");
         completionStatusCircle.setFill(null);
@@ -106,9 +106,9 @@ public class CommissionDetailsPane extends UiPart<Region> {
     }
 
     private void setFieldIcons() {
-        feeIcon.setImage(MONEY_BAG_ICON);
-        deadlineIcon.setImage(CALENDAR_ICON);
-        customerIcon.setImage(PERSON_ICON);
+        feeIcon.setImage(ICON_MONEY_BAG);
+        deadlineIcon.setImage(ICON_CALENDAR);
+        customerIcon.setImage(ICON_PERSON);
     }
 
     private void updateFieldAttributeComponents(Commission commission) {
@@ -119,10 +119,10 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
         if (commission.getDescription().isEmpty()) {
             description.setText("No description found");
-            description.setTextFill(EMPTY_STATE_TEXT_FILL);
+            description.setTextFill(STATE_EMPTY_TEXT_FILL);
         } else {
             description.setText(commission.getDescription().get().description);
-            description.setTextFill(DEFAULT_STATE_TEXT_FILL);
+            description.setTextFill(STATE_DEFAULT_TEXT_FILL);
         }
     }
 
@@ -136,13 +136,13 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
             switch (completionStatusString) {
             case COMPLETED:
-                completionStatusCircle.setFill(COMPLETED_COLOR);
+                completionStatusCircle.setFill(COLOR_COMPLETED);
                 break;
             case IN_PROGRESS:
-                completionStatusCircle.setFill(IN_PROGRESS_COLOR);
+                completionStatusCircle.setFill(COLOR_IN_PROGRESS);
                 break;
             case NOT_STARTED:
-                completionStatusCircle.setFill(NOT_STARTED_COLOR);
+                completionStatusCircle.setFill(COLOR_NOT_STARTED);
                 break;
             default:
                 throw new AssertionError("Unknown CompletionStringStatus for Commission " + commission);
