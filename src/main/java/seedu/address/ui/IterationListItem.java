@@ -44,7 +44,7 @@ public class IterationListItem extends UiPart<Region> {
         description.setText(iteration.getDescription().description);
         feedback.setText(iteration.getFeedback().feedback);
         String fxImagePath = iteration.getImagePath().path;
-        artImage.setImage(new Image(new File(System.getProperty("user.dir") + "/src/main/resources/"
+        artImage.setImage(new Image(new File(System.getProperty("user.dir")
                 + fxImagePath).toURI().toString()));
     }
 

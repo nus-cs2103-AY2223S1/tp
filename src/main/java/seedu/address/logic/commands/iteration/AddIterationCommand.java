@@ -69,9 +69,9 @@ public class AddIterationCommand extends Command {
         }
 
         String src = toAdd.getImagePath().path;
-        String dst = "saved/" + activeCommission.getTitle() + activeCommission.getIterationCounter() + ".png";
+        String dst = "/data/images/" + activeCommission.getTitle() + activeCommission.getIterationCounter() + ".png";
         try {
-            Files.copy(Paths.get(src), Paths.get("src/main/resources/" + dst));
+            Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
         } catch (Exception e) {
             e.printStackTrace();
         }
