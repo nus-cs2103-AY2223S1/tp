@@ -84,7 +84,8 @@ public class Internship {
         }
 
         return otherInternship != null
-                && otherInternship.getName().equals(getName());
+                && otherInternship.getName().equals(getName())
+                && otherInternship.getPosition().equals(getPosition());
     }
 
     /**
