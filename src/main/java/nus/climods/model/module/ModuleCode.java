@@ -26,8 +26,6 @@ public class ModuleCode {
      * @param moduleCode A valid moduleCode.
      */
     public ModuleCode(String moduleCode) {
-        requireNonNull(moduleCode);
-        checkArgument(isValidName(moduleCode), MESSAGE_CONSTRAINTS);
         this.moduleCode = moduleCode;
     }
 
