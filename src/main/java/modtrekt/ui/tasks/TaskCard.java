@@ -1,4 +1,4 @@
-package modtrekt.ui;
+package modtrekt.ui.tasks;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,13 +7,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import modtrekt.model.task.Deadline;
 import modtrekt.model.task.Task;
+import modtrekt.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Module}.
  */
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "tasks/TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

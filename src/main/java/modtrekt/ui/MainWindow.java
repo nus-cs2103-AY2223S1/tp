@@ -17,6 +17,7 @@ import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.ui.modules.ModuleListPanel;
+import modtrekt.ui.tasks.TaskListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ProfileSidePanel profileSidePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,10 +52,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane taskListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane profileSidePanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane resultDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -125,8 +127,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        profileSidePanel = new ProfileSidePanel();
+        profileSidePanelPlaceholder.getChildren().add(profileSidePanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

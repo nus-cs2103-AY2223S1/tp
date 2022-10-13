@@ -1,4 +1,4 @@
-package modtrekt.ui;
+package modtrekt.ui.tasks;
 
 import java.util.logging.Logger;
 
@@ -9,12 +9,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import modtrekt.commons.core.LogsCenter;
 import modtrekt.model.task.Task;
+import modtrekt.ui.UiPart;
 
 /**
  * Panel containing the list of tasks.
  */
 public class TaskListPanel extends UiPart<Region> {
-    private static final String FXML = "TaskListPanel.fxml";
+    private static final String FXML = "tasks/TaskListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
 
     @FXML
