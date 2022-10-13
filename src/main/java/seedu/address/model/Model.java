@@ -109,7 +109,7 @@ public interface Model {
      */
     TuitionClass getTuitionClass(Name name);
 
-     /** Replaces the given tuition class {@code target} with {@code editedTuitionClass}.
+    /** Replaces the given tuition class {@code target} with {@code editedTuitionClass}.
      * {@code target} must exist in the address book.
      * The tuition class identity of {@code editedPerson} must not be the same as
      * another existing tuition class in the address book.
