@@ -89,7 +89,7 @@ The link index refers to the index number shown in the internship list and is op
 </div>
 
 Examples:
-* `addi n/TikTok r/Data Engineer s/rejected l/1`
+* `addi c/TikTok r/Data Engineer s/rejected l/1`
 * `addi c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
 
 ### Listing all persons : `listp`
@@ -233,17 +233,17 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 ## Command summary
 
-| Action                | Format, Examples                                                                                                                          |
-|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add person**        | `addp n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [l/LINK_INDEX]` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com l/3`            |
-| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1`      |
-| **Clear**             | `clear`                                                                                                                                   |
-| **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                     |
-| **Delete internship** | `deletei INDEX`<br> e.g., `deletei 1`                                                                                                     |
-| **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                          |
-| **Edit internship**   | `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`<br> e.g.,`editi 2 s/REJECTED`, `editi 3 d/2023-01-01 13:30`      |
-| **Find person**       | `findi KEYWORD` <br> e.g., `findp James`                                                                                                  |
-| **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                                 |
-| **List persons**      | `listp`                                                                                                                                   |
-| **List internships**  | `listi`                                                                                                                                   |
-| **Help**              | `help`                                                                                                                                    |
+| Action                | Format, Examples                                                                                                                     |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| **Add person**        | `addp n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]… [l/LINK_INDEX]` <br> e.g., `addp n/James Ho p/22224444 e/jamesho@example.com l/3`       |
+| **Add internship**    | `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX]` <br> e.g., `addi n/TikTok r/Data Engineer s/rejected l/1` |
+| **Clear**             | `clear`                                                                                                                              |
+| **Delete person**     | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                |
+| **Delete internship** | `deletei INDEX`<br> e.g., `deletei 1`                                                                                                |
+| **Edit person**       | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                     |
+| **Edit internship**   | `editi INDEX [c/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE_OF_INTERVIEW]`<br> e.g.,`editi 2 s/REJECTED`, `editi 3 d/2023-01-01 13:30` |
+| **Find person**       | `findp KEYWORD` <br> e.g., `findp James`                                                                                             |
+| **Find internship**   | `findi KEYWORD` <br> e.g., `findi Google`                                                                                            |
+| **List persons**      | `listp`                                                                                                                              |
+| **List internships**  | `listi`                                                                                                                              |
+| **Help**              | `help`                                                                                                                               |
