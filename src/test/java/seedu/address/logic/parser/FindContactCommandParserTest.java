@@ -16,7 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 
-public class FindCommandParserTest {
+public class FindContactCommandParserTest {
 
     private FindContactCommandParser parser = new FindContactCommandParser();
 

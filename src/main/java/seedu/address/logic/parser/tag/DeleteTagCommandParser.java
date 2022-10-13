@@ -12,9 +12,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditPersonDescriptor;
+import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.logic.commands.tag.AddTagCommand;
 import seedu.address.logic.commands.tag.DeleteTagCommand;
-import seedu.address.logic.commands.tag.DeleteTagCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -51,7 +52,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        DeleteTagCommand.EditTaskDescriptor editTaskDescriptor = new DeleteTagCommand.EditTaskDescriptor();
+        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {

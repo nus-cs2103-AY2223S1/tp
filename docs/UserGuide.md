@@ -67,15 +67,15 @@ YellowBook is optimised for use via a Command Line Interface (CLI).
 
 Adds a contact to the address book.
 
-Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DESCRIPTION]`
+Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
-* The description of a contact is optional.
+* The remark of a contact is optional.
 
 Examples: 
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-* `addC n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/Weird person.`
+* `addC n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 r/Weird person.`
 
 ### Listing all contacts: `listC`
 
@@ -103,7 +103,7 @@ Examples:
 
 Edits the information fields (e.g. name, mobile number, email address) of an existing contact in the address book.
 
-Format: `editC INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/Description]`
+Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 * Index of a contact is its index number on the contact list.
 
@@ -347,20 +347,20 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                     |
-|------------|------------------------------------------------------------------------------------------------------|
-| **listC**   | `listC`                                                                                             |
-| **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DESCRIPTION]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`                                                                                            |
-| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                              | 
-| **editC**   | `editC INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/Description]` <br> e.g., `editC 1 n/John p/12345678` |
-| **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                     |
-| **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                      |                                                                                                 |
-| **listT**   | `listT`                                                                                             |
-| **addT**   |  `addT d/DESCRIPTION D/DEADLINE`                                                                                           |
-| **markT**    | `markT INDEX` <br> e.g., `mark 1`                                                                    |
-| **unmarkT**  | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                |
-| **searchT** | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                          |
-| **filterT** | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                      |
-| **listL**   | `listL`                                                                                             |
-| **addL**   | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                            |
-| **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                           |
+| Action     | Format, Examples                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **listC**   | `listC`                                                                                                                                                |
+| **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 | 
+| **editC**   | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
+| **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
+| **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |
+| **listT**   | `listT`                                                                                                                                                |
+| **addT**   | `addT d/DESCRIPTION D/DEADLINE`                                                                                                                        |
+| **markT**    | `markT INDEX` <br> e.g., `mark 1`                                                                                                                      |
+| **unmarkT**  | `unmarkT INDEX` <br> e.g., `unmark 1`                                                                                                                  |
+| **searchT** | `findT KEYWORD [MORE_KEYWORDS]` <br> e.g., `findT cs2103t`                                                                                             |
+| **filterT** | `filterT KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |
+| **listL**   | `listL`                                                                                                                                                |
+| **addL**   | `addL c/INDEX n/LABEL_NAME` OR  `addL t/INDEX n/LABEL_NAME`                                                                                            |
+| **deleteL**   | `deleteL c/INDEX n/LABEL_NAME` OR `deleteL t/INDEX n/LABEL_NAME`                                                                                       |
