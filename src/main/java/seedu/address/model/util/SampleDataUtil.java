@@ -1,15 +1,15 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
-import java.util.*;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.order.*;
-import seedu.address.model.person.*;
-import seedu.address.model.pet.*;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonCategory;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

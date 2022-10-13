@@ -26,9 +26,9 @@ public class DelivererListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DelivererListPanel} with the given {@code ObservableList}.
      */
-    public DelivererListPanel(ObservableList<Deliverer> DelivererList) {
+    public DelivererListPanel(ObservableList<Deliverer> delivererList) {
         super(FXML);
-        delivererListView.setItems(DelivererList);
+        delivererListView.setItems(delivererList);
         delivererListView.setCellFactory(listView -> new DelivererListViewCell());
     }
 
@@ -48,5 +48,4 @@ public class DelivererListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

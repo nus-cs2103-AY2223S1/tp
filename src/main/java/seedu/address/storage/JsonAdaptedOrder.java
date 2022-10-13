@@ -1,17 +1,22 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.*;
-import seedu.address.model.person.Buyer;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.order.AdditionalRequests;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderStatus;
+import seedu.address.model.order.Price;
+import seedu.address.model.order.PriceRange;
+import seedu.address.model.order.Request;
+import seedu.address.model.person.Buyer;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -39,15 +44,15 @@ class JsonAdaptedOrder {
                             @JsonProperty("byDate") String byDate,
                             @JsonProperty("settledPrice") Double settledPrice,
                             @JsonProperty("status") String status) {
-       this.buyer = buyer;
-       this.requestedPriceRange = range;
-       this.request = request;
-       if (additional != null) {
-           this.additionalRequests.addAll(additional);
-       }
-       this.byDate = byDate;
-       this.settledPrice = settledPrice;
-       this.status = status;
+        this.buyer = buyer;
+        this.requestedPriceRange = range;
+        this.request = request;
+        if (additional != null) {
+            this.additionalRequests.addAll(additional);
+        }
+        this.byDate = byDate;
+        this.settledPrice = settledPrice;
+        this.status = status;
     }
 
     /**

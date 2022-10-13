@@ -48,7 +48,7 @@ public class DelivererCard extends UiPart<Region> {
      */
     public DelivererCard(Deliverer deliverer, int displayedIndex) {
         super(FXML);
-        this.deliverer= deliverer;
+        this.deliverer = deliverer;
         id.setText(displayedIndex + ". ");
         name.setText(deliverer.getName().fullName);
         phone.setText(deliverer.getPhone().value);

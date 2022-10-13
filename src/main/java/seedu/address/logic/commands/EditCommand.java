@@ -9,16 +9,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonCategory;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,23 +65,23 @@ public class EditCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-//        requireNonNull(model);
-//        List<Person> lastShownList = model.getFilteredPersonList();
-//
-//        if (index.getZeroBased() >= lastShownList.size()) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//        }
-//
-//        Person personToEdit = lastShownList.get(index.getZeroBased());
-//        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-//
-//        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-//        }
-//
-//        model.setPerson(personToEdit, editedPerson);
-//        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-//        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        //        requireNonNull(model);
+        //        List<Person> lastShownList = model.getFilteredPersonList();
+        //
+        //        if (index.getZeroBased() >= lastShownList.size()) {
+        //            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        //        }
+        //
+        //        Person personToEdit = lastShownList.get(index.getZeroBased());
+        //        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        //
+        //        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        //            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        //        }
+        //
+        //        model.setPerson(personToEdit, editedPerson);
+        //        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        //        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
         return null;
     }
 
