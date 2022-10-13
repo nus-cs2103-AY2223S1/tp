@@ -36,15 +36,15 @@ public class GradeProgressList {
     }
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Grade Progress:\n");
+        StringBuilder description = new StringBuilder("Grade Progress: ");
         if (gradeProgressList.isEmpty()) {
             description.append("No Grade Progress found!\n");
         } else {
             description.append("[");
         }
         for (int i = 0; i < gradeProgressList.size(); i++) {
-            description.append(gradeProgressList.get(i));
-            if (i != gradeProgressList.size() - 1) {
+            description.append(i+1).append(". ").append(gradeProgressList.get(i));
+            if (i != gradeProgressList.size() - 1 ) {
                 description.append(", ");
             } else {
                 description.append("]");

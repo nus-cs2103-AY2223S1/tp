@@ -169,7 +169,6 @@ public class Person {
                 .append(getHomeworkList())
                 .append("; Attendance: ")
                 .append(getAttendanceList())
-                .append("; Grade Progress: ")
                 .append(getGradeProgressList());
 
         Set<Tag> tags = getTags();
