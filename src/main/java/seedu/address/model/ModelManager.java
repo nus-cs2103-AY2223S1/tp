@@ -211,6 +211,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
         return userPrefs.equals(other.userPrefs)
                 && personBook.equals(other.personBook)
                 && proportyBook.equals(other.proportyBook)

@@ -73,7 +73,8 @@ public class PropertyNameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PropertyBuilder().withName("Peak Residence").build()));
 
         // Keywords match price, address and description, but does not match name
-        predicate = new PropertyNameContainsKeywordsPredicate(Arrays.asList("3000000", "Main", "Street", "condo"));
+        predicate =
+                new PropertyNameContainsKeywordsPredicate(Arrays.asList("3000000", "Main", "Street", "condo"));
         assertFalse(predicate.test(new PropertyBuilder().withName("Peak Residence").withPrice("3000000")
               .withAddress("Main Street").withDescription("condo").build()));
     }

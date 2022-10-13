@@ -33,6 +33,9 @@ public class TypicalProperties {
 
     private TypicalProperties() {} // prevents instantiation
 
+    /**
+     * Returns a {@code PropertyBook} with all the typical properties.
+     */
     public static ProportyBook getTypicalPropertyModel() {
         ProportyBook proportyBook = new ProportyBook();
         for (Property property : getTypicalProperties()) {
@@ -42,6 +45,7 @@ public class TypicalProperties {
     }
 
     public static List<Property> getTypicalProperties() {
-        return new ArrayList<>(Arrays.asList(PEAKRESIDENCE, HUT));
+        return new ArrayList<>(Arrays.asList(PEAKRESIDENCE, HUT, HOME));
     }
 }
+
