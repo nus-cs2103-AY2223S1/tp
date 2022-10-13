@@ -38,15 +38,10 @@ public class TaskList implements Iterable<Task> {
         return TaskUi.addText(internalList.get(internalList.size() - 1).toString(), internalList.size());
     }
 
-    @Override
-    public Iterator<Task> iterator() {
-        return internalList.iterator();
-    }
-
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the list.
+     * The task description of {@code editedTask} must not be the same as another existing task in the list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -61,6 +56,11 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return internalList.iterator();
     }
 
     /**

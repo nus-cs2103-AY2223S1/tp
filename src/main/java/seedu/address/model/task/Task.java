@@ -32,10 +32,6 @@ public class Task {
         this.tags.addAll(tags);
     }
 
-    public boolean getIsDone() {
-        return this.isDone;
-    }
-
     /**
      * Returns description of task.
      * @return Description Details of task.

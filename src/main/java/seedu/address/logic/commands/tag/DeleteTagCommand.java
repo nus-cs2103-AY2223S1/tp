@@ -147,7 +147,7 @@ public class DeleteTagCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         // TODO: Implement
         Deadline updatedDeadline = new Deadline("");
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getIsDone());
+        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
         Set<Tag> newTags = editTaskDescriptor.getTags().orElse(new HashSet<>());
         Set<Tag> updatedTags = new HashSet<>();
         updatedTags.addAll(taskToEdit.getTags());

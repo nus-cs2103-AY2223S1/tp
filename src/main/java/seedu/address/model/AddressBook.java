@@ -101,22 +101,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// task-level operations
-
-    public void setTask(Task target, Task editedTask) {
-        requireNonNull(editedTask);
-
-        tasks.setTask(target, editedTask);
-    }
-
-    /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
-     */
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return tasks.contains(task);
-    }
-
     //// util methods
 
     @Override
@@ -152,6 +136,25 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public void addTask(Task task) {
         tasks.addTask(task);
+    }
+
+    /**
+     * Returns true if a task with the same description as {@code task} exists in the address book.
+     */
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasks.contains(task);
+    }
+
+    /**
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task description of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        tasks.setTask(target, editedTask);
     }
 
     @Override

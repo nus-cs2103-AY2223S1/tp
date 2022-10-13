@@ -81,10 +81,6 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    void setTask(Task target, Task editedTask);
-
-    boolean hasTask(Task task);
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -99,6 +95,18 @@ public interface Model {
      * @param task The task to be added.
      */
     void addT(Task task);
+
+    /**
+     * Returns true if a task with the same description as {@code task} exists in the address book.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the address book.
+     * The task description of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    void setTask(Task target, Task editedTask);
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

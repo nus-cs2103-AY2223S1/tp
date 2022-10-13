@@ -143,16 +143,6 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void setTask(Task target, Task editedTask) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasTask(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -164,6 +154,16 @@ public class AddContactCommandTest {
 
         @Override
         public void addT(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
