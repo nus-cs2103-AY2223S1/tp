@@ -11,6 +11,6 @@ public class TypicalModuleClasses {
     public static final ModuleClass CS1231S = new ModuleClassBuilder().withName("CS1231S")
             .withSessions("Tutorial 1").build();
 
-    public static final ModuleClass CS2100 = new ModuleClassBuilder().withName("CS1231S")
+    public static final ModuleClass CS2100 = new ModuleClassBuilder().withName("CS2100")
             .withSessions("Lab 2", "Assignment 4", "Tutorial 3").build();
 }
