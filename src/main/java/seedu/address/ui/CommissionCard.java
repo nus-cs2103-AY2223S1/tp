@@ -82,10 +82,12 @@ public class CommissionCard extends UiPart<Region> {
             completionStatusCircle.setStyle(IN_PROGRESS_COLOR_STYLE);
             completionStatus.setText("In Progress");
             break;
-        default:
+        case NOT_STARTED:
             completionStatusCircle.setStyle(NOT_STARTED_COLOR_STYLE);
             completionStatus.setText("Not Started");
             break;
+        default:
+            throw new AssertionError("Unknown CompletionStringStatus for Commission " + commission);
         }
     }
 

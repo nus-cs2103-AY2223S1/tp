@@ -30,6 +30,8 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private static final Color COMPLETED_COLOR = Color.rgb(50, 174, 70);
     private static final Color IN_PROGRESS_COLOR = Color.rgb(84, 141, 225);
     private static final Color NOT_STARTED_COLOR = Color.rgb(184, 184, 184);
+    private static final Paint EMPTY_STATE_TEXT_FILL = Paint.valueOf("#6F747E");
+    private static final Paint DEFAULT_STATE_TEXT_FILL = Paint.valueOf("#E8E8E8");
 
     private final ObservableObject<Commission> commission;
 
@@ -93,7 +95,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
     private void resetAllFields() {
         title.setText("No commission selected");
         description.setText("No commission selected");
-        description.setTextFill(Paint.valueOf("#6F747E"));
+        description.setTextFill(EMPTY_STATE_TEXT_FILL);
         fee.setText("");
         deadline.setText("");
         completionStatusCircle.setFill(null);
@@ -117,10 +119,10 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
         if (commission.getDescription().isEmpty()) {
             description.setText("No description found");
-            description.setTextFill(Paint.valueOf("#6F747E"));
+            description.setTextFill(EMPTY_STATE_TEXT_FILL);
         } else {
             description.setText(commission.getDescription().get().description);
-            description.setTextFill(Paint.valueOf("#E8E8E8"));
+            description.setTextFill(DEFAULT_STATE_TEXT_FILL);
         }
     }
 
@@ -139,8 +141,11 @@ public class CommissionDetailsPane extends UiPart<Region> {
             case IN_PROGRESS:
                 completionStatusCircle.setFill(IN_PROGRESS_COLOR);
                 break;
-            default:
+            case NOT_STARTED:
                 completionStatusCircle.setFill(NOT_STARTED_COLOR);
+                break;
+            default:
+                throw new AssertionError("Unknown CompletionStringStatus for Commission " + commission);
             }
         }
     }
