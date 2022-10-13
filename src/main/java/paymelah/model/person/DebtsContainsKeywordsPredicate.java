@@ -9,6 +9,7 @@ import java.util.function.Predicate;
  * Tests that a {@code Person}'s {@code DebtList} contains a debt that matches any of the keywords given.
  */
 public class DebtsContainsKeywordsPredicate implements Predicate<Person> {
+
     private final List<String> keywords;
 
     public DebtsContainsKeywordsPredicate(List<String> keywords) {
