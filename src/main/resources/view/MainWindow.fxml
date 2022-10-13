@@ -54,8 +54,8 @@
                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                       AnchorPane.topAnchor="0.0" VBox.vgrow="ALWAYS">
                     <TabPane
-                            fx:id="tabPane" styleClass="increment-button" stylesheets="@Extensions.css" tabClosingPolicy="UNAVAILABLE"
-                            tabMaxHeight="35.0" tabMinWidth="115.0" VBox.vgrow="ALWAYS">
+                            fx:id="tabPane" styleClass="increment-button" stylesheets="@Extensions.css"
+                            tabClosingPolicy="UNAVAILABLE" tabMaxHeight="35.0" tabMinWidth="115.0" VBox.vgrow="ALWAYS">
                         <tabs>
                             <Tab text="Customers">
                                 <content>

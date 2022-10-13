@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalCustomers.BENSON;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +33,8 @@ public class JsonAdaptedCustomerTest {
         .map(JsonAdaptedTag::new)
         .collect(Collectors.toList());
 
-    private static final List<JsonAdaptedCommission> VALID_COMMISSIONS = BENSON.getCommissions()
-            .stream()
+    private static final List<JsonAdaptedCommission> VALID_COMMISSIONS = StreamSupport
+            .stream(BENSON.getCommissions().spliterator(), false)
             .map(JsonAdaptedCommission::new)
             .collect(Collectors.toList());
 

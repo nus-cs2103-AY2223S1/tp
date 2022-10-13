@@ -12,7 +12,9 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -80,7 +82,7 @@ public class AddCustomerCommandTest {
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -141,26 +143,6 @@ public class AddCustomerCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public boolean hasCommission(Commission commission) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteCommission(Commission target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addCommission(Commission commission) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setCommission(Commission target, Commission editedCommission) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         public void selectCustomer(Customer customer) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,7 +158,12 @@ public class AddCustomerCommandTest {
         }
 
         @Override
-        public ObservableList<Commission> getFilteredCommissionList() {
+        public FilteredList<Commission> getFilteredCommissionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -213,7 +200,7 @@ public class AddCustomerCommandTest {
     /**
      * A Model stub that contains a single customer.
      */
-    private class ModelStubWithCustomer extends ModelStub {
+    private static class ModelStubWithCustomer extends ModelStub {
         private final Customer customer;
 
         ModelStubWithCustomer(Customer customer) {
@@ -231,7 +218,7 @@ public class AddCustomerCommandTest {
     /**
      * A Model stub that always accept the customer being added.
      */
-    private class ModelStubAcceptingCustomerAdded extends ModelStub {
+    private static class ModelStubAcceptingCustomerAdded extends ModelStub {
         final ArrayList<Customer> customersAdded = new ArrayList<>();
 
         @Override

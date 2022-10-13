@@ -61,7 +61,7 @@ public class Commission {
             public String toString() {
                 return "Not Started";
             }
-        };
+        }
     }
 
     /**
@@ -159,7 +159,8 @@ public class Commission {
         }
 
         return otherCommission != null
-                && otherCommission.getTitle().equals(getTitle());
+                && otherCommission.getTitle().equals(getTitle())
+                && otherCommission.getCustomer().equals(getCustomer());
     }
 
     /**

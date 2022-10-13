@@ -67,9 +67,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
         super(FXML);
         this.commission = commission.getValue();
         updateUI(this.commission);
-        commission.addListener((observable, oldValue, newValue) -> {
-            updateUI(newValue);
-        });
+        commission.addListener((observable, oldValue, newValue) -> updateUI(newValue));
         iterationListView.setCellFactory(listView -> new IterationListViewCell());
     }
 
@@ -112,7 +110,7 @@ public class CommissionDetailsPane extends UiPart<Region> {
 
     private void updateFieldAttributeComponents(Commission commission) {
         title.setText(commission.getTitle().title);
-        description.setText(commission.getDescription().orElseGet(() -> Description.NO_DESCRIPTION).description);
+        description.setText(commission.getDescription().orElse(Description.NO_DESCRIPTION).description);
         fee.setText("$" + String.format("%.2f", commission.getFee().fee));
         deadline.setText(commission.getDeadline().toString());
         customerName.setText(commission.getCustomer().getName().fullName);

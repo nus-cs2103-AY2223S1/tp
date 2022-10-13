@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 
 <HBox id="detailsPane" fx:id="detailsPane"
-      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
     <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
     <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge"
                 AnchorPane.bottomAnchor="0.0"
