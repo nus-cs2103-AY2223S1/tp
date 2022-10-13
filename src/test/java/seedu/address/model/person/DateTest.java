@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +21,8 @@ public class DateTest {
 
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
-        Time time = new Time(LocalTime.of(12, 30));
-        assertEquals("12:30 PM", time.toString());
+        Date date = new Date(LocalDate.of(2023, 1, 21));
+        assertEquals("21-Jan-2023", date.toString());
     }
 
     @Test
