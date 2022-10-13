@@ -16,25 +16,21 @@ import seedu.foodrem.model.tag.Tag;
 public class ListTagCommand extends Command {
     public static final String COMMAND_WORD = "listtag";
 
-    public static final String MESSAGE_SUCCESS = "Listed all tags:\n";
-    private String tagList = "";
-
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
         List<Tag> allTags = model.getFilteredTagList();
 
-        StringBuilder allTagsList = new StringBuilder();
+        StringBuilder allTagsList = new StringBuilder("Listed all tags:\n");
 
         for (Tag tag: allTags) {
-            allTagsList.append(tag.tagName.fullName);
+            allTagsList.append(tag.getName());
             allTagsList.append(System.getProperty("line.separator"));
         }
 
-        tagList = allTagsList.toString();
+        String tagList = allTagsList.toString();
 
-        return new CommandResult(MESSAGE_SUCCESS + tagList);
+        return new CommandResult(tagList);
     }
 }
