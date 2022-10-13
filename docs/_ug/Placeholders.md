@@ -37,7 +37,7 @@
     <tr>
       <td>UNIT</td>
       <td>unit/</td>
-      <td>The UNIT is an optional text indicating the unit of an item.<br>UNIT is a short text.<br/><br><strong>IMPORTANT</strong>:<br>Only English characters, numbers, space, and the following symbols are accepted: <br>~`!@#$%^&amp;*()_-+={}[]:;”’&lt;&gt;,.?<br>There is a limit of 20 characters in a UNIT.<br>Leading and trailing spaces will be trimmed<br><br/><strong>Valid Examples</strong>:<br>kg<br>Packets<br><br/><strong>Invalid Examples:</strong><br>Containers (1000 grams)<br>Containers/grams<br>Containers|grams<br>Containers\grams</td>
+      <td markdown="1">{% include_relative _ug/placeholders/UNIT.md %}</td>
     </tr>
     <tr>
       <td>BOUGHT_DATE</td>
