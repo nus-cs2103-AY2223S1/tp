@@ -6,11 +6,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-
+/**
+ * Represents the additional requests of an order.
+ */
 public class AdditionalRequests {
 
     private final ArrayList<String> additionalRequests = new ArrayList<>();
 
+    /**
+     * Constructs the AdditionalRequests object with an array.
+     *
+     * @param descriptions The string descriptions of these additional requests.
+     */
     public AdditionalRequests(String... descriptions) {
         requireNonNull(descriptions);
         additionalRequests.addAll(Arrays.asList(descriptions));

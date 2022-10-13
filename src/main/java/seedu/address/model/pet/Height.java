@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * A class that represents the height of a pet.
+ * Represents the height of a pet.
  */
 public class Height {
 

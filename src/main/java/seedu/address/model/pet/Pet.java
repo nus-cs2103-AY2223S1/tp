@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * A class that represents a pet.
+ * Represents a pet.
  */
 public class Pet {
 

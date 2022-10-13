@@ -2,6 +2,9 @@ package seedu.address.model.order;
 
 import java.util.Arrays;
 
+/**
+ * Represents that current status of an order.
+ */
 public enum OrderStatus {
     PENDING("Pending"),
     NEGOTIATING("Negotiating"),

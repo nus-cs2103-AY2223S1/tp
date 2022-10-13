@@ -2,6 +2,9 @@ package seedu.address.model.order;
 
 import java.util.Objects;
 
+/**
+ * Represents the price range (lower bound, upper bound) of an order during negotiation.
+ */
 public class PriceRange {
 
     public static final String DELIMITER = ",";
@@ -15,6 +18,12 @@ public class PriceRange {
     private Price upperBound;
     private Price lowerBound;
 
+    /**
+     * Constructs a PriceRange object.
+     *
+     * @param lowerBound The bound that the final price is expected not to be smaller than.
+     * @param upperBound The bound that the final price is expected not to be greater than
+     */
     public PriceRange(Price lowerBound, Price upperBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
@@ -36,7 +45,13 @@ public class PriceRange {
         this.lowerBound = lowerBound;
     }
 
-    public void updatePriceRange(Price upperBound, Price lowerBound) {
+    /**
+     * Updates both bounds.
+     *
+     * @param lowerBound The bound that the final price is expected not to be smaller than.
+     * @param upperBound The bound that the final price is expected not to be greater than
+     */
+    public void updatePriceRange(Price lowerBound, Price upperBound) {
         this.upperBound = upperBound;
         this.lowerBound = lowerBound;
     }

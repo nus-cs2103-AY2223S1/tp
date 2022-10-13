@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_VACCINATION_STATUS
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_WEIGHT;
 
 /**
- * Adds a pet to the address book
+ * Adds a pet to the address book.
  */
 public class AddPetCommand {
     public static final String COMMAND_WORD = "add-pt";

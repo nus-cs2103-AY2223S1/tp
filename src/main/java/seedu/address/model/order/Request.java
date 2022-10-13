@@ -12,6 +12,9 @@ import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
+/**
+ * Contains some properties of a pet desired in an order.
+ */
 public class Request {
 
     public static final String MESSAGE_USAGE = "The usage of a request is as follows: \n"
@@ -35,7 +38,9 @@ public class Request {
      * @param colorPattern Color pattern of the pet.
      * @param species Species the pet belongs to.
      */
-    public Request(Age age, Color color, ColorPattern colorPattern,
+    public Request(Age age,
+                   Color color,
+                   ColorPattern colorPattern,
                    Species species) {
         this.age = age;
         this.color = color;

@@ -7,6 +7,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.pet.Pet;
 
+/**
+ * An UI component that displays information of a {@code Pet}.
+ */
 public class PetCard extends UiPart<Region> {
     private static final String FXML = "PetListCard.fxml";
 

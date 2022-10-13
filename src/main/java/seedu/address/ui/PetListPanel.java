@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pet.Pet;
 
+/**
+ * Panel containing the list of Pets.
+ */
 public class PetListPanel extends UiPart<Region> {
     private static final String FXML = "PetListPanel.fxml";
 

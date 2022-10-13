@@ -8,15 +8,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
 
 /**
  * A list of pets that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Pet#isSamePet(Pet)}. As such, adding and updating of
+ * A pet is considered unique by comparing using {@code Pet#isSamePet(Pet)}. As such, adding and updating of
  * pets uses Pet#isSamePet(Pet) for equality so as to ensure that the pet being added or updated is
- * unique in terms of identity in the UniquePetList. However, the removal of a person uses Pet#equals(Object) so
+ * unique in terms of identity in the UniquePetList. However, the removal of a pet uses Pet#equals(Object) so
  * as to ensure that the pet with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
@@ -44,7 +43,7 @@ public class UniquePetList implements Iterable<Pet> {
     public void add(Pet toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePetException();
         }
         internalList.add(toAdd);
     }
@@ -71,7 +70,7 @@ public class UniquePetList implements Iterable<Pet> {
 
     /**
      * Removes the equivalent pet from the list.
-     * The person must exist in the list.
+     * The pet must exist in the list.
      */
     public void remove(Pet toRemove) {
         requireNonNull(toRemove);
@@ -92,7 +91,7 @@ public class UniquePetList implements Iterable<Pet> {
     public void setPets(List<Pet> pets) {
         requireAllNonNull(pets);
         if (!petsAreUnique(pets)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePetException();
         }
 
         internalList.setAll(pets);
