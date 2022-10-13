@@ -34,8 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_CLASS_HUSBAND = "husband";
-    public static final String VALID_CLASS_FRIEND = "friend";
+    public static final String VALID_CLASS_CS1101S = "CS1101S";
+    public static final String VALID_CLASS_CS1231S = "CS1231S";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -45,13 +45,13 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String CLASS_DESC_FRIEND = " " + PREFIX_MODULE_CLASS + VALID_CLASS_FRIEND;
-    public static final String CLASS_DESC_HUSBAND = " " + PREFIX_MODULE_CLASS + VALID_CLASS_HUSBAND;
+    public static final String CLASS_DESC_CS1231S = " " + PREFIX_MODULE_CLASS + VALID_CLASS_CS1231S;
+    public static final String CLASS_DESC_CS1101S = " " + PREFIX_MODULE_CLASS + VALID_CLASS_CS1101S;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_CLASS_DESC = " " + PREFIX_MODULE_CLASS + "hubby*"; // '*' not allowed in classes
+    public static final String INVALID_CLASS_DESC = " " + PREFIX_MODULE_CLASS + "CS1101S*"; // '*' not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -62,10 +62,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withModuleClasses(VALID_CLASS_FRIEND).build();
+                .withModuleClasses(VALID_CLASS_CS1231S).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withModuleClasses(VALID_CLASS_HUSBAND, VALID_CLASS_FRIEND).build();
+                .withModuleClasses(VALID_CLASS_CS1101S, VALID_CLASS_CS1231S).build();
     }
 
     /**

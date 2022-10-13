@@ -9,11 +9,11 @@ import java.util.regex.Pattern;
 import seedu.taassist.logic.commands.AddCommand;
 import seedu.taassist.logic.commands.AddcCommand;
 import seedu.taassist.logic.commands.AssignCommand;
-import seedu.taassist.logic.commands.BackCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.Command;
 import seedu.taassist.logic.commands.DeleteCommand;
 import seedu.taassist.logic.commands.DeletecCommand;
+import seedu.taassist.logic.commands.DeletesCommand;
 import seedu.taassist.logic.commands.EditCommand;
 import seedu.taassist.logic.commands.ExitCommand;
 import seedu.taassist.logic.commands.FindCommand;
@@ -24,6 +24,7 @@ import seedu.taassist.logic.commands.ListcCommand;
 import seedu.taassist.logic.commands.ListsCommand;
 import seedu.taassist.logic.commands.SessionCommand;
 import seedu.taassist.logic.commands.UnassignCommand;
+import seedu.taassist.logic.commands.UnfocusCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 
 /**
@@ -86,6 +87,9 @@ public class TaAssistParser {
         case SessionCommand.COMMAND_WORD:
             return new SessionCommandParser().parse(arguments);
 
+        case DeletesCommand.COMMAND_WORD:
+            return new DeletesCommandParser().parse(arguments);
+
         case ListcCommand.COMMAND_WORD:
             return new ListcCommand();
 
@@ -95,8 +99,8 @@ public class TaAssistParser {
         case FocusCommand.COMMAND_WORD:
             return new FocusCommandParser().parse(arguments);
 
-        case BackCommand.COMMAND_WORD:
-            return new BackCommand();
+        case UnfocusCommand.COMMAND_WORD:
+            return new UnfocusCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
