@@ -1,19 +1,20 @@
 #copyButton, #helpMessage {
+    -fx-font-family: "Poppins";
     -fx-text-fill: white;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #FF6C64;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #CF534C;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: #FF6C64;
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #FFF2E7;
 }

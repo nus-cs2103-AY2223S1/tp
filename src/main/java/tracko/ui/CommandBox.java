@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import tracko.logic.Logic;
 import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
@@ -45,6 +46,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            commandTextField.setFont(Font.font("Poppins", 13));
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }

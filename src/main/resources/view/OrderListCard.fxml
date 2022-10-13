@@ -3,37 +3,51 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ListView?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Button?>
+<HBox id="cardPane" styleClass="card-pane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane prefWidth="175.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="120" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label_order">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" styleClass="cell_big_label_order" text="\$first" />
       </HBox>
       <VBox>
-        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="phoneIcon"/>
+          <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="addressIcon"/>
+        <Label fx:id="address" styleClass="cell_small_label_order" text="\$address" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="emailIcon"/>
+          <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
+        </HBox>
       </VBox>
-      <VBox fx:id="items" />
+      <VBox fx:id="items" spacing="2"/>
     </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>

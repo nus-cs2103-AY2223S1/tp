@@ -23,6 +23,10 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
+        resultDisplay.setStyle("-fx-font-family: \"Poppins\"; "
+                + "-fx-font-size: 13pt; "
+                + "-fx-text-fill: #878787;"
+        );
     }
 
 }

@@ -4,5 +4,6 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Inventory" styleClass="inventory-heading"></Label>
     <ListView fx:id="itemListView" VBox.vgrow="ALWAYS" />
 </VBox>

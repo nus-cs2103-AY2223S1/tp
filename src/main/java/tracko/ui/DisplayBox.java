@@ -26,6 +26,7 @@ public class DisplayBox extends UiPart<Region> {
         HBox.setHgrow(orderListPanel.getRoot(), Priority.ALWAYS);
         HBox.setHgrow(itemListPanel.getRoot(), Priority.ALWAYS);
         listPlaceholder.getChildren().addAll(orderListPanel.getRoot(), itemListPanel.getRoot());
+        listPlaceholder.setSpacing(10);
     }
 
     @Override

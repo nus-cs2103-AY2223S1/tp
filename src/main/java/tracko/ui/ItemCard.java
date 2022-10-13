@@ -1,13 +1,16 @@
 package tracko.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextAlignment;
 import tracko.model.items.Item;
 
 /**
- * An UI component that displays information of an {@code Item}.
+ * A UI component that displays information of an {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
 
@@ -23,8 +26,10 @@ public class ItemCard extends UiPart<Region> {
 
     public final Item item;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
+    @FXML
+    private HBox quantityRow;
     @FXML
     private Label itemName;
     @FXML
@@ -42,8 +47,20 @@ public class ItemCard extends UiPart<Region> {
         this.item = item;
         id.setText(displayedIndex + ". ");
         itemName.setText(item.getItemName().itemName);
+        itemName.setWrapText(true);
+        itemName.setPadding(new Insets(0, 10, 0, 0));
+
+        // If item name consists of more than 1 line, this will align the id to the first line.
+        id.prefHeightProperty().bind(itemName.heightProperty());
+        id.setAlignment(Pos.TOP_LEFT);
+
         quantity.setText(item.getQuantity().toString());
+        quantityRow.setMaxSize(HBox.USE_PREF_SIZE, HBox.USE_PREF_SIZE);
+
         description.setText(item.getDescription().value);
+        description.setWrapText(true);
+        description.setTextAlignment(TextAlignment.JUSTIFY);
+        description.setPadding(new Insets(0, 10, 0, 0));
     }
 
     @Override
