@@ -300,17 +300,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty. 
+* 2a. The list is empty.
 
-  * 2a.1 ModtRekt displays "No active tasks or deadlines". 
-    
+  * 2a.1 ModtRekt displays "No active tasks or deadlines".
+  
     Use case ends
 
 **Use case: Add a task**
 
 **MSS**
 
-1.  User requests to add a task 
+1.  User requests to add a task
 2.  ModtRekt shows a list of modules
 3.  User requests to add a task to specific module in the list
 4.  ModtRekt adds the task
@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-    
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -422,7 +422,7 @@ _**Mainstream OS**_
 
 Windows, Linux, Unix, OS-X
 
-_**Private contact detail**_ 
+_**Private contact detail**_
 
 A contact detail that is not meant to be shared with others
 
