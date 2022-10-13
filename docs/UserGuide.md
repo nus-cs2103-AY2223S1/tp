@@ -27,7 +27,7 @@ NotioNUS is a **desktop app for managing module tasks, which can be used via a C
    Some example commands you can try:
 
    - `ls -a` :
-    Lists all contacts.
+    Lists all tasks.
    - `add <module> <taskName> [--tag <tag>]` : 
     Adds a task called `taskName` from the module `module` into the task list.
    - `delete <taskId>` : 
@@ -132,6 +132,9 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Returning to a previous command : `up`/`down` keys 
+Loads previous command into the text input box. 
 
 ### Saving the data
 
