@@ -61,5 +61,14 @@
     "tagged" : [ ],
     "assignments": { }
   } ],
-  "groups" : [ ]
+  "groups" : [ {
+    "members" : ["Alice Pauline", "Benson Meier", "Carl Kurz"],
+    "groupName" : "Team Project"
+  }, {
+    "members" : ["Daniel Meier"],
+    "groupName" : "Individual Project"
+  }, {
+    "members" : ["Elle Meyer", "Fiona Kunz", "George Best"],
+    "groupName" : "Oral Presentation"
+  } ]
 }

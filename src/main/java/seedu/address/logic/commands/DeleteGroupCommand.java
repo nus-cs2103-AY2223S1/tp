@@ -30,7 +30,7 @@ public class DeleteGroupCommand extends Command {
             + PREFIX_GROUP + "CS2103T Team Project";
 
     public static final String MESSAGE_SUCCESS = "Deleted group: %1$s";
-    private static final String MESSAGE_UNKNOWN_GROUP = "The group with this GROUPNAME does not exist.";
+    private static final String MESSAGE_UNKNOWN_GROUP = "The group specified cannot be found!";
 
     private final Group targetGroup;
 
