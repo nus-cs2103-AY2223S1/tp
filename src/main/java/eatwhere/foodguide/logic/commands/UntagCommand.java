@@ -32,10 +32,15 @@ public class UntagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "halal";
 
-    public static final String MESSAGE_UNTAG_EATERY_SUCCESS = "Untagged Eatery: %1$s";
+    /**
+     *  %1$s - s if multiple tags, else nothing (i.e. tags or tag)
+     *  %2$s - The names of removed tags
+     *  %3$s - Eatery name
+     */
+    public static final String MESSAGE_UNTAG_EATERY_SUCCESS = "Removed tag%1$s %2$s\nfrom Eatery %3$s";
     public static final String MESSAGE_NOT_UNTAGGED = "At least one tag must be provided.";
     public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide.";
-    public static final String MESSAGE_TAG_NOT_FOUND = "Didn't find tag %1$s at eatery [%2$s].";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Didn't find tag %1$s at eatery %2$s.";
 
     private final Index index;
     private final Set<Tag> tagsToRemove;
@@ -70,7 +75,17 @@ public class UntagCommand extends Command {
 
         model.setEatery(eateryToUntag, untaggedEatery);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(MESSAGE_UNTAG_EATERY_SUCCESS, untaggedEatery.getName()));
+
+        String pluralForTagWord = tagsToRemove.size() == 1 ? "" : "s";
+        StringBuilder removedTags = new StringBuilder();
+        for (Tag tag : tagsToRemove) {
+            removedTags.append(tag).append(", ");
+        }
+
+        return new CommandResult(String.format(MESSAGE_UNTAG_EATERY_SUCCESS,
+                pluralForTagWord,
+                removedTags.substring(0, removedTags.length() - 2),
+                untaggedEatery.getName()));
     }
 
     /**
