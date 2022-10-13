@@ -1,10 +1,8 @@
 package seedu.address.logic.task;
 
-import seedu.address.logic.task.exceptions.LevelOutOfRangeException;
-
 import static java.util.Objects.requireNonNull;
 
-
+import seedu.address.logic.task.exceptions.LevelOutOfRangeException;
 
 /**
  * Represents the category of a task.
