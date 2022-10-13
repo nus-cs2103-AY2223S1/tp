@@ -5,21 +5,22 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Tests that a {@code Person}'s {@code Tags} contains all the tags given; case-insensitive.
+ * Tests that a {@code Person}'s {@code Tags} has all the tags given; case-insensitive. Tags must be a full
+ * word for word match.
  */
 public class PersonContainsTagsPredicate implements Predicate<Person> {
-    private final List<String> tagsToSearchInLowerCase;
+    private final List<String> tagsToSearchInUpperCase;
 
     public PersonContainsTagsPredicate(List<String> tagsToSearch) {
-        this.tagsToSearchInLowerCase = tagsToSearch.stream().map(String::toLowerCase).collect(Collectors.toList());
+        this.tagsToSearchInUpperCase = tagsToSearch.stream().map(String::toUpperCase).collect(Collectors.toList());
     }
 
     @Override
     public boolean test(Person person) {
-        List<String> personTagsInLowerCase =
-                person.getTags().stream().map(tag -> tag.tagName.toLowerCase()).collect(Collectors.toList());
+        List<String> personTagsInUpperCase =
+                person.getTags().stream().map(tag -> tag.tagName.toUpperCase()).collect(Collectors.toList());
 
-        return personTagsInLowerCase.containsAll(tagsToSearchInLowerCase);
+        return personTagsInUpperCase.containsAll(tagsToSearchInUpperCase);
     }
 
     @Override
@@ -27,6 +28,6 @@ public class PersonContainsTagsPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof PersonContainsTagsPredicate // instanceof handles nulls
                 // state check
-                && tagsToSearchInLowerCase.equals(((PersonContainsTagsPredicate) other).tagsToSearchInLowerCase));
+                && tagsToSearchInUpperCase.equals(((PersonContainsTagsPredicate) other).tagsToSearchInUpperCase));
     }
 }
