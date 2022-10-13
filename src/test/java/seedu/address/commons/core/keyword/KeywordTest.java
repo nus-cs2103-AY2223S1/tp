@@ -46,4 +46,18 @@ public class KeywordTest {
         // keyword contained -> return true
         assertTrue(keyword.isKeywordFound("912941testing90490193"));
     }
+
+    @Test
+    public void isDate() {
+        // not a date -> returns false
+        assertFalse(new Keyword("1284nwef").isDate());
+
+        // date in dd-mm-yyyy format -> returns true
+        assertTrue(new Keyword("02-12-2022").isDate());
+
+        // date not in dd-mm-yyyy format -> returns false
+        assertFalse(new Keyword("2022-02-02").isDate());
+        assertFalse(new Keyword("10 Aug 2021").isDate());
+        assertFalse(new Keyword("12-30-2021").isDate());
+    }
 }

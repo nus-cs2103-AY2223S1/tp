@@ -13,7 +13,7 @@ import seedu.address.model.person.FindableCategory;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
-    private static final String CONSTRAINT_MESSAGE =
+    public static final String CONSTRAINT_MESSAGE =
             "For the date category, all the keywords must be a valid date in dd-mm-yyyy format";
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

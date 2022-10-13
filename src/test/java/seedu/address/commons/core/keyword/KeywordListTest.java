@@ -35,6 +35,45 @@ public class KeywordListTest {
         assertTrue(firstList.equals(fourthList));
     }
 
+    @Test
+    public void isEmpty() {
+        KeywordList emptyList = prepareList();
+        KeywordList nonEmptyList = prepareList("some", "keywords");
+
+        // empty list -> returns true
+        assertTrue(emptyList.isEmpty());
+
+        // non-empty list -> returns false
+        assertFalse(nonEmptyList.isEmpty());
+    }
+
+    @Test
+    public void isAnyKeywordFound() {
+        KeywordList keywords = prepareList("leet", "code", "forces");
+
+        // does not match any keyword -> returns false
+        assertFalse(keywords.isAnyKeywordFound("optiver"));
+
+        // empty string -> returns false
+        assertFalse(keywords.isAnyKeywordFound(""));
+
+        // match all keyword -> returns true
+        assertTrue(keywords.isAnyKeywordFound("leetcodeforces"));
+
+        // math one of the keyword -> returns ture
+        assertTrue(keywords.isAnyKeywordFound("MayTheForcesBeWithYou"));
+    }
+
+    @Test
+    public void isAllKeywordDate() {
+        // one or more invalid date format -> returns false
+        assertFalse(prepareList("02-02-2022", "2022-02-02").isAllKeywordDate());
+        assertFalse(prepareList("msokdmvm", "02-02-2022").isAllKeywordDate());
+
+        // all keywords is in valid date format -> returns true
+        assertTrue(prepareList("02-02-2022", "01-02-2022", "03-12-2012").isAllKeywordDate());
+    }
+
     private KeywordList prepareList(String ...args) {
         KeywordList keywords = new KeywordList();
 
