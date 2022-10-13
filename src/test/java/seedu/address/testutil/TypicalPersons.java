@@ -18,8 +18,8 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Supplier;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -34,16 +34,17 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withPersonCategory("Buyer").withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withPersonCategory("Supplier").withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withPersonCategory("Supplier").withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withPersonCategory("Deliverer").withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withPersonCategory("Deliverer").withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final Person CARL = new PersonBuilder().withPersonCategory("Buyer").withName("Carl Kurz")
+            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").build();
+    public static final Person DANIEL = new PersonBuilder().withPersonCategory("Supplier").withName("Daniel Meier")
+            .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .build();
+    public static final Person ELLE = new PersonBuilder().withPersonCategory("Supplier").withName("Elle Meyer")
+            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave").build();
+    public static final Person FIONA = new PersonBuilder().withPersonCategory("Deliverer").withName("Fiona Kunz")
+            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo").build();
+    public static final Person GEORGE = new PersonBuilder().withPersonCategory("Deliverer").withName("George Best")
+            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

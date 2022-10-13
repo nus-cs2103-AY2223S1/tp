@@ -93,31 +93,43 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     }
 
-    //// person-level operations
+    // person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code Buyer} exists in the address book.
      */
     public boolean hasBuyer(Buyer buyer) {
         requireNonNull(buyer);
         return buyers.contains(buyer);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code Supplier} exists in the address book.
+     */
     public boolean hasSupplier(Supplier supplier) {
         requireNonNull(supplier);
         return suppliers.contains(supplier);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code Deliverer} exists in the address book.
+     */
     public boolean hasDeliverer(Deliverer deliverer) {
         requireNonNull(deliverer);
         return deliverers.contains(deliverer);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code Pet} exists in the address book.
+     */
     public boolean hasPet(Pet pet) {
         requireNonNull(pet);
         return pets.contains(pet);
     }
 
+    /**
+     * Returns true if a person with the same identity as {@code Order} exists in the address book.
+     */
     public boolean hasOrder(Order order) {
         requireNonNull(order);
         return orders.contains(order);

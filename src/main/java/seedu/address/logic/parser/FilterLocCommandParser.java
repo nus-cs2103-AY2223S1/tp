@@ -6,11 +6,14 @@ import seedu.address.logic.commands.FilterLocCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LocationContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new DeleteCommand object.
+ */
 public class FilterLocCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterLocCommand
      * and returns a FilterLocCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public FilterLocCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();

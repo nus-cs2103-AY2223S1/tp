@@ -18,7 +18,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Supplier;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -63,7 +66,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_PERSON_CATEGORY_DESC = " " + PREFIX_PERSON_CATEGORY + "Empty"; // 'Empty' is not a valid person category
+    public static final String INVALID_PERSON_CATEGORY_DESC = " " + PREFIX_PERSON_CATEGORY + "Empty";
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
