@@ -24,8 +24,8 @@ import eatwhere.foodguide.model.eatery.Eatery;
 import eatwhere.foodguide.model.eatery.NameContainsKeywordsPredicate;
 import eatwhere.foodguide.testutil.Assert;
 import eatwhere.foodguide.testutil.EateryBuilder;
+import eatwhere.foodguide.testutil.EateryUtil;
 import eatwhere.foodguide.testutil.EditEateryDescriptorBuilder;
-import eatwhere.foodguide.testutil.PersonUtil;
 import eatwhere.foodguide.testutil.TypicalIndexes;
 
 public class FoodGuideParserTest {
@@ -35,7 +35,7 @@ public class FoodGuideParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Eatery eatery = new EateryBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(eatery));
+        AddCommand command = (AddCommand) parser.parseCommand(EateryUtil.getAddCommand(eatery));
         assertEquals(new AddCommand(eatery), command);
     }
 
@@ -58,7 +58,7 @@ public class FoodGuideParserTest {
         EditCommand.EditEateryDescriptor descriptor = new EditEateryDescriptorBuilder(eatery).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_EATERY.getOneBased()
-                + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + " " + EateryUtil.getEditEateryDescriptorDetails(descriptor));
         assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_EATERY, descriptor), command);
     }
 
