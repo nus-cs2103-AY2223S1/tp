@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -13,6 +13,7 @@ import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -31,14 +32,15 @@ public class EditTaskCommand extends Command {
         + "by the index number used in the displayed task list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_MODULE + "MODULE] "
+        + "[" + PREFIX_MOD_CODE + "MODULE CODE] "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_MODULE + "cs2040 "
+        + PREFIX_MOD_CODE + "cs2040 "
         + PREFIX_DESCRIPTION + "task 3";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
-    public static final String MESSAGE_TASK_NOT_EDITED = "No changes are observed.";
+    public static final String MESSAGE_TASK_NOT_EDITED = "The provided fields are the same as the current task";
+    public static final String MESSAGE_NO_FIELDS_PROVIDED = "At least one field to edit must be provided.";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -111,6 +113,13 @@ public class EditTaskCommand extends Command {
         private TaskDescription description;
 
         public EditTaskDescriptor() {
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(module, description);
         }
 
         public void setModule(Module module) {
