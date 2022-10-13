@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
@@ -53,10 +54,12 @@ public class DeleteProjectCommand extends ProjectCommand {
         }
         model.deleteProject(projectToDelete);
 
-        if (!projectToDelete.getClient().isEmpty()) {
-            projectToDelete.getClient().getProjects().remove(projectToDelete);
-            if (projectToDelete.getClient().getProjects().size() == 0) {
-                UniqueClientList.remove(projectToDelete.getClient());
+        Client projectClient = projectToDelete.getClient();
+
+        if (!projectClient.isEmpty()) {
+            projectClient.removeProject(projectToDelete);
+            if (projectClient.getProjectListSize() == 0) {
+                UniqueClientList.remove(projectClient);
             }
         }
 

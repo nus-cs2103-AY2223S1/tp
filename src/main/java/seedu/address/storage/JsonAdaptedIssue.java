@@ -56,7 +56,7 @@ class JsonAdaptedIssue {
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
         issueId = source.getIssueId().toString();
-        project = source.getProject().getId().toString();
+        project = source.getProject().getProjectId().toString();
     }
 
     /**

@@ -45,7 +45,7 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        name.setText(project.getProjectName().toString() + " " + project.getId().uiRepresentation());
+        name.setText(project.getProjectName().toString() + " " + project.getProjectId().uiRepresentation());
         repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
                 : project.getRepository().getRepositoryUrl());
         deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"

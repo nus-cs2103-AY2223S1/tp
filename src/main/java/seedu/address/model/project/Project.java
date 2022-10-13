@@ -71,7 +71,7 @@ public class Project {
 
     }
 
-    public ProjectId getId() {
+    public ProjectId getProjectId() {
         return projectId;
     }
 

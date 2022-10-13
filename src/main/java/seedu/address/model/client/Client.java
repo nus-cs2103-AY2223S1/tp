@@ -73,6 +73,10 @@ public class Client {
         return false;
     }
 
+    public int getProjectListSize() {
+        return this.projects.size();
+    }
+
     /**
      * Represents an Empty Client.
      */
@@ -139,6 +143,10 @@ public class Client {
      */
     public String uiRepresentation() {
         return this.name.toString() + " " + this.phone.toString();
+    }
+
+    public void removeProject(Project p) {
+        this.projects.remove(p);
     }
 
 

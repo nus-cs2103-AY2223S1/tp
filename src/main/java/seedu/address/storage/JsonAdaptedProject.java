@@ -63,7 +63,7 @@ class JsonAdaptedProject {
         repository = source.getRepository().toString();
         deadline = source.getDeadline().toString();
         client = new JsonAdaptedClient(source.getClient());
-        projectId = source.getId().toString();
+        projectId = source.getProjectId().toString();
     }
 
     /**
