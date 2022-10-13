@@ -39,7 +39,7 @@ public class AddSupplierCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddPersonCommand to add the specified {@code Person}
+     * Creates an AddSupplierCommand to add the specified {@code Supplier}.
      */
     public AddSupplierCommand(Person person) {
         requireNonNull(person);

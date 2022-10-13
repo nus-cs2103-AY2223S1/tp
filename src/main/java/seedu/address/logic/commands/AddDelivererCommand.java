@@ -39,7 +39,7 @@ public class AddDelivererCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an AddDelivererCommand to add the specified {@code Deliverer}
+     * Creates an AddDelivererCommand to add the specified {@code Deliverer}.
      */
     public AddDelivererCommand(Person person) {
         requireNonNull(person);

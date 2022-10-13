@@ -48,5 +48,4 @@ public class OrderListPanel extends UiPart<Region> {
             }
         }
     }
-  
 }

@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Person's location in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidLoc(String)}
+ */
 public class Location {
     public static final String MESSAGE_CONSTRAINTS =
             "Locations should only contain alphanumeric characters and spaces, and it should not be blank";

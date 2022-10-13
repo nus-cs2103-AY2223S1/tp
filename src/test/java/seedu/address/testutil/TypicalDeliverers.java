@@ -1,16 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.Deliverer;
-import seedu.address.model.person.Person;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_CAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_CATEGORY_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_CATEGORY_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_CATEGORY_CAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CAL;
+import seedu.address.model.AddressBook;
+import seedu.address.model.person.Deliverer;
+import seedu.address.model.person.Person;
 
+/**
+ * A utility class containing a list of {@code Deliverer} objects to be used in tests.
+ */
 public class TypicalDeliverers {
     public static final Deliverer ALICE = new PersonBuilder().withPersonCategory("Deliverer").withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

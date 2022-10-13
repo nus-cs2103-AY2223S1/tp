@@ -7,13 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBuyerAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showDelivererAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showSupplierAtIndex;
+import static seedu.address.testutil.TypicalBuyers.getTypicalBuyerAddressBook;
+import static seedu.address.testutil.TypicalDeliverers.getTypicalDelivererAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersonCategories.PERSON_CATEGORY_BUYER;
 import static seedu.address.testutil.TypicalPersonCategories.PERSON_CATEGORY_DELIVERER;
 import static seedu.address.testutil.TypicalPersonCategories.PERSON_CATEGORY_SUPPLIER;
-import static seedu.address.testutil.TypicalBuyers.getTypicalBuyerAddressBook;
-import static seedu.address.testutil.TypicalDeliverers.getTypicalDelivererAddressBook;
 import static seedu.address.testutil.TypicalSuppliers.getTypicalSupplierAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -54,7 +54,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredBuyerList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(modelForBuyers.getFilteredBuyerList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_BUYER,outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_BUYER, outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, modelForBuyers, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -81,7 +81,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < modelForBuyers .getAddressBook().getBuyerList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < modelForBuyers.getAddressBook().getBuyerList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_BUYER, outOfBoundIndex);
 
@@ -92,7 +92,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredDelivererList_success() {
         Deliverer personToDelete = modelForDeliverers.getFilteredDelivererList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_DELIVERER,INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_DELIVERER, INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -105,7 +105,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredDelivererList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(modelForDeliverers.getFilteredDelivererList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_DELIVERER,outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_DELIVERER, outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, modelForDeliverers, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -143,7 +143,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredSupplierList_success() {
         Supplier personToDelete = modelForSuppliers.getFilteredSupplierList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_SUPPLIER,INDEX_FIRST_PERSON);
+        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_SUPPLIER, INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -156,7 +156,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredSupplierList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(modelForSuppliers.getFilteredSupplierList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_SUPPLIER,outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(PERSON_CATEGORY_SUPPLIER, outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, modelForSuppliers, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }

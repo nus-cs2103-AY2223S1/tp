@@ -32,6 +32,9 @@ public class DeleteCommand extends Command {
     private final PersonCategory personCategory;
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteCommand to delete the specified {@code Person}.
+     */
     public DeleteCommand(PersonCategory personCategory, Index targetIndex) {
         this.personCategory = personCategory;
         this.targetIndex = targetIndex;

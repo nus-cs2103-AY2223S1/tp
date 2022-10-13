@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_REQUESTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_STATUS;
 
 /**
- * Adds an order to the
+ * Adds an order to the contact.
  */
 public class AddOrderCommand {
 

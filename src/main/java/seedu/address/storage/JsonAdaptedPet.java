@@ -1,18 +1,31 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
-import seedu.address.model.pet.*;
-import seedu.address.model.tag.Tag;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.person.Name;
+import seedu.address.model.pet.Color;
+import seedu.address.model.pet.ColorPattern;
+import seedu.address.model.pet.DateOfBirth;
+import seedu.address.model.pet.Height;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.PetCertificate;
+import seedu.address.model.pet.Species;
+import seedu.address.model.pet.VaccinationStatus;
+import seedu.address.model.pet.Weight;
+import seedu.address.model.tag.Tag;
+
+/**
+ * Jackson-friendly version of {@link Pet}.
+ */
 public class JsonAdaptedPet {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pet's %s field is missing!";
 
@@ -111,12 +124,14 @@ public class JsonAdaptedPet {
         final Color modelColor = new Color(color);
 
         if (colorPattern == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ColorPattern.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ColorPattern.class.getSimpleName()));
         }
         final ColorPattern modelColorPattern = new ColorPattern(colorPattern);
 
         if (dateOfBirth == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
         }
         final DateOfBirth modelDateOfBirth = DateOfBirth.parseString(dateOfBirth);
 
@@ -147,9 +162,10 @@ public class JsonAdaptedPet {
 
         final Set<PetCertificate> modelCerts = new HashSet<>();
         if (certificates == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PetCertificate.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PetCertificate.class.getSimpleName()));
         }
-        for (String cert : certificates ) {
+        for (String cert : certificates) {
             modelCerts.add(new PetCertificate(cert));
         }
 
