@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.model.module.Module;
 
 /**
- * Tests that a {@code Task} fulfils the given predicate
+ * Tests that a {@code Task} fulfils the given predicate.
  */
 public class FilterPredicate implements Predicate<Task> {
     private final Optional<Module> moduleToCheck;
@@ -14,8 +14,8 @@ public class FilterPredicate implements Predicate<Task> {
 
     /**
      * Tests that a {@code Task} matches all the module and status constraints given.
-     * @param module
-     * @param status
+     * @param module check if task has same module code.
+     * @param status check if task has same status.
      */
     public FilterPredicate(Optional<Module> module, Optional<TaskStatus> status) {
         this.moduleToCheck = module;

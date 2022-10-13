@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.FilterPredicate;
 
 /**
- * Filters the task list by module.
+ * Filters the task list by module and completion status.
  */
 public class FilterTasksCommand extends Command {
 
