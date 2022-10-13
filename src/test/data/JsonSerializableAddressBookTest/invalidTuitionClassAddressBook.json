@@ -1,0 +1,13 @@
+{
+  "tuitionClasses" : [ {
+    "name" : "P2MATH",
+    "subject" : "math",
+    "level" : "p2",
+    "day" : "MONDAY",
+    "startTime" : "10:00",
+    "endTime" : "2369",
+    "tagged" : [ "tough" ],
+    "students" : [ ],
+    "tutors" : [ ]
+  } ]
+}
