@@ -45,7 +45,6 @@ public class Deadline extends Task {
             return false;
         }
 
-        // TODO: Include isDone in equality check?
         Deadline otherTask = (Deadline) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
@@ -63,7 +62,6 @@ public class Deadline extends Task {
             return false;
         }
 
-        // TODO: Include isDone in equality check?
         Deadline otherTask = (Deadline) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())

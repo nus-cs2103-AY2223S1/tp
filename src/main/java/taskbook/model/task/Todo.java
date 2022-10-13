@@ -34,7 +34,6 @@ public class Todo extends Task {
             return false;
         }
 
-        // TODO: Include isDone in equality check?
         Todo otherTask = (Todo) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
@@ -51,7 +50,6 @@ public class Todo extends Task {
             return false;
         }
 
-        // TODO: Include isDone in equality check?
         Todo otherTask = (Todo) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
