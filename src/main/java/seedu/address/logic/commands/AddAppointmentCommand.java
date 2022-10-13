@@ -11,6 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -61,7 +62,13 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonWithNewAppointment(personToEdit, editPersonDescriptor);
+        Person editedPerson;
+
+        try {
+            editedPerson = createEditedPersonWithNewAppointment(personToEdit, editPersonDescriptor);
+        } catch (ParseException e) {
+            throw new CommandException(e.getMessage());
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);

@@ -17,14 +17,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.person.Appointment.EMPTY_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -33,6 +31,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -59,10 +58,10 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addOneAppointment_success() {
         Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        Set<Appointment> sets = new HashSet<>();
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointmentList.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        firstPerson.setAppointments(sets);
+        firstPerson.setAppointments(appointmentList);
         EditPersonDescriptor descriptor = DESC_APPOINTMENT;
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -77,12 +76,12 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addMultipleAppointment_success() {
         Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        Set<Appointment> sets = new HashSet<>();
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        appointmentList.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        appointmentList.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_22_JAN_2023))));
-        firstPerson.setAppointments(sets);
+        firstPerson.setAppointments(appointmentList);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);

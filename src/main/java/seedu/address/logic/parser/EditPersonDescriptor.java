@@ -1,11 +1,15 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -13,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -24,7 +29,7 @@ public class EditPersonDescriptor {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private Set<Appointment> appointments;
+    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -79,11 +84,11 @@ public class EditPersonDescriptor {
      * Sets {@code appointments} to this object's {@code appointments}.
      * A defensive copy of {@code appointments} is used internally.
      */
-    public void setAppointments(Set<Appointment> appointments) {
-        this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
+    public void setAppointments(MaximumSortedList<Appointment> appointments) {
+        this.appointments = (appointments != null) ? new MaximumSortedList<>(appointments) : null;
     }
 
-    public Optional<Set<Appointment>> getAppointments() {
+    public Optional<MaximumSortedList<Appointment>> getAppointments() {
         return Optional.ofNullable(appointments);
     }
 
@@ -128,12 +133,25 @@ public class EditPersonDescriptor {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with a new appointment from {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonWithNewAppointment(Person personToEdit,
-                                                              EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPersonWithNewAppointment(
+            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
         assert personToEdit != null;
 
-        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
-        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
+        MaximumSortedList<Appointment> updatedAppointments = personToEdit.getAppointments();
+
+        Optional<Boolean> hasAppointment = editPersonDescriptor.appointments.stream()
+                .map(updatedAppointments::contains).reduce((x, y) -> x || y);
+        Optional<Boolean> isAppointmentsEdited = editPersonDescriptor.appointments.stream()
+                .map(updatedAppointments::add).reduce((x, y) -> x || y);
+
+        if (hasAppointment.isEmpty() || hasAppointment.get()) {
+            throw new ParseException("You have entered a duplicate appointment for this client");
+        }
+
+        if (isAppointmentsEdited.isEmpty() || !isAppointmentsEdited.get()) {
+            throw new ParseException("You have already reached the maximum number of appointments ("
+                    + MAXIMUM_APPOINTMENTS + ") for this client");
+        }
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
@@ -145,7 +163,6 @@ public class EditPersonDescriptor {
         newPerson.setAppointments(updatedAppointments);
         return newPerson;
     }
-
 
     @Override
     public boolean equals(Object other) {

@@ -1,10 +1,13 @@
 package seedu.address.model.util;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
@@ -15,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -63,11 +67,12 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Appointment> getAppointmentSet(String... strings) {
-        return Arrays.stream(strings)
+    public static MaximumSortedList<Appointment> getAppointmentSet(String... strings) {
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        Arrays.stream(strings)
                 .map(DateTimeParser::parseLocalDateTimeFromString)
                 .map(DateTime::new)
-                .map(Appointment::new)
-                .collect(Collectors.toSet());
+                .map(Appointment::new).forEach(appointmentList::add);
+        return appointmentList;
     }
 }
