@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindPetCommand;
+import seedu.address.logic.commands.FindPetCommandTest;
 import seedu.address.model.pet.PetNameContainsKeywordsPredicate;
 
 import java.util.Arrays;
@@ -16,7 +16,8 @@ public class FindPetCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPetCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindPetCommand.MESSAGE_USAGE));
     }
 
     @Test
