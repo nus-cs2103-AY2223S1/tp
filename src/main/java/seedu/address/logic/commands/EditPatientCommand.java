@@ -81,7 +81,9 @@ public class EditPatientCommand extends EditGenericCommand {
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
+        model.setPatientOfInterest(editedPatient);
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
+                CommandResult.COMMANDTYPE.PATIENT);
     }
 
     /**

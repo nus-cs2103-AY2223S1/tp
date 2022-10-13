@@ -95,4 +95,9 @@ public interface Model {
 
     /** Returns a supplier to get the flag to display tasks */
     Supplier<Boolean> getTaskListFlagSupplier();
+
+    void setPatientOfInterest(Patient patient);
+
+    Patient getPatientOfInterest();
+
 }

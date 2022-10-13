@@ -52,7 +52,8 @@ public class AddPatientCommand extends AddGenericCommand {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.setPatientOfInterest(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.COMMANDTYPE.PATIENT);
     }
 
     @Override

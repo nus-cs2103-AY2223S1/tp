@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPersons;
 
     private boolean taskListFlag;
+    private Patient patientOfInterest;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
         taskListFlag = false;
+        this.patientOfInterest = null;
     }
 
     public ModelManager() {
@@ -144,6 +146,17 @@ public class ModelManager implements Model {
     //=========== Other Accessors =============================================================
 
     @Override
+    public void setPatientOfInterest(Patient patient) {
+        requireNonNull(patient);
+        this.patientOfInterest = patient;
+    }
+
+    @Override
+    public Patient getPatientOfInterest() {
+        return this.patientOfInterest;
+    }
+
+    @Override
     public Supplier<Boolean> getTaskListFlagSupplier() {
         return (() -> taskListFlag);
     }
@@ -166,5 +179,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

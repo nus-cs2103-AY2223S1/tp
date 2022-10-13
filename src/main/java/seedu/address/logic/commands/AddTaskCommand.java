@@ -59,9 +59,11 @@ public class AddTaskCommand extends AddGenericCommand {
                 personToEdit.getAddress(), updatedTaskList, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
+        model.setPatientOfInterest(editedPerson);
 
-        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task));
+        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task),
+                CommandResult.COMMANDTYPE.TASK);
     }
 
     @Override

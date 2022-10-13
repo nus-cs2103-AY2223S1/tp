@@ -177,10 +177,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleViewTask(Patient patient) {
+    private void handleTask(Patient patient) {
         outputPanelPlaceholder.getChildren().clear();
         outputPanelPlaceholder.getChildren().add(new TaskListCard(patient.getTasks().toString()).getRoot());
     }
+
+    private void handlePatient(Patient patient) {
+        outputPanelPlaceholder.getChildren().clear();
+        outputPanelPlaceholder.getChildren().add(new PersonCard(patient, 1).getRoot());
+    }
+
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
@@ -206,13 +212,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-
-            if (logic.getTaskListFlagSupplier().get()) {
-                ObservableList<Patient> patientList = logic.getFilteredPersonList();
-                Patient patient = patientList.get(0);
-                handleViewTask(patient);
+            if (commandResult.isTaskRelated()) {
+                handleTask(logic.getFilteredPersonList().get(0));
             }
 
+            if (commandResult.isPatientRelated()) {
+                handlePatient(logic.getPatientOfInterest());
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
