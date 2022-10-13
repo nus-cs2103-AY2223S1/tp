@@ -31,10 +31,10 @@ public class PropertyNameTest {
         assertFalse(PropertyName.isValidPropertyName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(PropertyName.isValidPropertyName("peter jack")); // alphabets only
+        assertTrue(PropertyName.isValidPropertyName("tembusu college")); // alphabets only
         assertTrue(PropertyName.isValidPropertyName("12345")); // numbers only
-        assertTrue(PropertyName.isValidPropertyName("peter the 2nd")); // alphanumeric characters
-        assertTrue(PropertyName.isValidPropertyName("Capital Tan")); // with capital letters
-        assertTrue(PropertyName.isValidPropertyName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(PropertyName.isValidPropertyName("21 century residence")); // alphanumeric characters
+        assertTrue(PropertyName.isValidPropertyName("Peak Residence")); // with capital letters
+        assertTrue(PropertyName.isValidPropertyName("Heng Mui Keng Street 2 5 Condo")); // long names
     }
 }

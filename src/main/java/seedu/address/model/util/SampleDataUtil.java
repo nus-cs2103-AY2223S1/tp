@@ -45,9 +45,22 @@ public class SampleDataUtil {
     }
 
     public static Property[] getSampleProperties() {
-        return new Property[]{ new Property(new PropertyName("Residential College 4"), new Price("50000"),
+        return new Property[]{
+                new Property(new PropertyName("Residential College 4"), new Price("50000"),
                 new Address("6 College Avenue East"), new Description("A place for NUS students to stay."),
-                        getTagSet("istayhere"))
+                        getTagSet("istayhere")),
+                new Property(new PropertyName("Tembusu College"), new Price("9999"),
+                        new Address("26 College Avenue East"), new Description("A place for NUS students to stay."),
+                        getTagSet("dorm")),
+                new Property(new PropertyName("Peak Residence"), new Price("10000000"),
+                        new Address("333 Thompson Road"),
+                        new Description("latest freehold luxurious exclusive condominium."),
+                        getTagSet("condo")),
+                new Property(new PropertyName("Hut"), new Price("25000"),
+                        new Address("25 Regent Road"),
+                        new Description("new 3-room HDB flat"),
+                        getTagSet("hdb"))
+
         };
     }
 
