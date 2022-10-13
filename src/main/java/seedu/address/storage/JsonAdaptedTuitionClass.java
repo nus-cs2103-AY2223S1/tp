@@ -36,7 +36,7 @@ class JsonAdaptedTuitionClass {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedTutor} with the given person details.
+     * Constructs a {@code JsonAdaptedTuitionClass} with the given tuitionClass details.
      */
     @JsonCreator
     public JsonAdaptedTuitionClass(@JsonProperty("name") String name, @JsonProperty("subject") String subject,
@@ -70,9 +70,9 @@ class JsonAdaptedTuitionClass {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Tutor} object.
+     * Converts this Jackson-friendly adapted tuitionClass object into the model's {@code TuitionClass} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted tuitionClass.
      */
     public TuitionClass toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();

@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
 import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
@@ -26,4 +31,15 @@ public class TypicalTuitionClasses {
             .build();
 
     private TypicalTuitionClasses() {} // prevents instantiation
+
+    public static AddressBook getTypicalTuitionClassesAddressBook() {
+        AddressBook ab = new AddressBook();
+
+        List<TuitionClass> tuitionClassList = new ArrayList<>(Arrays.asList(
+                TypicalTuitionClasses.TUITIONCLASS1, TypicalTuitionClasses.TUITIONCLASS2));
+        for (TuitionClass tc : tuitionClassList) {
+            ab.addTuitionClass(tc);
+        }
+        return ab;
+    }
 }
