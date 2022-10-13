@@ -1,17 +1,28 @@
 package seedu.address.testutil;
 
-import javafx.util.converter.LocalDateTimeStringConverter;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.person.*;
-import seedu.address.model.pet.*;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.TypicalBuyers;
-
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.model.AddressBook;
+import seedu.address.model.person.Name;
+import seedu.address.model.pet.Color;
+import seedu.address.model.pet.ColorPattern;
+import seedu.address.model.pet.DateOfBirth;
+import seedu.address.model.pet.Height;
+import seedu.address.model.pet.Pet;
+import seedu.address.model.pet.Species;
+import seedu.address.model.pet.VaccinationStatus;
+import seedu.address.model.pet.Weight;
+import seedu.address.model.tag.Tag;
+
+/**
+ * A utility class containing a list of {@code Pets} objects to be used in tests.
+ */
 public class TypicalPets {
     public static final Pet DOJA = new Pet(new Name("Doja"), TypicalBuyers.ALICE,
             new Color("white"),
@@ -27,7 +38,7 @@ public class TypicalPets {
             new Height(110.1), new VaccinationStatus(true), getTagSet("cat"),
             new HashSet<>());
 
-    private TypicalPets(){};
+    private TypicalPets() {}
 
     /**
      * Returns an {@code AddressBook} with all the typical pets.
