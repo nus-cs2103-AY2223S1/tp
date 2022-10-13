@@ -100,7 +100,7 @@ public class UniqueIssueList implements Iterable<Issue> {
      * Removes the equivalent issue from the list.
      * The issue must exist in the list.
      */
-    public void remove(Issue toRemove) {
+    public static void remove(Issue toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new IssueNotFoundException();

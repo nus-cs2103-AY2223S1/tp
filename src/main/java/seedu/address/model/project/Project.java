@@ -27,7 +27,7 @@ public class Project {
      */
     public Project(Name name, Repository repository, Deadline deadline,
                    Client client, List<Issue> issueList, ProjectId projectId) {
-        requireAllNonNull(name, repository, deadline, client);
+        requireAllNonNull(name);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
@@ -39,6 +39,7 @@ public class Project {
     public ProjectId getId() {
         return projectId;
     }
+
     public Name getProjectName() {
         return name;
     }
@@ -57,6 +58,10 @@ public class Project {
 
     public List<Issue> getIssueList() {
         return issueList;
+    }
+
+    public boolean hasValidClientId() {
+        return !this.getClient().getClientId().isEmpty();
     }
 
     /**

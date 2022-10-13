@@ -39,7 +39,7 @@ public class Name {
     public static class EmptyName extends Name {
         public static final Name EMPTY_NAME = new EmptyName();
         public EmptyName() {
-            super("");
+            super("Conrad");
         }
 
         /**

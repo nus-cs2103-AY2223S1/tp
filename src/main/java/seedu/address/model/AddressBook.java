@@ -126,7 +126,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if an client with the same identity as {@code client} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
@@ -201,9 +201,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given client {@code target} in the list with {@code editedClient}.
+     * Replaces the given issue {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in the address book.
-     * The client identity of {@code editedClient} must not be the same as another
+     * The issue identity of {@code editedClient} must not be the same as another
      * existing client in the address book.
      */
     public void setClient(Client target, Client editedClient) {
@@ -302,16 +302,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
-                && projects.equals(((AddressBook) other).projects)
-                && issues.equals(((AddressBook) other).issues)
                 && clients.equals(((AddressBook) other).clients));
     }
 
     @Override
     public int hashCode() {
         // TODO: Check for appropriate hashcode
-        return persons.hashCode();
+        return clients.hashCode();
     }
 
     public void setCounts(String clientCount, String projectCount, String issueCount) {

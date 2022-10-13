@@ -79,24 +79,24 @@ public interface Model {
     void deleteIssue(Issue target);
     void deleteClient(Client target);
 
-    void addProject(Project person);
-
     /**
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */
+    void addProject(Project person);
+
     void addPerson(Person person);
     void addClient(Client client);
 
     void addIssue(Issue issue);
-
-    void setProject(Project target, Project editedProject);
 
     /**
      * Replaces the given client {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The client identity of {@code editedPerson} must not be the same as another existing client in the address book.
      */
+    void setProject(Project target, Project editedProject);
+
     void setPerson(Person target, Person editedPerson);
 
     void setIssue(Issue target, Issue editedIssue);

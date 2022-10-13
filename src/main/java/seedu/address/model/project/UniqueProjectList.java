@@ -30,6 +30,21 @@ public class UniqueProjectList implements Iterable<Project> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Method to generate a project id temporarily
+     *
+     * @return project id
+     */
+    public static int generateId() {
+        int count = 0;
+        for (Project p : internalList) {
+            if (p.getId().getIdInt() > count) {
+                count = p.getId().getIdInt();
+            }
+        }
+        return count + 1;
+    }
+
+    /**
      * Returns true if the list contains an equivalent project as the given argument.
      */
     public boolean contains(Project toCheck) {
@@ -69,11 +84,10 @@ public class UniqueProjectList implements Iterable<Project> {
         internalList.set(index, editedProject);
     }
 
-    // TODO: temporary getter for project, can be deleted when alt method to retrieve project is implemented
+
     public static Project getProject(int projectId) {
         for (Project p : internalList) {
-            ProjectId id = new ProjectId(projectId);
-            if (p.getId().equals(id)) {
+            if (p.getId().getIdInt() == projectId) {
                 return p;
             }
         }
