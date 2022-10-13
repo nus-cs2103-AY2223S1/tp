@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.PersonBook;
+import seedu.address.model.PropertyBook;
+import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.address.Address;
 import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
 import seedu.address.model.person.Email;
@@ -20,7 +22,7 @@ import seedu.address.model.property.PropertyName;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code PersonBook} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -68,19 +70,23 @@ public class SampleDataUtil {
                         new Address("25 Regent Road"),
                         new Description("new 3-room HDB flat"),
                         getTagSet("hdb"), "Heidi")
-
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyPersonBook getSamplePersonModel() {
+        PersonBook sampleAb = new PersonBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
-        for (Property sampleProperty : getSampleProperties()) {
-            sampleAb.addProperty(sampleProperty);
-        }
         return sampleAb;
+    }
+
+    public static ReadOnlyPropertyBook getSamplePropertyModel() {
+        PropertyBook propertyBook = new PropertyBook();
+        for (Property sampleProperty : getSampleProperties()) {
+            propertyBook.addProperty(sampleProperty);
+        }
+        return propertyBook;
     }
 
     /**

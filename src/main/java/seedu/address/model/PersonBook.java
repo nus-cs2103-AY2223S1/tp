@@ -7,17 +7,14 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.UniquePropertyList;
 
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class PersonBook implements ReadOnlyPersonBook {
 
     private final UniquePersonList persons;
-    private final UniquePropertyList properties;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,15 +25,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        properties = new UniquePropertyList();
     }
 
-    public AddressBook() {}
+    public PersonBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an PersonBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public PersonBook(ReadOnlyPersonBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -52,21 +48,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the property list with {@code properties}.
-     * {@code properties} must not contain duplicate properties.
+     * Resets the existing data of this {@code PersonBook} with {@code newData}.
      */
-    public void setProperties(List<Property> properties) {
-        this.properties.setProperties(properties);
-    }
-
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyPersonBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setProperties(newData.getPropertyList());
     }
 
     //// person-level operations
@@ -88,14 +75,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a property to the address book.
-     * The property must not already exist in the address book.
-     */
-    public void addProperty(Property p) {
-        properties.add(p);
-    }
-
-    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -107,27 +86,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code PersonBook}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
         persons.remove(key);
     }
 
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeProperty(Property key) {
-        properties.remove(key);
-    }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons" + "\n"
-                + properties.asUnmodifiableObservableList().size() + " properties";
+        return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
@@ -137,16 +108,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Property> getPropertyList() {
-        return properties.asUnmodifiableObservableList();
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons)
-                && properties.equals(((AddressBook) other).properties));
+                || (other instanceof PersonBook // instanceof handles nulls
+                && persons.equals(((PersonBook) other).persons));
     }
 
     @Override

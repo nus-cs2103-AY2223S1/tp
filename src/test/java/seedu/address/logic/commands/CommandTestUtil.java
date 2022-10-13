@@ -17,8 +17,9 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.PersonBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
@@ -130,11 +131,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        PersonBook expectedPersonBook = new PersonBook(actualModel.getPersonModel());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedPersonBook, actualModel.getPersonModel());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
 
@@ -142,16 +143,16 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered property list and selected property in {@code actualModel} remain unchanged
+     * - the PropertyBook, filtered property list and selected property in {@code actualModel} remain unchanged
      */
     public static void assertPropertyCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyModel());
         List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedPropertyBook, actualModel.getPropertyModel());
         assertEquals(expectedFilteredList, actualModel.getFilteredPropertyList());
     }
 

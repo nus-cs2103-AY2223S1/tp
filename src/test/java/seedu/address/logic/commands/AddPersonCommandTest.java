@@ -16,9 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.PersonBook;
+import seedu.address.model.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.property.Property;
@@ -101,12 +102,22 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getPersonModelFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setPersonModelFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getPropertyModelFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPropertyModelFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +127,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setPersonModel(ReadOnlyPersonBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyPersonBook getPersonModel() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -136,11 +147,6 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void deleteProperty(Property target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -151,13 +157,43 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ObservableList<Property> getFilteredPropertyList() {
-            throw new AssertionError("This method should not be called");
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void addProperty(Property property) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPropertyModel(ReadOnlyPropertyBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyPropertyBook getPropertyModel() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasProperty(Property property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteProperty(Property target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setProperty(Property target, Property editedProperty) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Property> getFilteredPropertyList() {
+            throw new AssertionError("This method should not be called");
         }
 
         @Override
@@ -204,8 +240,8 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyPersonBook getPersonModel() {
+            return new PersonBook();
         }
     }
 

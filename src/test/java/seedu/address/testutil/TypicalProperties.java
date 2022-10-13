@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.property.Property;
 
 /**
@@ -34,14 +34,14 @@ public class TypicalProperties {
     private TypicalProperties() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns a {@code PropertyBook} with all the typical properties.
      */
-    public static AddressBook getTypicalPropertyBook() {
-        AddressBook ab = new AddressBook();
+    public static PropertyBook getTypicalPropertyModel() {
+        PropertyBook propertyBook = new PropertyBook();
         for (Property property : getTypicalProperties()) {
-            ab.addProperty(property);
+            propertyBook.addProperty(property);
         }
-        return ab;
+        return propertyBook;
     }
 
     public static List<Property> getTypicalProperties() {
