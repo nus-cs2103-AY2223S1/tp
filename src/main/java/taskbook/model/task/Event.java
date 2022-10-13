@@ -46,10 +46,7 @@ public class Event extends Task {
         }
 
         Event otherTask = (Event) other;
-        return otherTask.getName().equals(getName())
-                && otherTask.getAssignment().equals(getAssignment())
-                && otherTask.getDescription().equals(getDescription())
-                && otherTask.getDate().equals(getDate());
+        return super.isSameTask(other) && date.equals(otherTask.date);
     }
 
     @Override
@@ -63,11 +60,7 @@ public class Event extends Task {
         }
 
         Event otherTask = (Event) other;
-        return otherTask.getName().equals(getName())
-                && otherTask.getAssignment().equals(getAssignment())
-                && otherTask.getDescription().equals(getDescription())
-                && (otherTask.isDone() == (isDone()))
-                && otherTask.getDate().equals(getDate());
+        return super.equals(other) && date.equals(otherTask.date);
     }
 
     @Override
