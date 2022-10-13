@@ -27,7 +27,6 @@ public class TypicalPersons {
     public static final Record RECORD1 = new Record("10-10-2011 1400", "Covid-19");
     public static final Record RECORD2 = new Record("10-10-2010 1400", "Cold");
     public static final Record RECORD3 = new Record("10-10-2020 1400", "SARS");
-    public static final Record EMPTY_RECORD = new Record("10-10-2020 1400", "SARS");
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")

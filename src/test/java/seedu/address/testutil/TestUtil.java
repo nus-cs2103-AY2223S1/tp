@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.RECORD1;
+import static seedu.address.testutil.TypicalPersons.RECORD2;
+import static seedu.address.testutil.TypicalPersons.RECORD3;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +12,8 @@ import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 
 /**
@@ -51,5 +58,20 @@ public class TestUtil {
      */
     public static Person getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    /**
+     * Returns a Model for FindRecord command test.
+     */
+    public static Model prepareModel() {
+        Person benson = new PersonBuilder().withName("Benson Meier")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com").withPhone("98765432")
+                .withTags("owesMoney", "friends").withRecordList(RECORD1, RECORD2, RECORD3).build();
+
+        Model testModal = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        testModal.setFilteredRecordList(benson);
+        testModal.setRecordListDisplayed(true);
+        return testModal;
     }
 }
