@@ -1,4 +1,4 @@
-package seedu.address.model.supplyItem;
+package seedu.address.model.item;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Price;
 import seedu.address.model.tag.Tag;
@@ -30,8 +29,8 @@ public class SupplyItem {
     /**
      * Every field must be present and not null.
      */
-    public SupplyItem(String name, int currentStock,int minStock,Person supplier, Set<Tag>tags) {
-        requireAllNonNull(name, currentStock,minStock, supplier, tags);
+    public SupplyItem(String name, int currentStock, int minStock, Person supplier, Set<Tag>tags) {
+        requireAllNonNull(name, currentStock, minStock, supplier, tags);
         this.name = name;
         this.currentStock = currentStock;
         this.minStock = minStock;
@@ -51,11 +50,11 @@ public class SupplyItem {
         return minStock;
     }
 
-    public Name getSupplier() {
-     return supplier.getName();
+    public Person getSupplier() {
+        return supplier;
     }
 
-    public Price gePrice() {
+    public Price getPrice() {
         return supplier.getPrice();
     }
 
@@ -66,7 +65,7 @@ public class SupplyItem {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, currentStock,minStock, supplier, tags);
+        return Objects.hash(name, currentStock, minStock, supplier, tags);
     }
 
     @Override
@@ -77,7 +76,7 @@ public class SupplyItem {
                 .append("; Supplier: ")
                 .append(getSupplier())
                 .append(", Price: ")
-                .append(gePrice())
+                .append(getPrice())
                 .append(", Stock: ")
                 .append(getCurrentStock());
 
@@ -106,7 +105,6 @@ public class SupplyItem {
         SupplyItem otherSupplyItem = (SupplyItem) other;
         return otherSupplyItem.getName().equals(getName())
                 && otherSupplyItem.getSupplier().equals(getSupplier())
-                && otherSupplyItem.gePrice().equals(gePrice())
                 && otherSupplyItem.getCurrentStock() == (getCurrentStock())
                 && otherSupplyItem.getMinStock() == (getMinStock())
                 && otherSupplyItem.getTags().equals(getTags());

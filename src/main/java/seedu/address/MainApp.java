@@ -28,7 +28,9 @@ import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.InventoryStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonInventoryStorage;
 import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -65,7 +67,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TaskStorage taskStorage = new JsonTaskStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage);
+        InventoryStorage inventoryStorage = new JsonInventoryStorage(userPrefs.getInventoryFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage, inventoryStorage);
 
         initLogging(config);
 
@@ -100,7 +103,6 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample TaskList");
                 FileUtil.createIfMissing(Path.of("data\\tasklist.json"));
             }
-            // TODO: SampleDataUtil::getSampleTaskList
             initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
 
             inventoryOptional = storage.readInventory();
@@ -121,7 +123,7 @@ public class MainApp extends Application {
             initialInventory = new Inventory();
         }
 
-        return new ModelManager(initialData, userPrefs, initialTasks,initialInventory);
+        return new ModelManager(initialData, userPrefs, initialTasks, initialInventory);
     }
 
     private void initLogging(Config config) {

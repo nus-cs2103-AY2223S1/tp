@@ -12,8 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
-import seedu.address.model.supplyItem.SupplyItem;
 import seedu.address.model.task.Task;
 
 /**
@@ -28,17 +28,17 @@ public class ModelManager implements Model {
     private final Inventory inventory;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<SupplyItem> filteredInventory;
+    private final FilteredList<SupplyItem> filteredSupplyItems;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyTaskList taskList,
-                        ReadOnlyInventory inventory) {
-        requireAllNonNull(addressBook, userPrefs, taskList);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyTaskList taskList, ReadOnlyInventory inventory) {
+        requireAllNonNull(addressBook, userPrefs, taskList, inventory);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs
-                + " and tasks " + taskList);
+        logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs
+                + " , tasks " + taskList + " and inventory " + inventory);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -46,8 +46,7 @@ public class ModelManager implements Model {
         this.inventory = new Inventory(inventory);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.taskList.getTaskList());
-        filteredInventory = new FilteredList<>(this.inventory.getInventory());
-
+        filteredSupplyItems = new FilteredList<>(this.inventory.getSupplyItems());
     }
 
     public ModelManager() {
@@ -89,6 +88,33 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    //=========== Inventory ==================================================================================
+    @Override
+    public void addSupplyItem(SupplyItem item) {
+        inventory.addSupplyItem(item);
+        updateFilteredSupplyItemList(PREDICATE_SHOW_ALL_SUPPLY_ITEMS);
+    }
+
+    @Override
+    public boolean hasSupplyItem(SupplyItem item) {
+        return inventory.hasSupplyItem(item);
+    }
+
+    @Override
+    public void setSupplyItem(SupplyItem item, Index targetIndex) {
+        inventory.setSupplyItem(item, targetIndex);
+    }
+
+    @Override
+    public void deleteSupplyItem(Index index) {
+        inventory.deleteTask(index);
+    }
+
+    @Override
+    public ReadOnlyInventory getInventory() {
+        return this.inventory;
+    }
+
     //=========== TaskList ===================================================================================
     @Override
     public void addTask(Task task) {
@@ -115,33 +141,6 @@ public class ModelManager implements Model {
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
-    //=========== Inventory ===================================================================================
-    @Override
-    public void addItem(SupplyItem item) {
-        inventory.addItem(item);
-        updateFilteredInventory(PREDICATE_SHOW_ALL_SUPPLYITEMS);
-    }
-
-    @Override
-    public boolean hasItem(SupplyItem item) {
-        return inventory.hasItem(item);
-    }
-
-    @Override
-    public void setItem(SupplyItem item, Index targetIndex) {
-        inventory.setItem(item, targetIndex);
-    }
-
-    @Override
-    public void deleteItem(Index index) {
-        inventory.deleteItem(index);
-    }
-
-    @Override
-    public ReadOnlyInventory getInventory() {
-        return inventory;
-    }
-
 
     //=========== AddressBook ================================================================================
 
@@ -214,16 +213,17 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
-    //=========== Filtered Inventory Accessors =============================================================
+
+    //=========== Filtered SupplyItem List Accessors =======================================================
     @Override
-    public ObservableList<SupplyItem> getFilteredInventory() {
-        return filteredInventory;
+    public ObservableList<SupplyItem> getFilteredSupplyItemList() {
+        return filteredSupplyItems;
     }
 
     @Override
-    public void updateFilteredInventory(Predicate<SupplyItem> predicate) {
+    public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
         requireNonNull(predicate);
-        filteredInventory.setPredicate(predicate);
+        filteredSupplyItems.setPredicate(predicate);
     }
 
     @Override
@@ -242,7 +242,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredSupplyItems.equals(other.filteredSupplyItems);
     }
 
 }
