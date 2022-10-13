@@ -31,7 +31,7 @@ public class DeleteTaskCommandParserTest {
 
         // empty name
         assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
 
         // no group
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task",
