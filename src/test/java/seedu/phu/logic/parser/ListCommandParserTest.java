@@ -1,14 +1,13 @@
 package seedu.phu.logic.parser;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.phu.logic.commands.ListCommand;
-import seedu.phu.model.internship.ComparableCategory;
-
 import static seedu.phu.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.phu.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.phu.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.phu.logic.commands.ListCommand;
+import seedu.phu.model.internship.ComparableCategory;
 
 public class ListCommandParserTest {
 
@@ -30,13 +29,16 @@ public class ListCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // Invalid category
-        assertParseFailure(parser, "c/Random 123", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c/Random 123",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
 
         // No category Given
-        assertParseFailure(parser, "c/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
 
         // Additional arguments given
-        assertParseFailure(parser, "c/n true something",  String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "c/n true something",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 
 }
