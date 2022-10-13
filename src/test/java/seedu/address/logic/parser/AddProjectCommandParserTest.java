@@ -27,7 +27,7 @@ import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
 import seedu.address.model.project.UniqueProjectList;
 
-class ProjectCommandParserTest {
+class AddProjectCommandParserTest {
     private ProjectCommandParser parser = new ProjectCommandParser();
 
     @Test
