@@ -31,10 +31,11 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <Label fx:id="nextOfKin" styleClass="cell_small_label" text="\$nextOfKin" />
       <Label fx:id="patientType" styleClass="cell_small_label" text="\$patientType" />
+      <Label fx:id="appointments" styleClass="cell_small_label" text="\$appointments" />
+      <FlowPane fx:id="medications" />
       <Label fx:id="hospitalWing" styleClass="cell_small_label" text="\$hospitalWing" />
       <Label fx:id="floorNumber" styleClass="cell_small_label" text="\$floorNumber" />
       <Label fx:id="wardNumber" styleClass="cell_small_label" text="\$wardNumber" />
-      <FlowPane fx:id="medications" />
     </VBox>
   </GridPane>
 </HBox>

@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     private Label wardNumber;
     @FXML
     private FlowPane medications;
+    @FXML
+    private Label appointments;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -69,7 +71,8 @@ public class PersonCard extends UiPart<Region> {
                 wardNumber.setVisible(false));
         person.getMedications().stream()
                 .sorted(Comparator.comparing(medication -> medication.medicationName))
-                .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName)));
+                .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName + " ")));
+        appointments.setText("Past Appointments: " + person.getPastAppointmentCount());
     }
 
     @Override
