@@ -27,16 +27,8 @@ public class Reward {
     public Reward(String reward) {
         requireNonNull(reward);
         checkArgument(isValidReward(reward), MESSAGE_CONSTRAINTS);
-        value = reward;
-    }
-
-    /**
-     * Returns reward value without any trailing zeroes.
-     *
-     * @return Reward value without any trailing zeroes.
-     */
-    public String removeTrailingZeroes() {
-        return String.valueOf(Integer.parseInt(value));
+        int integerValue = Integer.valueOf(reward);
+        value = String.valueOf(integerValue);
     }
 
     /**
