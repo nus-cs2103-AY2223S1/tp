@@ -27,6 +27,13 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withIncome("$1000")
             .withTags("friends").build();
+
+    public static final Person MUSAB = new PersonBuilder().withName("Musab")
+            .withAddress("301 Upper Thomson Rd, Singapore 574408")
+            .withEmail("musab@gmail.com").withPhone("92345678")
+            .withTags("gay")
+            .build();
+
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withIncome("$1000")

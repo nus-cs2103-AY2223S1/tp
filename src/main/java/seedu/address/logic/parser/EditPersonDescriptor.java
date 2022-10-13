@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -137,14 +140,37 @@ public class EditPersonDescriptor {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with a new appointment from {@code editPersonDescriptor}.
+     * edited with appointments added from {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonWithNewAppointment(Person personToEdit,
-                                                              EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPersonByAddingAppointments(Person personToEdit,
+                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
-        Set<Appointment> updatedAppointments = personToEdit.getAppointments();
-        editPersonDescriptor.appointments.forEach(updatedAppointments::add);
+        Set<Appointment> currentAppointments = personToEdit.getAppointments();
+        Set<Appointment> newAppointments = editPersonDescriptor.getAppointments().get();
+        for (Appointment newAppointment:newAppointments) {
+            if (currentAppointments.contains(newAppointment)) {
+                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
+        }
+        editPersonDescriptor.appointments.forEach(currentAppointments::add);
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
+        Person newPerson = new Person(name, phone, email, address, tags, currentAppointments);
+        return newPerson;
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * overwritten with appointments from {@code editPersonDescriptor}.
+     */
+    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
+                                                                   EditPersonDescriptor editPersonDescriptor) {
+        assert personToEdit != null;
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
@@ -152,9 +178,8 @@ public class EditPersonDescriptor {
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
         IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, tags);
+        Person newPerson = new Person(name, phone, email, address, income, tags, newAppointmentsOnly);
 
-        newPerson.setAppointments(updatedAppointments);
         return newPerson;
     }
 

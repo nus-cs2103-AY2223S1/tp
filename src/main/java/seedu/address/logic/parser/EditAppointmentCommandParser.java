@@ -10,40 +10,37 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 
 /**
- * Parses input arguments and creates a new AddAppointmentCommand object
+ * Parses input arguments and creates a new EditAppointmentCommand object
  */
-public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
+public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * AddAppointmentCommand and returns an AddAppointmentCommand object for execution.
+     * EditAppointmentCommand and returns an EditAppointmentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddAppointmentCommand parse(String args) throws ParseException {
+    public EditAppointmentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
         if (argMultimap.getPreamble().isEmpty() || !arePrefixesPresent(argMultimap, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
+                    EditAppointmentCommand.MESSAGE_USAGE));
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
         try {
             parseAppointmentsForEdit(argMultimap.getAllValues(PREFIX_DATE))
                     .ifPresent(editPersonDescriptor::setAppointments);
         } catch (DateTimeParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
-        }
-
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(AddAppointmentCommand.MESSAGE_DATE_FIELD_NOT_INCLUDED);
+                    EditAppointmentCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -52,10 +49,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE), pe);
+                    EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-        return new AddAppointmentCommand(index, editPersonDescriptor);
+        return new EditAppointmentCommand(index, editPersonDescriptor);
     }
 
     /**

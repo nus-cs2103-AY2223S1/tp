@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_210_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -41,6 +42,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
 
@@ -56,43 +58,69 @@ public class AddAppointmentCommandTest {
         assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(null, null));
     }
 
+
     @Test
-    public void execute_addOneAppointment_success() {
-        Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        Set<Appointment> sets = new HashSet<>();
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+    public void execute_addOneAppointmentAcceptedByModel_success() {
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(new PersonBuilder().build());
+        actualModel.addPerson(new PersonBuilder().build());
+
+        Set<Appointment> appointments = new HashSet<>();
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        firstPerson.setAppointments(sets);
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+
         EditPersonDescriptor descriptor = DESC_APPOINTMENT;
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, firstPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), firstPerson);
 
-        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_addMultipleAppointment_success() {
-        Person firstPerson = model.getAddressBook().getPersonList().get(0);
-        Set<Appointment> sets = new HashSet<>();
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(new PersonBuilder().build());
+        actualModel.addPerson(new PersonBuilder().build());
+
+        Set<Appointment> appointments = new HashSet<>();
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
-        sets.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_22_JAN_2023))));
-        firstPerson.setAppointments(sets);
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, firstPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), firstPerson);
+        assertCommandSuccess(addAppointmentCommand, actualModel , expectedMessage, actualModel);
+    }
 
-        assertCommandSuccess(addAppointmentCommand, model, expectedMessage, expectedModel);
+    @Test
+    public void execute_addDuplicateAppointment_failure() {
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        testModel.addPerson(new PersonBuilder().build());
+
+        Set<Appointment> appointments = new HashSet<>();
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+                VALID_APPOINTMENT_21_JAN_2023))));
+        Person testPerson = testModel.getAddressBook().getPersonList().get(0);
+        testPerson.setAppointments(appointments);
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
     @Test
