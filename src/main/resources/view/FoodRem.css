@@ -39,6 +39,9 @@
   -fx-border-radius: 5;
   -fx-border-width: 1;
   -fx-padding: 12;
+
+  -fx-min-width: 340;
+  -fx-pref-width: 340;
 }
 
 .command-placeholder {
@@ -48,13 +51,6 @@
 .list-placeholder,
 .result-placeholder {
   -fx-background-color: white;
-}
-
-.command-placeholder,
-.list-placeholder,
-.result-placeholder {
-  -fx-min-width: 340;
-  -fx-pref-width: 340;
 }
 
 .result-placeholder {
