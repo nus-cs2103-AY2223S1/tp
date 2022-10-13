@@ -96,7 +96,7 @@ Examples:
  
 ### Adding a todo: `task todo`
 
-Adds a todo into the task list.
+Adds a task of type todo into the task list.
 
 Format:  `task todo m/ASSIGNOR d/DESCRIPTION`
 
@@ -110,11 +110,11 @@ Examples:
 
 ### Adding a deadline: `task deadline`
 
-Adds a deadline into the task list.
+Adds a task of type deadline into the task list.
 
-Format:  `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE`
+Format: `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE`
 
-Format:  `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE`
+Format: `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE`
 
 * Adds a deadline with an assignor (m) or assignee (o), a description and a date.
 
@@ -124,11 +124,11 @@ Examples:
 
 ### Adding an event: `task event`
 
-Adds an event into the task list.
+Adds a task of type event into the task list.
 
-Format:  `task event m/ASSIGNOR d/DESCRIPTION t/DATE`
+Format: `task event m/ASSIGNOR d/DESCRIPTION t/DATE`
 
-Format:  `task event o/ASSIGNEE d/DESCRIPTION t/DATE`
+Format: `task event o/ASSIGNEE d/DESCRIPTION t/DATE`
 
 * Adds an event with an assignor (m) or assignee (o), a description and a date.
 
