@@ -35,9 +35,6 @@ public class Commission {
     // Optional fields
     private final Description description;
 
-    // Counter for iteration used for naming of iteration image
-    private int iterationCounter;
-
     /**
      * Represents a more defined CompletionStatus of the commission,
      * taking into account the number of iterations in the commission
@@ -141,10 +138,6 @@ public class Commission {
         return iterations.asUnmodifiableObservableList();
     }
 
-    public int getIterationCounter() {
-        return iterationCounter;
-    }
-
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -171,7 +164,6 @@ public class Commission {
     public void addIteration(Iteration iteration) {
         requireNonNull(iteration);
         iterations.add(iteration);
-        iterationCounter++;
     }
 
     /**
