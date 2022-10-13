@@ -1,5 +1,6 @@
 package seedu.address.model.company;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -126,7 +127,6 @@ public class CompanyTest {
         Company editedAlice = new CompanyBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-
         // different address -> returns false
         editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -134,5 +134,13 @@ public class CompanyTest {
         // different tags -> returns false
         editedAlice = new CompanyBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void toStringTest() {
+        Company company = new CompanyBuilder(TypicalCompanies.BENSON).build();
+        System.out.println(company);
+        assertEquals(company.toString(), "Benson Meier; Address: 311, Clementi Ave 2, " +
+                "#02-25; Tags: [owesMoney][friends]; POCs: Benson Meier");
     }
 }

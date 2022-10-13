@@ -40,8 +40,7 @@ class SellTransactionTest {
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
 
-        Transaction transaction = new BuyTransaction(goods, price, quantity);
-        assertFalse(transaction.toString().equals("You sold 10 quantity of Apple at $0.8 each"));
-
+        Transaction transaction = new SellTransaction(goods, price, quantity);
+        assertEquals(transaction, new SellTransaction(goods, price, quantity));
     }
 }
