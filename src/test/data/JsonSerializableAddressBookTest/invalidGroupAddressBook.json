@@ -2,9 +2,12 @@
   "persons": [ {
     "name": "Hans Muster",
     "phone": "9482424",
-    "email": "invalid@email!3e",
+    "email": "hansmuster@email.com",
     "address": "4th street",
     "assignments": { }
   } ],
-  "groups" : [ ]
+  "groups" : [ {
+    "members": ["Hans Muster"],
+    "groupName": "invalid!group|||"
+  }]
 }
