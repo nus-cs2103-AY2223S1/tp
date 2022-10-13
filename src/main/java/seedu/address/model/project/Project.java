@@ -90,6 +90,10 @@ public class Project {
         return issueList;
     }
 
+    public void removeClient() {
+        this.client = Client.EmptyClient.EMPTY_CLIENT;
+    }
+
     /**
      * Checks if this Project is empty.
      * @return true if the Project is empty.

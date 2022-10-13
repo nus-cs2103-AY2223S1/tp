@@ -12,12 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.client.AddClientCommand;
 import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -126,12 +128,18 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      * and returns a DeleteCommand object for execution.
      * From original AB3 code
      *
-     * @param args string of arguments
+     * @param arguments string of arguments
      * @return return statement
      * @throws ParseException if the user input does not conform the expected format
      */
-    private DeleteClientCommand parseDeleteClientCommand(String args) throws ParseException {
-        return null;
+    private DeleteClientCommand parseDeleteClientCommand(String arguments) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(arguments);
+            return new DeleteClientCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     private ListClientCommand parseListClientCommand(String args) throws ParseException {
