@@ -37,6 +37,7 @@ public class Date extends ComparableModel {
      * @param date A valid date.
      */
     public Date(LocalDate date) {
+        requireNonNull(date);
         this.value = date;
     }
 

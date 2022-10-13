@@ -23,7 +23,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_INTERNSHIP = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_INTERNSHIP = "winter internship '22";
     public static final String DEFAULT_POSITION = "Software Intern";
     public static final String DEFAULT_APPLICATION_PROCESS = "interview";
     public static final String DEFAULT_DATE = "01-12-2022";
@@ -87,10 +87,10 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Internship} of the {@code Internship} that we are building.
+     * Sets the {@code Remark} of the {@code Remark} that we are building.
      */
-    public InternshipBuilder withInternship(String internship) {
-        this.remark = new Remark(internship);
+    public InternshipBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
         return this;
     }
 

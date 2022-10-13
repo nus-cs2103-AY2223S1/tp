@@ -72,10 +72,10 @@ public class EditInternshipDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Internship} of the {@code EditInternshipDescriptor} that we are building.
+     * Sets the {@code Remark} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withInternship(String internship) {
-        descriptor.setRemark(new Remark(internship));
+    public EditInternshipDescriptorBuilder withRemark(String remark) {
+        descriptor.setRemark(new Remark(remark));
         return this;
     }
 
@@ -124,4 +124,5 @@ public class EditInternshipDescriptorBuilder {
     public EditInternshipDescriptor build() {
         return descriptor;
     }
+
 }

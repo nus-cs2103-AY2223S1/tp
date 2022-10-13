@@ -3,9 +3,9 @@ package seedu.phu.model.internship;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_INTERNSHIP_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.ALICE;
@@ -33,7 +33,7 @@ public class InternshipTest {
 
         // same name, all other attributes different -> returns true
         Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withInternship(VALID_INTERNSHIP_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,7 +81,7 @@ public class InternshipTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different internship -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withInternship(VALID_INTERNSHIP_BOB).build();
+        editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

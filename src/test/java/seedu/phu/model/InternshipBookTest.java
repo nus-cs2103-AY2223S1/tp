@@ -3,7 +3,7 @@ package seedu.phu.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_INTERNSHIP_BOB;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.phu.testutil.Assert.assertThrows;
 import static seedu.phu.testutil.TypicalInternships.ALICE;
@@ -48,7 +48,7 @@ public class InternshipBookTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        Internship editedAlice = new InternshipBuilder(ALICE).withInternship(VALID_INTERNSHIP_BOB)
+        Internship editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
@@ -76,7 +76,7 @@ public class InternshipBookTest {
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInInternshipBook_returnsTrue() {
         internshipBook.addInternship(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withInternship(VALID_INTERNSHIP_BOB)
+        Internship editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB)
                 .withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(internshipBook.hasInternship(editedAlice));
