@@ -60,7 +60,13 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        case DeleteCommand.COMMAND_SHORTCUT:
+            return new DeleteCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
+
+        case ClearCommand.COMMAND_SHORTCUT:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
@@ -72,7 +78,13 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListCommand.COMMAND_SHORTCUT:
+            return new ListCommand();
+
         case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case ExitCommand.COMMAND_SHORTCUT:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
