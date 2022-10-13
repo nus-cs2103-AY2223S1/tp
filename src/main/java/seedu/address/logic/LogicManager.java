@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -77,5 +78,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setSelectedPerson(Person selectedPerson) {
+        model.setSelectedPerson(selectedPerson);
+    }
+
+    @Override
+    public SimpleObjectProperty<Person> getSelectedPerson() {
+        return model.getSelectedPerson();
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
@@ -47,4 +48,14 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the person selected by user
+     */
+    SimpleObjectProperty<Person> getSelectedPerson();
+
+    /**
+     * Set the person selected by user.
+     */
+    void setSelectedPerson(Person selectedPerson);
 }
