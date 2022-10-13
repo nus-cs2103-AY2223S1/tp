@@ -77,6 +77,13 @@ public class FieldPrefixes {
         map.remove(prefix);
     }
 
+    /**
+     * Removes a field from the known list of fields.
+     *
+     * @param fieldName The name of the field to be removed.
+     * @param model {@code Model} which the field name should be removed from.
+     * @throws ParseException if the field name can not be found.
+     */
     public void removeField(String fieldName, Model model) throws ParseException {
         Prefix prefix;
         List<Prefix> lst = map.entrySet().stream()

@@ -3,17 +3,12 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Removes a field by a given field name from the addressbook.
  */
 public class RemoveFieldCommand extends Command {
 
@@ -24,8 +19,13 @@ public class RemoveFieldCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Field removed: %1$s";
 
-    private String fieldName;
+    private final String fieldName;
 
+    /**
+     * Constructs a RemoveFieldCommand instance.
+     *
+     * @param fieldName The name of the field to be removed.
+     */
     public RemoveFieldCommand(String fieldName) {
         requireNonNull(fieldName);
         this.fieldName = fieldName;
