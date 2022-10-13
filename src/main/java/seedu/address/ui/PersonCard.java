@@ -67,9 +67,9 @@ public class PersonCard extends UiPart<Region> {
         int listSize = appointmentList.size();
         for (int i = 0; i < listSize; i++) {
             if (i == listSize - 1) {
-                appointments.getChildren().add(new Label(appointmentList.get(i).toString()));
+                appointments.getChildren().add(new Label(i + 1 + ". " + appointmentList.get(i).toString()));
             } else {
-                appointments.getChildren().add(new Label(appointmentList.get(i).toString() + ", "));
+                appointments.getChildren().add(new Label(i + 1 + ". " +appointmentList.get(i).toString() + ", \n"));
             }
         }
     }
