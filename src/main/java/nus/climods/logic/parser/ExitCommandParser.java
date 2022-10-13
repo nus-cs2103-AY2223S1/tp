@@ -21,7 +21,7 @@ public class ExitCommandParser implements Parser<ExitCommand> {
      */
     public ExitCommand parse(String args) throws ParseException {
         String trimmedInput = args.trim();
-        if (!trimmedInput.isEmpty()) {
+        if (trimmedInput.isEmpty()) {
             throw new ParseException(DEFAULT_ERROR_MESSAGE);
         }
         return new ExitCommand();
