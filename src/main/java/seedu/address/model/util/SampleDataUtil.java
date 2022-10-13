@@ -47,15 +47,15 @@ public class SampleDataUtil {
             new Offer(new Name("Alex Yeoh"), new Address("Blk 30 Geylang Street 29, #06-40"),
                 new Price("1000000")),
             new Offer(new Name("Bernice Yu"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Price("9000000")),
+                new Price("900000")),
             new Offer(new Name("Charlotte Oliveiro"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                new Price("9000000")),
-            new Offer(new Name("David Li"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Price("9500000")),
-            new Offer(new Name("Irfan Ibrahim"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Price("9600000")),
-            new Offer(new Name("Roy Balakrishnan"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Price("9650000"))
+                new Price("900000")),
+            new Offer(new Name("David Li"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new Price("950000")),
+            new Offer(new Name("Irfan Ibrahim"), new Address("Blk 47 Tampines Street 20, #17-35"),
+                new Price("960000")),
+            new Offer(new Name("Roy Balakrishnan"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+                new Price("965000"))
         };
     }
 

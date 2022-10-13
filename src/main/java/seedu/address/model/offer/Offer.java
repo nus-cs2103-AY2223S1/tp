@@ -4,20 +4,20 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 
 /**
- * Offer Class represents a clients offer for a listing, containing an offer price.
+ * Offer Class represents a client's offer for a listing, containing an offer price.
  */
 public class Offer {
 
     /**
-     * Client making the offer.
+     * Name of client making the offer.
      */
     private final Name client;
     /**
-     * Listing the offer is for.
+     * Address of the listing the offer is for.
      */
     private final Address listing;
     /**
-     * Price client is offering.
+     * Price client is offering for the listing.
      */
     private final Price offerPrice;
 
@@ -59,15 +59,20 @@ public class Offer {
     }
 
     /**
-     * Returns true if both listings have the same address.
-     * This defines a weaker notion of equality between two listings.
+     * Returns true if both offers have the same identity and data fields.
+     * This defines a stronger notion of equality between two offers.
      */
-    public boolean isSameOffer(Offer otherOffer) {
-        if (otherOffer == this) {
+    public boolean isSameOffer(Offer other) {
+        if (other == this) {
             return true;
         }
 
-        return otherOffer != null
+        if (!(other instanceof Offer)) {
+            return false;
+        }
+        Offer otherOffer = (Offer) other;
+        return otherOffer.getClient().equals(getClient())
+                && otherOffer.getListing().equals(getListing())
                 && otherOffer.getOfferPrice().equals(getOfferPrice());
     }
 
