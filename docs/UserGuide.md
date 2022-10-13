@@ -66,7 +66,7 @@ Format: `help`
 
 Adds a person to InterNUS.
 
-Format: `addp n/NAME e/EMAIL p/PHONE_NUMBER [t/TAG]…​ [l/LINK_INDEX]`
+Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0). Link index is optional.
