@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.List;
 import java.util.function.Predicate;
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Person}'s {@code Tags} matches any of the keywords given.
@@ -15,7 +16,9 @@ public class TagsContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return true;
+        return keywords.stream()
+            .anyMatch(keyword -> person.getTags().stream()
+                .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
     }
 
     @Override
