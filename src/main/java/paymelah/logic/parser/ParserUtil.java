@@ -2,6 +2,7 @@ package paymelah.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,23 +14,28 @@ import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
+import paymelah.model.person.DebtContainsKeywordsPredicate;
 import paymelah.model.person.DebtGreaterEqualAmountPredicate;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
+import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Phone;
 import paymelah.model.tag.Tag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -178,7 +184,32 @@ public class ParserUtil {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Parses {@code String s} into a {@code NameContainsKeywordsPredicate}.
+     */
+    public static NameContainsKeywordsPredicate prepareNameContainsKeywordsPredicate(String s) throws ParseException {
+        requireNonNull(s);
+        String trimmed = s.trim();
+        if (trimmed.isEmpty()) {
+            throw new ParseException(NameContainsKeywordsPredicate.MESSAGE_CONSTRAINTS);
+        }
+        return new NameContainsKeywordsPredicate(Arrays.asList(trimmed.split("\\s+")));
+    }
+
+    /**
+     * Parses {@code String s} into a {@code DebtContainsKeywordsPredicate}.
+     */
+    public static DebtContainsKeywordsPredicate prepareDebtContainsKeywordsPredicate(String s) throws ParseException {
+        requireNonNull(s);
+        String trimmed = s.trim();
+        if (trimmed.isEmpty()) {
+            throw new ParseException(DebtContainsKeywordsPredicate.MESSAGE_CONSTRAINTS);
+        }
+        return new DebtContainsKeywordsPredicate(Arrays.asList(trimmed.split("\\s+")));
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values
+     * in the given
      * {@code ArgumentMultimap}.
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
