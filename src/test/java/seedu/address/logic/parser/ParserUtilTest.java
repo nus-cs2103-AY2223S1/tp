@@ -11,10 +11,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
@@ -256,7 +256,8 @@ public class ParserUtilTest {
     @Test
     public void parseMods_collectionWithValidMods_returnsModSet() throws Exception {
         ObservableList<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_2));
-        ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(new Mod(VALID_MOD_1), new Mod(VALID_MOD_2)));
+        ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(
+                new Mod(VALID_MOD_1), new Mod(VALID_MOD_2)));
 
         assertEquals(expectedModSet, actualModSet);
     }

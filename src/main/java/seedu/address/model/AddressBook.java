@@ -85,16 +85,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         mods.add(m);
     }
 
-    /**
-     * Replaces the given mod {@code target} in the list with {@code editedMod}.
-     * {@code target} must exist in the address book.
-     * The mod identity of {@code editedPerson} must not be the same as another existing ,pd in the address book.
-     */
-    public void setMod(Mod target, Mod editedMod) {
-        requireNonNull(editedMod);
-
-        mods.setMod(target, editedMod);
-    }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
@@ -143,7 +133,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons" + mods.asUnmodifiableObservableList().size() + " mods";
+        return persons.asUnmodifiableObservableList().size()
+            + " persons" + mods.asUnmodifiableObservableList().size() + " mods";
         // TODO: refine later
     }
 

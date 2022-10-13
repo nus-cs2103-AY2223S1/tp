@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -50,5 +49,12 @@ public class ModListPanel extends UiPart<Region> {
                 setGraphic(new ModCard(module, getIndex() + 1).getRoot());
             }
         }
+    }
+
+    /**
+     * Clears the mod panel.
+     */
+    public void clearModPanel() {
+        setPersonModList(null);
     }
 }

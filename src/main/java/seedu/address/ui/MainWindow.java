@@ -124,9 +124,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList(), modListPanel);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         personListPanel.handlePersonClick();
-        if (personListPanel.userClickedBefore()) {
-            noSelectedText.setText("");
-        }
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -17,7 +17,6 @@ public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
     private ModListPanel modListPanel;
-    private boolean hasClicked;
 
     @FXML
     private ListView<Person> personListView;
@@ -39,14 +38,9 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setOnMouseClicked(event -> {
             Person person = personListView.getSelectionModel().getSelectedItem();
             if (person != null) {
-                this.hasClicked = true;
                 modListPanel.setPersonModList(person);
             }
         });
-    }
-
-    public boolean userClickedBefore() {
-        return this.hasClicked;
     }
 
     /**

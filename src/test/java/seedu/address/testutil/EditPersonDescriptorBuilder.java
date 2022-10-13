@@ -100,7 +100,8 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withMods(String... mods) {
-        ObservableList<Mod> modSet = Stream.of(mods).map(Mod::new).collect(Collectors.toCollection(FXCollections::observableArrayList));
+        ObservableList<Mod> modSet = Stream.of(mods).map(Mod::new).collect(
+            Collectors.toCollection(FXCollections::observableArrayList));
         descriptor.setMods(modSet);
         return this;
     }

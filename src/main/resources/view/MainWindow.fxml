@@ -65,7 +65,8 @@
                      HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
             <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <Label styleClass="label-header" text="Mods Taken" textAlignment="CENTER" textFill="WHITE" />
-              <Label fx:id="noSelectedText" styleClass="label-subheader" text="Select a student to view their module details." textAlignment="CENTER" />
+              <Label fx:id="noSelectedText" styleClass="label-subheader"
+                     text="Select a student to view their module details." textAlignment="CENTER" />
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>

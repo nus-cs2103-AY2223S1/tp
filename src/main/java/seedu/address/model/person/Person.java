@@ -28,12 +28,12 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
-//    private final Set<Mod> mods = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags, ObservableList<Mod> mods) {
+    public Person(Name name, Phone phone, Email email, Telegram handle,
+          GitHub gitHub, Set<Tag> tags, ObservableList<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
