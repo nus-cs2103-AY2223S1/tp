@@ -1,11 +1,10 @@
-package seedu.taassist.model.student;
+package seedu.taassist.model.moduleclass;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
 
-import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;

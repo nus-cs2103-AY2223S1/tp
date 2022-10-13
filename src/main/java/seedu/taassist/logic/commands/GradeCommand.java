@@ -15,11 +15,10 @@ import seedu.taassist.logic.parser.ParserStudentIndexUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.student.Student;
-import seedu.taassist.model.student.StudentModuleData;
-import seedu.taassist.model.student.StudentSessionData;
 import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
@@ -123,8 +122,7 @@ public class GradeCommand extends Command {
                 .filter(sessionData -> sessionData.getSession().isSame(session))
                 .findFirst().orElse(null);
 
-        // TODO: Unroll this one more level and copy fields other than grade from StudentSessionData
-        SessionData newSessionData = new SessionData(session, new StudentSessionData(grade));
+        SessionData newSessionData = new SessionData(session, grade);
 
         UniqueList<SessionData> newSessionDataList = new UniqueList<>();
         newSessionDataList.setElements(oldSessions);

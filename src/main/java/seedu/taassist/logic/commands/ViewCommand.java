@@ -60,10 +60,9 @@ public class ViewCommand extends Command {
         sj.add(String.format(MESSAGE_HEADER, student.getName()));
         for (int i = 0; i < sessionDataList.size(); ++i) {
             SessionData sessionData = sessionDataList.get(i);
-            sj.add(String.format("%d. %s: %s", i + 1, sessionData.getSession(), sessionData.getData()));
+            sj.add(String.format("%d. %s", i + 1, sessionData));
         }
 
         return new CommandResult(sj.toString());
     }
 }
-

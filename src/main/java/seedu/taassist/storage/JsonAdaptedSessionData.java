@@ -14,7 +14,7 @@ class JsonAdaptedSessionData {
 
     @JsonProperty("session")
     private final String sessionName;
-    private final JsonAdaptedStudentSessionData data;
+    private final double grade;
 
     /**
      * Constructs a {@code JsonAdaptedSessionData} with the given {@code session} and list
@@ -22,9 +22,9 @@ class JsonAdaptedSessionData {
      */
     @JsonCreator
     public JsonAdaptedSessionData(@JsonProperty("session") String sessionName,
-                                  @JsonProperty("data") JsonAdaptedStudentSessionData data) {
+                                  @JsonProperty("grade") double grade) {
         this.sessionName = sessionName;
-        this.data = data;
+        this.grade = grade;
     }
 
     /**
@@ -32,7 +32,7 @@ class JsonAdaptedSessionData {
      */
     public JsonAdaptedSessionData(SessionData source) {
         sessionName = source.getSession().getSessionName();
-        data = new JsonAdaptedStudentSessionData(source.getData());
+        grade = source.getGrade();
     }
 
     /**
@@ -44,7 +44,7 @@ class JsonAdaptedSessionData {
         if (!Session.isValidSessionName(sessionName)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }
-        return new SessionData(new Session(sessionName), data.toModelType());
+        return new SessionData(new Session(sessionName), grade);
     }
 
 }

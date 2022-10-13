@@ -4,7 +4,6 @@ import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.taassist.model.student.StudentSessionData;
 import seedu.taassist.model.uniquelist.Identity;
 
 /**
@@ -13,23 +12,23 @@ import seedu.taassist.model.uniquelist.Identity;
 public class SessionData implements Identity<SessionData> {
 
     private final Session session;
-    private final StudentSessionData data;
+    private final double grade;
 
     /**
      * Constructs a {@code SessionData} with the given session and student session data.
      */
-    public SessionData(Session session, StudentSessionData data) {
-        requireAllNonNull(session, data);
+    public SessionData(Session session, double grade) {
+        requireAllNonNull(session);
         this.session = session;
-        this.data = data;
+        this.grade = grade;
     }
 
     public Session getSession() {
         return session;
     }
 
-    public StudentSessionData getData() {
-        return data;
+    public double getGrade() {
+        return grade;
     }
 
     @Override
@@ -40,7 +39,7 @@ public class SessionData implements Identity<SessionData> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(session, data);
+        return Objects.hash(session, grade);
     }
 
     @Override
@@ -48,7 +47,11 @@ public class SessionData implements Identity<SessionData> {
         return other == this
                 || (other instanceof SessionData
                 && this.session.equals(((SessionData) other).session))
-                && this.data.equals(((SessionData) other).data);
+                && this.grade == ((SessionData) other).grade;
     }
 
+    @Override
+    public String toString() {
+        return session.toString() + ": " + grade;
+    }
 }
