@@ -1,11 +1,11 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
 <!-- ===== DECLARE VARIABLES ===== -->
-<!-- markdownlint-disable no-space-in-emphasis -->
+<!-- markdownlint-disable -->
 {% capture help %}{% include_relative _ug/commandSummary/otherCommands/help.md %}{% endcapture %}
 {% capture reset %}{% include_relative _ug/commandSummary/otherCommands/reset.md %}{% endcapture %}
 {% capture exit %}{% include_relative _ug/commandSummary/otherCommands/exit.md %}{% endcapture %}
-<!-- markdownlint-enable no-space-in-emphasis -->
+<!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->

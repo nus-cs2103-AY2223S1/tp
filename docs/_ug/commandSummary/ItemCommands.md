@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
 <!-- ===== DECLARE VARIABLES ===== -->
-<!-- markdownlint-disable no-space-in-emphasis -->
+<!-- markdownlint-disable -->
 {% capture new %}{% include_relative _ug/commandSummary/itemCommands/new.md %}{% endcapture %}
 {% capture list %}{% include_relative _ug/commandSummary/itemCommands/list.md %}{% endcapture %}
 {% capture find %}{% include_relative _ug/commandSummary/itemCommands/find.md %}{% endcapture %}
@@ -11,7 +11,7 @@
 {% capture dec %}{% include_relative _ug/commandSummary/itemCommands/dec.md %}{% endcapture %}
 {% capture set %}{% include_relative _ug/commandSummary/itemCommands/set.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommands/del.md %}{% endcapture %}
-<!-- markdownlint-enable no-space-in-emphasis -->
+<!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->

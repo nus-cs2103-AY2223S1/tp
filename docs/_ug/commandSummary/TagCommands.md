@@ -1,14 +1,14 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
 <!-- ===== DECLARE VARIABLES ===== -->
-<!-- markdownlint-disable no-space-in-emphasis -->
+<!-- markdownlint-disable -->
 {% capture newtag %}{% include_relative _ug/commandSummary/tagCommands/newtag.md %}{% endcapture %}
 {% capture listtag %}{% include_relative _ug/commandSummary/tagCommands/listtag.md %}{% endcapture %}
 {% capture tag %}{% include_relative _ug/commandSummary/tagCommands/tag.md %}{% endcapture %}
 {% capture untag %}{% include_relative _ug/commandSummary/tagCommands/untag.md %}{% endcapture %}
 {% capture renametag %}{% include_relative _ug/commandSummary/tagCommands/renametag.md %}{% endcapture %}
 {% capture deletetag %}{% include_relative _ug/commandSummary/tagCommands/deletetag.md %}{% endcapture %}
-<!-- markdownlint-enable no-space-in-emphasis -->
+<!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->

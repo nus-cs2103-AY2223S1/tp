@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
 <!-- ===== DECLARE VARIABLES ===== -->
-<!-- markdownlint-disable no-space-in-emphasis -->
+<!-- markdownlint-disable -->
 {% capture INDEX %}{% include_relative _ug/placeholders/INDEX.md %}{% endcapture %}
 {% capture INDEX_LIST %}{% include_relative _ug/placeholders/INDEX_LIST.md %}{% endcapture %}
 {% capture ITEM_NAME %}{% include_relative _ug/placeholders/ITEM_NAME.md %}{% endcapture %}
@@ -10,7 +10,7 @@
 {% capture UNIT %}{% include_relative _ug/placeholders/UNIT.md %}{% endcapture %}
 {% capture BOUGHT_DATE %}{% include_relative _ug/placeholders/BOUGHT_DATE.md %}{% endcapture %}
 {% capture EXPIRY_DATE %}{% include_relative _ug/placeholders/EXPIRY_DATE.md %}{% endcapture %}
-<!-- markdownlint-enable no-space-in-emphasis -->
+<!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
