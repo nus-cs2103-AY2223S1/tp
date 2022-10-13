@@ -83,13 +83,27 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Returns true if a class with the same name as {@code tuitionClass} exists in the database.
+     */
+    boolean hasTuitionClass(TuitionClass tuitionClass);
+
+    /**
+     * Adds the given class.
+     * {@code tuitionClass} must not already exist in the database.
+     */
+    void addTuitionClass(TuitionClass tuitionClass);
+
+    /**
+     * Replaces the given class {@code target} with {@code editedClass}.
+     * {@code target} must exist in the database.
+     * The name of {@code editedClass} must not be the same as another existing class in the database.
+     */
+    void setTuitionClass(TuitionClass target, TuitionClass editedClass);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
-
-    boolean hasTuitionClass(TuitionClass tuitionClass);
-
-    void addTuitionClass(TuitionClass tuitionClass);
 
     /**
      * Deletes the given person.

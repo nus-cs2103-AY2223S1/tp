@@ -45,7 +45,8 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        //since parser depends on the current list type
+        Command command = addressBookParser.parseCommand(commandText, this.getCurrentListType());
         commandResult = command.execute(model);
 
         try {
