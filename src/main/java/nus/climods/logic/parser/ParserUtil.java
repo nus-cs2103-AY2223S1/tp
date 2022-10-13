@@ -30,6 +30,7 @@ public class ParserUtil {
     public static final Pattern USER_FLAG_PATTERN = Pattern.compile("(?i)--user(?-i)");
     // Validates faculty code, case insensitive and matches between 2-3 chars
     public static final Pattern FACULTY_CODE_PATTERN = Pattern.compile("^[A-Za-z]{2,3}$");
+    // TODO: Change this to a less hacky solution
     public static final String FAULTY_FACULTY_CODE = "zzz";
     /**
      * Returns List of whitespace-delimited arguments given arguments string supplied by the user
