@@ -15,7 +15,8 @@ public class TypicalTags {
     public static final Tag FRUITS_WITH_WHITESPACE = new TagBuilder()
             .withTagName(CommandTestUtil.VALID_TAG_NAME_FRUITS_WITH_WHITESPACES).build();
     public static final Tag NUMBERS = new TagBuilder().withTagName(CommandTestUtil.VALID_TAG_NAME_NUMBERS).build();
-    public static final Tag VEGETABLES = new TagBuilder().withTagName(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
+    public static final Tag VEGETABLES = new TagBuilder()
+            .withTagName(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
 
     private TypicalTags() {
     } // prevents instantiation

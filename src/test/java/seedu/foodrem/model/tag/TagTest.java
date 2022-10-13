@@ -3,6 +3,7 @@ package seedu.foodrem.model.tag;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.foodrem.logic.commands.CommandTestUtil;
 
 public class TagTest {
@@ -14,9 +15,12 @@ public class TagTest {
 
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Tag(CommandTestUtil.INVALID_TAG_NAME_DISALLOWED_PUNCTUATION));
-        assertThrows(IllegalArgumentException.class, () -> new Tag(CommandTestUtil.INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR));
-        assertThrows(IllegalArgumentException.class, () -> new Tag(CommandTestUtil.INVALID_TAG_NAME_EXCEED_CHAR_LIMIT));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(
+                CommandTestUtil.INVALID_TAG_NAME_DISALLOWED_PUNCTUATION));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(
+                CommandTestUtil.INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(
+                CommandTestUtil.INVALID_TAG_NAME_EXCEED_CHAR_LIMIT));
     }
 
     @Test

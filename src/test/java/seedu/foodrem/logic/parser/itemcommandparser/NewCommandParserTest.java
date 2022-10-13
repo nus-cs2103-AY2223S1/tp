@@ -121,7 +121,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
+                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
 
         // invalid quantity
         assertParseFailure(parser,
@@ -137,7 +138,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.INVALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
+                MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
 
         // invalid bought date
         assertParseFailure(parser,
@@ -145,7 +147,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
+                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
 
         // invalid expiry date
         assertParseFailure(parser,
@@ -153,7 +156,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+                        + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
+                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser,
