@@ -33,13 +33,15 @@ public class Person {
      * Every field must be present and not null.
      * TODO: Add contacts map into constructor
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                  Map<ContactType, Contact> contacts) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.contacts.putAll(contacts);
     }
 
     public Name getName() {
