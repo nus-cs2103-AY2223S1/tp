@@ -15,11 +15,15 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindTasksCommand;
+import seedu.address.logic.commands.FindModulesCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTasksCommand;
+import seedu.address.logic.commands.ListModulesCommand;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 /**
  * Parses user input.
@@ -83,7 +87,10 @@ public class AddressBookParser {
 
         case TaskCommand.COMMAND_WORD:
             return new TaskCommandParser().parse(arguments);
-
+        case FindModulesCommand.COMMAND_WORD:
+            return new FindModulesCommandParser().parse(arguments);
+        case ListModulesCommand.COMMAND_WORD:
+            return new ListModulesCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
