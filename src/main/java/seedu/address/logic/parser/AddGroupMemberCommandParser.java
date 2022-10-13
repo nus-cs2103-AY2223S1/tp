@@ -10,16 +10,13 @@ import java.util.NoSuchElementException;
 import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
-
-
 /**
  * Parses input arguments and creates a new AddGroupMemberCommand object
  */
 public class AddGroupMemberCommandParser implements Parser<AddGroupMemberCommand> {
     /**
-    * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
-    * and returns a {@code RemarkCommand} object for execution.
+    * Parses the given {@code String} of arguments in the context of the AddGroupMemberCommand
+    * and returns a AddGroupMemberCommand object for execution.
     * @param args user input
     * @return command to add member to specified group
     * @throws ParseException if the user input does not conform the expected format
