@@ -28,7 +28,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a employee named `John Doe` to Coydir.
 
-   - **`delete`**`3` : Deletes the 3rd employee shown in the current list.
+   - **`delete`**` 3` : Deletes the 3rd employee shown in the current list.
 
    - **`exit`** : Exits the app.
 
@@ -65,14 +65,14 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 </div>
 
 
-### Adding a person: `add`
+### Adding an employee: `add`
 
-Adds a person to Coydir.
+Adds an employee to Coydir.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A employee can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -80,27 +80,44 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Adding multiple employees at once: `batchadd`
 
-Shows a list of all persons in the company.
+Adds multiple employees to Coydir all at once.
+
+:warning: **Make sure to have uploaded exactly 1 CSV file to make use of this command**: CSV file can be uploaded under the 'data' folder of Coydir.
+
+This command results in one of two cases below:
+
+**Case 1: CSV file exists**
+
+if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will read from the CSV file to add the employees.
+
+**Case 2: CSV file does not exist**
+
+if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
+prompt the user to upload it.
+
+Format: `batchadd`
+
+### Listing all employees : `list`
+
+Shows a list of all employees in the company.
 
 Format: `list`
 
-### View details of a person: `view`
+### View details of an employee: `view`
 
-View the details of an existing person in the Coydir.
+Views the details of an existing employee in the current list.
 
-Format: `view n/NAME`
-
+Format: `view INDEX`
 
 Examples:
 
-- `view n/John Doe` returns the details of John Doe
+- `view 2` returns the details of the second employee in the current list.
 
+### Deleting an employee : `delete`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from Coydir, given the name.
+Deletes the specified employee from Coydir, given the employee ID.
 
 This command results in one of two cases below:
 
@@ -112,12 +129,11 @@ If Coydir has just 1 unique entry that matches the specified name, Coydir will d
 
 Otherwise, if Coydir has more than 1 entry that matches the specified name, Coydir will prompt users with a list of the matching entries, and await user confirmation for which entry to delete.
 
-Format: `delete n/NAME`
+Format: `delete ID`
 
 Examples:
 
-- `delete n/John Cena`
-
+- `delete 1` deletes the employee with employee ID of 1.
 
 ### Exiting the program : `exit`
 
