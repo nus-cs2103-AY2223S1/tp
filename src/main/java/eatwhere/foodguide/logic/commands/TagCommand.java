@@ -32,7 +32,12 @@ public class TagCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "halal";
 
-    public static final String MESSAGE_TAG_EATERY_SUCCESS = "Tagged Eatery: %1$s";
+    /**
+     *  %1$s - s if multiple tags, else nothing (i.e. tags or tag)
+     *  %2$s - The names of added tags
+     *  %3$s - Eatery name
+     */
+    public static final String MESSAGE_TAG_EATERY_SUCCESS = "Added tag%1$s %2$s\nto Eatery %3$s";
     public static final String MESSAGE_NOT_TAGGED = "At least one tag must be provided.";
     public static final String MESSAGE_DUPLICATE_EATERY = "This eatery already exists in the food guide.";
     public static final String MESSAGE_DUPLICATE_TAGS_HEADER = "Duplicate tags not allowed:";
@@ -69,7 +74,17 @@ public class TagCommand extends Command {
 
         model.setEatery(eateryToTag, taggedEatery);
         model.updateFilteredEateryList(Model.PREDICATE_SHOW_ALL_EATERIES);
-        return new CommandResult(String.format(MESSAGE_TAG_EATERY_SUCCESS, taggedEatery.getName()));
+
+        String pluralForTagWord = tagsToAdd.size() == 1 ? "" : "s";
+        StringBuilder addedTags = new StringBuilder();
+        for (Tag tag : tagsToAdd) {
+            addedTags.append(tag).append(", ");
+        }
+
+        return new CommandResult(String.format(MESSAGE_TAG_EATERY_SUCCESS,
+                pluralForTagWord,
+                addedTags.substring(0, addedTags.length() - 2),
+                taggedEatery.getName()));
     }
 
     /**
