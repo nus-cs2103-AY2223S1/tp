@@ -55,11 +55,13 @@ public class Fields {
      * @param fieldName The name of the field to be removed from the list.
      */
     public void removeField(String fieldName) {
+        List<Field> fieldsToRemove = new ArrayList<>();
         for (Field field : fields) {
             if (field.isNameMatch(fieldName)) {
-                fields.remove(field);
+                fieldsToRemove.add(field);
             }
         }
+        fields.removeAll(fieldsToRemove);
     }
 
     /**
