@@ -51,4 +51,11 @@ public class ViewCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToView.getName().fullName));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && index.equals(((ViewCommand) other).index)); // state check
+    }
+
 }
