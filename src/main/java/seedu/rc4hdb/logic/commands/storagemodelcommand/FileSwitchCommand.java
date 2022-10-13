@@ -21,8 +21,6 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
 
     public static final String COMMAND_WORD = "switch";
 
-    public static final String MESSAGE_FAILED = "Something went wrong while switching files.";
-
     public static final String MESSAGE_SUCCESS = "Successfully switched files.";
 
     public static final String MESSAGE_NON_EXISTENT_FILE = " does not exist. Please provide an existing file.";
@@ -54,7 +52,7 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
             return new CommandResult(MESSAGE_SUCCESS);
         } catch (DataConversionException | IOException e) {
             storage.setResidentBookFilePath(originalPath);
-            throw new CommandException(MESSAGE_FAILED);
+            throw new CommandException(String.format(MESSAGE_FAILED, "switching"));
         }
     }
 

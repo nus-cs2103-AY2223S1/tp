@@ -11,6 +11,8 @@ public abstract class FileCommand implements Command {
 
     public static final String COMMAND_WORD = "file";
 
+    public static final String MESSAGE_FAILED = "Something unexpected occurred while %s your file.";
+
     protected Path filePath;
 
 }

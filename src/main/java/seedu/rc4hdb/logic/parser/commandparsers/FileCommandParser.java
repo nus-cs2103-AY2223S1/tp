@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.storagemodelcommand.FileCommand;
 import seedu.rc4hdb.logic.commands.storagemodelcommand.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommand.FileDeleteCommand;
 import seedu.rc4hdb.logic.commands.storagemodelcommand.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
@@ -38,6 +39,9 @@ public class FileCommandParser implements CommandParser<FileCommand> {
 
         case FileCreateCommand.COMMAND_WORD:
             return new FileCreateCommand(jsonPath);
+
+        case FileDeleteCommand.COMMAND_WORD:
+            return new FileDeleteCommand(jsonPath);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

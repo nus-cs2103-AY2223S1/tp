@@ -1,6 +1,7 @@
 package seedu.rc4hdb.logic.commands.storagemodelcommand;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Path;
 
 import seedu.rc4hdb.commons.util.FileUtil;
@@ -17,8 +18,6 @@ public class FileCreateCommand extends FileCommand implements MiscCommand {
 
     public static final String COMMAND_WORD = "create";
 
-    public static final String MESSAGE_FAILED = "Something went wrong while creating your file.";
-
     public static final String MESSAGE_FILE_EXISTS = " already exists.";
 
     public static final String MESSAGE_SUCCESS = " successfully created.";
@@ -29,17 +28,14 @@ public class FileCreateCommand extends FileCommand implements MiscCommand {
 
     @Override
     public CommandResult execute() throws CommandException {
-        if (FileUtil.isFileExists(filePath)) {
-            throw new CommandException(filePath.getFileName() + MESSAGE_FILE_EXISTS);
-        }
-
         try {
             FileUtil.createFile(filePath);
             new JsonResidentBookStorage(filePath).saveResidentBook(new ResidentBook());
-
             return new CommandResult(filePath.getFileName() + MESSAGE_SUCCESS);
+        } catch (FileAlreadyExistsException e) {
+            throw new CommandException(filePath.getFileName() + MESSAGE_FILE_EXISTS);
         } catch (IOException e) {
-            throw new CommandException(MESSAGE_FAILED);
+            throw new CommandException(String.format(MESSAGE_FAILED, "creating"));
         }
     }
 
