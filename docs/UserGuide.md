@@ -5,7 +5,7 @@ title: User Guide
 
 Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
 
-Table of Contents
+**Table of Contents**
   - [Quick Start](#quick-start)
   - [Features](#features)
     - [Adding an employee](#adding-an-employee-add)
