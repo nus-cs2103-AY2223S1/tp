@@ -38,37 +38,37 @@ public class TaskTodoCommandTest {
     @Test
     public void equals() {
         // 2 to-dos with different descriptions
-        TaskTodoCommand addTodoCommandOne = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskTodoCommand addTodoCommandTwo = new TaskTodoCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
+        TaskTodoCommand taskTodoCommandOne = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand taskTodoCommandTwo = new TaskTodoCommand(NAME_AMY, DESCRIPTION_TWO, ASSIGNMENT_TO);
 
         // 2 to-dos with different names
-        TaskTodoCommand addTodoCommandThree = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskTodoCommand addTodoCommandFour = new TaskTodoCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand taskTodoCommandThree = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand taskTodoCommandFour = new TaskTodoCommand(NAME_BOB, DESCRIPTION_ONE, ASSIGNMENT_TO);
 
         // 2 to-dos with different assignments
-        TaskTodoCommand addTodoCommandFive = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        TaskTodoCommand addTodoCommandSix = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
+        TaskTodoCommand taskTodoCommandFive = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        TaskTodoCommand taskTodoCommandSix = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_FROM);
 
         // same object -> returns true
-        assertTrue(addTodoCommandOne.equals(addTodoCommandOne));
+        assertTrue(taskTodoCommandOne.equals(taskTodoCommandOne));
 
         // same values -> returns true
-        TaskTodoCommand addTaskCommandOneCopy = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
-        assertTrue(addTodoCommandOne.equals(addTaskCommandOneCopy));
+        TaskTodoCommand taskTaskCommandOneCopy = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        assertTrue(taskTodoCommandOne.equals(taskTaskCommandOneCopy));
 
         // different types -> returns false
-        assertFalse(addTodoCommandOne.equals(1));
+        assertFalse(taskTodoCommandOne.equals(1));
 
         // null -> returns false
-        assertFalse(addTodoCommandOne.equals(null));
+        assertFalse(taskTodoCommandOne.equals(null));
 
         // different description -> returns false
-        assertFalse(addTodoCommandOne.equals(addTodoCommandTwo));
+        assertFalse(taskTodoCommandOne.equals(taskTodoCommandTwo));
 
         // different name -> returns false
-        assertFalse(addTodoCommandThree.equals(addTodoCommandFour));
+        assertFalse(taskTodoCommandThree.equals(taskTodoCommandFour));
 
         // different assignment -> returns false
-        assertFalse(addTodoCommandFive.equals(addTodoCommandSix));
+        assertFalse(taskTodoCommandFive.equals(taskTodoCommandSix));
     }
 }
