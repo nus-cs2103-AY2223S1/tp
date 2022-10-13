@@ -53,9 +53,9 @@ public class ModAddCommandTest {
 
         // execute ModAddCommand on the test person
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModAddCommand commandToExceute = new ModAddCommand(indexLastPerson,
+        ModAddCommand commandToExecute = new ModAddCommand(indexLastPerson,
                 FXCollections.singletonObservableList(VALID_MOD_CS2101));
-        CommandResult commandResult = commandToExceute.execute(model);
+        CommandResult commandResult = commandToExecute.execute(model);
         // get the edited person from ModAddCommand
         Person editedPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 

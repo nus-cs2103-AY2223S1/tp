@@ -18,6 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
+import seedu.address.logic.commands.ModDeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Mod;
 
@@ -56,6 +57,8 @@ public class ModCommandParser implements Parser<ModCommand> {
         switch (commandWord) {
         case ModAddCommand.COMMAND_WORD:
             return parseAddCommand(arguments);
+        case ModDeleteCommand.COMMAND_WORD:
+            return parseDeleteCommand(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
         }
@@ -77,6 +80,24 @@ public class ModCommandParser implements Parser<ModCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
         }
         return new ModAddCommand(index, mods.get());
+    }
+
+    private ModDeleteCommand parseDeleteCommand(String args) throws ParseException {
+        Index index;
+        String trimmedArgs = args.trim();
+        String indexFromCommand = getIndexFromCommand(trimmedArgs);
+        Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
+        Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
+        if (mods.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        try {
+            index = ParserUtil.parseIndex(indexFromCommand);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
+        }
+        return new ModDeleteCommand(index, mods.get());
     }
 
     /**
