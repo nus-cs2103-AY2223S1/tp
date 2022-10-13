@@ -64,7 +64,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException {
+    public Optional<ReadOnlyAddressBook> readAllAddressBook()
+            throws DataConversionException, IllegalValueException, IOException {
         AddressBook addressBook = new AddressBook();
         Optional<JsonSerializableTutorAddressBook> jsonTutorAddressBook = JsonUtil.readJsonFile(
                 tutorFilePath, JsonSerializableTutorAddressBook.class);
@@ -81,6 +82,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             }
         } else {
             isNew--;
+            FileUtil.createFile(tutorFilePath);
+            logger.info("Empty tutoraddressbook.json created");
         }
         if (jsonStudentAddressBook.isPresent()) {
             List<Student> studentList = jsonStudentAddressBook.get().getStudentsList();
@@ -89,6 +92,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             }
         } else {
             isNew--;
+            FileUtil.createFile(studentFilePath);
+            logger.info("Empty studentaddressbook.json created");
         }
         if (jsonTuitionClassAddressBook.isPresent()) {
             List<TuitionClass> tuitionClassList = jsonTuitionClassAddressBook.get().getTuitionClassesList();
@@ -97,6 +102,8 @@ public class JsonAddressBookStorage implements AddressBookStorage {
             }
         } else {
             isNew--;
+            FileUtil.createFile(tuitionClassFilePath);
+            logger.info("Empty tuitionclassaddressbook.json created");
         }
 
         if (isNew == 0) {
