@@ -24,7 +24,7 @@ public class MarkCommand extends Command {
             + ": Updates status of the FYP project done"
             + "by the student ID given in the command "
             + "Existing statuses will be updated by the input.\n"
-            + "Parameters: id/STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G"
+            + "Parameters: id/STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G) "
             + "s/STATUS\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_STATUS + "DONE";
@@ -50,7 +50,7 @@ public class MarkCommand extends Command {
         Student oldStudent = model.getStudentByStudentId(studentId);
 
         if (oldStudent == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_ID_FORMAT);
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
         Student editedStudent = new Student(oldStudent.getName(), oldStudent.getStudentId(),

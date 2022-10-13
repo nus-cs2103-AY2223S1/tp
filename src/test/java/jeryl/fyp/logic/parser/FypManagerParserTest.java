@@ -53,9 +53,9 @@ public class FypManagerParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
+        Student student = new StudentBuilder().build();
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(StudentUtil.getDeleteCommand(student));
+        assertEquals(new DeleteCommand(student.getStudentId()), command);
     }
 
     @Test

@@ -1,10 +1,11 @@
 package jeryl.fyp.logic.commands;
 
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static jeryl.fyp.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.commons.core.Messages;
-import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ModelManager;
 import jeryl.fyp.model.UserPrefs;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.StudentId;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,9 +28,10 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validStudentIdUnfilteredList_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
+        StudentId validStudentId = studentToDelete.getStudentId();
+        DeleteCommand deleteCommand = new DeleteCommand(validStudentId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
@@ -40,23 +42,28 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_inexistentStudentIdUnfilteredList_throwsCommandException() {
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        StudentId inexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
+        DeleteCommand deleteCommand = new DeleteCommand(inexistentStudentId);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
+        expectedModel.deleteStudent(studentToDelete);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_STUDENT_NOT_FOUND);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validStudentIdFilteredList_success() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
+        StudentId validStudentId = studentToDelete.getStudentId();
+        DeleteCommand deleteCommand = new DeleteCommand(validStudentId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        Model expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 
@@ -64,28 +71,29 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_inexistentStudentIdFilteredList_throwsCommandException() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of FYP manager list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFypManager().getStudentList().size());
+        Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        StudentId inexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
+        DeleteCommand deleteCommand = new DeleteCommand(inexistentStudentId);
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
+        expectedModel.deleteStudent(studentToDelete);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_STUDENT_NOT_FOUND);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_STUDENT);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_STUDENT);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(new StudentId(VALID_STUDENT_ID_AMY));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(new StudentId(VALID_STUDENT_ID_BOB));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_STUDENT);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new StudentId(VALID_STUDENT_ID_AMY));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import jeryl.fyp.commons.core.GuiSettings;
+import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.FypManager;
 import jeryl.fyp.model.Model;
@@ -151,6 +152,11 @@ public class AddCommandTest {
 
         @Override
         public Student getStudentByStudentId(StudentId studentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Index getIndexByStudentId(StudentId studentId) {
             throw new AssertionError("This method should not be called.");
         }
     }

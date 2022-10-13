@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.UniqueStudentList;
@@ -102,6 +103,12 @@ public class FypManager implements ReadOnlyFypManager {
         requireNonNull(studentId);
 
         return students.getStudentByStudentId(studentId);
+    }
+
+    public Index getIndexByStudentId(StudentId studentId) {
+        requireNonNull(studentId);
+
+        return students.getIndexByStudentId(studentId);
     }
 
     //// util methods
