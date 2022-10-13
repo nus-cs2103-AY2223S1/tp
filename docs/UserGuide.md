@@ -121,15 +121,15 @@ Examples:
 
 ####By tag:
 
-Finds patients whose names contains the given tag.
+Finds patients whose names contain any of the given tags.
 
-Format: `filter patients t/friends`
+Format: `filter patients t/TAG [MORE_TAGS]`
 
 * The search is case-insensitive. e.g `FRIENDS` will match `friends`
 * All tags of a patient are searched.
 
 Examples:
-* `filter patients t/friends` returns all patients with friends tag.
+* `filter patients t/friends colleagues` returns all patients with a friends OR colleagues tag.
 ### Deleting a person : `delete`
 
 Deletes the specified person from idENTify.
