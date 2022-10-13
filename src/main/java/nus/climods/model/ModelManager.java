@@ -3,6 +3,7 @@ package nus.climods.model;
 import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
+import nus.climods.model.module.CodeContainsKeywordsPredicate;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
@@ -18,7 +20,6 @@ import nus.climods.model.module.ReadOnlyModuleList;
  * Represents the in-memory model of module list data.
  */
 public class ModelManager implements Model {
-
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final UserPrefs userPrefs;
@@ -49,6 +50,17 @@ public class ModelManager implements Model {
         this.userPrefs.resetData(userPrefs);
     }
 
+    /**
+     * Filter the list by faculty Code
+     *
+     * @return
+     */
+    public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
+        // TODO: Implement filtering for saved modules
+        CodeContainsKeywordsPredicate predicate = new CodeContainsKeywordsPredicate(facultyCode);
+        filteredModuleList.setPredicate(predicate);
+    }
+
     @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
@@ -67,10 +79,11 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        return this.filteredModuleList;
+        return filteredModuleList;
+
+
     }
 
-    @Override
     public void setFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         this.filteredModuleList.setPredicate(predicate);

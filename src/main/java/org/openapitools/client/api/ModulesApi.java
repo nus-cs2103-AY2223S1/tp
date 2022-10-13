@@ -28,6 +28,7 @@ import org.openapitools.client.ApiResponse;
 import org.openapitools.client.model.Module;
 import org.openapitools.client.model.ModuleCondensed;
 import org.openapitools.client.model.ModuleInformation;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
