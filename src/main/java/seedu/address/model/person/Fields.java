@@ -122,7 +122,7 @@ public class Fields {
      * Checks if the {@code Fields} is empty.
      *
      * @return true if there are no {@code Field} instances stored in this {@code Fields}
-     * object, false otherwise.
+     *     object, false otherwise.
      */
     public boolean isEmpty() {
         return fields.isEmpty();
