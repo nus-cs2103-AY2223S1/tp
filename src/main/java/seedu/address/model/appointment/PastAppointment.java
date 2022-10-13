@@ -46,7 +46,7 @@ public class PastAppointment extends Appointment {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("On: ").append(getDate().format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
-        builder.append("; Diagnosis: ").append(this.diagnosis);
+        builder.append("; Diagnosis: ").append(getDiagnosis());
         Set<Medication> tags = getMedication();
         if (!tags.isEmpty()) {
             builder.append("; Prescribed Medication: ");
