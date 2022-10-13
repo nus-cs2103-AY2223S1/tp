@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nus.climods.logic.commands.Command;
+import nus.climods.logic.commands.ExitCommand;
 import nus.climods.logic.commands.FindCommand;
 import nus.climods.logic.commands.HelpCommand;
 import nus.climods.logic.commands.ListCommand;
@@ -39,6 +40,8 @@ public class CliModsParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
         case (FindCommand.COMMAND_WORD):
