@@ -5,12 +5,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
 /**
  * Store all transactions in a list.
  */
 public class TransactionLog {
     private final List<Transaction> transactionList;
-
     /**
      * Creates a log to store all transactions.
      * @param transactionList list to store transactions.
@@ -54,6 +57,18 @@ public class TransactionLog {
      */
     public boolean isEmpty() {
         return transactionList.isEmpty();
+    }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of transactions.
+     */
+    public ObservableList<Transaction> asUnmodifiableObservableList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        for (Transaction transaction : transactionList) {
+            internalList.add(transaction);
+        }
+        return FXCollections.unmodifiableObservableList(internalList);
     }
 
 }

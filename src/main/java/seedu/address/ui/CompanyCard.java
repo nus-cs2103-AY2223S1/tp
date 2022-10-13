@@ -37,6 +37,8 @@ public class CompanyCard extends UiPart<Region> {
     @FXML
     private Label pocs;
     @FXML
+    private Label transactions;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -49,6 +51,7 @@ public class CompanyCard extends UiPart<Region> {
         name.setText(company.getName().fullName);
         address.setText(company.getAddress().value);
         pocs.setText(company.getPocs().toString());
+        transactions.setText("Total: " + String.valueOf(company.getTotalTransacted()));
         company.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

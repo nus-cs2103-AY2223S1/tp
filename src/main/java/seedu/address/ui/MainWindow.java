@@ -20,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
 import seedu.address.model.poc.Poc;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PocListPanel pocListPanel;
+    private TransactionListPanel transactionListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -59,7 +61,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane pocListPanelPlaceholder;
 
     @FXML
-    private StackPane companyTransactionPanelPlaceholder;
+    private StackPane transactionListPanelPlaceholder;
+
+    @FXML
+    private StackPane landingArea;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -89,7 +94,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
-     * @param keyCombination the KeyCombination value of the accelerator
+     * @param keyCombination the KeyCombination value of the accelerator.
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
         menuItem.setAccelerator(keyCombination);
@@ -124,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
         companyListPanel = new CompanyListPanel(logic.getFilteredCompanyList());
         companyListPanelPlaceholder.getChildren().add(companyListPanel.getRoot());
 
+        transactionListPanel = new TransactionListPanel();
+        transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -135,6 +143,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -177,18 +186,25 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handlePocListUpdate(CommandResult commandResult) {
+    /**
+     * Handles changes to the UI whenever the POC or Transaction information is updated in a company.
+     * @param commandResult the result of command executed.
+     */
+    private void handleCompanyDetailsUpdate(CommandResult commandResult) {
         ObservableList<Company> companies = logic.getFilteredCompanyList();
 
         if (companies.size() != 1) {
             // Empty poc list panel.
             pocListPanel.setPocList(FXCollections.observableArrayList());
+            transactionListPanel.setTransactionList(FXCollections.observableArrayList());
             return;
         }
 
         Company company = companies.get(0);
         ObservableList<Poc> pocs = company.getPocs().asUnmodifiableObservableList();
+        ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
+        transactionListPanel.setTransactionList(transactions);
     }
 
     /**
@@ -210,7 +226,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            handlePocListUpdate(commandResult);
+            handleCompanyDetailsUpdate(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {

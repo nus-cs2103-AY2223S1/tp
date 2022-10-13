@@ -70,9 +70,9 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <VBox fx:id="pocList" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden; -fx-border-color: white;">
+                        <VBox fx:id="pocList" prefWidth="100.0" style="-fx-border-style: solid hidden solid hidden; -fx-border-color: white;" VBox.vgrow="ALWAYS">
                            <children>
-                              <StackPane fx:id="pocListPanelPlaceholder" prefHeight="250.0" prefWidth="200.0" />
+                              <StackPane fx:id="pocListPanelPlaceholder" />
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -86,12 +86,12 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <VBox fx:id="companyTransactions" minWidth="-Infinity" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="transactionList" minWidth="-Infinity" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="10" left="10" right="10" top="10" />
                            </padding>
                            <children>
-                              <StackPane fx:id="companyTransactionPanelPlaceholder" prefHeight="250.0" VBox.vgrow="ALWAYS" />
+                              <StackPane fx:id="transactionListPanelPlaceholder" />
                            </children>
                         </VBox>
                      </children>

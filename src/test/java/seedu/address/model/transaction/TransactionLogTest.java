@@ -9,6 +9,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+
 class TransactionLogTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -49,6 +53,21 @@ class TransactionLogTest {
         log.addTransaction(buyTransaction);
 
         assertEquals(log.calculateNetTransacted(), -7);
+    }
+
+    @Test
+    public void testAsUnmodifiableObservableList() {
+        Goods goods = new Goods("Apple");
+        Price price = new Price("0.8");
+        Quantity quantity = new Quantity("10");
+
+        Transaction transaction = new SellTransaction(goods, price, quantity);
+        TransactionLog log = new TransactionLog(new ArrayList<>());
+        log.addTransaction(transaction);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(transaction);
+        assertEquals(log.asUnmodifiableObservableList(), FXCollections.unmodifiableObservableList(internalList));
     }
 
 }
