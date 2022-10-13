@@ -19,7 +19,8 @@ import seedu.address.model.tuitionclass.TuitionClass;
 @JsonRootName(value = "tuitionclassaddressbook")
 class JsonSerializableTuitionClassAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_TUITIONCLASS = "TuitionClass list contains duplicate tuitionClasses(s).";
+    public static final String MESSAGE_DUPLICATE_TUITIONCLASS =
+            "TuitionClass list contains duplicate tuitionClasses(s).";
 
     private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
 
