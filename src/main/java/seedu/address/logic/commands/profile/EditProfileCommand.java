@@ -51,7 +51,7 @@ public class EditProfileCommand extends ProfileCommand {
             + PREFIX_TELEGRAM + "johndoe "
             + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile: \n%1$s";
+    public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book.";
 
