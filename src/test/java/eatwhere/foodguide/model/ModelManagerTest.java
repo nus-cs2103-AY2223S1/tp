@@ -82,7 +82,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasEatery_eateryInFodoGuide_returnsTrue() {
+    public void hasEatery_eateryInFoodGuide_returnsTrue() {
         modelManager.addEatery(TypicalEateries.ALICE);
         assertTrue(modelManager.hasEatery(TypicalEateries.ALICE));
     }
