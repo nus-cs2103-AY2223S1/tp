@@ -42,5 +42,6 @@ class SellTransactionTest {
 
         Transaction transaction = new SellTransaction(goods, price, quantity);
         assertEquals(transaction, new SellTransaction(goods, price, quantity));
+        assertFalse(transaction.equals(new Object()));
     }
 }
