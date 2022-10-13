@@ -5,8 +5,19 @@ title: User Guide
 
 Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
 
-- Table of Contents
-  {:toc}
+Table of Contents
+  - [Quick Start](#quick-start)
+  - [Features](#features)
+    - [Adding an employee](#adding-an-employee-add)
+    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
+    - [Listing all employees](#listing-all-employees--list)
+    - [View details of an employee](#view-details-of-an-employee-view)
+    - [Deleting an employee](#deleting-an-employee--delete)
+    - [Exiting the program](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+  - [FAQ](#faq)
+  - [Command summary](#command-summary)
 
 ---
 
@@ -65,7 +76,7 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 </div>
 
 
-### Adding an employee: `add`
+### Adding an employee: `add` 
 
 Adds an employee to Coydir.
 
