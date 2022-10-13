@@ -1,0 +1,74 @@
+{
+  "_comment": "InternshipBook save file which contains the same Internship values as in TypicalInternships#getTypicalInternshipBook()",
+  "internships" : [ {
+    "name" : "Alice Pauline",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "remark" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ],
+    "position" : "Backend Intern",
+    "website" : "https://careers.google.com/jobs",
+    "date" : "11-12-2022",
+    "applicationProcess" : "APPLY"
+  }, {
+    "name" : "Benson Meier",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "remark" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "owesMoney", "friends" ],
+    "position" : "software engineer",
+    "website" : "https://www.grab.com/sg/about",
+    "date" : "24-09-2022",
+    "applicationProcess" : "ASSESSMENT"
+  }, {
+    "name" : "Carl Kurz",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "remark" : "wall street",
+    "tagged" : [ ],
+    "position" : "backend engineer",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLY"
+  }, {
+    "name" : "Daniel Meier",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "remark" : "10th street",
+    "tagged" : [ "friends" ],
+    "position" : "frontend engineer",
+    "website" : "NA",
+    "date" : "14-09-2022",
+    "applicationProcess" : "INTERVIEW"
+  } , {
+    "name" : "Elle Meyer",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "remark" : "michegan ave",
+    "tagged" : [ ],
+    "position" : "data engineer",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLY"
+  }, {
+    "name" : "Fiona Kunz",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "remark" : "little tokyo",
+    "tagged" : [ ],
+    "position" : "AI engineer",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLY"
+  }, {
+    "name" : "George Best",
+    "phone" : "9482442",
+    "email" : "anna@example.com",
+    "remark" : "4th street",
+    "tagged" : [ ],
+    "position" : "Data analyst",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLY"
+  } ]
+}

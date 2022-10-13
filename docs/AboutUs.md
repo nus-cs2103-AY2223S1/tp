@@ -16,6 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [ [github](https://github.com/aarontangr) ][ [portfolio](team/aarontangr.md) ]
 
 * Role: Developer
+* Responsibilities: UI, Dev Ops
 
 ### Elbert Benedict
 
@@ -25,6 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [ [portfolio](team/elben85.md) ]
 
 * Role: Developer
+* Responsibilities: Code quality
 
 ### Farrel Dwireswara Salim
 
@@ -33,6 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [ [github](http://github.com/sugiyem) ] [ [portfolio](team/sugiyem.md) ]
 
 * Role: Developer
+* Responsibilities: Testing
 
 ### Rachel Angelyn Gunawan
 
@@ -42,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [ [portfolio](team/rachel-ag.md) ]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation
 
 ### Justin Siaw
 
@@ -52,4 +55,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [ [portfolio](team/justins00.md) ]
 
 * Role: Developer
-* Responsibilities: Documentation
+* Responsibilities: Project Management
