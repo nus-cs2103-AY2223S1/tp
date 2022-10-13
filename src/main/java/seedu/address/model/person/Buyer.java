@@ -8,10 +8,24 @@ import java.util.Set;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A class that represents a buyer that is also a person.
+ */
 public class Buyer extends Person {
 
     private final List<Order> orders = new ArrayList<>();
 
+    /**
+     * Constructs a Buyer object.
+     *
+     * @param personCategory By default, it should be PersonCategory.Buyer
+     * @param name The name of this person.
+     * @param phone The phone number in string.
+     * @param email The email, which will be checked against regex.
+     * @param address The address of this person, which will be checked against the regex.
+     * @param tags The tags of this person.
+     * @param orders The orders that this buyer requests.
+     */
     public Buyer(PersonCategory personCategory,
                  Name name,
                  Phone phone,
@@ -19,7 +33,30 @@ public class Buyer extends Person {
                  Address address,
                  Set<Tag> tags,
                  List<Order> orders) {
-        super(personCategory, name, phone, email, address, tags);
+        super(PersonCategory.BUYER, name, phone, email, address, tags);
+        if (orders != null) {
+            this.orders.addAll(orders);
+        }
+    }
+
+    /**
+     * Constructs a Buyer object.
+     * By default, it should be PersonCategory.Buyer
+     *
+     * @param name The name of this person.
+     * @param phone The phone number in string.
+     * @param email The email, which will be checked against regex.
+     * @param address The address of this person, which will be checked against the regex.
+     * @param tags The tags of this person.
+     * @param orders The orders that this buyer requests.
+     */
+    public Buyer(Name name,
+                 Phone phone,
+                 Email email,
+                 Address address,
+                 Set<Tag> tags,
+                 List<Order> orders) {
+        super(PersonCategory.BUYER, name, phone, email, address, tags);
         if (orders != null) {
             this.orders.addAll(orders);
         }
@@ -33,6 +70,10 @@ public class Buyer extends Person {
         orders.add(order);
     }
 
+    /**
+     *
+     * @param orders
+     */
     public void addOrder(List<Order> orders) {
         if (orders != null) {
             this.orders.addAll(orders);
