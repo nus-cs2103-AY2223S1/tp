@@ -20,7 +20,7 @@ import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 
 /**
- * A utility class containing a list of {@code Customer} objects to be used in tests.
+ * A utility class containing a list of {@code Commission} objects to be used in tests.
  */
 public class TypicalCommissions {
 
