@@ -15,7 +15,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 
 /**
@@ -57,6 +59,8 @@ public class ParserUtil {
      * Parses a string of {@code String names} into a list of {@code String names}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param names The names to be parsed.
+     * @return A list of names.
      * @throws ParseException if any {@code name} is invalid.
      */
     public static List<Name> parseNames(String names) throws ParseException {
@@ -92,6 +96,8 @@ public class ParserUtil {
      * Parses a string of {@code String phones} into a list of {@code String phones}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param phones The phones to be parsed.
+     * @return A list of phones.
      * @throws ParseException if any {@code phone} is invalid.
      */
     public static List<Phone> parsePhones(String phones) throws ParseException {
@@ -127,6 +133,8 @@ public class ParserUtil {
      * Parses a string of {@code String addresses} into a list of {@code String addresses}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param addresses The addresses to be parsed.
+     * @return A list of addresses.
      * @throws ParseException if any {@code address} is invalid.
      */
     public static List<Address> parseAddresses(String addresses) throws ParseException {
@@ -162,6 +170,8 @@ public class ParserUtil {
      * Parses a string of {@code String emails} into a list of {@code String emails}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param emails The emails to be parsed.
+     * @return A list of emails.
      * @throws ParseException if any {@code email} is invalid.
      */
     public static List<Email> parseEmails(String emails) throws ParseException {
@@ -206,6 +216,16 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Remark parseRemark(String remark) {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * @param description The String to be parsed.
      * @return A Description instance
@@ -215,8 +235,68 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a string of {@code String descriptions} into a list of {@code String descriptions}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param descriptions The descriptions to be parsed.
+     * @return A list of descriptions.
+     * @throws ParseException if any {@code description} is invalid.
+     */
+    public static List<Description> parseDescriptions(String descriptions) throws ParseException {
+        requireNonNull(descriptions);
+        String trimmedDescriptions = descriptions.trim();
+        String[] descriptionArr = trimmedDescriptions.split(" ");
+        ArrayList<Description> descriptionList = new ArrayList<>();
+        for (String description : descriptionArr) {
+            if (!Description.isValidDescription(description)) {
+                throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            }
+            descriptionList.add(new Description(description));
+        }
+        return descriptionList;
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     *
+     * @param deadline The String to be parsed.
+     * @return A Deadline instance
+     * @throws ParseException if the given deadline is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(deadline);
+    }
+
+    /**
+     * Parses a string of {@code String deadlines} into a list of {@code String deadlines}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param deadlines The descriptions to be parsed.
+     * @return A list of deadlines.
+     * @throws ParseException if any {@code description} is invalid.
+     */
+    public static List<Deadline> parseDeadlines(String deadlines) throws ParseException {
+        requireNonNull(deadlines);
+        String trimmedDeadlines = deadlines.trim();
+        String[] deadlineArr = trimmedDeadlines.split(" ");
+        ArrayList<Deadline> descriptionList = new ArrayList<>();
+        for (String deadline : deadlineArr) {
+            if (!Deadline.isValidDeadline(deadline)) {
+                throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            }
+            descriptionList.add(new Deadline(deadline));
+        }
+        return descriptionList;
     }
 }

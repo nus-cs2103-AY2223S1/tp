@@ -11,12 +11,12 @@ public class Description {
             "Descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String taskDescription;
+    private final String taskDescription;
 
     /**
      * Constructs an {@code Description}.
@@ -25,16 +25,24 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
-
         checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         taskDescription = description;
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given description is the same as this description. (case-insensitive)
+     *
+     * @param otherDescription Description to compare with.
+     */
+    public boolean equalsIgnoreCase(Description otherDescription) {
+        return taskDescription.equalsIgnoreCase(otherDescription.taskDescription);
     }
 
     @Override
@@ -47,5 +55,10 @@ public class Description {
         return other == this // short circuit if same object
                 || (other instanceof Description // instanceof handles nulls
                 && taskDescription.equals(((Description) other).taskDescription)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return taskDescription.hashCode();
     }
 }

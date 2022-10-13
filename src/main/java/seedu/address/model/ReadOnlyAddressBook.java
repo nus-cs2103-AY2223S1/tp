@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -21,8 +22,7 @@ public interface ReadOnlyAddressBook {
     ObservableList<Task> getTaskList();
 
     /**
-     * Adds a task to the TaskList
-     * @param task
+     * Returns an unmodifiable view of the tags list.
      */
-    void addTask(Task task);
+    ObservableList<Tag> getTagList();
 }
