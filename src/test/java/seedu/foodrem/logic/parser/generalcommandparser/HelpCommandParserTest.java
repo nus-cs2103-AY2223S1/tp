@@ -92,14 +92,14 @@ class HelpCommandParserTest {
     }
 
     @Test
-    void parse_blank_commands() {
+    void parse_blankCommands() {
         // Blank
         assertParseSuccess(parser, "",
                 new HelpCommand(HELP_FOR_ALL_COMMANDS));
     }
 
     @Test
-    void parse_not_a_command() {
+    void parse_notCommand() {
         // NOT_A_COMMAND
         assertParseSuccess(parser, DEFAULT.getValue(),
                 new HelpCommand(String.format(NOT_A_COMMAND, "default")));
@@ -108,7 +108,7 @@ class HelpCommandParserTest {
     }
 
     @Test
-    void parse_general_commands() {
+    void parse_generalCommands() {
         // General Commands
         assertParseSuccess(parser, HELP_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
@@ -122,7 +122,7 @@ class HelpCommandParserTest {
     }
 
     @Test
-    void parse_item_commands() {
+    void parse_itemCommands() {
         // Item Commands
         assertParseSuccess(parser, NEW_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
@@ -151,7 +151,7 @@ class HelpCommandParserTest {
     }
 
     @Test
-    void parse_tag_commands() {
+    void parse_tagCommands() {
         // Tag Commands
         assertParseSuccess(parser, NEW_TAG_COMMAND.getValue(),
                 new HelpCommand(String.format(HELP_FOR_SPECIFIC_COMMAND,
@@ -206,8 +206,7 @@ class HelpCommandParserTest {
     }
 
     @Test
-    void get_help_throws_error() {
-        assertThrows(ParseException.class,
-                () -> getHelp(getCommandWordFromCommandWordString("helps")));
+    void getHelp_throws_error() {
+        assertThrows(ParseException.class, () -> getHelp(getCommandWordFromCommandWordString("helps")));
     }
 }
