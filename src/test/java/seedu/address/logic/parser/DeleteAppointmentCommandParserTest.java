@@ -6,9 +6,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteAppointmentCommand;

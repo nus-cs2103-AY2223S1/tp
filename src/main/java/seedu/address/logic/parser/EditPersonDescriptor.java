@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
-import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,7 +11,6 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.util.MaximumSortedList;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;

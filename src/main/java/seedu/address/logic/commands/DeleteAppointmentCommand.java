@@ -5,9 +5,7 @@ import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPerson
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
