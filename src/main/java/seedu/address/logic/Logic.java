@@ -7,8 +7,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.student.Student;
+import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * API of the Logic component
@@ -32,6 +36,16 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Student> getFilteredStudentList();
+
+
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Tutor> getFilteredTutorList();
+
+    /** Returns an unmodifiable view of the filtered class list */
+    ObservableList<TuitionClass> getFilteredTuitionClassList();
 
     /**
      * Returns the user prefs' tutor address book file path.
@@ -57,4 +71,10 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /** Updates the type of the current list **/
+    void updateCurrentListType(Model.ListType type);
+
+    /** Returns the type of the current list **/
+    Model.ListType getCurrentListType();
 }

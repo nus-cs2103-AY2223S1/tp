@@ -29,6 +29,14 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
+.active-label {
+    -fx-background-color: derive(#1d1d1d, 40%);
+}
+
+.inactive-label {
+    -fx-background-color: derive(#1d1d1d, 10%);
+}
+
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }

@@ -142,8 +142,8 @@ class JsonAdaptedStudent {
         final NextOfKin modelNextOfKin = new NextOfKin(nextOfKin);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
+
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags,
                 modelSchool, modelLevel, modelNextOfKin);
     }
-
 }

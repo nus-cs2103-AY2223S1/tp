@@ -18,7 +18,7 @@ import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.TypicalTuitionClasses;
 
 
-public class JsonSerializableTuitionClassTest {
+public class JsonSerializableTuitionClassAddressBookTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_TUITIONCLASSES_FILE =

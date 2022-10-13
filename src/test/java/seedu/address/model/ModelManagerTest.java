@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +16,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -114,8 +114,45 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTuitionClass_nullTuitionClass_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTuitionClass(null));
+    }
+
+    @Test
+    public void hasTuitionClass_personNotInDatabase_returnsFalse() {
+        assertFalse(modelManager.hasTuitionClass(TUITIONCLASS1));
+    }
+
+    @Test
+    public void hasTuitionClass_personInDatabase_returnsTrue() {
+        modelManager.addTuitionClass(TUITIONCLASS1);
+        assertTrue(modelManager.hasTuitionClass(TUITIONCLASS1));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTutorList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTutorList().remove(0));
+    }
+
+    @Test
+    public void getFilteredTuitionClassList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTuitionClassList().remove(0));
+    }
+
+    @Test
+    public void getCurrentListType_getListType() {
+        modelManager.updateCurrentListType(Model.ListType.STUDENT_LIST);
+        assertEquals(Model.ListType.STUDENT_LIST, modelManager.getCurrentListType());
     }
 
     @Test
@@ -143,7 +180,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

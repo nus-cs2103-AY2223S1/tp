@@ -25,7 +25,8 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     Path getAddressBookFilePath(AddressBookCategories cat);
 
     @Override
-    Optional<ReadOnlyAddressBook> readAllAddressBook() throws DataConversionException, IllegalValueException;
+    Optional<ReadOnlyAddressBook> readAllAddressBook()
+            throws DataConversionException, IllegalValueException, IOException;
 
     @Override
     Optional<ReadOnlyAddressBook> readAddressBook(AddressBookCategories cat)

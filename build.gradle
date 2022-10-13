@@ -40,6 +40,10 @@ task coverage(type: JacocoReport) {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint:unchecked'
+}
+
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'

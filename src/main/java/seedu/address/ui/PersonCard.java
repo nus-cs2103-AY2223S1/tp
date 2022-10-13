@@ -27,19 +27,19 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
-    private HBox cardPane;
+    protected HBox cardPane;
     @FXML
-    private Label name;
+    protected Label name;
     @FXML
-    private Label id;
+    protected Label id;
     @FXML
-    private Label phone;
+    protected Label phone;
     @FXML
-    private Label address;
+    protected Label address;
     @FXML
-    private Label email;
+    protected Label email;
     @FXML
-    private FlowPane tags;
+    protected FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -52,6 +52,23 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Adds a FXML field which child class can call to initiate with a different FXML
+     */
+    public PersonCard(Person person, int displayedIndex, String fxml) {
+        super(fxml);
+        this.person = person;
+        id.setText(displayedIndex + ". ");
+        name.setText(person.getName().fullName);
+        phone.setText("Phone: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        email.setText("Email: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
