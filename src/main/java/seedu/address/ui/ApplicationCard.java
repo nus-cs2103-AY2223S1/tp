@@ -47,7 +47,7 @@ public class ApplicationCard extends UiPart<Region> {
         contact.setText(application.getContact().value);
         position.setText(application.getPosition().value);
         email.setText(application.getEmail().value);
-        date.setText(application.getDate().value.toString());
+        date.setText(application.getDate().toString());
     }
 
     @Override
