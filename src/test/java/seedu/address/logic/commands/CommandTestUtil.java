@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.application.Application;
 import seedu.address.model.application.CompanyContainsKeywordsPredicate;
 import seedu.address.model.application.PositionContainsKeywordsPredicate;
+import seedu.address.testutil.EditApplicationDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -56,6 +57,18 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditCommand.EditApplicationDescriptor DESC_GOOGLE;
+    public static final EditCommand.EditApplicationDescriptor DESC_FACEBOOK;
+
+    static {
+        DESC_GOOGLE = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
+                .withContact(VALID_CONTACT_GOOGLE).withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE)
+                .withDate(VALID_DATE_GOOGLE).build();
+        DESC_FACEBOOK = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_FACEBOOK)
+                .withContact(VALID_CONTACT_FACEBOOK).withEmail(VALID_EMAIL_FACEBOOK)
+                .withPosition(VALID_POSITION_FACEBOOK).withDate(VALID_DATE_FACEBOOK).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
