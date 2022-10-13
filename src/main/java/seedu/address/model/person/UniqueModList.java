@@ -13,8 +13,8 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of mods that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Mod#isSameMod(Mod)}. As such, adding and updating of
- * persons uses Mod#isSameMod(Mod) for equality so as to ensure that the mod being added or updated is
+ * A mod is considered unique by comparing using {@code Mod#isSameMod(Mod)}. As such, adding and updating of
+ * mods uses Mod#isSameMod(Mod) for equality so as to ensure that the mod being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Mod#isSameMod(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
