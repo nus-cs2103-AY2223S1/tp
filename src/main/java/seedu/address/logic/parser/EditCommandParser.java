@@ -80,6 +80,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         UniqueTagTypeMap oldMap = ParserUtil.parseTags(oldTagMap);
         UniqueTagTypeMap newMap = ParserUtil.parseTags(newTagMap);
+
         if (oldMap.getCount() != 0) {
             editPersonDescriptor.setOldTagTypeMap(oldMap);
             editPersonDescriptor.setNewTagTypeMap(newMap);
