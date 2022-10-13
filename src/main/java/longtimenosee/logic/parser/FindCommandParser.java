@@ -12,11 +12,11 @@ import java.util.Arrays;
 
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
-import longtimenosee.model.person.AddressMatchesInputPredicate;
-import longtimenosee.model.person.EmailMatchesInputPredicate;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
-import longtimenosee.model.person.PhoneMatchesNumberPredicate;
-import longtimenosee.model.person.TagContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.AddressMatchesInputPredicate;
+import longtimenosee.model.person.predicate.EmailMatchesInputPredicate;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.PhoneMatchesNumberPredicate;
+import longtimenosee.model.person.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

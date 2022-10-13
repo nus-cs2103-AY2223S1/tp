@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import longtimenosee.commons.core.GuiSettings;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {

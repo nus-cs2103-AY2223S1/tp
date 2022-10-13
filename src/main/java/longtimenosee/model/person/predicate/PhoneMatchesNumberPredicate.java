@@ -1,6 +1,8 @@
-package longtimenosee.model.person;
+package longtimenosee.model.person.predicate;
 
 import java.util.function.Predicate;
+
+import longtimenosee.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Phone} number matches the given number.

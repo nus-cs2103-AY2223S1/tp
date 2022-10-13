@@ -1,9 +1,10 @@
-package longtimenosee.model.person;
+package longtimenosee.model.person.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import longtimenosee.commons.util.StringUtil;
+import longtimenosee.model.person.Person;
 import longtimenosee.model.tag.Tag;
 
 /**

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import longtimenosee.model.Model;
 import longtimenosee.model.ModelManager;
 import longtimenosee.model.UserPrefs;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

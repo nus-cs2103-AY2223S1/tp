@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import longtimenosee.commons.core.Messages;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
-import longtimenosee.model.person.PinnedPersonPredicate;
+import longtimenosee.model.person.predicate.PinnedPersonPredicate;
 
 
 /**

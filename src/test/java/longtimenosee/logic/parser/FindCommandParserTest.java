@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import longtimenosee.logic.commands.FindCommand;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
