@@ -60,7 +60,7 @@
             <graphic>
                 <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/home.png" />
+                        <Image url="@../images/dollar.png" />
                     </image>
                 </ImageView>
             </graphic></Label>
