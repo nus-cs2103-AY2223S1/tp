@@ -24,6 +24,25 @@ public abstract class Contact {
         this.link = link;
     }
 
+    /**
+     * Construct a contact instance
+     * @param type  Type of contact
+     * @param value Name or information for the contact
+     * @return the Contact
+     */
+    public static Contact New(ContactType type, String value) {
+        switch (type) {
+        case TELEGRAM:
+            return new Telegram(value);
+        case SLACK:
+            return new Slack(value);
+        case PHONE:
+            return new Phone(value);
+        default:
+            return new Email(value);
+        }
+    }
+
     public ContactType getContactType() {
         return this.contactType;
     }
