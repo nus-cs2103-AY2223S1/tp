@@ -23,7 +23,7 @@ public class Session {
     private final Date date;
 
     /**
-     * Constructs a {@code Session}. Date will be set to epoch time.
+     * Constructs a {@code Session} with its date set to epoch time.
      *
      * @param sessionName A valid session name.
      */
@@ -35,9 +35,10 @@ public class Session {
     }
 
     /**
-     * Constructs a {@code Session}.
+     * Constructs a {@code Session} with the provided {@code sessionName} and {@code date}.
      *
      * @param sessionName A valid session name.
+     * @param date {@code Date}.
      */
     public Session(String sessionName, Date date) {
         requireAllNonNull(sessionName, date);

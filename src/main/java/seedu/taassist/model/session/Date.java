@@ -20,7 +20,7 @@ public class Date implements Comparable<Date> {
     /**
      * Constructs a {@code Date}.
      *
-     * @param date A valid date.
+     * @param date {@code LocalDate} of the constructed {@code Date}.
      */
     public Date(LocalDate date) {
         requireNonNull(date);
