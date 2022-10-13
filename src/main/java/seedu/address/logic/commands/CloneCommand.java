@@ -9,7 +9,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Race;
+import seedu.address.model.person.Religion;
+import seedu.address.model.person.Survey;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -75,7 +84,8 @@ public class CloneCommand extends Command {
         Survey clonedSurvey = personToClone.getSurvey();
         Set<Tag> clonedTags = (personToClone.getTags() != null) ? personToClone.getTags() : null;
 
-        Person clonedPerson = new Person(updatedName, clonedPhone, clonedEmail, clonedAddress, clonedGender, clonedBirthdate, clonedRace, clonedReligion, clonedSurvey, clonedTags);
+        Person clonedPerson = new Person(updatedName, clonedPhone, clonedEmail, clonedAddress,
+                clonedGender, clonedBirthdate, clonedRace, clonedReligion, clonedSurvey, clonedTags);
         return createClonedPerson(model, clonedPerson);
     }
 
