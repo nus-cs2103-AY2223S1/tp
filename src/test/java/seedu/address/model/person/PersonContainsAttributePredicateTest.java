@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -18,11 +19,13 @@ public class PersonContainsAttributePredicateTest {
         PersonContainsAttributePredicate firstPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
         PersonContainsAttributePredicate secondPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("female"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
 
         ViewCommand viewFirstCommand = new ViewCommand(firstPredicate);
         ViewCommand viewSecondCommand = new ViewCommand(secondPredicate);
@@ -51,27 +54,31 @@ public class PersonContainsAttributePredicateTest {
         PersonContainsAttributePredicate predicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
         assertTrue(predicate.test(new PersonBuilder().withGender("male").build()));
 
         // Multiple keywords
         predicate =
                 new PersonContainsAttributePredicate(List.of("Alice", "Bob"), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate =
                 new PersonContainsAttributePredicate(List.of("Bob", "Carol"), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         new PersonContainsAttributePredicate(List.of("aLiCe", "bOb"), new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                new HashSet<>());
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 
@@ -81,7 +88,8 @@ public class PersonContainsAttributePredicateTest {
         PersonContainsAttributePredicate predicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("r4nd0m_inV4l1d_g3nd3r"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
         assertFalse(predicate.test(new PersonBuilder().withGender("female").build()));
 
     }

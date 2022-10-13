@@ -10,16 +10,19 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonContainsAttributePredicate;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -35,10 +38,12 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_RACE, PREFIX_RELIGION, PREFIX_SURVEY);
+                        PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_RACE, PREFIX_RELIGION, PREFIX_SURVEY,
+                        PREFIX_TAG);
 
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_RACE, PREFIX_RELIGION, PREFIX_SURVEY)
+                PREFIX_GENDER, PREFIX_BIRTHDATE, PREFIX_RACE, PREFIX_RELIGION, PREFIX_SURVEY,
+                PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()
                 || args.trim().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
@@ -54,8 +59,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         List<String> religionList = getKeywordsAsList(argMultimap.getValue(PREFIX_RELIGION));
         List<String> surveyList = getKeywordsAsList(argMultimap.getValue(PREFIX_SURVEY));
 
-        return new ViewCommand(new PersonContainsAttributePredicate(nameList, phoneList, emailList, addressList,
-                genderList, birthdateList, raceList, religionList, surveyList));
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        PersonContainsAttributePredicate predicate = new PersonContainsAttributePredicate(nameList, phoneList,
+                emailList, addressList, genderList, birthdateList, raceList, religionList, surveyList,
+                tagList);
+
+        return new ViewCommand(predicate);
     }
 
     /**

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,12 @@ public class ViewCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        ViewCommand expectedViewCommand =
-                new ViewCommand(new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
+        PersonContainsAttributePredicate testPredicate =
+                new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        List.of("chinese"), new ArrayList<>(), new ArrayList<>()));
+                        List.of("chinese"), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
+        ViewCommand expectedViewCommand = new ViewCommand(testPredicate);
 
         assertParseSuccess(parser, " g/male ra/chinese", expectedViewCommand);
 
