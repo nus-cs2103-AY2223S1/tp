@@ -90,7 +90,7 @@ public class Inventory implements ReadOnlyInventory {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if they are the same object.
-            || (other instanceof Inventory
-            && supplyItems.hashCode() == ((Inventory) other).supplyItems.hashCode());
+                || (other instanceof Inventory
+                && supplyItems.hashCode() == ((Inventory) other).supplyItems.hashCode());
     }
 }
