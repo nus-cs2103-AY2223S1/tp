@@ -18,6 +18,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.ui.UiPart;
 
@@ -81,8 +82,18 @@ public class HelpWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing help page about the application.");
         getRoot().show();
-        getRoot().centerOnScreen();
         displayUserManual();
+    }
+
+    public void setWindowDefaultSize(GuiSettings guiSettings) {
+        final double constantFactor = 0.8;
+        getRoot().setHeight(guiSettings.getWindowHeight() * constantFactor);
+        getRoot().setWidth(guiSettings.getWindowWidth() * constantFactor);
+        if (guiSettings.getWindowCoordinates() != null) {
+            getRoot().setX(guiSettings.getWindowCoordinates().getX() * constantFactor);
+            getRoot().setY(guiSettings.getWindowCoordinates().getY() * constantFactor);
+        }
+        getRoot().centerOnScreen();
     }
 
     /**
