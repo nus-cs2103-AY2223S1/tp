@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.guest.commons.core.GuiSettings;
 import seedu.guest.logic.commands.AddCommand;
 import seedu.guest.logic.commands.CommandResult;
 import seedu.guest.logic.commands.ListCommand;
@@ -91,7 +92,29 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getGuestBook_success() {
+        assertEquals(logic.getGuestBook(), model.getGuestBook());
+    }
+
+    @Test
+    public void getGuestBookFilePath_success() {
+        assertEquals(logic.getGuestBookFilePath(), model.getGuestBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_success() {
+        assertEquals(logic.getGuiSettings(), model.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_success() {
+        GuiSettings temp = new GuiSettings();
+        logic.setGuiSettings(temp);
+        assertEquals(logic.getGuiSettings(), temp);
+    }
+
+    @Test
+    public void getFilteredGuestList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredGuestList().remove(0));
     }
 
