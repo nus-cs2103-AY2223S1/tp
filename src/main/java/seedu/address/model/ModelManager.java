@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Mod> filteredMods;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredMods = new FilteredList<>(this.addressBook.getModList());
     }
 
     public ModelManager() {
@@ -112,6 +115,21 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Mod} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Mod> getFilteredModList() {
+        return filteredMods;
+    }
+
+    @Override
+    public void updateFilteredModList(Predicate<Mod> predicate) {
+        requireNonNull(predicate);
+        filteredMods.setPredicate(predicate);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of

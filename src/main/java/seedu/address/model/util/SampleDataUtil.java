@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Email;
@@ -62,10 +64,10 @@ public class SampleDataUtil {
     /**
      * Returns a mod set containing the list of strings given.
      */
-    public static Set<Mod> getModSet(String... strings) {
+    public static ObservableList<Mod> getModSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Mod::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
 }

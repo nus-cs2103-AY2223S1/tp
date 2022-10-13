@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
@@ -47,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = null;
         Email email = null;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Mod> modList = ParserUtil.parseMods(argMultimap.getAllValues(PREFIX_MOD));
+        ObservableList<Mod> modList = ParserUtil.parseMods(argMultimap.getAllValues(PREFIX_MOD));
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
             gitHub = ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get());

@@ -31,6 +31,18 @@ public class Mod {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if both mods have the same name.
+     * This defines a weaker notion of equality between two mods.
+     */
+    public boolean isSameMod(Mod otherMod) {
+        if (otherMod == this) {
+            return true;
+        }
+
+        return otherMod != null
+                && otherMod.modName.equals((this.modName));
+    }
 
     @Override
     public boolean equals(Object other) {

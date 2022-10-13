@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Mod;
@@ -30,7 +32,7 @@ public class PersonBuilder {
     private Telegram handle;
     private GitHub username;
     private Set<Tag> tags;
-    private Set<Mod> mods;
+    private ObservableList<Mod> mods;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,7 +44,7 @@ public class PersonBuilder {
         handle = new Telegram(DEFAULT_TELEGRAM);
         username = new GitHub(DEFAULT_GITHUB);
         tags = new HashSet<>();
-        mods = new HashSet<>();
+        mods = FXCollections.observableArrayList();
     }
 
     /**
@@ -55,7 +57,7 @@ public class PersonBuilder {
         handle = personToCopy.getTelegram();
         username = personToCopy.getGitHub();
         tags = new HashSet<>(personToCopy.getTags());
-        mods = new HashSet<>(personToCopy.getMods());
+        mods = FXCollections.observableArrayList(personToCopy.getMods());
     }
 
     /**
