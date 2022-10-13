@@ -27,7 +27,7 @@ import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 /**
- * Contains helper methods for testing commands.
+ * Contains helper methods for testing model commands.
  */
 public class ModelCommandTestUtil {
 

@@ -2,6 +2,7 @@ package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,7 +21,7 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
  */
 public class FileCommandParser implements CommandParser<FileCommand> {
 
-    private static final Pattern FILE_COMMAND_FORMAT = Pattern.compile("(?<secondCommandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern FILE_COMMAND_FORMAT = Pattern.compile("(?<secondCommandWord>\\S+) (?<arguments>.+)");
 
     @Override
     public FileCommand parse(String args) throws ParseException {
@@ -30,7 +31,11 @@ public class FileCommandParser implements CommandParser<FileCommand> {
         }
 
         final String secondCommandWord = matcher.group("secondCommandWord");
-        final Path jsonPath = Paths.get("data", matcher.group("arguments").trim() + ".json");
+        final String fileName = matcher.group("arguments").trim();
+        if (!FileCommand.isValidPath(fileName)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_FILE_NAME));
+        }
+        final Path jsonPath = Paths.get("data", fileName + ".json");
         switch (secondCommandWord) {
 
         case FileSwitchCommand.COMMAND_WORD:

@@ -10,6 +10,7 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MAT
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand.MESSAGE_NON_EXISTENT_FILE;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
 
@@ -25,6 +26,8 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
@@ -33,6 +36,7 @@ import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 
@@ -43,6 +47,7 @@ public class LogicManagerTest {
     public Path temporaryFolder;
 
     private Model model = new ModelManager();
+    private Storage storage;
     private Logic logic;
 
     @BeforeEach
@@ -50,7 +55,7 @@ public class LogicManagerTest {
         JsonResidentBookStorage residentBookStorage =
                 new JsonResidentBookStorage(temporaryFolder.resolve("residentBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(residentBookStorage, userPrefsStorage);
+        storage = new StorageManager(residentBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -72,13 +77,21 @@ public class LogicManagerTest {
         assertModelCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
+    // To implement StorageModelCommand execute success test
+
     @Test
     public void execute_modelCommandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
         assertModelCommandException(deleteCommand, MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, CommandException.class);
     }
 
-    // To add StorageCommand test here when a StorageCommand is implemented
+    @Test
+    public void execute_storageModelCommandExecutionError_throwsCommandException() {
+        String fileSwitchCommand = FileCommand.COMMAND_WORD + " " + FileSwitchCommand.COMMAND_WORD + " "
+                + " residentBook1";
+        assertStorageModelCommandException(fileSwitchCommand, "residentBook1.json" + MESSAGE_NON_EXISTENT_FILE,
+                CommandException.class);
+    }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
@@ -105,6 +118,8 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredResidentList().remove(0));
     }
 
+    //======================== Start of helper functions ===============================================
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -121,6 +136,7 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertModelCommandFailure(String, Class, String, Model)
      */
     private void assertModelCommandSuccess(String inputCommand, String expectedMessage,
@@ -131,16 +147,45 @@ public class LogicManagerTest {
     }
 
     /**
+     * Executes the command and confirms that
+     * - no exceptions are thrown <br>
+     * - the feedback message is equal to {@code expectedMessage} <br>
+     * - the internal storage manager state is the same as that in {@code expectedStorage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
+     * @see #assertModelCommandFailure(String, Class, String, Model)
+     */
+    private void assertStorageModelCommandSuccess(String inputCommand, String expectedMessage,
+            Storage expectedStorage, Model expectedModel) throws CommandException, ParseException {
+        CommandResult result = logic.execute(inputCommand);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+        assertEquals(expectedStorage, storage);
+        assertEquals(expectedModel, model);
+    }
+
+    /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
      * @see #assertModelCommandFailure(String, Class, String, Model)
      */
     private void assertModelCommandException(String inputCommand, String expectedMessage,
-                                             Class<? extends Throwable> expectedException) {
+            Class<? extends Throwable> expectedException) {
         assertModelCommandFailure(inputCommand, expectedException, expectedMessage);
     }
 
     /**
+     * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
+     * @see #assertStorageModelCommandFailure(String, Class, String, Storage, Model)
+     */
+    private void assertStorageModelCommandException(String inputCommand, String expectedMessage,
+            Class<? extends Throwable> expectedException) {
+        assertStorageModelCommandFailure(inputCommand, expectedException, expectedMessage);
+    }
+
+    /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     *
      * @see #assertModelCommandFailure(String, Class, String, Model)
      */
     private void assertModelCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
@@ -154,11 +199,45 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertModelCommandSuccess(String, String, Model)
      */
     private void assertModelCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertEquals(expectedModel, model);
+    }
+
+    /**
+     * Executes the command and confirms that
+     * - the {@code expectedException} is thrown <br>
+     * - the resulting error message is equal to {@code expectedMessage} <br>
+     * - the internal storage manager state is the same as that in {@code expectedStorage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
+     * @see #assertStorageModelCommandSuccess(String, String, Storage, Model)
+     */
+    private void assertStorageModelCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+            String expectedMessage) {
+        Storage expectedStorage = ((StorageManager) storage).getCopy();
+        Model expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
+        assertStorageModelCommandFailure(inputCommand, expectedException, expectedMessage, expectedStorage,
+                expectedModel);
+    }
+
+    /**
+     * Executes the command and confirms that
+     * - the {@code expectedException} is thrown <br>
+     * - the resulting error message is equal to {@code expectedMessage} <br>
+     * - the internal storage manager state is the same as that in {@code expectedStorage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
+     * @see #assertStorageModelCommandSuccess(String, String, Storage, Model)
+     */
+    private void assertStorageModelCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+            String expectedMessage, Storage expectedStorage, Model expectedModel) {
+        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertEquals(expectedStorage, storage);
         assertEquals(expectedModel, model);
     }
 
@@ -175,4 +254,5 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
 }

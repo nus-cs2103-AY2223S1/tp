@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
+import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
+import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
@@ -23,6 +25,8 @@ import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
@@ -100,6 +104,15 @@ public class ResidentBookParserTest {
         FilterCommand command = (FilterCommand) parser.parseCommand(FilterCommand.COMMAND_WORD
                 + " " + ResidentUtil.getResidentDescriptorDetails(descriptor));
         assertEquals(new FilterCommand(descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_file() throws Exception {
+        assertTrue(parser.parseCommand(FileCommand.COMMAND_WORD + " " + FileCreateCommand.COMMAND_WORD + " "
+                + VALID_FILE_NAME_STRING) instanceof FileCommand);
+        FileCommand fileCommand = (FileCommand) parser.parseCommand(FileCommand.COMMAND_WORD
+                + " " + FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING);
+        assertEquals(new FileCreateCommand(VALID_FILE_NAME_PATH), fileCommand);
     }
 
     @Test
