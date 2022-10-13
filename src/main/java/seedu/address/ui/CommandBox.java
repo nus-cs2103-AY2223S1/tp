@@ -66,7 +66,6 @@ public class CommandBox extends UiPart<Region> {
 
         case ENTER:
             String commandText = commandTextField.getText();
-            System.out.println(commandText);
             if (commandText.equals("")) {
                 return;
             }
