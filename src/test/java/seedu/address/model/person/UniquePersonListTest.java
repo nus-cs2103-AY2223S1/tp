@@ -147,7 +147,7 @@ public class UniquePersonListTest {
     public void add_personWithSameJob_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
-                .withName(VALID_NAME_BOB)git tp
+                .withName(VALID_NAME_BOB)
                 .withEmail(VALID_EMAIL_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
