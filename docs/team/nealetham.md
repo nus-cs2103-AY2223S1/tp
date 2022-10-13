@@ -124,9 +124,9 @@ I also gave guidance to my team on the following matters:
 Beyond the project team, I also participated actively in the forum.
 
 These are some threads in which I offered help to my classmates:
-1. []()
-2. []()
-3. []()
+1. [Discussion on association, composition, aggregation](https://github.com/nus-cs2103-AY2223S1/forum/issues/86#issuecomment-1229400456)
+2. [Failing codecov/patch check](https://github.com/nus-cs2103-AY2223S1/forum/issues/330)
+3. [Bug: Wrong activity diagram](https://github.com/nus-cs2103-AY2223S1/forum/issues/338)
 
 <!-- Provide links to the threads here -->
 
