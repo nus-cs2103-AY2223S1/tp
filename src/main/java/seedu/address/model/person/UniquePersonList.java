@@ -104,6 +104,13 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the current list.
+     */
+    public ObservableList<Person> getInternalList() {
+        return internalList;
+    }
+
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();

@@ -105,6 +105,7 @@ public class Person {
     public Money getRatesPerClass() {
         return ratesPerClass;
     }
+
     public AdditionalNotes getAdditionalNotes() {
         return additionalNotes;
     }

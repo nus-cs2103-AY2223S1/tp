@@ -21,7 +21,7 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         ReadOnlyAddressBook addressBook = new AddressBook();
         model.setAddressBook(addressBook);
-        ClassStorage classStorage = new ClassStorage(addressBook);
+        ClassStorage classStorage = new ClassStorage(model);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
