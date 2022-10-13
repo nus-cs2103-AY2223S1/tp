@@ -30,7 +30,7 @@ title: User Guide
 
    * **`delete id/A0123456G`** - deletes the FYP project of the student with ID A0123456G
 
-   * **`mark A0123456G IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
+   * **`mark id/A0123456G s/IP`** - marks the FYP project of the student with ID A0123456G as _In Progress_
 
    * **`find machine`** - searches any FYP project names that has “machine” in its name, for example it will output the FYP project with “Machine Learning” in its name
 
@@ -98,7 +98,7 @@ Example:
 
 Marks a FYP as "Done"/"In Progress"/"Yet to Start", etc.
 
-Format: `mark STUDENT_ID STATUS`
+Format: `mark id/STUDENT_ID s/STATUS`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 * Current supported statuses are as follows:
   * **"DONE"** - Done
@@ -106,8 +106,8 @@ Format: `mark STUDENT_ID STATUS`
   * **"YTS"** - Yet To Start
 
 Examples:
-* `mark A0123456G DONE`
-* `mark A0234567H YTS`
+* `mark id/A0123456G s/DONE`
+* `mark id/A0234567H s/YTS`
 
 ### Searching keyword: `find` [pending implementation]
 
@@ -162,7 +162,7 @@ Format: `exit`
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe proj/Data Caching e/e09876567@u.nus.edu` |
 | **Delete** | `delete id` <br> e.g., `delete id/A0987654X`                                                                                                        |
-| **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                                                               |
+| **Mark**   | `mark id/STUDENT_ID s/STATUS`<br> e.g.,`mark id/A0123456G s/IP`                                                                                     |
 | **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                           |
 | **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                       |
 | **List**   | `list`                                                                                                                                              |
