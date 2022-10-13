@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddOfferCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.offer.Offer;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 
@@ -35,8 +36,7 @@ public class AddOfferCommandParser implements Parser<AddOfferCommand> {
 
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Integer offerPrice = ParserUtil.parseOfferPrice(Integer.parseInt(argMultimap
-                .getValue(PREFIX_OFFER).get()));
+        Price offerPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_OFFER).get());
 
         Offer offer = new Offer(name, address, offerPrice);
 

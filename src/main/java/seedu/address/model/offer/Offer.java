@@ -19,16 +19,16 @@ public class Offer {
     /**
      * Price client is offering.
      */
-    private final int offerPrice;
+    private final Price offerPrice;
 
     /**
      * Constructor for offer object.
      *
-     * @param client Person
-     * @param listing Listing
-     * @param offerPrice int
+     * @param client Name
+     * @param listing Address
+     * @param offerPrice Price
      */
-    public Offer(Name client, Address listing, int offerPrice) {
+    public Offer(Name client, Address listing, Price offerPrice) {
         this.client = client;
         this.listing = listing;
         this.offerPrice = offerPrice;
@@ -54,7 +54,7 @@ public class Offer {
      * Getter for offer price.
      * @return int
      */
-    public Integer getOfferPrice() {
+    public Price getOfferPrice() {
         return offerPrice;
     }
 
@@ -82,7 +82,7 @@ public class Offer {
                 .append(getListing())
                 .append("; Client: ")
                 .append(getClient())
-                .append("; Offer Price: ")
+                .append("; Offer Price: S$")
                 .append(getOfferPrice());
         return builder.toString();
     }

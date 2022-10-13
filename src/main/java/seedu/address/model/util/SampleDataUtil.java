@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.offer.Offer;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,10 +42,30 @@ public class SampleDataUtil {
         };
     }
 
+    public static Offer[] getSampleOffers() {
+        return new Offer[]{
+                new Offer(new Name("Alex Yeoh"), new Address("Blk 30 Geylang Street 29, #06-40"),
+                        new Price("1000000")),
+                new Offer(new Name("Bernice Yu"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new Price("9000000")),
+                new Offer(new Name("Charlotte Oliveiro"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        new Price("9000000")),
+                new Offer(new Name("David Li"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new Price("9500000")),
+                new Offer(new Name("Irfan Ibrahim"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new Price("9600000")),
+                new Offer(new Name("Roy Balakrishnan"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        new Price("9650000"))
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Offer sampleOffer : getSampleOffers()) {
+            sampleAb.addOffer(sampleOffer);
         }
         return sampleAb;
     }
