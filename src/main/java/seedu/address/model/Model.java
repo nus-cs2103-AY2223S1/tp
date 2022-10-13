@@ -101,15 +101,4 @@ public interface Model {
      */
     void updateFilteredPropertyList(Predicate<Property> predicate);
 
-    /**
-     * Sets the given {@code person} in the list as a {@code buyer}.
-     * {@code person} exists uniquely in the address book.
-     */
-    void setBuyerRole(Person person, Buyer buyer);
-
-    /**
-     * Sets the given {@code person} in the list as a {@code seller}.
-     * {@code person} exists uniquely in the address book.
-     */
-    void setSellerRole(Person person, Seller seller);
 }

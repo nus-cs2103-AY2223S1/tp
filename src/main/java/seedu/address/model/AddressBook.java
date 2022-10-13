@@ -121,26 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeProperty(Property key) {
         properties.remove(key);
     }
-
-
-    /**
-     * Sets the given {@code person} in the list as a {@code buyer}.
-     * {@code person} exists uniquely in the address book.
-     */
-    public void setBuyerRole(Person person, Buyer buyer) {
-        requireAllNonNull(person, buyer);
-        persons.setBuyerRole(person, buyer);
-    }
-
-    /**
-     * Sets the given {@code person} in the list as a {@code seller}.
-     * {@code person} exists uniquely in the address book.
-     */
-    public void setSellerRole(Person person, Seller seller) {
-        requireAllNonNull(person, seller);
-        person.setSeller(seller);
-        // TODO: consider adding the new seller into a UniqueSellerList
-    }
+    
 
     //// util methods
 
