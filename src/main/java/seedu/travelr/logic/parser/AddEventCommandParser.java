@@ -6,7 +6,6 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.stream.Stream;
 
-import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.commands.AddEventCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.event.Event;
@@ -28,7 +27,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESC);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESC) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
