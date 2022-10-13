@@ -1,11 +1,10 @@
 package seedu.address.model;
 
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-//import seedu.address.model.Name;
 
 public class NameTest {
 
@@ -20,22 +19,23 @@ public class NameTest {
         assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
     }
 
-    //    @Test
-    //    public void isValidName() {
-    //        // null name
-    //        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
-    //
-    //        // invalid name
-    //        assertFalse(Name.isValidName("")); // empty string
-    //        assertFalse(Name.isValidName(" ")); // spaces only
-    //        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-    //        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
-    //
-    //        // valid name
-    //        assertTrue(Name.isValidName("peter jack")); // alphabets only
-    //        assertTrue(Name.isValidName("12345")); // numbers only
-    //        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-    //        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-    //        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
-    //    }
+        @Test
+        public void isValidName() {
+            // null name
+            assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+
+            // invalid name
+            assertFalse(Name.isValidName("")); // empty string
+            assertFalse(Name.isValidName(" ")); // spaces only
+            assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
+            assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+            assertFalse(Name.isValidName("David Roger Jackson Ray 2nd")); // names longer than 4 words
+
+            // valid name
+            assertTrue(Name.isValidName("peter jack")); // alphabets only
+            assertTrue(Name.isValidName("12345")); // numbers only
+            assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
+            assertTrue(Name.isValidName("Capital Tan")); // with capital letters
+            assertTrue(Name.isValidName("John Tan Jo Han")); // names with 4 words
+        }
 }

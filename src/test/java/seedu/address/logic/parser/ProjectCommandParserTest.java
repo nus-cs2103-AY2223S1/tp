@@ -1,14 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_DEADLINE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REPOSITORY_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.REPOSITORY_DESC_REPOSITORY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -30,9 +23,19 @@ class ProjectCommandParserTest {
     private ProjectCommandParser parser = new ProjectCommandParser();
 
     @Test
+    public void parse_compulsoryAndOptionalFieldsPresent_success() {
+        Project project = new Project(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
+                new Deadline(VALID_DEADLINE), Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(),
+                new ProjectId(UniqueProjectList.generateId()));
+        //compulsory and optional fields
+        assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB + REPOSITORY_DESC_REPOSITORY +
+                DEADLINE_DESC_DEADLINE, new AddProjectCommand(project));
+    }
+
+    @Test
     public void parse_optionalFieldsMissing_success() {
         Project project = new Project(new Name(VALID_NAME_BOB), Repository.EmptyRepository.EMPTY_REPOSITORY,
-                Deadline.EmptyDeadline.EMPTY_DEADLINE, Client.EmptyClient.EMPTY_CLIENT, new ArrayList<Issue>(),
+                Deadline.EmptyDeadline.EMPTY_DEADLINE, Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(),
                 new ProjectId(UniqueProjectList.generateId()));
         // only name
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB,

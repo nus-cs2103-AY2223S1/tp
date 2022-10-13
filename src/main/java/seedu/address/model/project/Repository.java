@@ -3,6 +3,8 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.tag.Tag;
+
 /**
  * Represents a Project's repository.
  */
@@ -68,8 +70,16 @@ public class Repository {
     public String getRepositoryUrl() {
         return "https://github.com/" + projectRepository;
     }
+
     @Override
     public String toString() {
         return projectRepository;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Repository // instanceof handles nulls
+                && projectRepository.equals(((Repository) other).projectRepository)); // state check
     }
 }

@@ -1,35 +1,53 @@
 package seedu.address.model.client;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static seedu.address.testutil.Assert.assertThrows;
-//
-//import org.junit.jupiter.api.Test;
-//import seedu.address.model.Name;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+import seedu.address.model.Name;
+
 public class ClientTest {
-//    @Test
-//    public void constructor_nullParam_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> new Client(null, new ClientPhone(
-//                "12345678"), new ClientEmail("ac@cd.com"),
-//                Type.UNSPECIFIED));
-//    }
-//
-//    @Test
-//    public void constructor_invalidArguments_throwsIllegalArgumentException() {
-//
-//        String invalidEmail = "_abc@gmail.com";
-//        assertThrows(IllegalArgumentException.class, () -> new Client(new Name("Harry"), new ClientPhone(
-//                "12345678"), new ClientEmail(invalidEmail), Type.INDIVIDUAL));
-//
-//        String invalidPhone = "12";
-//        assertThrows(IllegalArgumentException.class, () -> new Client(new Name("Harry"),
-//                new ClientPhone(invalidPhone), new ClientEmail("ac@cd.com"), Type.EMPLOYER));
-//    }
-//
-//    @Test
-//    public void constructor_generates_defaultValues() {
-//        Client client = new Client(new Name("Harry"), new ClientPhone("12345678"),
-//                new ClientEmail("abc@gmail.com"), Type.UNSPECIFIED);
-//        assertEquals("none", client.getClientProjectList());
-//        assertEquals("UNSPECIFIED", client.getClientType());
-//    }
+
+    private static final Client defaultClient = new Client(new Name("default"));
+
+    private static final Client otherClient = new Client(new Name("test"));
+
+    public static Client getDefaultClient() {
+        return defaultClient;
+    }
+
+    public static Client getOtherClient() {
+        return otherClient;
+    }
+
+    @Test
+    public void constructor_nullParam_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Client(null));
+    }
+
+    @Test
+    public void constructor_invalidArguments_throwsIllegalArgumentException() {
+        String invalidName = "";
+        assertThrows(IllegalArgumentException.class, () -> new Client(new Name(invalidName)));
+    }
+
+    @Test
+    public void equals() {
+        Client defaultClient = getDefaultClient();
+        Client otherClient = getOtherClient();
+
+        // same values -> returns true
+        assertEquals(defaultClient, defaultClient);
+
+        // same object -> returns true
+        assertEquals(defaultClient, defaultClient);
+
+        // different object -> returns false
+        assertNotEquals(defaultClient, otherClient);
+
+        // null -> returns false
+        assertNotEquals(null, defaultClient);
+    }
+
 }

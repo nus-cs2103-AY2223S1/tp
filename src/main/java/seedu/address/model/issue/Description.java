@@ -5,6 +5,8 @@ package seedu.address.model.issue;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.commands.project.AddProjectCommand;
+
 /**
  * Represents an Issue's description.
  */
@@ -65,5 +67,12 @@ public class Description {
     @Override
     public String toString() {
         return this.description;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Description // instanceof handles nulls
+                && description.equals(((Description) other).description));
     }
 }

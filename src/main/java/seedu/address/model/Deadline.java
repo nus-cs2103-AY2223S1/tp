@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import seedu.address.model.project.Repository;
+
 /**
  * Represents a deadline.
  */
@@ -75,5 +77,12 @@ public class Deadline {
     @Override
     public String toString() {
         return deadline.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Deadline // instanceof handles nulls
+                && deadline.equals(((Deadline) other).deadline)); // state check
     }
 }

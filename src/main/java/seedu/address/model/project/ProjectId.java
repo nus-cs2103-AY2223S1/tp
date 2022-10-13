@@ -2,6 +2,8 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.Deadline;
+
 /**
  * Represents a Project's id.
  */
@@ -71,10 +73,17 @@ public class ProjectId {
     public String uiRepresentation() {
         return "(#" + toString() + ")";
     }
+
     @Override
     public String toString() {
         return String.valueOf(this.projectId);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ProjectId // instanceof handles nulls
+                && projectId == (((ProjectId) other).projectId)); // state check
+    }
 }
 
