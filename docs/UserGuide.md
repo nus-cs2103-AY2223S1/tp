@@ -111,7 +111,7 @@ deadline has been set for the task before, a new deadline will be set if command
 Format: `set deadline TASK_INDEX DEADLINE`
 
 Examples:
-* `set deadline 1 2023-12-25`sets the deadline for the first task on the task list to as 25 December 2023
+* `set deadline 1 2023-12-25 23:59`sets the deadline for the first task on the task list as 25 December 2023 11.59pm
 
 ### Delete task from team : `delete task`
 

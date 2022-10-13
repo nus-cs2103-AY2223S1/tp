@@ -3,7 +3,8 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class Task {
     /**
      * Deadline of the task.
      */
-    private LocalDate deadline;
+    private LocalDateTime deadline;
 
     /**
      * Constructs a {@code Task}.
@@ -89,7 +90,7 @@ public class Task {
         if (deadline == null) {
             return "";
         } else {
-            return "(By: " + deadline + ")";
+            return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         }
     }
 
@@ -126,7 +127,7 @@ public class Task {
         return this.assignees.contains(assignee);
     }
 
-    public void setDeadline(LocalDate date) {
+    public void setDeadline(LocalDateTime date) {
         this.deadline = date;
     }
 }

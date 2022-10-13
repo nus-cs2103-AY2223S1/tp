@@ -2,7 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.commands.SetDeadlineCommand;
@@ -27,9 +28,10 @@ public class SetDeadlineCommandParser implements Parser<SetDeadlineCommand> {
                         SetDeadlineCommand.MESSAGE_USAGE));
             }
             int task = Integer.parseInt(indexes[1]) - 1;
-            LocalDate deadline = LocalDate.parse(indexes[2]);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime deadline = LocalDateTime.parse(indexes[2], formatter);
             return new SetDeadlineCommand(task, deadline);
-        } catch (DateTimeParseException pe) {
+        } catch (DateTimeParseException | NumberFormatException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SetDeadlineCommand.MESSAGE_USAGE), pe);
         }

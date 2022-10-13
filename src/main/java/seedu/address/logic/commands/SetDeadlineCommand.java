@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -18,21 +18,21 @@ public class SetDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Sets a deadline to the specified existing task.\n"
         + "Parameters: INDEX of task (must be a positive integer) \n"
-            + "Parameters: Deadline (format: YYYY-MM-DD) \n"
-        + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25";
+            + "Parameters: Deadline (format: YYYY-MM-DD HH:mm) \n"
+        + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25 23:59";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
     private final int taskIndex;
-    private final LocalDate deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Returns a command that adds a task to the current team.
      * @param taskIndex The index of the task to be added.
      * @param deadline Deadline of task
      */
-    public SetDeadlineCommand(int taskIndex, LocalDate deadline) {
+    public SetDeadlineCommand(int taskIndex, LocalDateTime deadline) {
         this.taskIndex = taskIndex;
         this.deadline = deadline;
     }
