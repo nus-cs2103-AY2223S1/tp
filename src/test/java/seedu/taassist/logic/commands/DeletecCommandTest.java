@@ -108,6 +108,9 @@ public class DeletecCommandTest {
                 String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST, model.getModuleClassList()));
     }
 
+    // Check student's module classes (StudentModuleData) after a class is deleted
+
+    // Check sessions
     //==================================== Model Stubs ===============================================================
 
     private static class ModelStubWithNoModuleClass extends ModelStub {
