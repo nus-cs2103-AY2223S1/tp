@@ -127,15 +127,15 @@ Examples:
 * `list` followed by `mark 1 p/2` marks the 1st task from the 2nd person in the address book as complete.
 
 
-### Deleting tasks of a person: `deletetask`
+### Deleting tasks from Task Panel: `task delete`
 
-Deletes the specified task from the person in the address book.
+Deletes the specified task from overall tasks list.
 
-Format: `deletetask TASK_INDEX p/PERSON_INDEX`
-* Deletes the task at the specified TASK_INDEX of the person specified at CONTACT_INDEX.
+Format: `task delete TASK_INDEX`
+* Deletes the task at the specified TASK_INDEX from `task list`.
 
 Examples:
-* `list` followed by `deletetask 1 p/2` delete the 1st task from the 2nd person in the address book.
+* `task list` followed by `task delete 1` delete the 1st task from task list.
 
 
 ### Listing all tasks : `task list`
