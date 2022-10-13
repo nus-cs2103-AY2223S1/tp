@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * A class that represents the additional requests of an order.
+ * Represents the additional requests of an order.
  */
 public class AdditionalRequests {
 

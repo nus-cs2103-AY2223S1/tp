@@ -9,7 +9,7 @@ import seedu.address.model.person.Buyer;
 import seedu.address.model.pet.Pet;
 
 /**
- * A class that abstracts an order.
+ * Abstracts an order.
  */
 public class Order {
 

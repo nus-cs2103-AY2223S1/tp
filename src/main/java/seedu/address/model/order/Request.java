@@ -13,7 +13,7 @@ import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
 /**
- * A class that contains some properties of a pet desired in an order.
+ * Contains some properties of a pet desired in an order.
  */
 public class Request {
 

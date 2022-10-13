@@ -12,11 +12,11 @@ import seedu.address.model.order.exceptions.DuplicateOrderException;
 import seedu.address.model.order.exceptions.OrderNotFoundException;
 
 /**
- * A list of pets that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Pet#isSamePet(Pet)}. As such, adding and updating of
- * pets uses Pet#isSamePet(Pet) for equality so as to ensure that the pet being added or updated is
- * unique in terms of identity in the UniquePetList. However, the removal of a person uses Pet#equals(Object) so
- * as to ensure that the pet with exactly the same fields will be removed.
+ * A list of orders that enforces uniqueness between its elements and does not allow nulls.
+ * An order is considered unique by comparing using {@code Order#isSameOrder(Order)}. As such, adding and updating of
+ * orders uses Order#isSameOrder(Order) for equality so as to ensure that the order being added or updated is
+ * unique in terms of identity in the UniqueOrderList. However, the removal of an order uses Order#equals(Object) so
+ * as to ensure that the order with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
  *
@@ -121,12 +121,12 @@ public class UniqueOrderList implements Iterable<Order> {
     }
 
     /**
-     * Returns true iff {@code pets} contains only unique Orders.
+     * Returns true iff {@code orders} contains only unique Orders.
      */
-    private boolean ordersAreUnique(List<Order> pets) {
-        for (int i = 0; i < pets.size() - 1; i++) {
-            for (int j = i + 1; j < pets.size(); j++) {
-                if (pets.get(i).equals(pets.get(j))) {
+    private boolean ordersAreUnique(List<Order> orders) {
+        for (int i = 0; i < orders.size() - 1; i++) {
+            for (int j = i + 1; j < orders.size(); j++) {
+                if (orders.get(i).equals(orders.get(j))) {
                     return false;
                 }
             }
