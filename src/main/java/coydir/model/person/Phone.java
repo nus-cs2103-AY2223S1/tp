@@ -9,10 +9,10 @@ import static java.util.Objects.requireNonNull;
  */
 public class Phone {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+    private static final Phone NULL = new Phone();
     public final String value;
 
     /**
@@ -24,6 +24,17 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+    }
+
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Phone() {
+        this.value = "N/A";
+    }
+
+    public Phone getNullPhone() {
+        return Phone.NULL;
     }
 
     /**
