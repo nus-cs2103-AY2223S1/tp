@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
+    private static final Address NULL = new Address();
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
@@ -28,6 +29,17 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Address() {
+        this.value = "N/A"; 
+    }
+
+    public Address getNullAddress() {
+        return Address.NULL;
     }
 
     /**

@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {
+    private static final Email NULL = new Email();
 
     private static final String SPECIAL_CHARACTERS = "+_.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -42,6 +43,17 @@ public class Email {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
+    }
+
+    /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Email() {
+        this.value = "N/A"; 
+    }
+
+    public Email getNullEmail() {
+        return Email.NULL;
     }
 
     /**

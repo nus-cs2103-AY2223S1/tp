@@ -8,7 +8,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
-
+    private static final Phone NULL = new Phone();
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
@@ -24,6 +24,17 @@ public class Phone {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
+    }
+
+     /**
+     * Bypass input validation, allows actual null values.
+     */
+    public Phone() {
+        this.value = "N/A"; 
+    }
+
+    public Phone getNullPhone() {
+        return Phone.NULL;
     }
 
     /**
