@@ -12,8 +12,10 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonGroup;
 
 /**
  * Deletes the task of an existing person in the address book.
@@ -30,8 +32,9 @@ public class DeleteTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "DELETETASK";
-    private static final String MESSAGE_GROUP_NOT_FOUND = "This group is not in the address book";
-    private static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This assignment is not in the address book";
+    public static final String MESSAGE_GROUP_NOT_FOUND = "This group is not in the address book";
+    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This assignment is not in the address book";
+    public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specified group.";
 
     private final Name name;
     private final String group;
@@ -64,7 +67,14 @@ public class DeleteTaskCommand extends Command {
         if (assignments.containsKey(group)) {
             listOfAssignment = assignments.get(group);
         } else {
-            throw new CommandException(MESSAGE_GROUP_NOT_FOUND);
+            if (model.getGroupWithName(new GroupName(group)).size() == 0) {
+                throw new CommandException(MESSAGE_GROUP_NOT_FOUND);
+            } else {
+                if (personToDeleteTask.getPersonGroups().contains(new PersonGroup(group))) {
+                    throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
+                }
+                throw new CommandException(MESSAGE_INVALID_PERSON_NOT_IN_GROUP);
+            }
         }
 
         if (listOfAssignment.contains(task)) {
@@ -83,10 +93,6 @@ public class DeleteTaskCommand extends Command {
                 personToDeleteTask.getName(), personToDeleteTask.getPhone(), personToDeleteTask.getEmail(),
                 personToDeleteTask.getAddress(), personToDeleteTask.getTags(),
                 assignments, personToDeleteTask.getPersonGroups());
-
-        if (!personToDeleteTask.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
 
         model.setPerson(personToDeleteTask, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

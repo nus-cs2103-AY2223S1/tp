@@ -71,6 +71,12 @@ public class TypicalPersons {
     public static final Group ORAL_PRESENTATION =
             new GroupBuilder().withName("Oral Presentation").withMembers(ELLE, FIONA, GEORGE).build();
 
+    public static final Group ALPHA =
+            new GroupBuilder().withName("Alpha").withMembers(ELLE).build();
+
+    public static final Group BETA =
+            new GroupBuilder().withName("Beta").withMembers(ELLE).build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -106,6 +112,6 @@ public class TypicalPersons {
     }
 
     public static List<Group> getTypicalGroups() {
-        return new ArrayList<>(Arrays.asList(TEAM_PROJECT, INDIVIDUAL_PROJECT, ORAL_PRESENTATION));
+        return new ArrayList<>(Arrays.asList(TEAM_PROJECT, INDIVIDUAL_PROJECT, ORAL_PRESENTATION, ALPHA, BETA));
     }
 }
