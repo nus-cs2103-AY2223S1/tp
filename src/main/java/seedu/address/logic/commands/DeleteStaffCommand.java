@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_PROJECT_DONT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STAFF;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 
@@ -58,7 +59,7 @@ public class DeleteStaffCommand extends Command {
             }
         }
         if (project == null) {
-            throw new CommandException(String.format(MESSAGE_PROJECT_DONT_EXIST, projectName));
+            throw new CommandException(String.format(MESSAGE_INVALID_PROJECT, projectName));
         }
         UniqueStaffList staffList = project.getStaffList();
         Staff staff = null;
@@ -69,7 +70,7 @@ public class DeleteStaffCommand extends Command {
             }
         }
         if (staff == null) {
-            throw new CommandException(String.format("Staff %s not found in specified project ", staffName));
+            throw new CommandException(String.format(MESSAGE_INVALID_STAFF, staffName));
         }
         staffList.remove(staff);
         return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffName));
