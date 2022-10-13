@@ -19,7 +19,8 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     // Internal Id counters
-    private boolean hasLoaded = false;
+    private boolean hasLoadedInternship = false;
+    private boolean hasLoadedPerson = false;
     private int personIdCounter = 0;
     private int internshipIdCounter = 0;
 
@@ -86,14 +87,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates the next PersonId to be 1 + the largest PersonId in the list.
      */
     public void updateNextPersonId() {
-        if (!hasLoaded) {
+        if (!hasLoadedPerson) {
             personIdCounter = -1;
             for (Person p : persons) {
                 if (p.getPersonId().id > personIdCounter) {
                     personIdCounter = p.getPersonId().id;
                 }
             }
-            hasLoaded = true;
+            hasLoadedPerson = true;
         }
         personIdCounter++;
     }
@@ -102,14 +103,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates the next InternshipId to be 1 + the largest InternshipId in the list.
      */
     public void updateNextInternshipId() {
-        if (!hasLoaded) {
+        if (!hasLoadedInternship) {
             internshipIdCounter = -1;
             for (Internship i : internships) {
                 if (i.getInternshipId().id > internshipIdCounter) {
                     internshipIdCounter = i.getInternshipId().id;
                 }
             }
-            hasLoaded = true;
+            hasLoadedInternship = true;
         }
         internshipIdCounter++;
     }
@@ -123,7 +124,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setInternships(newData.getInternshipList());
 
-        hasLoaded = false;
+        hasLoadedInternship = false;
+        hasLoadedPerson = false;
     }
 
     //// person-level operations
