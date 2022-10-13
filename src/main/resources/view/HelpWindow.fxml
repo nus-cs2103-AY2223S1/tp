@@ -25,7 +25,7 @@
 
       <VBox prefWidth="650" VBox.vgrow="NEVER" fx:id="helpContainer">
 
-        <ScrollPane fitToWidth="true">
+        <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
           <VBox styleClass="commands-panel">
             <Label styleClass="help-label" text="Basic Functions"/>
             <TableView fx:id="basicTableView">
