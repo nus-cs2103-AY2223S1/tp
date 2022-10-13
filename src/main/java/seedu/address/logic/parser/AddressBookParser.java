@@ -88,10 +88,10 @@ public class AddressBookParser {
 
         case ListMeetingCommand.COMMAND_WORD:
             return new ListMeetingCommand();
-
+            
         case FilterMeetingCommand.COMMAND_WORD:
             return new FilterMeetingCommandParser().parse(arguments);
-            
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
