@@ -100,8 +100,10 @@ public class EditPropertyCommand extends Command {
         Address updatedAddress = descriptor.getAddress().orElse(propertyToEdit.getAddress());
         Description updatedDescription = descriptor.getDescription().orElse(propertyToEdit.getDescription());
         Set<Tag> updatedTags = descriptor.getTags().orElse(propertyToEdit.getTags());
+        String updatedSeller = descriptor.getSeller().orElse(propertyToEdit.getSeller());
 
-        return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription, updatedTags);
+        return new Property(updatedPropertyName, updatedPrice, updatedAddress, updatedDescription,
+                updatedTags, updatedSeller);
     }
 
     @Override
@@ -132,6 +134,7 @@ public class EditPropertyCommand extends Command {
         private Address address;
         private Description description;
         private Set<Tag> tags;
+        private String seller;
 
         public EditPropertyDescriptor() {}
 
@@ -145,6 +148,7 @@ public class EditPropertyCommand extends Command {
             setDescription(toCopy.description);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setSeller(toCopy.seller);
         }
 
         /**
@@ -203,6 +207,14 @@ public class EditPropertyCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setSeller(String seller) {
+            this.seller = seller;
+        }
+
+        public Optional<String> getSeller() {
+            return Optional.ofNullable(seller);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -222,7 +234,8 @@ public class EditPropertyCommand extends Command {
                     && getPrice().equals(e.getPrice())
                     && getDescription().equals(e.getDescription())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getSeller().equals(e.getSeller());
         }
     }
 }

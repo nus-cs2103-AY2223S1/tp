@@ -21,12 +21,14 @@ public class PropertyBuilder {
     public static final String DEFAULT_ADDRESS = "333 Thompson Road";
     public static final String DEFAULT_DESCRIPTION = "A 5-storey condo on top of a hill - "
             + "Peak Residence offers you serenity away from the hustle and bustle with breathtaking views all around.";
+    public static final String DEFAULT_SELLER = "Aaron";
 
     private PropertyName name;
     private Price price;
     private Address address;
     private Description description;
     private Set<Tag> tags;
+    private String seller;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -37,6 +39,7 @@ public class PropertyBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        seller = DEFAULT_SELLER;
     }
 
     /**
@@ -48,6 +51,7 @@ public class PropertyBuilder {
         description = propertyToCopy.getDescription();
         address = propertyToCopy.getAddress();
         tags = new HashSet<>(propertyToCopy.getTags());
+        seller = propertyToCopy.getSeller();
     }
 
     /**
@@ -90,7 +94,15 @@ public class PropertyBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Seller} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withSeller(String seller) {
+        this.seller = seller;
+        return this;
+    }
+
     public Property build() {
-        return new Property(name, price, address, description, tags);
+        return new Property(name, price, address, description, tags, seller);
     }
 }

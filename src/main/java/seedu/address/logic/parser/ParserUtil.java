@@ -222,6 +222,17 @@ public class ParserUtil {
     }
 
     /**
+     * Returns a string representing a seller's name
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static String parseSellerName(String seller) throws ParseException {
+        requireNonNull(seller);
+        String trimmedSeller = seller.trim();
+
+        return trimmedSeller;
+    }
+
+    /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.

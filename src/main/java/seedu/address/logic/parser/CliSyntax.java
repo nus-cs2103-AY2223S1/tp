@@ -18,4 +18,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("-d");
     public static final Prefix PREFIX_PROPERTY = new Prefix("-prop");
     public static final Prefix PREFIX_BUYER = new Prefix("-buyer");
+    public static final Prefix PREFIX_SELLER = new Prefix("-seller");
 }
