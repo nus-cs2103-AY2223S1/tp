@@ -21,9 +21,6 @@ public class ProjectId {
         this.projectId = id;
     }
 
-    public int getIdInt() {
-        return this.projectId;
-    }
 
     /**
      * Checks if this ProjectID is empty.

@@ -66,9 +66,6 @@ public class ClientId {
         }
     }
 
-    public int getIdInt() {
-        return this.clientId;
-    }
 
     public String uiRepresentation() {
         return "(#" + toString() + ")";
