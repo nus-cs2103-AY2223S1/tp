@@ -3,7 +3,6 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.*;
 import seedu.address.model.pet.*;
 import seedu.address.model.tag.Tag;
@@ -30,20 +29,20 @@ public class JsonAdaptedPet {
     private final List<String> certificates = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
+     * Constructs a {@code JsonAdaptedPet} with the given buyer details.
      */
     @JsonCreator
     public JsonAdaptedPet(@JsonProperty("name") String name,
-                            @JsonProperty("owner") JsonAdaptedBuyer owner,
-                            @JsonProperty("color") String color,
-                            @JsonProperty("colorPattern") String colorPattern,
-                            @JsonProperty("dateOfBirth") String dateOfBirth,
-                            @JsonProperty("species") String species,
-                            @JsonProperty("weight") Double weight,
-                            @JsonProperty("height") Double height,
-                            @JsonProperty("vaccinationStatus") boolean vaccinationStatus,
-                            @JsonProperty("tags") List<JsonAdaptedTag> tagged,
-                            @JsonProperty("certificates") List<String> certificates) {
+                          @JsonProperty("owner") JsonAdaptedBuyer owner,
+                          @JsonProperty("color") String color,
+                          @JsonProperty("colorPattern") String colorPattern,
+                          @JsonProperty("dateOfBirth") String dateOfBirth,
+                          @JsonProperty("species") String species,
+                          @JsonProperty("weight") Double weight,
+                          @JsonProperty("height") Double height,
+                          @JsonProperty("vaccinationStatus") boolean vaccinationStatus,
+                          @JsonProperty("tags") List<JsonAdaptedTag> tagged,
+                          @JsonProperty("certificates") List<String> certificates) {
         this.name = name;
         this.owner = owner;
         this.color = color;
@@ -62,7 +61,7 @@ public class JsonAdaptedPet {
     }
 
     /**
-     * Converts a given {@code Buyer} into this class for Jackson use.
+     * Converts a given {@code Pet} into this class for Jackson use.
      */
     public JsonAdaptedPet(Pet source) {
         name = source.getName().toString();
@@ -82,9 +81,9 @@ public class JsonAdaptedPet {
     }
 
     /**
-     * Converts this Jackson-friendly adapted buyer object into the model's {@code Buyer} object.
+     * Converts this Jackson-friendly adapted Pet object into the model's {@code Pet} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted buyer.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted pet.
      */
     public Pet toModelType() throws IllegalValueException {
         final List<Tag> petTags = new ArrayList<>();

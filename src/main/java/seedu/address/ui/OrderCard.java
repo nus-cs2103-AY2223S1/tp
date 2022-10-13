@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
 
 /**
- * An UI component that displays information of a {@code Buyer}.
+ * An UI component that displays information of a {@code Order}.
  */
 public class OrderCard extends UiPart<Region> {
 
