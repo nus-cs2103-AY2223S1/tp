@@ -43,10 +43,10 @@ public class ContactBox extends UiPart<Region> {
                 try {
                     Desktop.getDesktop().browse(new URI(contact.getLink()));
                 } catch (IOException ex) {
-                    a.setContentText("Sorry, browser couldn't be opened.");
+                    a.setContentText("An internal error has occurred, unable to open browser.");
                     a.show();
                 } catch (URISyntaxException ex) {
-                    a.setContentText("Sorry, url is invalid");
+                    a.setContentText("Given url is invalid, please confirm your contact information again.");
                     a.show();
                 }
             }
