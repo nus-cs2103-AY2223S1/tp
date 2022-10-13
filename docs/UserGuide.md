@@ -137,42 +137,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ### Tag Commands
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Action</th>
-    <th>Format</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Create a new tag</td>
-    <td><b>newtag n/TAG_NAME</b><br><br><u>Valid Examples:</u><br>newtag n/Food<br>newtag n/Condiments<br><br><u>Invalid Examples:</u><br>newtag Food<br>newtag Condiments</td>
-  </tr>
-  <tr>
-    <td>List all tags available<br></td>
-    <td><b>listtag</b><br><br><u>Valid Example:</u><br>listtag<br><br><br><u>Invalid Example:</u><br>listtags</td>
-  </tr>
-  <tr>
-    <td>Tag items with a specific tag<br></td>
-    <td><b>tag n/TAG_NAME id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>tag n/Condiments id/1<br>tag n/Condiments id/1,2,4,8<br><br><u>Invalid Example:</u><br>tag Condiments 1</td>
-  </tr>
-  <tr>
-    <td>Untag items with a specific tag</td>
-    <td><b>untag n/TAG_NAME id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>untag n/Condiments id/1<br>untag n/Condiments id/1,2,4,8<br><br><u>Invalid Example:</u><br>untag Condiments 1,2</td>
-  </tr>
-  <tr>
-    <td>Rename a tag</td>
-    <td><b>renametag n/TAG_NAME n/TAG_NAME</b><br><br><u>Valid Example:</u><br>renametag n/Condiments n/Condiment<br><br><u>Invalid Example:</u><br>renametag Condiments Condiment</u><br></td>
-  </tr>
-  <tr>
-    <td>Delete a tag</td>
-    <td><b>delete n/TAG_NAME</b><br><br><u>Valid Examples:</u><br>deletetag n/Food<br><br><br><u>Invalid Examples:</u><br>deletetag n/<br>deletetag Food<br>deletetag Condiments</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+{% include_relative _ug/commandSummary/TagCommands.md %}
 
 ### Other Commands
 
