@@ -169,7 +169,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the application being added.
+     * A Model stub that always accepts the application being added.
      */
     private class ModelStubAcceptingApplicationAdded extends ModelStub {
         final ArrayList<Application> applicationsAdded = new ArrayList<>();
