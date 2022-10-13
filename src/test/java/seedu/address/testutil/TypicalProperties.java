@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.ProportyBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.property.Property;
 
 /**
@@ -36,12 +36,12 @@ public class TypicalProperties {
     /**
      * Returns a {@code PropertyBook} with all the typical properties.
      */
-    public static ProportyBook getTypicalPropertyModel() {
-        ProportyBook proportyBook = new ProportyBook();
+    public static PropertyBook getTypicalPropertyModel() {
+        PropertyBook propertyBook = new PropertyBook();
         for (Property property : getTypicalProperties()) {
-            proportyBook.addProperty(property);
+            propertyBook.addProperty(property);
         }
-        return proportyBook;
+        return propertyBook;
     }
 
     public static List<Property> getTypicalProperties() {

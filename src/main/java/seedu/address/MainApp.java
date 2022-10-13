@@ -18,7 +18,7 @@ import seedu.address.logic.LogicManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PersonBook;
-import seedu.address.model.ProportyBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -78,7 +78,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyPersonBook> personModelOptional;
         ReadOnlyPersonBook personModel;
-        ReadOnlyPropertyBook emptyPropertyModel = new ProportyBook(); // TODO: read property model from storage
+        ReadOnlyPropertyBook emptyPropertyModel = new PropertyBook(); // TODO: read property model from storage
 
         try {
             personModelOptional = storage.readAddressBook();

@@ -12,7 +12,7 @@ import seedu.address.model.property.UniquePropertyList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameProperty comparison)
  */
-public class ProportyBook implements ReadOnlyPropertyBook {
+public class PropertyBook implements ReadOnlyPropertyBook {
 
     private final UniquePropertyList properties;
 
@@ -27,12 +27,12 @@ public class ProportyBook implements ReadOnlyPropertyBook {
         properties = new UniquePropertyList();
     }
 
-    public ProportyBook() {}
+    public PropertyBook() {}
 
     /**
-     * Creates a ProportyBook using the Properties in the {@code propertyModel}
+     * Creates a PropertyBook using the Properties in the {@code propertyModel}
      */
-    public ProportyBook(ReadOnlyPropertyBook propertyModel) {
+    public PropertyBook(ReadOnlyPropertyBook propertyModel) {
         this();
         resetData(propertyModel);
     }
@@ -48,7 +48,7 @@ public class ProportyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Resets the existing data of this {@code ProportyBook} with {@code newData}.
+     * Resets the existing data of this {@code PropertyBook} with {@code newData}.
      */
     public void resetData(ReadOnlyPropertyBook newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class ProportyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Removes {@code key} from this {@code ProportyBook}.
+     * Removes {@code key} from this {@code PropertyBook}.
      * {@code key} must exist in the property model.
      */
     public void removeProperty(Property key) {
@@ -110,8 +110,8 @@ public class ProportyBook implements ReadOnlyPropertyBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ProportyBook // instanceof handles nulls
-                && properties.equals(((ProportyBook) other).properties));
+                || (other instanceof PropertyBook // instanceof handles nulls
+                && properties.equals(((PropertyBook) other).properties));
     }
 
     @Override

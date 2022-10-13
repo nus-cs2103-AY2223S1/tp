@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.PersonBook;
-import seedu.address.model.ProportyBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.ReadOnlyPersonBook;
 import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.address.Address;
@@ -82,11 +82,11 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyPropertyBook getSamplePropertyModel() {
-        ProportyBook proportyBook = new ProportyBook();
+        PropertyBook propertyBook = new PropertyBook();
         for (Property sampleProperty : getSampleProperties()) {
-            proportyBook.addProperty(sampleProperty);
+            propertyBook.addProperty(sampleProperty);
         }
-        return proportyBook;
+        return propertyBook;
     }
 
     /**

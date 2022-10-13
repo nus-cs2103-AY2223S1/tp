@@ -22,7 +22,7 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
     private final PersonBook personBook;
-    private final ProportyBook proportyBook;
+    private final PropertyBook propertyBook;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Property> filteredProperties;
 
@@ -37,14 +37,14 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.personBook = new PersonBook(personModel);
-        this.proportyBook = new ProportyBook(propertyModel);
+        this.propertyBook = new PropertyBook(propertyModel);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.personBook.getPersonList());
-        filteredProperties = new FilteredList<>(this.proportyBook.getPropertyList());
+        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
-        this(new PersonBook(), new ProportyBook(), new UserPrefs());
+        this(new PersonBook(), new PropertyBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -145,46 +145,46 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== ProportyBook ================================================================================
+    //=========== PropertyBook ================================================================================
 
     @Override
     public void setPropertyModel(ReadOnlyPropertyBook propertyModel) {
-        this.proportyBook.resetData(propertyModel);
+        this.propertyBook.resetData(propertyModel);
     }
 
     @Override
     public ReadOnlyPropertyBook getPropertyModel() {
-        return proportyBook;
+        return propertyBook;
     }
 
     @Override
     public boolean hasProperty(Property property) {
         requireNonNull(property);
-        return proportyBook.hasProperty(property);
+        return propertyBook.hasProperty(property);
     }
 
     @Override
     public void deleteProperty(Property target) {
-        proportyBook.removeProperty(target);
+        propertyBook.removeProperty(target);
     }
 
     @Override
     public void addProperty(Property property) {
-        proportyBook.addProperty(property);
+        propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
     }
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
         requireAllNonNull(target, editedProperty);
-        proportyBook.setProperty(target, editedProperty);
+        propertyBook.setProperty(target, editedProperty);
     }
 
     //=========== Filtered Property List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Property} backed by the internal list of
-     * {@code ProportyBook}
+     * {@code PropertyBook}
      */
     @Override
     public ObservableList<Property> getFilteredPropertyList() {
@@ -214,7 +214,7 @@ public class ModelManager implements Model {
 
         return userPrefs.equals(other.userPrefs)
                 && personBook.equals(other.personBook)
-                && proportyBook.equals(other.proportyBook)
+                && propertyBook.equals(other.propertyBook)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredProperties.equals(other.filteredProperties);
     }

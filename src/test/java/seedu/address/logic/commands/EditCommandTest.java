@@ -23,7 +23,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PersonBook;
-import seedu.address.model.ProportyBook;
+import seedu.address.model.PropertyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -48,7 +48,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonModel()), new ProportyBook(model.getPropertyModel()), new UserPrefs());
+                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
 
         expectedModel.setPerson(currentPerson, editedPerson);
 
@@ -71,7 +71,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(
-                new PersonBook(model.getPersonModel()), new ProportyBook(model.getPropertyModel()), new UserPrefs());
+                new PersonBook(model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -85,7 +85,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new PersonBook(
-                model.getPersonModel()), new ProportyBook(model.getPropertyModel()), new UserPrefs());
+                model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -102,7 +102,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(
-                new PersonBook(model.getPersonModel()), new ProportyBook(model.getPropertyModel()), new UserPrefs());
+                new PersonBook(model.getPersonModel()), new PropertyBook(model.getPropertyModel()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

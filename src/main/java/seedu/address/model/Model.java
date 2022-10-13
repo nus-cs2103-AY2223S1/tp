@@ -104,14 +104,14 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    //=========== ProportyBook ================================================================================
+    //=========== PropertyBook ================================================================================
 
     /**
      * Replaces property model data with the data in {@code propertyModel}.
      */
     void setPropertyModel(ReadOnlyPropertyBook propertyModel);
 
-    /** Returns the ProportyBook */
+    /** Returns the PropertyBook */
     ReadOnlyPropertyBook getPropertyModel();
 
     /**

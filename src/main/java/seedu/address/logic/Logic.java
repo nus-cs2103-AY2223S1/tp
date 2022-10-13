@@ -36,7 +36,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the ProportyBook.
+     * Returns the PropertyBook.
      *
      * @see seedu.address.model.Model#getPropertyModel()
      */
