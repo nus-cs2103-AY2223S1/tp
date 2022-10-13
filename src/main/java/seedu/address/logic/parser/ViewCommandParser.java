@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -43,51 +44,34 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        Optional<String> nameStringOptional = argMultimap.getValue(PREFIX_NAME);
-        Optional<String> phoneStringOptional = argMultimap.getValue(PREFIX_PHONE);
-        Optional<String> emailStringOptional = argMultimap.getValue(PREFIX_EMAIL);
-        Optional<String> addressStringOptional = argMultimap.getValue(PREFIX_ADDRESS);
-        Optional<String> genderStringOptional = argMultimap.getValue(PREFIX_GENDER);
-        Optional<String> birthdateStringOptional = argMultimap.getValue(PREFIX_BIRTHDATE);
-        Optional<String> raceStringOptional = argMultimap.getValue(PREFIX_RACE);
-        Optional<String> religionStringOptional = argMultimap.getValue(PREFIX_RELIGION);
-        Optional<String> surveyStringOptional = argMultimap.getValue(PREFIX_SURVEY);
-
-        String[] nameKeywords = nameStringOptional.isEmpty() ? new String[] {}
-                : nameStringOptional.get().trim().split("\\s+");
-        String[] phoneKeywords = phoneStringOptional.isEmpty() ? new String[] {}
-                : phoneStringOptional.get().trim().split("\\s+");
-        String[] emailKeywords = emailStringOptional.isEmpty() ? new String[] {}
-                : emailStringOptional.get().trim().split("\\s+");
-        String[] addressKeywords = addressStringOptional.isEmpty() ? new String[] {}
-                : addressStringOptional.get().trim().split("\\s+");
-        String[] genderKeywords = genderStringOptional.isEmpty() ? new String[] {}
-                : genderStringOptional.get().trim().split("\\s+");
-        String[] birthdateKeywords = birthdateStringOptional.isEmpty() ? new String[] {}
-                : birthdateStringOptional.get().trim().split("\\s+");
-        String[] raceKeywords = raceStringOptional.isEmpty() ? new String[] {}
-                : raceStringOptional.get().trim().split("\\s+");
-        String[] religionKeywords = religionStringOptional.isEmpty() ? new String[] {}
-                : religionStringOptional.get().trim().split("\\s+");
-        String[] surveyKeywords = surveyStringOptional.isEmpty() ? new String[] {}
-                : surveyStringOptional.get().trim().split("\\s+");
-
-        List<String> nameList = Arrays.asList(nameKeywords);
-        List<String> phoneList = Arrays.asList(phoneKeywords);
-        List<String> emailList = Arrays.asList(emailKeywords);
-        List<String> addressList = Arrays.asList(addressKeywords);
-        List<String> genderList = Arrays.asList(genderKeywords);
-        List<String> birthdateList = Arrays.asList(birthdateKeywords);
-        List<String> raceList = Arrays.asList(raceKeywords);
-        List<String> religionList = Arrays.asList(religionKeywords);
-        List<String> surveyList = Arrays.asList(surveyKeywords);
+        List<String> nameList = getKeywordsAsList(argMultimap.getValue(PREFIX_NAME));
+        List<String> phoneList = getKeywordsAsList(argMultimap.getValue(PREFIX_PHONE));
+        List<String> emailList = getKeywordsAsList(argMultimap.getValue(PREFIX_EMAIL));
+        List<String> addressList = getKeywordsAsList(argMultimap.getValue(PREFIX_ADDRESS));
+        List<String> genderList = getKeywordsAsList(argMultimap.getValue(PREFIX_GENDER));
+        List<String> birthdateList = getKeywordsAsList(argMultimap.getValue(PREFIX_BIRTHDATE));
+        List<String> raceList = getKeywordsAsList(argMultimap.getValue(PREFIX_RACE));
+        List<String> religionList = getKeywordsAsList(argMultimap.getValue(PREFIX_RELIGION));
+        List<String> surveyList = getKeywordsAsList(argMultimap.getValue(PREFIX_SURVEY));
 
         return new ViewCommand(new PersonContainsAttributePredicate(nameList, phoneList, emailList, addressList,
                 genderList, birthdateList, raceList, religionList, surveyList));
     }
 
     /**
-     * Returns true if some of the prefixes contains empty {@code Optional} values in the given
+     * Parses the given (possibly empty) {@code attributeStringOptional} of a given prefix.
+     * @return A list of {@code String} of keywords associated to the given prefix.
+     * If no keywords were specified, returns an empty {@code ArrayList)
+     */
+    private static List<String> getKeywordsAsList(Optional<String> attributeStringOptional) {
+        return attributeStringOptional
+                .map(arg -> arg.trim().split("\\s+"))
+                .map(Arrays::asList)
+                .orElse(new ArrayList<>());
+    }
+
+    /**
+     * Returns true if some prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
