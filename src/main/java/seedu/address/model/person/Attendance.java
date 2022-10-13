@@ -54,7 +54,7 @@ public class Attendance {
             return false;
         }
         Attendance temp = (Attendance) other;
-        return temp.toString().equals(this.toString());
+        return temp.toString().equalsIgnoreCase(this.toString());
     }
 
     @Override
