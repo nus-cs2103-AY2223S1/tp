@@ -3,6 +3,7 @@ package coydir.model;
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.function.Predicate;
@@ -10,16 +11,22 @@ import java.util.logging.Logger;
 
 import coydir.commons.core.GuiSettings;
 import coydir.commons.core.LogsCenter;
+import coydir.logic.parser.AddCommandParser;
+import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
+    private static final String[] PREFIX_LIST = {"n/","p/","e/","j/","a/","t/"};
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -107,11 +114,31 @@ public class ModelManager implements Model {
 
     @Override
     public void batchAdd(String filename) {
-        Path file = Paths.get("data","coydir.csv");
-
-        String line = "";
-        
+            Path file = Paths.get("data", filename);
+            String line = "";
+            String splitBy = ",";
+            try {
+                // parsing a CSV file into BufferedReader class constructor
+                BufferedReader br = new BufferedReader(new FileReader(file.toString()));
+                br.readLine();
+                while ((line = br.readLine()) != null) // returns a Boolean value
+                {
+                    String[] data = line.split(splitBy); // use comma as separator
+                    String arg = "";
+                    for (int i = 0; i < data.length; i++){
+                        arg += PREFIX_LIST[i] + data[i] + " ";
+                    }
+                    new AddCommandParser().parse(arg);
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println("FUCK");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
     }
+
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
