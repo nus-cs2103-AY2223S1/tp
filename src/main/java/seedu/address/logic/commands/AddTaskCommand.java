@@ -10,8 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import seedu.address.logic.task.Task;
+import seedu.address.model.Model;
+
 
 /**
  * Adds a task to the address book.
