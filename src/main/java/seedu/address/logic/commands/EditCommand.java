@@ -20,6 +20,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.core.index.ReverseIndexComparator;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -61,6 +63,15 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited %1$s: %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This %1$s already exists in the address book.";
+    public static final String MESSAGE_NURSE_INVALID_EDIT = "This uid gives a nurse "
+            + "and there are no dates and times (and their indexes) for nurse."
+            + "Please remove the date and time field and its index field.";
+
+    public static final String MESSAGE_INVALID_NUMBERS_OF_DATETIME_AND_DATETIMEINDEX = "The dateTime index "
+            + "provided is more than the dateTime provided." + "Please remove the dateTime index or add more dateTime.";
+
+    public static final String MESSAGE_OUT_OF_BOUND_DATETIMEINDEX = "The dateTime index given is out of bound "
+            + "of the existing list." + "Please retype another index that is within the range or left it empty.";
 
     private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -89,6 +100,13 @@ public class EditCommand extends Command {
         Person confirmedPersonToEdit = personToEdit.get();
         Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
 
+        boolean haveDatesTimes = !(editPersonDescriptor.getDatesTimes().equals(Optional.empty()));
+        boolean haveDateTimeIndexes = !(editPersonDescriptor.getDateTimeIndexes().equals(Optional.empty()));
+
+        if (confirmedPersonToEdit.getCategory().equals("N") && (haveDateTimeIndexes || haveDatesTimes)) {
+            throw new CommandException(MESSAGE_NURSE_INVALID_EDIT);
+        }
+
         if (!confirmedPersonToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON,
                     confirmedPersonToEdit.getCategoryIndicator()));
@@ -96,7 +114,6 @@ public class EditCommand extends Command {
 
         model.setPerson(confirmedPersonToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
                 confirmedPersonToEdit.getCategoryIndicator(), editedPerson));
 
@@ -106,7 +123,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         String updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
@@ -119,13 +137,116 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof Patient && updatedCategory.equals("P")) {
-            List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes()
-                    .orElse(((Patient) personToEdit).getDatesTimes());
+            List<DateTime> originalDateTime = ((Patient) personToEdit).getDatesTimes();
+            Optional<List<DateTime>> toBeUpdateDateTime = editPersonDescriptor.getDatesTimes();
+            Optional<List<Index>> toBeUpdateDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes();
+            List<DateTime> updatedDateTime = createEditedDateTimeList(originalDateTime,
+                    toBeUpdateDateTime, toBeUpdateDateTimeIndexes);
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
                         updatedAddress, updatedTags, updatedDateTime);
         }
 
         return new Person(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+    }
+
+    private static List<DateTime> createEditedDateTimeList(List<DateTime> originalDateTime,
+                                                           Optional<List<DateTime>> toBeUpdateDateTimes,
+                                                           Optional<List<Index>> toBeUpdateDateTimesIndexes)
+            throws CommandException {
+        List<DateTime> updatedDateTime = new ArrayList<>();
+
+        boolean isDateTimeNull = toBeUpdateDateTimes.equals(Optional.empty());
+        boolean isDateTimeIndexesNull = toBeUpdateDateTimesIndexes.equals(Optional.empty());
+        List<DateTime> toBeUpdateDateTime = new ArrayList<>();
+        List<Index> toBeUpdateDateTimeIndexes = new ArrayList<>();
+
+        if (!isDateTimeNull) {
+            toBeUpdateDateTime = new ArrayList<>(toBeUpdateDateTimes.get());
+        }
+        if (!isDateTimeIndexesNull) {
+            toBeUpdateDateTimeIndexes = new ArrayList<>(toBeUpdateDateTimesIndexes.get());
+
+            //If the indexNo given is out of bound of the existing list -> throw exception
+            for (Index indexNo : toBeUpdateDateTimeIndexes) {
+
+                if (indexNo.getZeroBased() >= originalDateTime.size()) {
+                    throw new CommandException(MESSAGE_OUT_OF_BOUND_DATETIMEINDEX);
+                }
+            }
+        }
+
+        boolean isDateTimeEmpty = !isDateTimeNull && toBeUpdateDateTime.isEmpty();
+        boolean isDateTimeIndexesEmpty = !isDateTimeIndexesNull && toBeUpdateDateTimeIndexes.isEmpty();
+
+        // [CASE 1]
+        // 1. dateTime null and dateTimeIndex non-null but empty
+        // 2. dateTimeIndex null and dateTime non-null but empty
+        // 3. dateTime non-null but empty and dateTimeIndex non-null but empty ->
+        // Deletes all the dateTime in the existing list
+        if ((isDateTimeNull && isDateTimeIndexesEmpty) || (isDateTimeIndexesNull && isDateTimeEmpty)
+                || (isDateTimeEmpty && isDateTimeIndexesEmpty)) {
+
+            updatedDateTime = new ArrayList<>();
+
+        // [CASE 2]
+        // 1. dateTime null and dateTimeIndex non-null and non-empty
+        // 2. dateTime non-null but empty and dateTimeIndex non-null and non-empty ->
+        // Deletes the dateTime at specific index in the existing list
+        } else if ((isDateTimeNull || isDateTimeEmpty) && !isDateTimeIndexesEmpty) {
+
+            updatedDateTime = new ArrayList<>(originalDateTime);
+
+            ReverseIndexComparator comp = new ReverseIndexComparator();
+            toBeUpdateDateTimeIndexes.sort(comp);
+            for (Index index: toBeUpdateDateTimeIndexes) {
+                updatedDateTime.remove(index.getZeroBased());
+            }
+
+        // [CASE 3]
+        // 1. dateTime null and dateTimeIndex null ->
+        // Remain as original dateTime list, no changes made
+        } else if (isDateTimeNull && isDateTimeIndexesNull) {
+
+            updatedDateTime = new ArrayList<>(originalDateTime);
+
+        // [CASE 4]
+        // 1. dateTime non-null and not empty but dateTimeIndex null
+        // 2. dateTime non-null and not empty and dateTimeIndex non-null but empty   ->
+        // Add the given dateTime to the existing list
+        } else if (!isDateTimeEmpty && (isDateTimeIndexesNull || isDateTimeIndexesEmpty)) {
+
+            updatedDateTime = new ArrayList<>(originalDateTime);
+            for (DateTime dateTime : toBeUpdateDateTime) {
+                updatedDateTime.add(dateTime);
+            }
+
+        // [CASE 5]
+        // 1. dateTime non-null and not empty and dateTimeIndex non-null and not empty ->
+        // Change the dateTime at the specific index in the existing list to the given dateTime
+        // If index given more than date time given  -> throws exception
+        // If date time given more than index given -> the extra date time will be added to the existing list
+        } else if (!isDateTimeEmpty && !isDateTimeIndexesEmpty) {
+
+            updatedDateTime = new ArrayList<>(originalDateTime);
+            if (toBeUpdateDateTime.size() < toBeUpdateDateTimeIndexes.size()) {
+                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_DATETIME_AND_DATETIMEINDEX);
+            }
+
+            for (int i = 0; i < toBeUpdateDateTimeIndexes.size(); i++) {
+                int indexNoToBeUpdated = toBeUpdateDateTimeIndexes.get(i).getZeroBased();
+                DateTime dateTimeToBeUpdated = toBeUpdateDateTime.get(i);
+                updatedDateTime.set(indexNoToBeUpdated, dateTimeToBeUpdated);
+            }
+
+            if (toBeUpdateDateTime.size() > toBeUpdateDateTimeIndexes.size()) {
+                for (int i = toBeUpdateDateTimeIndexes.size(); i < toBeUpdateDateTime.size(); i++) {
+                    updatedDateTime.add(toBeUpdateDateTime.get(i));
+                }
+            }
+
+        }
+        return updatedDateTime;
+
     }
 
     @Override
@@ -146,6 +267,7 @@ public class EditCommand extends Command {
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
+
     /**
      * Stores the details to edit the person with. Each non-empty field value will
      * replace the
@@ -161,6 +283,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private List<DateTime> datesTimes;
+        private List<Index> dateTimeIndexes;
 
         public EditPersonDescriptor() {
         }
@@ -179,16 +302,15 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setDatesTimes(toCopy.datesTimes);
+            setDateTimeIndexes(toCopy.dateTimeIndexes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            if (category == "P") {
-                return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address, tags, datesTimes);
-            }
-            return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address,
+                    tags, datesTimes, dateTimeIndexes);
         }
 
         public void setCategory(String category) {
@@ -271,7 +393,6 @@ public class EditCommand extends Command {
 
         /**
          * Sets {@code datesTimes} to this object's {@code datesTimes}.
-         * A defensive copy of {@code datesTimes} is used internally.
          */
         public void setDatesTimes(List<DateTime> datesTimes) {
             this.datesTimes = (datesTimes != null) ? new ArrayList<DateTime>(datesTimes) : null;
@@ -279,10 +400,25 @@ public class EditCommand extends Command {
 
         /**
          * Returns a dateTime list
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code dateTimes} is null.
          */
         public Optional<List<DateTime>> getDatesTimes() {
             return (datesTimes != null) ? Optional.of(new ArrayList<DateTime>(datesTimes)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code dateTimeIndexes} to this object's {@code dateTimeIndexes}.
+         */
+        public void setDateTimeIndexes(List<Index> dateTimeIndexes) {
+            this.dateTimeIndexes = (dateTimeIndexes != null) ? new ArrayList<Index>(dateTimeIndexes) : null;
+        }
+
+        /**
+         * Returns a dateTimeIndexes list
+         * Returns {@code Optional#empty()} if {@code dateTimeIndexes} is null.
+         */
+        public Optional<List<Index>> getDateTimeIndexes() {
+            return (dateTimeIndexes != null) ? Optional.of(new ArrayList<Index>(dateTimeIndexes)) : Optional.empty();
         }
 
         @Override
@@ -308,6 +444,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getDatesTimes().equals(e.getDatesTimes())
+                    && getDateTimeIndexes().equals(e.getDateTimeIndexes())
                     && getTags().equals(e.getTags());
         }
     }

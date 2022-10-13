@@ -27,6 +27,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    //public static final String MESSAGE_INVALID_DATE_TIME_INDEX = "Date time index is not a
+    // non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -87,6 +89,33 @@ public class ParserUtil {
             throw new ParseException("Category can only be P or N. P for patient, N for nurse.");
         }
         return trimmedCategory;
+    }
+
+    /*
+     * Parses a {@code String dateTimeIndex} into an integer.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTimeIndex} is invalid.
+     */
+    /*public static Index parseDateTimeIndex(String dateTimeIndex) throws ParseException {
+        requireNonNull(dateTimeIndex);
+        String trimmedDateTimeIndex = dateTimeIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedDateTimeIndex)) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME_INDEX);
+        }
+        return Integer.parseInt(trimmedDateTimeIndex);
+    }*/
+
+    /**
+     * Parses {@code Collection<String> dateTimeIndex} into a {@code List<Index>}.
+     */
+    public static List<Index> parseDateTimesIndexes(Collection<String> dateTimeIndexes) throws ParseException {
+        requireNonNull(dateTimeIndexes);
+        List<Index> dateTimeIndexList = new ArrayList<>();
+        for (String dateTimeIndex : dateTimeIndexes) {
+            dateTimeIndexList.add(parseIndex(dateTimeIndex));
+        }
+        return dateTimeIndexList;
     }
 
 

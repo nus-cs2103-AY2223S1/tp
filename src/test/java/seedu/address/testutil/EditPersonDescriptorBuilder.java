@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateTime;
@@ -46,6 +48,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setTags(person.getTags());
         if (person.getCategory().equals("P")) {
             descriptor.setDatesTimes(((Patient) person).getDatesTimes());
+            descriptor.setDateTimeIndexes(new ArrayList<Index>());
         }
     }
 
@@ -114,6 +117,20 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withDatesTimes(String... datesTimes) {
         List<DateTime> dateTimeList = Stream.of(datesTimes).map(DateTime::new).collect(Collectors.toList());
         descriptor.setDatesTimes(dateTimeList);
+        return this;
+    }
+
+    /**
+     * Parses the {@code dateTimeIndexes} into a {@code List<Index>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withDateTimeIndexes(String... dateTimeIndexes) {
+        List<Integer> dateTimeIndexesNoList = Stream.of(dateTimeIndexes).map(Integer::new).collect(Collectors.toList());
+        List<Index> dateTimeIndexesList = new ArrayList<>();
+        for (Integer integer: dateTimeIndexesNoList) {
+            dateTimeIndexesList.add(Index.fromOneBased(integer));
+        }
+        descriptor.setDateTimeIndexes(dateTimeIndexesList);
         return this;
     }
 
