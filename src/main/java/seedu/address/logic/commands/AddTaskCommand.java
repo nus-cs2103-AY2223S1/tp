@@ -16,7 +16,7 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Adds a task to the current team.\n"
-        + "Parameters: name of task (cannot be empty and cannot begin with a sapce) \n"
+        + "Parameters: name of task (cannot be empty and cannot begin with a space) \n"
         + "Example: " + COMMAND_WORD + " merge PR#12";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";

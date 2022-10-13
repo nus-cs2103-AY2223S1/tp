@@ -97,6 +97,15 @@ public class Team {
     }
 
     /**
+     * Sets a specified team member as the assignee for the task.
+     * @param task The specified task to be assigned
+     * @param person The specified member that task is assigned to
+     */
+    public void assignTask(Task task, Person person) {
+        task.assignTo(person);
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTeamName(String test) {
