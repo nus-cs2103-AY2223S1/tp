@@ -18,6 +18,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskModule;
+import seedu.address.model.task.TaskStatus;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -151,7 +152,7 @@ public class ParserUtil {
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!TaskModule.isValidModule(module)) {
+        if (!TaskModule.isValidModule(trimmedModule)) {
             throw new ParseException(TaskModule.MESSAGE_CONSTRAINTS);
         }
         return new Module(new ModuleCode(trimmedModule));
@@ -166,9 +167,24 @@ public class ParserUtil {
     public static TaskDescription parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!TaskDescription.isValidDescription(description)) {
+        if (!TaskDescription.isValidDescription(trimmedDescription)) {
             throw new ParseException(TaskDescription.DESCRIPTION_CONSTRAINTS);
         }
         return new TaskDescription(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code TaskStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static TaskStatus parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!TaskStatus.isValidStatus(trimmedStatus)) {
+            throw new ParseException(TaskStatus.STATUS_CONSTRAINTS);
+        }
+        return TaskStatus.of(trimmedStatus);
     }
 }
