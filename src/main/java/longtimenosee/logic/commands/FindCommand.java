@@ -2,6 +2,7 @@ package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import longtimenosee.commons.core.Messages;
@@ -20,21 +21,27 @@ public class FindCommand extends Command {
             + "Parameters: (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…\n"
             + "Example: " + COMMAND_WORD + " n/alice p/12341234";
 
-    private final Predicate<Person> predicate;
+    private final List<Predicate<Person>> predicates;
 
     /**
      * Creates a FindCommand object.
      *
-     * @param predicate checks if the specified metric matches any contact.
+     * @param predicates check if the specified metrics match any contact.
      */
-    public FindCommand(Predicate<Person> predicate) {
-        this.predicate = predicate;
+    public FindCommand(List<Predicate<Person>> predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        Predicate<Person> finalPredicate = predicates.get(0);
+        for (Predicate<Person> predicate : predicates) {
+            if (!predicate.equals(predicates.get(0))) {
+                finalPredicate = finalPredicate.and(predicate);
+            }
+        }
+        model.updateFilteredPersonList(finalPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
                 false, true);
@@ -44,6 +51,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
     }
 }
