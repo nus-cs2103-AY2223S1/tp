@@ -99,34 +99,12 @@ It is time for you to unleash the potential of a command line application!
 
 {Image of entire application}
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Command Input</td>
-    <td>{image}</td>
-  </tr>
-  <tr>
-    <td>Command result</td>
-    <td>{image}</td>
-  </tr>
-  <tr>
-    <td>List Component</td>
-    <td>{image}</td>
-  </tr>
-  <tr>
-    <td>View Component</td>
-    <td>{image}</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+| Name           | Description |
+|----------------|-------------|
+| Command Input  | {image}     |
+| Command result | {image}     |
+| List Component | {image}     |
+| View Component | {image}     |
 
 ## Flags
 
