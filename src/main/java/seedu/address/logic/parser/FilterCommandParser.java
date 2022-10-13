@@ -31,8 +31,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     private static final String MATCH_GROUP_SPECIFIER = "specifier";
     private static final String MATCH_GROUP_ARGUMENTS = "arguments";
 
-    private static final String REGEX_FILTER_COMMAND = String.format("(?<%1$s>%2$s\\b)?(?<%3$s>.*)?",
-            MATCH_GROUP_SPECIFIER, FilterClearCommand.COMMAND_SPECIFIER, MATCH_GROUP_ARGUMENTS);
+    private static final String REGEX_FILTER_COMMAND = String.format("(?<%1$s>%2$s|%3$s\\b)?(?<%4$s>.*)?",
+            MATCH_GROUP_SPECIFIER, FilterClearCommand.COMMAND_SPECIFIER,
+            FilterClearCommand.COMMAND_SPECIFIER_ALIAS, MATCH_GROUP_ARGUMENTS);
     private static final Pattern COMMAND_FORMAT = Pattern.compile(REGEX_FILTER_COMMAND);
 
     /**
