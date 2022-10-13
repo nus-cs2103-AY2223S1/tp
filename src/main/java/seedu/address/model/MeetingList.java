@@ -85,13 +85,13 @@ public class MeetingList implements ReadOnlyMeetingList {
         meetings.remove(key);
     }
 
-    //// util methods
+    // util methods
+    //    @Override
+    //    public String toString() {
+    //        return persons.asUnmodifiableObservableList().size() + " persons";
+    ////        TODO: refine later
+    //    }
 
-//    @Override
-//    public String toString() {
-////        return persons.asUnmodifiableObservableList().size() + " persons";
-//        // TODO: refine later
-//    }
 
     @Override
     public ObservableList<Meeting> getMeetingList() {

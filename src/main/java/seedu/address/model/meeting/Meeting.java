@@ -122,12 +122,21 @@ public class Meeting {
     }
 
     public String getDescription() {
-        return meetingDescription;
+        return this.meetingDescription;
     }
 
     public String getLocation() {
-        return meetingLocation;
+        return this.meetingLocation;
     }
+
+    public String getPeopleToMeet() {
+        String res = "";
+        for (Person p : peopleToMeet) {
+            res = res + p.getName().fullName + ", ";
+        }
+        return res.substring(0, res.length() - 2);
+    }
+
     /**
      * Returns true if both meetings include the same person to meet
      * and are at the same time.
