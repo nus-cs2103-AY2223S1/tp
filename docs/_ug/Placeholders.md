@@ -47,7 +47,7 @@
     <tr>
       <td>EXPIRY_DATE</td>
       <td>exp/</td>
-      <td>The EXPIRY_DATE is an optional date indicating when the item will expire.<br>EXPIRY_DATE is a date in one of the following formats:<br>yyyy-mm-dd<br>dd-mm-yyyy<br/><br><strong>IMPORTANT</strong>:<br>We only accept years less than 10000<br><br/><strong>Valid Examples</strong>:<br>2022-09-01<br>01-09-2022<br>1-9-2022<br><br/><strong>Invalid Examples:</strong><br>01-11-20222<br>01/09/2022<br>40-40-2022<br>1-9-22<br>1-nov-2202</td>
+      <td markdown="1">{% include_relative _ug/placeholders/EXPIRY_DATE.md %}</td>
     </tr>
   </tbody>
 </table>
