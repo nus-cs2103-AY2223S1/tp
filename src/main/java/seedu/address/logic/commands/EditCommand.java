@@ -138,7 +138,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        if (personToEdit instanceof Patient && updatedCategory.equals("P")) {
+        if (personToEdit instanceof Patient && updatedCategory.categoryName.equals("P")) {
             List<DateTime> originalDateTime = ((Patient) personToEdit).getDatesTimes();
             Optional<List<DateTime>> toBeUpdateDateTime = editPersonDescriptor.getDatesTimes();
             Optional<List<Index>> toBeUpdateDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes();
@@ -317,7 +317,6 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-        
             return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address,
                     tags, datesTimes, dateTimeIndexes);
         }

@@ -30,8 +30,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String CATEGORY_DESC_AMY = " " + PREFIX_CATEGORY + VALID_CATEGORY_AMY;
-    public static final String CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_CATEGORY_BOB;
     public static final String VALID_CATEGORY_AMY = "P";
     public static final String VALID_CATEGORY_BOB = "N";
     public static final String VALID_UID_AMY = "10";
@@ -61,6 +59,8 @@ public class CommandTestUtil {
     public static final String OTHER_DATE_TIME_INDEX_TWO = "2";
     public static final String OTHER_DATE_TIME_INDEX_THREE = "3";
 
+    public static final String CATEGORY_DESC_AMY = " " + PREFIX_CATEGORY + VALID_CATEGORY_AMY;
+    public static final String CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_CATEGORY_BOB;
     public static final String UID_DESC_AMY = " " + PREFIX_UID + VALID_UID_AMY;
     public static final String UID_DESC_BOB = " " + PREFIX_UID + VALID_UID_BOB;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -80,7 +80,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM";  // only allowed F or M, either one
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM"; // only allowed F or M, either one
     public static final String INVALID_UID_DESC = " " + PREFIX_UID + "1+"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol

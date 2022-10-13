@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
