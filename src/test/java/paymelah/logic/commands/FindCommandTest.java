@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static paymelah.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static paymelah.logic.parser.ParserUtil.parseNameContainsKeywordsPredicate;
+import static paymelah.logic.parser.ParserUtil.prepareNameContainsKeywordsPredicate;
 import static paymelah.testutil.TypicalPersons.CARL;
 import static paymelah.testutil.TypicalPersons.ELLE;
 import static paymelah.testutil.TypicalPersons.FIONA;
@@ -62,7 +62,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         try {
-            NameContainsKeywordsPredicate predicate = parseNameContainsKeywordsPredicate("NonExistentName");
+            NameContainsKeywordsPredicate predicate = prepareNameContainsKeywordsPredicate("NonExistentName");
             FindCommand command = new FindCommand(predicate);
             expectedModel.updateFilteredPersonList(predicate);
             assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -76,7 +76,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         try {
-            NameContainsKeywordsPredicate predicate = parseNameContainsKeywordsPredicate("Kurz Elle Kunz");
+            NameContainsKeywordsPredicate predicate = prepareNameContainsKeywordsPredicate("Kurz Elle Kunz");
             FindCommand command = new FindCommand(predicate);
             expectedModel.updateFilteredPersonList(predicate);
             assertCommandSuccess(command, model, expectedMessage, expectedModel);

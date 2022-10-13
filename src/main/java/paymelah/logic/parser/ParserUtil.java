@@ -168,7 +168,7 @@ public class ParserUtil {
     /**
      * Parses {@code String s} into a {@code NameContainsKeywordsPredicate}.
      */
-    public static NameContainsKeywordsPredicate parseNameContainsKeywordsPredicate(String s) throws ParseException {
+    public static NameContainsKeywordsPredicate prepareNameContainsKeywordsPredicate(String s) throws ParseException {
         requireNonNull(s);
         String trimmed = s.trim();
         if (trimmed.isEmpty()) {
@@ -180,7 +180,7 @@ public class ParserUtil {
     /**
      * Parses {@code String s} into a {@code DebtContainsKeywordsPredicate}.
      */
-    public static DebtContainsKeywordsPredicate parseDebtContainsKeywordsPredicate(String s) throws ParseException {
+    public static DebtContainsKeywordsPredicate prepareDebtContainsKeywordsPredicate(String s) throws ParseException {
         requireNonNull(s);
         String trimmed = s.trim();
         if (trimmed.isEmpty()) {

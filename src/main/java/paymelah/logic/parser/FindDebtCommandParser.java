@@ -1,7 +1,7 @@
 package paymelah.logic.parser;
 
 import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static paymelah.logic.parser.ParserUtil.parseDebtContainsKeywordsPredicate;
+import static paymelah.logic.parser.ParserUtil.prepareDebtContainsKeywordsPredicate;
 
 import paymelah.logic.commands.FindDebtCommand;
 import paymelah.logic.parser.exceptions.ParseException;
@@ -20,7 +20,7 @@ public class FindDebtCommandParser implements Parser<FindDebtCommand> {
      */
     public FindDebtCommand parse(String args) throws ParseException {
         try {
-            return new FindDebtCommand(parseDebtContainsKeywordsPredicate(args));
+            return new FindDebtCommand(prepareDebtContainsKeywordsPredicate(args));
         } catch (ParseException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDebtCommand.MESSAGE_USAGE));

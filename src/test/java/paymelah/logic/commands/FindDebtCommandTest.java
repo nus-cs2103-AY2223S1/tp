@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static paymelah.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static paymelah.logic.parser.ParserUtil.parseDebtContainsKeywordsPredicate;
+import static paymelah.logic.parser.ParserUtil.prepareDebtContainsKeywordsPredicate;
 import static paymelah.testutil.TypicalPersons.BENSON;
 import static paymelah.testutil.TypicalPersons.GEORGE;
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
@@ -61,7 +61,7 @@ public class FindDebtCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         try {
-            DebtContainsKeywordsPredicate predicate = parseDebtContainsKeywordsPredicate("NonExistentDebt");
+            DebtContainsKeywordsPredicate predicate = prepareDebtContainsKeywordsPredicate("NonExistentDebt");
             FindDebtCommand command = new FindDebtCommand(predicate);
             expectedModel.updateFilteredPersonList(predicate);
             assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,7 +75,7 @@ public class FindDebtCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         try {
-            DebtContainsKeywordsPredicate predicate = parseDebtContainsKeywordsPredicate("burger");
+            DebtContainsKeywordsPredicate predicate = prepareDebtContainsKeywordsPredicate("burger");
             FindDebtCommand command = new FindDebtCommand(predicate);
             expectedModel.updateFilteredPersonList(predicate);
             assertCommandSuccess(command, model, expectedMessage, expectedModel);
