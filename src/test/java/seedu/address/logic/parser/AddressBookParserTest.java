@@ -15,13 +15,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteBuyerCommand;
+import seedu.address.logic.commands.DeletePropertyCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListBuyersCommand;
+import seedu.address.logic.commands.ListPropertiesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -48,10 +50,17 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+    public void parseCommand_deletebuyer() throws Exception {
+        DeleteBuyerCommand command = (DeleteBuyerCommand) parser.parseCommand(
+                DeleteBuyerCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteBuyerCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteprop() throws Exception {
+        DeletePropertyCommand command = (DeletePropertyCommand) parser.parseCommand(
+                DeletePropertyCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeletePropertyCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -84,9 +93,15 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listbuyers() throws Exception {
+        assertTrue(parser.parseCommand(ListBuyersCommand.COMMAND_WORD) instanceof ListBuyersCommand);
+        assertTrue(parser.parseCommand(ListBuyersCommand.COMMAND_WORD + " 3") instanceof ListBuyersCommand);
+    }
+
+    @Test
+    public void parseCommand_listprops() throws Exception {
+        assertTrue(parser.parseCommand(ListPropertiesCommand.COMMAND_WORD) instanceof ListPropertiesCommand);
+        assertTrue(parser.parseCommand(ListPropertiesCommand.COMMAND_WORD + " 3") instanceof ListPropertiesCommand);
     }
 
     @Test

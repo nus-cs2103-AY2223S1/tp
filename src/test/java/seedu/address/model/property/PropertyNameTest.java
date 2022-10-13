@@ -6,38 +6,35 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Name;
-
-
 public class PropertyNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Name(null));
+        assertThrows(NullPointerException.class, () -> new PropertyName(null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+        assertThrows(IllegalArgumentException.class, () -> new PropertyName(invalidName));
     }
 
     @Test
-    public void isValidName() {
+    public void isValidPropertyName() {
         // null name
-        assertThrows(NullPointerException.class, () -> Name.isValidName(null));
+        assertThrows(NullPointerException.class, () -> PropertyName.isValidPropertyName(null));
 
         // invalid name
-        assertFalse(Name.isValidName("")); // empty string
-        assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(Name.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(PropertyName.isValidPropertyName("")); // empty string
+        assertFalse(PropertyName.isValidPropertyName(" ")); // spaces only
+        assertFalse(PropertyName.isValidPropertyName("^")); // only non-alphanumeric characters
+        assertFalse(PropertyName.isValidPropertyName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Name.isValidName("peter jack")); // alphabets only
-        assertTrue(Name.isValidName("12345")); // numbers only
-        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(PropertyName.isValidPropertyName("tembusu college")); // alphabets only
+        assertTrue(PropertyName.isValidPropertyName("12345")); // numbers only
+        assertTrue(PropertyName.isValidPropertyName("21 century residence")); // alphanumeric characters
+        assertTrue(PropertyName.isValidPropertyName("Peak Residence")); // with capital letters
+        assertTrue(PropertyName.isValidPropertyName("Heng Mui Keng Street 2 5 Condo")); // long names
     }
 }

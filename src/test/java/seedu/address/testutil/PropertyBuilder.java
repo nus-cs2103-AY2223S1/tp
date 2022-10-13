@@ -22,7 +22,6 @@ public class PropertyBuilder {
     public static final String DEFAULT_DESCRIPTION = "A 5-storey condo on top of a hill - "
             + "Peak Residence offers you serenity away from the hustle and bustle with breathtaking views all around.";
 
-
     private PropertyName name;
     private Price price;
     private Address address;

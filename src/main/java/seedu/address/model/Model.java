@@ -14,6 +14,7 @@ import seedu.address.model.property.Property;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Property> PREDICATE_SHOW_ALL_PROPERTIES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -65,6 +66,12 @@ public interface Model {
     void deletePerson(Person target);
 
     /**
+     * Deletes the given property.
+     * The property must exist in the address book.
+     */
+    void deleteProperty(Property target);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -87,4 +94,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered property list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPropertyList(Predicate<Property> predicate);
+
 }

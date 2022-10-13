@@ -102,6 +102,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteProperty(Property target) {
+        addressBook.removeProperty(target);
+    }
+
+    @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -136,6 +141,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredPropertyList(Predicate<Property> predicate) {
+        requireNonNull(predicate);
+        filteredProperties.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -151,7 +162,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredProperties.equals(other.filteredProperties);
     }
 
 }

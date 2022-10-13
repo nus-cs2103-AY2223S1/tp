@@ -5,6 +5,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_HOM
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_HOME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_HOME;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.AddressBook;
 import seedu.address.model.property.Property;
 
 /**
@@ -27,4 +32,20 @@ public class TypicalProperties {
             .withPrice(VALID_PRICE_HOME).withDescription(VALID_DESCRIPTION_HOME).build();
 
     private TypicalProperties() {} // prevents instantiation
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static AddressBook getTypicalPropertyBook() {
+        AddressBook ab = new AddressBook();
+        for (Property property : getTypicalProperties()) {
+            ab.addProperty(property);
+        }
+        return ab;
+    }
+
+    public static List<Property> getTypicalProperties() {
+        return new ArrayList<>(Arrays.asList(PEAKRESIDENCE, HUT, HOME));
+    }
 }
+
