@@ -114,7 +114,6 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #6D28D9;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -124,12 +123,14 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: black;
+    -fx-background-color: transparent;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #64748B;
+    -fx-background-color: transparent;
 }
 
 .sub_heading {
@@ -144,6 +145,10 @@
     -fx-font-size: 13px;
     -fx-text-fill: #AFB4FF;
     -fx-background-color: #AFB4FF;
+}
+
+.circle_icon {
+    -fx-background-color: transparent;
 }
 
 .tags_pane .label {
