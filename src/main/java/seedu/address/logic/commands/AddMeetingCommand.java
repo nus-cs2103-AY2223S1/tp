@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -26,21 +27,24 @@ public class AddMeetingCommand extends Command {
             + "Parameters: "
             + PREFIX_INDEX + "INDEX "
             + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME";
+            + PREFIX_TIME + "TIME "
+            + PREFIX_DESCRIPTION + "DESCRIPTION ";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
     public static final String MESSAGE_CLIENT_NOT_FOUND = "A client named %s could not be found";
 
     private final MeetingDate meetingDate;
     private final MeetingTime meetingTime;
     private final Index linkedClientIndex;
+    private final Description description;
 
     /**
      * Creates an AddMeetingCommand to add the specified meeting.
      */
-    public AddMeetingCommand(Index clientIndex, MeetingDate date, MeetingTime time) {
+    public AddMeetingCommand(Index clientIndex, MeetingDate date, MeetingTime time, Description desc) {
         meetingDate = date;
         meetingTime = time;
         linkedClientIndex = clientIndex;
+        description = desc;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class AddMeetingCommand extends Command {
                 oldClient.getEmail(),
                 oldClient.getAddress(),
                 oldClient.getTags());
-        Meeting meetingToAdd = new Meeting(newClient, new Description("desc"), meetingDate, meetingTime);
+        Meeting meetingToAdd = new Meeting(newClient, description, meetingDate, meetingTime);
 
         if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
