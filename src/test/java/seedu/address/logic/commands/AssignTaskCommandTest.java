@@ -132,7 +132,7 @@ public class AssignTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidPerson_throwsCommandExceptionWithInvalidPersonMessage() {
+    public void execute_assignInvalidPerson_throwsCommandExceptionWithInvalidPersonMessage() {
         Person personToAssignTask = model.getPersonWithName(ELLE.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{"Alpha", "Beta", "Gamma"},
@@ -147,7 +147,6 @@ public class AssignTaskCommandTest {
         );
 
         model.setPerson(personToAssignTask, editedPerson);
-
         assertCommandFailure(assignTaskCommand, model, AssignTaskCommand.MESSAGE_INVALID_PERSON);
 
         assertThrows(CommandException.class,
