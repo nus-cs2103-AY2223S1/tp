@@ -10,6 +10,9 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.event.Event;
 
+/**
+ * Deletes an event identified using it's displayed index from the address book.
+ */
 public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "delete-e";
 

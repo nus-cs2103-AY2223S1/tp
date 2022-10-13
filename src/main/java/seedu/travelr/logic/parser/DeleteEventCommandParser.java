@@ -6,6 +6,9 @@ import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.DeleteEventCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new DeleteEventCommand object
+ */
 public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
 
     /**
