@@ -101,7 +101,7 @@ public class AddressBookParser {
 
         case ListTasksCommand.COMMAND_WORD:
             return new ListTasksCommand();
-            
+
         case SetDeadlineCommand.COMMAND_WORD:
             return new SetDeadlineCommandParser().parse(arguments);
 
