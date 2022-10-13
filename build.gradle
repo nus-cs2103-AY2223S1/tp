@@ -44,6 +44,8 @@ dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
+    implementation 'commons-cli:commons-cli:1.5.0'
+
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'linux'
