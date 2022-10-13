@@ -142,12 +142,13 @@ Shows a list of all records for the specified patient.
 Format: `listR PATIENT_INDEX`
 
 * The command is only valid after using `list`.
-* Lists all records of the patient at the specified `PATIENT_INDEX`. 
-* The index refers to the index number shown in the displayed patient list. 
+* Lists all records of the patient at the specified `PATIENT_INDEX`.
+* The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `listR 1` displays all records of the 1st patient in the displayed patient list.
+* `find Betsy` followed by `listR 1` displays all records of the 1st patient in the results of the find command.
 
 ### Editing a person : `edit`
 

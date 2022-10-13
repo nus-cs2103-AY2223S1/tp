@@ -27,7 +27,6 @@ public class TypicalPersons {
     public static final Record RECORD1 = new Record("10-10-2011 1400", "Covid-19");
     public static final Record RECORD2 = new Record("10-10-2010 1400", "Cold");
     public static final Record RECORD3 = new Record("10-10-2020 1400", "SARS");
-    public static final Record EMPTY_RECORD = new Record("10-10-2020 1400", "SARS");
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -45,7 +44,7 @@ public class TypicalPersons {
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").withRecordList(RECORD1).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
