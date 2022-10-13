@@ -241,7 +241,7 @@
 }
 
 .ordered-items-container {
-    -fx-background-color: #D9DCFF;
+    -fx-background-color: #FFFFFF20;
     -fx-background-radius: 10px;
 }
 
@@ -249,12 +249,7 @@
     -fx-font-family: "Poppins";
     -fx-font-weight: 700; /* medium weight */
     -fx-font-size: 18px;
-    -fx-text-fill: #707BE3 !important;
-}
-
-.description-container {
-    -fx-background-color: #D9DCFF;
-    -fx-background-radius: 10px;
+    -fx-text-fill: #D9DCFF !important;
 }
 
 /**
@@ -434,14 +429,14 @@
 }
 
 #descriptionBox {
-    -fx-background-color: #FFDAD8;
+    -fx-background-color: #FFFFFF25;
     -fx-padding: 5px;
     -fx-background-insets: 5 10 10 0;
     -fx-background-radius: 10px;
 }
 
 #description {
-    -fx-text-fill: #FF6C64;
+    -fx-text-fill: #FFEDEC;
     -fx-background-insets: 0 5 0 5 ;
     -fx-padding: 10 15 15 5 ;
     -fx-font-size: 18 !important;
