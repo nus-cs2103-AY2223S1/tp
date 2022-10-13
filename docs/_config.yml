@@ -8,6 +8,9 @@ header_pages:
 
 markdown: kramdown
 
+collections:
+  - glossary
+
 repository: "AY2223S1-CS2103T-W16-2/tp"
 github_icon: "images/github-icon.png"
 
