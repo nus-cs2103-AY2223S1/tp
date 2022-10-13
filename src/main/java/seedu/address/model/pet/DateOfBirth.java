@@ -48,7 +48,7 @@ public class DateOfBirth {
 
     @Override
     public String toString() {
-        return date.format(PREFERRED_FORMATTER);
+        return "Date of birth: " + date.format(PREFERRED_FORMATTER);
     }
 
     @Override

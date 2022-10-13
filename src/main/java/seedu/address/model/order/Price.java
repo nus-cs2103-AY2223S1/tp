@@ -57,7 +57,10 @@ public class Price implements Comparable<Price> {
 
     @Override
     public String toString() {
-        return Double.toString(price);
+        String outputString = price == NOT_APPLICABLE_PRICE
+                ? "The price is not settled yet"
+                : Double.toString(price);
+        return "Price settled: " + outputString;
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
@@ -64,6 +66,15 @@ public class Buyer extends Person {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    /**
+     * Converts the buyer's orders from a {@code List} to a {@code ObservableList} and returns the result.
+     *
+     * @return An {@code ObservableList} instance.
+     */
+    public ObservableList<Order> getOrdersAsObservableList() {
+        return  FXCollections.observableList(getOrders());
     }
 
     public void addOrder(Order order) {

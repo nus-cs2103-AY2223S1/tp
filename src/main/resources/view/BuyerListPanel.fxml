@@ -3,6 +3,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="buyerListView" VBox.vgrow="ALWAYS" />
+<VBox style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="buyerListView" style="-fx-background-radius: 30px;" VBox.vgrow="ALWAYS" />
 </VBox>

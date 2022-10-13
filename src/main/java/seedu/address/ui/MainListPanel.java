@@ -64,7 +64,7 @@ public class MainListPanel extends UiPart<Region> {
                 }
                 if (object instanceof Order) {
                     Order order = (Order) object;
-                    setGraphic(new OrderCard(order, getIndex() + 1).getRoot());
+                    setGraphic(new OrderCard(order, getIndex() + 1, true).getRoot());
                 }
 
             }

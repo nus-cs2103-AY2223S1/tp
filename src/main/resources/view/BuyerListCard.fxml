@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" minWidth="1100.0" prefWidth="911.0" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="697.6000305175781" minWidth="10.0" prefWidth="300.799951171875" />
          <ColumnConstraints hgrow="SOMETIMES" maxWidth="851.9999999999999" minWidth="10.0" prefWidth="808.8000488281249" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" maxWidth="300.0" minHeight="200.0">
+    <VBox alignment="CENTER_LEFT" maxWidth="300.0" GridPane.hgrow="ALWAYS">
       <padding>
         <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
       </padding>
@@ -52,17 +51,24 @@
             <VBox.margin>
                <Insets top="5.0" />
             </VBox.margin></Label>
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="orders" styleClass="cell_small_label" text="\$orders" />
+      <Label fx:id="email" styleClass="cell_small_label" text="\$email">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin></Label>
+         <Label fx:id="locatedCountry" text="\$located country">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin>
+         </Label>
+      <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin></Label>
     </VBox>
-      <ListView fx:id="orderListPanel" minHeight="200.0" style="-fx-background-radius: 30px;" GridPane.columnIndex="1">
+      <ListView fx:id="orderListView" style="-fx-background-radius: 30px;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
-         <effect>
-            <DropShadow />
-         </effect>
       </ListView>
       <rowConstraints>
          <RowConstraints />

@@ -48,6 +48,6 @@ public class ColorPattern {
 
     @Override
     public String toString() {
-        return colorPattern;
+        return "Color pattern: " + colorPattern;
     }
 }

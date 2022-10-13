@@ -1,12 +1,11 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 
 /**
@@ -24,24 +23,29 @@ public class BuyerCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Buyer buyer;
+    private final Buyer buyer;
+    private final int displayedIndex;
 
     @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
-    @FXML
-    private Label phone;
-    @FXML
     private Label address;
+
     @FXML
     private Label email;
+
     @FXML
-    private FlowPane tags;
+    private Label id;
+
     @FXML
-    private Label orders;
+    private Label locatedCountry;
+
+    @FXML
+    private Label name;
+
+    @FXML
+    private ListView<Order> orderListView;
+
+    @FXML
+    private Label phone;
 
     /**
      * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
@@ -49,15 +53,47 @@ public class BuyerCard extends UiPart<Region> {
     public BuyerCard(Buyer buyer, int displayedIndex) {
         super(FXML);
         this.buyer = buyer;
+        this.displayedIndex = displayedIndex;
+        fillBuyerCard();
+    }
+
+    /**
+     * Fills the relevant fields of the buyer card.
+     */
+    public void fillBuyerCard() {
+        // Set the contact details
         id.setText(displayedIndex + ". ");
         name.setText(buyer.getName().fullName);
         phone.setText(buyer.getPhone().value);
+        locatedCountry.setText(buyer.getLocation().location);
         address.setText(buyer.getAddress().value);
         email.setText(buyer.getEmail().value);
-        buyer.getTags().stream()
+
+        // Set the buyer's orders in the list view
+        orderListView.setItems(buyer.getOrdersAsObservableList());
+        orderListView.setCellFactory(listView -> new BuyerOrderListViewCell());
+
+        /*buyer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        orders.setText(buyer.getOrders().toString());
+        orders.setText(buyer.getOrders().toString());*/
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
+     */
+    private static class BuyerOrderListViewCell extends ListCell<Order> {
+        @Override
+        protected void updateItem(Order order, boolean empty) {
+            super.updateItem(order, empty);
+
+            if (empty || order == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new OrderCard(order, getIndex() + 1, false).getRoot());
+            }
+        }
     }
 
     @Override

@@ -35,7 +35,7 @@ public class BuyerListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code BuyerCard}.
      */
-    class BuyerListViewCell extends ListCell<Buyer> {
+    private static class BuyerListViewCell extends ListCell<Buyer> {
         @Override
         protected void updateItem(Buyer buyer, boolean empty) {
             super.updateItem(buyer, empty);

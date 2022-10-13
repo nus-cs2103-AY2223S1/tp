@@ -35,7 +35,7 @@ public class OrderListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
      */
-    class OrderListViewCell extends ListCell<Order> {
+    private static class OrderListViewCell extends ListCell<Order> {
         @Override
         protected void updateItem(Order order, boolean empty) {
             super.updateItem(order, empty);
@@ -44,7 +44,7 @@ public class OrderListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new OrderCard(order, getIndex() + 1).getRoot());
+                setGraphic(new OrderCard(order, getIndex() + 1, true).getRoot());
             }
         }
     }

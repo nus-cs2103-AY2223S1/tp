@@ -18,9 +18,9 @@
       <VBox style="-fx-background-radius: 30px;">
          <children>
          <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-radius: 30px;">
-           <Label text="order">
+           <Label text="Order">
                   <font>
-                     <Font size="18.0" />
+                     <Font name="System Bold" size="18.0" />
                   </font></Label>
            <Label fx:id="id" text="\$id">
              <minWidth>
@@ -28,7 +28,7 @@
                <Region fx:constant="USE_PREF_SIZE" />
              </minWidth>
                   <font>
-                     <Font size="18.0" />
+                     <Font name="System Bold" size="18.0" />
                   </font>
            </Label>
                <Label fx:id="buyerName">
@@ -68,22 +68,22 @@
                         </Label>
                         <Label fx:id="species" text="\$specoes">
                            <VBox.margin>
-                              <Insets top="5.0" />
+                              <Insets left="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="age" text="\$age">
                            <VBox.margin>
-                              <Insets top="2.0" />
+                              <Insets left="5.0" top="2.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="color" text="\$color">
                            <VBox.margin>
-                              <Insets top="2.0" />
+                              <Insets left="5.0" top="2.0" />
                            </VBox.margin>
                         </Label>
                         <Label fx:id="colorPattern" text="\$color pattern">
                            <VBox.margin>
-                              <Insets top="2.0" />
+                              <Insets left="5.0" top="2.0" />
                            </VBox.margin>
                         </Label>
                      </children>
@@ -116,7 +116,10 @@
                            <Insets top="10.0" />
                         </VBox.margin>
                      </Label>
-                     <Label fx:id="additionalRequestDescription" />
+                     <Label fx:id="additionalRequestDescription">
+                        <VBox.margin>
+                           <Insets left="5.0" />
+                        </VBox.margin></Label>
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>

@@ -326,8 +326,6 @@ public class ModelManager implements Model {
         filteredAll.addAll(filteredBuyers);
         filteredAll.addAll(filteredSuppliers);
         filteredAll.addAll(filteredDeliverers);
-        filteredAll.addAll(filteredPets);
-        filteredAll.addAll(filteredOrders);
     }
 
     @Override

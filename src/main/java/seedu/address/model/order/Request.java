@@ -25,43 +25,43 @@ public class Request {
             + PREFIX_PET_COLOR_PATTERN + "COLOR_PATTERN \n"
             + Age.MESSAGE_USAGE;
 
-    private final Age age;
-    private final Color color;
-    private final ColorPattern colorPattern;
-    private final Species species;
+    private final Age requestedAge;
+    private final Color requestedColor;
+    private final ColorPattern requestedColorPattern;
+    private final Species requestedSpecies;
 
     /**
      * Constructs a {@code request}.
      *
-     * @param age Age of the pet.
-     * @param color Color of the pet.
-     * @param colorPattern Color pattern of the pet.
-     * @param species Species the pet belongs to.
+     * @param requestedAge Age of the pet.
+     * @param requestedColor Color of the pet.
+     * @param requestedColorPattern Color pattern of the pet.
+     * @param requestedSpecies Species the pet belongs to.
      */
-    public Request(Age age,
-                   Color color,
-                   ColorPattern colorPattern,
-                   Species species) {
-        this.age = age;
-        this.color = color;
-        this.colorPattern = colorPattern;
-        this.species = species;
+    public Request(Age requestedAge,
+                   Color requestedColor,
+                   ColorPattern requestedColorPattern,
+                   Species requestedSpecies) {
+        this.requestedAge = requestedAge;
+        this.requestedColor = requestedColor;
+        this.requestedColorPattern = requestedColorPattern;
+        this.requestedSpecies = requestedSpecies;
     }
 
-    public Age getAge() {
-        return age;
+    public Age getRequestedAge() {
+        return requestedAge;
     }
 
-    public Color getColor() {
-        return color;
+    public Color getRequestedColor() {
+        return requestedColor;
     }
 
-    public ColorPattern getColorPattern() {
-        return colorPattern;
+    public ColorPattern getRequestedColorPattern() {
+        return requestedColorPattern;
     }
 
-    public Species getSpecies() {
-        return species;
+    public Species getRequestedSpecies() {
+        return requestedSpecies;
     }
 
     @Override
@@ -70,10 +70,10 @@ public class Request {
             return true;
         } else if (other instanceof Request) {
             Request otherRequest = (Request) other;
-            return age.equals(otherRequest.getAge())
-                    && color.equals(otherRequest.getColor())
-                    && colorPattern.equals(otherRequest.getColorPattern())
-                    && species.equals(otherRequest.getSpecies());
+            return requestedAge.equals(otherRequest.getRequestedAge())
+                    && requestedColor.equals(otherRequest.getRequestedColor())
+                    && requestedColorPattern.equals(otherRequest.getRequestedColorPattern())
+                    && requestedSpecies.equals(otherRequest.getRequestedSpecies());
         } else {
             return false;
         }
@@ -81,19 +81,19 @@ public class Request {
 
     @Override
     public int hashCode() {
-        return Objects.hash(age, color, colorPattern, species);
+        return Objects.hash(requestedAge, requestedColor, requestedColorPattern, requestedSpecies);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Pet age: ").append(getAge())
+        builder.append("Pet age: ").append(getRequestedAge())
                 .append(System.lineSeparator())
-                .append("Color: ").append(getColor())
+                .append("Color: ").append(getRequestedColor())
                 .append(System.lineSeparator())
-                .append("Pattern: ").append(getColorPattern())
+                .append("Pattern: ").append(getRequestedColorPattern())
                 .append(System.lineSeparator())
-                .append("Species: ").append(getSpecies());
+                .append("Species: ").append(getRequestedSpecies());
         return builder.toString();
     }
 

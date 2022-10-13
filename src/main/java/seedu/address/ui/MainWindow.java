@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "newMainWindow.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -54,7 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane statusBarPlaceholder;
 
     @FXML
     private StackPane selectionBoxPlaceHolder;
@@ -70,7 +70,7 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
 
         // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        // setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -119,29 +119,27 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Initialise the list panels
         buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
         supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
         delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList());
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         petListPanel = new PetListPanel(logic.getFilteredPetList());
-
         mainListPanel = new MainListPanel(logic.getFilteredMainList());
 
+        // Set the display window
         personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().add(buyerListPanel.getRoot());
 
+        // Initialise the remaining components in the main window
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+/*        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());*/
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        SelectionBox selectionBox = new SelectionBox(this);
-        selectionBoxPlaceHolder.getChildren().add(selectionBox.getRoot());
-
     }
 
     /**
