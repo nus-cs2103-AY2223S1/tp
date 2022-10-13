@@ -114,6 +114,13 @@ public interface Model {
      */
     void addField(String fieldName);
 
+    /**
+     * Removes a field from the Fields instance of each person
+     * {@code field name} must already exist in the address book.
+     * @param fieldName the field name to be removed
+     */
+    void removeField(String fieldName);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 

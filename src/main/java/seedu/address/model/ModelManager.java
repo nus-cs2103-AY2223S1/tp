@@ -187,6 +187,13 @@ public class ModelManager implements Model {
         addressBook.addField(fieldName);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public void removeField(String fieldName) {
+        addressBook.removeField(fieldName);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     // =========== Filtered Person List Accessors
     // =============================================================
 

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -74,6 +75,21 @@ public class FieldPrefixes {
         }
         prefixes.remove(prefix);
         map.remove(prefix);
+    }
+
+    public void removeField(String fieldName, Model model) throws ParseException {
+        Prefix prefix;
+        List<Prefix> lst = map.entrySet().stream()
+                .filter(entry -> fieldName.equals(entry.getValue()))
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+        if (lst.isEmpty()) {
+            throw new ParseException("Field not found");
+        }
+        prefix = lst.get(0);
+        map.remove(prefix);
+        prefixes.remove(prefix);
+        model.removeField(fieldName);
     }
 
     /**

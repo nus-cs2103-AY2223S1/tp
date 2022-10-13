@@ -70,12 +70,31 @@ public class Person implements DisplayItem {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Retrieves the Fields instance of the Person.
+     *
+     * @return the Fields instance of the Person.
+     */
     public Fields getFields() {
         return fields;
     }
 
+    /**
+     * Adds a Field to the Fields of the Person.
+     *
+     * @param fieldName the field name to be added.
+     */
     public void addField(String fieldName) {
         fields.addField(fieldName);
+    }
+
+    /**
+     * Removes a field from the Fields of the Person
+     *
+     * @param fieldName the field name to be removed.
+     */
+    public void removeField(String fieldName) {
+        fields.removeField(fieldName);
     }
 
     /**

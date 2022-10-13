@@ -50,6 +50,19 @@ public class Fields {
     }
 
     /**
+     * Removes a field from the list of fields.
+     *
+     * @param fieldName The name of the field to be removed from the list.
+     */
+    public void removeField(String fieldName) {
+        for (Field field : fields) {
+            if (field.isNameMatch(fieldName)) {
+                fields.remove(field);
+            }
+        }
+    }
+
+    /**
      * Updates the Field object with a new Field object.
      *
      * @param oldField The old Field object from the Person.

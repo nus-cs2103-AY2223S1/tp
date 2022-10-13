@@ -98,10 +98,19 @@ public class UniquePersonList extends DisplayItemList<Person> {
     }
 
     /**
-     * Adds a Field instance to each person in the Persons list
+     * Adds a Field instance to each person in the Persons list.
+     * @param fieldName the name of the field to be removed.
      */
     public void addField(String fieldName) {
         internalList.forEach(person -> person.addField(fieldName));
+    }
+
+    /**
+     * Removes a Field instance from each person in the Persons list.
+     * @param fieldName the name of the field to be removed.
+     */
+    public void removeField(String fieldName) {
+        internalList.forEach(person -> person.removeField(fieldName));
     }
 
     @Override
