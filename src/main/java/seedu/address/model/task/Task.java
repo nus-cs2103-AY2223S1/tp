@@ -73,20 +73,6 @@ public class Task {
     }
 
     /**
-     * Marks task as done.
-     */
-    public void markTask() {
-        isDone = true;
-    }
-
-    /**
-     * Marks task as not done.
-     */
-    public void unmarkTask() {
-        isDone = false;
-    }
-
-    /**
      * Returns true if task contains any of the description or deadline keywords.
      * By default, empty lists will return true.
      *
@@ -133,7 +119,8 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getDescription().equals(getDescription())
                 && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.getStatus().equals(getStatus());
+                && otherTask.getStatus().equals(getStatus())
+                && otherTask.getTags().equals(getTags());
     }
 
     @Override

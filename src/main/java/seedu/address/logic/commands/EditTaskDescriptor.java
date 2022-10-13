@@ -7,6 +7,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 
 /**
@@ -15,6 +16,7 @@ import seedu.address.model.task.Description;
  */
 public class EditTaskDescriptor {
     private Description description;
+    private Deadline deadline;
     private boolean isDone;
     private Set<Tag> tags;
 
@@ -26,6 +28,7 @@ public class EditTaskDescriptor {
      */
     public EditTaskDescriptor(EditTaskDescriptor toCopy) {
         setDescription(toCopy.description);
+        setDeadline(toCopy.deadline);
         setIsDone(toCopy.isDone);
         setTags(toCopy.tags);
     }
@@ -43,6 +46,14 @@ public class EditTaskDescriptor {
 
     public Optional<Description> getDescription() {
         return Optional.ofNullable(description);
+    }
+
+    public void setDeadline(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
+    public Optional<Deadline> getDeadline() {
+        return Optional.ofNullable(deadline);
     }
 
     public void setIsDone(boolean isDone) {
@@ -86,6 +97,7 @@ public class EditTaskDescriptor {
         EditTaskDescriptor e = (EditTaskDescriptor) other;
 
         return getDescription().equals(e.getDescription())
+                && getDeadline().equals(e.getDeadline())
                 && getIsDone().equals(e.getIsDone())
                 && getTags().equals(e.getTags());
     }
