@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +20,8 @@ class SetDeadlineCommandTest {
 
     private static final int FIRST_TASK = 1;
     private static final int SECOND_TASK = 2;
-    private static final LocalDate FIRST_DEADLINE = LocalDate.of(2023, 1, 8);
-    private static final LocalDate SECOND_DEADLINE = LocalDate.of(2023, 2, 9);
+    private static final LocalDateTime FIRST_DEADLINE = LocalDateTime.of(2023, 1, 8, 23, 59);
+    private static final LocalDateTime SECOND_DEADLINE = LocalDateTime.of(2023, 2, 9, 23, 59);
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
