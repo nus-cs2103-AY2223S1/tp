@@ -20,17 +20,17 @@ public class Person {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
     private final Email email;
+    private final Job job;
 
     // Data fields
+    private final Phone phone;
     private final Address address;
     private final Gender gender;
     private final GraduationDate graduationDate;
     private final Cap cap;
     private final University university;
     private final Major major;
-    private final Job job;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -127,7 +127,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
