@@ -121,7 +121,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeProperty(Property key) {
         properties.remove(key);
     }
-    
 
     //// util methods
 
