@@ -260,7 +260,7 @@ _Details coming soon ..._
 | **Task add**    | `task add DESC`<br> e.g., `task add Title of task`                                                                                                                    |
 | **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
 | **Mark**        | `mark TASK_INDEX p/PERSON_INDEX`<br> e.g., `mark 2 p/3`                                                                                                               |
-| **Task delete** | `task delete TASK_INDEX`<br> e.g., `delete 2 p/3`                                                                                                                     |
+| **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                     |
 | **Task assign** | `task assign TASK_INDEX [c/PERSON_INDEX]…​`<br> e.g., `task assign 3 c/1 c/2`                                                                                         |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
