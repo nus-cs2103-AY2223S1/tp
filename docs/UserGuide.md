@@ -33,17 +33,17 @@ ModtRekt is a **desktop app for managing modules and tasks, optimized for use vi
 1.  Here are some example commands you can try:
 
     1. `list`: Lists all the active tasks.
-    
+
     1. `add module CS2103T`: Adds a module called CS2103T to the module tracker.
-    
+
     1. `cd CS2103T`: Sets the current module page to CS2103T.
-    
+
     1. `add task ip week 6 -d 16/09/2022`: Adds a task called ip week 6, with a deadline of 16/09/2022, to the module tracker.
-    
+
     1. `remove task 1`: Removes the first task of CS2103T.
-    
+
     1. `exit` : Exits the app.
-    
+
     1. Refer to the Features below for details of each command.
 
 
@@ -173,7 +173,7 @@ Examples:
 
 ```[ ]``` for optional arguments
 
-### General 
+### General
 
 |       Action        | Format          | Examples        |
 |:-------------------:|-----------------|-----------------|

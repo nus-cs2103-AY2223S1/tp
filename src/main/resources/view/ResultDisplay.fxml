@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.StackPane?>
-
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
-</StackPane>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:id="placeHolder" prefHeight="100.0" stylesheets="@DarkTheme.css"
+      xmlns="http://javafx.com/javafx/11.0.0">
+  <children>
+    <HBox
+            alignment="CENTER"
+            styleClass="result-display"
+            HBox.hgrow="ALWAYS">
+      <children>
+        <ImageView
+                styleClass="avatar"
+                fx:id="avatarDisplay" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true"
+                preserveRatio="true" scaleX="0.8" scaleY="0.8"/>
+        <TextArea
+                wrapText="true"
+                fx:id="resultDisplay" editable="false" maxWidth="1.7976931348623157E308" prefWidth="700.0"
+                styleClass="text-area" HBox.hgrow="ALWAYS">
+          <HBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+          </HBox.margin>
+        </TextArea>
+      </children>
+      <HBox.margin>
+        <Insets/>
+      </HBox.margin>
+    </HBox>
+  </children>
+</HBox>

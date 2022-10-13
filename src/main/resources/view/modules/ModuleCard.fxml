@@ -22,7 +22,7 @@
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="code" styleClass="cell_small_label" text="\$code" />
-                <Label fx:id="credits" styleClass="cell_small_label" text="\$credits" />
+                <Label fx:id="credits" styleClass="cell_small_label" text="\\$credits" />
             </HBox>
             <TextFlow maxWidth="1.7976931348623157E308">
                 <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_label" text="\$name" />
