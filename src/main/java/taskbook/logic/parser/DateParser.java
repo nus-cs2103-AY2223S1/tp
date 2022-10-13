@@ -21,7 +21,6 @@ public class DateParser {
         .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy"))
         .appendOptional(DateTimeFormatter.ofPattern("MM dd yyyy"))
         .appendOptional(DateTimeFormatter.ofPattern("dd MMM yyyy"))
-        .appendOptional(DateTimeFormatter.ofPattern("dd MM yyyy"))
         .toFormatter();
 
     /**
