@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -17,7 +18,7 @@ import seedu.foodrem.model.item.Item;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "del";
+    public static final String COMMAND_WORD = CommandWord.DELETE_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the item identified by the index number used in the displayed item list.\n"

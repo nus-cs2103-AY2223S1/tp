@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -19,7 +20,7 @@ import seedu.foodrem.model.item.ItemQuantity;
  * Increments the quantity of an item by a specified amount.
  */
 public class IncrementCommand extends Command {
-    public static final String COMMAND_WORD = "inc";
+    public static final String COMMAND_WORD = CommandWord.INCREMENT_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Increments the quantity of the item identified by the index number used in the displayed item list.\n"

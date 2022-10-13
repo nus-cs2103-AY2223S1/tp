@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -20,7 +21,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class UntagCommand extends Command {
 
-    public static final String COMMAND_WORD = "untag";
+    public static final String COMMAND_WORD = CommandWord.UNTAG_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Untags the item identified by the index number used in the displayed item list with a valid Tag.\n"

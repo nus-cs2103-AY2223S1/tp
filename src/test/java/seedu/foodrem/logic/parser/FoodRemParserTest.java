@@ -24,7 +24,7 @@ import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
-import seedu.foodrem.logic.commands.tagcommands.AddTagCommand;
+import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.Item;
@@ -98,8 +98,8 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_addTag() {
         Tag tag = new TagBuilder().build();
-        assertTrue(parser.parseCommand(AddTagCommand.COMMAND_WORD + " " + getTagDetails(tag))
-                instanceof AddTagCommand);
+        assertTrue(parser.parseCommand(NewTagCommand.COMMAND_WORD + " " + getTagDetails(tag))
+                instanceof NewTagCommand);
     }
 
     @Test

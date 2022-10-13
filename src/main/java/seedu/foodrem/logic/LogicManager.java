@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFoodRem getAddressBook() {
+    public ReadOnlyFoodRem getFoodRem() {
         return model.getFoodRem();
     }
 
@@ -70,7 +70,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getFoodRemFilePath() {
         return model.getFoodRemFilePath();
     }
 

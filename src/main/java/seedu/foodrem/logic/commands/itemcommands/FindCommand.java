@@ -3,6 +3,7 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.commons.core.Messages;
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
@@ -14,7 +15,7 @@ import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = CommandWord.FIND_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
