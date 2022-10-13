@@ -100,18 +100,21 @@ Examples:
 respectively.
 * `edit appts 1 1 r/Sore Throat` Edits the reason of the first patient's first appointment to be `Sore Throat`. Existing date will not be edited.
 
-### Locating persons by name: `find`
+### Find results that satisify an input criteria: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds patients and appointments that matches all the given criteria specified.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`
 
+* At least 1 of the optional fields must be provided.
+* `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/TAG]…​` are fields to find information about the patient (patient criterias).
+* `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` are fields to find information about appointments (appointment criterias).
+* Only patients and appointments that satisifies all the patient and appointment criterias will be displayed.
+  * A patient must satisify all patient criterias and have at least 1 appointment that satisifies all the appointment criterias to be displayed.
+  * An appointment must satisify all appointment fields and belong to a patient that satisifes all patient criterias to be displayed.
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* For all fields except `[ds/DATE_START]` and `[de/DATE_END]`, something something
+* `[ds/DATE_START]` must be a date equal to or before `[ds/DATE_END]`.
 
 Examples:
 * `find John` returns `john` and `John Doe`
