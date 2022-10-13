@@ -85,7 +85,7 @@ Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
-The link index refers to the index number shown in the internship list and is optional. 
+The link index refers to the index number shown in the person list and is optional. 
 </div>
 
 Examples:
@@ -196,6 +196,20 @@ Format: `deletep INDEX`
 Examples:
 * `listp` followed by `deletep 2` deletes the 2nd person in InterNUS.
 * `findp Betsy` followed by `deletep 1` deletes the 1st person in the results of the `find` command.
+
+### Deleting an internship by index : `deletei`
+
+Deletes the specified internship from InterNUS.
+
+Format: `deletei INDEX`
+
+* Deletes the internship with the specific `INDEX` in the internship list.
+* The index refers to the index number shown in the currently displayed internship list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+* `listi` followed by `deletei 2` deletes the 2nd internship in InterNUS.
+* `findi ABC Pte Ltd` followed by `deletei 1` deletes the 1st internship in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
