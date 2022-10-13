@@ -88,7 +88,7 @@ Removes a FYP from the FYP manager. A FYP could be deleted for the following rea
 * Student dropped the FYP
 * Student finished the FYP
 
-Format: `delete STUDENT_ID`
+Format: `delete id/STUDENT_ID`
 * `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
 
 Example:
@@ -161,7 +161,7 @@ Format: `exit`
 | Action     | Format, Examples                                                                                                                                    |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​` <br> e.g., `add id/A0987654X n/John Doe proj/Data Caching e/e09876567@u.nus.edu` |
-| **Delete** | `delete id` <br> e.g., `delete id/A0987654X `                                                                                                       |
+| **Delete** | `delete id` <br> e.g., `delete id/A0987654X`                                                                                                        |
 | **Mark**   | `mark STUDENT_ID STATUS`<br> e.g.,`mark A0123456G IP`                                                                                               |
 | **Find**   | `find KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find neural network/tree`                                                                           |
 | **Help**   | `help [COMMAND]`<br> e.g., `help add`, `help`                                                                                                       |
