@@ -31,6 +31,9 @@ import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.EditTuitionClassDescriptorBuilder;
+import seedu.address.testutil.EditTutorDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -73,7 +76,7 @@ public class CommandTestUtil {
     public static final String VALID_DAY_CLASS1 = "Wednesday";
     public static final String VALID_DAY_CLASS2 = "Thursday";
     public static final String VALID_STARTTIME_CLASS1 = "12:00";
-    public static final String VALID_STARTTIME_CLASS2 = "8:00";
+    public static final String VALID_STARTTIME_CLASS2 = "08:00";
     public static final String VALID_ENDTIME_CLASS1 = "14:00";
     public static final String VALID_ENDTIME_CLASS2 = "10:00";
 
@@ -155,6 +158,13 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditStudentDescriptor DESC_AMY_STUDENT;
+    public static final EditCommand.EditStudentDescriptor DESC_BOB_STUDENT;
+    public static final EditCommand.EditTutorDescriptor DESC_AMY_TUTOR;
+    public static final EditCommand.EditTutorDescriptor DESC_BOB_TUTOR;
+    public static final EditCommand.EditTuitionClassDescriptor DESC_AMY_CLASS;
+    public static final EditCommand.EditTuitionClassDescriptor DESC_BOB_CLASS;
+
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -163,6 +173,29 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_STUDENT = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).withSchool(VALID_SCHOOL_AMY).withLevel(VALID_LEVEL_AMY)
+                .withNextOfKin(VALID_NEXTOFKIN_AMY).build();
+        DESC_BOB_STUDENT = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withSchool(VALID_SCHOOL_BOB).withLevel(VALID_LEVEL_BOB)
+                .withNextOfKin(VALID_NEXTOFKIN_BOB).build();
+        DESC_AMY_TUTOR = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).withQualification(VALID_QUALIFICATION_AMY)
+                .withInstitution(VALID_INSTITUTION_AMY).build();
+        DESC_BOB_TUTOR = new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withQualification(VALID_QUALIFICATION_BOB)
+                .withInstitution(VALID_INSTITUTION_BOB).build();
+        DESC_AMY_CLASS = new EditTuitionClassDescriptorBuilder().withName(VALID_NAME_CLASS1)
+                .withSubject(VALID_SUBJECT_CLASS1).withLevel(VALID_LEVEL_CLASS1).withDay(VALID_DAY_CLASS1)
+                .withTime(VALID_STARTTIME_CLASS1, VALID_ENDTIME_CLASS1).withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB_CLASS = new EditTuitionClassDescriptorBuilder().withName(VALID_NAME_CLASS2)
+                .withSubject(VALID_SUBJECT_CLASS2).withLevel(VALID_LEVEL_CLASS2).withDay(VALID_DAY_CLASS2)
+                .withTime(VALID_STARTTIME_CLASS2, VALID_ENDTIME_CLASS2).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .build();
     }
 
     /**
@@ -241,7 +274,8 @@ public class CommandTestUtil {
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
-        model.updateFilteredStudentList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate<Student>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
     }
@@ -255,7 +289,8 @@ public class CommandTestUtil {
 
         Tutor tutor = model.getFilteredTutorList().get(targetIndex.getZeroBased());
         final String[] splitName = tutor.getName().fullName.split("\\s+");
-        model.updateFilteredTutorList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        model.updateFilteredTutorList(new NameContainsKeywordsPredicate<Tutor>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTutorList().size());
     }
@@ -269,7 +304,9 @@ public class CommandTestUtil {
 
         TuitionClass tuitionClass = model.getFilteredTuitionClassList().get(targetIndex.getZeroBased());
         final String[] splitName = tuitionClass.getName().name.split("\\s+");
-        model.updateFilteredTuitionClassList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        model.updateFilteredTuitionClassList(
+                new NameContainsKeywordsPredicate<TuitionClass>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTuitionClassList().size());
     }
