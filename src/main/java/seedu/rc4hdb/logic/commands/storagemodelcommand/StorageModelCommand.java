@@ -9,7 +9,7 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Represents a command that interacts with a {@code Storage} and a {@code Model}.
  */
-public abstract class StorageModelCommand extends Command {
+public interface StorageModelCommand extends Command {
 
     /**
      * Executes the command and returns the result message.

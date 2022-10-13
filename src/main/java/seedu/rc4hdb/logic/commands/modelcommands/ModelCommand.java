@@ -8,7 +8,7 @@ import seedu.rc4hdb.model.Model;
 /**
  * Represents a command that interacts with a {@code Model}.
  */
-public abstract class ModelCommand extends Command {
+public interface ModelCommand extends Command {
 
     /**
      * Executes the command and returns the result message.

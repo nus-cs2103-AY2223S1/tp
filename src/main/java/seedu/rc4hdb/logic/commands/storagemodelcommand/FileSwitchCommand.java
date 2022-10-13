@@ -17,17 +17,15 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Switches the current working file to the file corresponding to the arguments provided.
  */
-public class FileSwitchCommand extends StorageModelCommand {
+public class FileSwitchCommand extends FileCommand implements StorageModelCommand {
 
-    public static final String COMMAND_WORD = "file";
+    public static final String COMMAND_WORD = "switch";
 
     public static final String MESSAGE_FAILED = "Something went wrong while switching files.";
 
     public static final String MESSAGE_SUCCESS = "Successfully switched files.";
 
-    public static final String MESSAGE_NON_EXISTANT_FILE = "Please provide an existing file.";
-
-    private final Path filePath;
+    public static final String MESSAGE_NON_EXISTENT_FILE = " does not exist. Please provide an existing file.";
 
     public FileSwitchCommand(Path filePath) {
         this.filePath = filePath;
@@ -45,7 +43,7 @@ public class FileSwitchCommand extends StorageModelCommand {
 
             if (!newResidentBook.isPresent()) {
                 storage.setResidentBookFilePath(originalPath);
-                return new CommandResult(MESSAGE_NON_EXISTANT_FILE);
+                throw new CommandException(filePath.getFileName() + MESSAGE_NON_EXISTENT_FILE);
             }
 
             model.setResidentBook(newResidentBook.get());
@@ -55,9 +53,8 @@ public class FileSwitchCommand extends StorageModelCommand {
             model.setResidentBookFilePath(filePath);
             return new CommandResult(MESSAGE_SUCCESS);
         } catch (DataConversionException | IOException e) {
-            // Error message here
             storage.setResidentBookFilePath(originalPath);
-            return new CommandResult(MESSAGE_FAILED);
+            throw new CommandException(MESSAGE_FAILED);
         }
     }
 

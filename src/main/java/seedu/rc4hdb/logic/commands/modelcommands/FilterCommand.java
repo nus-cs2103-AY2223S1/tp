@@ -21,7 +21,7 @@ import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
  * Filters and lists all residents in resident book whose attributes are equal to any of the argument keywords.
  * Keyword matching is case sensitive.
  */
-public class FilterCommand extends ModelCommand {
+public class FilterCommand implements ModelCommand {
     public static final String COMMAND_WORD = "filter";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": "
             + "filters the resident book by the attributes specified in the command"
