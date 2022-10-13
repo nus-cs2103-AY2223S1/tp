@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import nus.climods.model.UserPrefs;
-import nus.climods.model.module.ModuleList;
 import nus.climods.model.Model;
 import nus.climods.model.ModelManager;
+import nus.climods.model.UserPrefs;
+import nus.climods.model.module.ModuleList;
 
 public class ExitCommandTest {
     private static final String testAcademicYear = "2022-2023";

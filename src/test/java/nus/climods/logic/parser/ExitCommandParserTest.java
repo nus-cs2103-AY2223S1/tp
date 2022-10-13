@@ -1,10 +1,11 @@
 package nus.climods.logic.parser;
 
-import nus.climods.logic.commands.ExitCommand;
-import org.junit.jupiter.api.Test;
-
 import static nus.climods.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static nus.climods.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import org.junit.jupiter.api.Test;
+
+import nus.climods.logic.commands.ExitCommand;
 
 public class ExitCommandParserTest {
     private final ExitCommandParser parser = new ExitCommandParser();
