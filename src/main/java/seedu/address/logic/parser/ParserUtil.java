@@ -128,6 +128,9 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
+        if (Tag.isBannedTagName(trimmedTag)) {
+            throw new ParseException(String.format(Tag.MESSAGE_BANNED_TAG_NAME, trimmedTag));
+        }
         return new Tag(trimmedTag);
     }
 

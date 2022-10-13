@@ -66,8 +66,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return index.isPresent() ? new EditCommand(index.get(), editPersonDescriptor)
-                : new EditCommand(editPersonDescriptor);
+        return index.map(i -> new EditCommand(i, editPersonDescriptor)).orElse(new EditCommand(editPersonDescriptor));
     }
 
     /**
