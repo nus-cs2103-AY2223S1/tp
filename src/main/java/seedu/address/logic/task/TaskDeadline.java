@@ -2,10 +2,9 @@ package seedu.address.logic.task;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.logic.task.exceptions.DatePastException;
 import java.time.LocalDate;
 
-
+import seedu.address.logic.task.exceptions.DatePastException;
 
 /**
  * Represents the deadline of a task
