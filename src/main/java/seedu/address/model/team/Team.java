@@ -97,6 +97,13 @@ public class Team {
     }
 
     /**
+     * Removes {@code Person} from this {@code Team}.
+     * {@code person} must exist in the address book.
+     */
+    public void removeTask(Task task) {
+        taskList.remove(task);
+    }
+    /**
      * Sets a specified team member as the assignee for the task.
      * @param task The specified task to be assigned
      * @param person The specified member that task is assigned to
