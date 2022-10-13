@@ -11,6 +11,7 @@ import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
+import taskbook.model.task.Event;
 import taskbook.model.task.Task;
 import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
@@ -51,9 +52,9 @@ public abstract class TaskAddCommand extends Command {
         return new Deadline(name, assignment, description, isDone, date);
     }
 
-    //    public Task createEvent(LocalDate date) {
-    //        return new Event(name, assignment, description, isDone, date);
-    //    }
+    public Task createEvent(LocalDate date) {
+        return new Event(name, assignment, description, isDone, date);
+    }
 
     /**
      * Checks whether a person with specified name exist in the task book model,

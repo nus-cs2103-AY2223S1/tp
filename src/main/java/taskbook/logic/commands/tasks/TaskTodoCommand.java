@@ -34,8 +34,8 @@ public class TaskTodoCommand extends TaskAddCommand {
      * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}
      *
      * @param name Name of the Person in the task book.
-     * @param description The description for the new task.
-     * @param assignment Represents task assigned to user or others.
+     * @param description The description for the new to-do.
+     * @param assignment Represents to-do assigned to user or others.
      */
     public TaskTodoCommand(Name name, Description description, Assignment assignment) {
         super(name, description, assignment);
