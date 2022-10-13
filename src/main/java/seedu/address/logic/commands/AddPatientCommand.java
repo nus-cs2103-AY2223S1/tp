@@ -10,12 +10,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Adds a person to the address book.
  */
-public class AddPersonCommand extends Command {
+public class AddPatientCommand extends Command {
 
     public static final CommandWord COMMAND_WORD = new CommandWord("addpatient", "ap");
 
@@ -42,14 +42,14 @@ public class AddPersonCommand extends Command {
 
     public static final String MESSAGE_FAILURE = "New patient not added: %1$s";
 
-    private final Person toAdd;
+    private final Patient toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddPersonCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddPatientCommand(Patient patient) {
+        requireNonNull(patient);
+        toAdd = patient;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class AddPersonCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddPersonCommand // instanceof handles nulls
-                && toAdd.equals(((AddPersonCommand) other).toAdd));
+                || (other instanceof AddPatientCommand // instanceof handles nulls
+                && toAdd.equals(((AddPatientCommand) other).toAdd));
     }
 }

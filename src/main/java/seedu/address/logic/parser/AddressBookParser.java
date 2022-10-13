@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -20,7 +20,7 @@ import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
-import seedu.address.logic.commands.SelectPersonCommand;
+import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -52,14 +52,14 @@ public class AddressBookParser {
 
         if (SortCommand.COMMAND_WORD.matches(commandWord)) {
             return new SortCommandParser().parse(arguments);
-        } else if (AddPersonCommand.COMMAND_WORD.matches(commandWord)) {
-            return new AddPersonCommandParser().parse(arguments);
+        } else if (AddPatientCommand.COMMAND_WORD.matches(commandWord)) {
+            return new AddPatientCommandParser().parse(arguments);
         } else if (AddAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddAppointmentCommandParser().parse(arguments);
         } else if (EditAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditAppointmentCommandParser().parse(arguments);
         } else if (EditPersonCommand.COMMAND_WORD.matches(commandWord)) {
-            return new EditPersonCommandParser().parse(arguments);
+            return new EditPatientCommandParser().parse(arguments);
         } else if (DeleteAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeleteAppointmentCommandParser().parse(arguments);
         } else if (DeletePatientCommand.COMMAND_WORD.matches(commandWord)) {
@@ -78,8 +78,8 @@ public class AddressBookParser {
             return new ExitCommand();
         } else if (HelpCommand.COMMAND_WORD.matches(commandWord)) {
             return new HelpCommand();
-        } else if (SelectPersonCommand.COMMAND_WORD.matches(commandWord)) {
-            return new SelectPersonCommandParser().parse(arguments);
+        } else if (SelectPatientCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SelectPatientCommandParser().parse(arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

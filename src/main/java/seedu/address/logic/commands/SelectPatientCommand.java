@@ -8,12 +8,12 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Select the given person and filter appointment list by given person.
  */
-public class SelectPersonCommand extends Command {
+public class SelectPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("select", "sel");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated patient and filter "
@@ -29,7 +29,7 @@ public class SelectPersonCommand extends Command {
     /**
      * @param index of the person in the filtered person list to select
      */
-    public SelectPersonCommand(Index index) {
+    public SelectPatientCommand(Index index) {
         requireNonNull(index);
 
         this.index = index;
@@ -38,17 +38,17 @@ public class SelectPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPatientList();
+        List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Person personToSelect = lastShownList.get(index.getZeroBased());
+        Patient patientToSelect = lastShownList.get(index.getZeroBased());
 
         model.updateFilteredAppointmentList(
-                appointment -> appointment.getName().equals(personToSelect.getName()));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToSelect));
+                appointment -> appointment.getName().equals(patientToSelect.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patientToSelect));
     }
 
     @Override
@@ -57,11 +57,11 @@ public class SelectPersonCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof SelectPersonCommand)) {
+        if (!(other instanceof SelectPatientCommand)) {
             return false;
         }
 
-        SelectPersonCommand e = (SelectPersonCommand) other;
+        SelectPatientCommand e = (SelectPatientCommand) other;
         return index.equals(e.index);
     }
 }

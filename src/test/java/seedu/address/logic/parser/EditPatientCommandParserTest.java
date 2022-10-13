@@ -43,14 +43,14 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
-public class EditPersonCommandParserTest {
+public class EditPatientCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE);
 
-    private EditPersonCommandParser parser = new EditPersonCommandParser();
+    private EditPatientCommandParser parser = new EditPatientCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

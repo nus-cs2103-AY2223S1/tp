@@ -35,7 +35,7 @@
         </MenuBar>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-              <VBox fx:id="personList" styleClass="patient-list" HBox.hgrow="SOMETIMES">
+              <VBox fx:id="patientList" styleClass="patient-list" HBox.hgrow="SOMETIMES">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
