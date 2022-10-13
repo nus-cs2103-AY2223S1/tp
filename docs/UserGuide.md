@@ -136,9 +136,10 @@ Examples:
 Finds internships whose company names contain any of the given keywords.
 
 Format: `findi KEYWORD`
-- The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**
+- The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**.
 - Only the company name is searched.
-- Partial names will be matched if the name contains the word perfectly e.g. **ltd** will match **XYZ Ltd**, but **lt** will not match **XYZ Ltd**
+- The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
+- Partial names will be matched if the name contains the word perfectly e.g. **ltd** will match **XYZ Ltd**, but **lt** will not match **XYZ Ltd**.
 - This search returns all internships with company names that has words that perfectly match at least 1 of the keywords.
 
 Example of usage:
