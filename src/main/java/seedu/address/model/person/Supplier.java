@@ -7,13 +7,53 @@ import java.util.Set;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a supplier in the address book.
+ */
 public class Supplier extends Person {
 
     private final ArrayList<Pet> petsOnSale;
 
-    public Supplier(PersonCategory personCategory, Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    /**
+     * Constructs a supplier object.
+     *
+     * @param personCategory By default, it should be PersonCategory.Supplier
+     * @param name The name of this person.
+     * @param phone The phone number in string.
+     * @param email The email, which will be checked against regex.
+     * @param address The address of this person, which will be checked against the regex.
+     * @param tags The tags of this person.
+     * @param petsOnSale The pets supplied by this supplier.
+     */
+    public Supplier(PersonCategory personCategory,
+                    Name name,
+                    Phone phone,
+                    Email email,
+                    Address address,
+                    Set<Tag> tags,
                     ArrayList<Pet> petsOnSale) {
-        super(personCategory, name, phone, email, address, tags);
+        super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
+        this.petsOnSale = petsOnSale;
+    }
+
+    /**
+     * Constructs a supplier object.
+     * By default, it should be PersonCategory.Supplier
+     *
+     * @param name The name of this person.
+     * @param phone The phone number in string.
+     * @param email The email, which will be checked against regex.
+     * @param address The address of this person, which will be checked against the regex.
+     * @param tags The tags of this person.
+     * @param petsOnSale The pets supplied by this supplier.
+     */
+    public Supplier(Name name,
+                    Phone phone,
+                    Email email,
+                    Address address,
+                    Set<Tag> tags,
+                    ArrayList<Pet> petsOnSale) {
+        super(PersonCategory.SUPPLIER, name, phone, email, address, tags);
         this.petsOnSale = petsOnSale;
     }
 
@@ -43,7 +83,13 @@ public class Supplier extends Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPersonCategory(), getName(), getPhone(), getEmail(), getAddress(), getTags(), petsOnSale);
+        return Objects.hash(getPersonCategory(),
+                getName(),
+                getPhone(),
+                getEmail(),
+                getAddress(),
+                getTags(),
+                petsOnSale);
     }
 
     @Override

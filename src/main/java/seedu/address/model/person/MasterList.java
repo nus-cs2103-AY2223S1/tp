@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
+/**
+ * A master list that stores all unique/distinct Buyers, Deliverers, Suppliers, Pets and Orders.
+ */
 public class MasterList {
     private final ObservableList<Object> internalList = FXCollections.observableArrayList();
 

@@ -1,5 +1,10 @@
 package seedu.address.model.order;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
+
 import java.util.Objects;
 
 import seedu.address.model.pet.Age;
@@ -7,14 +12,13 @@ import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_AGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_COLOR_PATTERN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PET_SPECIES;
-
+/**
+ * A class that contains some properties of a pet desired in an order.
+ */
 public class Request {
 
     public static final String MESSAGE_USAGE = "The usage of a request is as follows: \n"
+            + "add-r"
             + PREFIX_PET_SPECIES + "SPECIES "
             + PREFIX_ORDER_AGE + "AGE "
             + PREFIX_PET_COLOR + "COLOR "
@@ -26,7 +30,17 @@ public class Request {
     private final ColorPattern colorPattern;
     private final Species species;
 
-    public Request(Age age, Color color, ColorPattern colorPattern,
+    /**
+     * Constructs a Request object.
+     *
+     * @param age The age of the pet desired.
+     * @param color The color of the pet desired.
+     * @param colorPattern The color pattern of the pet desired.
+     * @param species The species wanted.
+     */
+    public Request(Age age,
+                   Color color,
+                   ColorPattern colorPattern,
                    Species species) {
         this.age = age;
         this.color = color;

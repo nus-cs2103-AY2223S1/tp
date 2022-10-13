@@ -1,8 +1,16 @@
 package seedu.address.model.pet;
 
+/**
+ * A class that represents the certificates that a pet has. For example, noble blood certificate.
+ */
 public class PetCertificate {
     private final String certificate;
 
+    /**
+     * Constructs a PetCertificate object.
+     *
+     * @param certificate The string representation of the certificate.
+     */
     public PetCertificate(String certificate) {
         if (certificate == null) {
             this.certificate = "";

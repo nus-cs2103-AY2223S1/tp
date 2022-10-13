@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.model.order.Price;
 import seedu.address.model.order.PriceRange;
 

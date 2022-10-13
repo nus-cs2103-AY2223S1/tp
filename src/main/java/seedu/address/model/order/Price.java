@@ -1,5 +1,8 @@
 package seedu.address.model.order;
 
+/**
+ * A class that represents the final settled price of an order.
+ */
 public class Price implements Comparable<Price> {
 
     public static final double NOT_APPLICABLE_PRICE = -1;

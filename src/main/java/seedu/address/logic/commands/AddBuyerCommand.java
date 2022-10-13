@@ -1,21 +1,23 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Buyer;
-import seedu.address.model.person.PersonCategory;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.order.Order;
+import seedu.address.model.person.Buyer;
+import seedu.address.model.pet.Pet;
+
 /**
- * Adds a person to the address book.
+ * Adds a buyer to the address book.
+ * If this buyer comes with multiple orders (where one order can have a pet as well), these orders and pets
+ * will be also added to their respective unique lists.
  */
 public class AddBuyerCommand extends AddPersonCommand {
 
@@ -59,7 +61,23 @@ public class AddBuyerCommand extends AddPersonCommand {
         }
 
         model.addBuyer(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        int numOrdersAdded = 0;
+        int numPetsAdded = 0;
+        for (Order order : toAdd.getOrders()) {
+            model.addOrder(order);
+            numOrdersAdded++;
+            Pet pet = order.getPet();
+            if (pet != null) {
+                model.addPet(pet);
+                numPetsAdded++;
+            }
+        }
+
+        return new CommandResult("\n"
+                + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n"
+                + numPetsAdded + (numPetsAdded == 1 ? " pet" : " pets") + " added\n\n"
+                + String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

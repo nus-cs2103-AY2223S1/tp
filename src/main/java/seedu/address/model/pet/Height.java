@@ -1,5 +1,8 @@
 package seedu.address.model.pet;
 
+/**
+ * A class that represents the height of a pet.
+ */
 public class Height {
 
     public static final String UNIT = "cm";
@@ -8,6 +11,10 @@ public class Height {
 
     private final double value;
 
+    /**
+     * Constructs the height object.
+     * @param value The height in double floating point number.
+     */
     public Height(double value) {
         this.value = value;
     }
