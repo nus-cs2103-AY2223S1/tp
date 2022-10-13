@@ -57,6 +57,9 @@ public class ParserUtil {
     public static TaskDesc parseTaskDesc(String taskDesc) throws ParseException {
         requireNonNull(taskDesc);
         String trimmedTaskDesc = taskDesc.trim();
+        if (!TaskDesc.isValidTaskDesc(trimmedTaskDesc)) {
+            throw new ParseException(TaskDesc.MESSAGE_CONSTRAINTS);
+        }
         return new TaskDesc(trimmedTaskDesc);
     }
 
