@@ -1,9 +1,9 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: InterNUS
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-F11-1/tp/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103T-F11-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-F11-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-F11-1/tp/branch/master/graph/badge.svg?token=850AJ9TRYH)](https://codecov.io/gh/AY2223S1-CS2103T-F11-1/tp)
 
 ![Ui](images/Ui.png)

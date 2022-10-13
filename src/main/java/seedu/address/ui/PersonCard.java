@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.internship.InternshipId;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String NO_INTERNSHIP = "No internship linked.";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -35,11 +37,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label internship;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,11 +52,27 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (person.getInternshipId() == null) {
+            internship.setText(NO_INTERNSHIP);
+        } else {
+            internship.setText("Internship: " + person.getInternshipId().toString());
+        }
+    }
+
+    public InternshipId getInternshipId() {
+        return person.getInternshipId();
+    }
+
+    public void setInternship(String internshipName) {
+        if (internshipName == null) {
+            internship.setText(NO_INTERNSHIP);
+        } else {
+            internship.setText("Internship: " + internshipName);
+        }
     }
 
     @Override

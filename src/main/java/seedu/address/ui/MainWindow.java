@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private InternshipListPanel internshipListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane internshipListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -109,9 +114,23 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+    void fillInnerPartsPerson() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getAddressBook());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void fillInnerPartsInternship() {
+        internshipListPanel = new InternshipListPanel(logic.getFilteredInternshipList(), logic.getAddressBook());
+        internshipListPanelPlaceholder.getChildren().add(internshipListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -165,6 +184,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public InternshipListPanel getInternshipListPanel() {
+        return internshipListPanel;
     }
 
     /**
