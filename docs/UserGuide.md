@@ -43,7 +43,7 @@ title: User Guide
 | `delete`   | `delete INDEX`                                                               |
 | `find`     | `find KEYWORD [MORE_KEYWORDS...]`                                            |
 | `list`     | `list`                                                                       |
-| `addc`     | `addc c/CLASS_NAME`                                                          |
+| `addc`     | `addc c/CLASS_NAME [c/MORE_CLASS_NAMES...]`                                  |
 | `deletec`  | `deletec c/CLASS_NAME`                                                       |
 | `assign`   | `assign INDEX... c/CLASS_NAME`                                               |
 | `unassign` | `unassign INDEX... c/CLASS_NAME`                                             |
@@ -138,6 +138,21 @@ Examples:
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Add classes: `addc`
+
+<aside>
+ℹ️ Add one or more classes.
+
+</aside>
+
+Format: `addc c/CLASS_NAME [c/MORE_CLASS_NAMES...]`
+
+- Add classes with specified names.
+
+Examples:
+
+- `addc c/CS2103T c/CS1231S` adds new classes named **CS2103T** and **CS1231S**. 
+
 ### Delete a class: `deletec`
 
 <aside>
@@ -151,7 +166,7 @@ Format: `deletec c/CLASS_NAME`
 
 Examples:
 
-- `deletec c/CS2103T` deletes the class named **CS2103T.**
+- `deletec c/CS2103T` deletes the class named **CS2103T**.
 
 ### Assign students to class: `assign`
 
