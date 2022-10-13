@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_TASK;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -19,7 +21,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
 /**
- * Edits the details of a task in the task list.
+ * Edits the task with the specified index number in the displayed task list.
  */
 public class EditTaskCommand extends Command {
 
@@ -37,8 +39,6 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_TASK_NOT_EDITED = "No changes are observed.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "This task's module does not exist";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
