@@ -14,7 +14,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 /**
  * Parses input arguments and creates a new FindPetCommand object.
  */
-public class FindPetCommandParser {
+public class FindPetCommandParser implements Parser<FindPetCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -24,7 +24,7 @@ public class FindPetCommandParser {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPetCommand.MESSAGE_USAGE));
         }
         String[] nameKeywords = trimmedArgs.split("\\s+");
         return new FindPetCommand(new PetNameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));
