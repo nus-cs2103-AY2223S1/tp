@@ -111,7 +111,7 @@ Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] 
 * `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` are fields to find information about appointments (appointment criterias).
 * Only patients and appointments that satisifies all criterias will be displayed.
   * A patient must satisify all patient criterias and have at least 1 appointment that satisifies all the appointment criterias to be displayed.
-  * An appointment must satisify all appointment fields and belong to a patient that satisifes all patient criterias to be displayed.
+  * An appointment must satisify all appointment criterias and belong to a patient that satisifes all patient criterias to be displayed.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * For all fields except `[ds/DATE_START]`, `[de/DATE_END]` and `[t/TAG]` something something
 * For `[t/TAG]` fields, only tags with a full word match will be matched e.g `Cough` will not match `Coughing`.
