@@ -15,11 +15,11 @@ import nus.climods.model.Model;
  */
 public class UserModule {
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
-    private final ModulesApi api = new ModulesApi();
 
     // Identity fields
-    private final Module apiModule;
-    private final String acadYear = "2022-2023";
+    private final Module listModule;
+
+    //TODO: Remove when implement tutorial/lecture support
     private String tutorial = "Tutorial: Monday, 1400-1500";
     private String lecture = "Lecture: Friday, 1600-1800";
 
@@ -35,35 +35,35 @@ public class UserModule {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
         }
 
-        apiModule = optionalModule.get();
+        listModule = optionalModule.get();
     }
 
     /**
      * Constructor for use purely in testing stub classes.
      */
     protected UserModule() {
-        this.apiModule = null;
+        this.listModule = null;
     }
 
     public Module getApiModule() {
-        return this.apiModule;
+        return this.listModule;
     }
 
     public String getUserModuleCode() {
-        return this.apiModule.getCode();
+        return this.listModule.getCode();
     }
 
     public String getUserModuleTitle() {
-        return this.apiModule.getTitle();
+        return this.listModule.getTitle();
     }
 
     public String getDepartment() {
-        return apiModule.getDepartment();
+        return listModule.getDepartment();
     }
 
     //TODO: fix getWorkload from API
     public String getWorkload() {
-        return apiModule.getModuleCredit();
+        return listModule.getModuleCredit();
     }
 
     //TODO: add Tutorial method
@@ -84,7 +84,7 @@ public class UserModule {
     }
 
     private List<Integer> getAvailableSemesters() {
-        return apiModule.getSemesters();
+        return listModule.getSemesters();
     }
 
     // TODO: update with user's selected semester
@@ -125,7 +125,7 @@ public class UserModule {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(apiModule);
+        return Objects.hash(listModule);
     }
 
     @Override
