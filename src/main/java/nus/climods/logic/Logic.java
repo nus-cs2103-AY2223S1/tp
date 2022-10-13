@@ -7,7 +7,6 @@ import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.module.Module;
-import nus.climods.model.module.ReadOnlyModuleList;
 
 /**
  * API of the Logic component
@@ -24,9 +23,9 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ReadOnlyModuleList getModuleList();
+    ObservableList<Module> getFilteredModuleList();
 
-    ObservableList<Module> getUserModuleList();
+    ObservableList<Module> getFilteredUserModuleList();
 
     /**
      * Returns the user prefs' GUI settings.

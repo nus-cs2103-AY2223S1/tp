@@ -135,7 +135,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        savedModuleListPanel = new SavedModuleListPanel(logic.getUserModuleList());
+        savedModuleListPanel = new SavedModuleListPanel(logic.getFilteredUserModuleList());
         savedModuleListPanelPlaceholder.getChildren().add(savedModuleListPanel.getRoot());
 
         modulesPane.getItems().addAll(moduleListPanelPlaceholder, savedModuleListPanelPlaceholder);

@@ -3,10 +3,13 @@ package nus.climods.model;
 import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.Optional;
 
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.model.module.CodeContainsKeywordsPredicate;
@@ -15,28 +18,27 @@ import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of module list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private final ModuleList moduleList;
+
     private final UserPrefs userPrefs;
-    // The current module list based on filters applied
-    private FilteredList<Module> filteredModuleList;
+    private final ModuleList moduleList;
+    private final FilteredList<Module> filteredModuleList;
+
     /**
-     * Initializes a ModelManager with the given module list and userPrefs.
+     * Initializes a ModelManager with the given moduleList and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(moduleList, userPrefs);
 
         logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
 
+        this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = new ModuleList(moduleList);
         this.filteredModuleList = new FilteredList<>(moduleList.getModules());
-        this.userPrefs = new UserPrefs(userPrefs);
     }
-
-    //=========== UserPrefs ==================================================================================
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
@@ -78,5 +80,14 @@ public class ModelManager implements Model {
     @Override
     public FilteredList<Module> getFilteredModuleList() {
         return filteredModuleList;
+
+    public ObservableList<Module> getFilteredModuleList() {
+        return this.filteredModuleList;
+    }
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        this.filteredModuleList.setPredicate(predicate);
     }
 }

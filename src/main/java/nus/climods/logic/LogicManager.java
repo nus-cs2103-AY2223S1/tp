@@ -14,7 +14,6 @@ import nus.climods.logic.parser.CliModsParser;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
 import nus.climods.model.module.Module;
-import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.storage.Storage;
 
 /**
@@ -50,12 +49,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyModuleList getModuleList() {
-        return model.getModuleList();
+    public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
     }
 
     @Override
-    public ObservableList<Module> getUserModuleList() {
+    public ObservableList<Module> getFilteredUserModuleList() {
         // TODO Add implementation for user module list
         return FXCollections.observableList(new ArrayList<>());
     }

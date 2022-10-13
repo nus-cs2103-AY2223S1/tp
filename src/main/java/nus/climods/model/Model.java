@@ -1,8 +1,11 @@
 package nus.climods.model;
 
+import java.util.function.Predicate;
 import java.util.Optional;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.ObservableList;
+
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
@@ -37,4 +40,8 @@ public interface Model {
     void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
 
     FilteredList<Module> getFilteredModuleList();
+
+    ObservableList<Module> getFilteredModuleList();
+
+    void setFilteredModuleList(Predicate<Module> predicate);
 }
