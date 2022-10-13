@@ -64,12 +64,4 @@ public class DeleteRecordCommandTest {
         // different person -> returns false
         assertFalse(firstDeleteRecordCommand.equals(secondDeleteRecordCommand));
     }
-    /**
-     * Updates {@code model}'s filtered record list to show no records.
-     */
-    private void showNoRecord(Model model) {
-        model.updateFilteredRecordList(p -> false);
-
-        assertTrue(model.getFilteredRecordList().isEmpty());
-    }
 }
