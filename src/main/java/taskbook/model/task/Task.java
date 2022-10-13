@@ -68,13 +68,18 @@ public abstract class Task {
      * Returns true if both tasks have the same description, person and assignment.
      * This defines a weaker notion of equality between two tasks.
      */
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
+    public boolean isSameTask(Task other) {
+        if (other == this) {
             return true;
         }
 
-        return otherTask != null
-                && otherTask.getName().equals(getName())
+        if (!(other instanceof Task)) {
+            return false;
+        }
+
+        // TODO: Include isDone in equality check?
+        Task otherTask = (Task) other;
+        return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
                 && otherTask.getDescription().equals(getDescription());
     }
