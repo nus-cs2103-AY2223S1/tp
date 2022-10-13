@@ -22,7 +22,7 @@ public class CodeContainsKeywordsPredicate implements Predicate<Module> {
     @Override
     public boolean test(Module module) {
         if (facultyCode.isPresent()) {
-            Pattern facultyCodeRegex = Pattern.compile(String.format("(?i)%s\\d{4}$", facultyCode.get()));
+            Pattern facultyCodeRegex = Pattern.compile(String.format("^(?i)%s\\d{4}$", facultyCode.get()));
             return facultyCodeRegex.matcher(module.getCode()).find();
         }
         return true;
