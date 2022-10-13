@@ -9,17 +9,15 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.address.Address;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.DesiredCharacteristics;
-import seedu.address.model.role.PriceRange;
-import seedu.address.model.role.Properties;
-import seedu.address.model.role.Seller;
+import seedu.address.model.desiredcharacteristics.DesiredCharacteristics;
+import seedu.address.model.pricerange.PriceRange;
 import seedu.address.model.tag.Tag;
 
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: field values are validated, immutable.
+ * Only priceRange and desiredCharacteristics may be null.
  */
 public class Person {
 
@@ -30,35 +28,23 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Optional<PriceRange> priceRange;
+    private final Optional<DesiredCharacteristics> desiredCharacteristics;
     private final Set<Tag> tags = new HashSet<>();
-    private Optional<Buyer> buyer = Optional.empty();
-
-    private Optional<Seller> seller = Optional.empty();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+                  PriceRange priceRange, DesiredCharacteristics desiredCharacteristics, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.priceRange = Optional.ofNullable(priceRange);
+        this.desiredCharacteristics = Optional.ofNullable(desiredCharacteristics);
         this.tags.addAll(tags);
-    }
-
-    /**
-     * Temporarily for UI Testing of Add Buyer Command
-     */
-    public boolean isBuyer() {
-        return buyer.isPresent();
-    }
-
-    /**
-     * Temporarily for UI Testing of Add Seller Command
-     */
-    public boolean isSeller() {
-        return seller.isPresent();
     }
 
     public Name getName() {
@@ -77,42 +63,20 @@ public class Person {
         return address;
     }
 
+    public Optional<PriceRange> getPriceRange() {
+        return this.priceRange;
+    }
+
+    public Optional<DesiredCharacteristics> getDesiredCharacteristics() {
+        return this.desiredCharacteristics;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public void setBuyer(Buyer buyer) {
-        this.buyer = Optional.of(buyer);
-    }
-
-    public void setSeller(Seller seller) {
-        // TODO: tell using we are overriding seller if it is present
-        this.seller = Optional.of(seller);
-    }
-
-    public Properties getSellerProperties() {
-        Seller s = seller.orElseThrow();
-        return s.getSellerProperties();
-    }
-
-    /**
-     * Temporarily for UI Testing of Add Buyer Command
-     */
-    public PriceRange getBuyerRange() {
-        Buyer b = buyer.orElseThrow();
-        return b.getPriceRange();
-    }
-
-    /**
-     * Temporarily for UI Testing of Add Buyer Command
-     */
-    public DesiredCharacteristics getBuyerCharacteristics() {
-        Buyer b = buyer.orElseThrow();
-        return b.getDesiredCharacteristics();
     }
 
     /**
@@ -147,6 +111,8 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getPriceRange().equals(getPriceRange())
+                && otherPerson.getDesiredCharacteristics().equals(getDesiredCharacteristics())
                 && otherPerson.getTags().equals(getTags());
     }
 
@@ -165,15 +131,16 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
-        if (seller.isPresent()) {
-            builder.append("; Selling: ")
-                    .append(getSellerProperties());
-        }
-
+                .append(getAddress())
+                .append("; Budget: ")
+                .append(getPriceRange().map(PriceRange::toString).orElse("Budget: Not Specified"))
+                .append("; Desired Characteristics: ")
+                .append(getDesiredCharacteristics()
+                        .map(DesiredCharacteristics::toString)
+                        .orElse("Desired Characteristics: Not Specified"));
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append(" Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

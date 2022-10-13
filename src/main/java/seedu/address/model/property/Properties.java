@@ -1,4 +1,4 @@
-package seedu.address.model.role;
+package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.address.Address;
-import seedu.address.model.property.Property;
 
 /**
  * Represents a list of properties that a seller is selling / managing.

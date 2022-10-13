@@ -24,7 +24,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.role.Seller;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -39,11 +38,7 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person currentPerson = model.getFilteredPersonList().get(0);
-        Person editedPerson = new PersonBuilder().build();
-        // Temporary, should instead enforce immutability for setBuyer and setSeller
-        if (currentPerson.isSeller()) {
-            editedPerson.setSeller(new Seller(currentPerson.getSellerProperties()));
-        }
+        Person editedPerson = new PersonBuilder().withPriceRange("20 - 50").withDesiredCharacteristics("Clean").build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
@@ -99,10 +94,6 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        // Temporary, should instead enforce immutability for setBuyer and setSeller
-        if (personInFilteredList.isSeller()) {
-            editedPerson.setSeller(new Seller(personInFilteredList.getSellerProperties()));
-        }
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

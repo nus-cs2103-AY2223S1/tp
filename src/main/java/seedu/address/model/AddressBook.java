@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -10,8 +9,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.UniquePropertyList;
-import seedu.address.model.role.Buyer;
-import seedu.address.model.role.Seller;
 
 /**
  * Wraps all data at the address-book level
