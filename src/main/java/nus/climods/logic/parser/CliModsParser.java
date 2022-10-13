@@ -41,9 +41,8 @@ public class CliModsParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case (ListCommand.COMMAND_WORD):
-            String trimmedArgs = arguments.trim();
-            return new ListCommand(new FacultyCodeParameter(trimmedArgs), new UserFlagParameter(trimmedArgs));
+        case ListCommand.COMMAND_WORD:
+            return new ListCommandParser().parse(arguments);
         case (FindCommand.COMMAND_WORD):
             return new FindCommandParser().parse(arguments);
         case (HelpCommand.COMMAND_WORD):
