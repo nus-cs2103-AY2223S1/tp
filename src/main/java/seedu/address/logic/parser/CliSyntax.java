@@ -15,4 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_MOD_CODE = new Prefix("c/");
 
+    public static final Prefix PREFIX_PRIORITY_STATUS = new Prefix("p/");
+
 }

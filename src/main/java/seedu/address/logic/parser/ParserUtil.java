@@ -15,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskModule;
@@ -140,6 +141,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses the priority status into a PriorityTag.
+     *
+     * @param priorityTag The priority status added to the tag.
+     * @return The priorityTag object containing the priority status.
+     * @throws ParseException if the priority status is not valid.
+     */
+    public static PriorityTag parsePriorityTag(String priorityTag) throws ParseException {
+        requireNonNull(priorityTag);
+        String trimmedPriorityStatus = priorityTag.strip();
+        if (!PriorityTag.isValidTag(priorityTag)) {
+            throw new ParseException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
+        }
+        return new PriorityTag(trimmedPriorityStatus);
     }
 
     /**
