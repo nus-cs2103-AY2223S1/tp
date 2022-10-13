@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.testutil.CustomerBuilder;
+import seedu.address.ui.GuiTab;
 
 public class AddCustomerCommandTest {
 
@@ -184,6 +185,15 @@ public class AddCustomerCommandTest {
         @Override
         public boolean hasSelectedCommission() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void selectTab(GuiTab tab) {
+        }
+
+        @Override
+        public GuiTab getSelectedTab() {
+            return null;
         }
 
         @Override

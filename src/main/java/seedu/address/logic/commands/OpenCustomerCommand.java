@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * Selects a customer and shows their details.
@@ -42,7 +43,7 @@ public class OpenCustomerCommand extends Command {
 
         Customer customerToOpen = lastShownList.get(targetIndex.getZeroBased());
         model.selectCustomer(customerToOpen);
-
+        model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(String.format(MESSAGE_OPEN_CUSTOMER_SUCCESS, customerToOpen));
     }
 

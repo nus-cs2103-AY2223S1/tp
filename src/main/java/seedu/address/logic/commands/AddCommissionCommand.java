@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * Adds a commission to the selected customer.
@@ -64,6 +65,7 @@ public class AddCommissionCommand extends Command {
         }
         selectedCustomer.addCommission(newCommission);
 
+        model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

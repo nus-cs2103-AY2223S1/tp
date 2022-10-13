@@ -1,7 +1,11 @@
 package seedu.address.logic;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMMISSIONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.beans.value.ObservableValue;
@@ -20,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * The main LogicManager of the app.
@@ -48,6 +53,18 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        if (!model.getFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
+            model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+            List<Customer> customers = model.getFilteredCustomerList();
+            model.selectCustomer(customers.size() > 0 ? customers.get(0) : null);
+        }
+
+        if (!model.getFilteredCommissionList().contains(model.getSelectedCommission().getValue())) {
+            model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
+            List<Commission> commissions = model.getFilteredCommissionList();
+            model.selectCommission(commissions.size() > 0 ? commissions.get(0) : null);
+        }
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -107,5 +124,10 @@ public class LogicManager implements Logic {
     @Override
     public void selectCommission(Commission commission) {
         model.selectCommission(commission);
+    }
+
+    @Override
+    public GuiTab getSelectedTab() {
+        return model.getSelectedTab();
     }
 }

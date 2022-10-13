@@ -16,6 +16,7 @@ import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -29,6 +30,8 @@ public class ModelManager implements Model {
     private final ObservableObject<FilteredList<Commission>> observableFilteredCommissions = new ObservableObject<>();
     private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
     private final ObservableObject<Commission> selectedCommission = new ObservableObject<>();
+
+    private GuiTab selectedTab = GuiTab.CUSTOMER;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -113,7 +116,14 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    @Override
+    public void selectTab(GuiTab tab) {
+        selectedTab = tab;
+    }
+
+    public GuiTab getSelectedTab() {
+        return selectedTab;
+    }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
