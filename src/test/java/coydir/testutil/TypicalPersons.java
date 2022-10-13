@@ -61,9 +61,9 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withPosition("Intern")
             .withAddress("chicago ave").build();
     public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
-            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withPhone("00000000")
-            .withEmail("null@null.com").withPosition("Intern")
-            .withAddress("null").build();
+            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withEmptyPhone()
+            .withEmptyEmail().withPosition("Intern")
+            .withEmptyAddress().build();
 
 
     // Manually added - Person's details found in {@code CommandTestUtil}
