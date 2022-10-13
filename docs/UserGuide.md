@@ -66,10 +66,11 @@ Format: `help`
 
 Adds a person to InterNUS.
 
-Format: `addp n/NAME e/EMAIL [p/PHONE_NUMBER] [t/TAG]…​ [l/LINK_INDEX]`
+Format: `addp n/NAME e/EMAIL p/PHONE_NUMBER [t/TAG]…​ [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0). Phone number is optional, and link index is optional too.
+A person can have any number of tags (including 0). Link index is optional.
+The link index refers to the index number shown in the internship list.
 </div>
 
 Examples:
@@ -84,12 +85,12 @@ Format: `addi c/COMPANY_NAME r/ROLE s/STATUS [d/DATE_OF_INTERVIEW] [l/LINK_INDEX
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Date of interview can be left blank, since it is possible that an interview is not scheduled yet.
-Link index is optional too.
+The link index refers to the index number shown in the internship list and is optional. 
 </div>
 
 Examples:
 * `addi n/TikTok r/Data Engineer s/rejected l/1`
-* `addi n/Grab r/Full Stack Developer s/awaiting interview d/2020-12-20`
+* `addi c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00`
 
 ### Listing all persons : `listp`
 
