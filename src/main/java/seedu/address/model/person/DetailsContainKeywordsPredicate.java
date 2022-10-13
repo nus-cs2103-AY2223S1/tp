@@ -20,6 +20,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
     private final Set<Address> addressKeywords;
     private final Set<Tag> tagKeywords;
     private final Set<Status> statusKeywords;
+    private final Set<Note> noteKeywords;
 
     /**
      * Constructor for DetailsContainKeywordsPredicate.
@@ -34,6 +35,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.addressKeywords = new HashSet<>();
         this.tagKeywords = new HashSet<>();
         this.statusKeywords = new HashSet<>();
+        this.noteKeywords = new HashSet<>();
     }
 
     /**
@@ -44,10 +46,11 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
      * @param emailKeywords   Set of Email keywords to search for.
      * @param addressKeywords Set of Address keywords to search for.
      * @param tagKeywords     Set of Tag keywords to search for.
+     * @param noteKeywords    Set of Note keywords to search for.
      */
     public DetailsContainKeywordsPredicate(Set<Name> nameKeywords, Set<Phone> phoneKeywords, Set<Email> emailKeywords,
                                            Set<Address> addressKeywords, Set<Tag> tagKeywords,
-                                           Set<Status> statusKeywords) {
+                                           Set<Status> statusKeywords, Set<Note> noteKeywords) {
         this.keywords = new ArrayList<>();
         this.nameKeywords = nameKeywords;
         this.phoneKeywords = phoneKeywords;
@@ -55,13 +58,15 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.addressKeywords = addressKeywords;
         this.tagKeywords = tagKeywords;
         this.statusKeywords = statusKeywords;
+        this.noteKeywords = noteKeywords;
     }
 
     @Override
     public boolean test(Person person) {
         if (!keywords.isEmpty()) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getDetailsAsString(), keyword));
+                    .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(person.getDetailsAsString(),
+                            keyword));
         } else {
             return nameKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getName().fullName,
@@ -78,7 +83,10 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
                             keyword.tagName))
                     || statusKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getStatus().toString(),
-                            keyword.toString()));
+                            keyword.toString()))
+                    || noteKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getNote().value,
+                            keyword.value));
         }
     }
 
