@@ -1,4 +1,5 @@
-.label {
+.label,
+.result-box > TextArea {
   -fx-font-size: 11pt;
 }
 
@@ -23,7 +24,9 @@
 }
 
 .command-placeholder,
-.command-box > TextField {
+.command-box > TextField,
+.result-placeholder,
+.result-box > TextArea {
   -fx-focus-color: transparent;
   -fx-text-box-border: transparent;
   -fx-background-color: transparent;
@@ -59,13 +62,17 @@
   -fx-pref-height: 100;
 }
 
-.command-box > TextField {
-  /* TODO: Mono font */
-  -fx-font-family: Menlo;
+.command-box > TextField,
+.result-box > TextArea {
   -fx-text-fill: black;
-  -fx-prompt-text-fill: #363636;
   -fx-highlight-fill: brown; // TODO
   -fx-highlight-text-fill: pink; // TODO
 
   -fx-padding: 0;
+}
+
+.command-box > TextField {
+  /* TODO: Mono font */
+  -fx-font-family: Menlo;
+  -fx-prompt-text-fill: #363636;
 }
