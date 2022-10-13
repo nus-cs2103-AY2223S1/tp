@@ -25,14 +25,14 @@ class PhoneContainsSequencePredicateTest {
 
     @Test
     void test_phoneContainsSequence_returnsTrue() {
-        Person personToTest = generatePersonWithPhone("12345678");
+        Person personToTest = generatePersonWithPhone("44556677");
 
         // Same phone
-        PhoneContainsSequencePredicate predicate = new PhoneContainsSequencePredicate("12345678");
+        PhoneContainsSequencePredicate predicate = new PhoneContainsSequencePredicate("44556677");
         assertTrue(predicate.test(personToTest));
 
         // Contains sequence
-        predicate = new PhoneContainsSequencePredicate("2345");
+        predicate = new PhoneContainsSequencePredicate("5667");
         assertTrue(predicate.test(personToTest));
     }
 
@@ -56,7 +56,7 @@ class PhoneContainsSequencePredicateTest {
         predicate = new PhoneContainsSequencePredicate("1234567890");
         assertFalse(predicate.test(personToTest));
 
-        // Keywords match name, email and address, but does not match name
+        // Keywords match name, email and address, but does not match phone
         predicate = new PhoneContainsSequencePredicate("12345");
         assertFalse(predicate.test(new PersonBuilder().withName("12345").withPhone("99999")
                 .withEmail("12345@email.com").withAddress("12345 Street").build()));

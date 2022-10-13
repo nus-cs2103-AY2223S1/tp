@@ -65,7 +65,7 @@ class NameContainsSequencePredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsSequencePredicate("John");
         assertFalse(predicate.test(new PersonBuilder().withName("12345").withPhone("12345")
-                .withEmail("John@email.com").withAddress("John Street").build()));
+                .withEmail("John@gmail.com").withAddress("John Street").build()));
     }
 
     private Person generatePersonWithName(String name) {
