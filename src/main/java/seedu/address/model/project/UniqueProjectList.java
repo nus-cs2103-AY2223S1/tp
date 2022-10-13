@@ -52,21 +52,7 @@ public class UniqueProjectList implements Iterable<Project> {
         return internalList.stream().anyMatch(toCheck::isSameProject);
     }
 
-    /**
-     * Method to generate a project id temporarily
-     *
-     * @return project id
-     */
-    public static int generateId() {
-        int count = 0;
-        for (Project p : internalList) {
-            if (p.getId().getIdInt() > count) {
-                count = p.getId().getIdInt();
-            }
-        }
-        return count + 1;
-    }
-
+ 
     /**
      * Adds a project to the list.
      * The project must not already exist in the list.
