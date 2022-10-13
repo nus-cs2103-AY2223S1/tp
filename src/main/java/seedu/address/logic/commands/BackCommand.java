@@ -18,7 +18,7 @@ public class BackCommand extends Command {
     }
 
     /**
-     * Back command can be run on every panel
+     * Returns true because back command can be run on every panel
      *
      * @param name of the given panel.
      * @return true
