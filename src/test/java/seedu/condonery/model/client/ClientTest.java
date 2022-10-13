@@ -2,19 +2,14 @@ package seedu.condonery.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.condonery.logic.commands.CommandTestUtil.*;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.condonery.testutil.Assert.assertThrows;
-import static seedu.condonery.testutil.TypicalClients.*;
-
-import java.util.Set;
+import static seedu.condonery.testutil.TypicalClients.ALICE_CLIENT;
+import static seedu.condonery.testutil.TypicalClients.BOB_CLIENT;
 
 import org.junit.jupiter.api.Test;
-import seedu.condonery.model.person.Person;
-import seedu.condonery.model.tag.Tag;
 import seedu.condonery.testutil.ClientBuilder;
-import seedu.condonery.testutil.PersonBuilder;
-import seedu.condonery.testutil.PropertyBuilder;
 
 public class ClientTest {
 
@@ -32,7 +27,8 @@ public class ClientTest {
         assertFalse(ALICE_CLIENT.isSameClient(null));
 
         // same name, all other attributes different -> returns true
-        Client editedAlice = new ClientBuilder(ALICE_CLIENT).withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
+        Client editedAlice = new ClientBuilder(ALICE_CLIENT).withName(VALID_NAME_BOB)
+                .withAddress(VALID_ADDRESS_BOB)
                 .withTags("tag1", "tag2").build();
         assertTrue(ALICE_CLIENT.isSameClient(editedAlice));
 
