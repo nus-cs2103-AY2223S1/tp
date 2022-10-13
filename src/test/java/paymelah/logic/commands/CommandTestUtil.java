@@ -3,7 +3,9 @@ package paymelah.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
@@ -69,7 +71,20 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_DEBT_DESC = " ";
+
+    public static final String VALID_DESCRIPTION_MCDONALDS = "McDonald's";
+    public static final String VALID_DESCRIPTION_SUPPER = "supper jio";
+    public static final String VALID_MONEY_MCDONALDS = "10.80";
+    public static final String VALID_MONEY_SUPPER = "$4.5";
+
+    public static final String DESCRIPTION_DESC_MCDONALDS = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MCDONALDS;
+    public static final String DESCRIPTION_DESC_SUPPER = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SUPPER;
+
+    public static final String MONEY_DESC_MCDONALDS = " " + PREFIX_MONEY + VALID_MONEY_MCDONALDS;
+    public static final String MONEY_DESC_SUPPER = " " + PREFIX_MONEY + VALID_MONEY_SUPPER;
+
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
+    public static final String INVALID_MONEY_DESC = " " + PREFIX_MONEY + "one hundred";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

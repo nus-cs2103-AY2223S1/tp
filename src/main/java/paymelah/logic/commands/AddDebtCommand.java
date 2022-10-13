@@ -61,6 +61,14 @@ public class AddDebtCommand extends Command {
                 personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getDebts().addDebt(debt));
 
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, editedPerson));
+        return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt, editedPerson.getName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddDebtCommand // instanceof handles nulls
+                && index.equals(((AddDebtCommand) other).index)
+                && debt.equals(((AddDebtCommand) other).debt));
     }
 }
