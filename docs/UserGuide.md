@@ -84,7 +84,7 @@ Shows a list of all tasks assigned by the user to contacts in the addressbook, a
 
 Format: `task list`
 
-### Adding a contact: `contact add`
+### Adding a contact : `contact add`
 
 Adds a contact to the taskbook.
 
@@ -94,7 +94,7 @@ Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
  
-### Adding a task: `task add`
+### Adding a task : `task add`
 
 Adds a task into the task list.
 
@@ -129,6 +129,21 @@ Examples:
 * `task add o/Sam d/Finish the assignment t/ 09-21-2022` adds a task called “Finish the assignment”
   which the user has assigned to Sam, and due by 2022-09-21.
 
+### Editing a contact : `contact edit`
+
+Edits the specified contact in the contact list.
+
+Format: `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
+* Edits the contact at the specified `INDEX` with the parameters provided.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* **At least 1 field** must be edited.
+
+Examples:
+* `contact edit i/1 n/James Lee e/jameslee@example.com`
+* `contact edit i/2 p/98765433`
+
 ### Deleting a contact : `contact delete`
 
 Deletes the specified contact from the contact list.
@@ -138,6 +153,7 @@ Format: `contact delete i/INDEX`
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deletion of contact is blocked if the contact has tasks associated to it.
 
 Examples:
 * `contact list` followed by `contact delete i/2` deletes the 2nd contact in the contact list.
@@ -212,6 +228,7 @@ The following date formats are accepted:
 | **Add Contact**        | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | **Add Task: Assignor** | `task add m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task add m/John d/Finish user guide`                                                                               |
 | **Add Task: Assignee** | `task add o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task add o/Sam d/Finish the assignment`                                                                            |
+| **Edit Contact**       | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com`                     |
 | **Delete Contact**     | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
 | **Delete Task**        | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
 | **Quit**               | `bye`                                                                                                                                                              |
