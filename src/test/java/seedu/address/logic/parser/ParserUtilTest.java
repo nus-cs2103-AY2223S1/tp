@@ -212,7 +212,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAssignment_invalidValue_tthrowsParseException() {
+    public void parseAssignment_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(INVALID_ASSIGNMENT));
     }
 
