@@ -61,7 +61,7 @@ public class TestUtil {
     }
 
     /**
-     * Returns a Model for FindRecord command test.
+     * Returns a Model for FindRecordCommand and DeleteRecordCommand test.
      */
     public static Model prepareModel() {
         Person benson = new PersonBuilder().withName("Benson Meier")

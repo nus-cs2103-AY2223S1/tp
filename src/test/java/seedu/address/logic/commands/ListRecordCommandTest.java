@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.ListRecordCommand.MESSAGE_SUCCESS;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
+import static seedu.address.testutil.TypicalIndexes.SECOND_INDEX;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ public class ListRecordCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredPersonList_success() {
-        Person personToListRecords = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ListRecordCommand listRecordCommand = new ListRecordCommand(INDEX_FIRST_PERSON);
+        Person personToListRecords = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
+        ListRecordCommand listRecordCommand = new ListRecordCommand(FIRST_INDEX);
 
 
         String expectedMessage = MESSAGE_SUCCESS + personToListRecords.getName() + "\n"
@@ -49,26 +49,26 @@ public class ListRecordCommandTest {
 
     @Test
     public void execute_validIndexFilteredPersonList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, FIRST_INDEX);
 
-        Person personToListRecords = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ListRecordCommand listRecordCommand = new ListRecordCommand(INDEX_FIRST_PERSON);
+        Person personToListRecords = model.getFilteredPersonList().get(FIRST_INDEX.getZeroBased());
+        ListRecordCommand listRecordCommand = new ListRecordCommand(FIRST_INDEX);
 
         String expectedMessage = MESSAGE_SUCCESS + personToListRecords.getName() + "\n"
                 + String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW,
                 model.getFilteredRecordList().size());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        showPersonAtIndex(expectedModel, FIRST_INDEX);
 
         assertCommandSuccess(listRecordCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredPersonList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, FIRST_INDEX);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = SECOND_INDEX;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
@@ -79,14 +79,14 @@ public class ListRecordCommandTest {
 
     @Test
     public void equals() {
-        ListRecordCommand listRecordFirstCommand = new ListRecordCommand(INDEX_FIRST_PERSON);
-        ListRecordCommand listRecordSecondCommand = new ListRecordCommand(INDEX_SECOND_PERSON);
+        ListRecordCommand listRecordFirstCommand = new ListRecordCommand(FIRST_INDEX);
+        ListRecordCommand listRecordSecondCommand = new ListRecordCommand(SECOND_INDEX);
 
         // same object -> returns true
         assertTrue(listRecordFirstCommand.equals(listRecordFirstCommand));
 
         // same values -> returns true
-        ListRecordCommand listRecordFirstCommandCopy = new ListRecordCommand(INDEX_FIRST_PERSON);
+        ListRecordCommand listRecordFirstCommandCopy = new ListRecordCommand(FIRST_INDEX);
         assertTrue(listRecordFirstCommand.equals(listRecordFirstCommandCopy));
 
         // different types -> returns false
