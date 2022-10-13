@@ -73,7 +73,7 @@ public class EditTaskCommand extends EditGenericCommand {
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedPatient),
-                CommandResult.COMMANDTYPE.TASK);
+                CommandResult.CommandType.TASK);
     }
 
     /**

@@ -12,25 +12,25 @@ public class CommandResult {
     private final String feedbackToUser;
 
 
-    /** Help information should be shown to the user. */
+    ///** Help information should be shown to the user. */
     //private final boolean showHelp;
 
-    /** The application should exit. */
+    ///** The application should exit. */
     //private final boolean exit;
 
 
-        // TODO: Intend to use SCHEDULE for ListTask
-    static enum COMMANDTYPE {
+    // TODO: Intend to use SCHEDULE for ListTask
+    static enum CommandType {
         HELP, EXIT, TASK, PATIENT, CLEAR, LIST, SCHEDULE;
     }
 
-    private final COMMANDTYPE commandType;
+    private final CommandType commandType;
 
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, COMMANDTYPE commandType) {
+    public CommandResult(String feedbackToUser, CommandType commandType) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.commandType = commandType;
     }
@@ -50,19 +50,19 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return this.commandType == COMMANDTYPE.HELP;
+        return this.commandType == CommandType.HELP;
     }
 
     public boolean isExit() {
-        return this.commandType == COMMANDTYPE.EXIT;
+        return this.commandType == CommandType.EXIT;
     }
 
     public boolean isTaskRelated() {
-        return this.commandType == COMMANDTYPE.TASK;
+        return this.commandType == CommandType.TASK;
     }
 
     public boolean isPatientRelated() {
-        return this.commandType == COMMANDTYPE.PATIENT;
+        return this.commandType == CommandType.PATIENT;
     }
 
 

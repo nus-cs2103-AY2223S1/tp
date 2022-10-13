@@ -63,7 +63,7 @@ public class AddTaskCommand extends AddGenericCommand {
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task),
-                CommandResult.COMMANDTYPE.TASK);
+                CommandResult.CommandType.TASK);
     }
 
     @Override

@@ -17,6 +17,6 @@ public class ListTaskCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonListWithTasks(p -> !(p.getTasks().isEmpty()));
-        return new CommandResult(MESSAGE_SUCCESS, CommandResult.COMMANDTYPE.SCHEDULE);
+        return new CommandResult(MESSAGE_SUCCESS, CommandResult.CommandType.SCHEDULE);
     }
 }

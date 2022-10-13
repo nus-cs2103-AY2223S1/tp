@@ -53,7 +53,6 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     *
      * Returns the patient of interest.
      */
     Patient getPatientOfInterest();
