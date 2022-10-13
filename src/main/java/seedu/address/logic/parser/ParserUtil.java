@@ -10,9 +10,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
+import seedu.address.model.person.Clazz;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Grade;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -96,6 +101,81 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String clazz} into an {@code Clazz}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code clazz} is invalid.
+     */
+    public static Clazz parseClazz(String clazz) throws ParseException {
+        requireNonNull(clazz);
+        String trimmedClazz = clazz.trim();
+        if (!Clazz.isValidClazz(trimmedClazz)) {
+            throw new ParseException(Clazz.MESSAGE_CONSTRAINTS);
+        }
+        return new Clazz(trimmedClazz);
+    }
+
+    /**
+     * Parses a {@code String personality} into an {@code Personality}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code personality} is invalid.
+     */
+    public static Personality parsePersonality(String personality) throws ParseException {
+        requireNonNull(personality);
+        String trimmedPersonality = personality.trim();
+        if (!Personality.isValidPersonality(trimmedPersonality)) {
+            throw new ParseException(Personality.MESSAGE_CONSTRAINTS);
+        }
+        return new Personality(trimmedPersonality);
+    }
+
+    /**
+     * Parses a {@code String attendance} into an {@code Attendance}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code attendance} is invalid.
+     */
+    public static Attendance parseAttendance(String attendanceCommand) throws ParseException {
+        requireNonNull(attendanceCommand);
+        String trimmedAttendance = attendanceCommand.trim();
+        if (!Attendance.isValidAttendance(trimmedAttendance)) {
+            throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        return new Attendance(attendanceCommand);
+    }
+
+    /**
+     * Parses a {@code String subject} into an {@code Subject}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code subject} is invalid.
+     */
+    public static Subject parseSubject(String subject) throws ParseException {
+        requireNonNull(subject);
+        String trimmedSubject = subject.trim();
+        if (!Subject.isValidSubject(trimmedSubject)) {
+            throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
+        }
+        return new Subject(trimmedSubject);
+    }
+
+    /**
+     * Parses a {@code String grade} into an {@code Grade}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code grade} is invalid.
+     */
+    public static Grade parseGrade(String gradeCommand) throws ParseException {
+        requireNonNull(gradeCommand);
+        String trimmedGrade = gradeCommand.trim();
+        if (!Grade.isValidGrade(trimmedGrade)) {
+            throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
+        }
+        return new Grade(gradeCommand);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -121,4 +201,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
 }
