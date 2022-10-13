@@ -77,6 +77,11 @@ public interface Model {
     void deleteTask(Task task);
 
     /**
+     * Returns true if the person can be deleted.
+     */
+    boolean canDeletePerson(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in the task book.
      */

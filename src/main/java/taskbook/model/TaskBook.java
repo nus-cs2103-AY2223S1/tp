@@ -108,10 +108,41 @@ public class TaskBook implements ReadOnlyTaskBook {
     }
 
     /**
+     * Returns true if a person can be deleted.
+     * A person cannot be deleted if there are tasks associated with that person.
+     * Returns false if the person does not exist in the {@code TaskBook}.
+     *
+     * @param key Key of the person.
+     * @return True if a person can be deleted.
+     */
+    public boolean canDeletePerson(Person key) {
+        requireNonNull(key);
+
+        if (!hasPerson(key)) {
+            return false;
+        }
+
+        Name name = key.getName();
+
+        for (Task task : tasks) {
+            if (task.getName().equals(name)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Removes {@code key} from this {@code TaskBook}.
      * {@code key} must exist in the task book.
+     * {@code key} must be deletable as per {@link TaskBook#canDeletePerson(Person)}.
      */
     public void removePerson(Person key) {
+        if (!canDeletePerson(key)) {
+            return;
+        }
+
         persons.remove(key);
     }
 

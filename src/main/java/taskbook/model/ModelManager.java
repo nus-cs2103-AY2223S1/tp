@@ -103,6 +103,15 @@ public class ModelManager implements Model {
         return taskBook.findPerson(name);
     }
 
+    /**
+     * {@inheritDoc}
+     * A person cannot be deleted if there are tasks associated with that person.
+     */
+    @Override
+    public boolean canDeletePerson(Person person) {
+        return taskBook.canDeletePerson(person);
+    }
+
     @Override
     public void deletePerson(Person target) {
         taskBook.removePerson(target);

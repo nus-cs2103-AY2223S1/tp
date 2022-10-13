@@ -37,7 +37,7 @@ public class TaskBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlytaskBook_replacesData() {
+    public void resetData_withValidReadOnlyTaskBook_replacesData() {
         TaskBook newData = TypicalTaskBook.getTypicalTaskBook();
         taskBook.resetData(newData);
         assertEquals(newData, taskBook);
@@ -61,18 +61,18 @@ public class TaskBookTest {
     }
 
     @Test
-    public void hasPerson_personNotIntaskBook_returnsFalse() {
+    public void hasPerson_personNotInTaskBook_returnsFalse() {
         assertFalse(taskBook.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
-    public void hasPerson_personIntaskBook_returnsTrue() {
+    public void hasPerson_personInTaskBook_returnsTrue() {
         taskBook.addPerson(TypicalTaskBook.ALICE);
         assertTrue(taskBook.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsIntaskBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInTaskBook_returnsTrue() {
         taskBook.addPerson(TypicalTaskBook.ALICE);
         Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)

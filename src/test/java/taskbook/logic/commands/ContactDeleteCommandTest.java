@@ -18,6 +18,7 @@ import taskbook.model.Model;
 import taskbook.model.ModelManager;
 import taskbook.model.UserPrefs;
 import taskbook.model.person.Person;
+import taskbook.testutil.TypicalTaskBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -46,6 +47,20 @@ public class ContactDeleteCommandTest {
         ContactDeleteCommand contactDeleteCommand = new ContactDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(contactDeleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_deletingPersonWithTask_throwsCommandException() {
+        // Ensures that a person with a task is deleted.
+        ModelManager modelManager = new ModelManager();
+        Index index = Index.fromZeroBased(0);
+        Person person = TypicalTaskBook.ALICE;
+        modelManager.addPerson(person);
+        modelManager.addTask(TypicalTaskBook.EATING);
+        ContactDeleteCommand contactDeleteCommand = new ContactDeleteCommand(index);
+
+        String expectedMessage = ContactDeleteCommand.getDeletePersonFailureMessage(person);
+        assertCommandFailure(contactDeleteCommand, modelManager, expectedMessage);
     }
 
     @Test

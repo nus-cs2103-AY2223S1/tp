@@ -1,10 +1,10 @@
 package taskbook.logic.commands.contacts;
 
 import static java.util.Objects.requireNonNull;
+import static taskbook.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
 import java.util.List;
 
-import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
@@ -30,6 +30,8 @@ public class ContactDeleteCommand extends Command {
             + COMMAND_WORD + " " + CliSyntax.PREFIX_INDEX + "1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_FAILURE = "Person %s cannot be deleted!\n"
+        + "There are still tasks associated with the person.";
 
     private final Index targetIndex;
 
@@ -43,10 +45,15 @@ public class ContactDeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!model.canDeletePerson(personToDelete)) {
+            throw new CommandException(getDeletePersonFailureMessage(personToDelete));
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
@@ -56,5 +63,15 @@ public class ContactDeleteCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof ContactDeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((ContactDeleteCommand) other).targetIndex)); // state check
+    }
+
+    /**
+     * Returns failure message for failure of deletion of person.
+     *
+     * @param person Person to be deleted.
+     * @return Failure message.
+     */
+    public static String getDeletePersonFailureMessage(Person person) {
+        return String.format(MESSAGE_DELETE_PERSON_FAILURE, person.getName());
     }
 }
