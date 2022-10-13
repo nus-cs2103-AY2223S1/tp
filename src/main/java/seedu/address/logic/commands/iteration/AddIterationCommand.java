@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Random;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -41,7 +42,7 @@ public class AddIterationCommand extends Command {
             + "added to commission \"%2$s\"";
     public static final String MESSAGE_DUPLICATE_ITERATION =
             "This iteration already exists in this commission \"%1$s\"";
-
+    private static final String IMAGE_STORAGE_PATH = "/data/images/";
     private final Iteration toAdd;
 
     /**
@@ -69,7 +70,20 @@ public class AddIterationCommand extends Command {
         }
 
         String src = toAdd.getImagePath().path;
-        String dst = "/data/images/" + activeCommission.getTitle() + activeCommission.getIterationCounter() + ".png";
+
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String randomName = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        String dst = IMAGE_STORAGE_PATH + randomName + ".png";
+
         try {
             Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
         } catch (Exception e) {
