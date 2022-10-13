@@ -29,7 +29,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL, PREFIX_GRADE, PREFIX_TAG);
+                        PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL,
+                        PREFIX_ATTENDANCE, PREFIX_PARTICIPATION, PREFIX_GRADE, PREFIX_TAG);
 
         ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL);
@@ -47,9 +48,13 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         //optional fields
         Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse(""));
+        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_GRADE).orElse("0"));
+        Participation participation = ParserUtil.parseParticipation(argMultimap
+                .getValue(PREFIX_GRADE).orElse("0"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Student student = new Student(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tagList);
+        Student student = new Student(name, id, phone, email, telegram,
+                tutorialModule, tutorialName, attendance, participation, grade, tagList);
 
         return new AddCommand(student);
     }

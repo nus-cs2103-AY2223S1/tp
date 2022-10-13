@@ -30,6 +30,8 @@ class JsonAdaptedPerson {
     private final String telegram;
     private final String tutorialModule;
     private final String tutorialName;
+    private final String attendance;
+    private final String participation;
     private final String grade;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -41,6 +43,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
             @JsonProperty("tutorialModule") String tutorialModule, @JsonProperty("tutorialName") String tutorialName,
+            @JsonProperty("attendance") String attendance, @JsonProperty("participation") String participation,
             @JsonProperty("grade") String grade,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -50,6 +53,8 @@ class JsonAdaptedPerson {
         this.telegram = telegram;
         this.tutorialModule = tutorialModule;
         this.tutorialName = tutorialName;
+        this.attendance = attendance;
+        this.participation = participation;
         this.grade = grade;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -67,6 +72,8 @@ class JsonAdaptedPerson {
         telegram = source.getTelegram().telegram;
         tutorialModule = source.getTutorialModule().moduleName;
         tutorialName = source.getTutorialName().fullName;
+        attendance = source.getAttendance().value;
+        participation = source.getParticipation().value;
         grade = source.getGrade().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -140,6 +147,22 @@ class JsonAdaptedPerson {
         }
         final TutorialName modelTutorialName = new TutorialName(tutorialName);
 
+        if (attendance == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+        }
+        if (!Attendance.isValidAttendance(attendance)) {
+            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
+        }
+        final Attendance modelAttendance = new Attendance(attendance);
+
+        if (participation == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Participation.class.getSimpleName()));
+        }
+        if (!Participation.isValidParticipation(participation)) {
+            throw new IllegalValueException(Participation.MESSAGE_CONSTRAINTS);
+        }
+        final Participation modelParticipation = new Participation(participation);
+
         if (grade == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Grade.class.getSimpleName()));
         }
@@ -150,7 +173,8 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Student(modelName, modelId, modelPhone, modelEmail,
-                modelTelegram, modelTutorialModule, modelTutorialName, modelGrade, modelTags);
+                modelTelegram, modelTutorialModule, modelTutorialName,
+                modelAttendance, modelParticipation, modelGrade, modelTags);
     }
 
 }

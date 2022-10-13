@@ -305,9 +305,21 @@ public class ParserUtil {
         return new Telegram(trimmedTelegram);
     }
 
-    public static Grade parseGrade(String grade) throws ParseException {
+    public static Grade parseGrade(String grade) {
         requireNonNull(grade);
         String trimmedGrade = grade.trim();
         return new Grade(trimmedGrade);
+    }
+
+    public static Attendance parseAttendance(String attendance) {
+        requireNonNull(attendance);
+        String trimmedAttendance = attendance.trim();
+        return new Attendance(trimmedAttendance);
+    }
+
+    public static Participation parseParticipation(String participation) {
+        requireNonNull(participation);
+        String trimmedParticipation = participation.trim();
+        return new Participation(trimmedParticipation);
     }
 }

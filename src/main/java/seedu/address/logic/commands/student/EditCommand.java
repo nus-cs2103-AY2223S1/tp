@@ -101,13 +101,18 @@ public class EditCommand extends Command {
                 .orElse(studentToEdit.getTutorialModule());
         TutorialName updatedTutorialName = editPersonDescriptor.getTutorialName()
                 .orElse(studentToEdit.getTutorialName());
+        Attendance updatedAttendance = editPersonDescriptor.getAttendance()
+                .orElse(studentToEdit.getAttendance());
+        Participation updatedParticipation = editPersonDescriptor.getParticipation()
+                .orElse(studentToEdit.getParticipation());
         Grade updatedGrade = editPersonDescriptor.getGrade()
                 .orElse(studentToEdit.getGrade());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         return new Student(updatedName, updatedId, updatedPhone,
                 updatedEmail, updatedTelegram, updatedTutorialModule,
-                updatedTutorialName, updatedGrade, updatedTags);
+                updatedTutorialName, updatedAttendance, updatedParticipation,
+                updatedGrade, updatedTags);
     }
 
     @Override
@@ -140,6 +145,8 @@ public class EditCommand extends Command {
         private Telegram telegram;
         private TutorialModule tutorialModule;
         private TutorialName tutorialName;
+        private Attendance attendance;
+        private Participation participation;
         private Grade grade;
         private Set<Tag> tags;
 
@@ -157,6 +164,8 @@ public class EditCommand extends Command {
             setTelegram(toCopy.telegram);
             setTutorialModule(toCopy.tutorialModule);
             setTutorialName(toCopy.tutorialName);
+            setAttendance(toCopy.attendance);
+            setParticipation(toCopy.participation);
             setGrade(toCopy.grade);
             setTags(toCopy.tags);
         }
@@ -230,6 +239,22 @@ public class EditCommand extends Command {
 
         public Optional<Grade> getGrade() {
             return Optional.ofNullable(grade);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
+        }
+
+        public void setParticipation(Participation participation) {
+            this.participation = participation;
+        }
+
+        public Optional<Participation> getParticipation() {
+            return Optional.ofNullable(participation);
         }
 
         /**

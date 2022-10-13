@@ -45,6 +45,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label tutorialName;
     @FXML
+    private Label attendance;
+    @FXML
+    private Label participation;
+    @FXML
     private Label grade;
     @FXML
     private FlowPane tags;
@@ -63,6 +67,8 @@ public class PersonCard extends UiPart<Region> {
         telegram.setText("Telegram: @" + student.getTelegram().telegram);
         tutorialModule.setText(student.getTutorialModule().moduleName);
         tutorialName.setText(student.getTutorialName().fullName);
+        attendance.setText("Attendance: " + student.getAttendance().value);
+        participation.setText("Participation: " + student.getParticipation().value);
         grade.setText("Grade: " + student.getGrade().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

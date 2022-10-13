@@ -28,8 +28,8 @@ public class Student {
     private final TutorialModule tutorialModule;
     private final TutorialName tutorialName;
     private final Grade grade;
-    //private final Attendance attendance;
-    //private final Participation participation;
+    private final Attendance attendance;
+    private final Participation participation;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -37,7 +37,8 @@ public class Student {
      */
     public Student(Name name, ID id, Phone phone, Email email,
                    Telegram telegram, TutorialModule tutorialModule,
-                   TutorialName tutorialName, Grade grade, Set<Tag> tags) {
+                   TutorialName tutorialName, Attendance attendance,
+                   Participation participation, Grade grade, Set<Tag> tags) {
         requireAllNonNull(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
         this.name = name;
         this.id = id;
@@ -46,6 +47,8 @@ public class Student {
         this.telegram = telegram;
         this.tutorialModule = tutorialModule;
         this.tutorialName = tutorialName;
+        this.attendance = attendance;
+        this.participation = participation;
         this.grade = grade;
         this.tags.addAll(tags);
     }
@@ -71,6 +74,10 @@ public class Student {
     public TutorialModule getTutorialModule() { return tutorialModule; }
 
     public TutorialName getTutorialName() { return tutorialName; }
+
+    public Attendance getAttendance() { return attendance; }
+
+    public Participation getParticipation() { return participation; }
 
     public Grade getGrade() {
         return grade;
