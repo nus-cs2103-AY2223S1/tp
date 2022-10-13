@@ -140,7 +140,7 @@ public class CompanyTest {
     public void toStringTest() {
         Company company = new CompanyBuilder(TypicalCompanies.BENSON).build();
         System.out.println(company);
-        assertEquals(company.toString(), "Benson Meier; Address: 311, Clementi Ave 2, " +
-                "#02-25; Tags: [owesMoney][friends]; POCs: Benson Meier");
+        assertEquals(company.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
+                + "#02-25; Tags: [owesMoney][friends]; POCs: Benson Meier");
     }
 }
