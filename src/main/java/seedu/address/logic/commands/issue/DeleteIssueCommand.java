@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 import java.util.List;
 
@@ -44,11 +44,12 @@ public class DeleteIssueCommand extends IssueCommand {
                 Issue issueToDelete = i;
                 model.deleteIssue(issueToDelete);
                 issueToDelete.getProject().getIssueList().remove(i);
-                model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-                ui.showProjects();
                 return new CommandResult(String.format(MESSAGE_SUCCESS, issueToDelete));
             }
         }
+
+        ui.showIssues();
+        model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
 
         throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 

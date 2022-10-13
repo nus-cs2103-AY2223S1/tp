@@ -94,9 +94,6 @@ public class AddressBookTest {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Issue> issues = FXCollections.observableArrayList();
         private final ObservableList<Client> clients = FXCollections.observableArrayList();
-        private int issueCount;
-        private int clientCount;
-        private int projectCount;
 
 
         AddressBookStub(Collection<Person> persons) {
@@ -125,30 +122,6 @@ public class AddressBookTest {
         @Override
         public ObservableList<Client> getClientList() {
             return clients;
-        }
-
-        /**
-         * @return
-         */
-        @Override
-        public String getProjectCount() {
-            return String.valueOf(projectCount);
-        }
-
-        /**
-         * @return
-         */
-        @Override
-        public String getIssueCount() {
-            return String.valueOf(issueCount);
-        }
-
-        /**
-         * @return
-         */
-        @Override
-        public String getClientCount() {
-            return String.valueOf(clientCount);
         }
     }
 

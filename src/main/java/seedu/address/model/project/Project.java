@@ -45,6 +45,10 @@ public class Project {
         //todo: set other fields to emptyOptionals post-merge
     }
 
+    public void setClient(Client toAddClient) {
+        this.client = toAddClient;
+    }
+
     /**
      * Represents an Empty Project.
      */
@@ -65,7 +69,7 @@ public class Project {
 
     }
 
-    public ProjectId getId() {
+    public ProjectId getProjectId() {
         return projectId;
     }
 

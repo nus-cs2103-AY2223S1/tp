@@ -55,7 +55,6 @@ public class AddressBookParser {
         case ProjectCommand.COMMAND_WORD:
             return new ProjectCommandParser().parse(flag, arguments);
 
-        // TODO: Refactor commands below if necessary
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 

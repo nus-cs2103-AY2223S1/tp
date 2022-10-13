@@ -34,19 +34,4 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate clients.
      */
     ObservableList<Client> getClientList();
-
-    /**
-     * Returns the number of projects in project list.
-     */
-    String getProjectCount();
-
-    /**
-     * Returns the number of issues in issue list.
-     */
-    String getIssueCount();
-
-    /**
-     * Returns the number of clients in client list.
-     */
-    String getClientCount();
 }
