@@ -19,12 +19,12 @@ import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_NAME = "sushi#";
+    private static final String INVALID_TAG = "#lunch";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "breakfast";
+    private static final String VALID_TAG_2 = "dinner";
 
     private static final String INVALID_DATE = "2022-13-13";
     private static final String INVALID_DATE_FORMAT = "2022";

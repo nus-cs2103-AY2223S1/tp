@@ -1,8 +1,5 @@
 package seedu.nutrigoals.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
@@ -16,12 +13,13 @@ import seedu.nutrigoals.model.util.SampleDataUtil;
 public class FoodBuilder {
 
     public static final String DEFAULT_NAME = "Almonds";
+    public static final String DEFAULT_TAG = "Breakfast";
     public static final String DEFAULT_EARLIER_TIME = "2022-09-05T10:30:15";
     public static final String DEFAULT_LATER_TIME = "2022-09-05T10:50:15";
 
     private Name name;
     private Calorie calorie;
-    private Set<Tag> tags;
+    private Tag tag;
     private DateTime dateTime;
 
     /**
@@ -30,7 +28,7 @@ public class FoodBuilder {
     public FoodBuilder() {
         name = new Name(DEFAULT_NAME);
         calorie = new Calorie();
-        tags = new HashSet<>();
+        tag = new Tag(DEFAULT_TAG);
         dateTime = new DateTime();
     }
 
@@ -40,7 +38,7 @@ public class FoodBuilder {
     public FoodBuilder(Food foodToCopy) {
         name = foodToCopy.getName();
         calorie = foodToCopy.getCalorie();
-        tags = new HashSet<>(foodToCopy.getTags());
+        tag = foodToCopy.getTag();
         dateTime = foodToCopy.getDateTime();
     }
 
@@ -53,10 +51,11 @@ public class FoodBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Food} that we are building.
+     * Parses the {@code tag} into a {@code Tag} and set it to the {@code Food} that we are building.
      */
-    public FoodBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public FoodBuilder withTag(String... tags) {
+        String t = tags[tags.length - 1];
+        this.tag = SampleDataUtil.getTag(t);
         return this;
     }
 
@@ -77,7 +76,7 @@ public class FoodBuilder {
     }
 
     public Food build() {
-        return new Food(name, calorie, tags, dateTime);
+        return new Food(name, calorie, tag, dateTime);
     }
 
 }

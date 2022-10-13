@@ -106,7 +106,7 @@ public class UniqueFoodList implements Iterable<Food> {
 
     @Override
     public Iterator<Food> iterator() {
-        return internalList.iterator();
+        return sortedList.iterator();
     }
 
     @Override

@@ -4,11 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.nutrigoals.commons.core.Messages;
 import seedu.nutrigoals.commons.core.index.Index;
@@ -91,9 +88,9 @@ public class EditCommand extends Command {
 
         Name updatedName = editFoodDescriptor.getName().orElse(foodToEdit.getName());
         Calorie updatedCalorie = editFoodDescriptor.getCalorie().orElse(foodToEdit.getCalorie());
-        Set<Tag> updatedTags = editFoodDescriptor.getTags().orElse(foodToEdit.getTags());
+        Tag updatedTag = editFoodDescriptor.getTag().orElse(foodToEdit.getTag());
 
-        return new Food(updatedName, updatedCalorie, updatedTags, foodToEdit.getDateTime());
+        return new Food(updatedName, updatedCalorie, updatedTag, foodToEdit.getDateTime());
     }
 
     @Override
@@ -121,25 +118,22 @@ public class EditCommand extends Command {
     public static class EditFoodDescriptor {
         private Name name;
         private Calorie calorie;
-        private Set<Tag> tags;
+        private Tag tag;
         private DateTime dateTime;
 
         public EditFoodDescriptor() {}
 
         /**
          * Constructor for unit tests
-         * @param name Food name
+         *
+         * @param name    Food name
          * @param calorie Calorie content
-         * @param tags Food tags
+         * @param tagName     Food tags
          */
-        public EditFoodDescriptor(String name, String calorie, String ...tags) {
+        public EditFoodDescriptor(String name, String calorie, String tagName) {
             this.name = new Name(name);
             this.calorie = new Calorie(calorie);
-            HashSet<Tag> tagSet = new HashSet<>();
-            for (String tag : tags) {
-                tagSet.add(new Tag(tag));
-            }
-            this.tags = tagSet;
+            this.tag = new Tag(tagName);
         }
 
         /**
@@ -149,7 +143,7 @@ public class EditCommand extends Command {
         public EditFoodDescriptor(EditFoodDescriptor toCopy) {
             setName(toCopy.name);
             setCalorie(toCopy.calorie);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
             setDateTime(toCopy.dateTime);
         }
 
@@ -157,7 +151,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, calorie, tags);
+            return CollectionUtil.isAnyNonNull(name, calorie, tag);
         }
 
         public void setName(Name name) {
@@ -180,8 +174,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
@@ -189,8 +183,9 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            // return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+            return Optional.ofNullable(tag);
         }
 
         public void setDateTime(DateTime dateTime) {
@@ -214,7 +209,7 @@ public class EditCommand extends Command {
             EditFoodDescriptor e = (EditFoodDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getTags().equals(e.getTags())
+                    && getTag().equals(e.getTag())
                     && getCalorie().equals(e.getCalorie());
         }
     }
