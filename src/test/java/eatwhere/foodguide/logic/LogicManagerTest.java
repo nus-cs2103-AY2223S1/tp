@@ -78,7 +78,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD
                 + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
-                + CommandTestUtil.EMAIL_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
+                + CommandTestUtil.CUISINE_DESC_AMY + CommandTestUtil.ADDRESS_DESC_AMY;
         Eatery expectedEatery = new EateryBuilder(TypicalEateries.AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEatery(expectedEatery);

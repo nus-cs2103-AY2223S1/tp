@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import eatwhere.foodguide.logic.commands.EditCommand;
 import eatwhere.foodguide.logic.commands.EditCommand.EditEateryDescriptor;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -35,7 +35,7 @@ public class EditEateryDescriptorBuilder {
         descriptor = new EditEateryDescriptor();
         descriptor.setName(eatery.getName());
         descriptor.setPhone(eatery.getPhone());
-        descriptor.setEmail(eatery.getEmail());
+        descriptor.setCuisine(eatery.getCuisine());
         descriptor.setAddress(eatery.getLocation());
         descriptor.setTags(eatery.getTags());
     }
@@ -57,10 +57,10 @@ public class EditEateryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditEateryDescriptor} that we are building.
+     * Sets the {@code Cuisine} of the {@code EditEateryDescriptor} that we are building.
      */
-    public EditEateryDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditEateryDescriptorBuilder withEmail(String cuisine) {
+        descriptor.setCuisine(new Cuisine(cuisine));
         return this;
     }
 
