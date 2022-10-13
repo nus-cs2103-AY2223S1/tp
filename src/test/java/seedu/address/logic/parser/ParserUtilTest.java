@@ -205,7 +205,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() {
+    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() throws Exception {
         Assignment expectedAssignment = new Assignment(VALID_ASSIGNMENT_1);
         assertEquals(expectedAssignment, ParserUtil.parseAssignment(VALID_ASSIGNMENT_1));
     }
