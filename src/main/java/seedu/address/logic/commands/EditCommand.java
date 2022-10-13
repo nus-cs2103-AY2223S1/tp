@@ -152,6 +152,10 @@ public class EditCommand extends Command {
 
         FilteredList<?> lastShownList = model.getCurrentList();
 
+        assert (model.getCurrentListType() == Model.ListType.STUDENT_LIST
+                || model.getCurrentListType() == Model.ListType.TUTOR_LIST
+                || model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST);
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

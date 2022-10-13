@@ -66,6 +66,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditDescriptor editDescriptor;
+        assert(listType == Model.ListType.STUDENT_LIST
+                || listType == Model.ListType.TUTOR_LIST
+                || listType == Model.ListType.TUITIONCLASS_LIST);
 
         switch (listType) {
         case STUDENT_LIST:
