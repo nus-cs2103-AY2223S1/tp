@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.COMMAND_IDENTIFIER_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
@@ -19,6 +18,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 
+
 /**
  * A utility class for Module.
  */
@@ -28,7 +28,7 @@ public class ModuleUtil {
      * Returns an add command string for adding the {@code module}.
      */
     public static String getAddModuleCommand(Module module) {
-        return AddModuleCommand.COMMAND_WORD + " " + COMMAND_IDENTIFIER_MODULE + getModuleDetails(module);
+        return AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(module);
     }
 
     /**
