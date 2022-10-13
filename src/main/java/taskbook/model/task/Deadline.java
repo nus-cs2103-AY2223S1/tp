@@ -49,7 +49,8 @@ public class Deadline extends Task {
         Deadline otherTask = (Deadline) other;
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
-                && otherTask.getDescription().equals(getDescription());
+                && otherTask.getDescription().equals(getDescription())
+                && otherTask.getDate().equals(getDate());
     }
 
     @Override
@@ -67,7 +68,8 @@ public class Deadline extends Task {
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
                 && otherTask.getDescription().equals(getDescription())
-                && (otherTask.isDone() == (isDone()));
+                && (otherTask.isDone() == (isDone()))
+                && otherTask.getDate().equals(getDate());
     }
 
     @Override

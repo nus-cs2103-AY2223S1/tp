@@ -24,6 +24,7 @@ public class Todo extends Task {
         super(name, assignment, description, isDone);
     }
 
+    @Override
     public boolean isSameTask(Task other) {
         if (other == this) {
             return true;
@@ -40,10 +41,6 @@ public class Todo extends Task {
                 && otherTask.getDescription().equals(getDescription());
     }
 
-    /**
-     * Returns true if both tasks have the data and status fields.
-     * This defines a stronger notion of equality between two tasks.
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
