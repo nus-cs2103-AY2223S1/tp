@@ -132,42 +132,14 @@ It is time for you to unleash the potential of a command line application!
 
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Flags</th>
-    <th>Related Placeholder</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>id/</td>
-    <td>INDEX<br>INDEX_LIST</td>
-  </tr>
-  <tr>
-    <td>n/</td>
-    <td>ITEM_NAME<br>TAG_NAME</td>
-  </tr>
-  <tr>
-    <td>qty/</td>
-    <td>QUANTITY</td>
-  </tr>
-  <tr>
-    <td>unit/</td>
-    <td>UNIT</td>
-  </tr>
-  <tr>
-    <td>buy/</td>
-    <td>BOUGHT_DATE</td>
-  </tr>
-  <tr>
-    <td>exp/</td>
-    <td>EXPIRY DATE</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+| Flags | Related Placeholder   |
+|-------|-----------------------|
+| id/   | INDEX<br>INDEX_LIST   |
+| n/    | ITEM_NAME<br>TAG_NAME |
+| qty/  | QUANTITY              |
+| unit/ | UNIT                  |
+| buy/  | BOUGHT_DATE           |
+| exp/  | EXPIRY DATE           |
 
 ## Placeholders
 
