@@ -30,12 +30,12 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified " +
-        "by the index number used in the displayed person list. " +
-        "Existing values will be overwritten by the input values.\n" +
-        "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_NAME + "NAME] " + "[" + PREFIX_ADDRESS +
-        "ADDRESS] " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS +
-        "123 Jacksonville Road";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+        + "by the index number used in the displayed person list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: INDEX (must be a positive integer) " + "[" + PREFIX_NAME + "NAME] " + "[" + PREFIX_ADDRESS
+        + "ADDRESS] " + "[" + PREFIX_TAG + "TAG]...\n" + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS
+        + "123 Jacksonville Road";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -185,8 +185,8 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName()) && getAddress().equals(e.getAddress()) &&
-                getTags().equals(e.getTags());
+            return getName().equals(e.getName()) && getAddress().equals(e.getAddress())
+                && getTags().equals(e.getTags());
         }
     }
 }
