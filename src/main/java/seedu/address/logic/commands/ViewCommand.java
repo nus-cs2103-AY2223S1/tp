@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * View the details of an existing person in the address book.
+ * Views the details of an existing person in the address book.
  */
 public class ViewCommand extends Command {
 
@@ -27,6 +27,9 @@ public class ViewCommand extends Command {
 
     private final Index index;
 
+    /**
+     * @param index of the person in the filtered person list to view
+     */
     public ViewCommand(Index index) {
         requireNonNull(index);
 
