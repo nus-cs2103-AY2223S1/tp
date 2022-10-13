@@ -39,9 +39,9 @@ public class TransactionCard extends UiPart<Region> {
     @FXML
     private FlowPane transactionType;
     @FXML
-    private Label Buy = new Label("Buy");
+    private Label buy = new Label("Buy");
     @FXML
-    private Label Sell = new Label("Sell");
+    private Label sell = new Label("Sell");
 
     /**
      * Creates a {@code TransactionCode} with the given {@code Transaction} and index to display
@@ -53,9 +53,9 @@ public class TransactionCard extends UiPart<Region> {
         good.setText(transaction.getGoods().toString());
         price.setText(transaction.getPrice().toString());
         quantity.setText(transaction.getQuantity().toString());
-        Label typeOfTransaction = transaction instanceof BuyTransaction ? Buy : Sell;
-        Buy.setId("buy");
-        Sell.setId("sell");
+        Label typeOfTransaction = transaction instanceof BuyTransaction ? buy : sell;
+        buy.setId("buy");
+        sell.setId("sell");
         transactionType.getChildren().add(typeOfTransaction);
     }
 

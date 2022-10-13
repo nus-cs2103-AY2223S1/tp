@@ -151,6 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+
         backgroundImage.fitWidthProperty().bind(landingArea.widthProperty());
         backgroundImage.fitHeightProperty().bind(landingArea.heightProperty());
     }
@@ -165,7 +166,6 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
-        //primaryStage.setMaximized(true);
     }
 
     /**
