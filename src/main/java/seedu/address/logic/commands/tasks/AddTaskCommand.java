@@ -1,37 +1,34 @@
 package seedu.address.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Command to add a new Task
+ * Create a task and assign it to a group
  */
-public class AddTaskCommand extends TaskCommand {
+public class AddTaskCommand extends Command {
+    public static final String COMMAND_WORD = "task";
 
-    public static final String COMMAND_WORD = "add";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book current team. "
+            + "Parameters: "
+            + PREFIX_TITLE + "NAME "
+            + PREFIX_DESCRIPTION + "Description";
 
-    public static final String MESSAGE_USAGE =
-            TaskCommand.COMMAND_WORD + " " + COMMAND_WORD + ": Adds a task to the address book. " + "Parameters: "
-                    + PREFIX_TITLE + "TITLE " + PREFIX_GROUP + "GROUP " + "[" + PREFIX_STATUS + "STATUS]...\n"
-                    + "Example: " + COMMAND_WORD + " " + PREFIX_TITLE + "Write v1 Documentation " + PREFIX_GROUP
-                    + "My Group " + PREFIX_STATUS + "Completed";
-
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
-
-    public static final String MESSAGE_MISSING_GROUP = "This group does not exist in the address book";
+    public static final String MESSAGE_SUCCESS = "New task have been added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists!";
+    public static final String MESSAGE_NEED_TO_BE_IN_TEAM = "This task cannot be created here!";
 
     private final Task toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Task}
+     * Creates an AddCommand to add the specified {@code Person}
      */
     public AddTaskCommand(Task task) {
         requireNonNull(task);
@@ -41,10 +38,11 @@ public class AddTaskCommand extends TaskCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.hasTeam(toAdd.getParentGroup())) {
-            throw new CommandException(MESSAGE_MISSING_GROUP);
-        } else if (model.hasTask(toAdd)) {
+        if (model.getContextContainer() == null) {
+            throw new CommandException(MESSAGE_NEED_TO_BE_IN_TEAM);
+        }
+        toAdd.setParent(model.getContextContainer());
+        if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
@@ -56,6 +54,6 @@ public class AddTaskCommand extends TaskCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddTaskCommand // instanceof handles nulls
-                && toAdd.equals(((AddTaskCommand) other).toAdd));
+                        && toAdd.equals(((AddTaskCommand) other).toAdd));
     }
 }

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -42,7 +43,9 @@ public class DisplayItemList<T extends DisplayItem> implements Iterable<T> {
     }
 
     /**
-     * Returns the item in the list that is equal (but no necessarily the same object) as the given item.
+     * Returns the item in the list that is equal (but no necessarily the same
+     * object) as the given item.
+     *
      * @param item The item to compare equality against.
      * @return The item in the list which is equal to the given item
      */
@@ -97,6 +100,15 @@ public class DisplayItemList<T extends DisplayItem> implements Iterable<T> {
      */
     public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * removes the element if predicate evals to true.
+     *
+     * @param predicate
+     */
+    public void removeIf(Predicate<T> predicate) {
+        internalList.removeIf(predicate);
     }
 
     @Override
