@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     public void addTask(Task t) {
         taskBook.addTask(t);
         updateModuleTask(t);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override

@@ -15,9 +15,7 @@ import modtrekt.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL =
-            "https://docs.google.com/document/d/1yAc845x1GSmgdQieNrTRoMH0I3D7y-340qcbgo74euY/edit#heading=h"
-                    + ".1th177kwkkd6";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w10-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);

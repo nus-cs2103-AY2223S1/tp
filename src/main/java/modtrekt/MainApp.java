@@ -99,11 +99,13 @@ public class MainApp extends Application {
             }
             moduleList = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
+            logger.warning(
+                    "Data file not in the correct format. Will be starting with an empty ModuleList and TaskBook.");
             taskBook = new TaskBook();
             moduleList = new ModuleList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
+            logger.warning(
+                    "Problem while reading from the file. Will be starting with an empty ModuleList and TaskBook.");
             taskBook = new TaskBook();
             moduleList = new ModuleList();
         }
@@ -169,7 +171,8 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
+            logger.warning(
+                    "Problem while reading from the file. Will be starting with an empty ModuleList and TaskBook");
             initializedPrefs = new UserPrefs();
         }
 

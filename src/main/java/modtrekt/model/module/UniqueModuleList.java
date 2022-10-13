@@ -109,8 +109,8 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
      */
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
@@ -146,7 +146,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code modules} contains only unique modules.
      */
     private boolean modulesAreUnique(List<Module> modules) {
         for (int i = 0; i < modules.size() - 1; i++) {

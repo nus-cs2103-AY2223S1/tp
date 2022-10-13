@@ -94,7 +94,7 @@ public class ModuleList implements ReadOnlyModuleList {
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the module list.
-     * The module identity of {@code editedModule} must not be the same as another existing person in the module list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the module list.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);

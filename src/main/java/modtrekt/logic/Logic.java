@@ -34,7 +34,7 @@ public interface Logic {
      */
     ReadOnlyTaskBook getTaskBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
     /**

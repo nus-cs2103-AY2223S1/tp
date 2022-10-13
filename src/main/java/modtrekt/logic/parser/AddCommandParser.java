@@ -42,6 +42,9 @@ public class AddCommandParser implements Parser<AddCommand> {
             Module module = new Module(code, name, credit, taskCount);
 
             return new AddCommand(module);
+        } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME)
+                || arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_CREDIT)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_CODE)) {
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
             try {
@@ -54,10 +57,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 return new AddCommand(module);
 
             } catch (IOException | InterruptedException e) {
-                throw new ParseException("Error fetching module data from NUSMods, please try inputting manually");
+                throw new ParseException(
+                        "Error fetching module data from NUSMods, please try inputting manually");
             }
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
-
 }

@@ -14,8 +14,7 @@ import modtrekt.model.task.Task;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Task> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = module -> true;
     Predicate<Task> PREDICATE_HIDE_ARCHIVED_TASKS = task -> !task.isArchived();
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
 
@@ -131,17 +130,17 @@ public interface Model {
     void addModule(Module module);
 
     /**
-     * Replaces the given person {@code target} with {@code editedModule}.
+     * Replaces the given module {@code target} with {@code editedModule}.
      * {@code target} must exist in the module list.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the module list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the module list.
      */
     void setModule(Module target, Module editedModule);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
