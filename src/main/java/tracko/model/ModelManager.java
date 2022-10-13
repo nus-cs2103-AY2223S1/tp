@@ -131,6 +131,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteItem(Item item) {
+        trackO.deleteItem(item);
+    }
+
+    @Override
+    public boolean hasItem(Item item) {
+        requireNonNull(item);
+        return trackO.hasItem(item);
+    }
+
+    @Override
+    public void setItem(Item target, Item editedItem) {
+        requireAllNonNull(target, editedItem);
+
+        trackO.setItem(target, editedItem);
+    }
+
+    @Override
     public ObservableList<Item> getFilteredItemList() {
         return filteredItems;
     }
@@ -144,10 +162,6 @@ public class ModelManager implements Model {
     @Override
     public int getFilteredItemListSize() {
         return filteredItems.size();
-    }
-
-    public void deleteItem(Item item) {
-        trackO.deleteItem(item);
     }
 
     @Override

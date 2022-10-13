@@ -52,6 +52,19 @@ public class Item {
     }
 
     /**
+     * This defines a weaker notion of equality between two items.
+     */
+    public boolean isSameItem(Item otherItem) {
+        if (otherItem == this) {
+            return true;
+        }
+
+        return this.equals(otherItem);
+
+        //ToDo implement a weaker notion of equality
+    }
+
+    /**
      * Returns true if both items have the same identity and data fields.
      * This defines a stronger notion of equality between two items.
      */
