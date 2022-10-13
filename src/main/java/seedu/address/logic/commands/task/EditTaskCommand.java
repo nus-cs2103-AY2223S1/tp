@@ -84,7 +84,10 @@ public class EditTaskCommand extends Command {
 
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.getStatus());
+        /* Optional not needed as we edit isDone through markT/unmarkT instead
+         * and editTaskDescriptor's isDone is never set to taskToEdit's isDone.
+         */
+        Boolean updatedIsDone = taskToEdit.getStatus();
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
