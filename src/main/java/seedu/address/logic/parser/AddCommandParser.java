@@ -51,6 +51,27 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+
+        /*checks if the status command word is set within the constraints for add,
+        commented out due to possible conflicts with ADD command
+        format has not been finalised as well
+        String value;
+        if (status.equals("r") || status.equals("R")) {
+            value = "REJECTED";
+        } else if (status.equals("o") || status.equals("O")) {
+            value = "OFFERED";
+        } else {
+            value = "PROGRESSING";
+        }
+
+        //checks if the status command word is within the constraints set for AddCommand
+        if (!status.equals("p") && !status.equals("P") && !status.equals("o") &&
+                !status.equals("O") && !status.equals("r") && !status.equals("R")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.MESSAGE_USAGE));
+        }
+        */
+
         Internship internship = new Internship(name, position, phone, email, status, address, tagList);
 
         return new AddCommand(internship);

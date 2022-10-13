@@ -10,7 +10,9 @@ import java.util.Objects;
  * Guarantees: details are present and not null
  */
 public class Status {
+
     public static final String MESSAGE_CONSTRAINTS = "Status can be of 3 types: Progress, Offered, Rejected";
+
 
     /*
      * The first character of the status must not be a whitespace,
@@ -28,6 +30,7 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
+
         switch (status.toUpperCase()) {
         case "OFFERED":
             this.value = "Offered";
