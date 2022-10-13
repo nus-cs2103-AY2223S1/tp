@@ -14,7 +14,10 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
    * Listing all persons : list
    * Editing a person : edit
    * Deleting a person : delete
+   * Find a person: find
    * Clearing all entries : clear
+   * Undoing last command : undo
+   * Sorting all entries by a specific field : sort
 * Command summary
 
 --------------------------------------------------------------------------------------------------------------------
@@ -23,14 +26,14 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `univusal.jar` (in progress).
+2. Download the latest `univusal.jar` (in progress).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
+3. Copy the file to the folder you want to use as the _home folder_ for your uNivUSal.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all CS2103T personnels.
@@ -41,9 +44,15 @@ uNivUSal is a **desktop app for managing contacts catered to CS2103T students, T
 
    * **`clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   * **`undo`** : Undoes last modifying command.
 
-1. Refer to the [Features](#features) below for details of each command.
+   * **`sort`** : Sorts entries.
+
+   * **`find`** : Finds a contact based on partial name/phone number
+
+  * **`exit`** : Exits the app.
+
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -86,7 +95,9 @@ Format: `help`
 
 Adds a person to uNivUSal.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
+
+Format: `add o/OCCUPATION n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -138,9 +149,48 @@ Examples:
 Clears all entries from uNivUSal.
 
 Format: `clear`
-* Deletes every person in uNivUSal
+* Deletes every person in uNivUSal.
 * Only a blank uNivUSal will remain.
 
+### Undo last modification : `undo`
+
+Undoes the last command that modifies the address book.
+
+Format: `undo`
+* Undoes the last modifying command.
+* Ignores modifying commands if they don't modify the address book.
+* Will cancel out when trying to undo an undo command.
+
+### Sort entries by field : `sort PREFIX/` e.g. `sort n/`
+
+Sorts entries in uNivUSal by specific field prefix in an ascending manner. Current fields implemented are:
+1. Name `n/`
+2. Email address `e/`
+3. Phone `p/`
+
+Format: `sort PREFIX/`
+* Sorts the entries by the specified `PREFIX/`.
+* Displays sorted list.
+
+Examples:
+* `sort n/` displays the entries sorted by name alphabetically.
+* `sort e/` displays the entries sorted by email address alphabetically.
+* `sort p/` displays the entries sorted by phone number in an ascending manner.
+
+### Find entries by keywords of fields : `find KEYWORD` e.g. `find John`
+
+Finds entries in uNivUSal that match or contain case-insensitive keyword. Current fields searchable are:
+1. Name
+2. Phone Number
+
+Format: `find KEYWORD`
+* Filters the entries by the specified `KEYWORD`.
+* Displays filtered list.
+
+Examples:
+* `find John` displays the entries filtered by names that contain the case-insensitive KEYWORD `John`.
+* `find J` displays the entries filtered by names that contain the case-insensitive KEYWORD `J`.
+* `find 123456` displays the entries filtered by phone numbers that contain the case-insensitive KEYWORD `123456`.
 
 ### Exiting the program : `exit`
 
@@ -177,11 +227,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                                                                                       |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
-| **Clear**       | `clear`                                                                                                                                                                |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                    |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                            |                                                                             |                                                                                                          |
-| **List**        | `list`                                                                                                                                                                 |
-| **Help**        | `help`                                                                                                                                                                 |
+| Action     | Format, Examples                                                                                                                                            |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                      |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**   | `list`                                                                                                                                                      |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                             |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
+| **Clear**  | `clear`                                                                                                                                                     |                                                                             |                                                                                                          |
+| **Undo**   | `undo`                                                                                                                                                      |
+| **Sort**   | `sort PREFIX/` <br> e.g., `sort n/`                                                                                                                         |
+| **Find**   | `find KEYWORD` <br> e.g., `find John`                                                                                                                       |
+| **Exit**   | `exit`                                                                                                                                                      |

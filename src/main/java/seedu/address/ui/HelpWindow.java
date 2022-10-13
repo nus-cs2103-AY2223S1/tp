@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
@@ -15,8 +17,39 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t08-3.github.io/tp/UserGuide.html";
+    public static final String DESCRIPTION = "uNivUSal is a desktop app for managing contacts catered to CS2103T "
+            + "students, TAs, and professors, optimized for use via a Command Line  \n"
+            + "Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type "
+            + "fast, uNivUSal can get your contact management \n"
+            + "tasks done faster than traditional GUI apps.\n\n"
+            + "Here are some of the most commonly used commands!";
+    public static final String HELP_MESSAGE_TITLE = "Refer to the user guide for more info: " + USERGUIDE_URL
+            + "\n\n" + DESCRIPTION;
+
+    public static final String TABLE_HEADERS = " |  Command  |                     Format                      "
+            + "|                    Example                    | ";
+    public static final String ADD_EXAMPLE = " |   help    | add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]       "
+            + "| add n/John Doe p/98765432 e/johnd@example.com |";
+    public static final String LIST_EXAMPLE = " |   list    | list                                            "
+            + "| list                                          | ";
+    public static final String EDIT_EXAMPLE = " |   edit    | edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG] "
+            + "| edit 1 p/91234567 e/janedoe@example.com       |";
+    public static final String DELETE_EXAMPLE = " |   delete  | delete INDEX                                    "
+            + "| find Betsy -> delete 1                        | ";
+    public static final String CLEAR_EXAMPLE = " |   clear   | clear                                           "
+            + "| clear                                         |";
+    public static final String EXIT_EXAMPLE = " |   exit    | exit                                            "
+            + "| exit                                          |";
+
+    public static final String HELP_MESSAGE_BODY = TABLE_HEADERS + "\n"
+            + ADD_EXAMPLE + "\n"
+            + LIST_EXAMPLE + "\n"
+            + EDIT_EXAMPLE + "\n"
+            + DELETE_EXAMPLE + "\n"
+            + CLEAR_EXAMPLE + "\n"
+            + EXIT_EXAMPLE + "\n";
+
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -25,7 +58,10 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private Label helpMessageTitle;
+
+    @FXML
+    private Label helpMessageBody;
 
     /**
      * Creates a new HelpWindow.
@@ -34,7 +70,9 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpMessageTitle.setText(HELP_MESSAGE_TITLE);
+        helpMessageBody.setText(HELP_MESSAGE_BODY);
+        helpMessageBody.setBackground(Background.fill(Color.rgb(77, 77, 77)));
     }
 
     /**
