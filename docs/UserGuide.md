@@ -71,8 +71,8 @@ Adds an employee to Coydir.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A employee can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: 
+An employee can have any number of tags (including 0)
 </div>
 
 Examples:
