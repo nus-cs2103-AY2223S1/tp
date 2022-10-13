@@ -26,18 +26,10 @@ public class MarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-//    @Test
-//    public void execute_validIndexUnfilteredList_success() {
-//        Task taskToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
-//
-//        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_AS_DONE_SUCCESS, taskToMark);
-//
-//        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.markTask(taskToMark);
-//
-//        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
-//    }
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        //todo
+    }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
@@ -47,21 +39,22 @@ public class MarkCommandTest {
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-//    @Test
-//    public void execute_validIndexFilteredList_success() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//
-//        Task taskToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
-//
-//        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_AS_DONE_SUCCESS, taskToMark);
-//
-//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.markTask(taskToMark);
-//        showNoPerson(expectedModel);
-//
-//        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
-//    }
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        //todo
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Task taskToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_AS_DONE_SUCCESS, taskToMark);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.markTask(taskToMark);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {

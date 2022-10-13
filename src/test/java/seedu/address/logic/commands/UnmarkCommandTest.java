@@ -47,21 +47,22 @@ public class UnmarkCommandTest {
         assertCommandFailure(unmarkCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-//    @Test
-//    public void execute_validIndexFilteredList_success() {
-//        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//
-//        Task taskToUnmark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-//        UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_PERSON);
-//
-//        String expectedMessage = String.format(UnmarkCommand.MESSAGE_MARK_AS_NOT_DONE_SUCCESS, taskToUnmark);
-//
-//        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-//        expectedModel.unmarkTask(taskToUnmark);
-//        showNoPerson(expectedModel);
-//
-//        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
-//    }
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        //todo
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Task taskToUnmark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_MARK_AS_NOT_DONE_SUCCESS, taskToUnmark);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.unmarkTask(taskToUnmark);
+        showNoPerson(expectedModel);
+
+        assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
