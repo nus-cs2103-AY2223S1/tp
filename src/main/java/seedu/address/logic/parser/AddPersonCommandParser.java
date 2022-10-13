@@ -34,19 +34,23 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
                 ArgumentTokenizer.tokenize(
                         args,
                         PREFIX_NAME,
-                        PREFIX_PHONE,
                         PREFIX_EMAIL,
+                        PREFIX_PHONE,
                         PREFIX_TAG,
                         PREFIX_LINK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        String phoneStr = argMultimap.getValue(PREFIX_PHONE).orElse(null);
+        Phone phone = null;
+        if (phoneStr != null) {
+            phone = ParserUtil.parsePhone(phoneStr);
+        }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         String linkIndexStr = argMultimap.getValue(PREFIX_LINK_INDEX).orElse(null);
         Index linkIndex = null;
@@ -54,7 +58,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
             linkIndex = ParserUtil.parseIndex(linkIndexStr);
         }
 
-        return new AddPersonCommand(name, phone, email, tagList, linkIndex);
+        return new AddPersonCommand(name, email, phone, tagList, linkIndex);
     }
 
     /**

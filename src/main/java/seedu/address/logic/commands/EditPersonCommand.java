@@ -107,8 +107,8 @@ public class EditPersonCommand extends Command {
         return new Person(
                 personId,
                 updatedName,
-                updatedPhone,
                 updatedEmail,
+                updatedPhone,
                 updatedInternshipId,
                 updatedTags);
     }

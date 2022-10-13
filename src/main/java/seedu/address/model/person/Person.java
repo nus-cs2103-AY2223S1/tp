@@ -32,11 +32,11 @@ public class Person {
     public Person(
             PersonId personId,
             Name name,
-            Phone phone,
             Email email,
+            Phone phone,
             InternshipId internshipId,
             Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+        requireAllNonNull(name, email, tags);
         this.personId = personId;
         this.name = name;
         this.phone = phone;
@@ -119,11 +119,12 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail());
-
+        Phone phone = getPhone();
+        if (!(phone == null)) {
+            builder.append(("; Phone: "));
+        }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");

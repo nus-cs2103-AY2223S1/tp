@@ -35,15 +35,16 @@ public class AddPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_TAG + "TAG]..."
+            + "[" + PREFIX_LINK_INDEX + "LINK INDEX]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_PHONE + "98765432 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_TAG + "owesMoney "
             + PREFIX_LINK_INDEX + "1 ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
@@ -76,11 +77,11 @@ public class AddPersonCommand extends Command {
      */
     public AddPersonCommand(
             Name name,
-            Phone phone,
             Email email,
+            Phone phone,
             Set<Tag> tags,
             Index linkIndex) {
-        requireAllNonNull(name, phone, email, tags);
+        requireAllNonNull(name, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -106,8 +107,8 @@ public class AddPersonCommand extends Command {
         Person toAdd = new Person(
                 new PersonId(model.getNextPersonId()),
                 name,
-                phone,
                 email,
+                phone,
                 idToLink,
                 tags
         );
@@ -132,8 +133,8 @@ public class AddPersonCommand extends Command {
 
         AddPersonCommand otherCommand = (AddPersonCommand) other;
         return name.equals(otherCommand.name)
-                && phone.equals(otherCommand.phone)
                 && email.equals(otherCommand.email)
+                && phone.equals(otherCommand.phone)
                 && Objects.equals(internshipId, otherCommand.internshipId)
                 && tags.equals(otherCommand.tags);
     }
