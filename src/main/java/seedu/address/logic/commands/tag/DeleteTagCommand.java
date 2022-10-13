@@ -59,7 +59,8 @@ public class DeleteTagCommand extends Command {
      * @param editPersonDescriptor details to edit the person with
      */
     public DeleteTagCommand(Index index, EditPersonDescriptor editPersonDescriptor,
-                            EditTaskDescriptor editTaskDescriptor, boolean deleteTagFromContact, boolean deleteTagFromTask) {
+                            EditTaskDescriptor editTaskDescriptor, boolean deleteTagFromContact,
+                            boolean deleteTagFromTask) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
         requireNonNull(editTaskDescriptor);
