@@ -14,22 +14,22 @@
     "isDone" : true
   }, {
     "name" : "Chapter 1 Revision",
-    "module" : "CS2103T",
+    "module" : "CS2100",
     "deadline" : "2022-10-11",
     "tagged" : [ "revision" ],
-    "isDone" : false
+    "isDone" : true
   }, {
     "name" : "Problem Set A",
     "module" : "CS2040S",
     "deadline" : "2022-10-09",
     "tagged" : [ ],
-    "isDone" : false
+    "isDone" : true
   }, {
     "name" : "Tutorial 2",
     "module" : "MA2001",
     "deadline" : "2022-09-09",
     "tagged" : [ ],
-    "isDone" : true
+    "isDone" : false
   }, {
     "name" : "Tutorial 3",
     "module" : "MA2001",
@@ -41,7 +41,7 @@
     "module" : "MA2001",
     "deadline" : "2022-09-23",
     "tagged" : [ ],
-    "isDone" : false
+    "isDone" : true
   }
   ]
 }

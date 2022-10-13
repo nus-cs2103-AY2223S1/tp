@@ -26,7 +26,7 @@ public class TypicalPersons {
             .withDeadline("2022-11-02")
             .withModule("CS2100")
             .withTags("highPriority")
-            .withIsDone(true)
+            .withIsDone(false)
             .build();
     public static final Task BENSON = new PersonBuilder().withName("Lab 4")
             .withDeadline("2022-10-07")
@@ -55,7 +55,7 @@ public class TypicalPersons {
     public static final Task GEORGE = new PersonBuilder().withName("Tutorial 4")
             .withModule("MA2001")
             .withDeadline("2022-09-23")
-            .withIsDone(false).build();
+            .withIsDone(true).build();
 
     // Manually added
     public static final Task HOON = new PersonBuilder().withName("Hoon Meier").withModule("CS2015")
