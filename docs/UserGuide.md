@@ -151,13 +151,13 @@ Format: `list`
 
 {% include note.html content="
 
-Adds the given classes to TA Assist.
+Add one or more classes to TA Assist.
 
 " %}
 
 Format: `addc c/CLASS_NAME...`
 
-- Adds the classes named `CLASS_NAME`.
+- Add classes with specified names.
 
 Examples:
 
@@ -167,13 +167,13 @@ Examples:
 
 {% include note.html content="
 
-Deletes the given classes from TA Assist.
+Delete one or more classes from TA Assist.
 
 " %}
 
 Format: `deletec c/CLASS_NAME...`
 
-- Deletes the classes named `CLASS_NAME`.
+- Delete classes with specified names.
 
 Examples:
 
@@ -297,13 +297,13 @@ Example:
 
 {% include note.html content="
 
-Deletes the given sessions from the focused class.
+Delete one or more sessions from the focused class.
 
 " %}
 
 Format: `deletes s/SESSION_NAME...`
 
-- Deletes the sessions named `SESSION_NAME`
+- Delete sessions with specified names.
 
 Examples:
 
