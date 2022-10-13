@@ -56,6 +56,10 @@ public class Person {
         return phone;
     }
 
+    public String getPhoneString() {
+        return phone.toString();
+    }
+
     public Email getEmail() {
         return email;
     }

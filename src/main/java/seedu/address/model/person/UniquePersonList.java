@@ -57,6 +57,28 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Sorts the list according to specified attribute and order.
+     */
+    public void sort(String attribute, Boolean isDescending) {
+        switch (attribute) {
+
+        case ("name"):
+            internalList.sort(Comparator.comparing(Person::getNameString));
+            break;
+
+        case ("phone"):
+            internalList.sort(Comparator.comparing(Person::getPhoneString));
+            break;
+        }
+
+
+
+
+        if (isDescending) FXCollections.reverse(internalList);
+
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.

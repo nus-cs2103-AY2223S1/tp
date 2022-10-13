@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -122,12 +123,15 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-    /**
-     *
-     */
-    public void sortFilteredPersonList() {
-        this.addressBook.sort();
+    @Override
+    public void sortFilteredPersonList(String attribute, Order order) {
+        this.addressBook.sort(attribute, order);
     }
+
+//    @Override
+//    public void sortFilteredPersonList() {
+//        this.addressBook.sort();
+//    }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
