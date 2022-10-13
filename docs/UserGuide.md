@@ -223,30 +223,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ### Other Commands
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Action</th>
-    <th>Format</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Shows a help dialog with a list of available commands</td>
-    <td><b>help</b><br><br><u>Valid Example:</u><br>help</td>
-  </tr>
-  <tr>
-    <td>Reset the application</td>
-    <td><b>reset</b><br><u><br>Valid Example:</u><br>reset</td>
-  </tr>
-  <tr>
-    <td>Exit the application</td>
-    <td><b>exit</b><br><u><br>Valid Examples:</u><br>exit</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+{% include_relative _ug/commandSummary/OtherCommands.md %}
 
 ## Troubleshooting
 
