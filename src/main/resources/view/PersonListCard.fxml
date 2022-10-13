@@ -31,7 +31,7 @@
         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       </HBox>
       <HBox>
-        <Label styleClass="cell_small_label" text="NOK Phone: " />
+        <Label styleClass="cell_small_label" text="Next of Kin Phone: " />
         <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nokPhone" />
       </HBox>
       <HBox>
