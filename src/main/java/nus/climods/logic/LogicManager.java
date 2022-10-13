@@ -61,7 +61,6 @@ public class LogicManager implements Logic {
     public ObservableList<UserModule> getFilteredUserModuleList() {
         // TODO Add implementation for user module list
         return model.getFilteredUserModuleList();
-        //return FXCollections.observableList(new ArrayList<>());
     }
 
     @Override
