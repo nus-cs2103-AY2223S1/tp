@@ -9,10 +9,12 @@ import nus.climods.model.Model;
 import nus.climods.model.ModelManager;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.ModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
 
 public class ExitCommandTest {
     private static final String testAcademicYear = "2022-2023";
-    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UserPrefs());
+    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
+            new UserPrefs());
 
     @Test
     public void execute_exit_success() {

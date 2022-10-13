@@ -8,11 +8,8 @@ import java.util.regex.Pattern;
 
 import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.commands.Command;
-<<<<<<< HEAD
 import nus.climods.logic.commands.DeleteCommand;
-=======
 import nus.climods.logic.commands.ExitCommand;
->>>>>>> master
 import nus.climods.logic.commands.FindCommand;
 import nus.climods.logic.commands.HelpCommand;
 import nus.climods.logic.commands.ListCommand;
