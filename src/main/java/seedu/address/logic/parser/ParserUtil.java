@@ -16,10 +16,7 @@ import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
 import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
-import seedu.address.model.student.Address;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -288,5 +285,14 @@ public class ParserUtil {
             throw new ParseException(ConsultationName.MESSAGE_CONSTRAINTS);
         }
         return new ConsultationDescription(trimmedName);
+    }
+
+    public static ID parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedId = id.trim();
+        if (!ID.isValidId(trimmedId)) {
+            throw new ParseException(ID.MESSAGE_CONSTRAINTS);
+        }
+        return new ID(trimmedId);
     }
 }

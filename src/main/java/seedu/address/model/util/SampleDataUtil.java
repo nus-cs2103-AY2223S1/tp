@@ -21,17 +21,29 @@ import seedu.address.model.tutorial.TutorialVenue;
 public class SampleDataUtil {
     public static Student[] getSamplePersons() {
         return new Student[] {
-            new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Student(new Name("Alex Yeoh"),
+                    new ID("A0000000a"),
+                    new Phone("87438807"), new Email("alexyeoh@example.com"),
                 getTagSet("friends")),
-            new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Student(new Name("Bernice Yu"),
+                    new ID("A0000000B"),
+                    new Phone("99272758"), new Email("berniceyu@example.com"),
                 getTagSet("colleagues", "friends")),
-            new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Student(new Name("Charlotte Oliveiro"),
+                    new ID("A0000000C"),
+                    new Phone("93210283"), new Email("charlotte@example.com"),
                 getTagSet("neighbours")),
-            new Student(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Student(new Name("David Li"),
+                    new ID("A0000000D"),
+                    new Phone("91031282"), new Email("lidavid@example.com"),
                 getTagSet("family")),
-            new Student(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Student(new Name("Irfan Ibrahim"),
+                    new ID("A0000000I"),
+                    new Phone("92492021"), new Email("irfan@example.com"),
                 getTagSet("classmates")),
-            new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Student(new Name("Roy Balakrishnan"),
+                    new ID("A0000000R"),
+                    new Phone("92624417"), new Email("royb@example.com"),
                 getTagSet("colleagues"))
         };
     }

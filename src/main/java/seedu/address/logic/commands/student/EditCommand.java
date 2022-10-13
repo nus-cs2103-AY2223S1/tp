@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -37,6 +37,7 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_ID + "ID] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -92,11 +93,12 @@ public class EditCommand extends Command {
         assert studentToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
+        ID updatedId = editPersonDescriptor.getId().orElse(studentToEdit.getId());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Student(updatedName, updatedId, updatedPhone, updatedEmail, updatedTags);
     }
 
     @Override
@@ -123,6 +125,7 @@ public class EditCommand extends Command {
      */
     public static class EditPersonDescriptor {
         private Name name;
+        private ID id;
         private Phone phone;
         private Email email;
         private Set<Tag> tags;
@@ -153,6 +156,14 @@ public class EditCommand extends Command {
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
+        }
+
+        public void setId(ID id) {
+            this.id = id;
+        }
+
+        public Optional<ID> getId() {
+            return Optional.ofNullable(id);
         }
 
         public void setPhone(Phone phone) {

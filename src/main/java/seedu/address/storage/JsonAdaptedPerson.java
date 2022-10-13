@@ -22,6 +22,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String id;
     private final String phone;
     private final String email;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -30,10 +31,12 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("id") String id,
+                             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
+        this.id = id;
         this.phone = phone;
         this.email = email;
         if (tagged != null) {
@@ -46,6 +49,7 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Student source) {
         name = source.getName().fullName;
+        id = source.getId().id;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         tagged.addAll(source.getTags().stream()
@@ -72,6 +76,14 @@ class JsonAdaptedPerson {
         }
         final Name modelName = new Name(name);
 
+        if (id == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ID.class.getSimpleName()));
+        }
+        if (!ID.isValidId(id)) {
+            throw new IllegalValueException(ID.MESSAGE_CONSTRAINTS);
+        }
+        final ID modelId = new ID(id);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -89,7 +101,7 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Student(modelName, modelPhone, modelEmail, modelTags);
+        return new Student(modelName, modelId, modelPhone, modelEmail, modelTags);
     }
 
 }

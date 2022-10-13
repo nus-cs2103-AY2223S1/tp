@@ -17,7 +17,7 @@ public class Student {
 
     // Identity fields
     private final Name name;
-    //private final ID id;
+    private final ID id;
     private final Phone phone;
     private final Email email;
     //private final Telegram telegram;
@@ -32,9 +32,10 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, tags);
+    public Student(Name name, ID id, Phone phone, Email email, Set<Tag> tags) {
+        requireAllNonNull(name, id, phone, email, tags);
         this.name = name;
+        this.id = id;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
@@ -43,6 +44,8 @@ public class Student {
     public Name getName() {
         return name;
     }
+
+    public ID getId() { return id; }
 
     public Phone getPhone() {
         return phone;
