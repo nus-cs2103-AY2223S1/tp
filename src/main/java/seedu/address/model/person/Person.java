@@ -3,10 +3,14 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.contact.Contact;
+import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,9 +27,11 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Map<ContactType, Contact> contacts = new HashMap<>();
 
     /**
      * Every field must be present and not null.
+     * TODO: Add contacts map into constructor
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
@@ -61,6 +67,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable contact map, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Map<ContactType, Contact> getContacts() {
+        return Collections.unmodifiableMap(contacts);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -92,13 +106,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getContacts().equals(getContacts());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags, contacts);
     }
 
     @Override
@@ -116,6 +131,14 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Map<ContactType, Contact> contacts = getContacts();
+        if (!contacts.isEmpty()) {
+            for (ContactType contactType: contacts.keySet()) {
+                builder.append("; " + contactType + ": ");
+                builder.append(contacts.get(contactType));
+            }
         }
         return builder.toString();
     }
