@@ -81,7 +81,7 @@ public class EditPatientCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         updateModelNames(model, personToEdit, editedPerson);
-        updateDisplay(model, editedPerson, personToEdit.getAppointments());
+        updatePatients(editedPerson, personToEdit.getAppointments());
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -112,7 +112,7 @@ public class EditPatientCommand extends Command {
                 updatedTags);
     }
 
-    private void updateDisplay(Model model, Person editedPerson, List<Appointment> appointments) {
+    private void updatePatients(Person editedPerson, List<Appointment> appointments) {
         for (Appointment appointment : appointments) {
             appointment.setPatient(editedPerson);
         }
