@@ -19,6 +19,10 @@ public class ClassGroup {
         this.value = classGroup;
     }
 
+    public boolean contains(String keyword) {
+        return value.toLowerCase().contains(keyword);
+    }
+
     @Override
     public String toString() {
         return value;

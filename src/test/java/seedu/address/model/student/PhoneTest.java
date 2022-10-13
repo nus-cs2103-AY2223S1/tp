@@ -37,4 +37,25 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone("93121534"));
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
     }
+
+    @Test
+    void contains_phoneContainsKeyword_returnsTrue() {
+        // Blank keyword
+        assertTrue(new Phone("12345678").contains(""));
+
+        // Exact keyword
+        assertTrue(new Phone("12345678").contains("12345678"));
+
+        // Partial matching keyword
+        assertTrue(new Phone("12345678").contains("234"));
+    }
+
+    @Test
+    void contains_phoneContainsKeyword_returnsFalse() {
+        // Keyword with alphabets
+        assertFalse(new Phone("12345678").contains("aaaaa"));
+
+        // Keyword with both numbers and alphabets
+        assertFalse(new Phone("12345678").contains("a9d87g"));
+    }
 }

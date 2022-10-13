@@ -76,6 +76,17 @@ public class Student {
     }
 
     /**
+     * Returns true if keyword in present in any field in the student.
+     *
+     * @param keyword
+     * @return whether keyword is present is any field of the student
+     */
+    public boolean contains(String keyword) {
+        return name.contains(keyword) || phone.contains(keyword) || email.contains(keyword)
+                || classGroup.contains(keyword) || studentId.contains(keyword);
+    }
+
+    /**
      * Returns true if both students have the same name.
      * This defines a weaker notion of equality between two students.
      */

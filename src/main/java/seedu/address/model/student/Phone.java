@@ -34,6 +34,10 @@ public class Phone {
         return test.equals(INFO_NOT_AVAILABLE) || test.matches(VALIDATION_REGEX);
     }
 
+    public boolean contains(String keyword) {
+        return value.toLowerCase().contains(keyword);
+    }
+
     @Override
     public String toString() {
         return value;

@@ -1,13 +1,36 @@
 package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 class ClassGroupTest {
     private final String nonEmptyClassGroup = "Some class group.";
     private ClassGroup classGroup = new ClassGroup(nonEmptyClassGroup);
+
+    @Test
+    void contains_classGroupContainsKeyword_returnsTrue() {
+        // Blank keyword
+        assertTrue(new ClassGroup("cs2030 lab 31").contains(""));
+
+        // Exact keyword
+        assertTrue(new ClassGroup("cs2030 lab 31").contains("cs2030"));
+
+        // Partial matching keyword
+        assertTrue(new ClassGroup("cs2030 lab 31").contains("2030"));
+    }
+
+    @Test
+    void contains_classGroupContainsKeyword_returnsFalse() {
+        // Non-matching keyword
+        assertFalse(new ClassGroup("cs2030 lab 31").contains("cs2103t"));
+
+        // Mixed-case keyword
+        assertFalse(new ClassGroup("cs2030 lab 31").contains("CS2030"));
+    }
 
     @Test
     void testToString() {
