@@ -62,12 +62,13 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, and Mastery Check date.
+Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
 
-Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`
+Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle, consultation date, and Mastery Check date are optional.
+The Telegram handle, consultation date, and Mastery Check date are optional. 
+A person can have any number of tags (including 0).
 </div>
 
 ### View individual student details: `find`
@@ -83,21 +84,21 @@ Use student name as user is looking for details and doesn't have them.
 
 Deletes the student at the given index from FRIDAY.
 
-Format: `delete i/INDEX`
+Format: `delete INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index of the student can be seen from the student list.
-
 </div>
 
 ### Editing a student: `edit`
 
 Edits a student's details in FRIDAY.
 
-Format: `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The Telegram handle, student number, mastery check, consultation, grade, and remark are optional
+The index of the student can be seen from the student list.
+The name, Telegram handle, consultation, mastery check, and tag are optional, but there should be at least one parameter.
 </div>
 
 ### Viewing all students: `list`
@@ -112,6 +113,12 @@ Returns a link to FRIDAY's User Guide.
 
 Format: `guide`
 
+### Getting help: `help`
+
+Shows a summary of commands along with their command word. Also includes a link to FRIDAY's user guide.
+
+Format: `help`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -120,11 +127,12 @@ Format: `guide`
 
 ## Command Summary
 
-| Action                           | Format                                                                                                        |
-|----------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE]`                                 |
-| **Delete a student**             | `delete i/INDEX`                                                                                              |
-| **Edit a student's details**     | `edit i/INDEX [t/TELEGRAM_HANDLE] [s/STUDENT_NUMBER] [m/MASTERY_CHECK] [c/CONSULTATION] [g/GRADE] [r/REMARK]` |
-| **View all students**            | `list`                                                                                                        |
-| **Find a student's details**     | `find s/STUDENT_NAME`                                                                                         |
-| **Get a link to the User Guide** | `guide`                                                                                                       |
+| Action                           | Format                                                                                     |
+|----------------------------------|--------------------------------------------------------------------------------------------|
+| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
+| **Delete a student**             | `delete i/INDEX`                                                                           |
+| **Edit a student's details**     | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`     |
+| **View all students**            | `list`                                                                                     |
+| **Find a student's details**     | `find s/STUDENT_NAME`                                                                      |
+| **Get a link to the User Guide** | `guide`                                                                                    |
+| **Getting Help**                 | `help`                                                                                     |
