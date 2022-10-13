@@ -1,17 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.assignment.Assignment;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.testutil.PersonBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT;
@@ -23,12 +11,22 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
-import static seedu.address.model.person.testutil.TypicalPersons.ALICE;
 import static seedu.address.model.person.testutil.TypicalPersons.ELLE;
 import static seedu.address.model.person.testutil.TypicalPersons.ORAL_PRESENTATION;
 import static seedu.address.model.person.testutil.TypicalPersons.TEAM_PROJECT;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBookWithGroups;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.assignment.Assignment;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.testutil.PersonBuilder;
 
 public class AssignTaskCommandTest {
 
@@ -52,8 +50,7 @@ public class AssignTaskCommandTest {
 
         Person expectedEditedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{"Alpha", "Beta", groupName},
-                        new String[][]{{"Team Project", "Team A"},
-                                {"Team Beta"}, {assignmentName}}).build();
+                        new String[][]{{"Team Project", "Team A"}, {"Team Beta"}, {assignmentName}}).build();
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
@@ -81,12 +78,13 @@ public class AssignTaskCommandTest {
 
         Person editedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{"Alpha", "Beta", groupName},
-                        new String[][]{{"Team Project", "Team A"}, {"Team Beta"}, {assignmentName}}).build();
+                        new String[][]{{"Team Project", "Team A"},
+                                       {"Team Beta"}, {assignmentName}}).build();
 
         Person expectedEditedPerson = new PersonBuilder(personToAssignTask)
                 .withAssignments(new String[]{"Alpha", "Beta", groupName},
                         new String[][]{{"Team Project", "Team A"},
-                                {"Team Beta"}, {assignmentName, assignmentName}}).build();
+                                       {"Team Beta"}, {assignmentName, assignmentName}}).build();
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
