@@ -33,4 +33,13 @@ public class MoneyTest {
         assertTrue(Money.isValidMoney(1234)); // multiple digits positive number
         assertTrue(Money.isValidMoney(0)); // zero
     }
+
+    @Test
+    public void isGreaterThanZeroTest() {
+        Money moneyWithZeroAmount = new Money(0);
+        assertFalse(moneyWithZeroAmount.isGreaterThanZero());
+
+        Money moneyWithPositiveAmount = new Money(50);
+        assertTrue(moneyWithPositiveAmount.isGreaterThanZero());
+    }
 }
