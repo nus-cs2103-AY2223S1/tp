@@ -34,17 +34,12 @@
         </MenuBar>
             <HBox styleClass="pane-with-border">
                <children>
-                  <VBox styleClass="command-box-container" HBox.hgrow="ALWAYS">
+                  <VBox HBox.hgrow="ALWAYS">
+                     <padding>
+                          <Insets bottom="10" top="10" />
+                     </padding>
                      <children>
-                        <StackPane fx:id="profileSidePanelPlaceholder" styleClass="pane-with-border" />
-                         <StackPane fx:id="commandBoxPlaceholder" minHeight="200.0" styleClass="command-box-container" stylesheets="@DarkTheme.css">
-                      <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="5.0" />
-                      </padding>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                    </StackPane>
+                        <StackPane fx:id="profileSidePanelPlaceholder" />
                      </children>
                   </VBox>
                   <VBox fx:id="personList" prefHeight="600.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
@@ -66,12 +61,19 @@
                </children>
             </HBox>
 
-                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-          <StackPane fx:id="statusbarPlaceholder" prefWidth="690.0" VBox.vgrow="NEVER" />
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <padding>
+                <Insets bottom="30" left="20" right="20" top="30" />
+            </padding>
+          </StackPane>
+          <StackPane fx:id="commandBoxPlaceholder" minHeight="200.0" styleClass="command-box-container" stylesheets="@DarkTheme.css">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+          </StackPane>
       </VBox>
     </Scene>
   </scene>

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 
 /**
@@ -16,6 +17,9 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    @FXML
+    private ImageView avatarDisplay;
+
     public ResultDisplay() {
         super(FXML);
     }
@@ -24,5 +28,4 @@ public class ResultDisplay extends UiPart<Region> {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
     }
-
 }
