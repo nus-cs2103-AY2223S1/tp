@@ -50,6 +50,19 @@ public class Client extends Person {
         return this.listinglist;
     }
 
+    /**
+     * Returns true if both client have the same name.
+     * This defines a weaker notion of equality between two client.
+     */
+    public boolean isSameClient(Client otherClient) {
+        if (otherClient == this) {
+            return true;
+        }
+
+        return otherClient != null
+                && otherClient.getName().equals(getName());
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
