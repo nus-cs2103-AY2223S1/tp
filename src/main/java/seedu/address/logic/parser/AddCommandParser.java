@@ -40,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Contact contact = ParserUtil.parseContact(argMultimap.getValue(PREFIX_CONTACT).get());
-        Email email = ParserUtil.newParseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 

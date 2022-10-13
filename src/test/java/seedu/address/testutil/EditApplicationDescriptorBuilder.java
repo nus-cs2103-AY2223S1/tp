@@ -8,7 +8,6 @@ import seedu.address.model.application.Date;
 import seedu.address.model.application.Email;
 import seedu.address.model.application.Position;
 
-
 /**
  * A utility class to help with building EditApplicationDescriptor objects.
  */
@@ -31,9 +30,9 @@ public class EditApplicationDescriptorBuilder {
         descriptor = new EditApplicationDescriptor();
         descriptor.setCompany(application.getCompany());
         descriptor.setContact(application.getContact());
+        descriptor.setDate(application.getDate());
         descriptor.setEmail(application.getEmail());
         descriptor.setPosition(application.getPosition());
-        descriptor.setDate(application.getDate());
     }
 
     /**
@@ -53,6 +52,14 @@ public class EditApplicationDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Date} of the {@code EditApplicationDescriptor} that we are building.
+     */
+    public EditApplicationDescriptorBuilder withDate(String date) {
+        descriptor.setDate(new Date(date));
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code EditApplicationDescriptor} that we are building.
      */
     public EditApplicationDescriptorBuilder withEmail(String email) {
@@ -65,14 +72,6 @@ public class EditApplicationDescriptorBuilder {
      */
     public EditApplicationDescriptorBuilder withPosition(String position) {
         descriptor.setPosition(new Position(position));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Date} of the {@code EditApplicationDescriptor} that we are building.
-     */
-    public EditApplicationDescriptorBuilder withDate(String date) {
-        descriptor.setDate(new Date(date));
         return this;
     }
 
