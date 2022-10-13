@@ -55,12 +55,7 @@ public class MarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        PersonData personData = new PersonData();
-        personData.setName(personToEdit.getName());
-        personData.setPhone(personToEdit.getPhone());
-        personData.setEmail(personToEdit.getEmail());
-        personData.setAddress(personToEdit.getAddress());
-        personData.setTags(personToEdit.getTags());
+        PersonData personData = personToEdit.getPersonData();
 
         Set<Attendance> newAttendance = new HashSet<>(personToEdit.getAttendances());
         newAttendance.add(attendance);

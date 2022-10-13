@@ -80,6 +80,17 @@ public class Person {
         return Collections.unmodifiableSet(attendances);
     }
 
+    public PersonData getPersonData() {
+        PersonData personData = new PersonData();
+        personData.setName(this.getName());
+        personData.setPhone(this.getPhone());
+        personData.setEmail(this.getEmail());
+        personData.setAddress(this.getAddress());
+        personData.setTags(this.getTags());
+        personData.setAttendances(this.getAttendances());
+        return personData;
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
