@@ -44,11 +44,11 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
-        filteredTutors = new FilteredList<>(this.addressBook.getTutorList());
-        filteredTuitionClass = new FilteredList<>(this.addressBook.getTuitionClassList());
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-
+        this.filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        this.filteredTutors = new FilteredList<>(this.addressBook.getTutorList());
+        this.filteredTuitionClass = new FilteredList<>(this.addressBook.getTuitionClassList());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.type = ListType.STUDENT_LIST;
     }
 
     public ModelManager() {
@@ -155,6 +155,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTuitionClass(TuitionClass target) {
+        addressBook.removeTuitionClass(target);
+    }
+
+    @Override
     public void addTuitionClass(TuitionClass tuitionClass) {
         addressBook.addTuitionClass(tuitionClass);
     }
@@ -162,6 +167,12 @@ public class ModelManager implements Model {
     @Override
     public TuitionClass getTuitionClass(Name name) {
         return addressBook.getTuitionClass(name);
+    }
+
+    public void setTuitionClass(TuitionClass target, TuitionClass editedTuitionClass) {
+        requireAllNonNull(target, editedTuitionClass);
+
+        addressBook.setTuitionClass(target, editedTuitionClass);
     }
 
     //=========== Filtered Person List Accessors =============================================================
