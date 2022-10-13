@@ -1,7 +1,6 @@
 package nus.climods.logic.parser;
 
-import static nus.climods.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nus.climods.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static nus.climods.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +8,10 @@ import nus.climods.logic.commands.ExitCommand;
 
 public class ExitCommandParserTest {
     private final ExitCommandParser parser = new ExitCommandParser();
+    private final ExitCommand expectedExitCommand = new ExitCommand();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser,
-                "    ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExitCommand.MESSAGE_USAGE));
+    public void parse_randomArg_returnsExitCommand() {
+        assertParseSuccess(parser, "I love to write test cases!", expectedExitCommand);
     }
 }
