@@ -85,8 +85,8 @@ public class AddressBookParser {
         case AttendanceCommand.COMMAND_WORD:
             return new AttendanceCommandParser().parse(arguments);
 
-            case  UploadPictureCommand.COMMAND_WORD:
-                return new UploadPictureCommandParser().parse(arguments);
+        case UploadPictureCommand.COMMAND_WORD:
+            return new UploadPictureCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

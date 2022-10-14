@@ -2,16 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Picture;
+import seedu.address.model.student.Student;
 import seedu.address.storage.ImageStorage;
-
-
-import java.io.*;
-import java.util.List;
 
 /**
  * Adds a profile picture for a student.
@@ -27,6 +27,10 @@ public class UploadPictureCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Creates a new UploadPictureCommand Object.
+     * @param index
+     */
     public UploadPictureCommand(Index index) {
         requireNonNull(index);
         this.index = index;
@@ -60,7 +64,7 @@ public class UploadPictureCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof UploadPictureCommand)){
+        if (!(other instanceof UploadPictureCommand)) {
             return false;
         }
 

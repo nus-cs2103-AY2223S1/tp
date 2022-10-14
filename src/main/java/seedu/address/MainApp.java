@@ -26,6 +26,7 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.ImageStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -189,6 +190,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        ImageStorage.setStage(primaryStage);
     }
 
     @Override

@@ -11,7 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.student.*;
+import seedu.address.model.student.ClassGroup;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -121,7 +126,6 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Attendance.class.getSimpleName()));
         }
-
 
         if (!Attendance.isValidMark(attendance)) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);

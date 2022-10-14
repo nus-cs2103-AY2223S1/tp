@@ -55,8 +55,7 @@ public class ClassGroupCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(), classGroup,
-                studentToEdit.getStudentId(), studentToEdit.getTags(), studentToEdit.getAttendance(),
-                studentToEdit.getPicture());
+                studentToEdit.getStudentId(), studentToEdit.getTags(), studentToEdit.getAttendance());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);

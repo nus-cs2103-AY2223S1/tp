@@ -71,6 +71,9 @@ public class StudentCard extends UiPart<Region> {
         updatePicture();
     }
 
+    /**
+     * Update the Picture of the Student.
+     */
     public void updatePicture() {
         picture.setImage(
                 ImageStorage.getStudentProfileImage(this.student)

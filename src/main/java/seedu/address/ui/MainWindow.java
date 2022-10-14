@@ -28,7 +28,6 @@ public class MainWindow extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
-    public static Stage myStage;
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
@@ -63,7 +62,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
-        myStage = primaryStage;
         this.logic = logic;
 
         // Configure the UI
