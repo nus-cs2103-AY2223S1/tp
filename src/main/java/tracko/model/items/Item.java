@@ -82,7 +82,7 @@ public class Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
-                .append(getItemName() +"\n")
+                .append(getItemName() + "\n")
                 .append("Description: ")
                 .append(getDescription() + "\n")
                 .append("Quantity: ")
