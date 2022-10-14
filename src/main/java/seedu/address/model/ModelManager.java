@@ -31,7 +31,6 @@ public class ModelManager implements Model {
     private final FilteredList<Module> moduleFilteredList;
 
     private final FilteredList<Task> taskFilteredList;
-    private final SortedList<Task> taskSortedByDescriptionLengthList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,7 +45,6 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         moduleFilteredList = new FilteredList<>(this.addressBook.getModuleList());
         taskFilteredList = new FilteredList<>(this.addressBook.getTaskList());
-        taskSortedByDescriptionLengthList = new SortedList<>(taskFilteredList);
     }
 
     public ModelManager() {
