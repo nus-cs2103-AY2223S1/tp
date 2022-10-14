@@ -1,5 +1,7 @@
 package seedu.address.model.person.predicates;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
@@ -13,6 +15,9 @@ public class DateTimeWithinRangePredicate implements Predicate<Appointment> {
     private final LocalDateTime endDateTime;
 
     public DateTimeWithinRangePredicate(LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        requireNonNull(startDateTime);
+        requireNonNull(endDateTime);
+
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
     }
@@ -23,6 +28,9 @@ public class DateTimeWithinRangePredicate implements Predicate<Appointment> {
     }
 
     private boolean isDateTimeWithinRange(LocalDateTime appointmentDateTime) {
+        assert startDateTime != null : "startDateTime should not be null.";
+        assert endDateTime != null : "endDateTime should not be null.";
+
         boolean isAtOrAfterStartTime =
                 appointmentDateTime.isEqual(startDateTime) || appointmentDateTime.isAfter(startDateTime);
         boolean isAtOrBeforeEndTime =

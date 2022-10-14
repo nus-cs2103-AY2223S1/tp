@@ -1,5 +1,6 @@
 package seedu.address.model.person.predicates;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,9 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
     private final Predicate<Appointment> combinedPredicate;
 
     public CombinedAppointmentPredicate(String reason, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        requireNonNull(startDateTime);
+        requireNonNull(endDateTime);
+
         this.reason = reason;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -26,6 +30,9 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
     }
 
     private Predicate<Appointment> combineAllPredicates() {
+        assert startDateTime != null : "startDateTime should not be null.";
+        assert endDateTime != null : "endDateTime should not be null.";
+
         List<Predicate<Appointment>> appointmentPredicates = new ArrayList<>();
 
         if (!reason.isEmpty()) {
