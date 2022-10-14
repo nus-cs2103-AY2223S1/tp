@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.tutorial;
+package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
