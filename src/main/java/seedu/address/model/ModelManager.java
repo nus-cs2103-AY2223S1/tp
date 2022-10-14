@@ -8,6 +8,7 @@ import static seedu.address.model.person.Person.DEFAULT_NAME;
 import static seedu.address.model.person.Person.DEFAULT_PHONE;
 
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -199,7 +200,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Record> getFilteredRecordList() {
-        return filteredRecords;
+        return filteredRecords.sorted(Collections.reverseOrder());
     }
 
     @Override
