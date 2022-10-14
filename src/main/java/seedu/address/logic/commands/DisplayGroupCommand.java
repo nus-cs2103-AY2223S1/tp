@@ -52,4 +52,11 @@ public class DisplayGroupCommand extends Command {
         model.updateFilteredGroupList(predicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof DisplayGroupCommand
+                && predicate.equals(((DisplayGroupCommand) other).predicate));
+    }
 }
