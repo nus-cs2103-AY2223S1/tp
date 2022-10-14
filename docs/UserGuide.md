@@ -82,7 +82,7 @@ A project can have any number of tags (including 0)
 
 Examples:
 * `add pn/2103T_TP pb/100000 pd/2022-01-01`
-* `add pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Fun time`
+* `add pn/CS2100 t/Tiring pb/1000 pd/2022-01-01 t/Funtime`
 
 ### Deleting a Project : `delete`
 
