@@ -8,7 +8,7 @@ title: User Guide
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-    * [Viewing help: `help`](#viewing-help-help)
+    * [Getting help: `help`](#getting-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
@@ -43,9 +43,9 @@ title: User Guide
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
    
-    * **`find`**`google` : Finds the applications that contain keyword **google** in their company name and position.
+    * **`find`**`google` : Finds the applications that contain keyword **google** in their company name and/or position.
    
-    * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list to update new email address.
+    * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list with new email address.
    
     * **`clear`**: Clears CinternS data.
 
@@ -150,7 +150,6 @@ Clears all entries from CinternS.
 Format: `clear`
 
 ### Exiting the program: `exit`
-
 Exits the program.
 
 Format: `exit`
