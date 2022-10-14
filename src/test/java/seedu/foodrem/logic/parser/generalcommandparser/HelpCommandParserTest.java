@@ -61,13 +61,13 @@ class HelpCommandParserTest {
                 + "https://se-education.org/addressbook-level3/UserGuide.html", MORE_INFORMATION);
 
         assertEquals("help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag",
+                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag",
                 CommandWord.listAllCommandWords());
 
         assertEquals("To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
+                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
                         + "For more information please head to:\n"
                         + "https://se-education.org/addressbook-level3/UserGuide.html",
                 HELP_FOR_ALL_COMMANDS);
@@ -75,7 +75,7 @@ class HelpCommandParserTest {
         assertEquals("hehe\n\nTo receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
+                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
                         + "For more information please head to:\n"
                         + "https://se-education.org/addressbook-level3/UserGuide.html",
                 String.format(HELP_FOR_SPECIFIC_COMMAND, "hehe"));
@@ -86,7 +86,7 @@ class HelpCommandParserTest {
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
+                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
                         + "For more information please head to:\n"
                         + "https://se-education.org/addressbook-level3/UserGuide.html");
     }
