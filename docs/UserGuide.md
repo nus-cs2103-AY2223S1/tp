@@ -181,7 +181,16 @@ If your changes to the data file makes its format invalid, FinBook will discard 
 Imports data from a `JSON` or `CSV` file
 
 * `JSON` files must be saved by the latest version of FinBook
-* `CSV` files must be exported as Google CSV from Google Contacts
+* `CSV` files must be formatted correctly as follows:
+    * The first line of the file must contain these headers in any order:
+        * `name`
+        * `phone`
+        * `email`
+        * `address`
+        * `income`
+        * `meeting date`
+        * `tags`
+    * The data in each corresponding column must be valid
 
 Format: `import PATH`
 

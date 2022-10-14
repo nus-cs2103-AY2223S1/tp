@@ -486,7 +486,7 @@ Use case ends.
 
 **Use case: UC 7 - Import external data**
 
-**Precondition:** Actor exported data from Google contacts as Google CSV
+**Precondition:** Actor has a valid file
 
 **MSS:**
 
