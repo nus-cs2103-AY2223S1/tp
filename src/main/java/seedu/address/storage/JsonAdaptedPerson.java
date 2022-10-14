@@ -69,11 +69,11 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         lessonPlan = source.getLessonPlan().value;
         homeworkList.addAll(source.getHomeworkList().homeworkList.stream()
-                        .map(JsonAdaptedHomework::new)
-                        .collect(Collectors.toList()));
+                .map(JsonAdaptedHomework::new)
+                .collect(Collectors.toList()));
         attendanceList.addAll(source.getAttendanceList().attendanceList.stream()
-                        .map(JsonAdaptedAttendance::new)
-                        .collect(Collectors.toList()));
+                .map(JsonAdaptedAttendance::new)
+                .collect(Collectors.toList()));
         gradeProgressList.addAll(source.getGradeProgressList().gradeProgressList.stream()
                 .map(JsonAdaptedGradeProgress::new)
                 .collect(Collectors.toList()));
