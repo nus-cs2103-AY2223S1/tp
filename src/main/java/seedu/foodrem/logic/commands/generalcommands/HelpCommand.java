@@ -44,6 +44,11 @@ public class HelpCommand extends Command {
         this.message = message;
     }
 
+    public static String getCommandHelpMessage(CommandWord command) {
+        // TODO: Create tests for this method
+        return String.format(HelpCommand.HELP_FOR_SPECIFIC_COMMAND, command.getHelp());
+    }
+
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, message);
