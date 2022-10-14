@@ -14,6 +14,7 @@ import longtimenosee.logic.commands.FindPolicyCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.model.policy.predicate.TitleContainsKeywordsPredicate;
+import longtimenosee.model.policy.predicate.CompanyContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindPolicyCommand object
@@ -41,6 +42,11 @@ public class FindPolicyCommandParser implements Parser<FindPolicyCommand> {
             String trimmedArgs = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()).fullTitle.trim();
             String[] titleKeywords = trimmedArgs.split("\\s+");
             predicates.add(new TitleContainsKeywordsPredicate(List.of(titleKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+            String company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()).value;
+            predicates.add(new CompanyContainsKeywordsPredicate(List.of(company)));
         }
 
         return new FindPolicyCommand(predicates);
