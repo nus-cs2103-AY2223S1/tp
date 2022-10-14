@@ -13,7 +13,7 @@ public class IssueId {
      * Represents an empty issue id.
      */
     public static class EmptyIssueId extends IssueId {
-        public static final IssueId EMPTY_ISSUEID = new EmptyIssueId();
+        public static final IssueId EMPTY_ISSUE_ID = new EmptyIssueId();
 
         private EmptyIssueId() {
             super(0);

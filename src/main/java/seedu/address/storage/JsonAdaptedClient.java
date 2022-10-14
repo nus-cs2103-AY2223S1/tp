@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
@@ -20,7 +18,6 @@ import seedu.address.model.tag.exceptions.IllegalValueException;
 /**
  * Jackson-friendly version of {@link Client}.
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "clientId")
 class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
@@ -106,7 +103,11 @@ class JsonAdaptedClient {
         if (!ClientId.isValidClientId(clientId)) {
             throw new IllegalValueException(ClientId.MESSAGE_CONSTRAINTS);
         }
+
         final ClientId modelClientId = new ClientId(Integer.parseInt(clientId));
+        if (modelClientId.getIdInt() == -1) {
+            return Client.EmptyClient.EMPTY_CLIENT;
+        }
 
         return new Client(modelName, modelPhone, modelEmail, clientProjects, modelClientId);
     }

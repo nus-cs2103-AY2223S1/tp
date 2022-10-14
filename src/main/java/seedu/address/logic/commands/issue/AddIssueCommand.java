@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -55,8 +55,9 @@ public class AddIssueCommand extends IssueCommand {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
 
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        ui.showProjects();
+        ui.showIssues();
+        model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+
 
         model.addIssue(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

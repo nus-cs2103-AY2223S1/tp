@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -238,7 +239,7 @@ public class ParserUtil {
     public static Project parseProject(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
-        int trimmedIdInt = Integer.valueOf(trimmedId);
+        int trimmedIdInt = Integer.parseInt(trimmedId);
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
@@ -247,5 +248,23 @@ public class ParserUtil {
             throw new ParseException("No project with this project Id");
         }
         return UniqueProjectList.getProject(trimmedIdInt);
+    }
+
+    /**
+     * Parses a {@code String projectId} into a stub default {@code Project}.
+     *
+     * @param projectId is the id of the project
+     * @return A stub default project
+     */
+    public static Project parseProjectStub(String projectId) throws ParseException {
+        requireNonNull(projectId);
+        String trimmedId = projectId.trim();
+        int trimmedIdInt = Integer.parseInt(trimmedId);
+        if (!ProjectId.isValidProjectId(trimmedId)) {
+            throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
+        }
+        return new Project(new Name("default"), new Repository("default/default"),
+                new Deadline("2022-03-05"), new Client(new Name("default")),
+                new ArrayList<>(), new ProjectId(trimmedIdInt));
     }
 }

@@ -64,7 +64,7 @@ public class ClientPhone {
      * @return String representing phone
      */
     public String getPhoneRepresentation() {
-        return "Client Phone: " + this.phone;
+        return "Contact: " + this.phone;
     }
 
     /**
