@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeetings.MEETING_TYPICAL_1;
+import static seedu.address.testutil.TypicalMeetings.MEETING_TYPICAL_2;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -17,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.MeetingListBuilder;
 
 public class ModelManagerTest {
 
@@ -27,6 +30,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new MeetingList(), new MeetingList(modelManager.getMeetingList()));
     }
 
     @Test
@@ -38,6 +42,7 @@ public class ModelManagerTest {
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setMeetingListFilePath(Paths.get("meeting/list/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
@@ -45,6 +50,7 @@ public class ModelManagerTest {
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setMeetingListFilePath(Paths.get("new/meeting/list/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -94,14 +100,29 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setMeetingListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setMeetingListFilePath(null));
+    }
+
+    @Test
+    public void setMeetingListFilePath_validPath_setsMeetingListFilePath() {
+        Path path = Paths.get("meeting/list/file/path");
+        modelManager.setMeetingListFilePath(path);
+        assertEquals(path, modelManager.getMeetingListFilePath());
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
+        MeetingList meetingList = new MeetingListBuilder().withMeeting(MEETING_TYPICAL_1)
+                                                    .withMeeting(MEETING_TYPICAL_2).build();
+        MeetingList differentMeetingList = new MeetingList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(addressBook, meetingList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, meetingList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +135,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, differentMeetingList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, meetingList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +148,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setMeetingListFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, meetingList, differentUserPrefs)));
     }
 }
