@@ -11,6 +11,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDeadline;
+import seedu.address.model.reminder.ReminderDescription;
+import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,6 +41,17 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
+        };
+    }
+
+    public static Reminder[] getSampleReminders() {
+        return new Reminder[] {
+                new Reminder(new ReminderName("Mark Midterms"), new ReminderDeadline("20:00"), 
+                        new ReminderDescription("300 papers to mark")),
+                new Reminder(new ReminderName("Send email to TAs"), new ReminderDeadline("21:00"),
+                        new ReminderDescription("Erratum in midterms")),
+                new Reminder(new ReminderName("Meeting with Prof Lee"), new ReminderDeadline("22:00"),
+                        new ReminderDescription("Discuss incoming finals for CS2201")),
         };
     }
 

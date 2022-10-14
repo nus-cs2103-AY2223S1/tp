@@ -15,6 +15,9 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDeadline;
+import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -138,5 +141,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code ReminderName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ReminderName} is invalid.
+     */
+    public static ReminderName parseReminderName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ReminderName.isValidName(trimmedName)) {
+            throw new ParseException(ReminderName.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
+     */
+    public static ReminderDeadline parseTutorialTimeslot(String timeslot) throws ParseException {
+        requireNonNull(timeslot);
+        String trimmedName = timeslot.trim();
+        if (!ReminderDeadline.isValidTimeslot(trimmedName)) {
+            throw new ParseException(ReminderDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderDeadline(trimmedName);
     }
 }
