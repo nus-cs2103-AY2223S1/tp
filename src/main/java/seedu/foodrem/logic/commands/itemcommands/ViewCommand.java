@@ -37,7 +37,6 @@ public class ViewCommand extends Command {
         this.index = index;
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

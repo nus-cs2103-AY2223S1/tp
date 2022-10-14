@@ -49,7 +49,7 @@ public class DecrementCommand extends Command {
 
     /**
      * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
-     * decremented by  {@code editItemDescriptor}.
+     * decremented by {@code editItemDescriptor}.
      */
     private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) {
         assert itemToDecrement != null;
@@ -68,7 +68,6 @@ public class DecrementCommand extends Command {
                 itemToDecrement.getBoughtDate(),
                 itemToDecrement.getExpiryDate());
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

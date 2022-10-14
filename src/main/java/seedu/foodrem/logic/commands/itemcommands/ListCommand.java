@@ -18,7 +18,6 @@ public class ListCommand extends Command {
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Listed all items";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

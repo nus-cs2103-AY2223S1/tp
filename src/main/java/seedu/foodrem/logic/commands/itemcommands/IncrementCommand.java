@@ -49,7 +49,7 @@ public class IncrementCommand extends Command {
 
     /**
      * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
-     * incremented by  {@code editItemDescriptor}.
+     * incremented by {@code editItemDescriptor}.
      */
     private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) {
         assert itemToIncrement != null;
@@ -68,7 +68,6 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getBoughtDate(),
                 itemToIncrement.getExpiryDate());
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

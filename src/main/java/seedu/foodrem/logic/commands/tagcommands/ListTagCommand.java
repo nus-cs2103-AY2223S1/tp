@@ -19,7 +19,6 @@ public class ListTagCommand extends Command {
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Listed all tags:\n";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

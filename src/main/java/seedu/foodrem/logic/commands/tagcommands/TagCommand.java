@@ -16,7 +16,6 @@ import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 
-
 /**
  * Tags an item with a Tag.
  */
@@ -65,8 +64,7 @@ public class TagCommand extends Command {
                 itemToTag.getUnit(),
                 itemToTag.getBoughtDate(),
                 itemToTag.getExpiryDate(),
-                newTagSet
-                );
+                newTagSet);
     }
 
     @Override
