@@ -5,11 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import tracko.model.order.OrderContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class DescriptionTest {
 

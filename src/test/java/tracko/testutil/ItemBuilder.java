@@ -12,7 +12,7 @@ import tracko.model.items.Quantity;
  */
 public class ItemBuilder {
 
-    public static final String DEFAULT_ITEM_NAME= "Chair";
+    public static final String DEFAULT_ITEM_NAME = "Chair";
     public static final String DEFAULT_DESCRIPTION = "This is a wooden dining chair.";
     public static final int DEFAULT_QUANTITY = 300;
 

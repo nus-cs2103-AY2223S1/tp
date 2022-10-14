@@ -1,17 +1,15 @@
 package tracko.model.items;
 
-import org.junit.jupiter.api.Test;
-import tracko.model.order.ItemQuantityPair;
-import tracko.model.items.ItemContainsKeywordsPredicate;
-import tracko.testutil.ItemBuilder;
-import tracko.testutil.OrderBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import tracko.testutil.ItemBuilder;
 
 public class ItemContainsKeywordsPredicateTest {
 
