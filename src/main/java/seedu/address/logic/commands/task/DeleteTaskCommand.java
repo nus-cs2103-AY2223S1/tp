@@ -29,7 +29,7 @@ public class DeleteTaskCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteContactCommand to delete the specified {@code Task}.
+     * Creates a DeleteTaskCommand to delete the specified {@code Task}.
      * @param targetIndex
      */
     public DeleteTaskCommand(Index targetIndex) {
