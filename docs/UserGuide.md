@@ -144,6 +144,26 @@ Examples:
 * `contact edit i/1 n/James Lee e/jameslee@example.com`
 * `contact edit i/2 p/98765433`
 
+### Editing a task : `task edit`
+
+Edits the specified task in the task list.
+
+Format: `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE]`
+
+* Edits the contact at the specified `INDEX` with the parameters provided.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* **At least 1 field** must be edited.
+* Only one of assignor `m/` or assignee `o/` can be specified.
+  * If the task currently has an **assignor** of "Person X", it can be changed to have an **assignee** of "Person Y" by providing parameter `o/Person Y`.
+  * If the task currently has an **assignee** of "Person Y", it can be changed to have an **assignor** of "Person X" by providing parameter `m/Person X`.
+  * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
+
+Examples:
+* `task edit i/1 m/Jackie Chan d/Practice kick 10000 times`
+* `task edit i/2 o/James Lee`
+* `task edit i/3 t/2023-12-31`
+
 ### Deleting a contact : `contact delete`
 
 Deletes the specified contact from the contact list.
@@ -189,8 +209,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### Editing a person : `edit` [coming soon]
-
 ### Locating persons by name: `find` [coming soon]
 
 ### Archiving data files `[coming in v2.0]`
@@ -229,6 +247,7 @@ The following date formats are accepted:
 | **Add Task: Assignor** | `task add m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task add m/John d/Finish user guide`                                                                               |
 | **Add Task: Assignee** | `task add o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task add o/Sam d/Finish the assignment`                                                                            |
 | **Edit Contact**       | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com`                     |
+| **Edit Task**          | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE]`<br> e.g.,`task edit i/2 o/James Lee`                                                                |
 | **Delete Contact**     | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
 | **Delete Task**        | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
 | **Quit**               | `bye`                                                                                                                                                              |
