@@ -50,50 +50,50 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddPersonCommand.COMMAND_WORD:
-                return new AddPersonCommandParser().parse(arguments);
+        case AddPersonCommand.COMMAND_WORD:
+            return new AddPersonCommandParser().parse(arguments);
 
-            case AddListingCommand.COMMAND_WORD:
-                return new AddListingCommandParser().parse(arguments);
+        case AddListingCommand.COMMAND_WORD:
+            return new AddListingCommandParser().parse(arguments);
 
-            case EditPersonCommand.COMMAND_WORD:
-                return new EditPersonCommandParser().parse(arguments);
+        case EditPersonCommand.COMMAND_WORD:
+            return new EditPersonCommandParser().parse(arguments);
 
-            case EditListingCommand.COMMAND_WORD:
-                return new EditListingCommandParser().parse(arguments);
+        case EditListingCommand.COMMAND_WORD:
+            return new EditListingCommandParser().parse(arguments);
 
-            case DeletePersonCommand.COMMAND_WORD:
-                return new DeletePersonCommandParser().parse(arguments);
+        case DeletePersonCommand.COMMAND_WORD:
+            return new DeletePersonCommandParser().parse(arguments);
 
-            case DeleteListingCommand.COMMAND_WORD:
-                return new DeleteListingCommandParser().parse(arguments);
+        case DeleteListingCommand.COMMAND_WORD:
+            return new DeleteListingCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindPersonCommand.COMMAND_WORD:
-                return new FindPersonCommandParser().parse(arguments);
+        case FindPersonCommand.COMMAND_WORD:
+            return new FindPersonCommandParser().parse(arguments);
 
-            case ViewPersonListCommand.COMMAND_WORD:
-                return new ViewPersonListCommand();
+        case ViewPersonListCommand.COMMAND_WORD:
+            return new ViewPersonListCommand();
 
-            case ViewListingsCommand.COMMAND_WORD:
-                return new ViewListingsCommand();
+        case ViewListingsCommand.COMMAND_WORD:
+            return new ViewListingsCommand();
 
-            case ViewListingClientsCommand.COMMAND_WORD:
-                return new ViewListingClientsCommandParser().parse(arguments);
+        case ViewListingClientsCommand.COMMAND_WORD:
+            return new ViewListingClientsCommandParser().parse(arguments);
 
-            case ViewListingOffersCommand.COMMAND_WORD:
-                return new ViewListingOffersCommandParser().parse(arguments);
+        case ViewListingOffersCommand.COMMAND_WORD:
+            return new ViewListingOffersCommandParser().parse(arguments);
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
