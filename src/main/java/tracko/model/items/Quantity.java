@@ -10,20 +10,20 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should not be negative.";
 
-    public final int quantity;
+    public final Integer quantity;
 
     /**
      * Constructs a {@code Quantity}.
      * @param quantity The quantity of an item.
      */
-    public Quantity(int quantity) {
+    public Quantity(Integer quantity) {
         requireAllNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         this.quantity = quantity;
     }
 
-    public static boolean isValidQuantity(int test) {
-        return !(test < 0);
+    public static boolean isValidQuantity(Integer test) {
+        return !(test < 0) && (test <= Integer.MAX_VALUE);
     }
 
     public Integer getQuantity() {
@@ -46,6 +46,6 @@ public class Quantity {
         }
 
         Quantity otherQuantity = (Quantity) other;
-        return this.equals(otherQuantity.getQuantity());
+        return this.quantity.equals(otherQuantity.getQuantity());
     }
 }

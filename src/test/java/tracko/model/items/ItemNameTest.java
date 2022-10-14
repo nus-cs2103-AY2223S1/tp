@@ -37,4 +37,30 @@ public class ItemNameTest {
         assertTrue(ItemName.isValidItemName("Microsoft Windows Vista Ultimate UPGRADE Limited "
                 + "Numbered Signature Edition")); // long item name
     }
+
+    @Test
+    public void equals() {
+        String firstItemNameString = "Leather Sofa";
+        String secondItemNameString = "Electronic Guitar";
+
+        ItemName firstItemName = new ItemName(firstItemNameString);
+        ItemName secondItemName = new ItemName(secondItemNameString);
+
+        // same object -> returns true
+        assertTrue(firstItemName.equals(firstItemName));
+
+        ItemName firstItemNameCopy = new ItemName(firstItemNameString);
+        // same values -> returns true
+        assertTrue(firstItemName.equals(firstItemNameCopy));
+
+        // different types -> returns false
+        assertFalse(firstItemName.equals(3));
+        assertFalse(firstItemName.equals(29.5));
+
+        // null -> returns false
+        assertFalse(firstItemName.equals(null));
+
+        // different item name -> returns false
+        assertFalse(firstItemName.equals(secondItemName));
+    }
 }
