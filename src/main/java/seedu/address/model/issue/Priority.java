@@ -35,6 +35,6 @@ public enum Priority {
 
     @Override
     public String toString() {
-        return "Priority: " + super.toString();
+        return super.toString();
     }
 }

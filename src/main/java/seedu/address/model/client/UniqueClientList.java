@@ -72,7 +72,7 @@ public class UniqueClientList implements Iterable<Client> {
      * Removes the equivalent client from the list.
      * The client must exist in the list.
      */
-    public void remove(Client toRemove) {
+    public static void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ClientNotFoundException();

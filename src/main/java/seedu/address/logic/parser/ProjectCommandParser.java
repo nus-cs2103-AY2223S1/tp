@@ -42,7 +42,6 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      */
     @Override
     public ProjectCommand parse(String flag, String arguments) throws ParseException {
-        // Strip is just there for good measure.
         switch (flag.strip()) {
         case AddProjectCommand.COMMAND_FLAG:
             return parseAddProjectCommand(arguments);
@@ -122,7 +121,6 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
     }
 
-    //TODO: implement
     private ListProjectCommand parseListProjectCommand(String arguments) {
         return new ListProjectCommand();
     }

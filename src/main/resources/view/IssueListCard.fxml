@@ -18,12 +18,6 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
                 <Label fx:id="description" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <Label fx:id="project" styleClass="cell_small_label" text="\$project" />

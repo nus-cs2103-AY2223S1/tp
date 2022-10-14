@@ -37,8 +37,8 @@ public class UniqueProjectList implements Iterable<Project> {
     public static int generateId() {
         int count = 0;
         for (Project p : internalList) {
-            if (p.getId().getIdInt() > count) {
-                count = p.getId().getIdInt();
+            if (p.getProjectId().getIdInt() > count) {
+                count = p.getProjectId().getIdInt();
             }
         }
         return count + 1;
@@ -87,7 +87,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
     public static Project getProject(int projectId) {
         for (Project p : internalList) {
-            if (p.getId().getIdInt() == projectId) {
+            if (p.getProjectId().getIdInt() == projectId) {
                 return p;
             }
         }
@@ -96,7 +96,7 @@ public class UniqueProjectList implements Iterable<Project> {
 
     public static Project getProject(ProjectId id) {
         for (Project p: internalList) {
-            if (p.getId().equals(id)) {
+            if (p.getProjectId().equals(id)) {
                 return p;
             }
         }

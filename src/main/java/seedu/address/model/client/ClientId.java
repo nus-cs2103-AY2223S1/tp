@@ -72,6 +72,13 @@ public class ClientId {
     }
 
     @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ClientId // instanceof handles nulls
+                && this.clientId == ((ClientId) other).clientId);
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(this.clientId);
     }

@@ -61,16 +61,16 @@ public class Client {
         return this.clientId;
     }
 
-    public void setClientId(ClientId id) {
-        this.clientId = id;
-    }
-
     /**
      * Checks if this Client is empty.
      * @return true if the Client is empty.
      */
     public boolean isEmpty() {
         return false;
+    }
+
+    public int getProjectListSize() {
+        return this.projects.size();
     }
 
     /**
@@ -132,6 +132,19 @@ public class Client {
         projects.add(project);
     }
 
+    /**
+     * Returns the string for display in the UI
+     *
+     * @return String for display in the UI
+     */
+    public String uiRepresentation() {
+        return this.name.toString() + " " + this.phone.toString();
+    }
+
+    public void removeProject(Project p) {
+        this.projects.remove(p);
+    }
+
 
     /**
      * Returns true if both clients have the same name.
@@ -154,6 +167,11 @@ public class Client {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.name.getFullNameRepresentation();
     }
 
     /**
