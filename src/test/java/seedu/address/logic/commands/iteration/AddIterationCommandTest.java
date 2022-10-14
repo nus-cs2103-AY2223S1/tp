@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.iteration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIterations.ADD_COLOR;
@@ -71,12 +71,12 @@ public class AddIterationCommandTest {
         assertTrue(firstAddIterationCommand.equals(firstAddIterationCommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, firstAddIterationCommand);
+        assertFalse(firstAddIterationCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, firstAddIterationCommand);
+        assertFalse(firstAddIterationCommand.equals(null));
 
         // different fields -> returns false
-        assertNotEquals(firstAddIterationCommand, secondAddIterationCommand);
+        assertFalse(firstAddIterationCommand.equals(secondAddIterationCommand));
     }
 }

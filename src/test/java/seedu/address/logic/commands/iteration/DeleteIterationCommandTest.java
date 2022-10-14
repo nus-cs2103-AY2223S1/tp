@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.iteration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -66,12 +66,12 @@ public class DeleteIterationCommandTest {
         assertTrue(firstDeleteIterationCommand.equals(firstDeleteIterationCommandCopy));
 
         // different types -> returns false
-        assertNotEquals(1, firstDeleteIterationCommand);
+        assertFalse(firstDeleteIterationCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, firstDeleteIterationCommand);
+        assertFalse(firstDeleteIterationCommand.equals(null));
 
         // different values -> returns false
-        assertNotEquals(firstDeleteIterationCommand, secondDeleteIterationCommand);
+        assertFalse(firstDeleteIterationCommand.equals(secondDeleteIterationCommand));
     }
 }
