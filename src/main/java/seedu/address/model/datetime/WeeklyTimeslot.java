@@ -59,15 +59,22 @@ public class WeeklyTimeslot {
         return dayString.matches(VALIDATION_REGEX);
     }
 
-    private static boolean isValidTime(String datetimeString) {
+    private static boolean isValidTime(String datetime) {
         try {
-            LocalTime.parse(datetimeString, TIME_FORMAT);
+            LocalTime.parse(datetime, TIME_FORMAT);
         } catch (DateTimeParseException ex) {
             return false;
         }
         return true;
     }
 
+    /**
+     * Returns true if given string is valid as a time range.
+     *
+     * @param timeStart Starting time
+     * @param timeEnd Ending time
+     * @return Whether both strings are valid when taken together as a time range
+     */
     public static boolean isValidTimeRange(String timeStart, String timeEnd) {
         // Unideal: does additional work by creating objects to check validity.
         // This is to confirm to the rest of the codebase, where checks are done on a
@@ -81,17 +88,39 @@ public class WeeklyTimeslot {
     }
 
 
+    /**
+     * Returns the numerical value of the day of the week.
+     *
+     * @return Day of the week
+     */
     public String getDay() {
         return String.valueOf(dayValue.getValue());
     }
 
+    /**
+     * Get formatted start time.
+     *
+     * @return Formatted start time
+     */
     public String getStartTimeFormatted() {
         return startTime.format(TIME_FORMAT);
     }
+
+    /**
+     * Get formatted end time.
+     *
+     * @return Formatted end time
+     */
     public String getEndTimeFormatted() {
         return endTime.format(TIME_FORMAT);
     }
 
+
+    /**
+     * Get day of week in an abbreviated human-friendly form.
+     *
+     * @return Day of the week
+     */
     private String getDayOfWeekReadable() {
         return dayValue.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }

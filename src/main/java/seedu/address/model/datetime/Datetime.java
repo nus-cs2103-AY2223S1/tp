@@ -20,16 +20,14 @@ public class Datetime {
 
 
     /**
-     * Constructs a {@code TutorialVenue}.
+     * Constructs a {@code Datetime}.
      *
-     * @param datetimeString A valid timeslot.
+     * @param datetime A valid datetime that is formatted appropriately.
      */
-    public Datetime(String datetimeString) {
-        requireNonNull(datetimeString);
-        checkArgument(isValidDatetime(datetimeString), MESSAGE_CONSTRAINTS);
-        LocalDateTime datetime = null;
-        LocalDateTime.parse(datetimeString, DATE_TIME_FORMAT);
-        this.datetime = datetime;
+    public Datetime(String datetime) {
+        requireNonNull(datetime);
+        checkArgument(isValidDatetime(datetime), MESSAGE_CONSTRAINTS);
+        this.datetime = LocalDateTime.parse(datetime, DATE_TIME_FORMAT);
     }
 
     public static boolean isValidDatetime(String datetimeString) {
@@ -40,7 +38,12 @@ public class Datetime {
         }
         return true;
     }
-    
+
+    /**
+     * Returns a formatted datetime.
+     *
+     * @return Formatted datetime
+     */
     public String toFormatted() {
         return datetime.format(DATE_TIME_FORMAT);
     }

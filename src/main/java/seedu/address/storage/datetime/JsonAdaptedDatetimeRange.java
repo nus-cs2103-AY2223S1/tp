@@ -16,7 +16,7 @@ class JsonAdaptedDatetimeRange {
     public final String endDatetime;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedDatetimeRange} with the given datetime range details.
      */
     @JsonCreator
     public JsonAdaptedDatetimeRange(@JsonProperty("startDatetime") String startDatetime,
@@ -26,7 +26,7 @@ class JsonAdaptedDatetimeRange {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code DatetimeRange} into this class for Jackson use.
      */
     public JsonAdaptedDatetimeRange(DatetimeRange source) {
         startDatetime = source.getStartDatetimeFormatted();
@@ -34,9 +34,9 @@ class JsonAdaptedDatetimeRange {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted datetime object into the model's {@code DatetimeRange} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted datetime range.
      */
     public DatetimeRange toModelType() throws IllegalValueException {
         if (startDatetime == null || endDatetime == null) {

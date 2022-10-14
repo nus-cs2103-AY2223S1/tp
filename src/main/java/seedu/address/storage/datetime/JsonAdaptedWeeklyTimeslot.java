@@ -3,22 +3,21 @@ package seedu.address.storage.datetime;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.datetime.DatetimeRange;
 import seedu.address.model.datetime.WeeklyTimeslot;
 
 /**
- * Jackson-friendly version of {@link DatetimeRange}.
+ * Jackson-friendly version of {@link WeeklyTimeslot}.
  */
 public class JsonAdaptedWeeklyTimeslot {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "WeeklyTimeslot's %s field is missing!";
 
     public final String day;
     public final String startTime;
     public final String endTime;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPerson} with the given weekly timeslot details.
      */
     @JsonCreator
     public JsonAdaptedWeeklyTimeslot(@JsonProperty("day") String day,
@@ -30,7 +29,7 @@ public class JsonAdaptedWeeklyTimeslot {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code WeeklyTimeslot} into this class for Jackson use.
      */
     public JsonAdaptedWeeklyTimeslot(WeeklyTimeslot source) {
         day = source.getDay();
@@ -39,9 +38,9 @@ public class JsonAdaptedWeeklyTimeslot {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted weekly timeslot object into the model's {@code WeeklyTimeslot} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted weekly timeslot.
      */
     public WeeklyTimeslot toModelType() throws IllegalValueException {
         if (day == null) {

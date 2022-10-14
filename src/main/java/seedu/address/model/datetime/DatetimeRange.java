@@ -23,7 +23,7 @@ public class DatetimeRange {
 
 
     /**
-     * Constructs a {@code TutorialVenue}.
+     * Constructs a {@code DatetimeRange}.
      *
      * @param startDatetimeString A valid time.
      * @param endDatetimeString A valid time.
@@ -46,6 +46,14 @@ public class DatetimeRange {
         return true;
     }
 
+
+    /**
+     * Returns true if given strings are valid as a datetime range.
+     *
+     * @param datetimeStart Starting datetime
+     * @param datetimeEnd Ending datetime
+     * @return Whether both strings are valid when taken together as a time range
+     */
     public static boolean isValidDatetimeRange(String datetimeStart, String datetimeEnd) {
         // Unideal: does additional work by creating objects to check validity.
         // This is to confirm to the rest of the codebase, where checks are done on a
@@ -58,9 +66,21 @@ public class DatetimeRange {
         return !datetimeEndObj.isBefore(datetimeStartObj);
     }
 
+
+    /**
+     * Get formatted start datetime.
+     *
+     * @return Formatted start datetime
+     */
     public String getStartDatetimeFormatted() {
         return startDatetime.format(DATE_TIME_FORMAT);
     }
+
+    /**
+     * Get formatted end datetime.
+     *
+     * @return Formatted end datetime
+     */
     public String getEndDatetimeFormatted() {
         return endDatetime.format(DATE_TIME_FORMAT);
     }

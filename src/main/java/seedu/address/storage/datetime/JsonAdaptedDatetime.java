@@ -6,7 +6,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.Datetime;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Datetime}.
  */
 class JsonAdaptedDatetime {
 
@@ -15,7 +15,7 @@ class JsonAdaptedDatetime {
     public final String datetime;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedDatetime} with the given datetime details.
      */
     @JsonCreator
     public JsonAdaptedDatetime(@JsonProperty("datetime") String datetime) {
@@ -23,16 +23,16 @@ class JsonAdaptedDatetime {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code JsonAdaptedDatetime} into this class for Jackson use.
      */
     public JsonAdaptedDatetime(Datetime source) {
         datetime = source.toFormatted();
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted datetime object into the model's {@code JsonAdaptedDatetime} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted datetime.
      */
     public Datetime toModelType() throws IllegalValueException {
         if (datetime == null) {
