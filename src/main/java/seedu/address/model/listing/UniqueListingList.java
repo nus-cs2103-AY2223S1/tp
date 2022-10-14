@@ -8,16 +8,17 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.listing.exceptions.DuplicateListingException;
+import seedu.address.model.listing.exceptions.ListingNotFoundException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * A list of listings that enforces uniqueness between its elements and does not allow nulls.
- * A listing is considered unique by comparing using {@code Listing#isSameListing(Listing)}. As such, adding and
- * updating of listings uses Listing#isSameListing(Listing) for equality to ensure that the listing being added or
- * updated is unique in terms of identity in the UniqueListingList. However, the removal of a listing uses
- * Listing#equals(Object) to ensure that the listing with exactly the same fields will be removed.
- * <p>
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * as to ensure that the person with exactly the same fields will be removed.
+ *
  * Supports a minimal set of list operations.
  *
  * @see Listing#isSameListing(Listing)
@@ -26,7 +27,7 @@ public class UniqueListingList implements Iterable<Listing> {
 
     private final ObservableList<Listing> internalList = FXCollections.observableArrayList();
     private final ObservableList<Listing> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent listing as the given argument.
@@ -43,9 +44,23 @@ public class UniqueListingList implements Iterable<Listing> {
     public void add(Listing toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateListingException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Gets the listing with the given id {@code id}.
+     * @param id id of the listing
+     * @return listing with given id
+     */
+    public Listing getListing(String id) {
+        for (Listing listing : internalList) {
+            if (listing.getId().equals(id)) {
+                return listing;
+            }
+        }
+        throw new ListingNotFoundException();
     }
 
     /**
@@ -58,7 +73,7 @@ public class UniqueListingList implements Iterable<Listing> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new ListingNotFoundException();
         }
 
         if (!target.isSameListing(editedListing) && contains(editedListing)) {
@@ -70,12 +85,12 @@ public class UniqueListingList implements Iterable<Listing> {
 
     /**
      * Removes the equivalent listing from the list.
-     * The listing must exist in the list.
+     * The person must exist in the list.
      */
     public void remove(Listing toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new ListingNotFoundException();
         }
     }
 
@@ -86,12 +101,12 @@ public class UniqueListingList implements Iterable<Listing> {
 
     /**
      * Replaces the contents of this list with {@code listings}.
-     * {@code listings} must not contain duplicate listings.
+     * {@code listings} must not contain duplicate persons.
      */
     public void setListings(List<Listing> listings) {
         requireAllNonNull(listings);
         if (!listingsAreUnique(listings)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateListingException();
         }
 
         internalList.setAll(listings);
@@ -112,8 +127,8 @@ public class UniqueListingList implements Iterable<Listing> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof UniqueListingList // instanceof handles nulls
-            && internalList.equals(((UniqueListingList) other).internalList));
+                || (other instanceof UniqueListingList // instanceof handles nulls
+                && internalList.equals(((UniqueListingList) other).internalList));
     }
 
     @Override
@@ -122,12 +137,12 @@ public class UniqueListingList implements Iterable<Listing> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique listings.
+     * Returns true if {@code persons} contains only unique persons.
      */
-    private boolean listingsAreUnique(List<Listing> persons) {
-        for (int i = 0; i < persons.size() - 1; i++) {
-            for (int j = i + 1; j < persons.size(); j++) {
-                if (persons.get(i).isSameListing(persons.get(j))) {
+    private boolean listingsAreUnique(List<Listing> listings) {
+        for (int i = 0; i < listings.size() - 1; i++) {
+            for (int j = i + 1; j < listings.size(); j++) {
+                if (listings.get(i).isSameListing(listings.get(j))) {
                     return false;
                 }
             }

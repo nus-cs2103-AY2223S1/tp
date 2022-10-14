@@ -22,6 +22,7 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_OFFER = "Offers list contains duplicate offer(s)";
+    public static final String MESSAGE_DUPLICATE_LISTING = "Listings list contains duplicate listing(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedOffer> offers = new ArrayList<>();
