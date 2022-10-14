@@ -95,7 +95,7 @@ public class Person {
     }
 
     /**
-     * Returns true if the following between both persons are equal:
+     * Returns true if the following fields between both persons are equal (case-sensitive):
      * 1. Name
      * 2. Phone number
      * 3. Email
