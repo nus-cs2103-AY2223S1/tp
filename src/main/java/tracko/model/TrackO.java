@@ -83,6 +83,25 @@ public class TrackO implements ReadOnlyTrackO {
         items.delete(item);
     }
 
+    /**
+     * Returns true if an item with the same identity as {@code item} exists in the inventory list.
+     */
+    public boolean hasItem(Item item) {
+        requireNonNull(item);
+        return items.contains(item);
+    }
+
+    /**
+     * Replaces the given item {@code target} in the list with {@code editedItem}.
+     * {@code target} must exist in the inventory list.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the inventory list.
+     */
+    public void setItem(Item target, Item editedItem) {
+        requireNonNull(editedItem);
+
+        items.setItem(target, editedItem);
+    }
+
     @Override
     public ObservableList<Order> getOrderList() {
         return orders.asUnmodifiableObservableList();

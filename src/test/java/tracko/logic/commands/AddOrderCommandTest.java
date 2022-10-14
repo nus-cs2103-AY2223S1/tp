@@ -146,6 +146,16 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public boolean hasItem(Item item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setItem(Item target, Item editedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredItemList(Predicate<Item> predicate) {
             throw new AssertionError("This method should not be called.");
         }

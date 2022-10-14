@@ -92,6 +92,23 @@ public interface Model {
     void addItem(Item item);
 
     /**
+     * Deletes the given item.
+     */
+    void deleteItem(Item item);
+
+    /**
+     * Returns true if an item with the same identity as {@code item} exists in the inventory list.
+     */
+    boolean hasItem(Item item);
+
+    /**
+     * Replaces the given item {@code target} with {@code editedItem}.
+     * {@code target} must exist in the inventory list.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the inventory list.
+     */
+    void setItem(Item target, Item editedItem);
+
+    /**
      * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Item> getFilteredItemList();
@@ -108,11 +125,6 @@ public interface Model {
      * Returns the number of items in the filtered item list.
      */
     int getFilteredItemListSize();
-
-    /**
-     * Deletes the given item.
-     */
-    void deleteItem(Item item);
 
     /**
      * Returns the item list.
