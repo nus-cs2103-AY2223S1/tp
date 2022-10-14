@@ -24,9 +24,9 @@ public class ModAddCommand extends ModCommand {
     private final ObservableList<Mod> mods;
 
     /**
-     * Constructs a command that adds a set of mods to the person
+     * Constructs a command that adds a set of mods to the batchmate
      * with the target index.
-     * @param index The index of the person to add to.
+     * @param index The index of the batchmate to add to.
      * @param mods The set of mods to add to.
      */
     public ModAddCommand(Index index, ObservableList<Mod> mods) {

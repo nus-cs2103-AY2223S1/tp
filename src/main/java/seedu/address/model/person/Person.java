@@ -82,18 +82,6 @@ public class Person {
     }
 
     /**
-     * Returns an immutable mods status set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public ObservableList<Boolean> getStatus() {
-        final ObservableList<Boolean> hasTaken = FXCollections.observableArrayList();
-        mods.forEach((mod) -> {
-            hasTaken.add(mod.getModStatus());
-        });
-        return FXCollections.unmodifiableObservableList(hasTaken);
-    }
-
-    /**
      * Appends a set of mods to the current mods linked to this batchmate.
      *
      * @param mods The set of mods to add in.
@@ -131,9 +119,20 @@ public class Person {
      * @param mods The set of mods to be marked.
      */
     public void markMods(ObservableList<Mod> mods) {
-        mods.forEach((mod) -> {
-            mod.markMod();
-        });
+        for (int i = 0; i < mods.size(); i++) {
+            for (int j = 0; j < this.mods.size(); j++) {
+
+                Mod currentMod = this.mods.get(j);
+                String currentModName = currentMod.modName;
+                String targetModName = mods.get(i).modName;
+
+                if (currentModName.equals(targetModName)) {
+                    currentMod.markMod();
+                    i++;
+                }
+                j++;
+            }
+        }
     }
 
     /**

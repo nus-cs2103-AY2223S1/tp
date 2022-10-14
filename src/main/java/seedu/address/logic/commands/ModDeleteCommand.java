@@ -26,7 +26,8 @@ public class ModDeleteCommand extends ModCommand {
 
     /**
      * Constructs a command that deletes all mods specified from the list of the batchmate at the target index.
-     * @param index The index of the batchmate to add to.
+     *
+     * @param index The index of the batchmate.
      * @param mods The set of mods to be deleted.
      */
     public ModDeleteCommand(Index index, ObservableList<Mod> mods) {

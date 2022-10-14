@@ -26,7 +26,8 @@ public class ModMarkCommand extends ModCommand {
 
     /**
      * Constructs a command that marks all mods specified at the target batchmate as taken.
-     * @param index The index of the batchmate to add to.
+     *
+     * @param index The index of the batchmate.
      * @param mods The set of mods to be marked.
      */
     public ModMarkCommand(Index index, ObservableList<Mod> mods) {
@@ -55,8 +56,6 @@ public class ModMarkCommand extends ModCommand {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        // TODO: To be improved to check if each mod exists;
-        //  mark existing mods as taken and show error message for non-existing mods.
         if (personToEdit.canEditMods(mods)) {
             personToEdit.markMods(mods);
         } else {
@@ -74,7 +73,7 @@ public class ModMarkCommand extends ModCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModDeleteCommand)) {
+        if (!(other instanceof ModMarkCommand)) {
             return false;
         }
 

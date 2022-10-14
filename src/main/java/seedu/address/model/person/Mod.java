@@ -12,7 +12,6 @@ public class Mod {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String modName;
-
     public boolean hasTaken;
 
     /**
@@ -23,20 +22,20 @@ public class Mod {
     public Mod(String modName) {
         requireNonNull(modName);
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
-        this.modName = modName;
+        this.modName = modName.toUpperCase();
         this.hasTaken = false;
     }
 
     /**
-     * Constructs a {@code Mod} with name and status.
+     * Constructs a {@code Mod} with name and hasTaken status.
      *
      * @param modName A valid mod name.
-     * @param hasTaken The mod status.
+     * @param hasTaken The mod status, i.e. whether it has been taken.
      */
     public Mod(String modName, boolean hasTaken) {
         requireNonNull(modName);
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
-        this.modName = modName;
+        this.modName = modName.toUpperCase();
         this.hasTaken = hasTaken;
     }
 
@@ -75,9 +74,18 @@ public class Mod {
     }
 
     /**
+     * Gets the module name.
+     *
+     * @return String representation of module name.
+     */
+    public String getModName() {
+        return this.modName;
+    }
+
+    /**
      * Gets the status of the module.
      *
-     * @return True if the batchmate has taken the mod; false otherwise
+     * @return True if the batchmate has taken the mod; false otherwise.
      */
     public boolean getModStatus() {
         return this.hasTaken;
