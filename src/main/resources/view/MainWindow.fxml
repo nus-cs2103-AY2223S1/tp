@@ -6,10 +6,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
@@ -46,12 +48,31 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <HBox fx:id="lists" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+          <VBox styleClass="pane-with-border" minWidth="200" prefWidth="150" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="300">
+            <padding>
+              <Insets top="10" bottom="10"/>
+            </padding>
+            <Label styleClass="label-list-header" text="ModQuik" />
+            <Button text="Student" onAction="#handlePerson" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
+            <Button text="Tutorial" onAction="#handleTutorial" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
+            <Button text="Consultation" onAction="#handleConsultation" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
+          </VBox>
+          <VBox styleClass="pane-with-border" minWidth="340" prefWidth="500" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Label fx:id="listHeader" styleClass="label-list-header" />
+            <StackPane fx:id="modelListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+          <VBox styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Label styleClass="label-list-header" text="Reminder" />
+            <StackPane fx:id="reminderListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          </VBox>
+        </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

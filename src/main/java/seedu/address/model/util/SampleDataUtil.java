@@ -16,6 +16,12 @@ import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialDay;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
+import seedu.address.model.tutorial.TutorialTimeslot;
+import seedu.address.model.tutorial.TutorialVenue;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -55,10 +61,27 @@ public class SampleDataUtil {
         };
     }
 
+    public static Tutorial[] getSampleTutorials() {
+        return new Tutorial[] {
+            new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
+                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00"),
+                    new TutorialDay("1")),
+            new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
+                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00"),
+                    new TutorialDay("2")),
+            new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
+                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00"),
+                    new TutorialDay("3")),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Tutorial sampleTutorial: getSampleTutorials()) {
+            sampleAb.addTutorial(sampleTutorial);
         }
         return sampleAb;
     }

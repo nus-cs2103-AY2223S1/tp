@@ -5,10 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.UniqueTutorialList;
 
 /**
  * Wraps all data at the address-book level
@@ -18,6 +22,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueReminderList reminders;
+    private final UniqueTutorialList tutorials;
+    private final UniqueConsultationList consultations;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +35,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         reminders = new UniqueReminderList();
+        tutorials = new UniqueTutorialList();
+        consultations = new UniqueConsultationList();
     }
 
     public AddressBook() {}
@@ -61,6 +69,22 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     /**
+     * Replaces the contents of the tutorial list with {@code tutorials}.
+     * {@code tutorials} must not contain duplicate tutorials.
+     */
+    public void setTutorials(List<Tutorial> tutorials) {
+        this.tutorials.setTutorials(tutorials);
+    }
+
+    /**
+     * Replaces the contents of the consultation list with {@code consultations}.
+     * {@code tutorials} must not contain duplicate consultations.
+     */
+    public void setConsultations(List<Consultation> consultations) {
+        this.consultations.setConsultations(consultations);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -69,6 +93,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
 
         setReminders(newData.getReminderList());
+
+        setTutorials(newData.getTutorialList());
+
+        setConsultations(newData.getConsultationList());
     }
 
     //// person-level operations
@@ -126,11 +154,72 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.add(r);
     }
 
+    //// tutorial-level operations
+
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
+     */
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return tutorials.contains(tutorial);
+    }
+
+    /**
+     * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
+     */
+    public boolean hasTutorialClashingWith(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return tutorials.containsClashingWith(tutorial);
+    }
+
+    /**
+     * Adds a tutorial to the ModQuik.
+     * The tutorial must not already exist in the ModQuik.
+     */
+    public void addTutorial(Tutorial t) {
+        tutorials.add(t);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutorial(Tutorial key) {
+        tutorials.remove(key);
+    }
+    //// consultation-level operations
+    /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuilk.
+     */
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.contains(consultation);
+    }
+
+    /**
+     * Returns true if a Consultation with the same venue and timeslot as {@code Consultation} exists in the ModQuik.
+     */
+    public boolean hasConsultationClashingWith(Consultation consultation) {
+        requireNonNull(consultation);
+        return consultations.containsClashingWith(consultation);
+    }
+
+    /**
+     * Adds a Consultation to the ModQuik.
+     * The consultation must not already exist in the ModQuik.
+     */
+    public void addConsulation(Consultation consultation) {
+        consultations.add(consultation);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        String result = persons.asUnmodifiableObservableList().size() + " persons, "
+                + tutorials.asUnmodifiableObservableList().size() + " tutorials"
+                + consultations.asUnmodifiableObservableList().size() + " consultations";
+        return result;
         // TODO: refine later
     }
 
@@ -142,6 +231,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Reminder> getReminderList() {
         return reminders.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Tutorial> getTutorialList() {
+        return tutorials.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Consultation> getConsultationList() {
+        return consultations.asUnmodifiableObservableList();
     }
 
     @Override

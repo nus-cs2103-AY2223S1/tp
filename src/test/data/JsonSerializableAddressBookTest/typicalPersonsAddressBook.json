@@ -43,5 +43,7 @@
     "address" : "4th street",
     "tagged" : [ ]
   } ],
-  "reminders": [ ]
+  "reminders": [ ],
+  "tutorials": [ ],
+  "consultations": [ ]
 }

@@ -11,8 +11,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Reminder> filteredReminders;
+    private final FilteredList<Tutorial> filteredTutorials;
+    private final FilteredList<Consultation> filteredConsultations;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +41,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
+        filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredConsultations = new FilteredList<>(this.addressBook.getConsultationList());
     }
 
     public ModelManager() {
@@ -182,4 +188,82 @@ public class ModelManager implements Model {
         filteredReminders.setPredicate(predicate);
     }
 
+    //=========== Tutorials ==================================================================================
+
+    @Override
+    public boolean hasTutorial(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return addressBook.hasTutorial(tutorial);
+    }
+
+    @Override
+    public boolean hasTutorialClashingWith(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        return addressBook.hasTutorialClashingWith(tutorial);
+    }
+
+    @Override
+    public void addTutorial(Tutorial tutorial) {
+        addressBook.addTutorial(tutorial);
+        updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+    }
+
+    @Override
+    public void deleteTutorial(Tutorial target) {
+        addressBook.removeTutorial(target);
+    }
+
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Tutorial> getFilteredTutorialList() {
+        return filteredTutorials;
+    }
+
+    @Override
+    public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+        requireNonNull(predicate);
+        filteredTutorials.setPredicate(predicate);
+    }
+
+    //=========== Consultation ==================================================================================
+
+    @Override
+    public boolean hasConsultation(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultation(consultation);
+    }
+
+    @Override
+    public boolean hasConsultationClashingWith(Consultation consultation) {
+        requireNonNull(consultation);
+        return addressBook.hasConsultationClashingWith(consultation);
+    }
+
+    @Override
+    public void addConsultation(Consultation consultation) {
+        addressBook.addConsulation(consultation);
+        updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
+    }
+
+    //=========== Filtered Tutorial List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Consultation} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Consultation> getFilteredConsultationList() {
+        return filteredConsultations;
+    }
+
+    @Override
+    public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+        requireNonNull(predicate);
+        filteredConsultations.setPredicate(predicate);
+    }
 }

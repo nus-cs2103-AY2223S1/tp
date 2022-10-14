@@ -1,5 +1,8 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.commands.consultation.AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION;
+import static seedu.address.logic.commands.tutorial.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,8 +14,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.tutorial.Tutorial;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -24,6 +29,8 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_REMINDER = "Reminders list contains duplicate reminder(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTutorial> tutorials = new ArrayList<>();
+    private final List<JsonAdaptedConsultation> consultations = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
@@ -31,8 +38,12 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders) {
+                                       @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
+                                       @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials,
+                                       @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations) {
         this.persons.addAll(persons);
+        this.tutorials.addAll(tutorials);
+        this.consultations.addAll(consultations);
         this.reminders.addAll(reminders);
     }
 
@@ -44,6 +55,9 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         reminders.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
+        tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
+        consultations.addAll(source.getConsultationList().stream().map(JsonAdaptedConsultation::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -67,6 +81,22 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_REMINDER);
             }
             addressBook.addReminder(reminder);
+        }
+
+        for (JsonAdaptedTutorial jsonAdaptedTutorial : tutorials) {
+            Tutorial tutorial = jsonAdaptedTutorial.toModelType();
+            if (addressBook.hasTutorial(tutorial)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TUTORIAL);
+            }
+            addressBook.addTutorial(tutorial);
+        }
+
+        for (JsonAdaptedConsultation jsonAdaptedConsultation : consultations) {
+            Consultation consultation = jsonAdaptedConsultation.toModelType();
+            if (addressBook.hasConsultation(consultation)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
+            }
+            addressBook.addConsulation(consultation);
         }
         return addressBook;
     }
