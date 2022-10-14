@@ -41,6 +41,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
+    implementation 'com.opencsv:opencsv:5.7.0'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
