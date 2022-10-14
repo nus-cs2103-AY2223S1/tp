@@ -1,15 +1,16 @@
 # User Guide
 Travelr is a desktop app for managing trips and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Travelr can get your trip management tasks done faster than traditional GUI apps.
+
 - [Quick start](#quick-start)
 - [Features](#features)
-   * [Adding events: `add -e`](#adding-events-add--e)
-   * [Deleting events: `delete -e`](#deleting-events-delete--e)
-   * [Viewing events list: `list -e`](#viewing-events-list-list--e)
-   * [Adding trips: `add -t`](#adding-trips-add--t)
-   * [Viewing trips list: `list -t`](#viewing-trips-list-list--t)
-   * [Adding events to trips: `add -et`](#adding-events-to-trips-add--et)
-   * [Saving data](#saving-data)
-   * [Exiting the program: `bye`](#exiting-the-program-bye)
+  * [Adding events: `add-e n/TITLE d/DESCRIPTION`](#adding-events-add-e-ntitle-ddescription)
+  * [Deleting events: `delete -e`](#deleting-events-delete--e)
+  * [Viewing events list: `list-e`](#viewing-events-list-list-e)
+  * [Adding trips: `add n/TITLE d/DESCRIPTION`](#adding-trips-add-ntitle-ddescription)
+  * [Viewing trips list: `list`](#viewing-trips-list-list)
+  * [Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`](#adding-events-to-trips-add-et-nevent-name-ttrip-name)
+  * [Saving data](#saving-data)
+  * [Exiting the program: `bye`](#exiting-the-program-bye)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ Travelr is a desktop app for managing trips and events, optimized for use via a 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list -e`** : Lists all events.
+   * **`list-e`** : Lists all events.
 
    * **`add`**`-e Sightseeing/20-06-2030/Portugal/Visit Mountains` : Adds an event with the respective date, location, and activity into your event list.
 
@@ -42,20 +43,20 @@ e.g. in `add -t TITLE`, TITLE is a parameter which can be used as `add -t Switze
 Items in square brackets are optional.
 e.g NAME [TAG] can be used as John Doe/Friend or as John Doe.
 
-The ‘/’ character is used to separate parameters supplied by the user.
-E.g. in `add -e TITLE DATE LOCATION DESCRIPTION`, ‘/’ is used to separate the four parameters supplied which can be used as `add -e Sightseeing/20-06-2030/Taiwan/Visit mountains`.
+The relevant prefixes must be used to separate parameters supplied by the user.
+E.g. in `add-e n/TITLE d/DESCRIPTION`, ‘n/’  and 'd/' are two designated used to separate the two parameters supplied which can be used as `add -e n/Sightseeing d/Visit mountains`.
 
 Extraneous parameters for commands that do not take in parameters (such as bye) will be ignored.
 e.g. if the command specifies `bye 123`, it will be interpreted as `bye`.
 
-### Adding events: `add -e`
+### Adding events: `add-e n/TITLE d/DESCRIPTION`
 Adds an event to the events list.
 
-Format: `add -e TITLE DATE LOCATION DESCRIPTION`
+Format: `add-e n/TITLE d/DESCRIPTION`
 
 Examples:
-- `add -e Skydiving/23-04-2024/Spain/Skydiving with crew`
-- `add -e Sailing/20-02-2025/Hungary/Sail in the Danube River`
+- `add-e n/Skydiving d/Skydiving with crew`
+- `add-e n/Sailing d/Sail in the Danube River`
 
 ### Deleting events: `delete -e`
 Deletes the specified person from the events list.
@@ -68,12 +69,12 @@ Format: `delete -e INDEX`
 Examples:
 - `list -e` followed by `delete 2` deletes the 2nd event in the events list.
 
-### Viewing events list: `list -e`
+### Viewing events list: `list-e`
 Shows a list of all events added.
 
-Format: `list -e`
+Format: `list-e`
 
-### Adding trips: `add -t`
+### Adding trips: `add n/TITLE d/DESCRIPTION`
 Adds a trip to the trip list.
 
 Format: `add -t TITLE`
@@ -81,20 +82,19 @@ Format: `add -t TITLE`
 Examples:
 - `add -t Trip to Iceland`
 
-### Viewing trips list: `list -t`
+### Viewing trips list: `list`
 Shows a list of all trips added.
 
-Format: `list -t`
+Format: `list`
 
-### Adding events to trips: `add -et`
+### Adding events to trips: `add-et n/EVENT NAME T/TRIP NAME`
 Adds the specified event to the specified trip.
 
-Format: `add -et EVENT_INDEX TRIP_INDEX`
-- Adds the event at the specified EVENT_INDEX
-- Event is added to the trip at the specified TRIP_INDEX
-- The index refers to the index number shown in the events and trips list.
-- The index must be a positive integer 1, 2, 3…
-
+Format: `add-et n/EVENT NAME T/TRIP NAME`
+- Adds the event with the specified EVENT NAME
+- Event is added to the trip at the specified TRIP NAME
+- The TRIP NAME must exist in the trips list.
+- The EVENT NAME must exist in the events list.
 Examples:
 - `add -et 2 3` adds the 2nd event in the events list to the 3rd trip in the trips list.
 
