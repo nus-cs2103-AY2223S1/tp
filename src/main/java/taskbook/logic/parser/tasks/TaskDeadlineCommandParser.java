@@ -38,6 +38,12 @@ public class TaskDeadlineCommandParser implements Parser<TaskDeadlineCommand> {
      */
     @Override
     public TaskDeadlineCommand parse(String args) throws ParseException {
+        if (args.contains(CliSyntax.PREFIX_ASSIGN_FROM.getPrefix())
+                && args.contains(CliSyntax.PREFIX_ASSIGN_TO.getPrefix())) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskDeadlineCommand.MESSAGE_USAGE));
+        }
+
         if (ASSIGN_TO_COMMAND_FORMAT.matcher(args).matches()) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_TO);
         }

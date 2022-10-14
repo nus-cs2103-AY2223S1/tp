@@ -62,6 +62,20 @@ public class TaskTodoCommandParserTest {
     }
 
     @Test
+    public void parse_doubleAssignmentFields_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                TaskTodoCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser,
+                ASSIGN_FROM_DESC_AMY + ASSIGN_TO_DESC_BOB + DESCRIPTION_DESC_WORK,
+                expectedMessage);
+
+        assertParseFailure(parser,
+                ASSIGN_TO_DESC_BOB + ASSIGN_FROM_DESC_AMY + DESCRIPTION_DESC_WORK,
+                expectedMessage);
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 TaskTodoCommand.MESSAGE_USAGE);
