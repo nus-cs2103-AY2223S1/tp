@@ -27,7 +27,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_CLAZZ = "1.3";
+    public static final String DEFAULT_STUDENTCLASS = "1.3";
     public static final String DEFAULT_PERSONALITY = "Hardworking";
     public static final String DEFAULT_ATTENDANCE = "9/10";
     public static final String DEFAULT_SUBJECT = "Math";
@@ -52,7 +52,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        studentClass = new StudentClass(DEFAULT_CLAZZ);
+        studentClass = new StudentClass(DEFAULT_STUDENTCLASS);
         personality = new Personality(DEFAULT_PERSONALITY);
         subjectHandler = new SubjectHandler();
         tags = new HashSet<>();

@@ -107,13 +107,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code clazz} is invalid.
      */
-    public static StudentClass parseClazz(String clazz) throws ParseException {
-        requireNonNull(clazz);
-        String trimmedClazz = clazz.trim();
-        if (!StudentClass.isValidClazz(trimmedClazz)) {
+    public static StudentClass parseStudentClass(String studentClass) throws ParseException {
+        requireNonNull(studentClass);
+        String trimmedStudentClass = studentClass.trim();
+        if (!StudentClass.isValidStudentClass(trimmedStudentClass)) {
             throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
         }
-        return new StudentClass(trimmedClazz);
+        return new StudentClass(trimmedStudentClass);
     }
 
     /**
