@@ -3,7 +3,7 @@ package seedu.waddle.logic.parser;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_ITINERARY));
     }
 
     @Test

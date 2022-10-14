@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.waddle.testutil.Assert.assertThrows;
-import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +25,7 @@ import seedu.waddle.logic.commands.ListCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.person.NameContainsKeywordsPredicate;
 import seedu.waddle.model.person.Person;
-import seedu.waddle.testutil.EditPersonDescriptorBuilder;
+import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 import seedu.waddle.testutil.PersonBuilder;
 import seedu.waddle.testutil.PersonUtil;
 
@@ -49,17 +49,17 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITINERARY.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_ITINERARY), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        EditPersonDescriptor descriptor = new EditItineraryDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+                + INDEX_FIRST_ITINERARY.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_ITINERARY, descriptor), command);
     }
 
     @Test
