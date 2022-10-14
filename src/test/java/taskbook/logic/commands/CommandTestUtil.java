@@ -15,8 +15,11 @@ import taskbook.model.Model;
 import taskbook.model.TaskBook;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.model.person.Person;
+import taskbook.model.task.EditTaskDescriptor;
+import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.Assert;
 import taskbook.testutil.EditPersonDescriptorBuilder;
+import taskbook.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -82,6 +85,24 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditTaskDescriptor TASK_WORK;
+    public static final EditTaskDescriptor TASK_STUDY;
+
+    static {
+        TASK_WORK = new EditTaskDescriptorBuilder()
+            .withName(VALID_NAME_AMY)
+            .withAssignment(Assignment.FROM)
+            .withIsDone(false)
+            .withDate(VALID_DATE_1999)
+            .build();
+        TASK_STUDY = new EditTaskDescriptorBuilder()
+            .withName(VALID_NAME_BOB)
+            .withAssignment(Assignment.TO)
+            .withIsDone(true)
+            .withDate(VALID_DATE_2022)
+            .build();
     }
 
     /**
