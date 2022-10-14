@@ -27,8 +27,10 @@ import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.ModelStub;
 import seedu.taassist.model.UserPrefs;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.student.Student;
 import seedu.taassist.model.uniquelist.UniqueList;
 import seedu.taassist.testutil.ModuleClassBuilder;
+import seedu.taassist.testutil.StudentBuilder;
 
 public class DeletecCommandTest {
 
@@ -83,6 +85,25 @@ public class DeletecCommandTest {
         assertFalse(deleteCs1101sCommand.equals(deleteCs1231sCommand));
     }
 
+    @Test
+    public void execute_deleteExistingModuleClass_unassignsModuleClassFromStudent() throws Exception {
+        // Student with one module class
+        Student student = new StudentBuilder().withModuleClasses("CS1101S").build();
+        ModuleClass moduleClass = student.getModuleClasses().get(0);
+
+        ModelStubAcceptingStudentAndModuleClass modelStub = new ModelStubAcceptingStudentAndModuleClass();
+
+        // Model with one module class and one student
+        modelStub.addModuleClass(moduleClass);
+        modelStub.addStudent(student);
+
+        DeletecCommand deletecCommand = new DeletecCommand(new HashSet<>(Arrays.asList(moduleClass)));
+        deletecCommand.execute(modelStub);
+
+        //TODO: change to assertTrue
+        assertFalse(student.getModuleClasses().isEmpty());
+    }
+
     //==================================== Integration Tests =========================================================
 
     @Test
@@ -98,7 +119,7 @@ public class DeletecCommandTest {
     }
 
     @Test
-    public void execute_deleteNonExistentModuleClass_throws() {
+    public void execute_deleteNonExistentModuleClass_failure() {
         ModuleClass moduleClass = new ModuleClassBuilder().build();
 
         // Ensure that moduleClass does not exist
@@ -108,9 +129,6 @@ public class DeletecCommandTest {
                 String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST, model.getModuleClassList()));
     }
 
-    // Check student's module classes (StudentModuleData) after a class is deleted
-
-    // Check sessions
     //==================================== Model Stubs ===============================================================
 
     private static class ModelStubWithNoModuleClass extends ModelStub {
@@ -160,6 +178,48 @@ public class DeletecCommandTest {
 
         public Set<ModuleClass> getModuleClasses() {
             return moduleClasses;
+        }
+    }
+
+    private static class ModelStubAcceptingStudentAndModuleClass extends ModelStub {
+        private ModuleClass moduleClass;
+        private Student student;
+
+        @Override
+        public void addStudent(Student student) {
+            requireNonNull(student);
+            this.student = student;
+        }
+
+        @Override
+        public boolean hasStudent(Student student) {
+            requireNonNull(student);
+            return false;
+        }
+
+        @Override
+        public void addModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            this.moduleClass = moduleClass;
+        }
+
+        @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            requireAllNonNull(moduleClasses);
+            return true;
+        }
+
+        @Override
+        public void deleteModuleClasses(Collection<ModuleClass> moduleClasses) {
+            requireAllNonNull(moduleClasses);
+            return;
+        }
+
+        @Override
+        public ObservableList<Student> getStudentList() {
+            UniqueList<Student> studentList = new UniqueList<>();
+            studentList.add((student));
+            return studentList.asUnmodifiableObservableList();
         }
     }
 }

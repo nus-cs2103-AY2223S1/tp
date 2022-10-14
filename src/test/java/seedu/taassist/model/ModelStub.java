@@ -80,6 +80,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Student> getStudentList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         throw new AssertionError("This method should not be called.");
     }

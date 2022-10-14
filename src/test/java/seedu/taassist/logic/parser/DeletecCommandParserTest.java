@@ -15,7 +15,7 @@ import seedu.taassist.logic.commands.DeletecCommand;
 import seedu.taassist.model.moduleclass.ModuleClass;
 
 public class DeletecCommandParserTest {
-    DeletecCommandParser parser = new DeletecCommandParser();
+    private DeletecCommandParser parser = new DeletecCommandParser();
 
     @Test
     public void parse_emptyUserInput_failure() {
