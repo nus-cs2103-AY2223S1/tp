@@ -58,7 +58,6 @@ public class MarkTaskCommand extends TaskCommand {
         );
 
         model.setTask(taskToMark, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }
