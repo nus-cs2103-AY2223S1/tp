@@ -34,7 +34,7 @@ public class DeleteItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Item> lastShownList = model.getInventoryList();
+        ObservableList<Item> lastShownList = model.getFilteredItemList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
