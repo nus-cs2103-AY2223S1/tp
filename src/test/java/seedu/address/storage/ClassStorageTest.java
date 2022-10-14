@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -48,7 +50,8 @@ public class ClassStorageTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        ClassStorage classStorage = new ClassStorage(addressBookFromFile);
+        ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
+        ClassStorage classStorage = new ClassStorage(modelManager);
         // Throws an exception because Alex Yeoh in personsAddressBook has class timing conflict with Daniel Tan.
         assertThrows(CommandException.class, () -> classStorage.saveClass(person, 3));
     }
@@ -60,7 +63,8 @@ public class ClassStorageTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        ClassStorage classStorage = new ClassStorage(addressBookFromFile);
+        ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
+        ClassStorage classStorage = new ClassStorage(modelManager);
         assertEquals(1, ClassStorage.getIndex(person));
     }
 
@@ -71,7 +75,8 @@ public class ClassStorageTest {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
-        ClassStorage classStorage = new ClassStorage(addressBookFromFile);
+        ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
+        ClassStorage classStorage = new ClassStorage(modelManager);
         // returns 0 since there is no same person found
         assertEquals(0, ClassStorage.getIndex(person));
     }

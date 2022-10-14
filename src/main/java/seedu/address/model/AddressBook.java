@@ -121,6 +121,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    public ObservableList<Person> getInternalList() {
+        return persons.getInternalList();
+    }
+
     @Override
     public ObservableList<Person> getScheduleList() {
         return schedule.asUnmodifiableObservableList();
