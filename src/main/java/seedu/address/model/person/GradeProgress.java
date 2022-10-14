@@ -28,7 +28,7 @@ public class GradeProgress {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GradeProgress // instanceof handles nulls
-                && value.equals(((GradeProgress) other).value)); // state check
+                && value.equalsIgnoreCase(((GradeProgress) other).value)); // state check
     }
 
     @Override

@@ -28,7 +28,7 @@ public class Homework {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Homework // instanceof handles nulls
-                && value.equals(((Homework) other).value)); // state check
+                && value.equalsIgnoreCase(((Homework) other).value)); // state check
     }
 
     @Override
