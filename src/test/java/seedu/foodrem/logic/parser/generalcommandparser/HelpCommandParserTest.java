@@ -46,7 +46,7 @@ class HelpCommandParserTest {
 
         Thank you :D
         */
-        int numberOfCommands = 19;
+        int numberOfCommands = 19; // equal to total number of commands + 1 for invalid command
         assertEquals(numberOfCommands, CommandWord.values().length);
     }
 
