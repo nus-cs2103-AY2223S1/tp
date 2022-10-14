@@ -4,9 +4,9 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "lessonPlan" : "Algorithms",
-    "homework": [ ],
-    "attendance": [ ],
-    "gradeProgress": [ ],
+    "homework": [ "Science worksheet" ],
+    "attendance": [ "2019-01-01" ],
+    "gradeProgress": [ "English: A+" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",

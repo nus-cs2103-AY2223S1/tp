@@ -59,9 +59,11 @@ public class Person {
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }
+
     public AttendanceList getAttendanceList() {
         return attendanceList;
     }
+
     public GradeProgressList getGradeProgressList() {
         return gradeProgressList;
     }
@@ -148,6 +150,7 @@ public class Person {
                 && otherPerson.getLessonPlan().equals(getLessonPlan())
                 && otherPerson.getHomeworkList().equals(getHomeworkList())
                 && otherPerson.getGradeProgressList().equals(getGradeProgressList())
+                && otherPerson.getAttendanceList().equals(getAttendanceList())
                 && otherPerson.getTags().equals(getTags());
     }
 
