@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.ui.GuiTab;
 
 /**
  * Adds an iteration to an existing commission in ArtBuddy.
@@ -63,6 +64,7 @@ public class AddIterationCommand extends Command {
         }
 
         activeCommission.addIteration(toAdd);
+        model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd,
                 activeCommission.getTitle().toString()));
     }

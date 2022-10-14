@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -109,7 +110,6 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
     public ObservableObject<Customer> getSelectedCustomer() {
         throw new AssertionError("This method should not be called.");
     }
@@ -117,6 +117,15 @@ public class ModelStub implements Model {
     @Override
     public boolean hasSelectedCommission() {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void selectTab(GuiTab tab) {
+    }
+
+    @Override
+    public GuiTab getSelectedTab() {
+        return null;
     }
 
     @Override

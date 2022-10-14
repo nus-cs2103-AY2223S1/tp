@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * The API of the Model component.
@@ -143,4 +144,13 @@ public interface Model {
 
     /** Returns whether any commission is currently being selected. **/
     boolean hasSelectedCommission();
+
+
+    /** Sets the selected tab as the given tab. */
+    void selectTab(GuiTab tab);
+
+    /**
+     * Returns the selected tab.
+     */
+    GuiTab getSelectedTab();
 }
