@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.StorageStub;
 
 /**
  * Contains unit tests for {@code AddIterationCommandTest}.
@@ -30,7 +31,7 @@ public class AddIterationCommandTest {
     public void execute_modelNoSelectedCommission_throwsCommandException() {
         AddIterationCommand addIterationCommand = new AddIterationCommand(FINALISED);
         assertThrows(CommandException.class, Messages.MESSAGE_NO_ACTIVE_COMMISSION, () ->
-                addIterationCommand.execute(new ModelStubWithoutCommission()));
+                addIterationCommand.execute(new ModelStubWithoutCommission(), new StorageWithImageStub()));
     }
 
     @Test
@@ -38,7 +39,8 @@ public class AddIterationCommandTest {
         CommissionStubWithIteration selectedCommission = new CommissionStubWithIteration();
         ModelStubWithCommission modelStub = new ModelStubWithCommission(selectedCommission);
 
-        CommandResult commandResult = new AddIterationCommand(ADD_COLOR).execute(modelStub);
+        CommandResult commandResult = new AddIterationCommand(ADD_COLOR).execute(modelStub,
+                new StorageWithImageStub());
 
         assertEquals(String.format(AddIterationCommand.MESSAGE_ADD_ITERATION_SUCCESS,
                         ADD_COLOR, selectedCommission.getTitle()),
@@ -55,7 +57,8 @@ public class AddIterationCommandTest {
         AddIterationCommand addIterationCommand = new AddIterationCommand(REMOVE_CHARACTER);
         assertThrows(CommandException.class,
                 String.format(AddIterationCommand.MESSAGE_DUPLICATE_ITERATION,
-                        selectedCommission.getTitle()), () -> addIterationCommand.execute(modelStub));
+                        selectedCommission.getTitle()), () -> addIterationCommand.execute(modelStub,
+                            new StorageWithImageStub()));
     }
 
     @Test

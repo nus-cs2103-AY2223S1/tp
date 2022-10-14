@@ -1,8 +1,10 @@
 package seedu.address.logic.commands.iteration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCommissions.CAT_PRODUCER;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -37,15 +40,19 @@ public class AddIterationCommandIntegrationTest {
     }
 
     @Test
-    public void execute_selectedCommissionAddNewIteration_success() {
+    public void execute_selectedCommissionAddNewIteration_success() throws CommandException {
         Iteration validIteration = new IterationBuilder().build();
 
         Model expectedModel = getSetUpModelManager();
         expectedModel.getSelectedCommission().getValue().addIteration(validIteration);
+        AddIterationCommand addIterationCommand = new AddIterationCommand(validIteration);
 
-        assertCommandSuccess(new AddIterationCommand(validIteration), model,
-                String.format(AddIterationCommand.MESSAGE_ADD_ITERATION_SUCCESS, validIteration, CAT_COMMISSION_TITLE),
-                expectedModel);
+        assertEquals(String.format(
+                AddIterationCommand.MESSAGE_ADD_ITERATION_SUCCESS, validIteration, CAT_COMMISSION_TITLE),
+                addIterationCommand.execute(model, new StorageWithImageStub()).getFeedbackToUser());
+        assertEquals(expectedModel, model);
+        assertEquals(expectedModel.getSelectedCommission().getValue().getIterations(),
+                model.getSelectedCommission().getValue().getIterations());
     }
 
     @Test
@@ -59,10 +66,12 @@ public class AddIterationCommandIntegrationTest {
     @Test
     public void execute_noSelectedCommission_throwsCommandException() {
         Iteration validIteration = new IterationBuilder().build();
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = expectedModel;
 
-        assertCommandFailure(new AddIterationCommand(validIteration),
-                new ModelManager(getTypicalAddressBook(), new UserPrefs()),
-                Messages.MESSAGE_NO_ACTIVE_COMMISSION);
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_ACTIVE_COMMISSION, () ->
+                new AddIterationCommand(validIteration).execute(model, new StorageWithImageStub()));
+        assertEquals(model, expectedModel);
     }
 
     private static Model getSetUpModelManager() {
