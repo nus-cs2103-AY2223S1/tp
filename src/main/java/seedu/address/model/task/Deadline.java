@@ -8,11 +8,12 @@ import java.time.format.DateTimeParseException;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
 /**
  * Represents a deadline for a task.
  */
 public class Deadline {
+    public static final Deadline EMPTY = new Deadline((LocalDate) null);
+
     public static final String MESSAGE_CONSTRAINTS = "Deadline should be in DD-MM-YYYY format";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 

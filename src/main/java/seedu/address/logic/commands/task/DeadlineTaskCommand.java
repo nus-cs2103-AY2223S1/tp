@@ -16,7 +16,11 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
+/**
+ * A command for users to specify the deadline for a task.
+ */
 public class DeadlineTaskCommand extends TaskCommand {
+
     public static final String COMMAND_WORD = "do";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
@@ -59,7 +63,12 @@ public class DeadlineTaskCommand extends TaskCommand {
 
         Task taskToUpdate = lastShownList.get(targetIndex.getZeroBased());
 
-        Task updatedTask = new Task(taskToUpdate.getTitle(), taskToUpdate.getCompleted(), newDeadline, taskToUpdate.getAssignedContacts());
+        Task updatedTask = new Task(
+                        taskToUpdate.getTitle(),
+                        taskToUpdate.getCompleted(),
+                        newDeadline.equals(Deadline.EMPTY) ? null : newDeadline,
+                        taskToUpdate.getAssignedContacts()
+        );
 
         model.setTask(taskToUpdate, updatedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -81,6 +90,7 @@ public class DeadlineTaskCommand extends TaskCommand {
 
         // state check
         DeadlineTaskCommand e = (DeadlineTaskCommand) other;
+
         return targetIndex.equals(e.targetIndex) && newDeadline.equals(e.newDeadline);
     }
 }

@@ -1,15 +1,16 @@
 package seedu.address.logic.parser.task;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.task.DeadlineTaskCommand;
-import seedu.address.model.task.Deadline;
-
-import java.time.LocalDate;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.task.DeadlineTaskCommand;
+import seedu.address.model.task.Deadline;
 
 public class DeadlineTaskCommandParserTest {
     private DeadlineTaskCommandParser parser = new DeadlineTaskCommandParser();
@@ -21,6 +22,12 @@ public class DeadlineTaskCommandParserTest {
                 parser,
                 "1 by/ 19-09-2022",
                 new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.of(date))
+        );
+
+        assertParseSuccess(
+                parser,
+                "1 by/ ?",
+                new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.EMPTY)
         );
     }
 
