@@ -490,15 +490,15 @@
 }
 
 #itemListView .list-cell {
-    -fx-padding: 2px ;
-    -fx-background-color: transparent, -fx-background ;
-    -fx-background-insets: 0px, 2px ;
+    -fx-padding: 2px;
+    -fx-background-color: transparent, -fx-background;
+    -fx-background-insets: 0px, 2px;
 }
 
 #orderListView .list-cell:empty {
-    -fx-padding: 2px ;
-    -fx-background-color: transparent ;
-    -fx-background-insets: 0 ;
+    -fx-padding: 2px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
 }
 
 #orderListView {
