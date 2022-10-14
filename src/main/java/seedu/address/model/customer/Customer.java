@@ -3,6 +3,7 @@ package seedu.address.model.customer;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -61,6 +62,42 @@ public class Customer {
 
     public Optional<Address> getAddress() {
         return Optional.ofNullable(address);
+    }
+
+    /**
+     * Get total revenue generated from the customer
+     * @return double total revenue
+     */
+    public double getRevenue() {
+        double revenue = 0;
+        for (Commission commission : commissions) {
+            revenue += commission.getFee().fee;
+        }
+        return revenue;
+    }
+
+    /**
+     * Get total number of commission made by this customer
+     * @return total number of commissions
+     */
+    public long getCommissionCount() {
+        return commissions.getSize();
+    }
+
+    /**
+     * Get total number of active commissions made by this customer
+     * @return number of commissions
+     */
+    public long getActiveCommissionCount() {
+        return commissions.getActiveSize();
+    }
+
+    /**
+     * Get last date of customer's commissions
+     * @return
+     */
+    public LocalDate getLastDate() {
+        return commissions.getLastDate();
     }
 
     public UniqueCommissionList getCommissions() {
