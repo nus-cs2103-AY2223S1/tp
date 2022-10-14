@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 
 /**
  * The API of the Model component.
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +86,29 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+    
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuik.
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * Returns true if a reminder with the same venue and timeslot as {@code reminder} exists in the ModQuik.
+     */
+    boolean hasReminderClashingWith(Reminder reminder);
+
+    /**
+     * Adds the given reminder.
+     * {@code reminder} must not already exist in the ModQuik.
+     */
+    void addReminder(Reminder reminder);
+
+    /** Returns an unmodifiable view of the filtered reminder list */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> predicate);
 }
