@@ -21,13 +21,16 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all details of specified internship"
-            + " contain any of the specified keywords (case-insensitive). "
-            + "Companies matching the name will be returned.\n"
+            + " at the given index.\n"
             + "Parameters: view index\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Displaying more details";
     private final Indexes targetIndex;
+
+    /**
+     * Constructor for ViewCommand
+     */
     public ViewCommand(Indexes targetIndex) {
         this.targetIndex = targetIndex;
     }

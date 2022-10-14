@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Internship}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Internship}'s is the exact match of given internship.
  */
 public class ExactMatchPredicate implements Predicate<Internship> {
     private final List<Internship> internships;
