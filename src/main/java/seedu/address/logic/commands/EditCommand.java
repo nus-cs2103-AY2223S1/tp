@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,17 +14,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reward;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,40 +39,64 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the phone number/ email address used to register for membership. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: p/PHONE_NUMBER or e/EMAIL \n"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_REWARD + "REWARD] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " p/98349032  or  " + COMMAND_WORD + " e/example@gmail.com"
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in bobaBot";
 
-    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
+    private Phone phoneIdentifier = null;
+    private Email emailIdentifier = null;
+    private Index index;
+
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param phoneIdentifier current phone number of the person
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(Phone phoneIdentifier, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(phoneIdentifier);
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
+        this.phoneIdentifier = phoneIdentifier;
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+    }
+
+    /**
+     * @param emailIdentifier current email address of the person
+     * @param editPersonDescriptor details to edit the person with
+     */
+    public EditCommand(Email emailIdentifier, EditPersonDescriptor editPersonDescriptor) {
+        requireNonNull(emailIdentifier);
+        requireNonNull(editPersonDescriptor);
+
+        this.emailIdentifier = emailIdentifier;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        try {
+            this.index = !isNull(this.phoneIdentifier)
+                    ? Index.fromZeroBased(model.findNum(phoneIdentifier))
+                    : Index.fromZeroBased(model.findEmail(emailIdentifier));
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
+        }
+
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -76,9 +105,12 @@ public class EditCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Predicate<Person> filterPersonToEdit = p -> !p.equals(personToEdit);
+        FilteredList<Person> filteredListWithoutTarget = model.getAddressBook().getPersonList()
+                .filtered(filterPersonToEdit);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (filteredListWithoutTarget.contains(editedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -96,10 +128,10 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Reward updatedReward = editPersonDescriptor.getReward().orElse(personToEdit.getReward());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedReward, updatedTags);
     }
 
     @Override
@@ -128,7 +160,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Reward reward;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -141,7 +173,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setReward(toCopy.reward);
             setTags(toCopy.tags);
         }
 
@@ -149,7 +181,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, reward, tags);
         }
 
         public void setName(Name name) {
@@ -176,12 +208,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setReward(Reward reward) {
+            this.reward = reward;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Reward> getReward() {
+            return Optional.ofNullable(reward);
         }
 
         /**
@@ -219,7 +251,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getReward().equals(e.getReward())
                     && getTags().equals(e.getTags());
         }
     }

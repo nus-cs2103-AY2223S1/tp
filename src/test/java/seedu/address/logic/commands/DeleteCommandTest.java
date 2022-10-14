@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +13,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,9 +27,18 @@ public class DeleteCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+    public void execute_validPhoneArg_success() {
+        // Corresponds to phone number input for "ALICE" under TypicalPersons class
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setPhone(new Phone("94351253"));
+
+        // Gets the index of Customer (ALICE) within the list via her phone number
+        int index = model.findNum(deletePersonDescriptor.getPhone());
+        Index targetIndex = Index.fromZeroBased(index);
+
+        // Gets ALICE
+        Person personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -40,70 +49,105 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+    public void execute_invalidPhoneArg_throwsCommandException() {
+        // Corresponds to a random phone number input not in the TypicalPersons class
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setPhone(new Phone("11111111"));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        // Throws a CommandException due to no corresponding Customer found
+        DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
+
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_validEmailArg_success() {
+        // Corresponds to email input for "CARL" under TypicalPersons class
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setEmail(new Email("heinz@example.com"));
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+        // Gets the index of Customer (CARL) within the list via his email
+        int index = model.findEmail(deletePersonDescriptor.getEmail());
+        Index targetIndex = Index.fromZeroBased(index);
+
+        // Gets CARL
+        Person personToDelete = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    public void execute_invalidEmailArg_throwsCommandException() {
+        // Corresponds to a random email input not in the TypicalPersons class
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setEmail(new Email("testing123@test.com"));
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // Throws a CommandException due to no corresponding Customer found
+        DeleteCommand deleteCommand = new DeleteCommand(deletePersonDescriptor);
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_INFORMATION);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
+        // (Phone Number) input values for deleteFirstCommand
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setPhone(new Phone("12345678"));
 
-        // same object -> returns true
+        // (Phone Number) input values for deleteSecondCommand
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor2 = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor2.setPhone(new Phone("87654321"));
+
+        // (Email) input values for deleteThirdCommand
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor3 = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor3.setEmail(new Email("test@test.com"));
+
+        // (Email) input values for deleteFourthCommand
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor4 = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor4.setEmail(new Email("test2@test2.com"));
+
+        DeleteCommand deleteFirstCommand = new DeleteCommand(deletePersonDescriptor);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(deletePersonDescriptor2);
+
+        DeleteCommand deleteThirdCommand = new DeleteCommand(deletePersonDescriptor3);
+        DeleteCommand deleteFourthCommand = new DeleteCommand(deletePersonDescriptor4);
+
+        // (Phone Number) same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
-        // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
+        // (Phone Number) same values -> returns true
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(deletePersonDescriptor);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
-        // different types -> returns false
+        // (Phone Number) different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));
 
-        // null -> returns false
+        // (Phone Number) null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // (Phone Number) different customer -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
+        // (Email) same object -> returns true
+        assertTrue(deleteThirdCommand.equals(deleteThirdCommand));
 
-        assertTrue(model.getFilteredPersonList().isEmpty());
+        // (Email) same values -> returns true
+        DeleteCommand deleteThirdCommandCopy = new DeleteCommand(deletePersonDescriptor3);
+        assertTrue(deleteThirdCommand.equals(deleteThirdCommandCopy));
+
+        // (Email) different types -> returns false
+        assertFalse(deleteThirdCommand.equals(1));
+
+        // (Email) null -> returns false
+        assertFalse(deleteThirdCommand.equals(null));
+
+        // (Email) different customer -> returns false
+        assertFalse(deleteThirdCommand.equals(deleteFourthCommand));
     }
 }

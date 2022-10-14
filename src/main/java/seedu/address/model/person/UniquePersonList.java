@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,38 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns the index of the Customer with the same phone number.
+     *
+     * @param toCheck Phone number to check against the list
+     * @return index of the Person with the same phone number in the list
+     * @throws PersonNotFoundException if no Customer with corresponding phone number found
+     */
+    public int findNum(Phone toCheck) throws PersonNotFoundException {
+        requireNonNull(toCheck);
+        int index = internalList.stream().map(Person::getPhone).collect(Collectors.toList()).indexOf(toCheck);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+        return index;
+    }
+
+    /**
+     * Returns the index of the Customer with the same email.
+     *
+     * @param toCheck Email to check against the list
+     * @return index of the Person with the same email in the list
+     * @throws PersonNotFoundException if no Customer with corresponding email found
+     */
+    public int findEmail(Email toCheck) throws PersonNotFoundException {
+        requireNonNull(toCheck);
+        int index = internalList.stream().map(Person::getEmail).collect(Collectors.toList()).indexOf(toCheck);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+        return index;
     }
 
     /**

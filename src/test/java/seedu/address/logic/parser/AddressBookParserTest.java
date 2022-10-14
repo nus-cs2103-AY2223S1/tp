@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,16 +16,18 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+//import seedu.address.logic.commands.EditCommand;
+//import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.MultiSearchPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.person.Phone;
+//import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -48,11 +50,21 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setPhone(new Phone("12345678"));
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+                DeleteCommand.COMMAND_WORD + " p/12345678");
+
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor2 = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor2.setEmail(new Email("testing@test.com"));
+        DeleteCommand command2 = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " e/testing@test.com");
+
+        assertEquals(new DeleteCommand(deletePersonDescriptor), command);
+        assertEquals(new DeleteCommand(deletePersonDescriptor2), command2);
     }
 
+    /*
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
@@ -61,6 +73,7 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
+    */
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -73,7 +86,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new MultiSearchPredicate(keywords)), command);
     }
 
     @Test
@@ -91,7 +104,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

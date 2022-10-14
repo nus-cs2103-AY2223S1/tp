@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -116,5 +119,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    public int findNum(Phone phone) throws PersonNotFoundException {
+        return persons.findNum(phone);
+    }
+
+    public int findEmail(Email email) throws PersonNotFoundException {
+        return persons.findEmail(email);
     }
 }

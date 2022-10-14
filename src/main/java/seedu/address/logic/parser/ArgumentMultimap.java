@@ -1,5 +1,9 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.isNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +22,11 @@ public class ArgumentMultimap {
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
+    private Prefix firstPrefix = null;
+
+    private boolean phoneIdentifier = false;
+    private boolean emailIdentifier = false;
+
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
@@ -26,6 +35,14 @@ public class ArgumentMultimap {
      * @param argValue Argument value to be associated with the specified prefix key
      */
     public void put(Prefix prefix, String argValue) {
+        if (isNull(firstPrefix) || firstPrefix.getPrefix().isEmpty()) {
+            firstPrefix = prefix;
+        }
+        if (prefix.equals(PREFIX_PHONE) && !emailIdentifier) {
+            phoneIdentifier = true;
+        } else if (prefix.equals(PREFIX_EMAIL) && !phoneIdentifier) {
+            emailIdentifier = true;
+        }
         List<String> argValues = getAllValues(prefix);
         argValues.add(argValue);
         argMultimap.put(prefix, argValues);
@@ -37,6 +54,17 @@ public class ArgumentMultimap {
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
+    }
+
+    /**
+     * Checks if the {@code prefix} only occurs once in the user input.
+     *
+     * @param prefix the prefix to check against
+     * @return true if the {@code prefix} only occurs once, otherwise return false
+     */
+    public boolean isUniquePrefix(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.size() == 1;
     }
 
     /**
@@ -56,5 +84,32 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Returns the first prefix input by the user.
+     *
+     * @return the first prefix input by the user.
+     */
+    public Prefix getFirstPrefix() {
+        return this.firstPrefix;
+    }
+
+    /**
+     * Returns if the phone number of a person exists as an identifier.
+     *
+     * @return whether phone number exists as an identifier.
+     */
+    public boolean getPhoneIdentifier() {
+        return phoneIdentifier;
+    }
+
+    /**
+     * Returns if the email address of a person exists as an identifier.
+     *
+     * @return whether email address exists as an identifier.
+     */
+    public boolean getEmailIdentifier() {
+        return emailIdentifier;
     }
 }

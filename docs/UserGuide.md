@@ -27,7 +27,7 @@ bobaBot is a **desktop application** for managing customers’ membership detail
 
     * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to bobaBot.
 
-    * **`delete`**`n/Charlie Puth` : Deletes the 3rd customer with name Charlie Puth shown in the current list.
+    * **`delete`**`p/98765432` : Deletes the customer with the corresponding phone number (aka John Doe).
 
     * **`clear`** : Deletes all customers.
 
@@ -87,11 +87,11 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com r/0 t/new `
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`
 
-### Updating a Customer’s details: `update`
+### Editing a Customer’s details: `edit`
 
-Updates an existing Customer in bobaBot.
+Edits an existing Customer in bobaBot.
 
-Format: `update n/NAME OR update p/PHONE_NUMBER OR update e/EMAIL
+Format: `edit n/NAME OR edit p/PHONE_NUMBER OR edit e/EMAIL
 [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -99,8 +99,8 @@ At least one of the optional fields must be provided
 </div>
 
 Examples:
-* `update n/John Doe p/91234567 e/johndoe@example.com r/1000`
-* `update n/Peter Parker r/420`
+* `edit n/John Doe p/91234567 e/johndoe@example.com r/1000`
+* `edit n/Peter Parker r/420`
 
 ### Listing all customers : `list`
 
@@ -110,16 +110,15 @@ Format: `list`
 
 ### Locating persons by name: `find`
 
-Finds Customers whose names contain any of the given keywords.
+Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Customers matching at least one keyword will be returned (i.e. `OR` search).
+* Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* No need to type in the whole word. e.g `9927` will match `27859927`
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -132,18 +131,14 @@ Removes a Customer from bobaBot.
 
 Format:
 
-`delete n/NAME` or
-
 `delete p/PHONE_NUMBER` or
 
 `delete e/EMAIL`
 
-* Deletes the Customer with the following `NAME` when `n/` specified.
 * Deletes the Customer with the following `PHONE_NUMBER` when `p/` specified.
 * Deletes the Customer with the following `EMAIL` when `e/` specified.
 
 Examples:
-* `delete n/Alex Yeoh` removes the Customer with the name `Alex Yeoh`.
 * `delete p/87438807` removes the Customer with the phone number `87438807`.
 * `delete e/alexyeoh@example.com` removes the Customer with the email `alexyeoh@example.com`.
 
@@ -186,14 +181,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                             |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                            |
-| **Update** | `update n/NAME` or `update p/PHONE_NUMBER` or `update e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`update n/John Doe p/91234567 e/johndoe@example.com r/1000` |
-| **Delete** | `delete n/NAME` or `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete n/Alex Yeoh`, `delete p/87438807`, `delete e/alexyeoh@example.com`                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                                   |
-| **Clear**  | `clear`                                                                                                                                                                                      |
-| **List**   | `list`                                                                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                                                                       |
-| **Exit**   | `exit`                                                                                                                                                                                       |
+| Action     | Format, Examples                                                                                                                                                                     |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`                                    |
+| **Edit**   | `edit n/NAME` or `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit n/John Doe p/91234567 e/johndoe@example.com r/1000` |
+| **Delete** | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                                                                          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                                           |
+| **Clear**  | `clear`                                                                                                                                                                              |
+| **List**   | `list`                                                                                                                                                                               |
+| **Help**   | `help`                                                                                                                                                                               |
+| **Exit**   | `exit`                                                                                                                                                                               |
 

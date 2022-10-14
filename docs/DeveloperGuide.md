@@ -274,7 +274,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|---------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | cashier | quickly search for customers’ membership details within the system             | verify their rewards/points                                                      |
 | `* * *`  | cashier | search for customer details through various inputs (email, phone number, name) | retrieve their information flexibly                                              |
-| `* * *`  | cashier | update customers' membership details (vouchers, points, rewards)               | remove the voucher/points once they claim them                                   |
+| `* * *`  | cashier | edit customers' membership details (vouchers, points, rewards)                 | remove the voucher/points once they claim them                                   |
 | `* * *`  | cashier | add new members to my list                                                     | apply for membership for customers                                               |
 | `* * *`  | cashier | remove members from the list                                                   | make sure membership details are correct for customers who are no longer members |
 
@@ -357,17 +357,17 @@ Guarantee: Selected Customer's details will be displayed by bobaBot.
 
       Use case ends.
 
-**Use case 4: Update a Customer's details**
+**Use case 4: Edit a Customer's details**
 
 System: bobaBot <br>
-Use case: UC02 - Update a Customer's details <br>
+Use case: UC02 - Edit a Customer's details <br>
 Actor: User <br>
-Guarantee: Selected Customer's details will be updated by bobaBot.
+Guarantee: Selected Customer's details will be edited by bobaBot.
 
 **MSS**
 
-1. User requests to update a Customer's details.
-2. bobaBot updates the Customer's details in the database.
+1. User requests to edit a Customer's details.
+2. bobaBot edits the Customer's details in the database.
 
    Use case ends.
 
@@ -482,3 +482,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
