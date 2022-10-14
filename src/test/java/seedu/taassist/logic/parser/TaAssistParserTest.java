@@ -5,15 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taassist.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.taassist.testutil.Assert.assertThrows;
+import static seedu.taassist.testutil.ModuleClassBuilder.getAddcCommand;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.taassist.logic.commands.AddCommand;
+import seedu.taassist.logic.commands.AddcCommand;
 import seedu.taassist.logic.commands.ClearCommand;
 import seedu.taassist.logic.commands.DeleteCommand;
 import seedu.taassist.logic.commands.EditCommand;
@@ -23,9 +26,11 @@ import seedu.taassist.logic.commands.FindCommand;
 import seedu.taassist.logic.commands.HelpCommand;
 import seedu.taassist.logic.commands.ListCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
+import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.NameContainsKeywordsPredicate;
 import seedu.taassist.model.student.Student;
 import seedu.taassist.testutil.EditStudentDescriptorBuilder;
+import seedu.taassist.testutil.ModuleClassBuilder;
 import seedu.taassist.testutil.StudentBuilder;
 import seedu.taassist.testutil.StudentUtil;
 
@@ -39,6 +44,15 @@ public class TaAssistParserTest {
         AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
+
+    @Test
+    public void parseCommand_addc() throws Exception {
+        ModuleClass moduleClass = new ModuleClassBuilder().withName("ES2660").build();
+        AddcCommand command = (AddcCommand) parser.parseCommand(getAddcCommand(moduleClass));
+        assertEquals(new AddcCommand(new HashSet<>(Arrays.asList(moduleClass))), command);
+    }
+
+
 
     @Test
     public void parseCommand_clear() throws Exception {

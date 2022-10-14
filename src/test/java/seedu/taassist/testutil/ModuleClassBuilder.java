@@ -1,10 +1,13 @@
 package seedu.taassist.testutil;
 
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.taassist.logic.commands.AddcCommand;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.session.Session;
 
@@ -53,5 +56,9 @@ public class ModuleClassBuilder {
 
     public ModuleClass build() {
         return new ModuleClass(name, sessions);
+    }
+
+    public static String getAddcCommand(ModuleClass moduleClass) {
+        return AddcCommand.COMMAND_WORD + " " + PREFIX_MODULE_CLASS + moduleClass.getClassName();
     }
 }

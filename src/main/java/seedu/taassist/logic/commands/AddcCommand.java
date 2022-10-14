@@ -54,18 +54,37 @@ public class AddcCommand extends Command {
                 model.addModuleClass(moduleClass);
             }
         }
+
+        String message = getCommandMessage(newClasses, duplicateClasses);
+        return new CommandResult(message);
+    }
+
+    public static String getCommandMessage(Set<ModuleClass> newClasses, Set<ModuleClass> duplicateClasses) {
         StringBuilder outputString = new StringBuilder();
         if (!newClasses.isEmpty()) {
-            String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
-            outputString.append(String.format(MESSAGE_SUCCESS, newClassesStr)).append('\n');
+            outputString.append(getClassesAddedMessage(newClasses)).append("\n");
         }
+
         if (!duplicateClasses.isEmpty()) {
-            String duplicateClaasesStr = duplicateClasses.stream().map(Object::toString)
-                    .collect(Collectors.joining(" "));
-            outputString.append(String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClaasesStr)).append('\n');
+            outputString.append(getDuplicateClassesMessage(duplicateClasses)).append("\n");
         }
+
+        // remove trailing newline character
         outputString.setLength(outputString.length() - 1);
-        return new CommandResult(outputString.toString());
+        return outputString.toString();
+    }
+
+    private static String getClassesAddedMessage(Set<ModuleClass> newClasses) {
+        requireAllNonNull(newClasses);
+        String newClassesStr = newClasses.stream().map(Object::toString).collect(Collectors.joining(" "));
+        return String.format(MESSAGE_SUCCESS, newClassesStr);
+    }
+
+    private static String getDuplicateClassesMessage(Set<ModuleClass> duplicateClasses) {
+        requireAllNonNull(duplicateClasses);
+        String duplicateClassesStr = duplicateClasses.stream().map(Object::toString)
+                .collect(Collectors.joining(" "));
+        return String.format(MESSAGE_DUPLICATE_MODULE_CLASS, duplicateClassesStr);
     }
 
     @Override

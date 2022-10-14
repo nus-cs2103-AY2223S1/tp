@@ -77,6 +77,6 @@ public class ModuleClassTest {
 
         // same name and sessions -> returns true
         ModuleClass cs1101sCopy = new ModuleClass(CS1101S.getClassName(), CS1101S.getSessions());
-        assertTrue(cs1101sCopy.isSame(CS1101S));
+        assertTrue(cs1101sCopy.equals(CS1101S));
     }
 }

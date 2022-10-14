@@ -80,8 +80,11 @@ public interface Model {
      */
     void setStudent(Student target, Student editedStudent);
 
-    /** Returns an unmodifiable view of the filtered student list */
+    /** Returns an unmodifiable view of the filtered student list. */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the student list. */
+    ObservableList<Student> getStudentList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
