@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -13,16 +14,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class Date {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format of yyyy-mm-dd with proper month and leap year support";
-    //Only valid if yyyy-mm-dd with month and leap year support
-    //Retrieve from https://stackoverflow.com/questions/15491894/regex-to-validate-date-formats-dd-mm-yyyy-dd-mm-yyyy
-    // -dd-mm-yyyy-dd-mmm-yyyy
-    public static final String VALIDATION_REGEX = "^(?:(?:1[6-9]|[2-9]\\d)?\\d{4})(?:(?:(-)(?:0[13578]|1[02])"
-            + "\\1(?:31))|(?:(-)(?:0?[13-9]|1[0-2])\\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468]"
-            + "[048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(-)02\\3(?:29)$|^(?:(?:1[6-9]|[2-9]\\d"
-            + ")?\\d{4})(-)(?:(?:0[1-9])|(?:1[0-2]))\\4(?:0[1-9]|1\\d|2[0-8])$";
+    private static final DateTimeFormatter COMMAND_DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+    private static final DateTimeFormatter DISPLAY_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy");
     public final LocalDate value;
 
     /**
@@ -40,17 +35,30 @@ public class Date {
      * Returns true if a given string is a valid date string.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            COMMAND_DATE_FORMATTER.parse(test);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     private LocalDate parseLocalDate(String dateString) {
-        return LocalDate.parse(dateString);
+        return LocalDate.parse(dateString, COMMAND_DATE_FORMATTER);
+    }
+
+    /**
+     * Returns the command string that corresponds to this {@code Date}.
+     *
+     * @return The command string that corresponds to this {@code Date}.
+     */
+    public String toCommandString() {
+        return COMMAND_DATE_FORMATTER.format(value);
     }
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-        return this.value.format(formatter);
+        return this.value.format(DISPLAY_DATE_FORMATTER);
     }
 
     @Override
