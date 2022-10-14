@@ -98,7 +98,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModDeleteCommand.MESSAGE_USAGE), pe);
         }
         return new ModDeleteCommand(index, mods.get());
     }
@@ -116,7 +116,7 @@ public class ModCommandParser implements Parser<ModCommand> {
         try {
             index = ParserUtil.parseIndex(indexFromCommand);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
         }
         return new ModMarkCommand(index, mods.get());
     }
