@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.model.student.StudentName;
@@ -68,6 +69,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withProjectName(String projectName) {
         descriptor.setProjectName(new ProjectName(projectName));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ProjectStatus} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withProjectStatus(String projectStatus) {
+        descriptor.setProjectStatus(new ProjectStatus(projectStatus));
         return this;
     }
 

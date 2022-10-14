@@ -2,7 +2,7 @@ package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -104,7 +104,7 @@ public class FypManagerParserTest {
         final StudentId studentId = new StudentId("A0123456G");
         final ProjectStatus projectStatus = new ProjectStatus("DONE");
         MarkCommand command = (MarkCommand) parser.parseCommand(MarkCommand.COMMAND_WORD + " "
-                + PREFIX_STUDENT_ID + studentId + " " + PREFIX_STATUS + projectStatus);
+                + PREFIX_STUDENT_ID + studentId + " " + PREFIX_PROJECT_STATUS + projectStatus);
         assertEquals(new MarkCommand(studentId, projectStatus), command);
     }
 

@@ -1,7 +1,7 @@
 package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
@@ -26,25 +26,25 @@ public class MarkCommand extends Command {
             + "Existing statuses will be updated by the input.\n"
             + "Parameters: "
             + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student id that is already in the FYP manager) "
-            + PREFIX_STATUS + "STATUS\n"
+            + PREFIX_PROJECT_STATUS + "STATUS\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_STUDENT_ID + "A0123456G "
-            + PREFIX_STATUS + "DONE";
+            + PREFIX_PROJECT_STATUS + "DONE";
 
     public static final String MESSAGE_ADD_PROJECT_STATUS_SUCCESS = "Added ProjectStatus to Student: %1$s";
     public static final String MESSAGE_DELETE_PROJECT_STATUS_SUCCESS = "Removed ProjectStatus from Student: %1$s";
 
     private final StudentId studentId;
-    private final ProjectStatus status;
+    private final ProjectStatus projectStatus;
 
     /**
      * @param studentId of the student doing a particular FYP project
-     * @param status of the FYP project
+     * @param projectStatus of the FYP project
      */
-    public MarkCommand(StudentId studentId, ProjectStatus status) {
-        requireAllNonNull(studentId, status);
+    public MarkCommand(StudentId studentId, ProjectStatus projectStatus) {
+        requireAllNonNull(studentId, projectStatus);
         this.studentId = studentId;
-        this.status = status;
+        this.projectStatus = projectStatus;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class MarkCommand extends Command {
         }
 
         Student editedStudent = new Student(oldStudent.getStudentName(), oldStudent.getStudentId(),
-                oldStudent.getEmail(), oldStudent.getProjectName(), status, oldStudent.getTags());
+                oldStudent.getEmail(), oldStudent.getProjectName(), projectStatus, oldStudent.getTags());
 
         model.setStudent(oldStudent, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -70,7 +70,7 @@ public class MarkCommand extends Command {
      * {@code studentToEdit}.
      */
     private String generateSuccessMessage(Student studentToEdit) {
-        String message = !status.projectStatus.isEmpty() ? MESSAGE_ADD_PROJECT_STATUS_SUCCESS
+        String message = !projectStatus.projectStatus.isEmpty() ? MESSAGE_ADD_PROJECT_STATUS_SUCCESS
                 : MESSAGE_DELETE_PROJECT_STATUS_SUCCESS;
         return String.format(message, studentToEdit);
     }
@@ -90,6 +90,6 @@ public class MarkCommand extends Command {
         // state check
         MarkCommand e = (MarkCommand) other;
         return studentId.equals(e.studentId)
-                && status.equals(e.status);
+                && projectStatus.equals(e.projectStatus);
     }
 }

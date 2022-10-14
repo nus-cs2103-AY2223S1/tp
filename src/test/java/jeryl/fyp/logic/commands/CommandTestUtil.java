@@ -2,6 +2,7 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_NAME;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,10 +33,10 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID_BOB = "A2222222O";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_STATUS_AMY = "IP";
-    public static final String VALID_STATUS_BOB = "YTS";
     public static final String VALID_PROJECT_NAME_AMY = "random CS proj 1";
     public static final String VALID_PROJECT_NAME_BOB = "random CS proj 2";
+    public static final String VALID_PROJECT_STATUS_AMY = "IP";
+    public static final String VALID_PROJECT_STATUS_BOB = "DONE";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -48,6 +49,8 @@ public class CommandTestUtil {
 
     public static final String PROJECT_NAME_DESC_AMY = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_AMY;
     public static final String PROJECT_NAME_DESC_BOB = " " + PREFIX_PROJECT_NAME + VALID_PROJECT_NAME_BOB;
+    public static final String PROJECT_STATUS_DESC_AMY = " " + PREFIX_PROJECT_STATUS + VALID_PROJECT_STATUS_AMY;
+    public static final String PROJECT_STATUS_DESC_BOB = " " + PREFIX_PROJECT_STATUS + VALID_PROJECT_STATUS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -57,6 +60,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     // empty str not allowed for projects
     public static final String INVALID_PROJECT_NAME_DESC = " " + PREFIX_PROJECT_NAME;
+    public static final String INVALID_PROJECT_STATUS_DESC = " " + PREFIX_PROJECT_STATUS + "!?";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -68,10 +72,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_AMY)
                 .withStudentId(VALID_STUDENT_ID_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).withProjectName(VALID_PROJECT_NAME_AMY).build();
+                .withTags(VALID_TAG_FRIEND).withProjectName(VALID_PROJECT_NAME_AMY)
+                .withProjectStatus(VALID_PROJECT_STATUS_AMY).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_BOB)
                 .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_BOB)
                 .withProjectName(VALID_PROJECT_NAME_BOB)
+                .withProjectStatus(VALID_PROJECT_STATUS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
+        if (!studentToEdit.isSameStudentName(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
@@ -133,6 +133,7 @@ public class EditCommand extends Command {
         private StudentId id;
         private Email email;
         private ProjectName projectName;
+        private ProjectStatus projectStatus;
         private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
@@ -146,6 +147,7 @@ public class EditCommand extends Command {
             setStudentId(toCopy.id);
             setEmail(toCopy.email);
             setProjectName(toCopy.projectName);
+            setProjectStatus(toCopy.projectStatus);
             setTags(toCopy.tags);
         }
 
@@ -186,6 +188,14 @@ public class EditCommand extends Command {
 
         public Optional<ProjectName> getProjectName() {
             return Optional.ofNullable(projectName);
+        }
+
+        public void setProjectStatus(ProjectStatus projectStatus) {
+            this.projectStatus = projectStatus;
+        }
+
+        public Optional<ProjectStatus> getProjectStatus() {
+            return Optional.ofNullable(projectStatus);
         }
 
         /**
