@@ -27,7 +27,7 @@ public class DeadlineTaskCommandParserTest {
         assertParseSuccess(
                 parser,
                 "1 by/ ?",
-                new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.EMPTY)
+                new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.UNSPECIFIED)
         );
     }
 

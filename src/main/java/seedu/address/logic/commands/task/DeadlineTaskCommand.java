@@ -66,7 +66,7 @@ public class DeadlineTaskCommand extends TaskCommand {
         Task updatedTask = new Task(
                         taskToUpdate.getTitle(),
                         taskToUpdate.getCompleted(),
-                        newDeadline.equals(Deadline.EMPTY) ? null : newDeadline,
+                        newDeadline,
                         taskToUpdate.getAssignedContacts()
         );
 

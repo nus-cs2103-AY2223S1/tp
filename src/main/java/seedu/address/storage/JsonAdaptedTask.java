@@ -51,7 +51,7 @@ class JsonAdaptedTask {
 
         isCompleted = String.valueOf(source.getCompleted());
 
-        deadline = source.getDeadline().map(Deadline::toString).orElse("null");
+        deadline = source.getDeadline().toString();
 
         assigned.addAll(source.getAssignedContacts().stream()
             .map(JsonAdaptedContact::new)
@@ -89,8 +89,8 @@ class JsonAdaptedTask {
         final boolean modelIsCompleted = Boolean.parseBoolean(isCompleted);
 
         final Deadline modelDeadline;
-        if (deadline.equals("null")) {
-            modelDeadline = null;
+        if (deadline.equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
+            modelDeadline = Deadline.UNSPECIFIED;
         } else {
             try {
                 modelDeadline = Deadline.of(deadline);

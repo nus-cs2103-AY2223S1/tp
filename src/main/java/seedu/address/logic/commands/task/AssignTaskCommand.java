@@ -79,7 +79,7 @@ public class AssignTaskCommand extends TaskCommand {
         Task editedTask = new Task(
                 taskToAssignTo.getTitle(),
                 taskToAssignTo.getCompleted(),
-                taskToAssignTo.getDeadline().orElse(null),
+                taskToAssignTo.getDeadline(),
                 assignedContacts
         );
 

@@ -53,7 +53,7 @@ public class MarkTaskCommand extends TaskCommand {
         Task editedTask = new Task(
                 taskToMark.getTitle(),
                 true,
-                taskToMark.getDeadline().get(),
+                taskToMark.getDeadline(),
                 taskToMark.getAssignedContacts()
         );
 

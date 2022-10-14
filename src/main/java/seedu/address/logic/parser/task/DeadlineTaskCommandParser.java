@@ -46,7 +46,7 @@ public class DeadlineTaskCommandParser implements Parser<DeadlineTaskCommand> {
                         );
 
         if (deadlineArg.trim().equals("?")) {
-            return new DeadlineTaskCommand(index, Deadline.EMPTY);
+            return new DeadlineTaskCommand(index, Deadline.UNSPECIFIED);
         } else {
             return new DeadlineTaskCommand(index, Deadline.of(deadlineArg));
         }

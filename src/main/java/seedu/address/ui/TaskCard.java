@@ -9,7 +9,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Contact;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
 /**
@@ -51,13 +50,11 @@ public class TaskCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().toString());
 
-        if (task.getDeadline().isEmpty()) {
+        if (task.getDeadline().isUnspecified()) {
             deadline.setVisible(false);
             deadline.setManaged(false);
         } else {
-            String text = task.getDeadline()
-                    .map(Deadline::toString)
-                    .orElse("");
+            String text = task.getDeadline().toString();
             deadline.setText(text);
         }
 

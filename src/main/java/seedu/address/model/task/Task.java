@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -29,7 +28,7 @@ public class Task {
      * @param title Title of task
      */
     public Task(Title title) {
-        this(title, false, null, new HashSet<Contact>());
+        this(title, false, Deadline.UNSPECIFIED, new HashSet<Contact>());
     }
 
     /**
@@ -59,8 +58,8 @@ public class Task {
     /**
      * Returns the deadline set for the task.
      */
-    public Optional<Deadline> getDeadline() {
-        return Optional.ofNullable(deadline);
+    public Deadline getDeadline() {
+        return deadline;
     }
 
     /**
@@ -100,6 +99,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
                 && otherTask.getCompleted() == getCompleted()
+                && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getAssignedContacts().equals(getAssignedContacts());
 
     }
@@ -107,7 +107,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, isCompleted, assignedContacts);
+        return Objects.hash(title, isCompleted, deadline, assignedContacts);
     }
 
     @Override
@@ -121,6 +121,11 @@ public class Task {
         if (!contacts.isEmpty()) {
             builder.append("; Contacts: ");
             contacts.forEach(builder::append);
+        }
+
+        if (!deadline.isUnspecified()) {
+            builder.append("; Deadline: ");
+            builder.append(deadline.toString());
         }
 
         return builder.toString();
