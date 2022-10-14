@@ -109,6 +109,12 @@ public interface Model {
     boolean hasOffer(Offer offer);
 
     /**
+     * Adds the given offer (Dummy method to pass checkstyle).
+     * {@code listing} must not already exist in the address book.
+     */
+    void addOffer(Offer offer);
+
+    /**
      * Deletes the given listing.
      * The listing must exist in the address book.
      */

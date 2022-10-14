@@ -156,8 +156,13 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasOffer(Offer offer) {
-        return true;
+        return false;
     }
+
+    @Override
+    public void addOffer(Offer offer) {
+    }
+
     //=========== Filtered List Accessors =============================================================
 
     /**
