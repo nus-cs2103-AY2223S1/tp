@@ -22,6 +22,7 @@ import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.ReadOnlyUserPrefs;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.FoodBuilder;
 
@@ -174,6 +175,14 @@ public class AddCommandTest {
         @Override
         public User getUserDetails() {
             throw new AssertionError("This method should not be called");
+
+        public IsFoodAddedOnThisDatePredicate getDatePredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isFilteredFoodListEmpty() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

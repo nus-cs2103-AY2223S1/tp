@@ -5,8 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.nutrigoals.model.Model;
+import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.IsFoodAddedTodayPredicate;
+import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 
 /**
  * Provides a summary of the user's daily calorie intake, target calorie and the calorie deficiency or excess.
@@ -27,7 +28,8 @@ public class ReviewCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredFoodList(new IsFoodAddedTodayPredicate());
+        DateTime today = new DateTime();
+        model.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(today));
         List<Food> listOfFoodsToday = model.getFilteredFoodList();
 
         int calorieCount = 0;

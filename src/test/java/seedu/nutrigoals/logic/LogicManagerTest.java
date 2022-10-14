@@ -19,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.nutrigoals.logic.commands.AddCommand;
+import seedu.nutrigoals.logic.commands.ClearCommand;
 import seedu.nutrigoals.logic.commands.CommandResult;
-import seedu.nutrigoals.logic.commands.ListCommand;
 import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.Model;
@@ -65,8 +65,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String clearCommand = ClearCommand.COMMAND_WORD;
+        assertCommandSuccess(clearCommand, ClearCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
