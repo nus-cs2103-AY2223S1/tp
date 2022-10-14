@@ -16,7 +16,6 @@ import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.IsFoodAddedTodayPredicate;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
 
@@ -76,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         model.setFood(foodToEdit, editedFood);
-        model.updateFilteredFoodList(new IsFoodAddedTodayPredicate());
+        model.updateFilteredFoodList(model.getDatePredicate());
         return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood));
     }
 

@@ -11,8 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.commons.core.LogsCenter;
+import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
-import seedu.nutrigoals.model.meal.IsFoodAddedTodayPredicate;
+import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 
 /**
  * Represents the in-memory model of the nutrigoals data.
@@ -24,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
 
+    private IsFoodAddedOnThisDatePredicate currentDatePredicate;
+
     /**
      * Initializes a ModelManager with the given nutriGoals and userPrefs.
      */
@@ -33,7 +36,9 @@ public class ModelManager implements Model {
         logger.fine("Initializing with NutriGoals: " + nutriGoals + " and user prefs " + userPrefs);
         this.nutriGoals = new NutriGoals(nutriGoals);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFoods = new FilteredList<>(this.nutriGoals.getFoodList().filtered(new IsFoodAddedTodayPredicate()));
+        filteredFoods = new FilteredList<>(this.nutriGoals.getFoodList());
+        currentDatePredicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
+        updateFilteredFoodList(currentDatePredicate);
     }
 
     public ModelManager() {
@@ -118,7 +123,8 @@ public class ModelManager implements Model {
     @Override
     public void addFood(Food food) {
         nutriGoals.addFood(food);
-        updateFilteredFoodList(new IsFoodAddedTodayPredicate());
+        IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
+        updateFilteredFoodList(predicate);
     }
 
     @Override
@@ -143,6 +149,28 @@ public class ModelManager implements Model {
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         filteredFoods.setPredicate(predicate);
+
+        if (predicate instanceof IsFoodAddedOnThisDatePredicate) {
+            currentDatePredicate = (IsFoodAddedOnThisDatePredicate) predicate;
+        }
+    }
+
+    /**
+     * Returns the most recent {@code IsFoodAddedOnThisDatePredicate} applied on the filtered food list.
+     * @return The {@code IsFoodAddedOnThisDatePredicate} that was last applied on the filtered food list.
+     */
+    @Override
+    public IsFoodAddedOnThisDatePredicate getDatePredicate() {
+        return currentDatePredicate;
+    }
+
+    /**
+     * Checks if the filtered food list contains any food items.
+     * @return True if the filtered food list contains no food items.
+     */
+    @Override
+    public boolean isFilteredFoodListEmpty() {
+        return filteredFoods.isEmpty();
     }
 
     @Override
@@ -161,7 +189,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         boolean isEqual = nutriGoals.equals(other.nutriGoals)
             && userPrefs.equals(other.userPrefs)
-            && filteredFoods.equals(other.filteredFoods);
+            && filteredFoods.equals(other.filteredFoods)
+            && currentDatePredicate.equals(other.currentDatePredicate);
         return isEqual;
     }
 
