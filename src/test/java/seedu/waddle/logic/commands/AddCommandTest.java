@@ -18,8 +18,10 @@ import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ReadOnlyUserPrefs;
+import seedu.waddle.model.ReadOnlyWaddle;
+import seedu.waddle.model.Waddle;
 import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.testutil.PersonBuilder;
+import seedu.waddle.testutil.ItineraryBuilder;
 
 public class AddCommandTest {
 
@@ -30,46 +32,46 @@ public class AddCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Itinerary validItinerary = new Itinerary()
+        ModelStubAcceptingItineraryAdded modelStub = new ModelStubAcceptingItineraryAdded();
+        Itinerary validItinerary = new ItineraryBuilder().build();
 
         CommandResult commandResult = new AddCommand(validItinerary).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validItinerary), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validItinerary), modelStub.itinerariesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateItinerary_throwsCommandException() {
+        Itinerary validItinerary = new ItineraryBuilder().build();
+        AddCommand addCommand = new AddCommand(validItinerary);
+        ModelStub modelStub = new ModelStubWithItinerary(validItinerary);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ITINERARY, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Itinerary summer = new ItineraryBuilder().withName("Summer").build();
+        Itinerary winter = new ItineraryBuilder().withName("Winter").build();
+        AddCommand addSummerCommand = new AddCommand(summer);
+        AddCommand addWinterCommand = new AddCommand(winter);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addSummerCommand.equals(addSummerCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addSummerCommandCopy = new AddCommand(summer);
+        assertTrue(addSummerCommand.equals(addSummerCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addSummerCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addSummerCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different itinerary -> returns false
+        assertFalse(addSummerCommand.equals(addWinterCommand));
     }
 
     /**
@@ -97,95 +99,95 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getWaddleFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setWaddleFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addItinerary(Itinerary itinerary) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setWaddle(ReadOnlyWaddle newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyWaddle getWaddle() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasItinerary(Itinerary itinerary) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteItinerary(Itinerary target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setItinerary(Itinerary target, Itinerary editedItinerary) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Itinerary> getFilteredItineraryList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredItineraryList(Predicate<Itinerary> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single itinerary.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithItinerary extends ModelStub {
+        private final Itinerary itinerary;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithItinerary(Itinerary itinerary) {
+            requireNonNull(itinerary);
+            this.itinerary = itinerary;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasItinerary(Itinerary itinerary) {
+            requireNonNull(itinerary);
+            return this.itinerary.isSameItinerary(itinerary);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the itinerary being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingItineraryAdded extends ModelStub {
+        final ArrayList<Itinerary> itinerariesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasItinerary(Itinerary itinerary) {
+            requireNonNull(itinerary);
+            return itinerariesAdded.stream().anyMatch(itinerary::isSameItinerary);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addItinerary(Itinerary itinerary) {
+            requireNonNull(itinerary);
+            itinerariesAdded.add(itinerary);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyWaddle getWaddle() {
+            return new Waddle();
         }
     }
 
