@@ -20,7 +20,7 @@ import seedu.foodrem.model.item.ItemQuantity;
  * Increments the quantity of an item by a specified amount.
  */
 public class DecrementCommand extends Command {
-    public static final String COMMAND_WORD = CommandWord.DECREMENT_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.DECREMENT_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Decrements the quantity of the item identified by the index number used in the displayed item list.\n"

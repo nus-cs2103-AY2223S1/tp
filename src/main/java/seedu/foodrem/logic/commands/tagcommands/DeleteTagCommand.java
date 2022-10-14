@@ -15,7 +15,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "deletetag";
+    private static final String COMMAND_WORD = "deletetag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing tag in FoodRem. "
             + "Parameters: "

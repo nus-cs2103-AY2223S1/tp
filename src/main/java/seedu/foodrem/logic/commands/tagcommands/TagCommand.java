@@ -21,7 +21,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class TagCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.TAG_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"

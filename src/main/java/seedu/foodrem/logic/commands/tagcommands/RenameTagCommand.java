@@ -15,7 +15,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class RenameTagCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.RENAME_TAG_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.RENAME_TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Renames an existing tag in FoodRem. "
             + "Parameters: "

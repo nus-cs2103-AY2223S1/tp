@@ -18,7 +18,7 @@ import seedu.foodrem.model.item.Item;
  */
 public class ViewCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.VIEW_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.VIEW_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the information about an Item. The command "
             + "displays the name, quantity, bought date, expiry date, unit, and associated tags of the item.\n"

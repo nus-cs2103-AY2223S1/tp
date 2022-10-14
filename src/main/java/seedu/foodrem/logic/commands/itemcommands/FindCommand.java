@@ -15,7 +15,7 @@ import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.FIND_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.FIND_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"

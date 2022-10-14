@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
@@ -49,14 +50,14 @@ public class FoodRemParserTest {
 
     @Test
     public void parseCommand_clear() {
-        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
-        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
+        assertTrue(parser.parseCommand(CommandWord.RESET_COMMAND.getCommandWord()) instanceof ResetCommand);
+        assertTrue(parser.parseCommand(CommandWord.RESET_COMMAND.getCommandWord() + " 3") instanceof ResetCommand);
     }
 
     @Test
     public void parseCommand_delete() {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
+                CommandWord.DELETE_COMMAND.getCommandWord() + " " + INDEX_FIRST_ITEM.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_ITEM), command);
     }
 
@@ -64,47 +65,47 @@ public class FoodRemParserTest {
     public void parseCommand_edit() {
         Item item = new ItemBuilder().build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(item).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditCommand command = (EditCommand) parser.parseCommand(CommandWord.EDIT_COMMAND.getCommandWord() + " "
                 + INDEX_FIRST_ITEM.getOneBased() + " " + ItemUtil.getEditItemDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_ITEM, descriptor), command);
     }
 
     @Test
     public void parseCommand_exit() {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+        assertTrue(parser.parseCommand(CommandWord.EXIT_COMMAND.getCommandWord()) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(CommandWord.EXIT_COMMAND.getCommandWord() + " 3") instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_find() {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+                CommandWord.FIND_COMMAND.getCommandWord() + " " + String.join(" ", keywords));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+        assertTrue(parser.parseCommand(CommandWord.HELP_COMMAND.getCommandWord()) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(CommandWord.HELP_COMMAND.getCommandWord() + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(CommandWord.LIST_COMMAND.getCommandWord()) instanceof ListCommand);
+        assertTrue(parser.parseCommand(CommandWord.LIST_COMMAND.getCommandWord() + " 3") instanceof ListCommand);
     }
 
     @Test
     public void parseCommand_deleteTagCommand() {
-        assertTrue(parser.parseCommand(DeleteTagCommand.COMMAND_WORD
+        assertTrue(parser.parseCommand(CommandWord.DELETE_TAG_COMMAND.getCommandWord()
                 + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS) instanceof DeleteTagCommand);
     }
 
     @Test
     public void parseCommand_addTag() {
         Tag tag = new TagBuilder().build();
-        assertTrue(parser.parseCommand(NewTagCommand.COMMAND_WORD + " " + getTagDetails(tag))
+        assertTrue(parser.parseCommand(CommandWord.NEW_TAG_COMMAND.getCommandWord() + " " + getTagDetails(tag))
                 instanceof NewTagCommand);
     }
 
@@ -112,7 +113,7 @@ public class FoodRemParserTest {
     public void parseCommand_renameTag() {
         Tag originalTag = new TagBuilder().withTagName(CommandTestUtil.VALID_TAG_NAME_FRUITS).build();
         Tag renamedTag = new TagBuilder().withTagName(CommandTestUtil.VALID_TAG_NAME_NUMBERS).build();
-        assertTrue(parser.parseCommand(RenameTagCommand.COMMAND_WORD
+        assertTrue(parser.parseCommand(CommandWord.RENAME_TAG_COMMAND.getCommandWord()
                 + " " + getTagDetails(originalTag)
                 + " " + getTagDetails(renamedTag)) instanceof RenameTagCommand);
     }

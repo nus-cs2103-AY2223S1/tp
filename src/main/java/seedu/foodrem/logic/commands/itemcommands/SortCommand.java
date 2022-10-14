@@ -22,7 +22,7 @@ import seedu.foodrem.model.util.ChainComparator;
  * - Expiry Date
  */
 public class SortCommand extends Command {
-    public static final String COMMAND_WORD = CommandWord.SORT_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.SORT_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts all items according to a specified criteria."

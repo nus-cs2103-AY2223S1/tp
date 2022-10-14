@@ -12,7 +12,7 @@ import seedu.foodrem.model.Model;
  */
 public class HelpCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.HELP_COMMAND.getCommandWord();
+    private static final String COMMAND_WORD = CommandWord.HELP_COMMAND.getCommandWord();
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
             + "Example: " + COMMAND_WORD;
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
