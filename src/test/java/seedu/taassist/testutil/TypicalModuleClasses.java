@@ -7,7 +7,7 @@ import seedu.taassist.model.moduleclass.ModuleClass;
  */
 public class TypicalModuleClasses {
     public static final ModuleClass CS1101S = new ModuleClassBuilder().withName("CS1101S")
-            .withSessions("Assignment 1").build();
+            .withSessions(TypicalSessions.ASSIGNMENT_1).build();
     public static final ModuleClass CS1231S = new ModuleClassBuilder().withName("CS1231S")
-            .withSessions("Tutorial 1").build();
+            .withSessions(TypicalSessions.TUTORIAL_1).build();
 }

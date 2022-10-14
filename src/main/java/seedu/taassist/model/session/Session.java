@@ -2,6 +2,9 @@ package seedu.taassist.model.session;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDate;
 
 import seedu.taassist.model.uniquelist.Identity;
 
@@ -19,9 +22,10 @@ public class Session implements Identity<Session> {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String sessionName;
+    private final Date date;
 
     /**
-     * Constructs a {@code Session}.
+     * Constructs a {@code Session} with its date set to epoch time.
      *
      * @param sessionName A valid session name.
      */
@@ -29,6 +33,20 @@ public class Session implements Identity<Session> {
         requireNonNull(sessionName);
         checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
         this.sessionName = sessionName;
+        this.date = new Date(LocalDate.EPOCH);
+    }
+
+    /**
+     * Constructs a {@code Session} with the provided {@code sessionName} and {@code date}.
+     *
+     * @param sessionName A valid session name.
+     * @param date {@code Date}.
+     */
+    public Session(String sessionName, Date date) {
+        requireAllNonNull(sessionName, date);
+        checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
+        this.sessionName = sessionName;
+        this.date = date;
     }
 
     /**
@@ -42,11 +60,16 @@ public class Session implements Identity<Session> {
         return sessionName;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Session // instanceof handles nulls
-                && sessionName.equals(((Session) other).sessionName)); // state check
+                && sessionName.equals(((Session) other).sessionName) // state check
+                && date.equals(((Session) other).date));
     }
 
     /**
@@ -71,6 +94,6 @@ public class Session implements Identity<Session> {
      * Formats state as text for viewing.
      */
     public String toString() {
-        return "[" + sessionName + "]";
+        return String.format("[%s; Date: %s]", getSessionName(), getDate());
     }
 }

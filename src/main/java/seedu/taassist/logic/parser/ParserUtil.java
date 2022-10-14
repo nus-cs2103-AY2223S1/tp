@@ -1,7 +1,10 @@
 package seedu.taassist.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,6 +15,7 @@ import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.commons.util.StringUtil;
 import seedu.taassist.logic.parser.exceptions.ParseException;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Date;
 import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
@@ -24,6 +28,8 @@ import seedu.taassist.model.student.Phone;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE = "An invalid date is provided. "
+            + "Dates should be given in YYYY-MM-DD format and must be an actual date.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -41,7 +47,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndices} into an {@code List<Index>} and returns it. Leading and trailing whitespaces will
      * be trimmed.
-     * @throws ParseException if the any of the specified indices is invalid (not non-zero unsigned integer).
+     * @throws ParseException if any of the specified indices is invalid (not non-zero unsigned integer).
      */
     public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
         List<Index> indices = new ArrayList<>();
@@ -143,6 +149,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * {@code date} is parsed using {@code DateTimeFormatter.ISO_LOCAL_DATE}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        try {
+            return new Date(LocalDate.parse(trimmedDate));
+        } catch (DateTimeException de) {
+            throw new ParseException(MESSAGE_INVALID_DATE);
+        }
+    }
+
+    /**
      * Parses a {@code String session} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -155,6 +178,21 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(session);
+    }
+
+    /**
+     * Parses a {@code String session} along with a {@code Date date} into a {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code session} is invalid.
+     */
+    public static Session parseSession(String session, Date date) throws ParseException {
+        requireAllNonNull(session, date);
+        String trimmedSession = session.trim();
+        if (!Session.isValidSessionName(trimmedSession)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+        return new Session(session, date);
     }
 
     /**
