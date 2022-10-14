@@ -1,7 +1,9 @@
 package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.condonery.logic.parser.CliSyntax.*;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.util.Collections;
@@ -22,6 +24,9 @@ import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
+/**
+ * Edits the details of an existing property in the address book.
+ */
 public class EditPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "edit -p";
@@ -59,7 +64,7 @@ public class EditPropertyCommand extends Command {
         requireNonNull(model);
 
         List<Property> lastShownList = model.getFilteredPropertyList();
-        if(targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
