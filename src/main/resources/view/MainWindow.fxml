@@ -55,6 +55,7 @@
             </padding>
             <Label styleClass="label-list-header" text="ModQuik" />
             <Button text="Student" onAction="#handlePerson" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
+            <Button text="Teaching Assistant" onAction="#handleTeachingAssistant" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
             <Button text="Tutorial" onAction="#handleTutorial" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
             <Button text="Consultation" onAction="#handleConsultation" prefWidth="150" prefHeight="60" maxWidth="300" mnemonicParsing="false" />
           </VBox>

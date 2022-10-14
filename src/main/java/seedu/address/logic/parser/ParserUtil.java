@@ -25,7 +25,13 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Telegram;
+import seedu.address.model.reminder.ReminderDeadline;
+import seedu.address.model.reminder.ReminderDescription;
+import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.ta.TeachingAssistantId;
+import seedu.address.model.ta.TeachingAssistantName;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
@@ -155,6 +161,45 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code ReminderName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ReminderName} is invalid.
+     */
+    public static ReminderName parseReminderName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!ReminderName.isValidName(trimmedName)) {
+            throw new ParseException(ReminderName.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
+     */
+    public static ReminderDeadline parseReminderDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!ReminderDeadline.isValidTimeslot(trimmedDeadline)) {
+            throw new ParseException(ReminderDeadline.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderDeadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code ReminderDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ReminderDescription parseReminderDescription(String description) {
+        String trimmedDescription = description.trim();
+        return new ReminderDescription(trimmedDescription);
+    }
+
+    /**
      * Parses a {@code String name} into a {@code TutorialName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -215,6 +260,50 @@ public class ParserUtil {
             throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
         }
         return new TutorialTimeslot(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code TeachingAssistantName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TeachingAssistantName parseTeachingAssistantName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TeachingAssistantName.isValidName(trimmedName)) {
+            throw new ParseException(TeachingAssistantName.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingAssistantName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String id} into a {@code TeachingAssistantId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static TeachingAssistantId parseTeachingAssistantId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedName = id.trim();
+        if (!TeachingAssistantId.isValidId(trimmedName)) {
+            throw new ParseException(TeachingAssistantId.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingAssistantId(trimmedName);
+    }
+    /**
+     * Parses a {@code String day} into a {@code TutorialDay}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static TutorialDay parseTutorialDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedValue = day.trim();
+        if (!TutorialDay.isValidDay(trimmedValue)) {
+            throw new ParseException(TutorialDay.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialDay(trimmedValue);
     }
 
     /**

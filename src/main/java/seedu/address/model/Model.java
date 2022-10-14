@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.student.Student;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -15,7 +17,9 @@ import seedu.address.model.tutorial.Tutorial;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDERS = unused -> true;
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
+    Predicate<TeachingAssistant> PREDICATE_SHOW_ALL_TEACHING_ASSISTANTS = unused -> true;
     Predicate<Consultation> PREDICATE_SHOW_ALL_CONSULTATIONS = unused -> true;
 
     /**
@@ -90,6 +94,32 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Student> predicate);
 
     /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuik.
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * Adds the given reminder.
+     * {@code reminder} must not already exist in the ModQuik.
+     */
+    void addReminder(Reminder reminder);
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in the ModQuik.
+     */
+    void deleteReminder(Reminder reminder);
+
+    /** Returns an unmodifiable view of the filtered reminder list */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
      */
     boolean hasTutorial(Tutorial tutorial);
@@ -121,6 +151,11 @@ public interface Model {
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
 
     /**
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
+     */
+    boolean hasTeachingAssistant(TeachingAssistant ta);
+
+    /**
      * Returns true if a consultation with the same identity as {@code tutorial} exists in the ModQuik.
      */
     boolean hasConsultation(Consultation consultation);
@@ -130,10 +165,18 @@ public interface Model {
      */
     boolean hasConsultationClashingWith(Consultation consultation);
 
+
     /**
      * Adds the given tutorial.
      * {@code tutorial} must not already exist in the ModQuik.
      */
+
+    void addTeachingAssistant(TeachingAssistant ta);
+
+    ObservableList<TeachingAssistant> getFilteredTeachingAssistantList();
+
+    void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate);
+
     void addConsultation(Consultation consultation);
 
     /** Returns an unmodifiable view of the filtered consultation list */
@@ -144,4 +187,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
+
 }

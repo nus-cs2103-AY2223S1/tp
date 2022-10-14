@@ -17,7 +17,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 
-* **Documentation**: 
+* **Documentation**:
   * User Guide:
     * to be added soon
   * Developer Guide:

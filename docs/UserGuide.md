@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI). It allows the professors to keep track of their students, teaching assistants and timetable for their courses. 
+ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command Line Interface(CLI). It allows the professors to keep track of their students, teaching assistants and timetable for their courses.
 
 * Table of Contents
 {:toc}
@@ -91,7 +91,7 @@ Format: `add m/MODULE r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 A student can have any number of tags (including 0)
 </div>
 
-* The `ROLE` of the student can only be either student or TA.  
+* The `ROLE` of the person can only be either student or TA.
 
 Examples:
 * `add m/CS2103T n/John Doe r/TA p/98765432 e/johnd@example.com`
@@ -178,7 +178,7 @@ Format: `clear tut [m/MODULE]`
 
 Adds a consultation to the consultation database.
 
-Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [d/DESCRIPTION]`
+Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]`
 
 ### Deleting a consultation : `delete consult`
 

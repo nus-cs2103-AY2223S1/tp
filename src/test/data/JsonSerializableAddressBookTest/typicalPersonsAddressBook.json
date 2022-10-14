@@ -85,6 +85,8 @@
     "grade" : "A",
     "tagged" : [ ]
   } ],
+  "reminders": [ ],
   "tutorials": [ ],
-  "consultations": [ ]
+  "consultations": [ ],
+  "teachingAssistants" : [ ]
 }
