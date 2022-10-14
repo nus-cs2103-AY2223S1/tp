@@ -9,10 +9,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Student;
 
 /**
@@ -56,8 +58,14 @@ public class DeletecCommand extends Command {
                 Set<ModuleClass> assignedClasses = new HashSet<>();
                 assignedClasses.addAll(student.getModuleClasses());
                 assignedClasses.removeAll(moduleClasses);
+
+                List<StudentModuleData> studentModuleData = student.getModuleDataList();
+                List<StudentModuleData> updatedModuleData = studentModuleData.stream()
+                        .filter(data -> !assignedClasses.contains(data.getModuleClass()))
+                        .collect(Collectors.toList());
+
                 Student editedStudent = new Student(student.getName(), student.getPhone(), student.getEmail(),
-                        student.getAddress(), assignedClasses);
+                        student.getAddress(), updatedModuleData);
                 model.setStudent(student, editedStudent);
             }
         }
