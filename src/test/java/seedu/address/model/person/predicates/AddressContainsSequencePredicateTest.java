@@ -62,7 +62,7 @@ class AddressContainsSequencePredicateTest {
         predicate = new AddressContainsSequencePredicate("Potato Street, Blk 123 #12-34, Singapore 123456789");
         assertFalse(predicate.test(personToTest));
 
-        // Keywords match name, phone, email, but does not match address
+        // Sequence match name, phone, email, but does not match address
         predicate = new AddressContainsSequencePredicate("12345");
         assertFalse(predicate.test(new PersonBuilder().withName("12345").withPhone("12345")
                 .withEmail("12345@gmail.com").withAddress("Clementi Street Singapore 88888").build()));

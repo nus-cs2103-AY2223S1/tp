@@ -65,7 +65,7 @@ class PersonContainsTagsPredicateTest {
         predicate = PredicateGeneratorUtil.generatePersonsContainsTagsPredicate("Tag6", "Wrong", "Tag8");
         assertFalse(predicate.test(personToTest));
 
-        // Keywords match name and address, but does not match tag
+        // Tags match name and address, but does not match tag
         predicate = PredicateGeneratorUtil.generatePersonsContainsTagsPredicate("Tag");
         assertFalse(predicate.test(new PersonBuilder().withName("Tag").withEmail("Tag@gmail.com")
                 .withAddress("Tag").withTags("SomethingElse").build()));

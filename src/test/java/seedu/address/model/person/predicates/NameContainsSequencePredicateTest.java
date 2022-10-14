@@ -33,10 +33,6 @@ class NameContainsSequencePredicateTest {
         predicate = new NameContainsSequencePredicate("Ali");
         assertTrue(predicate.test(personToTest));
 
-        // Can find names with spaces
-        predicate = new NameContainsSequencePredicate("Alice Yeoh");
-        assertTrue(predicate.test(personToTest));
-
         // Can find names through spaces
         predicate = new NameContainsSequencePredicate("ce Ye");
         assertTrue(predicate.test(personToTest));

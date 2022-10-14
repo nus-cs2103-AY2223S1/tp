@@ -70,7 +70,7 @@ class EmailContainsSequencePredicateTest {
         predicate = new EmailContainsSequencePredicate("John@gmail.com.sg");
         assertFalse(predicate.test(personToTest));
 
-        // Keywords match name, phone and address, but does not match email
+        // Sequence match name, phone and address, but does not match email
         predicate = new EmailContainsSequencePredicate("John");
         assertFalse(predicate.test(new PersonBuilder().withName("John").withPhone("12345")
                 .withEmail("Alice@gmail.com").withAddress("John Street").build()));
