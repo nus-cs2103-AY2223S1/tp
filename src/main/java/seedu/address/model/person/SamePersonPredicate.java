@@ -20,7 +20,7 @@ public class SamePersonPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Person // instanceof handles nulls
+                || (other instanceof SamePersonPredicate // instanceof handles nulls
                 && personToCheck.isSamePerson(((SamePersonPredicate) other).personToCheck)); // state check
     }
 }
