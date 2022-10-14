@@ -1,11 +1,15 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -92,6 +96,27 @@ public interface Model {
      * Adds the tag to the address book.
      */
     void addTag(Tag tag);
+
+    /**
+     * Adds the message to the address book.
+     */
+    void addMessage(Message message);
+
+    /**
+     * Deletes the message from the address book.
+     * {@code message} must exist in the address book.
+     */
+    void deleteMessage(Message message);
+
+    /**
+     * Returns true if the address book contains {@code message.}
+     */
+    boolean hasMessage(Message message);
+
+    /**
+     * Returns an unmodifiable view of messages.
+     */
+    List<Message> getMessages();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

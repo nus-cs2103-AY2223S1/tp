@@ -6,14 +6,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
 import seedu.address.model.tag.Tag;
@@ -128,7 +131,8 @@ public class ModelManager implements Model {
         }
     }
 
-    // =========== Filtered Person List ===========================================================
+    // =========== Tags ===========================================================
+
     @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
@@ -150,6 +154,33 @@ public class ModelManager implements Model {
             setTargetPerson(untaggedPerson);
         }
     }
+
+    // =========== Message Templates ===========================================================
+
+    @Override
+    public void addMessage(Message message) {
+        requireNonNull(message);
+        addressBook.createMessage(message);
+    }
+
+    @Override
+    public void deleteMessage(Message message) {
+        requireNonNull(message);
+        addressBook.deleteMessage(message);
+    }
+
+    @Override
+    public boolean hasMessage(Message message) {
+        requireNonNull(message);
+        return addressBook.hasMessage(message);
+    }
+
+    @Override
+    public List<Message> getMessages() {
+        return addressBook.getMessageTemplates();
+    }
+
+    // =========== Filtered Person List ===========================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
