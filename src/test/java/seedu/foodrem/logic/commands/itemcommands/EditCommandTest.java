@@ -2,11 +2,6 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.foodrem.logic.commands.CommandTestUtil.DESC_CUCUMBERS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.DESC_POTATOES;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.logic.commands.CommandTestUtil.showItemAtIndex;
@@ -18,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
+import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.model.FoodRem;
@@ -38,7 +34,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Item editedItem = new ItemBuilder().withTags(VALID_TAG_NAME_VEGETABLES).build();
+        Item editedItem = new ItemBuilder().withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
@@ -57,13 +53,13 @@ public class EditCommandTest {
 
         ItemBuilder itemInList = new ItemBuilder(lastItem);
         Item editedItem = itemInList
-                .withItemName(VALID_ITEM_NAME_CUCUMBERS)
-                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .withItemName(CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS)
+                .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
                 .build();
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_CUCUMBERS)
-                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .withItemName(CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS)
+                .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
                 .build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
@@ -93,11 +89,11 @@ public class EditCommandTest {
 
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item editedItem = new ItemBuilder(itemInFilteredList)
-                .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
                 .build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
                 new EditItemDescriptorBuilder()
-                        .withItemQuantity(VALID_ITEM_QUANTITY_CUCUMBERS)
+                        .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
                         .build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
@@ -133,7 +129,7 @@ public class EditCommandTest {
     public void execute_invalidItemIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
-                .withItemName(VALID_ITEM_NAME_CUCUMBERS).build();
+                .withItemName(CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -151,17 +147,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodRem().getItemList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_CUCUMBERS).build());
+                new EditItemDescriptorBuilder().withItemName(CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, DESC_POTATOES);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ITEM, CommandTestUtil.DESC_POTATOES);
 
         // same values -> returns true
-        EditItemDescriptor copyDescriptor = new EditItemDescriptor(DESC_POTATOES);
+        EditItemDescriptor copyDescriptor = new EditItemDescriptor(CommandTestUtil.DESC_POTATOES);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ITEM, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -175,10 +171,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ResetCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, DESC_POTATOES)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, CommandTestUtil.DESC_POTATOES)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, DESC_CUCUMBERS)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, CommandTestUtil.DESC_CUCUMBERS)));
     }
 
 }
