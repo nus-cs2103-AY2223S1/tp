@@ -3,7 +3,7 @@ package seedu.address.model.client;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Company}'s {@code Name} matches the keyword given exactly.
+ * Tests that a {@code Client}'s {@code Name} matches the keyword given exactly.
  */
 public class NameEqualsKeywordPredicate implements Predicate<Client> {
     private final String keyword;
@@ -14,9 +14,9 @@ public class NameEqualsKeywordPredicate implements Predicate<Client> {
 
     @Override
     public boolean test(Client client) {
-        String companyName = client.getName().toString();
+        String clientName = client.getName().toString();
 
-        return companyName.equals(this.keyword);
+        return clientName.equals(this.keyword);
     }
 
     @Override

@@ -22,7 +22,7 @@ import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditCompanyDescriptorBuilder;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -78,13 +78,13 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCompanyDescriptor DESC_AMY;
-    public static final EditCommand.EditCompanyDescriptor DESC_BOB;
+    public static final EditCommand.EditClientDescriptor DESC_AMY;
+    public static final EditCommand.EditClientDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditCompanyDescriptorBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditCompanyDescriptorBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
@@ -118,7 +118,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered company list and selected company in {@code actualModel} remain unchanged
+     * - the address book, filtered client list and selected client in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -131,10 +131,10 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the company at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showCompanyAtIndex(Model model, Index targetIndex) {
+    public static void showClientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
 
         Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());

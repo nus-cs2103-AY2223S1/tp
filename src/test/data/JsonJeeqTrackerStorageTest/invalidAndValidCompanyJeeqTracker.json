@@ -1,9 +1,0 @@
-{
-  "companies": [ {
-    "name": "Valid Company",
-    "address": "4th street"
-  }, {
-    "name": "Company With Invalid name Field @",
-    "address": "4th street"
-  } ]
-}

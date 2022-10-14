@@ -10,13 +10,13 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 
 /**
- * Adds a company to the address book.
+ * Adds a client to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a company to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -27,13 +27,13 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "favouriteFood "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New company added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
     private final Client toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Company}
+     * Creates an AddCommand to add the specified {@code Client}
      */
     public AddCommand(Client client) {
         requireNonNull(client);
@@ -45,7 +45,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasClient(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
         model.addClient(toAdd);

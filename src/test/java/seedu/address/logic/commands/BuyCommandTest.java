@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.TypicalTransaction.BUY_TOYS;
 
@@ -26,7 +26,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 class BuyCommandTest {
 
@@ -34,7 +34,7 @@ class BuyCommandTest {
 
     @Test
     public void constructor_nullTransaction_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_COMPANY, null));
+        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_CLIENT, null));
     }
 
     @Test
@@ -44,16 +44,16 @@ class BuyCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE)
+        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE)
                 .execute(null));
     }
 
     @Test
-    public void execute_invalidCompanyIndex_failure() {
+    public void execute_invalidClientIndex_failure() {
         assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
                 model.getFilteredClientList().size() + 10), BUY_ORANGE).execute(model));
 
-        Client validClient = new CompanyBuilder().build();
+        Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
@@ -62,19 +62,19 @@ class BuyCommandTest {
 
     @Test
     public void execute_addTransaction_success() throws Exception {
-        Client validClient = new CompanyBuilder().build();
+        Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
-        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE);
         buyCommand.execute(modelStub);
         assertEquals(-10101.00, modelStub.getFilteredClientList().get(0).getTotalTransacted());
     }
 
     @Test
     public void equals() {
-        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE);
 
         // same values -> returns true
-        BuyCommand buyCommandCopy = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        BuyCommand buyCommandCopy = new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE);
         assertTrue(buyCommand.equals(buyCommandCopy));
 
         // same object -> returns true
@@ -87,10 +87,10 @@ class BuyCommandTest {
         assertFalse(buyCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(buyCommand.equals(new BuyCommand(INDEX_SECOND_COMPANY, BUY_ORANGE)));
+        assertFalse(buyCommand.equals(new BuyCommand(INDEX_SECOND_CLIENT, BUY_ORANGE)));
 
         // different Transaction -> returns false
-        assertFalse(buyCommand.equals(new BuyCommand(INDEX_FIRST_COMPANY, BUY_TOYS)));
+        assertFalse(buyCommand.equals(new BuyCommand(INDEX_FIRST_CLIENT, BUY_TOYS)));
     }
 
     /**
@@ -98,11 +98,11 @@ class BuyCommandTest {
      */
     private class ModelStub implements Model {
         private Client client;
-        private final UniqueClientList coys = new UniqueClientList();
+        private final UniqueClientList clientList = new UniqueClientList();
 
         public ModelStub(Client client) {
             this.client = client;
-            coys.add(client);
+            clientList.add(client);
         }
 
         @Override
@@ -167,7 +167,7 @@ class BuyCommandTest {
 
         @Override
         public ObservableList<Client> getFilteredClientList() {
-            return coys.asUnmodifiableObservableList();
+            return clientList.asUnmodifiableObservableList();
         }
 
         @Override

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.address.testutil.TypicalTransaction.SELL_PAPAYA;
 import static seedu.address.testutil.TypicalTransaction.SELL_SOCKS;
 
@@ -26,7 +26,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 
 
@@ -36,7 +36,7 @@ class SellCommandTest {
 
     @Test
     public void constructor_nullTransaction_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SellCommand(INDEX_FIRST_COMPANY, null));
+        assertThrows(NullPointerException.class, () -> new SellCommand(INDEX_FIRST_CLIENT, null));
     }
 
     @Test
@@ -46,16 +46,16 @@ class SellCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA)
+        assertThrows(NullPointerException.class, () -> new SellCommand(INDEX_FIRST_CLIENT, SELL_PAPAYA)
                 .execute(null));
     }
 
     @Test
-    public void execute_invalidCompanyIndex_failure() {
+    public void execute_invalidClientIndex_failure() {
         assertThrows(CommandException.class, () -> new SellCommand(Index.fromZeroBased(
                 model.getFilteredClientList().size() + 10), SELL_PAPAYA).execute(model));
 
-        Client validClient = new CompanyBuilder().build();
+        Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new SellCommand(Index.fromZeroBased(
@@ -64,9 +64,9 @@ class SellCommandTest {
 
     @Test
     public void execute_addTransaction_success() throws Exception {
-        Client validClient = new CompanyBuilder().build();
+        Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
-        SellCommand sellCommand = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
+        SellCommand sellCommand = new SellCommand(INDEX_FIRST_CLIENT, SELL_PAPAYA);
         sellCommand.execute(modelStub);
         assertEquals(27.5, modelStub.getFilteredClientList().get(0).getTotalTransacted());
     }
@@ -74,10 +74,10 @@ class SellCommandTest {
 
     @Test
     public void equals() {
-        SellCommand sellCommand = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
+        SellCommand sellCommand = new SellCommand(INDEX_FIRST_CLIENT, SELL_PAPAYA);
 
         // same values -> returns true
-        SellCommand sellCommandCopy = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
+        SellCommand sellCommandCopy = new SellCommand(INDEX_FIRST_CLIENT, SELL_PAPAYA);
         assertTrue(sellCommand.equals(sellCommandCopy));
 
         // same object -> returns true
@@ -90,10 +90,10 @@ class SellCommandTest {
         assertFalse(sellCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(sellCommand.equals(new SellCommand(INDEX_SECOND_COMPANY, SELL_PAPAYA)));
+        assertFalse(sellCommand.equals(new SellCommand(INDEX_SECOND_CLIENT, SELL_PAPAYA)));
 
         // different Transaction -> returns false
-        assertFalse(sellCommand.equals(new SellCommand(INDEX_FIRST_COMPANY, SELL_SOCKS)));
+        assertFalse(sellCommand.equals(new SellCommand(INDEX_FIRST_CLIENT, SELL_SOCKS)));
     }
 
     /**
@@ -101,11 +101,11 @@ class SellCommandTest {
      */
     private class ModelStub implements Model {
         private Client client;
-        private final UniqueClientList coys = new UniqueClientList();
+        private final UniqueClientList clientList = new UniqueClientList();
 
         public ModelStub(Client client) {
             this.client = client;
-            coys.add(client);
+            clientList.add(client);
         }
 
         @Override
@@ -170,7 +170,7 @@ class SellCommandTest {
 
         @Override
         public ObservableList<Client> getFilteredClientList() {
-            return coys.asUnmodifiableObservableList();
+            return clientList.asUnmodifiableObservableList();
         }
 
         @Override

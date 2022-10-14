@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
 
-    public static Client[] getSampleCompanies() {
+    public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Alex Yeoh"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
@@ -41,7 +41,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyJeeqTracker getSampleJeeqTracker() {
         JeeqTracker sampleAb = new JeeqTracker();
-        for (Client sampleClient : getSampleCompanies()) {
+        for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);
         }
         return sampleAb;

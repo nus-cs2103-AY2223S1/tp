@@ -12,7 +12,7 @@ import seedu.address.model.client.Client;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Client> PREDICATE_SHOW_ALL_COMPANIES = unused -> true;
+    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

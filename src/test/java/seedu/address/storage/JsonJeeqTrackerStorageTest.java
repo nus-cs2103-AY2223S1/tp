@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.ALICE;
-import static seedu.address.testutil.TypicalCompanies.HOON;
-import static seedu.address.testutil.TypicalCompanies.IDA;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.HOON;
+import static seedu.address.testutil.TypicalClients.IDA;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonJeeqTrackerStorageTest {
     }
 
     @Test
-    public void readJeeqTracker_invalidCompanyJeeqTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidCompanyJeeqTracker.json"));
+    public void readJeeqTracker_invalidClientJeeqTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidClientJeeqTracker.json"));
     }
 
     @Test
-    public void readJeeqTracker_invalidAndValidCompanyJeeqTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidAndValidCompanyJeeqTracker.json"));
+    public void readJeeqTracker_invalidAndValidClientJeeqTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidAndValidClientJeeqTracker.json"));
     }
 
     @Test

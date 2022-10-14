@@ -15,12 +15,12 @@ import seedu.address.model.client.Client;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * Adds a sell transaction to an existing company in the address book.
+ * Adds a sell transaction to an existing client in the address book.
  */
 public class SellCommand extends Command {
     public static final String COMMAND_WORD = "sell";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the client. "
             + "Parameters: "
             + "Index (must be a positive integer) "
             + PREFIX_QUANTITY + "QUANTITY "
@@ -43,7 +43,7 @@ public class SellCommand extends Command {
     private final Transaction transaction;
 
     /**
-     * @param index of the company in the company list to add the POC to
+     * @param index of the client in the client list to add the POC to
      * @param transaction to be added
      */
     public SellCommand(Index index, Transaction transaction) {
@@ -58,9 +58,9 @@ public class SellCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 
-        // if index of company not valid
+        // if index of client not valid
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());

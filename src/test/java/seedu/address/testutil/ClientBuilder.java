@@ -14,9 +14,9 @@ import seedu.address.model.transaction.TransactionLog;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Company objects.
+ * A utility class to help with building Client objects.
  */
-public class CompanyBuilder {
+public class ClientBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
@@ -28,9 +28,9 @@ public class CompanyBuilder {
     private TransactionLog transactions;
 
     /**
-     * Creates a {@code CompanyBuilder} with the default details.
+     * Creates a {@code ClientBuilder} with the default details.
      */
-    public CompanyBuilder() {
+    public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -39,9 +39,9 @@ public class CompanyBuilder {
     }
 
     /**
-     * Initializes the CompanyBuilder with the data of {@code companyToCopy}.
+     * Initializes the ClientBuilder with the data of {@code clientToCopy}.
      */
-    public CompanyBuilder(Client clientToCopy) {
+    public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
         address = clientToCopy.getAddress();
         tags = new HashSet<>(clientToCopy.getTags());
@@ -50,57 +50,57 @@ public class CompanyBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Company} that we are building.
+     * Sets the {@code Name} of the {@code Client} that we are building.
      */
-    public CompanyBuilder withName(String name) {
+    public ClientBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Company} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Client} that we are building.
      */
-    public CompanyBuilder withTags(String ... tags) {
+    public ClientBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Company} that we are building.
+     * Sets the {@code Address} of the {@code Client} that we are building.
      */
-    public CompanyBuilder withAddress(String address) {
+    public ClientBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
 
     /**
-     * Sets the {@code UniquePocList} of the {@code Company} that we are building.
+     * Sets the {@code UniquePocList} of the {@code Client} that we are building.
      */
-    public CompanyBuilder withUniquePocList(UniquePocList pocs) {
+    public ClientBuilder withUniquePocList(UniquePocList pocs) {
         this.pocs = pocs;
         return this;
     }
 
     /**
-     * Sets the {@code TransactionLog} of the {@code Company} that we are building.
+     * Sets the {@code TransactionLog} of the {@code Client} that we are building.
      */
-    public CompanyBuilder withTransactionLog(TransactionLog transactions) {
+    public ClientBuilder withTransactionLog(TransactionLog transactions) {
         this.transactions = transactions;
         return this;
     }
 
     /**
-     * Adds poc to the {@code UniquePocList} of the {@code Company} that we are building.
+     * Adds poc to the {@code UniquePocList} of the {@code Client} that we are building.
      */
-    public CompanyBuilder withAddedPoc(Poc poc) {
+    public ClientBuilder withAddedPoc(Poc poc) {
         this.pocs.add(poc);
         return this;
     }
 
     /**
-     * Adds transaction to the {@code Transactions} of the {@code Company} that we are building.
+     * Adds transaction to the {@code Transactions} of the {@code Client} that we are building.
      */
-    public CompanyBuilder withTransaction(Transaction transaction) {
+    public ClientBuilder withTransaction(Transaction transaction) {
         this.transactions.addTransaction(transaction);
         return this;
     }

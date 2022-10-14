@@ -328,7 +328,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #companyListPanel, #companyWebpage {
+#filterField, #clientListPanel, #clientWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

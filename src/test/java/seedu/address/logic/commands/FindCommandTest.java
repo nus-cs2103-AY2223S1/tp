@@ -3,12 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_COMPANIES_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalCompanies.CARL;
-import static seedu.address.testutil.TypicalCompanies.ELLE;
-import static seedu.address.testutil.TypicalCompanies.FIONA;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.CARL;
+import static seedu.address.testutil.TypicalClients.ELLE;
+import static seedu.address.testutil.TypicalClients.FIONA;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,13 +50,13 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different company -> returns false
+        // different client -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noCompanyFound() {
-        String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noClientFound() {
+        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
@@ -65,8 +65,8 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleCompaniesFound() {
-        String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleClientsFound() {
+        String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);

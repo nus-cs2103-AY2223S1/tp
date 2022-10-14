@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 public class NameEqualsKeywordPredicateTest {
 
@@ -30,7 +30,7 @@ public class NameEqualsKeywordPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different company -> returns false
+        // different client -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -38,33 +38,33 @@ public class NameEqualsKeywordPredicateTest {
     public void test_nameEqualsKeyword_returnsTrue() {
         // One word keyword
         NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate("Alice");
-        assertTrue(predicate.test(new CompanyBuilder().withName("Alice").build()));
+        assertTrue(predicate.test(new ClientBuilder().withName("Alice").build()));
 
         // Multiple words keyword
         predicate = new NameEqualsKeywordPredicate("Bob The Builder");
-        assertTrue(predicate.test(new CompanyBuilder().withName("Bob The Builder").build()));
+        assertTrue(predicate.test(new ClientBuilder().withName("Bob The Builder").build()));
 
         // One word keyword
         predicate = new NameEqualsKeywordPredicate("Charlie");
-        assertTrue(predicate.test(new CompanyBuilder().withName("Charlie").build()));
+        assertTrue(predicate.test(new ClientBuilder().withName("Charlie").build()));
 
         // Mixed-case keyword
         predicate = new NameEqualsKeywordPredicate("b0bBy");
-        assertTrue(predicate.test(new CompanyBuilder().withName("b0bBy").build()));
+        assertTrue(predicate.test(new ClientBuilder().withName("b0bBy").build()));
     }
 
     @Test
     public void test_nameDoesNotEqualKeyword_returnsFalse() {
         // Empty keyword
         NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate("");
-        assertFalse(predicate.test(new CompanyBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new NameEqualsKeywordPredicate("Carol");
-        assertFalse(predicate.test(new CompanyBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice Bob").build()));
 
         predicate = new NameEqualsKeywordPredicate("Dog");
-        assertFalse(predicate.test(new CompanyBuilder().withName("Alice")
+        assertFalse(predicate.test(new ClientBuilder().withName("Alice")
                 .withAddress("Main Street").build()));
     }
 }

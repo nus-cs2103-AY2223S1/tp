@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.ALICE;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.exceptions.DuplicateClientException;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.ClientBuilder;
 
 public class JeeqTrackerTest {
 
@@ -44,58 +44,58 @@ public class JeeqTrackerTest {
     }
 
     @Test
-    public void resetData_withDuplicateCompanies_throwsDuplicateCompanyException() {
-        // Two companies with the same identity fields
-        Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateClients_throwsDuplicateClientException() {
+        // Two clients with the same identity fields
+        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Client> newCompanies = Arrays.asList(ALICE, editedAlice);
-        JeeqTrackerStub newData = new JeeqTrackerStub(newCompanies);
+        List<Client> newClients = Arrays.asList(ALICE, editedAlice);
+        JeeqTrackerStub newData = new JeeqTrackerStub(newClients);
 
         assertThrows(DuplicateClientException.class, () -> jeeqTracker.resetData(newData));
     }
 
     @Test
-    public void hasCompany_nullCompany_throwsNullPointerException() {
+    public void hasClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> jeeqTracker.hasClient(null));
     }
 
     @Test
-    public void hasCompany_companyNotInJeeqTracker_returnsFalse() {
+    public void hasClient_clientNotInJeeqTracker_returnsFalse() {
         assertFalse(jeeqTracker.hasClient(ALICE));
     }
 
     @Test
-    public void hasCompany_companyInJeeqTracker_returnsTrue() {
+    public void hasClient_clientInJeeqTracker_returnsTrue() {
         jeeqTracker.addClient(ALICE);
         assertTrue(jeeqTracker.hasClient(ALICE));
     }
 
     @Test
-    public void hasCompany_companyWithSameIdentityFieldsInJeeqTracker_returnsTrue() {
+    public void hasClient_clientWithSameIdentityFieldsInJeeqTracker_returnsTrue() {
         jeeqTracker.addClient(ALICE);
-        Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new ClientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(jeeqTracker.hasClient(editedAlice));
     }
 
     @Test
-    public void getCompanyList_modifyList_throwsUnsupportedOperationException() {
+    public void getClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> jeeqTracker.getClientList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyJeeqTracker whose companies list can violate interface constraints.
+     * A stub ReadOnlyJeeqTracker whose clients list can violate interface constraints.
      */
     private static class JeeqTrackerStub implements ReadOnlyJeeqTracker {
-        private final ObservableList<Client> companies = FXCollections.observableArrayList();
+        private final ObservableList<Client> clients = FXCollections.observableArrayList();
 
-        JeeqTrackerStub(Collection<Client> companies) {
-            this.companies.setAll(companies);
+        JeeqTrackerStub(Collection<Client> clients) {
+            this.clients.setAll(clients);
         }
 
         @Override
         public ObservableList<Client> getClientList() {
-            return companies;
+            return clients;
         }
     }
 

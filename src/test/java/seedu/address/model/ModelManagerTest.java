@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.ALICE;
-import static seedu.address.testutil.TypicalCompanies.BENSON;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasCompany_nullCompany_throwsNullPointerException() {
+    public void hasClient_nullClient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
     }
 
     @Test
-    public void hasCompany_companyNotInJeeqTracker_returnsFalse() {
+    public void hasClient_clientNotInJeeqTracker_returnsFalse() {
         assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasCompany_companyInJeeqTracker_returnsTrue() {
+    public void hasClient_clientInJeeqTracker_returnsTrue() {
         modelManager.addClient(ALICE);
         assertTrue(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void getFilteredCompanyList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
     }
 
     @Test
     public void equals() {
-        JeeqTracker jeeqTracker = new JeeqTrackerBuilder().withCompany(ALICE).withCompany(BENSON).build();
+        JeeqTracker jeeqTracker = new JeeqTrackerBuilder().withClient(ALICE).withClient(BENSON).build();
         JeeqTracker differentJeeqTracker = new JeeqTracker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(jeeqTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_COMPANIES);
+        modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
