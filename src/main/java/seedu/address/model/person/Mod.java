@@ -13,6 +13,8 @@ public class Mod {
 
     public final String modName;
 
+    public boolean hasTaken;
+
     /**
      * Constructs a {@code Mod}.
      *
@@ -22,6 +24,20 @@ public class Mod {
         requireNonNull(modName);
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
         this.modName = modName;
+        this.hasTaken = false;
+    }
+
+    /**
+     * Constructs a {@code Mod} with name and status.
+     *
+     * @param modName A valid mod name.
+     * @param hasTaken The mod status.
+     */
+    public Mod(String modName, boolean hasTaken) {
+        requireNonNull(modName);
+        checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
+        this.modName = modName;
+        this.hasTaken = hasTaken;
     }
 
     /**
@@ -44,6 +60,29 @@ public class Mod {
                 && otherMod.modName.equals((this.modName));
     }
 
+    /**
+     * Marks a module as taken.
+     */
+    public void markMod() {
+        this.hasTaken = true;
+    }
+
+    /**
+     * Unmarks a module as not taken.
+     */
+    public void unmarkMod() {
+        this.hasTaken = false;
+    }
+
+    /**
+     * Gets the status of the module.
+     *
+     * @return True if the batchmate has taken the mod; false otherwise
+     */
+    public boolean getModStatus() {
+        return this.hasTaken;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -60,6 +99,6 @@ public class Mod {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + modName + ']';
+        return '[' + modName + ": " + hasTaken + ']';
     }
 }

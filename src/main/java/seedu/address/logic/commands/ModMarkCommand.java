@@ -11,25 +11,25 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
-import seedu.address.ui.MainWindow;
 
 /**
- * Appends new mods to the batchmate.
+ * Marks mods of the batchmate specified as taken.
  */
-public class ModAddCommand extends ModCommand {
-    public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_SUCCESS = "Successfully added the specified mods.";
-    private MainWindow mainWindow;
+public class ModMarkCommand extends ModCommand {
+
+    public static final String COMMAND_WORD = "mark";
+    public static final String MESSAGE_SUCCESS = "Successfully marked the specified mods.";
+    public static final String MESSAGE_INVALID_MOD = "This batchmate is not taking all of the modules specified."
+            + "\nPlease check the list of mods and try again.";
     private final Index targetIndex;
     private final ObservableList<Mod> mods;
 
     /**
-     * Constructs a command that adds a set of mods to the person
-     * with the target index.
-     * @param index The index of the person to add to.
-     * @param mods The set of mods to add to.
+     * Constructs a command that marks all mods specified at the target batchmate as taken.
+     * @param index The index of the batchmate to add to.
+     * @param mods The set of mods to be marked.
      */
-    public ModAddCommand(Index index, ObservableList<Mod> mods) {
+    public ModMarkCommand(Index index, ObservableList<Mod> mods) {
         requireNonNull(index);
         requireNonNull(mods);
 
@@ -54,7 +54,15 @@ public class ModAddCommand extends ModCommand {
         }
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
-        personToEdit.addMods(mods);
+
+        // TODO: To be improved to check if each mod exists;
+        //  mark existing mods as taken and show error message for non-existing mods.
+        if (personToEdit.canEditMods(mods)) {
+            personToEdit.markMods(mods);
+        } else {
+            throw new CommandException(MESSAGE_INVALID_MOD);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
     }
 
@@ -66,13 +74,14 @@ public class ModAddCommand extends ModCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ModAddCommand)) {
+        if (!(other instanceof ModDeleteCommand)) {
             return false;
         }
 
         // state check
-        ModAddCommand e = (ModAddCommand) other;
+        ModMarkCommand e = (ModMarkCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && mods.equals(e.mods);
     }
 }
+

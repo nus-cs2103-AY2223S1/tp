@@ -53,7 +53,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (tagged != null) {
+        if (mods != null) {
             this.mods.addAll(mods);
         }
     }

@@ -82,7 +82,19 @@ public class Person {
     }
 
     /**
-     * Appends a set of mods to the current mods linked to this person.
+     * Returns an immutable mods status set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public ObservableList<Boolean> getStatus() {
+        final ObservableList<Boolean> hasTaken = FXCollections.observableArrayList();
+        mods.forEach((mod) -> {
+            hasTaken.add(mod.getModStatus());
+        });
+        return FXCollections.unmodifiableObservableList(hasTaken);
+    }
+
+    /**
+     * Appends a set of mods to the current mods linked to this batchmate.
      *
      * @param mods The set of mods to add in.
      */
@@ -96,21 +108,32 @@ public class Person {
     }
 
     /**
-     * Checks if the all mods provided can be found and deleted in the set of mods linked to this person.
+     * Checks if the all mods provided can be found and edited in the set of mods linked to this batchmate.
      *
-     * @param mods The set of mods to be deleted.
+     * @param mods The set of mods to be edited.
      */
-    public boolean canDeleteMods(ObservableList<Mod> mods) {
+    public boolean canEditMods(ObservableList<Mod> mods) {
         return this.mods.containsAll(mods);
     }
 
     /**
-     * Removes all mods in {@code mods} from the current set of mods linked to this person.
+     * Removes all mods in {@code mods} from the current set of mods linked to this batchmate.
      *
      * @param mods The set of mods to be deleted.
      */
     public void deleteMods(ObservableList<Mod> mods) {
         this.mods.removeAll(mods);
+    }
+
+    /**
+     * Marks all mods in {@code mods} in the current set of mods linked to this batchmate as taken.
+     *
+     * @param mods The set of mods to be marked.
+     */
+    public void markMods(ObservableList<Mod> mods) {
+        mods.forEach((mod) -> {
+            mod.markMod();
+        });
     }
 
     /**

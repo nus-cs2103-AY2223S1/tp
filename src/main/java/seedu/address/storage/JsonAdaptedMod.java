@@ -12,6 +12,7 @@ import seedu.address.model.person.Mod;
 class JsonAdaptedMod {
 
     private final String modName;
+    private boolean hasTaken;
 
     /**
      * Constructs a {@code JsonAdaptedMod} with the given {@code modName}.
@@ -26,12 +27,13 @@ class JsonAdaptedMod {
      */
     public JsonAdaptedMod(Mod source) {
         modName = source.modName;
+        hasTaken = source.hasTaken;
     }
 
-    @JsonValue
-    public String getModName() {
-        return modName;
-    }
+//    @JsonValue
+//    public String getModName() {
+//        return modName;
+//    }
 
     /**
      * Converts this Jackson-friendly adapted mod object into the model's {@code Mod} object.
@@ -42,7 +44,7 @@ class JsonAdaptedMod {
         if (!Mod.isValidModName(modName)) {
             throw new IllegalValueException(Mod.MESSAGE_CONSTRAINTS);
         }
-        return new Mod(modName);
+        return new Mod(modName, hasTaken);
     }
 
 }
