@@ -1,46 +1,53 @@
 {
-  "_comment": "GuestBook save file which contains the same Guest values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "GuestBook save file which contains the same Guest values as in TypicalGuests#getTypicalGuestBook()",
   "guests" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",
     "dateRange": "13/09/22 - 15/09/22",
-    "numberOfGuests" : "1"
+    "numberOfGuests" : "1",
+    "isRoomClean" : "yes"
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "dateRange": "30/09/22 - 02/10/22",
-    "numberOfGuests" : "2"
+    "numberOfGuests" : "2",
+    "isRoomClean" : "yes"
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "dateRange": "30/12/22 - 02/01/23",
-    "numberOfGuests" : "3"
+    "numberOfGuests" : "3",
+    "isRoomClean" : "no"
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "dateRange": "29/05/23 - 03/06/23",
-    "numberOfGuests" : "4"
+    "numberOfGuests" : "4",
+    "isRoomClean" : "yes"
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "dateRange": "08/04/23 - 22/04/23",
-    "numberOfGuests" : "1"
+    "numberOfGuests" : "1",
+    "isRoomClean" : "no"
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "dateRange": "21/10/22 - 22/10/22",
-    "numberOfGuests" : "2"
+    "numberOfGuests" : "2",
+    "isRoomClean" : "no"
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "dateRange": "01/01/23 - 07/01/23",
-    "numberOfGuests" : "3"
+    "numberOfGuests" : "3",
+    "isRoomClean" : "yes"
   } ]
 }

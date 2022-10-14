@@ -1,9 +1,13 @@
 package seedu.guest.model.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.guest.testutil.TypicalGuests.ALICE;
 import static seedu.guest.testutil.TypicalGuests.BOB;
@@ -15,7 +19,7 @@ import seedu.guest.testutil.GuestBuilder;
 public class GuestTest {
 
     @Test
-    public void isSamePerson() {
+    public void isSameGuest() {
         // same object -> returns true
         assertTrue(ALICE.isSameGuest(ALICE));
 
@@ -70,5 +74,46 @@ public class GuestTest {
         // different email -> returns false
         editedAlice = new GuestBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different date range -> returns false
+        editedAlice = new GuestBuilder(ALICE).withDateRange(VALID_DATE_RANGE_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different number of guests -> returns false
+        editedAlice = new GuestBuilder(ALICE).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashcode() {
+        // same values -> returns true
+        Guest aliceCopy = new GuestBuilder(ALICE).build();
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // same object -> returns true
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // different person -> returns false
+        assertNotEquals(ALICE.hashCode(), BOB.hashCode());
+
+        // different name -> returns false
+        Guest editedAlice = new GuestBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different phone -> returns false
+        editedAlice = new GuestBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different email -> returns false
+        editedAlice = new GuestBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different date range -> returns false
+        editedAlice = new GuestBuilder(ALICE).withDateRange(VALID_DATE_RANGE_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
+
+        // different number of guests -> returns false
+        editedAlice = new GuestBuilder(ALICE).withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).build();
+        assertNotEquals(ALICE.hashCode(), editedAlice.hashCode());
     }
 }

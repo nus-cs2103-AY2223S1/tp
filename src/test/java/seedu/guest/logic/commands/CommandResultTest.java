@@ -36,6 +36,30 @@ public class CommandResultTest {
     }
 
     @Test
+    public void getShowHelpFalse() {
+        CommandResult commandResult = new CommandResult("feedback");
+        assertEquals(commandResult.isShowHelp(), false);
+    }
+
+    @Test
+    public void getShowHelpTrue() {
+        CommandResult commandResult = new CommandResult("feedback", true, true);
+        assertEquals(commandResult.isShowHelp(), true);
+    }
+
+    @Test
+    public void getExitFalse() {
+        CommandResult commandResult = new CommandResult("feedback");
+        assertEquals(commandResult.isExit(), false);
+    }
+
+    @Test
+    public void getExitTrue() {
+        CommandResult commandResult = new CommandResult("feedback", true, true);
+        assertEquals(commandResult.isExit(), true);
+    }
+
+    @Test
     public void hashcode() {
         CommandResult commandResult = new CommandResult("feedback");
 

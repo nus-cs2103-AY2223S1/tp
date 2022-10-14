@@ -18,17 +18,20 @@ public class Guest {
     // Data fields
     private final DateRange dateRange;
     private final NumberOfGuests numberOfGuests;
+    private final IsRoomClean isRoomClean;
 
     /**
      * Every field must be present and not null.
      */
-    public Guest(Name name, Phone phone, Email email, DateRange dateRange, NumberOfGuests numberOfGuests) {
-        requireAllNonNull(name, phone, email, dateRange, numberOfGuests);
+    public Guest(Name name, Phone phone, Email email, DateRange dateRange,
+                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean) {
+        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
+        this.isRoomClean = isRoomClean;
     }
 
     public Name getName() {
@@ -49,6 +52,10 @@ public class Guest {
 
     public NumberOfGuests getNumberOfGuests() {
         return numberOfGuests;
+    }
+
+    public IsRoomClean getIsRoomClean() {
+        return isRoomClean;
     }
 
     /**
@@ -84,13 +91,14 @@ public class Guest {
                 && otherGuest.getPhone().equals(getPhone())
                 && otherGuest.getEmail().equals(getEmail())
                 && otherGuest.getDateRange().equals(getDateRange())
-                && otherGuest.getNumberOfGuests().equals(getNumberOfGuests());
+                && otherGuest.getNumberOfGuests().equals(getNumberOfGuests())
+                && otherGuest.getIsRoomClean().equals(getIsRoomClean());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, dateRange, numberOfGuests);
+        return Objects.hash(name, phone, email, dateRange, numberOfGuests, isRoomClean);
     }
 
     @Override
@@ -104,7 +112,9 @@ public class Guest {
                 .append("; Date Range: ")
                 .append(getDateRange())
                 .append("; No. of Guests: ")
-                .append(getNumberOfGuests());
+                .append(getNumberOfGuests())
+                .append("; Is Room Clean: ")
+                .append(getIsRoomClean());
 
         return builder.toString();
     }

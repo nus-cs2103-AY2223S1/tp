@@ -26,7 +26,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newPerson_success() {
+    public void execute_newGuest_success() {
         Guest validGuest = new GuestBuilder().build();
 
         Model expectedModel = new ModelManager(model.getGuestBook(), new UserPrefs());
