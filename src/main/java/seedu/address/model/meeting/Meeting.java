@@ -113,6 +113,12 @@ public class Meeting {
         }
     }
 
+    public ArrayList<Person> getArrayListPersonToMeet() {
+        ArrayList<Person> a = new ArrayList<>();
+        this.peopleToMeet.iterator().forEachRemaining(a::add);
+        return a;
+    }
+
     public UniquePersonList getPersonToMeet() {
         return this.peopleToMeet;
     }
