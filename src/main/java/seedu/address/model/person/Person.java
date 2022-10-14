@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -86,7 +87,30 @@ public class Person {
      * @param mods The set of mods to add in.
      */
     public void addMods(ObservableList<Mod> mods) {
-        this.mods.addAll(mods);
+        Set<Mod> uniqueModsSet = mods
+                .stream()
+                .filter(mod -> !this.mods.contains(mod))
+                .collect(Collectors.toSet());
+
+        this.mods.addAll(uniqueModsSet);
+    }
+
+    /**
+     * Checks if the all mods provided can be found and deleted in the set of mods linked to this person.
+     *
+     * @param mods The set of mods to be deleted.
+     */
+    public boolean canDeleteMods(ObservableList<Mod> mods) {
+        return this.mods.containsAll(mods);
+    }
+
+    /**
+     * Removes all mods in {@code mods} from the current set of mods linked to this person.
+     *
+     * @param mods The set of mods to be deleted.
+     */
+    public void deleteMods(ObservableList<Mod> mods) {
+        this.mods.removeAll(mods);
     }
 
     /**
