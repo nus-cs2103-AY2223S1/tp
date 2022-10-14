@@ -65,8 +65,7 @@ public class Customer {
     }
 
     /**
-     * Get total revenue generated from the customer
-     * @return double total revenue
+     * Get total revenue generated from the customer.
      */
     public double getRevenue() {
         double revenue = 0;
@@ -77,24 +76,21 @@ public class Customer {
     }
 
     /**
-     * Get total number of commission made by this customer
-     * @return total number of commissions
+     * Get total number of commission made by this customer.
      */
     public long getCommissionCount() {
         return commissions.getSize();
     }
 
     /**
-     * Get total number of active commissions made by this customer
-     * @return number of commissions
+     * Get total number of active commissions made by this customer.
      */
     public long getActiveCommissionCount() {
         return commissions.getActiveSize();
     }
 
     /**
-     * Get last date of customer's commissions
-     * @return
+     * Get last date of customer's commissions.
      */
     public LocalDate getLastDate() {
         return commissions.getLastDate();

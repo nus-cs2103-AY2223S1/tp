@@ -51,14 +51,14 @@ public class UniqueCommissionList implements Iterable<Commission> {
     }
 
     /**
-     * Returns the size of the commission list
+     * Returns the size of the commission list.
      */
     public int getSize() {
         return internalList.size();
     }
 
     /**
-     * Returns the size of active commissions
+     * Returns the size of active commissions.
      */
     public long getActiveSize() {
         return internalList.stream()
@@ -67,7 +67,7 @@ public class UniqueCommissionList implements Iterable<Commission> {
     }
 
     /**
-     * Get Last Deadline
+     * Get Last Deadline.
      */
     public LocalDate getLastDate() {
         return internalList.stream()
