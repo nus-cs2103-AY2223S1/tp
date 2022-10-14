@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.DurationList;
 import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
@@ -28,6 +29,7 @@ public class PersonBuilder {
     private LessonPlan lessonPlan;
     private HomeworkList homeworkList;
     private AttendanceList attendanceList;
+    private DurationList durationList;
     private GradeProgressList gradeProgressList;
     private Set<Tag> tags;
 
@@ -88,7 +90,12 @@ public class PersonBuilder {
      * that we are building.
      */
     public PersonBuilder withAttendance(String... attendanceList) {
-        this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
+        this.attendanceList = new AttendanceList(SampleDataUtil.getAttendanceList(attendanceList));
+        return this;
+    }
+
+    public PersonBuilder withDuration(String... durationList) {
+        this.durationList = new DurationList(SampleDataUtil.getDurationList(durationList));
         return this;
     }
 
@@ -118,7 +125,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, gradeProgressList, tags);
+        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, durationList, gradeProgressList, tags);
     }
 
 }

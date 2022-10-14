@@ -41,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label attendance;
     @FXML
+    private Label duration;
+    @FXML
     private Label gradeProgress;
     @FXML
     private FlowPane tags;
@@ -58,9 +60,11 @@ public class PersonCard extends UiPart<Region> {
         if (person.isFullView()) {
             homework.setText(person.getHomeworkList().toString());
             attendance.setText(person.getAttendanceList().toString());
+            duration.setText(person.getDurationList().toString());
         } else {
             homework.setText(person.getHomeworkList().shortDescription());
             attendance.setText(person.getAttendanceList().shortDescription());
+            duration.setText(person.getDurationList().shortDescription());
         }
         gradeProgress.setText(person.getGradeProgressList().toString());
         person.getTags().stream()

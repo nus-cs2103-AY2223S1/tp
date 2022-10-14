@@ -19,6 +19,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.DurationList;
 import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
@@ -53,7 +54,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -95,14 +96,16 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         LessonPlan updatedLessonPlan = editPersonDescriptor.getLessonPlan()
-                                        .orElse(personToEdit.getLessonPlan());
+                .orElse(personToEdit.getLessonPlan());
         HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
+        DurationList updatedDurationList = personToEdit.getDurationList();
+
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
 
         return new Person(updatedName, updatedPhone, updatedLessonPlan,
-                updatedHomeworkList, updatedAttendanceList, updatedGradeProgressList, updatedTags);
+                updatedHomeworkList, updatedAttendanceList, updatedDurationList, updatedGradeProgressList, updatedTags);
     }
 
     @Override
@@ -133,7 +136,8 @@ public class EditCommand extends Command {
         private LessonPlan lessonPlan;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditPersonDescriptor() {
+        }
 
         /**
          * Copy constructor.

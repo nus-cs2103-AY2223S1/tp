@@ -59,6 +59,7 @@ public class AttendanceCommand extends Command {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
                 personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
+                personToEdit.getDurationList(),
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

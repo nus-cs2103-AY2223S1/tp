@@ -25,7 +25,7 @@ public class AttendanceList {
      * @param attendance The attendance object to be added.
      */
     public void addAttendance(Attendance attendance) {
-        this.attendanceList.add(attendance);
+        attendanceList.add(attendance);
     }
 
     /**
@@ -33,6 +33,9 @@ public class AttendanceList {
      * only the first two are shown.
      */
     public String shortDescription() {
+        if (attendanceList.isEmpty()) {
+            return this.toString();
+        }
         if (attendanceList.size() <= 2) {
             return toString();
         }
@@ -54,6 +57,9 @@ public class AttendanceList {
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder("Attendance: \n");
+        if (attendanceList.isEmpty()) {
+            description.append("No attendance found!\n");
+        }
         for (int i = 0; i < attendanceList.size(); i++) {
             description.append(i + 1).append(". ").append(this.attendanceList.get(i)).append("\n");
         }
