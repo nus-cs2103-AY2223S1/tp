@@ -16,6 +16,7 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
             + "Example: " + COMMAND_WORD;
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
+    public static final String DEFAULT_HELP_MESSAGE = "Please refer to the user guide.";
 
     // To be displayed in a new help window
     // TODO: Update this to match user guide
