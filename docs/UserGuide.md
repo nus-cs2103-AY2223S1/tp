@@ -108,12 +108,17 @@ Examples:
 
 Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
 
-Format: `list [c/CATEGORY] [REVERSE]`
-* List the internships sorted by category and in ascending or descending order
-* The category is optional. By default, without stating the category, `list` will display all internships in no particular order
-* The CATEGORY tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
-* The reverse tag is optional. It can take on the value `true` or `false`. The reverse tag is set to false by default if not stated. List of internships will be shown in ascending order.
-* If REVERSE is set to `true`. List of internships will be displayed in descending order
+Format: `list [c/CATEGORY [DESCENDING]]`
+
+* List the internships 
+* Internships can be sorted by category and in ascending or descending order
+* The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
+  * Possible options for `CATEGORY` : `company_name`,`n`, `position`,`p`, `application_process`,`pr`, `date`,`d` (case-insensitive)
+  * Case-insensitive: `company_name`, `Company_Name`, and `N` are all acceptable inputs.
+* The `DESCENDING` tag is optional. It can take on the value `true` or `false` (case-insensitive). 
+  * The DESCENDING tag is set to `false` by default if not stated. List of internships will be shown in ascending order.
+  * The `DESCENDING` tag can only be set to `true` if the `CATEGORY` is stated
+  * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
 Examples:
 * `list c/n true`
@@ -236,5 +241,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | list [c/CATEGORY] [REVERSE] <br> e.g, `list c/website true`
+**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/website true`
 **Help** | `help`
