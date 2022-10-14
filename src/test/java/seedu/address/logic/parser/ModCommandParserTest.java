@@ -11,9 +11,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ModAddCommand;
+import seedu.address.logic.commands.ModCommand;
 import seedu.address.logic.commands.ModDeleteCommand;
 import seedu.address.logic.commands.ModMarkCommand;
-import seedu.address.logic.commands.ModCommand;
 import seedu.address.model.person.Mod;
 
 public class ModCommandParserTest {
