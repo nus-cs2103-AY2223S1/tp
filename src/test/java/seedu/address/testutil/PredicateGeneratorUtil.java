@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.model.person.predicates.DateTimeWithinRangePredicate;
@@ -35,7 +36,7 @@ public class PredicateGeneratorUtil {
 
     /**
      * Provides a simple way to generate a {@code CombinedAppointmentPredicate} without needing to directly provide
-     * {@code LocalDateTime}s but a parsable string of LocalDateTime instead.
+     * {@code LocalDateTime}s but a string parsable accrding to the DateTimeFormatter in {@code Appointment} instead.
      *
      * @param reason reason string to search
      * @param startDateTime limit search results to appointments after {@code startDateTime}.
@@ -76,12 +77,12 @@ public class PredicateGeneratorUtil {
     private static LocalDateTime parseStartDateTime(String startDateTime) {
         return startDateTime.isEmpty()
                 ? LocalDateTime.MIN
-                : LocalDateTime.parse(startDateTime);
+                : LocalDateTime.parse(startDateTime, Appointment.DATE_FORMATTER);
     }
 
     private static LocalDateTime parseEndDateTime(String endDateTime) {
         return endDateTime.isEmpty()
                 ? LocalDateTime.MAX
-                : LocalDateTime.parse(endDateTime);
+                : LocalDateTime.parse(endDateTime, Appointment.DATE_FORMATTER);
     }
 }

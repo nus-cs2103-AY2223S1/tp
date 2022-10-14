@@ -15,6 +15,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.logic.commands.FindCommand;
@@ -51,7 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String endDateTime =
                 StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_END).orElse(""));
 
-        checkIfInputsValid(name, phone, address, tagList, reason, startDateTime, endDateTime);
+        checkIfInputsValid(name, phone, email, address, tagList, reason, startDateTime, endDateTime);
 
         LocalDateTime parsedStartDateTime = startDateTime.isEmpty()
                 ? LocalDateTime.MIN
@@ -72,15 +73,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
     }
 
-    private void checkIfInputsValid(String name, String phone, String address, List<String> tagList, String reason,
+    private void checkIfInputsValid(String name, String phone, String email, String address, List<String> tagList, String reason,
                                     String startDateTime, String endDateTime) throws ParseException {
 
-        boolean areAllFieldsEmpty = name.isEmpty() && phone.isEmpty() && address.isEmpty() && tagList.isEmpty()
-                && reason.isEmpty() && startDateTime.isEmpty() && endDateTime.isEmpty();
+        boolean areAllFieldsEmpty = name.isEmpty() && phone.isEmpty() && email.isEmpty()
+                && address.isEmpty() && tagList.isEmpty() && reason.isEmpty() && startDateTime.isEmpty()
+                && endDateTime.isEmpty();
         if (areAllFieldsEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        // Address, emails and reasons are excluded from validity checks since they don't need to be
+        // proper emails/addresses/reasons (E.g finding google in john@google.com is fine).
         if (!name.isEmpty() && !Name.isValidName(name)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -90,18 +94,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
 
-        if (!address.isEmpty() && !Address.isValidAddress(address)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-
         for (String tag : tagList) {
             if (!Tag.isValidTagName(tag)) {
                 throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
             }
-        }
-
-        if (!reason.isEmpty() && !Appointment.isValidReason(reason)) {
-            throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
         }
 
         boolean areBothDatesValid = (startDateTime.isEmpty() || Appointment.isValidDateTime(startDateTime))
