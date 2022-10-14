@@ -8,8 +8,7 @@ import java.util.List;
 import seedu.address.logic.commands.getcommands.GetFloorNumberCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FloorNumber;
-import seedu.address.model.person.FloorNumberContainsKeywordsPredicate;
+import seedu.address.model.person.FloorNumberPredicate;
 
 /**
  * Parses input arguments and creates a new GetFloorNumberCommand object
@@ -28,15 +27,23 @@ public class GetFloorNumberCommandParser implements Parser<GetFloorNumberCommand
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetFloorNumberCommand.MESSAGE_USAGE));
         }
-        List<FloorNumber> floorNumbers = new ArrayList<>();
+
+        List<Integer> floorNumbers = new ArrayList<>();
         for (String arg : trimmedArgs.split("\\s+")) {
             try {
-                floorNumbers.add(new FloorNumber(Integer.parseInt(arg)));
-            } catch (IllegalArgumentException e) { // Catches both String input and negative number errors.
+                int floor = Integer.parseInt(arg);
+                if (floor < 1) { // Throw exception if input is invalid floor number.
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetFloorNumberCommand.MESSAGE_USAGE));
+                }
+                floorNumbers.add(floor);
+            } catch (NumberFormatException e) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetFloorNumberCommand.MESSAGE_USAGE));
             }
         }
-        return new GetFloorNumberCommand(new FloorNumberContainsKeywordsPredicate(floorNumbers));
+
+        return new GetFloorNumberCommand(new FloorNumberPredicate(floorNumbers));
     }
+
 }

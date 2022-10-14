@@ -12,10 +12,12 @@ import seedu.address.logic.commands.getcommands.GetHospitalWingCommand;
 import seedu.address.logic.commands.getcommands.GetInpatientCommand;
 import seedu.address.logic.commands.getcommands.GetNameCommand;
 import seedu.address.logic.commands.getcommands.GetOutpatientCommand;
+import seedu.address.logic.commands.getcommands.GetWardNumberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.getparsers.GetFloorNumberCommandParser;
 import seedu.address.logic.parser.getparsers.GetHospitalWingCommandParser;
 import seedu.address.logic.parser.getparsers.GetNameCommandParser;
+import seedu.address.logic.parser.getparsers.GetWardNumberCommandParser;
 
 /**
  * Parses get command input
@@ -45,6 +47,9 @@ public class GetCommandParser implements Parser<GetCommand> {
 
             case GetHospitalWingCommand.HOSPITAL_WING_PREFIX:
                 return new GetHospitalWingCommandParser().parse(arguments);
+
+            case GetWardNumberCommand.WARD_NUMBER_PREFIX:
+                return new GetWardNumberCommandParser().parse(arguments);
 
             case GetNameCommand.NAME_PREFIX:
                 return new GetNameCommandParser().parse(arguments);
