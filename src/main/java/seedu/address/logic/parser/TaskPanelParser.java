@@ -18,6 +18,8 @@ import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.logic.parser.task.AssignTaskCommandParser;
 import seedu.address.logic.parser.task.DeleteTaskCommandParser;
 import seedu.address.logic.parser.task.MarkTaskCommandParser;
+import seedu.address.logic.parser.task.ListTasksCommandParser;
+
 
 /**
  * Parses user input for all task-related commands (starting with "tasks").
@@ -47,7 +49,7 @@ public class TaskPanelParser implements Parser<TaskCommand> {
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);
         case ListTasksCommand.COMMAND_WORD:
-            return new ListTasksCommand();
+            return new ListTasksCommandParser().parse(arguments);
         case AssignTaskCommand.COMMAND_WORD:
             return new AssignTaskCommandParser().parse(arguments);
         default:
