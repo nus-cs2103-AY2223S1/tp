@@ -177,6 +177,11 @@ public class AddCommandTest {
         public boolean hasTaskWithModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void replaceTask(Task task, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
     /**
      * A Model stub that contains a single person.

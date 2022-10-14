@@ -1,7 +1,10 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.module.Module;
 
 /**
@@ -11,7 +14,7 @@ import seedu.address.model.module.Module;
 public class Task {
     private final Module module;
     private final TaskDescription description;
-    private TaskStatus status;
+    private final TaskStatus status;
 
     /**
      * The constructor of the Task class. Sets the module and
@@ -71,6 +74,26 @@ public class Task {
      */
     public Task mark() {
         return new Task(module, description, TaskStatus.COMPLETE);
+    }
+
+    /**
+     * Unmarks (labels as incomplete) the task
+     * and returns the task.
+     */
+    public Task unmark() {
+        return new Task(module, description, TaskStatus.INCOMPLETE);
+    }
+
+    /**
+     * Creates and returns a {@code Task} with the details of {@code this}
+     * edited with {@code editTaskDescriptor}.
+     */
+    public Task edit(EditTaskDescriptor editTaskDescriptor) {
+        requireNonNull(editTaskDescriptor);
+
+        Module updatedModule = editTaskDescriptor.getModule().orElse(module);
+        TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
+        return new Task(updatedModule, updatedDescription, status);
     }
 
     @Override
