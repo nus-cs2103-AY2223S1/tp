@@ -1,6 +1,8 @@
 # TruthTable
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W13-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W13-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W13-4/tp/branch/master/graph/badge.svg?token=48P7UCIY1A)]
+(https://codecov.io/gh/AY2223S1-CS2103T-W13-4/tp)
 
 ![Ui](docs/images/Ui.png)
 
