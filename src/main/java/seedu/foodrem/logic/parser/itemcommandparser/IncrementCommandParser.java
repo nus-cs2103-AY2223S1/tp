@@ -15,7 +15,7 @@ import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.item.ItemQuantity;
 
 /**
- * Parses input arguments and creates a new IncrementCommand object
+ * Parses input arguments and creates a new IncrementCommand object.
  */
 public class IncrementCommandParser implements Parser<IncrementCommand> {
     /**

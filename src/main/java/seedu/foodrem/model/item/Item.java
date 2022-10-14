@@ -60,7 +60,7 @@ public class Item {
      * @param unit       Unit of the item.
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
-     * @param tagSet The set of tags in item
+     * @param tagSet     The set of tags in item
      */
     public Item(ItemName name,
                 ItemQuantity quantity,
@@ -197,7 +197,7 @@ public class Item {
     @Override
     public String toString() {
         String tagsString = tagSet.stream().map(Tag::getName).collect(Collectors.joining(", "));
-        return String.format("Name: %s; Quantity: %s%s; Bought Date: %s; Expiry Date: %s; Tags: {%s}",
+        return String.format("Name: %s\nQuantity: %s%s\nBought Date: %s\nExpiry Date: %s\nTags: {%s}\n",
                 name,
                 quantity,
                 String.valueOf(unit).isBlank() ? "" : " " + unit,
