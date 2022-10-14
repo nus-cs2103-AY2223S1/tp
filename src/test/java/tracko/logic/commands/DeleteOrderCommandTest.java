@@ -48,35 +48,35 @@ public class DeleteOrderCommandTest {
         assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
-        @Test
-        public void execute_validIndexFilteredList_success() {
-            showOrderAtIndex(model, INDEX_FIRST);
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        showOrderAtIndex(model, INDEX_FIRST);
 
-            Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-            DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+        Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
 
-            String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
 
-            Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-            expectedModel.deleteOrder(orderToDelete);
-            showNoOrder(expectedModel);
+        Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+        expectedModel.deleteOrder(orderToDelete);
+        showNoOrder(expectedModel);
 
-            assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
-        }
+        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
+    }
 
-        @Test
-        public void execute_invalidIndexFilteredList_throwsCommandException() {
-            showOrderAtIndex(model, INDEX_FIRST);
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showOrderAtIndex(model, INDEX_FIRST);
 
-            Index outOfBoundIndex = INDEX_SECOND;
+        Index outOfBoundIndex = INDEX_SECOND;
 
-            // ensures that outOfBoundIndex is still in bounds of address book list
-            assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
 
-            DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 
-            assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-        }
+        assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals() {
@@ -100,12 +100,12 @@ public class DeleteOrderCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-        /**
-         * Updates {@code model}'s filtered list to show no one.
-         */
-        private void showNoOrder(Model model) {
-            model.updateFilteredOrderList(p -> false);
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    private void showNoOrder(Model model) {
+        model.updateFilteredOrderList(p -> false);
 
-            assertTrue(model.getFilteredOrderList().isEmpty());
-        }
+        assertTrue(model.getFilteredOrderList().isEmpty());
+    }
 }

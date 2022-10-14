@@ -115,21 +115,19 @@ public class CommandTestUtil {
         assertEquals(expectedTrackO, actualModel.getTrackO());
     }
 
-     /**
-      * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
-      * {@code model}'s order list.
-      */
-     public static void showOrderAtIndex(Model model, Index targetIndex) {
-         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+    /**
+     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * {@code model}'s order list.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
 
-         Order order = model.getOrderList().get(targetIndex.getZeroBased());
+        Order order = model.getOrderList().get(targetIndex.getZeroBased());
+        // Index is at 1 because at 0, every person is initialized to have a keychain.
+        final String[] splitName = order.getItemList().get(1).getItem().split("\\s+");
+        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
-         // Index is at 1 because at 0, every person is initialized to have a keychain.
-         final String[] splitName = order.getItemList().get(1).getItem().split("\\s+");
-
-         model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
-
-         assertEquals(1, model.getFilteredOrderList().size());
-     }
+        assertEquals(1, model.getFilteredOrderList().size());
+    }
 
 }
