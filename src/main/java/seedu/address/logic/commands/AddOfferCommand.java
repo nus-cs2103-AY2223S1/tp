@@ -19,7 +19,7 @@ public class AddOfferCommand extends Command {
             + "Parameters: "
             + PREFIX_ADDRESS + "LISTING ADDRESS "
             + PREFIX_NAME + "NAME "
-            + PREFIX_OFFER + "OFFER "
+            + PREFIX_OFFER + "OFFER \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NAME + "Bob "

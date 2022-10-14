@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.exceptions.DuplicateListingException;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.ListingBuilder;
@@ -53,7 +54,8 @@ public class AddressBookTest {
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         List<Listing> newListings = Arrays.asList();
-        AddressBookStub newData = new AddressBookStub(newPersons, newListings);
+        List<Offer> newOffers = Arrays.asList();
+        AddressBookStub newData = new AddressBookStub(newPersons, newListings, newOffers);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -64,7 +66,8 @@ public class AddressBookTest {
         Listing editedHouse = new ListingBuilder().build();
         List<Person> newPersons = Arrays.asList(ALICE);
         List<Listing> newListings = Arrays.asList(editedHouse, editedHouse);
-        AddressBookStub newData = new AddressBookStub(newPersons, newListings);
+        List<Offer> newOffers = Arrays.asList();
+        AddressBookStub newData = new AddressBookStub(newPersons, newListings, newOffers);
 
         assertThrows(DuplicateListingException.class, () -> addressBook.resetData(newData));
     }
@@ -104,10 +107,12 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Listing> listings = FXCollections.observableArrayList();
+        private final ObservableList<Offer> offers = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Listing> listings) {
+        AddressBookStub(Collection<Person> persons, Collection<Listing> listings, Collection<Offer> offers) {
             this.persons.setAll(persons);
             this.listings.setAll(listings);
+            this.offers.setAll(offers);
         }
 
         @Override
@@ -118,6 +123,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Listing> getListingList() {
             return listings;
+        }
+
+        @Override
+        public ObservableList<Offer> getOfferList() {
+            return offers;
         }
     }
 }

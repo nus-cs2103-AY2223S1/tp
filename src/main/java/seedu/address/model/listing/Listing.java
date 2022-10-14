@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.offer.Offer;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -21,7 +22,7 @@ public class Listing {
     private final String id;
     private final Address address;
     private final Person owner;
-    private final int askingPrice;
+    private final Price askingPrice;
 
     // Data fields
     private int highestOffer;
@@ -35,7 +36,7 @@ public class Listing {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(String id, Address address, Person owner, int askingPrice) {
+    public Listing(String id, Address address, Person owner, Price askingPrice) {
         this.id = id;
         this.address = address;
         this.owner = owner;
@@ -79,9 +80,9 @@ public class Listing {
 
     /**
      * Gets the asking price of this listing.
-     * @return asling price of listing
+     * @return asking price of listing
      */
-    public int getAskingPrice() {
+    public Price getAskingPrice() {
         return this.askingPrice;
     }
 
@@ -131,8 +132,9 @@ public class Listing {
      */
     public void addOffer(Offer offer) {
         this.currentOffers.add(offer);
-        if (offer.getOfferPrice() > this.highestOffer) {
-            this.highestOffer = offer.getOfferPrice();
+        int offerPrice = Integer.parseInt(offer.getOfferPrice().value);
+        if (offerPrice > this.highestOffer) {
+            this.highestOffer = offerPrice;
         }
     }
 
