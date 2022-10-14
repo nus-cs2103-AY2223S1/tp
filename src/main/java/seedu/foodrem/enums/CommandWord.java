@@ -2,6 +2,7 @@ package seedu.foodrem.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
 
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
@@ -119,16 +120,13 @@ public enum CommandWord {
     /**
      * Returns the CommandWord object from the string value of a command word.
      *
-     * @param value a string value of the enum represented by the value provided.
+     * @param word a string value of the enum represented by the value provided.
      * @return a CommandWord object of the command represented by the string.
      */
-    public static CommandWord parseWord(String value) {
-        for (CommandWord commandWord : values()) {
-            if (commandWord.getValue().equals(value)) {
-                return commandWord;
-            }
-        }
-        return DEFAULT;
+    public static CommandWord parseWord(String word) {
+        return Arrays.stream(values())
+                .filter(type -> type.value.equals(word))
+                .findFirst().orElse(DEFAULT);
     }
 
     /**
