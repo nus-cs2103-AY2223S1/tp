@@ -20,7 +20,6 @@ public class TagType {
 
     public final String tagType;
     public final Prefix p;
-
     /**
      * Constructs a {@code TagType}.
      *
@@ -43,9 +42,9 @@ public class TagType {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagType // instanceof handles nulls
-                && tagType.equals(((TagType) other).tagType)
-                && p.equals(((TagType) other).p)); // state check
+                || ((other instanceof TagType // instanceof handles nulls
+                && this.tagType.equals(((TagType) other).tagType)
+                && p.equals(((TagType) other).p))); // state check
     }
 
     @Override
@@ -57,6 +56,9 @@ public class TagType {
      * Format state as text for viewing.
      */
     public String toString() {
-        return String.format("%s %s", tagType, p.toString());
+        return tagType;
+    }
+    public String getTagTypeName() {
+        return this.tagType;
     }
 }

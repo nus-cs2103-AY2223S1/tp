@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueTagTypeMap;
 
 /**
  * Changes the note of an existing person in the address book.
@@ -56,8 +57,10 @@ public class NoteCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        tagMap.setTagTypeMap(personToEdit.getTags());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getStatus(), note);
+                personToEdit.getAddress(), tagMap, personToEdit.getStatus(), note);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

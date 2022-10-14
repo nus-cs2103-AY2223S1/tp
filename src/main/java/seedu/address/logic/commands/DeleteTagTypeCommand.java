@@ -1,14 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
 import seedu.address.model.tag.TagType;
 
 /**
  * Deletes a specified tag type.
  */
 public class DeleteTagTypeCommand extends Command {
-    public static final String COMMAND_WORD = "deleteTagType";
+    public static final String COMMAND_WORD = "deletetagtype";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tag type from the list of tag types that can be added to a person.\n"
@@ -23,12 +27,21 @@ public class DeleteTagTypeCommand extends Command {
      * Creates a DeleteTagTypeCommand to delete the specified {@code TagType}
      */
     public DeleteTagTypeCommand(TagType toDelete) {
+        requireNonNull(toDelete);
         this.toDelete = toDelete;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return null;
+        requireNonNull(model);
+        try {
+            UniqueTagTypeMap.removeExistingTagType(toDelete);
+        } catch (TagTypeNotFoundException t) {
+            throw new CommandException(t.getMessage());
+        }
+
+        model.deleteTagTypeForAllPerson(toDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_TYPE_SUCCESS, toDelete));
     }
 
     @Override
