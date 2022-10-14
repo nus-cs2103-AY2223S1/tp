@@ -305,22 +305,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list internships
 2. PleaseHireUs shows a list of internships
-3. User requests to delete specific internship(s) in the list
-4. PleaseHireUs deletes the internship(s)
 
-   	 Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. At least one of the given indexes is invalid.
-
-    * 3a1. PleaseHireUs shows an error message.
-
-      Use case resumes at step 2.
+   Use case ends.
 
 **Use case: Add internship**
 
@@ -343,6 +329,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The given parameters does not include all required parameters.
 
     * 1b1. System shows an error message.
+
+  Use case ends.
+
+**Use case: Delete internship(s)**
+
+**MSS**
+
+1. User requests to delete specific internship(s) in the list
+2. PleaseHireUs deletes the internship(s)
+
+   Use case ends.
+
+**Extensions**
+* 1a. At least one of the given indexes is invalid.
+
+    * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
 
@@ -386,6 +388,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: Update internship**
+
+**MSS**
+1. User requests to edit the internship at specified index and parameters 
+2. System updates the selected internship application details.
+3. System displays the success message
+
+   Use case ends
+
+**Extensions**
+* 1a. No index is given
+    * 1a1. PleaseHireUs shows an error message. 
+
+  Use case ends.
+
+
+* 1b. The given index is invalid
+  * 1b1. PleaseHireUs shows an error message.
+  
+  Use case ends.
+
+
+* 1c. No parameter is given.
+  * 1c1. PleaseHireUs shows an error message.
+  
+  Use case ends.
+
+
+* 1d. The given parameters are invalid.
+  * 1d1. PleaseHireUs shows an error message.
+  
+  Use case ends.
 
 *{More to be added}*
 
@@ -437,22 +471,44 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all internships using the `list` command. The list is non-empty.
 
    1. Test case: `delete 1`<br>
-      Expected: First internship is deleted from the list. Details of the deleted internship shown in the status message. Timestamp in the status bar is updated.
+      Expected: First internship is deleted from the list. Details of the deleted internship shown in the status message.
 
    1. Test case: `delete 0 2`<br>
-      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No internship is deleted. Error details shown in the status message.
 
 1. Deleting internship(s) while only the selected internships are being shown
 
    1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
 
    1. Test case: `delete 1 2`<br>
-      Expected: If there is only one internship in the list, no internship is deleted and error details will be shown in the status message. Else if there are at least two internships on the list, the first and second internship will be deleted from the list. Details of the deleted internships are shown in the status message and the timestamp in the status bar is updated.
+      Expected: If there is less than 2 internships in the list, no internship is deleted and error details will be shown in the status message. Else if there are at least two internships on the list, the first and second internship will be deleted from the list. Details of the deleted internships are shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No internship is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No internship is deleted. Error details shown in the status message.
 
+### Update internship
 
+1. Updating internship while all internships are being shown
+    1. Prerequisites: List all internships using the `list` command. The list is non-empty.
+
+    2. Test case: `edit 1 pr/OFFER`<br>
+        Expected: The application process of the first internship in the list is updated to `OFFER`. Details of the newly edited internship is shown in the status message.
+   
+    3. Test case: `edit 1` <br>
+       Expected: No internship is edited. Error details shown in the status message.
+    
+    4. Test case: `edit 1 cuk/high salary`
+       Expected: No internship is edited. Error details shown in the status message.
+   
+2. Updating internship while only the selected internships are being shown
+    1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
+   
+    2. Test case: `edit 2 p/Quant researcher r/get free lunch`<br>
+       Expected: If there is less than 2 internships in the list, no internship is edited and error details will be shown in the status message. Else if there are at least two internships on the list, the position and remark of the second internship will be updated to Quant researcher and "get free lunch" respectively. Details of the newly updated internship is shown in the status message.
+
+    3. Test case: `edit 0 n/Citadel Securities`<br>
+        Expected: No internship is edited. Error details shown in the status message.
+    
 ### Saving data
 
 1. Dealing with missing/corrupted data files
