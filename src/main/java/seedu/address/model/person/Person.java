@@ -4,10 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.tag.Medication;
 
 /**
@@ -28,14 +31,18 @@ public class Person {
     private final Optional<FloorNumber> floorNumber;
     private final Optional<WardNumber> wardNumber;
     private final Set<Medication> medications = new HashSet<>();
+    private final List<PastAppointment> pastAppointments;
+    private final Optional<UpcomingAppointment> upcomingAppointment;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, NextOfKin nextOfKin, PatientType patientType,
-                  HospitalWing hospitalWing, FloorNumber floorNumber,
-                  WardNumber wardNumber, Set<Medication> medications) {
-        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications);
+                  HospitalWing hospitalWing, FloorNumber floorNumber, WardNumber wardNumber,
+                  Set<Medication> medications, List<PastAppointment> pastAppointments,
+                  UpcomingAppointment upcomingAppointment) {
+        requireAllNonNull(name, phone, email, nextOfKin, patientType, medications,
+                pastAppointments);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,6 +52,8 @@ public class Person {
         this.floorNumber = Optional.ofNullable(floorNumber);
         this.wardNumber = Optional.ofNullable(wardNumber);
         this.medications.addAll(medications);
+        this.pastAppointments = pastAppointments;
+        this.upcomingAppointment = Optional.ofNullable(upcomingAppointment);
     }
 
     public Name getName() {
@@ -130,6 +139,34 @@ public class Person {
         return isEqual;
     }
 
+    /**
+     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
+     * @param appt the {@code PastAppointment} to be added
+     */
+    public void addPastAppointment(PastAppointment appt) {
+        pastAppointments.add(appt);
+    }
+
+    /**
+     * Returns count of {@code PastAppointment}s to this patient.
+     * @return the count of {@code PastAppointment}s
+     */
+    public int getPastAppointmentCount() {
+        return pastAppointments.size();
+    }
+
+    /**
+     * Returns list of {@Code PastAppointment}s tagged to this patient.
+     * @return the list of {@code PastAppointment}s
+     */
+    public List<PastAppointment> getPastAppointments() {
+        return pastAppointments;
+    }
+
+    public Optional<UpcomingAppointment> getUpcomingAppointment() {
+        return upcomingAppointment;
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -165,6 +202,8 @@ public class Person {
             builder.append("; Medications: ");
             tags.forEach(builder::append);
         }
+        builder.append("; Past Appointments: ").append(getPastAppointmentCount());
+        builder.append(" Upcoming Appointment: ").append(getUpcomingAppointment());
         return builder.toString();
     }
 

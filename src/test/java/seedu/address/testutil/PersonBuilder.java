@@ -1,8 +1,14 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import seedu.address.model.appointment.PastAppointment;
+import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;
@@ -29,6 +35,7 @@ public class PersonBuilder {
     public static final String DEFAULT_HOSPITAL_WING = "south";
     public static final Integer DEFAULT_FLOOR_NUMBER = 3;
     public static final Integer DEFAULT_WARD_NUMBER = 69;
+    public static final String DEFAULT_UPCOMING_APPOINTMENT = "120622";
 
     private Name name;
     private Phone phone;
@@ -39,6 +46,8 @@ public class PersonBuilder {
     private FloorNumber floorNumber;
     private WardNumber wardNumber;
     private Set<Medication> medications;
+    private List<PastAppointment> pastAppointments;
+    private UpcomingAppointment upcomingAppointment;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -53,6 +62,8 @@ public class PersonBuilder {
         floorNumber = new FloorNumber(DEFAULT_FLOOR_NUMBER);
         wardNumber = new WardNumber(DEFAULT_WARD_NUMBER);
         medications = new HashSet<>();
+        pastAppointments = new ArrayList<>();
+        upcomingAppointment = new UpcomingAppointment(DEFAULT_UPCOMING_APPOINTMENT);
     }
 
     /**
@@ -68,6 +79,8 @@ public class PersonBuilder {
         floorNumber = personToCopy.getFloorNumber().orElse(null);
         wardNumber = personToCopy.getWardNumber().orElse(null);
         medications = new HashSet<>(personToCopy.getMedications());
+        pastAppointments = personToCopy.getPastAppointments();
+        upcomingAppointment = personToCopy.getUpcomingAppointment().orElse(null);
     }
 
     /**
@@ -162,11 +175,34 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code appointmentData} into a {@code PastAppointment}
+     * and sets it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPastAppointment(String ... appointmentData) {
+        this.pastAppointments.add(SampleDataUtil.getPastAppointment(appointmentData));
+        return this;
+    }
+
+    /**
+     * Parses the {@code dateString} into a {@code UpcomingAppointment}
+     * and sets it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withUpcomingAppointment(String dateString) {
+        if (dateString == null) {
+            this.upcomingAppointment = new UpcomingAppointment((LocalDate) null);
+        } else {
+            this.upcomingAppointment =
+                    new UpcomingAppointment(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("ddMMyy")));
+        }
+        return this;
+    }
+
+    /**
      * Builds the Person.
      */
     public Person build() {
         return new Person(name, phone, email, nextOfKin, patientType, hospitalWing,
-                floorNumber, wardNumber, medications);
+                floorNumber, wardNumber, medications, pastAppointments, upcomingAppointment);
     }
 
 }
