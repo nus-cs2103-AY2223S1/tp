@@ -3,16 +3,16 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.TaskBuilder;
 
-import java.util.List;
-
 public class AssignedToContactsPredicateTest {
     @Test
     public void equals() {
-        List<Contact> firstPredicateContact = List.of(new Contact( "first"));
+        List<Contact> firstPredicateContact = List.of(new Contact("first"));
         List<Contact> secondPredicateContact = List.of(new Contact("second"));
 
         AssignedToContactsPredicate firstPredicate = new AssignedToContactsPredicate(firstPredicateContact);
@@ -37,7 +37,7 @@ public class AssignedToContactsPredicateTest {
 
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
-        List<Contact> singleContact = List.of(new Contact( "Thiago Alcantara"));
+        List<Contact> singleContact = List.of(new Contact("Thiago Alcantara"));
 
         // Matching all
         AssignedToContactsPredicate predicate = new AssignedToContactsPredicate(singleContact);
@@ -54,7 +54,7 @@ public class AssignedToContactsPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        List<Contact> singleContact = List.of(new Contact( "Thiago Alcantara"));
+        List<Contact> singleContact = List.of(new Contact("Thiago Alcantara"));
 
         // Matching None
         AssignedToContactsPredicate predicate = new AssignedToContactsPredicate(singleContact);

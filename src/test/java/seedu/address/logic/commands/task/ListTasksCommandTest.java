@@ -1,14 +1,20 @@
 package seedu.address.logic.commands.task;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.hideAllTasks;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,12 +29,6 @@ import seedu.address.model.task.AssignedToContactsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TitleContainsKeywordPredicate;
 import seedu.address.testutil.TypicalIndexes;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListTasksCommand.
@@ -115,7 +115,8 @@ public class ListTasksCommandTest {
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_PERSON));
 
         Predicate<Task> keywordPredicate = new TitleContainsKeywordPredicate("ass");
-        AssignedToContactsPredicate assignedToContactsPredicate = new AssignedToContactsPredicate(expectedModel, personIndexes);
+        AssignedToContactsPredicate assignedToContactsPredicate =
+                new AssignedToContactsPredicate(expectedModel, personIndexes);
 
         expectedModel.updateFilteredTaskList(keywordPredicate.and(assignedToContactsPredicate));
 
@@ -133,7 +134,7 @@ public class ListTasksCommandTest {
     }
 
     @Test
-    public void execute_keyword_contact_noResults() throws CommandException {
+    public void execute_keywordAndContact_noResults() throws CommandException {
         hideAllTasks(model);
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_PERSON));
         AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, personIndexes);

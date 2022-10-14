@@ -1,11 +1,5 @@
 package seedu.address.model.task;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -13,16 +7,30 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+
 /**
- * Tests that a {@code Task}'s {@code Title} matches any of the keywords given.
+ * Tests that a {@code Task}'s assigned contacts contains a specified set of contacts.
  */
 public class AssignedToContactsPredicate implements Predicate<Task> {
     private final Set<Contact> contacts = new HashSet<>();
 
+    /**
+     * Constructs an AssignedToContactsPredicate.
+     * @param contacts the set of contacts to search for
+     */
     public AssignedToContactsPredicate(Collection<Contact> contacts) {
         this.contacts.addAll(contacts);
     }
-
+    /**
+     * Constructs an AssignedToContactsPredicate.
+     * @param model the model to use when looking for contacts
+     * @param personIndexes the indices which correspond to contacts in the model's address book
+     */
     public AssignedToContactsPredicate(Model model, Set<Index> personIndexes) throws CommandException {
         List<Person> lastShownPersonsList = model.getFilteredPersonList();
 

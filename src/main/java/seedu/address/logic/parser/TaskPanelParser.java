@@ -17,8 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.logic.parser.task.AssignTaskCommandParser;
 import seedu.address.logic.parser.task.DeleteTaskCommandParser;
-import seedu.address.logic.parser.task.MarkTaskCommandParser;
 import seedu.address.logic.parser.task.ListTasksCommandParser;
+import seedu.address.logic.parser.task.MarkTaskCommandParser;
 
 
 /**

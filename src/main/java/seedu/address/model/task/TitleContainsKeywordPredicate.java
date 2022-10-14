@@ -3,13 +3,12 @@ package seedu.address.model.task;
 import java.util.Locale;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Task}'s {@code Title} matches any of the keywords given.
  */
 public class TitleContainsKeywordPredicate implements Predicate<Task> {
     private final String keyword;
+
 
     public TitleContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;

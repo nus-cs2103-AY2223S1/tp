@@ -3,6 +3,12 @@ package seedu.address.logic.commands.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
@@ -11,12 +17,6 @@ import seedu.address.model.Model;
 import seedu.address.model.task.AssignedToContactsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TitleContainsKeywordPredicate;
-
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * Lists all tasks in the task panel to the user that match the specified requirements.
@@ -39,6 +39,11 @@ public class ListTasksCommand extends TaskCommand {
     private final Optional<String> keywordFilter;
     private final Set<Index> personIndexes = new HashSet<>();
 
+    /**
+     * Creates a ListTasksCommand to list the {@code Task}s with the specified filters
+     * @param keywordFilter an optional keyword to filter by the task title
+     * @param personsIndexes a set of indexes to view only tasks assigned to the corresponding contacts
+     */
     public ListTasksCommand(Optional<String> keywordFilter, Set<Index> personsIndexes) {
         requireNonNull(personsIndexes);
         this.keywordFilter = keywordFilter;
