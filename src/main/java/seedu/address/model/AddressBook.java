@@ -218,7 +218,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
                 + tutorials.asUnmodifiableObservableList().size() + " tutorials"
-                + consultations.asUnmodifiableObservableList().size() + " consultations";
+                + consultations.asUnmodifiableObservableList().size() + " consultations"
+                + reminders.asUnmodifiableObservableList().size() + " reminders";
+
         return result;
         // TODO: refine later
     }
