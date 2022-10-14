@@ -1,14 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_RESULTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -16,15 +13,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.person.*;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -60,36 +56,20 @@ public class HidePatientsCommandTest {
         assertFalse(hideFirstCommand.equals(hideSecondCommand));
     }
 
+
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 0, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+    public void execute_multipleKeywords_multiplePersonsHidden() {
+        String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 6, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Benson");
         HidePatientsCommand command = new HidePatientsCommand(predicate);
 
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(Predicate.not(predicate));
         List<Person> validPersons = expectedModel.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
         expectedModel.updateFilteredAppointmentList(appointmentPredicate);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 4, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz Benson");
-        HidePatientsCommand command = new HidePatientsCommand(predicate);
-
-        expectedModel.updateFilteredPersonList(predicate);
-        List<Person> validPersons = expectedModel.getFilteredPersonList();
-        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
-                new AppointmentOfFilteredPersonsPredicate(validPersons);
-        expectedModel.updateFilteredAppointmentList(appointmentPredicate);
-
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BENSON, CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
     /**
@@ -100,11 +80,12 @@ public class HidePatientsCommandTest {
     }
 
     @Test
-    public void execute_filterByTag_success() {
-        String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 3, 1);
-        Predicate<Person> predicate = new TagContainsKeywordsPredicate("friends");
+    public void execute_hideByTag_success() {
+        requireNonNull(model);
+        String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 4, 2);
+        Predicate<Person> predicate = new TagContainsKeywordsPredicate("friends owesMoney");
         HidePatientsCommand command = new HidePatientsCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(Predicate.not(predicate));
         List<Person> validPersons = expectedModel.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =
                 new AppointmentOfFilteredPersonsPredicate(validPersons);

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -52,8 +53,20 @@ public class HidePatientsCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof HidePatientsCommand // instanceof handles nulls
-                && predicate.equals(((HidePatientsCommand) other).predicate)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof HidePatientsCommand)) {
+            return false;
+        }
+
+        HidePatientsCommand otherCommand = (HidePatientsCommand) other;
+        return otherCommand.predicate.equals(this.predicate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(predicate);
     }
 }

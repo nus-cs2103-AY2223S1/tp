@@ -1,16 +1,18 @@
 package seedu.address.model.person;
 
+import seedu.address.model.Model;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Name} is contained inside the current list of hidden persons.
  */
 public class HiddenPersonPredicateSingleton implements Predicate<Person> {
     private static HiddenPersonPredicateSingleton instance = new HiddenPersonPredicateSingleton();
     public static List<Person> hiddenPersons = new ArrayList<>();
-
+    public static Predicate<Person> currentPredicate = Model.PREDICATE_SHOW_ALL_PERSONS;
     private HiddenPersonPredicateSingleton(){}
 
     @Override
@@ -37,10 +39,12 @@ public class HiddenPersonPredicateSingleton implements Predicate<Person> {
     }
 
     public static Predicate<Person> combineWithHiddenPredicate(Predicate<Person> p) {
-        return p.and(Predicate.not(instance));
+        currentPredicate = currentPredicate.and(Predicate.not(p));
+        return currentPredicate;
     }
 
     public static void clearHiddenList() {
         hiddenPersons.clear();
     }
+
 }
