@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color:         #6cd2d2; -fx-border-color:black; " GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" style="-fx-background-color: #ADD3FF; -fx-border-color: black;" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <Button fx:id="priorityTag" focusTraversable="false" mouseTransparent="true" style="-fx-background-color: #D0F4FF; -fx-border-color: black; -fx-border-radius: 5; -fx-text-fill: black; -fx-background-radius: 5;" textFill="black" visible="false" />
+                <padding>
+                    <Insets top="5" left="5" right="15" />
+                </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+                <CheckBox fx:id="isComplete" mnemonicParsing="false" prefHeight="18.0" prefWidth="7.0" />
+                <padding>
+                    <Insets top="15" left="5" right="25" />
+                </padding>
+            </HBox>
             <HBox alignment="CENTER_LEFT" spacing="7">
-                <Label fx:id="id" styleClass="cell_big_label">
+                <Label fx:id="id" style="-fx-text-fill: black;" styleClass="cell_big_label">
                     <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="description" styleClass="cell_big_label" text="\$description" />
-            <CheckBox fx:id="isComplete" mnemonicParsing="false" prefHeight="18.0" prefWidth="7.0" />
+                <Label fx:id="description" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$description" />
             </HBox>
-            <Label fx:id="moduleCode" text="\$modCode" />
+            <Label fx:id="moduleCode" text="\$modCode" style="-fx-text-fill: black;" />
         </VBox>
       <rowConstraints>
          <RowConstraints />
