@@ -19,7 +19,8 @@ public class Deadline {
      */
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    private final LocalDate date;
+    public final String value;
+    public final LocalDate date;
 
     /**
      * Constructs an {@code Deadline}.
@@ -30,6 +31,7 @@ public class Deadline {
         requireNonNull(deadline);
         //TODO Fix isValidDeadline
         //checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+        this.value = deadline;
         date = LocalDate.parse(deadline, DATE_TIME_FORMATTER);
     }
 
