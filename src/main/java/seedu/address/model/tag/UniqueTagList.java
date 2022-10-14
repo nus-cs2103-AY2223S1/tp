@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
@@ -40,15 +42,55 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Returns true if the list contains an equivalent tag with a value containing the given argument as a sequence.
+     */
+    public boolean hasSequenceMatch(String toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(tag -> StringUtil.containsSequenceIgnoreCase(tag.tagName, toCheck));
+    }
+
+    /**
+     * Returns true if the list contains all the tags of the given argument.
+     * @param toCheck List whose elements are being checked.
+     * @return true if check passes, else false.
+     */
+    public boolean containsAll(UniqueTagList toCheck) {
+        requireNonNull(toCheck);
+        return toCheck.toStream().allMatch(this::contains);
+    }
+    /**
+     * Returns true if the list contains any of the tags of the given argument.
+     * @param toCheck List whose elements are being checked.
+     * @return true if check passes, else false.
+     */
+    public boolean containsAny(UniqueTagList toCheck) {
+        requireNonNull(toCheck);
+        return toCheck.toStream().anyMatch(this::contains);
+    }
+    /**
      * Adds a tag to the list.
      * The tag must not already exist in the list.
      */
-    public void add(Tag toAdd) {
+    public void add(Tag toAdd) throws DuplicateTagException {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (this.contains(toAdd)) {
             throw new DuplicateTagException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Adds a tag to the list.
+     * The tag must not already exist in the list.
+     */
+    public void merge(UniqueTagList toAdd) throws DuplicateTagException {
+        requireNonNull(toAdd);
+        if (this.containsAny(toAdd)) {
+            throw new DuplicateTagException();
+        }
+        for (Tag t: toAdd) {
+            this.add(t);
+        }
     }
 
     /**
@@ -57,7 +99,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * The tag name of {@code editedTag} must not be the same as another
      * existing tag in the list.
      */
-    public void setTag(Tag target, Tag editedTag) {
+    public void setTag(Tag target, Tag editedTag) throws TagNotFoundException, DuplicateTagException {
         requireAllNonNull(target, editedTag);
 
         int index = internalList.indexOf(target);
@@ -76,10 +118,25 @@ public class UniqueTagList implements Iterable<Tag> {
      * Removes the equivalent tag from the list.
      * The tag must exist in the list.
      */
-    public void remove(Tag toRemove) {
+    public void remove(Tag toRemove) throws TagNotFoundException {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new TagNotFoundException();
+        }
+    }
+
+    /**
+     * Removes all the tags of the argument list from the list.
+     * @param toRemove List whose tags need to be removed.
+     * @throws TagNotFoundException If any of the tags in the argument list aren't present in the list.
+     */
+    public void removeAll(UniqueTagList toRemove) throws TagNotFoundException {
+        requireNonNull(toRemove);
+        if (!this.containsAll(toRemove)) {
+            throw new TagNotFoundException();
+        }
+        for (Tag t: toRemove) {
+            this.remove(t);
         }
     }
 
@@ -92,7 +149,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * Replaces the contents of this list with {@code tags}.
      * {@code tags} must not contain duplicate tags.
      */
-    public void setTags(List<Tag> tags) {
+    public void setTags(List<Tag> tags) throws DuplicateTagException {
         requireAllNonNull(tags);
         if (!tagsAreUnique(tags)) {
             throw new DuplicateTagException();
@@ -147,5 +204,16 @@ public class UniqueTagList implements Iterable<Tag> {
         return true;
     }
 
-
+    public Stream<Tag> toStream() {
+        return internalList.stream();
+    }
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        internalList.forEach(tag -> builder.append(", " + tag.toString()));
+        if (builder.toString().length() < 2) {
+            return builder.toString();
+        }
+        return builder.substring(2);
+    }
 }

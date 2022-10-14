@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -98,8 +99,11 @@ public class UniquePersonList implements Iterable<Person> {
         if (!personsAreUnique(persons)) {
             throw new DuplicatePersonException();
         }
-
-        internalList.setAll(persons);
+        List<Person> copy = new ArrayList<>();
+        for (Person p: persons) {
+            copy.add(p);
+        }
+        internalList.setAll(copy);
     }
 
     /**

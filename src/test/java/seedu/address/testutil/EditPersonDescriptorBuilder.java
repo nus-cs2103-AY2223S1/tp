@@ -12,6 +12,7 @@ import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +39,12 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        //        descriptor.setTags(person.getTags());
+        //        to be changed.
+        UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+        tagTypeMap.setTagTypeMap(person.getTags());
+        descriptor.setOldTagTypeMap(tagTypeMap);
+        descriptor.setNewTagTypeMap(tagTypeMap);
         descriptor.setStatus(person.getStatus());
         descriptor.setNote(person.getNote());
     }
@@ -81,7 +87,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        //        descriptor.setTags(tagSet);
         return this;
     }
 

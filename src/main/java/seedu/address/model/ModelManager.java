@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.tag.TagType;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -140,6 +144,31 @@ public class ModelManager implements Model {
     @Override
     public int getFilteredNumberOfPersons() {
         return filteredPersons.size();
+    }
+
+    @Override
+    public void deleteTagTypeForAllPerson(TagType toDelete) {
+        List<Person> personList = addressBook.getPersonList();
+        personList.stream().forEach(x -> x.deleteTagType(toDelete));
+        addressBook.setPersons(personList);
+    }
+
+    /**
+     * Edits an existing tag type for all person.
+     */
+    public void editTagTypeForAllPerson(TagType toEdit, TagType editTo) {
+        List<Person> personList = addressBook.getPersonList();
+        List<Person> updatedPersonList = new ArrayList<>();
+        for (Person p: personList) {
+            UniqueTagTypeMap tagTypeMap = new UniqueTagTypeMap();
+            if (p.getTags().keySet().contains(toEdit)) {
+                tagTypeMap.setTagTypeMap(p.getTags());
+                tagTypeMap.setTagType(toEdit, editTo);
+                p.setTagTypeMap(tagTypeMap);
+            }
+            updatedPersonList.add(p);
+        }
+        addressBook.setPersons(updatedPersonList);
     }
 
     @Override

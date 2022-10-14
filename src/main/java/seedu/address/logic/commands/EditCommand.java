@@ -10,11 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -28,7 +26,12 @@ import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.UniqueTagTypeMap;
+import seedu.address.model.person.exceptions.TagTypeNotFoundException;
+import seedu.address.model.tag.TagType;
+import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -68,7 +71,7 @@ public class EditCommand extends Command {
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPersonDescriptor = editPersonDescriptor;
     }
 
     @Override
@@ -80,30 +83,44 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        try {
+            Person personToEdit = lastShownList.get(index.getZeroBased());
+            Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            model.setPerson(personToEdit, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        } catch (TagTypeNotFoundException | TagNotFoundException | DuplicateTagException e) {
+            throw new CommandException(e.getMessage());
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws TagTypeNotFoundException, TagNotFoundException, DuplicateTagException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Map<TagType, UniqueTagList> personToEditTags = personToEdit.getTags();
+        UniqueTagTypeMap original = new UniqueTagTypeMap();
+        original.setTagTypeMap(personToEditTags);
+        UniqueTagTypeMap toEdit = editPersonDescriptor.getOldTagTypeMap().get();
+        UniqueTagTypeMap editTo = editPersonDescriptor.getNewTagTypeMap().get();
+
+        original.removeTags(toEdit);
+        original.mergeTagTypeMap(editTo);
+        UniqueTagTypeMap updatedTags = original;
         Note updatednote = editPersonDescriptor.getNote().orElse(personToEdit.getNote());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
 
@@ -138,7 +155,8 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private UniqueTagTypeMap oldTagTypeMap = new UniqueTagTypeMap();
+        private UniqueTagTypeMap newTagTypeMap = new UniqueTagTypeMap();
         private Status status;
         private Note note;
 
@@ -153,7 +171,8 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setOldTagTypeMap(toCopy.oldTagTypeMap);
+            setNewTagTypeMap(toCopy.oldTagTypeMap);
             setStatus(toCopy.status);
             setNote(toCopy.note);
         }
@@ -162,7 +181,10 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, note);
+            if (!newTagTypeMap.isEmpty() || !oldTagTypeMap.isEmpty()) {
+                return true;
+            }
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, status, note);
         }
 
         public void setName(Name name) {
@@ -214,11 +236,19 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
+         * Sets {@code oldTagTypeMap} to this object's {@code oldTagTypeMap}.
+         * A defensive copy of {@code oldTagTypeMap} is used internally.
+         */
+        public void setOldTagTypeMap(UniqueTagTypeMap oldTagTypeMap) {
+            this.oldTagTypeMap = oldTagTypeMap;
+        }
+
+        /**
+         * Sets {@code newTagTypeMap} to this object's {@code newTagTypeMap}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setNewTagTypeMap(UniqueTagTypeMap newTagTypeMap) {
+            this.newTagTypeMap = newTagTypeMap;
         }
 
         /**
@@ -226,8 +256,17 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<UniqueTagTypeMap> getOldTagTypeMap() {
+            return (oldTagTypeMap != null) ? Optional.of(oldTagTypeMap) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<UniqueTagTypeMap> getNewTagTypeMap() {
+            return (newTagTypeMap != null) ? Optional.of(newTagTypeMap) : Optional.empty();
         }
 
         @Override
@@ -249,7 +288,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags())
+                    && getOldTagTypeMap().equals(e.getOldTagTypeMap())
+                    && getNewTagTypeMap().equals(e.getNewTagTypeMap())
                     && getStatus().equals(e.getStatus())
                     && getNote().equals(e.getNote());
         }

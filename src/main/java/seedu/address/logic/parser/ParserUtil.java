@@ -1,9 +1,13 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -15,7 +19,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
+import seedu.address.model.person.UniqueTagTypeMap;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.TagType;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -103,13 +110,16 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static UniqueTagList parseTagList(List<String> tags) throws ParseException {
+        requireNonNull(tags);
+        UniqueTagList tagList = new UniqueTagList();
+        for (String t : tags) {
+            if (!Tag.isValidTagName(t.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagList.add(new Tag(t.trim()));
         }
-        return new Tag(trimmedTag);
+        return tagList;
     }
 
     /**
@@ -189,17 +199,83 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static UniqueTagTypeMap parseTags(Map<Prefix, List<String>> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+        final UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
+        Map<TagType, UniqueTagList> tagTypeMap = new HashMap<>();
+        for (Prefix tagName : tags.keySet()) {
+            if (tags.get(tagName).size() != 0) {
+                tagTypeMap.put(UniqueTagTypeMap.getTagType(tagName), parseTagList(tags.get(tagName)));
+            }
         }
-        return tagSet;
+        tagMap.setTagTypeMap(tagTypeMap);
+        return tagMap;
     }
 
     /**
-     * Parses {@code Collection<String> statuss} into a {@code Set<Status>}.
+     * Parses a {@code String prefix} into a {@code Prefix}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code prefix} is invalid.
+     */
+    public static Prefix parsePrefix(String prefix) throws ParseException {
+        requireNonNull(prefix);
+        String trimmedPrefix = prefix.trim();
+        if (!Prefix.isValidPrefixName(trimmedPrefix)) {
+            throw new ParseException(Prefix.MESSAGE_CONSTRAINTS);
+        }
+        return new Prefix(trimmedPrefix + "/");
+    }
+
+    /**
+     * Parses a {@code String tagType} into a {@code TagType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagType} is invalid.
+     */
+    public static TagType parseTagType(String tagType, String prefix) throws ParseException {
+        requireAllNonNull(tagType, prefix);
+        String trimmedTagType = tagType.trim();
+        if (!TagType.isValidTagType(trimmedTagType)) {
+            throw new ParseException(TagType.MESSAGE_CONSTRAINTS);
+        }
+        Prefix pref = parsePrefix(prefix);
+        return new TagType(trimmedTagType, pref);
+    }
+
+    /**
+     * Parses a {@code String tagType} into a {@code TagType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagType} is invalid.
+     */
+    public static TagType parseTagType(String tagType, Prefix prefix) throws ParseException {
+        requireNonNull(tagType);
+        String trimmedTagType = tagType.trim();
+        if (!TagType.isValidTagType(trimmedTagType)) {
+            throw new ParseException(TagType.MESSAGE_CONSTRAINTS);
+        }
+        return new TagType(trimmedTagType, prefix);
+    }
+
+    /**
+     * Splits a hyphen.
+     * @param oldNew Hyphenated String.
+     * @return Array of Strings consisting of strings preceding and following the hyphen.
+     * @throws ParseException If argument format incorrect.
+     */
+    public static String[] parseHyphen(String oldNew) throws ParseException {
+        String[] oldNewPair = oldNew.split("-", 2);
+        if (oldNewPair.length != 2) {
+            throw new ParseException("Old and new tag types and tag prefixes must be separated by a hyphen!");
+        }
+        oldNewPair[0] = oldNewPair[0].trim();
+        oldNewPair[1] = oldNewPair[1].trim();
+        return oldNewPair;
+    }
+
+    /**
+     * Parses {@code Collection<String> statuses} into a {@code Set<Status>}.
      */
     public static Set<Status> parseStatuses(Collection<String> statuses) throws ParseException {
         requireNonNull(statuses);
@@ -208,6 +284,18 @@ public class ParserUtil {
             statusSet.add(parseStatus(statusName));
         }
         return statusSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> notes} into a {@code Set<Note>}.
+     */
+    public static Set<Note> parseNotes(Collection<String> notes) throws ParseException {
+        requireNonNull(notes);
+        final Set<Note> noteSet = new HashSet<>();
+        for (String noteName : notes) {
+            noteSet.add(parseNote(noteName));
+        }
+        return noteSet;
     }
 
 }
