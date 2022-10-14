@@ -9,7 +9,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
 
 
@@ -104,11 +112,16 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
-        if (!GithubUsername.isValidUsername(getUsername())) {
-            throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
-        }
+        final GithubUsername modelUsername;
 
-        final GithubUsername modelUsername = new GithubUsername(getUsername(), true);
+        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
+            modelUsername = new GithubUsername(getUsername(), false);
+        } else {
+            if (!GithubUsername.isValidUsername(getUsername())) {
+                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+            }
+            modelUsername = new GithubUsername(getUsername(), true);
+        }
 
         return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
             modelTags, modelLocation, modelUsername);

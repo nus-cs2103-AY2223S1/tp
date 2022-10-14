@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -38,7 +39,8 @@ public class TaCommand extends Command {
         + PREFIX_GENDER + "F "
         + PREFIX_TAG + "friends "
         + PREFIX_TAG + "owesMoney "
-        + PREFIX_LOCATION + "COM1-0203";
+        + PREFIX_LOCATION + "COM1-0203 "
+        + PREFIX_GITHUBUSERNAME + "alicyD";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Teaching Assistant already exists in the address book";
 

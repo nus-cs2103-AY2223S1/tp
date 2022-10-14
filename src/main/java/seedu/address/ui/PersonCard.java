@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Person;
 
@@ -44,7 +46,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label locationAt;
     @FXML
-    public Label githubUsername;
+    private Label githubUsername;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,7 +69,7 @@ public class PersonCard extends UiPart<Region> {
     private void setUsername() {
         String username = person.getUsername().value;
         if (!username.equals(GithubUsername.DEFAULT_USERNAME)) {
-            githubUsername.setText("@"+person.getUsername().value);
+            githubUsername.setText("@" + person.getUsername().value);
         } else {
             githubUsername.setMaxHeight(0.0);
             githubUsername.setMinHeight(0.0);

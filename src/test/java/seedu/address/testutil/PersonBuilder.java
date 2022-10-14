@@ -45,7 +45,7 @@ public abstract class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
         location = new Location(DEFAULT_LOCATION);
-        githubUsername = new GithubUsername(DEFAULT_USERNAME);
+        githubUsername = new GithubUsername(DEFAULT_USERNAME, true);
     }
 
     /**
@@ -113,7 +113,7 @@ public abstract class PersonBuilder {
      * Sets the {@code GithubUsername} of the {@code Person} that we are building.
      */
     public PersonBuilder withGithubUsername(String username) {
-        this.githubUsername = new GithubUsername(username);
+        this.githubUsername = new GithubUsername(username, true);
         return this;
     }
 

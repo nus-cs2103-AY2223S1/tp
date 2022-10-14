@@ -2,18 +2,18 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Person;
-
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
 
 /**
  * Opens Github User profile page on browser.
@@ -50,7 +50,7 @@ public class GithubCommand extends Command {
             throw new CommandException(MESSAGE_NO_GITHUB_ERROR);
         }
         try {
-            URI uri= new URI("https://github.com/" + username);
+            URI uri = new URI("https://github.com/" + username);
             Desktop.getDesktop().browse(uri);
         } catch (URISyntaxException | IOException e) {
             throw new CommandException("There is something wrong with URL syntax");

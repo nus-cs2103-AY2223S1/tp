@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -33,8 +34,9 @@ public class StudentCommand extends Command {
             + PREFIX_EMAIL + "JohnD@example.com "
             + PREFIX_GENDER + "M "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_LOCATION + "UTown Residences";
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_LOCATION + "UTown Residences "
+            + PREFIX_GITHUBUSERNAME + "johnnyd";
 
     public static final String MESSAGE_SUCCESS = "New Student added: %1$s";
 

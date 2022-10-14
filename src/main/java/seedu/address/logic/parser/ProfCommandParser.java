@@ -53,21 +53,11 @@ public class ProfCommandParser implements Parser<ProfCommand> {
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(DEFAULT_LOC_STRING));
-        GithubUsername username = getGithubUsername(argMultimap);
+        GithubUsername username = GithubUsername.getGithubUsername(argMultimap);
 
         Person person = new Professor(name, moduleCode, phone, email, gender, tagList, location, username);
 
         return new ProfCommand(person);
-    }
-
-    private static GithubUsername getGithubUsername(ArgumentMultimap argMultimap) throws ParseException {
-        GithubUsername username;
-        if (argMultimap.getValue(PREFIX_GITHUBUSERNAME).isEmpty()) {
-            username = new GithubUsername("", false);
-        } else {
-            username = ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_GITHUBUSERNAME).get());
-        }
-        return username;
     }
 
     /**

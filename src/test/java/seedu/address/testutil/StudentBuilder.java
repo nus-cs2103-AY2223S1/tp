@@ -22,8 +22,10 @@ public class StudentBuilder extends PersonBuilder {
         super(personToCopy);
     }
 
+    @Override
     public Student build() {
-        return new Student(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation());
+        return new Student(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
+                getGithubUsername());
     }
 
 }

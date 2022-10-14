@@ -110,11 +110,16 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
-        if (!GithubUsername.isValidUsername(getUsername())) {
-            throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
-        }
+        final GithubUsername modelUsername;
 
-        final GithubUsername modelUsername = new GithubUsername(getUsername(), true);
+        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
+            modelUsername = new GithubUsername(getUsername(), false);
+        } else {
+            if (!GithubUsername.isValidUsername(getUsername())) {
+                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+            }
+            modelUsername = new GithubUsername(getUsername(), true);
+        }
 
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
             modelLocation, modelUsername);

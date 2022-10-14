@@ -2,6 +2,11 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
+
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Person's location in the address book.
@@ -9,11 +14,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GithubUsername {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github username may only contain alphanumeric characters " +
-            "or hyphens.\n" +
-            "Github username cannot have multiple consecutive hyphens.\n" +
-            "Github username cannot begin or end with a hyphen.\n" +
-            "Maximum is 39 characters.";
+    public static final String MESSAGE_CONSTRAINTS = "Github username must follow the following rules: \n"
+            + "Github username cannot have multiple consecutive hyphens.\n"
+            + "Github username cannot begin or end with a hyphen.\n"
+            + "Maximum is 39 characters.";
 
     public static final String DEFAULT_USERNAME = "";
 
@@ -48,6 +52,20 @@ public class GithubUsername {
      */
     public static boolean isValidUsername(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static GithubUsername getGithubUsername(ArgumentMultimap argMultimap) throws ParseException {
+        GithubUsername username;
+        if (argMultimap.getValue(PREFIX_GITHUBUSERNAME).isEmpty()) {
+            username = new GithubUsername("", false);
+        } else {
+            username = ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_GITHUBUSERNAME).get());
+        }
+        return username;
     }
 
     @Override

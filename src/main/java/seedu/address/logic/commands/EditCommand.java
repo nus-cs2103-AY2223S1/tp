@@ -117,7 +117,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation,
+                updatedUsername);
     }
 
     /**
