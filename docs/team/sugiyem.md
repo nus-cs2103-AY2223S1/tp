@@ -23,13 +23,14 @@ Given below are my contributions to the project.
   * To be added soon
 
 * **Enhancements to existing features**:
-  * To be added soon
+  * Enabled multiple deletion in one `delete` command
+  * Updated `delete` command so that it can edit new parameters
 
 * **Documentation**:
   * User Guide:
-    * Added documentations for the features `delete`
+    * Added documentations for the features `delete` and `edit`
   * Developer Guide:
-    * To be added soon
+    * Added documentations for the features `delete` and `edit`
 
 * **Community**:
   * To be added soon

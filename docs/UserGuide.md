@@ -164,9 +164,17 @@ Examples:
 `2. Shopee Labs`
 * `view Shopee 1` returns `Shopee, CEO, 29/02/23, offer, NA`
 
-### Editing internships `[coming in v1.2b]` `edit`
+### Editing internship : `edit`
 Edit details of an internship
 
+Format: `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...`
+
+* Edit the details of internship at the specified `INDEX`.
+* Similar to `delete`, the index here refers to the index number shown in the displayed internship list.
+
+Examples:
+* `list` followed by `edit 2 p/quant researcher d/01-01-2023` will edit the position and assignment date of the 1st internship in the list to quant researcher and 1 January 2023 respectively.
+* `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
 
 ### Clearing all entries : `clear`
@@ -215,7 +223,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
 **List** | list [c/CATEGORY] [REVERSE] <br> e.g, `list c/website true`
 **Help** | `help`
