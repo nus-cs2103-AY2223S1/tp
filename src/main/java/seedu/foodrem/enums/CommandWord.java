@@ -20,6 +20,7 @@ public enum CommandWord {
     DECREMENT_COMMAND("dec"),
     SORT_COMMAND("sort"),
     DELETE_COMMAND("del"),
+    VIEW_COMMAND("view"),
 
     // TAG COMMANDS
     NEW_TAG_COMMAND("newtag"),
@@ -41,15 +42,6 @@ public enum CommandWord {
      */
     CommandWord(String commandWord) {
         value = commandWord;
-    }
-
-    /**
-     * Returns the string value of a CommandWord.
-     *
-     * @return the string representation of a CommandWord.
-     */
-    public String getValue() {
-        return value;
     }
 
     /**
@@ -79,5 +71,14 @@ public enum CommandWord {
             stringJoiner.add(commandWord.getValue());
         }
         return stringJoiner.toString();
+    }
+
+    /**
+     * Returns the string value of a CommandWord.
+     *
+     * @return the string representation of a CommandWord.
+     */
+    public String getValue() {
+        return value;
     }
 }
