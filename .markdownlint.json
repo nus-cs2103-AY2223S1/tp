@@ -10,13 +10,14 @@
     "style": "one"
   },
   "MD033": { // Inline HTML
-    "allowed_elements": ["sub", "sup"]
+    "allowed_elements": ["sub", "sup", "br"]
   },
   "MD035": { // Horizontal rule style
     "style": "---"
   },
   "MD044": { // Proper names should have the correct capitalization
-    "names": ["FoodRem"]
+    "names": ["FoodRem", "User Guide", "Developer Guide"],
+    "code_blocks": false
   },
   "MD046": { // Code block style
     "style": "fenced"
