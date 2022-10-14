@@ -60,7 +60,6 @@ public class ModuleCard extends UiPart<Region> {
             .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
     }
-
     private Pill createSemesterPill(int semesterNum) {
         return new Pill(String.format("Semester %s", semesterNum), SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
             SEMESTER_FONT_SIZE);

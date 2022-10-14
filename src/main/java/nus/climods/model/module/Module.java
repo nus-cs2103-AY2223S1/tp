@@ -68,7 +68,7 @@ public class Module {
     public List<Integer> getSemesters() {
         List<ModuleInformationSemesterDataInner> apiSemesterData = apiModuleInfo.getSemesterData();
         return apiSemesterData.stream().map(ModuleInformationSemesterDataInner::getSemester).filter(Objects::nonNull)
-            .map(BigDecimal::intValue).collect(Collectors.toList());
+                .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 
     /**
@@ -86,3 +86,4 @@ public class Module {
         return searchRange.stream().anyMatch(range -> keywordPattern.asPredicate().test(range));
     }
 }
+

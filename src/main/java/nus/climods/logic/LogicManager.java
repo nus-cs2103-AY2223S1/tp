@@ -1,9 +1,7 @@
 package nus.climods.logic;
 
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
@@ -14,6 +12,8 @@ import nus.climods.logic.parser.CliModsParser;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.model.Model;
 import nus.climods.model.module.Module;
+import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UserModule;
 import nus.climods.storage.Storage;
 
 /**
@@ -47,14 +47,20 @@ public class LogicManager implements Logic {
     }
 
     @Override
+
+    public ReadOnlyModuleList getModuleList() {
+        return model.getModuleList();
+    }
+
+    @Override
     public ObservableList<Module> getFilteredModuleList() {
         return model.getFilteredModuleList();
     }
 
     @Override
-    public ObservableList<Module> getFilteredUserModuleList() {
+    public ObservableList<UserModule> getFilteredUserModuleList() {
         // TODO Add implementation for user module list
-        return FXCollections.observableList(new ArrayList<>());
+        return model.getFilteredUserModuleList();
     }
 
     @Override

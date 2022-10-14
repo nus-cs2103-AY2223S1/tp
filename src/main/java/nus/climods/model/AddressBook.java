@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.model.module.UserModule;
 import nus.climods.model.person.Person;
 import nus.climods.model.person.UniquePersonList;
+
 
 /**
  * Wraps all data at the address-book level Duplicates are not allowed (by .isSamePerson comparison)
@@ -14,6 +17,7 @@ import nus.climods.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueUserModuleList modules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        modules = new UniqueUserModuleList();
     }
 
     public AddressBook() {
@@ -94,25 +99,68 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// util methods
 
     @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+
+    //-------------------------UserModule --------------------------------------------------------
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     */
+    public boolean hasUserModule(UserModule module) {
+        requireNonNull(module);
+        return modules.contains(module);
+    }
+
+    /**
+     * Adds a module to the address book. The module must not already exist in the address book.
+     */
+    public void addUserModule(UserModule p) {
+        modules.add(p);
+    }
+
+    /**
+     * Replaces the given module {@code target} in the list with {@code editedUserModule}. {@code target} must exist
+     * in the address book. The module identity of {@code editedUserModule} must not be the same as another existing
+     * module in the address book.
+     */
+    public void setUserModule(UserModule target, UserModule editedUserModule) {
+        requireNonNull(editedUserModule);
+
+        modules.setUserModule(target, editedUserModule);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in the address book.
+     */
+    public void removeUserModule(UserModule key) {
+        modules.remove(key);
+    }
+
+    //// util methods
+
+    @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return modules.asUnmodifiableObservableList().size() + " modules";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<UserModule> getUserModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddressBook // instanceof handles nulls
-            && persons.equals(((AddressBook) other).persons));
+            && modules.equals(((AddressBook) other).modules));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return modules.hashCode();
     }
+
 }

@@ -32,6 +32,6 @@ class JsonSerializableModuleList {
      */
     public ModuleList toModelType() throws IllegalValueException {
         return new ModuleList(modules.stream().map(nus.climods.model.module.Module::new).collect(
-            Collectors.toList()));
+                Collectors.toList()));
     }
 }
