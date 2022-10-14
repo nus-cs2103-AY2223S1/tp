@@ -22,8 +22,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
+import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 
