@@ -14,6 +14,7 @@ import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ public class EditPersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
+    private IncomeLevel income;
     private Set<Tag> tags;
     private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
@@ -42,6 +44,7 @@ public class EditPersonDescriptor {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
+        setIncome(toCopy.income);
         setTags(toCopy.tags);
         setAppointments(toCopy.appointments);
     }
@@ -96,6 +99,12 @@ public class EditPersonDescriptor {
     public Optional<Address> getAddress() {
         return Optional.ofNullable(address);
     }
+    public void setIncome(IncomeLevel income) {
+        this.income = income;
+    }
+    private Optional<IncomeLevel> getIncome() {
+        return Optional.ofNullable(income);
+    }
 
     /**
      * Sets {@code tags} to this object's {@code tags}.
@@ -125,10 +134,12 @@ public class EditPersonDescriptor {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel, updatedTags);
     }
+
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
@@ -158,7 +169,8 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags, updatedAppointments);
+        IncomeLevel income = personToEdit.getIncome();
+        Person newPerson = new Person(name, phone, email, address, income, tags, updatedAppointments);
         return newPerson;
     }
 
@@ -175,8 +187,9 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
+        IncomeLevel income = personToEdit.getIncome();
         MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, tags, newAppointmentsOnly);
+        Person newPerson = new Person(name, phone, email, address, income, tags, newAppointmentsOnly);
 
         return newPerson;
     }

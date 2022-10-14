@@ -56,6 +56,14 @@
                   </image>
                </ImageView>
             </graphic></Label>
+        <Label fx:id="income" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+            <graphic>
+                <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/dollar.png" />
+                    </image>
+                </ImageView>
+            </graphic></Label>
     </VBox>
       <VBox minHeight="105.0" GridPane.columnIndex="1">
          <children>
