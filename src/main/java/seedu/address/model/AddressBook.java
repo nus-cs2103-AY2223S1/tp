@@ -146,8 +146,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.asUnmodifiableObservableList();
     }
 
+    /**
+     * Adds a task to the address book.
+     * The task must not already exist in the address book.
+     */
     public void addTask(Task task) {
         tasks.addTask(task);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTask(Task key) {
+        tasks.remove(key);
     }
 
     /**

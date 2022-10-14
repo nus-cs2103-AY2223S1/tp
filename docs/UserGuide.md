@@ -172,8 +172,9 @@ Format: `listT`
 ### Adding Tasks: `addT`
 
 Adds a task to the task list. 
-The deadline of the task is allowed to be empty. Newly added tasks are marked as not done. 
-Throws an exception if the description of the task is empty. 
+The description and deadline of the task are not allowed to be empty. Newly added tasks are marked as not done. 
+Throws an exception if the description of the task is empty.
+Throws an exception if the deadline of the task is empty.
 Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
 
 Format: `addT d/DESCRIPTION D/DEADLINE`
@@ -186,11 +187,11 @@ Example:
 
 Removes the specified task from the task list. Throws an exception if task does not exist.
 
-Format: `deleteT i/INDEX`
+Format: `deleteT INDEX`
 
 Example:
 
-* `deleteT i/12` will delete the 12th task in the task list.
+* `deleteT 12` will delete the 12th task in the task list.
 
 ### Marking task as done: `markT`
 
