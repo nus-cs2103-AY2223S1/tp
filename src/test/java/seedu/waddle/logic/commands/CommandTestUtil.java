@@ -2,7 +2,15 @@ package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+<<<<<<< HEAD
 import static seedu.waddle.logic.parser.CliSyntax.*;
+=======
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
+>>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
 import static seedu.waddle.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -11,13 +19,15 @@ import java.util.List;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.exceptions.CommandException;
-import seedu.waddle.model.AddressBook;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.Waddle;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.NameContainsKeywordsPredicate;
+<<<<<<< HEAD
 import seedu.waddle.model.person.NameContainsKeywordsPredicate;
 import seedu.waddle.model.person.Person;
+=======
+>>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
 /**
@@ -25,6 +35,7 @@ import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+<<<<<<< HEAD
     public static final String VALID_NAME_SUMMER = "Summer";
     public static final String VALID_NAME_WINTER = "Winter";
     public static final String VALID_COUNTRY_SUMMER = "Afghanistan";
@@ -38,6 +49,21 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_COUNTRY_SUMMER;
     public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_COUNTRY_WINTER;
+=======
+    public static final String VALID_NAME_SUMMER = "Summer Trip";
+    public static final String VALID_NAME_WINTER = "Winter Trip";
+    public static final String VALID_COUNTRY_SUMMER = "Sweden";
+    public static final String VALID_COUNTRY_WINTER = "Japan";
+    public static final String VALID_START_DATE_SUMMER = "2022-08-01";
+    public static final String VALID_START_DATE_WINTER = "2023-01-01";
+    public static final String VALID_END_DATE_SUMMER = "2022-08-26";
+    public static final String VALID_END_DATE_WINTER = "2023-01-31";
+    public static final String VALID_PEOPLE_SUMMER = "5";
+    public static final String VALID_PEOPLE_WINTER = "10";
+
+    public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
+    public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;
+>>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
     public static final String COUNTRY_DESC_SUMMER = " " + PREFIX_COUNTRY + VALID_COUNTRY_SUMMER;
     public static final String COUNTRY_DESC_WINTER = " " + PREFIX_COUNTRY + VALID_COUNTRY_WINTER;
     public static final String START_DATE_DESC_SUMMER = " " + PREFIX_START_DATE + VALID_START_DATE_SUMMER;
@@ -51,7 +77,7 @@ public class CommandTestUtil {
     // public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "911a"; // 'a' not allowed in phones
     public static final String INVALID_START_DATE= " " + PREFIX_START_DATE + "Jan 01"; // wrong format
     public static final String INVALID_END_DATE = " " + PREFIX_END_DATE; // empty string not allowed for dates
-    public static final String INVALID_PEOPLE = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for poeple
+    public static final String INVALID_PEOPLE = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -1,6 +1,5 @@
 package seedu.waddle.testutil;
 
-
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Itinerary;
@@ -11,7 +10,6 @@ import seedu.waddle.model.itinerary.People;
  * A utility class to help with building Itinerary objects.
  */
 public class ItineraryBuilder {
-
     public static final String DEFAULT_NAME = "Summer";
     public static final String DEFAULT_COUNTRY = "FRANCE";
     public static final String DEFAULT_START_DATE = "2022-10-14";
@@ -55,7 +53,7 @@ public class ItineraryBuilder {
     }
 
     /**
-     * Sets the {@code Country } of the {@code Itinerary} that we are building.
+     * Sets the {@code Country} of the {@code Itinerary} that we are building.
      */
     public ItineraryBuilder withCountry(String country) {
         this.country = new Country(country);
@@ -63,7 +61,7 @@ public class ItineraryBuilder {
     }
 
     /**
-     * Sets the {@code StartDate} of the {@code Itinerary} that we are building.
+     * Sets the {@code Start Date} of the {@code Itinerary} that we are building.
      */
     public ItineraryBuilder withStartDate(String startDate) {
         this.startDate = new Date(startDate);
@@ -71,7 +69,7 @@ public class ItineraryBuilder {
     }
 
     /**
-     * Sets the {@code EndDate} of the {@code Itinerary} that we are building.
+     * Sets the {@code End Date} of the {@code Itinerary} that we are building.
      */
     public ItineraryBuilder withEndDate(String endDate) {
         this.endDate = new Date(endDate);

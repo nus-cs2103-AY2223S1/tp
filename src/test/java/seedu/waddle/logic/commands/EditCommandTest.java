@@ -31,7 +31,6 @@ public class EditCommandTest {
         Itinerary editedItinerary = new ItineraryBuilder().build();
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(editedItinerary).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITINERARY, descriptor);
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
         Model expectedModel = new ModelManager(new Waddle(model.getWaddle()), new UserPrefs());
@@ -52,7 +51,6 @@ public class EditCommandTest {
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER)
                 .withCountry(COUNTRY_DESC_WINTER).withPeople(VALID_PEOPLE_SUMMER).build();
         EditCommand editCommand = new EditCommand(indexLastItinerary, descriptor);
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
         Model expectedModel = new ModelManager(new Waddle(model.getWaddle()), new UserPrefs());
@@ -81,7 +79,6 @@ public class EditCommandTest {
         Itinerary editedItinerary = new ItineraryBuilder(itineraryInFilteredList).withName(VALID_NAME_WINTER).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITINERARY,
                 new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER).build());
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
         Model expectedModel = new ModelManager(new Waddle(model.getWaddle()), new UserPrefs());
@@ -95,7 +92,6 @@ public class EditCommandTest {
         Itinerary firstItinerary = model.getFilteredItineraryList().get(INDEX_FIRST_ITINERARY.getZeroBased());
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(firstItinerary).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITINERARY, descriptor);
-
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ITINERARY);
     }
 
@@ -133,7 +129,6 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER).build());
-
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
     }
 

@@ -1,18 +1,14 @@
 package seedu.waddle.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import seedu.waddle.logic.commands.EditCommand;
 import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.Name;
+import seedu.waddle.model.itinerary.People;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditItineraryDescriptor objects.
  */
 public class EditItineraryDescriptorBuilder {
 
@@ -27,7 +23,7 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditItineraryDescriptor} with fields containing an {@code itinerary}'s details
      */
     public EditItineraryDescriptorBuilder(Itinerary itinerary) {
         descriptor = new EditItineraryDescriptor();
@@ -39,7 +35,7 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditItineraryDescriptor} that we are building.
      */
     public EditItineraryDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -47,7 +43,7 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Country} of the {@code EditItineraryDescriptor} that we are building.
      */
     public EditItineraryDescriptorBuilder withCountry(String country) {
         descriptor.setCountry(new Country(country));
@@ -55,7 +51,7 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Start Date} of the {@code EditItineraryDescriptor} that we are building.
      */
     public EditItineraryDescriptorBuilder withStartDate(String startDate) {
         descriptor.setStartDate(new Date(startDate));
@@ -63,7 +59,7 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code End Date} of the {@code EditItineraryDescriptor} that we are building.
      */
     public EditItineraryDescriptorBuilder withEndDate(String endDate) {
         descriptor.setEndDate(new Date(endDate));
@@ -71,11 +67,10 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
+     * Sets the {@code People} of the {@code EditItineraryDescriptor} that we are building.
      */
     public EditItineraryDescriptorBuilder withPeople(String people) {
-        descriptor.setPeople(people);
+        descriptor.setPeople(new People(people));
         return this;
     }
 
