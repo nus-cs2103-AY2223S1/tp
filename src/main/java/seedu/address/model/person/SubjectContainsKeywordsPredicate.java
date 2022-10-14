@@ -16,12 +16,13 @@ public class SubjectContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> arrayListContainsWord(person.getSubject().getArrayOfSubjects(), keyword));
+        // return keywords.stream()
+        // .anyMatch(keyword -> arrayListContainsWord(person.getSubjectsTaken().getArrayOfSubjects(), keyword));
+        return true;
     }
 
     private boolean arrayListContainsWord(ArrayList<String> arrayList, String keyword) {
-        for (String string: arrayList) {
+        for (String string : arrayList) {
             if (string.equals(keyword)) {
                 return true;
             }
@@ -32,8 +33,8 @@ public class SubjectContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof SubjectContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((SubjectContainsKeywordsPredicate) other).keywords)); // state check
+               || (other instanceof SubjectContainsKeywordsPredicate // instanceof handles nulls
+                   && keywords.equals(((SubjectContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

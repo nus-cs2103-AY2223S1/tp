@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Represents a class in the school. Renamed to Clazz as the word "class" is a reserve word
  */
-public class Clazz {
+public class StudentClass {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class should only contain numbers and decimal, and it should not be blank";
@@ -25,7 +25,7 @@ public class Clazz {
      *
      * @param clazz A valid clazz.
      */
-    public Clazz(String clazz) {
+    public StudentClass(String clazz) {
         requireNonNull(clazz);
         personsInClass = new ArrayList<>();
         className = clazz;
@@ -37,7 +37,7 @@ public class Clazz {
 
     @Override
     public String toString() {
-        return "Class: " + className;
+        return className;
     }
 
     public static boolean isValidClazz(String test) {
@@ -46,8 +46,8 @@ public class Clazz {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Clazz // instanceof handles nulls
-                && className.equals(((Clazz) other).className)); // state check
+                || (other instanceof StudentClass // instanceof handles nulls
+                && className.equals(((StudentClass) other).className)); // state check
     }
 
     @Override
