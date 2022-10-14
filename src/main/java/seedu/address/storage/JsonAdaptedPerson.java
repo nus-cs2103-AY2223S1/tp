@@ -78,7 +78,7 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             for (Tag realTag : addressBookTagList) {
-                if (realTag.isSameTag(tag.toModelType())) {
+                if (realTag.equals(tag.toModelType())) {
                     // Add the unique tag object reference in AddressBook's uniqueTagList to this Person's tags
                     personTags.add(realTag);
                 }

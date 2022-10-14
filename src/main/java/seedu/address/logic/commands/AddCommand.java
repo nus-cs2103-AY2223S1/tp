@@ -8,14 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * Adds a person to the address book.
@@ -61,34 +56,11 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        // Tag linking
-
-        Set<Tag> toAddTagSet = new HashSet<>();
-        ObservableList<Tag> addressBookTagList = model.getTagList();
-        Set<Tag> referenceTagSet = toAdd.getTags();
-        Set<Tag> tagSet = new HashSet<>(toAdd.getTags());
-
-        for (Tag currentTag : addressBookTagList) {
-            for (Tag toAddTag : referenceTagSet) {
-                if (currentTag.isSameTag(toAddTag)) {
-                    toAddTagSet.add(currentTag);
-                    tagSet.remove(toAddTag);
-                }
-            }
-        }
-
-        toAddTagSet.addAll(tagSet);
-
         Person newToAddPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
-                toAdd.getAddress(), toAddTagSet, toAdd.getLoan());
+                toAdd.getAddress(), toAdd.getTags(), toAdd.getLoan());
 
-        // Add person reference to tags and add tags to address book's unique tag list.
-        for (Tag tag : toAddTagSet) {
-            tag.addPerson(newToAddPerson);
-            model.addTag(tag);
-        }
-
-        // Tag linking finished
+        // Add person reference to tags
+        toAdd.getTags().forEach(tag -> tag.addPerson(newToAddPerson));
 
         model.addPerson(newToAddPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newToAddPerson));

@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
-import java.util.List;
+import java.util.Map;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
@@ -20,18 +20,29 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  *
  * Supports a minimal set of list operations.
  */
-public class UniqueTagList implements Iterable<Tag> {
+public class UniqueTagMapping implements Iterable<Tag> {
 
-    private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Tag> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableMap<String, Tag> internalMap = FXCollections.observableHashMap();
+    private final ObservableMap<String, Tag> internalUnmodifiableMap =
+            FXCollections.unmodifiableObservableMap(internalMap);
+
 
     /**
      * Returns true if the list contains an equivalent tag as the given argument.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTag);
+        return internalMap.values().stream().anyMatch(toCheck::equals);
+    }
+
+    /**
+     * Returns true if the map contains the given tagName
+     * @param tagName the name of the tag to check against
+     * @return
+     */
+    public boolean contains(String tagName) {
+        requireNonNull(tagName);
+        return internalMap.containsKey(tagName);
     }
 
     /**
@@ -39,8 +50,8 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
-        if (!contains(toAdd)) {
-            internalList.add(toAdd);
+        if (!contains(toAdd.tagName)) {
+            internalMap.put(toAdd.tagName, toAdd);
         }
     }
 
@@ -50,64 +61,68 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!internalMap.containsKey(toRemove.tagName)) {
             throw new TagNotFoundException();
         }
+        internalMap.remove(toRemove.tagName);
     }
 
-    public void setTags(UniqueTagList replacement) {
+    public void setTags(UniqueTagMapping replacement) {
         requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        internalMap.clear();
+        internalMap.putAll(replacement.internalMap);
     }
 
     /**
      * Replaces the contents of this list with {@code tags}.
      * {@code tags} must not contain duplicate persons.
      */
-    public void setTags(List<Tag> tags) {
+    public void setTags(Map<String, Tag> tags) {
         requireAllNonNull(tags);
+
         if (!tagsAreUnique(tags)) {
             throw new DuplicateTagException();
         }
-
-        internalList.setAll(tags);
+        internalMap.clear();
+        internalMap.putAll(tags);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Tag> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+    public ObservableMap<String, Tag> asUnmodifiableObservableMap() {
+        return internalUnmodifiableMap;
     }
 
     @Override
     public Iterator<Tag> iterator() {
-        return internalList.iterator();
+        return internalMap.values().iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueTagList // instanceof handles nulls
-                        && internalList.equals(((UniqueTagList) other).internalList));
+                || (other instanceof UniqueTagMapping // instanceof handles nulls
+                        && internalMap.equals(((UniqueTagMapping) other).internalMap));
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return internalMap.hashCode();
     }
 
     /**
      * Returns true if {@code tags} contains only unique tags.
      */
-    private boolean tagsAreUnique(List<Tag> tags) {
-        for (int i = 0; i < tags.size() - 1; i++) {
+    private boolean tagsAreUnique(Map<String, Tag> tags) {
+        /* for (int i = 0; i < tags.size() - 1; i++) {
             for (int j = i + 1; j < tags.size(); j++) {
                 if (tags.get(i).equals(tags.get(j))) {
                     return false;
                 }
             }
         }
-        return true;
+        */
+        return tags.values().stream().distinct().count() == tags.size();
     }
 }

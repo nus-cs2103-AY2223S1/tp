@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -172,7 +173,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Tag> getTagList() {
+        public ObservableMap<String, Tag> getTagMapping() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -224,8 +225,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Tag> getTagList() {
-            return FXCollections.observableArrayList();
+        public ObservableMap<String, Tag> getTagMapping() {
+            return FXCollections.observableHashMap();
         }
 
         @Override
