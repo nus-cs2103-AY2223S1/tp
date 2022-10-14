@@ -73,8 +73,10 @@ class HelpCommandParserTest {
     void parse_text() {
         assertEquals("Please refer to the user guide.",
                 HelpCommand.DEFAULT_HELP_MESSAGE);
+
         assertEquals("https://se-education.org/addressbook-level3/UserGuide.html",
                 HelpCommand.USER_GUIDE_URL);
+
         assertEquals("For more information please head to:\n"
                 + "https://se-education.org/addressbook-level3/UserGuide.html", HelpCommand.MORE_INFORMATION);
 
@@ -119,12 +121,6 @@ class HelpCommandParserTest {
     void getHelp_blankCommands() {
         assertEquals(HelpCommand.DEFAULT_HELP_MESSAGE,
                 getCommandWordFromCommandWordString("").getHelp());
-    }
-
-    @Test
-    void parse_notCommand() {
-        assertParseSuccess(parser, CommandWord.DEFAULT.getValue(),
-                new HelpCommand(String.format(HelpCommand.NOT_A_COMMAND, "default")));
     }
 
     @Test
