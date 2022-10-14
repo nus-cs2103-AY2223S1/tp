@@ -4,15 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Clazz;
+import seedu.address.model.person.subject.Attendance;
+import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Grade;
+import seedu.address.model.person.subject.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -36,10 +36,10 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Clazz clazz;
+    private StudentClass studentClass;
     private Personality personality;
     private Attendance attendance;
-    private Subject subject;
+    private SubjectHandler subjectHandler;
     private Grade grade;
     private Set<Tag> tags;
 
@@ -51,11 +51,9 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        clazz = new Clazz(DEFAULT_CLAZZ);
+        studentClass = new StudentClass(DEFAULT_CLAZZ);
         personality = new Personality(DEFAULT_PERSONALITY);
-        attendance = new Attendance(DEFAULT_ATTENDANCE);
-        subject = new Subject(DEFAULT_SUBJECT);
-        grade = new Grade(DEFAULT_GRADE);
+        subjectHandler = new SubjectHandler();
         tags = new HashSet<>();
     }
 
@@ -67,11 +65,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
-        clazz = personToCopy.getClazz();
+        studentClass = personToCopy.getStudentClass();
         personality = personToCopy.getPersonality();
-        attendance = personToCopy.getAttendance();
-        subject = personToCopy.getSubject();
-        grade = personToCopy.getGrade();
+        subjectHandler = personToCopy.getSubjectHandler();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -118,8 +114,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Clazz} of the {@code Person} that we are building.
      */
-    public PersonBuilder withClazz(String clazz) {
-        this.clazz = new Clazz(clazz);
+    public PersonBuilder withStudentClass(String withClass) {
+        this.studentClass = new StudentClass(withClass);
         return this;
     }
 
@@ -132,35 +128,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Attendance} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAttendance(String attendance) {
-        this.attendance = new Attendance(attendance);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Subject} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withSubject(String subject) {
-        this.subject = new Subject(subject);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Grade} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withGrade(String grade) {
-        this.grade = new Grade(grade);
-        return this;
-    }
-
-    /**
      * Builds a person object given the attributes
      */
     public Person build() {
-        return new Person(name, phone, email, address, clazz, personality, attendance,
-                subject, grade, tags);
+        return new Person(name, phone, email, address, studentClass, personality,
+                subjectHandler, tags);
     }
-
 }

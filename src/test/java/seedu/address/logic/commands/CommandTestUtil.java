@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -38,10 +39,14 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    // New fields
+    public static final String VALID_STUDENTCLASS = "1A";
     public static final String VALID_PERSONALITY_FUN = "fun";
     public static final String VALID_PERSONALITY_LAZY = "lazy";
     public static final String VALID_GRADE_40 = "40%";
     public static final String VALID_GRADE_60 = "60%";
+
 
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -54,8 +59,15 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    // StudentClass examples
+    public static final String STUDENTCLASS_DUMMY = " " + PREFIX_STUDENTCLASS + VALID_STUDENTCLASS;
+
+    // Personality examples
     public static final String PERSONALITY_DESC_FUN = " " + PREFIX_PERSONALITY + VALID_PERSONALITY_FUN;
     public static final String PERSONALITY_DESC_LAZY = " " + PREFIX_PERSONALITY + VALID_PERSONALITY_LAZY;
+
+    // Grade examples
     public static final String GRADE_DESC_40 = " " + PREFIX_GRADE + VALID_GRADE_40;
     public static final String GRADE_DESC_60 = " " + PREFIX_GRADE + VALID_GRADE_60;
 

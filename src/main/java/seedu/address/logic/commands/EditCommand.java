@@ -20,15 +20,16 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Clazz;
+import seedu.address.model.person.subject.Attendance;
+import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Grade;
+import seedu.address.model.person.subject.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Subject;
+import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
@@ -101,15 +102,14 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Clazz updatedClazz = editPersonDescriptor.getClazz().orElse(personToEdit.getClazz());
+        StudentClass updatedStudentClass = editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
         Personality updatedPersonality = editPersonDescriptor.getPersonality().orElse(personToEdit.getPersonality());
-        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
-        Subject updatedSubject = editPersonDescriptor.getSubject().orElse(personToEdit.getSubject());
-        Grade updatedGrade = editPersonDescriptor.getGrade().orElse(personToEdit.getGrade());
+//        SubjectHandler updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubjectsTaken());
+        // Temporary solution to edit subjects
+        SubjectHandler updatedSubjects = new SubjectHandler();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedClazz, updatedPersonality,
-                updatedAttendance, updatedSubject, updatedGrade, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudentClass, updatedPersonality, updatedSubjects, updatedTags);
     }
 
     @Override
@@ -139,10 +139,10 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Clazz clazz;
+        private StudentClass studentClass;
         private Personality personality;
         private Attendance attendance;
-        private Subject subject;
+        private SubjectHandler subjectHandler;
         private Grade grade;
         private Set<Tag> tags;
 
@@ -157,11 +157,9 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setClazz(toCopy.clazz);
+            setStudentClass(toCopy.studentClass);
             setPersonality(toCopy.personality);
-            setAttendance(toCopy.attendance);
-            setSubject(toCopy.subject);
-            setGrade(toCopy.grade);
+            setSubjectHandler(toCopy.subjectHandler);
             setTags(toCopy.tags);
         }
 
@@ -204,12 +202,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setClazz(Clazz clazz) {
-            this.clazz = clazz;
+        public void setStudentClass(StudentClass studentClass) {
+            this.studentClass = studentClass;
         }
 
-        public Optional<Clazz> getClazz() {
-            return Optional.ofNullable(clazz);
+        public Optional<StudentClass> getStudentClass() {
+            return Optional.ofNullable(studentClass);
         }
 
         public void setPersonality(Personality personality) {
@@ -224,16 +222,8 @@ public class EditCommand extends Command {
             this.attendance = attendance;
         }
 
-        public Optional<Attendance> getAttendance() {
-            return Optional.ofNullable(attendance);
-        }
-
-        public void setSubject(Subject subject) {
-            this.subject = subject;
-        }
-
-        public Optional<Subject> getSubject() {
-            return Optional.ofNullable(subject);
+        public void setSubjectHandler(SubjectHandler subjectHandler) {
+            this.subjectHandler = subjectHandler;
         }
 
         public void setGrade(Grade grade) {
