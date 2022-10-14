@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * The main LogicManager of the app.
@@ -131,5 +132,10 @@ public class LogicManager implements Logic {
             List<Commission> commissions = model.getFilteredCommissionList();
             model.selectCommission(commissions.size() > 0 ? commissions.get(0) : null);
         }
+    }
+
+    @Override
+    public GuiTab getSelectedTab() {
+        return model.getSelectedTab();
     }
 }

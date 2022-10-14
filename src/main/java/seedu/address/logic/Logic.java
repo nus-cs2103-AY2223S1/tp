@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
+import seedu.address.ui.GuiTab;
 
 /**
  * API of the Logic component
@@ -73,4 +74,6 @@ public interface Logic {
 
     /** Selects a commission within the existing list */
     void selectValidCommission();
+
+    GuiTab getSelectedTab();
 }

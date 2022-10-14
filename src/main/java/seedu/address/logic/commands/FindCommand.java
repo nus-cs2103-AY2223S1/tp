@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.ui.GuiTab;
 
 /**
  * Finds and lists all customers in address book whose name contains any of the argument keywords.
@@ -29,6 +30,7 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredCustomerList(predicate);
+        model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
     }

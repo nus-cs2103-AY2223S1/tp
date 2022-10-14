@@ -26,6 +26,7 @@ import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.ui.GuiTab;
 
 /**
  * Edits the details of an existing customer in the address book.
@@ -106,6 +107,7 @@ public class EditCommand extends Command {
 
         model.setCustomer(customerToEdit, editedCustomer);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer));
     }
 

@@ -206,6 +206,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            int tabIndexToSelect = logic.getSelectedTab().ordinal();
+            if (!tabPane.getSelectionModel().isSelected(tabIndexToSelect)) {
+                tabPane.getSelectionModel().select(tabIndexToSelect);
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
