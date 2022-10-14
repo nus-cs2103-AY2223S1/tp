@@ -7,9 +7,8 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
-import seedu.address.model.person.HiddenPersonPredicate;
+import seedu.address.model.person.HiddenPersonPredicateSingleton;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,7 +36,7 @@ public class HidePatientsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        Predicate<Person> combinedPredicate = predicate.and(Predicate.not(new HiddenPersonPredicate(ModelManager.hiddenPersons)));
+        Predicate<Person> combinedPredicate = HiddenPersonPredicateSingleton.combineWithHiddenPredicate(predicate);
         model.updateFilteredPersonList(combinedPredicate);
         List<Person> validPersons = model.getFilteredPersonList();
         AppointmentOfFilteredPersonsPredicate appointmentPredicate =

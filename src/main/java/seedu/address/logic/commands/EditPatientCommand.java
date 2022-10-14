@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import javafx.beans.Observable;
 import javafx.collections.ObservableList;
@@ -20,12 +21,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.ModelManager;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,7 +90,7 @@ public class EditPatientCommand extends Command {
         }
         model.currentNames.remove(personToEdit.getName());
         model.currentNames.add(editedPerson.getName());
-        model.updateFilteredPersonList(Model.currentPrediate);
+        model.updateFilteredPersonList(HiddenPersonPredicateSingleton.combineWithHiddenPredicate(Model.currentPrediate));
     }
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}

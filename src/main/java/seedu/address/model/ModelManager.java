@@ -22,7 +22,6 @@ import seedu.address.model.tag.Tag;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    public static List<Person> hiddenPersons = new ArrayList<>();
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
