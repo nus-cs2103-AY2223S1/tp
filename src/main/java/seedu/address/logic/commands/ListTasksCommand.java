@@ -13,11 +13,16 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
+    public static final String EMPTY_LIST = "No tasks in list";
+
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        if (model.getFilteredTaskList().size() == 0) {
+            return new CommandResult(EMPTY_LIST);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
