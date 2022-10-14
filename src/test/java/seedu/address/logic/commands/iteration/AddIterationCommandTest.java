@@ -1,32 +1,24 @@
 package seedu.address.logic.commands.iteration;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCustomers.AMY;
 import static seedu.address.testutil.TypicalIterations.ADD_COLOR;
 import static seedu.address.testutil.TypicalIterations.FINALISED;
 import static seedu.address.testutil.TypicalIterations.REMOVE_CHARACTER;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.ObservableObject;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.CommissionStub;
-import seedu.address.model.ModelStub;
-import seedu.address.model.commission.Commission;
-import seedu.address.model.commission.Title;
-import seedu.address.model.iteration.Iteration;
-import seedu.address.model.iteration.UniqueIterationList;
 
+/**
+ * Contains unit tests for {@code AddIterationCommandTest}.
+ */
 public class AddIterationCommandTest {
 
     @Test
@@ -86,73 +78,5 @@ public class AddIterationCommandTest {
 
         // different fields -> returns false
         assertNotEquals(firstAddIterationCommand, secondAddIterationCommand);
-    }
-
-    /**
-     * A Model stub that does not have a commission.
-     */
-    private static class ModelStubWithoutCommission extends ModelStub {
-        @Override
-        public boolean hasSelectedCommission() {
-            return false;
-        }
-    }
-
-    /**
-     * A Model stub that contains a single commission.
-     */
-    private static class ModelStubWithCommission extends ModelStub {
-        private final ObservableObject<CommissionStubWithIteration> commission;
-
-        ModelStubWithCommission(CommissionStubWithIteration commission) {
-            requireNonNull(commission);
-            this.commission = new ObservableObject<>(commission);
-        }
-
-        @Override
-        public boolean hasSelectedCommission() {
-            return true;
-        }
-
-        @Override
-        public ObservableObject<Commission> getSelectedCommission() {
-            return new ObservableObject<>(commission.getValue());
-        }
-    }
-
-    private static class CommissionStubWithIteration extends CommissionStub {
-        static final String COMMISSION_TITLE = "Mosquito";
-        final ArrayList<Iteration> iterationsAdded = new ArrayList<>();
-
-        CommissionStubWithIteration() {
-            super(new seedu.address.testutil.CommissionBuilder()
-                    .withTitle(COMMISSION_TITLE).toCommissionBuilder(), AMY);
-        }
-
-        @Override
-        public Title getTitle() {
-            return new Title(COMMISSION_TITLE);
-        }
-
-        @Override
-        public boolean hasIteration(Iteration toAdd) {
-            return iterationsAdded.stream().anyMatch(toAdd::isSameIteration);
-        }
-
-        @Override
-        public void addIteration(Iteration toAdd) {
-            iterationsAdded.add(toAdd);
-        }
-
-        @Override
-        public UniqueIterationList getIterations() {
-            UniqueIterationList result = new UniqueIterationList();
-            result.setIterations(iterationsAdded);
-            return result;
-        }
-
-        List<Iteration> getIterationsAsList() {
-            return iterationsAdded;
-        }
     }
 }
