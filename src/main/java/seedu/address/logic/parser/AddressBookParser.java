@@ -16,12 +16,14 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
+import seedu.address.logic.commands.reminder.DeleteReminderCommand;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
 import seedu.address.logic.commands.tutorial.DeleteTutorialCommand;
 import seedu.address.logic.parser.consultation.AddConsultationCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
 import seedu.address.logic.parser.reminder.AddReminderCommandParser;
+import seedu.address.logic.parser.reminder.DeleteReminderCommandParser;
 import seedu.address.logic.parser.tutorial.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorial.DeleteTutorialCommandParser;
 
@@ -79,6 +81,9 @@ public class AddressBookParser {
 
         case AddReminderCommand.COMMAND_WORD:
             return new AddReminderCommandParser().parse(arguments);
+
+        case DeleteReminderCommand.COMMAND_WORD:
+            return new DeleteReminderCommandParser().parse(arguments);    
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);

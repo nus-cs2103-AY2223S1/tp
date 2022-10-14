@@ -9,6 +9,9 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.reminder.exceptions.DuplicateReminderException;
+import seedu.address.model.reminder.exceptions.ReminderNotFoundException;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.exceptions.TutorialNotFoundException;
 
 /**
  * A list of reminders that enforces uniqueness between its elements and does not allow nulls.
@@ -47,6 +50,17 @@ public class UniqueReminderList implements Iterable<Reminder> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Removes the equivalent reminder from the list.
+     * The reminder must exist in the list.
+     */
+    public void remove(Reminder toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new ReminderNotFoundException();
+        }
+    }
+    
     /**
      * Replaces the contents of this list with {@code reminder}.
      * {@code reminders} must not contain duplicate reminder.

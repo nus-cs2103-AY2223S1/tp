@@ -102,6 +102,12 @@ public interface Model {
      */
     void addReminder(Reminder reminder);
 
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in the ModQuik.
+     */
+    void deleteReminder(Reminder reminder);
+
     /** Returns an unmodifiable view of the filtered reminder list */
     ObservableList<Reminder> getFilteredReminderList();
 
