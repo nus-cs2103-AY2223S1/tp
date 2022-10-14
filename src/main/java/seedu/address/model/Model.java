@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 /**
  * The API of the Model component.
@@ -117,6 +118,15 @@ public interface Model {
      * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     *
+     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
+     *     in the list (other than {@code target}).
+     */
+    void replaceTask(Task target, Task editedTask) throws DuplicateTaskException;
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();

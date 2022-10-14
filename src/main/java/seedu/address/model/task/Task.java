@@ -1,8 +1,13 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
+import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.module.Module;
+import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
 
 /**
  * Task class represents a task which stores the module code and the
@@ -11,7 +16,8 @@ import seedu.address.model.module.Module;
 public class Task {
     private final Module module;
     private final TaskDescription description;
-    private TaskStatus status;
+    private final PriorityTag priorityTag;
+    private final TaskStatus status;
 
     /**
      * The constructor of the Task class. Sets the module and
@@ -24,6 +30,7 @@ public class Task {
         this.module = module;
         this.description = description;
         this.status = TaskStatus.INCOMPLETE;
+        priorityTag = null;
     }
 
     /**
@@ -37,6 +44,23 @@ public class Task {
         this.module = module;
         this.description = description;
         this.status = status;
+        priorityTag = null;
+    }
+
+    /**
+     * The constructor of the Task class. Sets the module, description,
+     * completion status and the priority status of the task.
+     *
+     * @param module The module being set.
+     * @param description The description being set.
+     * @param status The completion status of the task.
+     * @param priorityTag The tag marking the priority status of the task.
+     */
+    public Task(Module module, TaskDescription description, TaskStatus status, PriorityTag priorityTag) {
+        this.module = module;
+        this.description = description;
+        this.status = status;
+        this.priorityTag = priorityTag;
     }
 
     public TaskDescription getDescription() {
@@ -70,7 +94,23 @@ public class Task {
      * and returns the task.
      */
     public Task mark() {
-        return new Task(module, description, TaskStatus.COMPLETE);
+        return new Task(module, description, TaskStatus.COMPLETE, priorityTag);
+    }
+
+    public Task setPriorityTag(PriorityTag tag) {
+        requireNonNull(tag);
+        if (priorityTag != null) {
+            throw new PriorityTagAlreadyExistsException();
+        }
+        return new Task(module, description, status, tag);
+    }
+
+    public boolean hasPriorityTag() {
+        return priorityTag != null;
+    }
+
+    public PriorityTag getPriorityTag() {
+        return priorityTag;
     }
 
     /**
@@ -79,6 +119,18 @@ public class Task {
      */
     public Task unmark() {
         return new Task(module, description, TaskStatus.INCOMPLETE);
+    }
+
+    /**
+     * Creates and returns a {@code Task} with the details of {@code this}
+     * edited with {@code editTaskDescriptor}.
+     */
+    public Task edit(EditTaskDescriptor editTaskDescriptor) {
+        requireNonNull(editTaskDescriptor);
+
+        Module updatedModule = editTaskDescriptor.getModule().orElse(module);
+        TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
+        return new Task(updatedModule, updatedDescription, status);
     }
 
     @Override
