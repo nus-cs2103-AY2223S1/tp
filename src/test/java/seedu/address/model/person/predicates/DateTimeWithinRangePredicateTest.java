@@ -1,6 +1,8 @@
 package seedu.address.model.person.predicates;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
@@ -95,7 +97,8 @@ class DateTimeWithinRangePredicateTest {
         LocalDateTime afterAfterTargetTime = beforeTargetTime.plusMinutes(10);
 
         // Before range
-        DateTimeWithinRangePredicate predicate = new DateTimeWithinRangePredicate(afterTargetTime, afterAfterTargetTime);
+        DateTimeWithinRangePredicate predicate =
+                new DateTimeWithinRangePredicate(afterTargetTime, afterAfterTargetTime);
         assertFalse(predicate.test(appointmentToTest));
 
         // After range

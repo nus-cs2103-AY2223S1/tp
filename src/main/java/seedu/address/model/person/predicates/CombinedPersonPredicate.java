@@ -8,6 +8,9 @@ import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
 
+/**
+ * A predicate the encapsulates the combination of several other Person predicates.
+ */
 public class CombinedPersonPredicate implements Predicate<Person> {
     private final String name;
     private final String phone;
@@ -18,6 +21,16 @@ public class CombinedPersonPredicate implements Predicate<Person> {
     // There is no equals() method for predicates. Ensure this predicate and variables to generate it are always final!
     private final Predicate<Person> combinedPredicate;
 
+    /**
+     * Creates a {@code CombinedPersonPredicate} object that tests if a given Person contains a given
+     * name, phone, email, address and has a word-for-word match for tags.
+     *
+     * @param name The string to test on a {@code Person}'s name.
+     * @param phone The string to test on a {@code Person}'s phone.
+     * @param email The string to test on a {@code Person}'s email.
+     * @param address The string to test on a {@code Person}'s address.
+     * @param tagList The string to test on a {@code Person}'s list of tags.
+     */
     public CombinedPersonPredicate(String name, String phone, String email, String address, List<String> tagList) {
         this.name = name;
         this.phone = phone;

@@ -4,12 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REASON_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -29,18 +25,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_START;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.Address;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PredicateGeneratorUtil;
 
@@ -48,12 +40,12 @@ public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
 
-    String validDateTimeStart = "2022-12-13 12:12";
-    String validDateTimeEnd = "2025-12-13 12:12";
-    String invalidDate = "2999-99-99 99-99";
+    private String validDateTimeStart = "2022-12-13 12:12";
+    private String validDateTimeEnd = "2025-12-13 12:12";
+    private String invalidDate = "2999-99-99 99-99";
 
-    String dateTimeStartDesc = " " + PREFIX_DATE_TIME_START + validDateTimeStart;
-    String dateTimeEndDesc = " " + PREFIX_DATE_TIME_END + validDateTimeEnd;
+    private String dateTimeStartDesc = " " + PREFIX_DATE_TIME_START + validDateTimeStart;
+    private String dateTimeEndDesc = " " + PREFIX_DATE_TIME_END + validDateTimeEnd;
 
     @Test
     public void parse_validArgsAllFieldsProvided_returnsFindCommand() {
@@ -162,7 +154,7 @@ public class FindCommandParserTest {
         expectedAppointmentPredicate = PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
                 EMPTY_STRING, validDateTimeStart, validDateTimeEnd);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
-        assertParseSuccess(parser,dateTimeStartDesc + dateTimeEndDesc, expectedFindCommand);
+        assertParseSuccess(parser, dateTimeStartDesc + dateTimeEndDesc, expectedFindCommand);
     }
 
     @Test

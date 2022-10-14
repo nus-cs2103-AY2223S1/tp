@@ -13,10 +13,10 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AppointmentOfFilteredPersonsPredicate;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
-import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all persons and their appointments in address book whose name contains any of the argument keywords.
@@ -26,8 +26,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons and their appointments whose fields" +
-            " contain all of the fields specified (case-insensitive) and displays them.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons and their appointments whose fields"
+            + " contain all of the fields specified (case-insensitive) and displays them.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -46,6 +46,14 @@ public class FindCommand extends Command {
     private final CombinedAppointmentPredicate appointmentPredicate;
     private final boolean isUsingAppointmentPredicate;
 
+    /**
+     * Creates a findCommand to search for specific details in the app.
+     *
+     * @param personPredicate A predicate for searching person details.
+     * @param appointmentPredicate A perdicate for searching appointment details.
+     * @param isUsingAppointmentPredicate True if any search fields relating to appointments are entered,
+     *                                   false otherwise.
+     */
     public FindCommand(CombinedPersonPredicate personPredicate, CombinedAppointmentPredicate appointmentPredicate,
                        boolean isUsingAppointmentPredicate) {
         this.personPredicate = personPredicate;

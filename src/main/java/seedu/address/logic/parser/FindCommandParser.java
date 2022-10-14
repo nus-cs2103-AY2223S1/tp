@@ -15,16 +15,15 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
-import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
+import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -63,7 +62,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         checkIfStartDateIsBeforeEndDate(parsedStartDateTime, parsedEndDateTime);
 
-        CombinedPersonPredicate combinedPersonPredicate = new CombinedPersonPredicate(name, phone, email, address, tagList);
+        CombinedPersonPredicate combinedPersonPredicate =
+                new CombinedPersonPredicate(name, phone, email, address, tagList);
         CombinedAppointmentPredicate combinedAppointmentPredicate =
                 new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime);
 
@@ -73,8 +73,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
     }
 
-    private void checkIfInputsValid(String name, String phone, String email, String address, List<String> tagList, String reason,
-                                    String startDateTime, String endDateTime) throws ParseException {
+    private void checkIfInputsValid(String name, String phone, String email, String address, List<String> tagList,
+                                    String reason, String startDateTime, String endDateTime) throws ParseException {
 
         boolean areAllFieldsEmpty = name.isEmpty() && phone.isEmpty() && email.isEmpty()
                 && address.isEmpty() && tagList.isEmpty() && reason.isEmpty() && startDateTime.isEmpty()

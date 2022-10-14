@@ -14,6 +14,13 @@ public class DateTimeWithinRangePredicate implements Predicate<Appointment> {
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
 
+    /**
+     * Creates a new {@code DateTimeWithinRangePredicate} that tests if an appointment lies within
+     * {@code startDateTime} and {@code endDateTime}.
+     *
+     * @param startDateTime Start date to test.
+     * @param endDateTime End date of test.
+     */
     public DateTimeWithinRangePredicate(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         requireNonNull(startDateTime);
         requireNonNull(endDateTime);

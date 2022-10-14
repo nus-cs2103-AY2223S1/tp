@@ -1,6 +1,8 @@
 package seedu.address.model.person.predicates;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 
 import java.time.LocalDateTime;

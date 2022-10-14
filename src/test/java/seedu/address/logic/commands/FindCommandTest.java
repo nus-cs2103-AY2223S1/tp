@@ -31,10 +31,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -48,14 +48,14 @@ public class FindCommandTest {
         CombinedPersonPredicate firstCombinedPersonPredicate =
                 new CombinedPersonPredicate("first", "", "", "" ,
                         Collections.singletonList("test"));
-        CombinedAppointmentPredicate firstCombinedAppointmentPredicate
-                = new CombinedAppointmentPredicate("reason1", LocalDateTime.MIN, LocalDateTime.MAX);
+        CombinedAppointmentPredicate firstCombinedAppointmentPredicate =
+                new CombinedAppointmentPredicate("reason1", LocalDateTime.MIN, LocalDateTime.MAX);
 
         CombinedPersonPredicate secondCombinedPersonPredicate =
                 new CombinedPersonPredicate("second", "", "", "" ,
                         Collections.singletonList("test"));
-        CombinedAppointmentPredicate secondCombinedAppointmentPredicate
-                = new CombinedAppointmentPredicate("reason2", LocalDateTime.MIN, LocalDateTime.MAX);
+        CombinedAppointmentPredicate secondCombinedAppointmentPredicate =
+                new CombinedAppointmentPredicate("reason2", LocalDateTime.MIN, LocalDateTime.MAX);
 
         FindCommand findFirstCommand =
                 new FindCommand(firstCombinedPersonPredicate, firstCombinedAppointmentPredicate,
@@ -90,7 +90,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_AllPersonsAndAppointmentsListed() {
+    public void execute_zeroKeywords_allPersonsAndAppointmentsListed() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size(),
                 model.getFilteredAppointmentList().size());
@@ -104,7 +104,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_findAllAppointments_OnlyPersonsWithAppointmentsListed() {
+    public void execute_findAllAppointments_onlyPersonsWithAppointmentsListed() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 2, 3);
         CombinedPersonPredicate personPredicate =
                 generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
@@ -121,7 +121,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_findPersonName_OnlyAppointmentsFromFoundPersonsListed() {
+    public void execute_findPersonName_onlyAppointmentsFromFoundPersonsListed() {
         // Search for patients whose names contain "e".
         // Should only find Alice, Benson, Daniel, Elle and George, and display Benson's appointment.
         String searchName = "e";
@@ -142,7 +142,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_findAppointmentReason_OnlyPersonsFromFoundAppointmentsListed() {
+    public void execute_findAppointmentReason_onlyPersonsFromFoundAppointmentsListed() {
         // Search for appointment with reason "cough".
         // Should only find Carl, and display only the cough appointment.
         String searchReason = "cough";
@@ -163,7 +163,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_findAppointmentReason_OnlyRelevantAppointmentsListed() {
+    public void execute_findAppointmentReason_onlyRelevantAppointmentsListed() {
         // Search for appointment with reason "throat".
         // Should find Carl and Benson, and only display the Sore throat appointment from each of them
         // (Benson's first and Carl's second appointment).
@@ -187,7 +187,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_personAndAppointmentFind_OnlyRelevantResultsListed() {
+    public void execute_personAndAppointmentFind_onlyRelevantResultsListed() {
         // Search for phones containing the number "3" and appointments before 2015.
         // Should only find Carl, and only display the cough appointment from Carl (his first appointment).
         String searchPhone = "3";
@@ -211,7 +211,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_findTagsAndEmail_OnlyRelevantResultsListed() {
+    public void execute_findTagsAndEmail_onlyRelevantResultsListed() {
         // Search for persons with tag "friends" and email containing "li".
         // Should only find Alice and Daniel, and no appointments.
         String searchEmail = "li";

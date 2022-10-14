@@ -19,11 +19,11 @@ public class PredicateGeneratorUtil {
     /**
      * Provides a simple way to generate a {@code CombinedPersonPredicate} without needing to make a list from scratch.
      *
-     * @param name name string to search
-     * @param phone phone string to search
-     * @param email email string to search
-     * @param address address string to search
-     * @param tagString tags to search, separated by spaces.
+     * @param name name string to test
+     * @param phone phone string to test
+     * @param email email string to test
+     * @param address address string to test
+     * @param tagString tags to test, separated by spaces.
      * @return a {@code CombinedPersonPredicate}
      */
     public static CombinedPersonPredicate generateCombinedPersonPredicate(String name, String phone, String email,
@@ -38,10 +38,10 @@ public class PredicateGeneratorUtil {
      * Provides a simple way to generate a {@code CombinedAppointmentPredicate} without needing to directly provide
      * {@code LocalDateTime}s but a string parsable accrding to the DateTimeFormatter in {@code Appointment} instead.
      *
-     * @param reason reason string to search
-     * @param startDateTime limit search results to appointments after {@code startDateTime}.
+     * @param reason reason string to test
+     * @param startDateTime Tests for appointments after {@code startDateTime}.
      *                      Empty string denotes no {@code startDateTime} requirement.
-     * @param endDateTime limit search results to appointments before {@code endDateTime}.
+     * @param endDateTime Tests for appointments before {@code endDateTime}.
      *                    Empty string denotes no {@code endDateTime} requirement.
      * @return A {@Code CombinedAppointmentPredicate} with the given reason and date range.
      */
@@ -52,6 +52,13 @@ public class PredicateGeneratorUtil {
         return new CombinedAppointmentPredicate(reason, start, end);
     }
 
+    /**
+     * Provides a simple way to generate a {@code PersonContainsTagsPredicate} without needing to directly provide
+     * a list of tags but an argument of strings instead.
+     *
+     * @param tags List of tags to test.
+     * @return A PersonContainsTagsPredicate that tests if the tags inputted exist on a {@code Person}.
+     */
     public static PersonContainsTagsPredicate generatePersonsContainsTagsPredicate(String... tags) {
         List<String> tagList = Arrays.asList(tags);
         return new PersonContainsTagsPredicate(tagList);
@@ -61,9 +68,9 @@ public class PredicateGeneratorUtil {
      * Generates a DateTimeWithinRangePredicate without needing to directly provide {@code LocalDateTime}s
      * but a parsable string of LocalDateTime instead.
      *
-     * @param startDateTime limit search results to appointments after {@code startDateTime}.
+     * @param startDateTime Tests for appointments after {@code startDateTime}.
      *                      Empty string denotes no {@code startDateTime} requirement.
-     * @param endDateTime limit search results to appointments before {@code endDateTime}.
+     * @param endDateTime Tests for appointments before {@code endDateTime}.
      *                    Empty string denotes no {@code endDateTime} requirement.
      * @return {@Code DateTimeWithinRangePredicate} with the given reason and date range.
      */

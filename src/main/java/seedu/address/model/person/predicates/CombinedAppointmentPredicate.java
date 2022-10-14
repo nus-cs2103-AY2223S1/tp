@@ -10,6 +10,9 @@ import java.util.function.Predicate;
 
 import seedu.address.model.person.Appointment;
 
+/**
+ * A predicate the encapsulates the combination of several other Appointment predicates.
+ */
 public class CombinedAppointmentPredicate implements Predicate<Appointment> {
     private final String reason;
     private final LocalDateTime startDateTime;
@@ -18,6 +21,14 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
     // There is no equals() method for predicates. Ensure this predicate and variables to generate it are always final!
     private final Predicate<Appointment> combinedPredicate;
 
+    /**
+     * Creates a {@code CombinedAppointmentPredicate} object that tests if a given appointment contains a given
+     * reason, and has a date between startDateTime and endDateTime.
+     *
+     * @param reason The string to test on an {@code Appointment}'s reason.
+     * @param startDateTime Start date to test.
+     * @param endDateTime End date of test.
+     */
     public CombinedAppointmentPredicate(String reason, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         requireNonNull(startDateTime);
         requireNonNull(endDateTime);
