@@ -390,59 +390,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC05 - Add a task to a person**
+**Use case: UC05 - Add a task**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Arrow shows a list of persons.
-3.  User requests to add task to a person in the list and provides task deadline.
-4.  Arrow adds the task to the list of tasks of the person.
+1.  User requests to add task and provides task name.
+2.  Arrow adds the task to the list of tasks.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The persons list is empty.
+* 1b. There is no task name provided.
 
-  Use case ends.
+    * 1b1. Arrow shows an error message.
+
+  Use case resumes at step 1.
   
-* 3a. The given index is invalid.
-
-    * 3a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. There is no task name provided.
-
-    * 3b1. Arrow shows an error message.
-
-  Use case resumes at step 2.
-  
-**Use case: UC06 - List tasks of a person**
+**Use case: UC06 - List tasks**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Arrow shows a list of persons.
-3.  User requests to list tasks of a specific person in the list.
-4.  Arrow shows a list of task of the person.
+1.  User requests to list all tasks.
+2.  Arrow shows a list of all tasks.
 
     Use case ends.
 
 **Extensions**
-
-* 2a. The persons list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
  
-* 4a. The task list is empty.
+* 1a. The task list is empty.
 
   Use case ends.
   
@@ -462,46 +438,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Arrow shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 2a. The tasks list is empty.
 
   Use case ends.
 
-      
-**Use case: UC08 - Delete a task from a person**
+**Use case: UC08 - Delete a task**
+
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Arrow shows a list of persons.
-3.  User requests to list tasks of a specific person in the persons list.
-4.  Arrow shows a list of task of the person.
-5.  User requests to delete a specific task in the tasks list.
-6.  Arrow deletes the task from the person.
+1.  User requests to list tasks.
+2.  Arrow shows a list of tasks.
+3.  User requests to delete a specific task in the tasks list.
+4.  Arrow deletes the task.
 
     Use case ends.
 
 **Extensions**
-
-* 2a. The persons list is empty.
+      
+* 1a. The tasks list is empty.
 
   Use case ends.
-
-* 3a. The given persons index is invalid.
+      
+* 3a. The given task index is invalid.
 
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
-      
-* 4a. The tasks list is empty.
-
-  Use case ends.
-      
-* 5a. The given task index is invalid.
-
-    * 5a1. Arrow shows an error message.
-
-      Use case resumes at step 4.
 
 **Use case: UC09 - Find a person by name**
 
@@ -517,6 +481,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
    Use case ends.
+   
+**Use case: UC10 - Assign persons to a task**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  Arrow shows a list of persons.
+3.  User requests to list tasks.
+4.  Arrow shows a list of tasks.
+5.  User requests to assign persons in the persons list to a specific task in the tasks list.
+6.  Arrow assigns the persons to the task.
+
+    Use case ends.
+
+**Extensions**
+      
+* 1a. The persons list is empty.
+
+  Use case ends.
+  
+* 3a. The tasks list is empty.
+
+  Use case ends.
+      
+* 5a. The given task and/or person index is invalid.
+
+    * 5a1. Arrow shows an error message.
+
+      Use case resumes at step 4.
 
 
 *{More to be added}*
