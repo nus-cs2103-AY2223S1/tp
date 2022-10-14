@@ -14,6 +14,7 @@ import longtimenosee.logic.commands.FindPolicyCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.model.policy.predicate.CompanyMatchesInputPredicate;
+import longtimenosee.model.policy.predicate.CoverageMatchesInputPredicate;
 import longtimenosee.model.policy.predicate.TitleContainsKeywordsPredicate;
 
 /**
@@ -47,6 +48,11 @@ public class FindPolicyCommandParser implements Parser<FindPolicyCommand> {
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
             String company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()).value;
             predicates.add(new CompanyMatchesInputPredicate(company));
+        }
+
+        if (argMultimap.getValue(PREFIX_COVERAGES).isPresent()) {
+            String coverage = ParserUtil.parseCoverage(argMultimap.getValue(PREFIX_COVERAGES).get()).coverageType;
+            predicates.add(new CoverageMatchesInputPredicate(coverage));
         }
 
         return new FindPolicyCommand(predicates);
