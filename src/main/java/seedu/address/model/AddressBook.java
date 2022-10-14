@@ -154,6 +154,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.add(r);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReminder(Reminder key) {
+        reminders.remove(key);
+    }
+
+
     //// tutorial-level operations
 
     /**
