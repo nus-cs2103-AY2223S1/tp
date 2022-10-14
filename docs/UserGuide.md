@@ -3,9 +3,20 @@ layout: page
 title: User Guide
 ---
 
-PleaseHireUs (PHU) is a **desktop app for managing internships for computer science students 
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, PHU can manage your internship details done faster than traditional GUI apps.
+Are you a CS student struggling to keep track of your internship? 
+Do you feel tired of using spreadsheets to keep track of your applications? 
+We have just the right tool for you! 
+
+Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
+
+Here are its main features:
+* View the status of your individual application and assessment dates at a glance
+* View the overall statistics of the status of all your internship applications in a stacked bar chart
+
+Now you will never miss any internship application deadlines or interviews again!
+PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
+We hope you find PleaseHireUs to be very useful in your internship hunt!
+
 
 * Table of Contents
   {:toc}
