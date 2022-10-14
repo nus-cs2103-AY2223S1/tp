@@ -28,15 +28,11 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES);
 
         if (!argMultimap.containsExactlyOnePrefix()) {
-            throw new ParseException("You must search with only 1 prefix, either n/, p/, np/, e/ or a/.");
+            throw new ParseException(FindCommand.ONLY_ONE_PREFIX_MESSAGE);
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String nameToFind = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName.trim();
-            if (nameToFind.isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
             String[] nameKeywords = nameToFind.split("\\s+");
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
@@ -61,7 +57,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         } else {
             // Other prefixes that are not supported by the search system
-            throw new ParseException("Only n/, p/, np/, e/ or a/ can be searched.");
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 
