@@ -10,14 +10,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Clazz;
+import seedu.address.model.person.subject.Attendance;
+import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Grade;
+import seedu.address.model.person.subject.Grade;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Subject;
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -106,13 +106,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code clazz} is invalid.
      */
-    public static Clazz parseClazz(String clazz) throws ParseException {
+    public static StudentClass parseClazz(String clazz) throws ParseException {
         requireNonNull(clazz);
         String trimmedClazz = clazz.trim();
-        if (!Clazz.isValidClazz(trimmedClazz)) {
-            throw new ParseException(Clazz.MESSAGE_CONSTRAINTS);
+        if (!StudentClass.isValidClazz(trimmedClazz)) {
+            throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
         }
-        return new Clazz(trimmedClazz);
+        return new StudentClass(trimmedClazz);
     }
 
     /**

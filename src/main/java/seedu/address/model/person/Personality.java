@@ -18,7 +18,7 @@ public class Personality {
      * otherwise " " (a blank string) becomes a valid input.
      */
 
-    public static final String VALIDATION_REGEX = "^[a-zA-Z][a-zA-Z\\s]+$";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String personPersonality;
 
@@ -60,7 +60,7 @@ public class Personality {
 
     @Override
     public String toString() {
-        return "Personalities: " + arrayOfPersonalities.toString();
+        return arrayOfPersonalities.toString();
     }
 
     @Override

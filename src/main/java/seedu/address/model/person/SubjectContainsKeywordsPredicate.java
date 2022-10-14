@@ -16,8 +16,9 @@ public class SubjectContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> arrayListContainsWord(person.getSubject().getArrayOfSubjects(), keyword));
+//        return keywords.stream()
+//                .anyMatch(keyword -> arrayListContainsWord(person.getSubjectsTaken().getArrayOfSubjects(), keyword));
+        return true;
     }
 
     private boolean arrayListContainsWord(ArrayList<String> arrayList, String keyword) {

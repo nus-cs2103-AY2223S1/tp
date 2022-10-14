@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,29 +23,27 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Clazz clazz;
+    private final StudentClass studentClass;
     private final Personality personality;
-    private final Attendance attendance;
-    private final Subject subject;
-    private final Grade grade;
+    private final SubjectHandler subjectHandler;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null (except attendance, personality and grade).
      */
-    public Person(Name name, Phone phone, Email email, Address address, Clazz clazz, Personality personality,
-                  Attendance attendance, Subject subject, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, clazz, personality, attendance, subject, grade, tags);
+    public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass, Personality personality,
+                  SubjectHandler subjectsTaken, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, studentClass, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.clazz = clazz;
-        this.personality = personality;
-        this.attendance = attendance;
-        this.subject = subject;
-        this.grade = grade;
         this.tags.addAll(tags);
+
+        // Added in v1.2
+        this.studentClass = studentClass;
+        this.personality = personality;
+        this.subjectHandler = subjectsTaken;
     }
 
     public Name getName() {
@@ -63,24 +62,16 @@ public class Person {
         return address;
     }
 
-    public Clazz getClazz() {
-        return clazz;
+    public StudentClass getStudentClass() {
+        return studentClass;
     }
 
     public Personality getPersonality() {
         return personality;
     }
 
-    public Attendance getAttendance() {
-        return attendance;
-    }
-
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public Grade getGrade() {
-        return grade;
+    public SubjectHandler getSubjectHandler() {
+        return subjectHandler;
     }
 
     /**
@@ -129,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, clazz, personality, attendance, subject, grade, tags);
+        return Objects.hash(name, phone, email, address, studentClass, personality, subjectHandler, tags);
     }
 
     @Override
@@ -143,15 +134,11 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Class: ")
-                .append(getClazz())
+                .append(getStudentClass())
                 .append("; Personality: ")
                 .append(getPersonality())
-                .append("; Attendance: ")
-                .append(getAttendance())
                 .append("; Subject: ")
-                .append(getSubject())
-                .append("; Grade: ")
-                .append(getGrade());
+                .append(getSubjectHandler());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

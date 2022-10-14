@@ -1,10 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.person.subject;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 
 /**
@@ -23,21 +23,22 @@ public class Subject {
 
     public final String subjectName;
 
-    private ArrayList<String> allSubjectsTaken;
+    private HashMap<String, Integer> attendance;
 
-    private Grade grades;
+    private HashMap<String, Grade> grades;
 
     /**
      * Constructs a {@code Subject}.
      *
-     * @param subject A valid subject.
+     * @param subjectName A valid subject.
      */
-    public Subject(String subject) {
-        requireNonNull(subject);
-        checkArgument(isValidSubject(subject), MESSAGE_CONSTRAINTS);
-        allSubjectsTaken = new ArrayList<>();
-        allSubjectsTaken.add(subject);
-        subjectName = subject;
+    public Subject(String subjectName) {
+        requireNonNull(subjectName);
+        checkArgument(isValidSubject(subjectName), MESSAGE_CONSTRAINTS);
+
+        this.subjectName = subjectName;
+        this.attendance = new HashMap<>();
+        this.grades = new HashMap<>();
     }
 
     /**
@@ -47,23 +48,13 @@ public class Subject {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Adds a subject to the list of subjects taken by the student
-     * @param subject the subject to be added
-     */
-    public void add(String subject) {
-        if (!allSubjectsTaken.contains(subject)) {
-            allSubjectsTaken.add(subject);
-        }
-    }
-
-    public ArrayList<String> getArrayOfSubjects() {
-        return allSubjectsTaken;
+    public String getSubjectName() {
+        return subjectName;
     }
 
     @Override
     public String toString() {
-        return "Subject: " + allSubjectsTaken.toString();
+        return subjectName;
     }
 
     @Override
