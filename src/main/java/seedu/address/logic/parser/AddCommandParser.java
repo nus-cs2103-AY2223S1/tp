@@ -46,11 +46,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-//        StudentClass studentClass = ParserUtil.parseClazz(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
-//        Personality personality = ParserUtil.parsePersonality(argMultimap.getValue(PREFIX_PERSONALITY).get());
-//        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
-//        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
-//        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        //        StudentClass studentClass = ParserUtil.parseClazz(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
+        //        Personality personality = ParserUtil.parsePersonality(argMultimap.getValue(PREFIX_PERSONALITY).get());
+        //        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
+        //        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
+        //        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         SubjectHandler subjectHandler = new SubjectHandler();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

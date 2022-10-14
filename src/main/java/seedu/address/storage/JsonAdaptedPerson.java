@@ -65,7 +65,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         studentClass = source.getStudentClass().toString();
         personality = source.getPersonality().toString();
-//        subject = source.getSubjectsTaken().toString();
+        //        subject = source.getSubjectsTaken().toString();
         tagged.addAll(source.getTags().stream()
                             .map(JsonAdaptedTag::new)
                             .collect(Collectors.toList()));
@@ -130,12 +130,13 @@ class JsonAdaptedPerson {
         }
         final Personality modelPersonality = new Personality(personality);
 
-//        if (subject == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, SubjectHandler.class.getSimpleName()));
-//        }
-//        if (!Subject.isValidSubject(subject)) {
-//            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
-//        }
+        //        if (subject == null) {
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //            SubjectHandler.class.getSimpleName()));
+        //        }
+        //        if (!Subject.isValidSubject(subject)) {
+        //            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
+        //        }
 
         final SubjectHandler modelSubjectHandler = new SubjectHandler();
 
