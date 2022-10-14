@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.message.Message;
+import seedu.address.model.message.MessageList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
@@ -23,6 +25,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final TagSet tags;
 
+    private final MessageList messages;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -33,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tags = new TagSet();
+        messages = new MessageList();
     }
 
     public AddressBook() {}
@@ -55,9 +60,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
+    /**
+     * Replaces the contents of the tag set with {@code tags}
+     */
     public void setTags(Set<Tag> tags) {
         for (Tag tag: tags) {
             this.tags.add(tag);
+        }
+    }
+
+    /**
+     * Replaces the contents of the message list with {@code messages}.
+     * {@code messages} must not contain duplicate messages.
+     */
+    public void setMessageTemplates(List<Message> messages) {
+        for (Message message: messages) {
+            this.messages.add(message);
         }
     }
 
@@ -69,6 +87,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTags(newData.getTags());
+        setMessageTemplates(newData.getMessageTemplates());
     }
 
     //// person-level operations
@@ -142,6 +161,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         tags.add(tag);
     }
 
+    //// message template operations
+
+    /**
+     * Adds the message template into the address book.
+     */
+    public void createMessage(Message message) {
+        requireNonNull(message);
+        messages.add(message);
+    }
+
+    /**
+     * Deletes the message template from the address book.
+     * @param message
+     */
+    public void deleteMessage(Message message) {
+        requireNonNull(message);
+        messages.remove(message);
+    }
+
+    /**
+     * Returns true if the address book contains the given message.
+     */
+    public boolean hasMessage(Message message) {
+        requireNonNull(message);
+        return messages.contains(message);
+    }
+
     //// util methods
 
     @Override
@@ -164,6 +210,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public Set<Tag> getTags() {
         return tags.asUnmodifiableSet();
+    }
+
+    /**
+     * Returns the list of messages as an unmodifiable {@code UnmodifiableList}
+     */
+    @Override
+    public List<Message> getMessageTemplates() {
+        return messages.asUnmodifiableList();
     }
 
     @Override
