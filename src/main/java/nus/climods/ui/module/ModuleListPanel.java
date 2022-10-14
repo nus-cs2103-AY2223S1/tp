@@ -24,6 +24,7 @@ public class ModuleListPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
+     * @param moduleList
      */
     public ModuleListPanel(ObservableList<Module> moduleList) {
         super(FXML);

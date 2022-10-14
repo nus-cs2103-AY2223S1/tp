@@ -15,28 +15,71 @@ import nus.climods.model.module.CodeContainsKeywordsPredicate;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.model.module.UserModule;
 
 /**
  * Represents the in-memory model of module list data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
-    private final UserPrefs userPrefs;
     private final ModuleList moduleList;
+    private final UniqueUserModuleList uniqueUserModuleList;
+
+    private final FilteredList<UserModule> filteredUserModules;
+    private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModuleList;
 
     /**
      * Initializes a ModelManager with the given moduleList and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, UniqueUserModuleList uniqueUserModuleList,
+                        ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(moduleList, userPrefs);
 
         logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = new ModuleList(moduleList);
+        this.uniqueUserModuleList = uniqueUserModuleList;
         this.filteredModuleList = new FilteredList<>(moduleList.getModules());
+        filteredUserModules = new FilteredList<UserModule>(uniqueUserModuleList.asUnmodifiableObservableList());
+    }
+
+    //=========== UserModule ==================================================================================
+
+    @Override
+    public boolean hasUserModule(UserModule module) {
+        requireNonNull(module);
+        return uniqueUserModuleList.contains(module);
+    }
+
+    @Override
+    public boolean filteredListhasUserModule(UserModule module) {
+        return this.getFilteredUserModuleList().contains(module);
+    }
+
+    @Override
+    public void deleteUserModule(UserModule target) {
+        requireNonNull(target);
+        uniqueUserModuleList.remove(target);
+    }
+
+    @Override
+    public void addUserModule(UserModule module) {
+        uniqueUserModuleList.add(module);
+
+    }
+
+    @Override
+    public ObservableList<UserModule> getFilteredUserModuleList() {
+        return filteredUserModules;
+    }
+
+    @Override
+    public void updateFilteredUserModuleList(Predicate<UserModule> predicate) {
+        requireNonNull(predicate);
+        filteredUserModules.setPredicate(predicate);
     }
 
     @Override

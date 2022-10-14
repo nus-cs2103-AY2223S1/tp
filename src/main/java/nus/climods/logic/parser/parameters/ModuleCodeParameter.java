@@ -13,9 +13,9 @@ public class ModuleCodeParameter extends PositionalParameter<String> {
 
 
     /**
-     * Creates a ModuleCodeParameter with
+     * Creates a ModuleCodeParameter with argumentsString
      *
-     * @param argumentsString
+     * @param argumentsString Arguments string to parse module code from
      */
     public ModuleCodeParameter(String argumentsString) {
         super(MODULE_CODE_INDEX, argumentsString, ParserUtil::parseModuleCode, PARSE_EXCEPTION_MESSAGE);

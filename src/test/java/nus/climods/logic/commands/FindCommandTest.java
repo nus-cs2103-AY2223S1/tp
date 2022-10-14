@@ -16,11 +16,14 @@ import nus.climods.model.ModelManager;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
+
 
 class FindCommandTest {
 
     private static final String testAcademicYear = "2022-2023";
-    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UserPrefs());
+    private final Model model = new ModelManager(new ModuleList(testAcademicYear), new UniqueUserModuleList(),
+            new UserPrefs());
 
     @Test
     public void execute_zeroKeywords_noModulesFound() {

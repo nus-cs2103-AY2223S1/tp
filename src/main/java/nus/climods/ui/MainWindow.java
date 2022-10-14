@@ -3,6 +3,7 @@ package nus.climods.ui;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -12,6 +13,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
 import nus.climods.logic.Logic;
@@ -128,7 +130,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         modulesPane = new SplitPane();
-
         ModuleListPanel moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
@@ -167,6 +168,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
+            helpWindow.setWindowDefaultSize(logic.getGuiSettings());
         } else {
             helpWindow.focus();
         }
@@ -184,6 +186,9 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
             (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        PauseTransition delay = new PauseTransition(Duration.seconds(0.7));
+        delay.setOnFinished(event -> primaryStage.close());
+        delay.play();
     }
 
     /**

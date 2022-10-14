@@ -21,6 +21,7 @@ import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.UserPrefs;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
+import nus.climods.model.module.UniqueUserModuleList;
 import nus.climods.storage.JsonUserPrefsStorage;
 import nus.climods.storage.Storage;
 import nus.climods.storage.StorageManager;
@@ -78,6 +79,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialModuleList;
+        // TODO: load from storage
+        UniqueUserModuleList initialUserModuleList = new UniqueUserModuleList();
         String academicYear = userPrefs.getAcademicYear();
         try {
             moduleListOptional = storage.readModuleList(academicYear);
@@ -90,7 +93,9 @@ public class MainApp extends Application {
             initialModuleList = new ModuleList(academicYear);
         }
 
-        return new ModelManager(initialModuleList, userPrefs);
+
+
+        return new ModelManager(initialModuleList, initialUserModuleList, userPrefs);
     }
 
     private void initLogging(Config config) {
