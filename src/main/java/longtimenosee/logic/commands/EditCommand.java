@@ -20,10 +20,13 @@ import longtimenosee.commons.util.CollectionUtil;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
 import longtimenosee.model.person.Address;
+import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
+import longtimenosee.model.person.Income;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.Phone;
+import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -98,8 +101,12 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Birthday updatedBirthday = editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday());
+        Income updatedIncome = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
+        RiskAppetite updatedRA = editPersonDescriptor.getRA().orElse(personToEdit.getRiskAppetite());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedBirthday, updatedIncome, updatedRA);
     }
 
     @Override
@@ -130,6 +137,10 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Birthday birthday;
+        private Income income;
+        private RiskAppetite riskAppetite;
+
 
         public EditPersonDescriptor() {}
 
@@ -143,13 +154,17 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setBirthday(toCopy.birthday);
+            setIncome(toCopy.income);
+            setRiskAppetite(toCopy.riskAppetite);
         }
+
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, birthday, income, riskAppetite);
         }
 
         public void setName(Name name) {
@@ -201,6 +216,18 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setRiskAppetite(RiskAppetite ra) {
+            this.riskAppetite = ra;
+        }
+
+        public void setIncome(Income income) {
+            this.income = income;
+        }
+
+        public void setBirthday(Birthday birthday) {
+            this.birthday = birthday;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -220,7 +247,22 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getBirthday().equals(e.getBirthday())
+                    && getIncome().equals(e.getIncome())
+                    && getRA().equals(e.getRA());
+        }
+
+        public Optional<Birthday> getBirthday() {
+            return Optional.ofNullable(birthday);
+        }
+
+        public Optional<Income> getIncome() {
+            return Optional.ofNullable(income);
+        }
+
+        public Optional<RiskAppetite> getRA() {
+            return Optional.ofNullable(riskAppetite);
         }
     }
 }

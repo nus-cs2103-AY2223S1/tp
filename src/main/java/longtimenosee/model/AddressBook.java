@@ -6,8 +6,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import longtimenosee.model.client.Client;
-import longtimenosee.model.client.UniqueClientList;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.UniquePersonList;
 import longtimenosee.model.policy.Policy;
@@ -21,7 +19,6 @@ import longtimenosee.model.policy.UniquePolicyList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueClientList clients; //TODO: implement Unique Client list
     private final UniquePolicyList policies;
 
     /*
@@ -33,7 +30,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        clients = new UniqueClientList();
         policies = new UniquePolicyList();
 
     }
@@ -58,13 +54,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    /**
-     * Replaces the contents of the client list with {@code clients}.
-     * {@code clients} must not contain duplicate clients.
-     */
-    public void setClients(List<Client> clients) {
-        this.clients.setClients(clients);
-    }
 
     /**
      * Replaces the contents of the client list with {@code clients}.
@@ -81,7 +70,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setClients(newData.getClientList());
         setPolicies(newData.getPolicyList());
     }
 
@@ -110,7 +98,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -143,41 +130,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    //client level operations
-
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
-    public boolean hasClient(Client client) {
-        requireNonNull(client);
-        return clients.contains(client);
-    }
-
-    /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
-     */
-    public void addClient(Client c) {
-        clients.add(c);
-    }
-
-    @Override
-    public ObservableList<Client> getClientList() {
-        return clients.asUnmodifiableObservableList();
-    }
-
-    public void removeClient(Client client) {
-        clients.remove(client);
-    }
-
-    /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     */
-    public void setClient(Client target, Client editedClient) {
-
-    }
 
     //policy level operations
 
@@ -222,13 +174,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && clients.equals(((AddressBook) other).clients)
                 && policies.equals(((AddressBook) other).policies));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode() + clients.hashCode() + policies.hashCode();
+        return persons.hashCode() + policies.hashCode();
     }
 
 }

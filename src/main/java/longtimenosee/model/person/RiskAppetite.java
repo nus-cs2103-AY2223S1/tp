@@ -1,6 +1,4 @@
-package longtimenosee.model.client;
-
-
+package longtimenosee.model.person;
 /**
  *  Encapsulation for a client's RiskAppetite
  */

@@ -2,9 +2,12 @@ package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_INCOME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
 
 import longtimenosee.logic.commands.exceptions.CommandException;
@@ -31,7 +34,10 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "owesMoney"
+            + PREFIX_BIRTHDAY + "2019-05-05"
+            + PREFIX_INCOME + "100.00"
+            + PREFIX_RISK_APPETITE + "M";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

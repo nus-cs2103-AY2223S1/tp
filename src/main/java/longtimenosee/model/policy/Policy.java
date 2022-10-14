@@ -9,7 +9,7 @@ import java.util.Set;
 
 
 /**
- * Represents a Person in the address book.
+ * Represents a Policy in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Policy {

@@ -3,11 +3,17 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "birthday" : "2019-06-05",
+    "income" : "100.00",
+    "riskAppetite": "H"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "birthday" : "2019-06-05",
+    "income" : "100.00",
+    "riskAppetite": "H"
   } ]
 }

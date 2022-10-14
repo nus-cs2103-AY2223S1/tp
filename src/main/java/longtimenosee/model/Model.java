@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
-import longtimenosee.model.client.Client;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 
@@ -17,9 +16,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_NO_PERSONS = unused -> false;
-
-    Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
-    Predicate<Client> PREDICATE_SHOW_NO_CLIENTS = unused -> true;
 
     Predicate<Policy> PREDICATE_SHOW_ALL_POLICIES = unused -> true;
     Predicate<Policy> PREDICATE_SHOW_NO_POLICIES = unused -> true;
@@ -103,41 +99,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
 
-    // Colin's versions
 
-    /**
-     * Returns true if a person with the same identity as {@code Client} exists in the address book.
-     */
-    boolean hasClient(Client toAdd);
-
-    /**
-     * Adds the client specified.
-     */
-    void addClient(Client toAdd);
-
-    /**
-     * Deletes the given Client.
-     * The client must exist in the address book.
-     */
-    void deleteClient(Client toDelete);
-
-    /**
-     * Replaces the given Client {@code target} with {@code editedClient}.
-     * {@code client} must exist in the address book.
-     * The person identity of {@code editedClient} must not be the same as another existing cleint in the address book.
-     */
-    void setClient(Client target, Client editedClient);
-
-    /** Returns an unmodifiable view of the filtered client list */
-    ObservableList<Client> getFilteredClientList();
-
-    /**
-     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredClientList(Predicate<Client> predicate);
-
-    //Policy implementation
 
     /**
      * Returns true if a policy with the same identity as {@code Policy} exists in the address book.

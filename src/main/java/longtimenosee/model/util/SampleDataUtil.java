@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.ReadOnlyAddressBook;
 import longtimenosee.model.person.Address;
+import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
+import longtimenosee.model.person.Income;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.Phone;
+import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -21,22 +24,40 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
+                getTagSet("friends"),
+                new Birthday("2015-05-05"),
+                new Income("100.0"),
+                new RiskAppetite("H")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("colleagues", "friends"),
+                new Birthday("2015-05-05"),
+                new Income("100.0"),
+                new RiskAppetite("H")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
+                getTagSet("neighbours"),
+                new Birthday("2015-05-05"),
+                new Income("100.0"),
+                new RiskAppetite("H")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
+                getTagSet("family"),
+                new Birthday("2015-05-05"),
+                new Income("100.0"),
+                new RiskAppetite("H")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
+                getTagSet("classmates"),
+                new Birthday("2015-05-05"),
+                new Income("100.0"),
+                new RiskAppetite("H")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+                getTagSet("colleagues"),
+                new Birthday("2015-05-05"),
+                new Income("100.0"),
+                new RiskAppetite("H")),
         };
     }
 

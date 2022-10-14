@@ -11,10 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import longtimenosee.commons.exceptions.IllegalValueException;
 import longtimenosee.model.person.Address;
+import longtimenosee.model.person.Birthday;
 import longtimenosee.model.person.Email;
+import longtimenosee.model.person.Income;
 import longtimenosee.model.person.Name;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.Phone;
+import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.tag.Tag;
 
 /**
@@ -28,6 +31,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+
+    private final String birthday;
+    private final String income;
+    private final String riskAppetite;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final boolean pinned;
 
@@ -37,7 +44,9 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("pinned") boolean pinned) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("birthday") String birthday,
+                             @JsonProperty("income") String income, @JsonProperty("riskAppetite") String riskAppetite,
+                                 @JsonProperty("pinned") boolean pinned) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +55,9 @@ class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.pinned = pinned;
+        this.birthday = birthday;
+        this.income = income;
+        this.riskAppetite = riskAppetite;
     }
 
     /**
@@ -60,6 +72,9 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         pinned = source.getPin();
+        birthday = source.getBirthday().toString();
+        income = source.getIncome().value;
+        riskAppetite = source.getRiskAppetite().toString();
     }
 
     /**
@@ -106,7 +121,28 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, pinned);
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
+        if (income == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName()));
+        }
+
+        final Income modelIncome = new Income(income);
+
+        if (riskAppetite == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    RiskAppetite.class.getSimpleName()));
+        }
+
+        final RiskAppetite modelRiskAppetite = new RiskAppetite(riskAppetite);
+
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,
+                modelBirthday, modelIncome, modelRiskAppetite, pinned);
     }
 
 }

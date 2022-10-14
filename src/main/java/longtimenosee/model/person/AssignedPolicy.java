@@ -1,4 +1,4 @@
-package longtimenosee.model.client;
+package longtimenosee.model.person;
 
 import java.time.LocalDate;
 import java.util.Objects;
