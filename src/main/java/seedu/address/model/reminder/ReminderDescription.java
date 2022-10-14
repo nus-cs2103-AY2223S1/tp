@@ -10,4 +10,9 @@ public class ReminderDescription {
     public ReminderDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return description.toString();
+    }
 }

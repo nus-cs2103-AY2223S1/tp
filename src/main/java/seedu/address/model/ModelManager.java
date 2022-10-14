@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Reminder> filteredReminders;
     private final FilteredList<Tutorial> filteredTutorials;
     private final FilteredList<Consultation> filteredConsultations;
 
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
         filteredConsultations = new FilteredList<>(this.addressBook.getConsultationList());
     }
@@ -151,6 +154,38 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    //=========== Reminders =============================================================
+
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return addressBook.hasReminder(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        addressBook.addReminder(reminder);
+        updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
+    }
+
+    //=========== Filtered Reminder List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Reminder} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
     }
 
     //=========== Tutorials ==================================================================================

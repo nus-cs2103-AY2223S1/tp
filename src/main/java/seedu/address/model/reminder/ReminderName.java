@@ -21,7 +21,7 @@ public class ReminderName {
     public final String fullName;
 
     /**
-     * Constructs a {@code TutorialName}.
+     * Constructs a {@code ReminderName}.
      *
      * @param name A valid name.
      */

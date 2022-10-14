@@ -35,13 +35,26 @@ public class Reminder {
         return deadline;
     }
 
-    public ReminderDescription getDetails() {
+    public ReminderDescription getDescription() {
         return details;
     }
 
     /**
-     * Returns true if both tutorials have the same identity and data fields.
-     * This defines a stronger notion of equality between two tutorials.
+     * Returns true if both reminders have the same name.
+     * This defines a weaker notion of equality between two reminders.
+     */
+    public boolean isSameReminder(Reminder otherReminder) {
+        if (otherReminder == this) {
+            return true;
+        }
+
+        return otherReminder != null
+                && otherReminder.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both reminders have the same identity and data fields.
+     * This defines a stronger notion of equality between two reminders.
      */
     @Override
     public boolean equals(Object other) {
@@ -70,7 +83,7 @@ public class Reminder {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Details: ")
-                .append(getDetails());
+                .append(getDescription());
 
         return builder.toString();
     }

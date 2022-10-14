@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.tutorial;
+package seedu.address.logic.commands.reminder;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,60 +25,59 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.TutorialBuilder;
+import seedu.address.testutil.ReminderBuilder;
 
-public class AddTutorialCommandTest {
+public class AddReminderCommandTest {
 
     @Test
-    public void constructor_nullTutorial_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTutorialCommand(null));
+    public void constructor_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddReminderCommand(null));
     }
 
     @Test
-    public void execute_tutorialAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
-        Tutorial validTutorial = new TutorialBuilder().build();
+    public void execute_reminderAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingReminderAdded modelStub = new ModelStubAcceptingReminderAdded();
+        Reminder validReminder = new ReminderBuilder().build();
 
-        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
+        CommandResult commandResult = new AddReminderCommand(validReminder).execute(modelStub);
 
-        assertEquals(String.format(
-                AddTutorialCommand.MESSAGE_SUCCESS, validTutorial),
+        assertEquals(String.format(AddReminderCommand.MESSAGE_SUCCESS, validReminder),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
+        assertEquals(Arrays.asList(validReminder), modelStub.remindersAdded);
     }
 
     @Test
-    public void execute_duplicateTutorial_throwsCommandException() {
-        Tutorial validTutorial = new TutorialBuilder().build();
-        AddTutorialCommand addCommand = new AddTutorialCommand(validTutorial);
-        ModelStub modelStub = new ModelStubWithTutorial(validTutorial);
+    public void execute_duplicateReminder_throwsCommandException() {
+        Reminder validReminder = new ReminderBuilder().build();
+        AddReminderCommand addReminderCommand = new AddReminderCommand(validReminder);
+        ModelStub modelStub = new ModelStubWithReminder(validReminder);
 
-        assertThrows(CommandException.class,
-                AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddReminderCommand.MESSAGE_DUPLICATE_REMINDER, () ->
+                addReminderCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tutorial w17 = new TutorialBuilder().withName("CS2103T W17").build();
-        Tutorial f01 = new TutorialBuilder().withName("CS2103T F01").build();
-        AddTutorialCommand addW17Command = new AddTutorialCommand(w17);
-        AddTutorialCommand addF01Command = new AddTutorialCommand(f01);
+        Reminder markMidterms = new ReminderBuilder().withName("Mark Midterms").build();
+        Reminder markFinals = new ReminderBuilder().withName("Mark Finals").build();
+        AddReminderCommand markMidtermsCommand = new AddReminderCommand(markMidterms);
+        AddReminderCommand markFinalsCommand = new AddReminderCommand(markFinals);
 
         // same object -> returns true
-        assertTrue(addW17Command.equals(addW17Command));
+        assertTrue(markMidtermsCommand.equals(markMidtermsCommand));
 
         // same values -> returns true
-        AddTutorialCommand addAliceCommandCopy = new AddTutorialCommand(w17);
-        assertTrue(addW17Command.equals(addAliceCommandCopy));
+        AddReminderCommand markMidtermsCommandCopy = new AddReminderCommand(markMidterms);
+        assertTrue(markMidtermsCommand.equals(markMidtermsCommandCopy));
 
         // different types -> returns false
-        assertFalse(addW17Command.equals(1));
+        assertFalse(markMidtermsCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addW17Command.equals(null));
+        assertFalse(markMidtermsCommand.equals(null));
 
-        // different tutorial -> returns false
-        assertFalse(addW17Command.equals(addF01Command));
+        // different person -> returns false
+        assertFalse(markMidtermsCommand.equals(markFinalsCommand));
     }
 
     /**
@@ -116,6 +115,11 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -136,11 +140,6 @@ public class AddTutorialCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -152,7 +151,7 @@ public class AddTutorialCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            return;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -232,45 +231,39 @@ public class AddTutorialCommandTest {
     }
 
     /**
-     * A Model stub that contains a single tutorial.
+     * A Model stub that contains a single reminder.
      */
-    private class ModelStubWithTutorial extends ModelStub {
-        private final Tutorial tutorial;
+    private class ModelStubWithReminder extends ModelStub {
+        private final Reminder reminder;
 
-        ModelStubWithTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            this.tutorial = tutorial;
+        ModelStubWithReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            this.reminder = reminder;
         }
 
         @Override
-        public boolean hasTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            return this.tutorial.isSameTutorial(tutorial);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return this.reminder.isSameReminder(reminder);
         }
     }
 
     /**
-     * A Model stub that always accept the tutorial being added.
+     * A Model stub that always accept the reminder being added.
      */
-    private class ModelStubAcceptingTutorialAdded extends ModelStub {
-        final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
+    private class ModelStubAcceptingReminderAdded extends ModelStub {
+        final ArrayList<Reminder> remindersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            return tutorialsAdded.stream().anyMatch(tutorial::isSameTutorial);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return remindersAdded.stream().anyMatch(reminder::isSameReminder);
         }
 
         @Override
-        public boolean hasTutorialClashingWith(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            return tutorialsAdded.stream().anyMatch(tutorial::isClashTutorial);
-        }
-
-        @Override
-        public void addTutorial(Tutorial tutorial) {
-            requireNonNull(tutorial);
-            tutorialsAdded.add(tutorial);
+        public void addReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            remindersAdded.add(reminder);
         }
 
         @Override
