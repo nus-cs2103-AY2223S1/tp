@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Personality;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
@@ -117,18 +117,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String personality} into an {@code Personality}.
+     * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code personality} is invalid.
+     * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Personality parsePersonality(String personality) throws ParseException {
-        requireNonNull(personality);
-        String trimmedPersonality = personality.trim();
-        if (!Personality.isValidPersonality(trimmedPersonality)) {
-            throw new ParseException(Personality.MESSAGE_CONSTRAINTS);
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Personality(trimmedPersonality);
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses {@code Collection<String> remarks} into a {@code Set<Remark>}.
+     */
+    public static Set<Remark> parseRemarks(Collection<String> remarks) throws ParseException {
+        requireNonNull(remarks);
+        final Set<Remark> remarkSet = new HashSet<>();
+        for (String remark : remarks) {
+            remarkSet.add(parseRemark(remark));
+        }
+        return remarkSet;
     }
 
     /**

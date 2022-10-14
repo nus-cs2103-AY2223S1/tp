@@ -7,7 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Personality;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
@@ -38,7 +38,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private StudentClass studentClass;
-    private Personality personality;
+    private Set<Remark> remarks;
     private Attendance attendance;
     private SubjectHandler subjectHandler;
     private Grade grade;
@@ -53,7 +53,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         studentClass = new StudentClass(DEFAULT_STUDENTCLASS);
-        personality = new Personality(DEFAULT_PERSONALITY);
+        remarks = new HashSet<>();
         subjectHandler = new SubjectHandler();
         tags = new HashSet<>();
     }
@@ -67,7 +67,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         studentClass = personToCopy.getStudentClass();
-        personality = personToCopy.getPersonality();
+        remarks = new HashSet<>(personToCopy.getRemarks());
         subjectHandler = personToCopy.getSubjectHandler();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -121,10 +121,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Personality} of the {@code Person} that we are building.
+     * Sets the {@code Remark} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPersonality(String personality) {
-        this.personality = new Personality(personality);
+    public PersonBuilder withRemarks(String... remarks) {
+        this.remarks = SampleDataUtil.getRemarkSet(remarks);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class PersonBuilder {
      * Builds a person object given the attributes
      */
     public Person build() {
-        return new Person(name, phone, email, address, studentClass, personality,
+        return new Person(name, phone, email, address, studentClass, remarks,
                           subjectHandler, tags);
     }
 }

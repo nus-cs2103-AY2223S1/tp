@@ -44,6 +44,12 @@ public class StudentClass {
     public static boolean isValidStudentClass(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Returns true if both classes have the same name.
+     * @param other The other class to compare with.
+     * @return True if both classes have the same name.
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
