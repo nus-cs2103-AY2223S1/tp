@@ -17,27 +17,27 @@ import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.ClearCommand;
 import seedu.waddle.logic.commands.DeleteCommand;
 import seedu.waddle.logic.commands.EditCommand;
-import seedu.waddle.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.logic.commands.ExitCommand;
 import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.HelpCommand;
 import seedu.waddle.logic.commands.ListCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-import seedu.waddle.model.person.NameContainsKeywordsPredicate;
-import seedu.waddle.model.person.Person;
-import seedu.waddle.testutil.EditPersonDescriptorBuilder;
-import seedu.waddle.testutil.PersonBuilder;
-import seedu.waddle.testutil.PersonUtil;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.NameContainsKeywordsPredicate;
+import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
+import seedu.waddle.testutil.ItineraryBuilder;
+import seedu.waddle.testutil.ItineraryUtil;
 
-public class AddressBookParserTest {
+public class WaddleParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final WaddleParser parser = new WaddleParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Itinerary itinerary = new ItineraryBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ItineraryUtil.getAddCommand(itinerary));
+        assertEquals(new AddCommand(itinerary), command);
     }
 
     @Test
@@ -55,10 +55,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Itinerary person = new ItineraryBuilder().build();
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + ItineraryUtil.getEditItineraryDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
