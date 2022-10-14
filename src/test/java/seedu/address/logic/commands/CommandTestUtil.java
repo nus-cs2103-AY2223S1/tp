@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONALITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -60,10 +59,6 @@ public class CommandTestUtil {
 
     // StudentClass examples
     public static final String STUDENTCLASS_DUMMY = " " + PREFIX_STUDENTCLASS + VALID_STUDENTCLASS;
-
-    // Personality examples
-    public static final String PERSONALITY_DESC_FUN = " " + PREFIX_PERSONALITY + VALID_PERSONALITY_FUN;
-    public static final String PERSONALITY_DESC_LAZY = " " + PREFIX_PERSONALITY + VALID_PERSONALITY_LAZY;
 
     // Grade examples
     public static final String GRADE_DESC_40 = " " + PREFIX_GRADE + VALID_GRADE_40;

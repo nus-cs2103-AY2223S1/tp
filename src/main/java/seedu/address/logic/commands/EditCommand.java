@@ -23,8 +23,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
 import seedu.address.model.person.subject.Grade;
@@ -104,14 +104,14 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentClass updatedStudentClass =
             editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
-        Personality updatedPersonality = editPersonDescriptor.getPersonality().orElse(personToEdit.getPersonality());
+        Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
         // SubjectHandler updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubjectsTaken());
         // Temporary solution to edit subjects
         SubjectHandler updatedSubjects = new SubjectHandler();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudentClass,
-                          updatedPersonality, updatedSubjects, updatedTags);
+                          updatedRemarks, updatedSubjects, updatedTags);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private StudentClass studentClass;
-        private Personality personality;
+        private Set<Remark> remarksList;
         private Attendance attendance;
         private SubjectHandler subjectHandler;
         private Grade grade;
@@ -161,7 +161,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setStudentClass(toCopy.studentClass);
-            setPersonality(toCopy.personality);
+            setRemarks(toCopy.remarksList);
             setSubjectHandler(toCopy.subjectHandler);
             setTags(toCopy.tags);
         }
@@ -213,12 +213,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(studentClass);
         }
 
-        public void setPersonality(Personality personality) {
-            this.personality = personality;
+        public void setRemarks(Set<Remark> remarksList) {
+            this.remarksList = (remarksList != null) ? new HashSet<>(remarksList) : null;
         }
 
-        public Optional<Personality> getPersonality() {
-            return Optional.ofNullable(personality);
+        public Optional<Set<Remark>> getRemarks() {
+            return (remarksList != null) ? Optional.of(Collections.unmodifiableSet(remarksList)) : Optional.empty();
         }
 
         public void setAttendance(Attendance attendance) {

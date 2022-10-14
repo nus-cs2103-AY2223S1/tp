@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,18 +24,20 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final StudentClass studentClass;
-    private final Personality personality;
-    private final SubjectHandler subjectHandler;
     private final Set<Tag> tags = new HashSet<>();
 
+    // New fields
+    private final StudentClass studentClass;
+    private final Set<Remark> remarksList;
+    private final SubjectHandler subjectHandler;
+
     /**
-     * Every field must be present and not null (except attendance, personality and grade).
+     * Every field must be present and not null (except attendance, remark and grade).
      */
     public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass,
-                  Personality personality,
+                  Set<Remark> remarksList,
                   SubjectHandler subjectsTaken, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, studentClass, subjectsTaken, tags);
+        requireAllNonNull(name, phone, email, address, studentClass, remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -43,7 +46,7 @@ public class Person {
 
         // Added in v1.2
         this.studentClass = studentClass;
-        this.personality = personality;
+        this.remarksList = remarksList;
         this.subjectHandler = subjectsTaken;
     }
 
@@ -67,8 +70,8 @@ public class Person {
         return studentClass;
     }
 
-    public Personality getPersonality() {
-        return personality;
+    public Set<Remark> getRemarks() {
+        return remarksList;
     }
 
     public SubjectHandler getSubjectHandler() {
@@ -115,13 +118,14 @@ public class Person {
                && otherPerson.getPhone().equals(getPhone())
                && otherPerson.getEmail().equals(getEmail())
                && otherPerson.getAddress().equals(getAddress())
-               && otherPerson.getTags().equals(getTags());
+               && otherPerson.getTags().equals(getTags())
+               && otherPerson.getStudentClass().equals(getStudentClass());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, studentClass, personality, subjectHandler, tags);
+        return Objects.hash(name, phone, email, address, studentClass, remarksList, subjectHandler, tags);
     }
 
     @Override
@@ -136,8 +140,8 @@ public class Person {
                .append(getAddress())
                .append("; Class: ")
                .append(getStudentClass())
-               .append("; Personality: ")
-               .append(getPersonality())
+               .append("; Remarks: ")
+               .append(getRemarks())
                .append("; Subject: ")
                .append(getSubjectHandler());
 

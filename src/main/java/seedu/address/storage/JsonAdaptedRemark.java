@@ -1,0 +1,40 @@
+package seedu.address.storage;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Remark;
+
+public class JsonAdaptedRemark {
+
+    private final String remark;
+
+    /**
+     * Constructs a {@code JsonAdaptedRemark} with the given {@code remark}.
+     */
+    public JsonAdaptedRemark(String remark) {
+        this.remark = remark;
+    }
+
+    /**
+     * Converts a given {@code Remark} into this class for Jackson use.
+     */
+    public JsonAdaptedRemark(Remark source) {
+        remark = source.value;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * Converts this Jackson-friendly adapted remark object into the model's {@code Remark} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted remark.
+     */
+    public Remark toModelType() throws IllegalValueException {
+        if (!Remark.isValidRemark(remark)) {
+            throw new IllegalValueException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(remark);
+    }
+
+}

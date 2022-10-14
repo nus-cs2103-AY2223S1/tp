@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -17,12 +18,12 @@ public class PersonalityContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> arrayListContainsWord(person.getPersonality().getArrayOfPersonalities(), keyword));
+                .anyMatch(keyword -> setContainsWord(person.getRemarks(), keyword));
     }
 
-    private boolean arrayListContainsWord(ArrayList<String> arrayList, String keyword) {
-        for (String string: arrayList) {
-            if (string.equals(keyword)) {
+    private boolean setContainsWord(Set<Remark> set, String keyword) {
+        for (Remark remark: set) {
+            if (remark.value.equals(keyword)) {
                 return true;
             }
         }

@@ -6,7 +6,6 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "studentClass": "1A",
-    "personality": "friendly",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -14,7 +13,6 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "studentClass": "1A",
-    "personality": "friendly",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -22,7 +20,6 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "studentClass": "1A",
-    "personality": "friendly",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -30,7 +27,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "studentClass": "1A",
-    "personality": "friendly",
+    "remarks": [ "friendly" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -38,7 +35,6 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "studentClass": "1A",
-    "personality": "friendly",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -46,7 +42,6 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "studentClass": "1A",
-    "personality": "friendly",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -54,7 +49,6 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "studentClass": "1A",
-    "personality": "friendly",
     "tagged" : [ ]
   } ]
 }
