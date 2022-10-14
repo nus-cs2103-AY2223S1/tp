@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
+import seedu.address.model.person.predicates.PersonContainsTagsPredicate;
 
 /**
  * A helper class consisting of methods to generate predicates more easily for testing without needing to create
@@ -45,5 +46,10 @@ public class PredicateGeneratorUtil {
         LocalDateTime start = startDateTime.isEmpty() ? LocalDateTime.MIN : LocalDateTime.parse(startDateTime);
         LocalDateTime end = endDateTime.isEmpty() ? LocalDateTime.MAX : LocalDateTime.parse(endDateTime);
         return new CombinedAppointmentPredicate(reason, start, end);
+    }
+
+    public static PersonContainsTagsPredicate generatePersonsContainsTagsPredicate(String... tags) {
+        List<String> tagList = Arrays.asList(tags);
+        return new PersonContainsTagsPredicate(tagList);
     }
 }
