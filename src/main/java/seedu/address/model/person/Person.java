@@ -95,7 +95,11 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if the following fields between both persons are equal (case-sensitive):
+     * 1. Name
+     * 2. Phone number
+     * 3. Email
+     * 4. Survey
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -104,7 +108,10 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getSurvey().equals(getSurvey());
     }
 
     /**
