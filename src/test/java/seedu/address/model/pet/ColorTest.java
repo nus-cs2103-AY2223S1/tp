@@ -17,6 +17,12 @@ public class ColorTest {
     }
 
     @Test
+    public void equals_sameObject() {
+        Color red = new Color("Red");
+        assertEquals(red, red);
+    }
+
+    @Test
     public void equals_different_fails() {
         Color red = new Color("Red");
         Color blue = new Color("Blue");
@@ -49,6 +55,13 @@ public class ColorTest {
         String expected = "Red";
         Color red = new Color(expected);
         assertEquals(red.getColor(), expected);
+    }
+
+    @Test
+    public void toStringTest() {
+        String expected = "Red";
+        Color red = new Color(expected);
+        assertEquals(red.toString(), expected);
     }
 
 }

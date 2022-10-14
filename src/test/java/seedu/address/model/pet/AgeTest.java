@@ -1,6 +1,7 @@
 package seedu.address.model.pet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -25,10 +26,23 @@ public class AgeTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_sameObject() {
+        Age age = new Age(10);
+        assertEquals(age, age);
+    }
+
+    @Test
+    public void equals_true() {
         Age age1 = new Age(10);
         Age age2 = new Age(10);
         assertEquals(age1, age2);
+    }
+
+    @Test
+    public void equals_false() {
+        Age age1 = new Age(1);
+        Age age2 = new Age(10);
+        assertNotEquals(age1, age2);
     }
 
     @Test
@@ -36,6 +50,12 @@ public class AgeTest {
         Age age1 = new Age(10);
         Age age2 = new Age(10);
         assertEquals(age1.hashCode(), age2.hashCode());
+    }
+
+    @Test
+    public void toStringTest() {
+        Age age = new Age(8);
+        assertEquals(age.toString(), Integer.toString(8));
     }
 
 }
