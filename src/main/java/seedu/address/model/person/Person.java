@@ -152,8 +152,10 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        // add gender field in toString method
-        builder.append("; Gender: ").append(getGender());
+        if (!getGender().equals(Gender.getNoGender())) {
+            // add gender field in toString method
+            builder.append("; Gender: ").append(getGender());
+        }
         return builder.toString();
     }
 }
