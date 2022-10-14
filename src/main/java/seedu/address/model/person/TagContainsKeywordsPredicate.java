@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.model.ModelManager;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,9 +24,11 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         Set<Tag> tags = person.getTags();
         for (Tag t: tags) {
             if (tagKeywords.stream().anyMatch(t.tagName::equalsIgnoreCase)) {
+                ModelManager.hiddenPersons.add(person);
                 return true;
             }
         }
+
         return false;
     }
 
