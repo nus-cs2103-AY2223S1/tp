@@ -43,5 +43,4 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
 
         return new AssignTaskCommand(taskIndex, personsIndexes);
     }
-
 }
