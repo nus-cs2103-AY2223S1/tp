@@ -13,7 +13,7 @@
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="TrackO" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/track_o_logo.png" />
   </icons>
   <scene>
     <Scene>
