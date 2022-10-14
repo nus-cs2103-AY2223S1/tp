@@ -219,7 +219,8 @@ public class ParserUtil {
     /**
      * Parses {@code String s} into a {@code DebtGreaterEqualAmountPredicate}.
      */
-    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s) throws ParseException {
+    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s)
+            throws ParseException {
         Money m = parseMoney(s);
         return new DebtGreaterEqualAmountPredicate(m);
     }
