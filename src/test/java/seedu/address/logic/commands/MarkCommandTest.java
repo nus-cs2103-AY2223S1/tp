@@ -20,6 +20,8 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
+
+
 class MarkCommandTest {
 
     private final Model typicalModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -32,7 +34,7 @@ class MarkCommandTest {
         AddressBook testAddressBook = new AddressBook();
         Model testModel = new ModelManager(testAddressBook, new UserPrefs());
 
-        Appointment unmarkedAppointment = new Appointment("Fever", "2019-12-31 23:45", false);
+        Appointment unmarkedAppointment = new Appointment("Fever", "2019-12-31 23:45", "", false);
         Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
         unmarkedAppointment.setPatient(unmarkedPerson);
 
@@ -40,7 +42,7 @@ class MarkCommandTest {
         testModel.addAppointment(unmarkedAppointment);
         Person personToMarkFor = testModel.getFilteredPersonList().get(targetPersonIndex.getZeroBased());
 
-        Appointment markedAppointment = new Appointment("Fever", "2019-12-31 23:45", true);
+        Appointment markedAppointment = new Appointment("Fever", "2019-12-31 23:45", "", true);
         Person markedPerson = new PersonBuilder().withAppointment(markedAppointment).build();
         markedAppointment.setPatient(markedPerson);
 
@@ -55,6 +57,44 @@ class MarkCommandTest {
 
         assertCommandSuccess(markCommand, testModel, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_recurringBooking_success() {
+        Index targetPersonIndex = INDEX_FIRST_PERSON;
+        Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
+
+        AddressBook testAddressBook = new AddressBook();
+        Model testModel = new ModelManager(testAddressBook, new UserPrefs());
+
+        Appointment unmarkedAppointment = new Appointment("Fever", "2019-10-31 23:45", "2M", false);
+        Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
+        unmarkedAppointment.setPatient(unmarkedPerson);
+
+        testModel.addPerson(unmarkedPerson);
+        testModel.addAppointment(unmarkedAppointment);
+        Person personToMarkFor = testModel.getFilteredPersonList().get(targetPersonIndex.getZeroBased());
+
+        Appointment markedAppointment = new Appointment("Fever", "2019-10-31 23:45", "2M", true);
+        Appointment recurringAppointment = new Appointment(markedAppointment);
+        Person markedPerson = new PersonBuilder().withAppointment(markedAppointment)
+                .withAppointment(recurringAppointment).build();
+        markedAppointment.setPatient(markedPerson);
+        recurringAppointment.setPatient(markedPerson);
+
+        MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
+                targetAppointmentIndex.getOneBased(),
+                markedPerson.getName());
+
+        ModelManager expectedModel = new ModelManager(testModel.getAddressBook(), new UserPrefs());
+        expectedModel.setPerson(personToMarkFor, markedPerson);
+        expectedModel.setAppointment(unmarkedAppointment, markedAppointment);
+        expectedModel.addAppointment(recurringAppointment);
+
+        assertCommandSuccess(markCommand, testModel, expectedMessage, expectedModel);
+    }
+
+
 
     @Test
     public void execute_markAlreadyMarkedAppointment_throwsCommandException() {

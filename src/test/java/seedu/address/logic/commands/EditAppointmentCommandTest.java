@@ -30,7 +30,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Appointment appointment = new Appointment("Sore Throat", "2019-10-10 16:30", true);
+        Appointment appointment = new Appointment("Sore Throat", "2019-10-10 16:30", "1Y2M", true);
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         appointment.setPatient(person);
 
@@ -52,7 +52,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_oneFieldSpecifiedUnfilteredList_success() {
-        Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", true);
+        Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", "", true);
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         appointment.setPatient(person);
 
@@ -91,7 +91,7 @@ public class EditAppointmentCommandTest {
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_THIRD_PERSON);
 
-        Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", true);
+        Appointment appointment = new Appointment("Sore Throat", "2010-12-31 23:45", "", true);
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         appointment.setPatient(personInFilteredList);
 
@@ -107,13 +107,13 @@ public class EditAppointmentCommandTest {
         expectedPerson.getAppointments().set(0, appointment);
         expectedModel.setPerson(model.getFilteredPersonList().get(0), expectedPerson);
         expectedModel.setAppointment(expectedModel.getFilteredAppointmentList().get(0), appointment);
-
+        showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateAppointmentTimeUnfilteredList_failure() {
-        Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", true);
+        Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", "", true);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
                 INDEX_FIRST_APPOINTMENT, descriptor);
@@ -125,7 +125,7 @@ public class EditAppointmentCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_THIRD_PERSON);
 
-        Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", true);
+        Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", "", true);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_APPOINTMENT, descriptor);

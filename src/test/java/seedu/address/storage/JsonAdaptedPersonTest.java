@@ -25,6 +25,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_REASON = "";
     private static final String INVALID_DATE = "2019-14-10 25:30";
+    private static final String INVALID_TIME_PERIOD = "43M";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -124,7 +125,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidReason_throwsIllegalValueException() {
         List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_REASON, "2019-12-16 16:30", false));
+        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_REASON, "2019-12-16 16:30", "", false));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidAppointments,
                         VALID_TAGS);
@@ -134,7 +135,18 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidDate_throwsIllegalValueException() {
         List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment("Sore Throat", INVALID_DATE, false));
+        invalidAppointments.add(new JsonAdaptedAppointment("Sore Throat", INVALID_DATE, "", false));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidAppointments,
+                        VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTimePeriod_throwsIllegalValueException() {
+        List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
+        invalidAppointments.add(new JsonAdaptedAppointment("Sore Throat", "2019-12-14 15:30",
+                INVALID_TIME_PERIOD, false));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidAppointments,
                         VALID_TAGS);
