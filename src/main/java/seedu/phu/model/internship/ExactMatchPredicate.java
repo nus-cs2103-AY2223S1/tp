@@ -3,8 +3,6 @@ package seedu.phu.model.internship;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.phu.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Internship}'s {@code Name} matches any of the keywords given.
  */

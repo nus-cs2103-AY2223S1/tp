@@ -12,7 +12,6 @@ import seedu.phu.logic.commands.exceptions.CommandException;
 import seedu.phu.model.Model;
 import seedu.phu.model.internship.ExactMatchPredicate;
 import seedu.phu.model.internship.Internship;
-import seedu.phu.model.internship.NameContainsKeywordsPredicate;
 import seedu.phu.model.internship.UniqueInternshipList;
 
 /**
@@ -53,5 +52,12 @@ public class ViewCommand extends Command {
 
         model.updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
     }
 }
