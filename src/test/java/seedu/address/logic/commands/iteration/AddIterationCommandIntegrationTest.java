@@ -3,7 +3,6 @@ package seedu.address.logic.commands.iteration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CAT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCommissions.CAT_PRODUCER;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;

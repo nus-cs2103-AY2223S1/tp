@@ -18,7 +18,7 @@ public class UserPrefsStorageStub implements UserPrefsStorage {
     public Optional<UserPrefs> readUserPrefs() {
         throw new AssertionError("This method should not be called.");
     }
-    
+
     @Override
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");

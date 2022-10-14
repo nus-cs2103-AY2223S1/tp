@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import seedu.address.storage.Storage;
 
+/**
+ * A default Storage stub that have all of its methods failing.
+ */
 public class StorageStub implements Storage {
 
     @Override
