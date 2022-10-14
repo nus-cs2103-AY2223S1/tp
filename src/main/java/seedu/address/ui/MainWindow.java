@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private TutorialListPanel tutorialListPanel;
     private TeachingAssistantListPanel teachingAssistantListPanel;
+    private ReminderListPanel reminderListPanel;
     private ConsultationListPanel consultationListPanel;
 
     private ResultDisplay resultDisplay;
@@ -137,6 +138,9 @@ public class MainWindow extends UiPart<Stage> {
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         teachingAssistantListPanel = new TeachingAssistantListPanel(logic.getFilteredTeachingAssistantList());
         consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
+
+        reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         // show the person list by default.
         modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());

@@ -9,6 +9,8 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.ta.UniqueTeachingAssistantList;
 import seedu.address.model.tutorial.Tutorial;
@@ -21,9 +23,9 @@ import seedu.address.model.tutorial.UniqueTutorialList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueReminderList reminders;
     private final UniqueTutorialList tutorials;
     private final UniqueTeachingAssistantList teachingAssistants;
-
     private final UniqueConsultationList consultations;
 
     /*
@@ -35,6 +37,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        reminders = new UniqueReminderList();
         tutorials = new UniqueTutorialList();
         teachingAssistants = new UniqueTeachingAssistantList();
         consultations = new UniqueConsultationList();
@@ -59,6 +62,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
+
+    /**
+     * Replaces the contents of the reminders list with {@code reminders}.
+     * {@code reminders} must not contain duplicate reminders.
+     */
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders.setReminders(reminders);
+    }
+
 
     /**
      * Replaces the contents of the tutorial list with {@code tutorials}.
@@ -91,6 +103,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+
+        setReminders(newData.getReminderList());
 
         setTutorials(newData.getTutorialList());
 
@@ -135,6 +149,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// reminder-level operations
+
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuilk.
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * Adds a reminder to the ModQuik.
+     * The reminder must not already exist in the ModQuik.
+     */
+    public void addReminder(Reminder r) {
+        reminders.add(r);
     }
 
     //// tutorial-level operations
@@ -220,7 +252,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
                 + tutorials.asUnmodifiableObservableList().size() + " tutorials"
-                + consultations.asUnmodifiableObservableList().size() + " consultations";
+                + consultations.asUnmodifiableObservableList().size() + " consultations"
+                + reminders.asUnmodifiableObservableList().size() + " reminders";
+
         return result;
         // TODO: refine later
     }
@@ -228,6 +262,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminders.asUnmodifiableObservableList();
     }
 
     @Override

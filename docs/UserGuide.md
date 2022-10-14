@@ -178,7 +178,7 @@ Format: `clear tut [m/MODULE]`
 
 Adds a consultation to the consultation database.
 
-Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [d/DESCRIPTION]`
+Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]`
 
 ### Deleting a consultation : `delete consult`
 

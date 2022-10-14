@@ -11,11 +11,16 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDeadline;
+import seedu.address.model.reminder.ReminderDescription;
+import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.ta.TeachingAssistantId;
 import seedu.address.model.ta.TeachingAssistantName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
@@ -48,14 +53,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Reminder[] getSampleReminders() {
+        return new Reminder[] {
+            new Reminder(new ReminderName("Mark Midterms"), new ReminderDeadline("20:00"),
+                        new ReminderDescription("300 papers to mark")),
+            new Reminder(new ReminderName("Send email to TAs"), new ReminderDeadline("21:00"),
+                        new ReminderDescription("Erratum in midterms")),
+            new Reminder(new ReminderName("Meeting with Prof Lee"), new ReminderDeadline("22:00"),
+                        new ReminderDescription("Discuss incoming finals for CS2201")),
+        };
+    }
+
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
             new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00")),
+                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00"),
+                    new TutorialDay("1")),
             new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00")),
+                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00"),
+                    new TutorialDay("2")),
             new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00")),
+                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00"),
+                    new TutorialDay("3")),
         };
     }
 

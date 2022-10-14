@@ -10,13 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TutorialModule {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module's name should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Module's code should consists of a two- or three-letter prefix, four digits"
+                + " and optionally a one-letter suffix";
 
-    /*
-     * The first character of the module's name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]{2,3}[\\d]{4}[a-zA-Z]?";
 
     public final String moduleName;
 

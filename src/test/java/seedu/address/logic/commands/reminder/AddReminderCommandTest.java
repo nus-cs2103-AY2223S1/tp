@@ -1,4 +1,5 @@
-package seedu.address.logic.commands.consultation;
+package seedu.address.logic.commands.reminder;
+
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,63 +24,60 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.ConsultationBuilder;
+import seedu.address.testutil.ReminderBuilder;
 
-public class AddConsultationCommandTest {
+public class AddReminderCommandTest {
+
     @Test
-    public void constructor_nullConsultation_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddConsultationCommand(null));
+    public void constructor_nullReminder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddReminderCommand(null));
     }
 
     @Test
-    public void execute_consultationAcceptedByModel_addSuccessful() throws Exception {
-        AddConsultationCommandTest.ModelStubAcceptingConsultationAdded modelStub =
-                new AddConsultationCommandTest.ModelStubAcceptingConsultationAdded();
-        Consultation validConsultation = new ConsultationBuilder().build();
+    public void execute_reminderAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingReminderAdded modelStub = new ModelStubAcceptingReminderAdded();
+        Reminder validReminder = new ReminderBuilder().build();
 
-        CommandResult commandResult = new AddConsultationCommand(validConsultation).execute(modelStub);
+        CommandResult commandResult = new AddReminderCommand(validReminder).execute(modelStub);
 
-        assertEquals(String.format(
-                        AddConsultationCommand.MESSAGE_SUCCESS, validConsultation),
+        assertEquals(String.format(AddReminderCommand.MESSAGE_SUCCESS, validReminder),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validConsultation), modelStub.consultationsAdded);
+        assertEquals(Arrays.asList(validReminder), modelStub.remindersAdded);
     }
 
     @Test
-    public void execute_duplicateConsultation_throwsCommandException() {
-        Consultation validConsultation = new ConsultationBuilder().build();
-        AddConsultationCommand addCommand = new AddConsultationCommand(validConsultation);
-        AddConsultationCommandTest.ModelStub modelStub =
-                new AddConsultationCommandTest.ModelStubWithConsultation(validConsultation);
+    public void execute_duplicateReminder_throwsCommandException() {
+        Reminder validReminder = new ReminderBuilder().build();
+        AddReminderCommand addReminderCommand = new AddReminderCommand(validReminder);
+        ModelStub modelStub = new ModelStubWithReminder(validReminder);
 
-        assertThrows(CommandException.class,
-                AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddReminderCommand.MESSAGE_DUPLICATE_REMINDER, () ->
+                addReminderCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Consultation w17 = new ConsultationBuilder().withName("CS2103T W17").build();
-        Consultation f01 = new ConsultationBuilder().withName("CS2103T F01").build();
-        AddConsultationCommand addW17Command = new AddConsultationCommand(w17);
-        AddConsultationCommand addF01Command = new AddConsultationCommand(f01);
+        Reminder markMidterms = new ReminderBuilder().withName("Mark Midterms").build();
+        Reminder markFinals = new ReminderBuilder().withName("Mark Finals").build();
+        AddReminderCommand markMidtermsCommand = new AddReminderCommand(markMidterms);
+        AddReminderCommand markFinalsCommand = new AddReminderCommand(markFinals);
 
         // same object -> returns true
-        assertTrue(addW17Command.equals(addW17Command));
+        assertTrue(markMidtermsCommand.equals(markMidtermsCommand));
 
         // same values -> returns true
-        AddConsultationCommand addAliceCommandCopy = new AddConsultationCommand(w17);
-        assertTrue(addW17Command.equals(addAliceCommandCopy));
+        AddReminderCommand markMidtermsCommandCopy = new AddReminderCommand(markMidterms);
+        assertTrue(markMidtermsCommand.equals(markMidtermsCommandCopy));
 
         // different types -> returns false
-        assertFalse(addW17Command.equals(1));
+        assertFalse(markMidtermsCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addW17Command.equals(null));
+        assertFalse(markMidtermsCommand.equals(null));
 
-        // different Consultation -> returns false
-        assertFalse(addW17Command.equals(addF01Command));
+        // different person -> returns false
+        assertFalse(markMidtermsCommand.equals(markFinalsCommand));
     }
 
     /**
@@ -117,6 +115,11 @@ public class AddConsultationCommandTest {
         }
 
         @Override
+        public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -133,11 +136,6 @@ public class AddConsultationCommandTest {
 
         @Override
         public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,16 +204,6 @@ public class AddConsultationCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
-         *
-         * @param ta
-         */
-        @Override
-        public boolean hasTeachingAssistant(TeachingAssistant ta) {
-            return false;
-        }
-
         @Override
         public boolean hasConsultation(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
@@ -223,27 +211,6 @@ public class AddConsultationCommandTest {
 
         @Override
         public boolean hasConsultationClashingWith(Consultation consultation) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        /**
-         * Adds the given teaching assistant.
-         * {@code ta} must not already exist in the ModQuik.
-         *
-         * @param ta
-         */
-        @Override
-        public void addTeachingAssistant(TeachingAssistant ta) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -264,45 +231,39 @@ public class AddConsultationCommandTest {
     }
 
     /**
-     * A Model stub that contains a single Consultation.
+     * A Model stub that contains a single reminder.
      */
-    private class ModelStubWithConsultation extends AddConsultationCommandTest.ModelStub {
-        private final Consultation consultation;
+    private class ModelStubWithReminder extends ModelStub {
+        private final Reminder reminder;
 
-        ModelStubWithConsultation(Consultation consultation) {
-            requireNonNull(consultation);
-            this.consultation = consultation;
+        ModelStubWithReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            this.reminder = reminder;
         }
 
         @Override
-        public boolean hasConsultation(Consultation consultation) {
-            requireNonNull(consultation);
-            return this.consultation.isSameConsultation(consultation);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return this.reminder.isSameReminder(reminder);
         }
     }
 
     /**
-     * A Model stub that always accept the Consultation being added.
+     * A Model stub that always accept the reminder being added.
      */
-    private class ModelStubAcceptingConsultationAdded extends AddConsultationCommandTest.ModelStub {
-        final ArrayList<Consultation> consultationsAdded = new ArrayList<>();
+    private class ModelStubAcceptingReminderAdded extends ModelStub {
+        final ArrayList<Reminder> remindersAdded = new ArrayList<>();
 
         @Override
-        public boolean hasConsultation(Consultation consultation) {
-            requireNonNull(consultation);
-            return consultationsAdded.stream().anyMatch(consultation::isSameConsultation);
+        public boolean hasReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            return remindersAdded.stream().anyMatch(reminder::isSameReminder);
         }
 
         @Override
-        public boolean hasConsultationClashingWith(Consultation consultation) {
-            requireNonNull(consultation);
-            return consultationsAdded.stream().anyMatch(consultation::isClashConsultation);
-        }
-
-        @Override
-        public void addConsultation(Consultation consultation) {
-            requireNonNull(consultation);
-            consultationsAdded.add(consultation);
+        public void addReminder(Reminder reminder) {
+            requireNonNull(reminder);
+            remindersAdded.add(reminder);
         }
 
         @Override
