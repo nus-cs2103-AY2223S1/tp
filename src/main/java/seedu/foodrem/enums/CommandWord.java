@@ -1,5 +1,7 @@
 package seedu.foodrem.enums;
 
+import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
+
 import java.util.StringJoiner;
 
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
@@ -24,32 +26,38 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
  * Represents the command word to be keyed in by a user to execute a command.
  */
 public enum CommandWord {
+
     // GENERAL COMMANDS
-    HELP_COMMAND("help", ""),
-    RESET_COMMAND("reset", ""),
-    EXIT_COMMAND("exit", ""),
+    HELP_COMMAND("help", DEFAULT_HELP_MESSAGE),
+    RESET_COMMAND("reset", DEFAULT_HELP_MESSAGE),
+    EXIT_COMMAND("exit", DEFAULT_HELP_MESSAGE),
 
     // ITEM COMMANDS
-    NEW_COMMAND("new", ""),
-    LIST_COMMAND("list", ""),
-    FIND_COMMAND("find", ""),
-    EDIT_COMMAND("edit", ""),
-    INCREMENT_COMMAND("inc", ""),
-    DECREMENT_COMMAND("dec", ""),
-    SORT_COMMAND("sort", ""),
-    DELETE_COMMAND("del", ""),
+    NEW_COMMAND("new", DEFAULT_HELP_MESSAGE),
+    LIST_COMMAND("list", DEFAULT_HELP_MESSAGE),
+    FIND_COMMAND("find", DEFAULT_HELP_MESSAGE),
+    EDIT_COMMAND("edit", DEFAULT_HELP_MESSAGE),
+    INCREMENT_COMMAND("inc", DEFAULT_HELP_MESSAGE),
+    DECREMENT_COMMAND("dec", DEFAULT_HELP_MESSAGE),
+    SORT_COMMAND("sort", DEFAULT_HELP_MESSAGE),
+    DELETE_COMMAND("del", DEFAULT_HELP_MESSAGE),
 
     // TAG COMMANDS
-    NEW_TAG_COMMAND("newtag", ""),
-    RENAME_TAG_COMMAND("renametag", ""),
-    TAG_COMMAND("tag", ""),
-    UNTAG_COMMAND("untag", ""),
-    DELETE_TAG_COMMAND("deletetag", ""),
-    LIST_TAG_COMMAND("listtag", ""),
+    NEW_TAG_COMMAND("newtag", DEFAULT_HELP_MESSAGE),
+    RENAME_TAG_COMMAND("renametag", DEFAULT_HELP_MESSAGE),
+    TAG_COMMAND("tag", DEFAULT_HELP_MESSAGE),
+    UNTAG_COMMAND("untag", DEFAULT_HELP_MESSAGE),
+    DELETE_TAG_COMMAND("deletetag", DEFAULT_HELP_MESSAGE),
+    LIST_TAG_COMMAND("listtag", DEFAULT_HELP_MESSAGE),
 
     // INVALID
-    DEFAULT("default", "Please refer to the user guide.");
+    DEFAULT("default", DEFAULT_HELP_MESSAGE);
 
+    // This will only run after all enums are constructed.
+    // This is necessary as MESSAGE_USAGE are defined in each respective commands and
+    // most of them references the value of the commandWord in the enum.
+    // An error regarding self referencing will occur during construction if this is not done.
+    // https://stackoverflow.com/questions/11419519/enums-static-and-instance-blocks
     static {
         // General Commands
         EXIT_COMMAND.help = ExitCommand.MESSAGE_USAGE;
