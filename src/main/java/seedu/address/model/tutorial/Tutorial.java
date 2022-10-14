@@ -14,6 +14,7 @@ public class Tutorial {
     private final TutorialName name;
     private final TutorialModule module;
     private final TutorialVenue venue;
+    private final TutorialDay day;
 
     //Data fields
     private final TutorialTimeslot timeslot;
@@ -21,12 +22,14 @@ public class Tutorial {
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(TutorialName name, TutorialModule module, TutorialVenue venue, TutorialTimeslot timeslot) {
+    public Tutorial(TutorialName name, TutorialModule module, TutorialVenue venue,
+                    TutorialTimeslot timeslot, TutorialDay day) {
         requireAllNonNull(name, module, venue, timeslot);
         this.name = name;
         this.module = module;
         this.venue = venue;
         this.timeslot = timeslot;
+        this.day = day;
     }
 
     public TutorialName getName() {
@@ -43,6 +46,10 @@ public class Tutorial {
 
     public TutorialTimeslot getTimeslot() {
         return timeslot;
+    }
+
+    public TutorialDay getDay() {
+        return day;
     }
 
     /**
@@ -89,13 +96,14 @@ public class Tutorial {
         return otherTutorial.getName().equals(getName())
                 && otherTutorial.getModule().equals(getModule())
                 && otherTutorial.getVenue().equals(getVenue())
-                && otherTutorial.getTimeslot().equals(getTimeslot());
+                && otherTutorial.getTimeslot().equals(getTimeslot())
+                && otherTutorial.getDay().equals(getDay());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, module, venue, timeslot);
+        return Objects.hash(name, module, venue, timeslot, day);
     }
 
     @Override
@@ -107,7 +115,9 @@ public class Tutorial {
                 .append("; Venue: ")
                 .append(getVenue())
                 .append("; Timeslot: ")
-                .append(getTimeslot());
+                .append(getTimeslot())
+                .append("; Day: ")
+                .append(getDay());
 
         return builder.toString();
     }

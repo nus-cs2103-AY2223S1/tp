@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
@@ -15,11 +16,13 @@ public class TutorialBuilder {
     public static final String DEFAULT_MODULE = "CS2103T";
     public static final String DEFAULT_VENUE = "COM1-0203";
     public static final String DEFAULT_TIMESLOT = "15:00-17:00";
+    public static final String DEFAULT_DAY = "3";
 
     private TutorialName tutorialName;
     private TutorialModule tutorialModule;
     private TutorialVenue tutorialVenue;
     private TutorialTimeslot tutorialTimeslot;
+    private TutorialDay tutorialDay;
 
     /**
      * Creates a {@code TutorialBuilder} with the default details.
@@ -29,6 +32,7 @@ public class TutorialBuilder {
         tutorialModule = new TutorialModule(DEFAULT_MODULE);
         tutorialVenue = new TutorialVenue(DEFAULT_VENUE);
         tutorialTimeslot = new TutorialTimeslot(DEFAULT_TIMESLOT);
+        tutorialDay = new TutorialDay(DEFAULT_DAY);
     }
 
     /**
@@ -39,6 +43,7 @@ public class TutorialBuilder {
         tutorialModule = tutorialToCopy.getModule();
         tutorialVenue = tutorialToCopy.getVenue();
         tutorialTimeslot = tutorialToCopy.getTimeslot();
+        tutorialDay = tutorialToCopy.getDay();
     }
 
     /**
@@ -73,8 +78,16 @@ public class TutorialBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TutorialDay} of the {@code Tutorial} that we are building.
+     */
+    public TutorialBuilder withDay(String day) {
+        this.tutorialDay = new TutorialDay(day);
+        return this;
+    }
+
     public Tutorial build() {
-        return new Tutorial(tutorialName, tutorialModule, tutorialVenue, tutorialTimeslot);
+        return new Tutorial(tutorialName, tutorialModule, tutorialVenue, tutorialTimeslot, tutorialDay);
     }
 
 }

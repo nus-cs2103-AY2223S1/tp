@@ -13,6 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialTimeslot;
@@ -48,11 +49,14 @@ public class SampleDataUtil {
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
             new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00")),
+                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00"),
+                    new TutorialDay("1")),
             new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00")),
+                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00"),
+                    new TutorialDay("2")),
             new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00")),
+                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00"),
+                    new TutorialDay("3")),
         };
     }
 
