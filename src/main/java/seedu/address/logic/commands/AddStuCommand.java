@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_INFO;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_TA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -27,10 +28,11 @@ public class AddStuCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]..."
             + PREFIX_ID + "ID "
             + PREFIX_HANDLE + "HANDLE "
-            + "[" + PREFIX_STUDENT_INFO + "MODULE]...\n"
+            + "[" + PREFIX_STUDENT_INFO + "MODULE]..."
+            + "[" + PREFIX_STUDENT_TA + "TA]..."
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

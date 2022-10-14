@@ -25,6 +25,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String id;
     private final String handle;
     private final List<JsonAdaptedModuleCode> info = new ArrayList<>();
+    private final List<JsonAdaptedModuleCode> teaching = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given person details.
@@ -39,12 +40,16 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("ID") String id, @JsonProperty("handle") String handle,
-                              @JsonProperty("info") List<JsonAdaptedModuleCode> info) {
+                              @JsonProperty("info") List<JsonAdaptedModuleCode> info,
+                              @JsonProperty("teaching") List<JsonAdaptedModuleCode> teaching) {
         super(name, phone, email, address, tagged);
         this.id = id;
         this.handle = handle;
         if (info != null) {
             this.info.addAll(info);
+        }
+        if (teaching != null) {
+            this.teaching.addAll(teaching);
         }
     }
 
@@ -60,6 +65,9 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         info.addAll(((Student) source).getStudentModuleInfo().stream()
                 .map(JsonAdaptedModuleCode::new)
                 .collect(Collectors.toList()));
+        teaching.addAll(((Student) source).getTeachingAssistantInfo().stream()
+                .map(JsonAdaptedModuleCode::new)
+                .collect(Collectors.toList()));
     }
 
     @Override
@@ -68,6 +76,10 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         final List<ModuleCode> moduleCodes = new ArrayList<>();
         for (JsonAdaptedModuleCode moduleCode : info) {
             moduleCodes.add(moduleCode.toModelType());
+        }
+        final List<ModuleCode> moduleTeachingCodes = new ArrayList<>();
+        for (JsonAdaptedModuleCode moduleTeachingCode : info) {
+            moduleTeachingCodes.add(moduleTeachingCode.toModelType());
         }
 
         if (id == null) {
@@ -89,11 +101,16 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         final TelegramHandle modelTelegramHandle = new TelegramHandle(handle);
 
         if (info == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "INFO"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "MODULE"));
+        }
+
+        if (teaching == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TA"));
         }
 
         final Set<ModuleCode> modelCodes = new HashSet<>(moduleCodes);
+        final Set<ModuleCode> modelModuleCodes = new HashSet<>(moduleTeachingCodes);
         return new Student(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-                person.getTags(), modelStudentId, modelTelegramHandle, modelCodes);
+                person.getTags(), modelStudentId, modelTelegramHandle, modelCodes, modelModuleCodes);
     }
 }
