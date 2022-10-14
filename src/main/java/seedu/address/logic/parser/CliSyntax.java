@@ -15,6 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("m/");
     public static final Prefix PREFIX_CLASS_GROUP = new Prefix("c/");
-    public static final Prefix PREFIX_PICTURE = new Prefix(("P/"));
 
 }

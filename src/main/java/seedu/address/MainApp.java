@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -54,6 +55,11 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
+        File images = new File("images");
+        if (!images.exists()) {
+            logger.info("Images folder does not exist, creating one now.");
+            images.mkdir();
+        }
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());

@@ -2,18 +2,18 @@ package seedu.address.model.student;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 
 
 public class Picture {
     public static final String PICTURE_CONSTRAINTS = "Picture should be in .jpg format.";
-    public static final String MESSAGE_INVALID_FILE_PATH = "File path should not contain empty spaces, and should not be blank";
-    public static final String VALIDATION_REGEX = "^\\S*$";
-    private final String filePath;
+    public static final String DEFAULT_PICTURE_PATH = "profile/default-profile-pic.jpg";
+    public String filePath;
 
-    public static boolean isValidFilePath(String filepath) {
-        return filepath.matches(VALIDATION_REGEX) && !filepath.isBlank();
-    }
 
     public static boolean isJpgFile(File file) throws CommandException {
         int[] JpgByteArray = new int[] {255, 216, 255, 224};
@@ -35,22 +35,7 @@ public class Picture {
 
     }
 
-    public static void copyImage(File inFile, File outFile) throws CommandException{
-        try {
-            FileInputStream inputFile = new FileInputStream(inFile);
-            FileOutputStream outputFile = new FileOutputStream(outFile);
-            int dataByte;
-            while ((dataByte = inputFile.read()) != -1) {
-                outputFile.write(dataByte);
-            }
-            outputFile.close();
-            inputFile.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException e) {
-            throw new CommandException("File read has an error please use another file.");
-        }
-    }
+
     public Picture(String filePath) {
         this.filePath = filePath;
     }
@@ -59,9 +44,12 @@ public class Picture {
         return this.filePath;
     }
 
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return this.filePath;
+    }
 }

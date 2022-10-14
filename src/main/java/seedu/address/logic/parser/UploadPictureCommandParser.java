@@ -7,7 +7,6 @@ import seedu.address.model.student.Picture;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PICTURE;
 
 public class UploadPictureCommandParser implements Parser<UploadPictureCommand> {
 
@@ -15,7 +14,7 @@ public class UploadPictureCommandParser implements Parser<UploadPictureCommand> 
     @Override
     public UploadPictureCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PICTURE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
         Index index;
 
         try {
@@ -24,9 +23,7 @@ public class UploadPictureCommandParser implements Parser<UploadPictureCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UploadPictureCommand.MESSAGE_USAGE), pe);
         }
 
-        String filePath = argMultimap.getValue(PREFIX_PICTURE).get();
-        Picture picture = ParserUtil.parseFilePath(filePath);
-        UploadPictureCommand command = new UploadPictureCommand(picture, index);
+        UploadPictureCommand command = new UploadPictureCommand(index);
         return command;
     }
 }

@@ -57,7 +57,7 @@ public class AttendanceCommand extends Command {
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getPhone(), studentToEdit.getEmail(),
                 studentToEdit.getClassGroup(), studentToEdit.getStudentId(), studentToEdit.getTags(),
-                attendance);
+                attendance, studentToEdit.getPicture());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);

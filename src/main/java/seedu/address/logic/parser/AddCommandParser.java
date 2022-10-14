@@ -8,18 +8,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.student.ClassGroup;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.StudentId;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,8 +46,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         StudentId studentId = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ID).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Attendance attendance = new Attendance("0"); //empty attendance
+        Picture picture = new Picture(Picture.DEFAULT_PICTURE_PATH); //default picture
+        try {
+            new File(String.format("src/main/resources/profile/%s.jpg", studentId.value)).createNewFile();
+        } catch (IOException e) {
+            System.out.println("Unable to create file...");
+        }
 
-        Student student = new Student(name, phone, email, classGroup, studentId, tagList, attendance);
+        Student student = new Student(name, phone, email, classGroup, studentId, tagList, attendance, picture);
 
         return new AddCommand(student);
     }

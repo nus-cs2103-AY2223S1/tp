@@ -4,12 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.student.ClassGroup;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.StudentId;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,6 +20,7 @@ public class StudentBuilder {
     public static final String DEFAULT_STUDENTID = "e0707070";
 
     public static final String DEFAULT_ATTENDANCE = "0";
+    public static final String DEFAULT_PICTURE_FILE_PATH = "profile/default-profile-pic.jpg";
 
     private Name name;
     private Phone phone;
@@ -34,6 +30,7 @@ public class StudentBuilder {
     private Set<Tag> tags;
 
     private Attendance attendance;
+    private Picture picture;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -46,6 +43,8 @@ public class StudentBuilder {
         studentId = new StudentId(DEFAULT_STUDENTID);
         tags = new HashSet<>();
         attendance = new Attendance(DEFAULT_ATTENDANCE);
+        picture = new Picture(DEFAULT_PICTURE_FILE_PATH);
+
     }
 
     /**
@@ -59,6 +58,7 @@ public class StudentBuilder {
         studentId = studentToCopy.getStudentId();
         tags = new HashSet<>(studentToCopy.getTags());
         attendance = studentToCopy.getAttendance();
+        picture = studentToCopy.getPicture();
     }
 
     /**
@@ -116,8 +116,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Picture} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withPicture(String pictureFilePath) {
+        this.picture = new Picture(pictureFilePath);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, classGroup, studentId, tags, attendance);
+        return new Student(name, phone, email, classGroup, studentId, tags, attendance, picture);
     }
 
 }

@@ -177,17 +177,4 @@ public class ParserUtil {
         return new TaskDescription(trimmedDescription);
     }
 
-    /**
-     * Parses a {@code String filePath} into a {@code Picture}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code filePath} is invalid.
-     */
-    public static Picture parseFilePath(String filePath) throws ParseException {
-        requireNonNull(filePath);
-        if(!Picture.isValidFilePath(filePath)) {
-            throw new ParseException(Picture.MESSAGE_INVALID_FILE_PATH);
-        }
-        return new Picture(filePath);
-    }
 }

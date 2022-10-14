@@ -21,12 +21,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.attendance.Attendance;
-import seedu.address.model.student.ClassGroup;
-import seedu.address.model.student.Email;
-import seedu.address.model.student.Name;
-import seedu.address.model.student.Phone;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.StudentId;
+import seedu.address.model.student.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -111,9 +106,10 @@ public class EditCommand extends Command {
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         Attendance updatedAttendance = studentToEdit.getAttendance();
+        Picture updatedPicture = studentToEdit.getPicture();
 
         return new Student(updatedName, updatedPhone, updatedEmail,
-                updatedClassGroup, updatedStudentId, updatedTags, updatedAttendance);
+                updatedClassGroup, updatedStudentId, updatedTags, updatedAttendance, updatedPicture);
     }
 
     @Override

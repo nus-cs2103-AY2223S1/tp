@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
+import seedu.address.storage.ImageStorage;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -15,6 +17,7 @@ import seedu.address.model.student.Student;
 public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -45,6 +48,8 @@ public class StudentCard extends UiPart<Region> {
 
     @FXML
     private Label attendance;
+    @FXML
+    private ImageView picture;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -59,9 +64,17 @@ public class StudentCard extends UiPart<Region> {
         email.setText(student.getEmail().value);
         attendance.setText(student.getAttendance().value);
         classGroup.setText(student.getClassGroup().value);
+
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        updatePicture();
+    }
+
+    public void updatePicture() {
+        picture.setImage(
+                ImageStorage.getStudentProfileImage(this.student)
+        );
     }
 
     @Override
