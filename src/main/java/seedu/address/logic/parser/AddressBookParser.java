@@ -58,14 +58,14 @@ public class AddressBookParser {
 
         case FindNameCommand.COMMAND_WORD:
             return new FindNameCommandParser().parse(arguments);
-//        case FindClassCommand.COMMAND_WORD:
-//            return new FindClassCommandParser().parse(arguments);
-//
-//        case FindPersonalityCommand.COMMAND_WORD:
-//            return new FindPersonalityCommandParser().parse(arguments);
-//
-//        case FindSubjectCommand.COMMAND_WORD:
-//            return new FindSubjectCommandParser().parse(arguments);
+        //        case FindClassCommand.COMMAND_WORD:
+        //            return new FindClassCommandParser().parse(arguments);
+
+        //        case FindPersonalityCommand.COMMAND_WORD:
+        //            return new FindPersonalityCommandParser().parse(arguments);
+
+        //        case FindSubjectCommand.COMMAND_WORD:
+        //            return new FindSubjectCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
