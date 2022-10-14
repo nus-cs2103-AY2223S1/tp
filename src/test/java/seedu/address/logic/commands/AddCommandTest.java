@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -20,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.attribute.Attribute;
-import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
