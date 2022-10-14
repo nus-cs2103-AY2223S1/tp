@@ -126,17 +126,6 @@ public class ParserUtil {
     /**
      * Parses {@code int askingPrice} into a {@code Integer}.
      */
-    public static Integer parseAskingPrice(int askingPrice) throws ParseException {
-        requireNonNull(askingPrice);
-        if (askingPrice < 0) {
-            throw new ParseException("Asking Price can't be negative");
-        }
-        return askingPrice;
-    }
-
-    /**
-     * Parses {@code int askingPrice} into a {@code Integer}.
-     */
     public static Price parsePrice(String offerPrice) throws ParseException {
         requireNonNull(offerPrice);
         String trimmedPrice = offerPrice.trim();

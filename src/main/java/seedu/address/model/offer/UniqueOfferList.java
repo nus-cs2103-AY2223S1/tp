@@ -10,6 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.offer.exceptions.DuplicateOfferException;
 import seedu.address.model.offer.exceptions.OfferNotFoundException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
 
 /**
  * A list of offers that enforces uniqueness between its elements and does not allow nulls.
@@ -66,6 +68,22 @@ public class UniqueOfferList implements Iterable<Offer> {
         }
 
         internalList.set(index, editedOffer);
+    }
+
+    /**
+     * Gets the offer from the given name {@code name} and listing address {@code address}.
+     * @param name name of the person in offer
+     * @param address listing address of offer
+     * @return offer with given name and listing address
+     */
+    public Offer getOffer(Name name, Address address) {
+        requireNonNull(name);
+        for (Offer offer : internalList) {
+            if (offer.getClient().equals(name) && offer.getListing().equals(address)) {
+                return offer;
+            }
+        }
+        throw new OfferNotFoundException();
     }
 
     /**

@@ -14,6 +14,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -89,7 +90,7 @@ public class EditListingCommand extends Command {
         Name updatedName = editListingDescriptor.getName().orElse(listingToEdit.getName());
         Person updatedPerson = model.getPerson(updatedName);
         Address updatedAddress = editListingDescriptor.getAddress().orElse(listingToEdit.getAddress());
-        int updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
+        Price updatedAskingPrice = editListingDescriptor.getAskingPrice().orElse(listingToEdit.getAskingPrice());
 
         return new Listing(updatedId, updatedAddress, updatedPerson, updatedAskingPrice);
     }
@@ -120,7 +121,7 @@ public class EditListingCommand extends Command {
         private String id;
         private Name name;
         private Address address;
-        private int askingPrice;
+        private Price askingPrice;
 
         public EditListingDescriptor() {}
 
@@ -166,11 +167,11 @@ public class EditListingCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setAskingPrice(int askingPrice) {
+        public void setAskingPrice(Price askingPrice) {
             this.askingPrice = askingPrice;
         }
 
-        public Optional<Integer> getAskingPrice() {
+        public Optional<Price> getAskingPrice() {
             return Optional.of(askingPrice);
         }
 

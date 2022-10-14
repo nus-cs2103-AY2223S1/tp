@@ -7,6 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.UniqueListingList;
+import seedu.address.model.offer.Offer;
+import seedu.address.model.offer.UniqueOfferList;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -19,6 +22,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueListingList listings;
+    private final UniqueOfferList offers;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         listings = new UniqueListingList();
+        offers = new UniqueOfferList();
     }
 
     public AddressBook() {}
@@ -58,6 +63,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setListings(List<Listing> listings) {
         this.listings.setListings(listings);
+    }
+
+    /**
+     * Replaces the contents of the offer list with {@code offers}.
+     * {@code persons} must not contain duplicate offers.
+     */
+    public void setOffers(List<Offer> offers) {
+        this.offers.setOffers(offers);
     }
 
     /**
@@ -162,11 +175,61 @@ public class AddressBook implements ReadOnlyAddressBook {
         listings.remove(listing);
     }
 
+    //// offer-level operations
+
+    /**
+     * Returns true if an offer with the same identity as {@code offer} exists in the address book.
+     */
+    public boolean hasOffer(Offer offer) {
+        requireNonNull(offer);
+        return offers.contains(offer);
+    }
+
+    /**
+     * Adds an offer to the address book.
+     * The offer must not already exist in the address book.
+     */
+    public void addOffer(Offer o) {
+        offers.add(o);
+    }
+
+    /**
+     * Gets the offer from the given name {@code name} and listing address {@code address}.
+     * @param name name of the person in offer
+     * @param address listing address of offer
+     * @return offer with given name and listing address
+     */
+    public Offer getOffer(Name name, Address address) {
+        return offers.getOffer(name, address);
+    }
+
+    /**
+     * Replaces the given offer {@code target} in the list with {@code editedOffer}.
+     * {@code target} must exist in the address book.
+     * The offer identity of {@code editedOffer} must not be the same as another existing offer in the address book.
+     */
+    public void setOffer(Offer target, Offer editedOffer) {
+        requireNonNull(editedOffer);
+
+        offers.setOffer(target, editedOffer);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeOffer(Offer key) {
+        offers.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        int personListSize = persons.asUnmodifiableObservableList().size();
+        int listingListSize = listings.asUnmodifiableObservableList().size();
+        int offerListSize = offers.asUnmodifiableObservableList().size();
+        return String.format("%d persons, %d listings, %d offers", personListSize, listingListSize, offerListSize);
         // TODO: refine later
     }
 
@@ -181,11 +244,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Offer> getOfferList() {
+        return offers.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && (persons.equals(((AddressBook) other).persons)
-                && (listings.equals(((AddressBook) other).listings))));
+                || (other instanceof AddressBook) // instanceof handles nulls
+                && (persons.equals(((AddressBook) other).persons))
+                && (listings.equals(((AddressBook) other).listings))
+                && (offers.equals(((AddressBook) other).offers));
     }
 
     @Override
