@@ -57,4 +57,14 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Validates whether multiple prefixes are stored in Argument Multimap.
+     *
+     * @return true if 2 or more prefixes are stored
+     */
+    public boolean containsExactlyOnePrefix() {
+        Integer sizeOffSet = argMultimap.size() - 1;
+        return sizeOffSet == 1;
+    }
 }
