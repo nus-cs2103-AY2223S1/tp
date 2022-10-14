@@ -42,7 +42,7 @@ public class SampleDataUtil {
     public static ReadOnlyJeeqTracker getSampleJeeqTracker() {
         JeeqTracker sampleAb = new JeeqTracker();
         for (Client sampleClient : getSampleCompanies()) {
-            sampleAb.addCompany(sampleClient);
+            sampleAb.addClient(sampleClient);
         }
         return sampleAb;
     }

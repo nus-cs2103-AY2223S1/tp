@@ -52,13 +52,13 @@ class CreateCommandTest {
     @Test
     public void execute_invalidCompanyIndex_failure() {
         assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
-                model.getFilteredCompanyList().size() + 10), ALICE).execute(model));
+                model.getFilteredClientList().size() + 10), ALICE).execute(model));
 
         Client validClient = new CompanyBuilder().build();
         Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
-                modelStub.getFilteredCompanyList().size() + 10), ALICE).execute(model));
+                modelStub.getFilteredClientList().size() + 10), ALICE).execute(model));
     }
 
     @Test
@@ -76,7 +76,7 @@ class CreateCommandTest {
         Model modelStub = new ModelStub(validClient);
         CreateCommand createCommand = new CreateCommand(INDEX_FIRST_COMPANY, AMY);
         createCommand.execute(modelStub);
-        assertTrue(modelStub.getFilteredCompanyList().get(0).hasPoc(AMY));
+        assertTrue(modelStub.getFilteredClientList().get(0).hasPoc(AMY));
     }
 
 
@@ -147,7 +147,7 @@ class CreateCommandTest {
         }
 
         @Override
-        public void addCompany(Client client) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,27 +162,27 @@ class CreateCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Client client) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Client target) {
+        public void deleteClient(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Client target, Client editedClient) {
+        public void setClient(Client target, Client editedClient) {
 
         }
 
         @Override
-        public ObservableList<Client> getFilteredCompanyList() {
+        public ObservableList<Client> getFilteredClientList() {
             return coys.asUnmodifiableObservableList();
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Client> predicate) {
+        public void updateFilteredClientList(Predicate<Client> predicate) {
 
         }
     }

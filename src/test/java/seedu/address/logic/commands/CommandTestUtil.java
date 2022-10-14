@@ -124,24 +124,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         JeeqTracker expectedJeeqTracker = new JeeqTracker(actualModel.getJeeqTracker());
-        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCompanyList());
+        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedJeeqTracker, actualModel.getJeeqTracker());
-        assertEquals(expectedFilteredList, actualModel.getFilteredCompanyList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the company at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showCompanyAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredCompanyList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
 
-        Client client = model.getFilteredCompanyList().get(targetIndex.getZeroBased());
+        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
         final String[] splitName = client.getName().fullName.split("\\s+");
-        model.updateFilteredCompanyList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredCompanyList().size());
+        assertEquals(1, model.getFilteredClientList().size());
     }
 
 }

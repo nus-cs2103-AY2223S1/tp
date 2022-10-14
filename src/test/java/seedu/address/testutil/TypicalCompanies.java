@@ -58,7 +58,7 @@ public class TypicalCompanies {
     public static JeeqTracker getTypicalJeeqTracker() {
         JeeqTracker jq = new JeeqTracker();
         for (Client client : getTypicalCompanies()) {
-            jq.addCompany(client);
+            jq.addClient(client);
         }
         return jq;
     }

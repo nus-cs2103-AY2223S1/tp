@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.poc.Poc;
 
 /**
- * Unmodifiable view of a company
+ * Unmodifiable view of a client
  */
-public interface ReadOnlyCompany {
+public interface ReadOnlyClient {
 
     /**
      * Returns an unmodifiable view of the pocs list.

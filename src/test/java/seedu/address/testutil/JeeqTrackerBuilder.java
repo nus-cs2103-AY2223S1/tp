@@ -24,7 +24,7 @@ public class JeeqTrackerBuilder {
      * Adds a new {@code Company} to the {@code JeeqTracker} that we are building.
      */
     public JeeqTrackerBuilder withCompany(Client client) {
-        jeeqTracker.addCompany(client);
+        jeeqTracker.addClient(client);
         return this;
     }
 

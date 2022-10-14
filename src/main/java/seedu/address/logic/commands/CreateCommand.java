@@ -63,7 +63,7 @@ public class CreateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         // if index of company not valid
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -78,7 +78,7 @@ public class CreateCommand extends Command {
 
         Client editedClient = clientToEdit;
         editedClient.addPoc(poc);
-        model.setCompany(clientToEdit, editedClient);
+        model.setClient(clientToEdit, editedClient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedClient));
     }

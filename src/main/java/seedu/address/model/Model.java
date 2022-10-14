@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyJeeqTracker getJeeqTracker();
 
     /**
-     * Returns true if a company with the same identity as {@code company} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
-    boolean hasCompany(Client client);
+    boolean hasClient(Client client);
 
     /**
-     * Deletes the given company.
-     * The company must exist in the address book.
+     * Deletes the given client.
+     * The client must exist in the address book.
      */
-    void deleteCompany(Client target);
+    void deleteClient(Client target);
 
     /**
-     * Adds the given company.
-     * {@code company} must not already exist in the address book.
+     * Adds the given client.
+     * {@code client} must not already exist in the address book.
      */
-    void addCompany(Client client);
+    void addClient(Client client);
 
     /**
-     * Replaces the given company {@code target} with {@code editedCompany}.
+     * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the address book.
-     * The identity of {@code editedCompany} must not be the same as another existing company in the address book.
+     * The identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    void setCompany(Client target, Client editedClient);
+    void setClient(Client target, Client editedClient);
 
-    /** Returns an unmodifiable view of the filtered company list */
-    ObservableList<Client> getFilteredCompanyList();
+    /** Returns an unmodifiable view of the filtered client list */
+    ObservableList<Client> getFilteredClientList();
 
     /**
-     * Updates the filter of the filtered company list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredCompanyList(Predicate<Client> predicate);
+    void updateFilteredClientList(Predicate<Client> predicate);
 }

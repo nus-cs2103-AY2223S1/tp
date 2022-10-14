@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the company in the {@code model}'s company list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredCompanyList().size() / 2);
+        return Index.fromOneBased(model.getFilteredClientList().size() / 2);
     }
 
     /**
      * Returns the last index of the company in the {@code model}'s company list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredCompanyList().size());
+        return Index.fromOneBased(model.getFilteredClientList().size());
     }
 
     /**
      * Returns the company in the {@code model}'s company list at {@code index}.
      */
     public static Client getCompany(Model model, Index index) {
-        return model.getFilteredCompanyList().get(index.getZeroBased());
+        return model.getFilteredClientList().get(index.getZeroBased());
     }
 }

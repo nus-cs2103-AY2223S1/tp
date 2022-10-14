@@ -56,7 +56,7 @@ public class BuyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         // if index of company not valid
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -67,7 +67,7 @@ public class BuyCommand extends Command {
 
         Client editedClient = clientToEdit;
         editedClient.addTransaction(transaction);
-        model.setCompany(clientToEdit, editedClient);
+        model.setClient(clientToEdit, editedClient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient.getName(), transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));

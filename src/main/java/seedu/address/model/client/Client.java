@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.ReadOnlyCompany;
+import seedu.address.model.ReadOnlyClient;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
@@ -22,7 +22,7 @@ import seedu.address.model.transaction.TransactionLog;
  * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Client implements ReadOnlyCompany {
+public class Client implements ReadOnlyClient {
 
     // Identity fields
     private final Name name;

@@ -72,14 +72,14 @@ public class JsonJeeqTrackerStorageTest {
         assertEquals(original, new JeeqTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addCompany(HOON);
-        original.removeCompany(ALICE);
+        original.addClient(HOON);
+        original.removeClient(ALICE);
         jsonJeeqTrackerStorage.saveJeeqTracker(original, filePath);
         readBack = jsonJeeqTrackerStorage.readJeeqTracker(filePath).get();
         assertEquals(original, new JeeqTracker(readBack));
 
         // Save and read without specifying file path
-        original.addCompany(IDA);
+        original.addClient(IDA);
         jsonJeeqTrackerStorage.saveJeeqTracker(original); // file path not specified
         readBack = jsonJeeqTrackerStorage.readJeeqTracker().get(); // file path not specified
         assertEquals(original, new JeeqTracker(readBack));

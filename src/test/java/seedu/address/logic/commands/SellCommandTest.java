@@ -53,13 +53,13 @@ class SellCommandTest {
     @Test
     public void execute_invalidCompanyIndex_failure() {
         assertThrows(CommandException.class, () -> new SellCommand(Index.fromZeroBased(
-                model.getFilteredCompanyList().size() + 10), SELL_PAPAYA).execute(model));
+                model.getFilteredClientList().size() + 10), SELL_PAPAYA).execute(model));
 
         Client validClient = new CompanyBuilder().build();
         Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new SellCommand(Index.fromZeroBased(
-                modelStub.getFilteredCompanyList().size() + 10), SELL_PAPAYA).execute(model));
+                modelStub.getFilteredClientList().size() + 10), SELL_PAPAYA).execute(model));
     }
 
     @Test
@@ -68,7 +68,7 @@ class SellCommandTest {
         Model modelStub = new ModelStub(validClient);
         SellCommand sellCommand = new SellCommand(INDEX_FIRST_COMPANY, SELL_PAPAYA);
         sellCommand.execute(modelStub);
-        assertEquals(27.5, modelStub.getFilteredCompanyList().get(0).getTotalTransacted());
+        assertEquals(27.5, modelStub.getFilteredClientList().get(0).getTotalTransacted());
     }
 
 
@@ -139,7 +139,7 @@ class SellCommandTest {
         }
 
         @Override
-        public void addCompany(Client client) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -154,27 +154,27 @@ class SellCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Client client) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Client target) {
+        public void deleteClient(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Client target, Client editedClient) {
+        public void setClient(Client target, Client editedClient) {
             // method body is left empty intentionally
         }
 
         @Override
-        public ObservableList<Client> getFilteredCompanyList() {
+        public ObservableList<Client> getFilteredClientList() {
             return coys.asUnmodifiableObservableList();
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Client> predicate) {
+        public void updateFilteredClientList(Predicate<Client> predicate) {
             // method body is left empty intentionally
         }
     }

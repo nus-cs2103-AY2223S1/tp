@@ -37,7 +37,7 @@ class JsonSerializableJeeqTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableJeeqTracker}.
      */
     public JsonSerializableJeeqTracker(ReadOnlyJeeqTracker source) {
-        companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
+        companies.addAll(source.getClientList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
     }
 
     /**
@@ -49,10 +49,10 @@ class JsonSerializableJeeqTracker {
         JeeqTracker jeeqTracker = new JeeqTracker();
         for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
             Client client = jsonAdaptedCompany.toModelType();
-            if (jeeqTracker.hasCompany(client)) {
+            if (jeeqTracker.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
             }
-            jeeqTracker.addCompany(client);
+            jeeqTracker.addClient(client);
         }
         return jeeqTracker;
     }

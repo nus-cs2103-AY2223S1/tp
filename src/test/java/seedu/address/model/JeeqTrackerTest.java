@@ -28,7 +28,7 @@ public class JeeqTrackerTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), jeeqTracker.getCompanyList());
+        assertEquals(Collections.emptyList(), jeeqTracker.getClientList());
     }
 
     @Test
@@ -56,31 +56,31 @@ public class JeeqTrackerTest {
 
     @Test
     public void hasCompany_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> jeeqTracker.hasCompany(null));
+        assertThrows(NullPointerException.class, () -> jeeqTracker.hasClient(null));
     }
 
     @Test
     public void hasCompany_companyNotInJeeqTracker_returnsFalse() {
-        assertFalse(jeeqTracker.hasCompany(ALICE));
+        assertFalse(jeeqTracker.hasClient(ALICE));
     }
 
     @Test
     public void hasCompany_companyInJeeqTracker_returnsTrue() {
-        jeeqTracker.addCompany(ALICE);
-        assertTrue(jeeqTracker.hasCompany(ALICE));
+        jeeqTracker.addClient(ALICE);
+        assertTrue(jeeqTracker.hasClient(ALICE));
     }
 
     @Test
     public void hasCompany_companyWithSameIdentityFieldsInJeeqTracker_returnsTrue() {
-        jeeqTracker.addCompany(ALICE);
+        jeeqTracker.addClient(ALICE);
         Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(jeeqTracker.hasCompany(editedAlice));
+        assertTrue(jeeqTracker.hasClient(editedAlice));
     }
 
     @Test
     public void getCompanyList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> jeeqTracker.getCompanyList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> jeeqTracker.getClientList().remove(0));
     }
 
     /**
@@ -94,7 +94,7 @@ public class JeeqTrackerTest {
         }
 
         @Override
-        public ObservableList<Client> getCompanyList() {
+        public ObservableList<Client> getClientList() {
             return companies;
         }
     }

@@ -9,9 +9,9 @@ import seedu.address.model.client.Client;
 public interface ReadOnlyJeeqTracker {
 
     /**
-     * Returns an unmodifiable view of the companies list.
-     * This list will not contain any duplicate companies.
+     * Returns an unmodifiable view of the clients list.
+     * This list will not contain any duplicate clients.
      */
-    ObservableList<Client> getCompanyList();
+    ObservableList<Client> getClientList();
 
 }

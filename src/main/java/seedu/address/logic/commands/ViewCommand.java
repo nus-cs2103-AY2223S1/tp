@@ -41,7 +41,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
@@ -51,7 +51,7 @@ public class ViewCommand extends Command {
         String companyName = clientToView.getName().toString();
 
         NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate(companyName);
-        model.updateFilteredCompanyList(predicate);
+        model.updateFilteredClientList(predicate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_COMPANY_SUCCESS, companyName));
     }

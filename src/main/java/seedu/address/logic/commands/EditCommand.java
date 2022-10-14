@@ -62,7 +62,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
@@ -71,12 +71,12 @@ public class EditCommand extends Command {
         Client clientToEdit = lastShownList.get(index.getZeroBased());
         Client editedClient = createEditedCompany(clientToEdit, editCompanyDescriptor);
 
-        if (!clientToEdit.isSameClient(editedClient) && model.hasCompany(editedClient)) {
+        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
         }
 
-        model.setCompany(clientToEdit, editedClient);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        model.setClient(clientToEdit, editedClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_COMPANIES);
         return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedClient));
     }
 

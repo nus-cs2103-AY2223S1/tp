@@ -74,23 +74,23 @@ public class ModelManagerTest {
 
     @Test
     public void hasCompany_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasCompany(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
     }
 
     @Test
     public void hasCompany_companyNotInJeeqTracker_returnsFalse() {
-        assertFalse(modelManager.hasCompany(ALICE));
+        assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
     public void hasCompany_companyInJeeqTracker_returnsTrue() {
-        modelManager.addCompany(ALICE);
-        assertTrue(modelManager.hasCompany(ALICE));
+        modelManager.addClient(ALICE);
+        assertTrue(modelManager.hasClient(ALICE));
     }
 
     @Test
     public void getFilteredCompanyList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCompanyList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
     }
 
     @Test
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredCompanyList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(jeeqTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_COMPANIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

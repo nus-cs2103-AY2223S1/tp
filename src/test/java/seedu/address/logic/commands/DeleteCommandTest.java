@@ -28,20 +28,20 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Client clientToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_COMPANY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COMPANY);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, clientToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.deleteCompany(clientToDelete);
+        expectedModel.deleteClient(clientToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCompanyList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
@@ -51,13 +51,13 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showCompanyAtIndex(model, INDEX_FIRST_COMPANY);
 
-        Client clientToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Client clientToDelete = model.getFilteredClientList().get(INDEX_FIRST_COMPANY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COMPANY);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, clientToDelete);
 
         Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.deleteCompany(clientToDelete);
+        expectedModel.deleteClient(clientToDelete);
         showNoCompany(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -69,7 +69,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_COMPANY;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getJeeqTracker().getCompanyList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getJeeqTracker().getClientList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
@@ -102,8 +102,8 @@ public class DeleteCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoCompany(Model model) {
-        model.updateFilteredCompanyList(p -> false);
+        model.updateFilteredClientList(p -> false);
 
-        assertTrue(model.getFilteredCompanyList().isEmpty());
+        assertTrue(model.getFilteredClientList().isEmpty());
     }
 }

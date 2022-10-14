@@ -64,10 +64,10 @@ public class ViewCommandTest {
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_COMPANY_SUCCESS, expectedCompanyName);
 
         NameEqualsKeywordPredicate predicate = new NameEqualsKeywordPredicate(expectedCompanyName);
-        expectedModel.updateFilteredCompanyList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(model.getFilteredCompanyList().size(), 1);
+        assertEquals(model.getFilteredClientList().size(), 1);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ViewCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_COMPANY;
 
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getJeeqTracker().getCompanyList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getJeeqTracker().getClientList().size());
 
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 

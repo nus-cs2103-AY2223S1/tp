@@ -33,7 +33,7 @@ public class ModelManager implements Model {
 
         this.jeeqTracker = new JeeqTracker(jeeqTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredCompanies = new FilteredList<>(this.jeeqTracker.getCompanyList());
+        filteredCompanies = new FilteredList<>(this.jeeqTracker.getClientList());
     }
 
     public ModelManager() {
@@ -88,27 +88,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasCompany(Client client) {
+    public boolean hasClient(Client client) {
         requireNonNull(client);
-        return jeeqTracker.hasCompany(client);
+        return jeeqTracker.hasClient(client);
     }
 
     @Override
-    public void deleteCompany(Client target) {
-        jeeqTracker.removeCompany(target);
+    public void deleteClient(Client target) {
+        jeeqTracker.removeClient(target);
     }
 
     @Override
-    public void addCompany(Client client) {
-        jeeqTracker.addCompany(client);
-        updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+    public void addClient(Client client) {
+        jeeqTracker.addClient(client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_COMPANIES);
     }
 
     @Override
-    public void setCompany(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
-        jeeqTracker.setCompany(target, editedClient);
+        jeeqTracker.setClient(target, editedClient);
     }
 
     //=========== Filtered Company List Accessors =============================================================
@@ -118,12 +118,12 @@ public class ModelManager implements Model {
      * {@code versionedJeeqTracker}
      */
     @Override
-    public ObservableList<Client> getFilteredCompanyList() {
+    public ObservableList<Client> getFilteredClientList() {
         return filteredCompanies;
     }
 
     @Override
-    public void updateFilteredCompanyList(Predicate<Client> predicate) {
+    public void updateFilteredClientList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredCompanies.setPredicate(predicate);
     }

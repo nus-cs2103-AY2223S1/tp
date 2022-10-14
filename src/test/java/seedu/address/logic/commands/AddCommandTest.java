@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addCompany(Client client) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Client client) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Client target) {
+        public void deleteClient(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Client target, Client editedClient) {
+        public void setClient(Client target, Client editedClient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Client> getFilteredCompanyList() {
+        public ObservableList<Client> getFilteredClientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Client> predicate) {
+        public void updateFilteredClientList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -161,7 +161,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Client client) {
+        public boolean hasClient(Client client) {
             requireNonNull(client);
             return this.client.isSameClient(client);
         }
@@ -174,13 +174,13 @@ public class AddCommandTest {
         final ArrayList<Client> companiesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasCompany(Client client) {
+        public boolean hasClient(Client client) {
             requireNonNull(client);
             return companiesAdded.stream().anyMatch(client::isSameClient);
         }
 
         @Override
-        public void addCompany(Client client) {
+        public void addClient(Client client) {
             requireNonNull(client);
             companiesAdded.add(client);
         }

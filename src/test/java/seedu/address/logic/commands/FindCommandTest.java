@@ -59,9 +59,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredCompanyList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredCompanyList());
+        assertEquals(Collections.emptyList(), model.getFilteredClientList());
     }
 
     @Test
@@ -69,9 +69,9 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_COMPANIES_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredCompanyList(predicate);
+        expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredCompanyList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 
     /**

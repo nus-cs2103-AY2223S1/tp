@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
         Client validClient = new CompanyBuilder().build();
 
         Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.addCompany(validClient);
+        expectedModel.addClient(validClient);
 
         assertCommandSuccess(new AddCommand(validClient), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedModel);
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateCompany_throwsCommandException() {
-        Client clientInList = model.getJeeqTracker().getCompanyList().get(0);
+        Client clientInList = model.getJeeqTracker().getClientList().get(0);
         assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_COMPANY);
     }
 
