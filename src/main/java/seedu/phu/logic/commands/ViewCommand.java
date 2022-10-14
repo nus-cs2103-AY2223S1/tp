@@ -10,6 +10,7 @@ import seedu.phu.commons.core.index.Indexes;
 import seedu.phu.commons.exceptions.IllegalIndexException;
 import seedu.phu.logic.commands.exceptions.CommandException;
 import seedu.phu.model.Model;
+import seedu.phu.model.internship.ExactMatchPredicate;
 import seedu.phu.model.internship.Internship;
 import seedu.phu.model.internship.NameContainsKeywordsPredicate;
 import seedu.phu.model.internship.UniqueInternshipList;
@@ -45,11 +46,12 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
-        List<String> keywordList = new ArrayList<>();
+        List<Internship> internshipList = new ArrayList<>();
         for (Internship internship : targetInternships) {
-            keywordList.add(internship.getName().toString());
+            internshipList.add(internship);
         }
-        model.updateFilteredInternshipList(new NameContainsKeywordsPredicate(keywordList));
+
+        model.updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
