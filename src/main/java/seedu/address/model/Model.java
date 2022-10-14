@@ -20,7 +20,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused-> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -147,6 +148,8 @@ public interface Model {
      * The module must exist in the address book.
      */
     void deleteModule(Module target);
+
+    void replaceModule(Module target, Module editedModule);
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

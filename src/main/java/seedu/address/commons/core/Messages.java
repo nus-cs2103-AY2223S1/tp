@@ -15,6 +15,10 @@ public class Messages {
     public static final String MESSAGE_INVALID_MODULE_DISPLAYED_INDEX = "The module index provided is invalid";
     public static final String MESSAGE_INVALID_MODULE_DELETION_AS_TIED_WITH_TASK = "The module"
             + "cannot be deleted as it is tied with an existing task";
+    public static final String MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK = "The module"
+            + "cannot be edited as it is tied with an existing task";
+    public static final String MESSAGE_INVALID_MODULE_CLEAR = "The modules cannot be cleared as task list is not empty";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list";
     public static final String MESSAGE_MODULE_NOT_FOUND = "This module does not exist";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";
 }

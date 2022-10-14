@@ -135,6 +135,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -185,6 +190,11 @@ public class AddCommandTest {
 
         @Override
         public void replaceTask(Task task, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void replaceModule(Module module, Module editedModule) {
             throw new AssertionError("This method should not be called.");
         }
     }

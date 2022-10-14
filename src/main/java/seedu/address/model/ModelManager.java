@@ -207,6 +207,14 @@ public class ModelManager implements Model {
         addressBook.removeModule(target);
     }
 
+    @Override
+    public void replaceModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        addressBook.replaceModule(target, editedModule);
+    }
+
+
     //================================Task Commands=====================================
     @Override
     public ObservableList<Task> getFilteredTaskList() {
