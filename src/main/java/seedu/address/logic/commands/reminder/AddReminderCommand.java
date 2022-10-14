@@ -17,17 +17,15 @@ public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add reminder";
     
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the address book. "
             + PREFIX_TIMESLOT + "TIMESLOT "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T W17 "
             + PREFIX_TIMESLOT + "1500-1800 ";
 
     public static final String MESSAGE_SUCCESS = "New reminder added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This reminder already exists in the ModQuik";
-    public static final String MESSAGE_CLASH_TUTORIAL =
-            "There exists a reminder having same name in the ModQuik";
-    
+    public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in the ModQuik";
+
     private final Reminder toAdd;
     
     /**
@@ -37,18 +35,17 @@ public class AddReminderCommand extends Command {
         requireNonNull(reminder);
         toAdd = reminder;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasReminder(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
-        }
-        if (model.hasReminderClashingWith(toAdd)) {
-            throw new CommandException(MESSAGE_CLASH_TUTORIAL);
+            throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
         }
         model.addReminder(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

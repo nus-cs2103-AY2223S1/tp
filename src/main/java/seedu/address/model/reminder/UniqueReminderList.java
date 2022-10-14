@@ -21,14 +21,14 @@ import seedu.address.model.reminder.exceptions.DuplicateReminderException;
  *
  * @see Reminder#isSameReminder(Reminder)
  */
-public class UniqueReminderList {
+public class UniqueReminderList implements Iterable<Reminder> {
 
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
     private final ObservableList<Reminder> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent tutorial as the given argument.
+     * Returns true if the list contains an equivalent reminder as the given argument.
      */
     public boolean contains(Reminder toCheck) {
         requireNonNull(toCheck);
@@ -36,8 +36,8 @@ public class UniqueReminderList {
     }
 
     /**
-     * Adds a tutorial to the list.
-     * The tutorial must not already exist in the list.
+     * Adds a reminder to the list.
+     * The reminder must not already exist in the list.
      */
     public void add(Reminder toAdd) {
         requireNonNull(toAdd);
@@ -48,12 +48,12 @@ public class UniqueReminderList {
     }
 
     /**
-     * Replaces the contents of this list with {@code tutorials}.
-     * {@code tutorials} must not contain duplicate tutorials.
+     * Replaces the contents of this list with {@code reminder}.
+     * {@code reminders} must not contain duplicate reminder.
      */
     public void setReminders(List<Reminder> reminders) {
         requireAllNonNull(reminders);
-        if (!tutorialsAreUnique(reminders)) {
+        if (!remindersAreUnique(reminders)) {
             throw new DuplicateReminderException();
         }
 
@@ -87,7 +87,7 @@ public class UniqueReminderList {
     /**
      * Returns true if {@code reminders} contains only unique reminders.
      */
-    private boolean tutorialsAreUnique(List<Reminder> reminders) {
+    private boolean remindersAreUnique(List<Reminder> reminders) {
         for (int i = 0; i < reminders.size() - 1; i++) {
             for (int j = i + 1; j < reminders.size(); j++) {
                 if (reminders.get(i).isSameReminder(reminders.get(j))) {

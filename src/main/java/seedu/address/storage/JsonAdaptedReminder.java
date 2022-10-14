@@ -42,7 +42,7 @@ class JsonAdaptedReminder {
         /**
          * Converts this Jackson-friendly adapted reminder object into the model's {@code Reminder} object.
          *
-         * @throws IllegalValueException if there were any data constraints violated in the adapted tutorial.
+         * @throws IllegalValueException if there were any data constraints violated in the adapted reminder.
          */
         public Reminder toModelType() throws IllegalValueException {
             if (name == null) {
