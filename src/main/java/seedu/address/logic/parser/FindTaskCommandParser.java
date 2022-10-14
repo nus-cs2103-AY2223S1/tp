@@ -23,9 +23,6 @@ public class FindTaskCommandParser implements Parser<FindTasksCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTasksCommand.MESSAGE_USAGE));
         }
-
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindTasksCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(trimmedArgs)));
     }
 }
