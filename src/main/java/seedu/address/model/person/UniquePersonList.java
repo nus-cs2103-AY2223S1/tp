@@ -49,23 +49,6 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Inserts a person to the list at an index.
-     * The person must not already exist in the list.
-     */
-    public void insert(int index, Person toAdd) {
-        if (contains(toAdd)) {
-            throw new DuplicatePersonException();
-        }
-
-        int length = internalList.size();
-        if (index > length) {
-            index = length;
-        }
-
-        internalList.add(index, toAdd);
-    }
-
-    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
