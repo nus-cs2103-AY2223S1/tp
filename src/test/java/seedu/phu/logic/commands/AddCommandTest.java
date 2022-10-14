@@ -159,6 +159,11 @@ public class AddCommandTest {
         public void reverseList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void viewInternship(Internship internshipToView) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

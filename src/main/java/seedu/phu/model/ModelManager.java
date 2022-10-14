@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.phu.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.phu.commons.core.GuiSettings;
 import seedu.phu.commons.core.LogsCenter;
 import seedu.phu.model.internship.ComparableCategory;
+import seedu.phu.model.internship.ExactMatchPredicate;
 import seedu.phu.model.internship.Internship;
 
 /**
@@ -111,6 +114,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedInternship);
 
         internshipBook.setInternship(target, editedInternship);
+    }
+
+    @Override
+    public void viewInternship(Internship internship) {
+        List<Internship> internshipList = new ArrayList<>();
+        internshipList.add(internship);
+
+        updateFilteredInternshipList(new ExactMatchPredicate(internshipList));
     }
 
     //=========== Filtered Internship List Accessors =============================================================
