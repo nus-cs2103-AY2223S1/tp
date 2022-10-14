@@ -25,6 +25,7 @@ class CombinedPersonPredicateTest {
     private final String differentEmail = "max@gmail.com";
     private final String differentAddress = "Max road";
     private final String differentTagString = "Tag3";
+
     @Test
     public void equals() {
         CombinedPersonPredicate firstPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
