@@ -27,7 +27,7 @@ public class ListDebtorsCommandParser {
 
         if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_MONEY)) {
             return new ListDebtorsCommand(
-                    ParserUtil.parseDebtGreaterEqualAmountPredicate(argMultimap.getValue(PREFIX_MONEY).get()));
+                    ParserUtil.prepareDebtGreaterEqualAmountPredicate(argMultimap.getValue(PREFIX_MONEY).get()));
         }
 
         return new ListDebtorsCommand();
