@@ -32,9 +32,20 @@ public class MeetingListPanel extends UiPart<Region> {
         super(FXML);
         meetingListView.setItems(meetingList);
         meetingListView.setCellFactory(listView -> new MeetingListViewCell());
-        numMeetings.setText(Integer.toString(meetingList.size()) + " Records");
+        numMeetings.setText(numMeetingsString(meetingList));
         meetingList.addListener((ListChangeListener<? super Meeting>)
-                c -> numMeetings.setText(Integer.toString(meetingList.size()) + " Records"));
+                c -> numMeetings.setText(numMeetingsString(meetingList)));
+    }
+
+    /**
+     * Returns a string denoting the number of records for {@code Meeting} currently shown in the {@code meetingList}.
+     */
+    private String numMeetingsString(ObservableList<Meeting> meetingList) {
+        if (meetingList.size() == 1) {
+            return "1 record";
+        } else {
+            return meetingList.size() + " records";
+        }
     }
 
     /**
