@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CountCommand;
+import seedu.address.logic.commands.CreatePastAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -74,6 +75,9 @@ public class AddressBookParser {
 
             case GetCommand.COMMAND_WORD:
                 return new GetCommandParser().parse(arguments);
+
+            case CreatePastAppointmentCommand.COMMAND_WORD:
+                return new CreatePastAppointmentCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
