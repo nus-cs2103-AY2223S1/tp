@@ -15,7 +15,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class NewTagCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.NEW_TAG_COMMAND.getValue();
+    public static final String COMMAND_WORD = CommandWord.NEW_TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to FoodRem. "
             + "Parameters: "

@@ -29,7 +29,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.EDIT_COMMAND.getValue();
+    public static final String COMMAND_WORD = CommandWord.EDIT_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the item identified "
             + "by the index number used in the displayed item list. "

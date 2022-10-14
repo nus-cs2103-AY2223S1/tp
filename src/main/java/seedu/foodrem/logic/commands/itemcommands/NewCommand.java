@@ -15,7 +15,7 @@ import seedu.foodrem.model.item.Item;
  */
 public class NewCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.NEW_COMMAND.getValue();
+    public static final String COMMAND_WORD = CommandWord.NEW_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a new item in FoodRem. "

@@ -86,7 +86,7 @@ public enum CommandWord {
         LIST_TAG_COMMAND.help = ListTagCommand.MESSAGE_USAGE;
     }
 
-    private final String value;
+    private final String commandWord;
     private String help;
 
     /**
@@ -95,7 +95,7 @@ public enum CommandWord {
      * @param commandWord the value representing the string value of the enum.
      */
     CommandWord(String commandWord, String commandHelp) {
-        value = commandWord;
+        this.commandWord = commandWord;
         help = commandHelp;
     }
 
@@ -104,8 +104,8 @@ public enum CommandWord {
      *
      * @return the string representation of a CommandWord.
      */
-    public String getValue() {
-        return value;
+    public String getCommandWord() {
+        return commandWord;
     }
 
     /**
@@ -125,7 +125,7 @@ public enum CommandWord {
      */
     public static CommandWord parseWord(String word) {
         return Arrays.stream(values())
-                .filter(type -> type.value.equals(word))
+                .filter(type -> type.commandWord.equals(word))
                 .findFirst().orElse(DEFAULT);
     }
 
@@ -138,7 +138,7 @@ public enum CommandWord {
             if (commandWord.equals(DEFAULT)) {
                 continue;
             }
-            stringJoiner.add(commandWord.getValue());
+            stringJoiner.add(commandWord.getCommandWord());
         }
         return stringJoiner.toString();
     }

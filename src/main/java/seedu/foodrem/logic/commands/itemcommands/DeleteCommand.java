@@ -18,7 +18,7 @@ import seedu.foodrem.model.item.Item;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWord.DELETE_COMMAND.getValue();
+    public static final String COMMAND_WORD = CommandWord.DELETE_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the item identified by the index number used in the displayed item list.\n"
