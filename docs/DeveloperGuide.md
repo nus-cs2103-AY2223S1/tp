@@ -290,28 +290,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
-(For all use cases below, the System is MassLinkers and the Actor is the student, unless specified otherwise)
+(For all use cases below, the **System** is Mass Linkers and the **Actor** is the student, unless specified otherwise)
 
 **Use case 1: Add a batchmate’s information**
 
 **MSS**
 1. Student chooses to add a batchmate's contact.
 2. Student enters batchmate's particulars.
-3. MassLinkers adds batchmate to current list of batchmates. \
+3. Mass Linkers adds batchmate to current list of batchmates. \
    Use case ends.
 
 **Extensions**
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file. \
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file. \
       Use case ends.
 
 **Use case 2: Remove a batchmate**
 
 **MSS**
 1. Student requests for the list of batchmates.
-2. MassLinkers shows the current list of batchmates.
+2. Mass Linkers shows the current list of batchmates.
 3. Student requests to delete a specific batchmate in the list.
-4. MassLinkers deletes the batchmate using his or her index.
+4. Mass Linkers deletes the specified batchmate.
    \
    Use case ends.
 
@@ -320,13 +320,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   \
   Use case ends.
 
-* 4a. The given index is invalid.
-    * a1. MassLinkers prompts for another index.
+* 4a. The specified batchmate is not found.
+    * a1. Mass Linkers detects an error in specified batchmate (non valid index).
+    * a2. Mass Linkers requests for a valid batchmate. 
     * Step a1 is repeated until a valid index is given. \
       Use case resumes from step 3.
 
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
@@ -335,19 +336,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Student requests the list of batchmates with tags.
-2. MassLinkers returns the list of batchmates associated with the particular tags.
+2. Mass Linkers returns the list of batchmates associated with the particular tags.
    \
    Use case ends.
 
 **Extensions**
-* 1a. MassLinkers detects an invalid input. (No tags specified by the student)
-* 1a1. MassLinkers requests for at least one tag to be specified.
+* 1a. Mass Linkers detects an invalid input. (No tags specified by the student)
+* 1a1. Mass Linkers requests for at least one tag to be specified.
 * 1a2. Student inputs new tags.
 * Steps 1a1-1a2 are repeated until input is valid.
   \
   Use case resumes from step 2.
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
     
@@ -356,24 +357,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Student chooses to add a tag to a batchmate.
-2. MassLinkers searches through the list of batchmates for the selected batchmate.
-3. MassLinkers adds tag to the batchmate.
+2. Mass Linkers searches through the list of batchmates for the selected batchmate.
+3. Mass Linkers adds tag to the batchmate.
    \
    Use case ends.
 
 **Extensions**
 * 2a. The list of batchmates is empty.
-* a1. MassLinkers warns adding a tag is invalid.
+* a1. Mass Linkers warns adding a tag is invalid.
   \
   Use case ends.
-* 2b. MassLinkers is unable to find the batchmate.
-    * b1. MassLinkers prompts for new batchmate details.
+* 2b. Mass Linkers detects an error in specified batchmate (non valid index).
+    * b1. Mass Linkers requests for new batchmate details.
     * Step b1 is repeated until a batchmate is found.
       \
       Use case resumes from step 2.
 
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
     
@@ -383,23 +384,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Student requests the list of modules for a batchmate.
 2. Student requests to mark a module complete.
-3. MassLinkers marks the module completed.
+3. Mass Linkers marks the module completed.
    \
    Use case ends.
 
 **Extensions**
 * 2a. The list of modules is empty.
-    * a1. MassLinkers warns marking a module is invalid.
+    * a1. Mass Linkers warns marking a module is invalid.
       \
       Use case ends.
-* 2b. The module selected is out of range.
-    * b1. MassLinkers prompts for new module.
+* 2b. Mass Linkers detects the specified module is invalid (out of range).
+    * b1. Mass Linkers requests for new module.
     * Step b1 is repeated until a module is found.
       \
       Use case resumes from step 2.
 
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
@@ -409,9 +410,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Student requests the list of batchmates.
-2. MassLinkers displays list of batchmates.
+2. Mass Linkers displays list of batchmates.
 3. Student requests to edit a specific batchmate in the list with the new details.
-4. MassLinkers updates the details of said batchmate and displays a success message.
+4. Mass Linkers updates the details of said batchmate.
    \
    Use case ends.
 
@@ -419,23 +420,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of batchmates is empty.
   \
   Use case ends.
-* 3a. MassLinkers detects an error in the sequence or syntax of entered command.
-    * 3a1. MassLinkers prompts error message.
-    * 3a2. MassLinkers requests for the correct command.
-    * 3a3. Student enters new command.
-      Steps 3a1-3a3 are repeated until the command entered is correct.
+* 3a. Mass Linkers detects an error in the entered command.
+    * 3a1. Mass Linkers requests for the correct command.
+    * 3a2. Student enters new command.
+      Steps 3a1-3a2 are repeated until the command entered is correct.
       \
       Use case resumes from step 4.
-* 3b. MassLinkers could not find the batchmate specified.
-    * 3b1. MassLinkers prompts error message.
-    * 3b2. MassLinkers requests the user to input a valid batchmate.
-    * 3b3. Student enters new command.
-      Steps 3b1-3b3 are repeated until the command entered are correct.
+* 3b. Mass Linkers could not find the batchmate specified.
+    * 3b1. Mass Linkers requests the user to input a valid batchmate.
+    * 3b2. Student enters new command.
+      Steps 3b1-3b2 are repeated until the command entered are correct.
       \
       Use case resumes from step 4.
 
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
@@ -445,7 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Student requests to add modules to a specific batchmate.
-2. MassLinkers add modules to said batchmate and displays a success message.
+2. Mass Linkers add modules to said batchmate.
    \
    Use case ends.
 
@@ -453,23 +452,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The list of batchmates is empty.
   \
   Use case ends.
-* 2a. MassLinkers detects an error in the sequence or syntax of entered command.
-    * 2a1. MassLinkers prompts error message.
-    * 2a2. MassLinkers requests for the correct command.
-    * 2a3. Student enters new command.
-      Steps 2a1-2a3 are repeated until the command entered are correct.
+* 2a. Mass Linkers detects an error in the entered command.
+    * 2a1. Mass Linkers requests for the correct command.
+    * 2a2. Student enters new command.
+      Steps 2a1-2a2 are repeated until the command entered are correct.
       \
       Use case ends.
-* 2b. MassLinkers could not find the batchmate specified.
-    * 2b1. MassLinkers prompts error message.
-    * 2b2. MassLinkers requests the user to input a valid batchmate.
-    * 2b3. Student enters new command.
-      Steps 2b1-2b3 are repeated until the command entered are correct.
+* 2b. Mass Linkers could not find the batchmate specified.
+    * 2b1. Mass Linkers requests the user to input a valid batchmate.
+    * 2b2. Student enters new command.
+      Steps 2b1-2b2 are repeated until the command entered are correct.
       \
       Use case ends.
 
-* *a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the storage file.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
