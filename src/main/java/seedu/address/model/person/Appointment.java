@@ -110,7 +110,7 @@ public class Appointment {
      * Parses the given timePeriod string into a list of integers depicting the values of year, month and day.
      *
      * @param timePeriod The given timePeriod string.
-     * @return A list of integers if the given string is non-empty.
+     * @return A list of integers consisting the number of years, months and days to add.
      */
     public static List<Integer> parseTimePeriod(String timePeriod) {
         List<Integer> list = Arrays.asList(0, 0, 0);
