@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
-
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 
 /**
  * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidEventName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidEventTitle(String)}
  */
 public class Event {
 
@@ -61,16 +60,23 @@ public class Event {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Event // instanceof handles nulls
-                && title.equals(((Event) other).title)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof Event) {
+            Event otherEvent = (Event) other;
+            return otherEvent.title.equals(this.title);
+        }
+
+        return false;
     }
 
     /**
      * Returns true if both events have the same title.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSameTrip(Event otherEvent) {
+    public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
             return true;
         }
@@ -78,6 +84,7 @@ public class Event {
         return otherEvent != null
                 && otherEvent.getTitle().equals(getTitle());
     }
+
     @Override
     public int hashCode() {
         return title.hashCode();

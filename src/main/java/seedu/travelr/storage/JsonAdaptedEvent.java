@@ -1,20 +1,18 @@
 package seedu.travelr.storage;
 
-import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 
 /**
  * Jackson-friendly version of {@link Event}.
  */
 class JsonAdaptedEvent {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
 
     private final String title;
 
@@ -38,21 +36,30 @@ class JsonAdaptedEvent {
 
     }
 
-    @JsonValue
-    public String getEventTitle() {
-        return title;
-    }
-
     /**
      * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Event toModelType() throws IllegalValueException {
-        if (!Event.isValidEventTitle(title)) {
-            throw new IllegalValueException(Event.MESSAGE_CONSTRAINTS);
+        if (title == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
-        return new Event(new Title(title), new Description(EVENT_DESCRIPTION_PLACEHOLDER));
+        if (!Title.isValidTitle(title)) {
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
+        }
+        final Title modelTitle = new Title(title);
+
+        if (description == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
+        }
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Description modelDescription = new Description(description);
+
+        return new Event(modelTitle, modelDescription);
     }
 
 }
