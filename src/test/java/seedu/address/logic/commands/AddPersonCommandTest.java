@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -150,6 +151,16 @@ public class AddPersonCommandTest {
         @Override
         public boolean hasListing(Listing listing) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasOffer(Offer offer) {
+            return false;
+        }
+
+        @Override
+        public void addOffer(Offer offer) {
+
         }
 
         @Override
