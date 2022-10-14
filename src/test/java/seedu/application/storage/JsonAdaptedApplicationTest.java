@@ -29,7 +29,7 @@ public class JsonAdaptedApplicationTest {
     private static final String VALID_DATE = SHOPEE.getDate().value.toString();
 
     @Test
-    public void toModelType_validApplicationDetails_returnsPerson() throws Exception {
+    public void toModelType_validApplicationDetails_returnsApplication() throws Exception {
         JsonAdaptedApplication application = new JsonAdaptedApplication(SHOPEE);
         assertEquals(SHOPEE, application.toModelType());
     }
