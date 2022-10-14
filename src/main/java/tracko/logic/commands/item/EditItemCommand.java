@@ -94,7 +94,7 @@ public class EditItemCommand extends Command {
         Description updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
         Set<Tag> updatedTags = editItemDescriptor.getTags().orElse(itemToEdit.getTags());
 
-        return new Item(updatedItemName, updatedDescription, updatedQuantity, updatedTags);
+        return new Item(updatedItemName, updatedDescription, updatedQuantity, updatedTags, sellPrice, costPrice);
     }
 
     @Override

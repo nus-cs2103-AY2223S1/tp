@@ -75,6 +75,6 @@ public class JsonAdaptedItem {
         }
         final Description modelDescription = new Description(description);
 
-        return new Item(modelItemName, modelDescription, modelQuantity, new HashSet<>());
+        return new Item(modelItemName, modelDescription, modelQuantity, new HashSet<>(), sellPrice, costPrice);
     }
 }

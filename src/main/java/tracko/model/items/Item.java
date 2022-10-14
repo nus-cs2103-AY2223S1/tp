@@ -17,22 +17,27 @@ public class Item {
     public final ItemName itemName;
     public final Description description;
     public final Quantity quantity;
+    public final Price sellPrice;
+    public final Price costPrice;
     public final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs an {@code item}.
-     *
      * @param itemName The name of the item.
      * @param description The description of the item.
      * @param quantity The quantity of the item.
      * @param tags The tags associated with the item.
+     * @param sellPrice The price the item is sold at.
+     * @param costPrice The price the item was bought at.
      */
-    public Item(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags) {
+    public Item(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags, Price sellPrice, Price costPrice) {
         requireAllNonNull(itemName, description, tags);
         this.itemName = itemName;
         this.description = description;
         this.quantity = quantity;
         this.tags.addAll(tags);
+        this.sellPrice = sellPrice;
+        this.costPrice = costPrice;
     }
 
     public ItemName getItemName() {
@@ -49,6 +54,14 @@ public class Item {
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Price getSellPrice() {
+        return sellPrice;
+    }
+
+    public Price getCostPrice() {
+        return costPrice;
     }
 
     /**
@@ -82,13 +95,15 @@ public class Item {
         return otherItem.getItemName().equals(getItemName())
                 && otherItem.getDescription().equals(getDescription())
                 && otherItem.getQuantity().equals(getQuantity())
-                && otherItem.getTags().equals(getTags());
+                && otherItem.getTags().equals(getTags())
+                && otherItem.getCostPrice().equals(getCostPrice())
+                && otherItem.getSellPrice().equals(getCostPrice());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, description, quantity, tags);
+        return Objects.hash(itemName, description, quantity, tags, sellPrice, costPrice);
     }
 
     @Override
@@ -98,7 +113,11 @@ public class Item {
                 .append("; Description: ")
                 .append(getDescription())
                 .append("; Quantity: ")
-                .append(getQuantity());
+                .append(getQuantity())
+                .append("; Sell Price: ")
+                .append(getSellPrice())
+                .append("; Cost Price: ")
+                .append(getCostPrice());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -43,7 +43,7 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Item item = new Item(itemName, description, quantity, new HashSet<>());
+        Item item = new Item(itemName, description, quantity, new HashSet<>(), sellPrice, costPrice);
 
         return new AddItemCommand(item);
     }
