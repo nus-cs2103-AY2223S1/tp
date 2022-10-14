@@ -39,7 +39,8 @@ public class Attribute {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof seedu.address.model.attribute.Attribute // instanceof handles nulls
-                && attributeName.equals(((seedu.address.model.attribute.Attribute) other).attributeName)); // state check
+                && attributeName.equals(
+                        ((seedu.address.model.attribute.Attribute) other).attributeName)); // state check
     }
 
     @Override

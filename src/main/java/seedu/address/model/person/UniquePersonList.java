@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.attribute.Attribute;
+import seedu.address.model.attribute.exceptions.AttributeNotFoundException;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -83,8 +84,13 @@ public class UniquePersonList implements Iterable<Person> {
         case ("[attendance]"):
             internalList.sort(Comparator.comparing(Person::getAttendancePercentage));
             break;
+
+        default:
+            throw new AttributeNotFoundException();
         }
-        if (isDescending) FXCollections.reverse(internalList);
+        if (isDescending) {
+            FXCollections.reverse(internalList);
+        }
     }
 
     /**

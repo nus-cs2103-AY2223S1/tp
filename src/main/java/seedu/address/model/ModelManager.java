@@ -129,11 +129,6 @@ public class ModelManager implements Model {
         this.addressBook.sort(attribute, order);
     }
 
-//    @Override
-//    public void sortFilteredPersonList() {
-//        this.addressBook.sort();
-//    }
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);

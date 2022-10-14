@@ -26,6 +26,11 @@ public class SortCommand extends Command {
     private final Order sortOrder;
     private final Attribute attribute;
 
+    /**
+     * Sorts the working list by the attribute in ascending or descending order.
+     * @param attribute The attribute to sort the list by
+     * @param sortOrder Order to sort the list in
+     */
     public SortCommand(Attribute attribute, Order sortOrder) {
         this.attribute = attribute;
         this.sortOrder = sortOrder;

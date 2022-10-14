@@ -108,6 +108,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    /** Sort the addressbook by the given attribute and order */
     public void sort(Attribute attribute, Order order) {
         boolean isDescending = order.isDescending();
         persons.sort(attribute, isDescending);
