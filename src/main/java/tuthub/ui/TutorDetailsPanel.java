@@ -12,9 +12,9 @@ import tuthub.model.tutor.Tutor;
 /**
  * An UI component that displays information of a {@code Tutor}.
  */
-public class TutorCard extends UiPart<Region> {
+public class TutorDetailsPanel extends UiPart<Region> {
 
-    private static final String FXML = "TutorListCard.fxml";
+    private static final String FXML = "TutorDetailsPanel.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,8 +26,6 @@ public class TutorCard extends UiPart<Region> {
 
     public final Tutor tutor;
 
-    @FXML
-    private HBox cardPane;
     @FXML
     private Label name;
     @FXML
@@ -49,9 +47,10 @@ public class TutorCard extends UiPart<Region> {
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
      */
-    public TutorCard(Tutor tutor, int displayedIndex) {
+    public TutorDetailsPanel(Tutor tutor) {
         super(FXML);
         this.tutor = tutor;
+        
         studentId.setText(tutor.getStudentId().value);
         name.setText(tutor.getName().fullName);
         module.setText(tutor.getModule().value);
@@ -72,12 +71,12 @@ public class TutorCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TutorCard)) {
+        if (!(other instanceof TutorDetailsPanel)) {
             return false;
         }
 
         // state check
-        TutorCard card = (TutorCard) other;
+        TutorDetailsPanel card = (TutorDetailsPanel) other;
         return studentId.getText().equals(card.studentId.getText())
                 && tutor.equals(card.tutor);
     }

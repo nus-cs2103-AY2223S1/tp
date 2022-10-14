@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TutorListPanel tutorListPanel;
+//    private TutorDetailsPanel tutorDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tutorListPanelPlaceholder;
+
+//    @FXML
+//    private StackPane tutorDetailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -146,6 +150,23 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+//    /**
+//     * Displays a panel containing tutor details
+//     */
+//    private void handleView(Tutor tutor) {
+//        tutorDetailsPanelPlaceholder.getChildren().clear();
+//        tutorDetailsPanelPlaceholder.getChildren().add(new TutorDetailsPanel(tutor).getRoot());
+//        tutorDetailsPanelPlaceholder.setVisible(true);
+//    }
+//
+//    /**
+//     * Hides the panel containing tutor details
+//     */
+//    private void handleHide(Tutor tutor) {
+//        tutorDetailsPanelPlaceholder.getChildren().clear();
+//        tutorDetailsPanelPlaceholder.setVisible(false);
+//    }
 
     void show() {
         primaryStage.show();

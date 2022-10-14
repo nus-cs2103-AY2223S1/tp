@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -17,18 +18,24 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+      </HBox>
       <HBox spacing="8">
-        <Label fx:id="module" styleClass="cell_module_label" text="\$module" />
+        <Label fx:id="module" styleClass="cell_module_label" text="\$module">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
         <FlowPane fx:id="tags"/>
       </HBox>
-      <HBox spacing="15">
-        <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
-        <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
-      </HBox>
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
     </VBox>
   </GridPane>
 </HBox>

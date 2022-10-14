@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <HBox spacing="8">
+            <Label fx:id="module" styleClass="cell_module_label" text="\$module" />
+            <FlowPane fx:id="tags"/>
+        </HBox>
+        <Label styleClass="cell_small_label" text="PARTICULARS"/>
+        <Label fx:id="year" styleClass="cell_small_label" text="\$year" />
+        <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+
+        <Label styleClass="cell_small_label" text="CONTACT"/>
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+
+        <Label styleClass="cell_small_label" text="REVIEW"/>
+        <Label fx:id="comment" styleClass="cell_small_label" text="\$comment" />
+    </VBox>
+</ScrollPane>
