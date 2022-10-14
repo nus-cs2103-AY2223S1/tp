@@ -65,10 +65,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         TutorialName tutorialName = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_TUTORIAL).get());
 
         //optional fields
-        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse(""));
-        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_GRADE).orElse("0"));
+        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).orElse("PENDING..."));
+        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).orElse("0"));
         Participation participation = ParserUtil.parseParticipation(argMultimap
-                .getValue(PREFIX_GRADE).orElse("0"));
+                .getValue(PREFIX_PARTICIPATION).orElse("0"));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Student student = new Student(name, id, phone, email, telegram,

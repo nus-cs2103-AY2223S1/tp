@@ -187,7 +187,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
+            return CollectionUtil.isAnyNonNull(name, id, phone, email,
+                    telegram, tutorialModule, tutorialName, attendance, participation, grade, tags);
         }
 
         public void setName(Name name) {
@@ -309,6 +310,8 @@ public class EditCommand extends Command {
                     && getTelegram().equals(e.getTelegram())
                     && getTutorialModule().equals(e.getTutorialModule())
                     && getTutorialName().equals(e.getTutorialName())
+                    && getAttendance().equals(e.getAttendance())
+                    && getParticipation().equals(e.getParticipation())
                     && getGrade().equals(e.getGrade())
                     && getTags().equals(e.getTags());
         }

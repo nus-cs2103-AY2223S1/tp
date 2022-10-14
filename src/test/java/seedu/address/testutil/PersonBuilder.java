@@ -3,9 +3,18 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.student.*;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Grade;
+import seedu.address.model.student.ID;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Participation;
+import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorial.TutorialModule;
+import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -14,25 +23,50 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_ID = "A0000000A";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_TELEGRAM = "amy_bee";
+    public static final String DEFAULT_MODULE = "CS2103T";
+    public static final String DEFAULT_TUTORIAL = "W17";
+    public static final String DEFAULT_ATTENDANCE = "0";
+    public static final String DEFAULT_PARTICIPATION = "0";
+    public static final String DEFAULT_GRADE = "PENDING...";
+
+    //public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
+    private ID id;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Telegram telegram;
+    private TutorialModule tutorialModule;
+    private TutorialName tutorialName;
+    private Attendance attendance;
+    private Participation participation;
+    private Grade grade;
+
     private Set<Tag> tags;
+
+    //private Address address;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
+        id = new ID(DEFAULT_ID);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        telegram = new Telegram(DEFAULT_TELEGRAM);
+        tutorialModule = new TutorialModule(DEFAULT_MODULE);
+        tutorialName = new TutorialName(DEFAULT_TUTORIAL);
+        attendance = new Attendance(DEFAULT_ATTENDANCE);
+        participation = new Participation(DEFAULT_PARTICIPATION);
+        grade = new Grade(DEFAULT_GRADE);
         tags = new HashSet<>();
+
+        //address = new Address(DEFAULT_ADDRESS);
     }
 
     /**
@@ -40,9 +74,15 @@ public class PersonBuilder {
      */
     public PersonBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
+        id = studentToCopy.getId();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
-        address = studentToCopy.getAddress();
+        telegram = studentToCopy.getTelegram();
+        tutorialModule = studentToCopy.getTutorialModule();
+        tutorialName = studentToCopy.getTutorialName();
+        attendance = studentToCopy.getAttendance();
+        participation = studentToCopy.getParticipation();
+        grade = studentToCopy.getGrade();
         tags = new HashSet<>(studentToCopy.getTags());
     }
 
@@ -63,14 +103,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -86,8 +118,69 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Creates a new Student object.
+     */
     public Student build() {
-        return new Student(name, phone, email, address, tags);
+        return new Student(name, id, phone, email,
+                telegram, tutorialModule,
+                tutorialName, attendance,
+                participation, grade, tags);
     }
 
+    /**
+     * Sets the {@code ID} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withId(String id) {
+        this.id = new ID(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = new Telegram(telegram);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TutorialModule} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTutorialModule(String tutorialModule) {
+        this.tutorialModule = new TutorialModule(tutorialModule);
+        return this;
+    }
+
+    /**
+     * Sets the {@code TutorialName} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTutorialName(String tutorialName) {
+        this.tutorialName = new TutorialName(tutorialName);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Attendance} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendance(String attendance) {
+        this.attendance = new Attendance(attendance);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Participation} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withParticipation(String participation) {
+        this.participation = new Participation(participation);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Grade} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGrade(String grade) {
+        this.grade = new Grade(grade);
+        return this;
+    }
 }
