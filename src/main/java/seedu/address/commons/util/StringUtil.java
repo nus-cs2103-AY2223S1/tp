@@ -50,7 +50,6 @@ public class StringUtil {
         return sentence.contains(preppedWord);
     }
 
-
     /**
      * Returns a detailed message of the t, including the stack trace.
      */

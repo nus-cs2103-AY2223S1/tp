@@ -93,6 +93,7 @@ public interface Model {
 
     ObservableList<Module> getFilteredModuleList();
 
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -135,7 +136,7 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
 
     boolean hasModule(Module module);
-
+    void updateFilteredModuleList(Predicate<Module>predicate);
     /**
      * Deletes the given task.
      * The task must exist in the address book.
@@ -156,5 +157,4 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
-    void updateFilteredModuleList(Predicate<Module> predicate);
 }

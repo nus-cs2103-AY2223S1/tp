@@ -15,6 +15,8 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
+
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -116,7 +118,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -225,4 +226,5 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         taskFilteredList.setPredicate(predicate);
     }
+
 }

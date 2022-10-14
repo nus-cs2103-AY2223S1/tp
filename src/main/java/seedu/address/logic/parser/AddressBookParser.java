@@ -23,13 +23,17 @@ import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterTasksCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindModulesCommand;
 import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListModulesCommand;
 import seedu.address.logic.commands.ListTasksCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 /**
  * Parses user input.
@@ -102,6 +106,11 @@ public class AddressBookParser {
 
         case FindTasksCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);
+
+        case FindModulesCommand.COMMAND_WORD:
+            return new FindModulesCommandParser().parse(arguments);
+        case ListModulesCommand.COMMAND_WORD:
+            return new ListModulesCommand();
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
