@@ -12,7 +12,7 @@ public class Mod {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String modName;
-    public boolean hasTaken;
+    private boolean hasTaken;
 
     /**
      * Constructs a {@code Mod}.

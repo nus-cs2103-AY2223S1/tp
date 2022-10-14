@@ -5,7 +5,10 @@
     "email": "alice@example.com",
     "handle": "alice",
     "username": "alifur",
-    "mods" : [ "CS2100" ],
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
