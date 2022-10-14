@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.scene.image.Image;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.Tag;
@@ -23,6 +24,7 @@ public class Property {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Image image;
 
     /**
      * Every field must be present and not null.
@@ -40,6 +42,10 @@ public class Property {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     /**
@@ -92,6 +98,26 @@ public class Property {
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
             && otherProperty.getTags().equals(getTags());
+    }
+
+    /**
+     * Returns the name of the property in lowerCamelCase.
+     * This function is used when getting the file name for image storage.
+     * @return property name in lowerCamelCase.
+     */
+    public String nameToCamelCase() {
+        String[] words = name.toString().split("[\\W_]+");
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (i == 0) {
+                word = word.isEmpty() ? word : word.toLowerCase();
+            } else {
+                word = word.isEmpty() ? word : Character.toUpperCase(word.charAt(0)) + word.substring(1).toLowerCase();
+            }
+            builder.append(word);
+        }
+        return builder.toString();
     }
 
     @Override

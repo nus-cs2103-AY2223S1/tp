@@ -61,9 +61,14 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         PropertyDirectoryStorage propertyDirectoryStorage =
-                new JsonPropertyDirectoryStorage(userPrefs.getPropertyDirectoryFilePath());
+                new JsonPropertyDirectoryStorage(
+                    userPrefs.getPropertyDirectoryFilePath(),
+                    userPrefs.getPropertyDirectoryImageDirectory()
+                );
         ClientDirectoryStorage clientDirectoryStorage =
-                new JsonClientDirectoryStorage(userPrefs.getClientDirectoryFilePath());
+                new JsonClientDirectoryStorage(
+                    userPrefs.getClientDirectoryFilePath(),
+                    userPrefs.getClientDirectoryImageDirectory());
         storage = new StorageManager(propertyDirectoryStorage, clientDirectoryStorage, userPrefsStorage);
 
         initLogging(config);
