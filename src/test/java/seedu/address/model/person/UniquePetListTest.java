@@ -116,7 +116,7 @@ public class UniquePetListTest {
 
     @Test
     public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-       assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
     }
 
     @Test

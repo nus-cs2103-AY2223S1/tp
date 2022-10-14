@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,10 +14,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Supplier;
-import seedu.address.model.person.UniqueSupplierList;
+
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.testutil.PersonBuilder;
 
 public class UniqueSupplierListTest {
     private final UniqueSupplierList uniqueSupplierList = new UniqueSupplierList();

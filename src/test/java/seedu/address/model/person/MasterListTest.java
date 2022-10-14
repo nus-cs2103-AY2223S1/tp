@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

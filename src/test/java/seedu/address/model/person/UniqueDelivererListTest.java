@@ -28,7 +28,7 @@ public class UniqueDelivererListTest {
     }
 
     @Test
-    public void contains_DelivererNotInList_returnsFalse() {
+    public void contains_delivererNotInList_returnsFalse() {
         assertFalse(uniqueDelivererList.contains(ALICE));
     }
 
@@ -102,24 +102,24 @@ public class UniqueDelivererListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setPerson_editedDelivererHasNonUniqueIdentity_throwsDuplicatePersonException() {
         uniqueDelivererList.add(ALICE);
         uniqueDelivererList.add(BENSON);
         assertThrows(DuplicatePersonException.class, () -> uniqueDelivererList.setPerson(ALICE, BENSON));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullDeliverer_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDelivererList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_delivererDoesNotExist_throwsDelivererNotFoundException() {
         assertThrows(PersonNotFoundException.class, () -> uniqueDelivererList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingDeliverer_removesDeliverer() {
         uniqueDelivererList.add(ALICE);
         uniqueDelivererList.remove(ALICE);
         UniqueDelivererList expectedUniqueDelivererList = new UniqueDelivererList();
@@ -127,8 +127,8 @@ public class UniqueDelivererListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueDelivererList.setPersons((UniquePersonList) null));
+    public void setPersons_nullUniqueDelivererList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueDelivererList.setPersons((UniqueDelivererList) null));
     }
 
     @Test
