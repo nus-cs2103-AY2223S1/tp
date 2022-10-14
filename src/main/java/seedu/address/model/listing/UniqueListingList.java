@@ -150,4 +150,3 @@ public class UniqueListingList implements Iterable<Listing> {
         return true;
     }
 }
-

@@ -121,4 +121,26 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code int askingPrice} into a {@code Integer}.
+     */
+    public static Integer parseAskingPrice(int askingPrice) throws ParseException {
+        requireNonNull(askingPrice);
+        if (askingPrice < 0) {
+            throw new ParseException("Asking Price can't be negative");
+        }
+        return askingPrice;
+    }
+
+    /**
+     * Parses {@code int askingPrice} into a {@code Integer}.
+     */
+    public static Integer parseOfferPrice(int offerPrice) throws ParseException {
+        requireNonNull(offerPrice);
+        if (offerPrice < 0) {
+            throw new ParseException("Offer Price can't be negative");
+        }
+        return offerPrice;
+    }
 }
