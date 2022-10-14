@@ -60,12 +60,11 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
+//
 //    /**
 //     * Returns a tag set containing the list of strings given.
 //     */
-//    // TODO parse appointment strings back to appointment set
-//    public static Set<Appointment> getAppointmentSet(Set<Appointment> appointments) {
+//    public static Set<Appointment> getAppointmentSet(String... dateTimes) {
 //        return Arrays.stream(dateTimes)
 //                .map(DateTimeParser::parseLocalDateTimeFromString)
 //                .map(DateTime::new)

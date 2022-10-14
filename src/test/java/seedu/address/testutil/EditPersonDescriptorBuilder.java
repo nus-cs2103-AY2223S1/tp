@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
@@ -41,7 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        descriptor.setAppointment(person.getAppointments());
+        // for appointment, use setAppointment(Appointment appointment) method below
     }
 
     /**
@@ -83,6 +84,15 @@ public class EditPersonDescriptorBuilder {
         descriptor.setIncome(new IncomeLevel(income));
         return this;
     }
+
+    /**
+     * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAppointment(Appointment appointment) {
+        descriptor.setAppointment(appointment);
+        return this;
+    }
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
@@ -93,16 +103,16 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    /**
-     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditPersonDescriptorBuilder withAppointments(String... appointments) {
-        Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
-        descriptor.setAppointment(appointmentSet);
-        return this;
-    }
+//    /**
+//     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditPersonDescriptor}
+//     * that we are building.
+//     */
+//    public EditPersonDescriptorBuilder withAppointments(String... appointments) {
+//        Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
+//                .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
+//        descriptor.setAppointment(appointmentSet);
+//        return this;
+//    }
 
     public EditPersonDescriptor build() {
         return descriptor;

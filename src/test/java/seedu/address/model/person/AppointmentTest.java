@@ -1,5 +1,11 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_DATETIME_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_LOCATION_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_DATETIME_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_LOCATION_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_DATETIME_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_LOCATION_OBJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
@@ -24,21 +30,35 @@ public class AppointmentTest {
         }
     }
 
+    /**
+     * A stub class to check the String representation
+     * of the DateTime and to check equality.
+     */
+    private static class LocationStub extends Location {
+        LocationStub() {
+            super("NUS TechnoEdge");
+        }
+
+        @Override
+        public String toString() {
+            return "NUS TechnoEdge";
+        }
+    }
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Appointment(null));
+        assertThrows(NullPointerException.class, () -> new Appointment(null, null));
     }
 
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
-        Appointment newAppointment = new Appointment(new DateTimeStub());
+        Appointment newAppointment = new Appointment(new DateTimeStub(), new LocationStub());
         Assertions.assertEquals("1-Apr-2023 12:30 PM", newAppointment.toString());
     }
 
     @Test
     public void equals_success() {
-        Appointment firstAppointment = new Appointment(new DateTimeStub());
-        Appointment secondAppointment = new Appointment(new DateTimeStub());
+        Appointment firstAppointment = new Appointment(new DateTimeStub(), new LocationStub());
+        Appointment secondAppointment = new Appointment(new DateTimeStub(), new LocationStub());
 
         Assertions.assertEquals(firstAppointment, firstAppointment);
         Assertions.assertNotEquals(firstAppointment, null);

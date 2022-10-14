@@ -9,17 +9,26 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.DateTimeParserTest.FIRST_VALID_DATE_TIME;
+import static seedu.address.logic.parser.DateTimeParserTest.SECOND_VALID_DATE_TIME;
+import static seedu.address.logic.parser.DateTimeParserTest.THIRD_VALID_DATE_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -46,6 +55,25 @@ public class CommandTestUtil {
     public static final String VALID_APPOINTMENT_23_JAN_2023 = "23-Jan-2023 01:00 AM";
 
     public static final String INVALID_APPOINTMENT_210_JAN_2023 = "210-Jan-2023 01:00 AM";
+
+    public static final LocalDateTime FIRST_VALID_LOCAL_DATE_TIME = DateTimeParser
+            .parseLocalDateTimeFromString(FIRST_VALID_DATE_TIME);
+    public static final LocalDateTime SECOND_VALID_LOCAL_DATE_TIME = DateTimeParser
+            .parseLocalDateTimeFromString(SECOND_VALID_DATE_TIME);
+
+    public static final DateTime INVALID_DATETIME_OBJECT = ParserUtil.parseDateTime("as dasd a aas");
+    public static final DateTime FIRST_VALID_DATETIME_OBJECT = ParserUtil.parseDateTime(FIRST_VALID_DATE_TIME);
+    public static final DateTime SECOND_VALID_DATETIME_OBJECT = ParserUtil.parseDateTime(SECOND_VALID_DATE_TIME);
+    public static final DateTime THIRD_VALID_DATETIME_OBJECT = ParserUtil.parseDateTime(THIRD_VALID_DATE_TIME);
+    public static final Location INVALID_LOCATION_OBJECT = new Location("  ");
+    public static final Location FIRST_VALID_LOCATION_OBJECT = new Location("NUS TechnoEdge");
+    public static final Location SECOND_VALID_LOCATION_OBJECT = new Location("NUS Starbucks");
+    public static final Location THIRD_VALID_LOCATION_OBJECT = new Location("NUS Frontier");
+
+    public static final Appointment FIRST_VALID_APPOINTMENT_OBJECT = new Appointment(FIRST_VALID_DATETIME_OBJECT, FIRST_VALID_LOCATION_OBJECT);
+    public static final Appointment SECOND_VALID_APPOINTMENT_OBJECT = new Appointment(SECOND_VALID_DATETIME_OBJECT, SECOND_VALID_LOCATION_OBJECT);
+    public static final Appointment THIRD_VALID_APPOINTMENT_OBJECT = new Appointment(THIRD_VALID_DATETIME_OBJECT, THIRD_VALID_LOCATION_OBJECT);
+    public static final Appointment INVALID_APPOINTMENT_OBJECT = new Appointment(THIRD_VALID_DATETIME_OBJECT, THIRD_VALID_LOCATION_OBJECT);
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -83,7 +111,9 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_APPOINTMENT = new EditPersonDescriptorBuilder().withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+        DESC_APPOINTMENT = new EditPersonDescriptorBuilder()
+                          .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                          .build();
     }
 
     /**

@@ -3,10 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SECOND_APPOINTMENT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -28,7 +31,7 @@ public class AddAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withAppointment(THIRD_VALID_APPOINTMENT_OBJECT).build();
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -40,7 +43,9 @@ public class AddAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC + SECOND_APPOINTMENT_DESC;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .build();
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

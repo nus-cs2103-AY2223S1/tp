@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_23_JAN_2023;
@@ -30,10 +33,13 @@ public class EditAppointmentCommandTest {
     public void execute_overwriteAppointmentsWithOneAppointment_success() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
-        expectedModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_21_JAN_2023).buildWithAppointments());
+        actualModel.addPerson(new PersonBuilder(MUSAB)
+                             .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                             .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                             .buildWithAppointments());
+        expectedModel.addPerson(new PersonBuilder(MUSAB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .buildWithAppointments());
 
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
 
@@ -49,10 +55,14 @@ public class EditAppointmentCommandTest {
     public void execute_overwriteExistingAppointmentsWithMultipleAppointments_success() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments());
-        expectedModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        actualModel.addPerson(new PersonBuilder(MUSAB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .buildWithAppointments());
+        expectedModel.addPerson(new PersonBuilder(MUSAB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .buildWithAppointments());
 
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
 
@@ -70,8 +80,9 @@ public class EditAppointmentCommandTest {
         Person testPerson = new PersonBuilder(MUSAB).build();
         testModel.addPerson(testPerson);
 
-        Person expectedPerson = new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments();
+        Person expectedPerson = new PersonBuilder(MUSAB)
+                .withAppointment(THIRD_VALID_APPOINTMENT_OBJECT)
+                .buildWithAppointments();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(expectedPerson).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
@@ -83,8 +94,10 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_overwriteUsingAppointmentsWithInvalidIndex_failure() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person testPerson = new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_22_JAN_2023, VALID_APPOINTMENT_23_JAN_2023).buildWithAppointments();
+        Person testPerson = new PersonBuilder(MUSAB)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(THIRD_VALID_APPOINTMENT_OBJECT)
+                .buildWithAppointments();
 
         Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(testPerson).build();

@@ -1,7 +1,10 @@
 package seedu.address.model.person;
 
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_LOCAL_DATE_TIME;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_LOCAL_DATE_TIME;
 import static seedu.address.logic.parser.DateTimeParserTest.FIRST_VALID_DATE_TIME;
 import static seedu.address.logic.parser.DateTimeParserTest.SECOND_VALID_DATE_TIME;
+import static seedu.address.logic.parser.DateTimeParserTest.THIRD_VALID_DATE_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -10,12 +13,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.parser.ParserUtil;
 
 public class DateTimeTest {
-    private static final LocalDateTime FIRST_VALID_LOCAL_DATE_TIME = DateTimeParser
-            .parseLocalDateTimeFromString(FIRST_VALID_DATE_TIME);
-    private static final LocalDateTime SECOND_VALID_LOCAL_DATE_TIME = DateTimeParser
-            .parseLocalDateTimeFromString(SECOND_VALID_DATE_TIME);
+
 
     @Test
     public void constructor_null_throwsNullPointerException() {

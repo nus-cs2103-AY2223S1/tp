@@ -108,8 +108,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAppointments(Set<Appointment> appointments) {
-        this.appointments = SampleDataUtil.getAppointmentSet(appointments);
+    public PersonBuilder withAppointment(Appointment appointmentToBeAdded) {
+        this.appointments.add(appointmentToBeAdded);
         return this;
     }
 

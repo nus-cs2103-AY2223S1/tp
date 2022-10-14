@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_APPOINTMENT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_210_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -67,8 +67,7 @@ public class AddAppointmentCommandTest {
         actualModel.addPerson(new PersonBuilder().build());
 
         Set<Appointment> appointments = new HashSet<>();
-        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
-                VALID_APPOINTMENT_21_JAN_2023))));
+        appointments.add(FIRST_VALID_APPOINTMENT_OBJECT);
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
         expectedPerson.setAppointments(appointments);
 
@@ -89,15 +88,13 @@ public class AddAppointmentCommandTest {
         actualModel.addPerson(new PersonBuilder().build());
 
         Set<Appointment> appointments = new HashSet<>();
-        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
-                VALID_APPOINTMENT_21_JAN_2023))));
-        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
-                VALID_APPOINTMENT_22_JAN_2023))));
+        appointments.add(FIRST_VALID_APPOINTMENT_OBJECT);
+        appointments.add(SECOND_VALID_APPOINTMENT_OBJECT);
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
         expectedPerson.setAppointments(appointments);
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
@@ -111,13 +108,12 @@ public class AddAppointmentCommandTest {
         testModel.addPerson(new PersonBuilder().build());
 
         Set<Appointment> appointments = new HashSet<>();
-        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
-                VALID_APPOINTMENT_21_JAN_2023))));
+        appointments.add(FIRST_VALID_APPOINTMENT_OBJECT);
         Person testPerson = testModel.getAddressBook().getPersonList().get(0);
         testPerson.setAppointments(appointments);
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
 
         assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
@@ -126,28 +122,32 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addAppointmentWithNameFieldEdit_failure() {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT).build();
         assertThrows(AssertionError.class, () -> new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor));
     }
 
     @Test
     public void execute_addAppointmentWithAddressFieldEdit_failure() {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAddress(VALID_ADDRESS_BOB).withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withAddress(VALID_ADDRESS_BOB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT).build();
         assertThrows(AssertionError.class, () -> new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor));
     }
 
     @Test
     public void execute_addAppointmentWithPhoneFieldEdit_failure() {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withPhone(VALID_PHONE_BOB).withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withPhone(VALID_PHONE_BOB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT).build();
         assertThrows(AssertionError.class, () -> new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor));
     }
 
     @Test
     public void execute_addAppointmentWithEmailFieldEdit_failure() {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withEmail(VALID_EMAIL_BOB).withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withEmail(VALID_EMAIL_BOB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .build();
         assertThrows(AssertionError.class, () -> new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor));
     }
 
@@ -155,7 +155,8 @@ public class AddAppointmentCommandTest {
     public void execute_addAppointmentWithTagsFieldEdit_failure() {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .build();
         assertThrows(AssertionError.class, () -> new AddAppointmentCommand(INDEX_FIRST_PERSON, descriptor));
     }
 
@@ -163,7 +164,9 @@ public class AddAppointmentCommandTest {
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_22_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -192,7 +195,9 @@ public class AddAppointmentCommandTest {
         assertFalse(standardCommand.equals(new AddAppointmentCommand(INDEX_SECOND_PERSON, copyDescriptor)));
 
         EditPersonDescriptor diffDescriptor = new EditPersonDescriptorBuilder()
-                .withAppointments(VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).build();
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .build();
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new AddAppointmentCommand(INDEX_FIRST_PERSON, diffDescriptor)));
     }
@@ -201,7 +206,7 @@ public class AddAppointmentCommandTest {
     public void parse_invalidValueFollowedByValidValue_failure() {
         try {
             EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                    .withAppointments(INVALID_APPOINTMENT_210_JAN_2023, VALID_APPOINTMENT_21_JAN_2023).build();
+                    .withAppointment(INVALID_APPOINTMENT_OBJECT).build();
             fail();
         } catch (Exception e) {
             assertEquals("Text '210-Jan-2023 01:00 AM' could not be parsed: "
@@ -213,7 +218,9 @@ public class AddAppointmentCommandTest {
     public void parse_validValueFollowedByInvalidValue_failure() {
         try {
             EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                    .withAppointments(VALID_APPOINTMENT_21_JAN_2023, INVALID_APPOINTMENT_210_JAN_2023).build();
+                    .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                    .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                    .build();
             fail();
         } catch (Exception e) {
             assertEquals("Text '210-Jan-2023 01:00 AM' could not be parsed: "

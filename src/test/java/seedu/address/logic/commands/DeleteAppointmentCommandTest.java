@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
+import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -28,8 +30,8 @@ public class DeleteAppointmentCommandTest {
     public void execute_validIndex_throwsCommandException() {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        actualModel.addPerson(new PersonBuilder(MUSAB).withAppointment(
+                FIRST_VALID_APPOINTMENT_OBJECT).buildWithAppointments());
         expectedModel.addPerson(new PersonBuilder(MUSAB).buildWithAppointments());
 
         Person editedPerson = expectedModel.getAddressBook().getPersonList().get(0);
@@ -45,8 +47,10 @@ public class DeleteAppointmentCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
-        testModel.addPerson(new PersonBuilder(MUSAB).withAppointments(
-                VALID_APPOINTMENT_21_JAN_2023, VALID_APPOINTMENT_22_JAN_2023).buildWithAppointments());
+        testModel.addPerson(new PersonBuilder(MUSAB)
+                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .buildWithAppointments());
         Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundIndex);

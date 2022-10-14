@@ -14,6 +14,7 @@ public class DateTimeParserTest {
 
     public static final String FIRST_VALID_DATE_TIME = "1-Apr-2023 12:30 PM";
     public static final String SECOND_VALID_DATE_TIME = "2-Apr-2023 12:30 PM";
+    public static final String THIRD_VALID_DATE_TIME = "3-Apr-2023 12:30 PM";
     private static final String INVALID_YEAR = "1-Apr-23 12:30 PM";
     private static final String INVALID_MONTH = "1-January-2023 12:30 PM";
     private static final String INVALID_DAY = "1000-Apr-2023 12:30 PM";
