@@ -12,6 +12,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,6 +24,7 @@ public class EditPersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
+    private RiskTag riskTag;
     private Set<Tag> tags;
     private Set<Appointment> appointments;
     public EditPersonDescriptor() {}
@@ -36,6 +38,7 @@ public class EditPersonDescriptor {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
+        setRiskTag(toCopy.riskTag);
         setTags(toCopy.tags);
         setAppointments(toCopy.appointments);
     }
@@ -44,7 +47,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, riskTag, tags, appointments);
     }
 
     public void setName(Name name) {
@@ -75,6 +78,19 @@ public class EditPersonDescriptor {
         this.address = address;
     }
 
+    public Optional<Address> getAddress() {
+        return Optional.ofNullable(address);
+    }
+
+    public void setRiskTag(RiskTag riskTag) {
+        this.riskTag = riskTag;
+    }
+
+    public Optional<RiskTag> getRiskTag() {
+        return Optional.ofNullable(riskTag);
+    }
+
+
     /**
      * Sets {@code appointments} to this object's {@code appointments}.
      * A defensive copy of {@code appointments} is used internally.
@@ -85,10 +101,6 @@ public class EditPersonDescriptor {
 
     public Optional<Set<Appointment>> getAppointments() {
         return Optional.ofNullable(appointments);
-    }
-
-    public Optional<Address> getAddress() {
-        return Optional.ofNullable(address);
     }
 
     /**
@@ -119,9 +131,10 @@ public class EditPersonDescriptor {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRiskTag, updatedTags);
     }
 
     /**
@@ -139,8 +152,9 @@ public class EditPersonDescriptor {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
+        RiskTag riskTag = personToEdit.getRiskTag();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags);
+        Person newPerson = new Person(name, phone, email, address, riskTag, tags);
 
         newPerson.setAppointments(updatedAppointments);
         return newPerson;
@@ -166,6 +180,7 @@ public class EditPersonDescriptor {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
+                && getRiskTag().equals(e.getRiskTag())
                 && getTags().equals(e.getTags())
                 && getAppointments().equals(e.getAppointments());
     }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,30 +23,35 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final RiskTag riskTag;
     private final Set<Tag> tags = new HashSet<>();
     private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, RiskTag riskTag, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, riskTag, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.riskTag = riskTag;
+        this.tags.add(riskTag);
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Appointment> appointments) {
+    public Person(Name name, Phone phone, Email email, Address address, RiskTag riskTag, Set<Tag> tags, Set<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.riskTag = riskTag;
+        this.tags.add(riskTag);
         this.tags.addAll(tags);
         this.appointments = appointments;
     }
@@ -68,6 +74,9 @@ public class Person {
 
     public Set<Appointment> getAppointments() {
         return appointments;
+    }
+    public RiskTag getRiskTag() {
+        return riskTag;
     }
 
     /**

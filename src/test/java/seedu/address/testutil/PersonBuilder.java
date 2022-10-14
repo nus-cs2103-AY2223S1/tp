@@ -9,6 +9,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,11 +22,13 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_RISKTAG = "MEDIUM";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private RiskTag riskTag;
     private Set<Tag> tags;
     private Set<Appointment> appointments;
 
@@ -37,6 +40,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        riskTag = new RiskTag(DEFAULT_RISKTAG);
         tags = new HashSet<>();
     }
 
@@ -48,6 +52,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        riskTag = personToCopy.getRiskTag();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new HashSet<>(personToCopy.getAppointments());
     }
@@ -93,6 +98,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code RiskTag} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRiskTag(String riskTag) {
+        this.riskTag = new RiskTag(riskTag);
+        return this;
+    }
+
+    /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
     public PersonBuilder withAppointments(String ... appointments) {
@@ -101,10 +114,11 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, riskTag, tags);
     }
 
     public Person buildWithoutAppointments() {
-        return new Person(name, phone, email, address, tags, null);
+        return new Person(name, phone, email, address, riskTag,
+                tags, null);
     }
 }
