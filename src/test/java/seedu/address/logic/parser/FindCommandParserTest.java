@@ -32,15 +32,15 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces for names
         FindCommand expectedFindCommand =
             new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "n/Alice n/Bob", expectedFindCommand);
+        assertParseSuccess(parser, " n/Alice n/Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords for names
-        assertParseSuccess(parser, " \n n/Alice \n \t n/Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n n/  Alice  \t n/  \n Bob  \t", expectedFindCommand);
 
         // no leading and trailing whitespaces for tags
         expectedFindCommand =
             new FindCommand(new TagsContainsKeywordsPredicate(Arrays.asList("friend", "school")));
-        assertParseSuccess(parser, "t/friend t/school", expectedFindCommand);
+        assertParseSuccess(parser, " t/friend t/school", expectedFindCommand);
 
         // multiple whitespaces between keywords for tags
         assertParseSuccess(parser, " \n t/friend \n \t t/school  \t", expectedFindCommand);
