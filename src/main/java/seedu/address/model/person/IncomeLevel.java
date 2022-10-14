@@ -9,11 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class IncomeLevel {
 
-    public static final String MESSAGE_CONSTRAINTS = "Invalid command format! \n"
-            + "add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL "
-            + "a/ADDRESS i/Income [t/TAG]...\n"
-            + "Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, "
-            + "#02-25 i/$1000t/friends t/owesMoney";
+    public static final String MESSAGE_CONSTRAINTS = "Income can take in any digit with a $ followed by [1-9]";
 
     /*
      * The first character of the address must not be a whitespace,
