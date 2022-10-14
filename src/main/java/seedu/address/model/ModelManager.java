@@ -151,8 +151,8 @@ public class ModelManager implements Model {
     }
 
     //=========== Reminders =============================================================
-    
-    
+
+
     @Override
     public boolean hasReminder(Reminder reminder) {
         requireNonNull(reminder);

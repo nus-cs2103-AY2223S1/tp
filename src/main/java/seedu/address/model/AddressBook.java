@@ -67,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        
+
         setReminders(newData.getReminderList());
     }
 
@@ -109,7 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// reminder-level operations
-    
+
     /**
      * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuilk.
      */
@@ -125,7 +125,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addReminder(Reminder r) {
         reminders.add(r);
     }
-    
+
     //// util methods
 
     @Override

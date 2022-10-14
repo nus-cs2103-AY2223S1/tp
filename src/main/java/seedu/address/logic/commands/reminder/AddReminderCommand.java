@@ -16,7 +16,7 @@ import seedu.address.model.reminder.Reminder;
 public class AddReminderCommand extends Command {
 
     public static final String COMMAND_WORD = "add reminder";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a reminder to the address book. "
             + PREFIX_TIMESLOT + "TIMESLOT "
             + "Example: " + COMMAND_WORD + " "
@@ -27,7 +27,7 @@ public class AddReminderCommand extends Command {
     public static final String MESSAGE_DUPLICATE_REMINDER = "This reminder already exists in the ModQuik";
 
     private final Reminder toAdd;
-    
+
     /**
      * Creates an AddReminderCommand to add the specified {@code Reminder}
      */

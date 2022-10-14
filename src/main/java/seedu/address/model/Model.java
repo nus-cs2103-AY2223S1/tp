@@ -86,7 +86,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-    
+
     /**
      * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuik.
      */

@@ -12,9 +12,9 @@ import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 
 /**
  * A list of reminders that enforces uniqueness between its elements and does not allow nulls.
- * A reminder is considered unique by comparing using {@code Reminder#isSameReminder(Reminder)}. As such, adding and 
- * updating of persons uses Reminder#isSameReminder(Reminder) for equality so as to ensure that the person being added 
- * or updated is unique in terms of identity in the UniquePersonList. However, the removal of a person uses 
+ * A reminder is considered unique by comparing using {@code Reminder#isSameReminder(Reminder)}. As such, adding and
+ * updating of persons uses Reminder#isSameReminder(Reminder) for equality so as to ensure that the person being added
+ * or updated is unique in terms of identity in the UniquePersonList. However, the removal of a person uses
  * Reminder#equals(Object) so as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
