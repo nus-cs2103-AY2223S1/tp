@@ -2,10 +2,12 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 
 /**
@@ -86,5 +88,9 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+
+
     void sortPerson(Comparator<Person> comparator);
+
+    ObservableList<CalendarEvent> getFilteredCalendarEventList();
 }

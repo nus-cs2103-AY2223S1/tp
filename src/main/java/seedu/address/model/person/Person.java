@@ -2,11 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -69,6 +72,13 @@ public class Person {
     public Set<Appointment> getAppointments() {
         return appointments;
     }
+
+    public List<CalendarEvent> getCalendarEvents() {
+        List<CalendarEvent> CalenderEvents = new ArrayList<>();
+        appointments.stream().forEach(x -> CalenderEvents.add(new CalendarEvent(this.name, x)));
+        return CalenderEvents;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

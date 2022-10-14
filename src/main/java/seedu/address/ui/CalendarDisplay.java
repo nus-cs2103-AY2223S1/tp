@@ -5,11 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import seedu.address.logic.Logic;
+import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.calendar.CalendarMonth;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -19,12 +22,15 @@ public class CalendarDisplay extends UiPart<Region> {
     private static final String FXML = "CalendarDisplay.fxml";
 
     private Calendar currentMonth;
+    private Logic logic;
+    private CalendarMonth calendarMonth;
 
     @FXML
     private GridPane calendarDisplay;
 
-    public CalendarDisplay() {
+    public CalendarDisplay(ObservableList<CalendarEvent> calendarEventObservableList) {
         super(FXML);
+        this.calendarMonth = new CalendarMonth(calendarEventObservableList);
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
         drawCalendar();
