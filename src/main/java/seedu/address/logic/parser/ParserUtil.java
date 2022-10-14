@@ -107,7 +107,7 @@ public class ParserUtil {
      */
     public static String[] parseHomeworkInfo(String homeworkInfo) throws ParseException {
         String[] args = homeworkInfo.split(" ", 2);
-        if (args.length < 2) {
+        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
         return args;
@@ -131,7 +131,7 @@ public class ParserUtil {
      */
     public static String[] parseGradeProgressInfo(String gradeProgressInfo) throws ParseException {
         String[] args = gradeProgressInfo.split(" ", 2);
-        if (args.length < 2) {
+        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
         return args;
@@ -158,7 +158,7 @@ public class ParserUtil {
      */
     public static String[] parseAttendanceInfo(String attendanceInfo) throws ParseException {
         String[] args = attendanceInfo.split(" ", 2);
-        if (args.length < 2) {
+        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }
         return args;
