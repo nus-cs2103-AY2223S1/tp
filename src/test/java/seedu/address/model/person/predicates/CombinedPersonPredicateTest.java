@@ -1,6 +1,7 @@
 package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,8 +10,6 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PredicateGeneratorUtil;
 
 class CombinedPersonPredicateTest {
-
-    private final String empty = "";
 
     private final String name = "John";
     private final String phone = "12345678";
@@ -41,7 +40,8 @@ class CombinedPersonPredicateTest {
 
         // Empty predicate not equals
         CombinedPersonPredicate testPredicate =
-                PredicateGeneratorUtil.generateCombinedPersonPredicate(empty, empty, empty, empty, empty);
+                PredicateGeneratorUtil.generateCombinedPersonPredicate(
+                        EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
         assertNotEquals(testPredicate, firstPredicate);
 
         // Different name not equals
@@ -92,11 +92,13 @@ class CombinedPersonPredicateTest {
         assertTrue(predicate.test(personToTest));
 
         // Some fields empty, but matches
-        predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(empty, empty, empty, empty, tag2);
+        predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
+                EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, tag2);
         assertTrue(predicate.test(personToTest));
 
         // No criteria
-        predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(empty, empty, empty, empty, empty);
+        predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
+                EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
         assertTrue(predicate.test(personToTest));
     }
 
@@ -112,13 +114,13 @@ class CombinedPersonPredicateTest {
 
         // Different search criteria but some fields empty
         predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
-                differentName, empty, empty, empty, empty);
+                differentName, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
         assertFalse(predicate.test(personToTest));
 
         // Not match all tags
         String someTagsNotInPerson = tag1 + " " + tag2 + " " + "notInPerson";
         predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
-                empty, empty, empty, empty, someTagsNotInPerson);
+                EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, someTagsNotInPerson);
         assertFalse(predicate.test(personToTest));
 
         // Matches all but 1 field
@@ -129,7 +131,7 @@ class CombinedPersonPredicateTest {
         // Tag not word for word match
         String similarLookingButDifferentTag = "Tag";
         predicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
-                empty, empty, empty, empty, similarLookingButDifferentTag);
+                EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, similarLookingButDifferentTag);
         assertFalse(predicate.test(personToTest));
     }
 }

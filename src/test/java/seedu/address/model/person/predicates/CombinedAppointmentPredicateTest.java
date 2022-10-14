@@ -1,6 +1,7 @@
 package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,6 @@ import seedu.address.testutil.AppointmentBuilder;
 
 class CombinedAppointmentPredicateTest {
 
-    private final String empty = "";
     private final LocalDateTime minTime = LocalDateTime.MIN;
     private final LocalDateTime maxTime = LocalDateTime.MAX;
 
@@ -82,11 +82,11 @@ class CombinedAppointmentPredicateTest {
         assertTrue(predicate.test(appointmentToTest));
 
         // Empty reason
-        predicate = new CombinedAppointmentPredicate(empty, beforeTargetTime, afterTargetTime);
+        predicate = new CombinedAppointmentPredicate(EMPTY_STRING, beforeTargetTime, afterTargetTime);
         assertTrue(predicate.test(appointmentToTest));
 
         // No reason, no time restriction
-        predicate = new CombinedAppointmentPredicate(empty, minTime, maxTime);
+        predicate = new CombinedAppointmentPredicate(EMPTY_STRING, minTime, maxTime);
         assertTrue(predicate.test(appointmentToTest));
     }
 
