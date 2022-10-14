@@ -16,12 +16,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-//import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TypicalBuyers;
-import seedu.address.testutil.TypicalDeliverers;
-import seedu.address.testutil.TypicalSuppliers;
 
 public class UniquePetListTest {
 
@@ -38,42 +34,9 @@ public class UniquePetListTest {
     }
 
     @Test
-    public void contains_buyerNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(TypicalBuyers.ALICE));
-    }
-
-    @Test
-    public void contains_delivererNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(TypicalDeliverers.ALICE));
-    }
-
-    @Test
-    public void contains_supplierNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(TypicalSuppliers.ALICE));
-    }
-
-    @Test
     public void contains_personInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         assertTrue(uniquePersonList.contains(ALICE));
-    }
-
-    @Test
-    public void contains_buyerInList_returnsTrue() {
-        uniquePersonList.add(TypicalBuyers.ALICE);
-        assertTrue(uniquePersonList.contains(TypicalBuyers.ALICE));
-    }
-
-    @Test
-    public void contains_delivererInList_returnsTrue() {
-        uniquePersonList.add(TypicalDeliverers.ALICE);
-        assertTrue(uniquePersonList.contains(TypicalDeliverers.ALICE));
-    }
-
-    @Test
-    public void contains_supplierInList_returnsTrue() {
-        uniquePersonList.add(TypicalSuppliers.ALICE);
-        assertTrue(uniquePersonList.contains(TypicalSuppliers.ALICE));
     }
 
     @Test
