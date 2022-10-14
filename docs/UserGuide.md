@@ -3,12 +3,23 @@ layout: page
 title: User Guide
 ---
 
-PleaseHireUs (PHU) is a **desktop app for managing internships for computer science students 
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, PHU can manage your internship details done faster than traditional GUI apps.
+Are you a CS student struggling to keep track of your internship? 
+Do you feel tired of using spreadsheets to keep track of your applications? 
+We have just the right tool for you! 
+
+Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
+
+Here are its main features:
+* View the status of your individual application and assessment dates at a glance
+* View the overall statistics of the status of all your internship applications in a stacked bar chart
+
+Now you will never miss any internship application deadlines or interviews again!
+PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
+We hope you find PleaseHireUs to be very useful in your internship hunt!
+
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -103,12 +114,17 @@ Examples:
 
 Shows a list of all internships. List of internships can be sorted by category in ascending or descending order.
 
-Format: `list [c/CATEGORY] [REVERSE]`
-* List the internships sorted by category and in ascending or descending order
-* The category is optional. By default, without stating the category, `list` will display all internships in no particular order
-* The CATEGORY tag refers to company_name (or n), position (or p), application_process (or pr), website (or web), date(or d) (case-insensitive)
-* The reverse tag is optional. It can take on the value `true` or `false`. The reverse tag is set to false by default if not stated. List of internships will be shown in ascending order.
-* If REVERSE is set to `true`. List of internships will be displayed in descending order
+Format: `list [c/CATEGORY [DESCENDING]]`
+
+* List the internships 
+* Internships can be sorted by category and in ascending or descending order
+* The `CATEGORY` is optional. By default, without stating the category, `list` will display all internships in no particular order
+  * Possible options for `CATEGORY` : `company_name`,`n`, `position`,`p`, `application_process`,`pr`, `date`,`d` (case-insensitive)
+  * Case-insensitive: `company_name`, `Company_Name`, and `N` are all acceptable inputs.
+* The `DESCENDING` tag is optional. It can take on the value `true` or `false` (case-insensitive). 
+  * The DESCENDING tag is set to `false` by default if not stated. List of internships will be shown in ascending order.
+  * The `DESCENDING` tag can only be set to `true` if the `CATEGORY` is stated
+  * If `DESCENDING` is set to `true`. List of internships will be displayed in descending order
 
 Examples:
 * `list c/n true`
@@ -228,5 +244,5 @@ Action | Format, Examples
 **View** | `view INDEX`<br> e.g., `view 1`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | list [c/CATEGORY] [REVERSE] <br> e.g, `list c/website true`
+**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`
 **Help** | `help`

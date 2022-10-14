@@ -15,7 +15,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all internships\n"
             + "List of internships can be sorted "
-            + "specified by the category (case-insensitive) in ascending (default value) or descending order\n"
+            + "specified by the category (case-insensitive) in ascending or descending order\n"
             + "Internships are displayed as a list with index numbers.\n"
             + "Parameters: [c/CATEGORY [DESCENDING = false]]\n"
             + "Examples:\n"
