@@ -93,6 +93,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         boolean isEditingClass = !editPersonDescriptor.getAClass().get().classDateTime.equals("");
+
         ClassStorage.saveClass(editedPerson, index.getOneBased());
         if (isEditingClass) {
             ClassStorage.removeExistingClass(personToEdit);
