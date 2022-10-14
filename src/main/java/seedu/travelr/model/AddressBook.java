@@ -3,6 +3,7 @@ package seedu.travelr.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
@@ -184,4 +185,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return trips.hashCode();
     }
+
 }

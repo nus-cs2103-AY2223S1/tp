@@ -1,5 +1,6 @@
 package seedu.travelr.model.list;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -42,7 +43,7 @@ public class BucketList extends EventList {
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTrip);
+        return internalList.stream().anyMatch(toCheck::isSameEvent);
     }
 
     /**
@@ -72,21 +73,21 @@ public class BucketList extends EventList {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setEvent(Event target, Event editedTrip) {
-        requireAllNonNull(target, editedTrip);
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new EventNotFoundException();
         }
 
-        if (!target.isSameTrip(editedTrip) && contains(editedTrip)) {
+        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
             throw new DuplicateEventException();
         }
 
-        internalList.set(index, editedTrip);
+        internalList.set(index, editedEvent);
         removeEvent(target);
-        addEvent(editedTrip);
+        addEvent(editedEvent);
 
     }
 
@@ -126,6 +127,7 @@ public class BucketList extends EventList {
         }
 
         internalList.setAll(events);
+        this.events.addAll(events);
     }
 
     /**
@@ -158,7 +160,7 @@ public class BucketList extends EventList {
     private boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {
             for (int j = i + 1; j < events.size(); j++) {
-                if (events.get(i).isSameTrip(events.get(j))) {
+                if (events.get(i).isSameEvent(events.get(j))) {
                     return false;
                 }
             }
@@ -190,18 +192,12 @@ public class BucketList extends EventList {
 
     public Event getEvent(Event event) {
         Object[] temp = events.toArray();
-        int size = temp.length;
-        for (int i = 0; i < size; i++) {
-            if (temp[i].equals(event)) {
-                return (Event) temp[i];
+        for (Object o : temp) {
+            if (o.equals(event)) {
+                return (Event) o;
             }
         }
         return null;
     }
-
-    public Set<Event> getList() {
-        return events;
-    }
-
 
 }

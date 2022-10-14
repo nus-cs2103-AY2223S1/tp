@@ -1,5 +1,6 @@
 package seedu.travelr.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
@@ -62,6 +63,7 @@ public class AddEventToTripCommand extends Command {
 
         model.deleteEvent(event);
         toAddInto.addEvent(event);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
 
