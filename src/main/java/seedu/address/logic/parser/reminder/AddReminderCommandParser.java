@@ -12,8 +12,8 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.datetime.Datetime;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 
@@ -37,9 +37,9 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         }
 
         ReminderName name = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
-        ReminderDeadline deadline = ParserUtil.parseReminderDeadline(argMultimap.getValue(PREFIX_TIMESLOT).get());
         ReminderDescription description = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                 .get());
+        Datetime deadline = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_TIMESLOT).get());
 
         Reminder reminder = new Reminder(name, deadline, description);
 

@@ -1,5 +1,7 @@
 package seedu.address.model.reminder;
 
+import seedu.address.model.datetime.Datetime;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -14,13 +16,13 @@ public class Reminder {
     private final ReminderName name;
 
     //Data fields
-    private final ReminderDeadline deadline;
+    private final Datetime deadline;
     private final ReminderDescription details;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details) {
+    public Reminder(ReminderName name, Datetime deadline, ReminderDescription details) {
         requireAllNonNull(name, deadline, details);
         this.name = name;
         this.deadline = deadline;
@@ -31,7 +33,7 @@ public class Reminder {
         return name;
     }
 
-    public ReminderDeadline getDeadline() {
+    public Datetime getDeadline() {
         return deadline;
     }
 

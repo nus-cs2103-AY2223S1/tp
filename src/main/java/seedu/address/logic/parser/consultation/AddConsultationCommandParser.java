@@ -16,8 +16,8 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
+import seedu.address.model.datetime.DatetimeRange;
 
 /**
  * Parses input arguments and creates a new AddConsultationCommand object
@@ -43,10 +43,12 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
         ConsultationName name = ParserUtil.parseConsultationName(argMultimap.getValue(PREFIX_NAME).get());
         ConsultationModule module = ParserUtil.parseConsultationModule(argMultimap.getValue(PREFIX_MODULE).get());
         ConsultationVenue venue = ParserUtil.parseConsultationVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        ConsultationTimeslot timeslot = ParserUtil.parseConsultationTimeslot(
-                argMultimap.getValue(PREFIX_TIMESLOT).get());
         ConsultationDescription description = ParserUtil.parseConsultationDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
+
+        DatetimeRange timeslot = ParserUtil.parseDatetimeRange(
+                argMultimap.getValue(PREFIX_TIMESLOT).get());
+
 
         Consultation consultation = new Consultation(name, module, venue, timeslot, description);
 

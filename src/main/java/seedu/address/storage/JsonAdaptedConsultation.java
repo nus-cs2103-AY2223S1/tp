@@ -8,8 +8,8 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
+import seedu.address.model.datetime.DatetimeRange;
 
 /**
  * Jackson-friendly version of {@link Consultation}.
@@ -45,7 +45,7 @@ public class JsonAdaptedConsultation {
         name = source.getName().fullName;
         module = source.getModule().moduleName;
         venue = source.getVenue().venue;
-        timeslot = source.getTimeslot().timeslot;
+        timeslot = source.getTimeslot().toString();
         description = source.getDescription().description;
     }
 
@@ -83,14 +83,14 @@ public class JsonAdaptedConsultation {
         }
         final ConsultationVenue modelVenue = new ConsultationVenue(venue);
 
-        if (timeslot == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ConsultationTimeslot.class.getSimpleName()));
-        }
-        if (!ConsultationTimeslot.isValidTimeslot(timeslot)) {
-            throw new IllegalValueException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        final ConsultationTimeslot modelTimeslot = new ConsultationTimeslot(timeslot);
+//        if (timeslot == null) {
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+//                    ConsultationTimeslot.class.getSimpleName()));
+//        }
+//        if (!ConsultationTimeslot.isValidTimeslot(timeslot)) {
+//            throw new IllegalValueException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
+//        }
+//        final ConsultationTimeslot modelTimeslot = new ConsultationTimeslot(timeslot);
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -101,6 +101,8 @@ public class JsonAdaptedConsultation {
         }
 
         final ConsultationDescription modelDescription = new ConsultationDescription(description);
+
+        DatetimeRange modelTimeslot = new DatetimeRange("fe", "fe");
 
         return new Consultation(modelName, modelModule, modelVenue, modelTimeslot, modelDescription);
     }

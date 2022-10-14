@@ -1,5 +1,7 @@
 package seedu.address.model.tutorial;
 
+import seedu.address.model.datetime.WeeklyTimeslot;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -14,22 +16,19 @@ public class Tutorial {
     private final TutorialName name;
     private final TutorialModule module;
     private final TutorialVenue venue;
-    private final TutorialDay day;
-
-    //Data fields
-    private final TutorialTimeslot timeslot;
+    // Data fields
+    private final WeeklyTimeslot timeslot;
 
     /**
      * Every field must be present and not null.
      */
     public Tutorial(TutorialName name, TutorialModule module, TutorialVenue venue,
-                    TutorialTimeslot timeslot, TutorialDay day) {
+                    WeeklyTimeslot timeslot) {
         requireAllNonNull(name, module, venue, timeslot);
         this.name = name;
         this.module = module;
         this.venue = venue;
         this.timeslot = timeslot;
-        this.day = day;
     }
 
     public TutorialName getName() {
@@ -44,12 +43,8 @@ public class Tutorial {
         return venue;
     }
 
-    public TutorialTimeslot getTimeslot() {
+    public WeeklyTimeslot getTimeslot() {
         return timeslot;
-    }
-
-    public TutorialDay getDay() {
-        return day;
     }
 
     /**
@@ -96,14 +91,13 @@ public class Tutorial {
         return otherTutorial.getName().equals(getName())
                 && otherTutorial.getModule().equals(getModule())
                 && otherTutorial.getVenue().equals(getVenue())
-                && otherTutorial.getTimeslot().equals(getTimeslot())
-                && otherTutorial.getDay().equals(getDay());
+                && otherTutorial.getTimeslot().equals(getTimeslot());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, module, venue, timeslot, day);
+        return Objects.hash(name, module, venue, timeslot);
     }
 
     @Override
@@ -115,9 +109,7 @@ public class Tutorial {
                 .append("; Venue: ")
                 .append(getVenue())
                 .append("; Timeslot: ")
-                .append(getTimeslot())
-                .append("; Day: ")
-                .append(getDay());
+                .append(getTimeslot());
 
         return builder.toString();
     }

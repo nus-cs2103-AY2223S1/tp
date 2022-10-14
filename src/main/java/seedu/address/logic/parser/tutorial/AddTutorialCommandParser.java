@@ -13,11 +13,10 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
 
 
@@ -46,10 +45,11 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         TutorialName name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
         TutorialModule module = ParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
         TutorialVenue venue = ParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
-        TutorialTimeslot timeslot = ParserUtil.parseTutorialTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get());
-        TutorialDay day = ParserUtil.parseTutorialDay(argMultimap.getValue(PREFIX_DAY).get());
+        String dayString = argMultimap.getValue(PREFIX_DAY).get();
+        String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
+        WeeklyTimeslot timeslot = ParserUtil.parseWeeklyTimeslot(dayString, timeslotString);
 
-        Tutorial tutorial = new Tutorial(name, module, venue, timeslot, day);
+        Tutorial tutorial = new Tutorial(name, module, venue, timeslot);
 
         return new AddTutorialCommand(tutorial);
     }

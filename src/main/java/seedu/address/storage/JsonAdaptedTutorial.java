@@ -4,11 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
 
 /**
@@ -45,8 +44,9 @@ class JsonAdaptedTutorial {
         name = source.getName().fullName;
         module = source.getModule().moduleName;
         venue = source.getVenue().venue;
-        timeslot = source.getTimeslot().timeslot;
-        day = source.getDay().toIntString();
+        timeslot = source.getTimeslot().toString();
+        day = "3";
+//        day = source.getDay().toIntString();
     }
 
     /**
@@ -82,21 +82,23 @@ class JsonAdaptedTutorial {
         }
         final TutorialVenue modelVenue = new TutorialVenue(venue);
 
-        if (timeslot == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TutorialTimeslot.class.getSimpleName()));
-        }
-        if (!TutorialTimeslot.isValidTimeslot(timeslot)) {
-            throw new IllegalValueException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        final TutorialTimeslot modelTimeslot = new TutorialTimeslot(timeslot);
+//        if (timeslot == null) {
+//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+//                    TutorialTimeslot.class.getSimpleName()));
+//        }
+//        if (!TutorialTimeslot.isValidTimeslot(timeslot)) {
+//            throw new IllegalValueException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
+//        }
+//        final TutorialTimeslot modelTimeslot = new TutorialTimeslot(timeslot);
+//
+//        if (!TutorialDay.isValidDay(day)) {
+//            throw new IllegalValueException(TutorialDay.MESSAGE_CONSTRAINTS);
+//        }
+//        final TutorialDay modelDay = new TutorialDay(day);
 
-        if (!TutorialDay.isValidDay(day)) {
-            throw new IllegalValueException(TutorialDay.MESSAGE_CONSTRAINTS);
-        }
-        final TutorialDay modelDay = new TutorialDay(day);
+        WeeklyTimeslot weeklyTimeslot = new WeeklyTimeslot("fe", "fe", "fe");
 
-        return new Tutorial(modelName, modelModule, modelVenue, modelTimeslot, modelDay);
+        return new Tutorial(modelName, modelModule, modelVenue, weeklyTimeslot);
     }
 
 }

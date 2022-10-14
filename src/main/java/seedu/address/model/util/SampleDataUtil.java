@@ -6,21 +6,20 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.datetime.Datetime;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
 
 /**
@@ -52,11 +51,11 @@ public class SampleDataUtil {
 
     public static Reminder[] getSampleReminders() {
         return new Reminder[] {
-            new Reminder(new ReminderName("Mark Midterms"), new ReminderDeadline("20:00"),
+            new Reminder(new ReminderName("Mark Midterms"), new Datetime("20:00"),
                         new ReminderDescription("300 papers to mark")),
-            new Reminder(new ReminderName("Send email to TAs"), new ReminderDeadline("21:00"),
+            new Reminder(new ReminderName("Send email to TAs"), new Datetime("21:00"),
                         new ReminderDescription("Erratum in midterms")),
-            new Reminder(new ReminderName("Meeting with Prof Lee"), new ReminderDeadline("22:00"),
+            new Reminder(new ReminderName("Meeting with Prof Lee"), new Datetime("22:00"),
                         new ReminderDescription("Discuss incoming finals for CS2201")),
         };
     }
@@ -64,14 +63,14 @@ public class SampleDataUtil {
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
             new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00"),
-                    new TutorialDay("1")),
+                    new TutorialVenue("COM1-0203"),
+                    new WeeklyTimeslot("1", "16:00", "18:00")),
             new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00"),
-                    new TutorialDay("2")),
+                    new TutorialVenue("COM1-0201"),
+                    new WeeklyTimeslot("2", "15:00", "17:00")),
             new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00"),
-                    new TutorialDay("3")),
+                    new TutorialVenue("COM1-0202"),
+                    new WeeklyTimeslot("3", "10:00", "11:00")),
         };
     }
 

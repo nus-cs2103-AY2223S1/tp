@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,20 +15,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
+import seedu.address.model.datetime.Datetime;
+import seedu.address.model.datetime.DatetimeRange;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
 
 /**
@@ -169,21 +169,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
-     */
-    public static ReminderDeadline parseReminderDeadline(String deadline) throws ParseException {
-        requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        if (!ReminderDeadline.isValidTimeslot(trimmedDeadline)) {
-            throw new ParseException(ReminderDeadline.MESSAGE_CONSTRAINTS);
-        }
-        return new ReminderDeadline(trimmedDeadline);
-    }
-
-    /**
      * Parses a {@code String description} into a {@code ReminderDescription}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -237,38 +222,6 @@ public class ParserUtil {
         return new TutorialVenue(trimmedName);
     }
 
-    /**
-     * Parses a {@code String timeslot} into a {@code TutorialTimeslot}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code timeslot} is invalid.
-     */
-    public static TutorialTimeslot parseTutorialTimeslot(String timeslot) throws ParseException {
-        requireNonNull(timeslot);
-        String trimmedName = timeslot.trim();
-        if (!TutorialTimeslot.isValidTimeslot(trimmedName)) {
-            throw new ParseException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        if (!TutorialTimeslot.isValidDuration(trimmedName)) {
-            throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
-        }
-        return new TutorialTimeslot(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String day} into a {@code TutorialDay}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code day} is invalid.
-     */
-    public static TutorialDay parseTutorialDay(String day) throws ParseException {
-        requireNonNull(day);
-        String trimmedValue = day.trim();
-        if (!TutorialDay.isValidDay(trimmedValue)) {
-            throw new ParseException(TutorialDay.MESSAGE_CONSTRAINTS);
-        }
-        return new TutorialDay(trimmedValue);
-    }
 
     /**
      * Parses a {@code String name} into a {@code TutorialName}.
@@ -316,24 +269,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String timeslot} into a {@code ConsultationTimeslot}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code timeslot} is invalid.
-     */
-    public static ConsultationTimeslot parseConsultationTimeslot(String timeslot) throws ParseException {
-        requireNonNull(timeslot);
-        String trimmedName = timeslot.trim();
-        if (!ConsultationTimeslot.isValidTimeslot(trimmedName)) {
-            throw new ParseException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        if (!ConsultationTimeslot.isValidDuration(trimmedName)) {
-            throw new ParseException(ConsultationTimeslot.MESSAGE_INVALID_DURATION);
-        }
-        return new ConsultationTimeslot(trimmedName);
-    }
-
-    /**
      * Parses a {@code String name} into a {@code TutorialName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -347,4 +282,67 @@ public class ParserUtil {
         }
         return new ConsultationDescription(trimmedName);
     }
+
+    /**
+     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
+     */
+    public static Datetime parseDatetime(String datetime) throws ParseException {
+        requireNonNull(datetime);
+        String trimmedDeadline = datetime.trim();
+        if (!Datetime.isValidDatetime(trimmedDeadline)) {
+            throw new ParseException(Datetime.MESSAGE_CONSTRAINTS);
+        }
+        return new Datetime(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
+     */
+    public static DatetimeRange parseDatetimeRange(String datetimeRangeString) throws ParseException {
+        requireNonNull(datetimeRangeString);
+        String[] times = datetimeRangeString.trim().split("-");
+        String startTime = times[0];
+        String endTime = times[1];
+        if (!DatetimeRange.isValidDatetimeRange(startTime.trim(), endTime.trim())) {
+            throw new ParseException(DatetimeRange.MESSAGE_CONSTRAINTS);
+        }
+        return new DatetimeRange(startTime, endTime);
+    }
+
+    /**
+     * Parses a {@code String timeslot} into a {@code TutorialTimeslot}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code timeslot} is invalid.
+     */
+    public static WeeklyTimeslot parseWeeklyTimeslot(String day, String timeslot) throws ParseException {
+        requireNonNull(day);
+        requireNonNull(timeslot);
+        String[] times = timeslot.trim().split("-");
+        System.out.println(Arrays.toString(times));
+        if (times.length != 2) {
+            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
+        }
+        String startTime = times[0];
+        String endTime = times[1];
+        if (!WeeklyTimeslot.isValidDay(day)) {
+            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_DAY);
+        }
+        if (!WeeklyTimeslot.isValidTime(startTime)) {
+            System.out.println("JEF");
+            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
+        }
+        if (!WeeklyTimeslot.isValidTime(endTime)) {
+            System.out.println("FE");
+            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
+        }
+        return new WeeklyTimeslot(day, startTime, endTime);
+    }
+
 }

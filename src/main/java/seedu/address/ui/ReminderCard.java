@@ -34,7 +34,7 @@ public class ReminderCard extends UiPart<Region> {
         this.reminder = reminder;
         id.setText(displayedIndex + ". ");
         name.setText(reminder.getName().fullName);
-        deadline.setText(reminder.getDeadline().deadline);
+        deadline.setText(reminder.getDeadline().toString());
         description.setText(reminder.getDescription().description);
     }
 
