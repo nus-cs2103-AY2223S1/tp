@@ -57,7 +57,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editPersonDescriptor.isAnyFieldEdited() && !editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(DeleteTagCommand.MESSAGE_TAG_NOT_DELETED);
         }
 

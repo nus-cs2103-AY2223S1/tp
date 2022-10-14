@@ -63,6 +63,7 @@ public class AddTagCommand extends Command {
     public AddTagCommand(Index contactIndex, Index taskIndex, EditPersonDescriptor editPersonDescriptor,
         EditTaskDescriptor editTaskDescriptor, boolean addTagToContact, boolean addTagToTask) {
         requireNonNull(contactIndex);
+        requireNonNull(taskIndex);
         requireNonNull(editPersonDescriptor);
         requireNonNull(editTaskDescriptor);
 
