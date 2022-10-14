@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -66,5 +67,27 @@ public class PersonData {
 
     public Set<Attendance> getAttendances() {
         return attendances;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PersonData that = (PersonData) o;
+        return Objects.equals(name, that.name)
+                && Objects.equals(phone, that.phone)
+                && Objects.equals(email, that.email)
+                && Objects.equals(address, that.address)
+                && Objects.equals(tags, that.tags)
+                && Objects.equals(attendances, that.attendances);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phone, email, address, tags, attendances);
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -11,8 +12,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -87,5 +91,44 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void getPersonData() {
+        // reconstruction person from getPersonData returns same person
+        assertTrue(ALICE.isSamePerson(new Person(ALICE.getPersonData())));
+
+        // personData returned from getPersonData() should be equal across invocations
+        assertEquals(ALICE.getPersonData(), ALICE.getPersonData());
+    }
+
+    @Test
+    public void personDataConstructor() {
+
+        PersonData personData = new PersonData();
+
+        Name name = new Name(PersonBuilder.DEFAULT_NAME);
+        Phone phone = new Phone(PersonBuilder.DEFAULT_PHONE);
+        Email email = new Email(PersonBuilder.DEFAULT_EMAIL);
+        Address address = new Address(PersonBuilder.DEFAULT_ADDRESS);
+        Set<Tag> tags = Set.of(new Tag("Friends"));
+        Set<Attendance> attendances = Set.of(new Attendance("T01", true));
+
+        personData.setName(name);
+        personData.setPhone(phone);
+        personData.setEmail(email);
+        personData.setAddress(address);
+        personData.setTags(tags);
+        personData.setAttendances(attendances);
+
+        Person person = new Person(personData);
+
+        assertEquals(person.getPersonData(), personData);
+        assertEquals(person.getName(), name);
+        assertEquals(person.getPhone(), phone);
+        assertEquals(person.getEmail(), email);
+        assertEquals(person.getAddress(), address);
+        assertEquals(person.getTags(), tags);
+        assertEquals(person.getAttendances(), attendances);
     }
 }
