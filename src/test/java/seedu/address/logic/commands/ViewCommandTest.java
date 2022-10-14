@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -33,11 +34,13 @@ public class ViewCommandTest {
         PersonContainsAttributePredicate firstPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
         PersonContainsAttributePredicate secondPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("female"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
 
         ViewCommand viewFirstCommand = new ViewCommand(firstPredicate);
         ViewCommand viewSecondCommand = new ViewCommand(secondPredicate);
@@ -64,12 +67,13 @@ public class ViewCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonContainsAttributePredicate predicate =
+        PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("r4nd0m_inV4l1d_g3nd3r"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-        ViewCommand command = new ViewCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new HashSet<>());
+        ViewCommand command = new ViewCommand(testPredicate);
+        expectedModel.updateFilteredPersonList(testPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -77,12 +81,13 @@ public class ViewCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        PersonContainsAttributePredicate predicate =
+        PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("female"), new ArrayList<>(),
-                        new ArrayList<>(), List.of("christian"), new ArrayList<>());
-        ViewCommand command = new ViewCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+                        new ArrayList<>(), List.of("christian"), new ArrayList<>(),
+                        new HashSet<>());
+        ViewCommand command = new ViewCommand(testPredicate);
+        expectedModel.updateFilteredPersonList(testPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, FIONA), model.getFilteredPersonList());
     }

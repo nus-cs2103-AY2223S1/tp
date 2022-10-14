@@ -1,9 +1,11 @@
 package seedu.address.model.person;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Person}'s attributes matches any of the keywords given for each attribute.
@@ -19,13 +21,15 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     private final List<String> raceList;
     private final List<String> religionList;
     private final List<String> surveyList;
+    private final Set<Tag> tagsList;
 
     /**
      * Every field must be non-null.
      */
     public PersonContainsAttributePredicate(List<String> nameList, List<String> phoneList, List<String> emailList,
-                                    List<String> addressList, List<String> genderList, List<String> birthdateList,
-                                    List<String> raceList, List<String> religionList, List<String> surveyList) {
+                                        List<String> addressList, List<String> genderList, List<String> birthdateList,
+                                        List<String> raceList, List<String> religionList, List<String> surveyList,
+                                        Set<Tag> tagsList) {
 
         this.nameList = nameList;
         this.phoneList = phoneList;
@@ -36,6 +40,7 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
         this.raceList = raceList;
         this.religionList = religionList;
         this.surveyList = surveyList;
+        this.tagsList = tagsList;
     }
 
     @Override
@@ -59,9 +64,11 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
                 .anyMatch(doesKeywordMatchWith(person.getReligion().religion));
         boolean containsSurvey = surveyList.isEmpty() || surveyList.stream()
                 .anyMatch(doesKeywordMatchWith(person.getSurvey().survey));
+        boolean containsTags = tagsList.isEmpty() || person.getTags().containsAll(tagsList);
 
         return (containsName && containsPhone && containsEmail && containsAddress && containsGender
-                && containsBirthdate && containsRace && containsReligion && containsSurvey);
+                && containsBirthdate && containsRace && containsReligion && containsSurvey
+                && containsTags);
     }
 
     public Predicate<String> doesKeywordMatchWith(String targetString) {
@@ -80,7 +87,8 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
                 && birthdateList.equals(((PersonContainsAttributePredicate) other).birthdateList)
                 && raceList.equals(((PersonContainsAttributePredicate) other).raceList)
                 && religionList.equals(((PersonContainsAttributePredicate) other).religionList)
-                && surveyList.equals(((PersonContainsAttributePredicate) other).surveyList)); //state check
+                && surveyList.equals(((PersonContainsAttributePredicate) other).surveyList)
+                && tagsList.equals(((PersonContainsAttributePredicate) other).tagsList)); //state check
     }
 
 }
