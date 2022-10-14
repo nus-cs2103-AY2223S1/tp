@@ -212,7 +212,7 @@ public class AddTaskCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the task being added.
      */
     private class ModelStubAcceptingTaskAdded extends AddTaskCommandTest.ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
