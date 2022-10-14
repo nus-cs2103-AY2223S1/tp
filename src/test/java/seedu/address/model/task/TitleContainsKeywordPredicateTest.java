@@ -52,5 +52,5 @@ public class TitleContainsKeywordPredicateTest {
         TitleContainsKeywordPredicate predicate = new TitleContainsKeywordPredicate("Ali");
         assertFalse(predicate.test(new TaskBuilder().withTitle("Bobby Dazzler").build()));
     }
-    
+
 }

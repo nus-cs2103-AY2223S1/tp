@@ -54,6 +54,6 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, false, contacts);
+        return new Task(title, isCompleted, contacts);
     }
 }

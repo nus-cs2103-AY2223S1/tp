@@ -37,4 +37,11 @@ public class ListTasksCommandParserTest {
                 ListTasksCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_invalidIndex_throwsParseException() {
+
+        assertParseFailure(parser, " c/one", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ListTasksCommand.MESSAGE_USAGE));
+    }
+
 }

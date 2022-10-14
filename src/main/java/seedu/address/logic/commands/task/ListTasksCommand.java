@@ -86,13 +86,6 @@ public class ListTasksCommand extends TaskCommand {
         return keywordFilter.equals(e.keywordFilter) && setIndexEquals(personIndexes, e.personIndexes);
     }
 
-    @Override
-    public String toString() {
-        return String.format("Keyword: '%s' \nPersons: [%s]",
-                keywordFilter.orElse("<NONE>").trim(),
-                personIndexes.stream().map(Object::toString).collect(Collectors.joining(", ")));
-    }
-
     private boolean setIndexEquals(Set<Index> firstSet, Set<Index> secondSet) {
         if (firstSet.size() != secondSet.size()) {
             return false;

@@ -3,10 +3,10 @@
   "tasks": [{
     "title": "Add tasks to list",
     "isCompleted": "false",
-    "contacts": [ "Alice Pauline" ]
+    "assigned": [ "Alice Pauline" ]
   }, {
     "title": "Assign contacts to task",
     "isCompleted": "false",
-    "contacts": [ "George Best" ]
+    "assigned": [ "George Best" ]
   } ]
 }
