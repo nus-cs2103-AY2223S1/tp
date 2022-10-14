@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 
 
 /**
  * Represents a Tag in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidEventName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidEventTitle(String)}
  */
 public class Event {
 

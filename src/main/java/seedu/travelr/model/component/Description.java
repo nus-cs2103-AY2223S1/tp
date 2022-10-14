@@ -1,9 +1,7 @@
-package seedu.travelr.model.event;
+package seedu.travelr.model.component;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.AppUtil.checkArgument;
-
-import seedu.travelr.model.trip.Title;
 
 /**
  * Represents a Trip's title in the address book.
@@ -49,8 +47,8 @@ public class Description {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.travelr.model.trip.Title // instanceof handles nulls
-                && value.equals(((Title) other).fullTitle)); // state check
+                || (other instanceof Description // instanceof handles nulls
+                && value.equals(((Description) other).value)); // state check
     }
 
     @Override

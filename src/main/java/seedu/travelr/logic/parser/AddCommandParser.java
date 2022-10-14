@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -35,7 +35,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseName(argMultimap.getValue(PREFIX_TITLE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
         Set<Event> eventList = ParserUtil.parseEvents(argMultimap.getAllValues(PREFIX_TAG));
 
