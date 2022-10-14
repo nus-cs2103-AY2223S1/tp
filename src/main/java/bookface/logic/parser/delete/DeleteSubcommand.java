@@ -9,7 +9,8 @@ import bookface.logic.parser.exceptions.ParseException;
  * An enum class that contains all the valid user commands.
  */
 public enum DeleteSubcommand implements CommandReturnable {
-    USER((args) -> new DeleteUserArgumentsParser().parse(args));
+    USER((args) -> new DeleteUserArgumentsParser().parse(args)),
+    BOOK((args) -> new DeleteBookArgumentsParser().parse(args));
 
     private final ParserFunction<? super String, ? extends DeleteCommand> commandFunction;
 

@@ -37,7 +37,7 @@ public class BookFaceTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyBookFace_replacesData() {
         BookFace newData = getTypicalBookFaceData();
         bookFace.resetData(newData);
         assertEquals(newData, bookFace);
@@ -60,18 +60,18 @@ public class BookFaceTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInBookFace_returnsFalse() {
         assertFalse(bookFace.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInBookFace_returnsTrue() {
         bookFace.addPerson(ALICE);
         assertTrue(bookFace.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInBookFace_returnsTrue() {
         bookFace.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -84,7 +84,7 @@ public class BookFaceTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyBookFace whose persons list can violate interface constraints.
      */
     private static class BookFaceStub implements ReadOnlyBookFace {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();

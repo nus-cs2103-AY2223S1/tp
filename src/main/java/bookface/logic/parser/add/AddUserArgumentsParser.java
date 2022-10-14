@@ -5,6 +5,7 @@ import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -44,7 +45,7 @@ public class AddUserArgumentsParser implements ArgumentsParsable<AddUserCommand>
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, tagList);
+        Person person = new Person(name, phone, email, new HashSet<>(), tagList);
         return new AddUserCommand(person);
     }
 

@@ -18,7 +18,6 @@ class JsonAdaptedBook {
     private final String title;
     private final String author;
 
-
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
@@ -60,6 +59,5 @@ class JsonAdaptedBook {
 
         return new Book(modelTitle, modelAuthor);
     }
-
 }
 

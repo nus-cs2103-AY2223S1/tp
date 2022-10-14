@@ -2,10 +2,12 @@ package bookface.model;
 
 import static bookface.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static bookface.testutil.TypicalPersons.ALICE;
 import static bookface.testutil.TypicalPersons.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -15,8 +17,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import bookface.commons.core.GuiSettings;
-import bookface.model.person.NameContainsKeywordsPredicate;
-import bookface.testutil.AddressBookBuilder;
+import bookface.testutil.BookFaceBuilder;
 
 public class ModelManagerTest {
 
@@ -37,14 +38,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setBookFaceFilePath(Paths.get("book/face/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setBookFaceFilePath(Paths.get("new/book/face/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,13 +62,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setBookFaceFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setBookFaceFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setBookFaceFilePath_validPath_setsBookFaceFilePath() {
+        Path path = Paths.get("book/face/file/path");
         modelManager.setBookFaceFilePath(path);
         assertEquals(path, modelManager.getBookFaceFilePath());
     }
@@ -78,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInBookFace_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInBookFace_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -95,38 +96,39 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        BookFace bookFace = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        BookFace bookFace = new BookFaceBuilder().withPerson(ALICE).withPerson(BENSON).build();
         BookFace differentBookFace = new BookFace();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
         modelManager = new ModelManager(bookFace, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(bookFace, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentBookFace, userPrefs)));
+        // different bookFace -> returns false
+        assertNotEquals(modelManager, new ModelManager(differentBookFace, userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(bookFace, userPrefs)));
+        modelManager.updateFilteredPersonList(preparePredicateToCheckPersonForPartialWordIgnoreCase(
+                Arrays.asList(keywords)));
+        assertNotEquals(modelManager, new ModelManager(bookFace, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(bookFace, differentUserPrefs)));
+        differentUserPrefs.setBookFaceFilePath(Paths.get("differentFilePath"));
+        assertNotEquals(modelManager, new ModelManager(bookFace, differentUserPrefs));
     }
 }

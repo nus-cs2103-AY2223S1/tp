@@ -5,18 +5,20 @@ import static bookface.logic.parser.CliSyntax.PREFIX_NAME;
 import static bookface.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bookface.logic.parser.CliSyntax.PREFIX_TAG;
 import static bookface.testutil.Assert.assertThrows;
+import static bookface.testutil.TestUtil.preparePredicateToCheckPersonForPartialWordIgnoreCase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import bookface.commons.core.index.Index;
+import bookface.commons.util.StringUtil;
 import bookface.logic.commands.exceptions.CommandException;
 import bookface.model.BookFace;
 import bookface.model.Model;
-import bookface.model.person.NameContainsKeywordsPredicate;
+import bookface.model.ObjectContainsKeywordsPredicate;
+import bookface.model.book.Book;
 import bookface.model.person.Person;
 import bookface.testutil.EditPersonDescriptorBuilder;
 
@@ -102,7 +104,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - BookFace, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -123,9 +125,24 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(preparePredicateToCheckPersonForPartialWordIgnoreCase(List.of(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
+     * {@code model}'s BookFace app
+     */
+    public static void showBookAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
+
+        Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = book.getTitle().bookTitle.split("\\s+");
+        model.updateFilteredBookList(new ObjectContainsKeywordsPredicate<>(List.of(splitTitle[0]),
+                bookToCheck -> keyword -> StringUtil.containsPartialWordIgnoreCase(bookToCheck.getTitle().bookTitle,
+                        keyword)));
+
+        assertEquals(1, model.getFilteredBookList().size());
+    }
 }

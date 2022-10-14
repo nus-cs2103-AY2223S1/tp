@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import bookface.commons.util.CollectionUtil;
+import bookface.model.book.Book;
 import bookface.model.person.exceptions.DuplicatePersonException;
 import bookface.model.person.exceptions.PersonNotFoundException;
 import javafx.collections.FXCollections;
@@ -69,11 +70,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Returns all books that are loaned by the user.
      * The person must exist in the list.
      */
     public void remove(Person toRemove) {
         requireNonNull(toRemove);
+        for (Book book : toRemove.getLoanedBooksSet()) {
+            book.markBookAsReturned();
+        }
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
@@ -133,5 +137,42 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Loans to a person {@code person} a book {@code book} .
+     */
+    public void loan(Person person, Book book) {
+        CollectionUtil.requireAllNonNull(person, book);
+        person.addLoanedBook(book);
+        int index = internalList.indexOf(person);
+        internalList.set(index, person);
+    }
+
+    /**
+     * Refreshes the user list after deleting book {@code book} that has been loaned to a user.
+     */
+    public void refreshUserListAfterDeletingBook(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        Person person = book.getLoanee();
+        int index = internalList.indexOf(person);
+        internalList.set(index, person);
+    }
+
+    /**
+     * Returns the {@code book} loan.
+     */
+    public void returnLoanedBook(Book book) {
+        CollectionUtil.requireAllNonNull(book);
+        for (int i = 0; i < internalList.size(); i++) {
+            //todo this for-loop is inefficient, try to return loan from person without a loop
+            Person person = internalList.get(i);
+            if (person.hasPersonLoanedThisBook(book)) {
+                person.returnLoanedBook(book);
+                int index = internalList.indexOf(person);
+                internalList.set(index, person);
+                break;
+            }
+        }
     }
 }

@@ -7,9 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookface.commons.exceptions.IllegalValueException;
+import bookface.model.book.Book;
 import bookface.model.person.Email;
 import bookface.model.person.Name;
 import bookface.model.person.Person;
@@ -26,6 +28,9 @@ class JsonAdaptedPerson {
     private final String name;
     private final String phone;
     private final String email;
+
+    @JsonManagedReference
+    private final List<JsonAdaptedBook> loanedBooks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -34,10 +39,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
+            @JsonProperty("loanedBooks") List<JsonAdaptedBook> loanedBooks,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        if (loanedBooks != null) {
+            this.loanedBooks.addAll(loanedBooks);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +59,9 @@ class JsonAdaptedPerson {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        loanedBooks.addAll(source.getLoanedBooksSet().stream()
+                .map(JsonAdaptedBook::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -62,8 +74,13 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final ArrayList<Book> bookLoansToPerson = new ArrayList<>();
+
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedBook book : loanedBooks) {
+            bookLoansToPerson.add(book.toModelType());
         }
 
         if (name == null) {
@@ -91,7 +108,7 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelTags);
+        final Set<Book> modelBooks = new HashSet<>(bookLoansToPerson);
+        return new Person(modelName, modelPhone, modelEmail, modelBooks, modelTags);
     }
-
 }

@@ -44,15 +44,16 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
     * **`list`** :
 
-    * **`add`** : 
+    * **`add`** :
 
-    * **`delete`**`3` : 
+    * **`delete`**`3` :
 
-    * **`clear`** : 
+    * **`clear`** :
 
     * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -152,19 +153,20 @@ Format: `loan <user index> <book index>`
 * Loans the book to some user at their respective specified `INDEXES`.
 * The indexes refer to the index number shown in the displayed user and book list respectively.
 * The indexes **must be a positive integer** 1, 2, 3, …​
+* The respective specified `INDEXES` **must be present in their lists**. 
 
 Examples:
 * `loan 3 2` loans the second book in the book list to the third user in the user list.
 
 ### List all users : `list users`
 
-Shows a list of all users in the address book.
+Shows a list of all users in BookFace.
 
 Format: `list users`
 
 ### List all books : `list books`
 
-Shows a list of all books in the address book.
+Shows a list of all books in BookFace.
 
 Format: `list books`
 
@@ -188,20 +190,22 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+BookFace data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+BookFace data are saved as a JSON file `[JAR file location]/data/bookface.json`. Advanced users are welcome to update 
+data 
+directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, BookFace will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
-  
+
 
 **Q**: How do I clear the sample data on BookFace?<br>
 **A**: Simply use the `clear all` command.
@@ -209,8 +213,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-  
-  
+
 <div markdown="block" class="alert alert-info" name="commandsummary">
 
 | Action          | Format, Examples                                                                                          |
@@ -226,3 +229,4 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | **List books**  | `list books`                                                                                              |
 | **List loans**  | `list loans`                                                                                              |
 | **Exit**        | `exit`                                                                                                    |
+</div>
