@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.util.SampleDataUtil;
@@ -16,6 +17,7 @@ public class TaskBuilder {
     public static final String DEFAULT_TITLE = "Add task functionality to Arrow";
 
     private Title title;
+    private Deadline deadline;
     private final boolean isCompleted;
     private Set<Contact> contacts;
 
@@ -25,6 +27,7 @@ public class TaskBuilder {
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
         isCompleted = false;
+        deadline = Deadline.UNSPECIFIED;
         contacts = new HashSet<>();
     }
 
@@ -46,6 +49,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Deadline} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withDeadline(Deadline deadline) {
+        this.deadline = deadline;
+        return this;
+    }
+
+    /**
      * Parses the {@code contacts} into a {@code Set<Contact>} and set it to the {@code Task} that we are building.
      */
     public TaskBuilder withContacts(String... contacts) {
@@ -53,7 +64,8 @@ public class TaskBuilder {
         return this;
     }
 
+
     public Task build() {
-        return new Task(title);
+        return new Task(title, false, deadline, contacts);
     }
 }

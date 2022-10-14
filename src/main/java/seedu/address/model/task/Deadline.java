@@ -12,7 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Represents a deadline for a task.
  */
 public class Deadline {
-    public static final Deadline UNSPECIFIED = new Deadline((LocalDate) null);
+    public static final Deadline UNSPECIFIED = new Deadline((LocalDate) LocalDate.ofEpochDay(0));
     public static final String UNSPECIFIED_DEADLINE_IDENTIFIER = "UNSPECIFIED";
 
     public static final String MESSAGE_CONSTRAINTS = "Deadline should be in DD-MM-YYYY format";

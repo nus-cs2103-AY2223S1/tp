@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.TaskPanel;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
 /**
@@ -13,7 +15,11 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task TASK_ONE = new TaskBuilder().withTitle("Add tasks to list").build();
-    public static final Task TASK_TWO = new TaskBuilder().withTitle("Assign contacts to task").build();
+    public static final Task TASK_TWO =
+            new TaskBuilder()
+                    .withTitle("Assign contacts to task")
+                    .withDeadline(Deadline.of(LocalDate.of(2022,9,19)))
+                    .build();
     public static final Task TASK_THREE = new TaskBuilder().withTitle("Set deadline for a task").build();
     public static final Task TASK_FOUR = new TaskBuilder().withTitle("Set tags for a task").build();
 
