@@ -10,8 +10,8 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.travelr.model.event.Event;
 import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.exceptions.DuplicateEventException;
 import seedu.travelr.model.event.exceptions.EventNotFoundException;
 

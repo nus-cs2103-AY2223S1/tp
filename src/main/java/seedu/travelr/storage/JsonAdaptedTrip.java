@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.model.event.Event;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
