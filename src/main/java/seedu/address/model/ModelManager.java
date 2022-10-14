@@ -105,7 +105,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Task target, Task editedTask) {
+    public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
         addressBook.setPerson(target, editedTask);

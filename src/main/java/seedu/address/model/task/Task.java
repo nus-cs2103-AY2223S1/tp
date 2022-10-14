@@ -62,7 +62,7 @@ public class Task {
         return Collections.unmodifiableSet(tags);
     }
 
-    public boolean isDone() {
+    public Boolean isDone() {
         return isDone;
     }
 

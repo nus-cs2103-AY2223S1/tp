@@ -134,7 +134,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setPerson(Task target, Task editedTask) {
+        public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
