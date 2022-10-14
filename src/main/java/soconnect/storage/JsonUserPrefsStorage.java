@@ -33,8 +33,8 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     /**
      * Similar to {@link #readUserPrefs()}.
      *
-     * @param prefsFilePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file format is not as expected.
+     * @param prefsFilePath Location of the data. Cannot be null.
+     * @throws DataConversionException If the file format is not as expected.
      */
     public Optional<UserPrefs> readUserPrefs(Path prefsFilePath) throws DataConversionException {
         return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);

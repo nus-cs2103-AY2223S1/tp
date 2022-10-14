@@ -18,7 +18,7 @@ public class TagCreateCommandParser implements Parser<TagCreateCommand> {
      * Parses the given {@code String} of arguments in the context of the TagCreateCommand
      * and returns an TagCreateCommand object for execution.
      *
-     * @throws ParseException If the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public TagCreateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);

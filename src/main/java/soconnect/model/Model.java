@@ -48,7 +48,9 @@ public interface Model {
      */
     void setSoConnectFilePath(Path soConnectFilePath);
 
-    /** Returns the SoConnect */
+    /**
+     * Returns the SoConnect.
+     */
     ReadOnlySoConnect getSoConnect();
 
     /**
@@ -122,7 +124,9 @@ public interface Model {
      */
     TreeSet<String> getUniqueNames();
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list.
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**

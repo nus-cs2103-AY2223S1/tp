@@ -39,7 +39,7 @@ class JsonSerializableSoConnect {
     /**
      * Converts a given {@code ReadOnlySoConnect} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableSoConnect}.
+     * @param source Future changes to this will not affect the created {@code JsonSerializableSoConnect}.
      */
     public JsonSerializableSoConnect(ReadOnlySoConnect source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
@@ -49,7 +49,7 @@ class JsonSerializableSoConnect {
     /**
      * Converts this SoConnect into the model's {@code SoConnect} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @throws IllegalValueException If there were any data constraints violated.
      */
     public SoConnect toModelType() throws IllegalValueException {
         SoConnect soConnect = new SoConnect();

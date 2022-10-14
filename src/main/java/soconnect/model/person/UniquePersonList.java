@@ -135,7 +135,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts the list by name, alphabetically.
      * Sorts the SoConnect by name in alphabetical order.
      *
-     * @param isReverse Whether the sorting should be in reverse order
+     * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByName(Boolean isReverse) {
         SortedList<Person> sorted;
@@ -150,7 +150,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Sorts the SoConnect by phone number in increasing order.
      *
-     * @param isReverse Whether the sorting should be in reverse order
+     * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByPhone(Boolean isReverse) {
         SortedList<Person> sorted;
@@ -165,7 +165,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Sorts the SoConnect by email in alphabetical order.
      *
-     * @param isReverse Whether the sorting should be in reverse order
+     * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByEmail(Boolean isReverse) {
         SortedList<Person> sorted;
@@ -180,7 +180,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Sorts the SoConnect by address in alphabetical order.
      *
-     * @param isReverse Whether the sorting should be in reverse order
+     * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByAddress(Boolean isReverse) {
         SortedList<Person> sorted;
@@ -197,7 +197,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Contacts with the tag appear before those without the tag.
      *
      * @param tag       The tag to sort with
-     * @param isReverse Whether the sorting should be in reverse order
+     * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByTag(Tag tag, Boolean isReverse) {
         SortedList<Person> sorted;
@@ -220,7 +220,7 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Returns a set of unique {@code Name} in the SoConnect.
      *
-     * @return a set of unique {@code Name}.
+     * @return A set of unique {@code Name}.
      */
     public TreeSet<String> getUniqueNames() {
         TreeSet<String> uniqueNames = new TreeSet<>();

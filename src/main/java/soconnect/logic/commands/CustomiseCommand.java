@@ -68,10 +68,10 @@ public class CustomiseCommand extends Command {
     }
 
     /**
-     * Creates an CustomiseCommand to customise user preferences.
+     * Creates an {@code CustomiseCommand} to customise user preferences.
      *
-     * @param subCommand the subcommand that is specified.
-     * @param args attributes.
+     * @param subCommand The subcommand that is specified.
+     * @param args Attributes.
      */
     public CustomiseCommand(CustomiseSubCommand subCommand, Attribute[] args) {
         this.subCommand = subCommand;
@@ -119,8 +119,8 @@ public class CustomiseCommand extends Command {
     /**
      * Toggles the attributes between being shown or hidden.
      *
-     * @param model the model which the command operates on.
-     * @throws CommandException if an error occurs during command execution.
+     * @param model {@code Model} which the command operates on.
+     * @throws CommandException If an error occurs during command execution.
      */
     private void toggleAttributes(Model model) throws CommandException {
         GuiSettings currSettings = model.getGuiSettings();
@@ -153,8 +153,8 @@ public class CustomiseCommand extends Command {
     /**
      * Sets the array elements to true if attributes are hidden based on the input String array.
      *
-     * @param strArr an array of string representations of the attributes.
-     * @param isHidden a boolean array where index 0 represents address, index 1 represents email
+     * @param strArr An array of string representations of the attributes.
+     * @param isHidden A boolean array where index 0 represents address, index 1 represents email
      *                 index 2 represents phone and index 3 represents tags.
      */
     private void setCurrentHiddenState(String[] strArr, boolean[] isHidden) {
@@ -166,9 +166,9 @@ public class CustomiseCommand extends Command {
     /**
      * Sets the new attributes to be hidden based on the arguments.
      *
-     * @param isHidden a boolean array where index 0 represents address, index 1 represents email,
+     * @param isHidden A boolean array where index 0 represents address, index 1 represents email,
      *                 index 2 represents phone and index 3 represents tags.
-     * @param isSetToHide is set to true to hide and false to show.
+     * @param isSetToHide Is set to true to hide and false to show.
      */
     private void setNewHiddenState(boolean[] isHidden, boolean isSetToHide) {
         for (Attribute argument : arguments) {
@@ -179,9 +179,9 @@ public class CustomiseCommand extends Command {
     /**
      * Converts the boolean array to a string representing what attributes are hidden.
      *
-     * @param isHidden a boolean array where index 0 represents address, index 1 represents email,
+     * @param isHidden A boolean array where index 0 represents address, index 1 represents email,
      *                 index 2 represents phone and index 3 represents tags.
-     * @return a string representation of what attributes are hidden.
+     * @return A string representation of what attributes are hidden.
      */
     private String convertHiddenToString(boolean[] isHidden) throws CommandException {
         if (isHidden == null || isHidden.length != 4) {
@@ -213,8 +213,8 @@ public class CustomiseCommand extends Command {
     /**
      * Converts the given attribute into the index corresponding to the attribute.
      *
-     * @param attribute the string representation of the attribute.
-     * @return an index that corresponds to the attribute.
+     * @param attribute The string representation of the attribute.
+     * @return An index that corresponds to the attribute.
      */
     private int convertAttributeToIndex(String attribute) {
         switch(attribute) {
@@ -256,7 +256,7 @@ public class CustomiseCommand extends Command {
     /**
      * Refreshes the list.
      *
-     * @param model The model which the command operates on.
+     * @param model {@code Model} which the command operates on.
      */
     private void refreshList(Model model) {
         model.updateFilteredPersonList(unused -> false);

@@ -19,7 +19,7 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
      * Parses the given {@code String} of arguments in the context of the CustomiseCommand
      * and returns a CustomiseCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public CustomiseCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
@@ -49,9 +49,9 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
     /**
      * Converts the input into an array of Attribute objects in the required order.
      *
-     * @param args an array of argument inputs.
-     * @return an array of Attribute.
-     * @throws ParseException if the user input does not conform the expected format.
+     * @param args An array of argument inputs.
+     * @return An array of Attribute.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     private CustomiseCommand.Attribute[] toAttributeOrder(String[] args) throws ParseException {
         boolean[] isAttributeUsed = new boolean[4]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
@@ -86,11 +86,11 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
     /**
      * Fills in the unspecified attributes in default order at the back.
      *
-     * @param attributeArr the input Attribute array.
-     * @param isAttributeUsed the boolean array that index 0 represents ADDRESS, index 1 represents EMAIL,
+     * @param attributeArr The input Attribute array.
+     * @param isAttributeUsed The boolean array that index 0 represents ADDRESS, index 1 represents EMAIL,
      *                        index 2 represents PHONE and index 3 represents TAGS.
-     * @param noOfMissing the number of attributes that have to be filled in.
-     * @return the Attribute array order.
+     * @param noOfMissing The number of attributes that have to be filled in.
+     * @return The Attribute array order.
      */
     private CustomiseCommand.Attribute[] fillMissingAttributes(CustomiseCommand.Attribute[] attributeArr,
                                                                boolean[] isAttributeUsed, int noOfMissing) {

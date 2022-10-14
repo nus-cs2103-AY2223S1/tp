@@ -18,7 +18,7 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
      * Parses the given {@code String} of arguments in the context of the TagAddCommand
      * and returns an TagAddCommand object for execution.
      *
-     * @throws ParseException If the user input does not conform the expected format
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public TagAddCommand parse(String args) throws ParseException {
         requireNonNull(args);
