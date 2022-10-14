@@ -49,11 +49,11 @@ public class FilterCommandTest {
         Model outputModel = mockDatabase();
         Person john = outputModel.getAddressBook().getPersonList().get(0);
         Person cena = outputModel.getAddressBook().getPersonList().get(1);
-        String expected_Message = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         TagContainsKeywordsPredicate predicate = preparePredicate("friends");
         FilterCommand command = new FilterCommand(predicate);
         outputModel.filterPersonListWithTag(predicate);
-        assertCommandSuccess(command, initialModel, expected_Message, outputModel);
+        assertCommandSuccess(command, initialModel, expectedMessage, outputModel);
         assertEquals(Arrays.asList(john, cena), outputModel.getFilteredPersonList());
 
 
