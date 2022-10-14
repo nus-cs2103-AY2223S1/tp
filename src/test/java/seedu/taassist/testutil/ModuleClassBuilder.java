@@ -45,9 +45,8 @@ public class ModuleClassBuilder {
     /**
      * Sets the {@code sessions} of the {@code ModuleClass} that we are building.
      */
-    public ModuleClassBuilder withSessions(String... sessions) {
+    public ModuleClassBuilder withSessions(Session... sessions) {
         this.sessions = Arrays.stream(sessions)
-                .map(Session::new)
                 .collect(Collectors.toList());
         return this;
     }

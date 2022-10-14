@@ -2,6 +2,7 @@ package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class DeletesCommand extends Command {
      * Creates a DeletesCommand to delete the specified {@code Session}s.
      */
     public DeletesCommand(Set<Session> sessions) {
-        requireNonNull(sessions);
+        requireAllNonNull(sessions);
         this.sessions = sessions;
     }
 

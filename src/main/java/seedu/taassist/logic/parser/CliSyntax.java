@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_MODULE_CLASS = new Prefix("c/");
     public static final Prefix PREFIX_SESSION = new Prefix("s/");
+    public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_GRADE = new Prefix("g/");
 
 }

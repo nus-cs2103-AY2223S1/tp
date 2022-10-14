@@ -3,6 +3,7 @@ package seedu.taassist.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class UnassignCommand extends Command {
      * Creates an UnassignCommand to unassign the given {@Code ModuleClass} from students at the given {@Code Indices}.
      */
     public UnassignCommand(List<Index> indices, ModuleClass moduleClassToUnassign) {
-        requireNonNull(indices);
+        requireAllNonNull(indices);
         requireNonNull(moduleClassToUnassign);
         this.indices = indices;
         this.moduleClassToUnassign = moduleClassToUnassign;

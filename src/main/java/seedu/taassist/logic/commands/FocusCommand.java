@@ -25,6 +25,7 @@ public class FocusCommand extends Command {
      * Creates an FocusCommand that enters focus mode for the specified {@code targetClass}.
      */
     public FocusCommand(ModuleClass targetClass) {
+        requireNonNull(targetClass);
         this.targetClass = targetClass;
     }
 

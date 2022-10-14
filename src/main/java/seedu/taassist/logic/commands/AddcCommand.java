@@ -1,6 +1,7 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 
 import java.util.HashSet;
@@ -35,7 +36,7 @@ public class AddcCommand extends Command {
      * Creates an AddCommand to add the specified {@code Set&gt;ModuleClass&lt;}.
      */
     public AddcCommand(Set<ModuleClass> moduleClasses) {
-        requireNonNull(moduleClasses);
+        requireAllNonNull(moduleClasses);
         this.moduleClasses = moduleClasses;
     }
 
