@@ -43,14 +43,17 @@ public class DisplayGroupCommandTest {
 
     @Test
     public void equals() {
-        DisplayGroupCommand displayFirstCommand = new DisplayGroupCommand(new FullGroupNamePredicate(TEAM_PROJECT.getName().toString()));
-        DisplayGroupCommand displaySecondCommand = new DisplayGroupCommand(new FullGroupNamePredicate(ORAL_PRESENTATION.getName().toString()));
+        DisplayGroupCommand displayFirstCommand = new DisplayGroupCommand(
+            new FullGroupNamePredicate(TEAM_PROJECT.getName().toString()));
+        DisplayGroupCommand displaySecondCommand = new DisplayGroupCommand(
+            new FullGroupNamePredicate(ORAL_PRESENTATION.getName().toString()));
 
         // same object -> returns true
         assertTrue(displayFirstCommand.equals(displayFirstCommand));
 
         // same values -> returns true
-        DisplayGroupCommand displayFirstCommandCopy = new DisplayGroupCommand(new FullGroupNamePredicate(TEAM_PROJECT.getName().toString()));
+        DisplayGroupCommand displayFirstCommandCopy = new DisplayGroupCommand(
+            new FullGroupNamePredicate(TEAM_PROJECT.getName().toString()));
         assertTrue(displayFirstCommand.equals(displayFirstCommandCopy));
 
         // different types -> returns false
