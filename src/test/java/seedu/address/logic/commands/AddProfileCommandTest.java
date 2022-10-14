@@ -45,25 +45,25 @@ public class AddProfileCommandTest {
     }
 
     @Test
-    public void execute_duplicateName_throwsCommandException() {
+    public void execute_similarName_throwsCommandException() {
         Profile validProfile = new ProfileBuilder().build();
         AddProfileCommand addProfileCommand = new AddProfileCommand(validProfile);
         ModelStub modelStub = new ModelStubWithProfile(validProfile);
 
         assertThrows(CommandException.class,
-                AddProfileCommand.MESSAGE_DUPLICATE_NAME, () -> addProfileCommand.execute(modelStub)
+                AddProfileCommand.MESSAGE_SIMILAR_NAME, () -> addProfileCommand.execute(modelStub)
         );
     }
 
     @Test
-    public void execute_duplicateEmail_throwsCommandException() {
+    public void execute_similarEmail_throwsCommandException() {
         Profile validProfile = new ProfileBuilder(BOB).build();
         Profile editedNameProfile = new ProfileBuilder(BOB).withName(VALID_NAME_AMY).build();
         AddProfileCommand addProfileCommand = new AddProfileCommand(validProfile);
         ModelStub modelStub = new ModelStubWithProfile(editedNameProfile);
 
         assertThrows(CommandException.class,
-                AddProfileCommand.MESSAGE_DUPLICATE_EMAIL, () -> addProfileCommand.execute(modelStub)
+                AddProfileCommand.MESSAGE_SIMILAR_EMAIL, () -> addProfileCommand.execute(modelStub)
         );
     }
 

@@ -96,7 +96,7 @@ public class UniqueProfileList implements Iterable<Profile> {
 
     /**
      * Replaces the contents of this list with {@code profiles}.
-     * {@code profiles} must not contain duplicate profiles.
+     * {@code profiles} must not contain similar profiles.
      */
     public void setProfiles(List<Profile> profiles) {
         requireAllNonNull(profiles);

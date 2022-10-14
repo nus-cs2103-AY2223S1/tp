@@ -10,7 +10,8 @@ public interface ReadOnlyAddressBook {
 
     /**
      * Returns an unmodifiable view of the profiles list.
-     * This list will not contain any duplicate profiles.
+     * This list will not contain any similar profiles. Similar profiles are profiles with similar names or
+     * similar emails.
      */
     ObservableList<Profile> getProfileList();
 

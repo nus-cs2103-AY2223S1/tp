@@ -39,24 +39,24 @@ public class AddProfileCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicateName_throwsCommandException() {
+    public void execute_similarName_throwsCommandException() {
         Profile profileInList = model.getAddressBook().getProfileList().get(0);
         assertCommandFailure(
                 new AddProfileCommand(profileInList),
                 model,
-                AddProfileCommand.MESSAGE_DUPLICATE_NAME
+                AddProfileCommand.MESSAGE_SIMILAR_NAME
         );
     }
 
     @Test
-    public void execute_duplicateEmail_throwsCommandException() {
+    public void execute_similarEmail_throwsCommandException() {
         Profile profileInList = model.getAddressBook().getProfileList().get(0);
         Profile newProfile = new ProfileBuilder(AMY).withEmail(profileInList.getEmail().toString())
                         .build();
         assertCommandFailure(
                 new AddProfileCommand(newProfile),
                 model,
-                AddProfileCommand.MESSAGE_DUPLICATE_EMAIL
+                AddProfileCommand.MESSAGE_SIMILAR_EMAIL
         );
     }
 

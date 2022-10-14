@@ -84,13 +84,13 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void add_duplicateName_throwsSimilarProfileException() {
+    public void add_similarName_throwsSimilarProfileException() {
         uniqueProfileList.add(ALICE);
         assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(ALICE));
     }
 
     @Test
-    public void add_duplicateEmail_throwsSimilarProfileException() {
+    public void add_similarEmail_throwsSimilarProfileException() {
         uniqueProfileList.add(AMY);
         Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
                 .build();
@@ -205,17 +205,17 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void setProfiles_listWithDuplicateNames_throwsSimilarProfileException() {
-        List<Profile> listWithDuplicateNames = Arrays.asList(ALICE, ALICE);
-        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithDuplicateNames));
+    public void setProfiles_listWithSimilarNames_throwsSimilarProfileException() {
+        List<Profile> listWithSimilarNames = Arrays.asList(ALICE, ALICE);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithSimilarNames));
     }
 
     @Test
-    public void setProfiles_listWithDuplicateEmails_throwsSimilarProfileException() {
+    public void setProfiles_listWithSimilarEmails_throwsSimilarProfileException() {
         Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
                 .build();
-        List<Profile> listWithDuplicateEmails = Arrays.asList(AMY, editedBob);
-        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithDuplicateEmails));
+        List<Profile> listWithSimilarEmails = Arrays.asList(AMY, editedBob);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithSimilarEmails));
     }
 
     @Test

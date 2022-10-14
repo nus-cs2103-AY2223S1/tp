@@ -10,7 +10,7 @@ import seedu.address.model.profile.UniqueProfileList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameName and .isSameEmail comparison)
+ * Similar Profiles are not allowed (by .isSameName and .isSameEmail comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -41,7 +41,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the profile list with {@code profiles}.
-     * {@code profiles} must not contain duplicate profiles.
+     * {@code profiles} must not contain similar profiles.
      */
     public void setProfiles(List<Profile> profiles) {
         this.profiles.setProfiles(profiles);

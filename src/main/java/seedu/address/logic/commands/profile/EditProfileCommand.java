@@ -82,11 +82,11 @@ public class EditProfileCommand extends ProfileCommand {
         Profile editedProfile = createEditedProfile(profileToEdit, editProfileDescriptor);
 
         if (!profileToEdit.isSameName(editedProfile) && model.hasName(editedProfile)) {
-            throw new CommandException(MESSAGE_DUPLICATE_NAME);
+            throw new CommandException(MESSAGE_SIMILAR_NAME);
         }
 
         if (!profileToEdit.isSameEmail(editedProfile) && model.hasEmail(editedProfile)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+            throw new CommandException(MESSAGE_SIMILAR_EMAIL);
         }
 
         model.setProfile(profileToEdit, editedProfile);

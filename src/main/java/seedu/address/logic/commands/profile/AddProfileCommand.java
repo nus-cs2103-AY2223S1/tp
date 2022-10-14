@@ -53,11 +53,11 @@ public class AddProfileCommand extends ProfileCommand {
         requireNonNull(model);
 
         if (model.hasName(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_NAME);
+            throw new CommandException(MESSAGE_SIMILAR_NAME);
         }
 
         if (model.hasEmail(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+            throw new CommandException(MESSAGE_SIMILAR_EMAIL);
         }
 
         model.addProfile(toAdd);

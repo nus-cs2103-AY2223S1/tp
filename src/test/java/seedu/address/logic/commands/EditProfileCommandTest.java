@@ -101,45 +101,45 @@ public class EditProfileCommandTest {
     }
 
     @Test
-    public void execute_duplicateNameUnfilteredList_failure() {
+    public void execute_similarNameUnfilteredList_failure() {
         Profile firstProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile).build();
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_SECOND_PROFILE, descriptor);
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_NAME);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_NAME);
     }
 
     @Test
-    public void execute_duplicateNameFilteredList_failure() {
+    public void execute_similarNameFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a duplicate in address book
+        // edit profile in filtered list into a profile with similar email in address book
         Profile profileInList = model.getAddressBook().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder(profileInList).build());
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_NAME);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_NAME);
     }
 
     @Test
-    public void execute_duplicateEmailUnfilteredList_failure() {
+    public void execute_similarEmailUnfilteredList_failure() {
         Profile firstProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile).withName("notInList").build();
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_SECOND_PROFILE, descriptor);
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_EMAIL);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_EMAIL);
     }
 
     @Test
-    public void execute_duplicateEmailFilteredList_failure() {
+    public void execute_similarEmailFilteredList_failure() {
         showProfileAtIndex(model, INDEX_FIRST_PROFILE);
 
-        // edit profile in filtered list into a duplicate in address book
+        // edit profile in filtered list into a profile with similar email in address book
         Profile profileInList = model.getAddressBook().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
         EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder(profileInList).withName("notInList").build());
 
-        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_EMAIL);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_SIMILAR_EMAIL);
     }
 
     @Test

@@ -47,8 +47,8 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicateNames_throwsSimilarProfileException() {
-        // Two profiles with the same name
+    public void resetData_withSimilarNames_throwsSimilarProfileException() {
+        // Two profiles with similar name
         Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Profile> newProfiles = Arrays.asList(ALICE, editedAlice);
@@ -58,8 +58,8 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicateEmails_throwsSimilarProfileException() {
-        // Two profiles with the same email (different name)
+    public void resetData_withSimilarEmails_throwsSimilarProfileException() {
+        // Two profiles with the similar email (different name)
         Profile editedAliceName = new ProfileBuilder(ALICE).withName(VALID_NAME_AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Profile> newProfiles = Arrays.asList(ALICE, editedAliceName);

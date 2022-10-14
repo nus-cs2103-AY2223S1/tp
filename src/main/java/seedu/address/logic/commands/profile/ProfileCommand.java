@@ -29,6 +29,6 @@ public abstract class ProfileCommand extends Command {
     public static final String OPTION_WRONG_ORDER_NO_MULTIPLE =
             "Only one option flag should be specified in front.\n" + PROFILE_FORMAT;
 
-    public static final String MESSAGE_DUPLICATE_NAME = "This name already exists in the address book";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book";
+    public static final String MESSAGE_SIMILAR_NAME = "A similar name already exists in the address book";
+    public static final String MESSAGE_SIMILAR_EMAIL = "A similar email already exists in the address book";
 }
