@@ -19,6 +19,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
@@ -89,11 +91,13 @@ public class EditCommand extends Command {
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        ClientPhone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
+        ClientEmail updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         UniquePocList pocs = editClientDescriptor.getUniquePocList().orElse(clientToEdit.getPocs());
         TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
-        return new Client(updatedName, updatedAddress, updatedTags, pocs, transactions);
+        return new Client(updatedName, updatedAddress, updatedPhone, updatedEmail, updatedTags, pocs, transactions);
     }
 
     @Override
@@ -121,6 +125,8 @@ public class EditCommand extends Command {
     public static class EditClientDescriptor {
         private Name name;
         private Address address;
+        private ClientPhone phone;
+        private ClientEmail email;
         private Set<Tag> tags;
         private UniquePocList pocs;
         private TransactionLog transactions;
@@ -134,6 +140,8 @@ public class EditCommand extends Command {
         public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
             setTags(toCopy.tags);
             setUniquePocList(toCopy.pocs);
             setTransactionLog(toCopy.transactions);
@@ -156,6 +164,14 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public void setPhone(ClientPhone phone) {
+            this.phone = phone;
+        }
+
+        public void setEmail(ClientEmail email) {
+            this.email = email;
         }
 
         public Optional<Address> getAddress() {

@@ -29,6 +29,8 @@ public class Client implements ReadOnlyClient {
 
     // Data fields
     private final Address address;
+    private final ClientPhone phone;
+    private final ClientEmail email;
     private final Set<Tag> tags = new HashSet<>();
     private final UniquePocList pocs;
     private final TransactionLog transactions;
@@ -36,22 +38,27 @@ public class Client implements ReadOnlyClient {
     /**
      * Every field must be present and not null.
      */
-    public Client(Name name, Address address, Set<Tag> tags) {
-        this(name, address, tags, new UniquePocList(), new TransactionLog());
+    public Client(Name name, Address address, ClientPhone phone, ClientEmail email, Set<Tag> tags) {
+        this(name, address, phone, email, tags, new UniquePocList(), new TransactionLog());
     }
 
     /**
      * Overloaded Constructor take in all fields.
      * @param name client name.
      * @param address address of client.
+     * @param phone number of client.
+     * @param email email of client.
      * @param tags tags of client.
      * @param pocs list of unique pocs.
      * @param transactions list of transactions.
      */
-    public Client(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
+    public Client(Name name, Address address, ClientPhone phone, ClientEmail email,
+                  Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, pocs);
         this.name = name;
         this.address = address;
+        this.phone = phone;
+        this.email = email;
         this.tags.addAll(tags);
         this.pocs = pocs;
         this.transactions = transactions;
@@ -63,6 +70,14 @@ public class Client implements ReadOnlyClient {
 
     public Address getAddress() {
         return address;
+    }
+
+    public ClientPhone getPhone() {
+        return phone;
+    }
+
+    public ClientEmail getEmail() {
+        return email;
     }
 
     /**
@@ -141,6 +156,8 @@ public class Client implements ReadOnlyClient {
         Client otherClient = (Client) other;
         return otherClient.getName().equals(getName())
                 && otherClient.getAddress().equals(getAddress())
+                && otherClient.getPhone().equals(getPhone())
+                && otherClient.getEmail().equals(getEmail())
                 && otherClient.getTags().equals(getTags());
     }
 
@@ -155,7 +172,11 @@ public class Client implements ReadOnlyClient {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
