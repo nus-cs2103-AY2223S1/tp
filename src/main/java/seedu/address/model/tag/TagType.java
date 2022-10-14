@@ -58,7 +58,12 @@ public class TagType {
     public String toString() {
         return tagType;
     }
+
     public String getTagTypeName() {
         return this.tagType;
+    }
+
+    public Prefix getPrefix() {
+        return this.p;
     }
 }

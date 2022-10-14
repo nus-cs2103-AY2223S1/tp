@@ -39,17 +39,40 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} contains the {@code word}.
+     * Returns true if the {@code sentence} contains the {@code sequence}.
      *   Ignores case and full word match not required.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "abc") == true
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == true //not a full word match
+     *       containsSequenceIgnoreCase("ABc def", "abc") == true
+     *       containsSequenceIgnoreCase("ABc def", "DEF") == true
+     *       containsSequenceIgnoreCase("ABc def", "AB") == true //not a full word match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param sequence cannot be null, cannot be empty, can be multiple words
+     */
+    public static boolean containsSequenceIgnoreCase(String sentence, String sequence) {
+        requireNonNull(sentence);
+        requireNonNull(sequence);
+
+        String preppedSequence = sequence.trim();
+        checkArgument(!preppedSequence.isEmpty(), "Sequence parameter cannot be empty");
+
+        String preppedSentence = sentence.toLowerCase();
+
+        return preppedSentence.contains(preppedSequence.toLowerCase());
+    }
+
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case and full word match is not required.
+     *   <br>examples:<pre>
+     *       containsPartialWordIgnoreCase("ABc def", "abc") == true
+     *       containsPartialWordIgnoreCase("ABc def", "DEF") == true
+     *       containsPartialWordIgnoreCase("ABc def", "AB") == true //not a full word match
      *       </pre>
      * @param sentence cannot be null
      * @param word cannot be null, cannot be empty, must be a single word
      */
-    public static boolean containsSequenceIgnoreCase(String sentence, String word) {
+    public static boolean containsPartialWordIgnoreCase(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);
 
@@ -61,7 +84,7 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(singleWord -> singleWord.contains(preppedWord.toLowerCase()));
+                .anyMatch(w -> w.contains(preppedWord.toLowerCase()));
     }
 
     /**

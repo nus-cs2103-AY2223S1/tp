@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
@@ -38,6 +39,14 @@ public class UniqueTagList implements Iterable<Tag> {
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent tag with a value containing the given argument as a sequence.
+     */
+    public boolean hasSequenceMatch(String toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(tag -> StringUtil.containsSequenceIgnoreCase(tag.tagName, toCheck));
     }
 
     /**

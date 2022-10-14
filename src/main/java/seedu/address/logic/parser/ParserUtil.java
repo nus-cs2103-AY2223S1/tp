@@ -275,7 +275,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> statuss} into a {@code Set<Status>}.
+     * Parses {@code Collection<String> statuses} into a {@code Set<Status>}.
      */
     public static Set<Status> parseStatuses(Collection<String> statuses) throws ParseException {
         requireNonNull(statuses);
@@ -284,6 +284,18 @@ public class ParserUtil {
             statusSet.add(parseStatus(statusName));
         }
         return statusSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> notes} into a {@code Set<Note>}.
+     */
+    public static Set<Note> parseNotes(Collection<String> notes) throws ParseException {
+        requireNonNull(notes);
+        final Set<Note> noteSet = new HashSet<>();
+        for (String noteName : notes) {
+            noteSet.add(parseNote(noteName));
+        }
+        return noteSet;
     }
 
 }
