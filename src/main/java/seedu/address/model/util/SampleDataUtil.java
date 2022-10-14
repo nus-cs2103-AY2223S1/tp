@@ -27,24 +27,27 @@ public class SampleDataUtil {
         return new Person[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Gender("M"),
-                getTagSet("friends"), new Location("Chess club room"), new GithubUsername("/")),
+                getTagSet("friends"), new Location("Chess club room"),
+                    new GithubUsername("", false)),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Gender("M"),
-                getTagSet("colleagues", "friends"), new Location("UTown"), new GithubUsername("/")),
+                getTagSet("colleagues", "friends"), new Location("UTown"),
+                    new GithubUsername("", false)),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Gender("F"),
-                getTagSet("neighbours"), new Location("NUS"), new GithubUsername("/")),
+                getTagSet("neighbours"), new Location("NUS"), new GithubUsername("", false)),
             new Professor(new Name("Wong Tin Lok"), new ModuleCode("CS1231S"),
                 new Phone("91031282"), new Email("wongtk@example.com"),
                 new Gender("M"),
-                getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("/")),
+                getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("", false)),
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Gender("M"),
-                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("/")),
+                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false)),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Gender("M"),
-                getTagSet("colleagues"), new Location("Research Lab"), new GithubUsername("/"))
+                getTagSet("colleagues"), new Location("Research Lab"),
+                    new GithubUsername("", false))
         };
     }
 

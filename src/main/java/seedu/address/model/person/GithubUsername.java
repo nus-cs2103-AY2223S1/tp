@@ -9,15 +9,21 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class GithubUsername {
 
-    public static final String MESSAGE_CONSTRAINTS = "Github Username can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Github username may only contain alphanumeric characters " +
+            "or hyphens.\n" +
+            "Github username cannot have multiple consecutive hyphens.\n" +
+            "Github username cannot begin or end with a hyphen.\n" +
+            "Maximum is 39 characters.";
 
-    public static final String DEFAULT_USERNAME = "/";
+    public static final String DEFAULT_USERNAME = "";
 
     /*
-     * The first character of the github username must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Github username may only contain alphanumeric characters or hyphens.
+     * Github username cannot have multiple consecutive hyphens.
+     * Github username cannot begin or end with a hyphen.
+     * Maximum is 39 characters.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^(?i)[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$";
 
     public final String value;
 
@@ -25,11 +31,16 @@ public class GithubUsername {
      * Constructs a Location.
      *
      * @param username A valid github username.
+     * @param isPresent Whether prefix was present in user input
      */
-    public GithubUsername(String username) {
+    public GithubUsername(String username, Boolean isPresent) {
         requireNonNull(username);
-        checkArgument(isValidUsername(username), MESSAGE_CONSTRAINTS);
-        value = username;
+        if (isPresent) {
+            checkArgument(isValidUsername(username), MESSAGE_CONSTRAINTS);
+            value = username;
+        } else {
+            value = DEFAULT_USERNAME;
+        }
     }
 
     /**

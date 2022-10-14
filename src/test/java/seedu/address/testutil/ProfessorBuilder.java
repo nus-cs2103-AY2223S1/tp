@@ -29,7 +29,8 @@ public class ProfessorBuilder extends PersonBuilder {
     }
 
     public Professor build() {
-        return new Professor(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation());
+        return new Professor(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation(),
+                getGithubUsername());
     }
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.

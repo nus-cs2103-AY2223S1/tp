@@ -102,7 +102,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
         }
 
-        final GithubUsername modelUsername = new GithubUsername(getUsername());
+        final GithubUsername modelUsername = new GithubUsername(getUsername(), true);
 
         return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation, modelUsername);
     }

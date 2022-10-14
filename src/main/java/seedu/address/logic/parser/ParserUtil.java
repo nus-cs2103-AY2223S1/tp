@@ -195,7 +195,7 @@ public class ParserUtil {
         if (!GithubUsername.isValidUsername(username)) {
             throw new ParseException(GithubUsername.MESSAGE_CONSTRAINTS);
         }
-        return new GithubUsername(trimmedUsername);
+        return new GithubUsername(trimmedUsername, true);
     }
 
 
