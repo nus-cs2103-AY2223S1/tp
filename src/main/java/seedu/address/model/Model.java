@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 /**
  * The API of the Model component.
@@ -105,10 +106,31 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task with {@code module} exists in the task list.
+     */
+    boolean hasTaskWithModule(Module module);
+
+    /**
      * Adds the given task.
      * {@code task} must not already exist in the task list.
      */
     void addTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     * The task identity of {@code editedTask} must be the same as task identity of {@code target}.
+     */
+    void setTask(Task target, Task editedTask);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in the task list.
+     *
+     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
+     *     in the list (other than {@code target}).
+     */
+    void replaceTask(Task target, Task editedTask) throws DuplicateTaskException;
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
@@ -118,6 +140,18 @@ public interface Model {
 
     boolean hasModule(Module module);
     void updateFilteredModuleList(Predicate<Module>predicate);
+    /**
+     * Deletes the given task.
+     * The task must exist in the address book.
+     */
+    void deleteTask(Task target);
+
+    /**
+     * Deletes the given module.
+     * The module must exist in the address book.
+     */
+    void deleteModule(Module target);
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

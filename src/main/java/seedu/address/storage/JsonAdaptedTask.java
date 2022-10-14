@@ -7,6 +7,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskStatus;
 
 /**
  * This class represents a Jackson friendly version of the Task.
@@ -15,6 +16,7 @@ public class JsonAdaptedTask {
     public static final String MISSING_TASK_DESCRIPTION = "Task description is not present";
     private final String description;
     private final String moduleCode;
+    private final String status;
 
     /**
      * Builds a {@code JsonAdaptedTask} with the description and module code.
@@ -23,9 +25,10 @@ public class JsonAdaptedTask {
      * @param moduleCode The module code of the task.
      */
     public JsonAdaptedTask(@JsonProperty("description") String description,
-            @JsonProperty("modCode") String moduleCode) {
+            @JsonProperty("modCode") String moduleCode, @JsonProperty("status") String status) {
         this.description = description;
         this.moduleCode = moduleCode;
+        this.status = status;
     }
 
     /**
@@ -36,6 +39,8 @@ public class JsonAdaptedTask {
     public JsonAdaptedTask(Task task) {
         description = task.getDescription().description;
         moduleCode = task.getModule().getModuleCode().moduleCode;
+        status = task.getStatus().status;
+
     }
 
     /**
@@ -45,7 +50,7 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if the task has invalid fields.
      */
     public Task toModelType() throws IllegalValueException {
-        if (description == null || moduleCode == null) {
+        if (description == null || moduleCode == null || status == null) {
             throw new IllegalValueException(MISSING_TASK_DESCRIPTION);
         }
         if (!TaskDescription.isValidDescription(description)) {
@@ -54,10 +59,15 @@ public class JsonAdaptedTask {
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MODULE_CODE_CONSTRAINTS);
         }
+        if (!TaskStatus.isValidStatus(status)) {
+            throw new IllegalValueException(TaskStatus.STATUS_CONSTRAINTS);
+        }
         final TaskDescription taskDescription = new TaskDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
-        return new Task(module, taskDescription);
+        final TaskStatus taskStatus = TaskStatus.of(status);
+        Task task = new Task(module, taskDescription, taskStatus);
+        return task;
     }
 
 }
