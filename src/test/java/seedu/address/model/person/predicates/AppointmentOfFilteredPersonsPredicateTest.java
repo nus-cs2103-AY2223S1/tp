@@ -45,7 +45,7 @@ class AppointmentOfFilteredPersonsPredicateTest {
 
     @Test
     public void test_personListDoesNotContainsAppointment_returnsFalse() {
-        List<Person> personList = Arrays.asList(TypicalPersons.BENSON);
+        List<Person> personList = List.of(TypicalPersons.BENSON);
         Appointment appointmentNotInList = TypicalPersons.CARL.getAppointments().get(1);
 
         AppointmentOfFilteredPersonsPredicate predicate = new AppointmentOfFilteredPersonsPredicate(personList);
