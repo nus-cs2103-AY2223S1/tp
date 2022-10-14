@@ -30,10 +30,10 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
    * **`add`**`add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma` : Adds a nurse named `Jason` to the Healthcare Xpress book.
 
    * **`add`** **`c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block
-     123, #01-01 t/Asthma d/2022-12-12 1350`** : Adds a patient named **`John`** to Healthcare Xpress book.
+     123, #01-01 t/Asthma dt/2022-12-12T1350`** : Adds a patient named **`John`** to Healthcare Xpress book.
 
 
-   * **`delete`**`-id 3` : Deletes the nurse of patient with an id of 3.
+   * **`delete`**`id/3` : Deletes the nurse of patient with an id of 3.
 
    * **`clear`** : Deletes all contacts.
 
@@ -82,20 +82,21 @@ Format: `help`
 
 1. Adds a patient to the Healthcare Xpress book.
 
-Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​`
+Format: `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [dt/DATE_AND_TIME]…​`
 
 <div markdown="span" class="alert alert-primary"> 
 
 :bulb:**Tips:**
 * A patient can have any number of tags (including 0).
-* Date and time need to be in the format of yyyy-MM-dd HHmm.
+* A patient can have any number of home-visit date and time (including 0).
+* Date and time need to be in the format of yyyy-MM-dTHH:mm, eg 2022-11-11T15:00. 
 * To add a patient, type c/P specifically.
 
 </div>
 
 Examples: 
-* `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
-* `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street d/2022-12-02 1400 p/98345432 t/Heart disease t/children`
+* `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma dt/2022-12-12T13:50`
+* `add c/P n/Betsy t/VIP e/betsy@example.com g/F a/Bugis street p/98345432 t/Heart disease t/children`
 
 2. Adds a nurse to the Healthcare Xpress book
 
@@ -122,15 +123,15 @@ Shows a list of specified nurses or patients, or all nurses and patients if no s
 Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
 
 Examples:
-* `list c/NURSE` - Lists all nurses enrolled in the database.
-* `list c/PATIENT t/DIABETIC g/M` - Lists all male diabetic patients enrolled in the database.
-* `list c/PATIENT a/Bugis t/Heart Disease` - List all patients tagged with heart disease in the Bugis region.
+* `list c/N` - Lists all nurses enrolled in the database.
+* `list c/P t/DIABETIC g/M` - Lists all male diabetic patients enrolled in the database.
+* `list c/P a/Bugis t/heartDisease` - List all patients tagged with heart disease in the Bugis region.
 
-### Editing a person : `edit` `[Coming soon]`
+### Editing a person : `edit` 
 
 Edits an existing person in the Healthcare Xpress book.
 
-Format: `edit -id ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [dt/DATE_AND_TIME]…​ [dti/DATE_AND_TIME_INDEX]…​`
 
 * Edits the person with the specified `ID`. 
 * The ID refers to the unique ID number shown in the displayed person list.
@@ -138,14 +139,20 @@ Format: `edit -id ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
+* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* The DATE_AND_TIME_INDEX is the index of the date and time list of a patient starting from 1. 
+* When editing date and time, there are 4 options:
+* To delete all the existing date and time of a patient: you can type `dt/` or `dti/` or `dt/ dti/` without specifying any date and time or its index after it.
+* To delete a specific date and time of a patient: you can type `dt/ dti/TO_BE_DELETED_DATE_AND_TIME_INDEX` or `dti/TO_BE_DELETED_DATE_AND_TIME_INDEX`. The to be deleted date and time index is the index of the specific date and time you want to delete. 
+* To add a new date and time of a patient: you can type `dt/NEW_DATE_AND_TIME dti/` or `dt/NEW_DATE_AND_TIME`. 
+* To change a specific date and time of a patient: you can type `dt/UPDATE_DATE_AND_TIME dti/TO_BE_UPDATED_DATE_AND_TIME_INDEX`. The date and time at this index in the list will be updated to the new date and time given by you. 
+* You can only use `dt/` and `dti/` for patient. Nurse do not have any home-visit date and time. 
 Examples:
-*  `edit -id 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit -id 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit id/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the nurse/patient with id 1 to be `91234567` and `johndoe@example.com` respectively.
+*  `edit id/2 n/Betsy Crower t/` Edits the name of the nurse/patient with id 2 to be `Betsy Crower` and clears all existing tags.
+*  `edit id/2 dti/1 dt/2022-12-11T17:30` Change the first date and time of the patient with id 2 to `2022-12-11T17:30`.
 
-### Locating persons by name: `find` `[Coming Soon]`
+### Locating persons by name: `find` 
 
 Finds persons whose names contain any of the given keywords.
 
@@ -166,21 +173,21 @@ Examples:
 
 Deletes the specified nurse or patient from the records system.
 
-Format: `delete -id ID`
+Format: `delete id/ID`
 
 * Deletes the nurse or patient with the specified `ID`.
 * The ID refers to the unique ID number shown in the displayed person list.
 * The ID **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete -id 2` deletes the nurse of patient with an id of 2.
-* `find -n Betsy` followed by `delete -id 1` deletes the nurse of patient with an id of 1.
+* `list` followed by `delete id/2` deletes the nurse/patient with an id of 2.
+* `find Betsy` followed by `delete id/1` deletes the nurse/patient with an id of 1.
 
 ### Marking a patient as visited : `mark`
 
 Marks a specific patient in the records system as having been visited.
 
-Format: `mark -id ID`
+Format: `mark id/ID` `Coming Soon`
 
 * Marks the patient with the specified 'ID' as having been visited.
 * The ID refers to the unique ID shown in the displayed person list.
@@ -188,9 +195,9 @@ Format: `mark -id ID`
 * `list` or `find` operations can be performed first to get the ID of the desired patient.
 
 Examples:
-* `mark -id 1` marks the patient with ID of 1 as having been visited.
-* `list c/P` followed by `mark -id 1` marks the patient with ID of 1 as having been visited.
-* `find -n John` followed by `mark -id 1` marks the patient with ID of 1 as having been visited.
+* `mark id/1` marks the patient with id of 1 as having been visited.
+* `list c/P` followed by `mark id/1` marks the patient with id of 1 as having been visited.
+* `find John` followed by `mark id/1` marks the patient with id of 1 as having been visited.
 
 ### Clearing all entries : `clear`
 
@@ -234,14 +241,14 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 
-**Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/Asthma ` 
-**Add** | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS d/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma d/2022-12-12 1350`
+**Add** | `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​` <br> e.g., `add c/N n/Jason p/98723432 e/jason@example.com g/M t/asthma a/Yishun Street 211, block 230, #03-03 ` 
+**Add** | `add c/P n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS dt/DATE_AND_TIME [t/TAG]…​` <br> e.g., `add c/P n/John p/98765432 e/john@example.com g/M a/Bishan street, block 123, #01-01 t/Asthma dt/2022-12-12T13:50`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit -id ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | `delete id/ID`<br> e.g., `delete id/3`
+**Edit** | `edit id/ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit id/2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`<br> e.g., `list c/NURSE`
-**Mark** | `mark -id ID` <br> e.g., `mark -id 1`
+**Mark** | `mark id/ID` <br> e.g., `mark id/1`
 **Help** | `help`
 
 
