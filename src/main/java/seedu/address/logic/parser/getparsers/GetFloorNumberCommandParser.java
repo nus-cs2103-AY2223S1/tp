@@ -45,5 +45,5 @@ public class GetFloorNumberCommandParser implements Parser<GetFloorNumberCommand
 
         return new GetFloorNumberCommand(new FloorNumberPredicate(floorNumbers));
     }
-    
+
 }
