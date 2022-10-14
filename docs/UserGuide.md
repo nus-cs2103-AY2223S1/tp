@@ -11,52 +11,44 @@ title: User Guide
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+:information_source: Notes about the command format:<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
 * Items in square brackets are optional.<br>
   e.g `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
-
-* ​Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `[c/CLASS_NAME]...` can be used as ` ` (i.e. 0 times), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
-
+* Items with `...` after them can be used multiple times.<br>
+  e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, `c/CS2030 c/ST2334` etc.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
-
-| Command    | Format                                                                       |
-|------------|------------------------------------------------------------------------------|
-| `help`     | `help`                                                                       |
-| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]`          |
+| Command    | Format                                   |
+| ---------- | ---------------------------------------- |
+| `help`     | `help`                                   |
+| `add`      | `add n/NAME [p/PHONE_NUMBER][e/EMAIL] [a/ADDRESS][c/CLASS_NAME...]` |
 | `edit`     | `edit INDEX [n/NAME][p/PHONE_NUMBER] [e/EMAIL][a/ADDRESS] [c/CLASS_NAME...]` |
-| `delete`   | `delete INDEX`                                                               |
-| `find`     | `find KEYWORD [MORE_KEYWORDS...]`                                            |
-| `list`     | `list`                                                                       |
-| `addc`     | `addc c/CLASS_NAME`                                                          |
-| `deletec`  | `deletec c/CLASS_NAME`                                                       |
-| `assign`   | `assign INDEX... c/CLASS_NAME`                                               |
-| `unassign` | `unassign INDEX... c/CLASS_NAME`                                             |
-| `listc`    | `listc`                                                                      |
-| `exit`     | `exit`                                                                       |
-| `focus`    | `focus c/CLASS_NAME`                                                         |
+| `delete`   | `delete INDEX`                           |
+| `find`     | `find KEYWORD [MORE_KEYWORDS...]`        |
+| `list`     | `list`                                   |
+| `addc`     | `addc c/CLASS_NAME...`                   |
+| `deletec`  | `deletec c/CLASS_NAME...`                |
+| `assign`   | `assign INDEX... c/CLASS_NAME`           |
+| `unassign` | `unassign INDEX... c/CLASS_NAME`         |
+| `listc`    | `listc`                                  |
+| `exit`     | `exit`                                   |
+| `focus`    | `focus c/CLASS_NAME`                     |
 
 ### Viewing help : `help`
 
-<aside>
-ℹ️ Shows a message explaining how to access the help page.
+{% include note.html content="
 
-</aside>
+Shows a message explaining how to access the help page.
+
+" %}
 
 ![help message](images/helpMessage.png)
 
@@ -65,10 +57,11 @@ Format: `help`
 
 ### Adding a student: `add`
 
-<aside>
-ℹ️ Add a student to TA Assist.
+{% include note.html content="
 
-</aside>
+Add a student to TA Assist.
+
+" %}
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 
@@ -81,10 +74,11 @@ Examples:
 
 ### Edit a student: `edit`
 
-<aside>
-ℹ️ Edits an existing student in TA Assist.
+{% include note.html content="
 
-</aside>
+Edits an existing student in TA Assist.
+
+" %}
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/CLASS_NAME...]`
 
@@ -102,10 +96,11 @@ Examples:
 
 ### Delete a student: `delete`
 
-<aside>
-ℹ️ Deletes the specified student from TA Assist.
+{% include note.html content="
 
-</aside>
+Deletes the specified student from TA Assist.
+
+" %}
 
 Format: `delete INDEX`
 
@@ -121,10 +116,11 @@ Examples:
 
 ### Locate student by name: `find`
 
-<aside>
-ℹ️ Finds students whose names contain any of the given keywords.
+{% include note.html content="
 
-</aside>
+Finds students whose names contain any of the given keywords.
+
+" %}
 
 Format: `find KEYWORD [MORE_KEYWORDS...]`
 
@@ -133,36 +129,67 @@ Format: `find KEYWORD [MORE_KEYWORDS...]`
 
 Examples:
 
-- `find John` will find people with a **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, ****etc.
+- `find John` will find people with a **John** in their name (case-insensitive), i.e. **John Doe**, **John Brown**, **harry jOHn**, etc.
 - `find ben chris` will find people with either a **ben** or a **chris** in their name, i.e. **chris ben**, **ChRIs wonders**, **bEn ten**, etc.
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Delete a class: `deletec`
+### List all students: `list`
 
-<aside>
-ℹ️ Deletes a class.
+{% include note.html content="
 
-</aside>
+Shows a list of all the students.
 
-Format: `deletec c/CLASS_NAME`
+" %}
 
-- Deletes the class named `CLASS_NAME`
+Format: `list`
+
+- Note that `list` has different behavior in focus mode and outside focus mode.
+- In the focus mode, only students within the class will be listed.
+
+### Add classes: `addc`
+
+{% include note.html content="
+
+Add one or more classes to TA Assist.
+
+" %}
+
+Format: `addc c/CLASS_NAME...`
+
+- Add classes with specified names.
 
 Examples:
 
-- `deletec c/CS2103T` deletes the class named **CS2103T.**
+- `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
+
+### Delete classes: `deletec`
+
+{% include note.html content="
+
+Delete one or more classes from TA Assist.
+
+" %}
+
+Format: `deletec c/CLASS_NAME...`
+
+- Delete classes with specified names.
+
+Examples:
+
+- `deletec c/CS2103T c/CS2100` deletes the classes named **CS2103T** and **CS2100**.
 
 ### Assign students to class: `assign`
 
-<aside>
-ℹ️ Assigns students to a class.
+{% include note.html content="
 
-</aside>
+Assigns students to a class.
+
+" %}
 
 Format: `assign INDEX... c/CLASS_NAME`
 
-- Assigns students at the given indices to an existing `CLASS_NAME` class
+- Assigns students at the given indices to an existing `CLASS_NAME` class.
 
 Example:
 
@@ -170,14 +197,15 @@ Example:
 
 ### Unassign students from class: `unassign`
 
-<aside>
-ℹ️ Unassigns students from a class.
+{% include note.html content="
 
-</aside>
+Unassigns students from a class.
+
+" %}
 
 Format: `unassign INDEX... c/CLASS_NAME`
 
-- Unassigns students at the given indices from an existing `CLASS_NAME` class
+- Unassigns students at the given indices from an existing `CLASS_NAME` class.
 
 Example:
 
@@ -185,10 +213,11 @@ Example:
 
 ### List classes: `listc`
 
-<aside>
-ℹ️ List the classes that have been created.
+{% include note.html content="
 
-</aside>
+List the classes that have been created.
+
+" %}
 
 Format: `listc`
 
@@ -196,19 +225,21 @@ Format: `listc`
 
 ### Exit the program: `exit`
 
-<aside>
-ℹ️ Exits the program.
+{% include note.html content="
 
-</aside>
+Exits the program.
+
+" %}
 
 Format: `exit`
 
 ### Enter focus mode: `focus`
 
-<aside>
-ℹ️ Enter focus mode to manage a given class, enabling features that are only available under focus mode.
+{% include note.html content="
 
-</aside>
+Enter focus mode to manage a given class, enabling features that are only available under focus mode.
+
+" %}
 
 Format: `focus CLASS_NAME`
 
@@ -223,9 +254,10 @@ Example:
 The following commands are only available in **focus mode.**
 
 | Command   | Format                               |
-|-----------|--------------------------------------|
+| --------- | ------------------------------------ |
 | `list`    | `list`                               |
 | `session` | `session s/SESSION_NAME [d/DATE]`    |
+| `deletes` | `deletes s/SESSION_NAME...`          |
 | `grade`   | `grade INDEX v/VALUE s/SESSION_NAME` |
 | `view`    | `view INDEX s/SESSION_NAME`          |
 | `lists`   | `lists`                              |
@@ -233,10 +265,11 @@ The following commands are only available in **focus mode.**
 
 ### List all students in the class: `list`
 
-<aside>
-ℹ️ Shows a list of all students in the class.
+{% include note.html content="
 
-</aside>
+Shows a list of all students in the class.
+
+" %}
 
 Format: `list`
 
@@ -245,10 +278,11 @@ Format: `list`
 
 ### Create session: `session`
 
-<aside>
-ℹ️ Creates a new session.
+{% include note.html content=".
 
-</aside>
+Creates a new session.
+
+" %}
 
 Format: `session s/SESSION_NAME [d/DATE]`
 
@@ -259,12 +293,29 @@ Example:
 
 - `session s/Lab1 d/11-08-2022` will create a session `Lab1` on 11  August 2022.
 
+### Delete sessions: `deletes`
+
+{% include note.html content="
+
+Delete one or more sessions from the focused class.
+
+" %}
+
+Format: `deletes s/SESSION_NAME...`
+
+- Delete sessions with specified names.
+
+Examples:
+
+- `deletes s/Lab1 s/Assignment3` deletes the session named **Lab1** and **Assignment3**.
+
 ### Grade session: `grade`
 
-<aside>
-ℹ️ Grades the student for the session.
+{% include note.html content="
 
-</aside>
+Grades the student for the session.
+
+" %}
 
 Format: `grade INDEX v/VALUE s/SESSION_NAME`
 
@@ -276,10 +327,11 @@ Example:
 
 ### View session grade of student: `view`
 
-<aside>
-ℹ️ View the grade for a student on a given session.
+{% include note.html content="
 
-</aside>
+View the grade for a student on a given session.
+
+" %}
 
 Format: `view INDEX s/SESSION_NAME`
 
@@ -291,10 +343,11 @@ Example:
 
 ### List all sessions: `lists`
 
-<aside>
-ℹ️ List the sessions that have been created for the class.
+{% include note.html content="
 
-</aside>
+List the sessions that have been created for the class.
+
+" %}
 
 Format: `lists`
 
@@ -302,10 +355,11 @@ Format: `lists`
 
 ### Exit focus mode: `unfocus`
 
-<aside>
-ℹ️ Exits focus mode on a class.
+{% include note.html content="
 
-</aside>
+Exits focus mode on a class.
+
+" %}
 
 Format: `unfocus`
 

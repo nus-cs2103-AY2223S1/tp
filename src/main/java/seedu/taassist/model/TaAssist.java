@@ -176,7 +176,8 @@ public class TaAssist implements ReadOnlyTaAssist {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TaAssist // instanceof handles nulls
-                && students.equals(((TaAssist) other).students));
+                && students.equals(((TaAssist) other).students))
+                && moduleClasses.equals(((TaAssist) other).moduleClasses);
     }
 
     @Override

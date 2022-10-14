@@ -2,13 +2,15 @@ package seedu.taassist.model.student;
 
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.uniquelist.Identity;
+import seedu.taassist.model.uniquelist.UniqueList;
 
 /**
  * Represents a Student in TA-Assist.
@@ -23,18 +25,18 @@ public class Student implements Identity<Student> {
 
     // Data fields
     private final Address address;
-    private final Set<ModuleClass> moduleClasses = new HashSet<>();
+    private final UniqueList<StudentModuleData> moduleDataList = new UniqueList<>();
 
     /**
-     * Every field must be present and not null.
+     * Constructor for Student.
      */
-    public Student(Name name, Phone phone, Email email, Address address, Set<ModuleClass> moduleClasses) {
-        requireAllNonNull(name, phone, email, address, moduleClasses);
+    public Student(Name name, Phone phone, Email email, Address address, List<StudentModuleData> moduleDataList) {
+        requireAllNonNull(name, phone, email, address, moduleDataList);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.moduleClasses.addAll(moduleClasses);
+        this.moduleDataList.setElements(moduleDataList);
     }
 
     public Name getName() {
@@ -54,11 +56,43 @@ public class Student implements Identity<Student> {
     }
 
     /**
-     * Returns an immutable moduleClass set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns an Unmodifiable ObservableList of module data.
      */
-    public Set<ModuleClass> getModuleClasses() {
-        return Collections.unmodifiableSet(moduleClasses);
+    public List<StudentModuleData> getModuleDataList() {
+        return moduleDataList.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns a list of module classes that the student is enrolled in.
+     */
+    public List<ModuleClass> getModuleClasses() {
+        return getModuleDataList().stream()
+            .map(StudentModuleData::getModuleClass)
+            .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the {@code StudentModuleData} of the student for the given {@code ModuleClass}.
+     */
+    public StudentModuleData findStudentModuleData(ModuleClass targetClass) {
+        return moduleDataList.findElement(new StudentModuleData(targetClass));
+    }
+
+    /**
+     * Returns a student by updating {@code oldStudent}'s grade for the given {@code session} in {@code moduleClass}.
+     */
+    public static Student getUpdatedStudent(Student oldStudent,
+            ModuleClass moduleClass, Session session, double grade) {
+        requireAllNonNull(oldStudent, moduleClass, session);
+        List<StudentModuleData> oldModuleDataList = oldStudent.getModuleDataList();
+        List<StudentModuleData> newModuleDataList =
+                StudentModuleData.getUpdatedModuleDataList(oldModuleDataList, moduleClass, session, grade);
+        return new Student(
+                oldStudent.getName(),
+                oldStudent.getPhone(),
+                oldStudent.getEmail(),
+                oldStudent.getAddress(),
+                newModuleDataList);
     }
 
     /**
@@ -94,13 +128,13 @@ public class Student implements Identity<Student> {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getAddress().equals(getAddress())
-                && otherStudent.getModuleClasses().equals(getModuleClasses());
+                && otherStudent.getModuleDataList().equals(getModuleDataList());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, moduleClasses);
+        return Objects.hash(name, phone, email, address, moduleDataList);
     }
 
     @Override
@@ -111,7 +145,7 @@ public class Student implements Identity<Student> {
         Phone phone = getPhone();
         Email email = getEmail();
         Address address = getAddress();
-        Set<ModuleClass> moduleClasses = getModuleClasses();
+        List<StudentModuleData> moduleData = getModuleDataList();
 
         if (phone.isPresent()) {
             builder.append("; Phone: ").append(phone);
@@ -122,9 +156,9 @@ public class Student implements Identity<Student> {
         if (address.isPresent()) {
             builder.append("; Address: ").append(address);
         }
-        if (!moduleClasses.isEmpty()) {
+        if (!moduleData.isEmpty()) {
             builder.append("; Classes: ");
-            moduleClasses.forEach(builder::append);
+            moduleData.stream().map(StudentModuleData::getModuleClass).forEach(builder::append);
         }
         return builder.toString();
     }

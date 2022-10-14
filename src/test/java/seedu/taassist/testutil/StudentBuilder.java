@@ -1,9 +1,9 @@
 package seedu.taassist.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
@@ -25,7 +25,7 @@ public class StudentBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<ModuleClass> moduleClasses;
+    private List<StudentModuleData> moduleData;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -35,7 +35,7 @@ public class StudentBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        moduleClasses = new HashSet<>();
+        moduleData = new ArrayList<>();
     }
 
     /**
@@ -46,7 +46,7 @@ public class StudentBuilder {
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
         address = studentToCopy.getAddress();
-        moduleClasses = new HashSet<>(studentToCopy.getModuleClasses());
+        moduleData = new ArrayList<>(studentToCopy.getModuleDataList());
     }
 
     /**
@@ -62,7 +62,7 @@ public class StudentBuilder {
      * set it to the {@code Student} that we are building.
      */
     public StudentBuilder withModuleClasses(String ... moduleClasses) {
-        this.moduleClasses = SampleDataUtil.getModuleClassSet(moduleClasses);
+        this.moduleData = SampleDataUtil.getModuleDataList(moduleClasses);
         return this;
     }
 
@@ -90,8 +90,16 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code moduleData} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withModuleData(List<StudentModuleData> moduleData) {
+        this.moduleData = moduleData;
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, address, moduleClasses);
+        return new Student(name, phone, email, address, moduleData);
     }
 
 }
