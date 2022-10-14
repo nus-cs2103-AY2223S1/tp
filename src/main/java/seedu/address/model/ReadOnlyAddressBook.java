@@ -17,7 +17,7 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Student> getPersonList();
-    
+
     /**
      * Returns an unmodifiable view of the reminders list.
      * This list will not contain any duplicate reminders.
