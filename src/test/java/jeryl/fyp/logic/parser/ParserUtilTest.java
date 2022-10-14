@@ -15,19 +15,19 @@ import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_STUDENT_NAME = "R@chel";
     private static final String INVALID_STUDENT_ID = "A012T456X";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_PROJECT_NAME = "@CSSE$";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_STUDENT_NAME = "Rachel Walker";
     private static final String VALID_STUDENT_ID = "A0123456X";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_PROJECT_NAME = "CSSE test";
@@ -57,26 +57,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parseStudentName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStudentName((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    public void parseStudentName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudentName(INVALID_STUDENT_NAME));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+    public void parseStudentName_validValueWithoutWhitespace_returnsName() throws Exception {
+        StudentName expectedStudentName = new StudentName(VALID_STUDENT_NAME);
+        assertEquals(expectedStudentName, ParserUtil.parseStudentName(VALID_STUDENT_NAME));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    public void parseStudentName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_STUDENT_NAME + WHITESPACE;
+        StudentName expectedStudentName = new StudentName(VALID_STUDENT_NAME);
+        assertEquals(expectedStudentName, ParserUtil.parseStudentName(nameWithWhitespace));
     }
 
     @Test

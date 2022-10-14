@@ -1,9 +1,9 @@
 package jeryl.fyp.model.student;
 
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static jeryl.fyp.testutil.TypicalStudents.ALICE;
@@ -37,16 +37,16 @@ public class StudentTest {
         assertTrue(ALICE.isSameStudent(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new StudentBuilder(ALICE).withStudentName(VALID_STUDENT_NAME_BOB).build();
         assertFalse(ALICE.isSameStudent(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Student editedBob = new StudentBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Student editedBob = new StudentBuilder(BOB).withStudentName(VALID_STUDENT_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameStudent(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new StudentBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        String nameWithTrailingSpaces = VALID_STUDENT_NAME_BOB + " ";
+        editedBob = new StudentBuilder(BOB).withStudentName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSameStudent(editedBob));
     }
 
@@ -69,7 +69,7 @@ public class StudentTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Student editedAlice = new StudentBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Student editedAlice = new StudentBuilder(ALICE).withStudentName(VALID_STUDENT_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different studentId -> returns false

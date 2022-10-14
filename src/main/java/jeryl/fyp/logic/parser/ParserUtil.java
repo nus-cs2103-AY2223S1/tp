@@ -10,10 +10,10 @@ import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.commons.util.StringUtil;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -37,18 +37,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code StudentName}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code StudentName} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static StudentName parseStudentName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!StudentName.isValidStudentName(trimmedName)) {
+            throw new ParseException(StudentName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new StudentName(trimmedName);
     }
 
     /**

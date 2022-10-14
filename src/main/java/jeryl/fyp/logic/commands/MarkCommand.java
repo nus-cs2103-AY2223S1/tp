@@ -24,9 +24,11 @@ public class MarkCommand extends Command {
             + ": Updates status of the FYP project done"
             + "by the student ID given in the command "
             + "Existing statuses will be updated by the input.\n"
-            + "Parameters: id/STUDENT_ID (should be in format  \"A\" + (7 digits) + (1 letter), e.g. A0123456G) "
-            + "s/STATUS\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_ID + "A0123456G "
+            + "Parameters: "
+            + PREFIX_STUDENT_ID + "STUDENT_ID (must be a valid student id that is already in the FYP manager) "
+            + PREFIX_STATUS + "STATUS\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_STUDENT_ID + "A0123456G "
             + PREFIX_STATUS + "DONE";
 
     public static final String MESSAGE_ADD_PROJECT_STATUS_SUCCESS = "Added ProjectStatus to Student: %1$s";
@@ -53,7 +55,7 @@ public class MarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
-        Student editedStudent = new Student(oldStudent.getName(), oldStudent.getStudentId(),
+        Student editedStudent = new Student(oldStudent.getStudentName(), oldStudent.getStudentId(),
                 oldStudent.getEmail(), oldStudent.getProjectName(), status, oldStudent.getTags());
 
         model.setStudent(oldStudent, editedStudent);
