@@ -38,7 +38,7 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
-//    @FXML
+    //    @FXML
 //    private Label clazz;
 //    @FXML
 //    private Label personality;
@@ -62,8 +62,8 @@ public class PersonCard extends UiPart<Region> {
 //        personality.setText(person.getPersonality().toString());
 //        subject.setText(person.getSubjectHandler().toString());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+              .sorted(Comparator.comparing(tag -> tag.tagName))
+              .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
@@ -81,6 +81,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+               && person.equals(card.person);
     }
 }
