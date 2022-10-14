@@ -3,11 +3,8 @@ package seedu.taassist.logic.parser;
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.CLASS_DESC_CS1101S;
-import static seedu.taassist.logic.commands.CommandTestUtil.CLASS_DESC_CS1231S;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_CLASS_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -16,8 +13,6 @@ import static seedu.taassist.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1101S;
-import static seedu.taassist.logic.commands.CommandTestUtil.VALID_CLASS_CS1231S;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -35,7 +30,6 @@ import org.junit.jupiter.api.Test;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.EditCommand;
 import seedu.taassist.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
 import seedu.taassist.model.student.Phone;
@@ -82,7 +76,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_CLASS_DESC, ModuleClass.MESSAGE_CONSTRAINTS); // invalid class
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -90,15 +83,6 @@ public class EditCommandParserTest {
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_CLASS} alone will reset the classes of the {@code Student} being edited,
-        // parsing it together with a valid class results in error
-        assertParseFailure(parser, "1" + CLASS_DESC_CS1231S + CLASS_DESC_CS1101S + MODULE_CLASS_EMPTY,
-                ModuleClass.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + CLASS_DESC_CS1231S + MODULE_CLASS_EMPTY + CLASS_DESC_CS1101S,
-                ModuleClass.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MODULE_CLASS_EMPTY + CLASS_DESC_CS1231S + CLASS_DESC_CS1101S,
-                ModuleClass.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
@@ -108,12 +92,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + CLASS_DESC_CS1101S
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + CLASS_DESC_CS1231S;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withModuleClasses(VALID_CLASS_CS1101S, VALID_CLASS_CS1231S).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -157,25 +140,17 @@ public class EditCommandParserTest {
         descriptor = new EditStudentDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
-        // classes
-        userInput = targetIndex.getOneBased() + CLASS_DESC_CS1231S;
-        descriptor = new EditStudentDescriptorBuilder().withModuleClasses(VALID_CLASS_CS1231S).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_STUDENT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
-                + CLASS_DESC_CS1231S + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + CLASS_DESC_CS1231S
-                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + CLASS_DESC_CS1101S;
+                + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
+                + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withModuleClasses(VALID_CLASS_CS1231S, VALID_CLASS_CS1101S)
-                .build();
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -196,17 +171,6 @@ public class EditCommandParserTest {
         descriptor = new EditStudentDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetClasses_success() {
-        Index targetIndex = INDEX_THIRD_STUDENT;
-        String userInput = targetIndex.getOneBased() + MODULE_CLASS_EMPTY;
-
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withModuleClasses().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

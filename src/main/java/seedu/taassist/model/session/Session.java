@@ -3,11 +3,13 @@ package seedu.taassist.model.session;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.AppUtil.checkArgument;
 
+import seedu.taassist.model.uniquelist.Identity;
+
 /**
  * Represents a Session for a {@code ModuleClass} in TA-Assist.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSessionName(String)}
  */
-public class Session {
+public class Session implements Identity<Session> {
     public static final String MESSAGE_CONSTRAINTS = "Session names can take any values, but they should not be blank";
 
     /*
@@ -54,7 +56,8 @@ public class Session {
      * @param otherSession the session to be compared to.
      * @return true if both sessions have the same name.
      */
-    public boolean isSameSession(Session otherSession) {
+    @Override
+    public boolean isSame(Session otherSession) {
         return otherSession == this
                 || (otherSession != null && otherSession.sessionName.equals(sessionName));
     }
@@ -68,6 +71,6 @@ public class Session {
      * Formats state as text for viewing.
      */
     public String toString() {
-        return sessionName;
+        return "[" + sessionName + "]";
     }
 }
