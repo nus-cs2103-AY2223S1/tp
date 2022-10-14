@@ -185,7 +185,6 @@ public class Person {
                 .append(getAttendanceList())
                 .append("; Session Timings: ")
                 .append(getDurationList())
-                .append("; Grade Progress: ")
                 .append(getGradeProgressList());
 
         Set<Tag> tags = getTags();

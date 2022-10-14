@@ -42,6 +42,7 @@ public class PersonBuilder {
         lessonPlan = new LessonPlan(DEFAULT_LESSON_PLAN);
         homeworkList = new HomeworkList();
         attendanceList = new AttendanceList();
+        durationList = new DurationList();
         gradeProgressList = new GradeProgressList();
         tags = new HashSet<>();
     }
@@ -55,6 +56,7 @@ public class PersonBuilder {
         lessonPlan = personToCopy.getLessonPlan();
         homeworkList = new HomeworkList(new ArrayList<>(personToCopy.getHomeworkList().homeworkList));
         attendanceList = new AttendanceList(new ArrayList<>(personToCopy.getAttendanceList().attendanceList));
+        durationList = new DurationList(new ArrayList<>(personToCopy.getDurationList().durationList));
         gradeProgressList = new GradeProgressList(new ArrayList<>(personToCopy.getGradeProgressList()
                 .gradeProgressList));
         tags = new HashSet<>(personToCopy.getTags());

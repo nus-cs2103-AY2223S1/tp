@@ -33,6 +33,7 @@ public class AttendanceCommandTest {
     void execute_addAttendanceUnfilteredList_success() {
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(secondPerson).withAttendance(ATTENDANCE_STUB).build();
+        secondPerson.clearAttendanceList();
 
         AttendanceCommand attendanceCommand = new AttendanceCommand(INDEX_SECOND_PERSON,
                 new Attendance(ATTENDANCE_STUB));
@@ -42,7 +43,6 @@ public class AttendanceCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         expectedModel.setPerson(secondPerson, editedPerson);
-
         assertCommandSuccess(attendanceCommand, model, expectedMessage, expectedModel);
 
     }

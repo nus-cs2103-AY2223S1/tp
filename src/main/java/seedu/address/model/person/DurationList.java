@@ -22,8 +22,8 @@ public class DurationList {
         if (durationList.isEmpty()) {
             return toString();
         }
-        durationList.sort(new DurationCompare());
-        String shortDesc = "Next Up: "
+        durationList.sort(Duration::compareTo);
+        String shortDesc = "NEXT UP: \n"
                 + durationList.get(0).toString() + ".";
         return shortDesc;
     }
@@ -39,7 +39,7 @@ public class DurationList {
             description.append("No session timings found!\n");
         }
         for (int i = 0; i < durationList.size(); i++) {
-            description.append(i + 1).append(this.durationList.get(i)).append("\n");
+            description.append(i + 1).append(". ").append(this.durationList.get(i)).append("\n");
         }
         return description.toString();
     }

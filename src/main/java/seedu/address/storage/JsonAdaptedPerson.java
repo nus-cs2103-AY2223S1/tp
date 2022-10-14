@@ -128,6 +128,7 @@ class JsonAdaptedPerson {
         for (JsonAdaptedHomework homework : homeworkList) {
             modelHomeworkList.addHomework(homework.toModelType());
         }
+
         final AttendanceList modelAttendanceList = new AttendanceList();
         for (JsonAdaptedAttendance attendance: attendanceList) {
             modelAttendanceList.addAttendance(attendance.toModelType());

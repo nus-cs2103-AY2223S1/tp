@@ -126,6 +126,13 @@
     -fx-text-fill: #010504;
 }
 
+.cell_medium_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill:  #010504;
+    -fx-background-color:  #C4978D;
+}
+
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;

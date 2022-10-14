@@ -12,8 +12,9 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "lessonPlan" : "Trigonometry",
-    "homework": [ "Science worksheet", "math asst" ],
+    "homework": [ "Science worksheet", "Math asst" ],
     "attendance": [ "2022-07-12", "2022-07-17" ],
+    "duration": ["08:30-09:30"],
     "gradeProgress": ["Math: A"],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
