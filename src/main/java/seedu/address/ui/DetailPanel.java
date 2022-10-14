@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -43,16 +46,27 @@ public class DetailPanel extends MainPanel {
      *
      * @param person The person whose contact details are to be displayed.
      */
-    public DetailPanel(Person person) {
+    public DetailPanel(SimpleObjectProperty<Person> person) {
         super(FXML);
 
-        nameLabel.setText(person.getName().toString());
+        // Add change listener so when person change, we can get update detail directly.
+        person.addListener(new ChangeListener<>() {
+            @Override
+            public void changed(ObservableValue<? extends Person> observable, Person oldPerson, Person newPerson) {
+                updatePersonDetail(newPerson);
+            }
+        });
+    }
 
-        // These are mock data, to be implemented in future
+    private void updatePersonDetail(Person person) {
+        nameLabel.setText(person.getName().toString());
         Image placeholder = new Image(this.getClass().getResourceAsStream("/images/user_placeholder.png"));
         profileImageContainer.setFill(new ImagePattern(placeholder));
+
+        // These are mock data, to be implemented in future
         roleLabel.setText("DevOps Engineer");
         timezoneLabel.setText("Local Time: 10.00 am (UTC+8)");
+
 
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
                 person.getContacts()
