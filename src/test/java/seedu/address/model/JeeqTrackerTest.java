@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.exceptions.DuplicateCompanyException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
 import seedu.address.testutil.CompanyBuilder;
 
 public class JeeqTrackerTest {
@@ -51,7 +51,7 @@ public class JeeqTrackerTest {
         List<Client> newCompanies = Arrays.asList(ALICE, editedAlice);
         JeeqTrackerStub newData = new JeeqTrackerStub(newCompanies);
 
-        assertThrows(DuplicateCompanyException.class, () -> jeeqTracker.resetData(newData));
+        assertThrows(DuplicateClientException.class, () -> jeeqTracker.resetData(newData));
     }
 
     @Test

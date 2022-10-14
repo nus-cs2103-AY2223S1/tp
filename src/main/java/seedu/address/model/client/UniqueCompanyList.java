@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.exceptions.CompanyNotFoundException;
-import seedu.address.model.client.exceptions.DuplicateCompanyException;
+import seedu.address.model.client.exceptions.ClientNotFoundException;
+import seedu.address.model.client.exceptions.DuplicateClientException;
 
 /**
  * A list of companies that enforces uniqueness between its elements and does not allow nulls.
@@ -44,7 +44,7 @@ public class UniqueCompanyList implements Iterable<Client> {
     public void add(Client toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateCompanyException();
+            throw new DuplicateClientException();
         }
         internalList.add(toAdd);
     }
@@ -59,11 +59,11 @@ public class UniqueCompanyList implements Iterable<Client> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new CompanyNotFoundException();
+            throw new ClientNotFoundException();
         }
 
         if (!target.isSameClient(editedClient) && contains(editedClient)) {
-            throw new DuplicateCompanyException();
+            throw new DuplicateClientException();
         }
 
         internalList.set(index, editedClient);
@@ -76,7 +76,7 @@ public class UniqueCompanyList implements Iterable<Client> {
     public void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new CompanyNotFoundException();
+            throw new ClientNotFoundException();
         }
     }
 
@@ -92,7 +92,7 @@ public class UniqueCompanyList implements Iterable<Client> {
     public void setCompanies(List<Client> companies) {
         requireAllNonNull(companies);
         if (!companiesAreUnique(companies)) {
-            throw new DuplicateCompanyException();
+            throw new DuplicateClientException();
         }
 
         internalList.setAll(companies);
