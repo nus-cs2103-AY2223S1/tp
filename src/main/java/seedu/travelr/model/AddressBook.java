@@ -51,6 +51,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setEvents(List<Event> events) {
+        this.bucketList.setEvents(events);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -58,6 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         assert !newData.getTripList().isEmpty();
 
         setTrips(newData.getTripList());
+        setEvents(newData.getEventList());
     }
 
     //// person-level operations

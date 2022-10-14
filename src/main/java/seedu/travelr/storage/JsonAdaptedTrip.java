@@ -31,11 +31,11 @@ class JsonAdaptedTrip {
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("description") String description,
-                           @JsonProperty("tagged") List<JsonAdaptedEvent> tagged) {
+                           @JsonProperty("events") List<JsonAdaptedEvent> events) {
         this.title = title;
         this.description = description;
-        if (tagged != null) {
-            this.events.addAll(tagged);
+        if (events != null) {
+            this.events.addAll(events);
         }
     }
 
@@ -56,9 +56,9 @@ class JsonAdaptedTrip {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Trip toModelType() throws IllegalValueException {
-        final List<Event> tripTags = new ArrayList<>();
-        for (JsonAdaptedEvent tag : events) {
-            tripTags.add(tag.toModelType());
+        final List<Event> tripEvents = new ArrayList<>();
+        for (JsonAdaptedEvent event : events) {
+            tripEvents.add(event.toModelType());
         }
 
         if (title == null) {
@@ -78,9 +78,9 @@ class JsonAdaptedTrip {
         }
         final Description modelDescription = new Description(description);
 
-        final Set<Event> modelTags = new HashSet<>(tripTags);
+        final Set<Event> modelEvents = new HashSet<>(tripEvents);
 
-        return new Trip(modelTitle, modelDescription, modelTags);
+        return new Trip(modelTitle, modelDescription, modelEvents);
     }
 
 }

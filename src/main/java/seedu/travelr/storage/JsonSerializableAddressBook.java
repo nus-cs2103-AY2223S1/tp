@@ -30,8 +30,8 @@ class JsonSerializableAddressBook {
      * TODO: Rename JsonProperty in local data file from persons to trips
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("trips") List<JsonAdaptedTrip> trips,
-                                       @JsonProperty("bucketList") List<JsonAdaptedEvent> bucketList) {
+    public JsonSerializableAddressBook(@JsonProperty("bucketList") List<JsonAdaptedEvent> bucketList,
+                                       @JsonProperty("trips") List<JsonAdaptedTrip> trips) {
         this.trips.addAll(trips);
         this.bucketList.addAll(bucketList);
     }
