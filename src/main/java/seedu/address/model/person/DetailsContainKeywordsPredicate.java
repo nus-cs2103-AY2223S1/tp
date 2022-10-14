@@ -42,11 +42,10 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
      * @param phoneKeywords   Set of Phone keywords to search for.
      * @param emailKeywords   Set of Email keywords to search for.
      * @param addressKeywords Set of Address keywords to search for.
-     * @param tagKeywords     Set of Tag keywords to search for.
      * @param noteKeywords    Set of Note keywords to search for.
      */
     public DetailsContainKeywordsPredicate(Set<Name> nameKeywords, Set<Phone> phoneKeywords, Set<Email> emailKeywords,
-                                           Set<Address> addressKeywords, Set<Tag> tagKeywords,
+                                           Set<Address> addressKeywords,
                                            Set<Status> statusKeywords, Set<Note> noteKeywords) {
         this.keywords = new ArrayList<>();
         this.nameKeywords = nameKeywords;
