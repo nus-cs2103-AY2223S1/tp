@@ -38,7 +38,7 @@ public class CalendarDisplay extends UiPart<Region> {
 
         // Draw days of the week
         for (int day = 1; day <= 7; day++) {
-            Text tDayName = new Text(getDayName(day));
+            Text tDayName = new Text(" " + getDayName(day));
             calendarDisplay.add(tDayName, day - 1, 0);
         }
 
@@ -52,7 +52,7 @@ public class CalendarDisplay extends UiPart<Region> {
                 dayOfWeek = 1;
                 row++;
             }
-            Text tDate = new Text(String.valueOf(currentDay) + "\n appt1"
+            Text tDate = new Text(" " + String.valueOf(currentDay) + "\n appt1"
             + "\n appt2222222222222222222222222222222222" +
                     "\n apt3" +
                     "\n appt4" +

@@ -1,13 +1,13 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: transparent;
+    background-color: transparent; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
-    -fx-opacity: 0.9;
+    -fx-text-fill: #ffffff;
+    -fx-opacity: 1;
 }
 
 .label-bright {
@@ -18,7 +18,7 @@
 }
 
 .label-header {
-    -fx-font-size: 32pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -133,11 +133,11 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#05071F, 30%);
+     -fx-background-color: #0e1011;
 }
 
 .pane-with-border {
-     -fx-background-color: #05071F;
+     -fx-background-color: #0e1011;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
@@ -147,7 +147,7 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #0e1011;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -341,7 +341,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: derive(#05071F, 20%);
+    -fx-background-color: #0e1011;
     -fx-background-radius: 0;
 }
 
