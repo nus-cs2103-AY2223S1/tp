@@ -55,8 +55,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Person alice = new PersonBuilder().withName("Alice").withPhone("12121212").withEmail("alice@alice.com").build();
+        Person bob = new PersonBuilder().withName("Bob").withPhone("34343434").withEmail("bob@bob.com").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -74,7 +74,7 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(null));
 
         // different person -> returns false
-        // assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
     /**
