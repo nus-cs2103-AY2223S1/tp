@@ -13,6 +13,11 @@ public class VersionedAddressBook extends AddressBook {
     private final List<ReadOnlyAddressBook> addressBookStateList;
     private int currentStatePointer;
 
+    /**
+     * Creates a VersionedAddressBook
+     *
+     * @param addressBook
+     */
     public VersionedAddressBook(ReadOnlyAddressBook addressBook) {
         super(addressBook);
 
@@ -21,17 +26,26 @@ public class VersionedAddressBook extends AddressBook {
         currentStatePointer = 0;
     }
 
+    /**
+     * Commits the current address book into {@code addressBookStateList}.
+     */
     public void commit() {
         removeUndoneStates();
         addressBookStateList.add(new VersionedAddressBook(this));
         currentStatePointer++;
     }
 
+    /**
+     * Restores address book to a previous state.
+     */
     public void undo() {
         currentStatePointer--;
         resetData(addressBookStateList.get(currentStatePointer));
     }
 
+    /**
+     * Returns true if there exists previous states that we can undo to.
+     */
     public boolean canUndo() {
         return currentStatePointer > 0;
     }
