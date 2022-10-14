@@ -14,9 +14,9 @@ import foodwhere.model.stall.Stall;
 public class StallUtil {
 
     /**
-     * Returns an add command string for adding the {@code stall}.
+     * Returns an sadd command string for adding the {@code stall}.
      */
-    public static String getAddCommand(Stall stall) {
+    public static String getSAddCommand(Stall stall) {
         return SAddCommand.COMMAND_WORD + " " + getStallDetails(stall);
     }
 
