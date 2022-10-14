@@ -20,5 +20,4 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate listings.
      */
     ObservableList<Listing> getListingList();
-
 }

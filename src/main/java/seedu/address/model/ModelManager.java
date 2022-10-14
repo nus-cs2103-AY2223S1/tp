@@ -200,5 +200,4 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredListings.equals(other.filteredListings);
     }
-
 }

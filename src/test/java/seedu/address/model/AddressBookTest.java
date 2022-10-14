@@ -120,5 +120,4 @@ public class AddressBookTest {
             return listings;
         }
     }
-
 }
