@@ -1,11 +1,6 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
@@ -19,6 +14,7 @@ import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
+import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
@@ -35,18 +31,18 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = CommandWord.EDIT_COMMAND.getValue();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the item identified "
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_ITEM_UNIT + "UNIT] "
-            + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
-            + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
+            + "[" + CliSyntax.PREFIX_NAME + "NAME] "
+            + "[" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY] "
+            + "[" + CliSyntax.PREFIX_ITEM_UNIT + "UNIT] "
+            + "[" + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
+            + "[" + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ITEM_QUANTITY + "1000 "
-            + PREFIX_ITEM_QUANTITY + "grams";
+            + CliSyntax.PREFIX_ITEM_QUANTITY + "1000 "
+            + CliSyntax.PREFIX_ITEM_QUANTITY + "grams";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

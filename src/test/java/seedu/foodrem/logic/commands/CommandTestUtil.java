@@ -2,11 +2,6 @@ package seedu.foodrem.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,6 +10,7 @@ import java.util.List;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
+import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
@@ -45,35 +41,35 @@ public class CommandTestUtil {
     public static final String VALID_TAG_NAME_NUMBERS = "2 1 0 3 t";
     public static final String VALID_TAG_NAME_VEGETABLES = "vegetables";
 
-    public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_NAME
+    public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + CliSyntax.PREFIX_NAME
             + VALID_ITEM_NAME_POTATOES;
-    public static final String VALID_DESC_ITEM_QUANTITY_POTATOES = " " + PREFIX_ITEM_QUANTITY
+    public static final String VALID_DESC_ITEM_QUANTITY_POTATOES = " " + CliSyntax.PREFIX_ITEM_QUANTITY
             + VALID_ITEM_QUANTITY_POTATOES;
-    public static final String VALID_DESC_ITEM_UNIT_POTATOES = " " + PREFIX_ITEM_UNIT
+    public static final String VALID_DESC_ITEM_UNIT_POTATOES = " " + CliSyntax.PREFIX_ITEM_UNIT
             + VALID_ITEM_UNIT_POTATOES;
-    public static final String VALID_DESC_ITEM_BOUGHT_DATE_POTATOES = " " + PREFIX_ITEM_BOUGHT_DATE
+    public static final String VALID_DESC_ITEM_BOUGHT_DATE_POTATOES = " " + CliSyntax.PREFIX_ITEM_BOUGHT_DATE
             + VALID_ITEM_BOUGHT_DATE_POTATOES;
-    public static final String VALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + PREFIX_ITEM_EXPIRY_DATE
+    public static final String VALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + VALID_ITEM_EXPIRY_DATE_POTATOES;
 
-    public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_NAME
+    public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + CliSyntax.PREFIX_NAME
             + VALID_ITEM_NAME_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + PREFIX_ITEM_QUANTITY
+    public static final String VALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_QUANTITY
             + VALID_ITEM_QUANTITY_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_UNIT_CUCUMBERS = " " + PREFIX_ITEM_UNIT
+    public static final String VALID_DESC_ITEM_UNIT_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_UNIT
             + VALID_ITEM_UNIT_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = " " + PREFIX_ITEM_BOUGHT_DATE
+    public static final String VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_BOUGHT_DATE
             + VALID_ITEM_BOUGHT_DATE_CUCUMBERS;
-    public static final String VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + PREFIX_ITEM_EXPIRY_DATE
+    public static final String VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + VALID_ITEM_EXPIRY_DATE_CUCUMBERS;
 
-    public static final String VALID_DESC_TAG_NAME_FRUITS = " " + PREFIX_NAME
+    public static final String VALID_DESC_TAG_NAME_FRUITS = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_FRUITS;
 
-    public static final String VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES = " " + PREFIX_NAME
+    public static final String VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_FRUITS_WITH_WHITESPACES;
 
-    public static final String VALID_DESC_TAG_NAME_NUMBERS = " " + PREFIX_NAME
+    public static final String VALID_DESC_TAG_NAME_NUMBERS = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_NUMBERS;
 
     public static final String INVALID_ITEM_NAME_POTATOES = "Potatoe@s";
@@ -93,35 +89,35 @@ public class CommandTestUtil {
             "vegetablesvegetablesvegetablesvegetablesvegetables";
     public static final String INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR = "@fruits";
 
-    public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = " " + PREFIX_NAME
+    public static final String INVALID_DESC_ITEM_NAME_CUCUMBERS = " " + CliSyntax.PREFIX_NAME
             + INVALID_ITEM_NAME_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + PREFIX_ITEM_QUANTITY
+    public static final String INVALID_DESC_ITEM_QUANTITY_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_QUANTITY
             + INVALID_ITEM_QUANTITY_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_UNIT_CUCUMBERS = " " + PREFIX_ITEM_UNIT
+    public static final String INVALID_DESC_ITEM_UNIT_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_UNIT
             + INVALID_ITEM_UNIT_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = " " + PREFIX_ITEM_BOUGHT_DATE
+    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_BOUGHT_DATE
             + INVALID_ITEM_BOUGHT_DATE_CUCUMBERS;
-    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + PREFIX_ITEM_EXPIRY_DATE
+    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + INVALID_ITEM_EXPIRY_DATE_CUCUMBERS;
 
-    public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + PREFIX_NAME
+    public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + CliSyntax.PREFIX_NAME
             + INVALID_ITEM_NAME_POTATOES;
-    public static final String INVALID_DESC_ITEM_QUANTITY_POTATOES = " " + PREFIX_ITEM_QUANTITY
+    public static final String INVALID_DESC_ITEM_QUANTITY_POTATOES = " " + CliSyntax.PREFIX_ITEM_QUANTITY
             + INVALID_ITEM_QUANTITY_POTATOES;
-    public static final String INVALID_DESC_ITEM_UNIT_POTATOES = " " + PREFIX_ITEM_UNIT
+    public static final String INVALID_DESC_ITEM_UNIT_POTATOES = " " + CliSyntax.PREFIX_ITEM_UNIT
             + INVALID_ITEM_UNIT_POTATOES;
-    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_POTATOES = " " + PREFIX_ITEM_BOUGHT_DATE
+    public static final String INVALID_DESC_ITEM_BOUGHT_DATE_POTATOES = " " + CliSyntax.PREFIX_ITEM_BOUGHT_DATE
             + INVALID_ITEM_BOUGHT_DATE_POTATOES;
-    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + PREFIX_ITEM_EXPIRY_DATE
+    public static final String INVALID_DESC_ITEM_EXPIRY_DATE_POTATOES = " " + CliSyntax.PREFIX_ITEM_EXPIRY_DATE
             + INVALID_ITEM_EXPIRY_DATE_POTATOES;
 
-    public static final String INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION = " " + PREFIX_NAME
+    public static final String INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION = " " + CliSyntax.PREFIX_NAME
             + INVALID_TAG_NAME_DISALLOWED_PUNCTUATION;
 
-    public static final String INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT = " " + PREFIX_NAME
+    public static final String INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT = " " + CliSyntax.PREFIX_NAME
             + INVALID_TAG_NAME_EXCEED_CHAR_LIMIT;
 
-    public static final String INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR = " " + PREFIX_NAME
+    public static final String INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR = " " + CliSyntax.PREFIX_NAME
             + INVALID_TAG_NAME_ILLEGAL_FIRST_CHAR;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

@@ -1,16 +1,12 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
+import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.util.ChainComparator;
@@ -32,11 +28,11 @@ public class SortCommand extends Command {
             COMMAND_WORD + ": Sorts all items according to a specified criteria."
                     + "Available criteria includes sorting by name, quantity, type, bought date, expiry date.\n"
                     + "Parameters: "
-                    + PREFIX_NAME + " "
-                    + PREFIX_ITEM_QUANTITY + " "
-                    + PREFIX_ITEM_UNIT + " "
-                    + PREFIX_ITEM_BOUGHT_DATE + " "
-                    + PREFIX_ITEM_EXPIRY_DATE + "...\n"
+                    + CliSyntax.PREFIX_NAME + " "
+                    + CliSyntax.PREFIX_ITEM_QUANTITY + " "
+                    + CliSyntax.PREFIX_ITEM_UNIT + " "
+                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + " "
+                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "...\n"
                     + "Example: " + COMMAND_WORD + "name";
 
     private final ChainComparator<Item> comparator;

@@ -15,6 +15,7 @@ import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
+import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
@@ -26,7 +27,6 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
  * Represents the command word to be keyed in by a user to execute a command.
  */
 public enum CommandWord {
-
     // GENERAL COMMANDS
     HELP_COMMAND("help", DEFAULT_HELP_MESSAGE),
     RESET_COMMAND("reset", DEFAULT_HELP_MESSAGE),
@@ -41,6 +41,7 @@ public enum CommandWord {
     DECREMENT_COMMAND("dec", DEFAULT_HELP_MESSAGE),
     SORT_COMMAND("sort", DEFAULT_HELP_MESSAGE),
     DELETE_COMMAND("del", DEFAULT_HELP_MESSAGE),
+    VIEW_COMMAND("view", DEFAULT_HELP_MESSAGE),
 
     // TAG COMMANDS
     NEW_TAG_COMMAND("newtag", DEFAULT_HELP_MESSAGE),
@@ -73,6 +74,7 @@ public enum CommandWord {
         LIST_COMMAND.help = ListCommand.MESSAGE_USAGE;
         SORT_COMMAND.help = SortCommand.MESSAGE_USAGE;
         FIND_COMMAND.help = FindCommand.MESSAGE_USAGE;
+        VIEW_COMMAND.help = ViewCommand.MESSAGE_USAGE;
 
         // Tag Commands
         NEW_TAG_COMMAND.help = NewTagCommand.MESSAGE_USAGE;

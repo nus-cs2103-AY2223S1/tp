@@ -3,11 +3,6 @@ package seedu.foodrem.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 import static seedu.foodrem.testutil.TypicalItems.POTATOES_WITHOUT_TAG;
 
@@ -19,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.foodrem.logic.commands.CommandResult;
+import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
@@ -80,11 +76,11 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = NewCommand.COMMAND_WORD
-                + VALID_DESC_ITEM_NAME_POTATOES
-                + VALID_DESC_ITEM_QUANTITY_POTATOES
-                + VALID_DESC_ITEM_UNIT_POTATOES
-                + VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
-                + VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
         Item expectedItem = new ItemBuilder(POTATOES_WITHOUT_TAG).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);

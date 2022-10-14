@@ -99,81 +99,31 @@ It is time for you to unleash the potential of a command line application!
 
 {Image of entire application}
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Command Input</td>
-    <td>{image}</td>
-  </tr>
-  <tr>
-    <td>Command result</td>
-    <td>{image}</td>
-  </tr>
-  <tr>
-    <td>List Component</td>
-    <td>{image}</td>
-  </tr>
-  <tr>
-    <td>View Component</td>
-    <td>{image}</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+| Name           | Description |
+|----------------|-------------|
+| Command Input  | {image}     |
+| Command result | {image}     |
+| List Component | {image}     |
+| View Component | {image}     |
 
 ## Flags
 
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Flags</th>
-    <th>Related Placeholder</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>id/</td>
-    <td>INDEX<br>INDEX_LIST</td>
-  </tr>
-  <tr>
-    <td>n/</td>
-    <td>ITEM_NAME<br>TAG_NAME</td>
-  </tr>
-  <tr>
-    <td>qty/</td>
-    <td>QUANTITY</td>
-  </tr>
-  <tr>
-    <td>unit/</td>
-    <td>UNIT</td>
-  </tr>
-  <tr>
-    <td>buy/</td>
-    <td>BOUGHT_DATE</td>
-  </tr>
-  <tr>
-    <td>exp/</td>
-    <td>EXPIRY DATE</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+| Flags | Related Placeholder   |
+|-------|-----------------------|
+| id/   | INDEX<br>INDEX_LIST   |
+| n/    | ITEM_NAME<br>TAG_NAME |
+| qty/  | QUANTITY              |
+| unit/ | UNIT                  |
+| buy/  | BOUGHT_DATE           |
+| exp/  | EXPIRY DATE           |
 
 ## Placeholders
 
 Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
 
-{% include_relative _ug/Placeholders.html %}
+{% include_relative _ug/Placeholders.md %}
 
 ## Features
 
@@ -183,120 +133,15 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ### Item Commands
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Action</th>
-    <th>Format</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Create a new item</td>
-    <td><b>new n/ITEM_NAME [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]</b><br><br><u>Valid Example:</u><br>new n/Potato qty/70 unit/kg bgt/22-02-11 exp/22-03/11</td>
-  </tr>
-  <tr>
-    <td>List all items</td>
-    <td><b>list</b><br><br><u>Valid Example:</u><br>list</td>
-  </tr>
-  <tr>
-    <td>Search for an item</td>
-    <td><b>find n/ITEM_NAME</b><br><br><u>Valid Example:</u><br>find n/Potato</td>
-  </tr>
-  <tr>
-    <td>Sort an item by name, quantity, type, bought date or expiry date.</td>
-    <td><b>sort [n/] [qty/] [unit/] [bgt/] [exp/]</b><br><br><u>Valid Example:</u><br>sort n/<br>sort qty/<br>sort qty/ bgt/<br><br><u>Invalid Example:</u><br>sort</td>
-  </tr>
-  <tr>
-    <td>View information about an item</td>
-    <td><b>view id/INDEX</b><br><br><u>Valid Examples:</u><br>view id/1</td>
-  </tr>
-  <tr>
-    <td>Increase the quantity of an item</td>
-    <td><b>inc id/INDEX_LIST [qty/QUANTITY]</b><br><br><u>Valid Examples:</u><br>inc id/1 qty/100<br>inc id/1,2,3 qty/100</td>
-  </tr>
-  <tr>
-    <td>Decrease the quantity of an item</td>
-    <td><b>dec id/INDEX_LIST [qty/QUANTITY]</b><br><br><u>Valid Examples:</u><br>dec id/1 qty/100<br>dec id/1,2,3 qty/100</td>
-  </tr>
-  <tr>
-    <td>Update the information of an item</td>
-    <td><b>set id/INDEX_LIST [n/ITEM_NAME] [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]</b><br><br>❗ IMPORTANT:<br>Do not update multiple items to have the same name<br><br><u>Valid Examples:</u><br>set id/1 n/Potatoes qty/60 unit/kg<br>set id/1,2,3 qty/60</td>
-  </tr>
-  <tr>
-    <td>Delete an item</td>
-    <td><b>del id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>del id/1<br>del id/1,2,3</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+{% include_relative _ug/commandSummary/ItemCommands.md %}
 
 ### Tag Commands
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Action</th>
-    <th>Format</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Create a new tag</td>
-    <td><b>newtag n/TAG_NAME</b><br><br><u>Valid Examples:</u><br>newtag n/Food<br>newtag n/Condiments<br><br><u>Invalid Examples:</u><br>newtag Food<br>newtag Condiments</td>
-  </tr>
-  <tr>
-    <td>List all tags available<br></td>
-    <td><b>listtag</b><br><br><u>Valid Example:</u><br>listtag<br><br><br><u>Invalid Example:</u><br>listtags</td>
-  </tr>
-  <tr>
-    <td>Tag items with a specific tag<br></td>
-    <td><b>tag n/TAG_NAME id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>tag n/Condiments id/1<br>tag n/Condiments id/1,2,4,8<br><br><u>Invalid Example:</u><br>tag Condiments 1</td>
-  </tr>
-  <tr>
-    <td>Untag items with a specific tag</td>
-    <td><b>untag n/TAG_NAME id/INDEX_LIST</b><br><br><u>Valid Examples:</u><br>untag n/Condiments id/1<br>untag n/Condiments id/1,2,4,8<br><br><u>Invalid Example:</u><br>untag Condiments 1,2</td>
-  </tr>
-  <tr>
-    <td>Rename a tag</td>
-    <td><b>renametag n/TAG_NAME n/TAG_NAME</b><br><br><u>Valid Example:</u><br>renametag n/Condiments n/Condiment<br><br><u>Invalid Example:</u><br>renametag Condiments Condiment</u><br></td>
-  </tr>
-  <tr>
-    <td>Delete a tag</td>
-    <td><b>delete n/TAG_NAME</b><br><br><u>Valid Examples:</u><br>deletetag n/Food<br><br><br><u>Invalid Examples:</u><br>deletetag n/<br>deletetag Food<br>deletetag Condiments</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+{% include_relative _ug/commandSummary/TagCommands.md %}
 
 ### Other Commands
 
-<!-- markdownlint-disable no-inline-html -->
-<table>
-<thead>
-  <tr>
-    <th>Action</th>
-    <th>Format</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Shows a help dialog with a list of available commands</td>
-    <td><b>help</b><br><br><u>Valid Example:</u><br>help</td>
-  </tr>
-  <tr>
-    <td>Reset the application</td>
-    <td><b>reset</b><br><u><br>Valid Example:</u><br>reset</td>
-  </tr>
-  <tr>
-    <td>Exit the application</td>
-    <td><b>exit</b><br><u><br>Valid Examples:</u><br>exit</td>
-  </tr>
-</tbody>
-</table>
-<!-- markdownlint-enable no-inline-html -->
+{% include_relative _ug/commandSummary/OtherCommands.md %}
 
 ## Troubleshooting
 
