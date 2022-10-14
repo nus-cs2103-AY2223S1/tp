@@ -8,8 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.reminder.exceptions.DuplicateReminderException;
 
 /**
  * A list of reminders that enforces uniqueness between its elements and does not allow nulls.
@@ -52,7 +51,7 @@ public class UniqueReminderList {
      * Replaces the contents of this list with {@code tutorials}.
      * {@code tutorials} must not contain duplicate tutorials.
      */
-    public void setTutorials(List<Reminder> reminders) {
+    public void setReminders(List<Reminder> reminders) {
         requireAllNonNull(reminders);
         if (!tutorialsAreUnique(reminders)) {
             throw new DuplicateReminderException();
@@ -98,5 +97,4 @@ public class UniqueReminderList {
         }
         return true;
     }
-
 }

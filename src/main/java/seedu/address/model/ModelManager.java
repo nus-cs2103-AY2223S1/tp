@@ -36,7 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredReminders = new FilteredList<>(this.addressBook.getRemindersList());
+        filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
     }
 
     public ModelManager() {
@@ -160,13 +160,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTutorialClashingWith(Reminder reminder) {
-        requireNonNull(reminder);
-        return addressBook.hasReminderClashingWith(reminder);
-    }
-
-    @Override
-    public void addTutorial(Reminder reminder) {
+    public void addReminder(Reminder reminder) {
         addressBook.addReminder(reminder);
         updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
     }

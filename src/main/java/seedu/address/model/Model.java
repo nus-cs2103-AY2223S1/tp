@@ -93,11 +93,6 @@ public interface Model {
     boolean hasReminder(Reminder reminder);
 
     /**
-     * Returns true if a reminder with the same venue and timeslot as {@code reminder} exists in the ModQuik.
-     */
-    boolean hasReminderClashingWith(Reminder reminder);
-
-    /**
      * Adds the given reminder.
      * {@code reminder} must not already exist in the ModQuik.
      */
