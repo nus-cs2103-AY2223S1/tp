@@ -20,6 +20,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -145,9 +148,13 @@ public interface Model {
      */
     void deleteModule(Module target);
 
+    void replaceModule(Module target, Module editedModule);
+
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    void updateFilteredModuleList(Predicate<Module> predicate);
 }

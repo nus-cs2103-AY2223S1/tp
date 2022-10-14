@@ -2,6 +2,9 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.EditModuleCommand;
+
+
 /**
  * Module class represents a Module being taken.
  */
@@ -35,6 +38,17 @@ public class Module {
             return false;
         }
         return otherModule == this || otherModule.moduleCode.equals(this.moduleCode);
+    }
+
+    /**
+     * Creates and returns a {@code Module} with the details of {@code this}
+     * edited with {@code editModuleDescriptor}.
+     */
+    public Module edit(EditModuleCommand.EditModuleDescriptor editModuleDescriptor) {
+        requireNonNull(editModuleDescriptor);
+
+        ModuleCode updatedModuleCode = editModuleDescriptor.getModuleCode().orElse(this.moduleCode);
+        return new Module(updatedModuleCode);
     }
 
     @Override
