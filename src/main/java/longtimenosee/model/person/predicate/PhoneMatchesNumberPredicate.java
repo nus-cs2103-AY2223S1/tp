@@ -16,6 +16,6 @@ public class PhoneMatchesNumberPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getPhone().value.equals(number);
+        return person.getPhone().value.contains(number);
     }
 }

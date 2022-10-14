@@ -16,6 +16,6 @@ public class AddressMatchesInputPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getAddress().value.equals(address);
+        return person.getAddress().value.contains(address);
     }
 }
