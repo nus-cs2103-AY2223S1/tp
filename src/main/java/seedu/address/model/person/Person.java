@@ -128,9 +128,8 @@ public class Person {
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.markMod();
-                    i++;
+                    break;
                 }
-                j++;
             }
         }
     }
