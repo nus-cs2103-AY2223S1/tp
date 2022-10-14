@@ -31,6 +31,9 @@ public class CalendarEvent {
         return localDateTime.toLocalTime();
     }
 
+    public String toString() {
+        return String.format("%s, %s", getTime().toString(), this.name);
+    }
 
 
 }

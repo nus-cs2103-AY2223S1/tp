@@ -40,6 +40,7 @@ public class CalendarDisplay extends UiPart<Region> {
         drawBody();
     }
 
+
     private void drawBody() {
 
         // Draw days of the week
@@ -61,7 +62,8 @@ public class CalendarDisplay extends UiPart<Region> {
                 row++;
             }
             ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
-                    .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH));
+                    .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1);
+            calendarEventsInDayOfMonth.forEach(x -> System.out.println(x));
             Text tDate = new Text(" " + String.valueOf(currentDay) + String.format("\n, %s", calendarEventsInDayOfMonth));
             calendarDisplay.add(tDate, dayOfWeek - 1, row);
             currentDay++;

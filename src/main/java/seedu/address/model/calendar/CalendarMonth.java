@@ -46,6 +46,7 @@ public class CalendarMonth {
         List<CalendarEvent> calendarEventInDayOfMonth = new ArrayList<>();
         Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month;
         calendarEvents.stream().filter(filter).forEach(x -> calendarEventInDayOfMonth.add(x));
+        calendarEvents.stream().filter(filter).forEach(x -> System.out.println(x.toString()));
         return FXCollections.observableList(calendarEventInDayOfMonth);
     }
 

@@ -26,10 +26,6 @@ public class DateTime {
         return localDateTime;
     }
 
-    public LocalDate getLocalDate() {
-        return localDateTime.toLocalDate();
-    }
-
     @Override
     public String toString() {
         return localDateTime.format(java.time.format
