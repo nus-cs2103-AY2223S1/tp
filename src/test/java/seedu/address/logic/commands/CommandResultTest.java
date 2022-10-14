@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -77,4 +78,15 @@ public class CommandResultTest {
         assertFalse(cr.isExit());
     }
 
+    @Test
+    public void getCommandSpecific() {
+        CommandResult cr = new CommandResult("", CommandSpecific.CLIENT);
+        assertEquals(cr.getCommandSpecific(), CommandSpecific.CLIENT);
+
+        CommandResult cr2 = new CommandResult("", CommandSpecific.DETAILED_MEETING);
+        assertEquals(cr2.getCommandSpecific(), CommandSpecific.DETAILED_MEETING);
+
+        CommandResult cr3 = new CommandResult("");
+        assertNull(cr3.getCommandSpecific());
+    }
 }
