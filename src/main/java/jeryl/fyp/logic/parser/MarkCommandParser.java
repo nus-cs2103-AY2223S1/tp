@@ -1,7 +1,7 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STATUS;
+import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
 import java.util.stream.Stream;
@@ -22,15 +22,15 @@ public class MarkCommandParser implements Parser<MarkCommand> {
      */
     public MarkCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_STUDENT_ID, PREFIX_PROJECT_STATUS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_STATUS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_STUDENT_ID, PREFIX_PROJECT_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
         }
 
         StudentId studentId = ParserUtil.parseStudentId(argMultimap.getValue(PREFIX_STUDENT_ID).get());
-        ProjectStatus projectStatus = ParserUtil.parseProjectStatus(argMultimap.getValue(PREFIX_STATUS).get());
+        ProjectStatus projectStatus = ParserUtil.parseProjectStatus(argMultimap.getValue(PREFIX_PROJECT_STATUS).get());
 
         return new MarkCommand(studentId, projectStatus);
     }

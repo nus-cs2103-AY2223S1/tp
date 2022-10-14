@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jeryl.fyp.commons.exceptions.IllegalValueException;
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -25,7 +25,7 @@ class JsonAdaptedStudent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
-    private final String name;
+    private final String studentName;
     private final String studentId;
     private final String email;
     private final String projectName;
@@ -36,11 +36,11 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("studentId") String studentId,
+    public JsonAdaptedStudent(@JsonProperty("name") String studentName, @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email, @JsonProperty("projectName") String projectName,
                               @JsonProperty("projectStatus") String projectStatus,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
+        this.studentName = studentName;
         this.studentId = studentId;
         this.email = email;
         this.projectName = projectName;
@@ -54,7 +54,7 @@ class JsonAdaptedStudent {
      * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
-        name = source.getName().fullName;
+        studentName = source.getStudentName().fullStudentName;
         studentId = source.getStudentId().id;
         email = source.getEmail().value;
         projectName = source.getProjectName().fullProjectName;
@@ -75,13 +75,14 @@ class JsonAdaptedStudent {
             studentTags.add(tag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (studentName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StudentName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!StudentName.isValidStudentName(studentName)) {
+            throw new IllegalValueException(StudentName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final StudentName modelStudentName = new StudentName(studentName);
 
         if (studentId == null) {
             throw new IllegalValueException(String.format(
@@ -118,7 +119,8 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
-        return new Student(modelName, modelStudentId, modelEmail, modelProjectName, modelProjectStatus, modelTags);
+        return new Student(modelStudentName, modelStudentId, modelEmail,
+                modelProjectName, modelProjectStatus, modelTags);
     }
 
 }

@@ -26,7 +26,7 @@ title: User Guide
 
    * **`list`** - lists all FYP projects the professor is supervising
 
-   * **`add id/A0123456G n/John Doe proj/Automation of Selenium`** - adds the FYP project of the student named John Doe with ID A0123456G titled _Automation of Selenium_
+   * **`add id/A0123456G n/John Doe proj/Automation of Selenium e/johndoe@gmail.com`** - adds the FYP project of the student named John Doe with ID A0123456G, email `johndoe@gmail.com`, and project titled _Automation of Selenium_
 
    * **`delete id/A0123456G`** - deletes the FYP project of the student with ID A0123456G
 

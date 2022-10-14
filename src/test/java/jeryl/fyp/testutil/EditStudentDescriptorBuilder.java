@@ -6,10 +6,11 @@ import java.util.stream.Stream;
 
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
+import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 
 /**
@@ -32,7 +33,7 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();
-        descriptor.setName(student.getName());
+        descriptor.setStudentName(student.getStudentName());
         descriptor.setStudentId(student.getStudentId());
         descriptor.setEmail(student.getEmail());
         descriptor.setProjectName(student.getProjectName());
@@ -40,10 +41,10 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditStudentDescriptor} that we are building.
+     * Sets the {@code StudentName} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setStudentName(new StudentName(name));
         return this;
     }
 
@@ -68,6 +69,14 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withProjectName(String projectName) {
         descriptor.setProjectName(new ProjectName(projectName));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ProjectStatus} of the {@code EditStudentDescriptor} that we are building.
+     */
+    public EditStudentDescriptorBuilder withProjectStatus(String projectStatus) {
+        descriptor.setProjectStatus(new ProjectStatus(projectStatus));
         return this;
     }
 

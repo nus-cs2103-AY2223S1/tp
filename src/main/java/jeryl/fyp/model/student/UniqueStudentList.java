@@ -21,7 +21,7 @@ import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Student#isSameStudent(Student)
+ * @see Student#isSameStudentName(Student)
  */
 public class UniqueStudentList implements Iterable<Student> {
 
@@ -34,7 +34,7 @@ public class UniqueStudentList implements Iterable<Student> {
      */
     public boolean contains(Student toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameStudent);
+        return internalList.stream().anyMatch(toCheck::isSameStudentName);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniqueStudentList implements Iterable<Student> {
             throw new StudentNotFoundException();
         }
 
-        if (!target.isSameStudent(editedStudent) && contains(editedStudent)) {
+        if (!target.isSameStudentName(editedStudent) && contains(editedStudent)) {
             throw new DuplicateStudentException();
         }
 
@@ -128,7 +128,7 @@ public class UniqueStudentList implements Iterable<Student> {
     private boolean studentsAreUnique(List<Student> students) {
         for (int i = 0; i < students.size(); i++) {
             for (int j = i + 1; j < students.size(); j++) {
-                if (students.get(i).isSameStudent(students.get(j))) {
+                if (students.get(i).isSameStudentName(students.get(j))) {
                     return false;
                 }
             }

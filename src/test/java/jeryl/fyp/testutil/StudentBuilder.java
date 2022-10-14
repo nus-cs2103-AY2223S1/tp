@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.model.util.SampleDataUtil;
 
@@ -17,13 +17,13 @@ import jeryl.fyp.model.util.SampleDataUtil;
  */
 public class StudentBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
+    public static final String DEFAULT_STUDENT_NAME = "Amy Bee";
     public static final String DEFAULT_STUDENT_ID = "A1355255B";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_PROJECT_NAME = "CS2103 SE";
     public static final String DEFAULT_PROJECT_STATUS = "YTS";
 
-    private Name name;
+    private StudentName studentName;
     private StudentId id;
     private Email email;
     private ProjectName projectName;
@@ -34,7 +34,7 @@ public class StudentBuilder {
      * Creates a {@code StudentBuilder} with the default details.
      */
     public StudentBuilder() {
-        name = new Name(DEFAULT_NAME);
+        studentName = new StudentName(DEFAULT_STUDENT_NAME);
         id = new StudentId(DEFAULT_STUDENT_ID);
         email = new Email(DEFAULT_EMAIL);
         projectName = new ProjectName(DEFAULT_PROJECT_NAME);
@@ -47,7 +47,7 @@ public class StudentBuilder {
      * Initializes the StudentBuilder with the data of {@code studentToCopy}.
      */
     public StudentBuilder(Student studentToCopy) {
-        name = studentToCopy.getName();
+        studentName = studentToCopy.getStudentName();
         id = studentToCopy.getStudentId();
         email = studentToCopy.getEmail();
         projectName = studentToCopy.getProjectName();
@@ -56,10 +56,10 @@ public class StudentBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Student} that we are building.
+     * Sets the {@code StudentName} of the {@code Student} that we are building.
      */
-    public StudentBuilder withName(String name) {
-        this.name = new Name(name);
+    public StudentBuilder withStudentName(String studentName) {
+        this.studentName = new StudentName(studentName);
         return this;
     }
 
@@ -105,7 +105,7 @@ public class StudentBuilder {
     }
 
     public Student build() {
-        return new Student(name, id, email, projectName, projectStatus, tags);
+        return new Student(studentName, id, email, projectName, projectStatus, tags);
     }
 
 }

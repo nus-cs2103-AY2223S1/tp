@@ -42,10 +42,10 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_inexistentStudentIdUnfilteredList_throwsCommandException() {
+    public void execute_nonexistentStudentIdUnfilteredList_throwsCommandException() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        StudentId inexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
-        DeleteCommand deleteCommand = new DeleteCommand(inexistentStudentId);
+        StudentId nonexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
+        DeleteCommand deleteCommand = new DeleteCommand(nonexistentStudentId);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -71,12 +71,12 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_inexistentStudentIdFilteredList_throwsCommandException() {
+    public void execute_nonexistentStudentIdFilteredList_throwsCommandException() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        StudentId inexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
-        DeleteCommand deleteCommand = new DeleteCommand(inexistentStudentId);
+        StudentId nonexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
+        DeleteCommand deleteCommand = new DeleteCommand(nonexistentStudentId);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);

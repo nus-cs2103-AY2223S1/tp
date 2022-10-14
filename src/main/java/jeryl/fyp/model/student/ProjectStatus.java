@@ -23,6 +23,13 @@ public class ProjectStatus {
         projectStatus = status;
     }
 
+    /**
+     * Constructs a default {@code ProjectStatus}.
+     */
+    public ProjectStatus() {
+        this("YTS");
+    }
+
     public String toString() {
         return projectStatus;
     }

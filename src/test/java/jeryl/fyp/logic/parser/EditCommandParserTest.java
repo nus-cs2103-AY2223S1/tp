@@ -4,19 +4,19 @@ import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jeryl.fyp.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_STUDENT_ID_DESC;
+import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_STUDENT_NAME_DESC;
 import static jeryl.fyp.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static jeryl.fyp.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID_DESC_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_NAME_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,8 +32,8 @@ import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.EditCommand;
 import jeryl.fyp.logic.commands.EditCommand.EditStudentDescriptor;
 import jeryl.fyp.model.student.Email;
-import jeryl.fyp.model.student.Name;
 import jeryl.fyp.model.student.StudentId;
+import jeryl.fyp.model.student.StudentName;
 import jeryl.fyp.model.tag.Tag;
 import jeryl.fyp.testutil.EditStudentDescriptorBuilder;
 
@@ -49,7 +49,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_STUDENT_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -61,10 +61,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + STUDENT_NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + STUDENT_NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -75,7 +75,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_STUDENT_NAME_DESC, StudentName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_STUDENT_ID_DESC, StudentId.MESSAGE_CONSTRAINTS); // invalid student ID
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
@@ -95,17 +95,17 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                + VALID_STUDENT_ID_AMY, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_STUDENT_NAME_DESC + INVALID_EMAIL_DESC
+                + VALID_STUDENT_ID_AMY, StudentName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
         String userInput = targetIndex.getOneBased() + STUDENT_ID_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+                + EMAIL_DESC_AMY + STUDENT_NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_AMY)
                 .withStudentId(VALID_STUDENT_ID_BOB).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -129,8 +129,8 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_STUDENT;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + STUDENT_NAME_DESC_AMY;
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_STUDENT_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

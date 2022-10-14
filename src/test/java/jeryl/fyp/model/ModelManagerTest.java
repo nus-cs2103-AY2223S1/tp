@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import jeryl.fyp.commons.core.GuiSettings;
-import jeryl.fyp.model.student.NameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.StudentNameContainsKeywordsPredicate;
 import jeryl.fyp.testutil.FypManagerBuilder;
 
 public class ModelManagerTest {
@@ -117,8 +117,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentFypManager, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = ALICE.getStudentName().fullStudentName.split("\\s+");
+        modelManager.updateFilteredStudentList(new StudentNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(fypManager, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
