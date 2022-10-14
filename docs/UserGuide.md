@@ -28,7 +28,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
    * **`add`**`n/John Doe r/student m/CS2105 p/98765432 e/johnd@example.com` : Adds a student named `John Doe` to CS2103T module.
 
-   * **`delete person`**`3` : Deletes the 3rd person shown in the current list.
+   * **`delete student`**`3` : Deletes the 3rd student shown in the current list.
 
    * **`clear reminders`** : Deletes all reminders.
 
@@ -82,45 +82,45 @@ Deletes a module from the list of modules.
 
 Format: `delete mod m/MODULE`
 
-### Adding a person: `add person`
+### Adding a student: `add student`
 
-Adds a person to the specified module.
+Adds a student to the specified module.
 
 Format: `add m/MODULE r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A student can have any number of tags (including 0)
 </div>
 
-* The `ROLE` of the person can only be either student or TA.  
+* The `ROLE` of the student can only be either student or TA.  
 
 Examples:
 * `add m/CS2103T n/John Doe r/TA p/98765432 e/johnd@example.com`
 * `add m/CS2105 n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 t/criminal`
 
-### Listing all persons : `list person`
+### Listing all students : `list student`
 
-Shows a list of all persons in a specified module.
+Shows a list of all students in a specified module.
 
-Format: `list person m/MODULE [r/ROLE]`
+Format: `list student m/MODULE [r/ROLE]`
 
-### Editing a person : `edit person`
+### Editing a student : `edit student`
 
-Edits an existing person in a specified module.
+Edits an existing student in a specified module.
 
 Format: `edit INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
+* You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find person`
+### Locating students by name: `find student`
 
 Finds students or TAs whose names contain any of the given keywords.
 
@@ -137,20 +137,20 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-### Deleting a person : `delete person`
+### Deleting a student : `delete student`
 
-Deletes the specified person from the list of people.
+Deletes the specified student from the list of people.
 
-Format: `delete person INDEX [m/MODULE] [r/ROLE]`
+Format: `delete student INDEX [m/MODULE] [r/ROLE]`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+* Deletes the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the list of people.
-* `list m/CS2103T` followed by `delete 3` deletes the 3rd person in the CS2103T module.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd student in the list of people.
+* `list m/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T module.
+* `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 ### Adding a tutorial : `add tut`
 
@@ -254,10 +254,10 @@ _Details coming soon ..._
 Action | Format, Examples
 --------|------------------
 **Add Person** | `add m/MODULE r/ROLE n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​` <br> e.g., `add n/James Ho m/CS2102 r/student p/22224444 e/jamesho@example.com t/friend t/colleague`
-**List Person** | `list person m/MODULE [r/ROLE]`<br> e.g., `list person m/CS2103T`
+**List Person** | `list student m/MODULE [r/ROLE]`<br> e.g., `list student m/CS2103T`
 **Edit Person** | `edit INDEX [n/NAME] [m/MODULE] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find Person** | `find person KEYWORD [m/MODULE] [r/ROLE] [MORE_KEYWORDS]`<br> e.g., `find person john m/CS2103T`
-**Delete Person** | `delete person INDEX [m/MODULE] [r/ROLE]`<br> e.g., `delete person 2 m/CS2103T r/ta`
+**Find Person** | `find student KEYWORD [m/MODULE] [r/ROLE] [MORE_KEYWORDS]`<br> e.g., `find student john m/CS2103T`
+**Delete Person** | `delete student INDEX [m/MODULE] [r/ROLE]`<br> e.g., `delete student 2 m/CS2103T r/ta`
 **Add Tutorial** | `add tut m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tut m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
 **Delete Tutorial** | `delete tut INDEX` <br> e.g., `delete tut 3`
 **Clear Tutorial** | `clear tut [m/MODULE]` <br> e.g., `clear tut m/CS2105`

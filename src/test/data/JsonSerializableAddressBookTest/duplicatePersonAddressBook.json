@@ -1,15 +1,28 @@
 {
   "persons": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "name" : "Alice Pauline",
+    "id" : "A0000000A",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "telegram" : "alice",
+    "tutorialModule" : "CS2103T",
+    "tutorialName" : "W17",
+    "attendance" : "0",
+    "participation" : "0",
+    "grade" : "A",
+    "tagged" : [ "friends" ]
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street"
+    "name" : "Alice Pauline",
+    "id" : "A0000000A",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "telegram" : "alice",
+    "tutorialModule" : "CS2103T",
+    "tutorialName" : "W17",
+    "attendance" : "0",
+    "participation" : "0",
+    "grade" : "A",
+    "tagged" : [ "friends" ]
   } ],
   "tutorials": [ ],
   "consultations": [ ]
