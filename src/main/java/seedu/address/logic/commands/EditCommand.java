@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_BUDGET + "$500 "
+            + PREFIX_BUDGET + "500 "
             + PREFIX_DEADLINE + "2021-10-01";
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
