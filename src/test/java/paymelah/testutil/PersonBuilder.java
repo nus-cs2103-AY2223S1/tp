@@ -102,6 +102,14 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DebtList} of the {@code Person} that we are building using a pre-existing DebtList.
+     */
+    public PersonBuilder withDebts(DebtList debts) {
+        this.debts = SampleDataUtil.getDebtList(debts.asList().toArray(new Debt[0]));
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, address, tags, debts);
     }

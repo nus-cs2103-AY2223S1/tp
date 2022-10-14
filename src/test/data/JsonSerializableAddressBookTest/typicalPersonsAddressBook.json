@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
     "debts" : [ {
-      "description" : "McDonalds",
+      "description" : "McDonald's",
       "money" : "10.80"
     } ]
   }, {

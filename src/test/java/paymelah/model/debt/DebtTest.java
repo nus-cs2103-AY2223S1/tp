@@ -1,5 +1,6 @@
 package paymelah.model.debt;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.testutil.TypicalDebts.CHICKEN_RICE;
@@ -35,5 +36,13 @@ public class DebtTest {
         // different money -> returns false
         editedMcdonalds = new DebtBuilder(MCDONALDS).withMoney("120.40").build();
         assertFalse(MCDONALDS.equals(editedMcdonalds));
+    }
+
+    @Test
+    public void makeDebt() {
+        Debt fromDebtBuilder = new DebtBuilder().withDescription("Gift cards").withMoney("50").build();
+        Debt fromMakeDebt = Debt.makeDebt("Gift cards", "50");
+
+        assertEquals(fromDebtBuilder, fromMakeDebt);
     }
 }
