@@ -24,7 +24,7 @@ If you can type fast, HR Pro Max++ can get your project management tasks done fa
 
    * **`list`** : Lists all projects.
 
-   * **`add`**`pn/Duke pb/ 20k pd/ 2022-09-27` : Adds a project named Duke` to HR Pro Max++.
+   * **`add`**`pn/Duke pb/ 20 pd/ 2022-09-27` : Adds a project named Duke` to HR Pro Max++.
 
    * **`delete`**`3` : Deletes the 3rd project shown in the current list.
 
