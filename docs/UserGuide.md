@@ -97,6 +97,8 @@ Adds multiple employees to Coydir all at once.
 
 :warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
 
+:warning: **Do not have commas between each field in the CSV file.
+
 This command results in one of two cases below:
 
 **Case 1: CSV file exists**
@@ -106,7 +108,7 @@ if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will re
 **Case 2: CSV file does not exist**
 
 if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
-prompt the user to upload it.
+throw an error.
 
 Format: `batchadd FILENAME`
 
