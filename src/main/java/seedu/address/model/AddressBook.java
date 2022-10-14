@@ -67,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a profile with the same name as {@code profile} exists in the address book.
+     * Returns true if a profile with the same email as {@code profile} exists in the address book.
      */
     public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
