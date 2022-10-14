@@ -84,7 +84,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        personToEdit.getTags().forEach(tag -> tag.removePerson(personToEdit));
+        personToEdit.getTags().forEach(tag -> {
+            tag.removePerson(personToEdit);
+            if (tag.isPersonListEmpty()) {
+                model.removeTag(tag);
+            }
+        });
         editedPerson.getTags().forEach(tag -> tag.addPerson(editedPerson));
 
         model.setPerson(personToEdit, editedPerson);
