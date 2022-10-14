@@ -24,71 +24,27 @@ What you should expect to find:
 
 ### Receive help during usage
 
-Command: `help`
+Command: `help [COMMAND_WORD]`
 
-> Description: Displays a list of commands that can be used.
-
----
+> Description: Displays a help message for this application.
 
 Example:
-
-Input
-
 ```text
 help
+help delete
+held help
 ```
 
 Output:
 
-```text
-list:
-    Lists all the items/tags that the user has created.
+A new window will open showing instructions.
 
-    Usage:
-        List items:  "list items"
-        List tags:   "list tags"
+If no `COMMAND_WORD` was specified, only a general help will be provided. 
+The general help shows a list of commands available to the user and a URL to this User Guide.
 
-item:
-    Create / Delete / Increment quantity / Decrement quantity /
-    Set quantity / Set expiry date / Set bought date, of an item.
+If a `COMMAND_WORD` was specified, additional help for that command will be provided in addition to the general help.
 
-    Flags:
-        Name:        n/
-        Quantity:    qty/
-        Expiry Date: exp/
-        Bought Date: bgt/
-
-    Usage:
-        Create:      "item new n/Potatoes"
-        Delete:      "item del 1"
-        Increment:   "item inc 1 10"
-        Decrement:   "item dec 1 10"
-        Set:         "item set 1 n/Potatoes qty/10"
-
-find:
-    Find an inventory item based on the given keywords.
-
-    Usage:
-        Find:        "find potato carrots"
-
-tag:
-    Create / Rename / Set item tied to / Delete, a tag.
-
-    Flags:
-        Name:        n/
-
-    Usage:
-        Create:      "tag create food"
-        Rename:      "tag rename food n/foodie"
-        Set item:    "tag 1 2 7 71 food"
-        Delete:      "tag delete food"
-
-bye:
-    Exits FoodRem program.
-
-    Usage:
-        Exit:       "bye"
-```
+--- 
 
 ### Reset the application
 
