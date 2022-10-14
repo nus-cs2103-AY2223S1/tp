@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -110,6 +111,11 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<AddCommand> batchAdd(String fileName) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 

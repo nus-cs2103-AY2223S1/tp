@@ -12,8 +12,8 @@ import coydir.logic.parser.exceptions.ParseException;
 public class BatchAddCommandParser implements Parser<BatchAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeleteCommand
-     * and returns a DeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the BatchAddCommand
+     * and returns a BatchAdd object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public BatchAddCommand parse(String args) throws ParseException {

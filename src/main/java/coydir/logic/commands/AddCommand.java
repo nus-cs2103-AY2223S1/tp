@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already exists in the address book";
 
     private final Person toAdd;
 
@@ -55,7 +55,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON,toAdd.getName()));
         }
 
         model.addPerson(toAdd);

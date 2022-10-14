@@ -1,9 +1,12 @@
 package coydir.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import coydir.commons.core.GuiSettings;
+import coydir.logic.commands.AddCommand;
+import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 
@@ -69,7 +72,11 @@ public interface Model {
      */
     void addPerson(Person person);
 
-    void batchAdd(String fileName);
+    /**
+     * Adds multiple people into the database.
+     * {@code person} must not already exist in the address book.
+     */
+    List<AddCommand> batchAdd(String fileName) throws CommandException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

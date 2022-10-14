@@ -6,11 +6,15 @@ import static java.util.Objects.requireNonNull;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import coydir.commons.core.GuiSettings;
 import coydir.commons.core.LogsCenter;
+import coydir.logic.commands.AddCommand;
+import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.AddCommandParser;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Person;
@@ -113,10 +117,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void batchAdd(String filename) {
+    public List<AddCommand> batchAdd(String filename) throws CommandException {
             Path file = Paths.get("data", filename);
             String line = "";
             String splitBy = ",";
+            List<AddCommand> addCommandList = new ArrayList<>();
             try {
                 // parsing a CSV file into BufferedReader class constructor
                 BufferedReader br = new BufferedReader(new FileReader(file.toString()));
@@ -124,19 +129,28 @@ public class ModelManager implements Model {
                 while ((line = br.readLine()) != null) // returns a Boolean value
                 {
                     String[] data = line.split(splitBy); // use comma as separator
-                    String arg = "";
+                    String arg = " ";
                     for (int i = 0; i < data.length; i++){
-                        arg += PREFIX_LIST[i] + data[i] + " ";
+                        if (i == (data.length - 1)){
+                            String[] tags = data[i].split("/");
+                            for (String tag : tags) {
+                                arg += PREFIX_LIST[i] + tag + " ";
+                            }
+                        } else {
+                            arg += PREFIX_LIST[i] + data[i] + " ";
+                        }
                     }
-                    new AddCommandParser().parse(arg);
+                    addCommandList.add(new AddCommandParser().parse(arg));
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("FUCK");
+                e.printStackTrace();
+                throw new CommandException("File Not Found");
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        return addCommandList;
     }
 
 
