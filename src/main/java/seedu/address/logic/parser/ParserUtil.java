@@ -334,12 +334,7 @@ public class ParserUtil {
         if (!WeeklyTimeslot.isValidDay(day)) {
             throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_DAY);
         }
-        if (!WeeklyTimeslot.isValidTime(startTime)) {
-            System.out.println("JEF");
-            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
-        }
-        if (!WeeklyTimeslot.isValidTime(endTime)) {
-            System.out.println("FE");
+        if (!WeeklyTimeslot.isValidTimeRange(startTime, endTime)) {
             throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
         }
         return new WeeklyTimeslot(day, startTime, endTime);

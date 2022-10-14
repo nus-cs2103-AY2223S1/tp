@@ -40,6 +40,10 @@ public class Datetime {
         }
         return true;
     }
+    
+    public String toFormatted() {
+        return datetime.format(DATE_TIME_FORMAT);
+    }
 
     @Override
     public String toString() {

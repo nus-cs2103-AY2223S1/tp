@@ -1,7 +1,6 @@
 package seedu.address.model.datetime;
 
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,7 +21,7 @@ public class WeeklyTimeslot {
             "Times should be in HH:mm format, e.g. 08:00";
     public static final String MESSAGE_CONSTRAINTS_DAY =
             "Days should only contain numbers from 1 (Monday) to 7 (Sunday)";
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     public static final String MESSAGE_INVALID_DURATION = "The start time should be before end time.";
 
     public final DayOfWeek dayValue;
@@ -47,18 +46,9 @@ public class WeeklyTimeslot {
         checkArgument(isValidTime(startTimeString), MESSAGE_CONSTRAINTS_TIMES);
         checkArgument(isValidTime(endTimeString), MESSAGE_CONSTRAINTS_TIMES);
         checkArgument(isValidDay(dayString), MESSAGE_CONSTRAINTS_DAY);
-        this.startTime = LocalTime.parse(startTimeString, DATE_TIME_FORMAT);
-        this.endTime = LocalTime.parse(endTimeString, DATE_TIME_FORMAT);
+        this.startTime = LocalTime.parse(startTimeString, TIME_FORMAT);
+        this.endTime = LocalTime.parse(endTimeString, TIME_FORMAT);
         dayValue = DayOfWeek.of(Integer.parseInt(dayString));
-    }
-
-    public static boolean isValidTime(String timeString) {
-        try {
-            LocalTime.parse(timeString, DATE_TIME_FORMAT);
-        } catch (DateTimeParseException ex) {
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -67,6 +57,39 @@ public class WeeklyTimeslot {
     public static boolean isValidDay(String dayString) {
 
         return dayString.matches(VALIDATION_REGEX);
+    }
+
+    private static boolean isValidTime(String datetimeString) {
+        try {
+            LocalTime.parse(datetimeString, TIME_FORMAT);
+        } catch (DateTimeParseException ex) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidTimeRange(String timeStart, String timeEnd) {
+        // Unideal: does additional work by creating objects to check validity.
+        // This is to confirm to the rest of the codebase, where checks are done on a
+        // "check for permission" in a static method beforehand.
+        if (!isValidTime(timeStart) || !isValidTime(timeEnd)) {
+            return false;
+        }
+        LocalTime timeStartObj = LocalTime.parse(timeStart, TIME_FORMAT);
+        LocalTime timeEndObj = LocalTime.parse(timeEnd, TIME_FORMAT);
+        return !timeEndObj.isBefore(timeStartObj);
+    }
+
+
+    public String getDay() {
+        return String.valueOf(dayValue.getValue());
+    }
+
+    public String getStartTimeFormatted() {
+        return startTime.format(TIME_FORMAT);
+    }
+    public String getEndTimeFormatted() {
+        return endTime.format(TIME_FORMAT);
     }
 
     private String getDayOfWeekReadable() {

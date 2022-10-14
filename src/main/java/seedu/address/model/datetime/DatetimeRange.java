@@ -58,6 +58,20 @@ public class DatetimeRange {
         return !datetimeEndObj.isBefore(datetimeStartObj);
     }
 
+    public String getStartDatetimeFormatted() {
+        return startDatetime.format(DATE_TIME_FORMAT);
+    }
+    public String getEndDatetimeFormatted() {
+        return endDatetime.format(DATE_TIME_FORMAT);
+    }
+
+    public String toStorageString() {
+        // String that uniquely stores info
+        return String.format("%s to %s",
+                startDatetime.format(DATE_TIME_FORMAT),
+                endDatetime.format(DATE_TIME_FORMAT));
+    }
+
     @Override
     public String toString() {
         return String.format("%s to %s", startDatetime, endDatetime);
