@@ -28,14 +28,12 @@ public class ItemNameTest {
         // invalid ItemName
         assertFalse(ItemName.isValidItemName("")); // empty string
         assertFalse(ItemName.isValidItemName(" ")); // spaces only
-        assertFalse(ItemName.isValidItemName("^")); // only non-alphanumeric characters
-        assertFalse(ItemName.isValidItemName("Blue Chair^^")); // contains non-alphanumeric characters
 
         // valid ItemName
         assertTrue(ItemName.isValidItemName("Golden Spoon")); // alphabets only
         assertTrue(ItemName.isValidItemName("345")); // numbers only
         assertTrue(ItemName.isValidItemName("3 Golden Spoons")); // alphanumeric characters
-        assertTrue(ItemName.isValidItemName("Queen Sized Bed")); // with capital letters
+        assertTrue(ItemName.isValidItemName("Queen-Sized Bed")); // with special characters
         assertTrue(ItemName.isValidItemName("Microsoft Windows Vista Ultimate UPGRADE Limited "
                 + "Numbered Signature Edition")); // long item name
     }
