@@ -10,6 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MOVIE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_LUNCH;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_MOVIE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESC;
@@ -47,7 +50,7 @@ public class AddCommandParserTest {
     private EntryType incomeType = new EntryType(VALID_TYPE_INCOME);
     @Test
     public void parse_allFieldsPresent_success() {
-        Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).withTags(VALID_TAG_LUNCH).build();
+        Entry expectedExpenditure = new ExpenditureBuilder(LUNCH).withTag(VALID_TAG_LUNCH).build();
 
         // whitespace only preamble
         assertParseSuccess(
@@ -107,8 +110,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Entry expectedExpenditure = new ExpenditureBuilder(MOVIE).withTags().build();
-        assertParseSuccess(parser, TYPE_EXPENDITURE + DESC_MOVIE + AMT_MOVIE + DATE_MOVIE,
+        Entry expectedExpenditure = new ExpenditureBuilder(MOVIE).build();
+        assertParseSuccess(parser, TYPE_EXPENDITURE + DESC_MOVIE + AMT_MOVIE + DATE_MOVIE + TAG_MOVIE,
                 new AddCommand(expectedExpenditure, expenditureType));
 
         // to add income

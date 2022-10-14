@@ -10,10 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.Amount;
-import seedu.address.model.entry.Date;
-import seedu.address.model.entry.Description;
-import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -103,26 +100,26 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Tag parseTag(EntryType type, String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        if (!Tag.isValidTagName(type, trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Tag(type, trimmedTag);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
+//    /**
+//     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+//     */
+//    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+//        requireNonNull(tags);
+//        final Set<Tag> tagSet = new HashSet<>();
+//        for (String tagName : tags) {
+//            tagSet.add(parseTag(tagName));
+//        }
+//        return tagSet;
+//    }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

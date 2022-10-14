@@ -115,7 +115,7 @@ public class EditCommandParserTest {
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withDescription(VALID_DESC_LUNCH)
                 .withType(VALID_TYPE_EXPENDITURE).withAmount(VALID_AMT_LUNCH).withDate(VALID_DATE_LUNCH)
-                .withTags(VALID_TAG_MEAL, VALID_TAG_PERSONAL).build();
+                .withTag(VALID_TAG_MEAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -166,7 +166,7 @@ public class EditCommandParserTest {
         // tags
         userInput = targetIndex.getOneBased() + TYPE_EXPENDITURE + TAG_DESC_MEAL;
         descriptor = new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
-                .withTags(VALID_TAG_MEAL).build();
+                .withTag(VALID_TAG_MEAL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -181,7 +181,7 @@ public class EditCommandParserTest {
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
                 .withDate(VALID_DATE_DINNER)
                 .withAmount(VALID_AMT_DINNER)
-                .withTags(VALID_TAG_PERSONAL, VALID_TAG_MEAL)
+                .withTag(VALID_TAG_PERSONAL)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -212,7 +212,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TYPE_EXPENDITURE + TAG_EMPTY;
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
-                .withType(VALID_TYPE_EXPENDITURE).withTags().build();
+                .withType(VALID_TYPE_EXPENDITURE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

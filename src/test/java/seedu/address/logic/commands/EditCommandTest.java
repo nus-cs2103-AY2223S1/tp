@@ -57,10 +57,10 @@ public class EditCommandTest {
 
         ExpenditureBuilder expenditureInList = new ExpenditureBuilder(lastEntry);
         Entry editedEntry = expenditureInList.withDescription(VALID_DESC_TUITION)
-                .withAmount(VALID_AMT_TUITION).withTags(VALID_TAG_PERSONAL).build();
+                .withAmount(VALID_AMT_TUITION).withTag(VALID_TAG_PERSONAL).build();
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
-                .withDescription(VALID_DESC_TUITION).withAmount(VALID_AMT_TUITION).withTags(VALID_TAG_PERSONAL).build();
+                .withDescription(VALID_DESC_TUITION).withAmount(VALID_AMT_TUITION).withTag(VALID_TAG_PERSONAL).build();
         EditCommand editCommand = new EditCommand(indexLastEntry, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
@@ -74,7 +74,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditEntryDescriptor descriptor = new EditEntryDescriptor();
-        descriptor.setTags(null);
+        descriptor.setTag(null);
         descriptor.setType(new EntryType("e"));
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
         Entry editedEntry = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -92,7 +92,7 @@ public class EditCommandTest {
 
         Entry entryInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
         Entry editedEntry = new ExpenditureBuilder(entryInFilteredList)
-                .withDescription(VALID_DESC_TUITION).withTags().build();
+                .withDescription(VALID_DESC_TUITION).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
                         .withDescription(VALID_DESC_TUITION).build());

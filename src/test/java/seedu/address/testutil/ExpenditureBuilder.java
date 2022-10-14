@@ -21,11 +21,13 @@ public class ExpenditureBuilder {
     public static final String DEFAULT_DESC = "Food";
     public static final String DEFAULT_AMT = "5.30";
     public static final String DEFAULT_DATE = "22-09-2022";
+    public static final String DEFAULT_TAG = "Food";
+
 
     private Description description;
     private Amount amount;
     private Date date;
-    private Set<Tag> tags;
+    private Tag tag;
 
     /**
      * Creates a {@code ExpenditureBuilder} with the default details.
@@ -34,7 +36,7 @@ public class ExpenditureBuilder {
         this.description = new Description(DEFAULT_DESC);
         this.amount = new Amount(DEFAULT_AMT);
         this.date = new Date(DEFAULT_DATE);
-        this.tags = new HashSet<>();
+        this.tag = new Tag(DEFAULT_TAG);
     }
 
     /**
@@ -44,7 +46,7 @@ public class ExpenditureBuilder {
         description = expenditureToCopy.getDescription();
         amount = expenditureToCopy.getAmount();
         date = expenditureToCopy.getDate();
-        tags = new HashSet<>(expenditureToCopy.getTags());
+        tag = expenditureToCopy.getTag();
     }
 
     /**
@@ -74,12 +76,12 @@ public class ExpenditureBuilder {
     /**
      * Sets the {@code tags} of the {@code Expenditure} that we are building.
      */
-    public ExpenditureBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ExpenditureBuilder withTag(String tag) {
+        this.tag = new Tag(tag);
         return this;
     }
 
     public Expenditure build() {
-        return new Expenditure(this.description, this.date, this.amount, this.tags);
+        return new Expenditure(this.description, this.date, this.amount, this.tag);
     }
 }

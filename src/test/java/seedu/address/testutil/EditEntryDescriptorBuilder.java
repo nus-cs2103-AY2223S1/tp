@@ -36,7 +36,7 @@ public class EditEntryDescriptorBuilder {
         descriptor.setType(entryType);
         descriptor.setAmount(entry.getAmount());
         descriptor.setDate(entry.getDate());
-        descriptor.setTags(entry.getTags());
+        descriptor.setTag(entry.getTag());
     }
 
     /**
@@ -75,9 +75,10 @@ public class EditEntryDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditEntryDescriptor}
      * that we are building.
      */
-    public EditEntryDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+
+    public EditEntryDescriptorBuilder withTag(String tag) {
+        Tag newTag = new Tag(tag);
+        descriptor.setTag(newTag);
         return this;
     }
 

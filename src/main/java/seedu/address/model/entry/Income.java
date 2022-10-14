@@ -11,8 +11,8 @@ public class Income extends Entry {
     /**
      * Every field must be present and not null.
      */
-    public Income(Description description, Date date, Amount amount, Set<Tag> tags) {
-        super(description, date, amount, tags);
+    public Income(Description description, Date date, Amount amount, Tag tag) {
+        super(description, date, amount, tag);
     }
 
     @Override
@@ -22,13 +22,15 @@ public class Income extends Entry {
                 .append("; Date: ")
                 .append(getDate())
                 .append("; Amount: ")
-                .append(getAmount());
+                .append(getAmount())
+                .append("; Tag: ")
+                .append(getTag());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
+//        Set<Tag> tags = getTags();
+//        if (!tags.isEmpty()) {
+//            builder.append("; Tags: ");
+//            tags.forEach(builder::append);
+//        }
         return builder.toString();
     }
 }

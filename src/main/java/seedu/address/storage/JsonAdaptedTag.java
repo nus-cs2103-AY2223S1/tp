@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entry.EntryType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -12,20 +13,22 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedTag {
 
     private final String tagName;
-
+    private final EntryType type;
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
+    public JsonAdaptedTag(EntryType type, String tagName) {
         this.tagName = tagName;
+        this.type = type;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+    public JsonAdaptedTag(EntryType type, Tag source) {
+        this.tagName = source.tagName;
+        this.type = type;
     }
 
     @JsonValue
@@ -39,10 +42,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
+        if (!Tag.isValidTagName(type, tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(tagName);
+        return new Tag(type, tagName);
     }
 
 }
