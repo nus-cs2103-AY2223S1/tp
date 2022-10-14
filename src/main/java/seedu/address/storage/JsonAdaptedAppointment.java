@@ -35,11 +35,6 @@ public class JsonAdaptedAppointment {
         appointmentLocation = source.getLocation().toString();
     }
 
-    @JsonValue
-    public String getAppointmentDateTime() {
-        return appointmentDateTime;
-    }
-
     /**
      * Converts this Jackson-friendly adapted appointment object into the model's {@code Appointment} object.
      */
