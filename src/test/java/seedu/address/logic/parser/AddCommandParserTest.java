@@ -31,12 +31,12 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.UID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.UID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -55,7 +55,6 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Gender;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
@@ -76,7 +75,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple categories - last category accepted
-        assertParseSuccess(parser,  UID_DESC_BOB + CATEGORY_DESC_AMY + CATEGORY_DESC_BOB + NAME_DESC_BOB
+        assertParseSuccess(parser, UID_DESC_BOB + CATEGORY_DESC_AMY + CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 

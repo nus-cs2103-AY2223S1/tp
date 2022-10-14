@@ -69,7 +69,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM";  // only allowed F or M, either one
+    public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM"; // only allowed F or M, either one
     public static final String INVALID_UID_DESC = " " + PREFIX_UID + "1+"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
