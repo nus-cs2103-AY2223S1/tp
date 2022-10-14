@@ -166,7 +166,8 @@ __Optional Parameter 1: Gender__
 
 Format: `edit INDEX [g/GENDER]`
 
-- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,  `F`/`f` for female.
+- Edits the gender of a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,
+`F`/`f` for female, and `NA` for empty gender (if user wants to hide gender).
 - `INDEX` must be **a positive integer** (i.e 1,2,3…)
 - `INDEX` must be within the range of the contact list index (i.e. from 1 to size of contact list).
 
