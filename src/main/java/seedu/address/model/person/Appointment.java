@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -27,6 +29,14 @@ public class Appointment {
     public Appointment(DateTime dateTime) {
         requireNonNull(dateTime);
         this.dateTime = dateTime;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return this.dateTime.getLocalDateTime();
+    }
+
+    public LocalDate getLocalDate() {
+    return this.dateTime.getLocalDateTime().toLocalDate();
     }
 
     @Override

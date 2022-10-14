@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -19,6 +20,14 @@ public class DateTime {
     public DateTime(LocalDateTime localDateTime) {
         requireNonNull(localDateTime);
         this.localDateTime = localDateTime;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDateTime.toLocalDate();
     }
 
     @Override

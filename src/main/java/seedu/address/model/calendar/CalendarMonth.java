@@ -28,7 +28,7 @@ public class CalendarMonth {
     /**
      * Returns a mutable appointment set.
      */
-    public ObservableList<CalendarEvent> getAppointments() {
+    public ObservableList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
     }
 
@@ -54,7 +54,7 @@ public class CalendarMonth {
         }
 
         CalendarMonth otherCalendar = (CalendarMonth) other;
-        return otherCalendar.getAppointments().equals(getAppointments());
+        return otherCalendar.getCalendarEvents().equals(getCalendarEvents());
     }
 
     @Override
@@ -62,6 +62,5 @@ public class CalendarMonth {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(calendarEvents);
     }
-
 
 }

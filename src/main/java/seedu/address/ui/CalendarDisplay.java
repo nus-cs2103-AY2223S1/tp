@@ -50,7 +50,9 @@ public class CalendarDisplay extends UiPart<Region> {
 
         // Draw days in month
         int currentDay = currentMonth.get(Calendar.DAY_OF_MONTH);
+        System.out.println(currentDay);
         int daysInMonth = currentMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
+        System.out.println(daysInMonth);
         int dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK);
         int row = 1;
         for (int i = currentDay; i <= daysInMonth; i++) {
