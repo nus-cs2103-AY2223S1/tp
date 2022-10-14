@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.model.person.NameContainsKeywordsPredicate;
-import seedu.waddle.testutil.AddressBookBuilder;
+import seedu.waddle.testutil.WaddleBuilder;
 
 public class ModelManagerTest {
 
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new WaddleBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
