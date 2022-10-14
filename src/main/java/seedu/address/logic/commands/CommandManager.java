@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 import java.util.Stack;
 
 /**
- * Tracks past commands.
+ * Tracks past undoable commands.
  */
 public class CommandManager {
     private final Stack<UndoableCommand> undoStack;
