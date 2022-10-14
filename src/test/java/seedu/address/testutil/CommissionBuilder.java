@@ -108,12 +108,18 @@ public class CommissionBuilder {
      * @return a commission with the given details.
      */
     public Commission build(Customer customer) {
-        Commission.CommissionBuilder commissionBuilder =
-            new Commission.CommissionBuilder(title, fee, deadline, completionStatus, tags);
+        Commission.CommissionBuilder commissionBuilder = toCommissionBuilder();
         if (description != null) {
             commissionBuilder.setDescription(description);
         }
         return commissionBuilder.build(customer);
+    }
+
+    /**
+     * Returns a Commission.CommissionBuilder with the given details.
+     */
+    public Commission.CommissionBuilder toCommissionBuilder() {
+        return new Commission.CommissionBuilder(title, fee, deadline, completionStatus, tags);
     }
 
 }
