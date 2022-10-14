@@ -4,9 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_FRUITS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_NUMBERS;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 import static seedu.foodrem.testutil.TagUtil.getTagDetails;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
@@ -16,6 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
@@ -100,7 +98,7 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_deleteTagCommand() {
         assertTrue(parser.parseCommand(DeleteTagCommand.COMMAND_WORD
-                + VALID_DESC_TAG_NAME_FRUITS) instanceof DeleteTagCommand);
+                + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS) instanceof DeleteTagCommand);
     }
 
     @Test
@@ -112,8 +110,8 @@ public class FoodRemParserTest {
 
     @Test
     public void parseCommand_renameTag() {
-        Tag originalTag = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
-        Tag renamedTag = new TagBuilder().withTagName(VALID_TAG_NAME_NUMBERS).build();
+        Tag originalTag = new TagBuilder().withTagName(CommandTestUtil.VALID_TAG_NAME_FRUITS).build();
+        Tag renamedTag = new TagBuilder().withTagName(CommandTestUtil.VALID_TAG_NAME_NUMBERS).build();
         assertTrue(parser.parseCommand(RenameTagCommand.COMMAND_WORD
                 + " " + getTagDetails(originalTag)
                 + " " + getTagDetails(renamedTag)) instanceof RenameTagCommand);

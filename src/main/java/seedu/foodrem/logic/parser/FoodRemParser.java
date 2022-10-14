@@ -23,6 +23,7 @@ import seedu.foodrem.logic.parser.itemcommandparser.FindCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.IncrementCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.NewCommandParser;
 import seedu.foodrem.logic.parser.itemcommandparser.SortCommandParser;
+import seedu.foodrem.logic.parser.itemcommandparser.ViewCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.DeleteTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.NewTagCommandParser;
 import seedu.foodrem.logic.parser.tagcommandparser.RenameTagCommandParser;
@@ -64,6 +65,9 @@ public class FoodRemParser {
 
         case EDIT_COMMAND:
             return new EditCommandParser().parse(arguments);
+
+        case VIEW_COMMAND:
+            return new ViewCommandParser().parse(arguments);
 
         case INCREMENT_COMMAND:
             return new IncrementCommandParser().parse(arguments);

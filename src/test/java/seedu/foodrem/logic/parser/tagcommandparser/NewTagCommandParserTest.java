@@ -1,11 +1,5 @@
 package seedu.foodrem.logic.parser.tagcommandparser;
 
-import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION;
-import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT;
-import static seedu.foodrem.logic.commands.CommandTestUtil.INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_NUMBERS;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.foodrem.model.tag.Tag.EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS;
@@ -16,6 +10,7 @@ import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
@@ -32,17 +27,17 @@ public class NewTagCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                VALID_DESC_TAG_NAME_FRUITS,
+                CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS,
                 new NewTagCommand(fruitTag));
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
+                CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
                 new NewTagCommand(fruitWithWhitespaceTag));
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                VALID_DESC_TAG_NAME_NUMBERS,
+                CommandTestUtil.VALID_DESC_TAG_NAME_NUMBERS,
                 new NewTagCommand(numbersTag));
     }
 
@@ -50,17 +45,17 @@ public class NewTagCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser,
-                INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
+                CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
                 MESSAGE_CONSTRAINTS);
 
         // invalid quantity
         assertParseFailure(parser,
-                INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR,
+                CommandTestUtil.INVALID_DESC_TAG_NAME_ILLEGAL_FIRST_CHAR,
                 MESSAGE_CONSTRAINTS);
 
         // invalid unit
         assertParseFailure(parser,
-                INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT,
+                CommandTestUtil.INVALID_DESC_TAG_NAME_EXCEED_CHAR_LIMIT,
                 EXCEED_MAX_CHARS_MESSAGE_CONSTRAINTS);
 
     }
