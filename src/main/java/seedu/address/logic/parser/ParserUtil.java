@@ -104,7 +104,14 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(type, trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            switch (type.getEntryType()) {
+            case INCOME:
+                throw new ParseException(Tag.INCOME_CONSTRAINTS);
+            case EXPENDITURE:
+                throw new ParseException(Tag.EXPENDITURE_CONSTRAINTS);
+            default:
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
         }
         return new Tag(type, trimmedTag);
     }

@@ -15,6 +15,10 @@ import seedu.address.model.entry.EntryType;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String INCOME_CONSTRAINTS = "Income tags must only be one of the following: \n"
+            + "Salary, Allowance, Profit, Investment, Gifts, Others";
+    public static final String EXPENDITURE_CONSTRAINTS = "Expenditure tags must only be one of the following: \n"
+            + "Food, Groceries, Entertainment, Transport, Education, Housing, Others";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public static final List INCOME_TAGS = Arrays.asList(
             "Salary",
