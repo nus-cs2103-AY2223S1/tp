@@ -30,23 +30,23 @@ public class SessionTest {
     }
 
     @Test
-    public void isSameSession_sameSessionName_returnsTrue() {
+    public void isSame_sameSessionName_returnsTrue() {
         // same object -> returns true
-        assertTrue(ASSIGNMENT_1.isSameSession(ASSIGNMENT_1));
+        assertTrue(ASSIGNMENT_1.isSame(ASSIGNMENT_1));
 
         // same name -> returns true
         Session assignment1Copy = new SessionBuilder(ASSIGNMENT_1).withDate(TUTORIAL_1.getDate()).build();
-        assertTrue(assignment1Copy.isSameSession(ASSIGNMENT_1));
+        assertTrue(assignment1Copy.isSame(ASSIGNMENT_1));
     }
 
     @Test
-    public void isSameSession_differentSessionName_returnsFalse() {
+    public void isSame_differentSessionName_returnsFalse() {
         // different session -> returns false
-        assertFalse(ASSIGNMENT_1.isSameSession(TUTORIAL_1));
+        assertFalse(ASSIGNMENT_1.isSame(TUTORIAL_1));
 
         // same date, different name -> returns false
         Session assignment1Copy = new SessionBuilder(ASSIGNMENT_1).withName(TUTORIAL_1.getSessionName()).build();
-        assertFalse(assignment1Copy.isSameSession(ASSIGNMENT_1));
+        assertFalse(assignment1Copy.isSame(ASSIGNMENT_1));
     }
 
     @Test

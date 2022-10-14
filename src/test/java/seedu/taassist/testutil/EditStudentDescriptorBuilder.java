@@ -1,11 +1,6 @@
 package seedu.taassist.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.taassist.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
@@ -36,7 +31,6 @@ public class EditStudentDescriptorBuilder {
         descriptor.setPhone(student.getPhone());
         descriptor.setEmail(student.getEmail());
         descriptor.setAddress(student.getAddress());
-        descriptor.setModuleClasses(student.getModuleClasses());
     }
 
     /**
@@ -68,16 +62,6 @@ public class EditStudentDescriptorBuilder {
      */
     public EditStudentDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code moduleClasses} into a {@code Set<ModuleClass>} and set it to the {@code EditStudentDescriptor}
-     * that we are building.
-     */
-    public EditStudentDescriptorBuilder withModuleClasses(String... moduleClasses) {
-        Set<ModuleClass> moduleClassSet = Stream.of(moduleClasses).map(ModuleClass::new).collect(Collectors.toSet());
-        descriptor.setModuleClasses(moduleClassSet);
         return this;
     }
 
