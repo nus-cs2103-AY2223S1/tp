@@ -53,9 +53,9 @@ public class InternshipCard extends UiPart<Region> {
         super(FXML);
         Label lab = new Label(internship.getStatus().toString());
         PseudoClass rejected = PseudoClass.getPseudoClass("rejected");
-        lab.pseudoClassStateChanged(rejected,(internship.getStatus().toString()).equals("Rejected"));
+        lab.pseudoClassStateChanged(rejected, (internship.getStatus().toString()).equals("Rejected"));
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
-        lab.pseudoClassStateChanged(offered,(internship.getStatus().toString()).equals("Offered"));
+        lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
