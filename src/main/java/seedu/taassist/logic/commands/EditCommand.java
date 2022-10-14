@@ -1,26 +1,21 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_MODULE_CLASS_DOES_NOT_EXIST;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_MODULE_CLASS;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.taassist.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.taassist.commons.core.Messages;
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.commons.util.CollectionUtil;
 import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
-import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.student.Address;
 import seedu.taassist.model.student.Email;
 import seedu.taassist.model.student.Name;
@@ -42,7 +37,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_MODULE_CLASS + "CLASS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -55,6 +49,8 @@ public class EditCommand extends Command {
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
+     * Creates an EditCommand to edit the details of the student at the given index.
+     *
      * @param index of the student in the filtered student list to edit.
      * @param editStudentDescriptor details to edit the student with.
      */
@@ -82,11 +78,6 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        if (!model.hasModuleClasses(editedStudent.getModuleClasses())) {
-            throw new CommandException(String.format(MESSAGE_MODULE_CLASS_DOES_NOT_EXIST,
-                    model.getModuleClassList()));
-        }
-
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
@@ -103,10 +94,9 @@ public class EditCommand extends Command {
         Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Set<ModuleClass> updatedModuleClasses = editStudentDescriptor.getModuleClasses()
-                .orElse(studentToEdit.getModuleClasses());
+        List<StudentModuleData> moduleData = studentToEdit.getModuleDataList(); // not editable
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedModuleClasses);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, moduleData);
     }
 
     @Override
@@ -136,7 +126,6 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<ModuleClass> moduleClasses;
 
         public EditStudentDescriptor() {}
 
@@ -149,14 +138,13 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setModuleClasses(toCopy.moduleClasses);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, moduleClasses);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public void setName(Name name) {
@@ -191,23 +179,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code moduleClasses} to this object's {@code moduleClasses}.
-         * A defensive copy of {@code moduleClasses} is used internally.
-         */
-        public void setModuleClasses(Set<ModuleClass> moduleClasses) {
-            this.moduleClasses = (moduleClasses != null) ? new HashSet<>(moduleClasses) : null;
-        }
-
-        /**
-         * Returns an unmodifiable moduleClass set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code moduleClasses} is null.
-         */
-        public Optional<Set<ModuleClass>> getModuleClasses() {
-            return (moduleClasses != null) ? Optional.of(Collections.unmodifiableSet(moduleClasses)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -226,8 +197,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getModuleClasses().equals(e.getModuleClasses());
+                    && getAddress().equals(e.getAddress());
         }
     }
 }

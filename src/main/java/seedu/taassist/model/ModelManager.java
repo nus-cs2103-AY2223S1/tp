@@ -188,6 +188,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Student> getStudentList() {
+        return taAssist.getStudentList();
+    }
+
+    @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
