@@ -38,7 +38,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Entry editedEntry = new ExpenditureBuilder().build();
+        Entry editedEntry = new ExpenditureBuilder().withDescription("Acai").build();
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(editedEntry, new EntryType("e")).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

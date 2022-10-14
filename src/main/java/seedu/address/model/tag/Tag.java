@@ -48,6 +48,9 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(EntryType type, String test) {
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
         switch (type.getEntryType()) {
         case INCOME:
             if (!incomeTags.contains(test)) {
@@ -58,7 +61,7 @@ public class Tag {
                 return false;
             }
         default:
-            return test.matches(VALIDATION_REGEX);
+            return true;
         }
 
     }

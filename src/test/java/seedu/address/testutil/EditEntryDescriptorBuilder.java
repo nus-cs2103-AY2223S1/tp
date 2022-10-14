@@ -77,7 +77,7 @@ public class EditEntryDescriptorBuilder {
      */
 
     public EditEntryDescriptorBuilder withTag(String tag) {
-        Tag newTag = new Tag(tag);
+        Tag newTag = new Tag(descriptor.getType().get(), tag);
         descriptor.setTag(newTag);
         return this;
     }

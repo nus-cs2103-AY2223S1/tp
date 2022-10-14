@@ -4,17 +4,17 @@
     "description" : "Lunch",
     "amount" : "5.20",
     "date" : "20-08-2022",
-    "tagged" : [ "Lunch" ]
+    "tagged" : "Food"
   }, {
     "description" : "Dinner",
     "amount" : "4.80",
     "date" : "24-08-2022",
-    "tagged" : [ "Dinner" ]
+    "tagged" : "Food"
   }, {
     "description" : "Movie",
     "amount" : "8.00",
     "date" : "21-08-2022",
-    "tagged" : [ "Movie" ]
+    "tagged" : "Entertainment"
   }],
   "incomes" : []
 }

@@ -106,7 +106,7 @@ public class EditCommand extends Command {
             break;
         default:
             // should never reach here
-            return null;
+            break;
         }
         return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }

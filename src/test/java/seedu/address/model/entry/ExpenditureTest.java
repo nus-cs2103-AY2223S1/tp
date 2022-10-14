@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MOVIE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.DINNER;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
@@ -17,11 +18,11 @@ import seedu.address.testutil.ExpenditureBuilder;
 
 public class ExpenditureTest {
 
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Entry expenditure = new ExpenditureBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> expenditure.getTag());
-    }
+    // @Test
+    // public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+    //     Entry expenditure = new ExpenditureBuilder().build();
+    //     assertThrows(UnsupportedOperationException.class, () -> expenditure.getTag());
+    // }
 
     @Test
     public void isSameExpenditure() {
@@ -64,7 +65,7 @@ public class ExpenditureTest {
         assertFalse(LUNCH.equals(editedEntry));
 
         // different tags -> return false
-        editedEntry = new ExpenditureBuilder(LUNCH).withTag(VALID_TAG_DINNER).build();
+        editedEntry = new ExpenditureBuilder(LUNCH).withTag(VALID_TAG_MOVIE).build();
         assertFalse(LUNCH.equals(editedEntry));
 
 

@@ -106,7 +106,7 @@ public class Entry {
 
         Tag tag = getTag();
         if (!tag.equals(null)) {
-            builder.append("; Tags: ");
+            builder.append("; Tag: ");
             builder.append(tag);
         }
         return builder.toString();

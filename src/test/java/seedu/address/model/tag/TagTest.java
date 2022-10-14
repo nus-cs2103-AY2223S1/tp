@@ -11,13 +11,13 @@ public class TagTest {
     EntryType incomeType = new EntryType("i");
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Tag(null));
+        assertThrows(NullPointerException.class, () -> new Tag(expenditureType, null));
     }
 
     @Test
     public void constructor_invalidTagName_throwsIllegalArgumentException() {
         String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Tag(invalidTagName));
+        assertThrows(IllegalArgumentException.class, () -> new Tag(expenditureType, invalidTagName));
     }
 
     @Test

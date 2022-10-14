@@ -44,29 +44,35 @@ public class CommandTestUtil {
     public static final String VALID_DATE_MOVIE = "21-08-2022";
     public static final String VALID_DATE_DINNER = "24-08-2022";
     public static final String VALID_DATE_TUITION = "18-08-2022";
-    public static final String VALID_TAG_MEAL = "meal";
-    public static final String VALID_TAG_PERSONAL = "personal";
-    public static final String VALID_TAG_LUNCH = "Lunch";
-    public static final String VALID_TAG_DINNER = "Dinner";
-    public static final String VALID_TAG_MOVIE = "Movie";
-    public static final String VALID_TAG_TUITION = "Tuition";
-
+    public static final String VALID_TAG_MEAL = "Food";
+    public static final String VALID_TAG_PERSONAL = "Others";
+    public static final String VALID_TAG_LUNCH = "Food";
+    public static final String VALID_TAG_DINNER = "Food";
+    public static final String VALID_TAG_MOVIE = "Entertainment";
+    public static final String VALID_TAG_TUITION = "Education";
+    public static final String VALID_DESC_ALLOWANCE = "Allowance";
+    public static final String VALID_AMT_ALLOWANCE = "300";
+    public static final String VALID_DATE_ALLOWANCE = "01-10-2022";
+    public static final String VALID_TAG_ALLOWANCE = "Allowance";
 
     public static final String TYPE_INCOME = " " + PREFIX_TYPE + VALID_TYPE_INCOME;
     public static final String TYPE_EXPENDITURE = " " + PREFIX_TYPE + VALID_TYPE_EXPENDITURE;
+    public static final String DESC_ALLOWANCE = " " + PREFIX_DESCRIPTION + VALID_DESC_ALLOWANCE;
     public static final String DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_DESC_LUNCH;
     public static final String DESC_MOVIE = " " + PREFIX_DESCRIPTION + VALID_DESC_MOVIE;
     public static final String DESC_DINNER = " " + PREFIX_DESCRIPTION + VALID_DESC_DINNER;
     public static final String DESC_TUITION = " " + PREFIX_DESCRIPTION + VALID_DESC_TUITION;
+    public static final String AMT_ALLOWANCE = " " + PREFIX_AMOUNT + VALID_AMT_ALLOWANCE;
     public static final String AMT_LUNCH = " " + PREFIX_AMOUNT + VALID_AMT_LUNCH;
     public static final String AMT_MOVIE = " " + PREFIX_AMOUNT + VALID_AMT_MOVIE;
     public static final String AMT_DINNER = " " + PREFIX_AMOUNT + VALID_AMT_DINNER;
     public static final String AMT_TUITION = " " + PREFIX_AMOUNT + VALID_AMT_TUITION;
+    public static final String DATE_ALLOWANCE = " " + PREFIX_DATE + VALID_DATE_ALLOWANCE;
     public static final String DATE_LUNCH = " " + PREFIX_DATE + VALID_DATE_LUNCH;
     public static final String DATE_MOVIE = " " + PREFIX_DATE + VALID_DATE_MOVIE;
     public static final String DATE_DINNER = " " + PREFIX_DATE + VALID_DATE_DINNER;
     public static final String DATE_TUITION = " " + PREFIX_DATE + VALID_DATE_TUITION;
-
+    public static final String TAG_ALLOWANCE = " " + PREFIX_TAG + VALID_TAG_ALLOWANCE;
     public static final String TAG_LUNCH = " " + PREFIX_TAG + VALID_TAG_LUNCH;
     public static final String TAG_MOVIE = " " + PREFIX_TAG + VALID_TAG_MOVIE;
     public static final String TAG_DINNER = " " + PREFIX_TAG + VALID_TAG_DINNER;
