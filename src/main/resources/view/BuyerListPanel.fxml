@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="buyerListView" style="-fx-background-radius: 30px;" VBox.vgrow="ALWAYS" />
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="buyerListView" style="-fx-background-radius: 30px;" VBox.vgrow="ALWAYS">
+      <VBox.margin>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </VBox.margin></ListView>
 </VBox>

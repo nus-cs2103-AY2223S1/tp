@@ -33,7 +33,7 @@ public class Species {
 
     @Override
     public String toString() {
-        return species;
+        return "Species: " + species;
     }
 
     public String getSpecies() {

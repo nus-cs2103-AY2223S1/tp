@@ -10,19 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" minWidth="800.0" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-      <VBox style="-fx-background-radius: 30px;">
+      <VBox style="-fx-background-radius: 30px;" GridPane.hgrow="ALWAYS">
          <children>
-         <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-radius: 30px;">
-           <Label text="Order">
+         <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-radius: 30px;" styleClass="context-menu" stylesheets="@DarkTheme.css">
+           <Label text="Order" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="18.0" />
                   </font></Label>
-           <Label fx:id="id" text="\$id">
+           <Label fx:id="id" text="\$id" textFill="WHITE">
              <minWidth>
                <!-- Ensures that the label text is never truncated -->
                <Region fx:constant="USE_PREF_SIZE" />
@@ -31,7 +31,7 @@
                      <Font name="System Bold" size="18.0" />
                   </font>
            </Label>
-               <Label fx:id="buyerName">
+               <Label fx:id="buyerName" textFill="WHITE">
                   <HBox.margin>
                      <Insets left="5.0" />
                   </HBox.margin>
@@ -51,47 +51,47 @@
                   </font>
                </Label>
                <padding>
-                  <Insets left="15.0" right="15.0" top="5.0" />
+                  <Insets left="10.0" right="10.0" top="5.0" />
                </padding>
                <VBox.margin>
-                  <Insets left="10.0" right="10.0" top="5.0" />
+                  <Insets left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
          </HBox>
             <HBox style="-fx-background-radius: 30px;">
                <children>
-                  <VBox style="-fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
+                  <VBox style="-fx-background-radius: 30px; -fx-background-color: #7F8C8D;" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label text="Requests:">
+                        <Label styleClass="column-header" stylesheets="@DarkTheme.css" text="Requests:" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="species" text="\$specoes">
+                        <Label fx:id="species" text="\$specoes" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="5.0" top="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="age" text="\$age">
+                        <Label fx:id="age" text="\$age" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="5.0" top="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="color" text="\$color">
+                        <Label fx:id="color" text="\$color" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="5.0" top="2.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="colorPattern" text="\$color pattern">
+                        <Label fx:id="colorPattern" text="\$color pattern" textFill="#fafafa">
                            <VBox.margin>
                               <Insets left="5.0" top="2.0" />
                            </VBox.margin>
                         </Label>
                      </children>
                      <HBox.margin>
-                        <Insets />
+                        <Insets right="10.0" top="10.0" />
                      </HBox.margin>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
                 <VBox style="-fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
@@ -128,6 +128,9 @@
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
