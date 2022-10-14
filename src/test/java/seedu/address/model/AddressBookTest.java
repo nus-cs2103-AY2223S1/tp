@@ -99,6 +99,12 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
+        // @Override
+        // public ObservableList<Meeting> getMeetingList() {
+        //    return meetings;
+        // }
+
     }
 
 }
