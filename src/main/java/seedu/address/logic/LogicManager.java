@@ -48,7 +48,9 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command;
-        if (commandText.startsWith(TaskCommand.COMMAND_WORD) && Character.isWhitespace(commandText.charAt(4))) {
+        if ((commandText.startsWith(TaskCommand.COMMAND_WORD) && Character.isWhitespace(commandText.charAt(4)))
+            || (commandText.startsWith(TaskCommand.COMMAND_WORD_ALIAS)
+                && Character.isWhitespace(commandText.charAt(1)))) {
             command = taskPanelParser.parse(commandText);
         } else {
             command = addressBookParser.parseCommand(commandText);
