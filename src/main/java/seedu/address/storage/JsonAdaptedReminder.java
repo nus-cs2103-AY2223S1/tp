@@ -36,7 +36,7 @@ class JsonAdaptedReminder {
     public JsonAdaptedReminder(Reminder source) {
         name = source.getName().fullName;
         deadline = source.getDeadline().deadline;
-        description = source.getDetails().description;
+        description = source.getDescription().description;
     }
 
     /**

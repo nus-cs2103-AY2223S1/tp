@@ -35,7 +35,7 @@ public class Reminder {
         return deadline;
     }
 
-    public ReminderDescription getDetails() {
+    public ReminderDescription getDescription() {
         return details;
     }
 
@@ -83,7 +83,7 @@ public class Reminder {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Details: ")
-                .append(getDetails());
+                .append(getDescription());
 
         return builder.toString();
     }
