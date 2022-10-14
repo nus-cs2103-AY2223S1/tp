@@ -34,22 +34,6 @@ import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
-<<<<<<< HEAD
-    public static final String VALID_NAME_SUMMER = "Summer";
-    public static final String VALID_NAME_WINTER = "Winter";
-    public static final String VALID_COUNTRY_SUMMER = "Afghanistan";
-    public static final String VALID_COUNTRY_WINTER = "Bangladesh";
-    public static final String VALID_START_DATE_SUMMER = "2022-06-21";
-    public static final String VALID_START_DATE_WINTER = "2022-12-22";
-    public static final String VALID_END_DATE_SUMMER = "2022-09-23";
-    public static final String VALID_END_DATE_WINTER = "2023-03-21";
-    public static final String VALID_PEOPLE_SUMMER = "1";
-    public static final String VALID_PEOPLE_WINTER = "2";
-
-    public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_COUNTRY_SUMMER;
-    public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_COUNTRY_WINTER;
-=======
     public static final String VALID_NAME_SUMMER = "Summer Trip";
     public static final String VALID_NAME_WINTER = "Winter Trip";
     public static final String VALID_COUNTRY_SUMMER = "Sweden";
@@ -63,7 +47,6 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
     public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;
->>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
     public static final String COUNTRY_DESC_SUMMER = " " + PREFIX_COUNTRY + VALID_COUNTRY_SUMMER;
     public static final String COUNTRY_DESC_WINTER = " " + PREFIX_COUNTRY + VALID_COUNTRY_WINTER;
     public static final String START_DATE_DESC_SUMMER = " " + PREFIX_START_DATE + VALID_START_DATE_SUMMER;
