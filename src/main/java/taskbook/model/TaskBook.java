@@ -3,11 +3,14 @@ package taskbook.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.person.UniquePersonList;
+import taskbook.model.task.EditTaskDescriptor;
 import taskbook.model.task.Task;
 import taskbook.model.task.TaskList;
 
@@ -104,7 +107,39 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
+        propagateNameChange(target, editedPerson);
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Propagates name change to all associated tasks.
+     */
+    private void propagateNameChange(Person original, Person edited) {
+        Name name = original.getName();
+        Name editedName = edited.getName();
+
+        if (name.equals(editedName)) {
+            return;
+        }
+
+        for (Task task : tasks) {
+            if (!task.getName().equals(name)) {
+                continue;
+            }
+
+            EditTaskDescriptor descriptor = new EditTaskDescriptor();
+            descriptor.setName(editedName);
+            Task editedTask;
+            try {
+                editedTask = task.createEditedCopy(descriptor);
+            } catch (CommandException e) {
+                // Should not happen because name exists on all task types.
+                String logMessage = String.format("Failed to propagate name change to task %s.", task);
+                Logger.getGlobal().warning(logMessage);
+                continue;
+            }
+            tasks.setTask(task, editedTask);
+        }
     }
 
     /**

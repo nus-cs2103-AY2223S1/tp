@@ -77,6 +77,8 @@ public abstract class Task {
 
     /**
      * Creates an edited task based on the provided edits.
+     *
+     * @throws CommandException when editing a field that does not exist for that task type.
      */
     public abstract Task createEditedCopy(EditTaskDescriptor descriptor) throws CommandException;
 
