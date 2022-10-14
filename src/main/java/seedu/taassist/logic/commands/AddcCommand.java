@@ -66,7 +66,7 @@ public class AddcCommand extends Command {
         }
 
         if (!duplicateClasses.isEmpty()) {
-            outputString.append(getDuplicateClassesMessage(duplicateClasses));
+            outputString.append(getDuplicateClassesMessage(duplicateClasses)).append("\n");
         }
 
         // remove trailing newline character
