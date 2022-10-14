@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.model.profile.Telegram.EMPTY_TELEGRAM;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -21,6 +23,7 @@ import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +39,7 @@ public class AddProfileCommandParser implements Parser<AddProfileCommand> {
     public AddProfileCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                        PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty() || !argMultimap.getOptionArgs().isEmpty()) {
@@ -46,9 +49,13 @@ public class AddProfileCommandParser implements Parser<AddProfileCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Telegram telegram = EMPTY_TELEGRAM;
+        if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+        }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Profile profile = new Profile(name, phone, email, tagList);
+        Profile profile = new Profile(name, phone, email, telegram, tagList);
 
         return new AddProfileCommand(profile);
     }

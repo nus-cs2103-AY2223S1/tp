@@ -21,16 +21,18 @@ public class Profile {
     private final Email email;
 
     // Data fields
+    private final Telegram telegram;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Profile(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Profile(Name name, Phone phone, Email email, Telegram telegram, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.telegram = telegram;
         this.tags.addAll(tags);
     }
 
@@ -44,6 +46,10 @@ public class Profile {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Telegram getTelegram() {
+        return telegram;
     }
 
     /**
@@ -98,6 +104,7 @@ public class Profile {
         return otherProfile.getName().equals(getName())
                 && otherProfile.getPhone().equals(getPhone())
                 && otherProfile.getEmail().equals(getEmail())
+                && otherProfile.getTelegram().equals(getTelegram())
                 && otherProfile.getTags().equals(getTags());
     }
 
@@ -116,6 +123,11 @@ public class Profile {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail());
+
+        if (!getTelegram().isEmpty()) {
+            builder.append("; Telegram: ")
+                    .append(getTelegram());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

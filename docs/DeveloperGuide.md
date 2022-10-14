@@ -362,7 +362,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. NUScheduler shows an error message.
 
       Use case ends.
-    
+
 * 2a. There are no events in the next specified days.
 
   Use case ends.
