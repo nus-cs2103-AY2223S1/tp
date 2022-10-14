@@ -21,150 +21,150 @@ import seedu.address.testutil.CompanyBuilder;
 
 public class UniqueClientListTest {
 
-    private final UniqueCompanyList uniqueCompanyList = new UniqueCompanyList();
+    private final UniqueClientList uniqueClientList = new UniqueClientList();
 
     @Test
     public void contains_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.contains(null));
     }
 
     @Test
     public void contains_companyNotInList_returnsFalse() {
-        assertFalse(uniqueCompanyList.contains(ALICE));
+        assertFalse(uniqueClientList.contains(ALICE));
     }
 
     @Test
     public void contains_companyInList_returnsTrue() {
-        uniqueCompanyList.add(ALICE);
-        assertTrue(uniqueCompanyList.contains(ALICE));
+        uniqueClientList.add(ALICE);
+        assertTrue(uniqueClientList.contains(ALICE));
     }
 
     @Test
     public void contains_companyWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueCompanyList.add(ALICE);
+        uniqueClientList.add(ALICE);
         Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueCompanyList.contains(editedAlice));
+        assertTrue(uniqueClientList.contains(editedAlice));
     }
 
     @Test
     public void add_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.add(null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.add(null));
     }
 
     @Test
     public void add_duplicateCompany_throwsDuplicateCompanyException() {
-        uniqueCompanyList.add(ALICE);
-        assertThrows(DuplicateClientException.class, () -> uniqueCompanyList.add(ALICE));
+        uniqueClientList.add(ALICE);
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.add(ALICE));
     }
 
     @Test
     public void setCompany_nullTargetCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompany(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(null, ALICE));
     }
 
     @Test
     public void setCompany_nullEditedCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompany(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClient(ALICE, null));
     }
 
     @Test
     public void setCompany_targetCompanyNotInList_throwsCompanyNotFoundException() {
-        assertThrows(ClientNotFoundException.class, () -> uniqueCompanyList.setCompany(ALICE, ALICE));
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.setClient(ALICE, ALICE));
     }
 
     @Test
     public void setCompany_editedCompanyIsSameCompany_success() {
-        uniqueCompanyList.add(ALICE);
-        uniqueCompanyList.setCompany(ALICE, ALICE);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        expectedUniqueCompanyList.add(ALICE);
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
+        uniqueClientList.add(ALICE);
+        uniqueClientList.setClient(ALICE, ALICE);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        expectedUniqueClientList.add(ALICE);
+        assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setCompany_editedCompanyHasSameIdentity_success() {
-        uniqueCompanyList.add(ALICE);
+        uniqueClientList.add(ALICE);
         Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniqueCompanyList.setCompany(ALICE, editedAlice);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        expectedUniqueCompanyList.add(editedAlice);
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
+        uniqueClientList.setClient(ALICE, editedAlice);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        expectedUniqueClientList.add(editedAlice);
+        assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setCompany_editedCompanyHasDifferentIdentity_success() {
-        uniqueCompanyList.add(ALICE);
-        uniqueCompanyList.setCompany(ALICE, BOB);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        expectedUniqueCompanyList.add(BOB);
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
+        uniqueClientList.add(ALICE);
+        uniqueClientList.setClient(ALICE, BOB);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        expectedUniqueClientList.add(BOB);
+        assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setCompany_editedCompanyHasNonUniqueIdentity_throwsDuplicateCompanyException() {
-        uniqueCompanyList.add(ALICE);
-        uniqueCompanyList.add(BOB);
-        assertThrows(DuplicateClientException.class, () -> uniqueCompanyList.setCompany(ALICE, BOB));
+        uniqueClientList.add(ALICE);
+        uniqueClientList.add(BOB);
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClient(ALICE, BOB));
     }
 
     @Test
     public void remove_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.remove(null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.remove(null));
     }
 
     @Test
     public void remove_companyDoesNotExist_throwsCompanyNotFoundException() {
-        assertThrows(ClientNotFoundException.class, () -> uniqueCompanyList.remove(ALICE));
+        assertThrows(ClientNotFoundException.class, () -> uniqueClientList.remove(ALICE));
     }
 
     @Test
     public void remove_existingCompany_removesCompany() {
-        uniqueCompanyList.add(ALICE);
-        uniqueCompanyList.remove(ALICE);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
+        uniqueClientList.add(ALICE);
+        uniqueClientList.remove(ALICE);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setCompanies_nullUniqueCompanyList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompanies((UniqueCompanyList) null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((UniqueClientList) null));
     }
 
     @Test
     public void setCompanies_uniqueCompanyList_replacesOwnListWithProvidedUniqueCompanyList() {
-        uniqueCompanyList.add(ALICE);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        expectedUniqueCompanyList.add(BOB);
-        uniqueCompanyList.setCompanies(expectedUniqueCompanyList);
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
+        uniqueClientList.add(ALICE);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        expectedUniqueClientList.add(BOB);
+        uniqueClientList.setClients(expectedUniqueClientList);
+        assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setCompanies_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompanies((List<Client>) null));
+        assertThrows(NullPointerException.class, () -> uniqueClientList.setClients((List<Client>) null));
     }
 
     @Test
     public void setCompanies_list_replacesOwnListWithProvidedList() {
-        uniqueCompanyList.add(ALICE);
+        uniqueClientList.add(ALICE);
         List<Client> clientList = Collections.singletonList(BOB);
-        uniqueCompanyList.setCompanies(clientList);
-        UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
-        expectedUniqueCompanyList.add(BOB);
-        assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
+        uniqueClientList.setClients(clientList);
+        UniqueClientList expectedUniqueClientList = new UniqueClientList();
+        expectedUniqueClientList.add(BOB);
+        assertEquals(expectedUniqueClientList, uniqueClientList);
     }
 
     @Test
     public void setCompanies_listWithDuplicateCompanies_throwsDuplicateCompanyException() {
         List<Client> listWithDuplicateCompanies = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateClientException.class, () -> uniqueCompanyList.setCompanies(listWithDuplicateCompanies));
+        assertThrows(DuplicateClientException.class, () -> uniqueClientList.setClients(listWithDuplicateCompanies));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueCompanyList.asUnmodifiableObservableList().remove(0));
+            -> uniqueClientList.asUnmodifiableObservableList().remove(0));
     }
 }

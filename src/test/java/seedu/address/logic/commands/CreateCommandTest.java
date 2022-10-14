@@ -25,7 +25,7 @@ import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.UniqueCompanyList;
+import seedu.address.model.client.UniqueClientList;
 import seedu.address.testutil.CompanyBuilder;
 
 
@@ -109,7 +109,7 @@ class CreateCommandTest {
      */
     private class ModelStub implements Model {
         private Client client;
-        private final UniqueCompanyList coys = new UniqueCompanyList();
+        private final UniqueClientList coys = new UniqueClientList();
 
         public ModelStub(Client client) {
             this.client = client;

@@ -12,25 +12,25 @@ import seedu.address.model.client.exceptions.ClientNotFoundException;
 import seedu.address.model.client.exceptions.DuplicateClientException;
 
 /**
- * A list of companies that enforces uniqueness between its elements and does not allow nulls.
- * A company is considered unique by comparing using {@code Company#isSameCompany(Company)}.
- * As such, adding and updating of companies uses Company#isSameCompany(Company) for equality to ensure that the
- * company being added or updated is unique in terms of identity in the UniqueCompanyList.
- * However, the removal of a company uses Company#equals(Object) to ensure that the company with exactly
+ * A list of clients that enforces uniqueness between its elements and does not allow nulls.
+ * A client is considered unique by comparing using {@code Client#isSameClient(Client)}.
+ * As such, adding and updating of clients uses Client#isSameClient(Client) for equality to ensure that the
+ * client being added or updated is unique in terms of identity in the UniqueClientList.
+ * However, the removal of a client uses Client#equals(Object) to ensure that the client with exactly
  * the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
  * @see Client#isSameClient(Client)
  */
-public class UniqueCompanyList implements Iterable<Client> {
+public class UniqueClientList implements Iterable<Client> {
 
     private final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent company as the given argument.
+     * Returns true if the list contains an equivalent client as the given argument.
      */
     public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniqueCompanyList implements Iterable<Client> {
     }
 
     /**
-     * Adds a company to the list.
-     * The company must not already exist in the list.
+     * Adds a client to the list.
+     * The client must not already exist in the list.
      */
     public void add(Client toAdd) {
         requireNonNull(toAdd);
@@ -50,11 +50,11 @@ public class UniqueCompanyList implements Iterable<Client> {
     }
 
     /**
-     * Replaces the company {@code target} in the list with {@code editedCompany}.
+     * Replaces the client {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in the list.
-     * The company identity of {@code editedCompany} must not be the same as another existing company in the list.
+     * The client identity of {@code editedClient} must not be the same as another existing client in the list.
      */
-    public void setCompany(Client target, Client editedClient) {
+    public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
 
         int index = internalList.indexOf(target);
@@ -70,8 +70,8 @@ public class UniqueCompanyList implements Iterable<Client> {
     }
 
     /**
-     * Removes the equivalent company from the list.
-     * The company must exist in the list.
+     * Removes the equivalent client from the list.
+     * The client must exist in the list.
      */
     public void remove(Client toRemove) {
         requireNonNull(toRemove);
@@ -80,22 +80,22 @@ public class UniqueCompanyList implements Iterable<Client> {
         }
     }
 
-    public void setCompanies(UniqueCompanyList replacement) {
+    public void setClients(UniqueClientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code companies}.
-     * {@code companies} must not contain duplicate companies.
+     * Replaces the contents of this list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
-    public void setCompanies(List<Client> companies) {
-        requireAllNonNull(companies);
-        if (!companiesAreUnique(companies)) {
+    public void setClients(List<Client> clients) {
+        requireAllNonNull(clients);
+        if (!clientsAreUnique(clients)) {
             throw new DuplicateClientException();
         }
 
-        internalList.setAll(companies);
+        internalList.setAll(clients);
     }
 
     /**
@@ -113,8 +113,8 @@ public class UniqueCompanyList implements Iterable<Client> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueCompanyList // instanceof handles nulls
-                        && internalList.equals(((UniqueCompanyList) other).internalList));
+                || (other instanceof UniqueClientList // instanceof handles nulls
+                        && internalList.equals(((UniqueClientList) other).internalList));
     }
 
     @Override
@@ -123,12 +123,12 @@ public class UniqueCompanyList implements Iterable<Client> {
     }
 
     /**
-     * Returns true if {@code companies} contains only unique companies.
+     * Returns true if {@code clients} contains only unique clients.
      */
-    private boolean companiesAreUnique(List<Client> companies) {
-        for (int i = 0; i < companies.size() - 1; i++) {
-            for (int j = i + 1; j < companies.size(); j++) {
-                if (companies.get(i).isSameClient(companies.get(j))) {
+    private boolean clientsAreUnique(List<Client> clients) {
+        for (int i = 0; i < clients.size() - 1; i++) {
+            for (int j = i + 1; j < clients.size(); j++) {
+                if (clients.get(i).isSameClient(clients.get(j))) {
                     return false;
                 }
             }
