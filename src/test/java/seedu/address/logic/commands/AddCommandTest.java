@@ -20,7 +20,7 @@ import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Company;
 import seedu.address.testutil.CompanyBuilder;
 
 public class AddCommandTest {

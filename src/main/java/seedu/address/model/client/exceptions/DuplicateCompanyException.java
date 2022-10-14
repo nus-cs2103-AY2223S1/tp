@@ -1,4 +1,4 @@
-package seedu.address.model.company.exceptions;
+package seedu.address.model.client.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Companies

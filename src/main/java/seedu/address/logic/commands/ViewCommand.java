@@ -8,8 +8,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.NameEqualsKeywordPredicate;
+import seedu.address.model.client.Company;
+import seedu.address.model.client.NameEqualsKeywordPredicate;
 
 /**
  * Views the details (point-of-contacts, transactions) of an existing company in the address book.

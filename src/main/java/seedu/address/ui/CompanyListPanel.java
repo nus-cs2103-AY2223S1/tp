@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Company;
 
 /**
  * Panel containing the list of companies.

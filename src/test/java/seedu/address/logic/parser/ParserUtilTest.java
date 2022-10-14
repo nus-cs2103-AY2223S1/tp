@@ -14,8 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.Address;
-import seedu.address.model.company.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Name;
 import seedu.address.model.poc.Email;
 import seedu.address.model.poc.Phone;
 import seedu.address.model.tag.Tag;

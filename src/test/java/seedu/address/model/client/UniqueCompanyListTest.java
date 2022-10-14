@@ -1,4 +1,4 @@
-package seedu.address.model.company;
+package seedu.address.model.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.company.exceptions.CompanyNotFoundException;
-import seedu.address.model.company.exceptions.DuplicateCompanyException;
+import seedu.address.model.client.exceptions.CompanyNotFoundException;
+import seedu.address.model.client.exceptions.DuplicateCompanyException;
 import seedu.address.testutil.CompanyBuilder;
 
 public class UniqueCompanyListTest {

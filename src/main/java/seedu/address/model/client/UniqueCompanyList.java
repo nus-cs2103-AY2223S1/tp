@@ -1,4 +1,4 @@
-package seedu.address.model.company;
+package seedu.address.model.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.company.exceptions.CompanyNotFoundException;
-import seedu.address.model.company.exceptions.DuplicateCompanyException;
+import seedu.address.model.client.exceptions.CompanyNotFoundException;
+import seedu.address.model.client.exceptions.DuplicateCompanyException;
 
 /**
  * A list of companies that enforces uniqueness between its elements and does not allow nulls.

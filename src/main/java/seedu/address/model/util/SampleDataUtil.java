@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.JeeqTracker;
 import seedu.address.model.ReadOnlyJeeqTracker;
-import seedu.address.model.company.Address;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Company;
+import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
 
 /**

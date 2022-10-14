@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Company;
 
 /**
  * Represents the in-memory model of the address book data.

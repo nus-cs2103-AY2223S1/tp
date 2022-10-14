@@ -1,4 +1,4 @@
-package seedu.address.model.company;
+package seedu.address.model.client;
 
 import java.util.List;
 import java.util.function.Predicate;

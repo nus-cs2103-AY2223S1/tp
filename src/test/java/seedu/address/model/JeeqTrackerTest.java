@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.exceptions.DuplicateCompanyException;
+import seedu.address.model.client.Company;
+import seedu.address.model.client.exceptions.DuplicateCompanyException;
 import seedu.address.testutil.CompanyBuilder;
 
 public class JeeqTrackerTest {

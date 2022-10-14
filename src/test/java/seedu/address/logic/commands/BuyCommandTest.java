@@ -24,8 +24,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.model.client.Company;
+import seedu.address.model.client.UniqueCompanyList;
 import seedu.address.testutil.CompanyBuilder;
 
 class BuyCommandTest {

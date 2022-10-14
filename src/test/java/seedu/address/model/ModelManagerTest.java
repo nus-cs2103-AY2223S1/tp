@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.company.NameContainsKeywordsPredicate;
+import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.JeeqTrackerBuilder;
 
 public class ModelManagerTest {

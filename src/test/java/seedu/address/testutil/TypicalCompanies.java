@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.JeeqTracker;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Company;
 
 /**
  * A utility class containing a list of {@code Company} objects to be used in tests.

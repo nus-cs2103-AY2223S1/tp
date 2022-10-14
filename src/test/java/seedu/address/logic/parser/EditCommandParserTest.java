@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
-import seedu.address.model.company.Address;
-import seedu.address.model.company.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 

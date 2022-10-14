@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.JeeqTracker;
 import seedu.address.model.ReadOnlyJeeqTracker;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Company;
 
 /**
  * An Immutable JeeqTracker that is serializable to JSON format.

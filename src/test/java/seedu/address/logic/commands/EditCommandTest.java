@@ -22,7 +22,7 @@ import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Company;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
