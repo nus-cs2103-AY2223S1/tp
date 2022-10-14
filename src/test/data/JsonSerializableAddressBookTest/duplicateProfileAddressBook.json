@@ -2,10 +2,12 @@
   "profiles": [ {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "alice@u.nus.edu"
+    "email": "alice@u.nus.edu",
+    "telegram": ""
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@u.nus.edu"
+    "email": "pauline@u.nus.edu",
+    "telegram": ""
   } ]
 }

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,15 +26,17 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME]\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@u.nus.edu "
+            + PREFIX_TELEGRAM + "johndoe "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New profile added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New profile added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book";
 
     private final Profile toAdd;
