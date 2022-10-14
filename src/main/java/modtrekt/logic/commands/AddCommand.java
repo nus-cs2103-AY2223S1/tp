@@ -8,7 +8,7 @@ import modtrekt.model.Model;
 import modtrekt.model.module.Module;
 
 /**
- * Adds a person to the address book.
+ * Adds a module to the module list.
  */
 public class AddCommand extends Command {
 
@@ -16,21 +16,14 @@ public class AddCommand extends Command {
     public static final String COMMAND_IDENTIFIER = "-m";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. "
-            + "Parameters: "
-            + CliSyntax.PREFIX_MOD_NAME + "NAME "
-            + CliSyntax.PREFIX_MOD_CODE + "CODE "
-            + CliSyntax.PREFIX_MOD_CREDIT + "CREDIT "
-            + "Example: " + COMMAND_WORD + " -m "
-            + CliSyntax.PREFIX_MOD_NAME + "Data Structures and Algorithms "
-            + CliSyntax.PREFIX_MOD_CODE + "CS2040S "
-            + CliSyntax.PREFIX_MOD_CREDIT + "4 "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. \n"
+            + "Usage 1: " + COMMAND_WORD + " " + COMMAND_IDENTIFIER + " "
+            + CliSyntax.PREFIX_MOD_NAME + "<NAME> "
+            + CliSyntax.PREFIX_MOD_CODE + "<CODE> "
+            + CliSyntax.PREFIX_MOD_CREDIT + "<CREDIT> "
             + "\n"
-            + COMMAND_WORD + ": Adds a module to the module list. "
-            + "Parameters: "
-            + CliSyntax.PREFIX_MOD_CODE + "CODE "
-            + "Example: " + COMMAND_WORD + " -m "
-            + CliSyntax.PREFIX_MOD_CODE + "CS2040S ";;
+            + "Usage 2: " + COMMAND_WORD + " " + COMMAND_IDENTIFIER + " "
+            + CliSyntax.PREFIX_MOD_CODE + "<CODE>";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the module list";

@@ -7,25 +7,26 @@ import java.util.List;
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.core.index.Index;
 import modtrekt.logic.commands.exceptions.CommandException;
+import modtrekt.logic.parser.CliSyntax;
 import modtrekt.model.Model;
 import modtrekt.model.module.Module;
 
 /**
- * Deletes a module identified using it's displayed index from the address book.
+ * Deletes a module identified using it's displayed index from the module list.
  */
-public class RemoveModuleCommand extends Command {
+public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the module identified by the index number used in the displayed module list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the task/module identified by the index number.\n"
+            + "Prefixes: " + CliSyntax.PREFIX_MODULE + ": Modules, " + CliSyntax.PREFIX_TASK + ": Tasks\n"
+            + "Format: " + COMMAND_WORD + " " + CliSyntax.PREFIX_MODULE + " <INDEX>";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
     private final Index targetIndex;
 
-    public RemoveModuleCommand(Index targetIndex) {
+    public RemoveCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +48,7 @@ public class RemoveModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RemoveModuleCommand // instanceof handles nulls
-                && targetIndex.equals(((RemoveModuleCommand) other).targetIndex)); // state check
+                || (other instanceof RemoveCommand // instanceof handles nulls
+                && targetIndex.equals(((RemoveCommand) other).targetIndex)); // state check
     }
 }

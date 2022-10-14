@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static modtrekt.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Module's name in the address book.
+ * Represents a Module's name in the module list.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class ModName {

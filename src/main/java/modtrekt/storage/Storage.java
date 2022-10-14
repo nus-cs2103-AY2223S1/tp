@@ -28,13 +28,13 @@ public interface Storage extends TaskBookStorage, ModuleListStorage, UserPrefsSt
     Optional<ReadOnlyTaskBook> readTaskBook() throws DataConversionException, IOException;
 
     @Override
-    void saveTaskBook(ReadOnlyTaskBook addressBook) throws IOException;
+    void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException;
     Path getModuleListFilePath();
 
     @Override
     Optional<ReadOnlyModuleList> readModuleList() throws DataConversionException, IOException;
 
     @Override
-    void saveModuleList(ReadOnlyModuleList addressBook) throws IOException;
+    void saveModuleList(ReadOnlyModuleList moduleList) throws IOException;
 
 }

@@ -15,7 +15,7 @@ import modtrekt.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w10-4.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -46,21 +46,22 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
-     * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *
+     * @throws IllegalStateException <ul>
+     *                                       <li>
+     *                                           if this method is called on a thread other than the JavaFX
+     *                                           Application Thread.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called during animation or layout processing.
+     *                                       </li>
+     *                                       <li>
+     *                                           if this method is called on the primary stage.
+     *                                       </li>
+     *                                       <li>
+     *                                           if {@code dialogStage} is already showing.
+     *                                       </li>
+     *                                   </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");

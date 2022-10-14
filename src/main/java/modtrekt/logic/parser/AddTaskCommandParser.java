@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import modtrekt.logic.commands.AddDeadlineCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.Command;
-import modtrekt.logic.commands.utils.AddCommandMessages;
 import modtrekt.logic.parser.exceptions.ParseException;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Deadline;
@@ -48,7 +47,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommandMessages.COMBINED_TASK_DEADLINE_USAGE));
+                AddTaskCommand.MESSAGE_USAGE));
 
     }
 

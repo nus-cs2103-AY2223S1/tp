@@ -11,7 +11,7 @@ import modtrekt.model.task.UniqueTaskList;
 
 /**
  * Wraps all data at the task-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSameTask comparison)
  */
 public class TaskBook implements ReadOnlyTaskBook {
 
@@ -31,7 +31,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public TaskBook() {}
 
     /**
-     * Creates an TaskBook using the Persons in the {@code toBeCopied}
+     * Creates an TaskBook using the Tasks in the {@code toBeCopied}
      */
     public TaskBook(ReadOnlyTaskBook toBeCopied) {
         this();
@@ -41,8 +41,8 @@ public class TaskBook implements ReadOnlyTaskBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code tasks}.
-     * {@code tasks} must not contain duplicate persons.
+     * Replaces the contents of the Task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate Tasks.
      */
     public void setTasks(List<Task> tasks) {
         this.tasks.setTasks(tasks);
@@ -70,12 +70,12 @@ public class TaskBook implements ReadOnlyTaskBook {
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the task book.
-     * The person identity of {@code editedTask} must not be the same as another existing task in the task book.
+     * The Task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
-    public void setTask(Task target, Task editedPerson) {
-        requireNonNull(editedPerson);
+    public void setTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
 
-        tasks.setTask(target, editedPerson);
+        tasks.setTask(target, editedTask);
     }
 
     /**

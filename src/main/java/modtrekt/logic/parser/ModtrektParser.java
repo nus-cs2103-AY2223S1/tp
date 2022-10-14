@@ -13,7 +13,7 @@ import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
-import modtrekt.logic.commands.RemoveTaskCommand;
+import modtrekt.logic.commands.RemoveCommand;
 import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.UnarchiveTaskCommand;
@@ -25,7 +25,7 @@ import modtrekt.logic.parser.tasks.UnarchiveTaskCommandParser;
 /**
  * Parses user input.
  */
-public class TaskBookParser {
+public class ModtrektParser {
     /**
      * Used for initial separation of command word and args.
      */
@@ -47,7 +47,7 @@ public class TaskBookParser {
         final String arguments = matcher.group("arguments");
 
         switch (commandWord) {
-        case RemoveTaskCommand.COMMAND_WORD:
+        case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
         case AddCommand.COMMAND_WORD:
             if (arguments.contains(AddCommand.COMMAND_IDENTIFIER)) {
@@ -63,15 +63,12 @@ public class TaskBookParser {
             return new ArchiveTaskCommandParser().parse(arguments);
         case UnarchiveTaskCommand.COMMAND_WORD:
             return new UnarchiveTaskCommandParser().parse(arguments);
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
         case CdModuleCommand.COMMAND_WORD:
             return new CdCommandParser().parse(arguments);
-
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

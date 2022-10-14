@@ -68,14 +68,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveTaskBook(ReadOnlyTaskBook addressBook) throws IOException {
-        saveTaskBook(addressBook, taskBookStorage.getTaskBookFilePath());
+    public void saveTaskBook(ReadOnlyTaskBook taskBook) throws IOException {
+        saveTaskBook(taskBook, taskBookStorage.getTaskBookFilePath());
     }
 
     @Override
-    public void saveTaskBook(ReadOnlyTaskBook addressBook, Path filePath) throws IOException {
+    public void saveTaskBook(ReadOnlyTaskBook taskBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        taskBookStorage.saveTaskBook(addressBook, filePath);
+        taskBookStorage.saveTaskBook(taskBook, filePath);
     }
     public Path getModuleListFilePath() {
         return moduleListStorage.getModuleListFilePath();
@@ -93,14 +93,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveModuleList(ReadOnlyModuleList addressBook) throws IOException {
-        saveModuleList(addressBook, moduleListStorage.getModuleListFilePath());
+    public void saveModuleList(ReadOnlyModuleList moduleList) throws IOException {
+        saveModuleList(moduleList, moduleListStorage.getModuleListFilePath());
     }
 
     @Override
-    public void saveModuleList(ReadOnlyModuleList addressBook, Path filePath) throws IOException {
+    public void saveModuleList(ReadOnlyModuleList moduleList, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        moduleListStorage.saveModuleList(addressBook, filePath);
+        moduleListStorage.saveModuleList(moduleList, filePath);
     }
 
 }

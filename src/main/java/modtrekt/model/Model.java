@@ -14,8 +14,7 @@ import modtrekt.model.task.Task;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Task> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = module -> true;
     Predicate<Task> PREDICATE_HIDE_ARCHIVED_TASKS = task -> !task.isArchived();
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> true;
 
@@ -40,32 +39,40 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' task book file path.
      */
     Path getTaskBookFilePath();
+
+    /**
+     * Returns the user prefs' module list file path.
+     */
     Path getModuleListFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' task book/module list file path.
      */
-    void setTaskBookFilePath(Path addressBookFilePath);
-    void setModuleListFilePath(Path addressBookFilePath);
+    void setTaskBookFilePath(Path taskBookFilePath);
+    void setModuleListFilePath(Path moduleListFilePath);
 
     /**
      * Replaces task book data with the data in {@code taskBook}.
      */
-    void setTaskBook(ReadOnlyTaskBook addressBook);
+    void setTaskBook(ReadOnlyTaskBook taskBook);
 
     /** Returns the taskBook */
     ReadOnlyTaskBook getTaskBook();
-    void setModuleList(ReadOnlyModuleList addressBook);
+
+    /**
+     * Replaces module list data with the data in {@code moduleList}.
+     */
+    void setModuleList(ReadOnlyModuleList moduleList);
 
     /** Returns the ModuleList */
     ReadOnlyModuleList getModuleList();
 
     /**
      * Deletes the given task.
-     * The task must exist in the address book.
+     * The task must exist in the task book.
      */
     void deleteTask(Task target);
 
@@ -77,10 +84,7 @@ public interface Model {
 
 
     /** Updates module list after task removal */
-    void updateModuleRemoveTask(Task t);
-
-    /** Updates module list after adding task */
-    void updateModuleAddTask(Task t);
+    void updateModuleTask(Task t);
 
     /** Updates task list after module removal */
     void deleteTasksOfModule(Module target);
@@ -106,7 +110,7 @@ public interface Model {
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task book.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task book.
      */
     void setTask(Task target, Task editedTask);
 
@@ -126,17 +130,17 @@ public interface Model {
     void addModule(Module module);
 
     /**
-     * Replaces the given person {@code target} with {@code editedModule}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in the module list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the module list.
      */
     void setModule(Module target, Module editedModule);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);

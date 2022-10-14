@@ -1,6 +1,7 @@
 package modtrekt.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
+import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static modtrekt.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
@@ -69,7 +70,7 @@ public class CommandParser {
                         .collect(Collectors.joining(", ")),
                 additionalMessage == null ? "" : "\n" + additionalMessage
         );
-        throw new ParseException(message);
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, message));
     }
 
     /**

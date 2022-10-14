@@ -34,7 +34,7 @@ public interface Logic {
      */
     ReadOnlyTaskBook getTaskBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
     /**
@@ -44,13 +44,17 @@ public interface Logic {
      */
     ReadOnlyModuleList getModuleList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TaskBook file path.
      */
     Path getTaskBookFilePath();
+
+    /**
+     * Returns the user prefs' ModuleList file path.
+     */
     Path getModuleListFilePath();
 
     /**

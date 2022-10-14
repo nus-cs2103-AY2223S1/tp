@@ -18,9 +18,9 @@ import modtrekt.model.task.Task;
 import modtrekt.testutil.TaskBuilder;
 import modtrekt.testutil.TaskUtil;
 
-public class TaskBookParserTest {
+public class ModtrektParserTest {
 
-    private final TaskBookParser parser = new TaskBookParser();
+    private final ModtrektParser parser = new ModtrektParser();
 
     @Test
     public void parseCommand_add() throws Exception {

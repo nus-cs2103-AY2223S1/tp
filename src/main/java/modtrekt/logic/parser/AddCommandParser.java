@@ -7,11 +7,12 @@ import java.io.IOException;
 
 import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.Command;
-import modtrekt.logic.module.ModuleParser;
 import modtrekt.logic.parser.exceptions.ParseException;
+import modtrekt.logic.parser.module.ModuleParser;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
+import modtrekt.model.module.ModTaskCount;
 import modtrekt.model.module.Module;
 
 /**
@@ -32,11 +33,13 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME,
                 CliSyntax.PREFIX_MOD_CODE, CliSyntax.PREFIX_MOD_CREDIT)) {
+
             ModName name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_MOD_NAME).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
             ModCredit credit = ParserUtil.parseCredit(argMultimap.getValue(CliSyntax.PREFIX_MOD_CREDIT).get());
+            ModTaskCount taskCount = new ModTaskCount("0");
 
-            Module module = new Module(code, name, credit);
+            Module module = new Module(code, name, credit, taskCount);
 
             return new AddCommand(module);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_MOD_NAME)
@@ -54,11 +57,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 return new AddCommand(module);
 
             } catch (IOException | InterruptedException e) {
-                throw new ParseException("Error fetching module data from NUSMods, please try inputting manually");
+                throw new ParseException(
+                        "Error fetching module data from NUSMods, please try inputting manually");
             }
         }
-
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
-
 }

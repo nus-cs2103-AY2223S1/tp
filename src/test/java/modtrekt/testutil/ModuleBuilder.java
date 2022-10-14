@@ -3,6 +3,7 @@ package modtrekt.testutil;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.module.ModCredit;
 import modtrekt.model.module.ModName;
+import modtrekt.model.module.ModTaskCount;
 import modtrekt.model.module.Module;
 
 /**
@@ -62,7 +63,7 @@ public class ModuleBuilder {
 
 
     public Module build() {
-        return new Module(code, name, credit);
+        return new Module(code, name, credit, new ModTaskCount("0"));
     }
 
 }

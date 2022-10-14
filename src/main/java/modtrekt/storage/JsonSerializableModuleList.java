@@ -24,7 +24,7 @@ class JsonSerializableModuleList {
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableModuleList} with the given persons.
+     * Constructs a {@code JsonSerializableModuleList} with the given modules.
      */
     @JsonCreator
     public JsonSerializableModuleList(@JsonProperty("modules") List<JsonAdaptedModule> modules) {
@@ -41,7 +41,7 @@ class JsonSerializableModuleList {
     }
 
     /**
-     * Converts this address book into the model's {@code ModuleList} object.
+     * Converts this module list into the model's {@code ModuleList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
