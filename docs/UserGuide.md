@@ -8,9 +8,13 @@ title: User Guide
 
 * [Quick Start](#quick-start)
 * [Features](#features)
+    * [Getting help: `help`](#getting-help-help)
     * [Adding an internship application: `add`](#adding-an-internship-application-add)
     * [Listing all internship applications: `list`](#listing-all-internship-applications-list)
     * [Deleting an internship application: `delete`](#deleting-an-internship-application-delete)
+    * [Finding an internship application: `find`](#finding-an-internship-application-find)
+    * [Editing an internship application: `edit`](#editing-an-internship-application-edit)
+    * [Clearing all entries: `clear`](#clearing-all-entries-clear)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
 * [FAQ](#faq)
@@ -31,12 +35,19 @@ title: User Guide
 
 5. Type the command into the command box and press Enter to execute it. e.g. typing **`list`** and pressing Enter will display the applications currently in **CinternS**.<br>
    Some example commands you can try:
-
+    * **`help`**: Shows a message explaining the way to access help page.
+   
     * **`list`** : Displays internship application.
 
     * **`add`**`c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` : Adds an internship application on `2022-01-01` to `Google` with contact number `11111111` and email `google@example.com` for the role of `Software Engineer` to **CinternS**.
 
     * **`delete`**`2` : Deletes the 2nd application shown in the current list.
+   
+    * **`find`**`google` : Finds the applications that contain keyword **google** in their company name and/or position.
+   
+    * **`edit`**`1 e/hr@internship.sg`: Edits the 1st application shown in the current list with new email address.
+   
+    * **`clear`**: Clears CinternS data.
 
     * **`exit`** : Exits the app.
 
@@ -61,6 +72,10 @@ title: User Guide
 
 </div>
 
+### Viewing help: `help`
+Shows a message explaining how to access the help page
+![HelpWindow](images/HelpWindow.png)
+Format: `help`
 
 ### Adding an internship application: `add`
 
@@ -97,8 +112,44 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd internship application in the list.
 
-### Exiting the program: `exit`
+### Finding an internship application: `find`
 
+Finds applications whose companies or positions contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `google` will match `Google`
+* The order of the keywords does not matter. e.g. `Tech Micron` will match `Micron Tech`
+* Only the company and position is searched.
+* Only full words will be matched e.g. `ByteDance` will not match `ByteDances`
+* Applications matching at least one keyword will be returned (i.e. `OR` search). e.g. `Google Shopee` will return `Shopee HQ`, `Google Singapore`
+
+Examples:
+* `find Software` returns `Google` and `Wise` application whose position contain software keyword.
+![FindExample](images/FindExample.png)
+
+### Editing an internship application: `edit`
+Edits an existing application in the CinternS.
+
+Format: `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE]`
+
+* Edits the application at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed application list. 
+* The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Examples:
+
+`edit 1 ct/91234567 e/grab@example.com` edits the contact and email of the 1st application to be 91234567 and grab@example.com respectively.
+`edit 2 c/Garena` edits the company of the 2nd application to be Garena.
+
+### Clearing all entries: `clear`
+Clears all entries from CinternS.
+
+Format: `clear`
+
+### Exiting the program: `exit`
 Exits the program.
 
 Format: `exit`
@@ -129,11 +180,15 @@ We will assist you as soon as possible.
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer`
-**List** | `list`
-**Delete** | `delete INDEX`<br> e.g., `delete 2`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                             |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**   | `help`                                                                                                                                                       |
+| **Add**    | `add c/COMPANY_NAME ct/CONTACT_NUMBER d/DATE e/EMAIL p/POSITION` <br> e.g., `add c/Google ct/11111111 d/2022-01-01 e/google@example.com p/Software Engineer` |
+| **List**   | `list`                                                                                                                                                       |
+| **Delete** | `delete INDEX`<br> e.g., `delete 2`                                                                                                                          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find engineer`                                                                                                     |
+| **Edit**   | `edit INDEX [n/COMPANY] [ct/CONTACT] [e/EMAIL] [p/POSITION] [d/DATE]`<br> e.g., `edit 2 c/Grab d/2022-10-10`                                                 |
+| **Clear**  | `clear`                                                                                                                                                      |
+| **Exit**   | `exit`                                                                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
