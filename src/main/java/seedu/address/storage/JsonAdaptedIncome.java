@@ -1,15 +1,15 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Description;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,10 +34,10 @@ public class JsonAdaptedIncome extends JsonAdaptedEntry {
     @Override
     public Income toModelType() throws IllegalValueException {
         checkIsValidJsonEntry();
-//        final List<Tag> personTags = new ArrayList<>();
-//        for (JsonAdaptedTag tag : tagged) {
-//            personTags.add(tag.toModelType());
-//        }
+        // final List<Tag> personTags = new ArrayList<>();
+        // for (JsonAdaptedTag tag : tagged) {
+        //     personTags.add(tag.toModelType());
+        // }
 
         final Description modelDescription = new Description(description);
 

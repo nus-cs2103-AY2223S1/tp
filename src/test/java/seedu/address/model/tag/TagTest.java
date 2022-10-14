@@ -3,12 +3,12 @@ package seedu.address.model.tag;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.entry.Entry;
+
 import seedu.address.model.entry.EntryType;
 
 public class TagTest {
-    EntryType expenditureType = new EntryType("e");
-    EntryType incomeType = new EntryType("i");
+    private EntryType expenditureType = new EntryType("e");
+    private EntryType incomeType = new EntryType("i");
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Tag(expenditureType, null));

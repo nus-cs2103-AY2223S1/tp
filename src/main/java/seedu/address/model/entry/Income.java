@@ -1,7 +1,5 @@
 package seedu.address.model.entry;
 
-import java.util.Set;
-
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,11 +24,11 @@ public class Income extends Entry {
                 .append("; Tag: ")
                 .append(getTag());
 
-//        Set<Tag> tags = getTags();
-//        if (!tags.isEmpty()) {
-//            builder.append("; Tags: ");
-//            tags.forEach(builder::append);
-//        }
+        // Set<Tag> tags = getTags();
+        // if (!tags.isEmpty()) {
+        //     builder.append("; Tags: ");
+        //     tags.forEach(builder::append);
+        // }
         return builder.toString();
     }
 }

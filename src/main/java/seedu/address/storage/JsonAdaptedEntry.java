@@ -1,11 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -81,10 +75,10 @@ public class JsonAdaptedEntry {
      */
     public Entry toModelType() throws IllegalValueException {
         checkIsValidJsonEntry();
-//        final List<Tag> personTags = new ArrayList<>();
-//        for (JsonAdaptedTag tag : tagged) {
-//            personTags.add(tag.toModelType());
-//        }
+        // final List<Tag> personTags = new ArrayList<>();
+        // for (JsonAdaptedTag tag : tagged) {
+        //     personTags.add(tag.toModelType());
+        // }
         final Description modelDescription = new Description(description);
         final Amount modelAmount = new Amount(amount);
         final Date modelDate = new Date(date);

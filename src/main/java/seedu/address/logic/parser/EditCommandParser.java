@@ -8,10 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -61,7 +58,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             editEntryDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            parseTagsForEdit(editEntryDescriptor.getType().get(), argMultimap.getValue(PREFIX_TAG).get()).ifPresent(editEntryDescriptor::setTag);
+            parseTagsForEdit(
+                    editEntryDescriptor.getType().get(),
+                    argMultimap.getValue(PREFIX_TAG).get()).ifPresent(editEntryDescriptor::setTag);
         }
 
         if (!editEntryDescriptor.isAnyFieldEdited() || argMultimap.getValue(PREFIX_TYPE).isEmpty()) {
@@ -79,7 +78,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     private Optional<Tag> parseTagsForEdit(EntryType type, String tag) throws ParseException {
         assert tag != null;
 
-//        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        // Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTag(type, tag));
     }
 

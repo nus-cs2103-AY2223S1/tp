@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_DINNER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MOVIE;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.DINNER;
 import static seedu.address.testutil.TypicalEntry.LUNCH;
 

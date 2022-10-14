@@ -1,13 +1,12 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Description;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Expenditure;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-
-
 
 /**
  * A utility class to help with building Expenditure objects.

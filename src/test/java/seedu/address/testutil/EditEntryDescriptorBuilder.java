@@ -1,9 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;

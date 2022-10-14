@@ -1,13 +1,12 @@
 package seedu.address.model.tag;
 
-import seedu.address.model.entry.EntryType;
-import seedu.address.model.entry.Income;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+import seedu.address.model.entry.EntryType;
 
 /**
  * Represents a Tag in the penny wise application.
@@ -17,15 +16,14 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public final String tagName;
-    public static final List incomeTags = Arrays.asList(
+    public static final List INCOME_TAGS = Arrays.asList(
             "Salary",
             "Allowance",
             "Profit",
             "Investment",
             "Gifts",
-            "Others" );
-    public static final List expenditureTags = Arrays.asList(
+            "Others");
+    public static final List EXPENDITURE_TAGS = Arrays.asList(
             "Food",
             "Groceries",
             "Entertainment",
@@ -33,6 +31,8 @@ public class Tag {
             "Education",
             "Housing",
             "Others");
+    public final String tagName;
+
     /**
      * Constructs a {@code Tag}.
      *
@@ -53,16 +53,19 @@ public class Tag {
         }
         switch (type.getEntryType()) {
         case INCOME:
-            if (!incomeTags.contains(test)) {
+            if (!INCOME_TAGS.contains(test)) {
                 return false;
             }
+            break;
         case EXPENDITURE:
-            if (!expenditureTags.contains(test)) {
+            if (!EXPENDITURE_TAGS.contains(test)) {
                 return false;
             }
+            break;
         default:
             return true;
         }
+        return true;
 
     }
 
