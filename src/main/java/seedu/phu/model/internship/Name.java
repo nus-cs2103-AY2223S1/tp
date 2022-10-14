@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.phu.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Internship's name in the internship book.
+ * Represents a company's name in the internship book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name extends ComparableModel {
@@ -13,7 +13,7 @@ public class Name extends ComparableModel {
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the internship must not be a whitespace,
+     * The first character of the company's name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
