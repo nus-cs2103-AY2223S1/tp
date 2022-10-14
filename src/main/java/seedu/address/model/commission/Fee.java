@@ -12,8 +12,10 @@ import java.util.Objects;
 public class Fee {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Fees should be at least 0.";
-
+            "Fee should be at least $0 and not more than $10,000,000.";
+    // this max fee constraint is enforced in order to prevent issues that might arise
+    // with manipulating data that is too big which might give rise to unexpected behaviours
+    public static final Double MAX_FEE = Double.valueOf(10_000_000);
     public final Double fee;
 
     /**
@@ -30,10 +32,10 @@ public class Fee {
     /**
      * Returns true if a given double is a valid fee.
      * @param test Double being tested.
-     * @return Whether the fee is non-negative.
+     * @return Whether the fee is non-negative and not more than the max fee.
      */
     public static boolean isValidFee(double test) {
-        return test >= 0;
+        return test >= 0 && test <= MAX_FEE;
     }
 
     @Override

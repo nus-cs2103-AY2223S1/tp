@@ -22,5 +22,8 @@ class FeeTest {
         assertTrue(Fee.isValidFee(1.5)); // positive values are valid
         assertTrue(Fee.isValidFee(0.0)); // zero is valid
         assertFalse(Fee.isValidFee(-1.5)); // negative values are not valid
+        // valid fees are not more than the max fee
+        assertTrue(Fee.isValidFee(Fee.MAX_FEE));
+        assertFalse(Fee.isValidFee(Fee.MAX_FEE + 1));
     }
 }
