@@ -26,6 +26,7 @@ import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 
 public class TaskTodoCommandParserTest {
+
     private TaskTodoCommandParser parser = new TaskTodoCommandParser();
 
     @Test

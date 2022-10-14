@@ -21,7 +21,7 @@ import taskbook.model.task.enums.Assignment;
  */
 public abstract class TaskAddCommand extends Command {
 
-    public static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
+    private static final String MESSAGE_PERSON_NOT_FOUND = "Person not found in task book!";
 
     private final Name name;
     private final Description description;
@@ -36,7 +36,7 @@ public abstract class TaskAddCommand extends Command {
      * @param description The description for the new task.
      * @param assignment Represents task assigned to user or others.
      */
-    public TaskAddCommand(Name name, Description description, Assignment assignment) {
+    protected TaskAddCommand(Name name, Description description, Assignment assignment) {
         requireAllNonNull(name, description, assignment);
         this.name = name;
         this.description = description;
