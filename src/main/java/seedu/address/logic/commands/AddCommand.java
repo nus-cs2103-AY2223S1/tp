@@ -56,14 +56,11 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        Person newToAddPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(),
-                toAdd.getAddress(), toAdd.getTags(), toAdd.getLoan());
-
         // Add person reference to tags
-        toAdd.getTags().forEach(tag -> tag.addPerson(newToAddPerson));
+        toAdd.getTags().forEach(tag -> tag.addPerson(toAdd));
 
-        model.addPerson(newToAddPerson);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newToAddPerson));
+        model.addPerson(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
