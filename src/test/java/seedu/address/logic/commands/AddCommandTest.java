@@ -241,6 +241,17 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
 
         }
+
+        @Override
+        public void addField(String fieldName) {
+            throw new AssertionError("This method should not be called.");
+
+        }
+
+        @Override
+        public void removeField(String fieldName) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

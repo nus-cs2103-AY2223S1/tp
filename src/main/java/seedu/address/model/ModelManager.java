@@ -180,6 +180,20 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    // field level methods and accessors
+
+    @Override
+    public void addField(String fieldName) {
+        addressBook.addField(fieldName);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void removeField(String fieldName) {
+        addressBook.removeField(fieldName);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     // =========== Filtered Person List Accessors
     // =============================================================
 

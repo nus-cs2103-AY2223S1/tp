@@ -17,4 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_GROUP = new Prefix("g/");
     public static final Prefix PREFIX_USER = new Prefix("u/");
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
+
+    /* Prefix for Fields */
+    public static final FieldPrefixes PREFIX_FIELD = new FieldPrefixes();
 }

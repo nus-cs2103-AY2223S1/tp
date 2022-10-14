@@ -15,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.field.Field;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -159,6 +160,21 @@ public class ParserUtil {
         }
 
         return new Group(group);
+    }
+
+    /**
+     * Parses {@code String field} into a {@code Field}.
+     *
+     * @param fieldName the name of the field that is to be created.
+     * @return A Field instance containing the name of the field.
+     * @throws ParseException if the field name is invalid.
+     */
+    public static Field parseField(String fieldName) throws ParseException {
+        requireNonNull(fieldName);
+        if (!Field.isValidField(fieldName)) {
+            throw new ParseException(Field.MESSAGE_CONSTRAINTS);
+        }
+        return new Field(fieldName);
     }
 
     /**
