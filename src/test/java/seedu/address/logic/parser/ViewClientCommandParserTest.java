@@ -19,7 +19,16 @@ public class ViewClientCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // Invalid value after prefix
         assertParseFailure(parser, " i/a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
+
+        // No prefix
+        assertParseFailure(parser, "12",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
+
+        // Empty string
+        assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewClientCommand.MESSAGE_USAGE));
     }
 }
