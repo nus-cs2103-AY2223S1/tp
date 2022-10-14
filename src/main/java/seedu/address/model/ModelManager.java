@@ -174,6 +174,11 @@ public class ModelManager implements Model {
         updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDERS);
     }
 
+    @Override
+    public void deleteReminder(Reminder target) {
+        addressBook.removeReminder(target);
+    }
+
     //=========== Filtered Reminder List Accessors =============================================================
 
     /**
@@ -281,7 +286,9 @@ public class ModelManager implements Model {
     //=========== Filtered Tutorial List Accessors =============================================================
 
     @Override
-    public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() { return filteredTeachingAssistants; }
+    public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() {
+        return filteredTeachingAssistants;
+    }
 
     @Override
     public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {

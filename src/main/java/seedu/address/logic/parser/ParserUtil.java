@@ -286,7 +286,6 @@ public class ParserUtil {
         }
         return new TeachingAssistantId(trimmedName);
     }
-        
     /**
      * Parses a {@code String day} into a {@code TutorialDay}.
      * Leading and trailing whitespaces will be trimmed.
