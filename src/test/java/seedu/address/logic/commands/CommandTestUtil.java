@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -57,8 +57,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
-    public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023;
-    public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_DATE + VALID_APPOINTMENT_22_JAN_2023;
+    public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_APPOINTMENT_21_JAN_2023;
+    public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_APPOINTMENT_22_JAN_2023;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -67,7 +67,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_INCOME_DESC = "0000" + PREFIX_ADDRESS; // income should include "$" sign
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_DATE + INVALID_APPOINTMENT_210_JAN_2023;
+    public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + INVALID_APPOINTMENT_210_JAN_2023;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

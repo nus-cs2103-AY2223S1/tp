@@ -29,7 +29,7 @@ public class EditPersonDescriptor {
     private Address address;
     private IncomeLevel income;
     private Set<Tag> tags;
-    private Set<Appointment> appointments;
+    private Appointment appointment;
     public EditPersonDescriptor() {}
 
     /**
@@ -43,14 +43,14 @@ public class EditPersonDescriptor {
         setAddress(toCopy.address);
         setIncome(toCopy.income);
         setTags(toCopy.tags);
-        setAppointments(toCopy.appointments);
+        setAppointment(toCopy.appointment);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointment);
     }
 
     public void setName(Name name) {
@@ -85,12 +85,12 @@ public class EditPersonDescriptor {
      * Sets {@code appointments} to this object's {@code appointments}.
      * A defensive copy of {@code appointments} is used internally.
      */
-    public void setAppointments(Set<Appointment> appointments) {
-        this.appointments = (appointments != null) ? new HashSet<>(appointments) : null;
+    public void setAppointment(Appointment appointment) {
+        this.appointment = appointment;
     }
 
-    public Optional<Set<Appointment>> getAppointments() {
-        return Optional.ofNullable(appointments);
+    public Optional<Appointment> getAppointment() {
+        return Optional.ofNullable(appointment);
     }
 
     public Optional<Address> getAddress() {
@@ -142,18 +142,18 @@ public class EditPersonDescriptor {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with appointments added from {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonByAddingAppointments(Person personToEdit,
+    public static Person createEditedPersonByAddingAppointment(Person personToEdit,
                          EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
         Set<Appointment> currentAppointments = personToEdit.getAppointments();
-        Set<Appointment> newAppointments = editPersonDescriptor.getAppointments().get();
-        for (Appointment newAppointment:newAppointments) {
-            if (currentAppointments.contains(newAppointment)) {
+        Appointment newAppointment = editPersonDescriptor.getAppointment().get();
+        for (Appointment currentAppointment:currentAppointments) {
+            if (currentAppointment.equals(newAppointment)) {
                 throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
         }
-        editPersonDescriptor.appointments.forEach(currentAppointments::add);
+        currentAppointments.add(newAppointment);
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
@@ -169,8 +169,7 @@ public class EditPersonDescriptor {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * overwritten with appointments from {@code editPersonDescriptor}.
      */
-    public static Person createEditedPersonByOverwritingAppointments(Person personToEdit,
-                                                                   EditPersonDescriptor editPersonDescriptor) {
+    public static Person createEditedPersonByDeletingAllAppointments(Person personToEdit) {
         assert personToEdit != null;
 
         Name name = personToEdit.getName();
@@ -179,12 +178,38 @@ public class EditPersonDescriptor {
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
         IncomeLevel income = personToEdit.getIncome();
-        Set<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, income, tags, newAppointmentsOnly);
+        Set<Appointment> emptyAppointments = new HashSet<>();
+        Person newPerson = new Person(name, phone, email, address, income, tags, emptyAppointments);
 
         return newPerson;
     }
+/**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with appointments added from {@code editPersonDescriptor}.
+     */
+    public static Person createEditedPersonByOverwritingAppointment(Person personToEdit,
+                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        assert personToEdit != null;
 
+        Set<Appointment> currentAppointments = personToEdit.getAppointments();
+        Appointment newAppointment = editPersonDescriptor.getAppointment().get();
+        for (Appointment currentAppointment:currentAppointments) {
+            if (currentAppointment.equals(newAppointment)) {
+                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
+        }
+
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        Email email = personToEdit.getEmail();
+        Address address = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
+        IncomeLevel income = personToEdit.getIncome();
+        Set<Appointment> appointments = new HashSet<>();
+        appointments.add(newAppointment);
+        Person newPerson = new Person(name, phone, email, address, income, tags, appointments);
+        return newPerson;
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -206,6 +231,6 @@ public class EditPersonDescriptor {
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
                 && getTags().equals(e.getTags())
-                && getAppointments().equals(e.getAppointments());
+                && getAppointment().equals(e.getAppointment());
     }
 }

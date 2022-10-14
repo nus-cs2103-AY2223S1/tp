@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        descriptor.setAppointments(person.getAppointments());
+        descriptor.setAppointment(person.getAppointments());
     }
 
     /**
@@ -100,7 +100,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withAppointments(String... appointments) {
         Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
                 .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
-        descriptor.setAppointments(appointmentSet);
+        descriptor.setAppointment(appointmentSet);
         return this;
     }
 

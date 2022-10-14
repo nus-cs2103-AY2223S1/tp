@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointments;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointment;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -23,9 +23,9 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add appointment/s with a specific client "
             + "by the index number used in the displayed person list \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DATE + "DATE AND TIME]...\n"
+            + "[" + PREFIX_APPOINTMENT_DATE + "DATE AND TIME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DATE + "21-Jan-2023 12:30 PM ";
+            + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM ";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled this "
@@ -60,7 +60,7 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonByAddingAppointments(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPersonByAddingAppointment(personToEdit, editPersonDescriptor);
 
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

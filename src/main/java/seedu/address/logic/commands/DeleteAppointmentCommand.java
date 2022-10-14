@@ -1,19 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPerson;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByDeletingAllAppointments;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -53,12 +50,8 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Set<Appointment> emptyAppointments = new HashSet<>();
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setAppointments(emptyAppointments);
-
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson = createEditedPersonByDeletingAllAppointments(personToEdit);
 
         if (personToEdit.getAppointments().size() == 0) {
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_DELETE);

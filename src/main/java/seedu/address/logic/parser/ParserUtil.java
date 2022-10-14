@@ -15,6 +15,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -100,27 +101,31 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateAndTime} into an {@code Appointment}.
+     * Parses a {@code String dateAndTimem} and a {@code String Location} into an {@code Appointment}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
-    public static Appointment parseAppointment(String dateAndTime) {
+    public static Appointment parseAppointment(String dateAndTime, String location) throws ParseException {
         requireNonNull(dateAndTime);
-        String trimmedDateAndTime = dateAndTime.trim();
-        return new Appointment(parseDateTime(trimmedDateAndTime));
+        requireNonNull(location);
+        DateTime appointmentDateTime = parseDateTime(dateAndTime);
+        Location appointmentLocation = parseLocation(location);
+        if (!Appointment.isValidAppointment(appointmentDateTime, appointmentLocation)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
+        return new Appointment(appointmentDateTime, appointmentLocation);
     }
 
-    /**
-     * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
-     */
-    public static Set<Appointment> parseAppointments(Collection<String> datesAndTimes) throws ParseException {
-        requireNonNull(datesAndTimes);
-        final Set<Appointment> appointmentSet = new HashSet<>();
-        for (String dateAndTime : datesAndTimes) {
-            appointmentSet.add(parseAppointment(dateAndTime));
-        }
-        return appointmentSet;
-    }
+//    /**
+//     * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
+//     */
+//    public static Set<Appointment> parseAppointments(Collection<String> datesAndTimes) throws ParseException {
+//        requireNonNull(datesAndTimes);
+//        final Set<Appointment> appointmentSet = new HashSet<>();
+//        for (String dateAndTime : datesAndTimes) {
+//            appointmentSet.add(parseAppointment(dateAndTime));
+//        }
+//        return appointmentSet;
+//    }
 
     /**
      * Parses a {@code String dateAndTime} into an {@code DateTime}.
@@ -132,6 +137,21 @@ public class ParserUtil {
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }
+      /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        String trimmedLocation = location.trim();
+        if (!Location.isValidLocation(trimmedLocation)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Location(trimmedLocation);
+    }
+
     /**
      * Parses a {@code String income} into an {@code IncomeLevel}.
      * Leading and trailing whitespaces will be trimmed.

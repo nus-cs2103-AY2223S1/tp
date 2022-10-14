@@ -20,7 +20,7 @@ public class DeleteAppointmentCommandParserTest {
     public void parse_validArgs_returnsDeleteAppointmentCommand() {
         Set<Appointment> emptyAppointments = new HashSet<>();
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setAppointments(emptyAppointments);
+        editPersonDescriptor.setAppointment(emptyAppointments);
         assertParseSuccess(parser, "1", new DeleteAppointmentCommand(INDEX_FIRST_PERSON));
     }
 

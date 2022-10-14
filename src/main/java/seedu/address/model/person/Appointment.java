@@ -17,21 +17,31 @@ public class Appointment {
             + "d-MMM-yyyy hh:mm a, and it should not be blank";
     public static final Set<Appointment> EMPTY_APPOINTMENTS = new HashSet<>();
 
-    public final DateTime dateTime;
+    private final DateTime dateTime;
+    private final Location location;
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
 
     /**
      * Constructs an {@code Appointment}.
      *
      * @param dateTime A valid appointment.
      */
-    public Appointment(DateTime dateTime) {
+    public Appointment(DateTime dateTime, Location location) {
         requireNonNull(dateTime);
         this.dateTime = dateTime;
+        this.location = location;
     }
 
     @Override
     public String toString() {
-        return dateTime.toString();
+        return dateTime.toString() + ", " + location.toString();
     }
 
     /**
@@ -42,15 +52,17 @@ public class Appointment {
      * @return boolean value describing whether the input DateTime has
      *         the correct format.
      */
-    public boolean isValidAppointment(DateTime dateTime) {
-        return DateTimeParser.isValidDateTime(dateTime.toString());
+    public static boolean isValidAppointment(DateTime dateTime, Location location) {
+        return DateTimeParser.isValidDateTime(dateTime.toString())
+                && Location.isValidLocation(location.toString());
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment// instanceof handles nulls
-                && dateTime.equals(((Appointment) other).dateTime)); // state check
+                && dateTime.equals(((Appointment) other).dateTime)
+                && location.equals(((Appointment) other).location)); // state check
     }
 
     @Override

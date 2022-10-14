@@ -61,14 +61,15 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Appointment> getAppointmentSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new)
-                .map(Appointment::new)
-                .collect(Collectors.toSet());
-    }
+//    /**
+//     * Returns a tag set containing the list of strings given.
+//     */
+//    // TODO parse appointment strings back to appointment set
+//    public static Set<Appointment> getAppointmentSet(Set<Appointment> appointments) {
+//        return Arrays.stream(dateTimes)
+//                .map(DateTimeParser::parseLocalDateTimeFromString)
+//                .map(DateTime::new)
+//                .map(Appointment::new)
+//                .collect(Collectors.toSet());
+//    }
 }
