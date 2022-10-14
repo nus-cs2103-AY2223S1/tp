@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -17,26 +18,29 @@ public class Task {
     private final Title title;
     private final boolean isCompleted; // defaults to false if not specified
 
+
     // data fields
+    private final Deadline deadline; // optional
     private final Set<Contact> assignedContacts = new HashSet<>();
 
     /**
-     * Creates a new {@code Task} with no assigned contacts.
+     * Creates a new {@code Task} with no assigned contacts and an unspecified deadline.
      *
      * @param title Title of task
      */
     public Task(Title title) {
-        this(title, false, new HashSet<Contact>());
+        this(title, false, null, new HashSet<Contact>());
     }
 
     /**
-     * Every field must be present and not null.
+     * Every field except the task's deadline must be present and not null.
      */
-    public Task(Title title, boolean isCompleted, Set<Contact> assignedContacts) {
+    public Task(Title title, boolean isCompleted, Deadline deadline, Set<Contact> assignedContacts) {
         requireAllNonNull(title, isCompleted, assignedContacts);
 
         this.title = title;
         this.isCompleted = isCompleted;
+        this.deadline = deadline;
         this.assignedContacts.addAll(assignedContacts);
     }
 
@@ -49,6 +53,14 @@ public class Task {
      */
     public boolean getCompleted() {
         return isCompleted;
+    }
+
+
+    /**
+     * Returns the deadline set for the task.
+     */
+    public Optional<Deadline> getDeadline() {
+        return Optional.ofNullable(deadline);
     }
 
     /**

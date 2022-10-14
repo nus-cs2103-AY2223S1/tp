@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 
@@ -20,19 +22,22 @@ import seedu.address.model.task.Title;
 class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
-
     private final String title;
     private final String isCompleted;
+    private final String deadline;
     private final List<JsonAdaptedContact> assigned = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("isCompleted") String isCompleted,
+    public JsonAdaptedTask(@JsonProperty("title") String title,
+                           @JsonProperty("isCompleted") String isCompleted,
+                           @JsonProperty("deadline") String deadline,
                            @JsonProperty("assigned") List<JsonAdaptedContact> assigned) {
         this.title = title;
         this.isCompleted = isCompleted;
+        this.deadline = deadline;
         if (assigned != null) {
             this.assigned.addAll(assigned);
         }
@@ -43,7 +48,11 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().value;
+
         isCompleted = String.valueOf(source.getCompleted());
+
+        deadline = source.getDeadline().map(Deadline::toString).orElse("null");
+
         assigned.addAll(source.getAssignedContacts().stream()
             .map(JsonAdaptedContact::new)
             .collect(Collectors.toList()));
@@ -79,9 +88,20 @@ class JsonAdaptedTask {
 
         final boolean modelIsCompleted = Boolean.parseBoolean(isCompleted);
 
+        final Deadline modelDeadline;
+        if (deadline.equals("null")) {
+            modelDeadline = null;
+        } else {
+            try {
+                modelDeadline = Deadline.of(deadline);
+            } catch (ParseException pe) {
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+            }
+        }
+
         final Set<Contact> modelContacts = new HashSet<>(assignedContacts);
 
-        return new Task(modelTitle, modelIsCompleted, modelContacts);
+        return new Task(modelTitle, modelIsCompleted, modelDeadline, modelContacts);
     }
 
 }

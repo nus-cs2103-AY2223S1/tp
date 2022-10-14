@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 
 /**
@@ -37,6 +40,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private CheckBox isCompleted;
     @FXML
+    private Label deadline;
+    @FXML
     private FlowPane assignedContacts;
 
     /**
@@ -47,6 +52,17 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         title.setText(task.getTitle().toString());
+
+        if (task.getDeadline().isEmpty()) {
+            deadline.setVisible(false);
+            deadline.setManaged(false);
+        } else {
+            String text = task.getDeadline()
+                    .map(Deadline::toString)
+                    .orElse("");
+            deadline.setText(text);
+        }
+
         isCompleted.setText("");
         isCompleted.setSelected(task.getCompleted());
         task.getAssignedContacts().stream()

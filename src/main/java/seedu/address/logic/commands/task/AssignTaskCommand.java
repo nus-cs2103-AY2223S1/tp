@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -76,7 +77,12 @@ public class AssignTaskCommand extends TaskCommand {
             assignedContacts.add(contactToAssign);
         }
 
-        Task editedTask = new Task(taskToAssignTo.getTitle(), taskToAssignTo.getCompleted(), assignedContacts);
+        Task editedTask = new Task(
+                taskToAssignTo.getTitle(),
+                taskToAssignTo.getCompleted(),
+                taskToAssignTo.getDeadline().orElse(null),
+                assignedContacts
+        );
 
         model.setTask(taskToAssignTo, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
