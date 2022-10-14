@@ -1,24 +1,29 @@
 package seedu.address.model.listing;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Listing object contains a currently listed property, its owner, asking price, and offers and clients.
  */
 public class Listing {
+
+    // Identity fields
     private final String id;
     private final Address address;
     private final Person owner;
     private final int askingPrice;
+
+    // Data fields
     private int highestOffer;
     private final List<Person> interestedClients;
     private final List<Offer> currentOffers;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      ** Constructor for Listing
@@ -98,6 +103,22 @@ public class Listing {
      */
     public List<Offer> getCurrentOffers() {
         return currentOffers;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Adds the tags to the listing.
+     * @param tags to be added
+     */
+    public void addTags(Set<Tag> tags) {
+        this.tags.addAll(tags);
     }
 
     /**
