@@ -91,22 +91,4 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         return false;
     }
-
-    /**
-     * Checks if there is more than one of the specified prefixes present in the argument multimap.
-     *
-     * @param argumentMultimap contains the tokenized arguments
-     * @param prefixes to be checked
-     * @return boolean to indicate if more than one prefix is present
-     */
-    boolean moreThanOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        int count = 0;
-        for (Prefix prefix : prefixes) {
-            if (argumentMultimap.getValue(prefix).isPresent()) {
-                count += 1;
-            }
-        }
-        return count > 1;
-    }
-
 }
