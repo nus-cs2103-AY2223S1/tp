@@ -27,7 +27,7 @@ public class ComparableCategoryParser {
         if (m.matches()) {
             keyword = keyword.replace(PREFIX_CATEGORY.getPrefix(), "");
             switch (keyword) {
-            case "name":
+            case "company_name":
             case "n":
                 return ComparableCategory.NAME;
             case "application_process":

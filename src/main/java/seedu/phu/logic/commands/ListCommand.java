@@ -13,34 +13,36 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all internships "
-            + "specified by the category (case-insensitive) in ascending or descending order "
-            + "and displays them as a list with index numbers.\n"
-            + "Parameters: [c/CATEGORY] [REVERSE] "
-            + "Examples:\n "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all internships\n"
+            + "List of internships can be sorted "
+            + "specified by the category (case-insensitive) in ascending (default value) or descending order\n"
+            + "Internships are displayed as a list with index numbers.\n"
+            + "Parameters: [c/CATEGORY [DESCENDING = false]]\n"
+            + "Examples:\n"
             + COMMAND_WORD + "\n"
-            + COMMAND_WORD + " c/website true \n"
+            + COMMAND_WORD + " c/company_name false \n"
+            + COMMAND_WORD + " c/pr true \n"
             + COMMAND_WORD + " c/p \n";
 
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 
     private final ComparableCategory category;
-    private final boolean reverse;
+    private final boolean descending;
 
     /**
      * Creates a ListCommand
      */
     public ListCommand() {
-        this.category = null;
-        this.reverse = false;
+        this.category = ComparableCategory.NULL;
+        this.descending = false;
     }
 
     /**
      * Creates a ListCommand sorted by the category in ascending or descending order
      */
-    public ListCommand(ComparableCategory category, boolean reverse) {
+    public ListCommand(ComparableCategory category, boolean descending) {
         this.category = category;
-        this.reverse = reverse;
+        this.descending = descending;
     }
 
     @Override
@@ -49,10 +51,30 @@ public class ListCommand extends Command {
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         if (category != null) {
             model.sortList(category);
+            if (descending) {
+                model.reverseList();
+            }
         }
-        if (reverse) {
-            model.reverseList();
+        String additionalMessage = (this.category == ComparableCategory.NULL) ? ""
+                : " sorted by " + this.category.toString();
+        return new CommandResult(MESSAGE_SUCCESS + additionalMessage);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        // instanceof handles nulls
+        if (!(other instanceof ListCommand)) {
+            return false;
+        }
+
+        // state check
+        ListCommand l = (ListCommand) other;
+        return category.equals(l.category)
+                && descending == l.descending;
     }
 }

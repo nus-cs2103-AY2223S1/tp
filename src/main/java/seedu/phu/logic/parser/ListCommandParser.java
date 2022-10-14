@@ -25,22 +25,17 @@ public class ListCommandParser implements Parser<ListCommand> {
         String[] keywords = trimmedArgs.split("\\s+");
 
         if (keywords.length == 1) {
-            if (keywords[0].equals("true") || keywords[0].equals("false")) {
-                boolean reverse = keywords[0].equals("true");
-                return new ListCommand(ComparableCategory.NULL, reverse);
-            } else {
-                try {
-                    ComparableCategory category = ComparableCategoryParser.parse(keywords[0]);
-                    return new ListCommand(category, false);
-                } catch (ClassNotFoundException cnf) {
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-                }
+            try {
+                ComparableCategory category = ComparableCategoryParser.parse(keywords[0]);
+                return new ListCommand(category, false);
+            } catch (ClassNotFoundException cnf) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
             }
         } else if (keywords.length == 2) {
             try {
                 ComparableCategory category = ComparableCategoryParser.parse(keywords[0]);
-                boolean reverse = keywords[1].equals("true");
+                boolean reverse = keywords[1].equalsIgnoreCase("true");
                 return new ListCommand(category, reverse);
             } catch (ClassNotFoundException cnf) {
                 throw new ParseException(
