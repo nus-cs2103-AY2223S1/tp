@@ -9,7 +9,7 @@ import seedu.address.model.person.LocationContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new DeleteCommand object.
  */
-public class FilterLocCommandParser {
+public class FilterLocCommandParser implements Parser<FilterLocCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterLocCommand
      * and returns a FilterLocCommand object for execution.
