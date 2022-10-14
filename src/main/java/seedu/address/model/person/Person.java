@@ -36,7 +36,6 @@ public class Person implements seedu.address.model.DeepCopyable {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        System.out.println("Loan of " + name + " is " + loan);
         this.loan = loan;
     }
 
@@ -133,6 +132,9 @@ public class Person implements seedu.address.model.DeepCopyable {
 
     /**
      * Creates a new copy of this person object
+     * All fields are deep copied apart from Tag due to cyclical dependency.
+     * Tag clones contain shallow copies pointing to the Persons that the original
+     * tag contained.
      * @return a new deeper-than-shallow copy of the Person's object
      */
     @Override
@@ -142,7 +144,7 @@ public class Person implements seedu.address.model.DeepCopyable {
                 getPhone().deepCopy(),
                 getEmail().deepCopy(),
                 getAddress().deepCopy(),
-                getTags().stream().map(Tag::deepCopy).collect(Collectors.toSet()),
+                getTags().stream().map(Tag::shallowCopy).collect(Collectors.toSet()),
                 getLoan().deepCopy());
 
         clonedPerson.getTags().forEach(tag -> {

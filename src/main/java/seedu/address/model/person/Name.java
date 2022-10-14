@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.model.DeepCopyable;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.DeepCopyable;
 
 /**
  * Represents a Person's name in the address book.

@@ -78,9 +78,10 @@ public class AddCommandTest {
         assertEquals(1,
                 model.getTagMapping()
                         .get(tagName)
-                        .getUnmodifiableCopiedPersonList()
-                        .filtered(p -> p.getName().fullName.equals(nameA))
-                        .size());
+                        .getDeepCopiedPersonList()
+                        .stream()
+                        .filter(p -> p.getName().fullName.equals(nameA))
+                        .count());
     }
 
     @Test

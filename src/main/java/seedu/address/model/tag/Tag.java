@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.DeepCopyable;
+import seedu.address.model.ShallowCopyable;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,7 +16,7 @@ import seedu.address.model.person.Person;
  * Tags are uniquely identified by their {@code tagName}. Two different tags may not share
  * the same name.
  */
-public class Tag implements DeepCopyable {
+public class Tag implements ShallowCopyable {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -71,18 +69,23 @@ public class Tag implements DeepCopyable {
     }
 
     /**
+     * Checks if a person exists under the tag group
+     * @param person the person to check for existence
+     * @return true if the person exists in this tag group
+     */
+    public boolean doesPersonExist(Person person) {
+        return personList.contains(person);
+    }
+
+    /**
      * Creates a deep copy of the person's list of this tag object for read-only access
      * Modifications to persons retrieved from this copied list will not affect the original
      * person that it was copied from.
      * Guarantees complete protection against mutations of persons through tag access
      * @return a deep copy of the person's list
      */
-    public ObservableList<Person> getUnmodifiableCopiedPersonList() {
-        return FXCollections.unmodifiableObservableList(
-                FXCollections.observableList(
-                        personList.stream().map(Person::deepCopy).collect(Collectors.toList())
-                )
-        );
+    public List<Person> getDeepCopiedPersonList() {
+        return personList.stream().map(Person::deepCopy).collect(Collectors.toList());
     }
 
     /**
@@ -121,10 +124,11 @@ public class Tag implements DeepCopyable {
     }
 
     @Override
-    public Tag deepCopy() {
-        Tag tag = new Tag(tagName);
-        personList.forEach(tag::addPerson);
-        return tag;
+    public Tag shallowCopy() {
+        Tag clone = new Tag(tagName);
+        personList.forEach(clone::addPerson);
+
+        return clone;
     }
 
 }
