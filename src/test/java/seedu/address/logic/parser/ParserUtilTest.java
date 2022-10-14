@@ -15,11 +15,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskTitle;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -27,6 +31,9 @@ public class ParserUtilTest {
     private static final String INVALID_STUDENTID = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_MARK = "2A";
+    private static final String INVALID_TITLE = "#title";
+    private static final String INVALID_DESCRIPTION = "?description";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -34,6 +41,10 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_MARK_1 = "0";
+    private static final String VALID_MARK_2 = "1";
+    private static final String VALID_TITLE = "valid title";
+    private static final String VALID_DESCRIPTION = "valid description";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,5 +204,81 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseAttendance_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendance((Optional<String>) null));
+    }
+
+    @Test
+    public void parseAttendance_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendance(Optional.of(INVALID_MARK)));
+    }
+
+    @Test
+    public void parseAttendance_validValueWithoutWhitespace_returnsAttendance() throws Exception {
+        Attendance expectedAttendance1 = new Attendance(VALID_MARK_1);
+        assertEquals(expectedAttendance1, ParserUtil.parseAttendance(Optional.of(VALID_MARK_1)));
+
+        Attendance expectedAttendance2 = new Attendance(VALID_MARK_2);
+        assertEquals(expectedAttendance2, ParserUtil.parseAttendance(Optional.of(VALID_MARK_2)));
+    }
+
+    @Test
+    public void parseAttendance_validValueWithWhitespace_returnsTrimmedAttendance() throws Exception {
+        String attendanceWithWhitespace1 = WHITESPACE + VALID_MARK_1 + WHITESPACE;
+        Attendance expectedAttendance1 = new Attendance(VALID_MARK_1);
+        assertEquals(expectedAttendance1, ParserUtil.parseAttendance(Optional.of(attendanceWithWhitespace1)));
+
+        String attendanceWithWhitespace2 = WHITESPACE + VALID_MARK_2 + WHITESPACE;
+        Attendance expectedAttendance2 = new Attendance(VALID_MARK_2);
+        assertEquals(expectedAttendance2, ParserUtil.parseAttendance(Optional.of(attendanceWithWhitespace2)));
+    }
+
+    @Test
+    public void parseTitle_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle(null));
+    }
+
+    @Test
+    public void parseTitle_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_validValueWithoutWhitespace_returnsTitle() throws Exception {
+        TaskTitle expectedTitle = new TaskTitle(VALID_TITLE);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_validValueWithWhitespace_returnsTrimmedTitle() throws Exception {
+        String titleWithWhitespace = WHITESPACE + VALID_TITLE + WHITESPACE;
+        TaskTitle expectedTitle = new TaskTitle(VALID_TITLE);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
+    }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
+        TaskDescription expectedDescription = new TaskDescription(VALID_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        TaskDescription expectedDescription = new TaskDescription(VALID_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 }
