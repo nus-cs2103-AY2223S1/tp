@@ -50,6 +50,8 @@ public class DeleteCommissionCommand extends Command {
         customer.removeCommission(commissionToDelete);
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
         model.selectTab(GuiTab.COMMISSION);
+        model.selectCommission(null);
+
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));
     }
 

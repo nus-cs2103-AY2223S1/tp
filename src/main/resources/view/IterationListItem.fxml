@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 
 <VBox id="iterationListItem" fx:id="iterationListItem"
-      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" prefWidth="0">
     <BorderPane>
         <left>
             <Label fx:id="id" styleClass="cell_small_label" text="\$id" style="-fx-text-fill: #666C77;">

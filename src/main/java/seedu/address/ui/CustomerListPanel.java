@@ -32,6 +32,7 @@ public class CustomerListPanel extends UiPart<Region> {
         customerListView.setItems(customerList);
         customerListView.setCellFactory(listView -> new CustomerListViewCell());
         this.selectCustomer = selectCustomer;
+        customerListView.getSelectionModel().select(selectedCustomer.getValue());
         selectedCustomer.addListener((observable, oldValue, newValue) ->
                 customerListView.getSelectionModel().select(newValue));
     }

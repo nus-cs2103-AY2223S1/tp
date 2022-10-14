@@ -53,18 +53,8 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
-        if (!model.getFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
-            model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-            List<Customer> customers = model.getFilteredCustomerList();
-            model.selectCustomer(customers.size() > 0 ? customers.get(0) : null);
-        }
-
-        if (!model.getFilteredCommissionList().contains(model.getSelectedCommission().getValue())) {
-            model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
-            List<Commission> commissions = model.getFilteredCommissionList();
-            model.selectCommission(commissions.size() > 0 ? commissions.get(0) : null);
-        }
+        selectValidCustomer();
+        selectValidCommission();
 
         try {
             storage.saveAddressBook(model.getAddressBook());
@@ -124,6 +114,24 @@ public class LogicManager implements Logic {
     @Override
     public void selectCommission(Commission commission) {
         model.selectCommission(commission);
+    }
+
+    @Override
+    public void selectValidCustomer() {
+        if (!model.getFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
+            model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+            List<Customer> customers = model.getFilteredCustomerList();
+            model.selectCustomer(customers.size() > 0 ? customers.get(0) : null);
+        }
+    }
+
+    @Override
+    public void selectValidCommission() {
+        if (!model.getFilteredCommissionList().contains(model.getSelectedCommission().getValue())) {
+            model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
+            List<Commission> commissions = model.getFilteredCommissionList();
+            model.selectCommission(commissions.size() > 0 ? commissions.get(0) : null);
+        }
     }
 
     @Override
