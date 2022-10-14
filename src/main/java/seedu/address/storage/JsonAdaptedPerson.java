@@ -11,16 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Personality;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -42,8 +40,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("studentClass") String studentClass, @JsonProperty("personality") String personality,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("studentClass") String studentClass,
+                             @JsonProperty("personality") String personality,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -66,10 +65,10 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         studentClass = source.getStudentClass().toString();
         personality = source.getPersonality().toString();
-//        subject = source.getSubjectsTaken().toString();
+        //        subject = source.getSubjectsTaken().toString();
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+                            .map(JsonAdaptedTag::new)
+                            .collect(Collectors.toList()));
     }
 
     /**
@@ -116,34 +115,34 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (studentClass == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentClass.class.getSimpleName()));
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentClass.class.getSimpleName()));
         }
         final StudentClass modelStudentClass = new StudentClass(studentClass);
 
-
         if (personality == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Personality.class.getSimpleName()));
+                                                          Personality.class.getSimpleName()));
         }
-
 
         if (!Personality.isValidPersonality(personality)) {
             throw new IllegalValueException(Personality.MESSAGE_CONSTRAINTS);
         }
         final Personality modelPersonality = new Personality(personality);
 
-//        if (subject == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, SubjectHandler.class.getSimpleName()));
-//        }
-//        if (!Subject.isValidSubject(subject)) {
-//            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
-//        }
+        //        if (subject == null) {
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //            SubjectHandler.class.getSimpleName()));
+        //        }
+        //        if (!Subject.isValidSubject(subject)) {
+        //            throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
+        //        }
 
         final SubjectHandler modelSubjectHandler = new SubjectHandler();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStudentClass,
-                modelPersonality, modelSubjectHandler, modelTags);
+                          modelPersonality, modelSubjectHandler, modelTags);
     }
 
 }

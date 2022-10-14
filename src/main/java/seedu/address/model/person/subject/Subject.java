@@ -3,9 +3,7 @@ package seedu.address.model.person.subject;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 
 /**
  * Represents a subject taken by the student
@@ -13,7 +11,7 @@ import java.util.HashMap;
 public class Subject {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Subjects should only contain alphabets, and it should not be blank";
+        "Subjects should only contain alphabets, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -60,8 +58,8 @@ public class Subject {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Subject // instanceof handles nulls
-                && subjectName.equals(((Subject) other).subjectName)); // state check
+               || (other instanceof Subject // instanceof handles nulls
+                   && subjectName.equals(((Subject) other).subjectName)); // state check
     }
 
     @Override
