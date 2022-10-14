@@ -121,7 +121,8 @@ public class Internship {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Company: ")
+                .append(getName())
                 .append("; Position: ")
                 .append(getPosition())
                 .append("; Phone: ")

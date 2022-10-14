@@ -14,11 +14,11 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

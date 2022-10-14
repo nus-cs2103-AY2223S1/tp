@@ -22,7 +22,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_POSITION = "Software Engineer";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_STATUS = "Offered";
+    public static final String DEFAULT_STATUS = "Progress";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;

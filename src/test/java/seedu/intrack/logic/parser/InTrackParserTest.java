@@ -22,9 +22,11 @@ import seedu.intrack.logic.commands.ExitCommand;
 import seedu.intrack.logic.commands.FindCommand;
 import seedu.intrack.logic.commands.HelpCommand;
 import seedu.intrack.logic.commands.ListCommand;
+import seedu.intrack.logic.commands.StatusCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
+import seedu.intrack.model.internship.Status;
 import seedu.intrack.testutil.EditInternshipDescriptorBuilder;
 import seedu.intrack.testutil.InternshipBuilder;
 import seedu.intrack.testutil.InternshipUtil;
@@ -87,6 +89,13 @@ public class InTrackParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_status() throws Exception {
+        StatusCommand command = (StatusCommand) parser.parseCommand(StatusCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_INTERNSHIP.getOneBased() + " o");
+        assertEquals(new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Offered")), command);
     }
 
     @Test
