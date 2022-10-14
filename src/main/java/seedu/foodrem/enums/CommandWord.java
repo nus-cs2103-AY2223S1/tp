@@ -138,7 +138,7 @@ public enum CommandWord {
             if (commandWord.equals(DEFAULT)) {
                 continue;
             }
-            stringJoiner.add(commandWord.getCommandWord());
+            stringJoiner.add(commandWord.commandWord);
         }
         return stringJoiner.toString();
     }
