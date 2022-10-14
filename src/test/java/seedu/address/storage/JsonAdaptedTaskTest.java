@@ -34,21 +34,21 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_invalidTitle_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(INVALID_TITLE, VALID_DONE, VALID_CONTACTS);
+        JsonAdaptedTask task = new JsonAdaptedTask(INVALID_TITLE, VALID_DONE, "null", VALID_CONTACTS);
         String expectedMessage = Title.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_nullTitle_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_DONE, VALID_CONTACTS);
+        JsonAdaptedTask task = new JsonAdaptedTask(null, VALID_DONE, "null", VALID_CONTACTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
     @Test
     public void toModelType_invalidDone_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, INVALID_DONE, VALID_CONTACTS);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, INVALID_DONE, "null", VALID_CONTACTS);
         // TODO: Update Message
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Done");
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -56,7 +56,7 @@ public class JsonAdaptedTaskTest {
 
     @Test
     public void toModelType_nullDone_throwsIllegalValueException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, VALID_CONTACTS);
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TITLE, null, "null", VALID_CONTACTS);
         // TODO: Update Message
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Done");
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
@@ -67,7 +67,7 @@ public class JsonAdaptedTaskTest {
         List<JsonAdaptedContact> invalidContacts = new ArrayList<>(VALID_CONTACTS);
         invalidContacts.add(new JsonAdaptedContact(INVALID_CONTACT));
         JsonAdaptedTask task =
-            new JsonAdaptedTask(VALID_TITLE, VALID_DONE, invalidContacts);
+            new JsonAdaptedTask(VALID_TITLE, VALID_DONE, "null", invalidContacts);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
 

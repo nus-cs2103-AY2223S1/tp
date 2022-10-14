@@ -3,10 +3,12 @@
   "tasks": [{
     "title": "Add tasks to list",
     "isCompleted": "false",
+    "deadline": "null",
     "contacts": [ "Alex Yeoh" ]
   }, {
     "title": "Assign contacts to task",
     "isCompleted": "false",
+    "deadline": "null",
     "contacts": [ "Bernice Yu" ]
   } ]
 }

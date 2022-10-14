@@ -81,6 +81,6 @@ public class DeadlineTaskCommand extends TaskCommand {
 
         // state check
         DeadlineTaskCommand e = (DeadlineTaskCommand) other;
-        return targetIndex.equals(e.targetIndex);
+        return targetIndex.equals(e.targetIndex) && newDeadline.equals(e.newDeadline);
     }
 }
