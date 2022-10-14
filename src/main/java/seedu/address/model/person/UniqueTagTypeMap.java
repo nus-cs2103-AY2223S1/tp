@@ -261,6 +261,16 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         }
         throw new TagTypeNotFoundException();
     }
+
+    public static TagType getTagTypeFromPrefix(Prefix prefix) throws TagTypeNotFoundException {
+        for (TagType tagType: prefixMap.values()) {
+            if (tagType.getPrefix().equals(prefix)) {
+                return tagType;
+            }
+        }
+        throw new TagTypeNotFoundException();
+    }
+
     public boolean isEmpty() {
         return internalMap.isEmpty();
     }
