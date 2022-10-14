@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import seedu.address.model.Model;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.order.Order;
 
 /**
@@ -20,13 +21,12 @@ public class SortCommand extends Command {
             + "Example: " + COMMAND_WORD + " asc "
             + PREFIX_ATTRIBUTE + "name";
 
-//    public static final String MESSAGE_SUCCESS = "Address book has been sorted by name in alphabetical order!";
-    public static final String MESSAGE_SUCCESS = "Address book has been sorted by %1$s in alphabetical order! ";
+    public static final String MESSAGE_SORT_SUCCESS = "Address book has been sorted by %1$s in %2$s order!";
 
     private final Order sortOrder;
-    private final String attribute;
+    private final Attribute attribute;
 
-    public SortCommand(String attribute, Order sortOrder) {
+    public SortCommand(Attribute attribute, Order sortOrder) {
         this.attribute = attribute;
         this.sortOrder = sortOrder;
     }
@@ -35,13 +35,15 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortFilteredPersonList(attribute, sortOrder);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(
+                String.format(MESSAGE_SORT_SUCCESS, attribute.toString(), sortOrder.toString()));
     }
 
-//    @Override
-//    public CommandResult execute(Model model) {
-//        requireNonNull(model);
-//        model.sortFilteredPersonList();
-//        return new CommandResult(MESSAGE_SUCCESS);
-//    }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && attribute.equals(((SortCommand) other).attribute) // state check
+                && sortOrder.equals(((SortCommand) other).sortOrder)); // state check
+    }
 }

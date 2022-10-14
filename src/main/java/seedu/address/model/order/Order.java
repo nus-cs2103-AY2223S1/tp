@@ -10,7 +10,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Order {
 
     public static final String MESSAGE_CONSTRAINTS = "Order can only be asc for ascending or dsc for descending";
-//    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String orderName;
 
@@ -55,7 +54,6 @@ public class Order {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + orderName + ']';
+        return isDescending() ? "descending" : "ascending";
     }
-
 }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
@@ -101,12 +102,8 @@ public interface Model {
      */
     void filterPersonListWithTag(Predicate<Person> predicate);
 
-
-//    /** Sorts filteredList by name in alphabetical order. */
-//    void sortFilteredPersonList();
-
     /** Sorts filteredList by specified attribute and order. */
-    void sortFilteredPersonList(String attribute, Order order);
+    void sortFilteredPersonList(Attribute attribute, Order order);
 
 
 }

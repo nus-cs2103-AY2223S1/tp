@@ -64,8 +64,16 @@ public class Person {
         return email;
     }
 
+    public String getEmailString() {
+        return email.toString();
+    }
+
     public Address getAddress() {
         return address;
+    }
+
+    public String getAddressString() {
+        return address.toString();
     }
 
     /**
@@ -82,6 +90,15 @@ public class Person {
      */
     public Set<Attendance> getAttendances() {
         return Collections.unmodifiableSet(attendances);
+    }
+
+    /**
+     * Returns attendance in percentage.
+     */
+    public float getAttendancePercentage() {
+        float numOfClasses = getAttendances().size();
+        float presentFor = (float) getAttendances().stream().filter(x -> x.hasAttended).count();
+        return presentFor / numOfClasses * 100;
     }
 
     /**

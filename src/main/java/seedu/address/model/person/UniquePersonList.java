@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -59,23 +60,31 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Sorts the list according to specified attribute and order.
      */
-    public void sort(String attribute, Boolean isDescending) {
-        switch (attribute) {
+    public void sort(Attribute attribute, Boolean isDescending) {
+        String attributeToSort = attribute.toString();
+        switch (attributeToSort) {
 
-        case ("name"):
+        case ("[name]"):
             internalList.sort(Comparator.comparing(Person::getNameString));
             break;
 
-        case ("phone"):
+        case ("[phone]"):
             internalList.sort(Comparator.comparing(Person::getPhoneString));
             break;
+
+        case ("[address]"):
+            internalList.sort(Comparator.comparing(Person::getAddressString));
+            break;
+
+        case ("[email]"):
+            internalList.sort(Comparator.comparing(Person::getEmailString));
+            break;
+
+        case ("[attendance]"):
+            internalList.sort(Comparator.comparing(Person::getAttendancePercentage));
+            break;
         }
-
-
-
-
         if (isDescending) FXCollections.reverse(internalList);
-
     }
 
     /**
