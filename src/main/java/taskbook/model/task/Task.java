@@ -3,6 +3,7 @@ package taskbook.model.task;
 import java.util.Objects;
 
 import taskbook.commons.util.CollectionUtil;
+import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.enums.Assignment;
@@ -73,6 +74,11 @@ public abstract class Task {
                 && other.assignment.equals(assignment)
                 && other.description.equals(description);
     }
+
+    /**
+     * Creates an edited task based on the provided edits.
+     */
+    public abstract Task createEditedCopy(EditTaskDescriptor descriptor) throws CommandException;
 
     /**
      * Returns true if both tasks have the data and status fields.

@@ -24,7 +24,7 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new ContactEditCommand object
  */
 public class ContactEditCommandParser implements Parser<ContactEditCommand> {
 

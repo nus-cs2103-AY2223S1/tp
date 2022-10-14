@@ -4,6 +4,7 @@ import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
+import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 
@@ -25,6 +26,8 @@ public class TaskCategoryParser {
         switch (commandWord) {
         case TaskAddCommand.COMMAND_WORD:
             return new TaskAddCommandParser().parse(arguments);
+        case TaskEditCommand.COMMAND_WORD:
+            return new TaskEditCommandParser().parse(arguments);
         case TaskDeleteCommand.COMMAND_WORD:
             return new TaskDeleteCommandParser().parse(arguments);
         case TaskListCommand.COMMAND_WORD:
