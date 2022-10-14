@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByDeletingAllAppointments;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
+import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByOverwritingAppointment;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -22,12 +23,14 @@ public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "ea";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Overwrites all "
-            + " appointment details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_APPOINTMENT_DATE + "DATE]... \n"
+            + "appointment details of the person identified "
+            + "by the index number used in the displayed person list.\n"
+            + "Parameters: [INDEX] "
+            + "[" + PREFIX_APPOINTMENT_DATE + "DATE] "
+            + "[" + PREFIX_APPOINTMENT_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM ";
+            + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
+            + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Person's Appointment: %1$s";
     public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
@@ -69,7 +72,7 @@ public class EditAppointmentCommand extends Command {
         if (personToEdit.getAppointments().isEmpty()) {
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
         }
-        Person editedPerson = createEditedPersonByDeletingAllAppointments(personToEdit);
+        Person editedPerson = createEditedPersonByOverwritingAppointment(personToEdit, editPersonDescriptor);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

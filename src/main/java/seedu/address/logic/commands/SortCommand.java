@@ -14,9 +14,8 @@ import seedu.address.model.person.Person;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons based on the given keyword \n"
-            + "Parameters: KEYWORD\n"
-            + "Keyword: 'name' \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons based on the given keyword (e.g name, phone, email, etc.) \n"
+            + "Parameters: [KEYWORD]\n"
             + "Example: " + COMMAND_WORD + " name";
 
     public static final String MESSAGE_SUCCESS = "Sorted all persons by %1$s";

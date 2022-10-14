@@ -67,6 +67,6 @@ public class Appointment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateTime);
+        return Objects.hash(dateTime, location);
     }
 }

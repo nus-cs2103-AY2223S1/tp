@@ -31,7 +31,7 @@ public class DateTime {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime// instanceof handles nulls
-                && localDateTime.equals(((DateTime) other).localDateTime)); // state check
+                && localDateTime.toString().equals(((DateTime) other).localDateTime.toString())); // state check
     }
 
     @Override

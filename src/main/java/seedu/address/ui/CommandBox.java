@@ -12,6 +12,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -54,6 +55,9 @@ public class CommandBox extends UiPart<Region> {
                 break;
             case FindCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(FindCommand.MESSAGE_USAGE);
+                break;
+            case SortCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(SortCommand.MESSAGE_USAGE);
                 break;
             case AddAppointmentCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(AddAppointmentCommand.MESSAGE_USAGE);

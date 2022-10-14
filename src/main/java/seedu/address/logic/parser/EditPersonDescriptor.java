@@ -183,7 +183,7 @@ public class EditPersonDescriptor {
 
         return newPerson;
     }
-/**
+    /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with appointments added from {@code editPersonDescriptor}.
      */
@@ -191,13 +191,7 @@ public class EditPersonDescriptor {
                          EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
 
-        Set<Appointment> currentAppointments = personToEdit.getAppointments();
         Appointment newAppointment = editPersonDescriptor.getAppointment().get();
-        for (Appointment currentAppointment:currentAppointments) {
-            if (currentAppointment.equals(newAppointment)) {
-                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-            }
-        }
 
         Name name = personToEdit.getName();
         Phone phone = personToEdit.getPhone();
