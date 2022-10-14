@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
+import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.tag.Tag;
 
@@ -164,12 +165,21 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code ReminderDeadline} is invalid.
      */
-    public static ReminderDeadline parseTutorialTimeslot(String timeslot) throws ParseException {
-        requireNonNull(timeslot);
-        String trimmedName = timeslot.trim();
-        if (!ReminderDeadline.isValidTimeslot(trimmedName)) {
+    public static ReminderDeadline parseReminderDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!ReminderDeadline.isValidTimeslot(trimmedDeadline)) {
             throw new ParseException(ReminderDeadline.MESSAGE_CONSTRAINTS);
         }
-        return new ReminderDeadline(trimmedName);
+        return new ReminderDeadline(trimmedDeadline);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code ReminderDescription}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ReminderDescription parseReminderDescription(String description) {
+        String trimmedDescription = description.trim();
+        return new ReminderDescription(trimmedDescription);
     }
 }
