@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Company}.
+ * Jackson-friendly version of {@link Client}.
  */
 class JsonAdaptedCompany {
 
@@ -47,7 +47,7 @@ class JsonAdaptedCompany {
     /**
      * Converts a given {@code Company} into this class for Jackson use.
      */
-    public JsonAdaptedCompany(Company source) {
+    public JsonAdaptedCompany(Client source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
         pocs.addAll(source.getPocList().stream().map(JsonAdaptedPoc::new).collect(Collectors.toList()));
@@ -61,7 +61,7 @@ class JsonAdaptedCompany {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted company.
      */
-    public Company toModelType() throws IllegalValueException {
+    public Client toModelType() throws IllegalValueException {
         final List<Tag> companyTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             companyTags.add(tag.toModelType());
@@ -85,16 +85,16 @@ class JsonAdaptedCompany {
 
         final Set<Tag> modelTags = new HashSet<>(companyTags);
 
-        Company company = new Company(modelName, modelAddress, modelTags);
+        Client client = new Client(modelName, modelAddress, modelTags);
 
         for (JsonAdaptedPoc jsonAdaptedPoc : pocs) {
             Poc poc = jsonAdaptedPoc.toModelType();
-            if (company.hasPoc(poc)) {
+            if (client.hasPoc(poc)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_POC);
             }
-            company.addPoc(poc);
+            client.addPoc(poc);
         }
-        return company;
+        return client;
     }
 
 }

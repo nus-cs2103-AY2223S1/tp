@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
-public class EditCompanyDescriptorTest {
+public class EditClientDescriptorTest {
 
     @Test
     public void equals() {

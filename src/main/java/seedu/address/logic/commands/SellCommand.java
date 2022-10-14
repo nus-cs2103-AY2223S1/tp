@@ -11,7 +11,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -56,20 +56,20 @@ public class SellCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredCompanyList();
 
         // if index of company not valid
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
 
-        Company editedCompany = companyToEdit;
-        editedCompany.addTransaction(transaction);
-        model.setCompany(companyToEdit, editedCompany);
+        Client editedClient = clientToEdit;
+        editedClient.addTransaction(transaction);
+        model.setCompany(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany.getName(), transaction.getQuantity(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient.getName(), transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
     }
 

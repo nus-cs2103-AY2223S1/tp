@@ -8,7 +8,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,18 +19,18 @@ public class CompanyUtil {
     /**
      * Returns an add command string for adding the {@code company}.
      */
-    public static String getAddCommand(Company company) {
-        return AddCommand.COMMAND_WORD + " " + getCompanyDetails(company);
+    public static String getAddCommand(Client client) {
+        return AddCommand.COMMAND_WORD + " " + getCompanyDetails(client);
     }
 
     /**
      * Returns the part of command string for the given {@code company}'s details.
      */
-    public static String getCompanyDetails(Company company) {
+    public static String getCompanyDetails(Client client) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + company.getName().fullName + " ");
-        sb.append(PREFIX_ADDRESS + company.getAddress().value + " ");
-        company.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + client.getName().fullName + " ");
+        sb.append(PREFIX_ADDRESS + client.getAddress().value + " ");
+        client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

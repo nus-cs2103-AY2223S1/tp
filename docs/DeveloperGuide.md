@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `JeeqTrackerParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a company).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -172,11 +172,11 @@ Step 1. The user launches the application for the first time. The `VersionedJeeq
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th company in the address book. The `delete` command calls `Model#commitJeeqTracker()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `jeeqTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th client in the address book. The `delete` command calls `Model#commitJeeqTracker()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `jeeqTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new company. The `add` command also calls `Model#commitJeeqTracker()`, causing another modified address book state to be saved into the `jeeqTrackerStateList`.
+Step 3. The user executes `add n/David …​` to add a new client. The `add` command also calls `Model#commitJeeqTracker()`, causing another modified address book state to be saved into the `jeeqTrackerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -184,7 +184,7 @@ Step 3. The user executes `add n/David …​` to add a new company. The `add` c
 
 </div>
 
-Step 4. The user now decides that adding the company was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoJeeqTracker()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the client was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoJeeqTracker()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -229,7 +229,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the company being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the client being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -278,15 +278,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                  | I want to …​                                        | So that I can…​                                                    |
 |----------|--------------------------|-----------------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | business owner           | choose which company and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
+| `* * *`  | business owner           | choose which client and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
 | `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application     |
 | `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                         |
-| `* * *`  | new business owner       | view a company's details and point-of-contact       | easily know who to contact for that company                        |
-| `* * *`  | busy business owner      | quickly retrieve the data of the company            | save time without having to go through multiple layers             |
-| `* * *`  | new business owner       | create a new company input                          | keep track of all the new companies I work with                    |
-| `* * *`  | new business owner       | add a point-of-contact to a company                 | know who to contact in that company                                |
+| `* * *`  | new business owner       | view a client's details and point-of-contact       | easily know who to contact for that client                        |
+| `* * *`  | busy business owner      | quickly retrieve the data of the client            | save time without having to go through multiple layers             |
+| `* * *`  | new business owner       | create a new client input                          | keep track of all the new companies I work with                    |
+| `* * *`  | new business owner       | add a point-of-contact to a client                 | know who to contact in that client                                |
 | `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                    |
-| `* *`    | efficient business owner | sort the search result by price                     | quickly know which company I have made the most transaction with   |
+| `* *`    | efficient business owner | sort the search result by price                     | quickly know which client I have made the most transaction with   |
 
 *{More to be added}*
 
@@ -294,14 +294,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `JeeqTracker` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a company**
+**Use case: Delete a client**
 
 **MSS**
 
 1.  User requests to list companies
 2.  JeeqTracker shows a list of companies
-3.  User requests to delete a specific company in the list
-4.  JeeqTracker deletes the company
+3.  User requests to delete a specific client in the list
+4.  JeeqTracker deletes the client
 
     Use case ends.
 
@@ -311,7 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given company name does not exist in the list.
+* 3a. The given client name does not exist in the list.
 
     * 3a1. JeeqTracker shows an error message.
 
@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to find a company
+1. User requests to find a client
 2. JeeqTracker displays the companies with the same starting names
 
    Use case ends.
@@ -336,8 +336,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to create a Mcdonalds company
-2. JeeqTracker creates and adds a company called McDonalds into JeeqTracker
+1. User requests to create a Mcdonalds client
+2. JeeqTracker creates and adds a client called McDonalds into JeeqTracker
 3. User requests to add Justin as a POC to Mcdonalds
 4. JeeqTracker adds Justin and his details into the Mcdonalds as the POC
 
@@ -430,9 +430,9 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a company
+### Deleting a client
 
-1. Deleting a company while all companies are being shown
+1. Deleting a client while all companies are being shown
 
    1. Prerequisites: List all companies using the `list` command. Multiple companies in the list.
 
@@ -440,7 +440,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No company is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

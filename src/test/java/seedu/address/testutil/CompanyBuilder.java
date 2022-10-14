@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.poc.UniquePocList;
@@ -41,12 +41,12 @@ public class CompanyBuilder {
     /**
      * Initializes the CompanyBuilder with the data of {@code companyToCopy}.
      */
-    public CompanyBuilder(Company companyToCopy) {
-        name = companyToCopy.getName();
-        address = companyToCopy.getAddress();
-        tags = new HashSet<>(companyToCopy.getTags());
-        pocs = companyToCopy.getPocs();
-        transactions = companyToCopy.getTransactions();
+    public CompanyBuilder(Client clientToCopy) {
+        name = clientToCopy.getName();
+        address = clientToCopy.getAddress();
+        tags = new HashSet<>(clientToCopy.getTags());
+        pocs = clientToCopy.getPocs();
+        transactions = clientToCopy.getTransactions();
     }
 
     /**
@@ -105,8 +105,8 @@ public class CompanyBuilder {
         return this;
     }
 
-    public Company build() {
-        return new Company(name, address, tags, pocs, transactions);
+    public Client build() {
+        return new Client(name, address, tags, pocs, transactions);
     }
 
 }

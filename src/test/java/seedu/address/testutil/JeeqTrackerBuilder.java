@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.JeeqTracker;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * A utility class to help with building Addressbook objects.
@@ -23,8 +23,8 @@ public class JeeqTrackerBuilder {
     /**
      * Adds a new {@code Company} to the {@code JeeqTracker} that we are building.
      */
-    public JeeqTrackerBuilder withCompany(Company company) {
-        jeeqTracker.addCompany(company);
+    public JeeqTrackerBuilder withCompany(Client client) {
+        jeeqTracker.addCompany(client);
         return this;
     }
 

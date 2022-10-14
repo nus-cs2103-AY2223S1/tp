@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Name;
 
-public class JsonAdaptedCompanyTest {
+public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";

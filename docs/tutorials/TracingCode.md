@@ -189,21 +189,21 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Company companyToEdit = lastShownList.get(index.getZeroBased());
-       Company editedCompany = createEditedCompany(companyToEdit, editCompanyDescriptor);
-       if (!companyToEdit.isSameCompany(editedCompany) && model.hasCompany(editedCompany)) {
+       Company clientToEdit = lastShownList.get(index.getZeroBased());
+       Company editedClient = createEditedCompany(clientToEdit, editCompanyDescriptor);
+       if (!clientToEdit.isSameCompany(editedClient) && model.hasCompany(editedClient)) {
            throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
        }
-       model.setCompany(companyToEdit, editedCompany);
+       model.setCompany(clientToEdit, editedClient);
        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-       return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany));
+       return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedClient));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setCompany()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the company data.
+   * it uses the `setCompany()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the client data.
    * it uses the `updateFilteredCompanyList` method to ask the `Model` to populate the 'filtered list' with _all_ companies.<br>
-     FYI, The 'filtered list' is the list of companies resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the companies so that the user can see the edited company along with all other companies. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+     FYI, The 'filtered list' is the list of companies resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the companies so that the user can see the edited client along with all other companies. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
      To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of companies is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)

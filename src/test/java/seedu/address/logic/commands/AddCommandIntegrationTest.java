@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.testutil.CompanyBuilder;
 
 /**
@@ -27,19 +27,19 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newCompany_success() {
-        Company validCompany = new CompanyBuilder().build();
+        Client validClient = new CompanyBuilder().build();
 
         Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.addCompany(validCompany);
+        expectedModel.addCompany(validClient);
 
-        assertCommandSuccess(new AddCommand(validCompany), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validCompany), expectedModel);
+        assertCommandSuccess(new AddCommand(validClient), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
 
     @Test
     public void execute_duplicateCompany_throwsCommandException() {
-        Company companyInList = model.getJeeqTracker().getCompanyList().get(0);
-        assertCommandFailure(new AddCommand(companyInList), model, AddCommand.MESSAGE_DUPLICATE_COMPANY);
+        Client clientInList = model.getJeeqTracker().getCompanyList().get(0);
+        assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_COMPANY);
     }
 
 }

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.exceptions.DuplicateCompanyException;
 import seedu.address.testutil.CompanyBuilder;
 
@@ -46,9 +46,9 @@ public class JeeqTrackerTest {
     @Test
     public void resetData_withDuplicateCompanies_throwsDuplicateCompanyException() {
         // Two companies with the same identity fields
-        Company editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Company> newCompanies = Arrays.asList(ALICE, editedAlice);
+        List<Client> newCompanies = Arrays.asList(ALICE, editedAlice);
         JeeqTrackerStub newData = new JeeqTrackerStub(newCompanies);
 
         assertThrows(DuplicateCompanyException.class, () -> jeeqTracker.resetData(newData));
@@ -73,7 +73,7 @@ public class JeeqTrackerTest {
     @Test
     public void hasCompany_companyWithSameIdentityFieldsInJeeqTracker_returnsTrue() {
         jeeqTracker.addCompany(ALICE);
-        Company editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(jeeqTracker.hasCompany(editedAlice));
     }
@@ -87,14 +87,14 @@ public class JeeqTrackerTest {
      * A stub ReadOnlyJeeqTracker whose companies list can violate interface constraints.
      */
     private static class JeeqTrackerStub implements ReadOnlyJeeqTracker {
-        private final ObservableList<Company> companies = FXCollections.observableArrayList();
+        private final ObservableList<Client> companies = FXCollections.observableArrayList();
 
-        JeeqTrackerStub(Collection<Company> companies) {
+        JeeqTrackerStub(Collection<Client> companies) {
             this.companies.setAll(companies);
         }
 
         @Override
-        public ObservableList<Company> getCompanyList() {
+        public ObservableList<Client> getCompanyList() {
             return companies;
         }
     }

@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * A UI component that displays information of a {@code Company}.
@@ -24,7 +24,7 @@ public class CompanyCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on JeeqTracker level 4</a>
      */
 
-    public final Company company;
+    public final Client client;
 
     @FXML
     private HBox cardPane;
@@ -44,15 +44,15 @@ public class CompanyCard extends UiPart<Region> {
     /**
      * Creates a {@code CompanyCode} with the given {@code Company} and index to display.
      */
-    public CompanyCard(Company company, int displayedIndex) {
+    public CompanyCard(Client client, int displayedIndex) {
         super(FXML);
-        this.company = company;
+        this.client = client;
         id.setText(displayedIndex + ". ");
-        name.setText(company.getName().fullName);
-        address.setText(company.getAddress().value);
-        pocs.setText(company.getPocs().toString());
-        transactions.setText("Total: " + String.valueOf(company.getTotalTransacted()));
-        company.getTags().stream()
+        name.setText(client.getName().fullName);
+        address.setText(client.getAddress().value);
+        pocs.setText(client.getPocs().toString());
+        transactions.setText("Total: " + String.valueOf(client.getTotalTransacted()));
+        client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -72,6 +72,6 @@ public class CompanyCard extends UiPart<Region> {
         // state check
         CompanyCard card = (CompanyCard) other;
         return id.getText().equals(card.id.getText())
-                && company.equals(card.company);
+                && client.equals(card.client);
     }
 }

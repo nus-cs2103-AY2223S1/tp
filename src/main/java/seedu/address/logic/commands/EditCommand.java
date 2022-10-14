@@ -18,7 +18,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
@@ -62,38 +62,38 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredCompanyList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
-        Company editedCompany = createEditedCompany(companyToEdit, editCompanyDescriptor);
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = createEditedCompany(clientToEdit, editCompanyDescriptor);
 
-        if (!companyToEdit.isSameCompany(editedCompany) && model.hasCompany(editedCompany)) {
+        if (!clientToEdit.isSameCompany(editedClient) && model.hasCompany(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
         }
 
-        model.setCompany(companyToEdit, editedCompany);
+        model.setCompany(clientToEdit, editedClient);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany));
+        return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedClient));
     }
 
     /**
      * Creates and returns a {@code Company} with the details of {@code companyToEdit}
      * edited with {@code editCompanyDescriptor}.
      */
-    private static Company createEditedCompany(Company companyToEdit, EditCompanyDescriptor editCompanyDescriptor) {
-        assert companyToEdit != null;
+    private static Client createEditedCompany(Client clientToEdit, EditCompanyDescriptor editCompanyDescriptor) {
+        assert clientToEdit != null;
 
-        Name updatedName = editCompanyDescriptor.getName().orElse(companyToEdit.getName());
-        Address updatedAddress = editCompanyDescriptor.getAddress().orElse(companyToEdit.getAddress());
-        Set<Tag> updatedTags = editCompanyDescriptor.getTags().orElse(companyToEdit.getTags());
-        UniquePocList pocs = editCompanyDescriptor.getUniquePocList().orElse(companyToEdit.getPocs());
-        TransactionLog transactions = editCompanyDescriptor.getTransactionLog().orElse(companyToEdit.getTransactions());
+        Name updatedName = editCompanyDescriptor.getName().orElse(clientToEdit.getName());
+        Address updatedAddress = editCompanyDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editCompanyDescriptor.getTags().orElse(clientToEdit.getTags());
+        UniquePocList pocs = editCompanyDescriptor.getUniquePocList().orElse(clientToEdit.getPocs());
+        TransactionLog transactions = editCompanyDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
-        return new Company(updatedName, updatedAddress, updatedTags, pocs, transactions);
+        return new Client(updatedName, updatedAddress, updatedTags, pocs, transactions);
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Company}'s {@code Name} matches the keyword given exactly.
  */
-public class NameEqualsKeywordPredicate implements Predicate<Company> {
+public class NameEqualsKeywordPredicate implements Predicate<Client> {
     private final String keyword;
 
     public NameEqualsKeywordPredicate(String keyword) {
@@ -13,8 +13,8 @@ public class NameEqualsKeywordPredicate implements Predicate<Company> {
     }
 
     @Override
-    public boolean test(Company company) {
-        String companyName = company.getName().toString();
+    public boolean test(Client client) {
+        String companyName = client.getName().toString();
 
         return companyName.equals(this.keyword);
     }

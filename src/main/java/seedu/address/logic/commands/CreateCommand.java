@@ -12,7 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.poc.Poc;
 
 /**
@@ -63,24 +63,24 @@ public class CreateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredCompanyList();
 
         // if index of company not valid
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
 
-        if (companyToEdit.hasPoc(poc)) {
+        if (clientToEdit.hasPoc(poc)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_POC, poc.getName()));
         }
 
-        Company editedCompany = companyToEdit;
-        editedCompany.addPoc(poc);
-        model.setCompany(companyToEdit, editedCompany);
+        Client editedClient = clientToEdit;
+        editedClient.addPoc(poc);
+        model.setCompany(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedCompany));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedClient));
     }
 
     @Override

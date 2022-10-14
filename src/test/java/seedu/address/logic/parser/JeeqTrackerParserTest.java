@@ -33,7 +33,7 @@ import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
@@ -52,9 +52,9 @@ public class JeeqTrackerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Company company = new CompanyBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(CompanyUtil.getAddCommand(company));
-        assertEquals(new AddCommand(company), command);
+        Client client = new CompanyBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(CompanyUtil.getAddCommand(client));
+        assertEquals(new AddCommand(client), command);
     }
 
     @Test
@@ -72,8 +72,8 @@ public class JeeqTrackerParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Company company = new CompanyBuilder().build();
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(company).build();
+        Client client = new CompanyBuilder().build();
+        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_COMPANY.getOneBased() + " " + CompanyUtil.getEditCompanyDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_COMPANY, descriptor), command);

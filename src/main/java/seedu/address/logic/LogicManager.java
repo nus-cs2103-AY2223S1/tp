@@ -14,7 +14,7 @@ import seedu.address.logic.parser.JeeqTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJeeqTracker;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.storage.Storage;
 
 /**
@@ -60,7 +60,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Company> getFilteredCompanyList() {
+    public ObservableList<Client> getFilteredCompanyList() {
         return model.getFilteredCompanyList();
     }
 

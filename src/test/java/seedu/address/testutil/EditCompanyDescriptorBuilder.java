@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
 
@@ -28,11 +28,11 @@ public class EditCompanyDescriptorBuilder {
     /**
      * Returns an {@code EditCompanyDescriptor} with fields containing {@code company}'s details
      */
-    public EditCompanyDescriptorBuilder(Company company) {
+    public EditCompanyDescriptorBuilder(Client client) {
         descriptor = new EditCompanyDescriptor();
-        descriptor.setName(company.getName());
-        descriptor.setAddress(company.getAddress());
-        descriptor.setTags(company.getTags());
+        descriptor.setName(client.getName());
+        descriptor.setAddress(client.getAddress());
+        descriptor.setTags(client.getTags());
     }
 
     /**

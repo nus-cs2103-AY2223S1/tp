@@ -22,7 +22,7 @@ import seedu.address.model.transaction.TransactionLog;
  * Represents a Company in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Company implements ReadOnlyCompany {
+public class Client implements ReadOnlyCompany {
 
     // Identity fields
     private final Name name;
@@ -36,7 +36,7 @@ public class Company implements ReadOnlyCompany {
     /**
      * Every field must be present and not null.
      */
-    public Company(Name name, Address address, Set<Tag> tags) {
+    public Client(Name name, Address address, Set<Tag> tags) {
         this(name, address, tags, new UniquePocList(), new TransactionLog());
     }
 
@@ -48,7 +48,7 @@ public class Company implements ReadOnlyCompany {
      * @param pocs list of unique pocs.
      * @param transactions list of transactions.
      */
-    public Company(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
+    public Client(Name name, Address address, Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, pocs);
         this.name = name;
         this.address = address;
@@ -115,13 +115,13 @@ public class Company implements ReadOnlyCompany {
      * Returns true if both companies have the same name.
      * This defines a weaker notion of equality between two companies.
      */
-    public boolean isSameCompany(Company otherCompany) {
-        if (otherCompany == this) {
+    public boolean isSameCompany(Client otherClient) {
+        if (otherClient == this) {
             return true;
         }
 
-        return otherCompany != null
-                && otherCompany.getName().equals(getName());
+        return otherClient != null
+                && otherClient.getName().equals(getName());
     }
 
     /**
@@ -134,14 +134,14 @@ public class Company implements ReadOnlyCompany {
             return true;
         }
 
-        if (!(other instanceof Company)) {
+        if (!(other instanceof Client)) {
             return false;
         }
 
-        Company otherCompany = (Company) other;
-        return otherCompany.getName().equals(getName())
-                && otherCompany.getAddress().equals(getAddress())
-                && otherCompany.getTags().equals(getTags());
+        Client otherClient = (Client) other;
+        return otherClient.getName().equals(getName())
+                && otherClient.getAddress().equals(getAddress())
+                && otherClient.getTags().equals(getTags());
     }
 
     @Override

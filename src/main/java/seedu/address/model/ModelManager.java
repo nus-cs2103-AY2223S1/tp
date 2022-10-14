@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final JeeqTracker jeeqTracker;
     private final UserPrefs userPrefs;
-    private final FilteredList<Company> filteredCompanies;
+    private final FilteredList<Client> filteredCompanies;
 
     /**
      * Initializes a ModelManager with the given jeeqTracker and userPrefs.
@@ -88,27 +88,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasCompany(Company company) {
-        requireNonNull(company);
-        return jeeqTracker.hasCompany(company);
+    public boolean hasCompany(Client client) {
+        requireNonNull(client);
+        return jeeqTracker.hasCompany(client);
     }
 
     @Override
-    public void deleteCompany(Company target) {
+    public void deleteCompany(Client target) {
         jeeqTracker.removeCompany(target);
     }
 
     @Override
-    public void addCompany(Company company) {
-        jeeqTracker.addCompany(company);
+    public void addCompany(Client client) {
+        jeeqTracker.addCompany(client);
         updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
     }
 
     @Override
-    public void setCompany(Company target, Company editedCompany) {
-        requireAllNonNull(target, editedCompany);
+    public void setCompany(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
 
-        jeeqTracker.setCompany(target, editedCompany);
+        jeeqTracker.setCompany(target, editedClient);
     }
 
     //=========== Filtered Company List Accessors =============================================================
@@ -118,12 +118,12 @@ public class ModelManager implements Model {
      * {@code versionedJeeqTracker}
      */
     @Override
-    public ObservableList<Company> getFilteredCompanyList() {
+    public ObservableList<Client> getFilteredCompanyList() {
         return filteredCompanies;
     }
 
     @Override
-    public void updateFilteredCompanyList(Predicate<Company> predicate) {
+    public void updateFilteredCompanyList(Predicate<Client> predicate) {
         requireNonNull(predicate);
         filteredCompanies.setPredicate(predicate);
     }

@@ -22,7 +22,7 @@ import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
@@ -35,14 +35,14 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Company editedCompany = new CompanyBuilder().build();
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(editedCompany).build();
+        Client editedClient = new CompanyBuilder().build();
+        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(editedClient).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COMPANY, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
-        expectedModel.setCompany(model.getFilteredCompanyList().get(0), editedCompany);
+        expectedModel.setCompany(model.getFilteredCompanyList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -50,20 +50,20 @@ public class EditCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastCompany = Index.fromOneBased(model.getFilteredCompanyList().size());
-        Company lastCompany = model.getFilteredCompanyList().get(indexLastCompany.getZeroBased());
+        Client lastClient = model.getFilteredCompanyList().get(indexLastCompany.getZeroBased());
 
-        CompanyBuilder companyInList = new CompanyBuilder(lastCompany);
-        Company editedCompany = companyInList.withName(VALID_NAME_BOB)
+        CompanyBuilder companyInList = new CompanyBuilder(lastClient);
+        Client editedClient = companyInList.withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastCompany, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
-        expectedModel.setCompany(lastCompany, editedCompany);
+        expectedModel.setCompany(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -71,9 +71,9 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COMPANY, new EditCompanyDescriptor());
-        Company editedCompany = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Client editedClient = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
 
@@ -84,23 +84,23 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showCompanyAtIndex(model, INDEX_FIRST_COMPANY);
 
-        Company companyInFilteredList = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
-        Company editedCompany = new CompanyBuilder(companyInFilteredList).withName(VALID_NAME_BOB).build();
+        Client clientInFilteredList = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Client editedClient = new CompanyBuilder(clientInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COMPANY,
                 new EditCompanyDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_COMPANY_SUCCESS, editedClient);
 
         Model expectedModel = new ModelManager(new JeeqTracker(model.getJeeqTracker()), new UserPrefs());
-        expectedModel.setCompany(model.getFilteredCompanyList().get(0), editedCompany);
+        expectedModel.setCompany(model.getFilteredCompanyList().get(0), editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateCompanyUnfilteredList_failure() {
-        Company firstCompany = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(firstCompany).build();
+        Client firstClient = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(firstClient).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_COMPANY, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COMPANY);
@@ -111,9 +111,9 @@ public class EditCommandTest {
         showCompanyAtIndex(model, INDEX_FIRST_COMPANY);
 
         // edit company in filtered list into a duplicate in address book
-        Company companyInList = model.getJeeqTracker().getCompanyList().get(INDEX_SECOND_COMPANY.getZeroBased());
+        Client clientInList = model.getJeeqTracker().getCompanyList().get(INDEX_SECOND_COMPANY.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_COMPANY,
-                new EditCompanyDescriptorBuilder(companyInList).build());
+                new EditCompanyDescriptorBuilder(clientInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_COMPANY);
     }

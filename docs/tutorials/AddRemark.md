@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing company in the address book.
+ * Changes the remark of an existing client in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -65,8 +65,8 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the company identified "
-            + "by the index number used in the last company listing. "
+            + ": Edits the remark of the client identified "
+            + "by the index number used in the last client listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -101,8 +101,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the company in the filtered company list to edit the remark
-     * @param remark of the company to be updated to
+     * @param index of the client in the filtered client list to edit the remark
+     * @param remark of the client to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -225,7 +225,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of company data. We achieve that by working with the `Company` model. Each field in a Company is implemented as a separate class (e.g. a `Name` object represents the company’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a company.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of client data. We achieve that by working with the `Company` model. Each field in a Company is implemented as a separate class (e.g. a `Name` object represents the client’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a client.
 
 ### Add a new `Remark` class
 
@@ -240,7 +240,7 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each company.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each client.
 
 Simply add the following to [`seedu.address.ui.CompanyCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
@@ -311,9 +311,9 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 **`CompanyCard.java`:**
 
 ``` java
-public CompanyCard(Company company, int displayedIndex) {
+public CompanyCard(Company client, int displayedIndex) {
     //...
-    remark.setText(company.getRemark().value);
+    remark.setText(client.getRemark().value);
 }
 ```
 
@@ -343,25 +343,25 @@ save it with `Model#setCompany()`.
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
-        Company editedCompany = new Company(
-                companyToEdit.getName(), companyToEdit.getPhone(), companyToEdit.getEmail(),
-                companyToEdit.getAddress(), remark, companyToEdit.getTags());
+        Company clientToEdit = lastShownList.get(index.getZeroBased());
+        Company editedClient = new Company(
+                clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
+                clientToEdit.getAddress(), remark, clientToEdit.getTags());
 
-        model.setCompany(companyToEdit, editedCompany);
+        model.setCompany(clientToEdit, editedClient);
         model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
 
-        return new CommandResult(generateSuccessMessage(editedCompany));
+        return new CommandResult(generateSuccessMessage(editedClient));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code companyToEdit}.
+     * {@code clientToEdit}.
      */
-    private String generateSuccessMessage(Company companyToEdit) {
+    private String generateSuccessMessage(Company clientToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, companyToEdit);
+        return String.format(message, clientToEdit);
     }
 ```
 

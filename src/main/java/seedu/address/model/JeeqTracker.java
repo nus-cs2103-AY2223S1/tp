@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueCompanyList;
 
 /**
@@ -43,7 +43,7 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
      * Replaces the contents of the company list with {@code companies}.
      * {@code companies} must not contain duplicate companies.
      */
-    public void setCompanies(List<Company> companies) {
+    public void setCompanies(List<Client> companies) {
         this.companies.setCompanies(companies);
     }
 
@@ -61,16 +61,16 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
     /**
      * Returns true if a company with the same identity as {@code company} exists in the address book.
      */
-    public boolean hasCompany(Company company) {
-        requireNonNull(company);
-        return companies.contains(company);
+    public boolean hasCompany(Client client) {
+        requireNonNull(client);
+        return companies.contains(client);
     }
 
     /**
      * Adds a company to the address book.
      * The company must not already exist in the address book.
      */
-    public void addCompany(Company p) {
+    public void addCompany(Client p) {
         companies.add(p);
     }
 
@@ -79,17 +79,17 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
      * {@code target} must exist in the address book.
      * The identity of {@code editedCompany} must not be the same as another existing company in the address book.
      */
-    public void setCompany(Company target, Company editedCompany) {
-        requireNonNull(editedCompany);
+    public void setCompany(Client target, Client editedClient) {
+        requireNonNull(editedClient);
 
-        companies.setCompany(target, editedCompany);
+        companies.setCompany(target, editedClient);
     }
 
     /**
      * Removes {@code key} from this {@code JeeqTracker}.
      * {@code key} must exist in the address book.
      */
-    public void removeCompany(Company key) {
+    public void removeCompany(Client key) {
         companies.remove(key);
     }
 
@@ -102,7 +102,7 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
     }
 
     @Override
-    public ObservableList<Company> getCompanyList() {
+    public ObservableList<Client> getCompanyList() {
         return companies.asUnmodifiableObservableList();
     }
 

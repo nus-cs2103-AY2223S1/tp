@@ -20,7 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditCompanyDescriptorBuilder;
 
@@ -124,7 +124,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         JeeqTracker expectedJeeqTracker = new JeeqTracker(actualModel.getJeeqTracker());
-        List<Company> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCompanyList());
+        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCompanyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedJeeqTracker, actualModel.getJeeqTracker());
@@ -137,8 +137,8 @@ public class CommandTestUtil {
     public static void showCompanyAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCompanyList().size());
 
-        Company company = model.getFilteredCompanyList().get(targetIndex.getZeroBased());
-        final String[] splitName = company.getName().fullName.split("\\s+");
+        Client client = model.getFilteredCompanyList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
         model.updateFilteredCompanyList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCompanyList().size());

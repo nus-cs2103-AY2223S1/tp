@@ -28,7 +28,7 @@ import seedu.address.testutil.PocBuilder;
 import seedu.address.testutil.TypicalCompanies;
 import seedu.address.testutil.TypicalPoc;
 
-public class CompanyTest {
+public class ClientTest {
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
@@ -36,7 +36,7 @@ public class CompanyTest {
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
-                new Company(null, new Address(VALID_ADDRESS_BOB), tags, pocs, transactions));
+                new Client(null, new Address(VALID_ADDRESS_BOB), tags, pocs, transactions));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class CompanyTest {
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
-                new Company(new Name(VALID_NAME_BOB), null, tags, pocs, transactions));
+                new Client(new Name(VALID_NAME_BOB), null, tags, pocs, transactions));
     }
 
     @Test
@@ -55,8 +55,8 @@ public class CompanyTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Company company = new CompanyBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> company.getTags().remove(0));
+        Client client = new CompanyBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> client.getTags().remove(0));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class CompanyTest {
         assertFalse(ALICE.isSameCompany(null));
 
         // same name, all other attributes different -> returns true
-        Company editedAlice = new CompanyBuilder(ALICE)
+        Client editedAlice = new CompanyBuilder(ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameCompany(editedAlice));
 
@@ -77,7 +77,7 @@ public class CompanyTest {
         assertFalse(ALICE.isSameCompany(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-        Company editedBob = new CompanyBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        Client editedBob = new CompanyBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameCompany(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
@@ -88,7 +88,7 @@ public class CompanyTest {
 
     @Test
     public void addPoc() {
-        Company aliceCopy = new CompanyBuilder(ALICE).build();
+        Client aliceCopy = new CompanyBuilder(ALICE).build();
         Poc elleCopy = new PocBuilder(ELLE).build();
         aliceCopy.addPoc(elleCopy);
         assertTrue(aliceCopy.getPocs().contains(elleCopy));
@@ -98,17 +98,17 @@ public class CompanyTest {
 
     @Test
     public void containsPoc() {
-        Company company = new CompanyBuilder(TypicalCompanies.BENSON).build();
-        assertTrue(company.hasPoc(BENSON));
+        Client client = new CompanyBuilder(TypicalCompanies.BENSON).build();
+        assertTrue(client.hasPoc(BENSON));
 
         // Invalid Poc
-        assertFalse(company.hasPoc(AMY));
+        assertFalse(client.hasPoc(AMY));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Company aliceCopy = new CompanyBuilder(ALICE).build();
+        Client aliceCopy = new CompanyBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -124,7 +124,7 @@ public class CompanyTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-        Company editedAlice = new CompanyBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        Client editedAlice = new CompanyBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
@@ -138,8 +138,8 @@ public class CompanyTest {
 
     @Test
     public void toStringTest() {
-        Company company = new CompanyBuilder(TypicalCompanies.BENSON).build();
-        assertEquals(company.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
+        Client client = new CompanyBuilder(TypicalCompanies.BENSON).build();
+        assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
                 + "#02-25; Tags: [owesMoney][friends]; POCs: Benson Meier; Total transactions: $0");
     }
 }

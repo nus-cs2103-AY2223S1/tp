@@ -21,18 +21,18 @@ import seedu.address.model.client.exceptions.DuplicateCompanyException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Company#isSameCompany(Company)
+ * @see Client#isSameCompany(Client)
  */
-public class UniqueCompanyList implements Iterable<Company> {
+public class UniqueCompanyList implements Iterable<Client> {
 
-    private final ObservableList<Company> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Company> internalUnmodifiableList =
+    private final ObservableList<Client> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent company as the given argument.
      */
-    public boolean contains(Company toCheck) {
+    public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameCompany);
     }
@@ -41,7 +41,7 @@ public class UniqueCompanyList implements Iterable<Company> {
      * Adds a company to the list.
      * The company must not already exist in the list.
      */
-    public void add(Company toAdd) {
+    public void add(Client toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateCompanyException();
@@ -54,26 +54,26 @@ public class UniqueCompanyList implements Iterable<Company> {
      * {@code target} must exist in the list.
      * The company identity of {@code editedCompany} must not be the same as another existing company in the list.
      */
-    public void setCompany(Company target, Company editedCompany) {
-        requireAllNonNull(target, editedCompany);
+    public void setCompany(Client target, Client editedClient) {
+        requireAllNonNull(target, editedClient);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new CompanyNotFoundException();
         }
 
-        if (!target.isSameCompany(editedCompany) && contains(editedCompany)) {
+        if (!target.isSameCompany(editedClient) && contains(editedClient)) {
             throw new DuplicateCompanyException();
         }
 
-        internalList.set(index, editedCompany);
+        internalList.set(index, editedClient);
     }
 
     /**
      * Removes the equivalent company from the list.
      * The company must exist in the list.
      */
-    public void remove(Company toRemove) {
+    public void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new CompanyNotFoundException();
@@ -89,7 +89,7 @@ public class UniqueCompanyList implements Iterable<Company> {
      * Replaces the contents of this list with {@code companies}.
      * {@code companies} must not contain duplicate companies.
      */
-    public void setCompanies(List<Company> companies) {
+    public void setCompanies(List<Client> companies) {
         requireAllNonNull(companies);
         if (!companiesAreUnique(companies)) {
             throw new DuplicateCompanyException();
@@ -101,12 +101,12 @@ public class UniqueCompanyList implements Iterable<Company> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Company> asUnmodifiableObservableList() {
+    public ObservableList<Client> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Company> iterator() {
+    public Iterator<Client> iterator() {
         return internalList.iterator();
     }
 
@@ -125,7 +125,7 @@ public class UniqueCompanyList implements Iterable<Company> {
     /**
      * Returns true if {@code companies} contains only unique companies.
      */
-    private boolean companiesAreUnique(List<Company> companies) {
+    private boolean companiesAreUnique(List<Client> companies) {
         for (int i = 0; i < companies.size() - 1; i++) {
             for (int j = i + 1; j < companies.size(); j++) {
                 if (companies.get(i).isSameCompany(companies.get(j))) {

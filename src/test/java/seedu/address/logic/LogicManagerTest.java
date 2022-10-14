@@ -24,7 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.storage.JsonJeeqTrackerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -79,9 +79,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY
                 + ADDRESS_DESC_AMY;
-        Company expectedCompany = new CompanyBuilder(AMY).withTags().build();
+        Client expectedClient = new CompanyBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addCompany(expectedCompany);
+        expectedModel.addCompany(expectedClient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

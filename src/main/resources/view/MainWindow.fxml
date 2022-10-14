@@ -49,7 +49,7 @@
             <HBox maxHeight="1.7976931348623157E308" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
 
-                <VBox fx:id="companyList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                <VBox fx:id="clientList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>

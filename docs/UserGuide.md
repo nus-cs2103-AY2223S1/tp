@@ -10,17 +10,17 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Adding a company: `add`](#adding-a-company-add)
+  * [Adding a client: `add`](#adding-a-client-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
   * [Creating a point-of-contact: `create`](#creating-a-person-create)
-  * [Deleting a company: `delete`](#deleting-a-company--delete)
-  * [Editing a company: `edit`](#editing-a-company--edit)
+  * [Deleting a client: `delete`](#deleting-a-client--delete)
+  * [Editing a client: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
   * [Filtering the address book display: `filter`](#filtering-the-address-book-display--filter)
   * [Listing all companies: `list`](#listing-all-companies--list)
   * [Locating companies by name: `find`](#locating-companies-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
-  * [Viewing a company: `view`](#viewing-a-company--view)
+  * [Viewing a client: `view`](#viewing-a-client--view)
   * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
   * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
@@ -48,9 +48,9 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all companies.
 
-   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the company at index 2.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the client at index 2.
 
-   * **`delete`**`delete 1` : Deletes the company at the first index together with all their contacts and transactions in the current list.
+   * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
    * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, transactions).
 
@@ -88,15 +88,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 </div>
 
-### Adding a company: `add`
+### Adding a client: `add`
 
-Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
+Adds an empty client to the list without any POC (Point-Of-Contact) and transactions.
 
 Format: `add n/NAME a/ADDRESS [t/TAG]...`
 
 * Tags are optional.
-* Multiple tags can be tagged to the company.
-* Use `create` command to add POC to the company.
+* Multiple tags can be tagged to the client.
+* Use `create` command to add POC to the client.
 
 Examples:
 * `add n/MacDonalds a/West Coast Park`
@@ -117,34 +117,34 @@ Example:
 
 ### Creating a Person: `create`
 
-Creates a new person (point-of-contact) for a specific company.
+Creates a new person (point-of-contact) for a specific client.
 
 Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
 
 * Tags are optional.
 * Multiple tags can be tagged to the point-of-contact.
-* The index refers to the index number shown in the displayed company list.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the company at index 1.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the client at index 1.
 * `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainPoc` tags can also be added.
 
-### Deleting a company : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified company from JeeqTracker.
+Deletes the specified client from JeeqTracker.
 
 Format: `delete INDEX`
 
-* Deletes the company at the specified `INDEX`.
-* The index refers to the index number shown in the displayed company list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd company in the address book.
-* `find cold` followed by `delete 1` deletes the 1st company in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `find cold` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Editing a company : `edit`
+### Editing a client : `edit`
 
 Coming Soon.
 
@@ -209,14 +209,14 @@ Examples:
 * `find Mac` returns `MacDonald`
 * `find fairprice` returns `NTUC Fairprice` <br>
 
-### Viewing a company : `view`
+### Viewing a client : `view`
 
-`view` displays the points of contact and transaction log of the specified company.
+`view` displays the points of contact and transaction log of the specified client.
 
 Format: `view INDEX`
 
-* Views the company at the specified `INDEX`.
-* The index refers to the index number shown in the displayed company list.
+* Views the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 ### Sorting the address book: `sort`
@@ -225,7 +225,7 @@ Coming soon.
 
 ### Creating a Transaction: `buy` or `sell`
 
-Creates a transaction related to a company (buy/sell).
+Creates a transaction related to a client (buy/sell).
 
 Format:
 - `buy INDEX coy/COMPANY_NAME  g/GOODS  q/QUANTITY  price/PRICE`

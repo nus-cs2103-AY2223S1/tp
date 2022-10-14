@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * Panel containing the list of companies.
@@ -18,30 +18,30 @@ public class CompanyListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(CompanyListPanel.class);
 
     @FXML
-    private ListView<Company> companyListView;
+    private ListView<Client> companyListView;
 
     /**
      * Creates a {@code CompanyListPanel} with the given {@code ObservableList}.
      */
-    public CompanyListPanel(ObservableList<Company> companyList) {
+    public CompanyListPanel(ObservableList<Client> clientList) {
         super(FXML);
-        companyListView.setItems(companyList);
+        companyListView.setItems(clientList);
         companyListView.setCellFactory(listView -> new CompanyListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Company} using a {@code CompanyCard}.
      */
-    class CompanyListViewCell extends ListCell<Company> {
+    class CompanyListViewCell extends ListCell<Client> {
         @Override
-        protected void updateItem(Company company, boolean empty) {
-            super.updateItem(company, empty);
+        protected void updateItem(Client client, boolean empty) {
+            super.updateItem(client, empty);
 
-            if (empty || company == null) {
+            if (empty || client == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CompanyCard(company, getIndex() + 1).getRoot());
+                setGraphic(new CompanyCard(client, getIndex() + 1).getRoot());
             }
         }
     }

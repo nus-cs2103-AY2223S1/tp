@@ -18,7 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.transaction.Transaction;
 
@@ -191,7 +191,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param commandResult the result of command executed.
      */
     private void handleCompanyDetailsUpdate(CommandResult commandResult) {
-        ObservableList<Company> companies = logic.getFilteredCompanyList();
+        ObservableList<Client> companies = logic.getFilteredCompanyList();
 
         if (companies.size() != 1) {
             // Empty poc list panel.
@@ -200,9 +200,9 @@ public class MainWindow extends UiPart<Stage> {
             return;
         }
 
-        Company company = companies.get(0);
-        ObservableList<Poc> pocs = company.getPocs().asUnmodifiableObservableList();
-        ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
+        Client client = companies.get(0);
+        ObservableList<Poc> pocs = client.getPocs().asUnmodifiableObservableList();
+        ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
         transactionListPanel.setTransactionList(transactions);
     }

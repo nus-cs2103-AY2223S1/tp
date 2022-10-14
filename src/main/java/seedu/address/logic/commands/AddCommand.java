@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * Adds a company to the address book.
@@ -30,14 +30,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New company added: %1$s";
     public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book";
 
-    private final Company toAdd;
+    private final Client toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Company}
      */
-    public AddCommand(Company company) {
-        requireNonNull(company);
-        toAdd = company;
+    public AddCommand(Client client) {
+        requireNonNull(client);
+        toAdd = client;
     }
 
     @Override

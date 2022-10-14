@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.JeeqTracker;
 import seedu.address.model.ReadOnlyJeeqTracker;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * An Immutable JeeqTracker that is serializable to JSON format.
@@ -48,11 +48,11 @@ class JsonSerializableJeeqTracker {
     public JeeqTracker toModelType() throws IllegalValueException {
         JeeqTracker jeeqTracker = new JeeqTracker();
         for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
-            Company company = jsonAdaptedCompany.toModelType();
-            if (jeeqTracker.hasCompany(company)) {
+            Client client = jsonAdaptedCompany.toModelType();
+            if (jeeqTracker.hasCompany(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
             }
-            jeeqTracker.addCompany(company);
+            jeeqTracker.addCompany(client);
         }
         return jeeqTracker;
     }

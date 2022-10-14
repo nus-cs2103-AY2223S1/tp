@@ -19,7 +19,7 @@ import seedu.address.model.client.exceptions.CompanyNotFoundException;
 import seedu.address.model.client.exceptions.DuplicateCompanyException;
 import seedu.address.testutil.CompanyBuilder;
 
-public class UniqueCompanyListTest {
+public class UniqueClientListTest {
 
     private final UniqueCompanyList uniqueCompanyList = new UniqueCompanyList();
 
@@ -42,7 +42,7 @@ public class UniqueCompanyListTest {
     @Test
     public void contains_companyWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCompanyList.add(ALICE);
-        Company editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(uniqueCompanyList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueCompanyListTest {
     @Test
     public void setCompany_editedCompanyHasSameIdentity_success() {
         uniqueCompanyList.add(ALICE);
-        Company editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Client editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueCompanyList.setCompany(ALICE, editedAlice);
         UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
@@ -143,14 +143,14 @@ public class UniqueCompanyListTest {
 
     @Test
     public void setCompanies_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompanies((List<Company>) null));
+        assertThrows(NullPointerException.class, () -> uniqueCompanyList.setCompanies((List<Client>) null));
     }
 
     @Test
     public void setCompanies_list_replacesOwnListWithProvidedList() {
         uniqueCompanyList.add(ALICE);
-        List<Company> companyList = Collections.singletonList(BOB);
-        uniqueCompanyList.setCompanies(companyList);
+        List<Client> clientList = Collections.singletonList(BOB);
+        uniqueCompanyList.setCompanies(clientList);
         UniqueCompanyList expectedUniqueCompanyList = new UniqueCompanyList();
         expectedUniqueCompanyList.add(BOB);
         assertEquals(expectedUniqueCompanyList, uniqueCompanyList);
@@ -158,7 +158,7 @@ public class UniqueCompanyListTest {
 
     @Test
     public void setCompanies_listWithDuplicateCompanies_throwsDuplicateCompanyException() {
-        List<Company> listWithDuplicateCompanies = Arrays.asList(ALICE, ALICE);
+        List<Client> listWithDuplicateCompanies = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicateCompanyException.class, () -> uniqueCompanyList.setCompanies(listWithDuplicateCompanies));
     }
 

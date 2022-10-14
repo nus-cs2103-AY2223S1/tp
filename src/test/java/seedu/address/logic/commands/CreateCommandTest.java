@@ -24,7 +24,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueCompanyList;
 import seedu.address.testutil.CompanyBuilder;
 
@@ -54,8 +54,8 @@ class CreateCommandTest {
         assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
                 model.getFilteredCompanyList().size() + 10), ALICE).execute(model));
 
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new CompanyBuilder().build();
+        Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
                 modelStub.getFilteredCompanyList().size() + 10), ALICE).execute(model));
@@ -63,17 +63,17 @@ class CreateCommandTest {
 
     @Test
     public void execute_duplicatePoc_failure() {
-        Company validCompany = new CompanyBuilder().build();
-        validCompany.addPoc(AMY);
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new CompanyBuilder().build();
+        validClient.addPoc(AMY);
+        Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new CreateCommand(INDEX_FIRST_COMPANY, AMY).execute(modelStub));
     }
 
     @Test
     public void execute_addPoc_success() throws Exception {
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new CompanyBuilder().build();
+        Model modelStub = new ModelStub(validClient);
         CreateCommand createCommand = new CreateCommand(INDEX_FIRST_COMPANY, AMY);
         createCommand.execute(modelStub);
         assertTrue(modelStub.getFilteredCompanyList().get(0).hasPoc(AMY));
@@ -108,12 +108,12 @@ class CreateCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-        private Company company;
+        private Client client;
         private final UniqueCompanyList coys = new UniqueCompanyList();
 
-        public ModelStub(Company company) {
-            this.company = company;
-            coys.add(company);
+        public ModelStub(Client client) {
+            this.client = client;
+            coys.add(client);
         }
 
         @Override
@@ -147,7 +147,7 @@ class CreateCommandTest {
         }
 
         @Override
-        public void addCompany(Company company) {
+        public void addCompany(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,27 +162,27 @@ class CreateCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Company company) {
+        public boolean hasCompany(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Company target) {
+        public void deleteCompany(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Company target, Company editedCompany) {
+        public void setCompany(Client target, Client editedClient) {
 
         }
 
         @Override
-        public ObservableList<Company> getFilteredCompanyList() {
+        public ObservableList<Client> getFilteredCompanyList() {
             return coys.asUnmodifiableObservableList();
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        public void updateFilteredCompanyList(Predicate<Client> predicate) {
 
         }
     }

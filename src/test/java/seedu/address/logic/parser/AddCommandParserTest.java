@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.client.Address;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CompanyBuilder;
@@ -35,42 +35,42 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Company expectedCompany = new CompanyBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Client expectedClient = new CompanyBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCompany));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCompany));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCompany));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCompany));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedCompany));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedClient));
 
         // multiple tags - all accepted
-        Company expectedCompanyMultipleTags = new CompanyBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Client expectedClientMultipleTags = new CompanyBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
 
         assertParseSuccess(parser, NAME_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedCompanyMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedClientMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Company expectedCompany = new CompanyBuilder(AMY).withTags().build();
+        Client expectedClient = new CompanyBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedCompany));
+                new AddCommand(expectedClient));
     }
 
     @Test

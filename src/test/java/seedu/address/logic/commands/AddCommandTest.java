@@ -20,7 +20,7 @@ import seedu.address.model.JeeqTracker;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.testutil.CompanyBuilder;
 
 public class AddCommandTest {
@@ -33,27 +33,27 @@ public class AddCommandTest {
     @Test
     public void execute_companyAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingCompanyAdded modelStub = new ModelStubAcceptingCompanyAdded();
-        Company validCompany = new CompanyBuilder().build();
+        Client validClient = new CompanyBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validCompany).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validClient).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCompany), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validCompany), modelStub.companiesAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validClient), modelStub.companiesAdded);
     }
 
     @Test
     public void execute_duplicateCompany_throwsCommandException() {
-        Company validCompany = new CompanyBuilder().build();
-        AddCommand addCommand = new AddCommand(validCompany);
-        ModelStub modelStub = new ModelStubWithCompany(validCompany);
+        Client validClient = new CompanyBuilder().build();
+        AddCommand addCommand = new AddCommand(validClient);
+        ModelStub modelStub = new ModelStubWithCompany(validClient);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_COMPANY, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Company alice = new CompanyBuilder().withName("Alice").build();
-        Company bob = new CompanyBuilder().withName("Bob").build();
+        Client alice = new CompanyBuilder().withName("Alice").build();
+        Client bob = new CompanyBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addCompany(Company company) {
+        public void addCompany(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,27 +124,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Company company) {
+        public boolean hasCompany(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Company target) {
+        public void deleteCompany(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Company target, Company editedCompany) {
+        public void setCompany(Client target, Client editedClient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Company> getFilteredCompanyList() {
+        public ObservableList<Client> getFilteredCompanyList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        public void updateFilteredCompanyList(Predicate<Client> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -153,17 +153,17 @@ public class AddCommandTest {
      * A Model stub that contains a single company.
      */
     private class ModelStubWithCompany extends ModelStub {
-        private final Company company;
+        private final Client client;
 
-        ModelStubWithCompany(Company company) {
-            requireNonNull(company);
-            this.company = company;
+        ModelStubWithCompany(Client client) {
+            requireNonNull(client);
+            this.client = client;
         }
 
         @Override
-        public boolean hasCompany(Company company) {
-            requireNonNull(company);
-            return this.company.isSameCompany(company);
+        public boolean hasCompany(Client client) {
+            requireNonNull(client);
+            return this.client.isSameCompany(client);
         }
     }
 
@@ -171,18 +171,18 @@ public class AddCommandTest {
      * A Model stub that always accept the company being added.
      */
     private class ModelStubAcceptingCompanyAdded extends ModelStub {
-        final ArrayList<Company> companiesAdded = new ArrayList<>();
+        final ArrayList<Client> companiesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasCompany(Company company) {
-            requireNonNull(company);
-            return companiesAdded.stream().anyMatch(company::isSameCompany);
+        public boolean hasCompany(Client client) {
+            requireNonNull(client);
+            return companiesAdded.stream().anyMatch(client::isSameCompany);
         }
 
         @Override
-        public void addCompany(Company company) {
-            requireNonNull(company);
-            companiesAdded.add(company);
+        public void addCompany(Client client) {
+            requireNonNull(client);
+            companiesAdded.add(client);
         }
 
         @Override

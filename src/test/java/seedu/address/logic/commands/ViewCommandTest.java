@@ -20,7 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.NameEqualsKeywordPredicate;
 
 /**
@@ -57,9 +57,9 @@ public class ViewCommandTest {
     public void execute_indexOne_viewsCompanySuccess() {
         ViewCommand command = new ViewCommand(INDEX_FIRST_COMPANY);
 
-        List<Company> companies = getTypicalCompanies();
-        Company expectedCompany = companies.get(0);
-        String expectedCompanyName = expectedCompany.getName().toString();
+        List<Client> companies = getTypicalCompanies();
+        Client expectedClient = companies.get(0);
+        String expectedCompanyName = expectedClient.getName().toString();
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_COMPANY_SUCCESS, expectedCompanyName);
 

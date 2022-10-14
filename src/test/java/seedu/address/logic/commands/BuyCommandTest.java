@@ -24,7 +24,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueCompanyList;
 import seedu.address.testutil.CompanyBuilder;
 
@@ -53,8 +53,8 @@ class BuyCommandTest {
         assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
                 model.getFilteredCompanyList().size() + 10), BUY_ORANGE).execute(model));
 
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new CompanyBuilder().build();
+        Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
                 modelStub.getFilteredCompanyList().size() + 10), BUY_ORANGE).execute(model));
@@ -62,8 +62,8 @@ class BuyCommandTest {
 
     @Test
     public void execute_addTransaction_success() throws Exception {
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new CompanyBuilder().build();
+        Model modelStub = new ModelStub(validClient);
         BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
         buyCommand.execute(modelStub);
         assertEquals(-10101.00, modelStub.getFilteredCompanyList().get(0).getTotalTransacted());
@@ -97,12 +97,12 @@ class BuyCommandTest {
      * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
-        private Company company;
+        private Client client;
         private final UniqueCompanyList coys = new UniqueCompanyList();
 
-        public ModelStub(Company company) {
-            this.company = company;
-            coys.add(company);
+        public ModelStub(Client client) {
+            this.client = client;
+            coys.add(client);
         }
 
         @Override
@@ -136,7 +136,7 @@ class BuyCommandTest {
         }
 
         @Override
-        public void addCompany(Company company) {
+        public void addCompany(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,27 +151,27 @@ class BuyCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Company company) {
+        public boolean hasCompany(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Company target) {
+        public void deleteCompany(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Company target, Company editedCompany) {
+        public void setCompany(Client target, Client editedClient) {
             // method body is left empty intentionally
         }
 
         @Override
-        public ObservableList<Company> getFilteredCompanyList() {
+        public ObservableList<Client> getFilteredCompanyList() {
             return coys.asUnmodifiableObservableList();
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        public void updateFilteredCompanyList(Predicate<Client> predicate) {
             // method body is left empty intentionally
         }
     }

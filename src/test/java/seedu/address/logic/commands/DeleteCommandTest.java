@@ -16,7 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.client.Company;
+import seedu.address.model.client.Client;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -28,13 +28,13 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Client clientToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COMPANY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, companyToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, clientToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.deleteCompany(companyToDelete);
+        expectedModel.deleteCompany(clientToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -51,13 +51,13 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showCompanyAtIndex(model, INDEX_FIRST_COMPANY);
 
-        Company companyToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
+        Client clientToDelete = model.getFilteredCompanyList().get(INDEX_FIRST_COMPANY.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_COMPANY);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, companyToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_COMPANY_SUCCESS, clientToDelete);
 
         Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.deleteCompany(companyToDelete);
+        expectedModel.deleteCompany(clientToDelete);
         showNoCompany(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
