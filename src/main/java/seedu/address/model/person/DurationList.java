@@ -34,9 +34,9 @@ public class DurationList {
 
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Session Timings: \n");
+        StringBuilder description = new StringBuilder("Durations: \n");
         if (durationList.isEmpty()) {
-            description.append("No session timings found!\n");
+            description.append("No durations found!\n");
         }
         for (int i = 0; i < durationList.size(); i++) {
             description.append(i + 1).append(". ").append(this.durationList.get(i)).append("\n");

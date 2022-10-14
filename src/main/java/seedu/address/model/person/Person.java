@@ -183,7 +183,7 @@ public class Person {
                 .append(getHomeworkList())
                 .append("; Attendance: ")
                 .append(getAttendanceList())
-                .append("; Session Timings: ")
+                .append("; Duration: ")
                 .append(getDurationList())
                 .append(getGradeProgressList());
 
