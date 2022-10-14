@@ -123,7 +123,7 @@ public enum CommandWord {
      * @return a CommandWord object of the command represented by the string.
      */
     public static CommandWord parseWord(String value) {
-        for (CommandWord commandWord : CommandWord.values()) {
+        for (CommandWord commandWord : values()) {
             if (commandWord.getValue().equals(value)) {
                 return commandWord;
             }
