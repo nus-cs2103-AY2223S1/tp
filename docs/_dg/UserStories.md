@@ -5,6 +5,8 @@ Delete Inventory Item:
 
 Update inventory items:
 
+1. As a purchasing manager, I can add a new item to my inventory.
+1. As a purchasing manager, I can delete items in my inventory.
 1. As a purchasing manager, I can rename my inventory items, so that I can update items with an incorrect name.
 1. As a purchasing manager, I can set the inventory quantity of my items.
 1. As a purchasing manager, I can set the date I bought my inventory, so that I know how long I have been keeping certain items.
@@ -31,7 +33,7 @@ Miscellaneous
 
 Sorting
 
-1. As a purchasing manager, I can sort items by name. 
-1. As a purchasing manager, I can sort items by quantity. 
-1. As a purchasing manager, I can sort items by bought date. 
+1. As a purchasing manager, I can sort items by name.
+1. As a purchasing manager, I can sort items by quantity.
+1. As a purchasing manager, I can sort items by bought date.
 1. As a purchasing manager, I can sort items by expiry date.
