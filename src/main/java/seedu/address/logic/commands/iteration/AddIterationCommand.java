@@ -6,10 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Random;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -18,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.storage.Storage;
 
 /**
  * Adds an iteration to an existing commission in ArtBuddy.
@@ -55,7 +52,7 @@ public class AddIterationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCommission()) {
@@ -70,25 +67,7 @@ public class AddIterationCommand extends Command {
         }
 
         String src = toAdd.getImagePath().path;
-
-        int leftLimit = 48; // numeral '0'
-        int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
-        Random random = new Random();
-
-        String randomName = random.ints(leftLimit, rightLimit + 1)
-                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                .limit(targetStringLength)
-                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                .toString();
-
-        String dst = IMAGE_STORAGE_PATH + randomName + ".png";
-
-        try {
-            Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String dst = storage[0].saveIterationImage(src);
 
         Iteration toAdd2 = new Iteration(
                 toAdd.getDate(),

@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
+import seedu.address.storage.Storage;
 
 /**
  * Adds a commission to the selected customer.
@@ -51,7 +52,7 @@ public class AddCommissionCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCustomer()) {

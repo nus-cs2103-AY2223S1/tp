@@ -19,7 +19,7 @@
       }, {
         "date" : "2022-10-10",
         "description" : "Changed the colour scheme.",
-        "path" : "/moonshine.png",
+        "path" : "/data/images/moonshine.png",
         "feedback" : "Updated colour scheme is much better."
       }, {
         "date" : "2022-10-10",
@@ -89,10 +89,10 @@
         "path" : "/data/images/Joker0.png",
         "feedback" : "nth"
       }, {
-        "date" : "2022-11-17",
-        "description" : "Light layer",
-        "path" : "/data/images/lg30GOD9Jg.png",
-        "feedback" : "Atmospheric"
+        "date" : "2022-10-11",
+        "description" : "Lighting layer",
+        "path" : "/data/images/Tbmaz9zAdF.png",
+        "feedback" : "Great lighting"
       } ],
       "isCompleted" : false
     }, {
