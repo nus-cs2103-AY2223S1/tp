@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.scene.image.Image;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.Tag;
@@ -129,7 +130,6 @@ public class Property {
             && otherProperty.getAddress().equals(getAddress())
             && otherProperty.getTags().equals(getTags());
     }
-
 
     @Override
     public int hashCode() {
