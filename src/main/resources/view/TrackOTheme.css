@@ -190,7 +190,7 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: transparent;
+    -fx-background-color: #E9EBFF;
 }
 
 .context-menu .label {
@@ -495,7 +495,7 @@
     -fx-background-insets: 0px, 2px ;
 }
 
-#itemListView .list-cell:empty {
+#orderListView .list-cell:empty {
     -fx-padding: 2px ;
     -fx-background-color: transparent ;
     -fx-background-insets: 0 ;
