@@ -161,7 +161,7 @@ Format: `delete INDEX...`
 
 * Deletes the internship at the specified `INDEX`.
 * The index refers to the index number shown in the displayed internship list.
-* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …​
+* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
 * Can add multiple `INDEX` to delete multiple internships.
 
 Examples:
@@ -172,19 +172,15 @@ Examples:
 
 View details of list item at index
 
-Format: `view NAME [INDEX]`
+Format: `view INDEX`
 
-* Only the name is searched.
-* Companies matching the name will be returned (i.e. OR search). 
-e.g. Shopee will return Shopee, Shopee Labs as a numbered list.
-* If only one company matches the name, its details will immediately be shown.
-* Call the command again with the index to retrieve details about the application status at the company with corresponding index.
+* Only the index is searched.
+* The list use 1-based indexing, which means the index **must be a positive integer** such as 1, 2, 3, …
+* More details about the company at the index will be displayed. 
 
 Examples:
-* `view Shopee` returns
-`1. Shopee`
-`2. Shopee Labs`
-* `view Shopee 1` returns `Shopee, CEO, 29/02/23, offer, NA`
+* `list` followed by `view 1` displays more details of the 1st internship in list.
+
 
 ### Editing internship : `edit`
 Edit details of an internship
@@ -245,6 +241,7 @@ Action | Format, Examples
 **Add** | `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHONE] [e/EMAIL] [web/WEBSITE] [r/REMARK]  [t/TAG]…​` <br> e.g., `add n/Tiktok p/backend engineer`
 **Clear** | `clear`
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
+**View** | `view INDEX`<br> e.g., `view 1`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
 **List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`

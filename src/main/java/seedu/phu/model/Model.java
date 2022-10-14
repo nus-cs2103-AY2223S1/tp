@@ -91,4 +91,10 @@ public interface Model {
     void sortList(ComparableCategory category);
 
     void reverseList();
+
+    /**
+     * Updates the filter of the filtered internship list to only show internshipToView.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void viewInternship(Internship internshipToView);
 }
