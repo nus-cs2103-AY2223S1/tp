@@ -47,8 +47,8 @@ public class TaskBookTest {
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+            .build();
         List<Person> newPersons = Arrays.asList(TypicalTaskBook.ALICE, editedAlice);
         TaskBookStub newData = new TaskBookStub(newPersons);
 
@@ -75,14 +75,19 @@ public class TaskBookTest {
     public void hasPerson_personWithSameIdentityFieldsInTaskBook_returnsTrue() {
         taskBook.addPerson(TypicalTaskBook.ALICE);
         Person editedAlice = new PersonBuilder(TypicalTaskBook.ALICE)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+            .build();
         assertTrue(taskBook.hasPerson(editedAlice));
     }
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         Assert.assertThrows(UnsupportedOperationException.class, () -> taskBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void getTaskList_modifyList_throwsUnsupportedOperationException() {
+        Assert.assertThrows(UnsupportedOperationException.class, () -> taskBook.getTaskList().remove(0));
     }
 
     /**

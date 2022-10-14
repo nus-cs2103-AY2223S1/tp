@@ -49,5 +49,24 @@
     "address" : "4th street",
     "tagged" : [ ]
   } ],
-  "tasks": []
+  "tasks": [
+    {
+      "name" : "Alice Pauline",
+      "assignment" : "TO",
+      "description" : "eat fruit",
+      "isDone" : true
+    },
+    {
+      "name" : "Benson Meier",
+      "assignment" : "FROM",
+      "description" : "sleep early",
+      "isDone" : false
+    },
+    {
+      "name" : "Carl Kurz",
+      "assignment" : "TO",
+      "description" : "party at kevin's house",
+      "isDone" : true
+    }
+  ]
 }
