@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -22,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -34,7 +37,7 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
+    public static final String MODS_PASSED_TO_EDIT = "Use [mod] commands to edit mods.";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -103,8 +106,9 @@ public class EditCommand extends Command {
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         GitHub updatedGitHub = editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        ObservableList<Mod> mods = personToEdit.getMods();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub, updatedTags, mods);
     }
 
     @Override
@@ -136,6 +140,7 @@ public class EditCommand extends Command {
         private Telegram handle;
         private GitHub username;
         private Set<Tag> tags;
+        private ObservableList<Mod> mods;
 
         public EditPersonDescriptor() {}
 
@@ -150,10 +155,12 @@ public class EditCommand extends Command {
             setTelegram(toCopy.handle);
             setGitHub(toCopy.username);
             setTags(toCopy.tags);
+            setMods(toCopy.mods);
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least one field is edited except the mods field.
+         * Editing mods should be done on a separate command.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, handle, username, tags);
@@ -213,6 +220,22 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+        /**
+         * Sets {@code mods} to this object's {@code mods}.
+         * A defensive copy of {@code mods} is used internally.
+         */
+        public void setMods(ObservableList<Mod> tags) {
+            this.mods = (mods != null) ? FXCollections.observableArrayList(mods) : null;
+        }
+
+        /**
+         * Returns an unmodifiable mod set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code mods} is null.
+         */
+        public Optional<ObservableList<Mod>> getMods() {
+            return (mods != null) ? Optional.of(FXCollections.unmodifiableObservableList(mods)) : Optional.empty();
         }
 
         @Override

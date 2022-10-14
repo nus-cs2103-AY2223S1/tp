@@ -9,9 +9,12 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,14 +34,17 @@ class JsonAdaptedPerson {
     private final String handle;
     private final String username;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedMod> mods = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-        @JsonProperty("email") String email, @JsonProperty("handle") String handle,
-        @JsonProperty("username") String username, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("email") String email, @JsonProperty("handle") String handle,
+                             @JsonProperty("username") String username,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("mods") List<JsonAdaptedMod> mods) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,6 +52,9 @@ class JsonAdaptedPerson {
         this.username = username;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (tagged != null) {
+            this.mods.addAll(mods);
         }
     }
 
@@ -73,6 +82,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        mods.addAll(source.getMods().stream()
+                .map(JsonAdaptedMod::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -82,8 +94,12 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
+        final List<Mod> personMods = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedMod mod : mods) {
+            personMods.add(mod.toModelType());
         }
 
         Phone modelPhone = null;
@@ -131,7 +147,8 @@ class JsonAdaptedPerson {
         }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags);
+        final ObservableList<Mod> modelMods = FXCollections.observableArrayList(personMods);
+        return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags, modelMods);
     }
 
 }

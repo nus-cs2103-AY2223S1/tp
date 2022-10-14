@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueModList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -13,7 +15,7 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
+    private final UniqueModList mods;
     private final UniquePersonList persons;
 
     /*
@@ -24,6 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        mods = new UniqueModList();
         persons = new UniquePersonList();
     }
 
@@ -48,15 +51,48 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the mod list with {@code mods}.
+     * {@code persons} must not contain duplicate mods.
+     */
+    public void setMods(List<Mod> modules) {
+        this.mods.setMods(modules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setMods(newData.getModList());
         setPersons(newData.getPersonList());
     }
 
     //// person-level operations
+
+    /**
+     * Returns true if a mod with the same identity as {@code mod} exists in the address book.
+     */
+    public boolean hasMod(Mod mod) {
+        requireNonNull(mod);
+        return mods.contains(mod);
+    }
+
+    /**
+     * Adds a mod to the address book.
+     * The mod must not already exist in the address book.
+     */
+    public void addMod(Mod m) {
+        mods.add(m);
+    }
+
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeMod(Mod key) {
+        mods.remove(key);
+    }
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -97,7 +133,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size()
+            + " persons" + mods.asUnmodifiableObservableList().size() + " mods";
         // TODO: refine later
     }
 
@@ -107,10 +144,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Mod> getModList() {
+        return mods.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons))
+                && mods.equals(((AddressBook) other).mods);
     }
 
     @Override
