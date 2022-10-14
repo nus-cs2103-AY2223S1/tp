@@ -175,6 +175,7 @@ public class AddCommandTest {
         @Override
         public User getUserDetails() {
             throw new AssertionError("This method should not be called");
+        }
 
         public IsFoodAddedOnThisDatePredicate getDatePredicate() {
             throw new AssertionError("This method should not be called.");

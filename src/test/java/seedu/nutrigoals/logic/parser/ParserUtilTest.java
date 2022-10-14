@@ -126,7 +126,7 @@ public class ParserUtilTest {
     public void parseCaloriesTest() {
         assertThrows(ParseException.class, () -> ParserUtil.parseCalorie("abcd"));
     }
-    
+
     @Test
     public void parseDate_invalidDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));

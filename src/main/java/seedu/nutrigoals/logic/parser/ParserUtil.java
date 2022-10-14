@@ -139,7 +139,7 @@ public class ParserUtil {
         }
         return new Weight(trimmedWeight);
     }
-    
+
     /**
      * Parses a {@code String date} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
