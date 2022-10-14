@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tasks.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-// @@author connlim
+//@@author connlim
 /**
  * Parses input arguments and creates a new MarkCommand object
  */

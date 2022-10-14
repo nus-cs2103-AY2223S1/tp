@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 
-// @@author autumn-sonata
+//@@author autumn-sonata
 /**
  * Add a team to the address book.
  */

@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.AbstractContainerItem;
 
-// @@author autumn-sonata
+//@@author autumn-sonata
 /**
  * Changes a current working context of the team
  */

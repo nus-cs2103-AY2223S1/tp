@@ -7,6 +7,7 @@ import seedu.address.logic.commands.teams.AddTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 
+//@@author autumn-sonata
 /**
  * Parses input arguments and creates a new TeamCommand object
  */

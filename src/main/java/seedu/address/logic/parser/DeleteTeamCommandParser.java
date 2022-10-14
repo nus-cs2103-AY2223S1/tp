@@ -6,7 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.teams.DeleteTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-// @@author mohamedsaf1
+//@@author mohamedsaf1
 /**
  * Parses input arguments and creates a new DeleteTeamCommand object
  */

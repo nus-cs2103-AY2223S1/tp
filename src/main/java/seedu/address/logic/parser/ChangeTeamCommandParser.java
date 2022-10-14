@@ -6,6 +6,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.teams.ChangeTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author autumn-sonata
 /**
  * Parses input arguments and creates a new ChangeTeamCommand object
  */
