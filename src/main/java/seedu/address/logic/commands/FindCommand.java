@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
 
 /**
@@ -27,7 +28,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage...storage) {
         requireNonNull(model);
         model.updateFilteredCustomerList(predicate);
         model.selectTab(GuiTab.CUSTOMER);

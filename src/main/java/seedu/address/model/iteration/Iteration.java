@@ -13,7 +13,8 @@ public class Iteration {
     // Identity fields
     private final Date date;
     private final IterationDescription description;
-    // TODO add artwork (image) attribute
+
+    private final ImagePath imagePath;
 
     // TODO Optional fields (feedback is currently required)
     private final Feedback feedback;
@@ -26,10 +27,11 @@ public class Iteration {
      * @param date The creation date of the iteration.
      * @param description The description of the iteration.
      */
-    public Iteration(Date date, IterationDescription description, Feedback feedback) {
-        requireAllNonNull(date, description, feedback);
+    public Iteration(Date date, IterationDescription description, ImagePath imagePath, Feedback feedback) {
+        requireAllNonNull(date, description, imagePath, feedback);
         this.date = date;
         this.description = description;
+        this.imagePath = imagePath;
         this.feedback = feedback;
     }
 
@@ -41,12 +43,16 @@ public class Iteration {
         return description;
     }
 
+    public ImagePath getImagePath() {
+        return imagePath;
+    }
+
     public Feedback getFeedback() {
         return feedback;
     }
 
     /**
-     * Returns true if both iterations have the same image.
+     * Returns true if both iterations have the same imagePath.
      * This defines a weaker notion of equality between two iterations.
      */
     public boolean isSameIteration(Iteration otherIteration) {
@@ -56,7 +62,7 @@ public class Iteration {
 
         // return otherIteration != null
         //         && otherIteration.getArt().equals(getArt());
-        // TODO implement isSameIteration once the artwork/ image attribute has been added
+        // TODO implement isSameIteration once the artwork/ imagePath attribute has been added
         return otherIteration != null
                 && otherIteration.getDescription().equals(getDescription());
     }
@@ -74,12 +80,13 @@ public class Iteration {
         Iteration otherIteration = (Iteration) object;
         return otherIteration.getDate().equals(getDate())
             && otherIteration.getDescription().equals(getDescription())
+            && otherIteration.getImagePath().equals(getImagePath())
             && otherIteration.getFeedback().equals(getFeedback());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, description, feedback);
+        return Objects.hash(date, description, imagePath, feedback);
     }
 
     @Override
@@ -89,6 +96,8 @@ public class Iteration {
                 .append(getDate())
                 .append("; Description: ")
                 .append(getDescription())
+                .append("ImagePath: ")
+                .append(getImagePath())
                 .append("; Feedback: ")
                 .append(getFeedback());
 

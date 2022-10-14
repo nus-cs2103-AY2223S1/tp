@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -11,7 +12,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
+import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
+import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
 
 /**
@@ -26,6 +29,7 @@ public class AddIterationCommand extends Command {
             + "Parameters: "
             + PREFIX_ITERATION_DATE + "DATE "
             + PREFIX_ITERATION_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_ITERATION_IMAGEPATH + "IMAGE PATH "
             + PREFIX_ITERATION_FEEDBACK + "FEEDBACK\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITERATION_DATE + "2022-10-10 "
@@ -36,7 +40,6 @@ public class AddIterationCommand extends Command {
             + "added to commission \"%2$s\"";
     public static final String MESSAGE_DUPLICATE_ITERATION =
             "This iteration already exists in this commission \"%1$s\"";
-
     private final Iteration toAdd;
 
     /**
@@ -49,7 +52,7 @@ public class AddIterationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasSelectedCommission()) {
@@ -63,9 +66,19 @@ public class AddIterationCommand extends Command {
                     activeCommission.getTitle().toString()));
         }
 
-        activeCommission.addIteration(toAdd);
+        String src = toAdd.getImagePath().path;
+        String dst = storage[0].saveIterationImage(src);
+
+        Iteration toAdd2 = new Iteration(
+                toAdd.getDate(),
+                toAdd.getDescription(),
+                new ImagePath(dst),
+                toAdd.getFeedback()
+        );
+
+        activeCommission.addIteration(toAdd2);
         model.selectTab(GuiTab.COMMISSION);
-        return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd,
+        return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd2,
                 activeCommission.getTitle().toString()));
     }
 

@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
+import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
 
 /**
@@ -48,7 +49,7 @@ public class AddCustomerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
 
         if (model.hasCustomer(toAdd)) {

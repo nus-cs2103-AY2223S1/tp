@@ -1,8 +1,11 @@
 package seedu.address.storage;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -14,7 +17,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Manages storage of AddressBook data in local storage.
  */
-public class StorageManager implements Storage {
+public class StorageManager implements Storage, ImageStorage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
@@ -75,4 +78,27 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    @Override
+    public String saveIterationImage(String src) {
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String randomName = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        String dst = ImageStorage.IMAGE_STORAGE_PATH + randomName + ".png";
+
+        try {
+            Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return dst;
+    }
 }

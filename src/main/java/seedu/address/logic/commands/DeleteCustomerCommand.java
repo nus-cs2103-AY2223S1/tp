@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
+import seedu.address.storage.Storage;
 import seedu.address.ui.GuiTab;
 
 /**
@@ -33,7 +34,7 @@ public class DeleteCustomerCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage...storage) throws CommandException {
         requireNonNull(model);
         List<Customer> lastShownList = model.getFilteredCustomerList();
 
