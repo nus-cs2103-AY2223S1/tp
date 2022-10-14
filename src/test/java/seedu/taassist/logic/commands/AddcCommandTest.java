@@ -12,6 +12,7 @@ import static seedu.taassist.testutil.TypicalStudents.getTypicalTaAssist;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -55,10 +56,9 @@ public class AddcCommandTest {
 
     @Test
     public void execute_duplicateModuleClass_throwsCommandException() throws Exception {
-        Set<ModuleClass> dupModuleClasses = new HashSet<>();
-        dupModuleClasses.add(CS1101S);
-        AddcCommand addcCommand = new AddcCommand(dupModuleClasses);
-        ModelStubWithModuleClass modelStub = new ModelStubWithModuleClass(dupModuleClasses);
+        ModuleClass moduleClass = CS1101S;
+        AddcCommand addcCommand = new AddcCommand(new HashSet<>(Arrays.asList(moduleClass)));
+        ModelStubWithOneModuleClass modelStub = new ModelStubWithOneModuleClass(moduleClass);
 
         assertThrows(CommandException.class, AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS, () ->
                 addcCommand.execute(modelStub));
@@ -119,23 +119,23 @@ public class AddcCommandTest {
 
     //==================================== Model Stubs ===============================================================
 
-    private class ModelStubWithModuleClass extends ModelStub {
-        private final Set<ModuleClass> moduleClasses;
+    private class ModelStubWithOneModuleClass extends ModelStub {
+        private final ModuleClass moduleClass;
 
-        public ModelStubWithModuleClass(Set<ModuleClass> moduleClasses) {
-            requireNonNull(moduleClasses);
-            this.moduleClasses = moduleClasses;
+        public ModelStubWithOneModuleClass(ModuleClass moduleClass) {
+            requireNonNull(moduleClass);
+            this.moduleClass = moduleClass;
         }
 
         @Override
         public boolean hasModuleClass(ModuleClass moduleClass) {
             requireNonNull(moduleClass);
-            for (ModuleClass existingModuleClass : moduleClasses) {
-                if (!existingModuleClass.equals(moduleClass)) {
-                    return false;
-                }
-            }
-            return true;
+            return moduleClass.equals(this.moduleClass);
+        }
+
+        @Override
+        public boolean hasModuleClasses(Collection<ModuleClass> moduleClasses) {
+            return moduleClasses.size() == 1 && moduleClasses.contains(moduleClass);
         }
     }
     /**

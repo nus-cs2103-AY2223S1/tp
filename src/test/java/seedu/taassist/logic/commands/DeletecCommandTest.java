@@ -38,7 +38,7 @@ public class DeletecCommandTest {
 
     //==================================== Unit Tests ================================================================
 
-    @Test //TODO: FIX THIS
+    @Test
     public void constructor_nullModuleClass_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DeletecCommand(null));
     }
@@ -88,31 +88,31 @@ public class DeletecCommandTest {
     @Test
     public void execute_deleteExistingModuleClass_unassignsModuleClassFromStudent() throws Exception {
         // Student with one module class
-        Student student = new StudentBuilder().withModuleClasses("CS1101S").build();
-        ModuleClass moduleClass = student.getModuleClasses().get(0);
+        Student oldStudent = new StudentBuilder().withModuleClasses("CS1101S").build();
+        ModuleClass moduleClass = oldStudent.getModuleClasses().get(0);
 
         ModelStubAcceptingStudentAndModuleClass modelStub = new ModelStubAcceptingStudentAndModuleClass();
 
         // Model with one module class and one student
         modelStub.addModuleClass(moduleClass);
-        modelStub.addStudent(student);
+        modelStub.addStudent(oldStudent);
 
         DeletecCommand deletecCommand = new DeletecCommand(new HashSet<>(Arrays.asList(moduleClass)));
         deletecCommand.execute(modelStub);
 
-        //TODO: change to assertTrue
-        assertFalse(student.getModuleClasses().isEmpty());
+        Student newStudent = modelStub.getStudentList().get(0);
+        assertTrue(newStudent.getModuleClasses().isEmpty());
     }
 
     //==================================== Integration Tests =========================================================
 
     @Test
-    public void execute_deleteModuleClass_success() {
+    public void execute_deleteModuleClass_success() throws Exception {
         Model expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
 
         // Must exist
         Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(expectedModel.getModuleClassList().get(0)));
-        expectedModel.deleteModuleClasses(moduleClasses);
+        new DeletecCommand(moduleClasses).execute(expectedModel);
 
         assertCommandSuccess(new DeletecCommand(moduleClasses), model,
                 String.format(DeletecCommand.MESSAGE_DELETE_MODULE_CLASS_SUCCESS, moduleClasses), expectedModel);
@@ -159,6 +159,11 @@ public class DeletecCommandTest {
         public ObservableList<ModuleClass> getModuleClassList() {
             return new UniqueList<ModuleClass>().asUnmodifiableObservableList();
         }
+
+        @Override
+        public ObservableList<Student> getStudentList() {
+            return new UniqueList<Student>().asUnmodifiableObservableList();
+        }
     }
 
     private static class ModelStubWithFixedModuleClasses extends ModelStub {
@@ -178,6 +183,11 @@ public class DeletecCommandTest {
 
         public Set<ModuleClass> getModuleClasses() {
             return moduleClasses;
+        }
+
+        @Override
+        public ObservableList<Student> getStudentList() {
+            return new UniqueList<Student>().asUnmodifiableObservableList();
         }
     }
 
@@ -220,6 +230,11 @@ public class DeletecCommandTest {
             UniqueList<Student> studentList = new UniqueList<>();
             studentList.add((student));
             return studentList.asUnmodifiableObservableList();
+        }
+
+        @Override
+        public void setStudent(Student oldStudent, Student newStudent) {
+            this.student = newStudent;
         }
     }
 }

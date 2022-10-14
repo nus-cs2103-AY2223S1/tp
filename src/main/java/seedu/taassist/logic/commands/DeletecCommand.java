@@ -52,16 +52,17 @@ public class DeletecCommand extends Command {
                     model.getModuleClassList()));
         }
 
-        List<Student> students = model.getTaAssist().getStudentList();
+        List<Student> students = model.getStudentList();
         for (Student student : students) {
             if (!Collections.disjoint(student.getModuleClasses(), moduleClasses)) {
                 Set<ModuleClass> assignedClasses = new HashSet<>();
                 assignedClasses.addAll(student.getModuleClasses());
                 assignedClasses.removeAll(moduleClasses);
 
+                // assignedClasses now contains only existing
                 List<StudentModuleData> studentModuleData = student.getModuleDataList();
                 List<StudentModuleData> updatedModuleData = studentModuleData.stream()
-                        .filter(data -> !assignedClasses.contains(data.getModuleClass()))
+                        .filter(data -> assignedClasses.contains(data.getModuleClass()))
                         .collect(Collectors.toList());
 
                 Student editedStudent = new Student(student.getName(), student.getPhone(), student.getEmail(),
