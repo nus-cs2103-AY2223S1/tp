@@ -13,6 +13,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.contact.AddContactCommand;
 import seedu.address.logic.commands.contact.DeleteContactCommand;
 import seedu.address.logic.commands.contact.EditContactCommand;
+import seedu.address.logic.commands.contact.FilterContactCommand;
 import seedu.address.logic.commands.contact.FindContactCommand;
 import seedu.address.logic.commands.contact.ListContactCommand;
 import seedu.address.logic.commands.tag.AddTagCommand;
@@ -20,6 +21,7 @@ import seedu.address.logic.commands.tag.DeleteTagCommand;
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.DeleteTaskCommand;
 import seedu.address.logic.commands.task.EditTaskCommand;
+import seedu.address.logic.commands.task.FilterTaskCommand;
 import seedu.address.logic.commands.task.FindTaskCommand;
 import seedu.address.logic.commands.task.ListTaskCommand;
 import seedu.address.logic.commands.task.MarkTaskCommand;
@@ -27,6 +29,7 @@ import seedu.address.logic.commands.task.UnmarkTaskCommand;
 import seedu.address.logic.parser.contact.AddContactCommandParser;
 import seedu.address.logic.parser.contact.DeleteContactCommandParser;
 import seedu.address.logic.parser.contact.EditContactCommandParser;
+import seedu.address.logic.parser.contact.FilterContactCommandParser;
 import seedu.address.logic.parser.contact.FindContactCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.tag.AddTagCommandParser;
@@ -34,6 +37,7 @@ import seedu.address.logic.parser.tag.DeleteTagCommandParser;
 import seedu.address.logic.parser.task.AddTaskCommandParser;
 import seedu.address.logic.parser.task.DeleteTaskCommandParser;
 import seedu.address.logic.parser.task.EditTaskCommandParser;
+import seedu.address.logic.parser.task.FilterTaskCommandParser;
 import seedu.address.logic.parser.task.FindTaskCommandParser;
 import seedu.address.logic.parser.task.MarkTaskCommandParser;
 import seedu.address.logic.parser.task.UnmarkTaskCommandParser;
@@ -80,6 +84,9 @@ public class AddressBookParser {
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
 
+        case FilterContactCommand.COMMAND_WORD:
+            return new FilterContactCommandParser().parse(arguments);
+
         case ListContactCommand.COMMAND_WORD:
             return new ListContactCommand();
 
@@ -106,6 +113,9 @@ public class AddressBookParser {
 
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);
+
+        case FilterTaskCommand.COMMAND_WORD:
+            return new FilterTaskCommandParser().parse(arguments);
 
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);

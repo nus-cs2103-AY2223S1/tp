@@ -78,12 +78,14 @@ public class Task {
      *
      * @param descriptionKeywords Possibly empty list containing keywords for {@code Description}.
      * @param deadlineKeywords Possibly empty list containing keywords for {@code Deadline}.
+     * @param tags Possibly empty set containing search terms for {@code Tag}.
      * @return boolean indicating if task contains supplied keywords.
      */
     public boolean containsKeywordsCaseInsensitive(List<Description> descriptionKeywords,
-                                                   List<Deadline> deadlineKeywords) {
+                                                   List<Deadline> deadlineKeywords, Set<Tag> tags) {
         return (descriptionKeywords.isEmpty() || descriptionKeywords.stream().anyMatch(description::equalsIgnoreCase))
-                && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline));
+                && (deadlineKeywords.isEmpty() || deadlineKeywords.contains(deadline))
+                && (tags.isEmpty() || !Collections.disjoint(tags, this.tags));
     }
 
     /**
