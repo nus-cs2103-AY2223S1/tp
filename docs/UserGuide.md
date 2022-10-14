@@ -148,13 +148,13 @@ Examples:
 * `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
 * `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
 
-### Listing all persons : `listc`
+#### Listing all contact : `listc`
 
 Shows a list of all persons in the address book.
 
 Format: `listc`
 
-#### Deleting a person : `delc`
+#### Deleting a contact : `delc`
 
 Deletes the specified contact from the contact list.
 
@@ -167,7 +167,20 @@ Format: `delc {contact_index}`
 Examples:
 * `delc 2` deletes the contact at index 2 in the contact list.
 
-#### Searching for persons: `findc`
+#### Editing a contact : `editc`
+
+Edits the specified contact from the contact list.
+
+Format: `editc {contact_index} {field prefix + field description}`
+
+* Edits the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `editc 2 n/ John Wong` edits the name of the contact at index 2 in the contact list to `John Wong`.
+
+#### Searching for contacts: `findc`
 
 Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
 
@@ -178,7 +191,7 @@ Examples:
 * `findc n/ John` returns `john`, `John Doe`
 * `findc m/ CS1231S` returns `Alex Yeoh`, `David Li`
 
-#### Clearing all entries : `clear`
+#### Clearing all contacts : `clear`
 
 Clears all entries from the address book.
 

@@ -67,6 +67,7 @@ dependencies {
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
+    mainClassName = 'seedu.address.Main'
 }
 
 defaultTasks 'clean', 'test'
