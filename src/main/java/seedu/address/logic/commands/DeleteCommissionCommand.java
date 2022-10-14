@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * Deletes the commission of an existing customer in the ArtBuddy.
@@ -49,6 +50,8 @@ public class DeleteCommissionCommand extends Command {
         Customer customer = commissionToDelete.getCustomer();
         customer.removeCommission(commissionToDelete);
         model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
+        model.selectTab(GuiTab.COMMISSION);
+        model.selectCommission(null);
 
         return new CommandResult(String.format(MESSAGE_DELETE_COMMISSION_SUCCESS, commissionToDelete));
     }

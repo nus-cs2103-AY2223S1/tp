@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * Deletes a customer identified using it's displayed index from the address book.
@@ -45,6 +46,7 @@ public class DeleteCustomerCommand extends Command {
         model.deleteCustomer(customerToDelete);
 
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+        model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
     }
 

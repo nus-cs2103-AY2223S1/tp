@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * Adds a customer to the address book.
@@ -56,6 +57,7 @@ public class AddCustomerCommand extends Command {
         }
 
         model.addCustomer(toAdd);
+        model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

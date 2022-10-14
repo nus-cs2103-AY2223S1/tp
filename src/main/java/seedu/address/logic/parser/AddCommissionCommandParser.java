@@ -64,8 +64,7 @@ public class AddCommissionCommandParser implements Parser<AddCommissionCommand> 
         Commission.CommissionBuilder commissionBuilder = new Commission.CommissionBuilder(
                 title, fee, deadline, status, tagList);
         desc.ifPresent(commissionBuilder::setDescription);
-        Commission commission = commissionBuilder.build();
 
-        return new AddCommissionCommand(commission);
+        return new AddCommissionCommand(commissionBuilder);
     }
 }

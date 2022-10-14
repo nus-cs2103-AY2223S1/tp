@@ -1,5 +1,6 @@
 package seedu.address.model.customer;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -8,19 +9,31 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCommissions.ALICE_CAT;
+import static seedu.address.testutil.TypicalCommissions.BENSON_DOG;
+import static seedu.address.testutil.TypicalCommissions.CAT_PRODUCER;
+import static seedu.address.testutil.TypicalCommissions.DOG_PRODUCER;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.commission.Commission;
+import seedu.address.model.commission.exceptions.CommissionNotFoundException;
+import seedu.address.model.commission.exceptions.DuplicateCommissionException;
 import seedu.address.testutil.CustomerBuilder;
 
 public class CustomerTest {
+
+    // Reinitialize a customer each time to not deal with the mess of shared customer objects
+    private Customer tom = new CustomerBuilder().withName("Tom").build();
+    private Commission tomCatCommission = CAT_PRODUCER.apply(tom);
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Customer customer = new CustomerBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> customer.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> customer.getCommissionList().remove(0));
     }
 
     @Test
@@ -88,4 +101,59 @@ public class CustomerTest {
         editedAlice = new CustomerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void addCommission_validCommission_success() {
+        assertDoesNotThrow(() -> tom.addCommission(tomCatCommission));
+    }
+
+    @Test
+    public void addCommission_duplicateCommission_throwsDuplicateCommissionException() {
+        assertDoesNotThrow(() -> tom.addCommission(tomCatCommission));
+        assertThrows(DuplicateCommissionException.class, () -> tom.addCommission(tomCatCommission));
+    }
+
+    @Test
+    public void hasCommission_noCommissions_returnsFalse() {
+        assertFalse(tom.hasCommission(BENSON_DOG));
+    }
+
+    @Test
+    public void hasCommission_commissionNotInNonEmptyList_returnsFalse() {
+        assertDoesNotThrow(() -> tom.addCommission(tomCatCommission));
+        assertFalse(tom.hasCommission(BENSON_DOG));
+    }
+
+    @Test
+    public void hasCommission_commissionInList_returnsTrue() {
+        assertDoesNotThrow(() -> tom.addCommission(tomCatCommission));
+        assertTrue(tom.hasCommission(tomCatCommission));
+    }
+
+    @Test
+    public void setCommission_commissionNotInList_throwsCommissionNotFoundException() {
+        assertThrows(CommissionNotFoundException.class, () -> tom.setCommission(ALICE_CAT, BENSON_DOG));
+    }
+
+    @Test
+    public void setCommission_commissionInList_success() {
+        Commission tomDogCommission = DOG_PRODUCER.apply(tom);
+        assertDoesNotThrow(() -> tom.addCommission(tomCatCommission));
+        assertDoesNotThrow(() -> tom.setCommission(tomCatCommission, tomDogCommission));
+        assertFalse(tom.hasCommission(tomCatCommission));
+        assertTrue(tom.hasCommission(tomDogCommission));
+    }
+
+    @Test
+    public void removeCommission_commissionNotInList_throwsCommissionNotFoundException() {
+        assertThrows(CommissionNotFoundException.class, () -> tom.removeCommission(ALICE_CAT));
+    }
+
+    @Test
+    public void removeCommission_commissionInList_success() {
+        assertDoesNotThrow(() -> tom.addCommission(tomCatCommission));
+        assertDoesNotThrow(() -> tom.removeCommission(tomCatCommission));
+        assertFalse(tom.hasCommission(tomCatCommission));
+    }
+
 }

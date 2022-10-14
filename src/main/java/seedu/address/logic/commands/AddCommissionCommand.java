@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * Adds a commission to the selected customer.
@@ -41,12 +42,12 @@ public class AddCommissionCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
     public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in art buddy";
 
-    private final Commission toAdd;
+    private final Commission.CommissionBuilder toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code commission}
      */
-    public AddCommissionCommand(Commission commission) {
+    public AddCommissionCommand(Commission.CommissionBuilder commission) {
         requireNonNull(commission);
         toAdd = commission;
     }
@@ -59,12 +60,13 @@ public class AddCommissionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NO_ACTIVE_CUSTOMER);
         }
         Customer selectedCustomer = model.getSelectedCustomer().getValue();
-
-        if (selectedCustomer.hasCommission(toAdd)) {
+        Commission newCommission = toAdd.build(selectedCustomer);
+        if (selectedCustomer.hasCommission(newCommission)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMMISSION);
         }
-        selectedCustomer.addCommission(toAdd);
+        selectedCustomer.addCommission(newCommission);
 
+        model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

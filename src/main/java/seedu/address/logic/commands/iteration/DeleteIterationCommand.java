@@ -13,6 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.Iteration;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * Adds an existing iteration from a commission in ArtBuddy.
@@ -51,7 +52,7 @@ public class DeleteIterationCommand extends Command {
 
         Iteration iterationToDelete = lastShownList.get(targetIndex.getZeroBased());
         activeCommission.removeIteration(iterationToDelete);
-
+        model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(MESSAGE_DELETE_ITERATION_SUCCESS, iterationToDelete));
     }
 

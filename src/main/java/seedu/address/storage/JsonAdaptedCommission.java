@@ -18,6 +18,7 @@ import seedu.address.model.commission.Deadline;
 import seedu.address.model.commission.Description;
 import seedu.address.model.commission.Fee;
 import seedu.address.model.commission.Title;
+import seedu.address.model.customer.Customer;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -83,7 +84,7 @@ public class JsonAdaptedCommission {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted commission.
      */
-    public Commission toModelType() throws IllegalValueException {
+    public Commission toModelType(Customer customer) throws IllegalValueException {
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
@@ -145,7 +146,7 @@ public class JsonAdaptedCommission {
             commissionBuilder.addIteration(iteration.toModelType());
         }
 
-        return commissionBuilder.build();
+        return commissionBuilder.build(customer);
     }
 
 }

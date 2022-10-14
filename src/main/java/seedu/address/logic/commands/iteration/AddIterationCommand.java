@@ -15,6 +15,7 @@ import seedu.address.model.commission.Commission;
 import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
 import seedu.address.storage.Storage;
+import seedu.address.ui.GuiTab;
 
 /**
  * Adds an iteration to an existing commission in ArtBuddy.
@@ -39,7 +40,6 @@ public class AddIterationCommand extends Command {
             + "added to commission \"%2$s\"";
     public static final String MESSAGE_DUPLICATE_ITERATION =
             "This iteration already exists in this commission \"%1$s\"";
-    private static final String IMAGE_STORAGE_PATH = "/data/images/";
     private final Iteration toAdd;
 
     /**
@@ -77,6 +77,7 @@ public class AddIterationCommand extends Command {
         );
 
         activeCommission.addIteration(toAdd2);
+        model.selectTab(GuiTab.COMMISSION);
         return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd2,
                 activeCommission.getTitle().toString()));
     }

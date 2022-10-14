@@ -127,7 +127,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(), logic::selectCustomer);
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList(), logic::selectCustomer,
+                logic.getSelectedCustomer());
         customerListPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -143,7 +144,7 @@ public class MainWindow extends UiPart<Stage> {
         customerDetailsPanePlaceholder.getChildren().add(customerDetailsPane.getRoot());
 
         commissionListPanel = new CommissionListPanel(logic.getObservableFilteredCommissionList(),
-                logic::selectCommission);
+                logic::selectCommission, logic.getSelectedCommission());
         commissionListPanelPlaceholder.getChildren().add(commissionListPanel.getRoot());
 
         commissionDetailsPane = new CommissionDetailsPane(logic.getSelectedCommission());
@@ -204,6 +205,11 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            int tabIndexToSelect = logic.getSelectedTab().ordinal();
+            if (!tabPane.getSelectionModel().isSelected(tabIndexToSelect)) {
+                tabPane.getSelectionModel().select(tabIndexToSelect);
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
