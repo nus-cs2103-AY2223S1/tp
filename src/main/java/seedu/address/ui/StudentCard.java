@@ -44,7 +44,7 @@ public class StudentCard extends UiPart<Region> {
     private Label classGroup;
 
     @FXML
-    private Label attendance;
+    private Label attendanceList;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -57,7 +57,7 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
-        attendance.setText(student.getAttendance().value);
+        attendanceList.setText(student.getAttendanceList().toString());
         classGroup.setText(student.getClassGroup().value);
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

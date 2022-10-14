@@ -26,13 +26,13 @@ public class Attendance {
      * Overloaded method for testing
      */
     public Attendance() {
-        value = "";
+        value = "0";
     }
 
     /**
      * Checks for valid mark
      * @param test
-     * @return true if 0 or 1
+     * @return true if 0-1
      */
     public static boolean isValidMark(String test) {
         return test.matches(VALIDATION_REGEX);
