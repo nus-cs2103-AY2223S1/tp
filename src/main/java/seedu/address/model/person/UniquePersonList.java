@@ -65,9 +65,8 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
 
-        System.out.println(editedPerson);
-
         internalList.set(index, editedPerson);
+
     }
 
     /**

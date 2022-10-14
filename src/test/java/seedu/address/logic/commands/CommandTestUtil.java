@@ -49,6 +49,16 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+
+    public static final String OTHER_DATE_TIME = "2022-11-10T18:00";
+    public static final String OTHER_DATE_TIME_TWO = "2022-12-04T17:35";
+    public static final String OTHER_DATE_TIME_THREE = "2023-01-14T18:40";
+    public static final String OTHER_DATE_TIME_FOUR = "2022-11-17T13:45";
+    public static final String OTHER_DATE_TIME_FIVE = "2022-12-15T09:25";
+    public static final String OTHER_DATE_TIME_INDEX = "1";
+    public static final String OTHER_DATE_TIME_INDEX_TWO = "2";
+    public static final String OTHER_DATE_TIME_INDEX_THREE = "3";
+
     public static final String CATEGORY_DESC_AMY = " " + PREFIX_CATEGORY + VALID_CATEGORY_AMY;
     public static final String CATEGORY_DESC_BOB = " " + PREFIX_CATEGORY + VALID_CATEGORY_BOB;
     public static final String UID_DESC_AMY = " " + PREFIX_UID + VALID_UID_AMY;
@@ -67,6 +77,7 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_BOB = " " + PREFIX_DATE_AND_TIME + VALID_DATETIME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "FM"; // only allowed F or M, either one
