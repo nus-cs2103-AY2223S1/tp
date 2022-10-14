@@ -16,10 +16,12 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.testutil.EditDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -46,7 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_BESTIE = "bestie";
-
+    public static final String VALID_TUTORIAL_GROUP_AMY = "T01";
+    public static final String VALID_TUTORIAL_GROUP_BOB = "T01";
     public static final String VALID_TUTORIAL_GROUP_TIFFANI = "T01";
     public static final String VALID_TUTORIAL_GROUP_DAVE = "T02";
 
@@ -60,6 +63,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TUTORIAL_GROUP_DESC_AMY = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_AMY;
+    public static final String TUTORIAL_GROUP_DESC_BOB = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_BOB;
+    public static final String TUTORIAL_GROUP_DESC_TIFFANI = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_TIFFANI;
+    public static final String TUTORIAL_GROUP_DESC_DAVE = " " + PREFIX_TUTORIAL_GROUP + VALID_TUTORIAL_GROUP_DAVE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -75,12 +82,20 @@ public class CommandTestUtil {
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
 
+    public static final StudentEditCommand.EditStudentDescriptor DESC_STUDENT_AMY;
+    public static final StudentEditCommand.EditStudentDescriptor DESC_STUDENT_BOB;
+
     static {
-        DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_AMY = new EditDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
+        DESC_BOB = new EditDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_STUDENT_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTutorialGroup(VALID_TUTORIAL_GROUP_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
+        DESC_STUDENT_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTutorialGroup(VALID_TUTORIAL_GROUP_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
