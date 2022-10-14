@@ -21,7 +21,7 @@ public class ViewCommand extends Command {
     public static final String COMMAND_WORD = CommandWord.VIEW_COMMAND.getValue();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the information about an Item. The command "
-            + "displays the name, quantity, bought date, expiry date, and unit of the item.\n"
+            + "displays the name, quantity, bought date, expiry date, unit, and associated tags of the item.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private final Index index;
