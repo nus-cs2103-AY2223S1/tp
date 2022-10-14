@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import eatwhere.foodguide.model.FoodGuide;
 import eatwhere.foodguide.model.ReadOnlyFoodGuide;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -19,24 +19,24 @@ import eatwhere.foodguide.model.tag.Tag;
 public class SampleDataUtil {
     public static Eatery[] getSamplePersons() {
         return new Eatery[] {
-            new Eatery(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Location("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Eatery(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Location("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Eatery(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Location("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Eatery(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Location("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Eatery(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Location("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Eatery(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Location("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new Eatery(new Name("Arise n Shine"), new Phone(""), new Cuisine("snacks"),
+                new Location("Engineering Block E4"),
+                getTagSet()),
+            new Eatery(new Name("Arise n Shine 2"), new Phone(""), new Cuisine("snacks"),
+                new Location("Science Block S16"),
+                getTagSet()),
+            new Eatery(new Name("Frontier"), new Phone(""), new Cuisine("variety"),
+                new Location("Faculty of Science"),
+                getTagSet("foodcourt")),
+            new Eatery(new Name("The Deck"), new Phone(""), new Cuisine("variety"),
+                new Location("Faculty of Arts & Social Sciences"),
+                getTagSet("fodocourt")),
+            new Eatery(new Name("KOI"), new Phone("69933323"), new Cuisine("bubble tea"),
+                new Location("Central Square"),
+                getTagSet()),
+            new Eatery(new Name("Techno Edge"), new Phone(""), new Cuisine("variety"),
+                new Location("Faculty of Engineering / School of Design & Environment"),
+                getTagSet("foodcourt"))
         };
     }
 

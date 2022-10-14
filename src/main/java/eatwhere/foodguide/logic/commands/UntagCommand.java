@@ -11,8 +11,8 @@ import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -97,7 +97,7 @@ public class UntagCommand extends Command {
 
         Name name = eateryToUntag.getName();
         Phone phone = eateryToUntag.getPhone();
-        Email email = eateryToUntag.getEmail();
+        Cuisine email = eateryToUntag.getCuisine();
         Location location = eateryToUntag.getLocation();
         Set<Tag> tags = new HashSet<>(eateryToUntag.getTags()); //hashset supports removeAll()
         for (Tag tagToRemove : tagsToRemove) {

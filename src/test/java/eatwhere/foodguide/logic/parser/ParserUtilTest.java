@@ -12,7 +12,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -24,13 +24,14 @@ public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
+
+    private static final String INVALID_CUISINE = "$$$exa$m$ple$.co$m$";
     private static final String INVALID_TAG = "friènd";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_CUISINE = "rachelexamplecom";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -104,48 +105,48 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseLocation((String) null));
     }
 
     @Test
     public void parseAddress_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseLocation(INVALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
         Location expectedLocation = new Location(VALID_ADDRESS);
-        assertEquals(expectedLocation, ParserUtil.parseAddress(VALID_ADDRESS));
+        assertEquals(expectedLocation, ParserUtil.parseLocation(VALID_ADDRESS));
     }
 
     @Test
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Location expectedLocation = new Location(VALID_ADDRESS);
-        assertEquals(expectedLocation, ParserUtil.parseAddress(addressWithWhitespace));
+        assertEquals(expectedLocation, ParserUtil.parseLocation(addressWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseCuisine_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseCuisine((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseCuisine_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseCuisine(INVALID_CUISINE));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseCuisine_validValueWithoutWhitespace_returnsCuisine() throws Exception {
+        Cuisine expectedCuisine = new Cuisine(VALID_CUISINE);
+        assertEquals(expectedCuisine, ParserUtil.parseCuisine(VALID_CUISINE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseCuisine_validValueWithWhitespace_returnsTrimmedCuisine() throws Exception {
+        String cuisineWithWhitespace = WHITESPACE + VALID_CUISINE + WHITESPACE;
+        Cuisine expectedCuisine = new Cuisine(VALID_CUISINE);
+        assertEquals(expectedCuisine, ParserUtil.parseCuisine(cuisineWithWhitespace));
     }
 
     @Test

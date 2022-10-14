@@ -2,7 +2,7 @@
   "eateries": [ {
     "name": "Eatery with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
-    "email": "hans@example.com",
+    "email": "hansexamplecom",
     "address": "4th street"
   } ]
 }

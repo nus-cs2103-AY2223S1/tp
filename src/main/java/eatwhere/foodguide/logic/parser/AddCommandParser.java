@@ -1,7 +1,7 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_CUISINE;
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_NAME;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_PHONE;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.logic.commands.AddCommand;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -31,20 +31,26 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CUISINE,
+                        PREFIX_LOCATION, PREFIX_PHONE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_CUISINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Location location = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Cuisine cuisine = ParserUtil.parseCuisine(argMultimap.getValue(PREFIX_CUISINE).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Eatery eatery = new Eatery(name, phone, email, location, tagList);
+        Eatery eatery;
+        if (argMultimap.getAllValues(PREFIX_PHONE).isEmpty()) {
+            eatery = new Eatery(name, cuisine, location, tagList);
+        } else {
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            eatery = new Eatery(name, phone, cuisine, location, tagList);
+        }
 
         return new AddCommand(eatery);
     }

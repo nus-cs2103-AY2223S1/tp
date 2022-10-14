@@ -9,7 +9,7 @@ import java.util.Set;
 import eatwhere.foodguide.commons.core.index.Index;
 import eatwhere.foodguide.commons.util.StringUtil;
 import eatwhere.foodguide.logic.parser.exceptions.ParseException;
-import eatwhere.foodguide.model.eatery.Email;
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -71,7 +71,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static Location parseAddress(String address) throws ParseException {
+    public static Location parseLocation(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!Location.isValidLocation(trimmedAddress)) {
@@ -81,18 +81,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String email} into an {@code Cuisine}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code cuisine} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Cuisine parseCuisine(String cuisine) throws ParseException {
+        requireNonNull(cuisine);
+        String trimmedCuisine = cuisine.trim();
+        if (!Cuisine.isValidCuisine(trimmedCuisine)) {
+            throw new ParseException(Cuisine.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Cuisine(trimmedCuisine);
     }
 
     /**

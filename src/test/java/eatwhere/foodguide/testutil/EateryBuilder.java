@@ -3,8 +3,8 @@ package eatwhere.foodguide.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import eatwhere.foodguide.model.eatery.Cuisine;
 import eatwhere.foodguide.model.eatery.Eatery;
-import eatwhere.foodguide.model.eatery.Email;
 import eatwhere.foodguide.model.eatery.Location;
 import eatwhere.foodguide.model.eatery.Name;
 import eatwhere.foodguide.model.eatery.Phone;
@@ -18,12 +18,12 @@ public class EateryBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_EMAIL = "amygmailcom";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
-    private Email email;
+    private Cuisine cuisine;
     private Location location;
     private Set<Tag> tags;
 
@@ -33,7 +33,7 @@ public class EateryBuilder {
     public EateryBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        cuisine = new Cuisine(DEFAULT_EMAIL);
         location = new Location(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -44,7 +44,7 @@ public class EateryBuilder {
     public EateryBuilder(Eatery eateryToCopy) {
         name = eateryToCopy.getName();
         phone = eateryToCopy.getPhone();
-        email = eateryToCopy.getEmail();
+        cuisine = eateryToCopy.getCuisine();
         location = eateryToCopy.getLocation();
         tags = new HashSet<>(eateryToCopy.getTags());
     }
@@ -68,7 +68,7 @@ public class EateryBuilder {
     /**
      * Sets the {@code Location} of the {@code Eatery} that we are building.
      */
-    public EateryBuilder withAddress(String address) {
+    public EateryBuilder withLocation(String address) {
         this.location = new Location(address);
         return this;
     }
@@ -82,15 +82,15 @@ public class EateryBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Eatery} that we are building.
+     * Sets the {@code Cuisine} of the {@code Eatery} that we are building.
      */
-    public EateryBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public EateryBuilder withCuisine(String cuisine) {
+        this.cuisine = new Cuisine(cuisine);
         return this;
     }
 
     public Eatery build() {
-        return new Eatery(name, phone, email, location, tags);
+        return new Eatery(name, phone, cuisine, location, tags);
     }
 
 }
