@@ -99,11 +99,6 @@ public class AddressBookTest {
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-
-        @Override
-        public ObservableList<Mod> getModList() {
-            return mods;
-        }
     }
 
 }

@@ -190,6 +190,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandResult.isResetModPanel()) {
+                System.out.println("HEY");
+                modListPanel.clearModPanel();
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

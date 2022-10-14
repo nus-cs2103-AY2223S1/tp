@@ -90,7 +90,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), false, false, true);
     }
 
     /**
@@ -155,7 +155,6 @@ public class EditCommand extends Command {
             setTelegram(toCopy.handle);
             setGitHub(toCopy.username);
             setTags(toCopy.tags);
-            setMods(toCopy.mods);
         }
 
         /**
@@ -220,13 +219,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-        /**
-         * Sets {@code mods} to this object's {@code mods}.
-         * A defensive copy of {@code mods} is used internally.
-         */
-        public void setMods(ObservableList<Mod> tags) {
-            this.mods = (mods != null) ? FXCollections.observableArrayList(mods) : null;
         }
 
         /**

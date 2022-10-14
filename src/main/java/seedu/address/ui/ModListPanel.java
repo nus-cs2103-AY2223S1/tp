@@ -55,6 +55,6 @@ public class ModListPanel extends UiPart<Region> {
      * Clears the mod panel.
      */
     public void clearModPanel() {
-        setPersonModList(null);
+        modListView.setItems(null);
     }
 }

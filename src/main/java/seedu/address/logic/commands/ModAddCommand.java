@@ -55,7 +55,7 @@ public class ModAddCommand extends ModCommand {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
         personToEdit.addMods(mods);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false);
     }
 
     @Override
