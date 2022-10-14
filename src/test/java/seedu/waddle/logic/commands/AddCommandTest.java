@@ -16,11 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.GuiSettings;
 import seedu.waddle.logic.commands.exceptions.CommandException;
-import seedu.waddle.model.AddressBook;
 import seedu.waddle.model.Model;
-import seedu.waddle.model.ReadOnlyAddressBook;
 import seedu.waddle.model.ReadOnlyUserPrefs;
-import seedu.waddle.model.person.Person;
+import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -33,9 +31,9 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Itinerary validItinerary = new Itinerary()
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validItinerary).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
