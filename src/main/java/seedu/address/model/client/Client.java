@@ -19,7 +19,7 @@ import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
 
 /**
- * Represents a Company in the address book.
+ * Represents a Client in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Client implements ReadOnlyCompany {
@@ -42,9 +42,9 @@ public class Client implements ReadOnlyCompany {
 
     /**
      * Overloaded Constructor take in all fields.
-     * @param name company name.
-     * @param address address of company.
-     * @param tags tags of company.
+     * @param name client name.
+     * @param address address of client.
+     * @param tags tags of client.
      * @param pocs list of unique pocs.
      * @param transactions list of transactions.
      */
@@ -82,7 +82,7 @@ public class Client implements ReadOnlyCompany {
     }
 
     /**
-     * Adds a poc to the unique list in the company.
+     * Adds a poc to the unique list in the client.
      * @param poc to be added to the list.
      */
     public void addPoc(Poc poc) {
@@ -104,7 +104,7 @@ public class Client implements ReadOnlyCompany {
     }
 
     /**
-     * Adds a transaction to the transaction log in the company.
+     * Adds a transaction to the transaction log in the client.
      * @param transaction to be added to the list.
      */
     public void addTransaction(Transaction transaction) {
@@ -112,10 +112,10 @@ public class Client implements ReadOnlyCompany {
     }
 
     /**
-     * Returns true if both companies have the same name.
-     * This defines a weaker notion of equality between two companies.
+     * Returns true if both client have the same name.
+     * This defines a weaker notion of equality between two clients.
      */
-    public boolean isSameCompany(Client otherClient) {
+    public boolean isSameClient(Client otherClient) {
         if (otherClient == this) {
             return true;
         }
@@ -125,8 +125,8 @@ public class Client implements ReadOnlyCompany {
     }
 
     /**
-     * Returns true if both companies have the same identity and data fields.
-     * This defines a stronger notion of equality between two companies.
+     * Returns true if both clients have the same identity and data fields.
+     * This defines a stronger notion of equality between two clients.
      */
     @Override
     public boolean equals(Object other) {

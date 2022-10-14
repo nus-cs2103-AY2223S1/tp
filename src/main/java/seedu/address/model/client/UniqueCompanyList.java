@@ -21,7 +21,7 @@ import seedu.address.model.client.exceptions.DuplicateCompanyException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Client#isSameCompany(Client)
+ * @see Client#isSameClient(Client)
  */
 public class UniqueCompanyList implements Iterable<Client> {
 
@@ -34,7 +34,7 @@ public class UniqueCompanyList implements Iterable<Client> {
      */
     public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameCompany);
+        return internalList.stream().anyMatch(toCheck::isSameClient);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniqueCompanyList implements Iterable<Client> {
             throw new CompanyNotFoundException();
         }
 
-        if (!target.isSameCompany(editedClient) && contains(editedClient)) {
+        if (!target.isSameClient(editedClient) && contains(editedClient)) {
             throw new DuplicateCompanyException();
         }
 
@@ -128,7 +128,7 @@ public class UniqueCompanyList implements Iterable<Client> {
     private boolean companiesAreUnique(List<Client> companies) {
         for (int i = 0; i < companies.size() - 1; i++) {
             for (int j = i + 1; j < companies.size(); j++) {
-                if (companies.get(i).isSameCompany(companies.get(j))) {
+                if (companies.get(i).isSameClient(companies.get(j))) {
                     return false;
                 }
             }

@@ -71,7 +71,7 @@ public class EditCommand extends Command {
         Client clientToEdit = lastShownList.get(index.getZeroBased());
         Client editedClient = createEditedCompany(clientToEdit, editCompanyDescriptor);
 
-        if (!clientToEdit.isSameCompany(editedClient) && model.hasCompany(editedClient)) {
+        if (!clientToEdit.isSameClient(editedClient) && model.hasCompany(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
         }
 

@@ -62,28 +62,28 @@ public class ClientTest {
     @Test
     public void isSameCompany() {
         // same object -> returns true
-        assertTrue(ALICE.isSameCompany(ALICE));
+        assertTrue(ALICE.isSameClient(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameCompany(null));
+        assertFalse(ALICE.isSameClient(null));
 
         // same name, all other attributes different -> returns true
         Client editedAlice = new CompanyBuilder(ALICE)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameCompany(editedAlice));
+        assertTrue(ALICE.isSameClient(editedAlice));
 
         // different name, all other attributes same -> returns false
         editedAlice = new CompanyBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameCompany(editedAlice));
+        assertFalse(ALICE.isSameClient(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
         Client editedBob = new CompanyBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameCompany(editedBob));
+        assertFalse(BOB.isSameClient(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new CompanyBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameCompany(editedBob));
+        assertFalse(BOB.isSameClient(editedBob));
     }
 
     @Test
