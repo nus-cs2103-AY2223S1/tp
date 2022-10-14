@@ -5,7 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.DeepCopyable;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,7 +18,7 @@ import seedu.address.model.person.Person;
  * Tags are uniquely identified by their {@code tagName}. Two different tags may not share
  * the same name.
  */
-public class Tag {
+public class Tag implements DeepCopyable {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -67,6 +71,21 @@ public class Tag {
     }
 
     /**
+     * Creates a deep copy of the person's list of this tag object for read-only access
+     * Modifications to persons retrieved from this copied list will not affect the original
+     * person that it was copied from.
+     * Guarantees complete protection against mutations of persons through tag access
+     * @return a deep copy of the person's list
+     */
+    public ObservableList<Person> getUnmodifiableCopiedPersonList() {
+        return FXCollections.unmodifiableObservableList(
+                FXCollections.observableList(
+                        personList.stream().map(Person::deepCopy).collect(Collectors.toList())
+                )
+        );
+    }
+
+    /**
      * Returns true only if the names of two tags are the same.
      * Two tags are defined to be equal only if their names are equal, it
      * is not necessary for their persons contained within to be the same.
@@ -96,8 +115,16 @@ public class Tag {
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + tagName + ']';
+    }
+
+    @Override
+    public Tag deepCopy() {
+        Tag tag = new Tag(tagName);
+        personList.forEach(tag::addPerson);
+        return tag;
     }
 
 }

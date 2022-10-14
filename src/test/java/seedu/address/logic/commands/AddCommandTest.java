@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,8 +19,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.note.Note;
@@ -52,6 +56,31 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_addPersonWithTag_addsTagIntoTagMapping() {
+        Model model = new ModelManager();
+        String tagName = "TagRemovedOnLastPerson";
+        String nameA = "personA";
+
+        assertFalse(model.getTagMapping().containsKey(tagName));
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + nameA + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_TAG + tagName)
+                .execute(model));
+
+        assertTrue(model.getTagMapping().containsKey(tagName));
+        assertEquals(1,
+                model.getTagMapping()
+                        .get(tagName)
+                        .getUnmodifiableCopiedPersonList()
+                        .filtered(p -> p.getName().fullName.equals(nameA))
+                        .size());
     }
 
     @Test

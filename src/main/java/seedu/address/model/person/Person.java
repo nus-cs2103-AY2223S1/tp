@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -13,7 +14,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements seedu.address.model.DeepCopyable {
 
     // Identity fields
     private final Name name;
@@ -128,6 +129,28 @@ public class Person {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Creates a new copy of this person object
+     * @return a new deeper-than-shallow copy of the Person's object
+     */
+    @Override
+    public Person deepCopy() {
+        Person clonedPerson = new Person(
+                getName().deepCopy(),
+                getPhone().deepCopy(),
+                getEmail().deepCopy(),
+                getAddress().deepCopy(),
+                getTags().stream().map(Tag::deepCopy).collect(Collectors.toSet()),
+                getLoan().deepCopy());
+
+        clonedPerson.getTags().forEach(tag -> {
+            tag.removePerson(this);
+            tag.addPerson(clonedPerson);
+        });
+
+        return clonedPerson;
     }
 
 }
