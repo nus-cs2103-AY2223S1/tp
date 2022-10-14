@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label prefHeight="51.0" prefWidth="600.0" text="set &lt;field-name&gt; &lt;user-attribute&gt; : Changes attribute in User contact card" />
       <Label prefHeight="51.0" prefWidth="600.0" text="add &lt;field-name&gt; &lt;user-attribute&gt; :  Creates a new attribute in User contact card" />
