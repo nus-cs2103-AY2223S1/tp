@@ -5,8 +5,19 @@ title: User Guide
 
 Coydir is a desktop app to manage the employee details within a company, optimized for use via a Command Line Interface (CLI). Coydir would not only allow you to quickly access the list of all employees and their details but also make necessary updates based on the changes of the company structure.
 
-- Table of Contents
-  {:toc}
+**Table of Contents**
+  - [Quick Start](#quick-start)
+  - [Features](#features)
+    - [Adding an employee](#adding-an-employee-add)
+    - [Adding multiple employees at once](#adding-multiple-employees-at-once-batchadd)
+    - [Listing all employees](#listing-all-employees--list)
+    - [View details of an employee](#view-details-of-an-employee-view)
+    - [Deleting an employee](#deleting-an-employee--delete)
+    - [Exiting the program](#exiting-the-program--exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+  - [FAQ](#faq)
+  - [Command summary](#command-summary)
 
 ---
 
@@ -28,7 +39,7 @@ Coydir is a desktop app to manage the employee details within a company, optimiz
 
    - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a employee named `John Doe` to Coydir.
 
-   - **`delete`**`3` : Deletes the 3rd employee shown in the current list.
+   - **`delete`**` 3` : Deletes the 3rd employee shown in the current list.
 
    - **`exit`** : Exits the app.
 
@@ -65,14 +76,14 @@ Coydir v1.2 supports 3 user functions that allow for complete control of your co
 </div>
 
 
-### Adding a person: `add`
+### Adding an employee: `add` 
 
-Adds a person to Coydir.
+Adds an employee to Coydir.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: 
+An employee can have any number of tags (including 0)
 </div>
 
 Examples:
@@ -80,27 +91,50 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### Adding multiple employees at once: `batchadd`
 
-Shows a list of all persons in the company.
+Adds multiple employees to Coydir all at once.
+
+:warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
+
+:warning: **Do not have commas between each field in the CSV file.**
+
+This command results in one of two cases below:
+
+**Case 1: CSV file exists**
+
+if a CSV file of employees exists in the 'data' folder of Coydir, Coydir will read from the CSV file to add the employees.
+
+**Case 2: CSV file does not exist**
+
+if a CSV file does not exist in the 'data' folder of Coydir, Coydir will
+throw an error.
+
+Format: `batchadd FILENAME`
+
+Example:
+
+- `batchadd employees.csv`
+
+### Listing all employees : `list`
+
+Shows a list of all employees in the company.
 
 Format: `list`
 
-### View details of a person: `view`
+### View details of an employee: `view`
 
-View the details of an existing person in the Coydir.
+Views the details of an existing employee in the current list.
 
-Format: `view n/NAME`
+Format: `view INDEX`
 
+Example:
 
-Examples:
+- `view 2` returns the details of the second employee in the current list.
 
-- `view n/John Doe` returns the details of John Doe
+### Deleting an employee : `delete`
 
-
-### Deleting a person : `delete`
-
-Deletes the specified person from Coydir, given the name.
+Deletes the specified employee from Coydir, given the employee ID.
 
 This command results in one of two cases below:
 
@@ -112,12 +146,11 @@ If Coydir has just 1 unique entry that matches the specified name, Coydir will d
 
 Otherwise, if Coydir has more than 1 entry that matches the specified name, Coydir will prompt users with a list of the matching entries, and await user confirmation for which entry to delete.
 
-Format: `delete n/NAME`
+Format: `delete ID`
 
-Examples:
+Example:
 
-- `delete n/John Cena`
-
+- `delete 1` deletes the employee with employee ID of 1.
 
 ### Exiting the program : `exit`
 
@@ -154,8 +187,9 @@ _Details coming soon ..._
 
 | Action           | Format, Examples                                                                                                                                                      |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **View Details** | `view n/NAME`                                                                                                                                                         |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Batch Add** | `batchadd FILENAME` <br> e.g. `batchadd newemployees.csv`                                                                                                                                                         |
+| **View Details** | `view ID` <br> e.g. `view 1`                                                                                                                                                    |
+| **Delete**       | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                   |
 | **List**         | `list`                                                                                                                                                                |
 | **Help**         | `help`                                                                                                                                                                |
