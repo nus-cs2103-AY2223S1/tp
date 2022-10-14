@@ -112,7 +112,7 @@ public class ParserUtil {
         if (!Gender.isValidGender(trimmedGender, isNaAllowed)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
-        return new Gender(gender);
+        return new Gender(trimmedGender);
     }
 
     /**
