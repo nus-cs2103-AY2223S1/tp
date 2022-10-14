@@ -1,160 +1,93 @@
-//package seedu.address.logic.parser;
-//
-//import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-//import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-//import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-//import static seedu.address.testutil.TypicalPersons.AMY;
-//import static seedu.address.testutil.TypicalPersons.BOB;
-//
-//import org.junit.jupiter.api.Test;
-//
-//import seedu.address.logic.commands.client.AddClientCommand;
-//import seedu.address.model.Name;
-//import seedu.address.model.client.Address;
-//import seedu.address.model.client.ClientEmail;
-//import seedu.address.model.client.ClientPhone;
-//import seedu.address.model.client.Person;
-//import seedu.address.model.tag.Tag;
-//import seedu.address.testutil.PersonBuilder;
-//
-//public class AddClientCommandParserTest {
-//    private ClientCommandParser parser = new ClientCommandParser();
-//
-//    @Test
-//    public void parse_allFieldsPresent_success() {
-//        Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
-//
-//        // whitespace only preamble
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, PREAMBLE_WHITESPACE
-//                + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddClientCommand(expectedPerson));
-//
-//        // multiple names - last name accepted
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY + NAME_DESC_BOB
-//                + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddClientCommand(expectedPerson));
-//
-//        // multiple phones - last phone accepted
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_AMY
-//                + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddClientCommand(expectedPerson));
-//
-//        // multiple emails - last email accepted
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-//                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddClientCommand(expectedPerson));
-//
-//        // multiple addresses - last address accepted
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-//                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddClientCommand(expectedPerson));
-//
-//        // multiple tags - all accepted
-//        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-//                .build();
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddClientCommand(expectedPersonMultipleTags));
-//    }
-//
-//    @Test
-//    public void parse_optionalFieldsMissing_success() {
-//        // zero tags
-//        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-//        assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY + PHONE_DESC_AMY
-//                        + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-//                new AddClientCommand(expectedPerson));
-//    }
-//
-//    @Test
-//    public void parse_compulsoryFieldMissing_failure() {
-//        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE);
-//
-//        // missing name prefix
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, VALID_NAME_BOB + PHONE_DESC_BOB
-//                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-//                expectedMessage);
-//
-//        // missing phone prefix
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + VALID_PHONE_BOB
-//                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-//                expectedMessage);
-//
-//        // missing email prefix
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                        + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-//                expectedMessage);
-//
-//        // missing address prefix
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                        + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
-//                expectedMessage);
-//
-//        // all prefixes missing
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, VALID_NAME_BOB + VALID_PHONE_BOB
-//                        + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-//                expectedMessage);
-//    }
-//
-//    @Test
-//    public void parse_invalidValue_failure() {
-//        // invalid name
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, INVALID_NAME_DESC + PHONE_DESC_BOB
-//                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-//
-//        // invalid phone
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + INVALID_PHONE_DESC
-//                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ClientPhone.MESSAGE_CONSTRAINTS);
-//
-//        // invalid email
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-//                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ClientEmail.MESSAGE_CONSTRAINTS);
-//
-//        // invalid address
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-//                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-//
-//        // invalid tag
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PHONE_DESC_BOB
-//                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-//                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
-//
-//        // two invalid values, only first invalid value reported
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, INVALID_NAME_DESC + PHONE_DESC_BOB
-//                        + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
-//                Name.MESSAGE_CONSTRAINTS);
-//
-//        // non-empty preamble
-//        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, PREAMBLE_NON_EMPTY + NAME_DESC_BOB
-//                        + PHONE_DESC_BOB + EMAIL_DESC_BOB
-//                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-//                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE));
-//    }
-//}
+package seedu.address.logic.parser;
+
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_EMPTY_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOSITORY;
+import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_ADD_CLIENT_USAGE;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.client.AddClientCommand;
+import seedu.address.model.Deadline;
+import seedu.address.model.Name;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
+import seedu.address.model.project.Repository;
+
+
+public class AddClientCommandParserTest {
+    private ClientCommandParser parser = new ClientCommandParser();
+    @Test
+    public void parse_projectNotAdded_failure() {
+        // all valid fields
+        String expected = "No project with this project Id";
+        Client client = new Client(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
+                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>(), new ClientId(UniqueClientList.generateId()));
+        Project project = new Project(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
+                new Deadline(VALID_DEADLINE), Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(), new ProjectId(1));
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + PROJECT_DESC_PROJECT, expected);
+    }
+
+    @Test
+    public void parse_emptyProject_failure() {
+        String expected = "No project with this project Id";
+        Client client = new Client(new Name(VALID_NAME_BOB), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
+                ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>(), new ClientId(UniqueClientList.generateId()));
+        // only name
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_BOB + PROJECT_DESC_EMPTY_PROJECT,
+               expected);
+    }
+
+    @Test
+    public void parse_compulsoryFieldMissing_failure() {
+
+        String expected = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_ADD_CLIENT_USAGE);
+
+        // invalid argument number and invalid name
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, INVALID_NAME_DESC
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY, expected);
+
+        // invalid argument number and invalid phone
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
+                + INVALID_PHONE_DESC + EMAIL_DESC_AMY, expected);
+
+        // invalid argument number and invalid email
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
+                + PHONE_DESC_AMY + INVALID_EMAIL_DESC, expected);
+
+        // invalid argument number and all valid fields
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY, expected);
+
+    }
+
+    @Test
+    public void parse_invalidName_failure() {
+        // invalid name
+        assertParseFailure(parser, AddClientCommand.COMMAND_FLAG, INVALID_NAME_DESC + PROJECT_DESC_PROJECT,
+                Name.MESSAGE_CONSTRAINTS);
+    }
+}
