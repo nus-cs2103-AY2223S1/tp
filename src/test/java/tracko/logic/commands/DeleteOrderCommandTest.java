@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
+import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
@@ -21,7 +21,7 @@ import tracko.model.order.Order;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteOrderCommand}.
  */
 public class DeleteOrderCommandTest {
 
@@ -48,36 +48,35 @@ public class DeleteOrderCommandTest {
         assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
-    //Test for filtered list, currently not implemented
-    //    @Test
-    //    public void execute_validIndexFilteredList_success() {
-    //        showOrderAtIndex(model, INDEX_FIRST_ORDER);
-    //
-    //        Order orderToDelete = model.getOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
-    //        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_ORDER);
-    //
-    //        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
-    //
-    //        Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-    //        expectedModel.deleteOrder(orderToDelete);
-    //        showNoPerson(expectedModel);
-    //
-    //        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
-    //    }
+        @Test
+        public void execute_validIndexFilteredList_success() {
+            showOrderAtIndex(model, INDEX_FIRST);
 
-    //Test for filtered list, currently not implemented
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        showOrderAtIndex(model, INDEX_FIRST_ORDER);
-    //
-    //        Index outOfBoundIndex = INDEX_SECOND_ORDER;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
-    //
-    //        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
-    //    }
+            Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
+            DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+
+            String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+
+            Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+            expectedModel.deleteOrder(orderToDelete);
+            showNoOrder(expectedModel);
+
+            assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
+        }
+
+        @Test
+        public void execute_invalidIndexFilteredList_throwsCommandException() {
+            showOrderAtIndex(model, INDEX_FIRST);
+
+            Index outOfBoundIndex = INDEX_SECOND;
+
+            // ensures that outOfBoundIndex is still in bounds of address book list
+            assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
+
+            DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
+
+            assertCommandFailure(deleteOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
 
     @Test
     public void equals() {
@@ -101,12 +100,12 @@ public class DeleteOrderCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    //    /**
-    //     * Updates {@code model}'s filtered list to show no one.
-    //     */
-    //    private void showNoPerson(Model model) {
-    //        model.updateFilteredPersonList(p -> false);
-    //
-    //        assertTrue(model.getFilteredPersonList().isEmpty());
-    //    }
+        /**
+         * Updates {@code model}'s filtered list to show no one.
+         */
+        private void showNoOrder(Model model) {
+            model.updateFilteredOrderList(p -> false);
+
+            assertTrue(model.getFilteredOrderList().isEmpty());
+        }
 }
