@@ -7,7 +7,7 @@ import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.logic.commands.CommandTestUtil.showItineraryAtIndex;
 import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
 import static seedu.waddle.testutil.TypicalIndexes.INDEX_SECOND_ITINERARY;
-import static seedu.waddle.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.waddle.model.itinerary.Itinerary;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -79,7 +79,7 @@ public class DeleteCommandTest {
     @Test
     public void equals() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ITINERARY);
-        DeleteCommand deleteSecondCommand = new DeleteCommand();
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ITINERARY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));

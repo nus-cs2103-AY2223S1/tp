@@ -3,8 +3,9 @@ package seedu.waddle.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.*;
-import static seedu.waddle.testutil.TypicalIndexes.*;
-import static seedu.waddle.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_SECOND_ITINERARY;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,13 +83,13 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
         Model expectedModel = new ModelManager(new Waddle(model.getWaddle()), new UserPrefs());
-        expectedModel.setItinerary(model.getFilteredItineraryList().get(), .get(0), editedItinerary);
+        expectedModel.setItinerary(model.getFilteredItineraryList().get(0), editedItinerary);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateItineraryUnfilteredList_failure() {
         Itinerary firstItinerary = model.getFilteredItineraryList().get(INDEX_FIRST_ITINERARY.getZeroBased());
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(firstItinerary).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITINERARY, descriptor);
@@ -96,7 +97,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateItineraryFilteredList_failure() {
         showItineraryAtIndex(model, INDEX_FIRST_ITINERARY);
 
         // edit itinerary in filtered list into a duplicate in Waddle
@@ -108,8 +109,8 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItineraryList().indexOf()).size() + 1);
+    public void execute_invalidItineraryIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItineraryList().size() + 1);
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -121,7 +122,7 @@ public class EditCommandTest {
      * but smaller than size of itinerary list
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidItineraryIndexFilteredList_failure() {
         showItineraryAtIndex(model, INDEX_FIRST_ITINERARY);
         Index outOfBoundIndex = INDEX_SECOND_ITINERARY;
         // ensures that outOfBoundIndex is still in bounds of address book list

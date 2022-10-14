@@ -2,15 +2,11 @@ package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-<<<<<<< HEAD
-import static seedu.waddle.logic.parser.CliSyntax.*;
-=======
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
->>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
 import static seedu.waddle.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -23,11 +19,6 @@ import seedu.waddle.model.Model;
 import seedu.waddle.model.Waddle;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.NameContainsKeywordsPredicate;
-<<<<<<< HEAD
-import seedu.waddle.model.person.NameContainsKeywordsPredicate;
-import seedu.waddle.model.person.Person;
-=======
->>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
 /**
@@ -44,7 +35,6 @@ public class CommandTestUtil {
     public static final String VALID_END_DATE_WINTER = "2023-01-31";
     public static final String VALID_PEOPLE_SUMMER = "5";
     public static final String VALID_PEOPLE_WINTER = "10";
-
     public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
     public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;
     public static final String COUNTRY_DESC_SUMMER = " " + PREFIX_COUNTRY + VALID_COUNTRY_SUMMER;
