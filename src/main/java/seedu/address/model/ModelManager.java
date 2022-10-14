@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -153,6 +154,10 @@ public class ModelManager implements Model {
         addressBook.setListing(target, editedListing);
     }
 
+    @Override
+    public boolean hasOffer(Offer offer) {
+        return true;
+    }
     //=========== Filtered List Accessors =============================================================
 
     /**

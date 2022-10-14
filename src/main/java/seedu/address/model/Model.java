@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -101,6 +102,11 @@ public interface Model {
      * Returns true if a listing with the same identity as {@code listing} exists in the address book.
      */
     boolean hasListing(Listing listing);
+
+    /**
+     * Dummy method to pass checkstyle, to be filled later
+     */
+    boolean hasOffer(Offer offer);
 
     /**
      * Deletes the given listing.
