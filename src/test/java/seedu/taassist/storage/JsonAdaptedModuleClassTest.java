@@ -19,6 +19,14 @@ public class JsonAdaptedModuleClassTest {
     private static final List<Session> VALID_SESSIONS = CS1231S.getSessions();
 
 
+    public static List<JsonAdaptedSession> getValidSessions() {
+        List<JsonAdaptedSession> sessions = new ArrayList<>();
+        for (Session session : VALID_SESSIONS) {
+            sessions.add(new JsonAdaptedSession(session));
+        }
+        return sessions;
+    }
+
     @Test
     public void toModelType_validModuleClassDetails_returnsModuleClass() throws Exception {
         JsonAdaptedModuleClass moduleClass = new JsonAdaptedModuleClass(CS1231S);
@@ -27,10 +35,7 @@ public class JsonAdaptedModuleClassTest {
 
     @Test
     public void toModelType_invalidModuleClassName_throwsIllegalValueException() {
-        List<JsonAdaptedSession> sessions = new ArrayList<>();
-        for (Session session : VALID_SESSIONS) {
-            sessions.add(new JsonAdaptedSession(session));
-        }
+        List<JsonAdaptedSession> sessions = getValidSessions();
         JsonAdaptedModuleClass moduleClass =
                 new JsonAdaptedModuleClass(INVALID_CLASSNAME, sessions);
         String expectedMessage = ModuleClass.MESSAGE_CONSTRAINTS;
@@ -39,10 +44,7 @@ public class JsonAdaptedModuleClassTest {
 
     @Test
     public void toModelType_nullModuleClassName_throwsIllegalValueException() {
-        List<JsonAdaptedSession> sessions = new ArrayList<>();
-        for (Session session : VALID_SESSIONS) {
-            sessions.add(new JsonAdaptedSession(session));
-        }
+        List<JsonAdaptedSession> sessions = getValidSessions();
         JsonAdaptedModuleClass moduleClass =
                 new JsonAdaptedModuleClass(null, sessions);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleClass.class.getSimpleName());
