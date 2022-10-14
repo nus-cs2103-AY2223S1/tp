@@ -1,14 +1,27 @@
-# AddressBook Level-3
+# MineFriends 👾
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2223S1-CS2103T-T10-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T10-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T10-4/tp/branch/master/graph/badge.svg?token=SQQ4K5J7N0)](https://codecov.io/gh/AY2223S1-CS2103T-T10-4/tp)
 
-![Ui](images/Ui.png)
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+MineFriends is a **desktop app for avid Minecraft players to manage information about their online friends**. 
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+With MineFriends, you can:
+
+- Maintain a list of all your online friends
+- Access your friends' information easily, such as their emails and social handles
+- Keep track of which servers and timezones your friends are playing on
+
+
+### Note:
+MineFriends is optimized for use via a Command Line Interface (CLI), while also having the benefits of a Graphical User Interface (GUI).
+
+
+**Download MineFriends and run it now! (- link or jar file to be added -)**
+
+Sample interface:
+![Ui](docs/images/Ui.png)
 
 
 **Acknowledgements**
