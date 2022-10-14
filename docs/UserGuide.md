@@ -19,7 +19,7 @@ We hope you find PleaseHireUs to be very useful in your internship hunt!
 
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -241,5 +241,5 @@ Action | Format, Examples
 **Delete** | `delete INDEX...`<br> e.g., `delete 1 3`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [p/POSITION] [pr/APPLICATION_PROCESS] [d/ASSESSMENT_DATE] [ph/PHONE] [e/EMAIL] [r/REMARK] [web/WEBSITE] [t/TAG]...​`<br> e.g.,`edit 2 p/Backend Intern pr/INTERVIEW d/01-11-2022`
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
-**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/website true`
+**List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`
 **Help** | `help`
