@@ -3,14 +3,13 @@ package seedu.intrack.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.intrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.intrack.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.POSITION_DESC_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
+import static seedu.intrack.logic.commands.CommandTestUtil.ADDRESS_DESC_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.EMAIL_DESC_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.NAME_DESC_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.PHONE_DESC_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.POSITION_DESC_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
-import static seedu.intrack.testutil.TypicalInternships.AMY;
+import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -81,9 +80,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + POSITION_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + STATUS_DESC_AMY + ADDRESS_DESC_AMY;
-        Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_MSFT + POSITION_DESC_MSFT + PHONE_DESC_MSFT
+                + EMAIL_DESC_MSFT + ADDRESS_DESC_MSFT;
+        Internship expectedInternship = new InternshipBuilder(MSFT).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

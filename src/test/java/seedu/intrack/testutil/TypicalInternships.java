@@ -1,19 +1,19 @@
 package seedu.intrack.testutil;
 
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_REMOTE;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class TypicalInternships {
     public static final Internship ALICE = new InternshipBuilder().withName("Alice Pauline")
             .withPosition("Software Engineer")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withStatus("Offered")
+            .withPhone("94351253").withStatus("Progress")
             .withTags("friends").build();
     public static final Internship BENSON = new InternshipBuilder().withName("Benson Meier")
             .withPosition("Data Analyst")
@@ -62,13 +62,13 @@ public class TypicalInternships {
             .withAddress("chicago ave").build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
-    public static final Internship AMY = new InternshipBuilder().withName(VALID_NAME_AMY)
-            .withPosition(VALID_POSITION_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-            .withStatus(VALID_STATUS_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Internship BOB = new InternshipBuilder().withName(VALID_NAME_BOB)
-            .withPosition(VALID_POSITION_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withStatus(VALID_STATUS_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    public static final Internship AAPL = new InternshipBuilder().withName(VALID_NAME_AAPL)
+            .withPosition(VALID_POSITION_AAPL).withPhone(VALID_PHONE_AAPL).withEmail(VALID_EMAIL_AAPL)
+            .withStatus(VALID_STATUS_AAPL).withAddress(VALID_ADDRESS_AAPL).withTags(VALID_TAG_REMOTE).build();
+    public static final Internship MSFT = new InternshipBuilder().withName(VALID_NAME_MSFT)
+            .withPosition(VALID_POSITION_MSFT).withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT)
+            .withStatus(VALID_STATUS_MSFT).withAddress(VALID_ADDRESS_MSFT)
+            .withTags(VALID_TAG_REMOTE, VALID_TAG_URGENT).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

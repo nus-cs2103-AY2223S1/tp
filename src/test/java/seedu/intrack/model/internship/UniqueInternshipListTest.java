@@ -3,11 +3,11 @@ package seedu.intrack.model.internship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
-import static seedu.intrack.testutil.TypicalInternships.BOB;
+import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,7 +42,7 @@ public class UniqueInternshipListTest {
     @Test
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
         assertTrue(uniqueInternshipList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueInternshipListTest {
     @Test
     public void setInternship_editedInternshipHasSameIdentity_success() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
         uniqueInternshipList.setInternship(ALICE, editedAlice);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
@@ -96,17 +96,17 @@ public class UniqueInternshipListTest {
     @Test
     public void setInternship_editedInternshipHasDifferentIdentity_success() {
         uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.setInternship(ALICE, BOB);
+        uniqueInternshipList.setInternship(ALICE, MSFT);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(BOB);
+        expectedUniqueInternshipList.add(MSFT);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternship_editedInternshipHasNonUniqueIdentity_throwsDuplicateInternshipException() {
         uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.add(BOB);
-        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(ALICE, BOB));
+        uniqueInternshipList.add(MSFT);
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(ALICE, MSFT));
     }
 
     @Test
@@ -137,7 +137,7 @@ public class UniqueInternshipListTest {
     public void setInternships_uniqueInternshipList_replacesOwnListWithProvidedUniqueInternshipList() {
         uniqueInternshipList.add(ALICE);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(BOB);
+        expectedUniqueInternshipList.add(MSFT);
         uniqueInternshipList.setInternships(expectedUniqueInternshipList);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
@@ -150,10 +150,10 @@ public class UniqueInternshipListTest {
     @Test
     public void setInternships_list_replacesOwnListWithProvidedList() {
         uniqueInternshipList.add(ALICE);
-        List<Internship> internshipList = Collections.singletonList(BOB);
+        List<Internship> internshipList = Collections.singletonList(MSFT);
         uniqueInternshipList.setInternships(internshipList);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(BOB);
+        expectedUniqueInternshipList.add(MSFT);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 

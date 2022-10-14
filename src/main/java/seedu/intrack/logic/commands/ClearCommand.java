@@ -6,13 +6,12 @@ import seedu.intrack.model.InTrack;
 import seedu.intrack.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the internship tracker.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Internship tracker has been cleared!";
-
 
     @Override
     public CommandResult execute(Model model) {
@@ -20,4 +19,5 @@ public class ClearCommand extends Command {
         model.setInTrack(new InTrack());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

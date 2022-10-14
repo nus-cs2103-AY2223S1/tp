@@ -14,7 +14,6 @@ import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
-import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -110,21 +109,6 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String status} into an {@code Status}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code status} is invalid.
-     */
-    public static Status parseStatus(String status) throws ParseException {
-        requireNonNull(status);
-        String trimmedStatus = status.trim();
-        if (!Status.isValidStatus(trimmedStatus)) {
-            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
-        }
-        return new Status(trimmedStatus);
     }
 
     /**

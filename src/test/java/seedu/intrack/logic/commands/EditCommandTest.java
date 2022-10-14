@@ -2,11 +2,11 @@ package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.intrack.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.intrack.logic.commands.CommandTestUtil.DESC_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.DESC_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.intrack.logic.commands.CommandTestUtil.showInternshipAtIndex;
@@ -54,11 +54,11 @@ public class EditCommandTest {
         Internship lastInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
-        Internship editedInternship = internshipInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Internship editedInternship = internshipInList.withName(VALID_NAME_MSFT).withPhone(VALID_PHONE_MSFT)
+                .withTags(VALID_TAG_URGENT).build();
 
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT)
+                .withPhone(VALID_PHONE_MSFT).withTags(VALID_TAG_URGENT).build();
         EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
@@ -87,9 +87,9 @@ public class EditCommandTest {
 
         Internship internshipInFilteredList = model.getFilteredInternshipList()
                 .get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withName(VALID_NAME_BOB).build();
+        Internship editedInternship = new InternshipBuilder(internshipInFilteredList).withName(VALID_NAME_MSFT).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
-                new EditInternshipDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);
 
@@ -124,7 +124,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
@@ -142,17 +142,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getInTrack().getInternshipList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditInternshipDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_AAPL);
 
         // same values -> returns true
-        EditInternshipDescriptor copyDescriptor = new EditInternshipDescriptor(DESC_AMY);
+        EditInternshipDescriptor copyDescriptor = new EditInternshipDescriptor(DESC_AAPL);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_INTERNSHIP, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -166,10 +166,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_INTERNSHIP, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_INTERNSHIP, DESC_AAPL)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_MSFT)));
     }
 
 }
