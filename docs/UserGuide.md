@@ -107,20 +107,32 @@ Finds patients and appointments that matches all the given criteria specified.
 Format: `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`
 
 * At least 1 of the optional fields must be provided.
-* `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/TAG]…​` are fields to find information about the patient (patient criterias).
-* `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` are fields to find information about appointments (appointment criterias).
-* Only patients and appointments that satisifies all criterias will be displayed.
-  * A patient must satisify all patient criterias and have at least 1 appointment that satisifies all the appointment criterias to be displayed.
-  * An appointment must satisify all appointment criterias and belong to a patient that satisifes all patient criterias to be displayed.
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* For all fields except `[ds/DATE_START]`, `[de/DATE_END]` and `[t/TAG]` something something
-* For `[t/TAG]` fields, only tags with a full word match will be matched e.g `Cough` will not match `Coughing`.
+* `[n/NAME]`, `[p/PHONE]`, `[e/EMAIL]`, `[a/ADDRESS]` and `[t/TAG]…​` are fields to find information about the patient (patient criteria).
+  * `[n/NAME]` searches for the name of the patients.
+  * `[p/PHONE]` searches for the phone number of the patients.
+  * `[e/EMAIL]` searches for the email of the patients.
+  * `[a/ADDRESS]` searches for the address of the patients.
+  * `[t/TAG]…` searches for matching tags of the patients.
+* `[r/REASON]`, `[ds/DATE_START]`, `[de/DATE_END]` are fields to find information about appointments (appointment criteria).
+  * `[r/REASON]` searches for appointments with the given reason.
+  * `[ds/DATE_START]` searches for appointments occuring at or after `DATE_START`.
+  * `[ds/DATE_END]` searches for appointments occuring at or before `DATE_END`.
+* Only patients and appointments that satisifies all criteria will be displayed.
+  * A patient must satisify all patient criteria and have at least 1 appointment that satisifies all the appointment criteria to be displayed.
+  * An appointment must satisify all appointment criteria and belong to a patient that satisifes all the patient criteria to be displayed.
+* All fields except `[ds/DATE_START]`, `[de/DATE_END]` and `[t/TAG]` supports partial match. 
+  * e.g When finding names, searching `John Do` will match someone named `John Doe`.
+* For `[t/TAG]` fields, only tags with a full match will be matched 
+  * e.g Finding a tag `Cough` will not match a tag labelled `Coughing`.
 * `[ds/DATE_START]` must be a date equal to or before `[ds/DATE_END]`.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John p/12345` displays all patients with `John` in their names and `12345` in their phone numbers, as well as all their appointments.
+* `find ds/2020-01-01 00:00` displays all appointments occuring at or after 1st of January 2020. It will also display all patients with at least one of said appointments.
+* `find a/Clementi r/Sleep Apena` displays all patients whose address contains `Clementi` and has at least 1 appointment containing `Sleep Apena` as its reason. It will also only display appointments containing `Sleep Apena` of said patients.
+* `find t/throat` returns `Bernice Yu` and `David Li`, both of which contains the `Throat` tag. <br>
+  ![result for 'find t/throat'](images/FindThroatTagResult.png)
 
 ### Deleting a person : `delete`
 
@@ -217,7 +229,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
 **Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
