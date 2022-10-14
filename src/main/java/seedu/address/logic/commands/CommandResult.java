@@ -18,12 +18,6 @@ public class CommandResult {
     ///** The application should exit. */
     //private final boolean exit;
 
-
-    // TODO: Intend to use SCHEDULE for ListTask
-    static enum CommandType {
-        HELP, EXIT, TASK, PATIENT, CLEAR, LIST, SCHEDULE;
-    }
-
     private final CommandType commandType;
 
 
@@ -61,8 +55,16 @@ public class CommandResult {
         return this.commandType == CommandType.TASK;
     }
 
-    public boolean isPatientRelated() {
-        return this.commandType == CommandType.PATIENT;
+    public boolean isAddPatient() {
+        return this.commandType == CommandType.ADD_PATIENT;
+    }
+
+    public boolean isEditPatient() {
+        return this.commandType == CommandType.EDIT_PATIENT;
+    }
+
+    public boolean isDeletePatient() {
+        return this.commandType == CommandType.DELETE_PATIENT;
     }
 
 

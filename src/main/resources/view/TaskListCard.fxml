@@ -2,33 +2,24 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="400.0" />
-    </columnConstraints>
-    <VBox alignment="TOP_LEFT" minHeight="105">
-      <padding>
-        <Insets bottom="5" left="5" right="5" top="15" />
-      </padding>
-      <Label fx:id="header" styleClass="cell_big_label" text="\$header">
-            <font>
-               <Font size="18.0" />
-            </font></Label>
-      <Label fx:id="taskList" styleClass="cell_small_label" text="\$taskList">
-            <font>
-               <Font size="18.0" />
-            </font></Label>
-    </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
-  </GridPane>
+ <VBox alignment="TOP_LEFT" minHeight="105">
+   <padding>
+     <Insets bottom="5" left="5" right="5" top="15" />
+   </padding>
+   <Label fx:id="header" styleClass="cell_big_label" text="\$header">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   <Label fx:id="taskList" styleClass="cell_small_label" text="\$taskList">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+ </VBox>
 </HBox>

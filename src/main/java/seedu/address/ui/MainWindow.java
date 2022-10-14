@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private OutputPanel outputPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -132,8 +133,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
         patientHeader.setText("Patients");
         outputHeader.setText("Output");
+
+        outputPanel = new OutputPanel();
+        outputPanelPlaceholder.getChildren().add(outputPanel.getRoot());
     }
 
     /**
@@ -176,17 +181,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleTask(Patient patient) {
-        outputPanelPlaceholder.getChildren().clear();
-        outputPanelPlaceholder.getChildren().add(new TaskListCard(patient.getTasks().toString()).getRoot());
-    }
-
-    private void handlePatient(Patient patient) {
-        outputPanelPlaceholder.getChildren().clear();
-        outputPanelPlaceholder.getChildren().add(new PersonCard(patient, 1).getRoot());
-    }
-
-
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -198,8 +192,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
-            outputPanelPlaceholder.getChildren().clear();
             CommandResult commandResult = logic.execute(commandText);
+            outputPanel.clear();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -212,11 +206,19 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isTaskRelated()) {
-                handleTask(logic.getFilteredPersonList().get(0));
+                outputPanel.handleTask(logic.getFilteredPersonList().get(0));
             }
 
-            if (commandResult.isPatientRelated()) {
-                handlePatient(logic.getPatientOfInterest());
+            if (commandResult.isAddPatient()) {
+                outputPanel.handleAddPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isEditPatient()) {
+                outputPanel.handleEditPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isDeletePatient()) {
+                outputPanel.handleDeletePatient(logic.getPatientOfInterest());
             }
 
             return commandResult;

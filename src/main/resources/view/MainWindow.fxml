@@ -88,7 +88,7 @@
               </VBox>
                   <VBox fx:id="outputList" prefHeight="398.0" prefWidth="296.0" styleClass="pane-with-border" GridPane.columnIndex="1">
                      <children>
-                        <StackPane fx:id="outputPanelPlaceholder" prefHeight="379.0" prefWidth="250.0">
+                        <StackPane fx:id="outputPanelPlaceholder" prefHeight="379.0" prefWidth="400.0">
                            <stylesheets>
                               <URL value="@DarkTheme.css" />
                               <URL value="@Extensions.css" />

@@ -69,7 +69,7 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, editedPerson.getName(), deletedTask),
-                CommandResult.CommandType.TASK);
+                CommandType.TASK);
     }
 
     @Override

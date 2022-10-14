@@ -41,7 +41,7 @@ public class DeletePatientCommand extends DeleteGenericCommand {
         model.deletePerson(patientToDelete);
         model.setPatientOfInterest(patientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete),
-                CommandResult.CommandType.PATIENT);
+                CommandType.DELETE_PATIENT);
     }
 
     @Override
