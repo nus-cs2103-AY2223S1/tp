@@ -1,15 +1,20 @@
-# Teacher's Pet User Guide (v1.2)
-
+---
+layout: page
+title: User Guide
+---
 Teacher’s Pet is a desktop application for managing contacts of students and classes, optimised for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
 
----
+* Table of Contents
+  {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `teacherpet.jar` from …
+2. Download the latest `teacherpet.jar` from https://github.com/AY2223S1-CS2103T-T09-4/tp/releases when made available.
 3. Copy the file to the folder you want to use as the *home folder* for your application.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
@@ -23,21 +28,22 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 
 Our application is divided into 5 areas to maximise productivity, the specific uses are:
 
-- Input Command - The dialog box where all user interaction are held
+- Input Command - The dialog box where all user interaction are held.
 - Application’s Reply - A short answer whether the application has executed the command, or an error message if the
-  application did not understand the command
-- Student's Details - A window that will display the details of the student(s)
+  application did not understand the command.
+- Student's Details - A window that will display the details of the student(s).
 - Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
-the money collected/owed
-- Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time
+the money collected/owed.
+- Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
+Basic Instructions:
 1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
    the help window. Some example commands you can try:
-    - `list`: Lists all contacts.
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`: Adds a contact named
-      `John Doe` to the Address Book.
-    - `delete 3`: Deletes the 3rd contact shown in the current list.
-    - `clear`: Deletes all contacts.
+    - `list`: Lists all students.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
+      `John Doe` to the student list.
+    - `delete 3`: Deletes the 3rd student shown in the current list.
+    - `clear`: Deletes all students.
     - `exit`: Exits the app.
 2. Refer to the Features below for details of each command.
 
@@ -49,8 +55,8 @@ the money collected/owed
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
-- Items in square brackets are optional. e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-- Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (i.e.
+- Items in square brackets are optional. e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+- Items with `…` after them can be used multiple times including zero times. e.g. `[t/TAG]…` can be used as ` ` (e.g.
   0 times), `t/friend`, `t/friend t/family` etc.
 - Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME`
   is also acceptable.
@@ -65,8 +71,6 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-Example: `help`
-
 ![Help](images/UiHelp.png)
 
 ---
@@ -76,47 +80,43 @@ Example: `help`
 
 Adds a student to the Teacher’s Pet.
 
-1. Student’s Name
-    - Student’s Name must not be empty
-    - Student’s Name must only contain alphabetical letters.
+1. Student’s Name:
+    - Student’s Name must not be empty.
+    - Student’s Name must only contain alphanumeric characters.
 ```yaml
-Note: Duplicates students are not allowed!
+Note: Multiple students may share the same name.
 ```
 
-2. Student’s Contact Number
-   - Contact number must only contain numerical digits between `0` and `9`
-   - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
-   - Number must have 8 digits and starts with either ‘8’ or ‘9’
+2. Student’s Contact Number:
+   - Contact number must only contain numerical digits between `0` and `9`.
 ```yaml
-Note: Contact number cannot be empty. It must contain at least 1 digit.
+Note: Contact number must contain at least 3 digits. Contact number must be unique.
 ```
 
-3. Next of Kin’s Number
-    - Next of Kin’s Number must only contain numerical digits between `0` and `9`
-    - Next of Kin’s Number must have 8 digits and starts with either ‘8’ or ‘9’
-    - White spaces between numbers will be automatically removed. eg: `8123 4556` will be converted to `81234567`
+3. Next of Kin’s Number:
+    - Next of Kin’s number must only contain numerical digits between `0` and `9`.
 ```yaml
-Note: Next of Kin’s number cannot be empty. It must contain at least 1 digit.
+Note: Next of Kin’s number cannot be empty. It must contain at least 3 digits.
 ```
 
-4. Address
-    - Address must not be empty
-    - Address may contain any kinds of character
-
+4. Address:
+    - Address must not be empty.
+    - Address may contain any kinds of character.
 ```yaml
 Note: Address cannot be empty. It must contain at least 1 character.
 ```
 
-5. Email
-    - Email may contain any kinds of `character`, other than white space ` `
-    - Email must contain a `@`
+5. Email:
+    - Email should be in the format of `local@domain`, where:
+      - Local address should only contain alphanumeric characters and these special characters `+_.-`.
+      - Domain address should be least 2 characters long.
 
 ```yaml
-Note: Email cannot be empty. It must contain at least 1 character.
+Note: Email cannot be empty. It must fulfil the above requirements.
 ```
 
-6. Class Date
-    - Class Date must be in the format YYYY-MM-DD {start time}-{end time}
+6. Class Date:
+    - Class Date must be in the format YYYY-MM-DD {start time}-{end time}.
 
 ```yaml
 Note: Start time and End time must be in 24hour format.
@@ -136,7 +136,7 @@ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `e
 
 ---
 
-### Edit student details: `edit`
+### Editing student details: `edit`
 
 Edits an existing student in the list.
 
@@ -149,22 +149,27 @@ Edits an existing student in the list.
 - Amount owed
 - Additional notes
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow the same convention as in Adding a student:
-    [`add` section](#adding-a-studentadd)
-2. Amount paid
+1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow 
+the same convention as [adding a student](#adding-a-student).
+
+2. Amount paid:
     - Amount paid can be an integer or a double.
-    - Amount paid must be non negative.
-3. Amount owed
+    - Amount paid must be non-negative.
+
+3. Amount owed:
     - Amount owed can be an integer or a double.
-    - Amount owed must be non negative.
+    - Amount owed must be non-negative.
     - Amount owed and Amount paid are modified independent of each other.
-4. Additional notes
-    - Additional notes is a String and can be empty.
 
 ```yaml
-Important:
-- note **at least one** of these fields must exist in order to make the
-  `edit` command valid.
+Note: Amount paid, Amount owed can only be between $0 and $2147483647.
+```
+
+4. Additional notes:
+    - Additional notes can be left empty.
+    - Additional notes can take in any types of character.
+```yaml
+Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] 
@@ -177,7 +182,7 @@ Example:
 ![UiEdit](images/UiEdit.png)
 
 ---
-### View all students: `list`
+### Viewing all students: `list`
 
 Allows the user to view students and their information which includes:
 
@@ -193,6 +198,55 @@ Allows the user to view students and their information which includes:
 Format: `list`
 
 ![UiUList](images/UiList.png)
+
+---
+### Finding a student : `find`
+
+Finds students whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The search is case-insensitive. e.g. `alex` will match `Alex`.
+- The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
+- Only the name is searched.
+- Only full words will be matched e.g. `Han` will not match `Hans`.
+- Persons matching at least one keyword will be returned. e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+
+Example:
+
+`find tan` returns `Tan Xiao Ming` and `John Tan`.
+
+![UiFind](images/UiFind.png)
+
+---
+### Deleting a student: 'delete'
+
+Deletes the specified person from the student list.
+
+Format: `delete INDEX`
+
+- Deletes the person at the specified `INDEX`.
+- The index refers to the index number shown in the Student's Details panel (bottom left).
+- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+
+Examples:
+- `list` followed by `delete 2` deletes the 2nd person in the Student's Details panel.
+- `find Betsy` followed by `delete 1` deletes the 1st person in the Stundent's Details panel.
+
+```yaml
+❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
+```
+
+---
+### Clearing all student: 'clear'
+
+Clears all students and their details from the list.
+
+Format: `clear`
+
+```yaml
+❗ Caution: Clearing all students is irreversible!
+```
 
 ---
 ### Exiting the program : `exit`
@@ -219,7 +273,7 @@ Students' data is saved as a JSON file `[JAR file location]/data/addressbook.jso
 
 Q: How do I transfer my data to another Computer?
 
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Teacher's Pet home folder.
 
 ---
 
@@ -231,7 +285,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
 | Get help             | `help`                                                                                                                                                                                             |
 | List all students    | `list`                                                                                                                                                                                             |
-| Find a student       | find [NAME] `e.g., find John Doe`                                                                                                                                                                  |
+| Find a student       | find NAME `e.g., find John Doe`                                                                                                                                                                    |
 | Delete a student     | delete INDEX `e.g., delete 2`                                                                                                                                                                      |
 | Clear all students   | `clear`                                                                                                                                                                                            |
 | Exit the application | `exit`                                                                                                                                                                                             |

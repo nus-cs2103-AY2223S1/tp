@@ -9,7 +9,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
 
@@ -19,15 +20,17 @@ import seedu.address.model.person.Person;
 public class ClassStorage {
 
     private static HashMap<LocalDate, List<Person>> classes;
-    private static ReadOnlyAddressBook addressBook;
+    private static AddressBook addressBook;
+    private static Model model;
 
     /**
-     * Constructs a {@code ClassStorage} with the given addressBook.
+     * Constructs a {@code ClassStorage} with the given model.
      *
-     * @param addressBook ReadOnlyAddressBook object.
+     * @param model Model object.
      */
-    public ClassStorage(ReadOnlyAddressBook addressBook) {
-        this.addressBook = addressBook;
+    public ClassStorage(Model model) {
+        this.model = model;
+        this.addressBook = (AddressBook) model.getAddressBook();
         this.classes = initialiseClass();
     }
 
@@ -116,18 +119,17 @@ public class ClassStorage {
             // Removes the pre-existing class from storage to prevent future conflicts
             ClassStorage.classes.get(date).remove(personToEdit);
         }
-
     }
 
     /**
-     * Returns the index of person in the list.
+     * Returns the index of person in the current list shown on left UI panel.
      *
      * @param person Person object.
      * @return int.
      */
     public static int getIndex(Person person) {
-        for (int i = 0; i < addressBook.getPersonList().size(); i++) {
-            if (addressBook.getPersonList().get(i).isSamePerson(person)) {
+        for (int i = 0; i < model.getFilteredPersonList().size(); i++) {
+            if (model.getFilteredPersonList().get(i).isSamePerson(person)) {
                 return i + 1;
             }
         }

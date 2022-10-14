@@ -1,7 +1,11 @@
-# Developer Guide
+---
+layout: page
+title: Developer Guide
+---
+* Table of Contents
+  {:toc}
 
-# Product Scope
-
+--------------------------------------------------------------------------------------------------------------------
 ## Target User Profile
 
 - a private tutor who teaches 1-1 classes and needs to manage the students’ details
