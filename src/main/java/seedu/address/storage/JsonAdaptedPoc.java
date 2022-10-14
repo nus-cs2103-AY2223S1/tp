@@ -61,9 +61,9 @@ class JsonAdaptedPoc {
      * @throws IllegalValueException if there were any data constraints violated in the adapted poc.
      */
     public Poc toModelType() throws IllegalValueException {
-        final List<Tag> companyTags = new ArrayList<>();
+        final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            companyTags.add(tag.toModelType());
+            clientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -91,7 +91,7 @@ class JsonAdaptedPoc {
         }
         final Email modelEmail = new Email(email);
 
-        final Set<Tag> modelTags = new HashSet<>(companyTags);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
         return new Poc(modelName, modelPhone, modelEmail, modelTags);
     }
 

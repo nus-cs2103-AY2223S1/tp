@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedCompany.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedClient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompanies.BENSON;
 
@@ -31,36 +31,36 @@ public class JsonAdaptedClientTest {
 
     @Test
     public void toModelType_validCompanyDetails_returnsCompany() throws Exception {
-        JsonAdaptedCompany company = new JsonAdaptedCompany(BENSON);
+        JsonAdaptedClient company = new JsonAdaptedClient(BENSON);
         assertEquals(BENSON, company.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedCompany company =
-                new JsonAdaptedCompany(INVALID_NAME, VALID_ADDRESS, VALID_TAGS, VALID_POCS);
+        JsonAdaptedClient company =
+                new JsonAdaptedClient(INVALID_NAME, VALID_ADDRESS, VALID_TAGS, VALID_POCS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedCompany company = new JsonAdaptedCompany(null, VALID_ADDRESS, VALID_TAGS, VALID_POCS);
+        JsonAdaptedClient company = new JsonAdaptedClient(null, VALID_ADDRESS, VALID_TAGS, VALID_POCS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedCompany company =
-                new JsonAdaptedCompany(VALID_NAME, INVALID_ADDRESS, VALID_TAGS, VALID_POCS);
+        JsonAdaptedClient company =
+                new JsonAdaptedClient(VALID_NAME, INVALID_ADDRESS, VALID_TAGS, VALID_POCS);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedCompany company = new JsonAdaptedCompany(VALID_NAME, null, VALID_TAGS, VALID_POCS);
+        JsonAdaptedClient company = new JsonAdaptedClient(VALID_NAME, null, VALID_TAGS, VALID_POCS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
     }
@@ -69,8 +69,8 @@ public class JsonAdaptedClientTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedCompany company =
-                new JsonAdaptedCompany(VALID_NAME, VALID_ADDRESS, invalidTags, VALID_POCS);
+        JsonAdaptedClient company =
+                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS, invalidTags, VALID_POCS);
         assertThrows(IllegalValueException.class, company::toModelType);
     }
 

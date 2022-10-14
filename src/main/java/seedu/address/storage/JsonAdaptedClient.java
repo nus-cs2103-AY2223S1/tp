@@ -19,10 +19,10 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Client}.
  */
-class JsonAdaptedCompany {
+class JsonAdaptedClient {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Company's %s field is missing!";
-    private static final String MESSAGE_DUPLICATE_POC = "Company contains duplicate poc(s).";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
+    private static final String MESSAGE_DUPLICATE_POC = "Client contains duplicate poc(s).";
 
     private final String name;
     private final String address;
@@ -30,12 +30,12 @@ class JsonAdaptedCompany {
     private final List<JsonAdaptedPoc> pocs = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedCompany} with the given company details.
+     * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("pocs") List<JsonAdaptedPoc> pocs) {
+    public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("pocs") List<JsonAdaptedPoc> pocs) {
         this.name = name;
         this.pocs.addAll(pocs);
         this.address = address;
@@ -45,9 +45,9 @@ class JsonAdaptedCompany {
     }
 
     /**
-     * Converts a given {@code Company} into this class for Jackson use.
+     * Converts a given {@code Client} into this class for Jackson use.
      */
-    public JsonAdaptedCompany(Client source) {
+    public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
         pocs.addAll(source.getPocList().stream().map(JsonAdaptedPoc::new).collect(Collectors.toList()));
@@ -57,14 +57,14 @@ class JsonAdaptedCompany {
     }
 
     /**
-     * Converts this Jackson-friendly adapted company object into the model's {@code Company} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted company.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
-        final List<Tag> companyTags = new ArrayList<>();
+        final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            companyTags.add(tag.toModelType());
+            clientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -83,7 +83,7 @@ class JsonAdaptedCompany {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(companyTags);
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
 
         Client client = new Client(modelName, modelAddress, modelTags);
 

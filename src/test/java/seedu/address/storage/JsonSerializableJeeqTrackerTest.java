@@ -40,7 +40,7 @@ public class JsonSerializableJeeqTrackerTest {
     public void toModelType_duplicateCompanies_throwsIllegalValueException() throws Exception {
         JsonSerializableJeeqTracker dataFromFile = JsonUtil.readJsonFile(DUPLICATE_COMPANY_FILE,
                 JsonSerializableJeeqTracker.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableJeeqTracker.MESSAGE_DUPLICATE_COMPANY,
+        assertThrows(IllegalValueException.class, JsonSerializableJeeqTracker.MESSAGE_DUPLICATE_CLIENT,
                 dataFromFile::toModelType);
     }
 
