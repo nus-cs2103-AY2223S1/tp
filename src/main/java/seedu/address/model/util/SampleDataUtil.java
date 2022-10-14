@@ -15,6 +15,9 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.ta.TeachingAssistant;
+import seedu.address.model.ta.TeachingAssistantId;
+import seedu.address.model.ta.TeachingAssistantName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialDay;
@@ -75,6 +78,14 @@ public class SampleDataUtil {
         };
     }
 
+    public static TeachingAssistant[] getSampleTeachingAssistants() {
+        return new TeachingAssistant[] {
+            new TeachingAssistant(new TeachingAssistantName("John"), new TeachingAssistantId("A0000000A")),
+            new TeachingAssistant(new TeachingAssistantName("Mary"), new TeachingAssistantId("A0123456B")),
+            new TeachingAssistant(new TeachingAssistantName("Tom"), new TeachingAssistantId("A0987654C")),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
@@ -82,6 +93,9 @@ public class SampleDataUtil {
         }
         for (Tutorial sampleTutorial: getSampleTutorials()) {
             sampleAb.addTutorial(sampleTutorial);
+        }
+        for (TeachingAssistant sampleTeachingAssistant: getSampleTeachingAssistants()) {
+            sampleAb.addTeachingAssistant(sampleTeachingAssistant);
         }
         return sampleAb;
     }

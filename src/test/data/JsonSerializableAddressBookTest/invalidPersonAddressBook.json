@@ -7,5 +7,6 @@
   } ],
   "reminders": [ ],
   "tutorials": [ ],
-  "consultations": [ ]
+  "consultations": [ ],
+  "teachingAssistants" : [ ]
 }

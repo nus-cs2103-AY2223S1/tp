@@ -23,6 +23,8 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.ta.TeachingAssistantId;
+import seedu.address.model.ta.TeachingAssistantName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
@@ -255,6 +257,35 @@ public class ParserUtil {
         return new TutorialTimeslot(trimmedName);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code TeachingAssistantName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TeachingAssistantName parseTeachingAssistantName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TeachingAssistantName.isValidName(trimmedName)) {
+            throw new ParseException(TeachingAssistantName.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingAssistantName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String id} into a {@code TeachingAssistantId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code id} is invalid.
+     */
+    public static TeachingAssistantId parseTeachingAssistantId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedName = id.trim();
+        if (!TeachingAssistantId.isValidId(trimmedName)) {
+            throw new ParseException(TeachingAssistantId.MESSAGE_CONSTRAINTS);
+        }
+        return new TeachingAssistantId(trimmedName);
+    }
     /**
      * Parses a {@code String day} into a {@code TutorialDay}.
      * Leading and trailing whitespaces will be trimmed.

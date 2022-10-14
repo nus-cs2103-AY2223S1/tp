@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a reminder
 2. System adds the reminder
 3. System displays the success message
- 
+
     Use case ends.
 
 **Extensions**
@@ -301,13 +301,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The input does not follow the format.
 
     * 1a1. System shows an error message.
-    
+
         Use case ends.
 
 * 1b. The input does not include all required parameters.
 
     * 1b1. System shows an error message.
-  
+
         Use case ends.
 
 **Use case: Delete a module**
@@ -325,7 +325,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty
-    
+
     Use case ends.
 
 * 3a. The given index is invalid.

@@ -23,6 +23,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.PersonBuilder;
 
@@ -78,7 +79,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -223,7 +224,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasTeachingAssistant(TeachingAssistant ta) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Consultation> getFilteredConsultationList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTeachingAssistant(TeachingAssistant ta) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
