@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -22,9 +23,11 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_TAG = "Tags list contains duplicate tag(s).";
+    public static final String MESSAGE_DUPLICATE_MESSAGE = "Message template list contains duplicate template(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedMessage> messages = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
@@ -32,9 +35,11 @@ class JsonSerializableAddressBook {
     @JsonCreator
     public JsonSerializableAddressBook(
             @JsonProperty("persons") List<JsonAdaptedPerson> persons,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags,
+            @JsonProperty("messages") List<JsonAdaptedMessage> messages) {
         this.persons.addAll(persons);
         this.tags.addAll(tags);
+        this.messages.addAll(messages);
     }
 
     /**
@@ -45,6 +50,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tags.addAll(source.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        messages.addAll(source.getMessageTemplates().stream().map(JsonAdaptedMessage::new).collect(Collectors.toList()));
     }
 
     /**
@@ -67,6 +73,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
             }
             addressBook.createTag(tag);
+        }
+        for (JsonAdaptedMessage jsonAdaptedMessageTemplate : messages) {
+            Message message = jsonAdaptedMessageTemplate.toModelType();
+            if (addressBook.hasMessage(message)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_MESSAGE);
+            }
+            addressBook.createMessage(message);
         }
         return addressBook;
     }
