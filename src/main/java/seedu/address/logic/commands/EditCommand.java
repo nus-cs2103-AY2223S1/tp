@@ -100,7 +100,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -148,7 +148,8 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
+        return (isNull(emailIdentifier) && phoneIdentifier.equals(e.phoneIdentifier)
+                || isNull(phoneIdentifier) && emailIdentifier.equals(e.emailIdentifier))
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
