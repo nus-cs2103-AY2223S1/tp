@@ -77,11 +77,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Task> getSortedBasedOnDescriptionLengthList() {
-        return model.getSortedBasedOnDescriptionLengthList();
-    }
-
-    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

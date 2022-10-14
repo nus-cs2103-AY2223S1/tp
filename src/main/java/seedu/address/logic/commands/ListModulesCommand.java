@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListModulesCommand extends Command {
 
-    public static final String COMMAND_WORD = "listmodules";
+    public static final String COMMAND_WORD = "listmods";
 
     public static final String MESSAGE_SUCCESS = "Listed all modules";
 

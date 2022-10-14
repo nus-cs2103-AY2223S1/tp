@@ -25,8 +25,8 @@ public class ModuleCodeContainsKeywordsPredicate implements Predicate<Module> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.module.ModuleCodeContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.address.model.module.ModuleCodeContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof ModuleCodeContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((ModuleCodeContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

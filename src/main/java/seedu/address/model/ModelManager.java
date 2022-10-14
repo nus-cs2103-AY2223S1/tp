@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -214,12 +215,6 @@ public class ModelManager implements Model {
     public ObservableList<Task> getFilteredTaskList() {
         return taskFilteredList;
     }
-
-    @Override
-    public ObservableList<Task> getSortedBasedOnDescriptionLengthList() {
-        return taskSortedByDescriptionLengthList;
-    }
-
 
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {

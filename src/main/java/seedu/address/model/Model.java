@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -134,9 +133,6 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
-
-    /** Returns an unmodifiable view of the task list that is sorted based on the task description's length */
-    ObservableList<Task> getSortedBasedOnDescriptionLengthList();
 
     boolean hasModule(Module module);
     void updateFilteredModuleList(Predicate<Module>predicate);
