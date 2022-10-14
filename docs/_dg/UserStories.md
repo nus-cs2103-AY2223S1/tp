@@ -30,3 +30,8 @@ Tag Management System
 Miscellaneous
 
 Sorting
+
+1. As a purchasing manager, I can sort items by name. 
+1. As a purchasing manager, I can sort items by quantity. 
+1. As a purchasing manager, I can sort items by bought date. 
+1. As a purchasing manager, I can sort items by expiry date.
