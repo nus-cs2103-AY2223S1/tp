@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
