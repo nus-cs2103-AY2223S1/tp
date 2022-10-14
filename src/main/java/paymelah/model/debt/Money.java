@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * Represents a Debt's money amount in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidMoney(String)}
  */
-public class Money {
+public class Money implements Comparable<Money> {
     public static final String MESSAGE_CONSTRAINTS =
             "Money amounts should use numbers to represent the amount in dollars,"
                     + " separating dollar and cent values with a .";
@@ -61,5 +61,10 @@ public class Money {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(Money o) {
+        return this.getValue().compareTo(o.getValue());
     }
 }

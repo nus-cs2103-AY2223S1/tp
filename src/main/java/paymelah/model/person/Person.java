@@ -10,6 +10,7 @@ import java.util.Set;
 
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
+import paymelah.model.debt.Money;
 import paymelah.model.tag.Tag;
 
 /**
@@ -67,6 +68,10 @@ public class Person {
 
     public DebtList getDebts() {
         return debts;
+    }
+
+    public Money getDebtsAmountAsMoney() {
+        return new Money(debts.getTotalDebt().toString());
     }
 
     /**

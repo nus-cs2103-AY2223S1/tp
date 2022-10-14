@@ -15,6 +15,7 @@ import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
 import paymelah.model.person.DebtContainsKeywordsPredicate;
+import paymelah.model.person.DebtGreaterEqualAmountPredicate;
 import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.NameContainsKeywordsPredicate;
@@ -213,5 +214,14 @@ public class ParserUtil {
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses {@code String s} into a {@code DebtGreaterEqualAmountPredicate}.
+     */
+    public static DebtGreaterEqualAmountPredicate prepareDebtGreaterEqualAmountPredicate(String s)
+            throws ParseException {
+        Money m = parseMoney(s);
+        return new DebtGreaterEqualAmountPredicate(m);
     }
 }
