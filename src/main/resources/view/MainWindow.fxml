@@ -24,7 +24,7 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" style="-fx-padding: 10 0 0 0">
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" style="-fx-padding: 10 0 0 0;">
           <Menu mnemonicParsing="false" text="File" style="-fx-background-color: #F4E9E3">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" styleClass="secondary-button"/>
           </Menu>
