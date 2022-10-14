@@ -46,14 +46,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         StudentId studentId = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ID).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Attendance attendance = new Attendance("0"); //empty attendance
-        Picture picture = new Picture(Picture.DEFAULT_PICTURE_PATH); //default picture
-        try {
-            new File(String.format("src/main/resources/profile/%s.jpg", studentId.value)).createNewFile();
-        } catch (IOException e) {
-            System.out.println("Unable to create file...");
-        }
 
-        Student student = new Student(name, phone, email, classGroup, studentId, tagList, attendance, picture);
+        Student student = new Student(name, phone, email, classGroup, studentId, tagList, attendance);
 
         return new AddCommand(student);
     }

@@ -27,7 +27,7 @@ class JsonAdaptedStudent {
     private final String classGroup;
     private final String studentId;
     private final String attendance;
-    private final String pictureFilePath;
+
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -39,8 +39,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
                               @JsonProperty("studentId") String studentId,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("attendance") String attendance,
-                              @JsonProperty("pictureFilePath") String pictureFilePath) {
+                              @JsonProperty("attendance") String attendance) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,7 +49,6 @@ class JsonAdaptedStudent {
             this.tagged.addAll(tagged);
         }
         this.attendance = attendance;
-        this.pictureFilePath = pictureFilePath;
     }
 
     /**
@@ -66,7 +64,6 @@ class JsonAdaptedStudent {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         attendance = source.getAttendance().value;
-        pictureFilePath = source.getPicture().filePath;
     }
 
     /**
@@ -125,10 +122,6 @@ class JsonAdaptedStudent {
                     Attendance.class.getSimpleName()));
         }
 
-        if (pictureFilePath == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Picture.class.getSimpleName()));
-        }
-        final Picture modelPicture = new Picture(pictureFilePath);
 
         if (!Attendance.isValidMark(attendance)) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
@@ -139,7 +132,7 @@ class JsonAdaptedStudent {
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
         return new Student(modelName, modelPhone, modelEmail, modelClassGroup,
-                modelStudentId, modelTags, modelAttendance, modelPicture);
+                modelStudentId, modelTags, modelAttendance);
     }
 
 }

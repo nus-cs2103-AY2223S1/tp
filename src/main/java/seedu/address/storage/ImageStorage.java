@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Base64;
 
 public class ImageStorage {
@@ -67,11 +68,10 @@ public class ImageStorage {
     private static final Image defaultImage = new Image(new ByteArrayInputStream(imageBytes));
 
     private static String getImagePath(Student student) {
-        return String.join(
-                File.pathSeparator,
+        return Paths.get(
                 System.getProperty("user.dir"),
                 "images", student.getStudentId().toString() + ".jpg"
-        );
+        ).toString();
     }
 
     private static File getImageFile(Student student) {
@@ -113,6 +113,20 @@ public class ImageStorage {
             } catch (Exception e) {
                 System.out.println(e);
             }
+        }
+    }
+
+    public static void remove(Student student) {
+        File imageFile = getImageFile(student);
+        if (imageFile.exists()) {
+            imageFile.delete();
+        }
+    }
+
+    public static void renamePictureFile(Student target, Student editedStudent) {
+        File imageFile = getImageFile(target);
+        if (imageFile.exists()) {
+            imageFile.renameTo(getImageFile(editedStudent));
         }
     }
 

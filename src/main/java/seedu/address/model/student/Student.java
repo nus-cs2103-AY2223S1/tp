@@ -20,7 +20,6 @@ public class Student {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private Picture picture;
 
     // Data fields
     private final ClassGroup classGroup;
@@ -34,8 +33,7 @@ public class Student {
      * Profile picture is initially set to the default profile picture.
      */
     public Student(Name name, Phone phone, Email email,
-                   ClassGroup classGroup, StudentId studentId, Set<Tag> tags, Attendance attendance,
-                   Picture picture) {
+                   ClassGroup classGroup, StudentId studentId, Set<Tag> tags, Attendance attendance) {
         requireAllNonNull(name, studentId);
         this.name = name;
         this.phone = phone;
@@ -44,7 +42,6 @@ public class Student {
         this.studentId = studentId;
         this.tags.addAll(tags);
         this.attendance = attendance;
-        this.picture = picture;
     }
 
     public Attendance getAttendance() {
@@ -71,13 +68,6 @@ public class Student {
         return studentId;
     }
 
-    public Picture getPicture() {
-        return picture;
-    }
-
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
