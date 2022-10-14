@@ -277,13 +277,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​          | I want to …​                             | So that I can…​                                                            |
 |----------|------------------|------------------------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
-| `* * *`  | student          | add a classmate to the addressbook       | conveniently refer to their contact details all in one place               |
-| `* * *`  | student          | list all classmates                      | see a list of all classmates in my class                                   |
-| `* * *`  | student          | edit a classmate                         | change their details without deleting them                                 |
-| `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
-| `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
-| `* * *`  | student          | tag a classmate with a tag               | find them easily                                                           |
-| `* * *`  | student          | find classmates using specified tags     | locate classmates with the specified tag easily                            |
+| `* * *`  | student          | add a batchmate to the addressbook       | conveniently refer to their contact details all in one place               |
+| `* * *`  | student          | list all batchmates                      | see a list of all batchmates in my class                                   |
+| `* * *`  | student          | edit a batchmate                         | change their details without deleting them                                 |
+| `* * *`  | student          | delete a batchmate                       | remove unneeded entries                                                    |
+| `* * *`  | student          | find a batchmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
+| `* * *`  | student          | tag a batchmate with a tag               | find them easily                                                           |
+| `* * *`  | student          | find batchmates using specified tags     | locate batchmates with the specified tag easily                            |
 | `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
 | `* *`    | technical person | close the App using a command            | close the App easily                                                       |
 
@@ -330,7 +330,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       \
       Use case ends.
 
-**Use case 3: Search classmates via tags**
+**Use case 3: Search batchmates via tags**
 
 **MSS**
 
@@ -494,7 +494,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Command Line Interface (CLI)**: A text of lines input by the users to send instructions to the system.
 * **Graphical User Interface (GUI)**: A means, supported by visuals, for the users to send instructions to the system.
 * **Student**: The main user.
-* **Classmate**: The people whom the users need to link to and interact with.
+* **Batchmate**: The people whom the users need to link to and interact with.
 
 --------------------------------------------------------------------------------------------------------------------
 
