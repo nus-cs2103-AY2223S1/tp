@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taassist.logic.commands.AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS;
+import static seedu.taassist.logic.commands.AddcCommand.getCommandMessage;
 import static seedu.taassist.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taassist.testutil.Assert.assertThrows;
 import static seedu.taassist.testutil.TypicalModuleClasses.CS1101S;
@@ -19,7 +21,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taassist.logic.commands.exceptions.CommandException;
 import seedu.taassist.model.Model;
 import seedu.taassist.model.ModelManager;
 import seedu.taassist.model.ModelStub;
@@ -55,13 +56,14 @@ public class AddcCommandTest {
     }
 
     @Test
-    public void execute_duplicateModuleClass_throwsCommandException() throws Exception {
+    public void execute_duplicateModuleClass_showsDuplicateClassMessage() throws Exception {
         ModuleClass moduleClass = CS1101S;
         AddcCommand addcCommand = new AddcCommand(new HashSet<>(Arrays.asList(moduleClass)));
         ModelStubWithOneModuleClass modelStub = new ModelStubWithOneModuleClass(moduleClass);
 
-        assertThrows(CommandException.class, AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS, () ->
-                addcCommand.execute(modelStub));
+        CommandResult commandResult = addcCommand.execute(modelStub);
+
+        assertEquals(String.format(MESSAGE_DUPLICATE_MODULE_CLASS, moduleClass), commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -107,15 +109,22 @@ public class AddcCommandTest {
                 String.format(AddcCommand.MESSAGE_SUCCESS, validNewModuleClass), expectedModel);
     }
 
-    /* TODO - not throwing duplicate exception now
+
     @Test
-    public void execute_duplicateModuleClassIntegration_throwsCommandException() {
-        Set<ModuleClass> moduleClasses = new HashSet<>();
-        ModuleClass moduleClassInList = model.getTaAssist().getModuleClassList().get(0);
-        moduleClasses.add(moduleClassInList);
-        assertCommandFailure(new AddcCommand(moduleClasses), model, AddcCommand.MESSAGE_DUPLICATE_MODULE_CLASS);
+    public void execute_duplicateAndNewModuleClassIntegration_success() {
+        ModuleClass duplicateModuleClass = model.getTaAssist().getModuleClassList().get(0);
+        ModuleClass newModuleClass = new ModuleClassBuilder().build();
+
+        Set<ModuleClass> moduleClasses = new HashSet<>(Arrays.asList(duplicateModuleClass, newModuleClass));
+
+        Model expectedModel = new ModelManager(model.getTaAssist(), new UserPrefs());
+        expectedModel.addModuleClass(newModuleClass);
+
+        String expectedMessage = getCommandMessage(new HashSet<>(Arrays.asList(newModuleClass)),
+                new HashSet<>(Arrays.asList(duplicateModuleClass)));
+
+        assertCommandSuccess(new AddcCommand(moduleClasses), model, expectedMessage, expectedModel);
     }
-     */
 
     //==================================== Model Stubs ===============================================================
 
