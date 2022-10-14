@@ -25,9 +25,9 @@ public class AddCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT_NAME + "CS2103T TP "
-            + PREFIX_BUDGET + "$200 "
+            + PREFIX_BUDGET + "200 "
             + PREFIX_DEADLINE + "2022-01-01 "
-            + PREFIX_TAG + "friends "
+            + PREFIX_TAG + "Important "
             + PREFIX_TAG + "busy";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
