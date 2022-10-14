@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskStatus;
@@ -17,6 +18,7 @@ public class JsonAdaptedTask {
     private final String description;
     private final String moduleCode;
     private final String status;
+    private final String priority;
 
     /**
      * Builds a {@code JsonAdaptedTask} with the description and module code.
@@ -25,10 +27,12 @@ public class JsonAdaptedTask {
      * @param moduleCode The module code of the task.
      */
     public JsonAdaptedTask(@JsonProperty("description") String description,
-            @JsonProperty("modCode") String moduleCode, @JsonProperty("status") String status) {
+            @JsonProperty("modCode") String moduleCode, @JsonProperty("status") String status,
+            @JsonProperty("priority") String priority) {
         this.description = description;
         this.moduleCode = moduleCode;
         this.status = status;
+        this.priority = priority;
     }
 
     /**
@@ -41,6 +45,7 @@ public class JsonAdaptedTask {
         moduleCode = task.getModule().getModuleCode().moduleCode;
         status = task.getStatus().status;
 
+        priority = task.getPriorityTag() == null ? null : task.getPriorityTag().status;
     }
 
     /**
@@ -62,12 +67,15 @@ public class JsonAdaptedTask {
         if (!TaskStatus.isValidStatus(status)) {
             throw new IllegalValueException(TaskStatus.STATUS_CONSTRAINTS);
         }
+        if (!PriorityTag.isValidTag(priority)) {
+            throw new IllegalValueException(PriorityTag.PRIORITY_TAG_CONSTRAINTS);
+        }
         final TaskDescription taskDescription = new TaskDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);
         final TaskStatus taskStatus = TaskStatus.of(status);
-        Task task = new Task(module, taskDescription, taskStatus);
-        return task;
+        final PriorityTag priorityTag = priority == null ? null : new PriorityTag(priority);
+        return new Task(module, taskDescription, taskStatus, priorityTag);
     }
 
 }
