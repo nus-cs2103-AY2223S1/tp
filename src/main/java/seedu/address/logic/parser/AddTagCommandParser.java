@@ -23,28 +23,23 @@ public class AddTagCommandParser implements Parser<Command> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));
         }
-        try {
-            Index index = ParserUtil.parseIndex(indexWithTags[0]);
-            String tags = " " + indexWithTags[1];
-            ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(tags, PREFIX_PRIORITY_STATUS);
-            if (!arePrefixesPresent(argMultiMap, PREFIX_PRIORITY_STATUS)
-                    || !argMultiMap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        AddTagCommand.MESSAGE_USAGE));
-            }
-            PriorityTag priorityTag = null;
-            String priorityStatus = argMultiMap.getValue(PREFIX_PRIORITY_STATUS).orElse(null);
-            if (priorityStatus != null) {
-                priorityTag = ParserUtil.parsePriorityTag(priorityStatus);
-            }
-            return new AddTagCommand(priorityTag, index);
-        } catch (ParseException pe) {
+        Index index = ParserUtil.parseIndex(indexWithTags[0]);
+        String tags = " " + indexWithTags[1];
+        ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(tags, PREFIX_PRIORITY_STATUS);
+        if (!areAnyPrefixesPresent(argMultiMap, PREFIX_PRIORITY_STATUS)
+                || !argMultiMap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTagCommand.MESSAGE_USAGE), pe);
+                    AddTagCommand.MESSAGE_USAGE));
         }
+        PriorityTag priorityTag = null;
+        String priorityStatus = argMultiMap.getValue(PREFIX_PRIORITY_STATUS).orElse(null);
+        if (priorityStatus != null) {
+            priorityTag = ParserUtil.parsePriorityTag(priorityStatus);
+        }
+        return new AddTagCommand(priorityTag, index);
     }
 
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
