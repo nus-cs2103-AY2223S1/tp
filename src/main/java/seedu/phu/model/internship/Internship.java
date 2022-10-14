@@ -18,10 +18,10 @@ public class Internship {
     // Identity fields
     private final Name name;
     private final Position position;
-    private final Phone phone;
-    private final Email email;
 
     // Data fields
+    private final Phone phone;
+    private final Email email;
     private final Remark remark;
     private final ApplicationProcess applicationProcess;
     private final Date date;

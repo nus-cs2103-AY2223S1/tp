@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.phu.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Internship's phone number in the internship book.
+ * Represents an Internship's contact number in the internship book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
