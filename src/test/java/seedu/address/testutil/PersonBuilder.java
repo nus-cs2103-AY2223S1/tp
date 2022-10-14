@@ -38,6 +38,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        appointments = new HashSet<>();
     }
 
     /**
@@ -100,11 +101,18 @@ public class PersonBuilder {
         return this;
     }
 
+
+    /**
+     * Returns a Person with the respective arguments as fields
+     * By default, the set of appointments field is created but is empty
+     */
     public Person build() {
         return new Person(name, phone, email, address, tags);
     }
 
-    public Person buildWithoutAppointments() {
-        return new Person(name, phone, email, address, tags, null);
+    public Person buildWithAppointments() {
+        return new Person(name, phone, email, address, tags, appointments);
     }
+
+
 }
