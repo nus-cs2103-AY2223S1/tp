@@ -8,15 +8,16 @@ import seedu.application.model.application.CompanyContainsKeywordsPredicate;
 import seedu.application.model.application.PositionContainsKeywordsPredicate;
 
 /**
- * Finds and lists all applications in application book whose name contains any of the argument keywords.
+ * Finds and lists all applications in application book whose
+ * company name and/or position contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applications whose company "
-            + "and positions contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applications whose company name "
+            + "and/or position contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " google grab byteDance software engineering";

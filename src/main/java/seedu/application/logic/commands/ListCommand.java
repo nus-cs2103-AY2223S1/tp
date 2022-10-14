@@ -6,7 +6,7 @@ import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import seedu.application.model.Model;
 
 /**
- * Lists all applications in the CinternS to the user.
+ * Lists all applications in CinternS to the user.
  */
 public class ListCommand extends Command {
 

@@ -90,9 +90,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseContact_validValueWithWhitespace_returnsTrimmedContact() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_CONTACT + WHITESPACE;
+        String contactWithWhitespace = WHITESPACE + VALID_CONTACT + WHITESPACE;
         Contact expectedContact = new Contact(VALID_CONTACT);
-        assertEquals(expectedContact, ParserUtil.parseContact(phoneWithWhitespace));
+        assertEquals(expectedContact, ParserUtil.parseContact(contactWithWhitespace));
     }
 
     @Test
