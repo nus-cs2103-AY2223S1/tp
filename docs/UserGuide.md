@@ -174,7 +174,7 @@ Format: `edit INDEX [g/GENDER]`
 Examples:
 * `edit 1 g/M`
 * `edit 2 g/f`
-* `edit 3 g/F`
+* `edit 3 g/NA`
 
 __Optional Parameter 2: Date of Birth__
 
