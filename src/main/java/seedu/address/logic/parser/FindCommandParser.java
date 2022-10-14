@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_CLASS_DATE_TIME, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID,
                 PREFIX_RATES_PER_CLASS, PREFIX_ADDITIONAL_NOTES);
 
-        if (!argMultimap.containsExactlyOnePrefix()) {
+        if (argMultimap.containsMultiplePrefix()) {
             throw new ParseException(FindCommand.ONLY_ONE_PREFIX_MESSAGE);
         }
 
@@ -56,7 +56,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("a/ search not implemented yet.");
 
         } else {
-            // Other prefixes that are not supported by the search system
+            // Other prefixes that are not supported by the search system, or no prefix found.
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
