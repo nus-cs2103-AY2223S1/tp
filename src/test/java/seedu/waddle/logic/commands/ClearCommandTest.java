@@ -1,14 +1,14 @@
 package seedu.waddle.logic.commands;
 
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.waddle.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.waddle.model.AddressBook;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
 import seedu.waddle.model.UserPrefs;
+import seedu.waddle.model.Waddle;
 
 public class ClearCommandTest {
 
@@ -22,9 +22,9 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new AddressBook());
+        Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalWaddle(), new UserPrefs());
+        expectedModel.setWaddle(new Waddle());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
