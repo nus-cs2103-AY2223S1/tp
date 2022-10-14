@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/hoang227.png.png" width="200px">
 
-[[github](http://github.com/hoang227)] 
+[[github](http://github.com/hoang227)]
 [[portfolio](team/hoang227.md)]
 
 * Role: Developer
