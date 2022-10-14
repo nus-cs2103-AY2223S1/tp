@@ -15,7 +15,11 @@ public class Deadline {
      * The date should be in YYYY-MM-DD format.
      *
      */
-    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+    public static final String VALIDATION_REGEX =
+            "^((2000|2400|2800|(2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$"
+            + "|^(((2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
+            + "|^(((2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
+            + "|^(((2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$";
 
     public final String deadline;
 
