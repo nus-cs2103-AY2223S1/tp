@@ -12,7 +12,6 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability view more details of selected internship.
     * What it does: allows the user to view contact details and more.
     * Justification: This feature improves the product significantly because a user will want to view detailed information.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=aarontangr&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
  
