@@ -34,22 +34,28 @@ public class TypicalBuyers {
     public static final Buyer ALICE = new PersonBuilder().withPersonCategory("Buyer").withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
+            .withLocation("Singapore")
             .withTags("friends").buildBuyer();
     public static final Buyer BENSON = new PersonBuilder().withPersonCategory("Buyer").withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withLocation("Singapore")
             .withTags("owesMoney", "friends").buildBuyer();
     public static final Buyer CARL = new PersonBuilder().withPersonCategory("Buyer").withName("Carl Kurz")
-            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").buildBuyer();
+            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street")
+            .withLocation("Singapore").buildBuyer();
     public static final Buyer DANIEL = new PersonBuilder().withPersonCategory("Buyer").withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
-            .buildBuyer();
+            .withLocation("Singapore").buildBuyer();
     public static final Buyer ELLE = new PersonBuilder().withPersonCategory("Buyer").withName("Elle Meyer")
-            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave").buildBuyer();
+            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
+            .withLocation("Singapore").buildBuyer();
     public static final Buyer FIONA = new PersonBuilder().withPersonCategory("Buyer").withName("Fiona Kunz")
-            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo").buildBuyer();
+            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo")
+            .withLocation("Singapore").buildBuyer();
     public static final Buyer GEORGE = new PersonBuilder().withPersonCategory("Buyer").withName("George Best")
-            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street").buildBuyer();
+            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street").withLocation("Singapore")
+            .buildBuyer();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withPersonCategory("Buyer").withName("Hoon Meier")

@@ -32,23 +32,28 @@ import seedu.address.model.person.Supplier;
 public class TypicalSuppliers {
     public static final Supplier ALICE = new PersonBuilder().withPersonCategory("Supplier").withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withPhone("94351253").withLocation("Singapore")
             .withTags("friends").buildSupplier();
     public static final Supplier BENSON = new PersonBuilder().withPersonCategory("Supplier").withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withEmail("johnd@example.com").withPhone("98765432").withLocation("Singapore")
             .withTags("owesMoney", "friends").buildSupplier();
     public static final Supplier CARL = new PersonBuilder().withPersonCategory("Supplier").withName("Carl Kurz")
-            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street").buildSupplier();
+            .withPhone("95352563").withEmail("heinz@example.com").withAddress("wall street")
+            .withLocation("Singapore").buildSupplier();
     public static final Supplier DANIEL = new PersonBuilder().withPersonCategory("Supplier").withName("Daniel Meier")
-            .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withPhone("87652533").withEmail("cornelia@example.com").withAddress("10th street")
+            .withLocation("Singapore").withTags("friends")
             .buildSupplier();
     public static final Supplier ELLE = new PersonBuilder().withPersonCategory("Supplier").withName("Elle Meyer")
-            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave").buildSupplier();
+            .withPhone("9482224").withEmail("werner@example.com").withAddress("michegan ave")
+            .withLocation("Singapore").buildSupplier();
     public static final Supplier FIONA = new PersonBuilder().withPersonCategory("Supplier").withName("Fiona Kunz")
-            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo").buildSupplier();
+            .withPhone("9482427").withEmail("lydia@example.com").withAddress("little tokyo")
+            .withLocation("Singapore").buildSupplier();
     public static final Supplier GEORGE = new PersonBuilder().withPersonCategory("Supplier").withName("George Best")
-            .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street").buildSupplier();
+            .withPhone("9482442").withLocation("London").withEmail("anna@example.com").withAddress("4th street")
+            .buildSupplier();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withPersonCategory("Supplier").withName("Hoon Meier")
