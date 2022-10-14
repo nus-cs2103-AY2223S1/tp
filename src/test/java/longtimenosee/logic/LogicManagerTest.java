@@ -9,7 +9,7 @@ import static longtimenosee.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static longtimenosee.logic.commands.CommandTestUtil.RISK_APPETITE_DESC_AMY;
-import static longtimenosee.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+//import static longtimenosee.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static longtimenosee.testutil.Assert.assertThrows;
 import static longtimenosee.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -84,7 +84,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + BIRTHDAY_DESC_AMY + INCOME_DESC_AMY + RISK_APPETITE_DESC_AMY;
+                + ADDRESS_DESC_AMY + BIRTHDAY_DESC_AMY + INCOME_DESC_AMY + RISK_APPETITE_DESC_AMY;
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);

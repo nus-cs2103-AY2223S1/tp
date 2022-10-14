@@ -13,7 +13,7 @@ public class Income {
 
     /**
      * Classifies a yearly income value into it's appropriate income bracket
-     * This information is based off IRAS values for FY2023/24
+     * This information is based off IRAS values for FY 2023/24
      * @ shorturl.at/oPQRV
      */
     public enum IncomeBracket {
