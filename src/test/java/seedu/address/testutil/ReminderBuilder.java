@@ -5,8 +5,11 @@ import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 
+/**
+ * A utility class to help with building Reminder objects.
+ */
 public class ReminderBuilder {
-    
+
     public static final String DEFAULT_NAME = "Mark Midterms";
     public static final String DEFAULT_DEADLINE = "15:00";
     public static final String DEFAULT_DESCRIPTION = "300 papers to go";
