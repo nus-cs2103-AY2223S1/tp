@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -29,6 +30,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String monthly;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
@@ -38,12 +40,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("monthly") String monthly, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.monthly = monthly;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +63,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        monthly = source.getMonthly().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -115,9 +119,14 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!Monthly.isValidMonthly(monthly)) {
+            throw new IllegalValueException(Monthly.MESSAGE_CONSTRAINTS);
+        }
+        final Monthly modelMonthly = new Monthly(monthly);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
-        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelMonthly, modelTags);
         newPerson.setAppointments(modelAppointments);
         return newPerson;
     }

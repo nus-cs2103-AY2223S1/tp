@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -130,6 +131,19 @@ public class ParserUtil {
         String trimmedDateAndTime = dateAndTime.trim();
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
+    }
+
+    /**
+     * Parses a {@code String monthly} into an {@code Monthly}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Monthly parseMonthly(String monthly) throws ParseException {
+        requireNonNull(monthly);
+        String trimmedMonthly = monthly.trim();
+        if (!Monthly.isValidMonthly(monthly)) {
+            throw new ParseException(Monthly.MESSAGE_CONSTRAINTS);
+        }
+        return new Monthly(trimmedMonthly);
     }
 
     /**

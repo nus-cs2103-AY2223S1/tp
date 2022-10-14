@@ -22,30 +22,34 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Monthly monthly;
     private final Set<Tag> tags = new HashSet<>();
     private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Monthly monthly, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.monthly = monthly;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Appointment> appointments) {
+    public Person(Name name, Phone phone, Email email, Address address, Monthly monthly,
+                  Set<Tag> tags, Set<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.monthly = monthly;
         this.tags.addAll(tags);
         this.appointments = appointments;
     }
@@ -64,6 +68,9 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public Monthly getMonthly() {
+        return monthly;
     }
 
     public Set<Appointment> getAppointments() {

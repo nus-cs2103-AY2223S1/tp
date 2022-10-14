@@ -56,6 +56,14 @@
                   </image>
                </ImageView>
             </graphic></Label>
+    <Label fx:id="monthly" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
+        <graphic>
+            <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/monthly.png" />
+                </image>
+            </ImageView>
+        </graphic></Label>
     </VBox>
       <VBox minHeight="105.0" GridPane.columnIndex="1">
          <children>

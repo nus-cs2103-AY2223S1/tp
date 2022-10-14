@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -26,6 +27,7 @@ public class EditPersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
+    private Monthly monthly;
     private Set<Tag> tags;
     private Set<Appointment> appointments;
     public EditPersonDescriptor() {}
@@ -39,6 +41,7 @@ public class EditPersonDescriptor {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
+        setMonthly(toCopy.monthly);
         setTags(toCopy.tags);
         setAppointments(toCopy.appointments);
     }
@@ -47,7 +50,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, monthly, tags, appointments);
     }
 
     public void setName(Name name) {
@@ -94,6 +97,12 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(address);
     }
 
+    public void setMonthly(Monthly monthly) {
+        this.monthly = monthly;
+    }
+    public Optional<Monthly> getMonthly() {
+        return Optional.ofNullable(monthly);
+    }
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
@@ -122,9 +131,10 @@ public class EditPersonDescriptor {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updateMonthly, updatedTags);
     }
 
     /**
@@ -149,7 +159,8 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
-        Person newPerson = new Person(name, phone, email, address, tags, currentAppointments);
+        Monthly monthly = personToEdit.getMonthly();
+        Person newPerson = new Person(name, phone, email, address, monthly, tags, currentAppointments);
         return newPerson;
     }
 
@@ -165,9 +176,10 @@ public class EditPersonDescriptor {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
+        Monthly monthly = personToEdit.getMonthly();
         Set<Tag> tags = personToEdit.getTags();
         Set<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, tags, newAppointmentsOnly);
+        Person newPerson = new Person(name, phone, email, address, monthly, tags, newAppointmentsOnly);
 
         return newPerson;
     }
@@ -192,6 +204,7 @@ public class EditPersonDescriptor {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
+                && getMonthly().equals(e.getMonthly())
                 && getTags().equals(e.getTags())
                 && getAppointments().equals(e.getAppointments());
     }
