@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.list.Itineraries;
 
