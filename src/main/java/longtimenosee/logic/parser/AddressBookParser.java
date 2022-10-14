@@ -16,6 +16,7 @@ import longtimenosee.logic.commands.DeleteCommand;
 import longtimenosee.logic.commands.EditCommand;
 import longtimenosee.logic.commands.ExitCommand;
 import longtimenosee.logic.commands.FindCommand;
+import longtimenosee.logic.commands.FindPolicyCommand;
 import longtimenosee.logic.commands.HelpCommand;
 import longtimenosee.logic.commands.ListCommand;
 import longtimenosee.logic.commands.PersonCommand;
@@ -66,6 +67,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindPolicyCommand.COMMAND_WORD:
+            return new FindPolicyCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
