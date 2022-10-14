@@ -59,10 +59,4 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the status of whether if Command is a Find Command
-     */
-    boolean isFindCommand();
-
-    void setFalseToIndicateCommandIsNotFindCommand();
 }

@@ -96,12 +96,4 @@ public class LogicManager implements Logic {
         model.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public boolean isFindCommand() {
-        return model.isFindCommand();
-    }
-    @Override
-    public void setFalseToIndicateCommandIsNotFindCommand() {
-         model.setFalseToIndicateCommandIsNotFindCommand();
-    }
 }

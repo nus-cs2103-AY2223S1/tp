@@ -32,9 +32,6 @@ public class ModelManager implements Model {
     private final FilteredList<Task> taskFilteredList;
     private final SortedList<Task> taskSortedByDescriptionLengthList;
 
-    boolean isFindCommand;
-
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -49,7 +46,6 @@ public class ModelManager implements Model {
         moduleFilteredList = new FilteredList<>(this.addressBook.getModuleList());
         taskFilteredList = new FilteredList<>(this.addressBook.getTaskList());
         taskSortedByDescriptionLengthList = new SortedList<>(taskFilteredList);
-        isFindCommand = false;
     }
 
     public ModelManager() {
@@ -199,23 +195,6 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         taskFilteredList.setPredicate(predicate);
-    }
-
-    @Override
-    public void sortTaskListBasedOnDescriptionLength() {
-        taskSortedByDescriptionLengthList.setComparator(((str1, str2) ->
-                str1.getDescription().description.length() - str2.getDescription().description.length()));
-        isFindCommand = true;
-    }
-
-    @Override
-    public boolean isFindCommand() {
-        return isFindCommand;
-    }
-
-    @Override
-    public void setFalseToIndicateCommandIsNotFindCommand() {
-        isFindCommand = false;
     }
 
 }

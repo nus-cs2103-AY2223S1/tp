@@ -1,17 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 
-import java.util.List;
+
 
 /**
  * Finds and lists all tasks in the task list whose description contains any of the argument keywords.
@@ -35,7 +29,6 @@ public class FindTasksCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
-        model.sortTaskListBasedOnDescriptionLength();
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }

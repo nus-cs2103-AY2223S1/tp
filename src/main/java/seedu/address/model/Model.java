@@ -124,15 +124,4 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
-    /**
-     * Sorts the filtered task list based on the tasks' description length from shortest to longest.
-     */
-    void sortTaskListBasedOnDescriptionLength();
-
-    /**
-     * Returns true if Command is a Find command.
-     */
-    boolean isFindCommand();
-
-    void setFalseToIndicateCommandIsNotFindCommand();
 }
