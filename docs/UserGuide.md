@@ -97,7 +97,7 @@ Adds multiple employees to Coydir all at once.
 
 :warning: **Make sure to have uploaded CSV file to make use of this command, and that employees' fields are compatible with Coydir**: CSV file can be uploaded under the 'data' folder of Coydir.
 
-:warning: **Do not have commas between each field in the CSV file.
+:warning: **Do not have commas between each field in the CSV file.**
 
 This command results in one of two cases below:
 
