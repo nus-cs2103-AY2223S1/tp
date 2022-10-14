@@ -10,8 +10,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Grade;
+import seedu.address.model.student.ID;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Participation;
+import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -116,7 +123,8 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -124,7 +132,8 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (telegram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Telegram.class.getSimpleName()));
         }
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
@@ -132,7 +141,8 @@ class JsonAdaptedPerson {
         final Telegram modelTelegram = new Telegram(telegram);
 
         if (tutorialModule == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialModule.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TutorialModule.class.getSimpleName()));
         }
         if (!TutorialModule.isValidModule(tutorialModule)) {
             throw new IllegalValueException(TutorialModule.MESSAGE_CONSTRAINTS);
@@ -140,7 +150,8 @@ class JsonAdaptedPerson {
         final TutorialModule modelTutorialModule = new TutorialModule(tutorialModule);
 
         if (tutorialName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TutorialName.class.getSimpleName()));
         }
         if (!TutorialName.isValidName(tutorialName)) {
             throw new IllegalValueException(TutorialName.MESSAGE_CONSTRAINTS);
@@ -148,7 +159,8 @@ class JsonAdaptedPerson {
         final TutorialName modelTutorialName = new TutorialName(tutorialName);
 
         if (attendance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Attendance.class.getSimpleName()));
         }
         if (!Attendance.isValidAttendance(attendance)) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
@@ -156,7 +168,8 @@ class JsonAdaptedPerson {
         final Attendance modelAttendance = new Attendance(attendance);
 
         if (participation == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Participation.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Participation.class.getSimpleName()));
         }
         if (!Participation.isValidParticipation(participation)) {
             throw new IllegalValueException(Participation.MESSAGE_CONSTRAINTS);

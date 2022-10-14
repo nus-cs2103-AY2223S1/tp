@@ -57,7 +57,9 @@ public class Student {
         return name;
     }
 
-    public ID getId() { return id; }
+    public ID getId() {
+        return id;
+    }
 
     public Phone getPhone() {
         return phone;
@@ -71,13 +73,21 @@ public class Student {
         return telegram;
     }
 
-    public TutorialModule getTutorialModule() { return tutorialModule; }
+    public TutorialModule getTutorialModule() {
+        return tutorialModule;
+    }
 
-    public TutorialName getTutorialName() { return tutorialName; }
+    public TutorialName getTutorialName() {
+        return tutorialName;
+    }
 
-    public Attendance getAttendance() { return attendance; }
+    public Attendance getAttendance() {
+        return attendance;
+    }
 
-    public Participation getParticipation() { return participation; }
+    public Participation getParticipation() {
+        return participation;
+    }
 
     public Grade getGrade() {
         return grade;

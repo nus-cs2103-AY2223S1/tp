@@ -3,6 +3,10 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a Student's participation in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidParticipation(String)}
+ */
 public class Participation {
 
     public static final String MESSAGE_CONSTRAINTS =

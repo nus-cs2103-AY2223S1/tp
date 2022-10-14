@@ -1,7 +1,5 @@
 package seedu.address.model.student;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
