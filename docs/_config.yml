@@ -12,8 +12,13 @@ collections:
   - glossary
 
 repository: "AY2223S1-CS2103T-W16-2/tp"
-master_url: "https://github.com/AY2223S1-CS2103T-W16-2/tp/tree/master"
 github_icon: "images/github-icon.png"
+
+defaults:
+  - scope:
+      path: "" # Site-wide default
+    values:
+      master_branch: "https://github.com/AY2223S1-CS2103T-W16-2/tp/tree/master"
 
 plugins:
   - jemoji
