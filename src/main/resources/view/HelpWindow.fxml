@@ -18,7 +18,7 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox alignment="TOP_LEFT" fx:id="helpMessageContainer">
         <children>
           <Label fx:id="helpMessage" text="Label">
             <HBox.margin>
@@ -27,7 +27,7 @@
           </Label>
           <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
             <HBox.margin>
-              <Insets left="5.0" />
+              <Insets left="5.0" top="5.0"/>
             </HBox.margin>
           </Button>
         </children>
