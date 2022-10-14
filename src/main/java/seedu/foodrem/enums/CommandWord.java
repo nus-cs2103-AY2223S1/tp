@@ -122,7 +122,7 @@ public enum CommandWord {
      * @param value a string value of the enum represented by the value provided.
      * @return a CommandWord object of the command represented by the string.
      */
-    public static CommandWord getCommandWordFromCommandWordString(String value) {
+    public static CommandWord parseWord(String value) {
         for (CommandWord commandWord : CommandWord.values()) {
             if (commandWord.getValue().equals(value)) {
                 return commandWord;

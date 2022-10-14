@@ -32,7 +32,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpCommand(HELP_FOR_ALL_COMMANDS);
         }
 
-        CommandWord commandWord = CommandWord.getCommandWordFromCommandWordString(commandWordString);
+        CommandWord commandWord = CommandWord.parseWord(commandWordString);
         if (commandWord.equals(CommandWord.DEFAULT)) {
             return new HelpCommand(String.format(NOT_A_COMMAND, commandWordString));
         }

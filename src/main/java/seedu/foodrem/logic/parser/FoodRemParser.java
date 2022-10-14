@@ -55,7 +55,7 @@ public class FoodRemParser {
 
         final String commandWordString = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        CommandWord commandWord = CommandWord.getCommandWordFromCommandWordString(commandWordString);
+        CommandWord commandWord = CommandWord.parseWord(commandWordString);
 
         switch (commandWord) {
 
