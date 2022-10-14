@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String RELEVANT_PREFIXES = "Usage of parameters: "
+    public static final String RELEVANT_PARAMETERS = "Usage of parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "

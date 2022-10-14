@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PREFIX_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PARAMETER_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDITIONAL_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_DATE_TIME;
@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
         if (isAnyPrefixPresent(argMultimap, PREFIX_MONEY_OWED, PREFIX_MONEY_PAID, PREFIX_RATES_PER_CLASS,
                 PREFIX_ADDITIONAL_NOTES, PREFIX_CLASS_DATE_TIME)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PREFIX_FORMAT, AddCommand.RELEVANT_PREFIXES));
+            throw new ParseException(String.format(MESSAGE_INVALID_PARAMETER_FORMAT, AddCommand.RELEVANT_PARAMETERS));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
