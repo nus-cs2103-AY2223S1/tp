@@ -19,7 +19,7 @@ public class ReminderBuilder {
     private ReminderDescription reminderDescription;
 
     /**
-     * Creates a {@code TutorialBuilder} with the default details.
+     * Creates a {@code ReminderBuilder} with the default details.
      */
     public ReminderBuilder() {
         reminderName = new ReminderName(DEFAULT_NAME);
@@ -54,7 +54,7 @@ public class ReminderBuilder {
     }
 
     /**
-     * Sets the {@code TutorialVenue} of the {@code Tutorial} that we are building.
+     * Sets the {@code ReminderDescription} of the {@code Reminder} that we are building.
      */
     public ReminderBuilder withDescription(String description) {
         this.reminderDescription = new ReminderDescription(description);
