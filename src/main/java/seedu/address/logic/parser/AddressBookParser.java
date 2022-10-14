@@ -83,7 +83,7 @@ public class AddressBookParser {
             return new AddReminderCommandParser().parse(arguments);
 
         case DeleteReminderCommand.COMMAND_WORD:
-            return new DeleteReminderCommandParser().parse(arguments);    
+            return new DeleteReminderCommandParser().parse(arguments);
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);
