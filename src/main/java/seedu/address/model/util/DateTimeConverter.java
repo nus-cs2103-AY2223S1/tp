@@ -48,10 +48,10 @@ public class DateTimeConverter {
      * @throws DateTimeParseException if it fails to parse IE it's in the wrong format
      */
     public static String processFullDateToLocalDatetime(String date) throws DateTimeParseException {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy");
-        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy hh:mm a");
+        DateTimeFormatter newPattern = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
 
-        return LocalDate.parse(date, format).format(newPattern);
+        return LocalDateTime.parse(date, format).format(newPattern);
     }
 
 }
