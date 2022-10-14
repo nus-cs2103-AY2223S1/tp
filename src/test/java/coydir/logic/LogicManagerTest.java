@@ -25,13 +25,14 @@ import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.Model;
 import coydir.model.ModelManager;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.UserPrefs;
 import coydir.model.person.Person;
-import coydir.storage.JsonAddressBookStorage;
+import coydir.storage.JsonDatabaseStorage;
 import coydir.storage.JsonUserPrefsStorage;
 import coydir.storage.StorageManager;
 import coydir.testutil.PersonBuilder;
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -44,10 +45,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonDatabaseStorage databaseStorage =
+                new JsonDatabaseStorage(temporaryFolder.resolve("database.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(databaseStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,12 +72,12 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonDatabaseIoExceptionThrowingStub
+        JsonDatabaseStorage databaseStorage =
+                new JsonDatabaseIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionDatabase.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(databaseStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -131,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -151,13 +152,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonDatabaseIoExceptionThrowingStub extends JsonDatabaseStorage {
+        private JsonDatabaseIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveDatabase(ReadOnlyDatabase database, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

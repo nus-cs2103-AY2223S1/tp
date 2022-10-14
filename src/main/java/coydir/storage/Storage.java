@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import coydir.commons.exceptions.DataConversionException;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.ReadOnlyUserPrefs;
 import coydir.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends DatabaseStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getDatabaseFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyDatabase> readDatabase() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveDatabase(ReadOnlyDatabase database) throws IOException;
 
 }

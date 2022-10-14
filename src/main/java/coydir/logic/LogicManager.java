@@ -9,10 +9,10 @@ import coydir.commons.core.LogsCenter;
 import coydir.logic.commands.Command;
 import coydir.logic.commands.CommandResult;
 import coydir.logic.commands.exceptions.CommandException;
-import coydir.logic.parser.AddressBookParser;
+import coydir.logic.parser.DatabaseParser;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.Model;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.person.Person;
 import coydir.storage.Storage;
 import javafx.collections.ObservableList;
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final DatabaseParser databaseParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        databaseParser = new DatabaseParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = databaseParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveDatabase(model.getDatabase());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyDatabase getDatabase() {
+        return model.getDatabase();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getDatabaseFilePath() {
+        return model.getDatabaseFilePath();
     }
 
     @Override

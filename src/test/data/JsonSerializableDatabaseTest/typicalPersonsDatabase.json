@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Coydir save file which contains the same Person values as in TypicalPersons#getTypicalDatabase()",
   "persons": [
     {
       "name": "Alice Pauline",
