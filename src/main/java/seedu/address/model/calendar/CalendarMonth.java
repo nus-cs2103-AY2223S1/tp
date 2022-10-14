@@ -2,8 +2,12 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
@@ -38,6 +42,12 @@ public class CalendarMonth {
         this.calendarEvents = newCalendarEvents;
     }
 
+    public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(int day, int month) {
+        List<CalendarEvent> calendarEventInDayOfMonth = new ArrayList<>();
+        Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month;
+        calendarEvents.stream().filter(filter).forEach(x -> calendarEventInDayOfMonth.add(x));
+        return FXCollections.observableList(calendarEventInDayOfMonth);
+    }
 
     /**
      * Returns true if both calendar month data field.

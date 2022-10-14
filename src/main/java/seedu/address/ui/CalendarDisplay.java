@@ -60,12 +60,9 @@ public class CalendarDisplay extends UiPart<Region> {
                 dayOfWeek = 1;
                 row++;
             }
-            Text tDate = new Text(" " + String.valueOf(currentDay) + "\n appt1"
-            + "\n appt2222222222222222222222222222222222" +
-                    "\n apt3" +
-                    "\n appt4" +
-                    "\napp5"
-            );
+            ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
+                    .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH));
+            Text tDate = new Text(" " + String.valueOf(currentDay) + String.format("\n, %s", calendarEventsInDayOfMonth));
             calendarDisplay.add(tDate, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
