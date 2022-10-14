@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyJeeqTracker getJeeqTracker();
 
-    /** Returns an unmodifiable view of the filtered list of companies */
-    ObservableList<Client> getFilteredCompanyList();
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns the user prefs' address book file path.

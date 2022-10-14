@@ -10,11 +10,11 @@ import javafx.scene.layout.Region;
 import seedu.address.model.client.Client;
 
 /**
- * A UI component that displays information of a {@code Company}.
+ * A UI component that displays information of a {@code Client}.
  */
-public class CompanyCard extends UiPart<Region> {
+public class ClientCard extends UiPart<Region> {
 
-    private static final String FXML = "CompanyListCard.fxml";
+    private static final String FXML = "ClientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,9 +42,9 @@ public class CompanyCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code CompanyCode} with the given {@code Company} and index to display.
+     * Creates a {@code ClientCode} with the given {@code Client} and index to display.
      */
-    public CompanyCard(Client client, int displayedIndex) {
+    public ClientCard(Client client, int displayedIndex) {
         super(FXML);
         this.client = client;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class CompanyCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CompanyCard)) {
+        if (!(other instanceof ClientCard)) {
             return false;
         }
 
         // state check
-        CompanyCard card = (CompanyCard) other;
+        ClientCard card = (ClientCard) other;
         return id.getText().equals(card.id.getText())
                 && client.equals(card.client);
     }

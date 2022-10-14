@@ -1,6 +1,6 @@
 {
   "_comment": "JeeqTracker save file which contains the same Company values as in TypicalCompanies#getTypicalJeeqTracker()",
-  "companies" : [ {
+  "clients" : [ {
     "name" : "Alice Pauline",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
