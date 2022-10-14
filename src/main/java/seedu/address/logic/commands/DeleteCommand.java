@@ -49,7 +49,7 @@ public class DeleteCommand extends UndoableCommand {
 
     @Override
     public CommandResult undo(Model model) throws CommandException {
-        model.insertPerson(targetIndex.getZeroBased(), toDelete);
+        model.addPerson(toDelete);
         return new CommandResult(String.format(MESSAGE_UNDO, toDelete));
     }
 
