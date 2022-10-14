@@ -10,12 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_phone_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_phoneAllFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(PHONE_FIRST_PERSON, descriptor);
@@ -54,7 +54,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_email_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_emailAllFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         EditCommand editCommand = new EditCommand(EMAIL_FIRST_PERSON, descriptor);
@@ -89,7 +89,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_phone_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_phoneNoFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(PHONE_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
@@ -101,7 +101,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_email_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_emailNoFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(EMAIL_FIRST_PERSON, new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
@@ -113,7 +113,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_phone_filteredList_success() {
+    public void execute_phoneFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -130,7 +130,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_email_filteredList_success() {
+    public void execute_emailFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -147,7 +147,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_phone_duplicatePersonUnfilteredList_failure() {
+    public void execute_phoneDuplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(PHONE_SECOND_PERSON, descriptor);
@@ -156,7 +156,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_email_duplicatePersonUnfilteredList_failure() {
+    public void execute_emailDuplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(EMAIL_SECOND_PERSON, descriptor);
@@ -165,7 +165,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_phone_invalidPersonUnfilteredList_failure() {
+    public void execute_phoneInvalidPersonUnfilteredList_failure() {
         Phone outOfBoundPhone = new Phone("00000000");
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundPhone, descriptor);
@@ -174,7 +174,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_email_invalidPersonUnfilteredList_failure() {
+    public void execute_emailInvalidPersonUnfilteredList_failure() {
         Email outOfBoundEmail = new Email("test@test.com");
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundEmail, descriptor);

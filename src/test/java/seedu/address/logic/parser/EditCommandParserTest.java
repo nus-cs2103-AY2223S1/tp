@@ -1,29 +1,25 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.REWARD_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.REWARD_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_REWARD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_REWARD_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEMBER;
+import static seedu.address.logic.commands.CommandTestUtil.REWARD_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GOLD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REWARD_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REWARD_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEMBER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEMBER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REWARD_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -32,16 +28,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalEmails.EMAIL_FIRST_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_SECOND_PERSON;
 import static seedu.address.testutil.TypicalEmails.EMAIL_THIRD_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPhones.PHONE_THIRD_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Email;
@@ -88,21 +80,21 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_phone_invalidValue_failure() {
-        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_NAME_DESC
-                , Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_PHONE_DESC
-                , Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_EMAIL_DESC
-                , Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_REWARD_DESC
-                , Reward.MESSAGE_CONSTRAINTS); // invalid reward
-        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_TAG_DESC
-                , Tag.MESSAGE_CONSTRAINTS); // invalid tag
+    public void parse_phoneInvalidValue_failure() {
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_NAME_DESC,
+                Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_EMAIL_DESC,
+                Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_REWARD_DESC,
+                Reward.MESSAGE_CONSTRAINTS); // invalid reward
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_TAG_DESC,
+                Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_PHONE_DESC + EMAIL_DESC_AMY
-                , Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " " + PREFIX_PHONE + PHONE_FIRST_PERSON + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
@@ -120,21 +112,21 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_email_invalidValue_failure() {
-        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_NAME_DESC
-                , Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_PHONE_DESC
-                , Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_EMAIL_DESC
-                , Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_REWARD_DESC
-                , Reward.MESSAGE_CONSTRAINTS); // invalid reward
-        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_TAG_DESC
-                , Tag.MESSAGE_CONSTRAINTS); // invalid tag
+    public void parse_emailInvalidValue_failure() {
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_NAME_DESC,
+                Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_PHONE_DESC,
+                Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_EMAIL_DESC,
+                Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_REWARD_DESC,
+                Reward.MESSAGE_CONSTRAINTS); // invalid reward
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_TAG_DESC,
+                Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_PHONE_DESC + EMAIL_DESC_AMY
-                , Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " " + PREFIX_EMAIL + EMAIL_FIRST_PERSON + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
@@ -152,7 +144,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_phone_allFieldsSpecified_success() {
+    public void parse_phoneAllFieldsSpecified_success() {
         Phone targetPhone = PHONE_SECOND_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_BOB + TAG_DESC_GOLD
                 + EMAIL_DESC_AMY + REWARD_DESC_AMY + NAME_DESC_AMY + TAG_DESC_MEMBER;
@@ -166,7 +158,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_email_allFieldsSpecified_success() {
+    public void parse_emailAllFieldsSpecified_success() {
         Email targetEmail = EMAIL_SECOND_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_BOB + TAG_DESC_GOLD
                 + EMAIL_DESC_AMY + REWARD_DESC_AMY + NAME_DESC_AMY + TAG_DESC_MEMBER;
@@ -180,7 +172,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_phone_someFieldsSpecified_success() {
+    public void parse_phoneSomeFieldsSpecified_success() {
         Phone targetPhone = PHONE_FIRST_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
@@ -192,7 +184,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_email_someFieldsSpecified_success() {
+    public void parse_emailSomeFieldsSpecified_success() {
         Email targetEmail = EMAIL_FIRST_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
@@ -204,7 +196,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_phone_oneFieldSpecified_success() {
+    public void parse_phoneOneFieldSpecified_success() {
         // name
         Phone targetPhone = PHONE_THIRD_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + NAME_DESC_AMY;
@@ -242,7 +234,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_email_oneFieldSpecified_success() {
+    public void parse_emailOneFieldSpecified_success() {
         // name
         Email targetEmail = EMAIL_THIRD_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + NAME_DESC_AMY;
@@ -280,7 +272,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_phone_allFieldSpecified_success() {
+    public void parse_phoneAllFieldSpecified_success() {
         Phone targetPhone = PHONE_FIRST_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + PHONE_DESC_AMY + REWARD_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_MEMBER + TAG_DESC_GOLD;
@@ -297,7 +289,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_email_allFieldSpecified_success() {
+    public void parse_emailAllFieldSpecified_success() {
         Email targetEmail = EMAIL_FIRST_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + PHONE_DESC_AMY + REWARD_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_MEMBER + TAG_DESC_GOLD;
@@ -314,7 +306,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_phone_resetTags_success() {
+    public void parse_phoneResetTags_success() {
         Phone targetPhone = PHONE_THIRD_PERSON;
         String userInput = " " + PREFIX_PHONE + targetPhone + TAG_EMPTY;
 
@@ -326,7 +318,7 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_email_resetTags_success() {
+    public void parse_emailResetTags_success() {
         Email targetEmail = EMAIL_THIRD_PERSON;
         String userInput = " " + PREFIX_EMAIL + targetEmail + TAG_EMPTY;
 
