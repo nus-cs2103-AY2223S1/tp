@@ -31,7 +31,13 @@ public class ViewCommand extends Command {
         requireNonNull(model);
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
         model.setTargetProject(project);
-        //UniqueStaffList list = project.getStaffList();
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
     }
 }

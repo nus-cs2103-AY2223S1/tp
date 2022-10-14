@@ -47,7 +47,8 @@ public class ProjectBuilder {
         deadline = projectToCopy.getDeadline();
         tags = new HashSet<>(projectToCopy.getTags());
         for (Staff staff : projectToCopy.getStaffList()) {
-            this.staffList.add(staff);
+            Staff staffToCopy = new StaffBuilder(staff).build();
+            this.staffList.add(staffToCopy);
         }
     }
 

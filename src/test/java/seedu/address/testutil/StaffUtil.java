@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.model.staff.Staff;
 
 /**
@@ -18,7 +19,7 @@ public class StaffUtil {
      */
     public static String getAddCommand(Staff staff) {
         //todo
-        return new String();
+        return AddStaffCommand.COMMAND_WORD + " pn/CS2103T TP " + getStaffDetails(staff);
     }
 
     /**

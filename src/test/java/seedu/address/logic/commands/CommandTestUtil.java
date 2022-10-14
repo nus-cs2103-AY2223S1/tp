@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_INSURANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -25,16 +30,33 @@ import seedu.address.testutil.EditProjectDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_STAFFNAME_AMY = "Amy Bee";
-    public static final String VALID_STAFFNAME_BOB = "Bob Choo";
-    public static final String VALID_STAFFCONTACT_AMY = "11111111";
-    public static final String VALID_STAFFCONTACT_BOB = "22222222";
-    public static final String VALID_STAFFTITLE_AMY = "Senior Software Engineer";
-    public static final String VALID_STAFFTITLE_BOB = "Software Engineer";
-    public static final String VALID_STAFFDEPARTMENT_AMY = "IT Department";
-    public static final String VALID_STAFFDEPARTMENT_BOB = "idk Department";
-    public static final String VALID_STAFFINSURANCE_AMY = "true";
-    public static final String VALID_STAFFINSURANCE_BOB = "false";
+    public static final String VALID_STAFFNAME_ANDY = "Andy Lee";
+    public static final String VALID_STAFFNAME_JAY = "Jayden Yap";
+    public static final String VALID_STAFFCONTACT_ANDY = "11111111";
+    public static final String VALID_STAFFCONTACT_JAY = "22222222";
+    public static final String VALID_STAFFTITLE_ANDY = "Senior Software Engineer";
+    public static final String VALID_STAFFTITLE_JAY = "Software Engineer";
+    public static final String VALID_STAFFDEPARTMENT_ANDY = "IT Department";
+    public static final String VALID_STAFFDEPARTMENT_JAY = "idk Department";
+    public static final String VALID_STAFFINSURANCE_ANDY = "true";
+    public static final String VALID_STAFFINSURANCE_JAY = "false";
+
+    public static final String STAFFNAME_DESC_ANDY = " " + PREFIX_STAFF_NAME + VALID_STAFFNAME_ANDY;
+    public static final String STAFFNAME_DESC_JAY = " " + PREFIX_STAFF_NAME + VALID_STAFFNAME_JAY;
+    public static final String STAFFCONTACT_DESC_ANDY = " " + PREFIX_STAFF_CONTACT + VALID_STAFFCONTACT_ANDY;
+    public static final String STAFFCONTACT_DESC_JAY = " " + PREFIX_STAFF_CONTACT + VALID_STAFFCONTACT_JAY;
+    public static final String STAFFTITLE_DESC_ANDY = " " + PREFIX_STAFF_TITLE + VALID_STAFFTITLE_ANDY;
+    public static final String STAFFTITLE_DESC_JAY = " " + PREFIX_STAFF_TITLE + VALID_STAFFTITLE_JAY;
+    public static final String STAFFDEPARTMENT_DESC_ANDY = " " + PREFIX_STAFF_DEPARTMENT + VALID_STAFFDEPARTMENT_ANDY;
+    public static final String STAFFDEPARTMENT_DESC_JAY = " " + PREFIX_STAFF_DEPARTMENT + VALID_STAFFDEPARTMENT_JAY;
+    public static final String STAFFINSURANCE_DESC_ANDY = " " + PREFIX_STAFF_INSURANCE + VALID_STAFFINSURANCE_ANDY;
+    public static final String STAFFINSURANCE_DESC_JAY = " " + PREFIX_STAFF_INSURANCE + VALID_STAFFINSURANCE_JAY;
+
+    public static final String INVALID_STAFFNAME_DESC = " " + PREFIX_STAFF_NAME + "S@muel";
+    public static final String INVALID_STAFFCONTACT_DESC = " " + PREFIX_STAFF_CONTACT + "9090 A32!";
+    public static final String INVALID_STAFFDEPARTMENT_DESC = " " + PREFIX_STAFF_DEPARTMENT + "GREAT department!!";
+    public static final String INVALID_STAFFTITLE_DESC = " " + PREFIX_STAFF_TITLE + "THE Best :3";
+    public static final String INVALID_STAFFINSURANCE_DESC = " " + PREFIX_STAFF_INSURANCE + "T";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -83,6 +105,8 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
+            System.out.println(result.feedbackToUser);
+            System.out.println(expectedCommandResult.feedbackToUser);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {

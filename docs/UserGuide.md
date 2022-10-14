@@ -74,7 +74,7 @@ Format: `help`
 
 Adds a project to Project list.
 
-Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE pc/PROJECT_CLIENT [t/TAG]…​`
+Format: `add pn/PROJECT_NAME pb/PROJECT_BUDGET pd/PROJECt_DEADLINE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A project can have any number of tags (including 0)
@@ -104,7 +104,7 @@ Show all the Projects in the Projects list.
 
 Format: `listProj`
 
-### Adding a staff member to Project : `addstaff`
+### Adding a staff member to Project : `addStaff`
 
 Adds a staff member info to Project in project list.
 
@@ -143,7 +143,7 @@ Examples:
 
 Edits an existing Project in the Project list.
 
-Format: `edit INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [pc/PROJECT_CLIENT​] [t/TAG]…​`
+Format: `edit INDEX [pn/PROJECT_NAME] [pb/PROJECT_BUDGET] [pd/PROJECT_DEADLINES] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -182,30 +182,30 @@ Project data is saved in the hard disk automatically after any command that chan
 
 ## Command summary
 
-| Action          | Format, Examples                                                                                   |
-|-----------------|----------------------------------------------------------------------------------------------------|
-| **Add project** | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pc/Darmith pd/2022-10-25 pb/10000 t/funz` |
-| **Add staff**   | `addstaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addstaff pn/DUKE sn/DEXTER si/true sd/HR`   |
-| **Clear**       | `clear`                                                                                            |
-| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                |
-| **Edit**        | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/ROOFUS pb/1350000`      |
-| **Find**        | `find pn/PROJECT_NAME`<br> e.g., `find DUKE`                                                       |
-| **List**        | `list`                                                                                             |
-| **Help**        | `help`                                                                                             |
+| Action           | Format, Examples                                                                                   |
+|------------------|----------------------------------------------------------------------------------------------------|
+| **Add project**  | `add pn/PROJECT_NAME  [t/TAG]…​` <br> e.g., `add pn/DUKE pc/Darmith pd/2022-10-25 pb/10000 t/funz` |
+| **Add staff**    | `addStaff pn/PROJECT_NAME sn/STAFF_NAME…​` <br> e.g., `addStaff pn/DUKE sn/DEXTER si/true sd/HR`   |
+| **Delete staff** | `delstaff pn/PROJECT_NAME sn/STAFF_NAME` <br> e.g., `delstaff pn/DUKE sn/DEXTER`                   |
+| **Clear**        | `clear`                                                                                            |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                |
+| **Edit**         | `edit INDEX [pn/PROJECT_NAME] [pd/PROJECT_DEADLINE]…​`<br> e.g.,`edit 2 pn/ROOFUS pb/1350000`      |
+| **Find**         | `find pn/PROJECT_NAME`<br> e.g., `find DUKE`                                                       |
+| **List**         | `list`                                                                                             |
+| **Help**         | `help`                                                                                             |
 
 ## Prefix Summary
 Prefixes that start with `s` are for project staff member details.
-Prefixes without the prefix `s` are meant for project and/or client details.
+Prefixes without the prefix `s` are meant for project details.
 
-| Prefix  | Meaning                | Format/ Examples    |
-|---------|------------------------|---------------------|
-| **pn/** | Project name           | pn/PROJECT_NAME     |
-| **sn/** | Staff name             | sn/STAFF_NAME       |
-| **si/** | Staff insurance status | si/INSURANCE_STATUS |
-| **st/** | Staff title            | st/STAFF_TITLE      |
-| **sd/** | Staff department       | sd/STAFF_DEPARTMENT |
-| **pp/** | Phone number           | pp/PHONE_NUMBER     |
-| **ep/** | Email                  | pe/PROJECT_EMAIL    |
-| **pb/** | Project budget         | pb/PROJECT_BUDGET   |
-| **pd/** | Project deadline       | pd/PROJECT_DEADLINE |
-| **pc/** | Project client         | pc/PROJECT_CLIENT   |
+| Prefix  | Meaning                | Format/ Examples        |
+|---------|------------------------|-------------------------|
+| **pb/** | Project budget         | pb/PROJECT_BUDGET       |
+| **pd/** | Project deadline       | pd/PROJECT_DEADLINE     |
+| **pn/** | Project name           | pn/PROJECT_NAME         |
+| **sc/** | Staff Contact          | sc/STAFF_CONTACT        |
+| **sd/** | Staff department       | sd/STAFF_DEPARTMENT     |
+| **si/** | Staff insurance status | si/INSURANCE_STATUS     |
+| **sn/** | Staff name             | sn/STAFF_NAME           |
+| **st/** | Staff title            | st/STAFF_TITLE          | 
+

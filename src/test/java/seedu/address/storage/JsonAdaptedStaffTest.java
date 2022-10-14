@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedStaff.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalStaff.NEVER;
+import static seedu.address.testutil.TypicalStaff.STAFF_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,21 +27,21 @@ public class JsonAdaptedStaffTest {
     private static final String INVALID_STAFF_INSURANCE = "Invalid";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_STAFF_NAME = NEVER.getStaffName().toString();
-    private static final String VALID_STAFF_CONTACT = NEVER.getStaffContact().toString();
-    private static final String VALID_STAFF_TITLE = NEVER.getStaffTitle().toString();
-    private static final String VALID_STAFF_DEPARTMENT = NEVER.getStaffDepartment().toString();
-    private static final String VALID_STAFF_INSURANCE = NEVER.getStaffInsurance().toString();
+    private static final String VALID_STAFF_NAME = STAFF_1.getStaffName().toString();
+    private static final String VALID_STAFF_CONTACT = STAFF_1.getStaffContact().toString();
+    private static final String VALID_STAFF_TITLE = STAFF_1.getStaffTitle().toString();
+    private static final String VALID_STAFF_DEPARTMENT = STAFF_1.getStaffDepartment().toString();
+    private static final String VALID_STAFF_INSURANCE = STAFF_1.getStaffInsurance().toString();
     private static final List<JsonAdaptedStaff> VALID_STAFF = new ArrayList<>(
-            Arrays.asList(new JsonAdaptedStaff(NEVER)));
-    private static final List<JsonAdaptedTag> VALID_TAGS = NEVER.getTags().stream()
+            Arrays.asList(new JsonAdaptedStaff(STAFF_1)));
+    private static final List<JsonAdaptedTag> VALID_TAGS = STAFF_1.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validStaffDetails_returnsStaff() throws Exception {
-        JsonAdaptedStaff staff = new JsonAdaptedStaff(NEVER);
-        assertEquals(NEVER, staff.toModelType());
+        JsonAdaptedStaff staff = new JsonAdaptedStaff(STAFF_1);
+        assertEquals(STAFF_1, staff.toModelType());
     }
 
     @Test
