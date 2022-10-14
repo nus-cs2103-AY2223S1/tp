@@ -14,11 +14,11 @@ import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.ClearCommand;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
-import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
+import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
@@ -69,11 +69,11 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_sfind() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        SFindCommand command = (SFindCommand) parser.parseCommand(
+                SFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
