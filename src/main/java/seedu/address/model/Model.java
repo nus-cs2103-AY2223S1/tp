@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.List;

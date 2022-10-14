@@ -8,10 +8,14 @@ import java.util.Arrays;
 import seedu.address.logic.commands.CreateMessageCommand;
 import seedu.address.logic.commands.DeleteMessageCommand;
 import seedu.address.logic.commands.GenerateMessageCommand;
-import seedu.address.logic.commands.MessageCommandGroup;
 import seedu.address.logic.commands.ListMessageCommand;
+import seedu.address.logic.commands.MessageCommandGroup;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments for the MessageCommandGroup, and returns the desired command
+ * in the MessageCommandGroup, as indicated by the commandSpecifier.
+ */
 public class MessageCommandGroupParser implements Parser<MessageCommandGroup> {
 
     /**

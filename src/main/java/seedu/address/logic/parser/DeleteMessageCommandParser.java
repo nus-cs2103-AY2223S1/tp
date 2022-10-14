@@ -6,11 +6,19 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteMessageCommand;
-import seedu.address.logic.commands.GenerateMessageCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new DeleteMessageCommandParser object
+ */
 public class DeleteMessageCommandParser extends MessageCommandGroupParser {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the DeleteMessageCommand
+     * and returns a DeleteMessageCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public DeleteMessageCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim();

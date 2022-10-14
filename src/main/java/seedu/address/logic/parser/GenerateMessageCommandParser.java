@@ -9,8 +9,16 @@ import seedu.address.logic.commands.GenerateMessageCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new GenerateMessageCommand object
+ */
 public class GenerateMessageCommandParser implements Parser<GenerateMessageCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the GenerateMessageCommand
+     * and returns a GenerateMessageCommand object for execution
+     * @throws ParseException if the user input does not conform to the specified format
+     */
     public GenerateMessageCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim();

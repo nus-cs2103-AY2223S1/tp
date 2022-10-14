@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.model.message.Message;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Message}.
