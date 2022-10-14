@@ -21,22 +21,22 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the FinBook. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_INCOME + "INCOME "
-            + PREFIX_MEETING_DATE + "MEETINGDATE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_INCOME + "$1000 "
-            + PREFIX_MEETING_DATE + "20 Nov 2022 "
-            + PREFIX_TAG + "VIP Client";
+        + "Parameters: "
+        + PREFIX_NAME + "NAME "
+        + PREFIX_PHONE + "PHONE "
+        + PREFIX_EMAIL + "EMAIL "
+        + PREFIX_ADDRESS + "ADDRESS "
+        + PREFIX_INCOME + "INCOME "
+        + PREFIX_MEETING_DATE + "MEETINGDATE "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_NAME + "John Doe "
+        + PREFIX_PHONE + "98765432 "
+        + PREFIX_EMAIL + "johnd@example.com "
+        + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+        + PREFIX_INCOME + "$1000 "
+        + PREFIX_MEETING_DATE + "20 Nov 2022 "
+        + PREFIX_TAG + "VIPClient";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the FinBook";
@@ -66,7 +66,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+            || (other instanceof AddCommand // instanceof handles nulls
+            && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
