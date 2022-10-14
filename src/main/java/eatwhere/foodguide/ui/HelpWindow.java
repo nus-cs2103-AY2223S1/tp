@@ -15,8 +15,26 @@ import javafx.stage.Stage;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w11-1.github.io/tp/UserGuide.html";
+    public static final String HELP_URL = "The full user guide can be found at\n: " + USERGUIDE_URL + "\n\n";
+
+    public static final String COMMAND_USAGE = "List of commands:\n\n"
+            + "help - List out all available commands\n"
+            + "Usage: help\n\n"
+            + "list - List out all eateries in the database\n"
+            + "Usage: list\n\n"
+            + "find - Search for eateries by name\n"
+            + "Usage: find [-n name]\n\n"
+            + "tag - Add tag(s) to an eatery\n"
+            + "Usage: tag INDEX [-t TAG]...\n\n"
+            + "untag - Removes tag(s) from an eatery\n"
+            + "Usage: untag INDEX [-t TAG]...\n\n"
+            + "add - Add an eatery to the database\n"
+            + "Usage: add -n NAME -l LOCATION -c CUISINE [-t TAG]...\n\n"
+            + "delete - Delete an eatery from the database\n"
+            + "Usage: delete INDEX\n\n";
+
+    public static final String HELP_MESSAGE = HELP_URL + COMMAND_USAGE;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

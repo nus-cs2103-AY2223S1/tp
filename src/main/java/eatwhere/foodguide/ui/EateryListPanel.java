@@ -11,26 +11,26 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of eateries.
  */
 public class EateryListPanel extends UiPart<Region> {
     private static final String FXML = "EateryListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EateryListPanel.class);
 
     @FXML
-    private ListView<Eatery> personListView;
+    private ListView<Eatery> eateryListView;
 
     /**
      * Creates a {@code EateryListPanel} with the given {@code ObservableList}.
      */
     public EateryListPanel(ObservableList<Eatery> eateryList) {
         super(FXML);
-        personListView.setItems(eateryList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        eateryListView.setItems(eateryList);
+        eateryListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Eatery} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Eatery} using a {@code EateryCard}.
      */
     class PersonListViewCell extends ListCell<Eatery> {
         @Override
