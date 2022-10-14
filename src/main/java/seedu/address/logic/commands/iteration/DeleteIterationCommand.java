@@ -31,7 +31,12 @@ public class DeleteIterationCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs a {@code DeleteIterationCommand} that deletes the Iteration in the currently selected
+     * Commission with the given {@code targetIndex}.
+     */
     public DeleteIterationCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

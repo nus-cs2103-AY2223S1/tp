@@ -46,6 +46,13 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_DOG = "A black dog";
     public static final String VALID_DESCRIPTION_ELEPHANT = "A red elephant";
 
+    public static final String VALID_ITERATION_DESCRIPTION_FINALISE = "Finalised the commission";
+    public static final String VALID_ITERATION_DESCRIPTION_COLOR = "Added colours to the artwork";
+    public static final String VALID_ITERATION_DESCRIPTION_REMOVE = "Removed the character from the scene";
+    public static final String VALID_FEEDBACK_HORRIBLE = "This looks horrible!";
+    public static final String VALID_FEEDBACK_UGLY = "The colours are very ugly- please change it";
+    public static final String VALID_FEEDBACK_AMAZING = "Wow, looks amazing";
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;

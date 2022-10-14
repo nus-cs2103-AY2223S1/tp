@@ -303,7 +303,6 @@ public class Commission {
             return new Commission(this, customer);
         }
 
-
         @Override
         public String toString() {
             final StringBuilder builder = new StringBuilder();
