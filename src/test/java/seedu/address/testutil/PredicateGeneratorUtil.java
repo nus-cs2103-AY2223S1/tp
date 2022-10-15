@@ -37,24 +37,6 @@ public class PredicateGeneratorUtil {
         return new CombinedPersonPredicate(name, phone, email, address, tagList);
     }
 
-    /**
-     * Provides a simple way to generate a {@code CombinedAppointmentPredicate} without needing to directly provide
-     * {@code LocalDateTime}s but a string parsable accrding to the DateTimeFormatter in {@code Appointment} instead.
-     *
-     * @param reason reason string to test
-     * @param startDateTime Tests for appointments after {@code startDateTime}.
-     *                      Empty string denotes no {@code startDateTime} requirement.
-     * @param endDateTime Tests for appointments before {@code endDateTime}.
-     *                    Empty string denotes no {@code endDateTime} requirement.
-     * @return A {@Code CombinedAppointmentPredicate} with the given reason and date range.
-     */
-    public static CombinedAppointmentPredicate generateCombinedAppointmentPredicate(String reason, String startDateTime,
-                                                                              String endDateTime) {
-        LocalDateTime start = parseStartDateTime(startDateTime);
-        LocalDateTime end = parseEndDateTime(endDateTime);
-        return new CombinedAppointmentPredicate(reason, start, end);
-    }
-
     public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyName(String name) {
         return generateCombinedPersonPredicate(name, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
     }
@@ -74,6 +56,39 @@ public class PredicateGeneratorUtil {
     public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyTags(String... tags) {
         String tagString = String.join(" ", tags);
         return generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, tagString);
+    }
+
+    /**
+     * Provides a simple way to generate a {@code CombinedAppointmentPredicate} without needing to directly provide
+     * {@code LocalDateTime}s but a string parsable accrding to the DateTimeFormatter in {@code Appointment} instead.
+     *
+     * @param reason reason string to test
+     * @param startDateTime Tests for appointments after {@code startDateTime}.
+     *                      Empty string denotes no {@code startDateTime} requirement.
+     * @param endDateTime Tests for appointments before {@code endDateTime}.
+     *                    Empty string denotes no {@code endDateTime} requirement.
+     * @return A {@Code CombinedAppointmentPredicate} with the given reason and date range.
+     */
+    public static CombinedAppointmentPredicate generateCombinedAppointmentPredicate(
+            String reason, String startDateTime, String endDateTime) {
+
+        LocalDateTime start = parseStartDateTime(startDateTime);
+        LocalDateTime end = parseEndDateTime(endDateTime);
+        return new CombinedAppointmentPredicate(reason, start, end);
+    }
+
+    public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyReason(String reason) {
+        return generateCombinedAppointmentPredicate(reason, EMPTY_STRING, EMPTY_STRING);
+    }
+
+    public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyDateTime(
+            String startDateTime, String endDateTime) {
+        return generateCombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime);
+    }
+
+    public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyDateTime(
+            LocalDateTime startDateTime, LocalDateTime endDateTime) {
+        return new CombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime);
     }
 
     /**
