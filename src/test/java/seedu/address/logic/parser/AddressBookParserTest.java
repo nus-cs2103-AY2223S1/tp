@@ -39,10 +39,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         ModelManager modelManager = new ModelManager(); //to create uid for new person to be added
-        for (int i = 0; i < 10; i++) {
-            modelManager.getNextUid();
-        }
-        Person person = new PersonBuilder().withUid("10").build();
+        Person person = new PersonBuilder().withUniversalUid().build();
         AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person), modelManager);
         assertEquals(new AddCommand(person), command);
     }

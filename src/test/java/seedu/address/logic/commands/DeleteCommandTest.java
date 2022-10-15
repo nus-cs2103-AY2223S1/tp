@@ -18,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Uid;
 
 /**
@@ -27,6 +28,7 @@ import seedu.address.model.person.Uid;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Uid outOfBoundsUid = new Uid(99998L);
 
     @Test
     public void execute_validUidUnfilteredList_success() {
@@ -36,7 +38,9 @@ public class DeleteCommandTest {
 
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
-            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "patient", personToDelete);
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+                    PersonType.PATIENT.toString(),
+                    personToDelete);
         } else {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete);
         }
@@ -49,8 +53,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidUidUnfilteredList_throwsCommandException() {
-        Uid outOfBoundUid = new Uid(99999L);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundUid);
+
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundsUid);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
     }
@@ -64,7 +68,8 @@ public class DeleteCommandTest {
 
         String expectedMessage = "";
         if (personToDelete instanceof Patient) {
-            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "patient", personToDelete);
+            expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, PersonType.PATIENT.toString(),
+                    personToDelete);
         } else {
             expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "person", personToDelete);
         }

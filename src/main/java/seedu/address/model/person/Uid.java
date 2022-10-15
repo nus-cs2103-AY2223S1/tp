@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Represents a Person's Uid in the records system.
@@ -15,27 +15,35 @@ public class Uid implements Comparable<Uid> {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^[0-9]*$";
+    private static final AtomicLong NEXT_UID = new AtomicLong(0);
+    private static final Long UNIVERSAL_UID = 99999L;
 
     public final Long uid;
 
     /**
-     * Constructs a {@code Uid}.
-     *
-     * @param inputId A valid id.
+     * Constructor for Uid using a String as an input
+     * @param uid
      */
-    public Uid(Long inputId) {
-        requireNonNull(inputId);
-        uid = inputId;
+    public Uid(String uid) {
+        Long parsedUid = Long.parseLong(uid);
+        this.uid = parsedUid;
+        NEXT_UID.set(parsedUid + 1);
     }
 
     /**
-     * Constructs a {@code Uid}.
-     *
-     * @param stringId A valid id.
+     * Constructor for Uid using a Long as an input
+     * @param uid
      */
-    public Uid(String stringId) {
-        requireNonNull(stringId);
-        uid = Long.parseLong(stringId);
+    public Uid(Long uid) {
+        this.uid = uid;
+        NEXT_UID.set(uid + 1);
+    }
+
+    /**
+     * Constructor for Uid
+     */
+    public Uid() {
+        this.uid = NEXT_UID.incrementAndGet();
     }
 
     /**
@@ -59,9 +67,24 @@ public class Uid implements Comparable<Uid> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Uid // instanceof handles nulls
-                        && uid.equals(((Uid) other).uid)); // state check
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Uid)) {
+            return false;
+        }
+
+        Uid otherUid = (Uid) other;
+
+        if (this.uid.equals(UNIVERSAL_UID) || otherUid.uid.equals(UNIVERSAL_UID)) {
+            return true;
+        }
+
+        // state check
+        return uid.equals(otherUid.uid);
     }
 
     @Override
@@ -72,5 +95,9 @@ public class Uid implements Comparable<Uid> {
     @Override
     public int compareTo(Uid o) {
         return uid.compareTo(o.getUid());
+    }
+
+    public static Uid generateUniversalUid() {
+        return new Uid(UNIVERSAL_UID);
     }
 }

@@ -63,8 +63,8 @@ public class EditCommandParserTest {
     private static final String DATE_AND_TIME_EMPTY = " " + PREFIX_DATE_AND_TIME;
     private static final String DATE_AND_TIME_INDEXES_EMPTY = " " + PREFIX_DATE_AND_TIME_INDEX;
 
-    private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            EditCommand.MESSAGE_USAGE);
 
     private static final String OTHER_DATES_AND_TIMES = "2022-12-17T18:30";
     private static final String OTHER_DATES_AND_TIMES_TWO = "2022-06-18T19:30";
@@ -103,7 +103,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_UID + "-5" + NAME_DESC_AMY, Uid.MESSAGE_CONSTRAINTS);
 
         // zero index
-        //assertParseFailure(parser, " " + PREFIX_UID + "0" + NAME_DESC_AMY, Uid.MESSAGE_CONSTRAINTS);
+        // assertParseFailure(parser, " " + PREFIX_UID + "0" + NAME_DESC_AMY,
+        // Uid.MESSAGE_CONSTRAINTS);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, " " + PREFIX_UID + "1 some random string", Uid.MESSAGE_CONSTRAINTS);
@@ -131,12 +132,14 @@ public class EditCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_UID + "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
                 Phone.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid phone followed by invalid phone. The test case for invalid phone
+        // followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, " " + PREFIX_UID + "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC,
                 Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code
+        // Person} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, " " + PREFIX_UID + "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
@@ -147,7 +150,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, " " + PREFIX_UID + "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                        + VALID_ADDRESS_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
+                + VALID_ADDRESS_AMY + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -38,10 +38,12 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * EditCommand.
  */
 public class EditCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Uid outOfBoundsUid = new Uid(99998L);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -50,7 +52,6 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
                 .withDateTimeIndexes("1").build();
         EditCommand editCommand = new EditCommand(firstPerson.getUid(), descriptor);
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                 editedPerson.getCategoryIndicator(), editedPerson);
 
@@ -198,7 +199,6 @@ public class EditCommandTest {
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         EditCommand editCommand = new EditCommand(editedPerson.getUid(), new EditPersonDescriptor());
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                 editedPerson.getCategoryIndicator(), editedPerson);
 
@@ -215,7 +215,6 @@ public class EditCommandTest {
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(personInFilteredList.getUid(),
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                 editedPerson.getCategoryIndicator(), editedPerson);
 
@@ -231,10 +230,8 @@ public class EditCommandTest {
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCommand editCommand = new EditCommand(secondPerson.getUid(), descriptor);
-
         String expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON,
                 firstPerson.getCategoryIndicator());
-
         assertCommandFailure(editCommand, model, expectedMessage);
     }
 
@@ -246,22 +243,19 @@ public class EditCommandTest {
         Person personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(firstPerson.getUid(),
                 new EditPersonDescriptorBuilder(personInList).build());
-
         String expectedMessage = String.format(EditCommand.MESSAGE_DUPLICATE_PERSON,
                 personInList.getCategoryIndicator());
-
         assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test
     public void execute_invalidUidUnfilteredList_throwsCommandException() {
-        Uid outOfBoundUid = new Uid(99999L);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand deleteCommand = new EditCommand(outOfBoundUid, descriptor);
+        EditCommand deleteCommand = new EditCommand(outOfBoundsUid, descriptor);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
     }
-    @Test
+
     public void execute_invalidUidFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 

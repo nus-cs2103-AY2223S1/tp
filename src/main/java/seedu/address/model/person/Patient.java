@@ -23,7 +23,7 @@ public class Patient extends Person {
      * Every field must be present and not null.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateTime> dateTime) {
+            Set<Tag> tags, List<DateTime> dateTime) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTime);
         this.dateTimes.addAll(dateTime);
@@ -34,7 +34,7 @@ public class Patient extends Person {
     }
 
     public String getCategoryIndicator() {
-        return "patient";
+        return PersonType.PATIENT.toString();
     }
 
     @Override
@@ -63,10 +63,9 @@ public class Patient extends Person {
         DateTimeComparator comp = new DateTimeComparator();
         Collections.sort(this.dateTimes, comp);
 
-        for (DateTime datetime: this.dateTimes) {
+        for (DateTime datetime : this.dateTimes) {
             dateTimeList = dateTimeList + datetime.toString() + " , ";
         }
-
 
         return dateTimeList;
     }

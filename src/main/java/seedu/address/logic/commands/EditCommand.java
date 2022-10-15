@@ -79,7 +79,8 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid            Uid of the person in the filtered person list to edit
+     * @param targetUid            Uid of the person in the filtered person list to
+     *                             edit
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
@@ -145,7 +146,7 @@ public class EditCommand extends Command {
             List<DateTime> updatedDateTime = createEditedDateTimeList(originalDateTime,
                     toBeUpdateDateTime, toBeUpdateDateTimeIndexes);
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateTime);
+                    updatedAddress, updatedTags, updatedDateTime);
         } else if (updatedCategory.categoryName.equals("P")) {
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes().orElse(null);
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
@@ -392,7 +393,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
