@@ -26,6 +26,7 @@ import seedu.address.model.tag.Tag;
  * Jackson-friendly version of {@link SupplyItem}
  */
 public class JsonAdaptedSupplyItem {
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Supply Item's %s field is missing !";
     private final String name;
     private final String currentStock;
     private final String minStock;
@@ -90,49 +91,65 @@ public class JsonAdaptedSupplyItem {
 
         // TODO: Handle exceptions more gracefully
         if (name == null) {
-            throw new IllegalValueException("Supply Item name is missing !");
+            throw new IllegalValueException("Supply Item's name field is missing !");
         }
 
         final String modelName = this.name;
 
         if (currentStock == null) {
-            throw new IllegalValueException("Supply Item currentStock is missing !");
+            throw new IllegalValueException("Supply Item's currentStock field is missing !");
         }
 
         final int modelCurrentStock = getIntFromString(this.currentStock);
 
         if (minStock == null) {
-            throw new IllegalValueException("Supply Item minStock is missing !");
+            throw new IllegalValueException("Supply Item's minStock field is missing !");
         }
 
         final int modelMinStock = getIntFromString(this.minStock);
 
         if (supplierName == null) {
-            throw new IllegalValueException("Supply Item supplier is missing !");
+            throw new IllegalValueException("Supply Item's supplierName field is missing !");
+        }
+
+        if (!Name.isValidName(supplierName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
         final Name modelSupplierName = new Name(supplierName);
 
         if (price == null) {
-            throw new IllegalValueException("Supply Item price is missing !");
+            throw new IllegalValueException("Supply Item's price field is missing !");
+        }
+
+        if (!Price.isValidPrice(price)) {
+            throw new IllegalValueException(Price.MESSAGE_CONSTRAINTS);
         }
 
         final Price modelPrice = new Price(price);
 
         if (phone == null) {
-            throw new IllegalValueException("Supply Item phone is missing !");
+            throw new IllegalValueException("Supply Item's phone field is missing !");
+        }
+
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
 
         final Phone modelPhone = new Phone(phone);
 
         if (personItem == null) {
-            throw new IllegalValueException("Supply Item personItem is missing !");
+            throw new IllegalValueException("Supply Item's personItem field is missing !");
         }
 
         final Item modelPersonItem = new Item(personItem);
 
         if (address == null) {
-            throw new IllegalValueException("Supply Item address is missing !");
+            throw new IllegalValueException("Supply Item's address field is missing !");
+        }
+
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
 
         final Address modelAddress = new Address(address);
