@@ -25,19 +25,19 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
 
-    // TODO: add prefixes for each Contact
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a person's Contacts. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_SLACK + "SLACK"
+            + PREFIX_TELEGRAM + "TELEGRAM"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_EMAIL + "e0123456@u.nus.edu "
+            + PREFIX_PHONE + "87654321"
+            + PREFIX_SLACK + "johndoe "
+            + PREFIX_TELEGRAM + "@johndoe";
 
-    public static final String MESSAGE_UPDATE_SUCCESS = "Contact updated: %1$s";
+    public static final String MESSAGE_UPDATE_SUCCESS = "Contact updated.";
 
     private final SetContactDescriptor setContactDescriptor;
 
@@ -55,11 +55,9 @@ public class SetCommand extends Command {
             throw new CommandException("no person selected");
         }
 
-
-
         Person updatedPerson = createUpdatedPerson(toUpdate, setContactDescriptor);
         model.setPerson(toUpdate, updatedPerson);
-        return new CommandResult(String.format(MESSAGE_UPDATE_SUCCESS, toUpdate));
+        return new CommandResult(MESSAGE_UPDATE_SUCCESS);
     }
 
     private Person createUpdatedPerson(Person personToEdit,
@@ -76,7 +74,6 @@ public class SetCommand extends Command {
                 newContacts.put(key, oldContacts.get(key));
             }
         }
-
 
         return new Person(name, addr, new HashSet<>(), newContacts);
     }
