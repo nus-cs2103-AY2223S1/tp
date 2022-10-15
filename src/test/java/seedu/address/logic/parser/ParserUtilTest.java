@@ -35,6 +35,10 @@ public class ParserUtilTest {
     private static final Integer INVALID_MONEY_PAID = -1;
     private static final String INVALID_CLASS_DATE_TIME = "2022 05 10 1500-1600";
     private static final String INVALID_EMPTY_CLASS_DATE_TIME = "";
+    private static final String INVALID_CLASS_DATE_TIME_DURATION = "2022-10-10 1500-1200";
+    private static final String INVALID_FLEXIBLE_CLASS_DAY_OF_WEEK = "Tues 1500-1600";
+    private static final String INVALID_FLEXIBLE_CLASS_TIME = "Tue 1500 1600";
+    private static final String INVALID_FLEXIBLE_CLASS_DATE_TIME_DURATION = "Tue 1500-1200";
     private static final String INVALID_TAG = "#python";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -228,6 +232,14 @@ public class ParserUtilTest {
     public void parseClassDateTime_invalidDateTime_throwsParseException() throws Exception {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_EMPTY_CLASS_DATE_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME_DURATION));
+    }
+
+    @Test
+    public void parseClassDateTime_invalidFlexibleDateTime_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DAY_OF_WEEK));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DATE_TIME_DURATION));
     }
 
     @Test
