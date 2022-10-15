@@ -10,6 +10,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Professor;
+import seedu.address.model.person.TeachingAssistant;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -35,6 +37,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label title;
+    @FXML
+    private Label number;
+    @FXML
     private Label phone;
     @FXML
     private ImageView gender;
@@ -51,7 +57,7 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        number.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         gender.setImage(getGenderImage(person));
@@ -60,6 +66,13 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (person instanceof Professor) {
+            title.setText("Professor");
+        } else if (person instanceof TeachingAssistant) {
+            title.setText("TA");
+        } else {
+            title.setText("Student");
+        }
     }
 
     private Image getGenderImage(Person person) {
