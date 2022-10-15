@@ -36,10 +36,10 @@ public class Name {
     /**
      * Represents an Empty Name.
      */
-    private static class EmptyClientName extends Name {
-        private static final Name EMPTY_NAME = new EmptyClientName();
-        private EmptyClientName() {
-            super("");
+    public static class EmptyName extends Name {
+        public static final Name EMPTY_NAME = new EmptyName();
+        public EmptyName() {
+            super("abcdefg");
         }
 
         /**
@@ -54,15 +54,15 @@ public class Name {
 
 
     /**
-     * Returns true if a given string is a valid name. A name is valid only if it contains oly letters and spaces and
-     * had a maximum of three words, each of length less than 10 characters.
+     * Returns true if a given string is a valid name. A name is valid only if it contains only letters and spaces and
+     * had a maximum of four words, each of length less than 10 characters.
      * @param test String representing name to be tested
      * @return boolean true if a given string is a valid name
      */
     public static boolean isValidName(String test) {
 
         String[] words = test.split(" ");
-        boolean hasCorrectWordCount = words.length > 0 && words.length <= 3;
+        boolean hasCorrectWordCount = words.length > 0 && words.length <= 4;
         boolean hasCorrectWordFormat = isValidWordArray(words);
         return !test.isEmpty() && hasCorrectWordFormat && hasCorrectWordCount;
     }

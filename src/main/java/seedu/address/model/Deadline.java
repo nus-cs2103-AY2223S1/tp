@@ -14,11 +14,21 @@ public class Deadline {
     /**
      * Represents an empty deadline.
      */
-    private static class EmptyDeadline extends Deadline {
-        private static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
+    public static class EmptyDeadline extends Deadline {
+        public static final Deadline EMPTY_DEADLINE = new EmptyDeadline();
 
         private EmptyDeadline() {
-            super("");
+            super("0001-01-01");
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
+        @Override
+        public String uiRepresentation() {
+            return "No Deadline Set";
         }
     }
 
@@ -43,6 +53,10 @@ public class Deadline {
         this.deadline = LocalDate.parse(deadline);
     }
 
+    public boolean isEmpty() {
+        return false;
+    }
+
     /**
      * Returns true if a given string is a valid deadline.
      */
@@ -54,8 +68,19 @@ public class Deadline {
         return deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    public String uiRepresentation() {
+        return "Due by: " + this.getFormattedDeadline();
+    }
+
     @Override
     public String toString() {
         return deadline.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Deadline // instanceof handles nulls
+                && deadline.equals(((Deadline) other).deadline)); // state check
     }
 }

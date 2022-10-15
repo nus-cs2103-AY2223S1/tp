@@ -17,12 +17,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.list.DuplicateException;
 import seedu.address.model.list.NotFoundException;
-import seedu.address.model.list.UniqueList;
+import seedu.address.model.list.UniqueEntityList;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
 
-    private final UniqueList<Person> uniquePersonList = new UniqueList<Person>();
+    private final UniqueEntityList<Person> uniquePersonList = new UniqueEntityList<Person>();
 
     @Test
     public void contains_nullPerson_throwsNullPointerException() {
@@ -78,7 +78,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonIsSamePerson_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.setItem(ALICE, ALICE);
-        UniqueList<Person> expectedUniquePersonList = new UniqueList<Person>();
+        UniqueEntityList<Person> expectedUniquePersonList = new UniqueEntityList<Person>();
         expectedUniquePersonList.add(ALICE);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -89,7 +89,7 @@ public class UniquePersonListTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniquePersonList.setItem(ALICE, editedAlice);
-        UniqueList<Person> expectedUniquePersonList = new UniqueList<Person>();
+        UniqueEntityList<Person> expectedUniquePersonList = new UniqueEntityList<Person>();
         expectedUniquePersonList.add(editedAlice);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -98,7 +98,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasDifferentIdentity_success() {
         uniquePersonList.add(ALICE);
         uniquePersonList.setItem(ALICE, BOB);
-        UniqueList<Person> expectedUniquePersonList = new UniqueList<Person>();
+        UniqueEntityList<Person> expectedUniquePersonList = new UniqueEntityList<Person>();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
@@ -124,19 +124,19 @@ public class UniquePersonListTest {
     public void remove_existingPerson_removesPerson() {
         uniquePersonList.add(ALICE);
         uniquePersonList.remove(ALICE);
-        UniqueList<Person> expectedUniquePersonList = new UniqueList<Person>();
+        UniqueEntityList<Person> expectedUniquePersonList = new UniqueEntityList<Person>();
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }
 
     @Test
     public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setList((UniqueList<Person>) null));
+        assertThrows(NullPointerException.class, () -> uniquePersonList.setList((UniqueEntityList<Person>) null));
     }
 
     @Test
     public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
         uniquePersonList.add(ALICE);
-        UniqueList<Person> expectedUniquePersonList = new UniqueList<Person>();
+        UniqueEntityList<Person> expectedUniquePersonList = new UniqueEntityList<Person>();
         expectedUniquePersonList.add(BOB);
         uniquePersonList.setList(expectedUniquePersonList);
         assertEquals(expectedUniquePersonList, uniquePersonList);
@@ -152,7 +152,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         List<Person> personList = Collections.singletonList(BOB);
         uniquePersonList.setList(personList);
-        UniqueList<Person> expectedUniquePersonList = new UniqueList<Person>();
+        UniqueEntityList<Person> expectedUniquePersonList = new UniqueEntityList<Person>();
         expectedUniquePersonList.add(BOB);
         assertEquals(expectedUniquePersonList, uniquePersonList);
     }

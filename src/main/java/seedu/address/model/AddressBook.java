@@ -1,14 +1,15 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Person;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.list.UniqueEntityList;
+import seedu.address.model.project.Project;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.client.Person;
-import seedu.address.model.issue.Issue;
-import seedu.address.model.list.UniqueList;
-import seedu.address.model.project.Project;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -16,13 +17,10 @@ import seedu.address.model.project.Project;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private int projectCount = 1;
-    private int clientCount = 1;
-    private int issueCount = 1;
-
-    private final UniqueList<Person> persons;
-    private final UniqueList<Project> projects;
-    private final UniqueList<Issue> issues;
+    private final UniqueEntityList<Person> persons;
+    private final UniqueEntityList<Client> clients;
+    private final UniqueEntityList<Project> projects;
+    private final UniqueEntityList<Issue> issues;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,9 +30,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueList<Person>();
-        projects = new UniqueList<Project>();
-        issues = new UniqueList<Issue>();
+        persons = new UniqueEntityList<Person>();
+        projects = new UniqueEntityList<Project>();
+        issues = new UniqueEntityList<Issue>();
+        clients = new UniqueEntityList<Client>();
     }
 
     public AddressBook() {}
@@ -74,6 +73,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
+     */
+    public void setClients(List<Client> clients) {
+        this.clients.setList(clients);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -82,6 +89,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setIssues(newData.getIssueList());
         setProjects(newData.getProjectList());
+        setClients(newData.getClientList());
     }
 
     //// client-level operations
@@ -111,6 +119,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     */
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clients.contains(client);
+    }
+
+    /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.
      */
@@ -132,6 +148,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addIssue(Issue i) {
         issues.add(i);
+    }
+
+    /**
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
+     */
+    public void addClient(Client c) {
+        clients.add(c);
     }
 
     /**
@@ -170,6 +194,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given issue {@code target} in the list with {@code editedClient}.
+     * {@code target} must exist in the address book.
+     * The issue identity of {@code editedClient} must not be the same as another
+     * existing client in the address book.
+     */
+    public void setClient(Client target, Client editedClient) {
+        requireNonNull(editedClient);
+
+        clients.setItem(target, editedClient);
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
@@ -193,13 +229,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         issues.remove(key);
     }
 
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeClient(Client key) {
+        clients.remove(key);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons\n"
                 + projects.asUnmodifiableObservableList().size() + " projects\n"
-                + issues.asUnmodifiableObservableList().size() + " issues\n";
+                + issues.asUnmodifiableObservableList().size() + " issues\n"
+                + clients.asUnmodifiableObservableList().size() + " clients\n";
     }
 
     @Override
@@ -217,51 +262,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         return issues.asUnmodifiableObservableList();
     }
 
-    /**
-     * @return
-     */
     @Override
-    public String getProjectCount() {
-        return String.valueOf(this.projectCount);
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String getIssueCount() {
-        return String.valueOf(this.issueCount);
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String getClientCount() {
-        return String.valueOf(this.clientCount);
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && clients.equals(((AddressBook) other).clients));
     }
 
     @Override
     public int hashCode() {
         // TODO: Check for appropriate hashcode
-        return persons.hashCode();
-    }
-
-    public void setCounts(String clientCount, String projectCount, String issueCount) {
-        try {
-            this.clientCount = Integer.parseInt(clientCount);
-            this.projectCount = Integer.parseInt(projectCount);
-            this.issueCount = Integer.parseInt(issueCount);
-        } catch (NumberFormatException e) {
-            // TODO: Show logger that no previous counts recorded
-            return;
-        }
+        return clients.hashCode();
     }
 }

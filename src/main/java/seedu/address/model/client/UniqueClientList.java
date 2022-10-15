@@ -21,19 +21,19 @@ import seedu.address.model.client.exceptions.DuplicateClientException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Client#isSameClient(Client)
+ * @see Client#hasSameName(Client)
  */
 public class UniqueClientList implements Iterable<Client> {
-    private final ObservableList<Client> internalList = FXCollections.observableArrayList();
+    private static final ObservableList<Client> internalList = FXCollections.observableArrayList();
     private final ObservableList<Client> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent client as the given argument.
      */
-    public boolean contains(Client toCheck) {
+    public static boolean contains(Client toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameClient);
+        return internalList.stream().anyMatch(toCheck::hasSameName);
     }
 
     /**
@@ -61,7 +61,7 @@ public class UniqueClientList implements Iterable<Client> {
             throw new ClientNotFoundException();
         }
 
-        if (!target.isSameClient(editedClient) && contains(editedClient)) {
+        if (!target.hasSameName(editedClient) && contains(editedClient)) {
             throw new DuplicateClientException();
         }
 
@@ -72,10 +72,36 @@ public class UniqueClientList implements Iterable<Client> {
      * Removes the equivalent client from the list.
      * The client must exist in the list.
      */
-    public void remove(Client toRemove) {
+    public static void remove(Client toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ClientNotFoundException();
+        }
+    }
+
+    public static Client getClient(ClientId id) {
+        for (Client c: internalList) {
+            if (c.getClientId().equals(id)) {
+                return c;
+            }
+        }
+        return Client.EmptyClient.EMPTY_CLIENT;
+    }
+
+    /**
+     * Generates an object id based on the current highest object id
+     */
+    public static int generateId() {
+        if (internalList.size() == 0) {
+            return 1;
+        } else {
+            int count = 0;
+            for (Client i: internalList) {
+                if (i.getClientId().getIdInt() > count) {
+                    count = i.getClientId().getIdInt();
+                }
+            }
+            return count + 1;
         }
     }
 
@@ -127,7 +153,7 @@ public class UniqueClientList implements Iterable<Client> {
     private boolean clientsAreUnique(List<Client> clients) {
         for (int i = 0; i < clients.size() - 1; i++) {
             for (int j = i + 1; j < clients.size(); j++) {
-                if (clients.get(i).isSameClient(clients.get(j))) {
+                if (clients.get(i).hasSameName(clients.get(j))) {
                     return false;
                 }
             }

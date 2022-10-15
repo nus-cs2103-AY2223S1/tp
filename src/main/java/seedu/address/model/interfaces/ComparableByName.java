@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.interfaces;
 
 public interface ComparableByName<T> {
 

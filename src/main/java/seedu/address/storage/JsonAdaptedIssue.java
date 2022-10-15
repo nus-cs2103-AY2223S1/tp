@@ -1,10 +1,9 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
@@ -12,12 +11,12 @@ import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.exceptions.IllegalValueException;
 
 /**
  * Jackson-friendly version of {@link Issue}.
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "issueId")
 class JsonAdaptedIssue {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Issue's %s field is missing!";
@@ -28,7 +27,7 @@ class JsonAdaptedIssue {
     private final String status;
     private final String issueId;
 
-    private final JsonAdaptedProject project;
+    private final String project;
 
     /**
      * Constructs a {@code JsonAdaptedIssue} with the given issue details.
@@ -39,7 +38,7 @@ class JsonAdaptedIssue {
                              @JsonProperty("deadline") String deadline,
                             @JsonProperty("status") String status,
                             @JsonProperty("issueId") String issueId,
-                            @JsonProperty("project") JsonAdaptedProject project) {
+                            @JsonProperty("project") String project) {
         this.description = description;
         this.priority = priority;
         this.deadline = deadline;
@@ -56,8 +55,8 @@ class JsonAdaptedIssue {
         priority = source.getPriority().toString();
         deadline = source.getDeadline().toString();
         status = source.getStatus().toString();
-        issueId = source.getId().toString();
-        project = new JsonAdaptedProject(source.getProject());
+        issueId = source.getIssueId().toString();
+        project = source.getProject().getProjectId().toString();
     }
 
     /**
@@ -65,7 +64,7 @@ class JsonAdaptedIssue {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted issue.
      */
-    public Issue toModelType() throws IllegalValueException {
+    public Issue toModelType(AddressBook addressBook) throws IllegalValueException {
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -80,9 +79,9 @@ class JsonAdaptedIssue {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Priority.class.getSimpleName()));
         }
-        if (!Priority.isValidPriority(priority)) {
-            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
-        }
+        //        if (!Priority.isValidPriority(priority)) {
+        //            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        //        }
         final Priority modelPriority = Priority.valueOf(priority);
 
         if (deadline == null) {
@@ -102,11 +101,13 @@ class JsonAdaptedIssue {
         }
         final Status modelStatus = new Status(Boolean.valueOf(status));
 
-        if (project == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Project.class.getSimpleName()));
-        }
+        //        if (project == null) {
+        //            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+        //            Project.class.getSimpleName()));
+        //        }
+        //
+        final Project modelProject = UniqueProjectList.getProject(Integer.parseInt(project));
 
-        final Project modelProject = project.toModelType();
 
         if (issueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IssueId.class.getSimpleName()));

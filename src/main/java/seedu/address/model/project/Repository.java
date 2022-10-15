@@ -11,11 +11,20 @@ public class Repository {
     /**
      * Represents an empty Project repository.
      */
-    private static class EmptyRepository extends Repository {
-        private static final Repository EMPTY_REPOSITORY = new EmptyRepository();
+    public static class EmptyRepository extends Repository {
+        public static final Repository EMPTY_REPOSITORY = new EmptyRepository();
 
         private EmptyRepository() {
-            super("");
+            super("conrad/tp");
+        }
+
+        /**
+         * Checks if this Repository is empty.
+         * @return true since the Repository is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
         }
     }
 
@@ -42,6 +51,14 @@ public class Repository {
     }
 
     /**
+     * Checks if this Repository is empty.
+     * @return false since the Repository is not empty.
+     */
+    public boolean isEmpty() {
+        return false;
+    }
+
+    /**
      * Returns true if a given string is a valid repository.
      */
     public static boolean isValidRepository(String repository) {
@@ -51,8 +68,16 @@ public class Repository {
     public String getRepositoryUrl() {
         return "https://github.com/" + projectRepository;
     }
+
     @Override
     public String toString() {
         return projectRepository;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Repository // instanceof handles nulls
+                && projectRepository.equals(((Repository) other).projectRepository)); // state check
     }
 }

@@ -4,16 +4,17 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
-import seedu.address.model.ComparableByName;
+import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 
 /**
  * Represents a Project.
  */
-public class Project implements ComparableByName<Project> {
+public class Project implements ComparableByName<Project>, HasIntegerIdentifier {
 
     // Components of a project
     private Name name;
@@ -28,7 +29,7 @@ public class Project implements ComparableByName<Project> {
      */
     public Project(Name name, Repository repository, Deadline deadline,
                    Client client, List<Issue> issueList, ProjectId projectId) {
-        requireAllNonNull(name, repository, deadline, client);
+        requireAllNonNull(name);
         this.name = name;
         this.repository = repository;
         this.deadline = deadline;
@@ -37,9 +38,48 @@ public class Project implements ComparableByName<Project> {
         this.projectId = projectId;
     }
 
-    public ProjectId getId() {
+    /**
+     * Name field must be present and not null .
+     */
+    public Project(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        //todo: set other fields to emptyOptionals post-merge
+    }
+
+    public void setClient(Client toAddClient) {
+        this.client = toAddClient;
+    }
+
+    @Override
+    public int getID() {
+        return this.projectId.getIdInt();
+    }
+
+    /**
+     * Represents an Empty Project.
+     */
+    public static class EmptyProject extends Project {
+        public static final Project EMPTY_PROJECT = new EmptyProject();
+        private EmptyProject() {
+            super(Name.EmptyName.EMPTY_NAME);
+        }
+
+        /**
+         * Checks if this Project is empty.
+         * @return true if the Project is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
+    }
+
+    public ProjectId getProjectId() {
         return projectId;
     }
+
     public Name getProjectName() {
         return name;
     }
@@ -58,6 +98,22 @@ public class Project implements ComparableByName<Project> {
 
     public List<Issue> getIssueList() {
         return issueList;
+    }
+
+    public void removeClient() {
+        this.client = Client.EmptyClient.EMPTY_CLIENT;
+    }
+
+    /**
+     * Checks if this Project is empty.
+     * @return true if the Project is empty.
+     */
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public boolean hasValidClientId() {
+        return !this.getClient().getClientId().isEmpty();
     }
 
     /**
@@ -79,7 +135,8 @@ public class Project implements ComparableByName<Project> {
                 && otherProject.getRepository().equals(getRepository())
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getClient().equals(getClient())
-                && otherProject.getIssueList().equals(getIssueList());
+                && otherProject.getIssueList().equals(getIssueList())
+                && otherProject.getProjectId().equals(getProjectId());
     }
 
     /**

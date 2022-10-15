@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +10,20 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.UniqueClientList;
+import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Priority;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
+import seedu.address.model.project.Repository;
+import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +59,64 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param clientId in string format from user input
+     * @return Client of the client id
+     * @throws ParseException if the fiven {@code client} is invalid.
+     */
+    public static Client parseClient(String clientId) throws ParseException, NumberFormatException {
+        requireNonNull(clientId);
+        String trimmedClientId = clientId.trim();
+        try {
+            Integer.parseInt(trimmedClientId);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ClientId.MESSAGE_INVALID);
+        }
+        ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
+        Client client = UniqueClientList.getClient(clientIdRes);
+        if (!Client.isValidClient(client)) {
+            throw new ParseException(Client.MESSAGE_INVALID);
+        }
+        return client;
+    }
+
+    /**
+     * Parses a {@code String repository} into a {@code Repository}.
+     * Leading a trailing whitespaces will be trimmed.
+     *
+     * @param repository string argument input
+     * @return parsed Repository object
+     * @throws ParseException if the given {@code repository} is invalid.
+     */
+    public static Repository parseRepository(String repository) throws ParseException {
+        requireNonNull(repository);
+        String trimmedRepository = repository.trim();
+        if (!Repository.isValidRepository(trimmedRepository)) {
+            throw new ParseException(Repository.MESSAGE_CONSTRAINTS);
+        }
+        return new Repository(trimmedRepository);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading a trailing whitespaces will be trimmed.
+     *
+     * @param deadline string argument input
+     * @return parsed Deadline object
+     * @throws ParseException if the given {@code deadline} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(trimmedDeadline);
     }
 
     /**
@@ -120,5 +189,82 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String priority} into a {@code Priority}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code priority} is invalid.
+     */
+    public static Priority parsePriority(String priority) throws ParseException {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+        if (!Priority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        switch (trimmedPriority) {
+        case ("0"):
+            return Priority.LOW;
+        case ("1"):
+            return Priority.MEDIUM;
+        case ("2"):
+            return Priority.HIGH;
+        default:
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String projectId} into a {@code Project}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code projectId} is invalid.
+     */
+    public static Project parseProject(String projectId) throws ParseException {
+        requireNonNull(projectId);
+        String trimmedId = projectId.trim();
+        int trimmedIdInt = Integer.parseInt(trimmedId);
+        if (!ProjectId.isValidProjectId(trimmedId)) {
+            throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
+        }
+        // TODO: to retrieve project through a project getter (modify based on getter)
+        if (UniqueProjectList.getProject(trimmedIdInt) == null) {
+            throw new ParseException("No project with this project Id");
+        }
+        return UniqueProjectList.getProject(trimmedIdInt);
+    }
+
+    /**
+     * Parses a {@code String projectId} into a stub default {@code Project}.
+     *
+     * @param projectId is the id of the project
+     * @return A stub default project
+     */
+    public static Project parseProjectStub(String projectId) throws ParseException {
+        requireNonNull(projectId);
+        String trimmedId = projectId.trim();
+        int trimmedIdInt = Integer.parseInt(trimmedId);
+        if (!ProjectId.isValidProjectId(trimmedId)) {
+            throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
+        }
+        return new Project(new Name("default"), new Repository("default/default"),
+                new Deadline("2022-03-05"), new Client(new Name("default")),
+                new ArrayList<>(), new ProjectId(trimmedIdInt));
     }
 }

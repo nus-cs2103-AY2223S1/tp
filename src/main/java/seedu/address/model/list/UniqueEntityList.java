@@ -2,7 +2,8 @@ package seedu.address.model.list;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.ComparableByName;
+import seedu.address.model.interfaces.ComparableByName;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
+public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifier> implements Iterable<T> {
 
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
@@ -67,7 +68,7 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
         }
     }
 
-    public void setList(UniqueList<T> replacement) {
+    public void setList(UniqueEntityList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -100,8 +101,8 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueList<?> // instanceof handles nulls
-                && internalList.equals(((UniqueList) other).internalList));
+                || (other instanceof UniqueEntityList<?> // instanceof handles nulls
+                && internalList.equals(((UniqueEntityList) other).internalList));
     }
 
     @Override
@@ -121,5 +122,13 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
             }
         }
         return true;
+    }
+
+    public int generateNextID() {
+        int maxID = 0;
+        for (T t: this) {
+            maxID = t.getID() > maxID ? t.getID() : maxID;
+        }
+        return maxID + 1;
     }
 }

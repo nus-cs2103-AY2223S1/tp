@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -30,13 +31,13 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label repository;
+    private Hyperlink repository;
     @FXML
     private Label deadline;
     @FXML
     private Label client;
     @FXML
-    private Label issues;
+    private Label issueCount;
 
     /**
      * Creates a {@code ProjectCard} with the given {@code Project} and index to display.
@@ -44,12 +45,15 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        id.setText(displayedIndex + ". ");
-        name.setText(project.getProjectName().toString());
-        repository.setText(project.getRepository().getRepositoryUrl());
-        deadline.setText(project.getDeadline().getFormattedDeadline());
-        client.setText(project.getClient().toString());
-        issues.setText(String.valueOf(project.getIssueList().size()));
+        name.setText(project.getProjectName().toString() + " " + project.getProjectId().uiRepresentation());
+        repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
+                : project.getRepository().getRepositoryUrl());
+        deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"
+                : project.getDeadline().getFormattedDeadline());
+        client.setText(project.getClient().isEmpty()
+                ? "No Client Set"
+                : "In Charge: " + project.getClient().uiRepresentation());
+        issueCount.setText(project.getIssueList().size() + " issues");
 
     }
 

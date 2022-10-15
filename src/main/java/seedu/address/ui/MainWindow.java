@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ProjectListPanel projectListPanel;
     private IssueListPanel issueListPanel;
+    private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -115,9 +116,10 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
 
         // TODO: Add different panel root to listPanelPlaceholder depending on what entity is to be displayed
-        listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -141,10 +143,16 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
     }
 
-    void swapClientListDisplay() {
+    void swapPersonListDisplay() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    void swapClientListDisplay() {
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
     }
 
     /**
@@ -189,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public ClientListPanel getClientListPanel() {
+        return clientListPanel;
     }
 
     public ProjectListPanel getProjectListPanel() {

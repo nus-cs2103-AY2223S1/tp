@@ -2,12 +2,9 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -24,7 +21,6 @@ import seedu.address.model.tag.exceptions.IllegalValueException;
 /**
  * Jackson-friendly version of {@link Project}.
  */
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "projectId")
 class JsonAdaptedProject {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Project's %s field is missing!";
@@ -67,10 +63,7 @@ class JsonAdaptedProject {
         repository = source.getRepository().toString();
         deadline = source.getDeadline().toString();
         client = new JsonAdaptedClient(source.getClient());
-        projectId = source.getId().toString();
-        issues.addAll(source.getIssueList().stream()
-                .map(JsonAdaptedIssue::new)
-                .collect(Collectors.toList()));
+        projectId = source.getProjectId().toString();
     }
 
     /**
@@ -111,9 +104,6 @@ class JsonAdaptedProject {
 
         final Client modelClient = client.toModelType();
         final List<Issue> modelIssues = new ArrayList<>();
-        for (JsonAdaptedIssue issue : issues) {
-            modelIssues.add(issue.toModelType());
-        }
 
         if (projectId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

@@ -2,15 +2,21 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.Name;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
 
 /**
- * Stub class for Client.
+ * Represents a Client associated with a project. This is modelled after the AB3 Person.
  */
-public class Client {
+public class Client implements ComparableByName<Client>, HasIntegerIdentifier {
+
+    public static final String MESSAGE_INVALID = "Client does not exist in the project.";
+
     //Represents the Client's name
     private Name name;
 
@@ -40,8 +46,58 @@ public class Client {
         this.clientId = clientId;
     }
 
+    /**
+     * Constructs a client with inputs given by the user.
+     * @param name String representing name of the client
+     */
+    public Client(Name name) {
+        requireAllNonNull(name);
+        this.name = name;
+        this.phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
+        this.email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
+        this.projects = new ArrayList<>();
+        this.clientId = ClientId.EmptyClientId.EMPTY_CLIENT_ID;
+    }
+
     public ClientId getClientId() {
         return this.clientId;
+    }
+
+    /**
+     * Checks if this Client is empty.
+     * @return true if the Client is empty.
+     */
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public int getProjectListSize() {
+        return this.projects.size();
+    }
+
+    @Override
+    public int getID() {
+        return this.getClientId().getIdInt();
+    }
+
+    /**
+     * Represents an Empty Client.
+     */
+    public static class EmptyClient extends Client {
+        public static final Client EMPTY_CLIENT = new EmptyClient();
+        private EmptyClient() {
+            super(Name.EmptyName.EMPTY_NAME);
+        }
+
+        /**
+         * Checks if this Client is empty.
+         * @return true if the Client is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
     }
 
     /**
@@ -68,8 +124,32 @@ public class Client {
         return this.phone;
     }
 
+    /**
+     * Returns the list of projects under the client.
+     * @return String representing client's phone.
+     */
     public List<Project> getProjects() {
-        return projects;
+        return this.projects;
+    }
+
+    /**
+     * Add A project to the client's project list.
+     */
+    public void addProjects(Project project) {
+        projects.add(project);
+    }
+
+    /**
+     * Returns the string for display in the UI
+     *
+     * @return String for display in the UI
+     */
+    public String uiRepresentation() {
+        return this.name.toString() + " " + this.phone.toString();
+    }
+
+    public void removeProject(Project p) {
+        this.projects.remove(p);
     }
 
 
@@ -77,13 +157,29 @@ public class Client {
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.
      */
-    public boolean isSameClient(Client otherClient) {
+    @Override
+    public boolean hasSameName(Client otherClient) {
         if (otherClient == this) {
             return true;
         }
 
         return otherClient != null
                 && otherClient.getClientName().equals(getClientName());
+    }
+
+    /**
+     * Returns true if client is valid and exists.
+     */
+    public static boolean isValidClient(Client client) {
+        if (client == EmptyClient.EMPTY_CLIENT) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.name.getFullNameRepresentation();
     }
 
     /**
@@ -106,21 +202,4 @@ public class Client {
             return false;
         }
     }
-
-
-    //    /**
-    //     * Returns a list containing the projects the client is associated with.
-    //     * @return String representing client's projects.
-    //     */
-    //    public String getClientProjectList() {
-    //        return this.projects.listAllProjects();
-    //    }
-    //
-    //    /**
-    //     * Returns the type of the client.
-    //     * @return String representing client type
-    //     */
-    //    public String getClientType() {
-    //        return this.type.toString();
-    //    }
 }

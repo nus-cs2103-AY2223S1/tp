@@ -28,10 +28,10 @@ public class ClientPhone {
     /**
      * Represents an Empty Client Phone.
      */
-    private static class EmptyClientPhone extends ClientPhone {
-        private static final ClientPhone EMPTY_PHONE = new EmptyClientPhone();
-        private EmptyClientPhone() {
-            super("");
+    public static class EmptyClientPhone extends ClientPhone {
+        public static final ClientPhone EMPTY_PHONE = new EmptyClientPhone();
+        public EmptyClientPhone() {
+            super("90000000");
         }
 
         /**
@@ -64,7 +64,7 @@ public class ClientPhone {
      * @return String representing phone
      */
     public String getPhoneRepresentation() {
-        return "Client Phone: " + this.phone;
+        return "Contact: " + this.phone;
     }
 
     /**

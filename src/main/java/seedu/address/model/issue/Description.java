@@ -8,6 +8,21 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
+    /**
+     * Represents an empty description.
+     */
+    public static class EmptyDescription extends Description {
+        public static final Description EMPTY_DESCRIPTION = new EmptyDescription();
+
+        private EmptyDescription() {
+            super("there's nothing");
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+    }
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions can take any values, and it should not be blank";
 
@@ -37,8 +52,23 @@ public class Description {
         return description.matches(VALIDATION_REGEX);
     }
 
+    public boolean isEmpty() {
+        return false;
+    }
+
+    public String uiRepresentation() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         return this.description;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Description // instanceof handles nulls
+                && description.equals(((Description) other).description));
     }
 }
