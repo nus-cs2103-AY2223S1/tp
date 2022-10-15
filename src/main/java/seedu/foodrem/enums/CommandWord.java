@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
@@ -142,7 +141,15 @@ public enum CommandWord {
     SORT_COMMAND("sort") {
         @Override
         public String getUsage() {
-            return SortCommand.getUsage();
+            return getCommandWord() + ": Sorts all items according to a specified criteria."
+                    + "Available criteria includes sorting by name, quantity, type, bought date, expiry date.\n"
+                    + "Parameters: "
+                    + CliSyntax.PREFIX_NAME + " "
+                    + CliSyntax.PREFIX_ITEM_QUANTITY + " "
+                    + CliSyntax.PREFIX_ITEM_UNIT + " "
+                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + " "
+                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "...\n"
+                    + "Example: " + getCommandWord() + "name";
         }
     },
     VIEW_COMMAND("view") {

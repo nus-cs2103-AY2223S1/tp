@@ -1,12 +1,11 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.foodrem.enums.CommandWord.SORT_COMMAND;
 
 import seedu.foodrem.commons.core.Messages;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
-import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.util.ChainComparator;
@@ -22,19 +21,6 @@ import seedu.foodrem.model.util.ChainComparator;
  * - Expiry Date
  */
 public class SortCommand extends Command {
-    private static final String COMMAND_WORD = CommandWord.SORT_COMMAND.getCommandWord();
-
-    private static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Sorts all items according to a specified criteria."
-                    + "Available criteria includes sorting by name, quantity, type, bought date, expiry date.\n"
-                    + "Parameters: "
-                    + CliSyntax.PREFIX_NAME + " "
-                    + CliSyntax.PREFIX_ITEM_QUANTITY + " "
-                    + CliSyntax.PREFIX_ITEM_UNIT + " "
-                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + " "
-                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "...\n"
-                    + "Example: " + COMMAND_WORD + "name";
-
     private final ChainComparator<Item> comparator;
 
     public SortCommand(ChainComparator<Item> comparator) {
@@ -50,7 +36,7 @@ public class SortCommand extends Command {
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return SORT_COMMAND.getUsage();
     }
 
     @Override
