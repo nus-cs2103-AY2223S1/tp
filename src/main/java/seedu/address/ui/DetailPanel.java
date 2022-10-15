@@ -74,6 +74,7 @@ public class DetailPanel extends MainPanel {
                         .map(ContactBox::new)
                         .collect(Collectors.toList()));
 
+        contactBoxContainer.getChildren().clear();
         contactBoxContainer.getChildren().addAll(contactBoxList.stream()
                 .map(ContactBox::getRoot)
                 .collect(Collectors.toList()));

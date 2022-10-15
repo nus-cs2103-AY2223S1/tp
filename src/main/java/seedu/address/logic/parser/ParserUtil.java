@@ -13,7 +13,10 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.contact.Email;
 import seedu.address.model.person.contact.Phone;
+import seedu.address.model.person.contact.Slack;
+import seedu.address.model.person.contact.Telegram;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +123,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a String slack into a Slack.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given slack is invalid.
+     */
+    public static Slack parseSlack(String slack) throws ParseException {
+        requireNonNull(slack);
+        String trimmedSlack = slack.trim();
+        if (!Slack.isValidSlack(slack)) {
+            throw new ParseException(Slack.MESSAGE_CONSTRAINTS);
+        }
+        return new Slack(slack);
+    }
+
+    /**
+     * Parses a String slack into a Slack.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given slack is invalid.
+     */
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTele = telegram.trim();
+        if (!Telegram.isValidTelegram(telegram)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(telegram);
     }
 }
