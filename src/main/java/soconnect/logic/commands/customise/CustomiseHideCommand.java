@@ -19,13 +19,14 @@ public class CustomiseHideCommand extends CustomiseCommand {
 
     public static final String COMMAND_WORD = "hide";
 
-    public static final String MESSAGE_USAGE = "customise " + COMMAND_WORD + " : Hides details\n"
+    public static final String MESSAGE_USAGE = CustomiseCommand.COMMAND_WORD + " "
+            + COMMAND_WORD + " : Hides details\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
             + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_TAG + "]\n"
-            + "Examples: " + COMMAND_WORD + " hide p/ a/";
+            + "Examples: " + CustomiseCommand.COMMAND_WORD + " " + COMMAND_WORD + " p/ a/";
 
     public static final String MESSAGE_SUCCESS = "Attributes specified are hidden.";
 

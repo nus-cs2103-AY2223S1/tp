@@ -19,13 +19,14 @@ public class CustomiseShowCommand extends CustomiseCommand {
 
     public static final String COMMAND_WORD = "show";
 
-    public static final String MESSAGE_USAGE = "customise " + COMMAND_WORD + " : Shows details\n"
+    public static final String MESSAGE_USAGE = CustomiseCommand.COMMAND_WORD + " "
+            + COMMAND_WORD + " : Shows details\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
             + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_TAG + "]\n"
-            + "Examples: " + COMMAND_WORD + " show p/ a/";
+            + "Examples: " + CustomiseCommand.COMMAND_WORD + " " + COMMAND_WORD + " p/ a/";
 
     public static final String MESSAGE_SUCCESS = "Attributes specified are shown.";
 

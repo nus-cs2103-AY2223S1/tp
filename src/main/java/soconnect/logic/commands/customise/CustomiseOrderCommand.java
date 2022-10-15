@@ -21,13 +21,14 @@ public class CustomiseOrderCommand extends CustomiseCommand {
 
     public static final String COMMAND_WORD = "order";
 
-    public static final String MESSAGE_USAGE = "customise " + COMMAND_WORD + " : Changes the order of the details\n"
+    public static final String MESSAGE_USAGE = CustomiseCommand.COMMAND_WORD + " "
+            + COMMAND_WORD + " : Changes the order of the details\n"
             + "Parameters: "
             + "[" + PREFIX_PHONE + "] "
             + "[" + PREFIX_EMAIL + "] "
             + "[" + PREFIX_ADDRESS + "] "
             + "[" + PREFIX_TAG + "]\n"
-            + "Example: " + COMMAND_WORD + " order p/ a/";
+            + "Example: " + CustomiseCommand.COMMAND_WORD + " " + COMMAND_WORD + " p/ a/";
 
     public static final String MESSAGE_SUCCESS = "Preferred order of details changed.";
 
