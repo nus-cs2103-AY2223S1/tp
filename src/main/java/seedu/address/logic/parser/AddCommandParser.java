@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonData;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.PersonData;
 
 /**
  * Parses input arguments and creates a new AddCommand object

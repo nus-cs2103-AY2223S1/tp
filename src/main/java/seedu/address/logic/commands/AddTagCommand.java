@@ -16,11 +16,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 import seedu.address.model.tag.Tag;
 
 /**
- * Add tag for an existing person in the address book.
+ * Add tag for an existing student in the address book.
  */
 public class AddTagCommand extends Command {
 
@@ -30,7 +30,7 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, new tag: %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags for a person in the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags for a student in the address book.\n"
         + "Parameters:\n"
         + "  INDEX (must be a positive integer or use \"all\" to add tags for everyone in the list) \n"
         + "  [" + PREFIX_TAG + "TAG]...\n"
@@ -47,11 +47,11 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
 
     /**
-     * Index of the person to add the tags for.
-     * If index is null, the tags will be added for every person in the list.
+     * Index of the student to add the tags for.
+     * If index is null, the tags will be added for every student in the list.
      */
     private Index index;
 
@@ -67,7 +67,7 @@ public class AddTagCommand extends Command {
      * Constructs AddTagCommand that will add specified tag to all persons in the
      * displayed list.
      *
-     * @param tags of the person to be added
+     * @param tags of the student to be added
      */
     public AddTagCommand(Set<Tag> tags) {
         requireNonNull(tags);
@@ -78,8 +78,8 @@ public class AddTagCommand extends Command {
     }
 
     /**
-     * @param index of the person in the filtered person list to add the tag
-     * @param tags of the person to be added
+     * @param index of the student in the filtered student list to add the tag
+     * @param tags of the student to be added
      */
     public AddTagCommand(Index index, Set<Tag> tags) {
         requireNonNull(tags);
@@ -121,9 +121,9 @@ public class AddTagCommand extends Command {
     }
 
     /**
-     * Adds tags for a single person in the displayed list.
+     * Adds tags for a single student in the displayed list.
      * @param model {@code Model} which the command should operate on.
-     * @param index of the person for whom the tags will be added.
+     * @param index of the student for whom the tags will be added.
      * @param personToEdit for whom the tags will be added.
      * @return feedback message of the operation result for display.
      * @throws CommandException If an error occurs during command execution.

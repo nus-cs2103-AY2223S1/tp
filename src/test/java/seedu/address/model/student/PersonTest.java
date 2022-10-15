@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -69,7 +69,7 @@ public class PersonTest {
         // different type -> returns false
         assertFalse(ALICE.equals(5));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
@@ -95,7 +95,7 @@ public class PersonTest {
 
     @Test
     public void getPersonData() {
-        // reconstruction person from getPersonData returns same person
+        // reconstruction student from getPersonData returns same student
         assertTrue(ALICE.isSamePerson(new Person(ALICE.getPersonData())));
 
         // personData returned from getPersonData() should be equal across invocations

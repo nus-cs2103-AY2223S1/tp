@@ -12,20 +12,20 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonData;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.PersonData;
 
 /**
- * Unmarks the specified attendance record from the person identified using its displayed index.
+ * Unmarks the specified attendance record from the student identified using its displayed index.
  */
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unmarks the attendance for person identified by the index number used in the displayed"
-            + " person list.\n Removes attendance record for the class or tutorial specified in the parameter.\n"
+            + ": Unmarks the attendance for student identified by the index number used in the displayed"
+            + " student list.\n Removes attendance record for the class or tutorial specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer) "
             + PREFIX_CLASS + " [CLASS]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS + " T01";
@@ -37,8 +37,8 @@ public class UnmarkCommand extends Command {
     private final Attendance attendance;
 
     /**
-     * @param index Index of the person in the filtered person list to remove the attendance
-     * @param attendance Attendance of the person to be removed
+     * @param index Index of the student in the filtered student list to remove the attendance
+     * @param attendance Attendance of the student to be removed
      */
     public UnmarkCommand(Index index, Attendance attendance) {
         this.index = index;

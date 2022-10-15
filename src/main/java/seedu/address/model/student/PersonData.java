@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import java.util.HashSet;
 import java.util.Objects;

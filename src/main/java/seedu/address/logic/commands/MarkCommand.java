@@ -12,20 +12,20 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonData;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Person;
+import seedu.address.model.student.PersonData;
 
 /**
- * Marks a person identified using its displayed index from the address book as having attended a class or tutorial.
+ * Marks a student identified using its displayed index from the address book as having attended a class or tutorial.
  */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the attendance for person identified by the index number used in the displayed"
-            + " person list.\n Marks attendance for the class or tutorial specified in the parameter.\n"
+            + ": Marks the attendance for student identified by the index number used in the displayed"
+            + " student list.\n Marks attendance for the class or tutorial specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer) OPTION (must be absent/present) "
             + PREFIX_CLASS + " [CLASS]\n"
             + "Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + " T01";
@@ -36,8 +36,8 @@ public class MarkCommand extends Command {
     private final Attendance attendance;
 
     /**
-     * @param index Index of the person in the filtered person list to edit the attendance
-     * @param attendance Attendance of the person to be added
+     * @param index Index of the student in the filtered student list to edit the attendance
+     * @param attendance Attendance of the student to be added
      */
     public MarkCommand(Index index, Attendance attendance) {
         this.index = index;

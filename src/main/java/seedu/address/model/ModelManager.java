@@ -13,7 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.order.Order;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Person;
 
 /**
  * Represents the in-memory model of the address book data.

@@ -49,7 +49,7 @@ public class SortCommandTest {
         // null -> returns false
         assertFalse(sortFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different student -> returns false
         assertFalse(sortFirstCommand.equals(sortSecondCommand));
     }
 
