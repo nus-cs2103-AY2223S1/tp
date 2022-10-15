@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.EditCommand;
 import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 import seedu.travelr.testutil.EditTripDescriptorBuilder;
 
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;

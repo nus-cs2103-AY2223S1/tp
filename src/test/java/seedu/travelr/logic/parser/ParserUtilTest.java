@@ -2,9 +2,9 @@ package seedu.travelr.logic.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,9 +1,9 @@
 package seedu.travelr.testutil;
 
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.util.SampleDataUtil;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
 import java.util.HashSet;

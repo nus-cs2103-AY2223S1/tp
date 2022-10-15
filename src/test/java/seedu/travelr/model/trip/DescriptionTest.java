@@ -1,6 +1,7 @@
 package seedu.travelr.model.trip;
 
 import org.junit.jupiter.api.Test;
+import seedu.travelr.model.component.Description;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

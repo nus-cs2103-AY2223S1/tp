@@ -4,8 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 import static seedu.travelr.testutil.Assert.assertThrows;
-import seedu.travelr.model.trip.Title;
-import seedu.travelr.model.trip.Description;
+
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 
 public class EventTest {
 

@@ -2,8 +2,8 @@ package seedu.travelr.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 
 import java.util.ArrayList;
 import java.util.List;
