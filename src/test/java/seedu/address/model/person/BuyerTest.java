@@ -119,11 +119,11 @@ public class BuyerTest {
     public void equals_differentOrders() {
         Buyer buyer1 = new PersonBuilder().buildBuyer();
         Buyer buyer2 = new PersonBuilder().buildBuyer();
-        Order order1 = new Order(buyer1, new PriceRange(new Price(100), new Price(1000)),
+        Order order1 = new Order(ALICE, new PriceRange(new Price(100), new Price(1000)),
                 new Request(new Age(1), new Color("black"), new ColorPattern("black and white"),
                         new Species("cat")), new AdditionalRequests("cute"), LocalDate.now(),
                 new Price(100));
-        Order order2 = new Order(buyer2, new PriceRange(new Price(1), new Price(100)),
+        Order order2 = new Order(ALICE, new PriceRange(new Price(1), new Price(100)),
                 new Request(new Age(1), new Color("brown"), new ColorPattern("brown and white"),
                         new Species("cat")), new AdditionalRequests("pretty"), LocalDate.now(),
                 new Price(100));
