@@ -99,12 +99,8 @@ public class AddPersonCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,
                 expectedMessage);
 
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,
-                expectedMessage);
-
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB,
+        assertParseFailure(parser, VALID_NAME_BOB,
                 expectedMessage);
     }
 
