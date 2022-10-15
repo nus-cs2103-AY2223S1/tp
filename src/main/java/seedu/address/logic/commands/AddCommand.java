@@ -63,13 +63,13 @@ public class AddCommand extends UndoableCommand {
     }
 
     @Override
-    public CommandResult undo(Model model) throws CommandException {
+    public CommandResult undo(Model model) {
         model.deletePerson(toAdd);
         return new CommandResult(String.format(MESSAGE_UNDO, toAdd));
     }
 
     @Override
-    public CommandResult redo(Model model) throws CommandException {
+    public CommandResult redo(Model model) {
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_REDO, toAdd));
     }

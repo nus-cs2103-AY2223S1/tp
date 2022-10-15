@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -47,6 +48,33 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void undo_commandExecuted_undoSuccessful() throws Exception{
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person toAdd = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(toAdd);
+
+        addCommand.execute(modelStub);
+        CommandResult undoCommandResult = addCommand.undo(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_UNDO, toAdd), undoCommandResult.getFeedbackToUser());
+        assertEquals(new ArrayList<Person>(), modelStub.personsAdded);
+    }
+
+    @Test
+    public void redo_commandUndone_redoSuccessful() throws Exception{
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person personToAdd = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(personToAdd);
+
+        addCommand.execute(modelStub);
+        addCommand.undo(modelStub);
+        CommandResult redoCommandResult = addCommand.redo(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_REDO, personToAdd), redoCommandResult.getFeedbackToUser());
+        assertEquals(Collections.singletonList(personToAdd), modelStub.personsAdded);
     }
 
     @Test
@@ -182,6 +210,12 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void deletePerson(Person target) {
+            requireNonNull(target);
+            personsAdded.remove(target);
         }
 
         @Override
