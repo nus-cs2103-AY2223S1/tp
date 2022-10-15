@@ -1,11 +1,11 @@
 package seedu.foodrem.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
@@ -87,7 +87,15 @@ public enum CommandWord {
     INCREMENT_COMMAND("inc") {
         @Override
         public String getUsage() {
-            return IncrementCommand.getUsage();
+            return getCommandWord()
+                    + ": Increments the quantity of the item identified by the "
+                    + "index number used in the displayed item list.\n"
+                    + "If a quantity is not provided, the item quantity will be incremented by 1. \n"
+                    + "Parameters:\n"
+                    + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+                    + "Example:\n"
+                    + getCommandWord() + " 10\n"
+                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
         }
     },
     DECREMENT_COMMAND("dec") {
