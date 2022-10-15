@@ -10,10 +10,11 @@ import seedu.foodrem.model.Model;
  */
 public class ExitCommand extends Command {
 
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+
     private static final String COMMAND_WORD = CommandWord.EXIT_COMMAND.getCommandWord();
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits FoodRem."
             + "Example: " + COMMAND_WORD;
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     @Override
     public CommandResult execute(Model model) {

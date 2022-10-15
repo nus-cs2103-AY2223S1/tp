@@ -20,6 +20,9 @@ import seedu.foodrem.model.item.ItemQuantity;
  * Increments the quantity of an item by a specified amount.
  */
 public class IncrementCommand extends Command {
+
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Incremented Item: %1$s";
+
     private static final String COMMAND_WORD = CommandWord.INCREMENT_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -31,7 +34,6 @@ public class IncrementCommand extends Command {
             + COMMAND_WORD + " 10\n"
             + COMMAND_WORD + " 10 " + PREFIX_ITEM_QUANTITY + "100";
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Incremented Item: %1$s";
     private final Index index;
     private final ItemQuantity quantity;
 

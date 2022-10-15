@@ -13,10 +13,11 @@ import seedu.foodrem.model.Model;
  */
 public class ListCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Listed all items";
+
     private static final String COMMAND_WORD = CommandWord.LIST_COMMAND.getCommandWord();
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all items in FoodRem."
             + "Example: " + COMMAND_WORD;
-    public static final String MESSAGE_SUCCESS = "Listed all items";
 
     @Override
     public CommandResult execute(Model model) {

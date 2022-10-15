@@ -29,6 +29,10 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class EditCommand extends Command {
 
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
+
     private static final String COMMAND_WORD = CommandWord.EDIT_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the item identified "
@@ -44,9 +48,6 @@ public class EditCommand extends Command {
             + CliSyntax.PREFIX_ITEM_QUANTITY + "1000 "
             + CliSyntax.PREFIX_ITEM_QUANTITY + "grams";
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
     private final EditItemDescriptor editItemDescriptor;
     private final Index index;
 

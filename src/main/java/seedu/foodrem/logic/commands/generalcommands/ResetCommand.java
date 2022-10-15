@@ -13,10 +13,11 @@ import seedu.foodrem.model.Model;
  */
 public class ResetCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "FoodRem has been reset!";
+
     private static final String COMMAND_WORD = CommandWord.RESET_COMMAND.getCommandWord();
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Resets all date in FoodRem."
             + "Example: " + COMMAND_WORD;
-    public static final String MESSAGE_SUCCESS = "FoodRem has been reset!";
 
     @Override
     public CommandResult execute(Model model) {

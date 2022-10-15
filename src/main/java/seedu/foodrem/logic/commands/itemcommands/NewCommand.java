@@ -15,6 +15,9 @@ import seedu.foodrem.model.item.Item;
  */
 public class NewCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "New item added:\n%1$s";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in FoodRem";
+
     private static final String COMMAND_WORD = CommandWord.NEW_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -37,9 +40,6 @@ public class NewCommand extends Command {
             + CliSyntax.PREFIX_ITEM_UNIT + "kg "
             + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "11-11-2022 "
             + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "21-11-2022 ";
-
-    public static final String MESSAGE_SUCCESS = "New item added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in FoodRem";
 
     private final Item newItem;
 

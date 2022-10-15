@@ -14,10 +14,12 @@ import seedu.foodrem.model.tag.Tag;
  * Lists all the tags available
  */
 public class ListTagCommand extends Command {
+
+    public static final String MESSAGE_SUCCESS = "Listed all tags:\n";
+
     private static final String COMMAND_WORD = "listtag";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all tags in FoodRem."
             + "Example: " + COMMAND_WORD;
-    public static final String MESSAGE_SUCCESS = "Listed all tags:\n";
 
     @Override
     public CommandResult execute(Model model) {

@@ -15,6 +15,10 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class RenameTagCommand extends Command {
 
+    public static final String MESSAGE_RENAME_TAG_SUCCESS = "Renamed tag: %1$s";
+    public static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem.";
+    public static final String MESSAGE_DUPLICATE_TAG_NAME = "This tag name already exists in the FoodRem.";
+
     private static final String COMMAND_WORD = CommandWord.RENAME_TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Renames an existing tag in FoodRem. "
@@ -24,10 +28,6 @@ public class RenameTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Vegetables "
             + PREFIX_NAME + "fruits";
-
-    public static final String MESSAGE_RENAME_TAG_SUCCESS = "Renamed tag: %1$s";
-    public static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem.";
-    public static final String MESSAGE_DUPLICATE_TAG_NAME = "This tag name already exists in the FoodRem.";
 
     private final Tag originalTag;
     private final Tag renamedTag;

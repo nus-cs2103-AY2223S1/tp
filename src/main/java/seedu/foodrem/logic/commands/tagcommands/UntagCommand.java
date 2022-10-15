@@ -20,14 +20,6 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class UntagCommand extends Command {
 
-    private static final String COMMAND_WORD = CommandWord.UNTAG_COMMAND.getCommandWord();
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Untags the item identified by the index number used in the displayed item list with a valid Tag.\n"
-            + "Parameters: " + PREFIX_NAME + "TAG_NAME " + PREFIX_ID
-            + " INDEX (item index must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
-
     public static final String MESSAGE_SUCCESS = "Item untagged successfully";
 
     public static final String ITEM_NOT_TAGGED = "This item is not tagged with this tag";
@@ -35,6 +27,14 @@ public class UntagCommand extends Command {
     public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This tag does not exist";
 
     public static final String MESSAGE_ITEM_INDEX_DOES_NOT_EXIST = "The item index does not exist";
+
+    private static final String COMMAND_WORD = CommandWord.UNTAG_COMMAND.getCommandWord();
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Untags the item identified by the index number used in the displayed item list with a valid Tag.\n"
+            + "Parameters: " + PREFIX_NAME + "TAG_NAME " + PREFIX_ID
+            + " INDEX (item index must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
 
     private final Index index;
     private final Tag tag;

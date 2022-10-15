@@ -15,6 +15,9 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class NewTagCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in FoodRem";
+
     private static final String COMMAND_WORD = CommandWord.NEW_TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to FoodRem. "
@@ -22,9 +25,6 @@ public class NewTagCommand extends Command {
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Potatoes ";
-
-    public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in FoodRem";
 
     private final Tag toAdd;
 

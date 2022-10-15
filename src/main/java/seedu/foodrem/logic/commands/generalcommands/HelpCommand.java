@@ -12,9 +12,6 @@ import seedu.foodrem.model.Model;
  */
 public class HelpCommand extends Command {
 
-    private static final String COMMAND_WORD = CommandWord.HELP_COMMAND.getCommandWord();
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
-            + "Example: " + COMMAND_WORD;
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
     public static final String DEFAULT_HELP_MESSAGE = "Please refer to the user guide.";
 
@@ -33,6 +30,10 @@ public class HelpCommand extends Command {
     public static final String NOT_A_COMMAND = "\"%s\" is not a valid command\n\n" + HELP_FOR_ALL_COMMANDS;
 
     public static final String HELP_FOR_SPECIFIC_COMMAND = "%s\n\n" + HELP_FOR_ALL_COMMANDS;
+
+    private static final String COMMAND_WORD = CommandWord.HELP_COMMAND.getCommandWord();
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
+            + "Example: " + COMMAND_WORD;
 
     private final String message;
 

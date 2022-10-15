@@ -16,6 +16,9 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
 
+    public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
+    public static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem";
+
     private static final String COMMAND_WORD = CommandWord.DELETE_TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing tag in FoodRem. "
@@ -23,9 +26,6 @@ public class DeleteTagCommand extends Command {
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Potatoes ";
-
-    public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
-    public static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem";
 
     private final Tag toDelete;
 
