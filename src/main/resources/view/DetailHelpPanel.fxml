@@ -9,7 +9,7 @@
 
 <VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="517.0" spacing="10" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane>
+      <GridPane styleClass="help-panel">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,23 +20,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="51.0" prefWidth="600.0" text="set &lt;field-name&gt; &lt;user-attribute&gt; :">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font>
-            </Label>
+            <Label styleClass="command-text" text="set &lt;field-name&gt; &lt;user-attribute&gt;"/>
             <Label text="Changes attribute in User contact card" GridPane.columnIndex="1" />
-            <Label prefHeight="17.0" prefWidth="299.0" text="add &lt;field-name&gt; &lt;user-attribute&gt; :  " GridPane.rowIndex="1">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font>
-            </Label>
-            <Label prefHeight="51.0" prefWidth="600.0" text="Creates a new attribute in User contact card" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="51.0" prefWidth="600.0" text="delete &lt;field-name&gt; &lt;user-attribute&gt; :  " GridPane.rowIndex="2">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font>
-            </Label>
+            <Label styleClass="command-text" text="add &lt;field-name&gt; &lt;user-attribute&gt;" GridPane.rowIndex="1"/>
+            <Label text="Creates a new attribute in User contact card" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label styleClass="command-text" text="delete &lt;field-name&gt; &lt;user-attribute&gt;" GridPane.rowIndex="2"/>
             <Label text="Delete user attribute in User contact card" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>

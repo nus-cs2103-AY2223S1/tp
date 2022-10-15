@@ -7,47 +7,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <GridPane>
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="init &lt;my-github-username&gt; : ">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font></Label>
-            <Label text="Initialize contact book wiith GitHub integration" GridPane.columnIndex="1" />
-            <Label text="add &lt;@github-username/real-name&gt; : " GridPane.rowIndex="1">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font></Label>
-            <Label text="Add user to contact book" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="delete &lt;@github-username/real-name&gt; : " GridPane.rowIndex="2">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font></Label>
-            <Label text="Delete user from contact book" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="search &lt;keyword&gt; : " GridPane.rowIndex="3">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font></Label>
-            <Label text="help : " GridPane.rowIndex="4">
-               <font>
-                  <Font name="Cascadia Code Regular" size="12.0" />
-               </font></Label>
-            <Label text="Displays the users/repos that match the keyword " GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Shows help page to the user " GridPane.columnIndex="1" GridPane.rowIndex="4" />
-         </children>
-      </GridPane>
-   </children>
+<VBox maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="698.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <GridPane styleClass="help-panel">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" fillWidth="true"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" fillWidth="true"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label styleClass="command-text" text="init &lt;my-github-username&gt;"/>
+                <Label text="Initialize contact book with GitHub integration" GridPane.columnIndex="1"/>
+                <Label styleClass="command-text" text="add &lt;@github-username&gt;" GridPane.rowIndex="1"/>
+                <Label text="Add user to contact book" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label styleClass="command-text" text="delete &lt;@github-username&gt;" GridPane.rowIndex="2"/>
+                <Label text="Delete user from contact book" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label styleClass="command-text" text="search &lt;keyword&gt;" GridPane.rowIndex="3"/>
+                <Label text="Displays the users/repos that match the keyword " GridPane.columnIndex="1"
+                       GridPane.rowIndex="3"/>
+                <Label styleClass="command-text" text="help" GridPane.rowIndex="4"/>
+                <Label text="Shows help page to the user " GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            </children>
+        </GridPane>
+    </children>
 </VBox>
