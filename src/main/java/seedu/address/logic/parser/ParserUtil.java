@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -87,6 +88,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dob} into a {@code DateOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dob} is invalid.
+     */
+    public static DateOfBirth parseDob(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!DateOfBirth.isValidDateOfBirth(dob)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDob);
+    }
+
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -132,7 +148,7 @@ public class ParserUtil {
         if (!Gender.isValidGender(trimmedGender, isNaAllowed)) {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
-        return new Gender(gender);
+        return new Gender(trimmedGender);
     }
 
     /**
@@ -160,5 +176,41 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Returns the String eventTitle passed to it.
+     */
+    public static String parseEventTitle(String eventTitle) {
+        requireNonNull(eventTitle);
+
+        return eventTitle;
+    }
+
+    /**
+     * Returns the String date passed to it.
+     */
+    public static String parseDate(String date) {
+        requireNonNull(date);
+
+        return date;
+    }
+
+    /**
+     * Returns the String time passed to it.
+     */
+    public static String parseTime(String time) {
+        requireNonNull(time);
+
+        return time;
+    }
+
+    /**
+     * Returns the String purpose passed to it.
+     */
+    public static String parsePurpose(String purpose) {
+        requireNonNull(purpose);
+
+        return purpose;
     }
 }

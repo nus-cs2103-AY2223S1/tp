@@ -3,11 +3,19 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
+    "dob" : "1/1/2000",
     "address": "4th street"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
+    "dob" : "1/1/2000",
     "address": "4th street"
+  } ],
+  "events" : [ {
+    "eventTitle" : "Dinosaur Sale",
+    "date" : "2022-01-04",
+    "time" : "12:00",
+    "purpose" : "Selling all dinosaurs at 15% discount"
   } ]
 }
