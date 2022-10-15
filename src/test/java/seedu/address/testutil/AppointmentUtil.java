@@ -2,12 +2,14 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.util.List;
 
 import seedu.address.logic.commands.BookCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.person.Appointment;
-
 
 /**
  * A utility class for Appointment.
@@ -35,6 +37,14 @@ public class AppointmentUtil {
         descriptor.getReason().ifPresent(reason -> sb.append(PREFIX_REASON).append(reason).append(" "));
         descriptor.getDateTime().ifPresent(dateTime -> sb.append(PREFIX_DATE)
                 .append(dateTime.format(Appointment.DATE_FORMATTER)).append(" "));
+        descriptor.getTimePeriod().ifPresent(timePeriod -> sb.append(PREFIX_RECURRING_PERIOD)
+                .append(getFormattedPeriod(timePeriod)).append(" "));
         return sb.toString();
+    }
+
+    private static String getFormattedPeriod(List<Integer> timePeriod) {
+        String str = "%sY%sM%sD";
+        str = String.format(str, timePeriod.get(0), timePeriod.get(1), timePeriod.get(2));
+        return str;
     }
 }

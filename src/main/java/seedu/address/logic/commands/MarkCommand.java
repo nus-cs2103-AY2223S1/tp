@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Person;
 
 /**
  * Marks an appointment for the given patient as complete.
@@ -32,16 +35,37 @@ public class MarkCommand extends SelectAppointmentCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Person person = getTargetPerson(model);
         Appointment appointmentToMark = getTargetAppointment(model);
+        int size = model.getFilteredAppointmentList().size();
 
         if (appointmentToMark.isMarked()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
 
         appointmentToMark.mark();
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
+        addRecurringAppointment(model, person, appointmentToMark);
+        String addRecurringSuccessMsg = "";
+        if (size < model.getFilteredAppointmentList().size()) {
+            addRecurringSuccessMsg += "\nA recurring appointment has been automatically added";
+        }
+        String markSuccessMsg = String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
-                getTargetPerson(model).getName()));
+                getTargetPerson(model).getName());
+        return new CommandResult(markSuccessMsg + addRecurringSuccessMsg);
+    }
+
+    private void addRecurringAppointment(Model model, Person person, Appointment appointment) {
+        Appointment recurringAppointment = new Appointment(appointment);
+        List<Appointment> appointmentList = person.getAppointments();
+        if (!hasSameAppointment(appointmentList, recurringAppointment)) {
+            appointmentList.add(recurringAppointment);
+            model.addAppointment(recurringAppointment);
+        }
+    }
+
+    private boolean hasSameAppointment(List<Appointment> appointments, Appointment appointment) {
+        return appointments.stream().anyMatch(x -> x.isSameTime(appointment));
     }
 
     @Override

@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_REASON = new Prefix("r/");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_RECURRING_PERIOD = new Prefix("pe/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
 }

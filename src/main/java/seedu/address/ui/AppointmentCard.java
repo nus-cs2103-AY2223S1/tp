@@ -36,7 +36,7 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         patientName.setText(appointment.getPatientName());
         reason.setText(appointment.getReason());
-        dateTime.setText(appointment.getFormattedDateTime());
+        dateTime.setText(appointment.getFormattedDateTime() + appointment.getRecurringStatus());
         status.setText(appointment.getStatus());
     }
 
