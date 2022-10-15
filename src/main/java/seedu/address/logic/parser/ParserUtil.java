@@ -10,10 +10,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.contact.Email;
+import seedu.address.model.person.contact.Phone;
+import seedu.address.model.person.contact.Slack;
+import seedu.address.model.person.contact.Telegram;
+
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +124,35 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a String slack into a Slack.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given slack is invalid.
+     */
+    public static Slack parseSlack(String slack) throws ParseException {
+        requireNonNull(slack);
+        String trimmedSlack = slack.trim();
+        if (!Slack.isValidSlack(slack)) {
+            throw new ParseException(Slack.MESSAGE_CONSTRAINTS);
+        }
+        return new Slack(slack);
+    }
+
+    /**
+     * Parses a String slack into a Slack.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given slack is invalid.
+     */
+    public static Telegram parseTelegram(String tele) throws ParseException {
+        requireNonNull(tele);
+        String trimmedTele = tele.trim();
+        if (!Telegram.isValidTelegram(tele)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(tele);
     }
 }
