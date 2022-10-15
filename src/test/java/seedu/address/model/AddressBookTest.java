@@ -134,7 +134,6 @@ public class AddressBookTest {
         addressBook.addModule(CS2106);
         assertEquals(CS2106, addressBook.getModule(moduleWithSameModuleCode));
     }
-    
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
