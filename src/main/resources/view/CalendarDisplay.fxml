@@ -6,37 +6,42 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <StackPane fx:id="placeHolder" style="-fx-background-color: #fff;" styleClass="pane-with-border" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ScrollPane>
-         <StackPane.margin>
+<children>
+    <ScrollPane>
+        <StackPane.margin>
             <Insets />
-         </StackPane.margin>
+        </StackPane.margin>
          <content>
-            <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" gridLinesVisible="true">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-                <ColumnConstraints hgrow="ALWAYS" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-                  <ColumnConstraints hgrow="ALWAYS" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints vgrow="ALWAYS" />
-                  <RowConstraints vgrow="ALWAYS" />
-                  <RowConstraints vgrow="ALWAYS" />
-                <RowConstraints vgrow="ALWAYS" />
-                  <RowConstraints vgrow="ALWAYS" />
-                  <RowConstraints vgrow="ALWAYS" />
-              </rowConstraints>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </GridPane>
+            <VBox fillWidth="true">
+               <children>
+                  <GridPane fx:id="calendarDisplay" alignment="TOP_CENTER" gridLinesVisible="true" VBox.vgrow="ALWAYS">
+                      <columnConstraints>
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" fillWidth="true" />
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" fillWidth="true"/>
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="33.3" prefWidth="200" fillWidth="true"/>
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="50.0" prefWidth="200.0"/>
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" fillWidth="true"/>
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="70.0" prefWidth="100.0" fillWidth="true"/>
+                          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="80.0" prefWidth="100.0" fillWidth="true"/>
+                      </columnConstraints>
+                      <rowConstraints>
+                          <RowConstraints vgrow="ALWAYS" />
+                          <RowConstraints vgrow="ALWAYS" />
+                          <RowConstraints vgrow="ALWAYS" />
+                          <RowConstraints vgrow="ALWAYS" />
+                          <RowConstraints vgrow="ALWAYS" />
+                          <RowConstraints vgrow="ALWAYS" />
+                      </rowConstraints>
+                      <opaqueInsets>
+                          <Insets />
+                      </opaqueInsets>
+                  </GridPane>
+               </children>
+            </VBox>
          </content>
-      </ScrollPane>
-   </children>
+    </ScrollPane>
+</children>
 </StackPane>

@@ -24,7 +24,7 @@ public class CalendarEventCard extends UiPart<Region> {
     public final CalendarEvent calendarEvent;
 
     @FXML
-    private HBox cardPane;
+    private HBox eventCardPane;
     @FXML
     private Label name;
     @FXML

@@ -9,7 +9,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 import seedu.address.logic.Logic;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
@@ -22,11 +25,77 @@ public class CalendarDisplay extends UiPart<Region> {
     private static final String FXML = "CalendarDisplay.fxml";
 
     private Calendar currentMonth;
-    private Logic logic;
     private CalendarMonth calendarMonth;
 
     @FXML
     private GridPane calendarDisplay;
+    /*@FXML
+    private StackPane zeroOne;
+    @FXML
+    private StackPane oneOne;
+    @FXML
+    private StackPane twoOne;
+    @FXML
+    private StackPane threeOne;
+    @FXML
+    private StackPane fourOne;
+    @FXML
+    private StackPane fiveOne;
+    @FXML
+    private StackPane sixOne;
+    @FXML
+    private StackPane zeroTwo;
+    @FXML
+    private StackPane oneTwo;
+    @FXML
+    private StackPane twoTwo;
+    @FXML
+    private StackPane threeTwo;
+    @FXML
+    private StackPane fourTwo;
+    @FXML
+    private StackPane fiveTwo;
+    @FXML
+    private StackPane sixTwo;
+    @FXML
+    private StackPane zeroThree;
+    @FXML
+    private StackPane oneThree;
+    @FXML
+    private StackPane twoThree;
+    @FXML
+    private StackPane threeThree;
+    @FXML
+    private StackPane fourThree;
+    @FXML
+    private StackPane fiveThree;
+    @FXML
+    private StackPane sixThree;
+    @FXML
+    private StackPane zeroFour;
+    @FXML
+    private StackPane oneFour;
+    @FXML
+    private StackPane twoFour;
+    @FXML
+    private StackPane threeFour;
+    @FXML
+    private StackPane fourFour;
+    @FXML
+    private StackPane fiveFour;
+    @FXML
+    private StackPane sixFour;
+    @FXML
+    private StackPane zeroFive;
+    @FXML
+    private StackPane oneFive;
+    @FXML
+    private StackPane twoFive;
+*/
+
+
+
+
 
     public CalendarDisplay(ObservableList<CalendarEvent> calendarEventObservableList) {
         super(FXML);
@@ -61,11 +130,18 @@ public class CalendarDisplay extends UiPart<Region> {
             }
             ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
                     .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1);
-            Text tDate = new Text(" " + String.valueOf(currentDay) + String.format("\n%s", calendarEventsInDayOfMonth));
-            calendarDisplay.add(tDate, dayOfWeek - 1, row);
+
+            Text tDate = new Text(" " + String.valueOf(currentDay));
+            VBox vbox = new VBox();
+
+            //vbox.setMinSize(150.00,100.00);
+            vbox.setFillWidth(true);
+
+            vbox.getChildren().add(tDate);
+            calendarEventsInDayOfMonth.stream().forEach(x -> vbox.getChildren().add(getButton(x.toString())));
+            calendarDisplay.add(vbox, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
-
         }
     }
 
@@ -103,4 +179,35 @@ public class CalendarDisplay extends UiPart<Region> {
         return monthNames[n];
     }
 
+    public Button getButton(String text) {
+        Button button = new Button(text);
+        button.setMaxSize(100, 30.00);
+        button.setStyle("-fx-font-size: 7pt; -fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 5;" );
+        return button;
+    }
+    /*private StackPane getFirstDayPlaceHolder(int dayOfWeek) {
+        switch (dayOfWeek) {
+        case 1:
+            return zeroOne;
+            break;
+        case 2:
+            return oneOne;
+            break;
+        case 3:
+            return twoOne;
+            break;
+        case 4:
+            return threeOne;
+            break;
+        case 5:
+            return fourOne;
+            break;
+        case 6:
+            return fiveOne;
+            break;
+        case 7:
+            return sixOne;
+        }
+    }
+*/
 }

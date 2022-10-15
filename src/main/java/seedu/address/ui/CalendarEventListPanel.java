@@ -23,9 +23,9 @@ public class CalendarEventListPanel extends UiPart<Region> {
     /**
      * Creates a {@code CalendarEventListPanel} with the given {@code ObservableList}.
      */
-    public CalendarEventListPanel(ObservableList<CalendarEvent> personList) {
+    public CalendarEventListPanel(ObservableList<CalendarEvent> calendarEventList) {
         super(FXML);
-        calendarEventListView.setItems(personList);
+        calendarEventListView.setItems(calendarEventList);
         calendarEventListView.setCellFactory(listView -> new CalendarEventListViewCell());
     }
 
