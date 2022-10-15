@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,6 +52,26 @@ public class PredicateGeneratorUtil {
         LocalDateTime start = parseStartDateTime(startDateTime);
         LocalDateTime end = parseEndDateTime(endDateTime);
         return new CombinedAppointmentPredicate(reason, start, end);
+    }
+
+    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyName(String name) {
+        return generateCombinedPersonPredicate(name, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+    }
+
+    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyPhone(String phone) {
+        return generateCombinedPersonPredicate(EMPTY_STRING, phone, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+    }
+
+    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyEmail(String email) {
+        return generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, email, EMPTY_STRING, EMPTY_STRING);
+    }
+
+    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyAddress(String address) {
+        return generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, address, EMPTY_STRING);
+    }
+
+    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyTags(String tagString) {
+        return generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, tagString);
     }
 
     /**

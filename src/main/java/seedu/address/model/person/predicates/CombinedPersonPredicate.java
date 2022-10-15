@@ -5,7 +5,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -45,22 +47,65 @@ public class CombinedPersonPredicate implements Predicate<Person> {
         List<Predicate<Person>> personPredicates = new ArrayList<>();
 
         if (!name.isEmpty()) {
-            personPredicates.add(new NameContainsSequencePredicate(name));
+            addNamePredicate(personPredicates);
         }
         if (!phone.isEmpty()) {
-            personPredicates.add(new PhoneContainsSequencePredicate(phone));
+            addPhonePredicate(personPredicates);
         }
         if (!email.isEmpty()) {
-            personPredicates.add(new EmailContainsSequencePredicate(email));
+            addEmailPredicate(personPredicates);
         }
         if (!address.isEmpty()) {
-            personPredicates.add(new AddressContainsSequencePredicate(address));
+            addAddressPredicate(personPredicates);
         }
         if (!tagList.isEmpty()) {
-            personPredicates.add(new PersonContainsTagsPredicate(tagList));
+            addTagListPredicate(personPredicates);
         }
 
         return personPredicates.stream().reduce(PREDICATE_SHOW_ALL_PERSONS, Predicate::and);
+    }
+
+    private void addNamePredicate(List<Predicate<Person>> personPredicates) {
+        Predicate<Person> nameContainsSequencePredicate =
+                person -> StringUtil.containsIgnoreCase(person.getName().fullName, name);
+
+        personPredicates.add(nameContainsSequencePredicate);
+    }
+
+    private void addPhonePredicate(List<Predicate<Person>> personPredicates) {
+        Predicate<Person> phoneContainsSequencePredicate =
+                person -> StringUtil.containsIgnoreCase(person.getPhone().value, phone);
+
+        personPredicates.add(phoneContainsSequencePredicate);
+    }
+
+    private void addEmailPredicate(List<Predicate<Person>> personPredicates) {
+        Predicate<Person> emailContainsSequencePredicate =
+                person -> StringUtil.containsIgnoreCase(person.getEmail().value, email);
+
+        personPredicates.add(emailContainsSequencePredicate);
+    }
+
+    private void addAddressPredicate(List<Predicate<Person>> personPredicates) {
+        Predicate<Person> addressContainsSequencePredicate =
+                person -> StringUtil.containsIgnoreCase(person.getAddress().value, address);
+
+        personPredicates.add(addressContainsSequencePredicate);
+    }
+
+    private void addTagListPredicate(List<Predicate<Person>> personPredicates) {
+        Predicate<Person> personContainsTagsPredicate =
+                person -> {
+                    List<String> tagsToSearchInUpperCase =
+                            tagList.stream().map(String::toUpperCase).collect(Collectors.toList());
+                    List<String> personTagsInUpperCase =
+                            person.getTags().stream().map(
+                                    tag -> tag.tagName.toUpperCase()).collect(Collectors.toList());
+
+                    return personTagsInUpperCase.containsAll(tagsToSearchInUpperCase);
+                };
+
+        personPredicates.add(personContainsTagsPredicate);
     }
 
     @Override
