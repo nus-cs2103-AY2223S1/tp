@@ -25,8 +25,9 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("alice Pauline")
-            .withPhone("94351253").withLessonPlan("algorithms")
+    public static final Person ALICE = new PersonBuilder().withName("alice pauline")
+            .withPhone("94351253").withLessonPlan("algorithms").withHomework("Science worksheet")
+            .withAttendance("2019-01-01").withGradeProgress("English: A+")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withHomework("Science Worksheet", "Math asst").withPhone("98765432").withLessonPlan("Trigonometry")
@@ -75,7 +76,7 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-        for (Person person : getTypicalPersons()) {
+        for (Person person : getCopyOfTypicalPersons()) {
             ab.addPerson(person);
         }
         return ab;
@@ -83,5 +84,17 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getCopyOfTypicalPersons() {
+        final Person aliceCopy = new PersonBuilder(ALICE).build();
+        final Person bensonCopy = new PersonBuilder(BENSON).build();
+        final Person carlCopy = new PersonBuilder(CARL).build();
+        final Person danielCopy = new PersonBuilder(DANIEL).build();
+        final Person elleCopy = new PersonBuilder(ELLE).build();
+        final Person fionaCopy = new PersonBuilder(FIONA).build();
+        final Person georgeCopy = new PersonBuilder(GEORGE).build();
+        return new ArrayList<>(Arrays.asList(aliceCopy, bensonCopy, carlCopy, danielCopy, elleCopy,
+                fionaCopy, georgeCopy));
     }
 }
