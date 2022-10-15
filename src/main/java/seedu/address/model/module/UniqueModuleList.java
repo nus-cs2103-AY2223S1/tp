@@ -69,6 +69,27 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Returns the {@code Module} with the same {@code ModuleCode} as the
+     * {@code Module} supplied as the argument.
+     * @param module {@code Module} with the {@code ModuleCode} of the
+     *               {@code Module} we would like to retrieve.
+     * @throws ModuleNotFoundException when there does not exist a {@code Module}
+     *                                 with the same {@code ModuleCode} as the
+     *                                 supplied argument.
+     */
+    public Module getModule(Module module) throws ModuleNotFoundException {
+        if (contains(module)) {
+            // There should only be one existing module with the same module code.
+            assert internalList.stream().filter(module::isSameModule).count() == 1;
+            return internalUnmodifiableList.stream()
+                                           .filter(module::isSameModule)
+                                           .findFirst().get();
+        } else {
+            throw new ModuleNotFoundException();
+        }
+    }
+
+    /**
      * Removes the equivalent module from the list.
      * The module must exist in the list.
      */
