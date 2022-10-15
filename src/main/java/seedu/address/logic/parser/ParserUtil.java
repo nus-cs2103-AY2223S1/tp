@@ -73,16 +73,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nokPhone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code NokPhone} is invalid.
-     */
-    public static Phone parseNokPhone(String nokPhone) throws ParseException {
-        return parsePhone(nokPhone);
-    }
-
-    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
