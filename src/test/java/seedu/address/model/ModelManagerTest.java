@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalTasks.FIRST;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 import static seedu.address.testutil.TypicalTasks.SECOND;
 
 import java.nio.file.Path;
@@ -29,6 +30,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TaskBook(), new TaskBook(modelManager.getTaskBook()));
     }
 
     @Test
@@ -93,6 +95,41 @@ public class ModelManagerTest {
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void setTaskBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTaskBookFilePath(null));
+    }
+
+    @Test
+    public void setTaskBookFilePath_validPath_setsTaskBookFilePath() {
+        Path path = Paths.get("task/book/file/path");
+        modelManager.setTaskBookFilePath(path);
+        assertEquals(path, modelManager.getTaskBookFilePath());
+    }
+
+    @Test
+    public void setTaskBook_validTaskBook_setsTaskBook() {
+        TaskBook taskBook = getTypicalTaskBook();
+        modelManager.setTaskBook(taskBook);
+        assertEquals(taskBook, modelManager.getTaskBook());
+    }
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+    }
+
+    @Test
+    public void hasTask_taskNotInTaskBook_returnsFalse() {
+        assertFalse(modelManager.hasTask(FIRST));
+    }
+
+    @Test
+    public void hasTask_taskInTaskBook_returnsTrue() {
+        modelManager.addTask(FIRST);
+        assertTrue(modelManager.hasTask(FIRST));
     }
 
     @Test

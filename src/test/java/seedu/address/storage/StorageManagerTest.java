@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.nio.file.Path;
 
@@ -11,9 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 
 public class StorageManagerTest {
 
@@ -32,6 +31,11 @@ public class StorageManagerTest {
 
     private Path getTempFilePath(String fileName) {
         return testFolder.resolve(fileName);
+    }
+
+    @Test
+    public void getUserPrefFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
     }
 
     @Test
@@ -64,6 +68,24 @@ public class StorageManagerTest {
     @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getTaskBookFilePath() {
+        assertNotNull(storageManager.getTaskBookFilePath());
+    }
+
+    @Test
+    public void taskBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskBookStorageTest} class.
+         */
+        TaskBook original = getTypicalTaskBook();
+        storageManager.saveTaskBook(original);
+        ReadOnlyTaskBook retrieved = storageManager.readTaskBook().get();
+        assertEquals(original, new TaskBook(retrieved));
     }
 
 }

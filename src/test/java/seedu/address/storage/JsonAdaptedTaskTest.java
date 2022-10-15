@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TITLE;
 import static seedu.address.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
@@ -32,6 +34,20 @@ public class JsonAdaptedTaskTest {
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASK_TITLE, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TaskDescription.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTitle_throwsIllegalValueException() {
+        JsonAdaptedTask task = new JsonAdaptedTask(INVALID_TASK_TITLE, VALID_TASK_DESCRIPTION);
+        String expectedMessage = String.format(TaskTitle.MESSAGE_CONSTRAINTS, TaskTitle.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDescription_throwsIllegalValueException() {
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASK_TITLE, INVALID_TASK_DESCRIPTION);
+        String expectedMessage = String.format(TaskDescription.MESSAGE_CONSTRAINTS, TaskDescription.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 }
