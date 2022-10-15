@@ -15,6 +15,7 @@ import seedu.nutrigoals.logic.commands.ExitCommand;
 import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.commands.HelpCommand;
 import seedu.nutrigoals.logic.commands.ListCommand;
+import seedu.nutrigoals.logic.commands.ProfileCommand;
 import seedu.nutrigoals.logic.commands.ReviewCommand;
 import seedu.nutrigoals.logic.commands.SetupCommand;
 import seedu.nutrigoals.logic.commands.TargetCommand;
@@ -79,6 +80,9 @@ public class NutriGoalsParser {
 
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommand();
+
+        case ProfileCommand.COMMAND_WORD:
+            return new ProfileCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
