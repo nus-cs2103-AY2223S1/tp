@@ -131,10 +131,17 @@ public class AddPersonCommand extends Command {
         }
 
         AddPersonCommand otherCommand = (AddPersonCommand) other;
-        return name.equals(otherCommand.name)
-                && email.equals(otherCommand.email)
-                && phone.equals(otherCommand.phone)
-                && Objects.equals(internshipId, otherCommand.internshipId)
-                && tags.equals(otherCommand.tags);
+        if (phone == null) {
+            return name.equals(otherCommand.name)
+                    && email.equals(otherCommand.email)
+                    && Objects.equals(internshipId, otherCommand.internshipId)
+                    && tags.equals(otherCommand.tags);
+        } else {
+            return name.equals(otherCommand.name)
+                    && email.equals(otherCommand.email)
+                    && phone.equals(otherCommand.phone)
+                    && Objects.equals(internshipId, otherCommand.internshipId)
+                    && tags.equals(otherCommand.tags);
+        }
     }
 }

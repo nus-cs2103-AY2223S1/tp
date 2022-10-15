@@ -90,7 +90,11 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        if (phone == null) {
+            this.phone = null;
+        } else {
+            this.phone = new Phone(phone);
+        }
         return this;
     }
 
