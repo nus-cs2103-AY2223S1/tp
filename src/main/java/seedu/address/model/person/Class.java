@@ -73,7 +73,7 @@ public class Class {
     }
 
     /**
-     * Returns a formatted time.
+     * Returns a formatted time duration.
      *
      * @return String.
      */
@@ -143,10 +143,10 @@ public class Class {
     }
 
     /**
-     * Validates whether classDatetime is valid.
+     * Returns true if a given string is a valid input.
      *
      * @param classDateTime String to be validated.
-     * @return True if a given String object fits the format of 'yyyy-MM-dd 0000-2359'.
+     * @return True if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
      */
     public static boolean isValidClassString(String classDateTime) {
         if (!classDateTime.matches(VALIDATION_CLASS_REGEX)) {
@@ -159,10 +159,10 @@ public class Class {
     }
 
     /**
-     * Validates whether classDatetime is valid.
+     * Returns true if a given string is a valid input.
      *
      * @param classDateTime String to be validated.
-     * @return True if a given String object fits the format of 'yyyy-MM-dd 0000-2359'.
+     * @return True if a given string fits the format of 'Day-of-Week 0000-2359'.
      */
     public static boolean isValidFlexibleClassString(String classDateTime) {
         if (!classDateTime.matches(FLEXIBLE_CLASS_REGEX)) {
@@ -174,7 +174,7 @@ public class Class {
     }
 
     /**
-     * Validates {@code date}.
+     * Returns true if a given string is a valid date.
      *
      * @param date String object.
      * @return True if is valid.
@@ -190,7 +190,7 @@ public class Class {
     }
 
     /**
-     * Validates {@code time}.
+     * Returns true if a given string is a valid time.
      *
      * @param time String object.
      * @return True if is valid.
