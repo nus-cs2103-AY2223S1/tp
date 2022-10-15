@@ -3,8 +3,17 @@ package seedu.application.model.util;
 
 import seedu.application.model.ApplicationBook;
 import seedu.application.model.ReadOnlyApplicationBook;
-import seedu.application.model.application.*;
-import seedu.application.model.application.interview.*;
+import seedu.application.model.application.Application;
+import seedu.application.model.application.Company;
+import seedu.application.model.application.Contact;
+import seedu.application.model.application.Date;
+import seedu.application.model.application.Email;
+import seedu.application.model.application.Position;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.InterviewTime;
+import seedu.application.model.application.interview.InterviewDate;
+import seedu.application.model.application.interview.Location;
+import seedu.application.model.application.interview.Round;
 
 /**
  * Contains utility methods for populating {@code ApplicationBook} with sample data.

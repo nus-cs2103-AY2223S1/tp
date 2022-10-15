@@ -4,7 +4,8 @@ import seedu.application.model.application.interview.Interview;
 
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents an Application in the Application book.
