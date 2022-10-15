@@ -14,8 +14,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
-    public static final String MESSAGE_INVALID_NUMBER_OF_INDICES = "Invalid number of indices";
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
      * and returns a DeleteTaskCommand object for execution.

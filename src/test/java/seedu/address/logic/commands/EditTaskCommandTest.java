@@ -6,10 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTasks.TASK_CARE_PLAN;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,13 +26,37 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditTaskCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code EditTaskCommand}.
  */
 class EditTaskCommandTest {
 
     private static final String TASK_STUB = "Some task";
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullPatientIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new EditTaskCommand(null, INDEX_FIRST_TASK, TASK_CARE_PLAN));
+    }
+
+    @Test
+    public void constructor_nullTaskIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new EditTaskCommand(INDEX_FIRST_PERSON, null, TASK_CARE_PLAN));
+    }
+
+    @Test
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK, null));
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK, TASK_CARE_PLAN);
+        assertThrows(NullPointerException.class, () -> editTaskCommand.execute(null));
+    }
 
     @Test
     public void execute_editTask_success() {
