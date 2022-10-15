@@ -28,75 +28,137 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
  * Represents the command word to be keyed in by a user to execute a command.
  */
 public enum CommandWord {
-    // GENERAL COMMANDS
-    HELP_COMMAND("help", DEFAULT_HELP_MESSAGE),
-    RESET_COMMAND("reset", DEFAULT_HELP_MESSAGE),
-    EXIT_COMMAND("exit", DEFAULT_HELP_MESSAGE),
+    // General Commands
+    HELP_COMMAND("help") {
+        @Override
+        public String getUsage() {
+            return HelpCommand.getUsage();
+        }
+    },
+    RESET_COMMAND("reset") {
+        @Override
+        public String getUsage() {
+            return ResetCommand.getUsage();
+        }
+    },
+    EXIT_COMMAND("exit") {
+        @Override
+        public String getUsage() {
+            return ExitCommand.getUsage();
+        }
+    },
 
-    // ITEM COMMANDS
-    NEW_COMMAND("new", DEFAULT_HELP_MESSAGE),
-    LIST_COMMAND("list", DEFAULT_HELP_MESSAGE),
-    FIND_COMMAND("find", DEFAULT_HELP_MESSAGE),
-    EDIT_COMMAND("edit", DEFAULT_HELP_MESSAGE),
-    INCREMENT_COMMAND("inc", DEFAULT_HELP_MESSAGE),
-    DECREMENT_COMMAND("dec", DEFAULT_HELP_MESSAGE),
-    SORT_COMMAND("sort", DEFAULT_HELP_MESSAGE),
-    DELETE_COMMAND("del", DEFAULT_HELP_MESSAGE),
-    VIEW_COMMAND("view", DEFAULT_HELP_MESSAGE),
+    // Item Commands
+    NEW_COMMAND("new") {
+        @Override
+        public String getUsage() {
+            return NewCommand.getUsage();
+        }
+    },
+    LIST_COMMAND("list") {
+        @Override
+        public String getUsage() {
+            return ListCommand.getUsage();
+        }
+    },
+    FIND_COMMAND("find") {
+        @Override
+        public String getUsage() {
+            return FindCommand.getUsage();
+        }
+    },
+    EDIT_COMMAND("edit") {
+        @Override
+        public String getUsage() {
+            return EditCommand.getUsage();
+        }
+    },
+    INCREMENT_COMMAND("inc") {
+        @Override
+        public String getUsage() {
+            return IncrementCommand.getUsage();
+        }
+    },
+    DECREMENT_COMMAND("dec") {
+        @Override
+        public String getUsage() {
+            return DecrementCommand.getUsage();
+        }
+    },
+    SORT_COMMAND("sort") {
+        @Override
+        public String getUsage() {
+            return SortCommand.getUsage();
+        }
+    },
+    DELETE_COMMAND("del") {
+        @Override
+        public String getUsage() {
+            return DeleteCommand.getUsage();
+        }
+    },
+    VIEW_COMMAND("view") {
+        @Override
+        public String getUsage() {
+            return ViewCommand.getUsage();
+        }
+    },
 
-    // TAG COMMANDS
-    NEW_TAG_COMMAND("newtag", DEFAULT_HELP_MESSAGE),
-    RENAME_TAG_COMMAND("renametag", DEFAULT_HELP_MESSAGE),
-    TAG_COMMAND("tag", DEFAULT_HELP_MESSAGE),
-    UNTAG_COMMAND("untag", DEFAULT_HELP_MESSAGE),
-    DELETE_TAG_COMMAND("deletetag", DEFAULT_HELP_MESSAGE),
-    LIST_TAG_COMMAND("listtag", DEFAULT_HELP_MESSAGE),
+    // Tag Commands
+    NEW_TAG_COMMAND("newtag") {
+        @Override
+        public String getUsage() {
+            return NewTagCommand.getUsage();
+        }
+    },
+    RENAME_TAG_COMMAND("renametag") {
+        @Override
+        public String getUsage() {
+            return RenameTagCommand.getUsage();
+        }
+    },
+    TAG_COMMAND("tag") {
+        @Override
+        public String getUsage() {
+            return TagCommand.getUsage();
+        }
+    },
+    UNTAG_COMMAND("untag") {
+        @Override
+        public String getUsage() {
+            return UntagCommand.getUsage();
+        }
+    },
+    DELETE_TAG_COMMAND("deletetag") {
+        @Override
+        public String getUsage() {
+            return DeleteTagCommand.getUsage();
+        }
+    },
+    LIST_TAG_COMMAND("listtag") {
+        @Override
+        public String getUsage() {
+            return ListTagCommand.getUsage();
+        }
+    },
 
     // INVALID
-    DEFAULT("default", DEFAULT_HELP_MESSAGE);
-
-    // This will only run after all enums are constructed.
-    // This is necessary as MESSAGE_USAGE are defined in each respective commands and
-    // most of them references the value of the commandWord in the enum.
-    // An error regarding self referencing will occur during construction if this is not done.
-    // https://stackoverflow.com/questions/11419519/enums-static-and-instance-blocks
-    static {
-        // General Commands
-        EXIT_COMMAND.help = ExitCommand.getUsage();
-        HELP_COMMAND.help = HelpCommand.getUsage();
-        RESET_COMMAND.help = ResetCommand.getUsage();
-
-        // Item Commands
-        NEW_COMMAND.help = NewCommand.getUsage();
-        EDIT_COMMAND.help = EditCommand.getUsage();
-        INCREMENT_COMMAND.help = IncrementCommand.getUsage();
-        DECREMENT_COMMAND.help = DecrementCommand.getUsage();
-        DELETE_COMMAND.help = DeleteCommand.getUsage();
-        LIST_COMMAND.help = ListCommand.getUsage();
-        SORT_COMMAND.help = SortCommand.getUsage();
-        FIND_COMMAND.help = FindCommand.getUsage();
-        VIEW_COMMAND.help = ViewCommand.getUsage();
-
-        // Tag Commands
-        NEW_TAG_COMMAND.help = NewTagCommand.getUsage();
-        RENAME_TAG_COMMAND.help = RenameTagCommand.getUsage();
-        TAG_COMMAND.help = TagCommand.getUsage();
-        UNTAG_COMMAND.help = UntagCommand.getUsage();
-        DELETE_TAG_COMMAND.help = DeleteTagCommand.getUsage();
-        LIST_TAG_COMMAND.help = ListTagCommand.getUsage();
-    }
+    DEFAULT("default") {
+        @Override
+        public String getUsage() {
+            return DEFAULT_HELP_MESSAGE;
+        }
+    };
 
     private final String commandWord;
-    private String help;
 
     /**
      * Constructs a CommandWord enum.
      *
      * @param commandWord the value representing the string value of the enum.
      */
-    CommandWord(String commandWord, String commandHelp) {
+    CommandWord(String commandWord) {
         this.commandWord = commandWord;
-        help = commandHelp;
     }
 
     /**
@@ -113,9 +175,7 @@ public enum CommandWord {
      *
      * @return the string representation a help message for a CommandWord.
      */
-    public String getUsage() {
-        return help;
-    }
+    public abstract String getUsage();
 
     /**
      * Returns the CommandWord object from the string value of a command word.
