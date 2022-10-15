@@ -3,7 +3,6 @@ package seedu.foodrem.testutil;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.foodrem.enums.CommandWord;
-import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
 
 /**

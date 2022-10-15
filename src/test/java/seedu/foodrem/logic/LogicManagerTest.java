@@ -18,7 +18,6 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
-import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
