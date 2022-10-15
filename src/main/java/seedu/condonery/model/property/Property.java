@@ -57,7 +57,7 @@ public class Property {
      * Returns an immutable interested client set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getInterestedClients() {
+    public Set<Client> getInterestedClients() {
         return Collections.unmodifiableSet(interestedClients);
     }
 
