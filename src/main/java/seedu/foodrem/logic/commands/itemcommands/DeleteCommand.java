@@ -1,12 +1,12 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.foodrem.enums.CommandWord.DELETE_COMMAND;
 
 import java.util.List;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -17,15 +17,7 @@ import seedu.foodrem.model.item.Item;
  * Deletes an item identified using it's displayed index from FoodRem.
  */
 public class DeleteCommand extends Command {
-
-    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item:\n%1$s";
-
-    private static final String COMMAND_WORD = CommandWord.DELETE_COMMAND.getCommandWord();
-
-    private static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the item identified by the index number used in the displayed item list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    private static final String MESSAGE_SUCCESS = "Deleted Item:\n%1$s";
 
     private final Index targetIndex;
 
@@ -44,11 +36,11 @@ public class DeleteCommand extends Command {
 
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteItem(itemToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, itemToDelete));
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return DELETE_COMMAND.getUsage();
     }
 
     @Override

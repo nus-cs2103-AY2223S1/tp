@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
@@ -102,7 +101,10 @@ public enum CommandWord {
     DELETE_COMMAND("del") {
         @Override
         public String getUsage() {
-            return DeleteCommand.getUsage();
+            return getCommandWord()
+                    + ": Deletes the item identified by the index number used in the displayed item list.\n"
+                    + "Parameters: INDEX (must be a positive integer)\n"
+                    + "Example: " + getCommandWord() + " 1";
         }
     },
     VIEW_COMMAND("view") {
