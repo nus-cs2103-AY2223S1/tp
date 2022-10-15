@@ -6,6 +6,9 @@ import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
 
 import seedu.travelr.model.Model;
 
+/**
+ * Displays all added trips and events in Travelr to the user.
+ */
 public class ViewAllCommand extends Command {
 
     public static final String COMMAND_WORD = "view";

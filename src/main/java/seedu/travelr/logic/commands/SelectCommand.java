@@ -15,6 +15,9 @@ import seedu.travelr.model.event.EventInItineraryPredicate;
 import seedu.travelr.model.list.Itineraries;
 import seedu.travelr.model.trip.Trip;
 
+/**
+ * Selects a trip in Travelr and display it to the user.
+ */
 public class SelectCommand extends Command {
 
     public static final String COMMAND_WORD = "select";
