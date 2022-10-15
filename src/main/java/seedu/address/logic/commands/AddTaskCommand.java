@@ -9,12 +9,14 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
 
@@ -39,8 +41,6 @@ public class AddTaskCommand extends Command {
             "New task added to: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK =
             "This task already exists in this module.";
-    public static final String MESSAGE_MODULE_CODE_DOES_NOT_EXIST =
-            "The given module code does not exist!";
 
     private final AddTaskToModuleDescriptor addTaskToModuleDescriptor;
 
@@ -57,16 +57,16 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
+        ModuleCode moduleCodeOfModuleToAddTaskTo =
+                addTaskToModuleDescriptor.moduleCode;
         Module moduleToAddTaskTo = null;
-        // Search for module with matching module code.
-        for (Module module : lastShownList) {
-            if (module.getModuleCode().equals(addTaskToModuleDescriptor.moduleCode)) {
-                moduleToAddTaskTo = module;
-            }
+        try {
+            moduleToAddTaskTo =
+                    model.getModuleUsingModuleCode(moduleCodeOfModuleToAddTaskTo, true);
+        } catch (ModuleNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         }
-        if (moduleToAddTaskTo == null) {
-            throw new CommandException(MESSAGE_MODULE_CODE_DOES_NOT_EXIST);
-        }
+        assert moduleToAddTaskTo != null;
         Module moduleWithNewTask = createModuleWithNewTask(moduleToAddTaskTo, addTaskToModuleDescriptor);
 
         Boolean taskWasAdded = !moduleToAddTaskTo.equals(moduleWithNewTask);

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -62,7 +63,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);
 
         assertThrows(CommandException.class,
-                AddTaskCommand.MESSAGE_MODULE_CODE_DOES_NOT_EXIST, () ->
+                Messages.MESSAGE_NO_SUCH_MODULE, () ->
                         deleteTaskCommand.execute(model));
     }
     @Test

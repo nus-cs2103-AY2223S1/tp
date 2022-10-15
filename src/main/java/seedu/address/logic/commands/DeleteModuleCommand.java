@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 /**
  * Deletes a module identified using the module code from Plannit.
@@ -35,21 +36,15 @@ public class DeleteModuleCommand extends Command {
         requireNonNull(model);
         ObservableList<Module> lastShownList = model.getFilteredModuleList();
 
-        boolean isFound = false;
         Module moduleToDelete = null;
-        for (Module module : lastShownList) {
-            if (module.isSameModule(new Module(targetModuleCode))) {
-                model.deleteModule(module);
-                moduleToDelete = module;
-                isFound = true;
-                break;
-            }
-        }
-
-        if (!isFound) {
+        try {
+            moduleToDelete =
+                    model.getModuleUsingModuleCode(targetModuleCode, true);
+        } catch (ModuleNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         }
-
+        assert moduleToDelete != null;
+        model.deleteModule(moduleToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 

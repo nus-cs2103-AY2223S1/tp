@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddTaskCommand.AddTaskToModuleDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -80,7 +81,7 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand(descriptor);
 
         assertThrows(CommandException.class,
-                AddTaskCommand.MESSAGE_MODULE_CODE_DOES_NOT_EXIST, () ->
+                Messages.MESSAGE_NO_SUCH_MODULE, () ->
                 addTaskCommand.execute(model));
     }
 
