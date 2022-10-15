@@ -10,19 +10,19 @@ public class NokPhoneTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new NokPhone(null));
+        assertThrows(NullPointerException.class, () -> new Phone(null));
     }
 
     @Test
     public void constructor_invalidNokPhone_throwsIllegalArgumentException() {
         String invalidNokPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new NokPhone(invalidNokPhone));
+        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidNokPhone));
     }
 
     @Test
     public void isValidNokPhone() {
         // null next of kin phone number
-        assertThrows(NullPointerException.class, () -> NokPhone.isValidNokPhone(null));
+        assertThrows(NullPointerException.class, () -> Phone.isValidNokPhone(null));
 
         // invalid next of kin phone numbers
         assertFalse(NokPhone.isValidNokPhone("")); // empty string

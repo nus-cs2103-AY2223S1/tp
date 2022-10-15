@@ -31,7 +31,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -123,7 +122,7 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        NokPhone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(personToEdit.getNokPhone());
+        Phone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(personToEdit.getNokPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Class updatedClassDateTime = editPersonDescriptor.getAClass().orElse(personToEdit.getAClass());
@@ -164,7 +163,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
-        private NokPhone nokPhone;
+        private Phone nokPhone;
         private Email email;
         private Address address;
         private Class aClass;
@@ -219,11 +218,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setNokPhone(NokPhone nokPhone) {
+        public void setNokPhone(Phone nokPhone) {
             this.nokPhone = nokPhone;
         }
 
-        public Optional<NokPhone> getNokPhone() {
+        public Optional<Phone> getNokPhone() {
             return Optional.ofNullable(nokPhone);
         }
 
