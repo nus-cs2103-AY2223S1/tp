@@ -146,12 +146,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given slack is invalid.
      */
-    public static Telegram parseTelegram(String tele) throws ParseException {
-        requireNonNull(tele);
-        String trimmedTele = tele.trim();
-        if (!Telegram.isValidTelegram(tele)) {
+    public static Telegram parseTelegram(String telegram) throws ParseException {
+        requireNonNull(telegram);
+        String trimmedTele = telegram.trim();
+        if (!Telegram.isValidTelegram(telegram)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Telegram(tele);
+        return new Telegram(telegram);
     }
 }
