@@ -1,6 +1,10 @@
 package tracko.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +14,7 @@ import tracko.model.items.Description;
 import tracko.model.items.Item;
 import tracko.model.items.ItemName;
 import tracko.model.items.Quantity;
+import tracko.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Item}.
@@ -20,16 +25,21 @@ public class JsonAdaptedItem {
     private final String itemName;
     private final Integer quantity;
     private final String description;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
      */
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("itemName") String itemName, @JsonProperty("quantity") Integer quantity,
-                            @JsonProperty("description") String description) {
+                            @JsonProperty("description") String description,
+                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.description = description;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -39,6 +49,9 @@ public class JsonAdaptedItem {
         itemName = source.getItemName().itemName;
         quantity = source.getQuantity().getQuantity();
         description = source.getDescription().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +60,10 @@ public class JsonAdaptedItem {
      * @throws IllegalValueException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalValueException {
+        final List<Tag> itemTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            itemTags.add(tag.toModelType());
+        }
 
         if (itemName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -75,6 +92,8 @@ public class JsonAdaptedItem {
         }
         final Description modelDescription = new Description(description);
 
-        return new Item(modelItemName, modelDescription, modelQuantity, new HashSet<>());
+        final Set<Tag> modelTags = new HashSet<>(itemTags);
+
+        return new Item(modelItemName, modelDescription, modelQuantity, modelTags);
     }
 }
