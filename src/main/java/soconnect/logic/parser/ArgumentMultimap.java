@@ -34,6 +34,17 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns all prefixes inside {@code ArgumentMultimap}.
+     * If the prefix does not exist, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List<Prefix> getAllPrefixes() {
+        List<Prefix> prefixes = new ArrayList<>();
+        argMultimap.forEach((prefix, arguments) -> prefixes.add(prefix));
+        return prefixes;
+    }
+
+    /**
      * Returns the last value of {@code prefix}.
      */
     public Optional<String> getValue(Prefix prefix) {

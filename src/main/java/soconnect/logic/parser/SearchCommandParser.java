@@ -18,18 +18,19 @@ import soconnect.model.person.ContactContainsAllKeywordsPredicate;
 import soconnect.model.person.ContactContainsAnyKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new SearchCommand object.
+ * Parses input arguments and creates a new {@code SearchCommand} object.
  */
 public class SearchCommandParser implements Parser<SearchCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the SearchCommand
-     * and returns an SearchCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code SearchCommand}
+     * and returns a {@code SearchCommand} object for execution.
      *
      * @throws ParseException If the user input does not conform the expected format.
      */
     public SearchCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
@@ -40,6 +41,16 @@ public class SearchCommandParser implements Parser<SearchCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
         String condition = argMultimap.getPreamble().toLowerCase();
+        return parseSearchCondition(argMultimap, condition);
+    }
+
+    /**
+     * Determines the type of {@code SearchCommand} based on the specified {@code String}
+     * condition from the user.
+     *
+     * @throws ParseException If the user input does not conform the expected format.
+     */
+    private SearchCommand parseSearchCondition(ArgumentMultimap argMultimap, String condition) throws ParseException {
         boolean isJointCondition;
 
         switch (condition) {
@@ -59,13 +70,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
     private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition)
             throws ParseException {
-        Pair<List<String>, List<List<String>>> keywordsAndPrefixes = extractPrefixesAndKeywords(argMultimap);
-        List<String> prefixes = keywordsAndPrefixes.getKey();
-        List<List<String>> keywords = keywordsAndPrefixes.getValue();
         if (isJointCondition) {
-            return new SearchCommand(new ContactContainsAllKeywordsPredicate(prefixes, keywords));
+            return new SearchCommand(new ContactContainsAllKeywordsPredicate(argMultimap));
         } else {
-            return new SearchCommand(new ContactContainsAnyKeywordsPredicate(prefixes, keywords));
+            return new SearchCommand(new ContactContainsAnyKeywordsPredicate(argMultimap));
         }
     }
 
