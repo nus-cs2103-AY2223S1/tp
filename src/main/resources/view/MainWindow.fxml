@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
+         title="NUScheduler" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/calendar.png" />
   </icons>
