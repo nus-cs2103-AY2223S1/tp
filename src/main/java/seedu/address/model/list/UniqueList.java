@@ -3,9 +3,6 @@ package seedu.address.model.list;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.ComparableByName;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.exceptions.DuplicateProjectException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 import java.util.Iterator;
 import java.util.List;
@@ -35,77 +32,77 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateProjectException();
+            throw new DuplicateException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the project {@code target} in the list with {@code editedProject}.
-     * {@code target} must exist in the list.
-     * The project identity of {@code editedProject} must not be the same as another existing project in the list.
+     * Replaces the object {@code t} in the list with {@code editedT}.
+     * {@code t} must exist in the list.
+     * The text identity of {@code editedT} must not be the same as another existing object in the list.
      */
-    public void setProject(T target, T editedProject) {
-        requireAllNonNull(target, editedProject);
+    public void setItem(T t, T editedT) {
+        requireAllNonNull(t, editedT);
 
-        int index = internalList.indexOf(target);
+        int index = internalList.indexOf(t);
         if (index == -1) {
-            throw new ProjectNotFoundException();
+            throw new NotFoundException();
         }
 
-        if (!target.hasSameName(editedProject) && contains(editedProject)) {
-            throw new DuplicateProjectException();
+        if (!t.hasSameName(editedT) && contains(editedT)) {
+            throw new DuplicateException();
         }
 
-        internalList.set(index, editedProject);
+        internalList.set(index, editedT);
     }
 
     /**
-     * Removes the equivalent project from the list.
-     * The project must exist in the list.
+     * Removes the equivalent object from the list.
+     * The object must exist in the list.
      */
-    public void remove(Project toRemove) {
+    public void remove(T toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ProjectNotFoundException();
+            throw new NotFoundException();
         }
     }
 
-    public void setProjects(UniqueProjectList replacement) {
+    public void setList(UniqueList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code projects}.
-     * {@code projects} must not contain duplicate projects.
+     * Replaces the contents of this list with {@code newList}.
+     * {@code newList} must not contain duplicate objects.
      */
-    public void setProjects(List<Project> projects) {
-        requireAllNonNull(projects);
-        if (!projectsAreUnique(projects)) {
-            throw new DuplicateProjectException();
+    public void setList(List<T> newList) {
+        requireAllNonNull(newList);
+        if (!itemsAreUnique(newList)) {
+            throw new DuplicateException();
         }
 
-        internalList.setAll(projects);
+        internalList.setAll(newList);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Project> asUnmodifiableObservableList() {
+    public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Project> iterator() {
+    public Iterator<T> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueProjectList // instanceof handles nulls
-                && internalList.equals(((UniqueProjectList) other).internalList));
+                || (other instanceof UniqueList<?> // instanceof handles nulls
+                && internalList.equals(((UniqueList) other).internalList));
     }
 
     @Override
@@ -114,12 +111,12 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
     }
 
     /**
-     * Returns true if {@code projects} contains only unique projects.
+     * Returns true if {@code tList} contains only unique objects.
      */
-    private boolean projectsAreUnique(List<Project> projects) {
-        for (int i = 0; i < projects.size() - 1; i++) {
-            for (int j = i + 1; j < projects.size(); j++) {
-                if (projects.get(i).hasSameName(projects.get(j))) {
+    private boolean itemsAreUnique(List<T> tList) {
+        for (int i = 0; i < tList.size() - 1; i++) {
+            for (int j = i + 1; j < tList.size(); j++) {
+                if (tList.get(i).hasSameName(tList.get(j))) {
                     return false;
                 }
             }

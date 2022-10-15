@@ -8,7 +8,7 @@
 //
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
-//import seedu.address.model.client.exceptions.DuplicatePersonException;
+//import seedu.address.model.client.exceptions.DuplicateException;
 //import seedu.address.model.client.exceptions.PersonNotFoundException;
 //
 ///**
@@ -43,7 +43,7 @@
 //    public void add(Person toAdd) {
 //        requireNonNull(toAdd);
 //        if (contains(toAdd)) {
-//            throw new DuplicatePersonException();
+//            throw new DuplicateException();
 //        }
 //        internalList.add(toAdd);
 //    }
@@ -62,7 +62,7 @@
 //        }
 //
 //        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
-//            throw new DuplicatePersonException();
+//            throw new DuplicateException();
 //        }
 //
 //        internalList.set(index, editedPerson);
@@ -91,7 +91,7 @@
 //    public void setPersons(List<Person> persons) {
 //        requireAllNonNull(persons);
 //        if (!personsAreUnique(persons)) {
-//            throw new DuplicatePersonException();
+//            throw new DuplicateException();
 //        }
 //
 //        internalList.setAll(persons);

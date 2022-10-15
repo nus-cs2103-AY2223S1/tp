@@ -6,11 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Person;
-import seedu.address.model.client.UniquePersonList;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.UniqueIssueList;
+import seedu.address.model.list.UniqueList;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.UniqueProjectList;
 
 /**
  * Wraps all data at the address-book level
@@ -22,9 +20,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     private int clientCount = 1;
     private int issueCount = 1;
 
-    private final UniquePersonList persons;
-    private final UniqueProjectList projects;
-    private final UniqueIssueList issues;
+    private final UniqueList<Person> persons;
+    private final UniqueList<Project> projects;
+    private final UniqueList<Issue> issues;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -34,9 +32,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
-        projects = new UniqueProjectList();
-        issues = new UniqueIssueList();
+        persons = new UniqueList<Person>();
+        projects = new UniqueList<Project>();
+        issues = new UniqueList<Issue>();
     }
 
     public AddressBook() {}
@@ -56,7 +54,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        this.persons.setList(persons);
     }
 
     /**
@@ -64,7 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code projects} must not contain duplicate projects.
      */
     public void setProjects(List<Project> projects) {
-        this.projects.setProjects(projects);
+        this.projects.setList(projects);
     }
 
     /**
@@ -72,7 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code issues} must not contain duplicate issues.
      */
     public void setIssues(List<Issue> issues) {
-        this.issues.setIssues(issues);
+        this.issues.setList(issues);
     }
 
     /**
@@ -144,7 +142,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        persons.setItem(target, editedPerson);
     }
 
     /**
@@ -156,7 +154,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setProject(Project target, Project editedProject) {
         requireNonNull(editedProject);
 
-        projects.setProject(target, editedProject);
+        projects.setItem(target, editedProject);
     }
 
     /**
@@ -168,7 +166,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setIssue(Issue target, Issue editedIssue) {
         requireNonNull(editedIssue);
 
-        issues.setIssue(target, editedIssue);
+        issues.setItem(target, editedIssue);
     }
 
     /**
