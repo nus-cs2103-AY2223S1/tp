@@ -2,6 +2,7 @@ package seedu.foodrem.logic.parser.generalcommandparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getCommandHelpMessage;
+import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getGeneralHelpMessage;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -67,13 +68,14 @@ class HelpCommandParserTest {
                         + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag",
                 CommandWord.listAllCommandWords());
 
-        assertEquals("To receive help for a specific command, enter "
-                        + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
-                        + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
-                        + "For more information please head to:\n"
-                        + "https://se-education.org/addressbook-level3/UserGuide.html",
-                HelpCommand.HELP_FOR_ALL_COMMANDS);
+        // // Commented out pending reevaluation of usefulness of test case
+        // assertEquals("To receive help for a specific command, enter "
+        //                 + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
+        //                 + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
+        //                 + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
+        //                 + "For more information please head to:\n"
+        //                 + "https://se-education.org/addressbook-level3/UserGuide.html",
+        //         HelpCommand.HELP_FORMAT_GENERAL);
 
         // // Commented out pending reevaluation of usefulness of test case
         // assertEquals("hehe\n\nTo receive help for a specific command, enter "
@@ -99,7 +101,7 @@ class HelpCommandParserTest {
     @Test
     void parse_blankCommands() {
         assertParseSuccess(parser, "",
-                new HelpCommand(HelpCommand.HELP_FOR_ALL_COMMANDS));
+                new HelpCommand(getGeneralHelpMessage()));
     }
 
     @Test

@@ -32,7 +32,8 @@ public enum CommandWord {
     HELP_COMMAND("help") {
         @Override
         public String getUsage() {
-            return HelpCommand.getUsage();
+            return getCommandWord() + ": Displays help for FoodRem.\n"
+                    + "Example: " + getCommandWord();
         }
     },
     RESET_COMMAND("reset") {
