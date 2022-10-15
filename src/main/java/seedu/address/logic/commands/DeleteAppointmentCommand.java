@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByDeletingAllAppointments;
+import static seedu.address.logic.commands.EditAppointmentCommand.MESSAGE_INVALID_APPOINTMENT_INDEX_FORMAT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
@@ -10,12 +10,10 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-<<<<<<< HEAD
-=======
-import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.logic.util.MaximumSortedList;
->>>>>>> musab_max_appointmnet
+import seedu.address.logic.util.exceptions.SortedListException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -31,18 +29,22 @@ public class DeleteAppointmentCommand extends Command {
             + "Parameters: [INDEX] \n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person's Appointment: %1$s";
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Person's Appointment: %1$s";
 
     public static final String MESSAGE_NO_APPOINTMENT_TO_DELETE = "This person does not have an appointment to delete";
-    private final Index index;
+    private final Index personIndex;
+    private final Index appointmentIndex;
 
     /**
-     * @param index of the person in the filtered person list
+     * @param personIndex of the person in the filtered person list
+     * @param appointmentIndex of the person in the filtered person list
      */
-    public DeleteAppointmentCommand(Index index) {
-        requireNonNull(index);
+    public DeleteAppointmentCommand(Index personIndex, Index appointmentIndex) {
+        requireNonNull(personIndex);
+        requireNonNull(appointmentIndex);
 
-        this.index = index;
+        this.personIndex = personIndex;
+        this.appointmentIndex = appointmentIndex;
     }
 
 
@@ -51,27 +53,25 @@ public class DeleteAppointmentCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (personIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-<<<<<<< HEAD
-=======
-        MaximumSortedList<Appointment> emptyAppointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setAppointments(emptyAppointments);
+        Person personWithAppointmentToDelete = lastShownList.get(personIndex.getZeroBased());
+        MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToDelete.getAppointments();
 
->>>>>>> musab_max_appointmnet
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonByDeletingAllAppointments(personToEdit);
-
-        if (personToEdit.getAppointments().size() == 0) {
-            throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_DELETE);
+        Appointment appointmentToDelete;
+        Appointment deletedAppointment;
+        try {
+            appointmentToDelete = appointmentSet.get(appointmentIndex.getZeroBased());
+            deletedAppointment = appointmentSet.remove(appointmentIndex.getZeroBased());
+        } catch (SortedListException e) {
+            throw new CommandException(String.format(MESSAGE_INVALID_APPOINTMENT_INDEX_FORMAT, appointmentIndex));
         }
 
-        model.setPerson(personToEdit, editedPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, deletedAppointment));
     }
 
 
@@ -90,6 +90,7 @@ public class DeleteAppointmentCommand extends Command {
 
         // state check
         DeleteAppointmentCommand e = (DeleteAppointmentCommand) other;
-        return index.equals(e.index);
+        return personIndex.equals(e.personIndex)
+                && appointmentIndex.equals(e.appointmentIndex);
     }
 }

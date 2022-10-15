@@ -51,7 +51,7 @@ public class ParserUtil {
     public static Index parseAppointmentIndex(String personAppointmentIndex) throws ParseException {
         requireNonNull(personAppointmentIndex);
         String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split(".");
+        String[] splitStr = trimmedAppointmentIndex.split("\\.");
 
         if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[1])) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
@@ -67,7 +67,7 @@ public class ParserUtil {
     public static Index parsePersonIndex(String personAppointmentIndex) throws ParseException {
         requireNonNull(personAppointmentIndex);
         String trimmedAppointmentIndex = personAppointmentIndex.trim();
-        String[] splitStr = trimmedAppointmentIndex.split(".");
+        String[] splitStr = trimmedAppointmentIndex.split("\\.");
 
         if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[0])) {
             throw new ParseException(MESSAGE_INVALID_INDEX);

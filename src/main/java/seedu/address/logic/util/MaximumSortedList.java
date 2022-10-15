@@ -63,25 +63,17 @@ public class MaximumSortedList<T extends Comparable<T>> {
         return true;
     }
 
-    /**
-     * Removes the element at the specified position in this list,
-     * then add a specified element to the list according to the sorted order.
+   /**
+     * Returns the specified element to the list
      *
-     * @param zeroBasedIndex the zeroBasedIndex of the element to be removed.
-     * @param t the element to be added
-     * @return the Comparable at the specified zeroBasedIndex.
-     * @throws SortedListException the exception encountered when the input zeroBasedIndex
-     *         is invalid.
+     * @param
+     * @return a boolean value describing whether the input element has been added.
      */
-    public boolean replace(int zeroBasedIndex, T t) throws SortedListException {
-        requireNonNull(t);
-        if (zeroBasedIndex < 0 || zeroBasedIndex >= maxSize || contains(t)) {
-            return false;
+    public T get(int zeroBasedIndex) throws SortedListException {
+        if (zeroBasedIndex < 0 || zeroBasedIndex >= maxSize) {
+            throw new SortedListException("Error: The list does not contain the input zeroBasedIndex");
         }
-        internalMaximumSortedList.remove(zeroBasedIndex);
-        internalMaximumSortedList.add(t);
-        sort();
-        return true;
+        return internalMaximumSortedList.get(zeroBasedIndex);
     }
 
     /**

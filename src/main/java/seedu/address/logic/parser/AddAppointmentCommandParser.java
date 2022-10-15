@@ -43,7 +43,6 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                     AddAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         Appointment appointment;
         DateTime appointmentDateTime;
         Location appointmentLocation;
@@ -57,14 +56,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        editPersonDescriptor.setAppointment(appointment);
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE));
-        }
-
-
-        return new AddAppointmentCommand(personIndex, editPersonDescriptor);
+        return new AddAppointmentCommand(personIndex, appointment);
     }
 
 //    /**

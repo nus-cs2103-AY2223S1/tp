@@ -6,13 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 
 import java.time.format.DateTimeParseException;
-import java.util.Collection;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Location;
@@ -48,28 +45,22 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
 
-        Appointment appointment;
-        DateTime appointmentDateTime;
-        Location appointmentLocation;
 
-        try {
-            appointmentDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get());
-            appointmentLocation = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get());
-            appointment = ParserUtil.parseAppointment(appointmentDateTime.toString(), appointmentLocation.toString());
-        } catch (DateTimeParseException e) {
+        if (argMultimap.getValue(PREFIX_APPOINTMENT_DATE).isPresent()) {
+            editAppointmentDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).isPresent()) {
+            editAppointmentDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get()));
+        }
+
+        if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE));
         }
 
-        editPersonDescriptor.setAppointment(appointment);
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAppointmentCommand.MESSAGE_USAGE));
-        }
-
-        return new EditAppointmentCommand(personIndex, appointmentIndex, editPersonDescriptor);
+        return new EditAppointmentCommand(personIndex, appointmentIndex, editAppointmentDescriptor);
     }
 
 //    /**

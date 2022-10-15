@@ -65,15 +65,15 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static MaximumSortedList<Appointment> getAppointmentSet(String... strings) {
-        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
-        Arrays.stream(strings)
-                .map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new)
-                .map(Appointment::new).forEach(appointmentList::add);
-        return appointmentList;
-    }
+//    /**
+//     * Returns a tag set containing the list of strings given.
+//     */
+//    public static MaximumSortedList<Appointment> getAppointmentSet(String... strings) {
+//        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+//        Arrays.stream(strings)
+//                .map(DateTimeParser::parseLocalDateTimeFromString)
+//                .map(DateTime::new)
+//                .map(Appointment::new).forEach(appointmentList::add);
+//        return appointmentList;
+//    }
 }

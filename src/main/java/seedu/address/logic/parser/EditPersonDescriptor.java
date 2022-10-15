@@ -1,15 +1,11 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
@@ -32,7 +28,7 @@ public class EditPersonDescriptor {
     private Address address;
     private IncomeLevel income;
     private Set<Tag> tags;
-    private MaximumSortedList<Appointment> appointments;
+//    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -53,7 +49,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags);
     }
 
     public void setName(Name name) {
