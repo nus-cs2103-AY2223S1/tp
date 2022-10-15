@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 
 /**
  * Jackson-friendly version of Event
@@ -17,7 +18,7 @@ public class JsonAdaptedEvent {
 
     private final String startDate;
 
-    private final String time;
+    private final String startTime;
 
     private final String purpose;
 
@@ -25,15 +26,15 @@ public class JsonAdaptedEvent {
      * Constructs a JsonAdaptedEvent with the given event details.
      * @param eventTitle
      * @param startDate
-     * @param time
+     * @param startTime
      * @param purpose
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventTitle") String eventTitle, @JsonProperty("startDate") String startDate,
-                            @JsonProperty("time") String time, @JsonProperty("purpose") String purpose) {
+                            @JsonProperty("startTime") String startTime, @JsonProperty("purpose") String purpose) {
         this.eventTitle = eventTitle;
         this.startDate = startDate;
-        this.time = time;
+        this.startTime = startTime;
         this.purpose = purpose;
     }
 
@@ -43,7 +44,7 @@ public class JsonAdaptedEvent {
     public JsonAdaptedEvent(Event event) {
         this.eventTitle = event.getEventTitle();
         this.startDate = event.getStartDate().toLogFormat();
-        this.time = event.getTime();
+        this.startTime = event.getStartTime().toLogFormat();
         this.purpose = event.getPurpose();
     }
 
@@ -57,17 +58,25 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Event Title"));
         }
 
+        if (this.startDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));
+        }
         if (!StartDate.isValidStartDate(startDate)) {
             throw new IllegalValueException(StartDate.MESSAGE_CONSTRAINTS);
         }
         final StartDate modelStartDate = new StartDate(startDate);
 
-        if (this.time == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Time"));
+        if (this.startTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Time"));
         }
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new IllegalValueException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        final StartTime modelStartTime = new StartTime(startTime);
+
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
-        return new Event(this.eventTitle, modelStartDate, this.time, this.purpose);
+        return new Event(this.eventTitle, modelStartDate, modelStartTime, this.purpose);
     }
 }

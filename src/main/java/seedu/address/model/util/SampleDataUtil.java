@@ -8,6 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -46,12 +47,12 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event("2/2 Sale", new StartDate("2/2/2022"), "2am", "For football fans"),
-            new Event("4/4 Sale", new StartDate("4/4/2022"), "4am", "For computer scientists"),
-            new Event("6/6 Sale", new StartDate("6/6/2022"), "6am", "For car enthusiasts"),
-            new Event("8/8 Sale", new StartDate("8/8/2022"), "8am", "For bread lovers"),
-            new Event("10/10 Sale", new StartDate("10/10/2022"), "10am", "For watch hobbyists"),
-            new Event("12/12 Sale", new StartDate("12/12/2022"), "12pm", "For stationery buyers")
+            new Event("2/2 Sale", new StartDate("2/2/2022"), new StartTime("02/00/AM"), "For football fans"),
+            new Event("4/4 Sale", new StartDate("4/4/2022"), new StartTime("04/00/PM"), "For computer scientists"),
+            new Event("6/6 Sale", new StartDate("6/6/2022"), new StartTime("06/00/AM"), "For car enthusiasts"),
+            new Event("8/8 Sale", new StartDate("8/8/2022"), new StartTime("08/00/PM"), "For bread lovers"),
+            new Event("10/10 Sale", new StartDate("10/10/2022"), new StartTime("10/00/AM"), "For watch hobbyists"),
+            new Event("12/12 Sale", new StartDate("12/12/2022"), new StartTime("12/00/PM"), "For stationery buyers")
         };
     }
 

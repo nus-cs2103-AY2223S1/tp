@@ -4,12 +4,9 @@ package seedu.address.model.event;
  * Event represents a marketing events in the application.
  */
 public class Event {
-    //Temporary representation with String
-    //TODO: create Data Structure for each field; Single DateTime object for Date & Time?
-
     private final String eventTitle;
     private final StartDate startDate;
-    private final String time;
+    private final StartTime startTime;
     private final String purpose;
 
 
@@ -17,13 +14,13 @@ public class Event {
      * Constructor to create new Event object
      * @param eventTitle title of marketing event
      * @param startDate date when marketing event begins
-     * @param time time when marketing event occurs
+     * @param startTime time when marketing event begins
      * @param purpose summary of what the marketing is about
      */
-    public Event(String eventTitle, StartDate startDate, String time, String purpose) {
+    public Event(String eventTitle, StartDate startDate, StartTime startTime, String purpose) {
         this.eventTitle = eventTitle;
         this.startDate = startDate;
-        this.time = time;
+        this.startTime = startTime;
         this.purpose = purpose;
     }
 
@@ -35,8 +32,8 @@ public class Event {
         return this.startDate;
     }
 
-    public String getTime() {
-        return this.time;
+    public StartTime getStartTime() {
+        return this.startTime;
     }
 
     public String getPurpose() {
@@ -56,7 +53,7 @@ public class Event {
         Event otherEvent = (Event) other;
         return otherEvent.getEventTitle().equals(this.getEventTitle())
                 && otherEvent.getStartDate().equals(this.getStartDate())
-                && otherEvent.getTime().equals(this.getTime())
+                && otherEvent.getStartTime().equals(this.getStartTime())
                 && otherEvent.getPurpose().equals(this.getPurpose());
     }
 
@@ -67,8 +64,8 @@ public class Event {
                 .append(this.getEventTitle())
                 .append("; Start Date: ")
                 .append(this.getStartDate())
-                .append("; Time: ")
-                .append(this.getTime())
+                .append("; Start Time: ")
+                .append(this.getStartTime())
                 .append("; Purpose: ")
                 .append(this.getPurpose());
 

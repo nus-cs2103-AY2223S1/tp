@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.util.stream.Stream;
 
@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 
 /**
  * Parses input arguments and creates a new AddEventCommand object
@@ -27,20 +28,20 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      */
     public AddEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_TITLE, PREFIX_START_DATE, PREFIX_TIME, PREFIX_PURPOSE);
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENT_TITLE, PREFIX_START_DATE,
+                        PREFIX_START_TIME, PREFIX_PURPOSE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_TITLE, PREFIX_START_DATE, PREFIX_TIME, PREFIX_PURPOSE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_TITLE, PREFIX_START_DATE, PREFIX_START_TIME, PREFIX_PURPOSE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
-        //TODO: Modify Types of each argument once respective classes are implemented
         String eventTitle = ParserUtil.parseEventTitle(argMultimap.getValue(PREFIX_EVENT_TITLE).get());
         StartDate startDate = ParserUtil.parseStartDate(argMultimap.getValue(PREFIX_START_DATE).get());
-        String time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
+        StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get());
         String purpose = ParserUtil.parsePurpose(argMultimap.getValue(PREFIX_PURPOSE).get());
 
-        Event event = new Event(eventTitle, startDate, time, purpose);
+        Event event = new Event(eventTitle, startDate, startTime, purpose);
 
         return new AddEventCommand(event);
     }

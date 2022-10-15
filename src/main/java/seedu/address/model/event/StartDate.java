@@ -9,12 +9,11 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Event's starting date in the address book.
- * Guarantees: immutable; is valid as declared in {@link isValidDate(String)}
- * TODO: Make it mutable
+ * Guarantees: immutable; is valid as declared in {@link #isValidStartDate(String)}
  */
 public class StartDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start date must be in format: dd/mm/yyyy";
+    public static final String MESSAGE_CONSTRAINTS = "Start date must be in format: dd/MM/yyyy";
     private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
             "compareTo() of StartDate must take in argument of type LocalDate";
 
@@ -60,7 +59,8 @@ public class StartDate {
     }
 
     /**
-     * Returns true if a given string is a valid StartDate input, "" empty string is used to represent an empty StartDate.
+     * Returns true if a given string is a valid StartDate input.
+     * "" empty string is used to represent an empty StartDate.
      * @return boolean
      */
 
@@ -72,6 +72,7 @@ public class StartDate {
         try {
             LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
+            System.out.println("StartDate problem");
             return false;
         }
         return true;
