@@ -40,6 +40,11 @@ public class Money {
         return amount >= 0;
     }
 
+    public Money addTo(Money AmountToAdd) {
+        Integer amountSum = this.value + AmountToAdd.value;
+        return new Money(amountSum);
+    }
+
     @Override
     public String toString() {
         return value.toString();
