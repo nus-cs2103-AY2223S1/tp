@@ -14,8 +14,8 @@ public class JsonAdaptedDuration {
      * Constructs a {@code JsonAdaptedDuration} with the given {@code durationDesc}.
      */
     @JsonCreator
-    public JsonAdaptedDuration(String tagName) {
-        this.durationDesc = tagName;
+    public JsonAdaptedDuration(String durationDesc) {
+        this.durationDesc = durationDesc;
     }
 
     /**

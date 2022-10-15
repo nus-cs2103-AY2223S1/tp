@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PROGRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_HOMEWORK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_PLAN_BOB;
@@ -43,10 +44,11 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().withHomework(VALID_HOMEWORK_BOB)
-                .withAttendance(VALID_ATTENDANCE_BOB).withGradeProgress(VALID_GRADE_PROGRESS_BOB).build();
+                .withAttendance(VALID_ATTENDANCE_BOB).withGradeProgress(VALID_GRADE_PROGRESS_BOB).withDuration(VALID_DURATION_BOB).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
                 .withHomeworkIndex(INDEX_FIRST_ITEM).withHomework(VALID_HOMEWORK_BOB)
                 .withAttendanceIndex(INDEX_FIRST_ITEM).withAttendance(VALID_ATTENDANCE_BOB)
+                .withDurationIndex(INDEX_FIRST_ITEM).withDuration(VALID_DURATION_BOB)
                 .withGradeProgressIndex(INDEX_FIRST_ITEM).withGradeProgress(VALID_GRADE_PROGRESS_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
