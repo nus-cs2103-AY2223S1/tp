@@ -78,7 +78,7 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append(", Status: ")
-                .append(getStatus());
+                .append(getParsedStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
