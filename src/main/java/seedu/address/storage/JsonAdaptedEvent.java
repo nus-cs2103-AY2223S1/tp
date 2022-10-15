@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.StartDate;
 
 /**
  * Jackson-friendly version of Event
@@ -14,24 +15,24 @@ public class JsonAdaptedEvent {
 
     private final String eventTitle;
 
-    private final String date;
+    private final String startDate;
 
     private final String time;
 
     private final String purpose;
 
     /**
-     * Constructs a JsonAdaptedEvent with the given Event information
+     * Constructs a JsonAdaptedEvent with the given event details.
      * @param eventTitle
-     * @param date
+     * @param startDate
      * @param time
      * @param purpose
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("eventTitle") String eventTitle, @JsonProperty("date") String date,
+    public JsonAdaptedEvent(@JsonProperty("eventTitle") String eventTitle, @JsonProperty("startDate") String startDate,
                             @JsonProperty("time") String time, @JsonProperty("purpose") String purpose) {
         this.eventTitle = eventTitle;
-        this.date = date;
+        this.startDate = startDate;
         this.time = time;
         this.purpose = purpose;
     }
@@ -41,30 +42,32 @@ public class JsonAdaptedEvent {
      */
     public JsonAdaptedEvent(Event event) {
         this.eventTitle = event.getEventTitle();
-        this.date = event.getDate();
+        this.startDate = event.getStartDate().toLogFormat();
         this.time = event.getTime();
         this.purpose = event.getPurpose();
     }
 
     /**
-     * Converts this Jackson-friendly adapted event object into the model's Event object
+     * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
-     * @throws IllegalValueException if any data constraints were violated in the adapted person
+     * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
         if (this.eventTitle == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Event Title"));
         }
-        if (this.date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
+
+        if (!StartDate.isValidStartDate(startDate)) {
+            throw new IllegalValueException(StartDate.MESSAGE_CONSTRAINTS);
         }
+        final StartDate modelStartDate = new StartDate(startDate);
+
         if (this.time == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Time"));
         }
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
-        return new Event(this.eventTitle, this.date, this.time, this.purpose);
+        return new Event(this.eventTitle, modelStartDate, this.time, this.purpose);
     }
-
 }

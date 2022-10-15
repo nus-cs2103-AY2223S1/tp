@@ -46,7 +46,7 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         eventTitle.setText(event.getEventTitle());
-        date.setText(event.getDate());
+        date.setText(event.getStartDate().toString());
         time.setText(event.getTime());
         purpose.setText(event.getPurpose());
     }

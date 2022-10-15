@@ -8,7 +8,7 @@ public class Event {
     //TODO: create Data Structure for each field; Single DateTime object for Date & Time?
 
     private final String eventTitle;
-    private final String date;
+    private final StartDate startDate;
     private final String time;
     private final String purpose;
 
@@ -16,13 +16,13 @@ public class Event {
     /**
      * Constructor to create new Event object
      * @param eventTitle title of marketing event
-     * @param date date when marketing event occurs
+     * @param startDate date when marketing event begins
      * @param time time when marketing event occurs
      * @param purpose summary of what the marketing is about
      */
-    public Event(String eventTitle, String date, String time, String purpose) {
+    public Event(String eventTitle, StartDate startDate, String time, String purpose) {
         this.eventTitle = eventTitle;
-        this.date = date;
+        this.startDate = startDate;
         this.time = time;
         this.purpose = purpose;
     }
@@ -31,8 +31,8 @@ public class Event {
         return this.eventTitle;
     }
 
-    public String getDate() {
-        return this.date;
+    public StartDate getStartDate() {
+        return this.startDate;
     }
 
     public String getTime() {
@@ -55,7 +55,7 @@ public class Event {
 
         Event otherEvent = (Event) other;
         return otherEvent.getEventTitle().equals(this.getEventTitle())
-                && otherEvent.getDate().equals(this.getDate())
+                && otherEvent.getStartDate().equals(this.getStartDate())
                 && otherEvent.getTime().equals(this.getTime())
                 && otherEvent.getPurpose().equals(this.getPurpose());
     }
@@ -65,8 +65,8 @@ public class Event {
         final StringBuilder builder = new StringBuilder();
         builder.append("Event Title: ")
                 .append(this.getEventTitle())
-                .append("; Date: ")
-                .append(this.getDate())
+                .append("; Start Date: ")
+                .append(this.getStartDate())
                 .append("; Time: ")
                 .append(this.getTime())
                 .append("; Purpose: ")

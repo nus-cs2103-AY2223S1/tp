@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
@@ -22,12 +22,12 @@ public class AddEventCommand extends Command {
             + ": Adds an Event to the application. \n"
             + "Parameters: "
             + PREFIX_EVENT_TITLE + "TITLE OF EVENT "
-            + PREFIX_DATE + "DATE "
+            + PREFIX_START_DATE + "START DATE "
             + PREFIX_TIME + "TIME "
             + PREFIX_PURPOSE + "PURPOSE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EVENT_TITLE + "Shoe Sale "
-            + PREFIX_DATE + "20-09-2022 "
+            + PREFIX_START_DATE + "20-09-2022 "
             + PREFIX_TIME + "11:00 "
             + PREFIX_PURPOSE + "50% discount on all shoes store-wide! ";
 
