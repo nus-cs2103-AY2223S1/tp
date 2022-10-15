@@ -10,10 +10,10 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.exceptions.DuplicateEventException;
 import seedu.travelr.model.event.exceptions.EventNotFoundException;
-import seedu.travelr.model.trip.Title;
 
 
 /**
@@ -31,7 +31,7 @@ public class Itineraries extends EventList {
      */
     public boolean contains(Event toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTrip);
+        return internalList.stream().anyMatch(toCheck::isSameEvent);
     }
 
     /**
@@ -71,21 +71,21 @@ public class Itineraries extends EventList {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setEvent(Event target, Event editedTrip) {
-        requireAllNonNull(target, editedTrip);
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new EventNotFoundException();
         }
 
-        if (!target.isSameTrip(editedTrip) && contains(editedTrip)) {
+        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
             throw new DuplicateEventException();
         }
 
-        internalList.set(index, editedTrip);
+        internalList.set(index, editedEvent);
         removeEvent(target);
-        addEvent(editedTrip);
+        addEvent(editedEvent);
     }
 
     /**
@@ -157,7 +157,7 @@ public class Itineraries extends EventList {
     private boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {
             for (int j = i + 1; j < events.size(); j++) {
-                if (events.get(i).isSameTrip(events.get(j))) {
+                if (events.get(i).isSameEvent(events.get(j))) {
                     return false;
                 }
             }
