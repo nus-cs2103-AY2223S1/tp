@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
@@ -164,7 +163,11 @@ public enum CommandWord {
     DELETE_TAG_COMMAND("deletetag") {
         @Override
         public String getUsage() {
-            return DeleteTagCommand.getUsage();
+            return getCommandWord() + ": Deletes an existing tag in FoodRem. "
+                    + "Parameters: "
+                    + CliSyntax.PREFIX_NAME + "NAME "
+                    + "Example: " + getCommandWord() + " "
+                    + CliSyntax.PREFIX_NAME + "Potatoes ";
         }
     },
     LIST_TAG_COMMAND("listtag") {

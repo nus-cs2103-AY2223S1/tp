@@ -1,10 +1,9 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.foodrem.enums.CommandWord.DELETE_TAG_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -15,17 +14,8 @@ import seedu.foodrem.model.tag.Tag;
  * Deletes an existing tag in FoodRem.
  */
 public class DeleteTagCommand extends Command {
-
-    public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
-    public static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem";
-
-    private static final String COMMAND_WORD = CommandWord.DELETE_TAG_COMMAND.getCommandWord();
-
-    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing tag in FoodRem. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Potatoes ";
+    private static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
+    private static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem";
 
     private final Tag toDelete;
 
@@ -51,7 +41,7 @@ public class DeleteTagCommand extends Command {
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return DELETE_TAG_COMMAND.getUsage();
     }
 
     @Override
