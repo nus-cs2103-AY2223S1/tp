@@ -98,7 +98,6 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         List<Issue> issueList = new ArrayList<>();
-        // TODO: Check again, I assume there isn't an id currently.
         ProjectId projectId = new ProjectId(UniqueProjectList.generateId());
 
         Project project = new Project(name, repository, deadline, client, issueList, projectId);

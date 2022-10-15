@@ -124,11 +124,30 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
         return true;
     }
 
+    /**
+     * Generate the next object ID.
+     * @returnthe max ID in list + 1
+     */
     public int generateNextID() {
         int maxID = 0;
         for (T t: this) {
             maxID = t.getID() > maxID ? t.getID() : maxID;
         }
         return maxID + 1;
+    }
+
+    /**
+     * Get an element by its id
+     * @param id id to retrieve with
+     * @return an element if it is found.
+     * @throws NotFoundException if element is not found.
+     */
+    public T getElementById(int id) {
+        for (T t: this) {
+            if (t.getID() == id) {
+                return t;
+            }
+        }
+        throw new NotFoundException();
     }
 }

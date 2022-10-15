@@ -14,12 +14,18 @@ import static java.util.Objects.requireNonNull;
 /**
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
+ *
+ * This is a SINGLETON CLASS.
+ * Static methods are present to retrieve, and create a new instance of the class.
+ * When creating a new instance, the previous instance is destroyed.
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueEntityList<Person> persons;
+    private static AddressBook instance;
+
     private final UniqueEntityList<Client> clients;
     private final UniqueEntityList<Project> projects;
+    private final UniqueEntityList<Person> persons;
     private final UniqueEntityList<Issue> issues;
 
     /*
@@ -30,18 +36,32 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniqueEntityList<Person>();
-        projects = new UniqueEntityList<Project>();
-        issues = new UniqueEntityList<Issue>();
         clients = new UniqueEntityList<Client>();
+        projects = new UniqueEntityList<Project>();
+        persons = new UniqueEntityList<Person>();
+        issues = new UniqueEntityList<Issue>();
     }
 
-    public AddressBook() {}
+    public static AddressBook newAddressBook() {
+        instance = new AddressBook();
+        return instance;
+    }
+
+    public static AddressBook newAddressBook(ReadOnlyAddressBook toBeCopied) {
+        instance = new AddressBook(toBeCopied);
+        return instance;
+    }
+
+    public static AddressBook get() {
+        return instance;
+    }
+
+    private AddressBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    private AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
