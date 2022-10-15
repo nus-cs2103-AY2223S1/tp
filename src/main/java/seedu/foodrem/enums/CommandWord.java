@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
@@ -118,7 +117,26 @@ public enum CommandWord {
     NEW_COMMAND("new") {
         @Override
         public String getUsage() {
-            return NewCommand.getUsage();
+            return getCommandWord()
+                    + ": Creates a new item in FoodRem. "
+                    + "\n"
+                    + "Parameters: "
+                    + CliSyntax.PREFIX_NAME + "NAME "
+                    + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY "
+                    + CliSyntax.PREFIX_ITEM_UNIT + "UNIT "
+                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE "
+                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE "
+                    + "[" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY" + "] "
+                    + "[" + CliSyntax.PREFIX_ITEM_UNIT + "UNIT" + "] "
+                    + "[" + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE" + "] "
+                    + "[" + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE" + "] "
+                    + "\n"
+                    + "Example: " + getCommandWord() + " "
+                    + CliSyntax.PREFIX_NAME + "Potatoes "
+                    + CliSyntax.PREFIX_ITEM_QUANTITY + "10 "
+                    + CliSyntax.PREFIX_ITEM_UNIT + "kg "
+                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "11-11-2022 "
+                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "21-11-2022 ";
         }
     },
     SORT_COMMAND("sort") {
