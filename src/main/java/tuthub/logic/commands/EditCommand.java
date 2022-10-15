@@ -32,7 +32,7 @@ import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
 
 /**
- * Edits the details of an existing tutor in the address book.
+ * Edits the details of an existing tutor in tuthub.
  */
 public class EditCommand extends Command {
 
@@ -55,7 +55,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_TUTOR_SUCCESS = "Edited Tutor: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TUTOR = "This tutor already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_TUTOR = "This tutor already exists in Tuthub.";
 
     private final Index index;
     private final EditTutorDescriptor editTutorDescriptor;
