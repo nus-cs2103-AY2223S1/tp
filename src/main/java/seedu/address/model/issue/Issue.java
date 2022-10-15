@@ -2,6 +2,7 @@ package seedu.address.model.issue;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.ComparableByName;
 import seedu.address.model.Deadline;
 import seedu.address.model.project.Project;
 
@@ -9,7 +10,7 @@ import seedu.address.model.project.Project;
  * Represents an Issue.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Issue {
+public class Issue implements ComparableByName<Issue> {
 
     // Components of an issue
     private IssueId issueId;
@@ -58,7 +59,8 @@ public class Issue {
      * Returns true if both issues have the same description.
      * This defines a weaker notion of equality between two issues.
      */
-    public boolean isSameIssue(Issue otherIssue) {
+    @Override
+    public boolean hasSameName(Issue otherIssue) {
         if (otherIssue == this) {
             return true;
         }

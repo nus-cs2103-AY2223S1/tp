@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
+import seedu.address.model.ComparableByName;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
@@ -12,7 +13,7 @@ import seedu.address.model.issue.Issue;
 /**
  * Represents a Project.
  */
-public class Project {
+public class Project implements ComparableByName<Project> {
 
     // Components of a project
     private Name name;
@@ -85,7 +86,8 @@ public class Project {
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */
-    public boolean isSameProject(Project otherProject) {
+    @Override
+    public boolean hasSameName(Project otherProject) {
         if (otherProject == this) {
             return true;
         }

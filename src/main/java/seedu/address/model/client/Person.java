@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.ComparableByName;
 import seedu.address.model.Name;
 import seedu.address.model.tag.Tag;
 
@@ -14,7 +15,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements ComparableByName<Person> {
 
     // Identity fields
     private final Name name;
@@ -65,7 +66,8 @@ public class Person {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
+    @Override
+    public boolean hasSameName(Person otherPerson) {
         if (otherPerson == this) {
             return true;
         }

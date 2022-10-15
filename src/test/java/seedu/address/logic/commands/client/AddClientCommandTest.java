@@ -231,7 +231,7 @@ public class AddClientCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return this.person.isSamePerson(person);
+            return this.person.hasSameName(person);
         }
     }
 
@@ -244,7 +244,7 @@ public class AddClientCommandTest {
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+            return personsAdded.stream().anyMatch(person::hasSameName);
         }
 
         @Override
