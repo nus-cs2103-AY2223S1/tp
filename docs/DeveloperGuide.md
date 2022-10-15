@@ -154,6 +154,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Student Attendance feature ###
+The student attendance feature keeps track of student's attendance. The feature comprises of commands namely,
+- AttendanceAddCommand
+- AttendanceDeleteCommand
+- AttendanceMarkCommand
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -293,7 +299,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Tutor adds the student by entering the command with student details
+1. Tutor adds the student by entering the command with student details.
 2. GREWZ adds student. 
 Use case ends.
 
@@ -304,8 +310,28 @@ Use case ends.
     * 1a2. User enters command with student details
     * Repeat steps until data is correct
     Use case resumes in step 2
+    
+**Use case: UC02 - Delete a Student**
 
+**Use case: UC03 - Edit a Student**
 
+**Use case: UC04 - Add attendance to Student**
+**Guarantees:**  An attendance is added to the Student.
+**MSS**
+1. Tutor adds attendance to student by entering command with module and number of lessons.
+2. GREWZ adds attendance to student.
+Use case ends.
+
+**Extensions**
+* 1a. GREWZ detects an error in entered data.
+    * 1a1. GREWZ responds with an error message
+    * 1a2. User enters command with student details
+    * Repeat steps until data is correct
+    Use case resumes in step 2
+    
+**Use case: UC05 - Delete attendance of a Student**
+
+**Use case: UC06 - Mark attendance of Student**
 
 *{More to be added}*
 
