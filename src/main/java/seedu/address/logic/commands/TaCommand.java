@@ -1,13 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -21,7 +15,7 @@ public class TaCommand extends Command {
 
     public static final String COMMAND_WORD = "ta";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Teaching Assistant to the address book. "
         + "Parameters: "
         + PREFIX_NAME + "NAME "
         + PREFIX_MODULE_CODE + "MODULE_CODE "
@@ -29,16 +23,18 @@ public class TaCommand extends Command {
         + PREFIX_EMAIL + "EMAIL "
         + PREFIX_GENDER + "GENDER "
         + "[" + PREFIX_TAG + "TAG]... "
-        + PREFIX_LOCATION + "LOCATION\n"
+        + PREFIX_LOCATION + "LOCATION "
+        + "[" + PREFIX_RATING + "RATING]\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_NAME + "Alic Doe "
+        + PREFIX_NAME + "Alice Doe "
         + PREFIX_MODULE_CODE + "CS2100 "
         + PREFIX_PHONE + "98765432 "
         + PREFIX_EMAIL + "AliceD@example.com "
         + PREFIX_GENDER + "F "
         + PREFIX_TAG + "friends "
         + PREFIX_TAG + "owesMoney "
-        + PREFIX_LOCATION + "COM1-0203";
+        + PREFIX_LOCATION + "COM1-0203 "
+        + PREFIX_RATING + "5";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Teaching Assistant already exists in the address book";
 
@@ -47,7 +43,7 @@ public class TaCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates a ProfCommand to add the specified {@code person}
+     * Creates a TACommand to add the specified {@code person}
      */
     public TaCommand(TeachingAssistant toAdd) {
         requireNonNull(toAdd);

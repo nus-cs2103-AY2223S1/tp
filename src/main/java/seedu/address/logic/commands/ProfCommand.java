@@ -1,13 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,7 +14,7 @@ public class ProfCommand extends Command {
 
     public static final String COMMAND_WORD = "prof";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a professor to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
@@ -28,7 +22,8 @@ public class ProfCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GENDER + "GENDER "
             + "[" + PREFIX_TAG + "TAG]... "
-            + PREFIX_LOCATION + "LOCATION\n"
+            + PREFIX_LOCATION + "LOCATION "
+            + "[" + PREFIX_RATING + "RATING]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Wong Tin Lok "
             + PREFIX_MODULE_CODE + "CS1231S "
@@ -37,7 +32,8 @@ public class ProfCommand extends Command {
             + PREFIX_GENDER + "M "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_LOCATION + "COM2 LT4";
+            + PREFIX_LOCATION + "COM2 LT4 "
+            + PREFIX_RATING + "5";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";
     public static final String MESSAGE_SUCCESS = "New professor added: %1$s";

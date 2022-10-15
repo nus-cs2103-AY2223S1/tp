@@ -9,14 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 
@@ -34,8 +27,9 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
                                         @JsonProperty("phone") String phone,
                                         @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                        @JsonProperty("location") String location) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location);
+                                        @JsonProperty("location") String location,
+                                        @JsonProperty("Rating") String rating) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, rating);
     }
 
     /**
@@ -110,8 +104,17 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
+        if (getRating() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(getRating())) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(getRating());
+
         return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
-            modelTags, modelLocation);
+            modelTags, modelLocation, modelRating);
     }
 
 }

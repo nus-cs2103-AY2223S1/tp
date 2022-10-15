@@ -30,6 +30,7 @@ abstract class JsonAdaptedPerson {
     private final String gender;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String location;
+    private final String rating;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +40,8 @@ abstract class JsonAdaptedPerson {
                              @JsonProperty("moduleCode") String moduleCode, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("location") String location) {
+                             @JsonProperty("location") String location,
+                             @JsonProperty("rating") String rating) {
         this.type = type;
         this.name = name;
         this.moduleCode = moduleCode;
@@ -50,6 +52,7 @@ abstract class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.location = location;
+        this.rating = rating;
     }
 
     /**
@@ -59,17 +62,21 @@ abstract class JsonAdaptedPerson {
         if (source instanceof Student) {
             type = "s";
             moduleCode = "";
+            rating = "";
         } else if (source instanceof Professor) {
             type = "p";
             Professor prof = (Professor) source;
             moduleCode = prof.getModuleCode().value;
+            rating = prof.getRating().value;
         } else if (source instanceof TeachingAssistant) {
             type = "t";
             TeachingAssistant ta = (TeachingAssistant) source;
             moduleCode = ta.getModuleCode().value;
+            rating = ta.getRating().value;
         } else {
             type = "invalid";
             moduleCode = "invalid";
+            rating = "invalid";
         }
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -107,6 +114,8 @@ abstract class JsonAdaptedPerson {
     public String getLocation() {
         return location;
     }
+
+    public String getRating() { return rating; }
 
     public abstract Person toModelType() throws IllegalValueException;
 

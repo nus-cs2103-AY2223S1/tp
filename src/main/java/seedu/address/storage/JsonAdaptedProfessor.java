@@ -17,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,8 +33,9 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                                 @JsonProperty("moduleCode") String moduleCode, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                @JsonProperty("location") String location) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location);
+                                @JsonProperty("location") String location,
+                                @JsonProperty("rating") String rating) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, rating);
     }
 
     /**
@@ -108,8 +110,17 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
+        if (getRating() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(getRating())) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(getRating());
+
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
-            modelLocation);
+            modelLocation, modelRating);
     }
 
 }

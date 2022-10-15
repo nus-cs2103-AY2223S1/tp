@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.TeachingAssistant;
 
 /**
@@ -10,7 +11,10 @@ public class TeachingAssistantBuilder extends PersonBuilder {
 
     public static final String DEFAULT_MODULE_CODE = "CS1231S";
 
+    public static final String DEFAULT_RATING = "5";
+
     private final ModuleCode moduleCode;
+    private Rating rating;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -18,6 +22,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
     public TeachingAssistantBuilder() {
         super();
         this.moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
+        this.rating = new Rating(DEFAULT_RATING);
     }
 
     /**
@@ -33,7 +38,7 @@ public class TeachingAssistantBuilder extends PersonBuilder {
      */
     public TeachingAssistant build() {
         return new TeachingAssistant(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(),
-            getLocation());
+            getLocation(), rating);
     }
 
 }
