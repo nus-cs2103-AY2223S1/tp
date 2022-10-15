@@ -1,16 +1,21 @@
 package seedu.address.model.list;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
+/**
+ * A class for a list of unique entities.
+ * Notably, entities need to extend {@link ComparableByName} and {@link HasIntegerIdentifier}.
+ * @param <T> Type of entity in list
+ */
 public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifier> implements Iterable<T> {
 
     private final ObservableList<T> internalList = FXCollections.observableArrayList();

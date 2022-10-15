@@ -1,5 +1,9 @@
 package seedu.address.model.interfaces;
 
+/**
+ * Interface for an object that is comparable by a string representation (name)
+ * @param <T> type of object
+ */
 public interface ComparableByName<T> {
 
     /**

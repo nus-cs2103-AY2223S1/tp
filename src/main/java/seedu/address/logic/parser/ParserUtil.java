@@ -13,16 +13,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
-import seedu.address.model.client.*;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
-import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.Priority;
-import seedu.address.model.list.UniqueEntityList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -34,6 +37,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -75,7 +79,7 @@ public class ParserUtil {
         } catch (NumberFormatException e) {
             throw new ParseException(ClientId.MESSAGE_INVALID);
         }
-//        ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
+
         Client client = HasIntegerIdentifier.getElementById(
                 AddressBook.get().getClientList(), Integer.parseInt(trimmedClientId));
         if (!Client.isValidClient(client)) {
@@ -242,12 +246,9 @@ public class ParserUtil {
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
-        // TODO: to retrieve project through a project getter (modify based on getter)
+
         // Function throws error when not found.
-//        if (HasIntegerIdentifier.getElementById(AddressBook.get().getProjectList() ,trimmedIdInt) == null) {
-//            throw new ParseException("No project with this project Id");
-//        }
-        return HasIntegerIdentifier.getElementById(AddressBook.get().getProjectList() ,trimmedIdInt);
+        return HasIntegerIdentifier.getElementById(AddressBook.get().getProjectList(), trimmedIdInt);
     }
 
     /**

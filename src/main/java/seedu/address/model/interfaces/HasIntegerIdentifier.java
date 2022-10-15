@@ -2,8 +2,9 @@ package seedu.address.model.interfaces;
 
 import seedu.address.model.list.NotFoundException;
 
-import java.util.List;
-
+/**
+ * Interface for any class whose objects can be identified by an integer ID.
+ */
 public interface HasIntegerIdentifier {
 
     /**

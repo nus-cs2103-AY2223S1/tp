@@ -1,5 +1,9 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Person;
@@ -7,9 +11,6 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.list.UniqueEntityList;
 import seedu.address.model.project.Project;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -42,6 +43,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         issues = new UniqueEntityList<Issue>();
     }
 
+    private AddressBook() {}
+
+    /**
+     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     */
+    private AddressBook(ReadOnlyAddressBook toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
     public static AddressBook getNew() {
         instance = new AddressBook();
         return instance;
@@ -56,15 +67,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return instance;
     }
 
-    private AddressBook() {}
-
-    /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
-     */
-    private AddressBook(ReadOnlyAddressBook toBeCopied) {
-        this();
-        resetData(toBeCopied);
-    }
 
     //// list overwrite operations
 
