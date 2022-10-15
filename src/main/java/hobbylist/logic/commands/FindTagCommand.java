@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import hobbylist.commons.core.Messages;
 import hobbylist.model.Model;
-import hobbylist.model.activity.TagMatchesKeyword;
+import hobbylist.model.activity.TagMatchesKeywordPredicate;
 
 /**
  * Finds and lists all activities in HobbyList whose tag matches any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindTagCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + "sport";
 
-    private final TagMatchesKeyword predicate;
+    private final TagMatchesKeywordPredicate predicate;
 
-    public FindTagCommand(TagMatchesKeyword predicate) {
+    public FindTagCommand(TagMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 

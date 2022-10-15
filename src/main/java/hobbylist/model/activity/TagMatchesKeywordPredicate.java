@@ -9,10 +9,10 @@ import hobbylist.model.tag.Tag;
 /**
  * Tests that an {@code Activity}'s {@code Tags} matches any of the keywords given.
  */
-public class TagMatchesKeyword implements Predicate<Activity> {
+public class TagMatchesKeywordPredicate implements Predicate<Activity> {
     private final List<String> keywords;
 
-    public TagMatchesKeyword(List<String> keywords) {
+    public TagMatchesKeywordPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -26,7 +26,7 @@ public class TagMatchesKeyword implements Predicate<Activity> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagMatchesKeyword // instanceof handles nulls
-                && keywords.equals(((TagMatchesKeyword) other).keywords)); // state check
+                || (other instanceof TagMatchesKeywordPredicate // instanceof handles nulls
+                && keywords.equals(((TagMatchesKeywordPredicate) other).keywords)); // state check
     }
 }
