@@ -44,4 +44,21 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof JsonUserPrefsStorage)) {
+            return false;
+        }
+
+        // state check
+        JsonUserPrefsStorage other = (JsonUserPrefsStorage) obj;
+        return filePath.equals(other.filePath);
+    }
+
 }
