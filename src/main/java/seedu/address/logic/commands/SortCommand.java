@@ -39,7 +39,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.sortFilteredPersonList(attribute, sortOrder);
+        model.sortFilteredStudentList(attribute, sortOrder);
         return new CommandResult(
                 String.format(MESSAGE_SORT_SUCCESS, attribute.toString(), sortOrder.toString()));
     }

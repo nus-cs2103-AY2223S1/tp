@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,10 +13,9 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.student.Person;
+import seedu.address.model.student.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,13 +40,13 @@ public class AddTagCommand extends Command {
         + PREFIX_TAG + "tutorial "
         + PREFIX_TAG + "needRemedial";
 
-    public static final String MESSAGE_SINGLE_ADD_TAGS_SUCCESS = "Added tags %1$s Person: %2$s";
+    public static final String MESSAGE_SINGLE_ADD_TAGS_SUCCESS = "Added tags %1$s Student: %2$s";
 
-    public static final String MESSAGE_MULTI_ADD_TAGS_SUCCESS = "Added tags %1$s for %2$d persons";
+    public static final String MESSAGE_MULTI_ADD_TAGS_SUCCESS = "Added tags %1$s for %2$d students";
 
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     /**
      * Index of the student to add the tags for.
@@ -64,7 +63,7 @@ public class AddTagCommand extends Command {
     private boolean isAddToAll;
 
     /**
-     * Constructs AddTagCommand that will add specified tag to all persons in the
+     * Constructs AddTagCommand that will add specified tag to all students in the
      * displayed list.
      *
      * @param tags of the student to be added
@@ -93,30 +92,30 @@ public class AddTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         if (this.isAddToAll) {
-            int numOfPersonUpdated = 0;
+            int numOfstudentUpdated = 0;
             for (int idx = 0; idx < lastShownList.size(); idx++) {
-                Person personToEdit = lastShownList.get(idx);
-                executeSingle(model, Index.fromZeroBased(idx), personToEdit);
-                numOfPersonUpdated += 1;
+                Student studentToEdit = lastShownList.get(idx);
+                executeSingle(model, Index.fromZeroBased(idx), studentToEdit);
+                numOfstudentUpdated += 1;
             }
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
             return new CommandResult(String.format(
                     MESSAGE_MULTI_ADD_TAGS_SUCCESS,
                     toBeAddedTagsStr,
-                    numOfPersonUpdated));
+                    numOfstudentUpdated));
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         assert !this.isAddToAll && this.index != null
                 : "[AddTagCommand] index should not be null if it is not all";
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        CommandResult res = executeSingle(model, this.index, personToEdit);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        CommandResult res = executeSingle(model, this.index, studentToEdit);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return res;
     }
 
@@ -124,13 +123,13 @@ public class AddTagCommand extends Command {
      * Adds tags for a single student in the displayed list.
      * @param model {@code Model} which the command should operate on.
      * @param index of the student for whom the tags will be added.
-     * @param personToEdit for whom the tags will be added.
+     * @param studentToEdit for whom the tags will be added.
      * @return feedback message of the operation result for display.
      * @throws CommandException If an error occurs during command execution.
      */
     public CommandResult executeSingle(
-                Model model, Index index, Person personToEdit) throws CommandException {
-        Set<Tag> existingTags = personToEdit.getTags();
+                Model model, Index index, Student studentToEdit) throws CommandException {
+        Set<Tag> existingTags = studentToEdit.getTags();
         Set<Tag> toBeAddedTags = new HashSet<Tag>();
         for (Tag tag : existingTags) {
             if (!this.tags.contains(tag)) {
@@ -141,16 +140,16 @@ public class AddTagCommand extends Command {
             toBeAddedTags.add(tag);
         }
         System.out.println(toBeAddedTags);
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setTags(toBeAddedTags);
-        CommandResult editPersonResult = (new EditCommand(index, editPersonDescriptor)).executeNoRefresh(model);
-        LOGGER.info(editPersonResult.getFeedbackToUser());
+        EditCommand.EditStudentDescriptor editStudentDescriptor = new EditCommand.EditStudentDescriptor();
+        editStudentDescriptor.setTags(toBeAddedTags);
+        CommandResult editstudentResult = (new EditCommand(index, editStudentDescriptor)).executeNoRefresh(model);
+        LOGGER.info(editstudentResult.getFeedbackToUser());
 
         assert index != null : "[AddTagCommand] Index in executeSingle should not be null";
         return new CommandResult(String.format(
                 MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
                 toBeAddedTagsStr,
-                personToEdit.getName()));
+                studentToEdit.getName()));
     }
 
     /**

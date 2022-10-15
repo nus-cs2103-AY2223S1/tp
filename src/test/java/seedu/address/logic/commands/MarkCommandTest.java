@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +14,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Attendance;
-import seedu.address.model.student.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
 
 
 /**
@@ -28,44 +28,44 @@ class MarkCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student studentToMark = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Attendance attendance = new Attendance("T04", true);
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, attendance);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_STUDENT, attendance);
 
-        Person markedPerson = new PersonBuilder(personToMark).addAttended("T04").build();
+        Student markedStudent = new StudentBuilder(studentToMark).addAttended("T04").build();
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SUCCESS,
-                attendance.getAttendance(), markedPerson);
+                attendance.getAttendance(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), markedPerson);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Attendance attendance = new Attendance("T04", true);
-        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_PERSON, attendance);
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_STUDENT, attendance);
 
-        Person markedPerson = new PersonBuilder(personInFilteredList).addAttended("T04").build();
+        Student markedStudent = new StudentBuilder(studentInFilteredList).addAttended("T04").build();
 
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SUCCESS,
-                attendance.getAttendance(), markedPerson);
+                attendance.getAttendance(), markedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), markedPerson);
+        expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+    public void execute_invalidstudentIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         Attendance attendance = new Attendance("T04", true);
         MarkCommand markCommand = new MarkCommand(outOfBoundIndex, attendance);
 
-        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 }

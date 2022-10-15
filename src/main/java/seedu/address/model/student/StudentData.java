@@ -7,9 +7,9 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * A parameter object for Person constructor.
+ * A parameter object for Student constructor.
  */
-public class PersonData {
+public class StudentData {
     private Name name;
     private Phone phone;
     private Email email;
@@ -77,7 +77,7 @@ public class PersonData {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PersonData that = (PersonData) o;
+        StudentData that = (StudentData) o;
         return Objects.equals(name, that.name)
                 && Objects.equals(phone, that.phone)
                 && Objects.equals(email, that.email)

@@ -8,7 +8,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.StudentBuilder;
 
 
 public class TagContainsKeywordsPredicateTest {
@@ -18,17 +18,17 @@ public class TagContainsKeywordsPredicateTest {
         //One keyword
         TagContainsKeywordsPredicate predicate =
                 new TagContainsKeywordsPredicate(Collections.singletonList("friends"));
-        assertTrue(predicate.test(new PersonBuilder().withTags("friends").build()));
+        assertTrue(predicate.test(new StudentBuilder().withTags("friends").build()));
 
         //Only matching one keyword
         TagContainsKeywordsPredicate predicate1 =
                 new TagContainsKeywordsPredicate(Arrays.asList("friends", "colleagues"));
-        assertTrue(predicate1.test(new PersonBuilder().withTags("friends", "family").build()));
+        assertTrue(predicate1.test(new StudentBuilder().withTags("friends", "family").build()));
 
         //Check case sensitivity
         TagContainsKeywordsPredicate predicate2 =
                 new TagContainsKeywordsPredicate(Arrays.asList("Friends", "Family"));
-        assertTrue(predicate2.test(new PersonBuilder().withTags("friends").build()));
+        assertTrue(predicate2.test(new StudentBuilder().withTags("friends").build()));
     }
 
     @Test
@@ -36,11 +36,11 @@ public class TagContainsKeywordsPredicateTest {
         //Empty input
         TagContainsKeywordsPredicate predicate =
                 new TagContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withTags("friends").build()));
+        assertFalse(predicate.test(new StudentBuilder().withTags("friends").build()));
 
         //No matching input
         TagContainsKeywordsPredicate predicate1 =
                 new TagContainsKeywordsPredicate(Collections.singletonList("home"));
-        assertFalse(predicate1.test(new PersonBuilder().withTags("family").build()));
+        assertFalse(predicate1.test(new StudentBuilder().withTags("family").build()));
     }
 }

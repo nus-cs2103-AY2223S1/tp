@@ -8,13 +8,13 @@ import seedu.address.model.student.TagContainsKeywordsPredicate;
 
 
 /**
- * Filters and list all persons in the address book
+ * Filters and list all students in the address book
  */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all persons whose tags contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all students whose tags contain any of "
             + "the specified alphabets (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " friends";
@@ -29,8 +29,8 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.filterPersonListWithTag(predicate);
+        model.filterStudentListWithTag(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 }

@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.Person;
-import seedu.address.model.student.PersonData;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentData;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -42,17 +42,17 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        PersonData personData = new PersonData();
+        StudentData studentData = new StudentData();
 
-        personData.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        personData.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        personData.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        personData.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        personData.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        studentData.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        studentData.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        studentData.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        studentData.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        studentData.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        Person person = new Person(personData);
+        Student student = new Student(studentData);
 
-        return new AddCommand(person);
+        return new AddCommand(student);
     }
 
 }

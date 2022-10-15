@@ -10,10 +10,10 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Student {
 
     // Identity fields
     private final Name name;
@@ -26,22 +26,22 @@ public class Person {
     private final Set<Attendance> attendances = new HashSet<>();
 
     /**
-     * Constructor using a PersonData parameter object.
+     * Constructor using a StudentData parameter object.
      * Requires name, phone, email, address, tags to be non-null.
      *
-     * @param personData PersonData parameter object.
+     * @param studentData StudentData parameter object.
      */
-    public Person(PersonData personData) {
-        requireAllNonNull(personData.getName(), personData.getPhone(),
-                personData.getEmail(), personData.getAddress(),
-                personData.getTags(), personData.getAttendances());
+    public Student(StudentData studentData) {
+        requireAllNonNull(studentData.getName(), studentData.getPhone(),
+                studentData.getEmail(), studentData.getAddress(),
+                studentData.getTags(), studentData.getAttendances());
 
-        this.name = personData.getName();
-        this.phone = personData.getPhone();
-        this.email = personData.getEmail();
-        this.address = personData.getAddress();
-        this.tags.addAll(personData.getTags());
-        this.attendances.addAll(personData.getAttendances());
+        this.name = studentData.getName();
+        this.phone = studentData.getPhone();
+        this.email = studentData.getEmail();
+        this.address = studentData.getAddress();
+        this.tags.addAll(studentData.getTags());
+        this.attendances.addAll(studentData.getAttendances());
     }
 
     public Name getName() {
@@ -92,15 +92,15 @@ public class Person {
         return Collections.unmodifiableSet(attendances);
     }
 
-    public PersonData getPersonData() {
-        PersonData personData = new PersonData();
-        personData.setName(this.getName());
-        personData.setPhone(this.getPhone());
-        personData.setEmail(this.getEmail());
-        personData.setAddress(this.getAddress());
-        personData.setTags(this.getTags());
-        personData.setAttendances(this.getAttendances());
-        return personData;
+    public StudentData getStudentData() {
+        StudentData studentData = new StudentData();
+        studentData.setName(this.getName());
+        studentData.setPhone(this.getPhone());
+        studentData.setEmail(this.getEmail());
+        studentData.setAddress(this.getAddress());
+        studentData.setTags(this.getTags());
+        studentData.setAttendances(this.getAttendances());
+        return studentData;
     }
 
     /**
@@ -113,20 +113,20 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same name.
+     * This defines a weaker notion of equality between two students.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSameStudent(Student otherStudent) {
+        if (otherStudent == this) {
             return true;
         }
 
-        return otherPerson != null && otherPerson.getName().equals(getName());
+        return otherStudent != null && otherStudent.getName().equals(getName());
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -134,17 +134,17 @@ public class Person {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Student)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getAttendances().equals(getAttendances());
+        Student otherStudent = (Student) other;
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getPhone().equals(getPhone())
+                && otherStudent.getEmail().equals(getEmail())
+                && otherStudent.getAddress().equals(getAddress())
+                && otherStudent.getTags().equals(getTags())
+                && otherStudent.getAttendances().equals(getAttendances());
     }
 
     @Override

@@ -11,9 +11,9 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code Student}'s {@code Tag} matches any of the keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class TagContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
     public TagContainsKeywordsPredicate(List<String> keywords) {
@@ -21,8 +21,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        Set<Tag> tagSet = person.getTags();
+    public boolean test(Student student) {
+        Set<Tag> tagSet = student.getTags();
         for (Tag t : tagSet) {
             if (keywords.stream().anyMatch(keywords ->
                     StringUtil.containsWordIgnoreCase(t.tagName, keywords))) {

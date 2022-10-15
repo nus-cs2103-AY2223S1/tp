@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -13,8 +13,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
-import seedu.address.model.student.Person;
-import seedu.address.model.student.PersonData;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentData;
 
 /**
  * Marks a student identified using its displayed index from the address book as having attended a class or tutorial.
@@ -30,7 +30,7 @@ public class MarkCommand extends Command {
             + PREFIX_CLASS + " [CLASS]\n"
             + "Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + " T01";
 
-    public static final String MESSAGE_MARK_SUCCESS = "Marked Person as %1$s: %2$s";
+    public static final String MESSAGE_MARK_SUCCESS = "Marked Student as %1$s: %2$s";
 
     private final Index index;
     private final Attendance attendance;
@@ -48,25 +48,25 @@ public class MarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        PersonData personData = personToEdit.getPersonData();
+        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        StudentData studentData = studentToEdit.getStudentData();
 
-        Set<Attendance> newAttendance = new HashSet<>(personToEdit.getAttendances());
+        Set<Attendance> newAttendance = new HashSet<>(studentToEdit.getAttendances());
         newAttendance.add(attendance);
-        personData.setAttendances(newAttendance);
-        Person editedPerson = new Person(personData);
+        studentData.setAttendances(newAttendance);
+        Student editedStudent = new Student(studentData);
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(
-                String.format(MESSAGE_MARK_SUCCESS, attendance.getAttendance(), editedPerson));
+                String.format(MESSAGE_MARK_SUCCESS, attendance.getAttendance(), editedStudent));
     }
 
     @Override
