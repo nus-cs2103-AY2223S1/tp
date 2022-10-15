@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -43,6 +44,14 @@ public class CommandTestUtil {
     public static final String VALID_STUDENTCLASS = "1A";
     public static final String VALID_PERSONALITY_FUN = "fun";
     public static final String VALID_PERSONALITY_LAZY = "lazy";
+
+    // StudentClass examples
+    public static final String STUDENTCLASS_DUMMY = " " + PREFIX_STUDENTCLASS + VALID_STUDENTCLASS;
+
+    // Remark examples
+    public static final String VALID_REMARK_ICE_CREAM = "likes ice cream";
+    public static final String REMARK_ICE_CREAM = " " + PREFIX_REMARK + VALID_REMARK_ICE_CREAM;
+
     public static final String VALID_GRADE_40 = "40%";
     public static final String VALID_GRADE_60 = "60%";
 
@@ -56,9 +65,6 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    // StudentClass examples
-    public static final String STUDENTCLASS_DUMMY = " " + PREFIX_STUDENTCLASS + VALID_STUDENTCLASS;
 
     // Grade examples
     public static final String GRADE_DESC_40 = " " + PREFIX_GRADE + VALID_GRADE_40;

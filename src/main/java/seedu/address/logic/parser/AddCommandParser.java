@@ -38,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
-                                       PREFIX_STUDENTCLASS);
+                                       PREFIX_STUDENTCLASS, PREFIX_REMARK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                                 PREFIX_STUDENTCLASS)
@@ -50,15 +50,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Remark> remarksList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
         //        Attendance attendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
         //        Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         //        Grade grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
-        SubjectHandler subjectHandler = new SubjectHandler();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // New fields
         StudentClass studentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
+        SubjectHandler subjectHandler = new SubjectHandler();
+        Set<Remark> remarksList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
 
         Person person = new Person(name, phone, email, address, studentClass, remarksList,
                                    subjectHandler, tagList);
