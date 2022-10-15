@@ -39,7 +39,8 @@ public enum CommandWord {
     RESET_COMMAND("reset") {
         @Override
         public String getUsage() {
-            return ResetCommand.getUsage();
+            return getCommandWord() + ": Resets all date in FoodRem."
+                    + "Example: " + getCommandWord();
         }
     },
     EXIT_COMMAND("exit") {
