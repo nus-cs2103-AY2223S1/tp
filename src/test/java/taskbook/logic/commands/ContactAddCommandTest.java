@@ -9,6 +9,7 @@ import static taskbook.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -174,12 +175,7 @@ public class ContactAddCommandTest {
         }
 
         @Override
-        public void sortDescriptionAlphabetical() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void sortAddedChronological() {
+        public void updateSort(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
