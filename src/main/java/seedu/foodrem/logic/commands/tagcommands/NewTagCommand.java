@@ -1,9 +1,8 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.foodrem.enums.CommandWord.NEW_TAG_COMMAND;
 
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -14,17 +13,8 @@ import seedu.foodrem.model.tag.Tag;
  * Adds a tag to FoodRem.
  */
 public class NewTagCommand extends Command {
-
-    public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in FoodRem";
-
-    private static final String COMMAND_WORD = CommandWord.NEW_TAG_COMMAND.getCommandWord();
-
-    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to FoodRem. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Potatoes ";
+    private static final String MESSAGE_SUCCESS = "New tag added: %1$s";
+    private static final String ERROR_DUPLICATE = "This tag already exists in FoodRem";
 
     private final Tag toAdd;
 
@@ -41,7 +31,7 @@ public class NewTagCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTag(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            throw new CommandException(ERROR_DUPLICATE);
         }
 
         model.addTag(toAdd);
@@ -49,7 +39,7 @@ public class NewTagCommand extends Command {
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return NEW_TAG_COMMAND.getUsage();
     }
 
     @Override

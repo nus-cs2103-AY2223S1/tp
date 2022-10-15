@@ -27,6 +27,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class NewTagCommandTest {
+    private static final String EXPECTED_ERROR_DUPLICATE = "This tag already exists in FoodRem";
+    private static final String EXPECTED_FORMAT_SUCCESS = "New tag added: %1$s";
+
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new NewTagCommand(null));
@@ -39,7 +42,7 @@ public class NewTagCommandTest {
 
         CommandResult commandResult = new NewTagCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(NewTagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(String.format(EXPECTED_FORMAT_SUCCESS, validTag), commandResult.getFeedbackToUser());
         assertEquals(List.of(validTag), modelStub.tagsAdded);
     }
 
@@ -50,7 +53,7 @@ public class NewTagCommandTest {
         ModelStub modelStub = new ModelStubWithTag(validTag);
 
         assertThrows(CommandException.class,
-                NewTagCommand.MESSAGE_DUPLICATE_TAG, () -> newTagCommand.execute(modelStub));
+                EXPECTED_ERROR_DUPLICATE, () -> newTagCommand.execute(modelStub));
     }
 
     @Test
