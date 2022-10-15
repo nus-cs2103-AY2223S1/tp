@@ -137,7 +137,7 @@ Examples:
 
 Finds persons that have the given tag.
 
-Format: `findTag TAG`
+Format: `findTag TAG [MORE_TAGS]`
 
 * The tag search is case-insensitive. e.g `finance` will match `Finance`
 * Only the tag is searched.
