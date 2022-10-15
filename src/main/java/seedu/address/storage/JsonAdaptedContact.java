@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
@@ -15,7 +17,9 @@ public class JsonAdaptedContact {
     /**
      * Converts to JsonAdaptedContact with given {@code ContactType} and {code String} value.
      */
-    public JsonAdaptedContact(ContactType type, String value) {
+    @JsonCreator
+    public JsonAdaptedContact(@JsonProperty("contactType") ContactType type,
+                              @JsonProperty("contactValue") String value) {
         contactType = type;
         contactValue = value;
     }
