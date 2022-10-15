@@ -100,7 +100,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_book() throws ParseException {
-        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", false);
+        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", "", false);
         String str = AppointmentUtil.getBookCommand(appointment);
         BookCommand command = (BookCommand) parser.parseCommand(str);
         assertEquals(new BookCommand(INDEX_FIRST_PERSON, appointment), command);
@@ -118,7 +118,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_editAppointment() throws ParseException {
-        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", false);
+        Appointment appointment = new Appointment("Cough", "2022-12-16 17:30", "", false);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand command = (EditAppointmentCommand)
                 parser.parseCommand(EditAppointmentCommand.COMMAND_WORD

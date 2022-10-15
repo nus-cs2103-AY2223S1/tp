@@ -32,7 +32,7 @@ class UnmarkCommandTest {
         AddressBook testAddressBook = new AddressBook();
         Model testModel = new ModelManager(testAddressBook, new UserPrefs());
 
-        Appointment markedAppointment = new Appointment("Cough", "2010-12-22 12:45", true);
+        Appointment markedAppointment = new Appointment("Cough", "2010-12-22 12:45", "", true);
         Person markedPerson = new PersonBuilder().withAppointment(markedAppointment).build();
         markedAppointment.setPatient(markedPerson);
 
@@ -40,7 +40,7 @@ class UnmarkCommandTest {
         testModel.addAppointment(markedAppointment);
         Person personToUnmarkFor = testModel.getFilteredPersonList().get(targetPersonIndex.getZeroBased());
 
-        Appointment unmarkedAppointment = new Appointment("Cough", "2010-12-22 12:45", false);
+        Appointment unmarkedAppointment = new Appointment("Cough", "2010-12-22 12:45", "", false);
         Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
         unmarkedAppointment.setPatient(unmarkedPerson);
 
