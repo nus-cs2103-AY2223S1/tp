@@ -29,7 +29,7 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + DESCRIPTOR_WORD
             + ": Edits the appointment details of the person identified "
-            + "by the the appointmentIndex number used in the displayed appointment list. "
+            + "by the appointmentIndex number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: APPOINTMENT INDEX (must be a positive integer) "
             + "[" + PREFIX_REASON + "REASON] "
