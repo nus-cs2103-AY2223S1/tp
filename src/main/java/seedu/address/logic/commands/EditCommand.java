@@ -7,11 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -40,7 +37,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]  \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TYPE + "e "
             + PREFIX_DESCRIPTION + "Lunch@Deck";
@@ -106,7 +103,7 @@ public class EditCommand extends Command {
             break;
         default:
             // should never reach here
-            return null;
+            break;
         }
         return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry));
     }
@@ -121,9 +118,9 @@ public class EditCommand extends Command {
         Description updatedDescription = editEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         Amount updatedAmount = editEntryDescriptor.getAmount().orElse(entryToEdit.getAmount());
         Date updatedDate = editEntryDescriptor.getDate().orElse(entryToEdit.getDate());
-        Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
+        Tag updatedTag = editEntryDescriptor.getTag().orElse(entryToEdit.getTag());
 
-        return new Entry(updatedDescription, updatedDate, updatedAmount, updatedTags);
+        return new Entry(updatedDescription, updatedDate, updatedAmount, updatedTag);
     }
 
     @Override
@@ -153,7 +150,7 @@ public class EditCommand extends Command {
         private Description description;
         private Date date;
         private Amount amount;
-        private Set<Tag> tags = new HashSet<>();
+        private Tag tag;
 
 
         public EditEntryDescriptor() {
@@ -168,14 +165,14 @@ public class EditCommand extends Command {
             setType(toCopy.entryType);
             setAmount(toCopy.amount);
             setDate(toCopy.date);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, amount, date, tags);
+            return CollectionUtil.isAnyNonNull(description, amount, date, tag);
         }
 
         public void setType(EntryType entryType) {
@@ -214,8 +211,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
@@ -223,8 +220,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            return (tag != null) ? Optional.of(tag) : Optional.empty();
         }
 
         @Override
@@ -246,7 +243,7 @@ public class EditCommand extends Command {
                     && getType().equals(e.getType())
                     && getAmount().equals(e.getAmount())
                     && getDate().equals(e.getDate())
-                    && getTags().equals(e.getTags());
+                    && getTag().equals(e.getTag());
         }
     }
 }

@@ -1,11 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -24,20 +18,19 @@ public class JsonAdaptedEntry {
     protected final String description;
     protected final String amount;
     protected final String date;
-    protected final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    protected final String tagged;
+
 
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedEntry(@JsonProperty("description") String description, @JsonProperty("amount") String amount,
-                            @JsonProperty("date") String date, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("date") String date, @JsonProperty("tagged") String tagged) {
         this.description = description;
         this.amount = amount;
         this.date = date;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.tagged = tagged;
     }
 
     /**
@@ -47,9 +40,7 @@ public class JsonAdaptedEntry {
         description = source.getDescription().fullDescription;
         amount = source.getAmount().amount;
         date = source.getDate().date;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tagged = source.getTag().tagName;
     }
 
     /**
@@ -84,14 +75,14 @@ public class JsonAdaptedEntry {
      */
     public Entry toModelType() throws IllegalValueException {
         checkIsValidJsonEntry();
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
+        // final List<Tag> personTags = new ArrayList<>();
+        // for (JsonAdaptedTag tag : tagged) {
+        //     personTags.add(tag.toModelType());
+        // }
         final Description modelDescription = new Description(description);
         final Amount modelAmount = new Amount(amount);
         final Date modelDate = new Date(date);
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Entry(modelDescription, modelDate, modelAmount, modelTags);
+        final Tag modelTag = new Tag(null, tagged);
+        return new Entry(modelDescription, modelDate, modelAmount, modelTag);
     }
 }

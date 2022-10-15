@@ -25,12 +25,13 @@ public class AddCommand extends Command {
         + PREFIX_DESCRIPTION + "DESCRIPTION "
         + PREFIX_AMOUNT + "AMOUNT "
         + PREFIX_DATE + "DATE "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + PREFIX_TAG + "TAG \n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_TYPE + "e "
         + PREFIX_DESCRIPTION + "Lunch "
         + PREFIX_AMOUNT + "7.20 "
-        + PREFIX_DATE + "4-10-2022 ";
+        + PREFIX_DATE + "4-10-2022 "
+        + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the penny wise application";

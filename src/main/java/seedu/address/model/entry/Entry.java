@@ -2,10 +2,7 @@ package seedu.address.model.entry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
@@ -20,17 +17,17 @@ public class Entry {
     // Data fields
     private final Date date;
     private final Amount amount;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tag tag;
 
     /**
      * Every field must be present and not null.
      */
-    public Entry(Description description, Date date, Amount amount, Set<Tag> tags) {
-        requireAllNonNull(date, amount, description, tags);
+    public Entry(Description description, Date date, Amount amount, Tag tag) {
+        requireAllNonNull(date, amount, description, tag);
         this.date = date;
         this.amount = amount;
         this.description = description;
-        this.tags.addAll(tags);
+        this.tag = tag;
     }
 
     // Getters for Entries
@@ -50,15 +47,16 @@ public class Entry {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, date, amount, tags);
+        return Objects.hash(description, date, amount, tag);
     }
+
 
     /**
      * Returns true if both Entries have the same description.
@@ -91,7 +89,7 @@ public class Entry {
         return otherEntry.getDescription().equals(getDescription())
                 && otherEntry.getDate().equals(getDate())
                 && otherEntry.getAmount().equals(getAmount())
-                && otherEntry.getTags().equals(getTags());
+                && otherEntry.getTag().equals(getTag());
     }
 
     @Override
@@ -103,10 +101,10 @@ public class Entry {
                 .append("; Amount: ")
                 .append(getAmount());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Tag tag = getTag();
+        if (!tag.equals(null)) {
+            builder.append("; Tag: ");
+            builder.append(tag);
         }
         return builder.toString();
     }

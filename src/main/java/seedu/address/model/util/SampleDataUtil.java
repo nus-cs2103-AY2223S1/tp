@@ -1,15 +1,12 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import seedu.address.model.PennyWise;
 import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Expenditure;
 import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
@@ -18,28 +15,31 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code PennyWise} with sample data.
  */
 public class SampleDataUtil {
+    public static final EntryType EXPENDITURE_TYPE = new EntryType("e");
+    public static final EntryType INCOME_TYPE = new EntryType("i");
+
     public static Expenditure[] getSampleExpenditure() {
         return new Expenditure[] {
             new Expenditure(
                     new Description("Lunch"),
                     new Date("20-01-2022"),
                     new Amount("20"),
-                    getTagSet("Lunch")),
+                    new Tag(EXPENDITURE_TYPE, "Food")),
             new Expenditure(
                     new Description("Dinner"),
                     new Date("20-02-2022"),
                     new Amount("30"),
-                    getTagSet("Dinner")),
+                    new Tag(EXPENDITURE_TYPE, "Food")),
             new Expenditure(
                     new Description("Breakfast"),
                     new Date("21-01-2022"),
                     new Amount("40"),
-                    getTagSet("Breakfast")),
+                    new Tag(EXPENDITURE_TYPE, "Food")),
             new Expenditure(
                     new Description("Paid this guy"),
                     new Date("21-01-2022"),
                     new Amount("0.10"),
-                    getTagSet("paid"))
+                    new Tag(EXPENDITURE_TYPE, "Others"))
         };
     }
 
@@ -49,7 +49,7 @@ public class SampleDataUtil {
                     new Description("Tutoring"),
                     new Date("01-01-2022"),
                     new Amount("100"),
-                    getTagSet("tutoring"))
+                    new Tag(INCOME_TYPE, "Salary"))
         };
     }
 
@@ -65,13 +65,13 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-            .map(Tag::new)
-            .collect(Collectors.toSet());
-    }
+    // /**
+    //  * Returns a tag set containing the list of strings given.
+    //  */
+    // public static Set<Tag> getTagSet(String... strings) {
+    //     return Arrays.stream(strings)
+    //         .map(Tag::new)
+    //         .collect(Collectors.toSet());
+    // }
 
 }
