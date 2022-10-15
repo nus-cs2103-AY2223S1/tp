@@ -14,7 +14,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.interest.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.

@@ -22,7 +22,7 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Interest;
+import seedu.address.model.interest.Interest;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

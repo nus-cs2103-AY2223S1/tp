@@ -19,7 +19,7 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Interest;
+import seedu.address.model.interest.Interest;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

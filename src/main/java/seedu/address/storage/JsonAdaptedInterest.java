@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Interest;
+import seedu.address.model.interest.Interest;
 
 /**
  * Jackson-friendly version of {@link Interest}.
@@ -14,7 +14,7 @@ class JsonAdaptedInterest {
     private final String interestName;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code interestName}.
+     * Constructs a {@code JsonAdaptedInterest} with the given {@code interestName}.
      */
     @JsonCreator
     public JsonAdaptedInterest(String interestName) {
@@ -34,7 +34,7 @@ class JsonAdaptedInterest {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Interest} object.
+     * Converts this Jackson-friendly adapted interest object into the model's {@code Interest} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */

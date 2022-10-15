@@ -4,21 +4,21 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonContainsInterestPredicate;
 
 /**
  * Lists batchmates that match all tags specified by the user.
  * Keyword matching is case-insensitive.
  */
-public class FindTagCommand extends Command {
+public class FindInterestCommand extends Command {
 
-    public static final String COMMAND_WORD = "findTag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists batchmates that match all tags specified\n"
-            + "Example: " + COMMAND_WORD + " team1";
+    public static final String COMMAND_WORD = "findInt";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists batchmates that match all interests specified\n"
+            + "Example: " + COMMAND_WORD + " tennis";
 
-    private final PersonContainsTagPredicate predicate;
+    private final PersonContainsInterestPredicate predicate;
 
-    public FindTagCommand(PersonContainsTagPredicate predicate) {
+    public FindInterestCommand(PersonContainsInterestPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -34,7 +34,7 @@ public class FindTagCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindTagCommand // instanceof handles nulls
-                && predicate.equals(((FindTagCommand) other).predicate)); // state check
+                || (other instanceof FindInterestCommand // instanceof handles nulls
+                && predicate.equals(((FindInterestCommand) other).predicate)); // state check
     }
 }
