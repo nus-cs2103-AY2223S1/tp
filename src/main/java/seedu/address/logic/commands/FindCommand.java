@@ -4,7 +4,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FindCommandPredicate;
 
-public class FindCommand extends Command{
+/**
+ * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Parameters such as "address/", "phone/", "class/" etc. can be added to further filter results.
+ * Keyword matching is case insensitive.
+ */
+public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
@@ -24,8 +29,8 @@ public class FindCommand extends Command{
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && this.predicate.equals(((FindCommand) other).predicate)); // state check
+               || (other instanceof FindCommand // instanceof handles nulls
+                   && this.predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
     /**
