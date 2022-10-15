@@ -14,7 +14,9 @@ public class RedoCommandTest {
 
     @Test
     public void execute_redo_success() {
-        CommandResult expectedCommandResult = new CommandResult(RedoCommand.MESSAGE_REDO_ACKNOWLEDGEMENT, false, false, true, false);
+        CommandResult expectedCommandResult =
+                new CommandResult(RedoCommand.MESSAGE_REDO_ACKNOWLEDGEMENT,
+                        false, false, true, false);
         assertCommandSuccess(new RedoCommand(), model, expectedCommandResult, expectedModel);
     }
 }
