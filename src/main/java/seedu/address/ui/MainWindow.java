@@ -151,7 +151,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleNewAddress() {
-        
+        System.out.println("New book created");
     }
 
     /**
