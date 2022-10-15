@@ -18,6 +18,7 @@ public class PersonCard extends UiPart<Region> {
     private static final String FXML = "PersonListCard.fxml";
     private static final String NO_INTERNSHIP = "No internship linked.";
     private static final String NO_PHONE = null;
+    private static final String NO_EMAIL = null;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -57,7 +58,11 @@ public class PersonCard extends UiPart<Region> {
         } else {
             phone.setText(person.getPhone().value);
         }
-        email.setText(person.getEmail().value);
+        if (person.getEmail() == null) {
+            email.setText(NO_EMAIL);
+        } else {
+            email.setText(person.getEmail().value);
+        }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

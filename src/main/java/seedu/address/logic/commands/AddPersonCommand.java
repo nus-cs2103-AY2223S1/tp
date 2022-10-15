@@ -35,7 +35,7 @@ public class AddPersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the InterNUS. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_EMAIL + "EMAIL "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_LINK_INDEX + "LINK INDEX]\n"
@@ -80,7 +80,7 @@ public class AddPersonCommand extends Command {
             Phone phone,
             Set<Tag> tags,
             Index linkIndex) {
-        requireAllNonNull(name, email, tags);
+        requireAllNonNull(name, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -131,9 +131,18 @@ public class AddPersonCommand extends Command {
         }
 
         AddPersonCommand otherCommand = (AddPersonCommand) other;
-        if (phone == null) {
+        if (phone == null && email == null) {
+            return name.equals(otherCommand.name)
+                    && Objects.equals(internshipId, otherCommand.internshipId)
+                    && tags.equals(otherCommand.tags);
+        } else if (phone == null) {
             return name.equals(otherCommand.name)
                     && email.equals(otherCommand.email)
+                    && Objects.equals(internshipId, otherCommand.internshipId)
+                    && tags.equals(otherCommand.tags);
+        } else if (email == null) {
+            return name.equals(otherCommand.name)
+                    && phone.equals(otherCommand.phone)
                     && Objects.equals(internshipId, otherCommand.internshipId)
                     && tags.equals(otherCommand.tags);
         } else {

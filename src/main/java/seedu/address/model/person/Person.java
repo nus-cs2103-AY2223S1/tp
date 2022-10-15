@@ -36,7 +36,7 @@ public class Person {
             Phone phone,
             InternshipId internshipId,
             Set<Tag> tags) {
-        requireAllNonNull(name, email, tags);
+        requireAllNonNull(name, tags);
         this.personId = personId;
         this.name = name;
         this.phone = phone;
@@ -118,9 +118,11 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Email: ")
-                .append(getEmail());
+        builder.append(getName());
+        Email email = getEmail();
+        if (!(email == null)) {
+            builder.append(("; Email: "));
+        }
         Phone phone = getPhone();
         if (!(phone == null)) {
             builder.append(("; Phone: "));

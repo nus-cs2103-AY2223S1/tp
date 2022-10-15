@@ -39,13 +39,17 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
                         PREFIX_TAG,
                         PREFIX_LINK_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        String emailStr = argMultimap.getValue(PREFIX_EMAIL).orElse(null);
+        Email email = null;
+        if (emailStr != null) {
+            email = ParserUtil.parseEmail(emailStr);
+        }
         String phoneStr = argMultimap.getValue(PREFIX_PHONE).orElse(null);
         Phone phone = null;
         if (phoneStr != null) {

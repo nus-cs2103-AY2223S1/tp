@@ -31,42 +31,42 @@ public class SampleDataUtil {
                     new Email("alexyeoh@example.com"),
                     new Phone("87438807"),
                     new InternshipId(0),
-                    getTagSet("friends")),
+                    getTagSet("Manager")),
             new Person(
                     new PersonId(1),
                     new Name("Bernice Yu"),
                     new Email("berniceyu@example.com"),
                     new Phone("99272758"),
                     null,
-                    getTagSet("colleagues", "friends")),
+                    getTagSet("Supervisor")),
             new Person(
                     new PersonId(2),
                     new Name("Charlotte Oliveiro"),
                     new Email("charlotte@example.com"),
                     new Phone("93210283"),
                     null,
-                    getTagSet("neighbours")),
+                    getTagSet("HR")),
             new Person(
                     new PersonId(3),
                     new Name("David Li"),
                     new Email("lidavid@example.com"),
                     new Phone("91031282"),
                     new InternshipId(1),
-                    getTagSet("family")),
+                    getTagSet("HR")),
             new Person(
                     new PersonId(4),
                     new Name("Irfan Ibrahim"),
                     new Email("irfan@example.com"),
                     new Phone("92492021"),
                     null,
-                    getTagSet("classmates")),
+                    getTagSet("HR")),
             new Person(
                     new PersonId(5),
                     new Name("Roy Balakrishnan"),
                     new Email("royb@example.com"),
                     new Phone("92624417"),
                     new InternshipId(0),
-                    getTagSet("colleagues"))
+                    getTagSet("HR"))
         };
     }
 
