@@ -44,7 +44,7 @@ public class AttendanceList {
             return toString();
         }
 
-        StringBuilder description = new StringBuilder("Attendance:\n");
+        StringBuilder description = new StringBuilder();
         for (int i = 0; i < 2; i++) {
             description.append(i + 1).append(". ").append(attendanceList.get(i)).append("\n");
         }
@@ -82,7 +82,7 @@ public class AttendanceList {
 
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Attendance: \n");
+        StringBuilder description = new StringBuilder();
         if (attendanceList.isEmpty()) {
             description.append("No attendance found!\n");
         }

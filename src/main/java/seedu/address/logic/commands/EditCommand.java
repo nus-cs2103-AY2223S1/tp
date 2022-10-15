@@ -160,7 +160,7 @@ public class EditCommand extends Command {
      * Returns the updated {@code SessionList} if edited, or the original list if not.
      */
     public static SessionList getUpdatedSessionList(Person personToEdit,
-                                                    EditPersonDescriptor editPersonDescriptor) throws CommandException {
+            EditPersonDescriptor editPersonDescriptor) throws CommandException {
         SessionList updatedSessionList = personToEdit.getSessionList();
         Optional<Session> session = editPersonDescriptor.getSession();
         Optional<Index> sessionIndex = editPersonDescriptor.getSessionIndex();

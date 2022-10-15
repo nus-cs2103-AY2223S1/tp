@@ -5,10 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.commands.SessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Session;
 
 /**
  * Parses input command and creates a new SessionCommand object.
@@ -30,9 +28,9 @@ public class SessionCommandParser implements Parser<SessionCommand> {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AttendanceCommand.MESSAGE_USAGE), pe);
+                    SessionCommand.MESSAGE_USAGE), pe);
         }
         String session = argumentMultimap.getValue(PREFIX_SESSION).orElse("");
-        return new SessionCommand(index, new Session(session));
+        return new SessionCommand(index, ParserUtil.parseSession(session));
     }
 }

@@ -8,7 +8,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Attendance;
 
 /**
  * Parses input command and creates a new AttendanceCommand object.
@@ -34,6 +33,6 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
 
         String attendance = argumentMultimap.getValue(PREFIX_ATTENDANCE).orElse("");
 
-        return new AttendanceCommand(index, new Attendance(attendance));
+        return new AttendanceCommand(index, ParserUtil.parseAttendance(attendance));
     }
 }

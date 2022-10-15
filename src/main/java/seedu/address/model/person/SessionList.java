@@ -76,7 +76,7 @@ public class SessionList {
 
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Session: \n");
+        StringBuilder description = new StringBuilder();
         if (sessionList.isEmpty()) {
             description.append("No sessions found!\n");
         }

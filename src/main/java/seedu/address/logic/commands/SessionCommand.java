@@ -95,6 +95,4 @@ public class SessionCommand extends Command {
         SessionCommand temp = (SessionCommand) other;
         return index.equals(temp.index) && session.equals(temp.session);
     }
-
-
 }
