@@ -70,7 +70,8 @@ class HelpCommandParserTest {
 
         // // Commented out pending reevaluation of usefulness of test case
         // assertEquals("To receive help for a specific command, enter "
-        //                 + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
+        //                 + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any "
+        //                 + "one of the following:\n"
         //                 + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
         //                 + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
         //                 + "For more information please head to:\n"
