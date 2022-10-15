@@ -26,6 +26,8 @@ public class TypicalItems {
             .withQuantity(50).withDescription("Comes with linen").build();
     public static final Item ITEM_7 = new ItemBuilder().withItemName("Slippers")
             .withQuantity(48).withDescription("Cute shark slippers").build();
+    public static final Item ITEM_8 = new ItemBuilder().withItemName("Shirt")
+            .withQuantity(32).withDescription("Good quality shirt").build();
 
     /**
      * Returns an {@code TrackO} with all the typical {@code Item}.
@@ -39,6 +41,6 @@ public class TypicalItems {
     }
 
     public static List<Item> getTypicalItems() {
-        return new ArrayList<>(Arrays.asList(ITEM_1, ITEM_2, ITEM_3, ITEM_4, ITEM_5, ITEM_6, ITEM_7));
+        return new ArrayList<>(Arrays.asList(ITEM_1, ITEM_2, ITEM_3, ITEM_4, ITEM_5, ITEM_6, ITEM_7, ITEM_8));
     }
 }
