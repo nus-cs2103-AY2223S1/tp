@@ -12,7 +12,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
 
-
     private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
