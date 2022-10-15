@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commission.UniqueCommissionList;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.Email;
@@ -128,9 +127,8 @@ class JsonAdaptedCustomer {
 
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        final UniqueCommissionList customerCommissions = new UniqueCommissionList();
         Customer.CustomerBuilder customerBuilder = new Customer.CustomerBuilder(modelName, modelPhone, modelEmail,
-                modelTags).setCommissions(customerCommissions);
+                modelTags);
         modelAddress.ifPresent(customerBuilder::setAddress);
         Customer customer = customerBuilder.build();
 
