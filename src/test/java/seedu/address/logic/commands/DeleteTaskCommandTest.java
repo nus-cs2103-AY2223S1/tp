@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalSupplyItems.getTypicalInventory;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,8 @@ import seedu.address.model.task.Task;
  */
 public class DeleteTaskCommandTest {
 
-    private final Model model = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+    private final Model model = new ModelManager(new AddressBook(), new UserPrefs(),
+            getTypicalTaskList(), getTypicalInventory());
     private final Index indexFirstTask = Index.fromOneBased(1);
     private final Index indexSecondTask = Index.fromOneBased(2);
 
@@ -34,7 +36,8 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        ModelManager expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+        ModelManager expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());
         expectedModel.deleteTask(Index.fromZeroBased(0));
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -57,7 +60,8 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());
         expectedModel.deleteTask(indexFirstTask);
         showNotask(expectedModel);
 

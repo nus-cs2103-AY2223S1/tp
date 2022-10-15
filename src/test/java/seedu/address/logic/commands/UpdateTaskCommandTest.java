@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_OIL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalSupplyItems.getTypicalInventory;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,8 @@ import seedu.address.testutil.UpdateTaskDescriptorBuilder;
  */
 public class UpdateTaskCommandTest {
 
-    private final Model model = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+    private final Model model = new ModelManager(new AddressBook(), new UserPrefs(),
+            getTypicalTaskList(), getTypicalInventory());
     private final Index indexFirstTask = Index.fromOneBased(1);
     private final Index indexSecondTask = Index.fromOneBased(2);
 
@@ -42,7 +44,8 @@ public class UpdateTaskCommandTest {
 
         String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_SUCCESS, updatedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());
         expectedModel.setTask(updatedTask, indexFirstTask);
 
         assertCommandSuccess(updateTaskCommand, model, expectedMessage, expectedModel);
@@ -53,20 +56,21 @@ public class UpdateTaskCommandTest {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
-        TaskBuilder TaskInList = new TaskBuilder(lastTask);
-        Task updatedTask = TaskInList.withTitle(VALID_TITLE_OIL).withDeadline(VALID_DEADLINE)
+        TaskBuilder taskInList = new TaskBuilder(lastTask);
+        Task updatedTask = taskInList.withTitle(VALID_TITLE_OIL).withDeadline(VALID_DEADLINE)
                 .withTags(VALID_TAG_FOOD).build();
 
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
                 .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
-        UpdateTaskCommand UpdateTaskCommand = new UpdateTaskCommand(indexLastTask, descriptor);
+        UpdateTaskCommand updateTaskCommand = new UpdateTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_SUCCESS, updatedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());
         expectedModel.setTask(updatedTask, indexLastTask);
 
-        assertCommandSuccess(UpdateTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -76,7 +80,8 @@ public class UpdateTaskCommandTest {
 
         String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_SUCCESS, updatedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());
 
         assertCommandSuccess(updateTaskCommand, model, expectedMessage, expectedModel);
     }
@@ -85,17 +90,18 @@ public class UpdateTaskCommandTest {
     public void execute_filteredList_success() {
         showTaskAtIndex(model, indexFirstTask);
 
-        Task TaskInFilteredList = model.getFilteredTaskList().get(indexFirstTask.getZeroBased());
-        Task updatedTask = new TaskBuilder(TaskInFilteredList).withTitle(VALID_TITLE_OIL).build();
-        UpdateTaskCommand UpdateTaskCommand = new UpdateTaskCommand(indexFirstTask,
+        Task taskInFilteredList = model.getFilteredTaskList().get(indexFirstTask.getZeroBased());
+        Task updatedTask = new TaskBuilder(taskInFilteredList).withTitle(VALID_TITLE_OIL).build();
+        UpdateTaskCommand updateTaskCommand = new UpdateTaskCommand(indexFirstTask,
                 new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL).build());
 
         String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_SUCCESS, updatedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), getTypicalTaskList());;
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
+                getTypicalTaskList(), getTypicalInventory());;
         expectedModel.setTask(updatedTask, indexFirstTask);
 
-        assertCommandSuccess(UpdateTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(updateTaskCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -112,9 +118,9 @@ public class UpdateTaskCommandTest {
         showTaskAtIndex(model, indexFirstTask);
 
         // Update Task in filtered list into a duplicate in task list
-        Task TaskInList = model.getTaskList().getTaskList().get(indexSecondTask.getZeroBased());
+        Task taskInList = model.getTaskList().getTaskList().get(indexSecondTask.getZeroBased());
         UpdateTaskCommand updateTaskCommand = new UpdateTaskCommand(indexFirstTask,
-                new UpdateTaskDescriptorBuilder(TaskInList).build());
+                new UpdateTaskDescriptorBuilder(taskInList).build());
 
         assertCommandFailure(updateTaskCommand, model, UpdateTaskCommand.MESSAGE_DUPLICATE_TASK);
     }
