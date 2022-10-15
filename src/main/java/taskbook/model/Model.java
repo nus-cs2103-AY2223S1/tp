@@ -1,6 +1,7 @@
 package taskbook.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -104,8 +105,7 @@ public interface Model {
     /** Returns an unmodifiable view of the sorted task list */
     ObservableList<Task> getSortedTaskList();
 
-    void sortDescriptionAlphabetical();
-    void sortAddedChronological();
+    void updateSort(Comparator<Task> comparator);
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

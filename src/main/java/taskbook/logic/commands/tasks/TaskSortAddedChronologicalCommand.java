@@ -8,9 +8,12 @@ import taskbook.model.Model;
  * Sorts the list by the description's alphabetical order.
  */
 public class TaskSortAddedChronologicalCommand extends TaskSortCommand {
+    public TaskSortAddedChronologicalCommand() {
+        super(null);
+    }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.sortAddedChronological();
+        model.updateSort(super.getComparator());
         return new CommandResult(String.format(MESSAGE_SORT_TASK_SUCCESS));
     }
 

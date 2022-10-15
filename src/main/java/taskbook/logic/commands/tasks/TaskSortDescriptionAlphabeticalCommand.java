@@ -8,9 +8,13 @@ import taskbook.model.Model;
  * Sorts the list by the description's alphabetical order.
  */
 public class TaskSortDescriptionAlphabeticalCommand extends TaskSortCommand {
+    public TaskSortDescriptionAlphabeticalCommand() {
+        super((t1, t2) -> t1.compareByDescriptionAlphabeticalTo(t2));
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.sortDescriptionAlphabetical();
+        model.updateSort(super.getComparator());
         return new CommandResult(String.format(MESSAGE_SORT_TASK_SUCCESS));
     }
 

@@ -170,23 +170,12 @@ public class ModelManager implements Model {
         return sortedTasks;
     }
 
-    private void updateSortedTaskList(Comparator<Task> comparator) {
+    /**
+     * Sorts the task list using the input comparator.
+     * @param comparator input comparator. If null, list will be sorted chronologically by time added.
+     */
+    public void updateSort(Comparator<Task> comparator) {
         sortedTasks.setComparator(comparator);
-    }
-
-    /**
-     * Sorts task list descriptions by alphabet.
-     */
-    public void sortDescriptionAlphabetical() {
-        updateSortedTaskList((t1, t2) -> t1.compareByDescriptionAlphabeticalTo(t2));
-    }
-
-    /**
-     * Sorts task list descriptions by the time they were added.
-     * Because this is technically the default implementation of filteredList, simply set comparator to null.
-     */
-    public void sortAddedChronological() {
-        updateSortedTaskList(null);
     }
 
     @Override
