@@ -1,5 +1,7 @@
 package seedu.rc4hdb.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -54,6 +56,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void setResidentBookFilePath(Path filePath) {
+        requireNonNull(filePath);
         residentBookStorage.setResidentBookFilePath(filePath);
     }
 
