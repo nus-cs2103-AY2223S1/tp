@@ -28,13 +28,13 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
    * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contact list.
 
-   * **`contact delete`**`3` : Deletes the 3rd contact shown in the current contact list.
+   * **`contact delete`**`i/3` : Deletes the 3rd contact shown in the current contact list.
  
    * **`task list`** : Lists all tasks.
 
-   * **`task add`**`m/John t/Finish user guide` : Adds a task named `Finish user guide` to the task list.
+   * **`task todo`**`m/John t/Finish user guide` : Adds a todo named `Finish user guide` to the task list.
 
-   * **`task delete`**`3` : Deletes the 3rd task shown in the current task list.
+   * **`task delete`**`i/3` : Deletes the 3rd task shown in the current task list.
 
    * **`bye`** : Exits the app.
 
@@ -72,14 +72,14 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 
 ### Listing all Contacts : `contact list`
 
-Shows a list of all contacts in the address book in alphabetical order.<br> 
+Shows a list of all contacts in the taskbook in alphabetical order.<br> 
 [coming soon!]: Methods for specific forms of listing.
 
 Format: `contact list`
 
 ### Listing all Tasks : `task list`
 
-Shows a list of all tasks assigned by the user to contacts in the addressbook, and vice versa, in alphabetical order.<br>
+Shows a list of all tasks assigned by the user to contacts in the taskbook, and vice versa, in alphabetical order.<br>
 [coming soon!]: Methods to list the tasks separately.
 
 Format: `task list`
@@ -94,41 +94,48 @@ Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
  
-### Adding a task: `task add`
+### Adding a todo: `task todo`
 
-Adds a task into the task list.
+Adds a task of type todo into the task list.
 
-Format:  `task add m/ASSIGNOR d/DESCRIPTION [MODIFIER]`
+Format:  `task todo m/ASSIGNOR d/DESCRIPTION`
 
-Format:  `task add o/ASSIGNEE d/DESCRIPTION [MODIFIER]`
+Format:  `task todo o/ASSIGNEE d/DESCRIPTION`
 
-* Adds a task with an assignor (m) or assignee (o), a description and an optional task modifier.
-
-Examples:
-* `task add m/John d/Finish user guide` adds a task called “Finish user guide” assigned by John to the user.
-* `task add o/Sam d/Finish the assignment` adds a task called “Finish the assignment” which is assigned to Sam.
-
-### Task Modifiers [coming soon]
-
-#### Adding a deadline: `task add ... t/DUE_DATE` [coming soon]
-
-Adds a task of type Deadline into the task list.
-
-Format: `task add m/ASSIGNOR d/DESCRIPTION t/DUE_DATE`
-
-Format: `task add o/ASSIGNEE d/DESCRIPTION t/DUE_DATE`
-
-* `DUE_DATE` supports the following Date formats:
-    * `yyyy-MM-dd` e.g. "2022-09-21"
-    * `dd-MM-yyyy` e.g. "09-21-2022"
-    * `MMM dd yyyy` e.g. "Sep 21 2022"
+* Adds a todo with an assignor (m) or assignee (o) and a description.
 
 Examples:
-* `task add m/John d/Finish user guide t/ 2022-09-21` adds a task called “Finish user guide”
-  which is assigned by John to the user, and due by 2022-09-21.
-* `task add o/Sam d/Finish the assignment t/ 09-21-2022` adds a task called “Finish the assignment”
-  which the user has assigned to Sam, and due by 2022-09-21.
+* `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to the user.
+* `task todo o/Sam d/Finish the assignment` adds a todo called “Finish the assignment” which is assigned to Sam.
 
+### Adding a deadline: `task deadline`
+
+Adds a task of type deadline into the task list.
+
+Format: `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE`
+
+Format: `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE`
+
+* Adds a deadline with an assignor (m) or assignee (o), a description and a date.
+
+Examples:
+* `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to the user.
+* `task deadline o/Sam d/Finish the assignment t/Jan 31 2022` adds a deadline called “Finish the assignment” which is assigned to Sam.
+
+### Adding an event: `task event`
+
+Adds a task of type event into the task list.
+
+Format: `task event m/ASSIGNOR d/DESCRIPTION t/DATE`
+
+Format: `task event o/ASSIGNEE d/DESCRIPTION t/DATE`
+
+* Adds an event with an assignor (m) or assignee (o), a description and a date.
+
+Examples:
+* `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to the user.
+* `task event o/Sam d/Finish the assignment t/Jan 31 2022` adds an event called “Finish the assignment” which is assigned to Sam.
+    
 ### Deleting a contact : `contact delete`
 
 Deletes the specified contact from the contact list.
@@ -205,13 +212,17 @@ The following date formats are accepted:
 
 ## Command summary
 
-| Action                 | Format, Examples                                                                                                                                                   |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **View All Tasks**     | `task list`                                                                                                                                                        |
-| **View Contacts**      | `contact list`                                                                                                                                                     |
-| **Add Contact**        | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Add Task: Assignor** | `task add m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task add m/John d/Finish user guide`                                                                               |
-| **Add Task: Assignee** | `task add o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task add o/Sam d/Finish the assignment`                                                                            |
-| **Delete Contact**     | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
-| **Delete Task**        | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
-| **Quit**               | `bye`                                                                                                                                                              |
+| Action                     | Format, Examples                                                                                                                                                   |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **View All Tasks**         | `task list`                                                                                                                                                        |
+| **View Contacts**          | `contact list`                                                                                                                                                     |
+| **Add Contact**            | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Add Todo: Assignor**     | `task todo m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task todo m/John d/Finish user guide`                                                                             |
+| **Add Todo: Assignee**     | `task todo o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task todo o/Sam d/Finish the assignment`                                                                          |
+| **Add Deadline: Assignor** | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31`                                                 |
+| **Add Deadline: Assignee** | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022`                                             |
+| **Add Event: Assignor**    | `task event m/ASSIGNOR d/DESCRIPTION t/DATE` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31`                                                       |
+| **Add Event: Assignee**    | `task event o/ASSIGNEE d/DESCRIPTION t/DATE` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022`                                                   |
+| **Delete Contact**         | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
+| **Delete Task**            | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
+| **Quit**                   | `bye`                                                                                                                                                              |

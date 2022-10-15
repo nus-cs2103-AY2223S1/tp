@@ -2,6 +2,7 @@ package taskbook.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -137,5 +138,16 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDate}.
+     *
+     * @param date String that represents a date with a date format.
+     * @return LocalDate containing the date of a task.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        return DateParser.parse(date);
     }
 }

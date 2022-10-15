@@ -25,6 +25,7 @@ public class DateParser {
 
     /**
      * Parses {@code userInput} into a Date object and returns it.
+     *
      * @throws ParseException if {@code userInput} does not conform the expected formats.
      */
     public static LocalDate parse(String userInput) throws ParseException {

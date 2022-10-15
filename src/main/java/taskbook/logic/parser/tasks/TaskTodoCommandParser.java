@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import taskbook.commons.core.Messages;
-import taskbook.logic.commands.tasks.TaskAddCommand;
+import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
 import taskbook.logic.parser.CliSyntax;
@@ -17,9 +17,9 @@ import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 
 /**
- * Parses input arguments and creates a new TaskAddCommand object
+ * Parses input arguments and creates a new TaskTodoCommand object.
  */
-public class TaskAddCommandParser implements Parser<TaskAddCommand> {
+public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
 
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
     private static final Pattern ASSIGN_TO_COMMAND_FORMAT =
@@ -30,12 +30,18 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
             Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_ASSIGN_FROM.getPrefix()));
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskAddCommand
-     * and returns an TaskAddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TaskTodoCommand
+     * and returns an TaskTodoCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public TaskAddCommand parse(String args) throws ParseException {
+    public TaskTodoCommand parse(String args) throws ParseException {
+        if (args.contains(CliSyntax.PREFIX_ASSIGN_FROM.getPrefix())
+                && args.contains(CliSyntax.PREFIX_ASSIGN_TO.getPrefix())) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
+        }
+
         if (ASSIGN_TO_COMMAND_FORMAT.matcher(args).matches()) {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_TO);
         }
@@ -44,16 +50,16 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_FROM);
         }
 
-        throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
     }
 
-    private TaskAddCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
+    private TaskTodoCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, firstPrefix, CliSyntax.PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, firstPrefix, CliSyntax.PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
-                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskAddCommand.MESSAGE_USAGE));
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(firstPrefix).get());
@@ -63,7 +69,7 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
                 ? Assignment.FROM
                 : Assignment.TO;
 
-        return new TaskAddCommand(name, description, assignment);
+        return new TaskTodoCommand(name, description, assignment);
     }
 
     /**
