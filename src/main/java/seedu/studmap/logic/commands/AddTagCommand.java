@@ -19,7 +19,7 @@ import seedu.studmap.model.student.Student;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Add tag for an existing student in the studmap book.
+ * Add tag for an existing student in the student map.
  */
 public class AddTagCommand extends Command {
 
@@ -29,7 +29,7 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$s, new tag: %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags for a student in the studmap book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags for a student in the student map.\n"
         + "Parameters:\n"
         + "  INDEX (must be a positive integer or use \"all\" to add tags for everyone in the list) \n"
         + "  [" + PREFIX_TAG + "TAG]...\n"
@@ -46,7 +46,7 @@ public class AddTagCommand extends Command {
 
     public static final String MESSAGE_TAGS_NOT_ADDED = "At least one tag must be added";
 
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the studmap book.";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student map.";
 
     /**
      * Index of the student to add the tags for.

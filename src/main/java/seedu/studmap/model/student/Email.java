@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's email in the studmap book.
+ * Represents a Student's email in the student map.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

@@ -12,7 +12,7 @@ import static seedu.studmap.testutil.TypicalStudents.DANIEL;
 import static seedu.studmap.testutil.TypicalStudents.ELLE;
 import static seedu.studmap.testutil.TypicalStudents.FIONA;
 import static seedu.studmap.testutil.TypicalStudents.GEORGE;
-import static seedu.studmap.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.util.Arrays;
 
@@ -28,8 +28,8 @@ import seedu.studmap.model.order.Order;
  * Contains integration tests (interaction with the Model) for {@code SortCommand}.
  */
 public class SortCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudMap(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudMap(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.logic.commands.exceptions.CommandException;
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.ReadOnlyStudMap;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
-import seedu.studmap.model.ReadOnlyAddressBook;
 import seedu.studmap.model.ReadOnlyUserPrefs;
 import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
@@ -101,12 +101,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getStudMapFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setStudMapFilePath(Path studMapFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setStudMap(ReadOnlyStudMap newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyStudMap getStudMap() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -200,8 +200,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyStudMap getStudMap() {
+            return new StudMap();
         }
     }
 

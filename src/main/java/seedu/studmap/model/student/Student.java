@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Represents a Student in the studmap book.
+ * Represents a Student in the student map.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {

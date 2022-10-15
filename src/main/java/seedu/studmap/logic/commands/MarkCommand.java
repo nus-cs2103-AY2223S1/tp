@@ -17,7 +17,7 @@ import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
 
 /**
- * Marks a student identified using its displayed index from the studmap book as having attended a class or tutorial.
+ * Marks a student identified using its displayed index from the student map as having attended a class or tutorial.
  */
 public class MarkCommand extends Command {
 

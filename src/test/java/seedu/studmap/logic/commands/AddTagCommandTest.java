@@ -10,7 +10,7 @@ import static seedu.studmap.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.studmap.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.studmap.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.studmap.commons.core.Messages;
 import seedu.studmap.commons.core.index.Index;
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
 import seedu.studmap.model.UserPrefs;
@@ -34,7 +34,7 @@ import seedu.studmap.testutil.StudentBuilder;
  */
 public class AddTagCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudMap(), new UserPrefs());
     private Set<Tag> singleTagSet = Stream.of(VALID_TAG_FRIEND).map(Tag::new).collect(Collectors.toSet());
     private Set<Tag> multiTagSet = Stream.of(VALID_TAG_FRIEND, VALID_TAG_STUDENT).map(Tag::new)
             .collect(Collectors.toSet());
@@ -50,11 +50,11 @@ public class AddTagCommandTest {
         Student editedStudentBase = studentInList.withTags(VALID_TAG_HUSBAND).build();
         Student editedStudentExpected = studentInList.withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
         AddTagCommand addTagCommand = new AddTagCommand(indexLaststudent, singleTagSet);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
@@ -74,11 +74,11 @@ public class AddTagCommandTest {
         Student editedStudentExpected = studentInList.withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND, VALID_TAG_STUDENT)
                 .build();
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
         AddTagCommand addTagCommand = new AddTagCommand(indexLaststudent, multiTagSet);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
@@ -94,8 +94,8 @@ public class AddTagCommandTest {
         Student editedStudentBase;
         Student editedStudentExpected;
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
 
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
@@ -120,8 +120,8 @@ public class AddTagCommandTest {
         Student editedStudentBase;
         Student editedStudentExpected;
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
 
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
@@ -150,11 +150,11 @@ public class AddTagCommandTest {
         Student editedStudentBase = studentInList.withTags(VALID_TAG_FRIEND).build();
         Student editedStudentModel = studentInList.withTags(VALID_TAG_FRIEND, VALID_TAG_STUDENT).build();
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
         AddTagCommand addTagCommand = new AddTagCommand(indexLaststudent, multiTagSet);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentModel);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
@@ -173,11 +173,11 @@ public class AddTagCommandTest {
         Student editedStudentBase = studentInList.withTags().build();
         Student editedStudentModel = studentInList.withTags(VALID_TAG_FRIEND).build();
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
         AddTagCommand addTagCommand = new AddTagCommand(indexLaststudent, singleTagSet);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentModel);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
@@ -194,8 +194,8 @@ public class AddTagCommandTest {
         Student editedStudentBase;
         Student editedStudentExpected;
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
 
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
@@ -225,10 +225,10 @@ public class AddTagCommandTest {
         Student editedStudentBase = studentInList.withTags(VALID_TAG_HUSBAND).build();
         Student editedStudentExpected = studentInList.withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        Model baseModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model baseModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         baseModel.setStudent(lastStudent, editedStudentBase);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new StudMap(model.getStudMap()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
@@ -251,14 +251,14 @@ public class AddTagCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of studmap book
+     * but smaller than size of student map
      */
     @Test
     public void execute_invalidstudentIndexFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
-        // ensures that outOfBoundIndex is still in bounds of studmap book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+        // ensures that outOfBoundIndex is still in bounds of student map list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getStudMap().getStudentList().size());
 
         AddTagCommand addTagCommand = new AddTagCommand(outOfBoundIndex, singleTagSet);
 

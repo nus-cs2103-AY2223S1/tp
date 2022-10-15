@@ -4,7 +4,7 @@ import static seedu.studmap.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.studmap.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.studmap.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.studmap.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.studmap.testutil.StudentBuilder;
  */
 class MarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudMap(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,7 +37,7 @@ class MarkCommandTest {
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SUCCESS,
                 attendance.getAttendance(), markedStudent);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
@@ -55,7 +55,7 @@ class MarkCommandTest {
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_SUCCESS,
                 attendance.getAttendance(), markedStudent);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), markedStudent);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }

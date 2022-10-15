@@ -6,7 +6,7 @@ import static seedu.studmap.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import seedu.studmap.model.Model;
 
 /**
- * Lists all students in the studmap book to the user.
+ * Lists all students in the student map to the user.
  */
 public class ListCommand extends Command {
 

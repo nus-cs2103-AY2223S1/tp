@@ -1,34 +1,34 @@
 package seedu.studmap.testutil;
 
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.student.Student;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building StudMap objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new StudMapBuilder().withStudent("John", "Doe").build();}
+ *     {@code StudMap sm = new StudMapBuilder().withStudent("John", "Doe").build();}
  */
 public class StudMapBuilder {
 
-    private AddressBook addressBook;
+    private StudMap studMap;
 
     public StudMapBuilder() {
-        addressBook = new AddressBook();
+        studMap = new StudMap();
     }
 
-    public StudMapBuilder(AddressBook addressBook) {
-        this.addressBook = addressBook;
+    public StudMapBuilder(StudMap studMap) {
+        this.studMap = studMap;
     }
 
     /**
-     * Adds a new {@code Student} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Student} to the {@code StudMap} that we are building.
      */
     public StudMapBuilder withStudent(Student student) {
-        addressBook.addStudent(student);
+        studMap.addStudent(student);
         return this;
     }
 
-    public AddressBook build() {
-        return addressBook;
+    public StudMap build() {
+        return studMap;
     }
 }

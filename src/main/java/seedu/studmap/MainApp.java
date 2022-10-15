@@ -15,19 +15,15 @@ import seedu.studmap.commons.util.ConfigUtil;
 import seedu.studmap.commons.util.StringUtil;
 import seedu.studmap.logic.Logic;
 import seedu.studmap.logic.LogicManager;
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
-import seedu.studmap.model.ReadOnlyAddressBook;
+import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.ReadOnlyUserPrefs;
 import seedu.studmap.model.UserPrefs;
 import seedu.studmap.model.util.SampleDataUtil;
-import seedu.studmap.storage.AddressBookStorage;
-import seedu.studmap.storage.JsonAddressBookStorage;
-import seedu.studmap.storage.JsonUserPrefsStorage;
-import seedu.studmap.storage.Storage;
-import seedu.studmap.storage.StorageManager;
-import seedu.studmap.storage.UserPrefsStorage;
+import seedu.studmap.storage.*;
+import seedu.studmap.storage.StudMapStorage;
 import seedu.studmap.ui.Ui;
 import seedu.studmap.ui.UiManager;
 
@@ -48,7 +44,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing StudMap ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +52,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StudMapStorage studMapStorage = new JsonStudMapStorage(userPrefs.getStudMapFilePath());
+        storage = new StorageManager(studMapStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +65,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s studmap book and {@code userPrefs}. <br>
-     * The data from the sample studmap book will be used instead if {@code storage}'s studmap book is not found,
-     * or an empty studmap book will be used instead if errors occur when reading {@code storage}'s studmap book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student map and {@code userPrefs}. <br>
+     * The data from the sample student map will be used instead if {@code storage}'s student map is not found,
+     * or an empty student map will be used instead if errors occur when reading {@code storage}'s student map.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyStudMap> studMapOptional;
+        ReadOnlyStudMap initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            studMapOptional = storage.readStudMap();
+            if (!studMapOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample StudMap");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = studMapOptional.orElseGet(SampleDataUtil::getSampleStudMap);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty StudMap");
+            initialData = new StudMap();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudMap");
+            initialData = new StudMap();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +147,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudMap");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,7 +163,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting StudMap " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

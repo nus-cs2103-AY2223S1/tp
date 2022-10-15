@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's name in the studmap book.
+ * Represents a Student's name in the student map.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

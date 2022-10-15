@@ -2,11 +2,11 @@ package seedu.studmap.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
 
 /**
- * Clears the studmap book.
+ * Clears the student map.
  */
 public class ClearCommand extends Command {
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new AddressBook());
+        model.setStudMap(new StudMap());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

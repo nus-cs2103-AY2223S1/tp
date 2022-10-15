@@ -2,7 +2,7 @@ package seedu.studmap.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.studmap.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.studmap.commons.core.GuiSettings;
-import seedu.studmap.model.AddressBook;
-import seedu.studmap.model.ReadOnlyAddressBook;
+import seedu.studmap.model.ReadOnlyStudMap;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonStudMapStorage studMapStorage = new JsonStudMapStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(studMapStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void studMapReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonStudMapStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonStudMapStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        StudMap original = getTypicalStudMap();
+        storageManager.saveStudMap(original);
+        ReadOnlyStudMap retrieved = storageManager.readStudMap().get();
+        assertEquals(original, new StudMap(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getStudMapFilePath() {
+        assertNotNull(storageManager.getStudMapFilePath());
     }
 
 }

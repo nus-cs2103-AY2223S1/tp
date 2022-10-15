@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.student.Student;
 
 /**
@@ -62,14 +62,14 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code StudMap} with all the typical students.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static StudMap getTypicalStudMap() {
+        StudMap sm = new StudMap();
         for (Student student : getTypicalStudents()) {
-            ab.addStudent(student);
+            sm.addStudent(student);
         }
-        return ab;
+        return sm;
     }
 
     public static List<Student> getTypicalStudents() {

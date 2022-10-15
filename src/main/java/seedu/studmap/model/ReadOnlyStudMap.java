@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.studmap.model.student.Student;
 
 /**
- * Unmodifiable view of an studmap book
+ * Unmodifiable view of a studMap
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyStudMap {
 
     /**
      * Returns an unmodifiable view of the students list.

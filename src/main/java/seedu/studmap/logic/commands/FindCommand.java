@@ -7,7 +7,7 @@ import seedu.studmap.model.Model;
 import seedu.studmap.model.student.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all students in studmap book whose name contains any of the argument keywords.
+ * Finds and lists all students in student map whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

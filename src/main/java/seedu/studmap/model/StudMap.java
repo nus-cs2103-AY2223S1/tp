@@ -14,7 +14,7 @@ import seedu.studmap.model.student.UniqueStudentList;
  * Wraps all data at the studmap-book level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class StudMap implements ReadOnlyStudMap {
 
     private final UniqueStudentList students;
 
@@ -29,13 +29,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         students = new UniqueStudentList();
     }
 
-    public AddressBook() {
+    public StudMap() {
     }
 
     /**
-     * Creates an AddressBook using the Students in the {@code toBeCopied}
+     * Creates an StudMap using the Students in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public StudMap(ReadOnlyStudMap toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,9 +51,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code StudMap} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyStudMap newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
@@ -62,7 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the studmap book.
+     * Returns true if a student with the same identity as {@code student} exists in the student map.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -70,8 +70,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a student to the studmap book.
-     * The student must not already exist in the studmap book.
+     * Adds a student to the student map.
+     * The student must not already exist in the student map.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -79,9 +79,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the studmap book.
+     * {@code target} must exist in the student map.
      * The student identity of {@code editedStudent} must not be the same as another existing student in the
-     * studmap book.
+     * student map.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -89,8 +89,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the studmap book.
+     * Removes {@code key} from this {@code StudMap}.
+     * {@code key} must exist in the student map.
      */
     public void removeStudent(Student key) {
         students.remove(key);
@@ -109,7 +109,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return students.asUnmodifiableObservableList();
     }
 
-    /** Sort the addressbook by the given attribute and order */
+    /** Sort the studmap by the given attribute and order */
     public void sort(Attribute attribute, Order order) {
         boolean isDescending = order.isDescending();
         students.sort(attribute, isDescending);
@@ -118,8 +118,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students));
+                || (other instanceof StudMap // instanceof handles nulls
+                && students.equals(((StudMap) other).students));
     }
 
     @Override

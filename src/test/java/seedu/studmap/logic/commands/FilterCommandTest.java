@@ -3,14 +3,14 @@ package seedu.studmap.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.studmap.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.studmap.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.studmap.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.studmap.model.AddressBook;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
 import seedu.studmap.model.UserPrefs;
@@ -20,16 +20,16 @@ import seedu.studmap.testutil.StudentBuilder;
 
 
 public class FilterCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudMap(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalStudMap(), new UserPrefs());
 
     public Model mockDatabase() {
         Student john = new StudentBuilder().withName("John").withTags("friends").build();
         Student cena = new StudentBuilder().withName("Cena").withTags("friends").build();
-        AddressBook ab = new AddressBook();
-        ab.addStudent(john);
-        ab.addStudent(cena);
-        Model model = new ModelManager(ab, new UserPrefs());
+        StudMap sm = new StudMap();
+        sm.addStudent(john);
+        sm.addStudent(cena);
+        Model model = new ModelManager(sm, new UserPrefs());
         return model;
     }
 
@@ -47,8 +47,8 @@ public class FilterCommandTest {
     public void execute_singleKeyword_multiplestudentsFound() {
         Model initialModel = mockDatabase();
         Model outputModel = mockDatabase();
-        Student john = outputModel.getAddressBook().getStudentList().get(0);
-        Student cena = outputModel.getAddressBook().getStudentList().get(1);
+        Student john = outputModel.getStudMap().getStudentList().get(0);
+        Student cena = outputModel.getStudMap().getStudentList().get(1);
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 2);
         TagContainsKeywordsPredicate predicate = preparePredicate("friends");
         FilterCommand command = new FilterCommand(predicate);

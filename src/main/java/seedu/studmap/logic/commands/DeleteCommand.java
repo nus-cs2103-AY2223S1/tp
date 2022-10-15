@@ -11,7 +11,7 @@ import seedu.studmap.model.Model;
 import seedu.studmap.model.student.Student;
 
 /**
- * Deletes a student identified using its displayed index from the studmap book.
+ * Deletes a student identified using its displayed index from the student map.
  */
 public class DeleteCommand extends Command {
 

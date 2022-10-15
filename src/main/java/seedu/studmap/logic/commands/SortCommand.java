@@ -8,7 +8,7 @@ import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 
 /**
- * Sorts the studmap book by name in alphabetic order.
+ * Sorts the student map by name in alphabetic order.
  */
 public class SortCommand extends Command {
 

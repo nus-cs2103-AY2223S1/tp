@@ -8,7 +8,7 @@ import seedu.studmap.model.student.TagContainsKeywordsPredicate;
 
 
 /**
- * Filters and list all students in the studmap book
+ * Filters and list all students in the student map
  */
 public class FilterCommand extends Command {
 

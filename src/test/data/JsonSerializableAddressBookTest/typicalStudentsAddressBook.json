@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "_comment": "StudMap save file which contains the same Student values as in TypicalStudents#getTypicalStudMap()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

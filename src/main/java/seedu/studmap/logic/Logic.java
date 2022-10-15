@@ -7,7 +7,7 @@ import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.logic.commands.CommandResult;
 import seedu.studmap.logic.commands.exceptions.CommandException;
 import seedu.studmap.logic.parser.exceptions.ParseException;
-import seedu.studmap.model.ReadOnlyAddressBook;
+import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.student.Student;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the StudMap.
      *
-     * @see seedu.studmap.model.Model#getAddressBook()
+     * @see seedu.studmap.model.Model#getStudMap()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyStudMap getStudMap();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Returns the user prefs' studmap book file path.
+     * Returns the user prefs' student map file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudMapFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

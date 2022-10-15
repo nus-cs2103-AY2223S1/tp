@@ -10,10 +10,10 @@ import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.logic.commands.Command;
 import seedu.studmap.logic.commands.CommandResult;
 import seedu.studmap.logic.commands.exceptions.CommandException;
-import seedu.studmap.logic.parser.AddressBookParser;
+import seedu.studmap.logic.parser.StudMapParser;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.Model;
-import seedu.studmap.model.ReadOnlyAddressBook;
+import seedu.studmap.model.ReadOnlyStudMap;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final StudMapParser studMapParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        studMapParser = new StudMapParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = studMapParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveStudMap(model.getStudMap());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyStudMap getStudMap() {
+        return model.getStudMap();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getStudMapFilePath() {
+        return model.getStudMapFilePath();
     }
 
     @Override

@@ -5,7 +5,7 @@ import static seedu.studmap.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.studmap.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.studmap.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.studmap.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +27,7 @@ import seedu.studmap.testutil.StudentBuilder;
  */
 class UnmarkCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalStudMap(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -42,7 +42,7 @@ class UnmarkCommandTest {
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SUCCESS,
                 attendance.className, unmarkedStudent);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList()
                 .get(INDEX_SECOND_STUDENT.getZeroBased()), unmarkedStudent);
         assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ class UnmarkCommandTest {
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SUCCESS,
                 attendance.className, unmarkedStudent);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), unmarkedStudent);
         assertCommandSuccess(unmarkCommand, model, expectedMessage, expectedModel);
     }

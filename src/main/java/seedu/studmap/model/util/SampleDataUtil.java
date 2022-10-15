@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.studmap.model.AddressBook;
-import seedu.studmap.model.ReadOnlyAddressBook;
+import seedu.studmap.model.ReadOnlyStudMap;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.student.Address;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
@@ -17,7 +17,7 @@ import seedu.studmap.model.student.StudentData;
 import seedu.studmap.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code StudMap} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -80,12 +80,12 @@ public class SampleDataUtil {
                 .toArray(Student[]::new);
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyStudMap getSampleStudMap() {
+        StudMap sampleSm = new StudMap();
         for (Student sampleStudent : getSampleStudents()) {
-            sampleAb.addStudent(sampleStudent);
+            sampleSm.addStudent(sampleStudent);
         }
-        return sampleAb;
+        return sampleSm;
     }
 
     /**

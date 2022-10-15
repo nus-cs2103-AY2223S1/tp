@@ -39,47 +39,47 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' studmap book file path.
+     * Returns the user prefs' studMap file path.
      */
-    Path getAddressBookFilePath();
+    Path getStudMapFilePath();
 
     /**
-     * Sets the user prefs' studmap book file path.
+     * Sets the user prefs' studMap file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setStudMapFilePath(Path studMapFilePath);
 
     /**
-     * Replaces studmap book data with the data in {@code addressBook}.
+     * Replaces studMap data with the data in {@code studMap}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setStudMap(ReadOnlyStudMap studMap);
 
     /**
-     * Returns the AddressBook
+     * Returns the StudMap
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyStudMap getStudMap();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the studmap book.
+     * Returns true if a student with the same identity as {@code student} exists in the student map.
      */
     boolean hasStudent(Student student);
 
     /**
      * Deletes the given student.
-     * The student must exist in the studmap book.
+     * The student must exist in the student map.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the studmap book.
+     * {@code student} must not already exist in the student map.
      */
     void addStudent(Student student);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the studmap book.
+     * {@code target} must exist in the student map.
      * The student identity of {@code editedStudent} must not be the same as another existing student
-     * in the studmap book.
+     * in the studmap.
      */
     void setStudent(Student target, Student editedStudent);
 

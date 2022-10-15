@@ -28,9 +28,9 @@ import seedu.studmap.testutil.EditStudentDescriptorBuilder;
 import seedu.studmap.testutil.StudentBuilder;
 import seedu.studmap.testutil.StudentUtil;
 
-public class AddressBookParserTest {
+public class StudMapParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final StudMapParser parser = new StudMapParser();
 
     @Test
     public void parseCommand_add() throws Exception {

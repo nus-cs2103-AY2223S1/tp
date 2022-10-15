@@ -25,7 +25,7 @@ import seedu.studmap.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class StudMapParser {
 
     /**
      * Used for initial separation of command word and args.
