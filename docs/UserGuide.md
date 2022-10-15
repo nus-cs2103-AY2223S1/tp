@@ -100,36 +100,36 @@ Examples:
 respectively.
 * `edit appts 1 1 r/Sore Throat` Edits the reason of the first patient's first appointment to be `Sore Throat`. Existing date will not be edited.
 
-### Locating patients by name or tag: `filter patients`
+### Hiding patients by name or tag: `hide patients`
 
 ####By name:
-Finds patients whose names contain any of the given keywords.
+Filters out (hides) patients whose names contain any of the given keywords.
 
-Format: `filter patients KEYWORD [MORE_KEYWORDS]`
+Format: `hide patients KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one keyword will be hidden (i.e. `OR` search).
+  e.g. `Hans Bo` will hide `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `filter patients John` returns `john` and `John Doe`
-* `filter patients alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `hide patients John` hides `john` and `John Doe`
+* `hide patients alex david` hides `Alex Yeoh`, `David Li`<br>
 
 ####By tag:
 
-Finds patients whose names contain any of the given tags.
+Hides patients whose names contain any of the given tags.
 
-Format: `filter patients t/TAG [MORE_TAGS]`
+Format: `hide patients t/TAG [MORE_TAGS]`
 
 * The search is case-insensitive. e.g `FRIENDS` will match `friends`
 * All tags of a patient are searched.
 
 Examples:
-* `filter patients t/friends colleagues` returns all patients with a friends OR colleagues tag.
+* `hide patients t/friends colleagues` hides all patients with a friends OR colleagues tag.
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from idENTify.
