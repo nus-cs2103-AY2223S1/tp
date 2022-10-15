@@ -12,7 +12,10 @@ import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
@@ -34,15 +37,12 @@ public class SetCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_EDIT_SUCCESS = "Contact edited: %1$s";
-    public static final String MESSAGE_ADD_SUCCESS = "Contact added: %1$s";
+    public static final String MESSAGE_UPDATE_SUCCESS = "Contact updated: %1$s";
 
-    private final ContactType typeToSet;
-    private final Contact contactToSet;
+    private final SetContactDescriptor setContactDescriptor;
 
-    public SetCommand(ContactType typeToSet, Contact contactToSet) {
-        this.typeToSet = typeToSet;
-        this.contactToSet = contactToSet;
+    public SetCommand(SetContactDescriptor setContactDescriptor) {
+        this.setContactDescriptor = setContactDescriptor;
     }
 
     @Override
@@ -55,30 +55,28 @@ public class SetCommand extends Command {
             throw new CommandException("no person selected");
         }
 
-        // get map of contacts from person
-        HashMap<ContactType, Contact> contacts = new HashMap<>();
-        contacts.putAll(toUpdate.getContacts()); // clone the map
 
-        // if contact in contacts edit the Contact
-        if (contacts.containsKey(typeToSet)) {
-            contacts.put(typeToSet, contactToSet);
-            Person updatedPerson = createUpdatedPerson(model.getSelectedPerson().get(), contacts);
-            model.setPerson(toUpdate, updatedPerson);
-            return new CommandResult(String.format(MESSAGE_EDIT_SUCCESS, typeToSet));
-        } else {
-            contacts.put(typeToSet, contactToSet);
-            Person updatedPerson = createUpdatedPerson(model.getSelectedPerson().get(), contacts);
-            model.setPerson(toUpdate, updatedPerson);
-            return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, typeToSet));
-        }
+
+        Person updatedPerson = createUpdatedPerson(toUpdate, setContactDescriptor);
+        model.setPerson(toUpdate, updatedPerson);
+        return new CommandResult(String.format(MESSAGE_UPDATE_SUCCESS, toUpdate));
     }
 
     private Person createUpdatedPerson(Person personToEdit,
-                                       Map<ContactType,Contact> newContacts) {
+                                       SetContactDescriptor setContactDescriptor) {
         assert personToEdit != null;
         Name name = personToEdit.getName();
         Address addr = personToEdit.getAddress();
-//        Set<Tag> tags = personToEdit.getTags() != null ? personToEdit.getTags() : new HashSet<>();
+
+        // get map of contacts from person
+        Map<ContactType, Contact> oldContacts = personToEdit.getContacts();
+        Map<ContactType, Contact> newContacts = setContactDescriptor.getContacts();
+        for (ContactType key : oldContacts.keySet()) {
+            if (!newContacts.containsKey(key)) {
+                newContacts.put(key, oldContacts.get(key));
+            }
+        }
+
 
         return new Person(name, addr, new HashSet<>(), newContacts);
     }
@@ -103,5 +101,23 @@ public class SetCommand extends Command {
         // state check
         SetCommand s = (SetCommand) other;
         return true;
+    }
+
+    public static class SetContactDescriptor {
+        private Map<ContactType, Contact> contacts = new HashMap<>();
+
+        public SetContactDescriptor(){}
+
+        public SetContactDescriptor(Map<ContactType, Contact> toCopy) {
+            this.contacts.putAll(toCopy);
+        }
+
+        public void updateContacts(ContactType typeToSet, Contact contactToSet) {
+            contacts.put(typeToSet, contactToSet);
+        }
+
+        public Map<ContactType, Contact> getContacts() {
+            return contacts;
+        }
     }
 }
