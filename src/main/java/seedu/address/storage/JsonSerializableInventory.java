@@ -22,7 +22,7 @@ public class JsonSerializableInventory {
      * Constructs a {@code JsonSerializableInventory} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializableInventory(@JsonProperty("items") List<JsonAdaptedSupplyItem> supplyItems) {
+    public JsonSerializableInventory(@JsonProperty("supplyItemList") List<JsonAdaptedSupplyItem> supplyItems) {
         this.supplyItemList.addAll(supplyItems);
     }
 

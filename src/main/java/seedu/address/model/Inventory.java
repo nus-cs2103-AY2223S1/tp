@@ -78,7 +78,7 @@ public class Inventory implements ReadOnlyInventory {
     /**
      * Deletes the supply item at the specified {@code Index}.
      */
-    public void deleteTask(Index index) {
+    public void deleteSupplyItem(Index index) {
         supplyItems.remove(index.getZeroBased());
     }
 

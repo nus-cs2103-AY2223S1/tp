@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ReadOnlyInventory;
@@ -52,7 +53,7 @@ public class JsonInventoryStorage implements InventoryStorage {
 
         try {
             return Optional.of(jsonInventory.get().toModelType());
-        } catch (Exception e) {
+        } catch (IllegalValueException e) {
             logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
             throw new DataConversionException(e);
         }

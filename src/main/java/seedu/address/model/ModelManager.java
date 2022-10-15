@@ -107,7 +107,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSupplyItem(Index index) {
-        inventory.deleteTask(index);
+        inventory.deleteSupplyItem(index);
     }
 
     @Override

@@ -22,7 +22,7 @@ public class SupplyItem {
     // Data fields
     private final int currentStock;
     private final int minStock;
-    private Person supplier;
+    private final Person supplier;
     private final Set<Tag> tags = new HashSet<>();
 
 
@@ -80,7 +80,7 @@ public class SupplyItem {
                 .append(", Stock: ")
                 .append(getCurrentStock());
 
-        Set<Tag> tags = getTags();
+        Set<Tag> tags = getSupplier().getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
