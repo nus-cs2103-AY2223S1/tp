@@ -70,8 +70,6 @@ public class CommandTestUtil {
     public static final String INVALID_ASSIGN_TO_DESC =
             " " + CliSyntax.PREFIX_ASSIGN_TO + "James&"; // '&' not allowed in names
 
-
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

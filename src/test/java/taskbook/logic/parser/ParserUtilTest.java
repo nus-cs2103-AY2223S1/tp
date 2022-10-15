@@ -193,4 +193,14 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_emptyString_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseDescription(""));
+    }
 }

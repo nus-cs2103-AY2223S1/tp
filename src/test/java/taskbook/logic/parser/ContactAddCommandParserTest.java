@@ -42,6 +42,7 @@ import taskbook.model.tag.Tag;
 import taskbook.testutil.PersonBuilder;
 
 public class ContactAddCommandParserTest {
+
     private ContactAddCommandParser parser = new ContactAddCommandParser();
 
     @Test
