@@ -71,7 +71,6 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
                             keyword));
         } else {
             for (Prefix p : tagMap.keySet()) {
-                System.out.println(person.getTags().get(UniqueTagTypeMap.getTagTypeFromPrefix(p)));
                 UniqueTagList uniqueTagList = person.getTags().get(UniqueTagTypeMap.getTagTypeFromPrefix(p));
                 for (String s : tagMap.get(p)) {
                     if (uniqueTagList == null) {
