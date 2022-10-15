@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Reminder> filteredReminders;
     private final FilteredList<Tutorial> filteredTutorials;
+    private final FilteredList<TeachingAssistant> filteredTeachingAssistants;
     private final FilteredList<Consultation> filteredConsultations;
 
     /**
@@ -42,6 +44,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredReminders = new FilteredList<>(this.addressBook.getReminderList());
         filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
+        filteredTeachingAssistants = new FilteredList<>(this.addressBook.getTeachingAssistantList());
         filteredConsultations = new FilteredList<>(this.addressBook.getConsultationList());
     }
 
@@ -235,6 +238,31 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    //=========== Teaching Assistants =============================================================
+
+    /**
+     * Returns true if a teaching assistant with the same identity as {@code ta} exists in the ModQuik.
+     *
+     * @param ta
+     */
+    @Override
+    public boolean hasTeachingAssistant(TeachingAssistant ta) {
+        requireNonNull(ta);
+        return addressBook.hasTeachingAssistant(ta);
+    }
+
+    /**
+     * Adds the given teaching assistant.
+     * {@code ta} must not already exist in the ModQuik.
+     *
+     * @param ta
+     */
+    @Override
+    public void addTeachingAssistant(TeachingAssistant ta) {
+        addressBook.addTeachingAssistant(ta);
+        updateFilteredTeachingAssistantList(PREDICATE_SHOW_ALL_TEACHING_ASSISTANTS);
+    }
+
     //=========== Consultation ==================================================================================
 
     @Override
@@ -256,6 +284,17 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================
+
+    @Override
+    public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() {
+        return filteredTeachingAssistants;
+    }
+
+    @Override
+    public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {
+        requireNonNull(predicate);
+        filteredTeachingAssistants.setPredicate(predicate);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Consultation} backed by the internal list of

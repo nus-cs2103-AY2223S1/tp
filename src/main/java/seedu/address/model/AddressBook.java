@@ -11,6 +11,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
+import seedu.address.model.ta.TeachingAssistant;
+import seedu.address.model.ta.UniqueTeachingAssistantList;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.UniqueTutorialList;
 
@@ -23,6 +25,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueReminderList reminders;
     private final UniqueTutorialList tutorials;
+    private final UniqueTeachingAssistantList teachingAssistants;
     private final UniqueConsultationList consultations;
 
     /*
@@ -36,6 +39,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons = new UniquePersonList();
         reminders = new UniqueReminderList();
         tutorials = new UniqueTutorialList();
+        teachingAssistants = new UniqueTeachingAssistantList();
         consultations = new UniqueConsultationList();
     }
 
@@ -77,6 +81,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the teaching assistant list with {@code ta}.
+     * {@code ta} must not contain duplicate teaching assistants.
+     */
+    public void setTeachingAssistants(List<TeachingAssistant> ta) {
+        this.teachingAssistants.setTeachingAssistants(ta);
+    }
+
+    /**
      * Replaces the contents of the consultation list with {@code consultations}.
      * {@code tutorials} must not contain duplicate consultations.
      */
@@ -96,7 +108,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setTutorials(newData.getTutorialList());
 
+        setTeachingAssistants(newData.getTeachingAssistantList());
+
         setConsultations(newData.getConsultationList());
+
     }
 
     //// person-level operations
@@ -189,6 +204,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutorials.add(t);
     }
 
+
+    //// ta-level operations
+
+    /**
+     * Returns true if a teaching assistant with the same identity as {@code ta} exists in the ModQuilk.
+     */
+    public boolean hasTeachingAssistant(TeachingAssistant ta) {
+        requireNonNull(ta);
+        return teachingAssistants.contains(ta);
+    }
+
+    /**
+     * Adds a teaching assistant to the ModQuik.
+     * The teaching assistant must not already exist in the ModQuik.
+     */
+    public void addTeachingAssistant(TeachingAssistant ta) {
+        teachingAssistants.add(ta);
+    }
+
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
@@ -247,6 +281,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Tutorial> getTutorialList() {
         return tutorials.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<TeachingAssistant> getTeachingAssistantList() {
+        return teachingAssistants.asUnmodifiableObservableList();
     }
 
     @Override
