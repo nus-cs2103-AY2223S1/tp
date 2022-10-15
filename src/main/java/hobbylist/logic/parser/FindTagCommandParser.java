@@ -6,13 +6,12 @@ import java.util.Arrays;
 
 import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
 import hobbylist.model.activity.TagMatchesKeyword;
 
 /**
  * Parses input arguments and creates a new FindTagCommand object
  */
-public class FindTagCommandParser implements Parser{
+public class FindTagCommandParser implements Parser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

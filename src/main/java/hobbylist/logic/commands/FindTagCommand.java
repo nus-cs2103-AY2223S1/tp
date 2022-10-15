@@ -7,7 +7,7 @@ import hobbylist.model.Model;
 import hobbylist.model.activity.TagMatchesKeyword;
 
 /**
- * Finds and lists all activities in HobbyList whose name contains any of the argument keywords.
+ * Finds and lists all activities in HobbyList whose tag matches any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindTagCommand extends Command {
