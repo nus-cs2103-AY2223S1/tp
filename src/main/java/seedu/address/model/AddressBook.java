@@ -20,7 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueStudentList students;
     private final UniqueTaskList tasks;
-    private UniqueTutorialGroupList tutorialGroups;
+    private final UniqueTutorialGroupList tutorialGroups;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -70,6 +70,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        setTutorialGroups(newData.getTutorialGroupList());
     }
 
     //// person-level operations
