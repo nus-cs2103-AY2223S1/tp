@@ -4,12 +4,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INCOME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INCOME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONTHLY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONTHLY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLANTAG_SAVINGS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_HIGH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RISKTAG_LOW;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -30,52 +33,54 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withIncome("$1000").withMonthly("$200")
-            .withRiskTag("HIGH").withTags("friends").build();
+            .withRiskTag("HIGH").withPlanTag("Savings Plan").withTags("friends").build();
 
     public static final Person MUSAB = new PersonBuilder().withName("Musab")
             .withAddress("301 Upper Thomson Rd, Singapore 574408")
-            .withEmail("musab@gmail.com").withPhone("92345678").withMonthly("$100")
-            .withTags("gay")
+            .withEmail("musab@gmail.com").withPhone("92345678").withIncome("$10000")
+            .withMonthly("$100").withRiskTag("HIGH")
+            .withPlanTag("Savings Plan").withTags("gay")
             .build();
 
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withIncome("$1000").withMonthly("$100")
-            .withRiskTag("HIGH").withTags("owesMoney", "friends")
+            .withRiskTag("HIGH").withPlanTag("Savings Plan").withTags("owesMoney", "friends")
             .withAppointments("21-Jan-2023 09:00 AM", "21-Jan-2023 11:30 AM")
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withIncome("$1000").withMonthly("$200")
-            .withRiskTag("HIGH").build();
+            .withPlanTag("Savings Plan").withRiskTag("HIGH").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withIncome("$1000").withMonthly("$300")
-            .withRiskTag("HIGH").withTags("friends").build();
+            .withRiskTag("HIGH").withPlanTag("Savings Plan").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withIncome("$1000").withMonthly("$250").withRiskTag("HIGH").build();
+            .withIncome("$1000").withMonthly("$250").withPlanTag("Savings Plan").withRiskTag("HIGH").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withIncome("$1000").withMonthly("$500")
-            .withRiskTag("HIGH").build();
+            .withRiskTag("HIGH").withPlanTag("Savings Plan").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withIncome("$1000").withMonthly("$400")
-            .withRiskTag("HIGH").build();
+            .withRiskTag("HIGH").withPlanTag("Savings Plan").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india")
-            .withIncome("$1000").withMonthly("$300").withRiskTag("HIGH").build();
+            .withIncome("$1000").withMonthly("$300").withRiskTag("HIGH").withPlanTag("Savings Plan").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").withIncome("$1000").withMonthly("$200")
-            .withRiskTag("HIGH").build();
+            .withRiskTag("HIGH").withPlanTag("Savings Plan").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withMonthly(VALID_MONTHLY_AMY)
-            .withRiskTag(VALID_RISKTAG_LOW).withTags(VALID_TAG_FRIEND).build();
+            .withIncome(VALID_INCOME_AMY)
+            .withRiskTag(VALID_RISKTAG_LOW).withPlanTag(VALID_PLANTAG_SAVINGS).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withMonthly(VALID_MONTHLY_BOB)
-
-            .withRiskTag(VALID_RISKTAG_HIGH).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withIncome(VALID_INCOME_BOB).withRiskTag(VALID_RISKTAG_HIGH)
+            .withPlanTag(VALID_PLANTAG_SAVINGS).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

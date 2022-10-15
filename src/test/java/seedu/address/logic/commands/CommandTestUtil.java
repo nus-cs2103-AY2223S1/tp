@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -41,6 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_RISKTAG_HIGH = "HIGH";
     public static final String VALID_RISKTAG_LOW = "LOW";
+    public static final String VALID_PLANTAG_SAVINGS = "Savings Plan";
 
     public static final String VALID_INCOME_AMY = "$1000";
     public static final String VALID_INCOME_BOB = "$10000";
@@ -70,6 +72,7 @@ public class CommandTestUtil {
     public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_DATE + VALID_APPOINTMENT_22_JAN_2023;
     public static final String RISKTAG_DESC_HIGH = " " + PREFIX_RISKTAG + VALID_RISKTAG_HIGH;
     public static final String RISKTAG_DESC_LOW = " " + PREFIX_RISKTAG + VALID_RISKTAG_LOW;
+    public static final String PLANTAG_DESC_SAVINGS = " " + PREFIX_PLANTAG + VALID_PLANTAG_SAVINGS;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -77,6 +80,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_RISKTAG_DESC = " " + PREFIX_RISKTAG + "none"; // must be HIGH LOW or MEDIUM
+    public static final String INVALID_PLANTAG_DESC = " " + PREFIX_PLANTAG + "none"; // must end with Plan
     public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "000"; // income should include "$" sign
     public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "000"; // monthly should include "$"
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -93,11 +97,12 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withIncome(VALID_INCOME_AMY).withMonthly(VALID_MONTHLY_AMY)
-                .withRiskTag(VALID_RISKTAG_LOW).withTags(VALID_TAG_FRIEND).build();
+                .withRiskTag(VALID_RISKTAG_LOW).withPlanTag(VALID_PLANTAG_SAVINGS).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withMonthly(VALID_MONTHLY_AMY)
-                .withRiskTag(VALID_RISKTAG_HIGH).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withRiskTag(VALID_RISKTAG_HIGH).withPlanTag(VALID_PLANTAG_SAVINGS)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPOINTMENT = new EditPersonDescriptorBuilder().withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
     }
 

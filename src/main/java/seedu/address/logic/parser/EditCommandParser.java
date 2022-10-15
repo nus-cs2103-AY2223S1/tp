@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -19,7 +20,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.NormalTag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -34,7 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY, PREFIX_RISKTAG, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY, PREFIX_RISKTAG,
+                PREFIX_PLANTAG, PREFIX_TAG);
 
         Index index;
 
@@ -60,6 +62,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_RISKTAG).isPresent()) {
             editPersonDescriptor.setRiskTag(ParserUtil.parseRiskTag(argMultimap.getValue(PREFIX_RISKTAG).get()));
         }
+        if (argMultimap.getValue(PREFIX_PLANTAG).isPresent()) {
+            editPersonDescriptor.setPlanTag(ParserUtil.parsePlanTag(argMultimap.getValue(PREFIX_PLANTAG).get()));
+        }
         if (argMultimap.getValue(PREFIX_INCOME).isPresent()) {
             editPersonDescriptor.setIncome(ParserUtil.parseIncomeLevel(argMultimap.getValue(PREFIX_INCOME).get()));
         }
@@ -81,7 +86,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<Tag>} containing zero tags.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+    private Optional<Set<NormalTag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
         if (tags.isEmpty()) {

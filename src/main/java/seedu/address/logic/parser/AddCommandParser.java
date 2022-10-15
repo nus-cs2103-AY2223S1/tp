@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -23,8 +24,9 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -39,10 +41,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY, PREFIX_RISKTAG, PREFIX_TAG, PREFIX_DATE);
-
+                        PREFIX_ADDRESS, PREFIX_INCOME, PREFIX_MONTHLY, PREFIX_RISKTAG, PREFIX_PLANTAG,
+                        PREFIX_TAG, PREFIX_DATE);
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_INCOME,
-                PREFIX_MONTHLY, PREFIX_RISKTAG)
+                PREFIX_MONTHLY, PREFIX_RISKTAG, PREFIX_PLANTAG)
                 || !argMultimap.getPreamble().isEmpty() || arePrefixesPresent(argMultimap, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -54,9 +56,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         IncomeLevel incomeLevel = ParserUtil.parseIncomeLevel(argMultimap.getValue(PREFIX_INCOME).get());
         Monthly monthly = ParserUtil.parseMonthly(argMultimap.getValue(PREFIX_MONTHLY).get());
         RiskTag riskTag = ParserUtil.parseRiskTag(argMultimap.getValue(PREFIX_RISKTAG).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        PlanTag planTag = ParserUtil.parsePlanTag(argMultimap.getValue(PREFIX_PLANTAG).get());
+        Set<NormalTag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, incomeLevel, monthly, riskTag, tagList);
+        Person person = new Person(name, phone, email, address, incomeLevel, monthly, riskTag, planTag, tagList);
 
         return new AddCommand(person);
     }

@@ -5,6 +5,7 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "riskTag": "HIGH",
+    "planTag": "Savings Plan",
     "income": "$1000",
     "monthly": "$1000",
     "tagged": [ "friends" ]
@@ -14,6 +15,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "riskTag": "HIGH",
+    "planTag": "Savings Plan",
     "income": "$1000",
     "monthly": "$1000"
   } ]

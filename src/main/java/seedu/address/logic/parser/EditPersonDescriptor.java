@@ -17,8 +17,9 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
-import seedu.address.model.tag.Tag;
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -31,8 +32,9 @@ public class EditPersonDescriptor {
     private Address address;
     private IncomeLevel income;
     private Monthly monthly;
+    private PlanTag planTag;
     private RiskTag riskTag;
-    private Set<Tag> tags;
+    private Set<NormalTag> tags;
     private Set<Appointment> appointments;
     public EditPersonDescriptor() {}
 
@@ -48,6 +50,7 @@ public class EditPersonDescriptor {
         setIncome(toCopy.income);
         setMonthly(toCopy.monthly);
         setRiskTag(toCopy.riskTag);
+        setPlanTag(toCopy.planTag);
         setTags(toCopy.tags);
         setAppointments(toCopy.appointments);
     }
@@ -56,7 +59,8 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, planTag,
+                tags, appointments);
     }
 
     public void setName(Name name) {
@@ -99,6 +103,13 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(riskTag);
     }
 
+    public void setPlanTag(PlanTag planTag) {
+        this.planTag = planTag;
+    }
+
+    public Optional<PlanTag> getPlanTag() {
+        return Optional.ofNullable(planTag);
+    }
     /**
      * Sets {@code appointments} to this object's {@code appointments}.
      * A defensive copy of {@code appointments} is used internally.
@@ -128,7 +139,7 @@ public class EditPersonDescriptor {
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
      */
-    public void setTags(Set<Tag> tags) {
+    public void setTags(Set<NormalTag> tags) {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
@@ -137,7 +148,7 @@ public class EditPersonDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Optional<Set<Tag>> getTags() {
+    public Optional<Set<NormalTag>> getTags() {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
@@ -155,10 +166,11 @@ public class EditPersonDescriptor {
         IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        PlanTag updatedPlanTag = editPersonDescriptor.getPlanTag().orElse(personToEdit.getPlanTag());
+        Set<NormalTag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
-                updateMonthly, updatedRiskTag, updatedTags);
+                updateMonthly, updatedRiskTag, updatedPlanTag, updatedTags);
     }
 
 
@@ -183,11 +195,13 @@ public class EditPersonDescriptor {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
+        Set<NormalTag> tags = personToEdit.getTags();
         Monthly monthly = personToEdit.getMonthly();
         RiskTag risktag = personToEdit.getRiskTag();
+        PlanTag planTag = personToEdit.getPlanTag();
         IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, tags, currentAppointments);
+        Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, planTag,
+                tags, currentAppointments);
         return newPerson;
     }
 
@@ -204,11 +218,13 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Monthly monthly = personToEdit.getMonthly();
+        PlanTag planTag = personToEdit.getPlanTag();
         RiskTag riskTag = personToEdit.getRiskTag();
-        Set<Tag> tags = personToEdit.getTags();
+        Set<NormalTag> tags = personToEdit.getTags();
         IncomeLevel income = personToEdit.getIncome();
         Set<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, riskTag, tags, newAppointmentsOnly);
+        Person newPerson = new Person(name, phone, email, address, income, monthly, riskTag, planTag,
+                tags, newAppointmentsOnly);
 
         return newPerson;
     }
