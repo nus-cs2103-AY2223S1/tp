@@ -17,7 +17,7 @@ import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
-import seedu.condonery.logic.commands.FindCommand;
+import seedu.condonery.logic.commands.property.FindPropertyCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.commands.property.DeletePropertyCommand;
@@ -71,9 +71,9 @@ public class CondoneryParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-            FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
+            FindPropertyCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPropertyCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

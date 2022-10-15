@@ -6,8 +6,6 @@ import static seedu.condonery.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.model.fields.Address;
-
 public class AddressTest {
 
     @Test

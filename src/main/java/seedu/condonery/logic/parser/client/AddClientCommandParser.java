@@ -17,8 +17,8 @@ import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.Prefix;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.client.Client;
-import seedu.condonery.model.fields.Address;
-import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Address;
+import seedu.condonery.model.property.Name;
 import seedu.condonery.model.tag.Tag;
 
 /**

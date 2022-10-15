@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.parser.property.AddPropertyCommandParser;
-import seedu.condonery.model.fields.Address;
-import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Address;
+import seedu.condonery.model.property.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.testutil.PropertyBuilder;

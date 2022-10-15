@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.condonery.commons.exceptions.IllegalValueException;
 import seedu.condonery.model.client.Client;
-import seedu.condonery.model.fields.Address;
-import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Address;
+import seedu.condonery.model.property.Name;
 import seedu.condonery.model.tag.Tag;
 
 /**

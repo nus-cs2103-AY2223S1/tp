@@ -24,7 +24,7 @@ public class AddClientCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Alice Tan"
+            + PREFIX_NAME + "Alice Tan "
             + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
             + PREFIX_TAG + "Condo";
 

@@ -9,8 +9,8 @@ import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
-import seedu.condonery.model.fields.Address;
-import seedu.condonery.model.fields.Name;
+import seedu.condonery.model.property.Address;
+import seedu.condonery.model.property.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -24,7 +24,7 @@ public class SampleDataUtil {
                     getTagSet("High-End", "Available")),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
                     getTagSet("High-End", "Sold")),
-            new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
+            new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     getTagSet("High-End", "Reserved"))
         };
     }

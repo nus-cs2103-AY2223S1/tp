@@ -1,4 +1,4 @@
-package seedu.condonery.model.fields;
+package seedu.condonery.model.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.commons.util.AppUtil.checkArgument;
