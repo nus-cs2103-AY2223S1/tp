@@ -10,6 +10,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AttendanceAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new AttendanceAddCommand object
+ */
 public class AttendanceAddCommandParser implements Parser<AttendanceAddCommand> {
 
     @Override
@@ -19,15 +22,18 @@ public class AttendanceAddCommandParser implements Parser<AttendanceAddCommand> 
         Index index;
         String mod;
         String size;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            mod = argMultimap.getValue(PREFIX_CLASS_GROUP).get();
+            mod = argMultimap.getValue(PREFIX_CLASS_GROUP)
+                    .orElseThrow(() -> new ParseException("Missing prefix"));
             // add a parser method for this later ^
-            size = ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE).get());
+            size = ParserUtil.parseSize(argMultimap.getValue(PREFIX_SIZE)
+                    .orElseThrow(() -> new ParseException("Missing prefix")));
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AttendanceAddCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AttendanceAddCommand.MESSAGE_USAGE),
+                    ive);
         }
-              return new AttendanceAddCommand(index, mod, size);
+        return new AttendanceAddCommand(index, mod, size);
     }
 }

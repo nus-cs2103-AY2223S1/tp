@@ -84,7 +84,12 @@ public class ParserUtil {
         }
         return new Attendance(trimmedAttendance);
     }
-
+    /**
+     * Parses {@code String size}
+     * @param size with the input
+     * @return String
+     * @throws ParseException
+     */
     public static String parseSize(String size) throws ParseException {
         requireNonNull(size);
         String trimmedSize = size.trim();

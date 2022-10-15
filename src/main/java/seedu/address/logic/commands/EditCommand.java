@@ -20,7 +20,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;

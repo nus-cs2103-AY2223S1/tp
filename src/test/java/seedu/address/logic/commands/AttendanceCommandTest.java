@@ -65,7 +65,8 @@
 //    @Test
 //    public void execute_invalidStudentIndexUnfilteredList_failure() {
 //        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-//        AttendanceCommand remarkCommand = new AttendanceCommand(outOfBoundIndex, new Attendance(VALID_ATTENDANCE_BOB));
+//        AttendanceCommand remarkCommand = new AttendanceCommand(outOfBoundIndex
+//        , new Attendance(VALID_ATTENDANCE_BOB));
 //
 //        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 //    }
@@ -81,7 +82,8 @@
 //        // ensures that outOfBoundIndex is still in bounds of address book list
 //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
 //
-//        AttendanceCommand remarkCommand = new AttendanceCommand(outOfBoundIndex, new Attendance(VALID_ATTENDANCE_BOB));
+//        AttendanceCommand remarkCommand = new AttendanceCommand(outOfBoundIndex
+//        , new Attendance(VALID_ATTENDANCE_BOB));
 //        assertCommandFailure(remarkCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 //    }
 //    @Test

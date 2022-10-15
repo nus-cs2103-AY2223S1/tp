@@ -15,7 +15,7 @@ public class AttendanceListTest {
         assertTrue(attendanceList.equals(attendanceList));
 
         // same values -> returns true
-        AttendanceList attendanceCopy = new AttendanceList(attendanceList.mod, attendanceList.getAttendanceList());
+        AttendanceList attendanceCopy = new AttendanceList(attendanceList.getMod(), attendanceList.getAttendanceList());
         assertTrue(attendanceList.equals(attendanceCopy));
 
         // different types -> returns false

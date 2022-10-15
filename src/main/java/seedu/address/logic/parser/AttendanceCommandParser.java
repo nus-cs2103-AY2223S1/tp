@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ATTENDANCE_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,17 +15,17 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 
 /**
- * Parses input arguments and creates a new {@code AttendanceCommand} object
+ * Parses input arguments and creates new AttendanceParsers object
  */
 public class AttendanceCommandParser implements Parser<Command> {
+
+    public static final String ATTENDANCE_COMMAND_WORD = "attendance";
+    public static final String ATTENDANCE_ERROR = String.format(MESSAGE_INVALID_ATTENDANCE_COMMAND_FORMAT,
+            HelpCommand.MESSAGE_USAGE);
     /**
      * Used for initial separation of next attendance command word and args.
      */
     private static final Pattern ATTENDANCE_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
-    public static final String ATTENDANCE_COMMAND_WORD = "attendance";
-
-    public static final String ATTENDANCE_ERROR = String.format(MESSAGE_INVALID_COMMAND_FORMAT, "insert here");
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code AttendanceCommand}
@@ -38,7 +36,7 @@ public class AttendanceCommandParser implements Parser<Command> {
         final Matcher matcher = ATTENDANCE_COMMAND_FORMAT.matcher(args.trim());
 
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(ATTENDANCE_ERROR);
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -55,7 +53,7 @@ public class AttendanceCommandParser implements Parser<Command> {
             return new AttendanceMarkCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(ATTENDANCE_ERROR);
         }
     }
 }

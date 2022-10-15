@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * * Represents a Person's attendance in the address book.
- *
  */
 public class Attendance {
     public static final String VALIDATION_REGEX = "[0-1]";
@@ -13,8 +12,8 @@ public class Attendance {
     public final String value;
 
     /**
-     * Create attendance object
-     * @param attendance
+     * Constructs an {@code Email}.
+     * @param attendance A valid attendance.
      */
     public Attendance(String attendance) {
         requireNonNull(attendance);
@@ -23,16 +22,14 @@ public class Attendance {
     }
 
     /**
-     * Overloaded method for testing
+     * Constructs an empty {@code Attendance}.
      */
     public Attendance() {
         value = "0";
     }
 
     /**
-     * Checks for valid mark
-     * @param test
-     * @return true if 0-1
+     * Returns if a given string is a valid attendance
      */
     public static boolean isValidMark(String test) {
         return test.matches(VALIDATION_REGEX);

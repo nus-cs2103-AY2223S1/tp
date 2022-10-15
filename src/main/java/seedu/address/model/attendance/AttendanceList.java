@@ -10,21 +10,21 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Represents an attendance list in the student field
+ * Represents a Student's attendance list in the address book
  */
 public class AttendanceList {
 
     //if size is 0, empty list, elif up to 12, else reject.
     public static final String VALIDATION_REGEX = "[0-9]|1[012]";
     public static final String MESSAGE_CONSTRAINTS = "Invalid size";
-    public final String mod;
-    public List<Attendance> attendanceList;
-    public final boolean isEmpty;
+    private final String mod;
+    private List<Attendance> attendanceList;
+    private final boolean isEmpty;
 
     /**
-     * Creates new attendance list object
-     * @param mod is the attendance of the list
-     * @param size is the size of the list
+     * Constructs an {@code AttendanceList}.
+     * @param mod A module of the attendance list.
+     * @param size The size of the attendance list
      */
     public AttendanceList(String mod, String size) {
         requireNonNull(mod, size);
@@ -38,7 +38,7 @@ public class AttendanceList {
     }
 
     /**
-     * Overloaded method to create empty AttendanceLists
+     * Constructs an empty {@code AttendanceList}.
      */
     public AttendanceList() {
         this.isEmpty = true;
@@ -47,52 +47,66 @@ public class AttendanceList {
     }
 
     /**
-     * Duplicate attendance list
-     * @param mod
-     * @param attendanceList
+     * Constructs an {@code AttendanceList}.
+     * @param mod A module of the attendance list
+     * @param attendanceList A List of attendance
      */
     public AttendanceList(String mod, List<Attendance> attendanceList) {
         requireNonNull(mod);
         checkArgument(isValidSize(Integer
-                .toString(attendanceList.size())),MESSAGE_CONSTRAINTS);
+                .toString(attendanceList.size())), MESSAGE_CONSTRAINTS);
         this.isEmpty = attendanceList.size() == 0;
         this.mod = isEmpty ? "NA" : mod;
         this.attendanceList = new ArrayList<Attendance>(attendanceList);
     }
 
     /**
-     * Checks for valid number
-     * @param test is the input for the size
-     * @return true if within 0-12
+     * Returns if a given string is a valid list size.
      */
     public static boolean isValidSize(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Checks if AttendanceList is empty
-     * @return
+     * Returns if a given attendance list is empty
      */
     public boolean isEmpty() {
         return isEmpty;
     }
 
+    /**
+     * Returns size of attendance list.
+     */
+    public int getSize() {
+        return attendanceList.size();
+    }
+
+    /**
+     * Returns a copy of the List
+     */
     public List<Attendance> getAttendanceList() {
         return new ArrayList<Attendance>(attendanceList);
     }
 
+    /**
+     * Returns the module of the attendance list.
+     */
     public String getMod() {
         return mod;
     }
 
+    /**
+     * Marks the attendance in the attendance list
+     * @param index Index of the attendance list to be marked
+     * @param attendance Attendance to be updated to
+     */
     public void mark(String index, Attendance attendance) {
-        // add error clause here
-
         int lessonIndex = Integer.parseInt(index) - 1;
+        // add error clause here
+        checkArgument(lessonIndex < attendanceList.size()
+                && lessonIndex >= 1);
         attendanceList.set(lessonIndex, attendance);
     }
-
-
 
     @Override
     public String toString() {
@@ -111,7 +125,6 @@ public class AttendanceList {
                 || (other instanceof AttendanceList // instanceof handles nulls
                 && mod.equals(((AttendanceList) other).mod)); // state check
     }
-
     @Override
     public int hashCode() {
         return mod.hashCode();

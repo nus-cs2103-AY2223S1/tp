@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.AttendanceCommandParser.ATTENDANCE_COMMAND_WORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -13,27 +14,32 @@ import seedu.address.model.Model;
 import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.Student;
 
+/**
+ * Adds attendance to student in address book.
+ */
 public class AttendanceAddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "Added attendance to Student: %1$s";
 
     public static final String MESSAGE_USAGE = ATTENDANCE_COMMAND_WORD + " "
             + COMMAND_WORD
-            + ": Adds the person identified "
-            + "by the index number used in the last person listing. "
+            + ": Adds attendance to the student identified "
+            + "by the index number used in the last student listing and size(between 1-12), "
+            + "if size is 0, attendance list will be empty."
             + "Existing attendance will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_CLASS_GROUP + "[ATTENDANCE]\n"
+            + PREFIX_CLASS_GROUP + "[CLASS] "
+            + PREFIX_SIZE + "[LIST SIZE]\n"
             + "Example: " + ATTENDANCE_COMMAND_WORD
             + " " + COMMAND_WORD + " 1 "
-            + PREFIX_CLASS_GROUP + "CS2103T";
+            + PREFIX_CLASS_GROUP + "CS2103T " + PREFIX_SIZE + "10";
 
     private final Index index;
     private final String mod;
-
     private final String size;
 
     /**
+     * Creates an AttendanceAddCommand to add to the specified {@code Student}
      * @param index of the person in the filtered person list to edit the remark
      * @param mod belonging to the attendance list
      * @param size of the attendance list

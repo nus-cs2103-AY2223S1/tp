@@ -8,7 +8,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
-import seedu.address.model.attendance.Attendance;
 import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;

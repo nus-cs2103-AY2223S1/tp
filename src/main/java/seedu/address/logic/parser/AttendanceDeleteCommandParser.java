@@ -2,15 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AttendanceAddCommand;
 import seedu.address.logic.commands.AttendanceDeleteCommand;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
+/**
+ * Parses input arguments and creates a new AttendanceDeleteCommand object
+ */
 public class AttendanceDeleteCommandParser implements Parser<AttendanceDeleteCommand> {
 
     @Override
