@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -51,7 +53,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         String endDateTime =
                 StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_END).orElse(""));
 
-        checkIfInputsValid(name, phone, email, address, tagList, reason, startDateTime, endDateTime);
+        checkIfAtLeastOneInputPresent(tagList, name, phone, email, address, reason, startDateTime, endDateTime);
+        checkIfInputsValid(name, phone, tagList, startDateTime, endDateTime);
 
         LocalDateTime parsedStartDateTime = startDateTime.isEmpty()
                 ? LocalDateTime.MIN
@@ -73,16 +76,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
     }
 
-    private void checkIfInputsValid(String name, String phone, String email, String address, List<String> tagList,
-                                    String reason, String startDateTime, String endDateTime) throws ParseException {
+    private void checkIfAtLeastOneInputPresent(List<String> tagList, String... otherFields) throws ParseException {
+        List<String> allFields = new ArrayList<>(Arrays.asList(otherFields));
+        allFields.addAll(tagList);
 
-        boolean areAllFieldsEmpty = name.isEmpty() && phone.isEmpty() && email.isEmpty()
-                && address.isEmpty() && tagList.isEmpty() && reason.isEmpty() && startDateTime.isEmpty()
-                && endDateTime.isEmpty();
+        boolean areAllFieldsEmpty = allFields.stream().allMatch(String::isEmpty);
+
         if (areAllFieldsEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+    }
 
+    private void checkIfInputsValid(String name, String phone, List<String> tagList,
+                                    String startDateTime, String endDateTime) throws ParseException {
         // Address, emails and reasons are excluded from validity checks since they don't need to be
         // proper emails/addresses/reasons (E.g finding google in john@google.com is fine).
         if (!name.isEmpty() && !Name.isValidName(name)) {

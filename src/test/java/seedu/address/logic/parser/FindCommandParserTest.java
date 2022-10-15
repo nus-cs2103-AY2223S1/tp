@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.START_DATE_AFTER_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
@@ -178,6 +179,12 @@ public class FindCommandParserTest {
         // Invalid endDate
         assertParseFailure(parser, " " + PREFIX_DATE_TIME_END + invalidDate,
                 Appointment.DATE_MESSAGE_CONSTRAINTS);
+
+        // startDate after endDate -> Invalid
+        assertParseFailure(parser,
+                " " + PREFIX_DATE_TIME_START + validDateTimeEnd
+                        + " " + PREFIX_DATE_TIME_END + validDateTimeStart,
+                START_DATE_AFTER_END_DATE);
     }
 
     @Test
