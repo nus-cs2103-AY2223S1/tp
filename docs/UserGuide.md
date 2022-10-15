@@ -151,7 +151,7 @@ A person can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-Note: The tag has to be made first before you can add it into a contact.
+**:information_source: Note:** The tag has to be made first before you can add it into a contact.
 </div>
 
 * Adds a `TAG` to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
