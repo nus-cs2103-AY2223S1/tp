@@ -518,6 +518,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends
 
+**Use case: UC12 - Add patient appointment**
+
+**MSS**
+1. User requests to add an appointment with a specified date.
+2. An appointment is created for the patient.
+
+**Extensions**
+* 1a. Patient list is empty
+    
+    Use case ends
+
+* 1b. Patient index does not exist
+    * 1b1. Omnihealth displays an error message
+
+    Use case ends
+
+* 1c. Date is specified in wrong formatting
+    * 1c1. Omnihealth displays an error message
+    
+    Use case ends
+
+* 1d. Appointment already exists for the patient
+    * 1d1. Old appointment is overriden by the new appointment
+
+    Use case ends
+
 *{More to be added}*
 
 ### Non-Functional Requirements

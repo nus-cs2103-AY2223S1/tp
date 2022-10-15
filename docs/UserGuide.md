@@ -214,6 +214,16 @@ Clears all records of a specific patient from Omnihealth.
 
 Format: `clearR`
 
+### Adding an appointment : `appt`
+
+Adds an appointment for a specified patient. This command is only valid in the patient list view.
+
+Format: `appt INDEX d/DATE`
+* Adds a new appointment for the patient under the specified `INDEX`.
+* The index refers to the index number in the list of patients.
+* The index must be positive and available in the list.
+* The appointment is created with the given date.
+
 ### Exiting the program : `exit`
 
 Exits the program.
