@@ -2,7 +2,7 @@ package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
+import static seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,10 +10,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
@@ -36,6 +36,7 @@ public class FileCommandParser implements CommandParser<FileCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_FILE_NAME));
         }
         final Path jsonPath = Paths.get("data", fileName + ".json");
+
         switch (secondCommandWord) {
 
         case FileSwitchCommand.COMMAND_WORD:

@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.parser;
+package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
@@ -34,7 +34,6 @@ import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.ass
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.fields.Email;
 import seedu.rc4hdb.model.resident.fields.Gender;

@@ -2,23 +2,26 @@ package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.INVALID_FILE_NAME_BACKSLASH;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.INVALID_FILE_NAME_FORWARD_SLASH;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.INVALID_FILE_NAME_FULL_STOP;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.INVALID_FILE_NAME_WHITESPACE;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
+import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_BACKSLASH;
+import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_FORWARD_SLASH;
+import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_FULL_STOP;
+import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_WHITESPACE;
+import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
+import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
+import static seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileSwitchCommand;
 
+/**
+ * Unit tests for {@link FileCommandParser}
+ */
 public class FileCommandParserTest {
 
     private static final String INVALID_FILE_SECOND_COMMAND = "remove";
@@ -29,8 +32,8 @@ public class FileCommandParserTest {
 
     @Test
     public void parse_validFileCreateCommand() {
-        assertParseSuccess(parser, FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING,
-                new FileCreateCommand(VALID_FILE_NAME_PATH));
+        String fileCreateCommand = FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING;
+        assertParseSuccess(parser, fileCreateCommand, new FileCreateCommand(VALID_FILE_NAME_PATH));
     }
 
     @Test

@@ -88,6 +88,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public void deleteResidentBook(Path filePath) throws IOException {
+        residentBookStorage.deleteResidentBook(filePath);
+    }
+
+    // ================ End of ResidentBook methods ======================
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
