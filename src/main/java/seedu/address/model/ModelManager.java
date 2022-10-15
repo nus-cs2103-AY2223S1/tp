@@ -196,7 +196,8 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Record} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedAddressBook}. List of {@code Record} returned is sorted by Date, in
+     * descending order.
      */
     @Override
     public ObservableList<Record> getFilteredRecordList() {
