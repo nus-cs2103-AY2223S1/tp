@@ -9,6 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Person;
 
 /**
@@ -92,6 +93,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasModuleInFilteredList(Module module) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteModule(Module target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -103,6 +109,12 @@ public class ModelStub implements Model {
 
     @Override
     public void setModule(Module target, Module editedModule) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Module getModuleUsingModuleCode(ModuleCode moduleCode,
+                                         boolean isFiltered) {
         throw new AssertionError("This method should not be called.");
     }
 
