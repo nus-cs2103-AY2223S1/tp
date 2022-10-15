@@ -63,58 +63,36 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
+                + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple phones - last phone accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple emails - last email accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple addresses - last address accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-        //multiple riskTags - last riskTag accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_LOW + RISKTAG_DESC_HIGH
-                + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB
-                + MONTHLY_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB 
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
                 + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB 
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
                 + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB 
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
                 + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB 
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
                 + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple income - last income accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + MONTHLY_DESC_BOB + INCOME_DESC_AMY + INCOME_DESC_BOB 
+                + MONTHLY_DESC_BOB + INCOME_DESC_AMY + INCOME_DESC_BOB
                 + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
-                
         //multiple riskTags - last riskTag accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB 
+                + ADDRESS_DESC_BOB + INCOME_DESC_BOB + MONTHLY_DESC_BOB
                 + RISKTAG_DESC_LOW + RISKTAG_DESC_HIGH
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
@@ -202,10 +180,10 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + INCOME_DESC_BOB + INVALID_MONTHLY_DESC + RISKTAG_DESC_HIGH
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
-                
+
         // invalid riskTag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INCOME_DESC_BOB + MONTHLY_DESC_BOB 
+                + INCOME_DESC_BOB + MONTHLY_DESC_BOB
                 + INVALID_RISKTAG_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, RiskTag.MESSAGE_CONSTRAINTS);
 
 

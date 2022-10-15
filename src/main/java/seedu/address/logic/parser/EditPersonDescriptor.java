@@ -111,9 +111,6 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(appointments);
     }
 
-    public Optional<Address> getAddress() {
-        return Optional.ofNullable(address);
-    }
     public void setIncome(IncomeLevel income) {
         this.income = income;
     }
@@ -127,7 +124,6 @@ public class EditPersonDescriptor {
     public Optional<Monthly> getMonthly() {
         return Optional.ofNullable(monthly);
     }
-    
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
@@ -189,9 +185,9 @@ public class EditPersonDescriptor {
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
         Monthly monthly = personToEdit.getMonthly();
-
+        RiskTag risktag = personToEdit.getRiskTag();
         IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, tags, currentAppointments);
+        Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, tags, currentAppointments);
         return newPerson;
     }
 

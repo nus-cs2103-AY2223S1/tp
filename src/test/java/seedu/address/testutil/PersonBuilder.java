@@ -60,6 +60,8 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        income = personToCopy.getIncome();
+        monthly = personToCopy.getMonthly();
         riskTag = personToCopy.getRiskTag();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new HashSet<>(personToCopy.getAppointments());
@@ -106,7 +108,6 @@ public class PersonBuilder {
     }
 
     /**
-
      * Sets the {@code RiskTag} of the {@code Person} that we are building.
      */
     public PersonBuilder withRiskTag(String riskTag) {
@@ -114,6 +115,7 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
      * Sets the {@code Income} of the {@code Person} that we are building.
      */
     public PersonBuilder withIncome(String income) {
@@ -122,7 +124,6 @@ public class PersonBuilder {
     }
 
     /**
-
      * Sets the {@code Monthly} of the {@code Person} that we are building.
      */
     public PersonBuilder withMonthly(String monthly) {
@@ -130,7 +131,6 @@ public class PersonBuilder {
         return this;
     }
     /**
-
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
     public PersonBuilder withAppointments(String ... appointments) {
