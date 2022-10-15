@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -27,7 +28,8 @@ import nus.climods.ui.UiPart;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html";
+    public static final String CLIMODS_BASE_URL = "https://ay2223s1-cs2103-f14-1.github.io/tp/";
+    public static final String USERGUIDE_URL = CLIMODS_BASE_URL + "UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -144,6 +146,13 @@ public class HelpWindow extends UiPart<Stage> {
                 }
             }
         });
+    }
+
+    private void showWarningMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     /**
