@@ -74,7 +74,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 
 ### Viewing help : `help`
 
-Shows a message directing the user to our user guide.
+Shows a summary of all commands, and examples of its usage, as well as a message directing the user to our user guide.
 
 <!---
 ![help message](images/helpMessage.png)

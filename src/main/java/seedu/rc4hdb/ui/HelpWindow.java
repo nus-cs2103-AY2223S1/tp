@@ -99,7 +99,8 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().addEventHandler(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
             if (KeyCode.ESCAPE == event.getCode()) {
                 getRoot().close();
-            };
+            }
+            ;
         }
         );
     }
