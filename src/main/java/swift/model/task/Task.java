@@ -9,8 +9,9 @@ import java.util.UUID;
  * Represents a Task in the address book.
  */
 public class Task {
-    private final UUID id;
     public final TaskName taskName;
+
+    private final UUID id;
 
     /**
      * Constructs a {@code Task}.

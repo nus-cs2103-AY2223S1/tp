@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import swift.model.bridge.PersonTaskBridge;
+import swift.model.bridge.PersonTaskBridgeList;
 import swift.model.person.Person;
 import swift.model.person.UniquePersonList;
 import swift.model.task.Task;
@@ -18,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTaskList tasks;
+    private final PersonTaskBridgeList bridges;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tasks = new UniqueTaskList();
+        bridges = new PersonTaskBridgeList();
     }
 
     public AddressBook() {
@@ -144,6 +148,48 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.remove(key);
     }
 
+    //// bridge-level operations
+
+    /**
+     * Returns true if a bridge with the same person and task as {@code bridge} exists in the address book.
+     */
+    public boolean hasBridge(PersonTaskBridge bridge) {
+        requireNonNull(bridge);
+        return bridges.contains(bridge);
+    }
+
+    /**
+     * Adds a bridge to the address book.
+     * The bridge must not already exist in the address book.
+     */
+    public void addBridge(PersonTaskBridge b) {
+        bridges.add(b);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBridge(PersonTaskBridge key) {
+        bridges.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBridge(Person key) {
+        bridges.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBridge(Task key) {
+        bridges.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -161,6 +207,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<PersonTaskBridge> getBridgeList() {
+        return bridges.asUnmodifiableObservableList();
     }
 
     @Override

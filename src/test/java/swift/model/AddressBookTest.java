@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.person.exceptions.DuplicatePersonException;
 import swift.model.task.Task;
@@ -53,7 +54,7 @@ public class AddressBookTest {
             .withTags(VALID_TAG_HUSBAND)
             .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, Arrays.asList());
+        AddressBookStub newData = new AddressBookStub(newPersons, Arrays.asList(), Arrays.asList());
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
 
@@ -89,7 +90,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTaks_throwsDuplicateTaskException() {
         List<Task> newTasks = Arrays.asList(BUY_MILK, BUY_MILK);
-        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newTasks);
+        AddressBookStub newData = new AddressBookStub(Arrays.asList(), newTasks, Arrays.asList());
         assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
     }
     @Test
@@ -121,19 +122,27 @@ public class AddressBookTest {
 
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+        private final ObservableList<PersonTaskBridge> bridges = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Task> tasks) {
+        AddressBookStub(Collection<Person> persons, Collection<Task> tasks, Collection<PersonTaskBridge> bridges) {
             this.persons.setAll(persons);
             this.tasks.setAll(tasks);
+            this.bridges.setAll(bridges);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
+
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
+        }
+
+        @Override
+        public ObservableList<PersonTaskBridge> getBridgeList() {
+            return bridges;
         }
     }
 }
