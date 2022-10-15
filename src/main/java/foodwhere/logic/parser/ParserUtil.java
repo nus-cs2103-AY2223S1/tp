@@ -13,6 +13,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
+import foodwhere.model.review.Rating;
 import foodwhere.model.stall.Address;
 
 
@@ -121,5 +122,19 @@ public class ParserUtil {
             throw new ParseException(Content.MESSAGE_CONSTRAINTS);
         }
         return new Content(trimmedContent);
+    }
+
+    /**
+     * Parses a {@code Integer rating} into an {@code Rating}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code rating} is invalid.
+     */
+    public static Rating parseRating(Integer rating) throws ParseException {
+        requireNonNull(rating);
+        if (!Rating.isValidRating(rating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(rating);
     }
 }

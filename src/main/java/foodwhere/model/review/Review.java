@@ -22,16 +22,18 @@ public class Review {
     // Data fields
     private final Date date;
     private final Content content;
+    private final Rating rating;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Review(Name name, Date date, Content content, Set<Tag> tags) {
+    public Review(Name name, Date date, Content content, Rating rating, Set<Tag> tags) {
         requireAllNonNull(name, date, content, tags);
         this.name = name;
         this.date = date;
         this.content = content;
+        this.rating = rating;
         this.tags.addAll(tags);
     }
 
@@ -45,6 +47,10 @@ public class Review {
 
     public Content getContent() {
         return content;
+    }
+
+    public Rating getRating() {
+        return rating;
     }
 
     /**
@@ -68,6 +74,7 @@ public class Review {
                 && otherReview.getName().equals(getName())
                 && otherReview.getDate().equals(getDate())
                 && otherReview.getContent().equals(getContent())
+                && otherReview.getRating().equals(getRating())
                 && otherReview.getTags().equals(getTags());
     }
 
@@ -89,13 +96,14 @@ public class Review {
         return otherStall.getName().equals(getName())
                 && otherStall.getDate().equals(getDate())
                 && otherStall.getContent().equals(getContent())
+                && otherStall.getRating().equals(getRating())
                 && otherStall.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, content, tags);
+        return Objects.hash(name, date, content, rating, tags);
     }
 
     @Override
@@ -105,7 +113,9 @@ public class Review {
                 .append("; Date: ")
                 .append(getDate())
                 .append("; Content: ")
-                .append(getContent());
+                .append(getContent())
+                .append("; Rating: ")
+                .append(getRating());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

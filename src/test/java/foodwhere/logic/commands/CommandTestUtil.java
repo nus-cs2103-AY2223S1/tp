@@ -31,6 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_DATE_BOB = "2022-09-20";
     public static final String VALID_CONTENT_AMY = "Good, 5/5";
     public static final String VALID_CONTENT_BOB = "Bad, 1/5";
+    public static final Integer VALID_RATING_AMY = 4;
+    public static final Integer VALID_RATING_BOB = 3;
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
