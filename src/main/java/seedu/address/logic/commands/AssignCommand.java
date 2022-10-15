@@ -22,7 +22,7 @@ public class AssignCommand extends Command {
 
     public static final String COMMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMMAND_WORD + "Assign the person identified by the index"
+    public static final String MESSAGE_USAGE = COMMMAND_WORD + ": Assign the person identified by the index "
             + "number used in the displayed person list to the specified class if it exists.\n"
             + "Parameters: assign"
             + "INDEX (must be a positive integer)"
