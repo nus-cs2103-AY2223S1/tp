@@ -44,7 +44,8 @@ public enum CommandWord {
     EXIT_COMMAND("exit") {
         @Override
         public String getUsage() {
-            return ExitCommand.getUsage();
+            return getCommandWord() + ": Exits FoodRem."
+                    + "Example: " + getCommandWord();
         }
     },
 
