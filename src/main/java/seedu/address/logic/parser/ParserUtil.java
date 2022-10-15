@@ -15,7 +15,6 @@ import seedu.address.model.person.contact.Email;
 import seedu.address.model.person.contact.Phone;
 import seedu.address.model.person.contact.Slack;
 import seedu.address.model.person.contact.Telegram;
-
 import seedu.address.model.tag.Tag;
 
 

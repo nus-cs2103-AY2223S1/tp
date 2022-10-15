@@ -1,7 +1,14 @@
 package seedu.address.logic.commands;
 
-import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.commons.core.Messages;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -9,19 +16,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
-import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Sets a Contact of a Person.
+ */
 public class SetCommand extends Command {
     public static final String COMMAND_WORD = "set";
 
@@ -41,6 +40,11 @@ public class SetCommand extends Command {
 
     private final SetContactDescriptor setContactDescriptor;
 
+    /**
+     * Instantiates a SetCommand object.
+     *
+     * @param setContactDescriptor Container for the Contacts to be updated
+     */
     public SetCommand(SetContactDescriptor setContactDescriptor) {
         this.setContactDescriptor = setContactDescriptor;
     }
@@ -55,11 +59,23 @@ public class SetCommand extends Command {
             throw new CommandException("no person selected");
         }
 
+        // Create the updated person
         Person updatedPerson = createUpdatedPerson(toUpdate, setContactDescriptor);
+
+        // Updates the current person
         model.setPerson(toUpdate, updatedPerson);
+
+        // Display the success message
         return new CommandResult(MESSAGE_UPDATE_SUCCESS);
     }
 
+    /**
+     * Creates a Person object with the updated Contacts.
+     *
+     * @param personToEdit The original Person to be updated
+     * @param setContactDescriptor Container for the Contacts to be updated
+     * @return A Person object with the updated Contacts
+     */
     private Person createUpdatedPerson(Person personToEdit,
                                        SetContactDescriptor setContactDescriptor) {
         assert personToEdit != null;
@@ -100,19 +116,32 @@ public class SetCommand extends Command {
         return true;
     }
 
+    /**
+     * Stores the data to update the Person's Contacts with.
+     */
     public static class SetContactDescriptor {
         private Map<ContactType, Contact> contacts = new HashMap<>();
 
-        public SetContactDescriptor(){}
+        /**
+         * Instantiates a SetContactDescriptor object.
+         */
+        public SetContactDescriptor() {}
 
-        public SetContactDescriptor(Map<ContactType, Contact> toCopy) {
-            this.contacts.putAll(toCopy);
-        }
-
+        /**
+         * Updates the Contacts map.
+         *
+         * @param typeToSet The type of Contact to be updated
+         * @param contactToSet The Contact to be updated
+         */
         public void updateContacts(ContactType typeToSet, Contact contactToSet) {
             contacts.put(typeToSet, contactToSet);
         }
 
+        /**
+         * Gets the Map of updated Contacts.
+         *
+         * @return Map containing the Contacts
+         */
         public Map<ContactType, Contact> getContacts() {
             return contacts;
         }

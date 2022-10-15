@@ -3,20 +3,28 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SetCommand.SetContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.contact.ContactType;
 
-import java.util.stream.Stream;
-
+/**
+ * Parses the arguments supplied and returns a SetCommand object.
+ */
 public class SetCommandParser implements Parser<SetCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the SetCommand
+     * and returns an SetCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public SetCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -51,7 +59,7 @@ public class SetCommandParser implements Parser<SetCommand> {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if one of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
