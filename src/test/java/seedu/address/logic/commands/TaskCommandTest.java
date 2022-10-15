@@ -143,6 +143,16 @@ public class TaskCommandTest {
         }
 
         @Override
+        public Path getTaskBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskBookFilePath(Path taskBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTaskBook(ReadOnlyTaskBook taskBook) {
             throw new AssertionError("This method should not be called.");
         }
