@@ -7,15 +7,17 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-
 /**
  * Represents a Person's class date in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidClassString(String)}
+ * Guarantees: immutable;
+ * is valid as declared in {@link #isValidClassString(String)}, {@link #isValidFlexibleClassString(String)}
  */
 public class Class {
 
     public static final String MESSAGE_CONSTRAINTS = "Class can take any string"
-            + " in the format of 'yyyy-MM-dd 0000-2359'";
+            + " in either 'yyyy-MM-dd 0000-2359' or Day-of-Week 0000-2359 format"
+            + "\nExamples:  2022-10-30 1000-1300,  Mon 1000-1300,  tue 1000-1300"
+            + "\nDay-of-Week must be 3 letters and is case-insensitive";
     public static final String INVALID_DATETIME_ERROR_MESSAGE = "Date should be a valid date";
     public static final String INVALID_TIME_ERROR_MESSAGE = "Time should be in the range of 0000 - 2359";
     public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
@@ -23,6 +25,8 @@ public class Class {
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
     public static final String VALIDATION_CLASS_REGEX = VALIDATION_DATETIME_REGEX
             + " " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
+    public static final String FLEXIBLE_CLASS_REGEX =
+            "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun)[ ][0-9]{4}[-][0-9]{4}";
 
     public final LocalDate date;
     public final LocalTime startTime;
@@ -92,7 +96,7 @@ public class Class {
     }
 
     /**
-     * Returns a formatted time.
+     * Returns a formatted time duration.
      *
      * @param startTime LocalTime object.
      * @param endTime LocalTime object.
@@ -106,6 +110,13 @@ public class Class {
         return convertTime(startHour, startMin) + "-" + convertTime(endHour, endMin);
     }
 
+    /**
+     * Returns a formatted time.
+     *
+     * @param hour The number of hours in int.
+     * @param min The number of minutes in int.
+     * @return String.
+     */
     private static String convertTime(int hour, int min) {
         String time = "";
         if (hour >= 12) {
@@ -134,19 +145,32 @@ public class Class {
     /**
      * Validates whether classDatetime is valid.
      *
-     * @param classDatetime String to be validated.
+     * @param classDateTime String to be validated.
      * @return True if a given String object fits the format of 'yyyy-MM-dd 0000-2359'.
      */
-    public static boolean isValidClassString(String classDatetime) {
-        if (!classDatetime.matches(VALIDATION_CLASS_REGEX)) {
+    public static boolean isValidClassString(String classDateTime) {
+        if (!classDateTime.matches(VALIDATION_CLASS_REGEX)) {
             return false;
         }
+        String datetimeStr = classDateTime.substring(0, 10);
+        String startTimeStr = classDateTime.substring(11, 15);
+        String endTimeStr = classDateTime.substring(16);
+        return isValidDateTimeString(datetimeStr) && isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
+    }
 
-        String datetimeStr = classDatetime.substring(0, 10);
-        String startTimeStr = classDatetime.substring(11, 15);
-        String endTimeStr = classDatetime.substring(16);
-
-        return isValidDatetimeString(datetimeStr) && isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
+    /**
+     * Validates whether classDatetime is valid.
+     *
+     * @param classDateTime String to be validated.
+     * @return True if a given String object fits the format of 'yyyy-MM-dd 0000-2359'.
+     */
+    public static boolean isValidFlexibleClassString(String classDateTime) {
+        if (!classDateTime.matches(FLEXIBLE_CLASS_REGEX)) {
+            return false;
+        }
+        String startTimeStr = classDateTime.substring(4, 8);
+        String endTimeStr = classDateTime.substring(9);
+        return isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
     }
 
     /**
@@ -155,7 +179,7 @@ public class Class {
      * @param date String object.
      * @return True if is valid.
      */
-    private static boolean isValidDatetimeString(String date) {
+    private static boolean isValidDateTimeString(String date) {
         try {
             LocalDate.parse(date);
         } catch (DateTimeException dateTimeException) {

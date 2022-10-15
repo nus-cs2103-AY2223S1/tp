@@ -6,6 +6,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,11 +31,28 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String[] DAYS_OF_WEEK = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static int targetDayOfWeek;
+
+    /**
+     * TemporalAdjuster to adjust the current date to the target date.
+     */
+    private static TemporalAdjuster getClassDate = TemporalAdjusters.ofDateAdjuster(date -> {
+        int currentDayOfWeek = date.getDayOfWeek().getValue();
+        if (currentDayOfWeek == targetDayOfWeek) {
+            return date;
+        } else if (currentDayOfWeek < targetDayOfWeek) {
+            return date.plusDays(targetDayOfWeek - currentDayOfWeek);
+        } else {
+            return date.plusDays(7 - currentDayOfWeek + targetDayOfWeek);
+        }
+    });
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -127,23 +147,32 @@ public class ParserUtil {
     public static Class parseClass(String classDatetime) throws ParseException {
         requireNonNull(classDatetime);
         String trimmedClassDatetime = classDatetime.trim();
-        if (!Class.isValidClassString(trimmedClassDatetime)) {
+
+        if (Class.isValidClassString(trimmedClassDatetime)) {
+            // the format has been validated in isValidClassString method
+            // ie yyyy-MM-dd 0000-2359
+            LocalDate date = parseDate(trimmedClassDatetime.substring(0, 10));
+            LocalTime startTime = parseTime(trimmedClassDatetime.substring(11, 15));
+            LocalTime endTime = parseTime(trimmedClassDatetime.substring(16));
+            if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
+                throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+            }
+            return new Class(date, startTime, endTime, classDatetime);
+        } else if (Class.isValidFlexibleClassString(trimmedClassDatetime)) {
+            // the format has been validated in isValidFlexibleClassString method
+            // ie Mon 0000-2359
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedClassDatetime.substring(0, 3).toUpperCase());
+            LocalDate date = LocalDate.now().with(getClassDate);
+            LocalTime startTime = parseTime(trimmedClassDatetime.substring(4, 8));
+            LocalTime endTime = parseTime(trimmedClassDatetime.substring(9));
+            if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
+                throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+            }
+            return new Class(date, startTime, endTime,
+                    date.toString() + trimmedClassDatetime.substring(3));
+        } else {
             throw new ParseException(Class.MESSAGE_CONSTRAINTS);
         }
-
-        // the format has been validated in isValidClassString method
-        // ie yyyy-MM-dd 0000-2359
-        String datetimeStr = trimmedClassDatetime.substring(0, 10);
-        String startTimeStr = trimmedClassDatetime.substring(11, 15);
-        String endTimeStr = trimmedClassDatetime.substring(16);
-
-        LocalDate date = parseDate(datetimeStr);
-        LocalTime startTime = parseTime(startTimeStr);
-        LocalTime endTime = parseTime(endTimeStr);
-        if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
-            throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
-        }
-        return new Class(date, startTime, endTime, classDatetime);
     }
 
     /**
