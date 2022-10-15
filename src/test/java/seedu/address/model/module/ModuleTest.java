@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.ModuleBuilder;
 
 public class ModuleTest {
@@ -54,8 +55,8 @@ public class ModuleTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Module CS2103TCopy = new ModuleBuilder(CS2103T).build();
-        assertTrue(CS2103T.equals(CS2103TCopy));
+        Module cs2103TCopy = new ModuleBuilder(CS2103T).build();
+        assertTrue(CS2103T.equals(cs2103TCopy));
 
         // same object -> returns true
         assertTrue(CS2103T.equals(CS2103T));

@@ -119,7 +119,7 @@ public class UniqueModuleListTest {
     }
 
     @Test
-    public void remove_ModuleDoesNotExist_throwsModuleNotFoundException() {
+    public void remove_moduleDoesNotExist_throwsModuleNotFoundException() {
         assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.remove(CS2103T));
     }
 
@@ -153,8 +153,8 @@ public class UniqueModuleListTest {
     @Test
     public void setModules_list_replacesOwnListWithProvidedList() {
         uniqueModuleList.add(CS2103T);
-        List<Module> ModuleList = Collections.singletonList(CS2100);
-        uniqueModuleList.setModules(ModuleList);
+        List<Module> moduleList = Collections.singletonList(CS2100);
+        uniqueModuleList.setModules(moduleList);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
         expectedUniqueModuleList.add(CS2100);
         assertEquals(expectedUniqueModuleList, uniqueModuleList);

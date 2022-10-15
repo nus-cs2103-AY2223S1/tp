@@ -93,5 +93,4 @@ public class ModuleBuilder {
     public Module build() {
         return new Module(moduleCode, lectureDetails, tutorialDetails, zoomLink, assignmentDetails);
     }
-
 }
