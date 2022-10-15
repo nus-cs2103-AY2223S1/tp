@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
@@ -155,7 +154,9 @@ public enum CommandWord {
     VIEW_COMMAND("view") {
         @Override
         public String getUsage() {
-            return ViewCommand.getUsage();
+            return getCommandWord() + ": Displays the information about an Item. The command "
+                    + "displays the name, quantity, bought date, expiry date, unit, and associated tags of the item.\n"
+                    + "Example: " + getCommandWord() + " 1";
         }
     },
 
