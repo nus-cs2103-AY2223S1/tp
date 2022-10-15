@@ -52,12 +52,8 @@ public class SetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         // get the selected person
-        Person toUpdate;
-        if (model.getSelectedPerson().get() != null) {
-            toUpdate = model.getSelectedPerson().get();
-        } else {
-            throw new CommandException("no person selected");
-        }
+        Person toUpdate = model.getSelectedPerson().get();
+        assert toUpdate != null;
 
         // Create the updated person
         Person updatedPerson = createUpdatedPerson(toUpdate, setContactDescriptor);
@@ -113,7 +109,7 @@ public class SetCommand extends Command {
 
         // state check
         SetCommand s = (SetCommand) other;
-        return true;
+        return this.setContactDescriptor.equals(s.setContactDescriptor);
     }
 
     /**
@@ -144,6 +140,23 @@ public class SetCommand extends Command {
          */
         public Map<ContactType, Contact> getContacts() {
             return contacts;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof SetContactDescriptor)) {
+                return false;
+            }
+
+            // state check
+            SetContactDescriptor s = (SetContactDescriptor) other;
+            return this.contacts.equals(s.contacts);
         }
     }
 }
