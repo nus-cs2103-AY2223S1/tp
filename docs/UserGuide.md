@@ -133,11 +133,11 @@ Examples:
 * `find lid` returns `David Li` since email username of David (`lidavid@example.com`) contains `lid`
   ![result for 'find lid'](images/findlidResult.png)
 
-### Locating persons by tag: `find`
+### Locating persons by tag: `findTag`
 
 Finds persons that have the given tag.
 
-Format: `find t/TAG`
+Format: `findTag TAG`
 
 * The tag search is case-insensitive. e.g `finance` will match `Finance`
 * Only the tag is searched.
@@ -149,8 +149,8 @@ Format: `find t/TAG`
   * `Bob (tag:Finance) (tag:HumanResources)`
 
 Examples:
-* `find t/Finance` returns `John`, `Caroline` and `Bob`
-  ![result for 'find t/Finance'](images/findTagFinance.png)
+* `findTag Finance` returns `John`, `Caroline` and `Bob`
+  ![result for 'findTag Finance'](images/findTagFinance.png)
 
 ### Deleting a person : `delete`
 
