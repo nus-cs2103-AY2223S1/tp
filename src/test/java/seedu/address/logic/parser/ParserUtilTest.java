@@ -294,7 +294,7 @@ public class ParserUtilTest {
         LocalDate date = LocalDate.of(2022, 10, 15);
         ParserUtil.setTargetDayOfWeek(7);
         LocalDate expectedDate = LocalDate.of(2022, 10, 16);
-        assertEquals(date.with(ParserUtil.dateAdjuster), expectedDate);
+        assertEquals(date.with(ParserUtil.DATE_ADJUSTER), expectedDate);
     }
 
     @Test
@@ -302,6 +302,6 @@ public class ParserUtilTest {
         LocalDate date = LocalDate.of(2022, 10, 15);
         ParserUtil.setTargetDayOfWeek(1);
         LocalDate expectedDate = LocalDate.of(2022, 10, 17);
-        assertEquals(date.with(ParserUtil.dateAdjuster), expectedDate);
+        assertEquals(date.with(ParserUtil.DATE_ADJUSTER), expectedDate);
     }
 }

@@ -33,8 +33,19 @@ public class ParserUtil {
 
     public static final String[] DAYS_OF_WEEK = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static int targetDayOfWeek;
+    private static int targetDayOfWeek;
 
+    /**
+     * TemporalAdjuster to adjust the current date to the target date.
+     */
+    public static final TemporalAdjuster DATE_ADJUSTER = TemporalAdjusters.ofDateAdjuster(currentDate -> {
+        int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
+        if (currentDayOfWeek < targetDayOfWeek) {
+            return currentDate.plusDays(targetDayOfWeek - currentDayOfWeek);
+        } else {
+            return currentDate.plusDays(7 - currentDayOfWeek + targetDayOfWeek);
+        }
+    });
     /**
      * Sets targetDayOfWeek.
      *
@@ -43,18 +54,6 @@ public class ParserUtil {
     public static void setTargetDayOfWeek(int target) {
         targetDayOfWeek = target;
     }
-
-    /**
-     * TemporalAdjuster to adjust the current date to the target date.
-     */
-    public static TemporalAdjuster dateAdjuster = TemporalAdjusters.ofDateAdjuster(currentDate -> {
-        int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
-        if (currentDayOfWeek < targetDayOfWeek) {
-            return currentDate.plusDays(targetDayOfWeek - currentDayOfWeek);
-        } else {
-            return currentDate.plusDays(7 - currentDayOfWeek + targetDayOfWeek);
-        }
-    });
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -185,7 +184,7 @@ public class ParserUtil {
                 return currentDate.plusDays(7);
             }
         } else {
-            return currentDate.with(dateAdjuster);
+            return currentDate.with(DATE_ADJUSTER);
         }
     }
 
