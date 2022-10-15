@@ -26,7 +26,7 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_QUANTITY + "1000 "
             + CliSyntax.PREFIX_DESCRIPTION + "White printing paper ";
 
-    public static final String MESSAGE_SUCCESS = "New item and quantity added:\n %1$s";
+    public static final String MESSAGE_SUCCESS = "New item and quantity added:\n%1$s";
 
     private final Item toAdd;
 
