@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjuster;
@@ -38,14 +39,12 @@ public class ParserUtil {
     /**
      * TemporalAdjuster to adjust the current date to the target date.
      */
-    private static TemporalAdjuster getClassDate = TemporalAdjusters.ofDateAdjuster(date -> {
-        int currentDayOfWeek = date.getDayOfWeek().getValue();
-        if (currentDayOfWeek == targetDayOfWeek) {
-            return date;
-        } else if (currentDayOfWeek < targetDayOfWeek) {
-            return date.plusDays(targetDayOfWeek - currentDayOfWeek);
+    private static TemporalAdjuster dateAdjuster = TemporalAdjusters.ofDateAdjuster(currentDate -> {
+        int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
+        if (currentDayOfWeek < targetDayOfWeek) {
+            return currentDate.plusDays(targetDayOfWeek - currentDayOfWeek);
         } else {
-            return date.plusDays(7 - currentDayOfWeek + targetDayOfWeek);
+            return currentDate.plusDays(7 - currentDayOfWeek + targetDayOfWeek);
         }
     });
 
@@ -161,17 +160,39 @@ public class ParserUtil {
         } else if (Class.isValidFlexibleClassString(trimmedClassDatetime)) {
             // the format has been validated in isValidFlexibleClassString method
             // ie Mon 0000-2359
-            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedClassDatetime.substring(0, 3).toUpperCase());
-            LocalDate date = LocalDate.now().with(getClassDate);
             LocalTime startTime = parseTime(trimmedClassDatetime.substring(4, 8));
             LocalTime endTime = parseTime(trimmedClassDatetime.substring(9));
             if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
             }
-            return new Class(date, startTime, endTime,
-                    date.toString() + trimmedClassDatetime.substring(3));
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedClassDatetime.substring(0, 3).toUpperCase());
+            LocalDate targetDate = getTargetClassDate(LocalDateTime.now(), startTime);
+            return new Class(targetDate, startTime, endTime,
+                    targetDate.toString() + trimmedClassDatetime.substring(3));
         } else {
             throw new ParseException(Class.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Returns the target class date.
+     *
+     * @param currentDateTime LocalDateTime object that stores the current date and time.
+     * @param startTime LocalTime object that stores the start time of the class.
+     * @return LocalDate object.
+     */
+    private static LocalDate getTargetClassDate(LocalDateTime currentDateTime, LocalTime startTime) {
+        LocalDate currentDate = currentDateTime.toLocalDate();
+        if (currentDate.getDayOfWeek().getValue() == targetDayOfWeek) {
+            if (startTime.isAfter(currentDateTime.toLocalTime())) {
+                // return today
+                return currentDate;
+            } else {
+                // return the date after next 7 days
+                return currentDate.plusDays(7);
+            }
+        } else {
+            return currentDate.with(dateAdjuster);
         }
     }
 
