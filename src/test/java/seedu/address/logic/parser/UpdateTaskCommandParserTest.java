@@ -63,8 +63,8 @@ public class UpdateTaskCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = Index.fromOneBased(2);
-        String userInput = targetIndex.getOneBased() + TITLE_DESC_OIL + TAG_DESC_URGENT + DEADLINE_DESC_2 +
-                TAG_DESC_FOOD;
+        String userInput = targetIndex.getOneBased() + TITLE_DESC_OIL + TAG_DESC_URGENT + DEADLINE_DESC_2
+                + TAG_DESC_FOOD;
 
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
                 .withDeadline(VALID_DEADLINE2).withTags(VALID_TAG_FOOD, VALID_TAG_URGENT).build();
@@ -78,8 +78,8 @@ public class UpdateTaskCommandParserTest {
         Index targetIndex = Index.fromOneBased(1);
         String userInput = targetIndex.getOneBased() + DEADLINE_DESC + TITLE_DESC_OIL;
 
-        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withDeadline(VALID_DEADLINE).
-                withTitle(VALID_TITLE_OIL).build();
+        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withDeadline(VALID_DEADLINE)
+                .withTitle(VALID_TITLE_OIL).build();
         UpdateTaskCommand expectedCommand = new UpdateTaskCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -110,8 +110,8 @@ public class UpdateTaskCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = Index.fromOneBased(1);
-        String userInput = targetIndex.getOneBased() + TITLE_DESC_OIL + DEADLINE_DESC + TITLE_DESC_CHICKEN +
-                DEADLINE_DESC_2 + TAG_DESC_FOOD + TAG_DESC_URGENT + TAG_DESC_URGENT + TITLE_DESC_OIL;
+        String userInput = targetIndex.getOneBased() + TITLE_DESC_OIL + DEADLINE_DESC + TITLE_DESC_CHICKEN
+                + DEADLINE_DESC_2 + TAG_DESC_FOOD + TAG_DESC_URGENT + TAG_DESC_URGENT + TITLE_DESC_OIL;
 
         UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
                 .withDeadline(VALID_DEADLINE2).withTags(VALID_TAG_FOOD, VALID_TAG_URGENT).build();

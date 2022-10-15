@@ -22,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.UpdateTaskDescriptorBuilder;
 import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.UpdateTaskDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for UpdateTaskCommand.
@@ -57,8 +57,8 @@ public class UpdateTaskCommandTest {
         Task updatedTask = TaskInList.withTitle(VALID_TITLE_OIL).withDeadline(VALID_DEADLINE)
                 .withTags(VALID_TAG_FOOD).build();
 
-        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL).
-                withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
+        UpdateTaskDescriptor descriptor = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
+                .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
         UpdateTaskCommand UpdateTaskCommand = new UpdateTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(UpdateTaskCommand.MESSAGE_UPDATE_TASK_SUCCESS, updatedTask);
@@ -147,10 +147,10 @@ public class UpdateTaskCommandTest {
 
     @Test
     public void equals() {
-        UpdateTaskDescriptor descOil = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL).
-                withDeadline(VALID_DEADLINE).withTags(VALID_TAG_URGENT).build();
-        UpdateTaskDescriptor descChicken = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_CHICKEN).
-                withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
+        UpdateTaskDescriptor descOil = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_OIL)
+                .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_URGENT).build();
+        UpdateTaskDescriptor descChicken = new UpdateTaskDescriptorBuilder().withTitle(VALID_TITLE_CHICKEN)
+                .withDeadline(VALID_DEADLINE).withTags(VALID_TAG_FOOD).build();
 
         final UpdateTaskCommand standardCommand = new UpdateTaskCommand(indexFirstTask, descOil);
 
