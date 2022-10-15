@@ -1,13 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
  * Represents a command with hidden internal logic, ability to be executed and ability to be undone.
  */
 
-public abstract class UndoableCommand extends Command{
+public abstract class UndoableCommand extends Command {
 
     /**
      * Undoes the last action made.

@@ -1,19 +1,18 @@
 package seedu.address.logic.commands;
 
+import java.util.Stack;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import java.util.Stack;
 
 /**
  * Tracks past undoable commands.
  */
 public class CommandManager {
-    private final Stack<UndoableCommand> undoStack;
-    private final Stack<UndoableCommand> redoStack;
-
     public static final String MESSAGE_EMPTY_UNDOSTACK = "No commands to undo";
     public static final String MESSAGE_EMPTY_REDOSTACK = "No commands to redo";
+
+    private final Stack<UndoableCommand> undoStack;
+    private final Stack<UndoableCommand> redoStack;
 
     /**
      * Constructs a {@code CommandManager}.
@@ -47,7 +46,7 @@ public class CommandManager {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult redo(Model model) throws CommandException{
+    public CommandResult redo(Model model) throws CommandException {
         if (redoStack.isEmpty()) {
             throw new CommandException(MESSAGE_EMPTY_REDOSTACK);
         }
