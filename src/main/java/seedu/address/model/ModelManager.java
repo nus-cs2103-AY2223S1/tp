@@ -11,8 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.task.Task;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Task;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -128,7 +129,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         addressBook.addTask(task);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS); // check this
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS); // check this
     }
 
     @Override

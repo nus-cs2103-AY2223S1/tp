@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,14 +18,14 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.task.Description;
+import seedu.address.logic.task.Priority;
+import seedu.address.logic.task.Task;
+import seedu.address.logic.task.TaskCategory;
+import seedu.address.logic.task.TaskDeadline;
+import seedu.address.logic.task.TaskName;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskCategory;
-import seedu.address.model.task.TaskDeadline;
-import seedu.address.model.task.TaskName;
 
 /**
  * Adds a Task in the address book.
@@ -84,7 +84,7 @@ public class EditTaskCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -220,6 +220,7 @@ public class EditTaskCommand extends Command {
         public Optional<Boolean> getIsDone() {
             return Optional.of(isDone);
         }
+
 
         @Override
         public boolean equals(Object other) {

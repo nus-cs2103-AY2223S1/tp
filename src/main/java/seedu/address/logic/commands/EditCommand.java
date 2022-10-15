@@ -53,11 +53,13 @@ public class EditCommand extends Command {
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
+
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index                of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -145,6 +147,8 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
         }
 
+
+
         /**
          * Returns true if at least one field is edited.
          */
@@ -223,4 +227,6 @@ public class EditCommand extends Command {
                     && getTags().equals(e.getTags());
         }
     }
+
+
 }
