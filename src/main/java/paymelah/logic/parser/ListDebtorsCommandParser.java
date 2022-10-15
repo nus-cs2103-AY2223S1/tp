@@ -9,8 +9,7 @@ import paymelah.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ListDebtorsCommand object
  */
-
-public class ListDebtorsCommandParser {
+public class ListDebtorsCommandParser implements Parser<ListDebtorsCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ListDebtorsCommand
