@@ -58,6 +58,9 @@ public class AttendanceMarkCommand extends Command {
                 || studentToEdit.getAttendanceList().getSize() < Integer.parseInt(lessonIndex)) {
             throw new CommandException(Messages.MESSAGE_INVALID_ATTENDANCE_LIST_INDEX);
         }
+        if (Integer.parseInt(lessonIndex) < 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ATTENDANCE_LIST_INDEX);
+        }
         AttendanceList attendanceList = studentToEdit.getAttendanceList();
         attendanceList.mark(lessonIndex, attendance);
         Student editedStudent = new Student(

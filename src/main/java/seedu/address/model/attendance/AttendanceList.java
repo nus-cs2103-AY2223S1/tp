@@ -104,7 +104,7 @@ public class AttendanceList {
         int lessonIndex = Integer.parseInt(index) - 1;
         // add error clause here
         checkArgument(lessonIndex < attendanceList.size()
-                && lessonIndex >= 1);
+                && lessonIndex >= 0);
         attendanceList.set(lessonIndex, attendance);
     }
 
