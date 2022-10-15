@@ -9,7 +9,7 @@ import soconnect.model.Model;
 import soconnect.model.person.Person;
 
 /**
- * Search and lists all persons in SoConnect whose information contains the argument keyword.
+ * Searches and lists all people in SoConnect whose information contains the argument keyword.
  * Keyword matching is case-insensitive.
  */
 public class SearchCommand extends Command {
@@ -20,11 +20,12 @@ public class SearchCommand extends Command {
     public static final String EMPTY_CONDITION = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Searches all persons whose information contains "
+            + ": Searches all people whose information contains "
             + "the specified keyword (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [CONDITION] [KEYWORD]...\n"
             + "Example: " + COMMAND_WORD + " t/friend, "
-            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS";
+            + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS"
+            + COMMAND_WORD + " " + OR_CONDITION + " p/12345678 e/betsy@nus.edu";
 
     private final Predicate<Person> predicate;
 
