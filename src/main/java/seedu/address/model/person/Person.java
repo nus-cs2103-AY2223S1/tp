@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.tag.Tag;
@@ -74,9 +75,8 @@ public class Person {
     }
 
     public List<CalendarEvent> getCalendarEvents() {
-        List<CalendarEvent> CalenderEvents = new ArrayList<>();
-        appointments.stream().forEach(x -> CalenderEvents.add(new CalendarEvent(this.name, x)));
-        return CalenderEvents;
+        return appointments.stream().map(x -> new CalendarEvent(this.name, x)).collect(Collectors.toList());
+
     }
 
 

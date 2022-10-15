@@ -147,8 +147,7 @@ public class ModelManager implements Model {
 
     private List<CalendarEvent> getCalendarEventList(List<Person> lastShownList) {
         List<CalendarEvent> calendarEventList = new ArrayList<>();
-        lastShownList.stream().map(x -> x.getCalendarEvents().stream()
-                .map(e -> calendarEventList.add(e)));
+        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
         return calendarEventList;
     }
 

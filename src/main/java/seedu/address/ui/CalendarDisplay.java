@@ -51,9 +51,7 @@ public class CalendarDisplay extends UiPart<Region> {
 
         // Draw days in month
         int currentDay = currentMonth.get(Calendar.DAY_OF_MONTH);
-        System.out.println(currentDay);
         int daysInMonth = currentMonth.getActualMaximum(Calendar.DAY_OF_MONTH);
-        System.out.println(daysInMonth);
         int dayOfWeek = currentMonth.get(Calendar.DAY_OF_WEEK);
         int row = 1;
         for (int i = currentDay; i <= daysInMonth; i++) {
@@ -63,8 +61,7 @@ public class CalendarDisplay extends UiPart<Region> {
             }
             ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
                     .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1);
-            calendarEventsInDayOfMonth.forEach(x -> System.out.println(x));
-            Text tDate = new Text(" " + String.valueOf(currentDay) + String.format("\n, %s", calendarEventsInDayOfMonth));
+            Text tDate = new Text(" " + String.valueOf(currentDay) + String.format("\n%s", calendarEventsInDayOfMonth));
             calendarDisplay.add(tDate, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
