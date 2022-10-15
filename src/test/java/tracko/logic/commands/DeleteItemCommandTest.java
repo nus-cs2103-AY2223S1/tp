@@ -29,13 +29,13 @@ public class DeleteItemCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item ItemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
+        Item itemToDelete = model.getInventoryList().get(INDEX_FIRST.getZeroBased());
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, ItemToDelete);
+        String expectedMessage = String.format(DeleteItemCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
-        expectedModel.deleteItem(ItemToDelete);
+        expectedModel.deleteItem(itemToDelete);
 
         assertCommandSuccess(deleteItemCommand, model, expectedMessage, expectedModel);
     }

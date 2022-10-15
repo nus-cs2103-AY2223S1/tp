@@ -1,13 +1,15 @@
 package tracko.testutil;
 
-import tracko.model.TrackO;
-import tracko.model.items.Item;
-import tracko.model.order.Order;
-
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
+import tracko.model.TrackO;
+import tracko.model.items.Item;
+
+/**
+ * A utility class containing a list of {@code Item} objects to be used in tests.
+ */
 public class TypicalItems {
 
     public static final Item ITEM_1 = new ItemBuilder().withItemName("Sofa")
