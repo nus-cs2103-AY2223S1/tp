@@ -9,8 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import seedu.address.logic.Logic;
@@ -29,71 +30,8 @@ public class CalendarDisplay extends UiPart<Region> {
 
     @FXML
     private GridPane calendarDisplay;
-    /*@FXML
-    private StackPane zeroOne;
     @FXML
-    private StackPane oneOne;
-    @FXML
-    private StackPane twoOne;
-    @FXML
-    private StackPane threeOne;
-    @FXML
-    private StackPane fourOne;
-    @FXML
-    private StackPane fiveOne;
-    @FXML
-    private StackPane sixOne;
-    @FXML
-    private StackPane zeroTwo;
-    @FXML
-    private StackPane oneTwo;
-    @FXML
-    private StackPane twoTwo;
-    @FXML
-    private StackPane threeTwo;
-    @FXML
-    private StackPane fourTwo;
-    @FXML
-    private StackPane fiveTwo;
-    @FXML
-    private StackPane sixTwo;
-    @FXML
-    private StackPane zeroThree;
-    @FXML
-    private StackPane oneThree;
-    @FXML
-    private StackPane twoThree;
-    @FXML
-    private StackPane threeThree;
-    @FXML
-    private StackPane fourThree;
-    @FXML
-    private StackPane fiveThree;
-    @FXML
-    private StackPane sixThree;
-    @FXML
-    private StackPane zeroFour;
-    @FXML
-    private StackPane oneFour;
-    @FXML
-    private StackPane twoFour;
-    @FXML
-    private StackPane threeFour;
-    @FXML
-    private StackPane fourFour;
-    @FXML
-    private StackPane fiveFour;
-    @FXML
-    private StackPane sixFour;
-    @FXML
-    private StackPane zeroFive;
-    @FXML
-    private StackPane oneFive;
-    @FXML
-    private StackPane twoFive;
-*/
-
-
+    private HBox topCalendar;
 
 
 
@@ -106,9 +44,17 @@ public class CalendarDisplay extends UiPart<Region> {
     }
 
     private void drawCalendar() {
+        drawHeader();
         drawBody();
     }
 
+    private void drawHeader() {
+        Text textHeader = getTextHeader();
+        Button prevButtonHeader = getButtonHeader("Prev");
+        Button nextButtonHeader = getButtonHeader("Next");
+
+        topCalendar.getChildren().addAll(textHeader, prevButtonHeader, nextButtonHeader);
+    }
 
     private void drawBody() {
 
@@ -134,11 +80,8 @@ public class CalendarDisplay extends UiPart<Region> {
             Text tDate = new Text(" " + String.valueOf(currentDay));
             VBox vbox = new VBox();
 
-            //vbox.setMinSize(150.00,100.00);
-            vbox.setFillWidth(true);
-
             vbox.getChildren().add(tDate);
-            calendarEventsInDayOfMonth.stream().forEach(x -> vbox.getChildren().add(getButton(x.toString())));
+            calendarEventsInDayOfMonth.stream().forEach(x -> vbox.getChildren().add(getAppointmentButton(x.toString())));
             calendarDisplay.add(vbox, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
@@ -147,30 +90,23 @@ public class CalendarDisplay extends UiPart<Region> {
 
 
     private String getDayName(int n) {
-        StringBuilder sb = new StringBuilder();
         switch (n) {
         case 1:
-            sb.append("Sunday");
-            break;
+            return "Sunday";
         case 2:
-            sb.append("Monday");
-            break;
+            return "Monday";
         case 3:
-            sb.append("Tuesday");
-            break;
+            return "Tuesday";
         case 4:
-            sb.append("Wednesday");
-            break;
+            return "Wednesday";
         case 5:
-            sb.append("Thursday");
-            break;
+            return "Thursday";
         case 6:
-            sb.append("Friday");
-            break;
+            return "Friday";
         case 7:
-            sb.append("Saturday");
+            return "Saturday";
         }
-        return sb.toString();
+        return "Invalid Input";
     }
 
     private String getMonthName(int n) {
@@ -179,35 +115,76 @@ public class CalendarDisplay extends UiPart<Region> {
         return monthNames[n];
     }
 
-    public Button getButton(String text) {
+    public Button getAppointmentButton(String text) {
         Button button = new Button(text);
         button.setMaxSize(100, 30.00);
         button.setStyle("-fx-font-size: 7pt; -fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 5;" );
         return button;
     }
-    /*private StackPane getFirstDayPlaceHolder(int dayOfWeek) {
-        switch (dayOfWeek) {
-        case 1:
-            return zeroOne;
-            break;
-        case 2:
-            return oneOne;
-            break;
-        case 3:
-            return twoOne;
-            break;
-        case 4:
-            return threeOne;
-            break;
-        case 5:
-            return fourOne;
-            break;
-        case 6:
-            return fiveOne;
-            break;
-        case 7:
-            return sixOne;
+    public Text getTextHeader() {
+        String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
+        String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
+        Text header = new Text(monthString + ", " + yearString);
+        header.setStyle("-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff" );
+        header.setFill(Color.WHITE);
+        return header;
+    }
+    public Button getButtonHeader(String text) {
+        if (text.equals("Prev")) {
+            Button prevButton = new Button(text);
+            prevButton.setOnAction(e -> previous());
+            prevButton.setStyle("-fx-border-color: grey; -fx-border-radius: 5;");
+            return prevButton;
+        } else {
+            Button nextButton = new Button(text);
+            nextButton.setOnAction(e -> next());
+            nextButton.setStyle("-fx-border-color: grey; -fx-border-radius: 5;");
+            return nextButton;
         }
     }
-*/
+
+    private void previous() {
+        topCalendar.getChildren().clear();
+        calendarDisplay.getChildren().clear();
+        currentMonth = getPreviousMonth(currentMonth);
+        drawCalendar();
+    }
+
+    private void next() {
+        topCalendar.getChildren().clear();
+        calendarDisplay.getChildren().clear();
+        currentMonth = getNextMonth(currentMonth);
+        drawCalendar();
+    }
+
+    private GregorianCalendar getPreviousMonth(Calendar cal) {
+        int prevMonth;
+        int prevYear;
+        int currentMonth = cal.get(Calendar.MONTH);
+        //If December, reset back to January, Add a year
+        if(currentMonth == 0) {
+            prevMonth = 11;
+            prevYear = cal.get(Calendar.YEAR) - 1;
+        } else { //else add a month, retain the year
+            prevMonth = currentMonth - 1;
+            prevYear = cal.get(Calendar.YEAR);
+        }
+        return new GregorianCalendar(prevYear, prevMonth, 1);
+    }
+
+    private GregorianCalendar getNextMonth(Calendar cal) {
+        int futureMonth;
+        int futureYear;
+        int currentMonth = cal.get(Calendar.MONTH);
+        //If January, reset back to December, decrement a year
+        if(currentMonth == 11) {
+            futureMonth = 0;
+            futureYear = cal.get(Calendar.YEAR) + 1;
+        } else { //else decrement a month, retain the year
+            futureMonth = currentMonth + 1;
+            futureYear = cal.get(Calendar.YEAR);
+        }
+        return new GregorianCalendar(futureYear, futureMonth, 1);
+    }
+
 }
