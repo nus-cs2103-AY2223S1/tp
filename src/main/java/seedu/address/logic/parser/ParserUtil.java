@@ -356,7 +356,6 @@ public class ParserUtil {
         requireNonNull(day);
         requireNonNull(timeslot);
         String[] times = timeslot.trim().split("-");
-        System.out.println(Arrays.toString(times));
         if (times.length != 2) {
             throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
         }
