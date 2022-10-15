@@ -25,7 +25,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -46,7 +46,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String TAG_EMPTY = " " + PREFIX_INTEREST;
     private static final String MOD_EMPTY = " " + PREFIX_MOD;
 
     private static final String MESSAGE_INVALID_FORMAT =

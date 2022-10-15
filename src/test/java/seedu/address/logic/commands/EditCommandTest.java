@@ -45,7 +45,7 @@ public class EditCommandTest {
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB).withGitHub(VALID_GITHUB_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInterests(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTelegram(VALID_TELEGRAM_BOB).withEmail(VALID_EMAIL_BOB)
@@ -67,7 +67,7 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withInterests(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();

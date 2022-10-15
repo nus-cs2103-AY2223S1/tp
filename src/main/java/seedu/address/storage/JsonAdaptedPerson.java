@@ -19,7 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Interest;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -33,7 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String handle;
     private final String username;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedInterest> tagged = new ArrayList<>();
     private final List<JsonAdaptedMod> mods = new ArrayList<>();
 
     /**
@@ -43,7 +43,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("handle") String handle,
                              @JsonProperty("username") String username,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("tagged") List<JsonAdaptedInterest> tagged,
                              @JsonProperty("mods") List<JsonAdaptedMod> mods) {
         this.name = name;
         this.phone = phone;
@@ -79,8 +79,8 @@ class JsonAdaptedPerson {
             username = source.getGitHub().username;
         }
         handle = source.getTelegram().handle;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        tagged.addAll(source.getInterests().stream()
+                .map(JsonAdaptedInterest::new)
                 .collect(Collectors.toList()));
         mods.addAll(source.getMods().stream()
                 .map(JsonAdaptedMod::new)
@@ -93,9 +93,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Interest> personTags = new ArrayList<>();
         final List<Mod> personMods = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        for (JsonAdaptedInterest tag : tagged) {
             personTags.add(tag.toModelType());
         }
         for (JsonAdaptedMod mod : mods) {
@@ -146,7 +146,7 @@ class JsonAdaptedPerson {
             modelGitHub = new GitHub(username);
         }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Interest> modelTags = new HashSet<>(personTags);
         final ObservableList<Mod> modelMods = FXCollections.observableArrayList(personMods);
         return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags, modelMods);
     }

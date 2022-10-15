@@ -33,8 +33,8 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_GITHUB = BENSON.getGitHub().toString();
     private static final String VALID_TELEGRAM = BENSON.getTelegram().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
-            .map(JsonAdaptedTag::new)
+    private static final List<JsonAdaptedInterest> VALID_TAGS = BENSON.getInterests().stream()
+            .map(JsonAdaptedInterest::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedMod> VALID_MODS = BENSON.getMods().stream()
             .map(JsonAdaptedMod::new)
@@ -108,8 +108,8 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        List<JsonAdaptedInterest> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedInterest(INVALID_TAG));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_TELEGRAM, VALID_GITHUB, invalidTags, VALID_MODS);

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Interest;
 
 /**
  * Represents a Person in the address book.
@@ -26,7 +26,7 @@ public class Person {
 
     // Data fields
     private final Telegram handle;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Interest> tags = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
 
@@ -34,7 +34,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Telegram handle,
-          GitHub gitHub, Set<Tag> tags, ObservableList<Mod> mods) {
+                  GitHub gitHub, Set<Interest> tags, ObservableList<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
@@ -69,7 +69,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<Interest> getInterests() {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -166,7 +166,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getInterests().equals(getInterests())
                 && otherPerson.getMods().equals(getMods());
     }
 
@@ -189,10 +189,10 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Interest> interestSet = getInterests();
+        if (!interestSet.isEmpty()) {
+            builder.append("; Interests: ");
+            interestSet.forEach(builder::append);
         }
         if (!mods.isEmpty()) {
             builder.append("; Mods: ");

@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Set;
@@ -39,8 +39,8 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().handle + " ");
         sb.append(PREFIX_GITHUB + person.getGitHub().username + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        person.getInterests().stream().forEach(
+            s -> sb.append(PREFIX_INTEREST + s.interestName + " ")
         );
         person.getMods().stream().forEach(
                 s -> sb.append(PREFIX_MOD + s.modName + " ")
@@ -61,9 +61,9 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_INTEREST);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_INTEREST).append(s.tagName).append(" "));
             }
         }
         if (descriptor.getMods().isPresent()) {

@@ -12,7 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Interest;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Telegram handle;
     private GitHub username;
-    private Set<Tag> tags;
+    private Set<Interest> tags;
     private ObservableList<Mod> mods;
 
     /**
@@ -56,7 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         handle = personToCopy.getTelegram();
         username = personToCopy.getGitHub();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = new HashSet<>(personToCopy.getInterests());
         mods = FXCollections.observableArrayList(personToCopy.getMods());
     }
 
@@ -69,10 +69,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code interests} into a {@code Set<Interest>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withInterests(String ... interests) {
+        this.tags = SampleDataUtil.getInterestsSet(interests);
         return this;
     }
 

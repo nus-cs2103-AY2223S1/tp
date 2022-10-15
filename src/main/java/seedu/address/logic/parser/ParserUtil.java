@@ -19,7 +19,7 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Interest;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -114,24 +114,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses an {@code String interest} into an {@code interest}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Interest parseTag(String tag) throws ParseException {
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Interest.isValidInterest(trimmedTag)) {
+            throw new ParseException(Interest.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Interest(trimmedTag);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        final Set<Tag> tagSet = new HashSet<>();
+    public static Set<Interest> parseInterests(Collection<String> tags) throws ParseException {
+        final Set<Interest> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }

@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setTelegram(person.getTelegram());
         descriptor.setGitHub(person.getGitHub());
-        descriptor.setTags(person.getTags());
+        descriptor.setTags(person.getInterests());
     }
 
     /**

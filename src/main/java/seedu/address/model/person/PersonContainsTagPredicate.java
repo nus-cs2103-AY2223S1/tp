@@ -23,9 +23,9 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
         }
 
         Set<String> personTagNameSet = person
-                .getTags()
+                .getInterests()
                 .stream()
-                .map(tag -> tag.tagName)
+                .map(tag -> tag.interestName)
                 .map(String::toLowerCase)
                 .collect(Collectors.toSet());
 
