@@ -85,4 +85,9 @@ public class RAddCommand extends Command {
                 || (other instanceof RAddCommand // instanceof handles nulls
                 && content.equals(((RAddCommand) other).content));
     }
+
+    @Override
+    public String toString() {
+        return content.toString();
+    }
 }

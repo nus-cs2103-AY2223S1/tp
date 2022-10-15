@@ -15,6 +15,7 @@ import foodwhere.model.AddressBook;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 
+
 /**
  * A utility class containing a list of {@code Stall} objects to be used in tests.
  */
@@ -71,4 +72,5 @@ public class TypicalStalls {
     public static List<Stall> getTypicalStalls() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
 }
