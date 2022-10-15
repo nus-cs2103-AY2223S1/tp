@@ -40,11 +40,13 @@ public class EditItemCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_ITEM + "Paper "
             + CliSyntax.PREFIX_QUANTITY + "1000 "
-            + CliSyntax.PREFIX_DESCRIPTION + "White printing paper ";
+            + CliSyntax.PREFIX_DESCRIPTION + "White printing paper "
+            + CliSyntax.PREFIX_TAG + "Limited "
+            + CliSyntax.PREFIX_TAG + "New";
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory list.";
 
     private final Index index;
     private final EditItemDescriptor editItemDescriptor;
