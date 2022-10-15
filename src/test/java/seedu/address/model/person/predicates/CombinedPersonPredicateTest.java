@@ -238,19 +238,19 @@ class CombinedPersonPredicateTest {
         Person personToTest = new PersonBuilder().withEmail(emailToTest).build();
 
         // Non-matching sequence
-        EmailContainsSequencePredicate predicate = new EmailContainsSequencePredicate("google");
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyEmail("google");
         assertFalse(predicate.test(personToTest));
 
         // Incomplete match
-        predicate = new EmailContainsSequencePredicate("Johnny");
+        predicate = generateCombinedPersonPredicateWithOnlyEmail("Johnny");
         assertFalse(predicate.test(personToTest));
 
         // Incomplete match
-        predicate = new EmailContainsSequencePredicate("John@gmail.com.sg");
+        predicate = generateCombinedPersonPredicateWithOnlyEmail("John@gmail.com.sg");
         assertFalse(predicate.test(personToTest));
 
         // Sequence match name, phone and address, but does not match email
-        predicate = new EmailContainsSequencePredicate("John");
+        predicate = generateCombinedPersonPredicateWithOnlyEmail("John");
         assertFalse(predicate.test(new PersonBuilder().withName("John").withPhone("12345")
                 .withEmail("Alice@gmail.com").withAddress("John Street").build()));
     }
