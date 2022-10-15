@@ -33,12 +33,21 @@ public class ParserUtil {
 
     public static final String[] DAYS_OF_WEEK = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static int targetDayOfWeek;
+    public static int targetDayOfWeek;
+
+    /**
+     * Sets targetDayOfWeek.
+     *
+     * @param target Represents the day of the week.
+     */
+    public static void setTargetDayOfWeek(int target) {
+        targetDayOfWeek = target;
+    }
 
     /**
      * TemporalAdjuster to adjust the current date to the target date.
      */
-    private static TemporalAdjuster dateAdjuster = TemporalAdjusters.ofDateAdjuster(currentDate -> {
+    public static TemporalAdjuster dateAdjuster = TemporalAdjusters.ofDateAdjuster(currentDate -> {
         int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
         if (currentDayOfWeek < targetDayOfWeek) {
             return currentDate.plusDays(targetDayOfWeek - currentDayOfWeek);

@@ -48,6 +48,7 @@ public class ParserUtilTest {
     private static final Integer VALID_MONEY_OWED = 10;
     private static final Integer VALID_MONEY_PAID = 100;
     private static final String VALID_CLASS_DATE_TIME = "2022-05-10 1500-1600";
+    private static final String VALID_FLEXIBLE_CLASS_DATE_TIME = "Sun 1500-1600";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -285,5 +286,22 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void adjustDateToTomorrowSuccessful() {
+        // This date falls on a saturday
+        LocalDate date = LocalDate.of(2022, 10, 15);
+        ParserUtil.setTargetDayOfWeek(7);
+        LocalDate expectedDate = LocalDate.of(2022, 10, 16);
+        assertEquals(date.with(ParserUtil.dateAdjuster), expectedDate);
+    }
+
+    @Test
+    public void adjustDateToNextMondaySuccessful() {
+        LocalDate date = LocalDate.of(2022, 10, 15);
+        ParserUtil.setTargetDayOfWeek(1);
+        LocalDate expectedDate = LocalDate.of(2022, 10, 17);
+        assertEquals(date.with(ParserUtil.dateAdjuster), expectedDate);
     }
 }
