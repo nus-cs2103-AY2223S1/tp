@@ -38,6 +38,7 @@
                 <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="centerPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+
         </VBox>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
