@@ -10,13 +10,13 @@ import foodwhere.logic.commands.ClearCommand;
 import foodwhere.logic.commands.Command;
 import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
-import foodwhere.logic.commands.FindCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.RAddCommand;
 import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
+import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 
@@ -77,8 +77,8 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case SFindCommand.COMMAND_WORD:
+            return new SFindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

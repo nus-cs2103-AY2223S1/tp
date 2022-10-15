@@ -8,28 +8,28 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
-import foodwhere.logic.commands.FindCommand;
+import foodwhere.logic.commands.SFindCommand;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class SFindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private SFindCommandParser parser = new SFindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SFindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        SFindCommand expectedSFindCommand =
+                new SFindCommand(new NameContainsKeywordsPredicate(Arrays.asList("John", "Eatery")));
+        assertParseSuccess(parser, "John Eatery", expectedSFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n John \n \t Eatery  \t", expectedSFindCommand);
     }
 
 }
