@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-import java.util.Optional;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+
+import java.util.List;
+import java.util.Optional;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,6 +31,9 @@ public class MarkCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor()
             .setVisitStatus(VisitStatus.getVisited());
 
+    /**
+     * Initialises the MarkCommand with a valid and non-null {@code Uid} of the target patient.
+     */
     public MarkCommand(Uid uid) {
         requireNonNull(uid);
         this.uid = uid;

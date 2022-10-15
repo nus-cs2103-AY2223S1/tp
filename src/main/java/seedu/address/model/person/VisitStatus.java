@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import java.util.regex.Pattern;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.regex.Pattern;
 
 /**
  * Represents a Patient's visitation status in the address book.
@@ -32,6 +32,10 @@ public class VisitStatus {
     private final String visitStatusString;
     private final boolean visitStatus;
 
+    /**
+     * Initialises the {@code VisitStatus} with a {@code String visitStatusString}
+     * {@code visitStatusString} cannot be null and must be valid.
+     */
     public VisitStatus(String visitStatusString) {
         requireNonNull(visitStatusString);
         checkArgument(isValidVisitStatus(visitStatusString), MESSAGE_CONSTRAINTS);

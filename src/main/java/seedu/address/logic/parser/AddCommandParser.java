@@ -1,9 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
@@ -16,6 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 import static seedu.address.model.category.Category.NURSE_SYMBOL;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;

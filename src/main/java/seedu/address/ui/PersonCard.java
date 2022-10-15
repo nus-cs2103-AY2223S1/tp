@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import static seedu.address.model.person.Gender.MALE_SYMBOL;
+
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

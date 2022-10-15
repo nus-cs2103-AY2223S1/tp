@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -142,6 +142,9 @@ public class EditPersonDescriptorBuilder {
         return descriptor;
     }
 
+    /**
+     * Sets the {@code VisitStatus} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withVisitStatus(String validVisitStatus) {
         descriptor.setVisitStatus(new VisitStatus(validVisitStatus));
         return this;

@@ -1,17 +1,18 @@
 package seedu.address.storage;
 
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static seedu.address.model.category.Category.NURSE_SYMBOL;
-import static seedu.address.model.category.Category.PATIENT_SYMBOL;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
@@ -179,7 +180,9 @@ class JsonAdaptedPerson {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
         } else if (category.equals(PATIENT_SYMBOL)) {
             if (visitStatus == null) {
-                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, VisitStatus.class.getSimpleName()));
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                VisitStatus.class.getSimpleName()));
             }
             if (!VisitStatus.isValidVisitStatus(visitStatus)) {
                 throw new IllegalValueException(VisitStatus.MESSAGE_CONSTRAINTS);

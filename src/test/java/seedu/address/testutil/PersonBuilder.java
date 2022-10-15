@@ -155,6 +155,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code VisitStatus} of the {@code Person} that we are building.
+     */
     public PersonBuilder withVisitStatus(String visitStatus) {
         this.visitStatus = new VisitStatus(visitStatus);
         return this;
