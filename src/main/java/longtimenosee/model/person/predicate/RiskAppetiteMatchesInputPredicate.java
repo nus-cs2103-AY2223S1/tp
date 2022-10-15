@@ -2,9 +2,9 @@ package longtimenosee.model.person.predicate;
 
 import java.util.function.Predicate;
 
+import longtimenosee.model.person.Person;
 import longtimenosee.model.person.RiskAppetite;
 import longtimenosee.model.person.RiskAppetite.RiskLevel;
-import longtimenosee.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code RiskAppetite} is the same as the input provided.
