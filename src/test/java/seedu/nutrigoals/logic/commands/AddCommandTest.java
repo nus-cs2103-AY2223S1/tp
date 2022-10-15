@@ -185,6 +185,14 @@ public class AddCommandTest {
         public boolean isFilteredFoodListEmpty() {
             throw new AssertionError("This method should not be called.");
         }
+
+        /**
+         * @return
+         */
+        @Override
+        public boolean isUserCreated() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -60,6 +60,10 @@ public class User {
         return bmi;
     }
 
+    public boolean isUserCreated() {
+        return !height.isZero() && !weight.isZero();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

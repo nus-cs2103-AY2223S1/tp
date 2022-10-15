@@ -1,6 +1,5 @@
 package seedu.nutrigoals.model.user;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
@@ -17,12 +16,7 @@ public class HeightTest {
     public void constructor_invalidThrowsIllegalArgumentException() {
         String invalidHeight = " ";
         assertThrows(IllegalArgumentException.class, () -> new Height(invalidHeight));
-    }
-
-    @Test
-    public void constructor_emptyConstructorPass() {
-        Height defaultHeight = new Height("0");
-        assertEquals(defaultHeight, new Height());
+        assertThrows(IllegalArgumentException.class, () -> new Height("0"));
     }
 
     @Test
@@ -34,6 +28,7 @@ public class HeightTest {
         assertFalse(Height.isValidHeight("123456"));
         assertFalse(Height.isValidHeight("abcdefg"));
         assertFalse(Height.isValidHeight("1.0"));
+        assertFalse(Height.isValidHeight("0"));
     }
 
     @Test

@@ -38,7 +38,7 @@ public class Height {
         if (!height.isEmpty() && height.matches(VALIDATION_REGEX)) {
             try {
                 Integer heightValue = Integer.parseInt(height);
-                return heightValue >= MIN_HEIGHT && heightValue < MAX_HEIGHT;
+                return heightValue > MIN_HEIGHT && heightValue < MAX_HEIGHT;
             } catch (NumberFormatException e) {
                 return false;
             }
@@ -52,6 +52,10 @@ public class Height {
      */
     public double getHeight() {
         return Integer.parseInt(value) / 100.0;
+    }
+
+    public boolean isZero() {
+        return value.equals(DEFAULT_VALUE);
     }
 
     @Override

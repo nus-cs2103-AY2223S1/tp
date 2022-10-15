@@ -12,6 +12,7 @@ public class ProfileCommand extends Command {
 
     public static final String COMMAND_WORD = "profile";
     public static final String MESSAGE_SUCCESS = "Profile created: \n %s";
+    public static final String MESSAGE_NO_PROFILE_CREATED = "No profile created.\nPlease create one before proceeding.";
 
     /**
      * Executes the command and returns the result message.
@@ -23,6 +24,10 @@ public class ProfileCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (!model.isUserCreated()) {
+            throw new CommandException(MESSAGE_NO_PROFILE_CREATED);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getUserDetails()));
     }
 }

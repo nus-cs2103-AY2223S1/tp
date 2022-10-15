@@ -2,6 +2,7 @@ package seedu.nutrigoals.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -46,6 +47,12 @@ public class ProfileCommandTest {
         expectedMessage = "Profile created: \n " + validFemaleUser;
         expectedCommandResult = new CommandResult(expectedMessage);
         assertEquals(actualCommandResult, expectedCommandResult);
+    }
+
+    @Test
+    public void execute_profileNotCreated_exceptionThrown() {
+        ModelStubWithUser model = new ModelStubWithUser();
+        assertThrows(CommandException.class, () -> new ProfileCommand().execute(model));
     }
 
     private static class ModelStub implements Model {
@@ -241,6 +248,14 @@ public class ProfileCommandTest {
         public boolean isFilteredFoodListEmpty() {
             throw new AssertionError("This method should not be called.");
         }
+
+        /**
+         * @return
+         */
+        @Override
+        public boolean isUserCreated() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     private static class ModelStubWithUser extends ModelStub {
@@ -259,6 +274,11 @@ public class ProfileCommandTest {
         @Override
         public ReadOnlyNutriGoals getNutriGoals() {
             return new NutriGoals();
+        }
+
+        @Override
+        public boolean isUserCreated() {
+            return user.isUserCreated();
         }
     }
 

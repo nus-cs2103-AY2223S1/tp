@@ -185,6 +185,15 @@ public class ModelManager implements Model {
         return nutriGoals.getUser();
     }
 
+    /**
+     * Checks if a profile has been created
+     * @return True if a profile has been created, false otherwise
+     */
+    @Override
+    public boolean isUserCreated() {
+        return getUserDetails().isUserCreated();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

@@ -29,6 +29,10 @@ public class Weight {
         value = DEFAULT_VALUE;
     }
 
+    public boolean isZero() {
+        return value.equals(DEFAULT_VALUE);
+    }
+
     /**
      * Checks if input is valid weight
      * @param weight Input weight
@@ -38,7 +42,7 @@ public class Weight {
         if (!weight.isEmpty() && weight.matches(VALIDATION_REGEX)) {
             try {
                 int weightValue = Integer.parseInt(weight);
-                return weightValue >= MIN_WEIGHT && weightValue < MAX_WEIGHT;
+                return weightValue > MIN_WEIGHT && weightValue < MAX_WEIGHT;
             } catch (NumberFormatException e) {
                 return false;
             }

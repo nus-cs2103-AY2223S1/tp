@@ -114,4 +114,6 @@ public interface Model {
 
     /** Returns true if the filtered food list has no food items */
     boolean isFilteredFoodListEmpty();
+
+    boolean isUserCreated();
 }
