@@ -173,7 +173,7 @@ public class ParserUtil {
      * @param startTime LocalTime object that stores the start time of the class.
      * @return LocalDate object.
      */
-    private static LocalDate getTargetClassDate(LocalDateTime currentDateTime, LocalTime startTime) {
+    public static LocalDate getTargetClassDate(LocalDateTime currentDateTime, LocalTime startTime) {
         LocalDate currentDate = currentDateTime.toLocalDate();
         if (currentDate.getDayOfWeek().getValue() == targetDayOfWeek) {
             if (startTime.isAfter(currentDateTime.toLocalTime())) {

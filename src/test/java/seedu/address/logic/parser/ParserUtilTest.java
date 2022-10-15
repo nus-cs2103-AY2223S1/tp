@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -229,17 +230,39 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseClassDateTime_invalidDateTime_throwsParseException() throws Exception {
+    public void parseClassDateTime_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_EMPTY_CLASS_DATE_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME_DURATION));
     }
 
     @Test
-    public void parseClassDateTime_invalidFlexibleDateTime_throwsParseException() throws Exception {
+    public void parseClassDateTime_invalidFlexibleDateTime_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DAY_OF_WEEK));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DATE_TIME_DURATION));
+    }
+
+    @Test
+    public void getTargetClassDate_NextWeekSuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(6);
+        LocalTime startTime = LocalTime.of(14, 0);
+        // 7 days later since the start time is after 3pm
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 22));
+    }
+
+    @Test
+    public void getTargetClassDate_ThisWeekSuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(7);
+        LocalTime startTime = LocalTime.of(14, 0);
+        // tomorrow
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 16));
     }
 
     @Test
