@@ -23,6 +23,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Inventory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -30,6 +31,7 @@ import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonInventoryStorage;
 import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -50,7 +52,9 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonTaskStorage taskStorage = new JsonTaskStorage(temporaryFolder.resolve("taskList.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage);
+        JsonInventoryStorage inventoryStorage = new JsonInventoryStorage(temporaryFolder.resolve("inventoryX.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                taskStorage, inventoryStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -81,7 +85,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonTaskStorage taskStorage =
                 new JsonTaskStorage(temporaryFolder.resolve("ioExceptionTaskList.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage);
+        JsonInventoryStorage inventoryStorage =
+                new JsonInventoryStorage(temporaryFolder.resolve("ioExceptionInventory.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage,
+                taskStorage, inventoryStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -135,7 +142,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new TaskList());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                new TaskList(), new Inventory());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

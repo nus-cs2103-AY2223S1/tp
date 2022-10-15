@@ -20,8 +20,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInventory;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
@@ -133,6 +135,14 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Returns the Inventory
+         */
+        @Override
+        public ReadOnlyInventory getInventory() {
+            return null;
+        }
+
         @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
@@ -148,6 +158,48 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Adds a new supply {@code item} to inventory.
+         *
+         * @param item
+         */
+        @Override
+        public void addSupplyItem(SupplyItem item) {
+
+        }
+
+        /**
+         * Returns true if there is a duplicated supply item in the inventory.
+         *
+         * @param item
+         */
+        @Override
+        public boolean hasSupplyItem(SupplyItem item) {
+            return false;
+        }
+
+        /**
+         * Replaces the given supply item {@code target} with {@code editedSupplyItem}.
+         * {@code item} must exist in the inventory.
+         *
+         * @param item
+         * @param targetIndex
+         */
+        @Override
+        public void setSupplyItem(SupplyItem item, Index targetIndex) {
+
+        }
+
+        /**
+         * Deletes the supply item at the specified {@code index}.
+         *
+         * @param index
+         */
+        @Override
+        public void deleteSupplyItem(Index index) {
+
+        }
+
         @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
@@ -161,6 +213,14 @@ public class AddTaskCommandTest {
         @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns an unmodifiable view of the filtered supplyItem list
+         */
+        @Override
+        public ObservableList<SupplyItem> getFilteredSupplyItemList() {
+            return null;
         }
 
         @Override
@@ -190,6 +250,17 @@ public class AddTaskCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+        }
+
+        /**
+         * Updates the filter of the filtered supply item to filter by the given {@code predicate}.
+         *
+         * @param predicate
+         * @throws NullPointerException if (@code predicate) is null.
+         */
+        @Override
+        public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
+
         }
     }
 

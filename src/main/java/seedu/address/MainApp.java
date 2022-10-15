@@ -17,16 +17,20 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Inventory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInventory;
 import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.InventoryStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonInventoryStorage;
 import seedu.address.storage.JsonTaskStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
@@ -63,7 +67,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         TaskStorage taskStorage = new JsonTaskStorage(userPrefs.getTaskListFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage);
+        InventoryStorage inventoryStorage = new JsonInventoryStorage(userPrefs.getInventoryFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage, inventoryStorage);
 
         initLogging(config);
 
@@ -84,6 +89,8 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         Optional<ReadOnlyTaskList> taskListOptional;
         ReadOnlyTaskList initialTasks;
+        Optional<ReadOnlyInventory> inventoryOptional;
+        ReadOnlyInventory initialInventory;
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
@@ -96,19 +103,27 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample TaskList");
                 FileUtil.createIfMissing(Path.of("data\\tasklist.json"));
             }
-            // TODO: SampleDataUtil::getSampleTaskList
             initialTasks = taskListOptional.orElseGet(SampleDataUtil::getSampleTaskList);
+
+            inventoryOptional = storage.readInventory();
+            if (!inventoryOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Inventory");
+                FileUtil.createIfMissing(Path.of("data\\inventory.json"));
+            }
+            initialInventory = inventoryOptional.orElseGet(SampleDataUtil::getSampleInventory);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialTasks = new TaskList();
+            initialInventory = new Inventory();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
             initialTasks = new TaskList();
+            initialInventory = new Inventory();
         }
 
-        return new ModelManager(initialData, userPrefs, initialTasks);
+        return new ModelManager(initialData, userPrefs, initialTasks, initialInventory);
     }
 
     private void initLogging(Config config) {
