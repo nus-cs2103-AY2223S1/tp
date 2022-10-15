@@ -24,6 +24,8 @@
     "grade" : "A",
     "tagged" : [ "friends" ]
   } ],
+  "reminders": [ ],
   "tutorials": [ ],
-  "consultations": [ ]
+  "consultations": [ ],
+  "teachingAssistants" : [ ]
 }

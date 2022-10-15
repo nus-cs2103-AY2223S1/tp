@@ -13,8 +13,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE = new Prefix("m/");
     public static final Prefix PREFIX_VENUE = new Prefix("v/");
     public static final Prefix PREFIX_TIMESLOT = new Prefix("T/");
-    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_ID = new Prefix("i/");
+    public static final Prefix PREFIX_DAY = new Prefix("D/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_TELEGRAM = new Prefix("h/");
     public static final Prefix PREFIX_TUTORIAL = new Prefix("l/");
     public static final Prefix PREFIX_GRADE = new Prefix("g/");

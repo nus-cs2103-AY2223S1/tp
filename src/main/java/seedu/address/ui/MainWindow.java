@@ -34,8 +34,10 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private TutorialListPanel tutorialListPanel;
-
+    private TeachingAssistantListPanel teachingAssistantListPanel;
+    private ReminderListPanel reminderListPanel;
     private ConsultationListPanel consultationListPanel;
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private StackPane teachingAssistantListPanelPlaceholder;
 
     @FXML
     private StackPane consultationListPanelPlaceholder;
@@ -131,7 +136,11 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
+        teachingAssistantListPanel = new TeachingAssistantListPanel(logic.getFilteredTeachingAssistantList());
         consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
+
+        reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         // show the person list by default.
         modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -179,6 +188,16 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().clear();
         modelListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
         listHeader.setText("Tutorial");
+    }
+
+    /**
+     * Opens the tab of teaching assistants.
+     */
+    @FXML
+    public void handleTeachingAssistant() {
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(teachingAssistantListPanel.getRoot());
+        listHeader.setText("Teaching Assistant");
     }
 
     /**

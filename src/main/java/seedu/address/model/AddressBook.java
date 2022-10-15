@@ -7,8 +7,12 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.UniqueConsultationList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniquePersonList;
+import seedu.address.model.ta.TeachingAssistant;
+import seedu.address.model.ta.UniqueTeachingAssistantList;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.UniqueTutorialList;
 
@@ -19,8 +23,9 @@ import seedu.address.model.tutorial.UniqueTutorialList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueReminderList reminders;
     private final UniqueTutorialList tutorials;
-
+    private final UniqueTeachingAssistantList teachingAssistants;
     private final UniqueConsultationList consultations;
 
     /*
@@ -32,7 +37,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        reminders = new UniqueReminderList();
         tutorials = new UniqueTutorialList();
+        teachingAssistants = new UniqueTeachingAssistantList();
         consultations = new UniqueConsultationList();
     }
 
@@ -57,11 +64,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the reminders list with {@code reminders}.
+     * {@code reminders} must not contain duplicate reminders.
+     */
+    public void setReminders(List<Reminder> reminders) {
+        this.reminders.setReminders(reminders);
+    }
+
+
+    /**
      * Replaces the contents of the tutorial list with {@code tutorials}.
      * {@code tutorials} must not contain duplicate tutorials.
      */
     public void setTutorials(List<Tutorial> tutorials) {
         this.tutorials.setTutorials(tutorials);
+    }
+
+    /**
+     * Replaces the contents of the teaching assistant list with {@code ta}.
+     * {@code ta} must not contain duplicate teaching assistants.
+     */
+    public void setTeachingAssistants(List<TeachingAssistant> ta) {
+        this.teachingAssistants.setTeachingAssistants(ta);
     }
 
     /**
@@ -80,9 +104,14 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
 
+        setReminders(newData.getReminderList());
+
         setTutorials(newData.getTutorialList());
 
+        setTeachingAssistants(newData.getTeachingAssistantList());
+
         setConsultations(newData.getConsultationList());
+
     }
 
     //// person-level operations
@@ -122,6 +151,33 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// reminder-level operations
+
+    /**
+     * Returns true if a reminder with the same identity as {@code reminder} exists in the ModQuilk.
+     */
+    public boolean hasReminder(Reminder reminder) {
+        requireNonNull(reminder);
+        return reminders.contains(reminder);
+    }
+
+    /**
+     * Adds a reminder to the ModQuik.
+     * The reminder must not already exist in the ModQuik.
+     */
+    public void addReminder(Reminder r) {
+        reminders.add(r);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeReminder(Reminder key) {
+        reminders.remove(key);
+    }
+
+
     //// tutorial-level operations
 
     /**
@@ -146,6 +202,25 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTutorial(Tutorial t) {
         tutorials.add(t);
+    }
+
+
+    //// ta-level operations
+
+    /**
+     * Returns true if a teaching assistant with the same identity as {@code ta} exists in the ModQuilk.
+     */
+    public boolean hasTeachingAssistant(TeachingAssistant ta) {
+        requireNonNull(ta);
+        return teachingAssistants.contains(ta);
+    }
+
+    /**
+     * Adds a teaching assistant to the ModQuik.
+     * The teaching assistant must not already exist in the ModQuik.
+     */
+    public void addTeachingAssistant(TeachingAssistant ta) {
+        teachingAssistants.add(ta);
     }
 
     /**
@@ -186,7 +261,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         String result = persons.asUnmodifiableObservableList().size() + " persons, "
                 + tutorials.asUnmodifiableObservableList().size() + " tutorials"
-                + consultations.asUnmodifiableObservableList().size() + " consultations";
+                + consultations.asUnmodifiableObservableList().size() + " consultations"
+                + reminders.asUnmodifiableObservableList().size() + " reminders";
+
         return result;
         // TODO: refine later
     }
@@ -197,8 +274,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Reminder> getReminderList() {
+        return reminders.asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Tutorial> getTutorialList() {
         return tutorials.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<TeachingAssistant> getTeachingAssistantList() {
+        return teachingAssistants.asUnmodifiableObservableList();
     }
 
     @Override
