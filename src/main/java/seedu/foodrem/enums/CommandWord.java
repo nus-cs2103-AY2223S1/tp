@@ -1,12 +1,15 @@
 package seedu.foodrem.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
-
-import seedu.foodrem.logic.parser.CliSyntax;
 
 /**
  * Represents the command word to be keyed in by a user to execute a command.
@@ -44,10 +47,10 @@ public enum CommandWord {
                     + "index number used in the displayed item list.\n"
                     + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
                     + "Parameters:\n"
-                    + "INDEX (must be a positive integer) [" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+                    + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
                     + "Example:\n"
                     + getCommandWord() + " 10\n"
-                    + getCommandWord() + " 10 " + CliSyntax.PREFIX_ITEM_QUANTITY + "100";
+                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
         }
     },
     DELETE_COMMAND("del") {
@@ -66,14 +69,14 @@ public enum CommandWord {
                     + "by the index number used in the displayed item list. "
                     + "Existing values will be overwritten by the input values.\n"
                     + "Parameters: INDEX (must be a positive integer) "
-                    + "[" + CliSyntax.PREFIX_NAME + "NAME] "
-                    + "[" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY] "
-                    + "[" + CliSyntax.PREFIX_ITEM_UNIT + "UNIT] "
-                    + "[" + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
-                    + "[" + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
+                    + "[" + PREFIX_NAME + "NAME] "
+                    + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
+                    + "[" + PREFIX_ITEM_UNIT + "UNIT] "
+                    + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
+                    + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
                     + "Example: " + getCommandWord() + " 1 "
-                    + CliSyntax.PREFIX_ITEM_QUANTITY + "1000 "
-                    + CliSyntax.PREFIX_ITEM_QUANTITY + "grams";
+                    + PREFIX_ITEM_QUANTITY + "1000 "
+                    + PREFIX_ITEM_QUANTITY + "grams";
         }
     },
     FIND_COMMAND("find") {
@@ -113,22 +116,22 @@ public enum CommandWord {
                     + ": Creates a new item in FoodRem. "
                     + "\n"
                     + "Parameters: "
-                    + CliSyntax.PREFIX_NAME + "NAME "
-                    + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY "
-                    + CliSyntax.PREFIX_ITEM_UNIT + "UNIT "
-                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE "
-                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE "
-                    + "[" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY" + "] "
-                    + "[" + CliSyntax.PREFIX_ITEM_UNIT + "UNIT" + "] "
-                    + "[" + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE" + "] "
-                    + "[" + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE" + "] "
+                    + PREFIX_NAME + "NAME "
+                    + PREFIX_ITEM_QUANTITY + "QUANTITY "
+                    + PREFIX_ITEM_UNIT + "UNIT "
+                    + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE "
+                    + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE "
+                    + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY" + "] "
+                    + "[" + PREFIX_ITEM_UNIT + "UNIT" + "] "
+                    + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE" + "] "
+                    + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE" + "] "
                     + "\n"
                     + "Example: " + getCommandWord() + " "
-                    + CliSyntax.PREFIX_NAME + "Potatoes "
-                    + CliSyntax.PREFIX_ITEM_QUANTITY + "10 "
-                    + CliSyntax.PREFIX_ITEM_UNIT + "kg "
-                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "11-11-2022 "
-                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "21-11-2022 ";
+                    + PREFIX_NAME + "Potatoes "
+                    + PREFIX_ITEM_QUANTITY + "10 "
+                    + PREFIX_ITEM_UNIT + "kg "
+                    + PREFIX_ITEM_BOUGHT_DATE + "11-11-2022 "
+                    + PREFIX_ITEM_EXPIRY_DATE + "21-11-2022 ";
         }
     },
     SORT_COMMAND("sort") {
@@ -137,11 +140,11 @@ public enum CommandWord {
             return getCommandWord() + ": Sorts all items according to a specified criteria."
                     + "Available criteria includes sorting by name, quantity, type, bought date, expiry date.\n"
                     + "Parameters: "
-                    + CliSyntax.PREFIX_NAME + " "
-                    + CliSyntax.PREFIX_ITEM_QUANTITY + " "
-                    + CliSyntax.PREFIX_ITEM_UNIT + " "
-                    + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + " "
-                    + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "...\n"
+                    + PREFIX_NAME + " "
+                    + PREFIX_ITEM_QUANTITY + " "
+                    + PREFIX_ITEM_UNIT + " "
+                    + PREFIX_ITEM_BOUGHT_DATE + " "
+                    + PREFIX_ITEM_EXPIRY_DATE + "...\n"
                     + "Example: " + getCommandWord() + "name";
         }
     },
@@ -160,9 +163,9 @@ public enum CommandWord {
         public String getUsage() {
             return getCommandWord() + ": Deletes an existing tag in FoodRem. "
                     + "Parameters: "
-                    + CliSyntax.PREFIX_NAME + "NAME "
+                    + PREFIX_NAME + "NAME "
                     + "Example: " + getCommandWord() + " "
-                    + CliSyntax.PREFIX_NAME + "Potatoes ";
+                    + PREFIX_NAME + "Potatoes ";
         }
     },
     LIST_TAG_COMMAND("listtag") {
@@ -177,9 +180,9 @@ public enum CommandWord {
         public String getUsage() {
             return getCommandWord() + ": Adds a tag to FoodRem. "
                     + "Parameters: "
-                    + CliSyntax.PREFIX_NAME + "NAME "
+                    + PREFIX_NAME + "NAME "
                     + "Example: " + getCommandWord() + " "
-                    + CliSyntax.PREFIX_NAME + "Potatoes ";
+                    + PREFIX_NAME + "Potatoes ";
         }
     },
     RENAME_TAG_COMMAND("renametag") {
@@ -187,11 +190,11 @@ public enum CommandWord {
         public String getUsage() {
             return getCommandWord() + ": Renames an existing tag in FoodRem. "
                     + "Parameters: "
-                    + CliSyntax.PREFIX_NAME + "ORIGINAL_TAG_NAME "
-                    + CliSyntax.PREFIX_NAME + "NEW_TAG_NAME "
+                    + PREFIX_NAME + "ORIGINAL_TAG_NAME "
+                    + PREFIX_NAME + "NEW_TAG_NAME "
                     + "Example: " + getCommandWord() + " "
-                    + CliSyntax.PREFIX_NAME + "Vegetables "
-                    + CliSyntax.PREFIX_NAME + "fruits";
+                    + PREFIX_NAME + "Vegetables "
+                    + PREFIX_NAME + "fruits";
         }
     },
     TAG_COMMAND("tag") {
@@ -200,10 +203,10 @@ public enum CommandWord {
             return getCommandWord()
                     + ": Tags the item identified by the index number used "
                     + "in the displayed item list with a valid Tag.\n"
-                    + "Parameters: " + CliSyntax.PREFIX_NAME + "TAG_NAME" + CliSyntax.PREFIX_ID
+                    + "Parameters: " + PREFIX_NAME + "TAG_NAME" + PREFIX_ID
                     + "INDEX (item index must be a positive integer)\n"
-                    + "Example: " + getCommandWord() + " " + CliSyntax.PREFIX_NAME + "Condiments "
-                    + CliSyntax.PREFIX_ID + "1";
+                    + "Example: " + getCommandWord() + " " + PREFIX_NAME + "Condiments "
+                    + PREFIX_ID + "1";
         }
     },
     UNTAG_COMMAND("untag") {
@@ -212,10 +215,10 @@ public enum CommandWord {
             return getCommandWord()
                     + ": Untags the item identified by the index number used in "
                     + "the displayed item list with a valid Tag.\n"
-                    + "Parameters: " + CliSyntax.PREFIX_NAME + "TAG_NAME " + CliSyntax.PREFIX_ID
+                    + "Parameters: " + PREFIX_NAME + "TAG_NAME " + PREFIX_ID
                     + " INDEX (item index must be a positive integer)\n"
-                    + "Example: " + getCommandWord() + " " + CliSyntax.PREFIX_NAME + "Condiments "
-                    + CliSyntax.PREFIX_ID + "1";
+                    + "Example: " + getCommandWord() + " " + PREFIX_NAME + "Condiments "
+                    + PREFIX_ID + "1";
         }
     },
 
