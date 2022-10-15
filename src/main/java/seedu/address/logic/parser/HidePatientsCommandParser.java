@@ -28,13 +28,13 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
         String trimmedArgs = args.trim();
         String[] keywords = trimmedArgs.split("\\s+");
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            return new HidePatientsCommand(Predicate.not(new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse(""))));
+            return new HidePatientsCommand(new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterAppointmentsCommand.MESSAGE_USAGE));
         }
-        return new HidePatientsCommand(Predicate.not(new NameContainsKeywordsPredicate(Arrays.asList(keywords))));
+        return new HidePatientsCommand(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
 }

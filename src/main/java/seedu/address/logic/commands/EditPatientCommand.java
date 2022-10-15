@@ -90,7 +90,8 @@ public class EditPatientCommand extends Command {
         }
         model.currentNames.remove(personToEdit.getName());
         model.currentNames.add(editedPerson.getName());
-        model.updateFilteredPersonList(HiddenPersonPredicateSingleton.combineWithHiddenPredicate(Model.currentPrediate));
+        model.updateFilteredPersonList(Model.currentPrediate);
+        model.currentNames.clear();
     }
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}

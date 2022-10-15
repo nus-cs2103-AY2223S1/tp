@@ -44,7 +44,6 @@ public class HidePatientsCommand extends Command {
                 new AppointmentOfFilteredPersonsPredicate(validPersons);
         model.updateFilteredAppointmentList(appointmentPredicate);
 
-
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,
                         model.getFilteredPersonList().size(),
