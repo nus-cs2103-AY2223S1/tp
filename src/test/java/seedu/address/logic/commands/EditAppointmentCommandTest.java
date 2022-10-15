@@ -35,8 +35,7 @@ public class EditAppointmentCommandTest {
         appointment.setPatient(person);
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
-                INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 person.getName(), appointment);
@@ -57,8 +56,7 @@ public class EditAppointmentCommandTest {
         appointment.setPatient(person);
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withReason("Sore Throat").build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
-                INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 person.getName(), appointment);
@@ -74,8 +72,8 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
-                INDEX_FIRST_APPOINTMENT, new EditAppointmentDescriptor());
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT,
+                new EditAppointmentDescriptor());
         Person person = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         Appointment appointment = person.getAppointments().get(0);
 
@@ -96,8 +94,7 @@ public class EditAppointmentCommandTest {
         appointment.setPatient(personInFilteredList);
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withReason("Sore Throat").build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
-                INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 personInFilteredList.getName(), appointment);
@@ -115,8 +112,7 @@ public class EditAppointmentCommandTest {
     public void execute_duplicateAppointmentTimeUnfilteredList_failure() {
         Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", true);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_THIRD_PERSON,
-                INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
         assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT);
     }
@@ -127,29 +123,16 @@ public class EditAppointmentCommandTest {
 
         Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", true);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON,
-                INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
         assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withReason("Cough").build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(outOfBoundIndex,
-                INDEX_FIRST_APPOINTMENT, descriptor);
-
-        assertCommandFailure(editAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void execute_invalidAppointmentIndexUnfilteredList_failure() {
-        Person person = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        Index outOfBoundIndex = Index.fromOneBased(person.getAppointments().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAppointmentList().size() + 1);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withReason("Cough").build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_SECOND_PERSON,
-                outOfBoundIndex, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editAppointmentCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }

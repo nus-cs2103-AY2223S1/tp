@@ -1,9 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,13 +14,12 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Person;
 
 
 /**
  * Edits a given appointment's details.
  */
-public class EditAppointmentCommand extends SelectAppointmentCommand {
+public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
     public static final String DESCRIPTOR_WORD = "appts";
@@ -43,50 +41,50 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
             "This person already booked an appointment at this time";
     private final EditAppointmentDescriptor editAppointmentDescriptor;
+    private final Index index;
 
     /**
-     * Creates an EditAppointmentCommand with the given patient and appointment index,
+     * Creates an EditAppointmentCommand with the given appointment index,
      * and the editAppointmentDescriptor.
      *
-     * @param patientIndex The index of the patient to edit the appointment.
      * @param indexOfAppointment The index of the appointment to edit.
      * @param editAppointmentDescriptor The descriptor that contains the edited details.
      */
-    public EditAppointmentCommand(Index patientIndex, Index indexOfAppointment,
+    public EditAppointmentCommand(Index indexOfAppointment,
                                   EditAppointmentDescriptor editAppointmentDescriptor) {
-        super(patientIndex, indexOfAppointment);
+        this.index = indexOfAppointment;
         this.editAppointmentDescriptor = editAppointmentDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        Person targetPerson = getTargetPerson(model);
-        List<Appointment> appointmentList = targetPerson.getAppointments();
-        Appointment targetAppointment = getTargetAppointment(model);
+        List<Appointment> appointmentList = model.getFilteredAppointmentList();
 
-        Appointment editedAppointment = createEditedAppointment(targetPerson,
-                targetAppointment, editAppointmentDescriptor);
+        if (index.getZeroBased() >= appointmentList.size()) {
+            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
+        Appointment targetAppointment = appointmentList.get(index.getZeroBased());
+        Appointment editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
         if (hasSameTime(appointmentList, targetAppointment, editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        appointmentList.set(indexOfAppointment.getZeroBased(), editedAppointment);
         model.setAppointment(targetAppointment, editedAppointment);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, targetPerson.getName(),
-                editedAppointment));
+        List<Appointment> currentAppts = editedAppointment.getPatient().getAppointments();
+        currentAppts.set(currentAppts.indexOf(targetAppointment), editedAppointment);
+        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS,
+                editedAppointment.getPatient().getName(), editedAppointment));
     }
 
-    private static Appointment createEditedAppointment(Person patient, Appointment appointmentToEdit,
+    private static Appointment createEditedAppointment(Appointment appointmentToEdit,
                                                        EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
         LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
         Appointment editedAppointment = new Appointment(reason, dateTime, appointmentToEdit.isMarked());
-        editedAppointment.setPatient(patient);
+        editedAppointment.setPatient(appointmentToEdit.getPatient());
         return editedAppointment;
     }
 
@@ -111,7 +109,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
         // state check
         EditAppointmentCommand e = (EditAppointmentCommand) other;
-        return super.equals(other) && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
+        return index.equals(e.index) && editAppointmentDescriptor.equals(e.editAppointmentDescriptor);
     }
 
     /**

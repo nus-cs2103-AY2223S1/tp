@@ -112,10 +112,10 @@ public class AddressBookParserTest {
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand command = (EditAppointmentCommand)
                 parser.parseCommand(EditAppointmentCommand.COMMAND_WORD
-                + " " + EditAppointmentCommand.DESCRIPTOR_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + EditAppointmentCommand.DESCRIPTOR_WORD
                 + " " + INDEX_FIRST_APPOINTMENT.getOneBased()
                 + " " + AppointmentUtil.getEditAppointmentDescriptorDetails(descriptor));
-        assertEquals(new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor), command);
+        assertEquals(new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor), command);
     }
 
     @Test
