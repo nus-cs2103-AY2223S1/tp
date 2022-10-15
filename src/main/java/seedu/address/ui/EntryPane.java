@@ -15,8 +15,8 @@ public class EntryPane extends UiPart<Region> {
     private static final String FXML = "EntryPane.fxml";
     private final Logger logger = LogsCenter.getLogger(seedu.address.ui.EntryPane.class);
 
-    private PersonListPanel expenseEntryPanel;
-    private PersonListPanel incomeEntryPanel;
+    private EntryListPanel expenseEntryPanel;
+    private EntryListPanel incomeEntryPanel;
 
     @FXML
     private Tab expenses;
@@ -35,7 +35,7 @@ public class EntryPane extends UiPart<Region> {
      * TODO: Edit expense and income
      * Creates a {@code EntryPane} with default entries
      */
-    public EntryPane(PersonListPanel expenseEntry, PersonListPanel incomeEntry) {
+    public EntryPane(EntryListPanel expenseEntry, EntryListPanel incomeEntry) {
         super(FXML);
         this.expenseEntryPanel = expenseEntry;
         this.incomeEntryPanel = incomeEntry;
@@ -43,11 +43,11 @@ public class EntryPane extends UiPart<Region> {
         incomeEntryPlaceholder.getChildren().add(incomeEntry.getRoot());
     }
 
-    public PersonListPanel getExpenseEntryPanel() {
+    public EntryListPanel getExpenseEntryPanel() {
         return this.expenseEntryPanel;
     }
 
-    public PersonListPanel getIncomeEntryPanel() {
+    public EntryListPanel getIncomeEntryPanel() {
         return this.incomeEntryPanel;
     }
 }
