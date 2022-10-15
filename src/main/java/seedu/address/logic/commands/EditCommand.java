@@ -21,6 +21,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.interest.Interest;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
@@ -29,7 +30,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.interest.Interest;
 
 /**
  * Edits the details of an existing person in the address book.
