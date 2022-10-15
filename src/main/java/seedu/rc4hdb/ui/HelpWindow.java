@@ -5,7 +5,10 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import seedu.rc4hdb.commons.core.LogsCenter;
 
@@ -97,7 +100,8 @@ public class HelpWindow extends UiPart<Stage> {
             if (KeyCode.ESCAPE == event.getCode()) {
                 getRoot().close();
             };
-        });
+        }
+        );
     }
 
     /**
