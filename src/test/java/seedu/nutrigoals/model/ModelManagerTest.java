@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.nutrigoals.model.Model.PREDICATE_SHOW_ALL_FOODS;
 import static seedu.nutrigoals.testutil.Assert.assertThrows;
+import static seedu.nutrigoals.testutil.FoodBuilder.DEFAULT_EARLIER_TIME;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.BREAD;
 
@@ -15,6 +16,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.nutrigoals.commons.core.GuiSettings;
+import seedu.nutrigoals.model.meal.DateTime;
+import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
 import seedu.nutrigoals.testutil.NutriGoalsBuilder;
 
@@ -94,6 +97,27 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getDatePredicate_filterListForADay_returnsPredicateWithSameDay() {
+        DateTime dateTime = new DateTime();
+        IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(dateTime);
+        modelManager.updateFilteredFoodList(predicate);
+        assertEquals(predicate, modelManager.getDatePredicate());
+    }
+
+    @Test
+    public void isFilteredFoodListEmpty_emptyFilteredList_returnsTrue() {
+        modelManager.updateFilteredFoodList(unused -> false);
+        assertTrue(modelManager.isFilteredFoodListEmpty());
+    }
+
+    @Test
+    public void isFilteredFoodListEmpty_nonEmptyFilteredList_returnsFalse() {
+        modelManager.addFood(APPLE);
+        modelManager.updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+        assertFalse(modelManager.isFilteredFoodListEmpty());
+    }
+
+    @Test
     public void equals() {
         NutriGoals nutriGoals = new NutriGoalsBuilder().withFood(APPLE).withFood(BREAD).build();
         NutriGoals differentNutriGoals = new NutriGoals();
@@ -128,5 +152,10 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setNutriGoalsFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(nutriGoals, differentUserPrefs)));
+
+        // different currentDatePredicate -> returns false
+        DateTime dateTime = new DateTime(DEFAULT_EARLIER_TIME);
+        modelManager.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(dateTime));
+        assertFalse(modelManager.equals(new ModelManager(nutriGoals, userPrefs)));
     }
 }

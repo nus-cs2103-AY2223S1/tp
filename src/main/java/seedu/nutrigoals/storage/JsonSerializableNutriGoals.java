@@ -13,6 +13,7 @@ import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.NutriGoals;
 import seedu.nutrigoals.model.ReadOnlyNutriGoals;
 import seedu.nutrigoals.model.meal.Food;
+import seedu.nutrigoals.model.user.User;
 
 /**
  * An Immutable NutriGoals that is serializable to JSON format.
@@ -24,6 +25,7 @@ class JsonSerializableNutriGoals {
 
     private final List<JsonAdaptedFood> foods = new ArrayList<>();
     private final Calorie calorieTarget;
+    private final User user;
     /**
      * Constructs a {@code JsonSerializableNutriGoals} with the given foods.
      */
@@ -32,6 +34,7 @@ class JsonSerializableNutriGoals {
     public JsonSerializableNutriGoals(@JsonProperty("foods") List<JsonAdaptedFood> foods) {
         this.foods.addAll(foods);
         this.calorieTarget = new Calorie();
+        this.user = new User();
     }
 
     /**
@@ -42,6 +45,8 @@ class JsonSerializableNutriGoals {
     public JsonSerializableNutriGoals(ReadOnlyNutriGoals source) {
         foods.addAll(source.getFoodList().stream().map(JsonAdaptedFood::new).collect(Collectors.toList()));
         calorieTarget = source.getCalorieTarget();
+        user = source.getUser();
+
     }
 
     /**
@@ -59,6 +64,7 @@ class JsonSerializableNutriGoals {
             nutriGoals.addFood(food);
         }
         nutriGoals.setCalorieTarget(this.calorieTarget);
+        nutriGoals.setUser(user);
         return nutriGoals;
     }
 

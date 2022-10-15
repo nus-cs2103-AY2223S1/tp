@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.exceptions.DuplicateMealException;
+import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.FoodBuilder;
 
 public class NutriGoalsTest {
@@ -87,6 +88,7 @@ public class NutriGoalsTest {
     private static class NutriGoalsStub implements ReadOnlyNutriGoals {
         private final ObservableList<Food> foods = FXCollections.observableArrayList();
         private final Calorie calorieGoal = new Calorie();
+        private final User user = new User();
         NutriGoalsStub(Collection<Food> foods) {
             this.foods.setAll(foods);
         }
@@ -99,6 +101,11 @@ public class NutriGoalsTest {
         @Override
         public Calorie getCalorieTarget() {
             return calorieGoal;
+        }
+
+        @Override
+        public User getUser() {
+            return user;
         }
     }
 

@@ -19,18 +19,10 @@ public class Location {
     public static final String MESSAGE_CONSTRAINTS =
         "Latitude and Longitude must take on a value in range [-90, 90] and [-180, 180] respectively\n"
             + "Values are separated by a comma";
-    private static Map<String, Location> nameToLocMap = Collections.unmodifiableMap(createNameToLocMap());
     public final String name;
     public final double latitude;
     public final double longitude;
 
-
-    private static Map<String, Location> createNameToLocMap() {
-        Map<String, Location> out = new HashMap<>();
-        out.put("COM2", new Location("COM2", "1.2942815638814327, 103.77410024788284"));
-        out.put("S17", new Location("S17", "1.2976996370988612, 103.78060787462833"));
-        out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
-    }
     /**
      * @param value Latitude and Longitude
      */
@@ -61,15 +53,6 @@ public class Location {
     }
     private static double deg2rad(double degree) {
         return degree * (Math.PI / 180);
-    }
-
-    /**
-     * @param name Name of location
-     * @return boolean whether the location exists in database
-     */
-    public static boolean isValidLocationName(String name) {
-        requireNonNull(name);
-        return nameToLocMap.containsKey(name);
     }
 
     /**

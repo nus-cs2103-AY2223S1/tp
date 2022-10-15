@@ -3,7 +3,9 @@ package seedu.nutrigoals.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.nutrigoals.commons.core.index.Index;
@@ -11,14 +13,19 @@ import seedu.nutrigoals.commons.util.StringUtil;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Location;
+import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
+import seedu.nutrigoals.model.user.Gender;
+import seedu.nutrigoals.model.user.Height;
+import seedu.nutrigoals.model.user.Weight;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
 
+    public static final String DEFAULT_TIME = "T00:00:00";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -77,6 +84,7 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code String calorie} into a {@code Calorie}
      * @param calorie Calorie
      * @return Calorie
      * @throws ParseException if the given {@code calorie} is invalid.
@@ -90,9 +98,83 @@ public class ParserUtil {
         return new Calorie(trimmedCalorie);
     }
 
+    /**
+     * Parses {@code String locationName} into a {@code Location}
+     * @param locationName name of location
+     * @return Location
+     * @throws ParseException if the given {@code locationName} is invalid.
+     */
     public static Location parseLocation(String locationName) throws ParseException {
         requireNonNull(locationName);
+        Map<String, Location> out = new HashMap<>();
+        out.put("COM2", new Location("COM2", "1.2942815638814327, 103.77410024788284"));
+        out.put("S17", new Location("S17", "1.2976996370988612, 103.78060787462833"));
+        out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
         String trimmedLocationName = locationName.trim();
-        if ()
+        if (!out.containsKey(trimmedLocationName)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+        }
+        return out.get(trimmedLocationName);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}
+     * @param gender gender of the user
+     * @return Gender
+     * @throws ParseException if the given {@code gender} is invalid
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim().toUpperCase();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String height} into a {@code Height}
+     * @param height height of the user
+     * @return Height
+     * @throws ParseException if the given {@code height} is invalid
+     */
+    public static Height parseHeight(String height) throws ParseException {
+        requireNonNull(height);
+        String trimmedHeight = height.trim();
+        if (!Height.isValidHeight(trimmedHeight)) {
+            throw new ParseException(Height.MESSAGE_CONSTRAINTS);
+        }
+        return new Height(trimmedHeight);
+    }
+
+    /**
+     * Parses a {@code String weight} into a {@code Weight}
+     * @param weight weight of the user
+     * @return Weight
+     * @throws ParseException if the given {@code weight} is invalid
+     */
+    public static Weight parseWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
+            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        return new Weight(trimmedWeight);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param date The string representing the date to parse.
+     * @return A {@code DateTime} representing the given {@code String date}.
+     * @throws ParseException if the given {@code date} is not in the format: YYYY-MM-DD.
+     */
+    public static DateTime parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDateTime = date.trim() + DEFAULT_TIME;
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDateTime);
     }
 }

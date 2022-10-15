@@ -28,6 +28,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 **:information_source: Notes about the command format:**<br>
 
 * Texts in UPPER_CASE are arguments provided by the user.
+* Arguments in square brackets are optional.
 
 </div>
 
@@ -72,11 +73,19 @@ Shows the total calories consumed, the calorie target and the deficient or exces
 
 Format: `review`
 
-### Listing all foods for the day: `list`
+### Listing all foods for a day: `list`
 
-Shows a list of all food items and their respective calories for the day.
+Shows a list of all food items and their respective calories for the specified day (if any).
 
-Format: `list`
+Format: `list [DATE]`
+
+* Shows the food list for the current day if no `DATE` is supplied. 
+* `DATE` must be in the format **yyyy-MM-dd** if supplied.
+
+Example:
+
+* `list` shows a list of all food items and their calories for the current day. 
+* `list 2022-11-27` shows a list of all food items and their calories for 27 November 2022.
 
 ### Exiting the program: `exit`
 

@@ -23,6 +23,8 @@ import seedu.nutrigoals.logic.commands.FindCommand;
 import seedu.nutrigoals.logic.commands.HelpCommand;
 import seedu.nutrigoals.logic.commands.ListCommand;
 import seedu.nutrigoals.logic.commands.ReviewCommand;
+import seedu.nutrigoals.logic.commands.SetupCommand;
+import seedu.nutrigoals.logic.commands.TargetCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
@@ -86,7 +88,7 @@ public class NutriGoalsParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 2022-11-11") instanceof ListCommand);
     }
 
     @Test
@@ -104,5 +106,17 @@ public class NutriGoalsParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_setup() throws Exception {
+        assertTrue(parser.parseCommand(SetupCommand.COMMAND_WORD + " h/150 w/50 i/60 g/M"
+        ) instanceof SetupCommand);
+    }
+
+    @Test
+    public void parseCommand_target() throws Exception {
+        assertTrue(parser.parseCommand(TargetCommand.COMMAND_WORD + " 1000") instanceof TargetCommand);
+        assertThrows(ParseException.class, () -> parser.parseCommand(TargetCommand.COMMAND_WORD + "av"));
     }
 }

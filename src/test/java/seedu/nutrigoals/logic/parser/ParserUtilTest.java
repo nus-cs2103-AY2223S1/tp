@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
+import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
 
@@ -24,6 +25,11 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_TAG_1 = "breakfast";
     private static final String VALID_TAG_2 = "dinner";
+
+    private static final String INVALID_DATE = "2022-13-13";
+    private static final String INVALID_DATE_FORMAT = "2022";
+
+    private static final String VALID_DATE_FORMAT = "2022-11-11";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -70,7 +76,6 @@ public class ParserUtilTest {
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
-
     @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
@@ -88,7 +93,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+    public void tag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         Tag expectedTag = new Tag(VALID_TAG_1);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
@@ -115,5 +120,26 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseCaloriesTest() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCalorie("abcd"));
+    }
+
+    @Test
+    public void parseDate_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_invalidDateFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseDate_validDateFormat_success() throws Exception {
+        DateTime expectedDateTime = new DateTime(VALID_DATE_FORMAT + ParserUtil.DEFAULT_TIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDate(VALID_DATE_FORMAT));
     }
 }

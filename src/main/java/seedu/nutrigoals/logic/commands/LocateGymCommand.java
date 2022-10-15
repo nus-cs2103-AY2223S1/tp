@@ -19,23 +19,21 @@ public class LocateGymCommand extends Command {
         // new Location("RVRC", "1.2979296797732855, 103.77681006058592"); // RVRC
         new Location("RC4", "1.308245523260011, 103.77340430257533"); // RC4
     private final ArrayList<Location> locations = new ArrayList<>();
-
-    // dummy constructor TO REMOVE
-    public LocateGymCommand() {
+    {
         locations.add(new Location("MPSH", "1.3007599674153045, 103.77578206094384")); // MPSH 5
         locations.add(new Location(
             "STEPHEN RIADY CENTRE", "1.304511666901411, 103.77205745840185")); // stephen riady centre
         locations.add(new Location("USC", "1.2998680145010344, 103.77528575803385")); // USC
     }
+
+    // dummy constructor TO REMOVE
+    public LocateGymCommand() {
+    }
     /**
      * @param location Location
      */
-    public LocateGymCommand(Location location) {
-        // this.currentLocation = location;
-        locations.add(new Location("MPSH", "1.3007599674153045, 103.77578206094384")); // MPSH 5
-        locations.add(new Location(
-            "STEPHEN RIADY CENTRE", "1.304511666901411, 103.77205745840185")); // stephen riady centre
-        locations.add(new Location("USC", "1.2998680145010344, 103.77528575803385")); // USC
+    public LocateGymCommand(String locationName) {
+        
     }
     /**
      * Executes the command and returns the result message.

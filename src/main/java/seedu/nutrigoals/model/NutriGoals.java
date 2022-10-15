@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.UniqueFoodList;
+import seedu.nutrigoals.model.user.User;
 
 /**
  * Wraps all data at the Nutrigoals level
@@ -14,6 +15,7 @@ import seedu.nutrigoals.model.meal.UniqueFoodList;
 public class NutriGoals implements ReadOnlyNutriGoals {
 
     private final UniqueFoodList foods;
+    private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
     /*
@@ -53,6 +55,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         requireNonNull(newData);
         setCalorieTarget(newData.getCalorieTarget());
         setFoods(newData.getFoodList());
+        setUser(newData.getUser());
     }
 
     //// food-level operations
@@ -95,6 +98,15 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         this.calorieTarget = calorie;
     }
 
+    public void setUser(User user) {
+        requireNonNull(user);
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     /**
      * @return Calorie
      */
@@ -107,7 +119,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
 
     @Override
     public String toString() {
-        return foods.asUnmodifiableObservableList().size() + " persons";
+        return foods.asUnmodifiableObservableList().size() + " foods";
         // TODO: refine later
     }
 
@@ -122,7 +134,8 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         return other == this // short circuit if same object
             || (other instanceof NutriGoals // instanceof handles nulls
             && foods.equals(((NutriGoals) other).foods)
-            && this.calorieTarget.equals(((NutriGoals) other).calorieTarget));
+            && this.calorieTarget.equals(((NutriGoals) other).calorieTarget)
+            && this.user.equals(((NutriGoals) other).user));
     }
 
     @Override
