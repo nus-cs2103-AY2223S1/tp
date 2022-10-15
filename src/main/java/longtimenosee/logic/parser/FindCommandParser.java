@@ -3,6 +3,7 @@ package longtimenosee.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -17,6 +18,7 @@ import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.predicate.AddressMatchesInputPredicate;
+import longtimenosee.model.person.predicate.BirthdayMatchesInputPredicate;
 import longtimenosee.model.person.predicate.EmailMatchesInputPredicate;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.model.person.predicate.PhoneMatchesNumberPredicate;
@@ -36,10 +38,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EMAIL,
-                        PREFIX_TAG);
+                        PREFIX_TAG, PREFIX_BIRTHDAY);
 
         if (!isAtLeastOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EMAIL,
-                PREFIX_TAG)
+                PREFIX_TAG, PREFIX_BIRTHDAY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -71,6 +73,11 @@ public class FindCommandParser implements Parser<FindCommand> {
             String trimmedArgs = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName.trim();
             String[] tagKeywords = trimmedArgs.split("\\s+");
             predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+        }
+
+        if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
+            String birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()).value;
+            predicates.add(new BirthdayMatchesInputPredicate(birthday));
         }
 
         return new FindCommand(predicates);
