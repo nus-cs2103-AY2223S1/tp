@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -22,7 +21,7 @@
             <RowConstraints />
         </rowConstraints>
       <children>
-         <VBox style="-fx-background-radius: 30px;">
+         <VBox style="-fx-background-radius: 30px;" GridPane.hgrow="ALWAYS">
             <children>
                <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-radius: 30px;" styleClass="context-menu" stylesheets="@DarkTheme.css">
                   <padding>
@@ -75,7 +74,7 @@
                                  <Insets left="5.0" top="5.0" />
                               </VBox.margin>
                               <font>
-                                 <Font name="System Bold" size="14.0" />
+                                 <Font name="System Bold" size="18.0" />
                               </font>
                            </Label>
                            <Label fx:id="age" text="\$age" textFill="WHITE">
@@ -124,11 +123,7 @@
                            <Insets />
                         </HBox.margin>
                         <children>
-                           <StackPane fx:id="petPhotoHolder" style="-fx-background-radius: 30px;">
-                              <children>
-                                 <ImageView fx:id="petPhoto" pickOnBounds="true" preserveRatio="true" />
-                              </children>
-                           </StackPane>
+                           <ImageView fx:id="petPhoto" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                            <Label fx:id="salePrice" text="\$sale price">
                               <VBox.margin>
                                  <Insets top="5.0" />

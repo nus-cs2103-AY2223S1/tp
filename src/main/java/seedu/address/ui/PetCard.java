@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,8 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
-import seedu.address.model.pet.Age;
 import seedu.address.model.pet.Pet;
 
 /**
@@ -64,7 +61,7 @@ public class PetCard extends UiPart<Region> {
     private ImageView petPhoto;
 
     @FXML
-    private StackPane petPhotoHolder;
+    private Rectangle petPhotoHolder;
 
     @FXML
     private Label salePrice;
@@ -98,7 +95,7 @@ public class PetCard extends UiPart<Region> {
      */
     public void fillPetCard(boolean shouldDisplaySupplierName) {
         if (shouldDisplaySupplierName) {
-            supplierName.setText(pet.getOwner().getName().fullName);
+            supplierName.setText("from " + pet.getOwner().getName().fullName);
         }
         id.setText("#" + displayedIndex);
         species.setText(pet.getSpecies().getValue());
@@ -109,15 +106,12 @@ public class PetCard extends UiPart<Region> {
         colorPattern.setText(pet.getColorPattern().toString());
         height.setText(pet.getHeight().toString());
         weight.setText(pet.getWeight().toString());
-        salePrice.setText("TODO: implement this");
+        salePrice.setText("TODO: implement sale price for pets");
 
         // Set the pet photo to fill the holder
-        petPhotoHolder.setMinSize(0, 0);
-        petPhoto.fitWidthProperty().bind(petPhotoHolder.widthProperty());
-        petPhoto.fitHeightProperty().bind(petPhotoHolder.heightProperty());
+
         // TODO: implement this using storage instead of a dummy image
-        File file = new File("resources/images/dummy_pet_image");
-        Image image = new Image(file.toURI().toString());
+        Image image = new Image(this.getClass().getResourceAsStream("/images/dummy_pet_image.png"));
         petPhoto.setImage(image);
     }
 

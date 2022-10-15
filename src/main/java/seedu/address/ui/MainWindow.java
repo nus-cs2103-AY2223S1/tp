@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set the display window
         personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
 
         // Initialise the remaining components in the main window
         resultDisplay = new ResultDisplay();
