@@ -8,6 +8,7 @@ import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
+import seedu.address.model.student.Picture;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
@@ -34,6 +35,7 @@ public class StudentBuilder {
     private Set<Tag> tags;
 
     private Attendance attendance;
+    private Picture picture;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -115,6 +117,7 @@ public class StudentBuilder {
         this.classGroup = new ClassGroup(classGroup);
         return this;
     }
+
 
     public Student build() {
         return new Student(name, phone, email, classGroup, studentId, tags, attendance);
