@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.util.Stack;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
