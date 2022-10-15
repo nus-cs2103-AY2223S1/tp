@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,12 +31,15 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             + ": Edits the appointment details of the person identified "
             + "by the patientIndex number used in the displayed person list and the appointmentIndex. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: PATIENT INDEX (must be a positive integer) "
+            + "APPOINTMENT INDEX (must be a positive integer) "
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 "
+            + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
+            + "Example: " + COMMAND_WORD + " " + DESCRIPTOR_WORD + " 1 1 "
             + PREFIX_REASON + "Sore Throat "
-            + PREFIX_DATE + "2022-10-12 16:30";
+            + PREFIX_DATE + "2022-10-12 16:30 "
+            + PREFIX_RECURRING_PERIOD + "1Y0M0D";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
@@ -83,7 +85,9 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
         String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
         LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
-        Appointment editedAppointment = new Appointment(reason, dateTime, appointmentToEdit.isMarked());
+        List<Integer> period = editAppointmentDescriptor.getTimePeriod().orElse(appointmentToEdit.getTimePeriod());
+        Appointment editedAppointment = new Appointment(reason, dateTime, period,
+                appointmentToEdit.isMarked());
         editedAppointment.setPatient(patient);
         return editedAppointment;
     }
@@ -119,6 +123,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
     public static class EditAppointmentDescriptor {
         private String reason;
         private LocalDateTime dateTime;
+        private List<Integer> timePeriod;
 
         public EditAppointmentDescriptor() {}
 
@@ -130,10 +135,11 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setReason(toCopy.reason);
             setDateTime(toCopy.dateTime);
+            setTimePeriod(toCopy.timePeriod);
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(reason, dateTime);
+            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod);
         }
 
         public void setReason(String reason) {
@@ -152,6 +158,14 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             return Optional.ofNullable(dateTime);
         }
 
+        public void setTimePeriod(List<Integer> timePeriod) {
+            this.timePeriod = timePeriod;
+        }
+
+        public Optional<List<Integer>> getTimePeriod() {
+            return Optional.ofNullable(timePeriod);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -166,7 +180,8 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
             // state check
             EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
-            return getReason().equals(e.getReason()) && getDateTime().equals(e.getDateTime());
+            return getReason().equals(e.getReason()) && getDateTime().equals(e.getDateTime())
+                    && getTimePeriod().equals(e.getTimePeriod());
         }
     }
 }
