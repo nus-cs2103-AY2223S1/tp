@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.logic.parser.CliSyntax;
@@ -188,7 +187,13 @@ public enum CommandWord {
     RENAME_TAG_COMMAND("renametag") {
         @Override
         public String getUsage() {
-            return RenameTagCommand.getUsage();
+            return getCommandWord() + ": Renames an existing tag in FoodRem. "
+                    + "Parameters: "
+                    + CliSyntax.PREFIX_NAME + "ORIGINAL_TAG_NAME "
+                    + CliSyntax.PREFIX_NAME + "NEW_TAG_NAME "
+                    + "Example: " + getCommandWord() + " "
+                    + CliSyntax.PREFIX_NAME + "Vegetables "
+                    + CliSyntax.PREFIX_NAME + "fruits";
         }
     },
     TAG_COMMAND("tag") {

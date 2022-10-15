@@ -19,7 +19,9 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class RenameTagCommandTest {
-
+    private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem.";
+    private static final String EXPECTED_ERROR_DUPLICATE = "This tag name already exists in the FoodRem.";
+    private static final String EXPECTED_FORMAT_SUCCESS = "Renamed tag: %1$s";
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
     @Test
@@ -28,7 +30,7 @@ public class RenameTagCommandTest {
         Tag renamedTag = new TagBuilder().withTagName("test").build();
         RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
 
-        String expectedMessage = String.format(RenameTagCommand.MESSAGE_RENAME_TAG_SUCCESS, renamedTag);
+        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, renamedTag);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setTag(originalTag, renamedTag);
@@ -42,7 +44,7 @@ public class RenameTagCommandTest {
         Tag renamedTag = new TagBuilder().withTagName(VALID_TAG_NAME_NUMBERS).build();
         RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
 
-        assertCommandFailure(renameTagCommand, model, RenameTagCommand.MESSAGE_DUPLICATE_TAG_NAME);
+        assertCommandFailure(renameTagCommand, model, EXPECTED_ERROR_DUPLICATE);
     }
 
     @Test
@@ -51,7 +53,7 @@ public class RenameTagCommandTest {
         Tag renamedTag = new TagBuilder().withTagName("test").build();
         RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
 
-        assertCommandFailure(renameTagCommand, model, RenameTagCommand.MESSAGE_TAG_NOT_FOUND);
+        assertCommandFailure(renameTagCommand, model, EXPECTED_ERROR_NOT_FOUND);
     }
 
     @Test
