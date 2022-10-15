@@ -274,11 +274,11 @@ public enum CommandWord {
      */
     public static String listAllCommandWords() {
         StringJoiner stringJoiner = new StringJoiner(", ");
-        for (CommandWord commandWord : values()) {
-            if (commandWord.equals(DEFAULT)) {
+        for (CommandWord type : values()) {
+            if (type.equals(DEFAULT)) {
                 continue;
             }
-            stringJoiner.add(commandWord.commandWord);
+            stringJoiner.add(type.commandWord);
         }
         return stringJoiner.toString();
     }
