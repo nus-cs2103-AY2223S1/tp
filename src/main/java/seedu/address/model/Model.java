@@ -96,7 +96,7 @@ public interface Model {
      * The tuition class must exist in the address book.
      */
     void deleteTuitionClass(TuitionClass target);
-    
+
     /**
      * Returns true if a class with the same name as {@code tuitionClass} exists in the database.
      */
