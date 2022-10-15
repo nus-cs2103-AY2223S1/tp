@@ -17,7 +17,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
 
 public class JsonAdaptedPersonTest {
@@ -97,7 +96,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_NOK_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_CLASS_DATE_TIME, VALID_MONEY_OWED, VALID_MONEY_PAID, VALID_RATES_PER_CLASS,
                 VALID_ADDITIONAL_NOTES, VALID_TAGS);
-        String expectedMessage = NokPhone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

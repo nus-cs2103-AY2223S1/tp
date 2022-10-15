@@ -23,7 +23,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -90,21 +89,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String nokPhone} into a {@code NokPhone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code nokPhone} is invalid.
-     */
-    public static NokPhone parseNokPhone(String nokPhone) throws ParseException {
-        requireNonNull(nokPhone);
-        String trimmedNokPhone = nokPhone.trim();
-        if (!NokPhone.isValidNokPhone(trimmedNokPhone)) {
-            throw new ParseException(NokPhone.MESSAGE_CONSTRAINTS);
-        }
-        return new NokPhone(trimmedNokPhone);
     }
 
     /**

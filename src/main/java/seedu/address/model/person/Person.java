@@ -19,7 +19,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final NokPhone nokPhone;
+    private final Phone nokPhone;
     private final Email email;
 
     // Data fields
@@ -33,13 +33,13 @@ public class Person {
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
-     * // Todo: Note that this is a temporary design and subject to update in future iteration
+     * // Todo: Note that nokPhone will be initialized with passed-in arguments in future iteration.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
-        this.nokPhone = new NokPhone();
+        this.nokPhone = new Phone();
         this.email = email;
         this.address = address;
         this.aClass = new Class();
@@ -54,7 +54,7 @@ public class Person {
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, NokPhone nokPhone, Email email, Address address, Class aClass,
+    public Person(Name name, Phone phone, Phone nokPhone, Email email, Address address, Class aClass,
                   Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes,
                   Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
@@ -79,7 +79,7 @@ public class Person {
         return phone;
     }
 
-    public NokPhone getNokPhone() {
+    public Phone getNokPhone() {
         return nokPhone;
     }
 
