@@ -18,6 +18,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveTaskCommand;
 import seedu.address.logic.commands.TaskCommand;
+import seedu.address.logic.commands.UploadPictureCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -83,6 +84,9 @@ public class AddressBookParser {
 
         case AttendanceCommandParser.ATTENDANCE_COMMAND_WORD:
             return new AttendanceCommandParser().parse(arguments);
+
+        case UploadPictureCommand.COMMAND_WORD:
+            return new UploadPictureCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

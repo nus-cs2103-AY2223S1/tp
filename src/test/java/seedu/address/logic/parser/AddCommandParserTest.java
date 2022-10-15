@@ -20,10 +20,16 @@ import static seedu.address.logic.commands.CommandTestUtil.STUDENTID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.STUDENTID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_GROUP_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENTID_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.INFO_NOT_AVAILABLE;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
@@ -110,5 +116,63 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + CLASS_GROUP_DESC_BOB + STUDENTID_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_missingCompulsoryFields_failure() {
+        // missing name
+        assertParseFailure(parser, STUDENTID_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // missing student ID
+        assertParseFailure(parser, NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // missing both name and student ID
+        assertParseFailure(parser, PHONE_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        // every field except for name
+        assertParseFailure(parser, STUDENTID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_GROUP_DESC_BOB,
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
+        //every field except for student ID
+        assertParseFailure(parser, PHONE_DESC_BOB + EMAIL_DESC_BOB + CLASS_GROUP_DESC_BOB + NAME_DESC_BOB,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_optionalFieldsNotNeed_success() {
+
+        // Only name and Student ID
+        Student expectedStudentOne = new StudentBuilder()
+                .withStudentId(VALID_STUDENTID_BOB).withName(VALID_NAME_BOB)
+                .withPhone(INFO_NOT_AVAILABLE).withEmail(INFO_NOT_AVAILABLE)
+                .withClassGroup(INFO_NOT_AVAILABLE).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB, new AddCommand(expectedStudentOne));
+
+        // No Phone Number
+        Student expectedStudentTwo = new StudentBuilder()
+                .withStudentId(VALID_STUDENTID_BOB).withName(VALID_NAME_BOB)
+                .withPhone(INFO_NOT_AVAILABLE).withEmail(VALID_EMAIL_BOB)
+                .withClassGroup(VALID_CLASS_GROUP_BOB).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + EMAIL_DESC_BOB + CLASS_GROUP_DESC_BOB,
+                    new AddCommand(expectedStudentTwo));
+
+        // No Email
+        Student expectedStudentThree = new StudentBuilder()
+                .withStudentId(VALID_STUDENTID_BOB).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(INFO_NOT_AVAILABLE)
+                .withClassGroup(VALID_CLASS_GROUP_BOB).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + PHONE_DESC_BOB + CLASS_GROUP_DESC_BOB,
+                    new AddCommand(expectedStudentThree));
+
+        // No Class Group
+        Student expectedStudentFour = new StudentBuilder()
+                .withStudentId(VALID_STUDENTID_BOB).withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withClassGroup(INFO_NOT_AVAILABLE).build();
+        assertParseSuccess(parser, NAME_DESC_BOB + STUDENTID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                    new AddCommand(expectedStudentFour));
     }
 }

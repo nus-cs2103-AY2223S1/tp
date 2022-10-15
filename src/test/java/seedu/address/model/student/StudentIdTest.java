@@ -33,4 +33,28 @@ public class StudentIdTest {
         assertTrue(StudentId.isValidStudentId("e0000000")); // all repeated numbers
         assertTrue(StudentId.isValidStudentId("e0394718"));
     }
+
+    @Test
+    void contains_studentIdContainsKeyword_returnsTrue() {
+        // Blank keyword
+        assertTrue(new StudentId("e0123456").contains(""));
+
+        // Exact keyword
+        assertTrue(new StudentId("e0123456").contains("e0123456"));
+
+        // Partial matching keyword
+        assertTrue(new StudentId("e0123456").contains("234"));
+    }
+
+    @Test
+    void contains_studentIdContainsKeyword_returnsFalse() {
+        // Keyword with only alphabets
+        assertFalse(new StudentId("e0123456").contains("aaaaa"));
+
+        // Non-matching keyword
+        assertFalse(new StudentId("e0123456").contains("a9d87g"));
+
+        // Mixed-case keyword
+        assertFalse(new StudentId("e0123456").contains("E01234"));
+    }
 }

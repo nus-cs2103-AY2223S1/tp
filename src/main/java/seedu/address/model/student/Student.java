@@ -30,6 +30,7 @@ public class Student {
 
     /**
      * Every field must be present and not null.
+     * Profile picture is initially set to the default profile picture.
      */
     public Student(Name name, Phone phone, Email email,
                    ClassGroup classGroup, StudentId studentId, Set<Tag> tags, AttendanceList attendanceList) {
@@ -67,12 +68,24 @@ public class Student {
         return studentId;
     }
 
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if keyword in present in any field in the student.
+     *
+     * @param keyword
+     * @return whether keyword is present is any field of the student
+     */
+    public boolean contains(String keyword) {
+        return name.contains(keyword) || phone.contains(keyword) || email.contains(keyword)
+                || classGroup.contains(keyword) || studentId.contains(keyword);
     }
 
     /**

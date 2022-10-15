@@ -12,6 +12,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.StudentBuilder;
@@ -93,5 +96,112 @@ public class StudentTest {
         // different tags -> returns false
         editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void contains_blankKeyword_returnsTrue() {
+        assertTrue(new StudentBuilder(ALICE).build().contains(""));
+    }
+
+    @Test
+    public void contains_nameContainsKeywords_returnsTrue() {
+        // Exact keyword
+        assertTrue(new StudentBuilder().withName("Alice Bob").build().contains("alice"));
+
+        // Only partial matching keyword
+        assertTrue(new StudentBuilder().withName("Alice Bob").build().contains("ali"));
+    }
+
+    @Test
+    public void contains_nameDoesNotContainKeywords_returnsFalse() {
+        // Mixed-case keywords
+        assertFalse(new StudentBuilder().withName("Alice Bob").build().contains("ALiCE"));
+
+        // Non-matching keyword
+        assertFalse(new StudentBuilder().withName("Alice Bob").build().contains("Carol"));
+    }
+
+    @Test
+    public void contains_emailContainsKeywords_returnsTrue() {
+        // Exact keyword
+        assertTrue(new StudentBuilder().withEmail("alice@example.com").build().contains("alice@example.com"));
+
+        // Only partial matching keyword
+        assertTrue(new StudentBuilder().withEmail("alice@example.com").build().contains("@example.com"));
+    }
+
+    @Test
+    public void contains_emailDoesNotContainKeywords_returnsFalse() {
+        // Non-matching keyword
+        assertFalse(new StudentBuilder().withEmail("alice@example.com").build().contains("carol@example.com"));
+
+        // Mixed-case keywords
+        assertFalse(new StudentBuilder().withEmail("alice@example.com").build().contains("alIce@example.com"));
+    }
+
+    @Test
+    public void contains_phoneContainsKeywords_returnsTrue() {
+        // Exact keyword
+        assertTrue(new StudentBuilder().withPhone("12345678").build().contains("12345678"));
+
+        // Only partial matching keyword
+        assertTrue(new StudentBuilder().withPhone("12345678").build().contains("3456"));
+    }
+
+    @Test
+    public void contains_phoneDoesNotContainKeywords_returnsFalse() {
+        // Zero keywords
+        StudentContainsKeywordsPredicate predicate = new StudentContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new StudentBuilder().withPhone("98765678").build()));
+
+        // Non-matching keyword
+        predicate = new StudentContainsKeywordsPredicate(Arrays.asList("99999999"));
+        assertFalse(predicate.test(new StudentBuilder().withPhone("98765678").build()));
+
+        // Keyword with alphabets
+        assertFalse(new StudentBuilder().withPhone("12345678").build().contains("aaaaa"));
+
+        // Keyword with both numbers and alphabets
+        assertFalse(new StudentBuilder().withPhone("12345678").build().contains("a9d87g"));
+    }
+
+    @Test
+    public void contains_classGroupContainsKeywords_returnsTrue() {
+        // Exact keyword
+        assertTrue(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("cs2030"));
+
+        // Only partial matching keyword
+        assertTrue(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("2030"));
+    }
+
+    @Test
+    public void contains_classGroupDoesNotContainKeywords_returnsFalse() {
+        // Non-matching keyword
+        assertFalse(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("cs2103t"));
+
+
+        // Mixed-case keyword
+        assertFalse(new StudentBuilder().withClassGroup("cs2030 lab 31").build().contains("CS2030"));
+    }
+
+    @Test
+    public void contains_studentIdContainsKeywords_returnsTrue() {
+        // Exact keyword
+        assertTrue(new StudentBuilder().withStudentId("e0123456").build().contains("e0123456"));
+
+        // Partial matching keyword
+        assertTrue(new StudentBuilder().withStudentId("e0123456").build().contains("234"));
+    }
+
+    @Test
+    public void contains_studentIdDoesNotContainKeywords_returnsFalse() {
+        // Keyword with only alphabets
+        assertFalse(new StudentBuilder().withStudentId("e0123456").build().contains("aaaaa"));
+
+        // Non-matching keyword
+        assertFalse(new StudentBuilder().withStudentId("e0123456").build().contains("a9d87g"));
+
+        // Mixed-case keyword
+        assertFalse(new StudentBuilder().withStudentId("e0123456").build().contains("E01234"));
     }
 }

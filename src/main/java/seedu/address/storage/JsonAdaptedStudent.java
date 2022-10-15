@@ -33,6 +33,7 @@ class JsonAdaptedStudent {
     private final String studentId;
     private final JsonAdaptedAttendanceList attendanceList;
 
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**

@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
+import seedu.address.storage.ImageStorage;
 
 /**
  * An UI component that displays information of a {@code Student}.
@@ -42,7 +44,8 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label classGroup;
-
+    @FXML
+    private ImageView picture;
     @FXML
     private Label attendanceList;
 
@@ -62,6 +65,16 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        updatePicture();
+    }
+
+    /**
+     * Update the Picture of the Student.
+     */
+    public void updatePicture() {
+        picture.setImage(
+                ImageStorage.getStudentProfileImage(this.student)
+        );
     }
 
     @Override

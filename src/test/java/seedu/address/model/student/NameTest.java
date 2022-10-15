@@ -37,4 +37,28 @@ public class NameTest {
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
+
+    @Test
+    void contains_nameContainsKeyword_returnsTrue() {
+        // Blank keyword
+        assertTrue(new Name("Alice Tay").contains(""));
+
+        // Exact keyword
+        assertTrue(new Name("Alice Tay").contains("alice"));
+
+        // Partial matching keyword
+        assertTrue(new Name("Alice Tay").contains("ali"));
+    }
+
+    @Test
+    void contains_nameContainsKeyword_returnsFalse() {
+        // Keyword with non-alphanumeric characters
+        assertFalse(new Name("Alice Tay").contains("**&&^%#"));
+
+        // Non-matching keyword
+        assertFalse(new Name("Alice Tay").contains("Bob"));
+
+        // Mixed-case keyword
+        assertFalse(new Name("Alice Tay").contains("AlicE taY"));
+    }
 }
