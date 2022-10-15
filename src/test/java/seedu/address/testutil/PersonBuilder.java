@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AdditionalNotes;
@@ -8,9 +11,10 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -19,7 +23,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_NOK_PHONE = "000";
+    public static final String DEFAULT_NOK_PHONE = "87654321";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
@@ -29,7 +33,7 @@ public class PersonBuilder {
 
     private Name name;
     private Phone phone;
-    private NokPhone nokPhone;
+    private Phone nokPhone;
     private Email email;
     private Address address;
     private Money moneyOwed;
@@ -37,6 +41,7 @@ public class PersonBuilder {
     private Money ratesPerClass;
     private AdditionalNotes additionalNotes;
     private Class aClass;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,7 +49,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        nokPhone = new NokPhone(DEFAULT_NOK_PHONE);
+        nokPhone = new Phone(DEFAULT_NOK_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         aClass = new Class();
@@ -52,6 +57,7 @@ public class PersonBuilder {
         moneyPaid = new Money(DEFAULT_MONEY_PAID);
         ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         additionalNotes = new AdditionalNotes(DEFAULT_ADDITIONAL_NOTES);
+        tags = new HashSet<>();
     }
 
     /**
@@ -68,6 +74,7 @@ public class PersonBuilder {
         moneyPaid = personToCopy.getMoneyPaid();
         ratesPerClass = personToCopy.getRatesPerClass();
         additionalNotes = personToCopy.getAdditionalNotes();
+        tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -75,6 +82,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -95,10 +110,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code NokPhone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} next of kin phone of the {@code Person} that we are building.
      */
     public PersonBuilder withNokPhone(String nokPhone) {
-        this.nokPhone = new NokPhone(nokPhone);
+        this.nokPhone = new Phone(nokPhone);
         return this;
     }
 
@@ -155,7 +170,8 @@ public class PersonBuilder {
      * @return Person object.
      */
     public Person build() {
-        return new Person(
-                name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
+        return new
+                Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
+                additionalNotes, tags);
     }
 }

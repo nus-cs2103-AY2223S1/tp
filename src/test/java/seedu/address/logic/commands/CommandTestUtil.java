@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATES_PER_CLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -51,6 +52,8 @@ public class CommandTestUtil {
     public static final Integer VALID_RATES_PER_CLASS_BOB = 50;
     public static final String VALID_ADDITIONAL_NOTES_AMY = "alive person";
     public static final String VALID_ADDITIONAL_NOTES_BOB = "alive person";
+    public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -76,6 +79,8 @@ public class CommandTestUtil {
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_AMY.toString();
     public static final String ADDITIONAL_NOTE_DESC_BOB =
             " " + PREFIX_ADDITIONAL_NOTES + VALID_ADDITIONAL_NOTES_BOB.toString();
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -88,6 +93,7 @@ public class CommandTestUtil {
     public static final String INVALID_MONEY_PAID_DESC = " " + PREFIX_MONEY_PAID + "-10"; // money cannot be negative
     public static final String INVALID_RATES_PER_CLASS_DESC =
             " " + PREFIX_RATES_PER_CLASS + "-200"; // money cannot be negative
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -100,12 +106,17 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withNokPhone(VALID_NOK_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withAddress(VALID_ADDRESS_AMY).withMoneyOwed(VALID_MONEY_OWED_AMY)
                 .withMoneyPaid(VALID_MONEY_PAID_AMY).withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
-                .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY).build();
+                .withAdditionalNotes(VALID_ADDITIONAL_NOTES_AMY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
 
+    static {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withMoneyOwed(VALID_MONEY_OWED_BOB)
-                .withMoneyPaid(VALID_MONEY_PAID_BOB).build();
+                .withMoneyPaid(VALID_MONEY_PAID_BOB).withRatesPerClass(VALID_RATES_PER_CLASS_BOB)
+                .withAdditionalNotes(VALID_ADDITIONAL_NOTES_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
