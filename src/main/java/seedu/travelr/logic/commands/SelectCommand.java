@@ -1,5 +1,10 @@
 package seedu.travelr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+
+import java.util.List;
+
 import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.Messages;
 import seedu.travelr.commons.core.index.Index;
@@ -9,11 +14,6 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.EventInItineraryPredicate;
 import seedu.travelr.model.list.Itineraries;
 import seedu.travelr.model.trip.Trip;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 public class SelectCommand extends Command {
 

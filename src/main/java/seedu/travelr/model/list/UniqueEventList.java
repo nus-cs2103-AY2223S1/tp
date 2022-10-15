@@ -1,5 +1,13 @@
 package seedu.travelr.model.list;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.component.Title;
@@ -7,13 +15,6 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.exceptions.DuplicateEventException;
 import seedu.travelr.model.event.exceptions.EventNotFoundException;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.travelr.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the BucketList class.

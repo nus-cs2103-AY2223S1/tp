@@ -1,10 +1,10 @@
 package seedu.travelr.logic.commands;
 
-import seedu.travelr.model.Model;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_TRIPS;
+
+import seedu.travelr.model.Model;
 
 public class ViewAllCommand extends Command {
 

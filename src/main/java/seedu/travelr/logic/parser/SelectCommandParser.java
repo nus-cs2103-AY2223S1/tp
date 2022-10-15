@@ -1,11 +1,11 @@
 package seedu.travelr.logic.parser;
 
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.SelectCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.event.EventInItineraryPredicate;
-
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class SelectCommandParser implements Parser<SelectCommand> {
     public SelectCommand parse(String args) throws ParseException {

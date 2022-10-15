@@ -1,20 +1,15 @@
 package seedu.travelr.model.event;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.model.list.Itineraries;
-
 import java.util.function.Predicate;
 
-public class AllInBucketListPredicate  implements Predicate<Event> {
-    FilteredList<Event> bucketList;
+import javafx.collections.transformation.FilteredList;
+
+public class AllInBucketListPredicate implements Predicate<Event> {
+    private FilteredList<Event> bucketList;
 
     public AllInBucketListPredicate(FilteredList<Event> bucketList) {
         this.bucketList = bucketList;
     }
-
-
 
     @Override
     public boolean test(Event event) {

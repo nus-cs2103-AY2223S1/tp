@@ -1,11 +1,9 @@
 package seedu.travelr.model.event;
 
-import javafx.collections.transformation.FilteredList;
+import java.util.function.Predicate;
+
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.model.list.Itineraries;
-
-import java.util.List;
-import java.util.function.Predicate;
 
 public class EventInItineraryPredicate implements Predicate<Event> {
 

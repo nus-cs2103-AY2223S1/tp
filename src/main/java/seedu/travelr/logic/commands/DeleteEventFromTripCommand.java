@@ -30,8 +30,8 @@ public class DeleteEventFromTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s\nThe specified event has been returned" +
-            "to the bucket list. Current bucket list:";
+    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s\nThe specified event has been returned"
+            + "to the bucket list. Current bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
 
     private Title eventToDelete;

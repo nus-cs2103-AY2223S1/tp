@@ -49,6 +49,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
+
     public void setTrips(List<Trip> trips) {
         this.trips.setTrips(trips);
     }
@@ -186,7 +187,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Event> getAllEventList() { return allEventsList.asUnmodifiableObservableList(); }
+    public ObservableList<Event> getAllEventList() {
+        return allEventsList.asUnmodifiableObservableList();
+    }
 
     @Override
     public boolean equals(Object other) {

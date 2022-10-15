@@ -32,7 +32,6 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
-        //System.out.println(events);
     }
 
     public void addEvent(Event event) {
@@ -70,7 +69,9 @@ public class Trip {
     /**
      * Returns the itinerary of this trip.
      */
-    public Itineraries getItinerary() { return this.events; }
+    public Itineraries getItinerary() {
+        return this.events;
+    }
 
     /**
      * Returns true if both persons have the same name.
