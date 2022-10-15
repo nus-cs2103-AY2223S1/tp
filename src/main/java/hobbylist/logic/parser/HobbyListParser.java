@@ -13,6 +13,7 @@ import hobbylist.logic.commands.DeleteCommand;
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.commands.ExitCommand;
 import hobbylist.logic.commands.FindCommand;
+import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
@@ -58,6 +59,9 @@ public class HobbyListParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindTagCommand.COMMAND_WORD:
+            return new FindTagCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

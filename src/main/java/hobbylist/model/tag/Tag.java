@@ -40,6 +40,10 @@ public class Tag {
                 && tagName.equals(((Tag) other).tagName)); // state check
     }
 
+    public boolean match(String keyword) {
+        return tagName.equals(keyword);
+    }
+
     @Override
     public int hashCode() {
         return tagName.hashCode();
