@@ -1,18 +1,17 @@
 package seedu.address.storage;
 
-import static seedu.address.model.category.Category.NURSE_SYMBOL;
-import static seedu.address.model.category.Category.PATIENT_SYMBOL;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static seedu.address.model.category.Category.NURSE_SYMBOL;
+import static seedu.address.model.category.Category.PATIENT_SYMBOL;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
@@ -25,6 +24,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +43,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String visitStatus;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -53,7 +54,8 @@ class JsonAdaptedPerson {
             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("visit status") String visitStatus) {
         this.uid = uid;
         this.name = name;
         this.category = category;
@@ -69,6 +71,8 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
+        this.visitStatus = visitStatus;
     }
 
     /**
@@ -82,6 +86,9 @@ class JsonAdaptedPerson {
             dateTimes.addAll(((Patient) source).getDatesTimes().stream()
                     .map(JsonAdaptedDateTime::new)
                     .collect(Collectors.toList()));
+            visitStatus = ((Patient) source).getVisitStatus().getVisitStatusString();
+        } else {
+            visitStatus = null;
         }
 
         uid = source.getUid().uid;
@@ -164,6 +171,8 @@ class JsonAdaptedPerson {
 
         final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
 
+        final VisitStatus modelVisitStatus = new VisitStatus(visitStatus);
+
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Category.class.getSimpleName()));
@@ -172,7 +181,7 @@ class JsonAdaptedPerson {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
         } else if (category.equals(PATIENT_SYMBOL)) {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, modelDatesTimes);
+                    modelAddress, modelTags, modelDatesTimes, modelVisitStatus);
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
         }

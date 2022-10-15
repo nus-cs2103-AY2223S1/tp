@@ -1,23 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -26,16 +13,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Nurse;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Uid;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,8 +43,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited %1$s: %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This %1$s already exists in the address book.";
-    public static final String MESSAGE_NURSE_INVALID_EDIT = "This uid gives a nurse "
-            + "and there are no dates and times (and their indexes) for nurse."
+    public static final String MESSAGE_NURSE_INVALID_DATETIME_EDIT = "This uid gives a nurse "
+            + "and there are no dates and times (and their indexes) for nurse. "
             + "Please remove the date and time field and its index field.";
 
     public static final String MESSAGE_INVALID_NUMBERS_OF_DATETIME_AND_DATETIMEINDEX = "The dateTime index "
@@ -74,6 +52,10 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_OUT_OF_BOUND_DATETIMEINDEX = "The dateTime index given is out of bound "
             + "of the existing list." + "Please retype another index that is within the range or left it empty.";
+
+    public static final String MESSAGE_NURSE_INVALID_VISITSTATUS_EDIT = "This uid gives a nurse "
+            + "and nurses do not have a visit status. "
+            + "Please remove the visit status field.";
 
     private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -96,17 +78,22 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
         Optional<Person> personToEdit = lastShownList.stream().filter(p -> p.getUid().equals(targetUid)).findFirst();
 
-        if (!personToEdit.isPresent()) {
+        if (personToEdit.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
         Person confirmedPersonToEdit = personToEdit.get();
         Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
 
-        boolean haveDatesTimes = !(editPersonDescriptor.getDatesTimes().equals(Optional.empty()));
-        boolean haveDateTimeIndexes = !(editPersonDescriptor.getDateTimeIndexes().equals(Optional.empty()));
+        boolean haveDatesTimes = editPersonDescriptor.getDatesTimes().isPresent();
+        boolean haveDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes().isPresent();
+        boolean haveVisitStatus = editPersonDescriptor.getVisitStatus().isPresent();
 
-        if (confirmedPersonToEdit.getCategory().equals("N") && (haveDateTimeIndexes || haveDatesTimes)) {
-            throw new CommandException(MESSAGE_NURSE_INVALID_EDIT);
+        if (confirmedPersonToEdit.getCategory().equals("N")) {
+            if (haveDateTimeIndexes || haveDatesTimes) {
+                throw new CommandException(MESSAGE_NURSE_INVALID_DATETIME_EDIT);
+            } if (haveVisitStatus) {
+                throw new CommandException(MESSAGE_NURSE_INVALID_VISITSTATUS_EDIT);
+            }
         }
 
         if (!confirmedPersonToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -144,12 +131,16 @@ public class EditCommand extends Command {
             Optional<List<Index>> toBeUpdateDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes();
             List<DateTime> updatedDateTime = createEditedDateTimeList(originalDateTime,
                     toBeUpdateDateTime, toBeUpdateDateTimeIndexes);
+            VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
+                    .orElse(((Patient) personToEdit).getVisitStatus());
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateTime);
+                        updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus);
         } else if (updatedCategory.categoryName.equals("P")) {
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes().orElse(null);
+            VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
+                    .orElse(((Patient) personToEdit).getVisitStatus());
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateTime);
+                    updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus);
         } else if (updatedCategory.categoryName.equals("N")) {
             return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
         } else {
@@ -292,6 +283,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private List<DateTime> datesTimes;
         private List<Index> dateTimeIndexes;
+        private VisitStatus visitStatus;
 
         public EditPersonDescriptor() {
         }
@@ -311,6 +303,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setDatesTimes(toCopy.datesTimes);
             setDateTimeIndexes(toCopy.dateTimeIndexes);
+            setVisitStatus(toCopy.visitStatus);
         }
 
         /**
@@ -428,6 +421,23 @@ public class EditCommand extends Command {
          */
         public Optional<List<Index>> getDateTimeIndexes() {
             return (dateTimeIndexes != null) ? Optional.of(new ArrayList<Index>(dateTimeIndexes)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code visitStatus} to this object's {@code visitStatus}.
+         * @return
+         */
+        public EditPersonDescriptor setVisitStatus(VisitStatus visitStatus) {
+            this.visitStatus = visitStatus;
+            return this;
+        }
+
+        /**
+         * Returns a VisitStatus
+         * Returns {@code Optional#empty()} if {@code visitStatus} is null.
+         */
+        public Optional<VisitStatus> getVisitStatus() {
+            return (visitStatus != null) ? Optional.of(visitStatus) : Optional.empty();
         }
 
         @Override

@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -11,11 +15,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -48,6 +49,8 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_BOB = "2022-10-24T09:00";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_VISITED_STATUS = "true";
+    public static final String VALID_NOT_VISITED_STATUS = "false";
 
 
     public static final String OTHER_DATE_TIME = "2022-11-10T18:00";
@@ -88,6 +91,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATE_AND_TIME
             + "2022/11/11 12.00PM"; // wrong format for date and time
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_VISIT_STATUS = " " + PREFIX_VISIT_STATUS + "1"; // only allow "true" or "false"
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

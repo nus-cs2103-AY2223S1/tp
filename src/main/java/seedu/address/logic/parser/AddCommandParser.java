@@ -1,5 +1,9 @@
 package seedu.address.logic.parser;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
@@ -10,12 +14,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 import static seedu.address.model.category.Category.NURSE_SYMBOL;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
-
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,6 +31,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -61,6 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<DateTime> dateTimeList = ParserUtil.parseDatesTimes(argMultimap.getAllValues(PREFIX_DATE_AND_TIME));
+        VisitStatus visitStatus = ParserUtil.parseVisitStatus(argMultimap.getValue(PREFIX_VISIT_STATUS).get());
 
         String categorySymbol = category.toString();
         Person person;
@@ -68,7 +71,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (categorySymbol.equals(NURSE_SYMBOL)) {
             person = new Nurse(id, name, gender, phone, email, address, tagList);
         } else if (categorySymbol.equals(PATIENT_SYMBOL)) {
-            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList);
+            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList, visitStatus);
         } else {
             throw new ParseException("Illegal category detected!");
         }

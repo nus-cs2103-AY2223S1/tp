@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -19,6 +19,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -218,5 +219,14 @@ public class ParserUtil {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         return new Category(trimmedCategory);
+    }
+
+    public static VisitStatus parseVisitStatus(String visitStatus) throws ParseException {
+        requireNonNull(visitStatus);
+        String trimmedVisitStatus = visitStatus.trim();
+        if (!VisitStatus.isValidVisitStatus(trimmedVisitStatus)) {
+            throw new ParseException(VisitStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new VisitStatus(visitStatus);
     }
 }

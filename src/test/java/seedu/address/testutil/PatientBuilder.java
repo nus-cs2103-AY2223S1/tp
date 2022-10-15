@@ -14,6 +14,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -29,6 +30,7 @@ public class PatientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_VISITSTATUS = "false";
 
     private Uid uid;
     private String category;
@@ -39,6 +41,7 @@ public class PatientBuilder {
     private Address address;
     private List<DateTime> dateTimes;
     private Set<Tag> tags;
+    private VisitStatus visitStatus;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -53,6 +56,7 @@ public class PatientBuilder {
         address = new Address(DEFAULT_ADDRESS);
         dateTimes = new ArrayList<>();
         tags = new HashSet<>();
+        visitStatus = new VisitStatus(DEFAULT_VISITSTATUS);
     }
 
     /**
@@ -68,6 +72,7 @@ public class PatientBuilder {
         address = patientToCopy.getAddress();
         dateTimes = new ArrayList<>(((Patient) patientToCopy).getDatesTimes());
         tags = new HashSet<>(patientToCopy.getTags());
+        visitStatus = ((Patient) patientToCopy).getVisitStatus();
     }
 
     /**
@@ -136,11 +141,17 @@ public class PatientBuilder {
     }
 
     /**
-     * Build a patient.
+     * Sets the {@code visited} of the {@code Patient} that we are building.
      */
-    public Person build() {
-        Person testPatient = new Patient(uid, name, gender, phone, email, address, tags, dateTimes);
-        return testPatient;
+    public PatientBuilder withVisitStatus(String visitStatus) {
+        this.visitStatus = new VisitStatus(visitStatus);
+        return this;
     }
 
+    /**
+     * Build a patient.
+     */
+    public Patient build() {
+        return new Patient(uid, name, gender, phone, email, address, tags, dateTimes, visitStatus);
+    }
 }

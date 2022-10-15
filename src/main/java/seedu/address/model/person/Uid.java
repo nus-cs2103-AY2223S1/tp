@@ -10,7 +10,7 @@ public class Uid implements Comparable<Uid> {
     public static final String MESSAGE_CONSTRAINTS = "Ids should only contain numeric characters,"
             + " and it should not be blank";
 
-    /*
+    /**
      * The first character of the id must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */

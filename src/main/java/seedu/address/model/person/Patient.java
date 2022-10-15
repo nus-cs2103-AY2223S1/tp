@@ -1,12 +1,11 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
+import java.util.ArrayList;
 import java.util.Set;
+import java.util.Objects;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.tag.Tag;
@@ -18,15 +17,17 @@ public class Patient extends Person {
 
     private static final String MESSAGE_FOR_EMPTY_DATETIME = "Home Visit date and time has not been set yet.";
     private final List<DateTime> dateTimes = new ArrayList<>();
+    private final VisitStatus visitStatus;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateTime> dateTime) {
+                   Set<Tag> tags, List<DateTime> dateTime, VisitStatus visitStatus) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTime);
         this.dateTimes.addAll(dateTime);
+        this.visitStatus = visitStatus;
     }
 
     public Category getCategory() {
@@ -48,27 +49,31 @@ public class Patient extends Person {
      */
     public List<DateTime> getDatesTimes() {
         DateTimeComparator comp = new DateTimeComparator();
-        Collections.sort(this.dateTimes, comp);
+        this.dateTimes.sort(comp);
         return this.dateTimes;
     }
 
     public String getDatesTimesInString() {
-        String dateTimeList = "";
+        StringBuilder dateTimeListSB = new StringBuilder();
 
         if (this.dateTimes.isEmpty()) {
-            dateTimeList = MESSAGE_FOR_EMPTY_DATETIME;
-            return dateTimeList;
+            dateTimeListSB = new StringBuilder(MESSAGE_FOR_EMPTY_DATETIME);
+            return dateTimeListSB.toString();
         }
 
         DateTimeComparator comp = new DateTimeComparator();
-        Collections.sort(this.dateTimes, comp);
+        this.dateTimes.sort(comp);
 
-        for (DateTime datetime: this.dateTimes) {
-            dateTimeList = dateTimeList + datetime.toString() + " , ";
+        for (DateTime datetime : this.dateTimes) {
+            dateTimeListSB.append(datetime.toString()).append(" , ");
         }
 
 
-        return dateTimeList;
+        return dateTimeListSB.toString();
+    }
+
+    public VisitStatus getVisitStatus() {
+        return this.visitStatus;
     }
 
     @Override
@@ -77,5 +82,4 @@ public class Patient extends Person {
         return "Category: P " + super.toString()
                 + "; Home Visits Date and Time :" + dateTimeList;
     }
-
 }
