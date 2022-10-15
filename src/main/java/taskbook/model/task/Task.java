@@ -112,5 +112,14 @@ public abstract class Task {
 
         return builder.toString();
     }
+
+    /**
+     * Compares this task and the input task to decide description alphabetical order.
+     * @param other input task.
+     * @return 1 if this task's description is alphabetically first, -1 otherwise.
+     */
+    public int compareByDescriptionAlphabeticalTo(Task other) {
+        return this.description.compareByAlphabeticalTo(other.description);
+    }
 }
 

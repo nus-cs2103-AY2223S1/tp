@@ -56,4 +56,13 @@ public class Description {
     public int hashCode() {
         return description.hashCode();
     }
+
+    /**
+     * Compares this description and the input description to decide alphabetical order.
+     * @param other input description.
+     * @return 1 if this description is alphabetically first, -1 otherwise.
+     */
+    public int compareByAlphabeticalTo(Description other) {
+        return this.description.compareTo(other.description);
+    }
 }
