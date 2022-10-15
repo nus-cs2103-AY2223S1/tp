@@ -109,7 +109,7 @@ public interface Model {
     void setItem(Item target, Item editedItem);
 
     /**
-     * Returns an unmodifiable view of the filtered person list.
+     * Returns an unmodifiable view of the filtered item list.
      */
     ObservableList<Item> getFilteredItemList();
 

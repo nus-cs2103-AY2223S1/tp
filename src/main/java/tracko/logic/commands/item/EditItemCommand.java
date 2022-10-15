@@ -23,7 +23,7 @@ import tracko.model.items.Quantity;
 import tracko.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing item in the inventory list.
  */
 public class EditItemCommand extends Command {
 
@@ -50,8 +50,8 @@ public class EditItemCommand extends Command {
     private final EditItemDescriptor editItemDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editItemDescriptor details to edit the person with
+     * @param index of the item in the filtered inventory list to edit
+     * @param editItemDescriptor details to edit the item with
      */
     public EditItemCommand(Index index, EditItemDescriptor editItemDescriptor) {
         requireNonNull(index);
@@ -64,7 +64,7 @@ public class EditItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Item> lastShownList = model.getInventoryList();
+        ObservableList<Item> lastShownList = model.getFilteredItemList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -83,8 +83,8 @@ public class EditItemCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Item} with the details of {@code itemToEdit}
+     * edited with {@code editItemDescriptor}.
      */
     private static Item createEditedItem(Item itemToEdit, EditItemDescriptor editItemDescriptor) {
         assert itemToEdit != null;
@@ -116,8 +116,8 @@ public class EditItemCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the item with. Each non-empty field value will replace the
+     * corresponding field value of the item.
      */
     public static class EditItemDescriptor {
         private ItemName itemName;
