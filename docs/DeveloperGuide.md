@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CompanyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ClientListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Company` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
 ### Logic component
 
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Company` objects (which are contained in a `UniqueCompanyList` object).
-* stores the currently 'selected' `Company` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Company>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Client` objects (which are contained in a `UniqueClientList` object).
+* stores the currently 'selected' `Client` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `JeeqTracker`, which `Company` references. This allows `JeeqTracker` to only require one `Tag` object per unique tag, instead of each `Company` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `JeeqTracker`, which `Client` references. This allows `JeeqTracker` to only require one `Tag` object per unique tag, instead of each `Client` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -278,12 +278,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                  | I want to …​                                        | So that I can…​                                                    |
 |----------|--------------------------|-----------------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | business owner           | choose which client and point-of-contact to delete | save only relevant companies and point-of-contact to remove clutter |
+| `* * *`  | business owner           | choose which client and point-of-contact to delete | save only relevant clients and point-of-contact to remove clutter |
 | `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application     |
 | `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                         |
 | `* * *`  | new business owner       | view a client's details and point-of-contact       | easily know who to contact for that client                        |
 | `* * *`  | busy business owner      | quickly retrieve the data of the client            | save time without having to go through multiple layers             |
-| `* * *`  | new business owner       | create a new client input                          | keep track of all the new companies I work with                    |
+| `* * *`  | new business owner       | create a new client input                          | keep track of all the new clients I work with                    |
 | `* * *`  | new business owner       | add a point-of-contact to a client                 | know who to contact in that client                                |
 | `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                    |
 | `* *`    | efficient business owner | sort the search result by price                     | quickly know which client I have made the most transaction with   |
@@ -298,8 +298,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list companies
-2.  JeeqTracker shows a list of companies
+1.  User requests to list clients
+2.  JeeqTracker shows a list of clients
 3.  User requests to delete a specific client in the list
 4.  JeeqTracker deletes the client
 
@@ -317,18 +317,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a Company**
+**Use case: Find a Client**
 
 **MSS**
 
 1. User requests to find a client
-2. JeeqTracker displays the companies with the same starting names
+2. JeeqTracker displays the clients with the same starting names
 
    Use case ends.
 
 **Extensions**
 
-* 2a. There are no companies with that name.
+* 2a. There are no clients with that name.
 
   Use case ends.
 
@@ -345,7 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Company Mcdonalds already exists.
+* 1a. Client Mcdonalds already exists.
     * 1a1. JeeqTracker shows an error message.
 
         Use case resumes at 1.
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 companies / point-of-contacts without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 clients / point-of-contacts without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  JeeqTracker should respond within 2 seconds
 5.  The system should be usable by a business owner who has basic knowledge of how to use a computer
@@ -432,9 +432,9 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a client
 
-1. Deleting a client while all companies are being shown
+1. Deleting a client while all clients are being shown
 
-   1. Prerequisites: List all companies using the `list` command. Multiple companies in the list.
+   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.

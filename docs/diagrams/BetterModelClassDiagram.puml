@@ -4,18 +4,18 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-JeeqTracker *-right-> "1" UniqueCompanyList
+JeeqTracker *-right-> "1" UniqueClientList
 JeeqTracker *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueCompanyList
-UniqueTagList -[hidden]down- UniqueCompanyList
+UniqueTagList -[hidden]down- UniqueClientList
+UniqueTagList -[hidden]down- UniqueClientList
 
 UniqueTagList *-right-> "*" Tag
-UniqueCompanyList -right-> Company
+UniqueClientList -right-> Client
 
-Company -up-> "*" Tag
+Client -up-> "*" Tag
 
-Company *--> Name
-Company *--> Phone
-Company *--> Email
-Company *--> Address
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+Client *--> Address
 @enduml

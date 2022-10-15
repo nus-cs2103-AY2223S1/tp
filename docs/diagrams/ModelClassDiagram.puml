@@ -12,8 +12,8 @@ Class JeeqTracker
 Class ModelManager
 Class UserPrefs
 
-Class UniqueCompanyList
-Class Company
+Class UniqueClientList
+Class Client
 Class Address
 Class Email
 Class Name
@@ -34,17 +34,17 @@ ModelManager -left-> "1" JeeqTracker
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-JeeqTracker *--> "1" UniqueCompanyList
-UniqueCompanyList --> "~* all" Company
-Company *--> Name
-Company *--> Phone
-Company *--> Email
-Company *--> Address
-Company *--> "*" Tag
+JeeqTracker *--> "1" UniqueClientList
+UniqueClientList --> "~* all" Client
+Client *--> Name
+Client *--> Phone
+Client *--> Email
+Client *--> Address
+Client *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Company
+ModelManager -->"~* filtered" Client
 @enduml
