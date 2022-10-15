@@ -1,6 +1,7 @@
 package soconnect.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.function.Predicate;
 
@@ -29,19 +30,24 @@ public class SearchCommand extends Command {
             + COMMAND_WORD + " " + OR_CONDITION + " p/12345678 e/betsy@nus.edu";
 
     private final Predicate<Person> predicate;
+    private final Predicate<Person> alternativePredicate;
 
     /**
      * Constructs a {@code SearchCommand} to search contacts in SoConnect.
      */
-    public SearchCommand(Predicate<Person> predicate) {
-        requireNonNull(predicate);
+    public SearchCommand(Predicate<Person> predicate, Predicate<Person> alternativePredicate) {
+        requireAllNonNull(predicate, alternativePredicate);
         this.predicate = predicate;
+        this.alternativePredicate = alternativePredicate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        if (model.getFilteredPersonList().size() == 0) {
+            model.updateFilteredPersonList(alternativePredicate);
+        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

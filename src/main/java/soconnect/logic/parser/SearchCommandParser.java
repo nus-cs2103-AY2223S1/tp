@@ -14,6 +14,7 @@ import soconnect.model.ModelManager;
 import soconnect.model.person.Person;
 import soconnect.model.person.SearchPerson.ContactContainsAllKeywordsPredicate;
 import soconnect.model.person.SearchPerson.ContactContainsAnyKeywordsPredicate;
+import soconnect.model.person.SearchPerson.ContactMightBeRelevantPredicate;
 
 import java.util.List;
 import java.util.Observable;
@@ -41,7 +42,6 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        List<String> searchKeywords = argMultimap.getAllValues();
         String condition = argMultimap.getPreamble().toLowerCase();
         return parseSearchCondition(argMultimap, condition);
     }
@@ -71,10 +71,14 @@ public class SearchCommandParser implements Parser<SearchCommand> {
     }
 
     private SearchCommand parseSearchWithCondition(ArgumentMultimap argMultimap, Boolean isJointCondition) {
+        Predicate<Person> contactMightBeRelevantPredicate =
+                new ContactMightBeRelevantPredicate(argMultimap.getAllValues());
         if (isJointCondition) {
-            return new SearchCommand(new ContactContainsAllKeywordsPredicate(argMultimap));
+            return new SearchCommand(new ContactContainsAllKeywordsPredicate(argMultimap),
+                    contactMightBeRelevantPredicate);
         } else {
-            return new SearchCommand(new ContactContainsAnyKeywordsPredicate(argMultimap));
+            return new SearchCommand(new ContactContainsAnyKeywordsPredicate(argMultimap),
+                    contactMightBeRelevantPredicate);
         }
     }
 }
