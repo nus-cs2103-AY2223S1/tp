@@ -13,7 +13,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -74,10 +73,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code NokPhone} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Phone} next of kin phone of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withNokPhone(String nokPhone) {
-        descriptor.setNokPhone(new NokPhone(nokPhone));
+        descriptor.setNokPhone(new Phone(nokPhone));
         return this;
     }
 

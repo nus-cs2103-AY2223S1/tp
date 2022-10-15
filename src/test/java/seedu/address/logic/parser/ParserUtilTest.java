@@ -21,7 +21,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -128,14 +127,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseNokPhone_validValueWithoutWhitespace_returnsNokPhone() throws Exception {
-        NokPhone expectedNokPhone = new NokPhone(VALID_NOK_PHONE);
+        Phone expectedNokPhone = new Phone(VALID_NOK_PHONE);
         assertEquals(expectedNokPhone, ParserUtil.parseNokPhone(VALID_NOK_PHONE));
     }
 
     @Test
     public void parseNokPhone_validValueWithWhitespace_returnsTrimmedNokPhone() throws Exception {
         String nokPhoneWithWhitespace = WHITESPACE + VALID_NOK_PHONE + WHITESPACE;
-        NokPhone expectedNokPhone = new NokPhone(VALID_NOK_PHONE);
+        Phone expectedNokPhone = new Phone(VALID_NOK_PHONE);
         assertEquals(expectedNokPhone, ParserUtil.parseNokPhone(nokPhoneWithWhitespace));
     }
 
