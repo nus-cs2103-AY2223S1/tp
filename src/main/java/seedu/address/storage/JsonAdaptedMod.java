@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Mod;
@@ -12,25 +12,24 @@ import seedu.address.model.person.Mod;
 class JsonAdaptedMod {
 
     private final String modName;
+    private boolean hasTaken;
 
     /**
-     * Constructs a {@code JsonAdaptedMod} with the given {@code modName}.
+     * Constructs a {@code JsonAdaptedMod} with the given module details.
      */
     @JsonCreator
-    public JsonAdaptedMod(String modName) {
+    public JsonAdaptedMod(@JsonProperty("modName") String modName,
+                          @JsonProperty("hasTaken") boolean hasTaken) {
         this.modName = modName;
+        this.hasTaken = hasTaken;
     }
 
     /**
      * Converts a given {@code Mod} into this class for Jackson use.
      */
     public JsonAdaptedMod(Mod source) {
-        modName = source.modName;
-    }
-
-    @JsonValue
-    public String getModName() {
-        return modName;
+        modName = source.getModName();
+        hasTaken = source.getModStatus();
     }
 
     /**
@@ -42,7 +41,7 @@ class JsonAdaptedMod {
         if (!Mod.isValidModName(modName)) {
             throw new IllegalValueException(Mod.MESSAGE_CONSTRAINTS);
         }
-        return new Mod(modName);
+        return new Mod(modName, hasTaken);
     }
 
 }
