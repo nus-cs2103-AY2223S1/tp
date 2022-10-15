@@ -14,11 +14,11 @@ import seedu.address.model.person.Appointment;
  */
 public class TypicalAppointments {
     public static final Appointment APPOINTMENT_BENSON =
-            new Appointment("Sore Throat", "2019-12-10 16:30", false);
+            new Appointment("Sore Throat", "2019-12-10 16:30", "", false);
     public static final Appointment APPOINTMENT_CARL =
-            new Appointment("Cough", "2010-12-31 23:45", true);
+            new Appointment("Cough", "2010-12-31 23:45", "", true);
     public static final Appointment SECOND_APPOINTMENT_CARL =
-            new Appointment("Sore Throat", "2019-12-10 16:30", true);
+            new Appointment("Sore Throat", "2019-12-10 16:30", "", true);
 
     public static List<Appointment> getTypicalAppointments() {
         APPOINTMENT_BENSON.setPatient(BENSON);
@@ -26,5 +26,4 @@ public class TypicalAppointments {
         SECOND_APPOINTMENT_CARL.setPatient(CARL);
         return new ArrayList<>(Arrays.asList(APPOINTMENT_CARL, APPOINTMENT_BENSON, SECOND_APPOINTMENT_CARL));
     }
-
 }

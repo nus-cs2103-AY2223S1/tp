@@ -15,6 +15,7 @@
     "appointments" : [ {
       "reason" : "Sore Throat",
       "dateTime" : "2019-12-10 16:30",
+      "period" : "0Y0M0D",
       "isMarked" : false
     } ],
     "tagged" : [ "owesMoney", "friends" ]
@@ -26,12 +27,13 @@
     "appointments" : [ {
       "reason" : "Cough",
       "dateTime" : "2010-12-31 23:45",
+      "period" : "0Y0M0D",
       "isMarked" : true
     }, {
         "reason" : "Sore Throat",
         "dateTime" : "2019-12-10 16:30",
+        "period" : "0Y0M0D",
         "isMarked" : true
-
     } ],
     "tagged" : [ ]
   }, {

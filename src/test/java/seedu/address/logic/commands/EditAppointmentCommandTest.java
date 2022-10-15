@@ -28,14 +28,14 @@ public class EditAppointmentCommandTest {
         AddressBook testAddressBook = new AddressBook();
         Model testModel = new ModelManager(testAddressBook, new UserPrefs());
 
-        Appointment appointment = new Appointment("Fever", "2019-12-31 23:45", false);
+        Appointment appointment = new Appointment("Fever", "2019-12-31 23:45", "1Y2M", false);
         Person person = new PersonBuilder().withAppointment(appointment).build();
         appointment.setPatient(person);
 
         testModel.addPerson(person);
         testModel.addAppointment(appointment);
 
-        Appointment editedAppointment = new Appointment("Cough", "2022-10-31 16:30", false);
+        Appointment editedAppointment = new Appointment("Cough", "2022-10-31 16:30", "3D", false);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT,
                 descriptor);
@@ -57,14 +57,14 @@ public class EditAppointmentCommandTest {
         AddressBook testAddressBook = new AddressBook();
         Model testModel = new ModelManager(testAddressBook, new UserPrefs());
 
-        Appointment appointment = new Appointment("Fever", "2019-12-31 23:45", false);
+        Appointment appointment = new Appointment("Fever", "2019-12-31 23:45", "", false);
         Person person = new PersonBuilder().withAppointment(appointment).build();
         appointment.setPatient(person);
 
         testModel.addPerson(person);
         testModel.addAppointment(appointment);
 
-        Appointment editedAppointment = new Appointment("Cough", "2019-12-31 23:45", false);
+        Appointment editedAppointment = new Appointment("Cough", "2019-12-31 23:45", "", false);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT,
                 descriptor);
@@ -86,7 +86,7 @@ public class EditAppointmentCommandTest {
         AddressBook testAddressBook = new AddressBook();
         Model testModel = new ModelManager(testAddressBook, new UserPrefs());
 
-        Appointment appointment = new Appointment("Fever", "2019-12-31 23:45", false);
+        Appointment appointment = new Appointment("Fever", "2019-12-31 23:45", "", false);
         Person person = new PersonBuilder().withAppointment(appointment).build();
         appointment.setPatient(person);
 
@@ -106,7 +106,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_duplicateAppointmentTimeUnfilteredList_failure() {
-        Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", true);
+        Appointment appointment = new Appointment("Cough", "2019-12-10 16:30", "", true);
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
 
