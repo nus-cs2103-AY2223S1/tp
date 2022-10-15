@@ -27,9 +27,10 @@ import seedu.foodrem.model.tag.Tag;
  * Edits the details of an existing item in FoodRem.
  */
 public class EditCommand extends Command {
-    // FIXME: Make this implementation detail private
+    // Workaround checkstyle violation
+    // TODO: FIX ME: Make this implementation detail private
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    // FIXME: Make this implementation detail private
+    // TODO: FIX ME: Make this implementation detail private
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
     private static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
 
