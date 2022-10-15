@@ -46,6 +46,7 @@ public class EditPersonCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_INVALID_PERSON_NAME = "The person to edit cannot be found!";
 
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;
     private final FullNamePredicate predicate;
@@ -76,7 +77,7 @@ public class EditPersonCommand extends Command {
             }
         }
         if (targetIndex == -1) {
-            return new CommandResult(Messages.MESSAGE_INVALID_PERSON_NAME);
+            throw new CommandException(MESSAGE_INVALID_PERSON_NAME);
         }
 
         Person personToEdit = lastShownList.get(targetIndex);

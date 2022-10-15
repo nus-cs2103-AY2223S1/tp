@@ -36,15 +36,23 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.testutil.EditPersonDescriptorBuilder;
 import seedu.address.model.tag.Tag;
 
-public class EditPersonParserTest {
+public class EditPersonCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE);
 
-    private EditPersonParser parser = new EditPersonParser();
+    private EditPersonCommandParser parser = new EditPersonCommandParser();
 
+    @Test
+    public void parse_missingParts_failure() {
+        // no field specified
+        assertParseFailure(parser, VALID_NAME_AMY, EditPersonCommand.MESSAGE_NOT_EDITED);
+
+        // no name and no field specified
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+    }
 
     @Test
     public void parse_allFieldsSpecified_success() {
@@ -95,6 +103,7 @@ public class EditPersonParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + INVALID_NAME_DESC + INVALID_EMAIL_DESC
                         + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
+
     }
 
     @Test
