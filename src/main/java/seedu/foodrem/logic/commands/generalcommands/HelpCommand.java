@@ -29,7 +29,7 @@ public class HelpCommand extends Command {
 
     public static final String NOT_A_COMMAND = "\"%s\" is not a valid command\n\n" + HELP_FOR_ALL_COMMANDS;
 
-    public static final String HELP_FOR_SPECIFIC_COMMAND = "%s\n\n" + HELP_FOR_ALL_COMMANDS;
+    private static final String HELP_FOR_SPECIFIC_COMMAND = "%s\n\n" + HELP_FOR_ALL_COMMANDS;
 
     private static final String COMMAND_WORD = CommandWord.HELP_COMMAND.getCommandWord();
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
