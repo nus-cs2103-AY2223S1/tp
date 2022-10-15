@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
 import seedu.address.logic.commands.ModDeleteCommand;
 import seedu.address.logic.commands.ModMarkCommand;
+import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Mod;
 
@@ -62,11 +63,20 @@ public class ModCommandParser implements Parser<ModCommand> {
             return parseDeleteCommand(arguments);
         case ModMarkCommand.COMMAND_WORD:
             return parseMarkCommand(arguments);
+        case ModUnmarkCommand.COMMAND_WORD:
+            return parseUnmarkCommand(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModCommand.MESSAGE_USAGE));
         }
     }
 
+    /**
+     * Parses a mod add command from user to construct a ModAddCommand for execution.
+     *
+     * @param args Arguments from user input.
+     * @return A ModAddCommand for execution.
+     * @throws ParseException If there is a parse error.
+     */
     private ModAddCommand parseAddCommand(String args) throws ParseException {
         Index index;
         String trimmedArgs = args.trim();
@@ -85,6 +95,13 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModAddCommand(index, mods.get());
     }
 
+    /**
+     * Parses a mod delete command from user to construct a ModDeleteCommand for execution.
+     *
+     * @param args Arguments from user input.
+     * @return A ModDeleteCommand for execution.
+     * @throws ParseException If there is a parse error.
+     */
     private ModDeleteCommand parseDeleteCommand(String args) throws ParseException {
         Index index;
         String trimmedArgs = args.trim();
@@ -103,6 +120,13 @@ public class ModCommandParser implements Parser<ModCommand> {
         return new ModDeleteCommand(index, mods.get());
     }
 
+    /**
+     * Parses a mod mark command from user to construct a ModMarkCommand for execution.
+     *
+     * @param args Arguments from user input.
+     * @return A ModMarkCommand for execution.
+     * @throws ParseException If there is a parse error.
+     */
     private ModMarkCommand parseMarkCommand(String args) throws ParseException {
         Index index;
         String trimmedArgs = args.trim();
@@ -119,6 +143,31 @@ public class ModCommandParser implements Parser<ModCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
         }
         return new ModMarkCommand(index, mods.get());
+    }
+
+    /**
+     * Parses a mod unmark command from user to construct a ModUnmarkCommand for execution.
+     *
+     * @param args Arguments from user input.
+     * @return A ModUnmarkCommand for execution.
+     * @throws ParseException If there is a parse error.
+     */
+    private ModUnmarkCommand parseUnmarkCommand(String args) throws ParseException {
+        Index index;
+        String trimmedArgs = args.trim();
+        String indexFromCommand = getIndexFromCommand(trimmedArgs);
+        Set<String> modsFromCommand = getModsFromCommand(trimmedArgs);
+        Optional<ObservableList<Mod>> mods = parseMods(modsFromCommand);
+        if (mods.isEmpty()) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        try {
+            index = ParserUtil.parseIndex(indexFromCommand);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE), pe);
+        }
+        return new ModUnmarkCommand(index, mods.get());
     }
 
     /**
