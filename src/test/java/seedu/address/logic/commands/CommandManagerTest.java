@@ -1,21 +1,20 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import seedu.address.testutil.PersonBuilder;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
 
 public class CommandManagerTest {
-
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private CommandManager commandManager = new CommandManager();
@@ -33,7 +32,7 @@ public class CommandManagerTest {
     }
 
     @Test
-    public void undo_emptyUndoStack_throwsCommandException() throws CommandException {
+    public void undo_emptyUndoStack_throwsCommandException() {
         assertThrows(CommandException.class, () -> commandManager.undo(model));
     }
 
