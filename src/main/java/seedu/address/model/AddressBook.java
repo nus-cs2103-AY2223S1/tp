@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.attribute.Attribute;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -106,8 +108,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    public void sort() {
-        persons.sort();
+    /** Sort the addressbook by the given attribute and order */
+    public void sort(Attribute attribute, Order order) {
+        boolean isDescending = order.isDescending();
+        persons.sort(attribute, isDescending);
     }
 
     @Override

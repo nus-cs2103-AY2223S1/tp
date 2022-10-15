@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
@@ -136,5 +137,20 @@ public class ParserUtil {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
         return trimmedClass;
+    }
+
+    /**
+     * Parses a {@code String order} into a {@code Order}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Order parseOrder(String order) throws ParseException {
+        requireNonNull(order);
+        String trimmedOrder = order.trim();
+        if (!Order.isValidOrderName(trimmedOrder)) {
+            throw new ParseException(Order.MESSAGE_CONSTRAINTS);
+        }
+        return new Order(trimmedOrder);
     }
 }
