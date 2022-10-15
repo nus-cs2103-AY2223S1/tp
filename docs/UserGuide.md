@@ -24,6 +24,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
     * [Format for resident fields](#format-for-resident-fields)
+* [Keyboard Shortcuts](#keyboard-shortcuts)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
 
@@ -267,6 +268,19 @@ Examples:
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 
 _More details coming soon ..._
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Keyboard Shortcuts
+
+Inline with our optimization for use via a **Command Line Interface (CLI)**. Here are several keyboard shortcuts that 
+you may find useful for your use:
+
+Key | Functionality
+----|------------------
+`F1` | Redirects you to our user guide.
+`F2` | Highlights the first row of the displayed list
+`F3` | Quick-access to the command input box
 
 --------------------------------------------------------------------------------------------------------------------
 

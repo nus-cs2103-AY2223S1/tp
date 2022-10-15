@@ -26,6 +26,8 @@
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem fx:id="commandBoxRedirect" mnemonicParsing="false" onAction="#handleRedirect"
+                      visible="false"/>
           </Menu>
         </MenuBar>
 
