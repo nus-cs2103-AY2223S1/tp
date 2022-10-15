@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Tuthub App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="760" onCloseRequest="#handleExit" title="Tuthub App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/tuthub_32.png" />
   </icons>
@@ -26,48 +21,61 @@
 
       <VBox>
 <!--        FILE/HELP BUTTONS-->
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" style="-fx-padding: 10 0 0 0;">
-          <Menu mnemonicParsing="false" text="File" style="-fx-background-color: #F4E9E3">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" styleClass="secondary-button"/>
+        <MenuBar fx:id="menuBar" style="-fx-padding: 10 10 0 10;" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" style="-fx-background-color: #F4E9E3" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" styleClass="secondary-button" text="Exit" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Help" style="-fx-background-color: derive(#DBC4B2, 30%); -fx-background-radius: 0 10 0 0;">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" styleClass="secondary-button"/>
+          <Menu mnemonicParsing="false" style="-fx-background-color: derive(#DBC4B2, 30%); -fx-background-radius: 0 10 0 0;" text="Help">
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" styleClass="secondary-button" text="Help" />
           </Menu>
         </MenuBar>
 
-<!--        COMMAND-->
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+      <HBox style="-fx-background-color:#F4E9E3">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+              <Insets bottom="10" left="10" right="10"/>
           </padding>
-        </StackPane>
+          <StackPane HBox.hgrow="ALWAYS" style="command-pane">
+              <VBox HBox.hgrow="ALWAYS" style="command-pane">
+                  <StackPane fx:id="commandBoxPlaceholder" VBox.vgrow="NEVER"/>
+                  <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER"/>
+              </VBox>
+          </StackPane>
 
-<!--        RESULT DISPLAY-->
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+          <StackPane alignment="CENTER" styleClass="image-view" VBox.vgrow="NEVER">
+              <children>
+                  <ImageView fx:id="tuthubLogo" fitWidth="160" preserveRatio="true" />
+              </children>
+              <padding>
+                  <Insets bottom="10" left="10" right="10" top="20" />
+              </padding>
+          </StackPane>
+      </HBox>
 
 <!--        TUTOR LIST + TUTOR DETAILS-->
-        <HBox>
-          <VBox fx:id="tutorList" styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
+        <HBox spacing="8" style="-fx-background-color:#F4E9E3" VBox.vgrow="ALWAYS">
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+        </padding>
+
+          <VBox fx:id="tutorList" minWidth="300" prefWidth="300" styleClass="list-pane" HBox.hgrow="ALWAYS">
             <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
+              <Insets bottom="10" left="10" right="5" top="10" />
             </padding>
-            <StackPane fx:id="tutorListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            <StackPane fx:id="tutorListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></StackPane>
           </VBox>
 
-          <VBox fx:id="tutorDetails" styleClass="pane-with-border" minWidth="450" prefWidth="450" VBox.vgrow="ALWAYS">
+          <VBox fx:id="tutorDetails" minWidth="400" prefWidth="400" styleClass="details-pane" HBox.hgrow="ALWAYS">
               <padding>
-                  <Insets top="10" right="10" bottom="10" left="10" />
+                  <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="tutorDetailsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+              <StackPane fx:id="tutorDetailsPanelPlaceholder" VBox.vgrow="ALWAYS" />
           </VBox>
         </HBox>
 
-<!--        BOTTOM-->
+<!--        STATUS-->
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

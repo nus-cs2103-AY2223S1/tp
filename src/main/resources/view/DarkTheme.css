@@ -82,39 +82,47 @@
 }
 
 .split-pane {
-    -fx-border-radius: 1;
+    -fx-border-radius: 10;
     -fx-border-width: 1;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-radius: 5;
+    -fx-padding: 3px;
     -fx-background-color: transparent;
     -fx-control-inner-background: transparent;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 2px ;
     -fx-background-color: transparent;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
 }
 
 .list-cell:filled {
     -fx-background-color: #ffffff;
     -fx-border-color: derive(#DBC4B2, 20%);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #B1C5C3;
-    -fx-border-color: derive(#DBC4B2, 20%);
+    -fx-border-color: #3e7b91;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
 }
 
 .list-cell .label {
@@ -123,7 +131,8 @@
 
 .cell_big_label {
     -fx-font-family: "Georgia";
-    -fx-font-size: 25px;
+    -fx-font-size: 23px;
+    -fx-padding: 0 0 0 5;
 }
 
 .cell_module_label {
@@ -153,9 +162,15 @@
      -fx-border-top-width: 1px;
 }
 
-.tutor-list-pane {
-     -fx-background-color: derive(#DBC4B2, 30%);
-     -fx-border-color: derive(#DBC4B2, 30%);
+.list-pane {
+     -fx-background-color: derive(#DBC4B2, 50%);
+     -fx-background-radius: 8;
+     -fx-border-top-width: 1px;
+}
+
+.details-pane {
+     -fx-background-color: #D7DEDD;
+     -fx-background-radius: 8;
      -fx-border-top-width: 1px;
 }
 
@@ -163,15 +178,28 @@
     -fx-background-color: derive(#C9998B, 30%);
 }
 
+.command-pane {
+    -fx-background-color: #F4E9E3;
+    -fx-border-color: #DBC4B2;
+    -fx-border-radius: 10;
+}
+
+.command-bar {
+    -fx-background-color: #F4E9E3;
+}
+
 .result-display {
-    -fx-background-color: transparent;
     -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-border-color: #DBC4B2;
+    -fx-border-radius: 10;
 }
 
 .result-display .label {
     -fx-text-fill: black !important;
+    -fx-border-color: #DBC4B2;
+    -fx-border-radius: 10;
 }
 
 .status-bar .label {
@@ -330,9 +358,13 @@
     -fx-padding: 8 1 8 1;
 }
 
+.image-view {
+    -fx-background-color: #F4E9E3;
+}
+
 #cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-background-radius: 5;
+    -fx-border-width: 3;
 }
 
 #commandTypeLabel {
@@ -341,9 +373,8 @@
 }
 
 #commandTextField {
-    -fx-background-color: #DBC4B2;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
-    -fx-border-color: #DBC4B2;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Georgia";
@@ -357,8 +388,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #DBC4B2;
-    -fx-border-color: #DBC4B2;
+    -fx-background-radius: 0 0 10 10;
+    -fx-background-color: #F4E9E3;
 }
 
 #tags {
