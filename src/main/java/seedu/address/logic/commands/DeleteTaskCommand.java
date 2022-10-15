@@ -30,6 +30,7 @@ public class DeleteTaskCommand extends Command {
      * Creates a DeleteTaskCommand to delete task at the specified {@code Index}.
      */
     public DeleteTaskCommand(Index index) {
+        requireNonNull(index);
         this.index = index;
     }
 

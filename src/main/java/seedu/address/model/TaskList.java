@@ -32,7 +32,7 @@ public class TaskList implements ReadOnlyTaskList {
 
     @Override
     public ObservableList<Task> getTaskList() {
-        return tasks;
+        return FXCollections.unmodifiableObservableList(tasks);
     }
 
     //// list overwrite operations
@@ -50,7 +50,6 @@ public class TaskList implements ReadOnlyTaskList {
      */
     public void resetData(ReadOnlyTaskList newData) {
         requireNonNull(newData);
-
         setTasks(newData.getTaskList());
     }
 
@@ -58,6 +57,7 @@ public class TaskList implements ReadOnlyTaskList {
      * Adds a task to the task list.
      */
     public void addTask(Task t) {
+        requireNonNull(t);
         tasks.add(t);
     }
 
@@ -65,6 +65,7 @@ public class TaskList implements ReadOnlyTaskList {
      * Check a task for duplicates
      */
     public boolean hasTask(Task t) {
+        requireNonNull(t);
         return tasks.contains(t);
     }
 
@@ -73,6 +74,8 @@ public class TaskList implements ReadOnlyTaskList {
      * {@code target} must exist in the task list.
      */
     public void setTask(Task target, Index targetIndex) {
+        requireNonNull(target);
+        requireNonNull(targetIndex);
         tasks.set(targetIndex.getZeroBased(), target);
     }
 
@@ -80,6 +83,7 @@ public class TaskList implements ReadOnlyTaskList {
      * Deletes the task at the specified {@code Index}.
      */
     public void deleteTask(Index index) {
+        requireNonNull(index);
         tasks.remove(index.getZeroBased());
     }
 
