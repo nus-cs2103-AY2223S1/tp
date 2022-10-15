@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.condonery.logic.commands.client.FindClientCommand;
 import seedu.condonery.logic.parser.Parser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.client.NameContainsKeywordsPredicate;
+import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -28,7 +28,7 @@ public class FindClientCommandParser implements Parser<FindClientCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindClientCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindClientCommand(new ClientNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

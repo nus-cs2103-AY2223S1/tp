@@ -1,4 +1,4 @@
-package seedu.condonery.logic.parser;
+package seedu.condonery.logic.parser.client;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,24 +8,24 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.property.FindPropertyCommand;
-import seedu.condonery.logic.parser.property.FindPropertyCommandParser;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.logic.commands.client.FindClientCommand;
+import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 
-public class FindCommandParserTest {
+public class FindClientCommandParserTest {
 
-    private final FindPropertyCommandParser parser = new FindPropertyCommandParser();
+    private final FindClientCommandParser parser = new FindClientCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindClientCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindPropertyCommand expectedFindCommand =
-            new FindPropertyCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        FindClientCommand expectedFindCommand =
+                new FindClientCommand(new ClientNameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords

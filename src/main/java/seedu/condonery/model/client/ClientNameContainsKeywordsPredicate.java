@@ -8,10 +8,10 @@ import seedu.condonery.commons.util.StringUtil;
 /**
  * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Client> {
+public class ClientNameContainsKeywordsPredicate implements Predicate<Client> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public ClientNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,7 +24,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Client> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.condonery.model.client.NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.condonery.model.client.NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof ClientNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((ClientNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 }

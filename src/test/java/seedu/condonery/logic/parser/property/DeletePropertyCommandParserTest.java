@@ -1,4 +1,4 @@
-package seedu.condonery.logic.parser;
+package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -8,6 +8,7 @@ import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.logic.commands.DeleteCommand;
+import seedu.condonery.logic.parser.DeleteCommandParser;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -16,7 +17,7 @@ import seedu.condonery.logic.commands.DeleteCommand;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteCommandParserTest {
+public class DeletePropertyCommandParserTest {
 
     private final DeleteCommandParser parser = new DeleteCommandParser();
 

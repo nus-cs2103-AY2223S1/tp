@@ -1,4 +1,4 @@
-package seedu.condonery.logic.parser;
+package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -28,8 +28,9 @@ import org.junit.jupiter.api.Test;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
-import seedu.condonery.model.property.Address;
-import seedu.condonery.model.property.Name;
+import seedu.condonery.logic.parser.EditCommandParser;
+import seedu.condonery.model.fields.Address;
+import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 

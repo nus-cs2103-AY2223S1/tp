@@ -15,8 +15,8 @@ import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
 /**
@@ -115,7 +115,7 @@ public class CommandTestUtil {
 
         Property person = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }

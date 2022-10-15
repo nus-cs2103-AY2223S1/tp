@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.commons.core.GuiSettings;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.PropertyDirectoryBuilder;
 
 public class ModelManagerTest {
@@ -121,7 +121,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = PINNACLE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPropertyList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(propertyDirectory, clientDirectory, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

@@ -9,8 +9,8 @@ import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.ReadOnlyClientDirectory;
 import seedu.condonery.model.ReadOnlyPropertyDirectory;
 import seedu.condonery.model.client.Client;
-import seedu.condonery.model.property.Address;
-import seedu.condonery.model.property.Name;
+import seedu.condonery.model.fields.Address;
+import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
@@ -32,6 +32,12 @@ public class SampleDataUtil {
     public static Client[] getSampleClients() {
         // TODO: add sample client data
         return new Client[] {
+            new Client(new Name("Dennis Tan"), new Address("Wall St, #1G, S085301"),
+                    getTagSet("High-End", "Available")),
+            new Client(new Name("Jeremy Tan"), new Address("11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450"),
+                    getTagSet("High-End", "Sold")),
+            new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
+                    getTagSet("High-End", "Reserved"))
         };
     }
 

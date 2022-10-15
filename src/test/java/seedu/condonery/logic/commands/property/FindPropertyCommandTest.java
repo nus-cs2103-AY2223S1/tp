@@ -1,4 +1,4 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.property;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,16 +15,16 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.property.FindPropertyCommand;
+import seedu.condonery.logic.commands.CommandTestUtil;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.ModelManager;
 import seedu.condonery.model.UserPrefs;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindCommandTest {
+public class FindPropertyCommandTest {
     private final Model model = new ModelManager(getTypicalPropertyDirectory(),
             getTypicalClientDirectory(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalPropertyDirectory(),
@@ -32,10 +32,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-            new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-            new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PropertyNameContainsKeywordsPredicate firstPredicate =
+            new PropertyNameContainsKeywordsPredicate(Collections.singletonList("first"));
+        PropertyNameContainsKeywordsPredicate secondPredicate =
+            new PropertyNameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindPropertyCommand findFirstCommand = new FindPropertyCommand(firstPredicate);
         FindPropertyCommand findSecondCommand = new FindPropertyCommand(secondPredicate);
@@ -60,7 +60,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPropertyFound() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PropertyNameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -70,7 +70,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PropertyNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate);
         CommandTestUtil.assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -80,7 +80,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PropertyNameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PropertyNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

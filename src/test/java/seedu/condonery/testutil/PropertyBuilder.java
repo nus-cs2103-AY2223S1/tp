@@ -3,8 +3,8 @@ package seedu.condonery.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.condonery.model.property.Address;
-import seedu.condonery.model.property.Name;
+import seedu.condonery.model.fields.Address;
+import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 import seedu.condonery.model.util.SampleDataUtil;

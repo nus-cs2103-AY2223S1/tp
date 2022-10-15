@@ -17,14 +17,16 @@ import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
-import seedu.condonery.logic.commands.property.FindPropertyCommand;
 import seedu.condonery.logic.commands.HelpCommand;
+import seedu.condonery.logic.commands.client.FindClientCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
 import seedu.condonery.logic.commands.property.DeletePropertyCommand;
+import seedu.condonery.logic.commands.property.FindPropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 import seedu.condonery.testutil.PropertyBuilder;
 import seedu.condonery.testutil.PropertyUtil;
@@ -34,7 +36,7 @@ public class CondoneryParserTest {
     private final CondoneryParser parser = new CondoneryParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addProperty() throws Exception {
         Property property = new PropertyBuilder().build();
         AddPropertyCommand command = (AddPropertyCommand) parser.parseCommand(PropertyUtil.getAddCommand(property));
         assertEquals(new AddPropertyCommand(property), command);
@@ -47,14 +49,14 @@ public class CondoneryParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteProperty() throws Exception {
         DeletePropertyCommand command = (DeletePropertyCommand) parser.parseCommand(
             DeletePropertyCommand.COMMAND_WORD + " " + INDEX_FIRST_PROPERTY.getOneBased());
         assertEquals(new DeletePropertyCommand(INDEX_FIRST_PROPERTY), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editProperty() throws Exception {
         Property property = new PropertyBuilder().build();
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(property).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
@@ -69,11 +71,19 @@ public class CondoneryParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findProperty() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindPropertyCommand command = (FindPropertyCommand) parser.parseCommand(
             FindPropertyCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindPropertyCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindPropertyCommand(new PropertyNameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findClient() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindClientCommand command = (FindClientCommand) parser.parseCommand(
+                FindClientCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindClientCommand(new ClientNameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -83,7 +93,7 @@ public class CondoneryParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_listProperty() throws Exception {
         assertTrue(parser.parseCommand(ListPropertyCommand.COMMAND_WORD) instanceof ListPropertyCommand);
         assertTrue(parser.parseCommand(ListPropertyCommand.COMMAND_WORD + " 3") instanceof ListPropertyCommand);
     }

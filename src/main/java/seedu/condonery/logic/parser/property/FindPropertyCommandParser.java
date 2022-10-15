@@ -7,7 +7,7 @@ import java.util.Arrays;
 import seedu.condonery.logic.commands.property.FindPropertyCommand;
 import seedu.condonery.logic.parser.Parser;
 import seedu.condonery.logic.parser.exceptions.ParseException;
-import seedu.condonery.model.property.NameContainsKeywordsPredicate;
+import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -28,7 +28,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindPropertyCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindPropertyCommand(new PropertyNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
