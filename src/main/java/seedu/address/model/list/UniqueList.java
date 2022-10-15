@@ -1,4 +1,4 @@
-package seedu.address.model.util;
+package seedu.address.model.list;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +21,7 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent project as the given argument.
+     * Returns true if the list contains an equivalent object (by comparing name) as the given argument.
      */
     public boolean contains(T toCheck) {
         requireNonNull(toCheck);
@@ -29,8 +29,8 @@ public class UniqueList<T extends ComparableByName<T>> implements Iterable<T> {
     }
 
     /**
-     * Adds a project to the list.
-     * The project must not already exist in the list.
+     * Adds an object T to the list.
+     * The object must not already exist in the list.
      */
     public void add(T toAdd) {
         requireNonNull(toAdd);
