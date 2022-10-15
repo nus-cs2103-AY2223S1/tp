@@ -18,6 +18,7 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonGroup;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_ASSIGNMENT = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -35,6 +37,7 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_ASSIGNMENT_1 = "assignment 0";
+    private static final String VALID_PERSONGROUP_1 = "Alpha";
 
 
     private static final String WHITESPACE = " \t\r\n";
@@ -203,9 +206,25 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() {
+    public void parseAssignment_validValueWithoutWhitespace_returnsAssignment() throws Exception {
         Assignment expectedAssignment = new Assignment(VALID_ASSIGNMENT_1);
         assertEquals(expectedAssignment, ParserUtil.parseAssignment(VALID_ASSIGNMENT_1));
+    }
+
+    @Test
+    public void parseAssignment_invalidValue_tthrowsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAssignment(INVALID_ASSIGNMENT));
+    }
+
+    @Test
+    public void parsePersonGroup_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePersonGroup(null));
+    }
+
+    @Test
+    public void parsePersonGroup_validValueWithoutWhitespace_returnsPersonGroup() {
+        PersonGroup expectedPersonGroup = new PersonGroup(VALID_PERSONGROUP_1);
+        assertEquals(expectedPersonGroup, ParserUtil.parsePersonGroup(VALID_PERSONGROUP_1));
     }
 
 }
