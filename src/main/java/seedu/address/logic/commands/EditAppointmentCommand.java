@@ -65,14 +65,14 @@ public class EditAppointmentCommand extends Command {
         }
 
         Appointment targetAppointment = appointmentList.get(index.getZeroBased());
+        List<Appointment> currentAppts = targetAppointment.getPatient().getAppointments();
+        int index = currentAppts.indexOf(targetAppointment);
         Appointment editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
-        if (hasSameTime(appointmentList, targetAppointment, editedAppointment)) {
+        if (hasSameTime(currentAppts, targetAppointment, editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
-
         model.setAppointment(targetAppointment, editedAppointment);
-        List<Appointment> currentAppts = editedAppointment.getPatient().getAppointments();
-        currentAppts.set(currentAppts.indexOf(targetAppointment), editedAppointment);
+        currentAppts.set(index, editedAppointment);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS,
                 editedAppointment.getPatient().getName(), editedAppointment));
     }
