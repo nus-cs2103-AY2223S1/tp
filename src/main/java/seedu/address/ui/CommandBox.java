@@ -84,6 +84,7 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
             commandTextField.setText(prevCommand);
+            commandTextField.positionCaret(commandTextField.getLength());
             break;
         case DOWN:
             String nextCommand = commandHistoryStorage.down();
@@ -92,6 +93,7 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
             commandTextField.setText(nextCommand);
+            commandTextField.positionCaret(commandTextField.getLength());
             break;
         default:
             return;
