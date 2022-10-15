@@ -35,7 +35,7 @@ public class CommandResult {
      * {@code specific} is set to their default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, null);
+        this(feedbackToUser, showHelp, exit, CommandSpecific.NONSPECIFIC);
     }
 
     /**
