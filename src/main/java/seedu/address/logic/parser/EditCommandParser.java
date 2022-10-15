@@ -60,7 +60,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editEntryDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
 
-        editEntryDescriptor.setTags(parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).orElse(null));
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
 
 
         if (!editEntryDescriptor.isAnyFieldEdited() || argMultimap.getValue(PREFIX_TYPE).isEmpty()) {

@@ -21,6 +21,7 @@ public class ExpenditureBuilder {
     public static final String DEFAULT_DESC = "Food";
     public static final String DEFAULT_AMT = "5.30";
     public static final String DEFAULT_DATE = "22-09-2022";
+    public static final String DEFAULT_TAG = "Meal";
 
     private Description description;
     private Amount amount;
@@ -35,6 +36,7 @@ public class ExpenditureBuilder {
         this.amount = new Amount(DEFAULT_AMT);
         this.date = new Date(DEFAULT_DATE);
         this.tags = new HashSet<>();
+        this.tags.add(new seedu.address.model.tag.Tag(DEFAULT_TAG));
     }
 
     /**
