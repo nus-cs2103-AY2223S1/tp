@@ -37,6 +37,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VISIT_STATUS_DESC_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
@@ -120,13 +121,13 @@ public class AddCommandParserTest {
         // zero dateTimes
         Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesTimes().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + VISIT_STATUS_DESC_AMY,
                 new AddCommand(expectedPersonNoDatesTimes));
 
         // zero tags
         Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATETIME_DESC_AMY,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATETIME_DESC_AMY + VISIT_STATUS_DESC_AMY,
                 new AddCommand(expectedPersonNoTag));
     }
 

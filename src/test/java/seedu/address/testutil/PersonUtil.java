@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 
 import java.util.List;
 import java.util.Set;
@@ -50,6 +51,7 @@ public class PersonUtil {
             Patient patient = (Patient) person;
             patient.getDatesTimes().stream().forEach(
                     s -> sb.append(PREFIX_DATE_AND_TIME + s.getString() + " "));
+            sb.append(PREFIX_VISIT_STATUS + ((Patient) person).getVisitStatus().getVisitStatusString() + " ");
         }
         return sb.toString();
     }

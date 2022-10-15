@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -42,10 +41,10 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Optional<Person> personToMark = lastShownList.stream().filter(p -> p.getUid().equals(this.uid)).findFirst();
         new EditCommand(uid, editPersonDescriptor).execute(model);
-        return new CommandResult(String.format(MESSAGE_MARK_PATIENT_SUCCESS, personToMark));
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person markedPerson = lastShownList.stream().filter(p -> p.getUid().equals(this.uid)).findFirst().get();
+        return new CommandResult(String.format(MESSAGE_MARK_PATIENT_SUCCESS, markedPerson));
     }
 
     @Override

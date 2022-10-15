@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VISITED_STATUS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -20,9 +21,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Uid;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -31,26 +30,23 @@ import seedu.address.testutil.PersonBuilder;
 public class MarkCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Uid outOfBoundUid = new Uid(99998L);
 
     @Test
     public void execute_validUidUnfilteredList_success() {
         Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient patient = (Patient) personToMark;
         MarkCommand markCommand = new MarkCommand(personToMark.getUid());
 
-        Patient editedPatient = new PatientBuilder().withUid(personToMark.getUid().toString()).build();
-
-        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PATIENT_SUCCESS, editedPatient);
-
+        Patient markedPatient = new PatientBuilder(personToMark).withVisitStatus(VALID_VISITED_STATUS).build();
+        String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PATIENT_SUCCESS, markedPatient);
         ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPatient);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), markedPatient);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidUidUnfilteredList_throwsCommandException() {
-        Uid outOfBoundUid = new Uid(99999L);
         MarkCommand markCommand = new MarkCommand(outOfBoundUid);
 
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
@@ -63,13 +59,9 @@ public class MarkCommandTest {
         Person personToMark = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         MarkCommand markCommand = new MarkCommand(personToMark.getUid());
 
-        Person markedPatient = new PersonBuilder().withUid(personToMark.getUid().toString()).build();
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(markedPatient)
-                .withVisitStatus("true").build();
-
+        Patient markedPatient = new PatientBuilder(personToMark).withVisitStatus(VALID_VISITED_STATUS).build();
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PATIENT_SUCCESS, markedPatient);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), markedPatient);
 
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);

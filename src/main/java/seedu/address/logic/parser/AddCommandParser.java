@@ -45,7 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_NAME,
-                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME);
+                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME,
+                PREFIX_VISIT_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
                 PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
@@ -61,7 +62,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         List<DateTime> dateTimeList = ParserUtil.parseDatesTimes(argMultimap.getAllValues(PREFIX_DATE_AND_TIME));
-        VisitStatus visitStatus = ParserUtil.parseVisitStatus(argMultimap.getValue(PREFIX_VISIT_STATUS).get());
 
         String categorySymbol = category.toString();
         Person person;
@@ -69,6 +69,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (categorySymbol.equals(NURSE_SYMBOL)) {
             person = new Nurse(id, name, gender, phone, email, address, tagList);
         } else if (categorySymbol.equals(PATIENT_SYMBOL)) {
+            VisitStatus visitStatus = ParserUtil.parseVisitStatus(argMultimap.getValue(PREFIX_VISIT_STATUS).get());
             person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList, visitStatus);
         } else {
             throw new ParseException("Illegal category detected!");

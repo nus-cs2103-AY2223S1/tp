@@ -79,6 +79,7 @@ public class Patient extends Person {
     public String toString() {
         String dateTimeList = getDatesTimesInString();
         return "Category: P " + super.toString()
-                + "; Home Visits Date and Time :" + dateTimeList;
+                + "; Home Visits Date and Time:" + dateTimeList
+                + "; Visit Status: " + getVisitStatus();
     }
 }

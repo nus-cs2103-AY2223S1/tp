@@ -80,6 +80,7 @@ public class CommandTestUtil {
     public static final String DATETIME_DESC_BOB = " " + PREFIX_DATE_AND_TIME + VALID_DATETIME_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String VISIT_STATUS_DESC_AMY = " " + PREFIX_VISIT_STATUS + VALID_VISITED_STATUS;
 
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "NP"; // only N or P is allowed.
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -102,7 +103,8 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_AMY).withName(VALID_NAME_AMY)
                 .withGender(VALID_GENDER_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).withVisitStatus(VALID_NOT_VISITED_STATUS)
+                .build();
         DESC_BOB = new EditPersonDescriptorBuilder().withCategory(VALID_CATEGORY_BOB).withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
