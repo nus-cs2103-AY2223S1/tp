@@ -6,6 +6,10 @@
     "email" : "alice@example.com",
     "handle" : "alice",
     "username" : "alifur",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +17,10 @@
     "email" : "johnd@example.com",
     "handle" : "bensonhaha",
     "username" : "benji",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +28,10 @@
     "email" : "heinz@example.com",
     "handle" : "magcarlsen",
     "username" : "carl69",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +39,10 @@
     "email" : "cornelia@example.com",
     "handle" : "dannylim",
     "username" : "dashi",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +50,10 @@
     "email" : "werner@example.com",
     "handle" : "ellie",
     "username" : "goldl8ol",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +61,10 @@
     "email" : "lydia@example.com",
     "handle" : "fionalim",
     "username" : "EDXs",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +72,10 @@
     "email" : "anna@example.com",
     "handle" : "georgesim",
     "username" : "pizzac0der",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   } ]
 }

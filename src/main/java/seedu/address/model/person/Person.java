@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,11 +27,14 @@ public class Person {
     // Data fields
     private final Telegram handle;
     private final Set<Tag> tags = new HashSet<>();
+    private final ObservableList<Mod> mods =
+            FXCollections.observableArrayList();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Telegram handle, GitHub gitHub, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Telegram handle,
+          GitHub gitHub, Set<Tag> tags, ObservableList<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
@@ -36,6 +42,7 @@ public class Person {
         this.handle = handle;
         this.tags.addAll(tags);
         this.gitHub = gitHub;
+        this.mods.addAll(mods);
     }
 
     public Name getName() {
@@ -64,6 +71,67 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable mods set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public ObservableList<Mod> getMods() {
+        return FXCollections.unmodifiableObservableList(mods);
+    }
+
+    /**
+     * Appends a set of mods to the current mods linked to this batchmate.
+     *
+     * @param mods The set of mods to add in.
+     */
+    public void addMods(ObservableList<Mod> mods) {
+        Set<Mod> uniqueModsSet = mods
+                .stream()
+                .filter(mod -> !this.mods.contains(mod))
+                .collect(Collectors.toSet());
+
+        this.mods.addAll(uniqueModsSet);
+    }
+
+    /**
+     * Checks if the all mods provided can be found and edited in the set of mods linked to this batchmate.
+     *
+     * @param mods The set of mods to be edited.
+     */
+    public boolean canEditMods(ObservableList<Mod> mods) {
+        return this.mods.containsAll(mods);
+    }
+
+    /**
+     * Removes all mods in {@code mods} from the current set of mods linked to this batchmate.
+     *
+     * @param mods The set of mods to be deleted.
+     */
+    public void deleteMods(ObservableList<Mod> mods) {
+        this.mods.removeAll(mods);
+    }
+
+    /**
+     * Marks all mods in {@code mods} in the current set of mods linked to this batchmate as taken.
+     *
+     * @param mods The set of mods to be marked.
+     */
+    public void markMods(ObservableList<Mod> mods) {
+        for (int i = 0; i < mods.size(); i++) {
+            for (int j = 0; j < this.mods.size(); j++) {
+
+                Mod currentMod = this.mods.get(j);
+                String currentModName = currentMod.modName;
+                String targetModName = mods.get(i).modName;
+
+                if (currentModName.equals(targetModName)) {
+                    currentMod.markMod();
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -98,13 +166,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getTelegram().equals(getTelegram())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getMods().equals(getMods());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, handle, gitHub, tags);
+        return Objects.hash(name, phone, email, handle, gitHub, tags, mods);
     }
 
     @Override
@@ -124,6 +193,10 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!mods.isEmpty()) {
+            builder.append("; Mods: ");
+            mods.forEach(builder::append);
         }
         return builder.toString();
     }
