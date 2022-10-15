@@ -34,7 +34,7 @@ public class AddPolicyCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New policy added: %1$s";
     public static final String MESSAGE_DUPLICATE_POLICY = "This policy already exists in the address book";
 
-    private final Policy toAdd;
+    final Policy toAdd;
 
     /**
      * Creates an AddPolicyCommand to add the specified {@code Policy}

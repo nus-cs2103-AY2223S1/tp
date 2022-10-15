@@ -6,10 +6,13 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import longtimenosee.model.event.Event;
+import longtimenosee.model.event.UniqueEventList;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.person.UniquePersonList;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.model.policy.UniquePolicyList;
+
 
 
 /**
@@ -21,6 +24,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniquePolicyList policies;
 
+    private final UniqueEventList events;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -31,6 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         policies = new UniquePolicyList();
+        events = new UniqueEventList();
 
     }
 
@@ -182,4 +188,27 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode() + policies.hashCode();
     }
 
+    /**
+     * Checks the existing personList if a person has a name which matches the name given.
+     * @param personName
+     * @return
+     */
+    public boolean hasPersonByName(String personName) {
+        return persons.hasPersonByName(personName);
+    }
+
+    public void addEvent(Event e) {
+    }
+
+    public boolean hasEvent(Event toAdd) {
+        return events.hasEvent(toAdd);
+    }
+    public void removeEvent(Event e) {
+        events.deleteEvent(e);
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return events.asUnmodifiableObservableList();
+    }
 }

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import longtimenosee.commons.core.GuiSettings;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 
@@ -19,6 +20,9 @@ public interface Model {
 
     Predicate<Policy> PREDICATE_SHOW_ALL_POLICIES = unused -> true;
     Predicate<Policy> PREDICATE_SHOW_NO_POLICIES = unused -> true;
+
+    //TODO: Determine if we should use show all events like this?
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -97,10 +101,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-
-
-
     /**
      * Returns true if a policy with the same identity as {@code Policy} exists in the address book.
      */
@@ -133,4 +133,27 @@ public interface Model {
      */
     void updateFilteredPolicyList(Predicate<Policy> predicate);
 
+    /**
+     * Adds the Event specified.
+     */
+    void addEvent(Event toAdd, String personName);
+
+    /**
+     * Checks if there is an overlapping
+     * @param toAdd Event to be added
+     * @return
+     */
+    boolean hasEventOverlap(Event toAdd);
+
+    /**
+     * Checks if there is already an existing event
+     * @param toAdd
+     * @return
+     */
+    boolean hasEvent(Event toAdd);
+
+    void deleteEvent(Event toDelete); //TODO: Delete event
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
 }

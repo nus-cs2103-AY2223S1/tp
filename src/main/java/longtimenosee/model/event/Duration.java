@@ -18,11 +18,13 @@ import java.time.temporal.ChronoUnit;
 public class Duration {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Start and End times should follow the format: HH:MM ; Start cannot be before end.";
+            "Start cannot be before end.";
+    public static final String FORMAT_CONSTRAINTS =
+            "Dates input must follow : HH:MM";
     private static final double MINUTES_IN_HOUR = 60;
     private static LocalTime startTime;
     private static LocalTime endTime;
-    private String value;
+    public final String value;
 
     /**
      * For Input: The string value is seperated by "__". This is also what is saved in Storage
@@ -40,7 +42,7 @@ public class Duration {
     }
 
     /**
-     * Used for validation purposes in ParserUtil
+     * Used for validation purposes in ParserUtil, to check if each individual date given can be parsed
      * Will be used to parse both start and end times (individually)
      * @param time
      * @return isValidTime or not
@@ -56,7 +58,8 @@ public class Duration {
 
     /**
      * Used for validation purposes in ParserUtil
-     * The deliminator "__" will be added in between both start and end times
+     * The deliminator "__" will be added in between both start and end times after
+     * both have been individually validated
      * returns whether endTime is after startTime
      * @param time
      * @return isValidTime or not

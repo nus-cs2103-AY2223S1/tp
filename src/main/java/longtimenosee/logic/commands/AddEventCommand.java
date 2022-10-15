@@ -1,0 +1,78 @@
+package longtimenosee.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_DATE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_START_TIME;
+
+import longtimenosee.logic.commands.exceptions.CommandException;
+import longtimenosee.model.Model;
+import longtimenosee.model.event.Event;
+import longtimenosee.model.person.exceptions.PersonNotFoundException;
+
+/**
+ * Adds an Event to the address book.
+ */
+public class AddEventCommand extends Command {
+    public static final String COMMAND_WORD = "newEvent";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_OVERLAP_EVENT = "The event you would like to add overlaps with another event"
+            + "Perhaps choose a different timing? ";
+    public static final String MESSAGE_PERSON_NOT_FOUND = "The person you've selected currently does not "
+            + "exist in our addressBook. Please choose another name!";
+
+    public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event to the address book. "
+            + "Parameters: "
+            + PREFIX_DESCRIPTION + "Description "
+            + PREFIX_PERSON_NAME + "Person Name "
+            + PREFIX_DATE + "Date "
+            + PREFIX_START_TIME + "Start time "
+            + PREFIX_END_TIME + "End time "
+
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_DESCRIPTION + "Meet Clement at Noon "
+            + PREFIX_PERSON_NAME + "Clement Tan "
+            + PREFIX_DATE + "2022-10-10 "
+            + PREFIX_START_TIME + "12:00 "
+            + PREFIX_END_TIME + "13:00 ";
+
+    private final Event toAdd;
+    /**
+     * Creates an AddEventCommand to add the specified {@code Event}
+     *
+     * @param event
+     */
+    public AddEventCommand(Event event) {
+        requireNonNull(event);
+        toAdd = event;
+    }
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (model.hasEvent(toAdd)) { //TODO: duplicate events?
+            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+        if (model.hasEventOverlap(toAdd)) { //TODO: overlapping events?
+            throw new CommandException(MESSAGE_OVERLAP_EVENT);
+        }
+        try {
+            model.addEvent(toAdd, toAdd.getPersonName().personName);
+        } catch (PersonNotFoundException e) {
+            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        }
+        //TODO: Incorporate into GUI by adding a new field: showEvents?
+        //TODO: showEvents could immediately show the next 7 days, up to implementation
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false);
+    }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddEventCommand // instanceof handles nulls
+                && toAdd.equals(((AddPolicyCommand) other).toAdd));
+    }
+}

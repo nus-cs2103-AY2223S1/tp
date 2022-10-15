@@ -3,8 +3,6 @@ package longtimenosee.model.event;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.AppUtil.checkArgument;
 
-import java.util.Comparator;
-
 /**
  * Represents an Event's PersonName in the addressBook
  * Each event can only be "Tagged" to one person/client.

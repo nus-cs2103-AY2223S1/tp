@@ -17,7 +17,7 @@ public class Date {
 
     public static final String STANDARD_DATE = "yyyy-MM-dd";
 
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Date of Birth must follow Format: " + STANDARD_DATE;
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates must follow Format: " + STANDARD_DATE;
 
     private static final String DATE_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public final String value;
@@ -45,7 +45,7 @@ public class Date {
         return dateTime;
     }
 
-    private boolean isValidFormat(String value) {
+    public static boolean isValidFormat(String value) {
         return value.matches(DATE_VALIDATION_REGEX);
     }
     @Override

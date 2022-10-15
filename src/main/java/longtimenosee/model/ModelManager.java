@@ -12,7 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import longtimenosee.commons.core.GuiSettings;
 import longtimenosee.commons.core.LogsCenter;
+import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.person.exceptions.PersonNotFoundException;
 import longtimenosee.model.policy.Policy;
 
 /**
@@ -24,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Policy> filteredPolicies;
+
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredPolicies = new FilteredList<>(this.addressBook.getPolicyList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
 
     }
 
@@ -195,4 +200,41 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPolicies.setPredicate(predicate);
     }
+    //=========== Event stuff =============================================================
+    @Override
+    public void addEvent(Event e, String personName) throws PersonNotFoundException {
+        if (!addressBook.hasPersonByName(personName)) {
+            throw new PersonNotFoundException();
+        }
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        addressBook.addEvent(e);
+    }
+
+    private void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
+
+    @Override
+    public boolean hasEventOverlap(Event toAdd) {
+        return false;
+    }
+
+    @Override
+    public boolean hasEvent(Event toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.hasEvent(toAdd);
+    }
+
+    @Override
+    public void deleteEvent(Event e) {
+        requireNonNull(e);
+        addressBook.removeEvent(e);
+    }
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
 }

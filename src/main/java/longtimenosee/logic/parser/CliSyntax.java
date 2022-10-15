@@ -26,4 +26,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMMISSION = new Prefix("cms/");
     public static final Prefix PREFIX_COVERAGES = new Prefix("cov/");
 
+    /* Policy prefix definitions */
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("desc/");
+    public static final Prefix PREFIX_PERSON_NAME = new Prefix("pName/");
+    public static final Prefix PREFIX_DATE = new Prefix("date/");
+    public static final Prefix PREFIX_START_TIME = new Prefix("start/");
+    public static final Prefix PREFIX_END_TIME = new Prefix("end/");
+
+
 }

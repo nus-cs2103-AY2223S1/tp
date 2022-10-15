@@ -146,4 +146,16 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+    /**
+     * Returns true if {@code persons} contains a person with a given name.
+     */
+    public boolean hasPersonByName(String personName) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Person p = internalList.get(i);
+            if (p.getName().equals(personName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

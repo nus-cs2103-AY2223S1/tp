@@ -38,6 +38,10 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of policies */
     ObservableList<Policy> getFilteredPolicyList();
 
+    /** Returns an unmodifiable view of the filtered list of events */
+    //ObservableList<Policy> getFilteredEventList(); //TODO: Decide if
+
+
     /**
      * Returns the user prefs' address book file path.
      */

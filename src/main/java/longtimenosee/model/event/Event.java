@@ -2,12 +2,6 @@ package longtimenosee.model.event;
 
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-
-
 /**
  * Represents an Event in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -92,9 +86,18 @@ public class Event {
                 && otherEvent.getPersonName().equals(((Event) other).getPersonName())
                 && otherEvent.getDuration().equals(this.getDuration());
     }
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("; Description: ")
+                .append(getDescription())
+                .append("; Attendees : ")
+                .append(getPersonName())
+                .append(", Date: ")
+                .append(getDate())
+                .append(", Duration: ")
+                .append(getDuration());
 
-
-
-
-
+        return builder.toString();
+    }
 }

@@ -10,7 +10,8 @@ import static longtimenosee.commons.util.AppUtil.checkArgument;
 public class Description {
 
 
-    public static final String MESSAGE_CONSTRAINTS = "Description should only contain alphanumeric characters and spaces.";
+    public static final String MESSAGE_CONSTRAINTS = "Description should only contain "
+        + "alphanumeric characters and spaces.";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -18,7 +19,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String description;
+    private String description;
     /**
      * Constructs a {@code Description}.
      *
@@ -37,6 +38,9 @@ public class Description {
     }
     @Override
     public String toString() {
+        return description;
+    }
+    public String retrieveDescription() {
         return description;
     }
 

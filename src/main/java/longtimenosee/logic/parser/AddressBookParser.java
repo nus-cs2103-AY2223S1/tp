@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import longtimenosee.logic.commands.AddCommand;
+import longtimenosee.logic.commands.AddEventCommand;
 import longtimenosee.logic.commands.AddPolicyCommand;
 import longtimenosee.logic.commands.ClearCommand;
 import longtimenosee.logic.commands.Command;
@@ -90,6 +91,8 @@ public class AddressBookParser {
 
         case PersonCommand.COMMAND_WORD:
             return new PersonCommand();
+        case AddEventCommand.COMMAND_WORD:
+            return new AddEventCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
