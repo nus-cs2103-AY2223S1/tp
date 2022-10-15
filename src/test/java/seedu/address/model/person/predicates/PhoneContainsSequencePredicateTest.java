@@ -44,11 +44,7 @@ class PhoneContainsSequencePredicateTest {
         assertFalse(predicate.test(personToTest));
 
         // Incomplete match
-        predicate = new PhoneContainsSequencePredicate("22");
-        assertFalse(predicate.test(personToTest));
-
-        // Incomplete match
-        predicate = new PhoneContainsSequencePredicate("2468");
+        predicate = new PhoneContainsSequencePredicate("24");
         assertFalse(predicate.test(personToTest));
 
         // Incomplete match

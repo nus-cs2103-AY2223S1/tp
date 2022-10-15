@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
@@ -11,11 +13,13 @@ import seedu.address.model.person.Person;
 public class AppointmentBuilder {
     public static final String DEFAULT_REASON = "Cough";
     public static final LocalDateTime DEFAULT_DATE_TIME = LocalDateTime.parse("2000-12-31T00:00");
+    public static final List<Integer> DEFAULT_TIME_PERIOD = Arrays.asList(0, 0, 0);
     public static final boolean DEFAULT_MARK_STATUS = false;
     public static final Person DEFAULT_PATIENT = new PersonBuilder().build();
 
     private String reason;
     private LocalDateTime dateTime;
+    private List<Integer> timePeriod;
     private boolean isMarked;
     private Person patient;
 
@@ -27,6 +31,7 @@ public class AppointmentBuilder {
         dateTime = DEFAULT_DATE_TIME;
         isMarked = DEFAULT_MARK_STATUS;
         patient = DEFAULT_PATIENT;
+        timePeriod = DEFAULT_TIME_PERIOD;
     }
 
     /**
@@ -56,6 +61,14 @@ public class AppointmentBuilder {
     }
 
     /**
+     * Sets the {@code timePeriod} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withTimePeriod(List<Integer> timePeriod) {
+        this.timePeriod = timePeriod;
+        return this;
+    }
+
+    /**
      * Sets the {@code status} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withMarkStatus(boolean status) {
@@ -77,7 +90,7 @@ public class AppointmentBuilder {
      * @return An {@code Appointment}
      */
     public Appointment build() {
-        Appointment appointment = new Appointment(reason, dateTime, isMarked);
+        Appointment appointment = new Appointment(reason, dateTime, timePeriod, isMarked);
         appointment.setPatient(patient);
         return appointment;
     }

@@ -35,15 +35,11 @@ class AddressContainsSequencePredicateTest {
         assertTrue(predicate.test(personToTest));
 
         // Contains sequence
-        predicate = new AddressContainsSequencePredicate("Blk 22 Potato Street 29, #06-40");
-        assertTrue(predicate.test(personToTest));
-
-        // Can find emails through spaces
-        predicate = new AddressContainsSequencePredicate("ato Street 2");
+        predicate = new AddressContainsSequencePredicate("ato Str");
         assertTrue(predicate.test(personToTest));
 
         // Mixed-case sequence
-        predicate = new AddressContainsSequencePredicate("SINgAPORE 123456");
+        predicate = new AddressContainsSequencePredicate("SINgAPORE");
         assertTrue(predicate.test(personToTest));
     }
 

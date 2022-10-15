@@ -30,11 +30,7 @@ class ReasonContainsSequencePredicateTest {
         ReasonContainsSequencePredicate predicate = new ReasonContainsSequencePredicate("Sore Throat");
         assertTrue(predicate.test(appointmentToTest));
 
-        // Contains sequence
-        predicate = new ReasonContainsSequencePredicate("Sore");
-        assertTrue(predicate.test(appointmentToTest));
-
-        // Can find reason through spaces
+        // Contains sequence, can find reason through spaces
         predicate = new ReasonContainsSequencePredicate("re Thro");
         assertTrue(predicate.test(appointmentToTest));
 

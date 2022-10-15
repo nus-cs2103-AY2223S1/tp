@@ -31,10 +31,6 @@ class EmailContainsSequencePredicateTest {
         assertTrue(predicate.test(personToTest));
 
         // Contains sequence
-        predicate = new EmailContainsSequencePredicate("Alice");
-        assertTrue(predicate.test(personToTest));
-
-        // Contains sequence
         predicate = new EmailContainsSequencePredicate("gmail");
         assertTrue(predicate.test(personToTest));
 
@@ -52,11 +48,7 @@ class EmailContainsSequencePredicateTest {
         Person personToTest = generatePersonWithEmail("John@gmail.com");
 
         // Non-matching sequence
-        EmailContainsSequencePredicate predicate = new EmailContainsSequencePredicate("Alice");
-        assertFalse(predicate.test(personToTest));
-
-        // Non-matching sequence
-        predicate = new EmailContainsSequencePredicate("google");
+        EmailContainsSequencePredicate predicate = new EmailContainsSequencePredicate("google");
         assertFalse(predicate.test(personToTest));
 
         // Incomplete match

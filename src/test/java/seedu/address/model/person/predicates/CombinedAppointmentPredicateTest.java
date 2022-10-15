@@ -113,7 +113,7 @@ class CombinedAppointmentPredicateTest {
 
         // Incomplete reason match
         String stricterReason = reason + " and sore throat";
-        predicate = new CombinedAppointmentPredicate(stricterReason, minTime, minTime);
+        predicate = new CombinedAppointmentPredicate(stricterReason, minTime, maxTime);
         assertFalse(predicate.test(appointmentToTest));
     }
 }

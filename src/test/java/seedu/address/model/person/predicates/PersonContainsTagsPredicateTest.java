@@ -36,11 +36,7 @@ class PersonContainsTagsPredicateTest {
                 PredicateGeneratorUtil.generatePersonsContainsTagsPredicate("Tag3", "Tag4", "Tag5");
         assertTrue(predicate.test(personToTest));
 
-        // Matches all search tags
-        predicate = PredicateGeneratorUtil.generatePersonsContainsTagsPredicate("Tag3", "Tag4");
-        assertTrue(predicate.test(personToTest));
-
-        // Mixed-case works
+        // Matches all search tags, mixed-case works
         predicate = PredicateGeneratorUtil.generatePersonsContainsTagsPredicate("TAG3", "tAg4");
         assertTrue(predicate.test(personToTest));
     }
