@@ -80,7 +80,6 @@ public class Event {
         if (otherEvent == this) {
             return true;
         }
-        System.out.println("In Itineraries: " + this.getTitle() + ", toDelete: " + otherEvent.getTitle());
         return otherEvent != null
                 && otherEvent.getTitle().equals(getTitle());
     }
