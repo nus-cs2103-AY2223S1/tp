@@ -14,7 +14,7 @@ public abstract class ModCommand extends Command {
             + "\nmod add INDEX MODULE [MORE_MODULES]... : Adds the entered mods to the batchmate at the index."
             + "\nmod delete INDEX MODULE [MORE_MODULES]... : Deletes the entered mods from the batchmate at the index."
             + "\nmod mark INDEX MODULE [MORE_MODULES]... : Marks the entered mods of the batchmate "
-            + "at the index as taken";
+            + "at the index as taken.";
     public static final String MESSAGE_MODS_EMPTY = "Mods cannot be empty!";
     public static final String MESSAGE_INDEX_EMPTY = "Index cannot be empty!";
 }
