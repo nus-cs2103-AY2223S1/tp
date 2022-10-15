@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.AttendanceList;
+import seedu.address.model.person.Duration;
 import seedu.address.model.person.DurationList;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.GradeProgressList;
@@ -50,6 +52,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LESSON_PLAN + "LESSON PLAN] "
             + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_ATTENDANCE + "INDEX ATTENDANCE]"
+            + "[" + PREFIX_DURATION + "INDEX DURATION]"
             + "[" + PREFIX_GRADEPROGRESS + "INDEX GRADE PROGRESS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -107,10 +110,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         LessonPlan updatedLessonPlan = editPersonDescriptor.getLessonPlan()
                 .orElse(personToEdit.getLessonPlan());
-        HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
-        AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
+        HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToEdit, editPersonDescriptor);
+        AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToEdit, editPersonDescriptor);
         GradeProgressList updatedGradeProgressList = getUpdatedGradeProgressList(personToEdit, editPersonDescriptor);
-        DurationList updatedDurationList = personToEdit.getDurationList();
+        DurationList updatedDurationList = getUpdatedDurationList(personToEdit, editPersonDescriptor);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedLessonPlan,
@@ -139,7 +142,7 @@ public class EditCommand extends Command {
      * Returns the updated {@code AttendanceList} if edited, or the original list if not.
      */
     public static AttendanceList getUpdatedAttendanceList(Person personToEdit,
-            EditPersonDescriptor editPersonDescriptor) throws CommandException {
+                                                          EditPersonDescriptor editPersonDescriptor) throws CommandException {
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
         Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
         Optional<Index> attendanceIndex = editPersonDescriptor.getAttendanceIndex();
@@ -154,10 +157,28 @@ public class EditCommand extends Command {
     }
 
     /**
+     * Returns the updated {@code DurationList} if edited, or the original list if not.
+     */
+    public static DurationList getUpdatedDurationList(Person personToEdit,
+                                                      EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        DurationList updatedDurationList = personToEdit.getDurationList();
+        Optional<Duration> duration = editPersonDescriptor.getDuration();
+        Optional<Index> durationIndex = editPersonDescriptor.getDurationIndex();
+        if (durationIndex.isEmpty() || duration.isEmpty()) {
+            return updatedDurationList;
+        }
+        if (!updatedDurationList.isValidIndex(durationIndex.get())) {
+            throw new CommandException(DurationList.MESSAGE_INVALID_DURATION_INDEX);
+        }
+        updatedDurationList.editAtIndex(durationIndex.get(), duration.get());
+        return updatedDurationList;
+    }
+
+    /**
      * Returns the updated {@code GradeProgressList} if edited, or the original list if not.
      */
     public static GradeProgressList getUpdatedGradeProgressList(Person personToEdit,
-            EditPersonDescriptor editPersonDescriptor) throws CommandException {
+                                                                EditPersonDescriptor editPersonDescriptor) throws CommandException {
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
         Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
         Optional<Index> gradeProgressIndex = editPersonDescriptor.getGradeProgressIndex();
@@ -203,6 +224,8 @@ public class EditCommand extends Command {
         private GradeProgress gradeProgress;
         private Index attendanceIndex;
         private Attendance attendance;
+        private Index durationIndex;
+        private Duration duration;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -222,6 +245,8 @@ public class EditCommand extends Command {
             setGradeProgress(toCopy.gradeProgress);
             setAttendanceIndex(toCopy.attendanceIndex);
             setAttendance(toCopy.attendance);
+            setDurationIndex(toCopy.durationIndex);
+            setDuration(toCopy.duration);
             setTags(toCopy.tags);
         }
 
@@ -229,7 +254,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework, gradeProgress, attendance, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework,
+                    gradeProgress, attendance, duration, tags);
         }
 
         public void setName(Name name) {
@@ -302,6 +328,22 @@ public class EditCommand extends Command {
 
         public Optional<Index> getAttendanceIndex() {
             return Optional.ofNullable(attendanceIndex);
+        }
+
+        public Optional<Duration> getDuration() {
+            return Optional.ofNullable(duration);
+        }
+
+        public Optional<Index> getDurationIndex() {
+            return Optional.ofNullable(durationIndex);
+        }
+
+        public void setDurationIndex(Index durationIndex) {
+            this.durationIndex = durationIndex;
+        }
+
+        public void setDuration(Duration duration) {
+            this.duration = duration;
         }
 
         /**

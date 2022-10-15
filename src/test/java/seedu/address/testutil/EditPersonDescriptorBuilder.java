@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Attendance;
+import seedu.address.model.person.Duration;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.LessonPlan;
@@ -94,6 +95,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAttendanceIndex(Index attendanceIndex) {
         descriptor.setAttendanceIndex(attendanceIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Duration} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDuration(String duration) {
+        descriptor.setDuration(new Duration(duration));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Index} of the duration of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDurationIndex(Index durationIndex) {
+        descriptor.setDurationIndex(durationIndex);
         return this;
     }
 

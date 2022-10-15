@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attendance;
+import seedu.address.model.person.Duration;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.LessonPlan;
@@ -158,6 +159,23 @@ public class ParserUtil {
      */
     public static String[] parseAttendanceInfo(String attendanceInfo) throws ParseException {
         String[] args = attendanceInfo.split(" ", 2);
+        if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
+        }
+        return args;
+    }
+
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!Duration.isValidDuration(duration)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+        }
+        return new Duration(trimmedDuration);
+    }
+
+    public static String[] parseDurationInfo(String durationInfo) throws ParseException {
+        String[] args = durationInfo.split(" ", 2);
         if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }

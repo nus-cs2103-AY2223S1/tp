@@ -6,13 +6,14 @@
     "lessonPlan" : "Algorithms",
     "homework": [ "Science worksheet" ],
     "attendance": [ "2019-01-01" ],
+    "duration": ["12:30-13:00"],
     "gradeProgress": [ "English: A+" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "lessonPlan" : "Trigonometry",
-    "homework": [ "Science worksheet", "Math asst" ],
+    "homework": [ "Science worksheet", "math asst" ],
     "attendance": [ "2022-07-12", "2022-07-17" ],
     "duration": ["08:30-09:30"],
     "gradeProgress": ["Math: A"],

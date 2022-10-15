@@ -27,7 +27,7 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("alice Pauline")
             .withPhone("94351253").withLessonPlan("Algorithms").withHomework("Science worksheet")
-            .withAttendance("2019-01-01").withGradeProgress("English: A+")
+            .withAttendance("2019-01-01").withDuration("12:30-13:00").withGradeProgress("English: A+")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withHomework("Science Worksheet", "Math asst").withPhone("98765432").withLessonPlan("Trigonometry")
