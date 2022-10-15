@@ -22,6 +22,8 @@ import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
 import tracko.model.TrackO;
 // import tracko.model.order.NameContainsKeywordsPredicate;
+import tracko.model.items.Item;
+import tracko.model.items.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
 import tracko.model.order.OrderContainsKeywordsPredicate;
 // import tracko.testutil.EditPersonDescriptorBuilder;
@@ -116,7 +118,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
      * {@code model}'s order list.
      */
     public static void showOrderAtIndex(Model model, Index targetIndex) {
@@ -128,6 +130,21 @@ public class CommandTestUtil {
         model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * {@code model}'s order list.
+     */
+    public static void showItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());
+
+        Item item = model.getInventoryList().get(targetIndex.getZeroBased());
+        // Index is at 1 because at 0, every person is initialized to have a keychain.
+        final String[] splitName = item.getItemName().toString().split("\\s+");
+        model.updateFilteredItemList(new ItemContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+
+        assertEquals(1, model.getFilteredItemListSize());
     }
 
 }
