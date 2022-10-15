@@ -17,12 +17,20 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Logic should undo last undoable command. */
+    private final boolean undo;
+
+    /** Logic should redo last undone command. */
+    private final boolean redo;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean undo, boolean redo, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.undo = undo;
+        this.redo = redo;
         this.exit = exit;
     }
 
@@ -31,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -41,6 +49,14 @@ public class CommandResult {
     public boolean isShowHelp() {
         return showHelp;
     }
+
+    public boolean isUndo() { return undo; }
+
+    public boolean isRedo() {
+        return redo;
+    }
+
+    public boolean isUndoRedo() { return undo || redo; }
 
     public boolean isExit() {
         return exit;

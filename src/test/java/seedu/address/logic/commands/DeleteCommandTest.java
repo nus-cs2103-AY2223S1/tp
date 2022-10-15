@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -76,6 +77,36 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void undo_commandExecuted_undoSuccessful() throws Exception {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        deleteCommand.execute(model);
+        deleteCommand.undo(model);
+
+        AddressBook expectedAddressBook = getTypicalAddressBook();
+        expectedAddressBook.removePerson(personToDelete);
+        expectedAddressBook.addPerson(personToDelete);
+
+        assertIterableEquals(expectedAddressBook.getPersonList(), model.getAddressBook().getPersonList());
+    }
+
+    @Test
+    public void redo_commandUndone_redoSuccessful() throws Exception {
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
+
+        deleteCommand.execute(model);
+        deleteCommand.undo(model);
+        deleteCommand.redo(model);
+
+        AddressBook expectedAddressBook = getTypicalAddressBook();
+        expectedAddressBook.removePerson(personToDelete);
+
+        assertEquals(expectedAddressBook.getPersonList(), model.getAddressBook().getPersonList());
     }
 
     @Test

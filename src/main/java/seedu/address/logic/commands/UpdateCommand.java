@@ -31,7 +31,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class UpdateCommand extends Command {
+public class UpdateCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "update";
 
@@ -53,9 +53,14 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_UNDO = "Person unedited: %1$s";
+    public static final String MESSAGE_REDO = "Person re-edited: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+
+    private Person personToEdit;
+    private Person editedPerson;
 
     /**
      * @param index of the person in the filtered person list to edit
@@ -78,8 +83,8 @@ public class UpdateCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        personToEdit = lastShownList.get(index.getZeroBased());
+        editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -88,6 +93,20 @@ public class UpdateCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        model.setPerson(editedPerson, personToEdit);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_UNDO, personToEdit));
+    }
+
+    @Override
+    public CommandResult redo(Model model) {
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_REDO, editedPerson));
     }
 
     /**
