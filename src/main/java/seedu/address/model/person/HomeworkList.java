@@ -81,7 +81,7 @@ public class HomeworkList {
             return toString();
         }
 
-        StringBuilder description = new StringBuilder("Homework:\n");
+        StringBuilder description = new StringBuilder();
         for (int i = 0; i < 2; i++) {
             description.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
         }
@@ -91,7 +91,7 @@ public class HomeworkList {
 
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Homework:\n");
+        StringBuilder description = new StringBuilder();
         if (homeworkList.isEmpty()) {
             description.append("No homework found!\n");
         }
