@@ -59,6 +59,17 @@ public class FileCreateCommandTest {
     }
 
     @Test
+    public void execute_currentFile_throwsCommandException() throws Exception {
+        Path target = getTempFilePath("test.json");
+
+        String expectedMessage = String.format(FileCommand.MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, "test.json");
+        FileCreateCommand fileCreateCommand = new FileCreateCommand(target);
+        FileUtil.createIfMissing(target);
+
+        assertCommandFailure(fileCreateCommand, storage, expectedMessage);
+    }
+
+    @Test
     public void execute_fileAlreadyExists_throwsCommandException() throws IOException {
         String expectedMessage = String.format(FileCreateCommand.MESSAGE_FILE_EXISTS, "AlreadyExists.json");
 
@@ -90,6 +101,16 @@ public class FileCreateCommandTest {
         @Override
         public void createResidentBookFile(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
+        }
+
+        @Override
+        public Path getResidentBookFilePath() {
+            return null;
+        }
+
+        @Override
+        public Path getUserPrefsFilePath() {
+            return null;
         }
     }
 }

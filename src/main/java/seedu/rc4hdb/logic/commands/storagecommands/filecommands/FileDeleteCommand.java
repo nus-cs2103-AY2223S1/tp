@@ -26,6 +26,9 @@ public class FileDeleteCommand extends FileCommand implements StorageCommand {
 
     @Override
     public CommandResult execute(Storage storage) throws CommandException {
+        if (filePath.equals(storage.getResidentBookFilePath())) {
+            throw new CommandException(String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, fileName));
+        }
         try {
             storage.deleteResidentBookFile(filePath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));

@@ -43,6 +43,9 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
     }
 
     private ReadOnlyResidentBook readResidentBook(Storage storage) throws CommandException {
+        if (filePath.equals(storage.getResidentBookFilePath())) {
+            throw new CommandException(String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, fileName));
+        }
         try {
             return storage.readResidentBook(filePath).get();
         } catch (NoSuchElementException e) {

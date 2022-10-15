@@ -270,5 +270,10 @@ public class LogicManagerTest {
         public void createResidentBookFile(Path filePath) throws IOException {
             // does nothing
         }
+
+        @Override
+        public Path getResidentBookFilePath() {
+            return null;
+        }
     }
 }

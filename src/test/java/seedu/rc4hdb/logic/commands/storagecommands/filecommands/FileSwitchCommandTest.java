@@ -68,6 +68,17 @@ public class FileSwitchCommandTest {
     }
 
     @Test
+    public void execute_currentFile_throwsCommandException() throws Exception {
+        Path target = getTempFilePath("test.json");
+
+        String expectedMessage = String.format(FileCommand.MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, "test.json");
+        FileSwitchCommand fileSwitchCommand = new FileSwitchCommand(target);
+        createEmptyJsonFile(target);
+
+        assertCommandFailure(fileSwitchCommand, storage, model, expectedMessage);
+    }
+
+    @Test
     public void execute_targetFileDoesNotExist_throwsCommandException() {
         Path target = getTempFilePath("target.json");
 
