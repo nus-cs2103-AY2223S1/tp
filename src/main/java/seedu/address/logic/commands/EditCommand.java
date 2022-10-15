@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -108,7 +108,8 @@ public class EditCommand extends Command {
         Set<Interest> updatedInterests = editPersonDescriptor.getInterests().orElse(personToEdit.getInterests());
         ObservableList<Mod> mods = personToEdit.getMods();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub, updatedInterests, mods);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub,
+                updatedInterests, mods);
     }
 
     @Override
