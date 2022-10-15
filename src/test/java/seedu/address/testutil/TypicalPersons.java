@@ -94,7 +94,7 @@ public class TypicalPersons {
     public static final Person JANE = new PersonBuilder()
             .withName(VALID_NAME_JANE)
             .withEmail(VALID_EMAIL_JANE)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withTags(VALID_TAG_FRIEND)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
