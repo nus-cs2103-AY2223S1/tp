@@ -13,15 +13,13 @@ public abstract class UndoableCommand extends Command{
      * Undoes the last action made.
      *
      * @param model {@code Model} which the command should operate on.
-     * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult undo(Model model) throws CommandException;
+    public abstract CommandResult undo(Model model);
 
     /**
      * Redoes the last action that was undone
      *
      * @param model {@code Model} which the command should operate on.
-     * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult redo(Model model) throws CommandException;
+    public abstract CommandResult redo(Model model);
 }

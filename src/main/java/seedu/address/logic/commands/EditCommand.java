@@ -94,14 +94,14 @@ public class EditCommand extends UndoableCommand {
     }
 
     @Override
-    public CommandResult undo(Model model) throws CommandException {
+    public CommandResult undo(Model model) {
         model.setPerson(editedPerson, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNDO, personToEdit));
     }
 
     @Override
-    public CommandResult redo(Model model) throws CommandException {
+    public CommandResult redo(Model model) {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_REDO, editedPerson));

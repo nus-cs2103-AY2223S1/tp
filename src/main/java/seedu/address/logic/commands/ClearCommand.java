@@ -29,13 +29,13 @@ public class ClearCommand extends UndoableCommand {
     }
 
     @Override
-    public CommandResult undo(Model model) throws CommandException {
+    public CommandResult undo(Model model) {
         model.setAddressBook(clearedAddressBook);
         return new CommandResult((MESSAGE_UNDO));
     }
 
     @Override
-    public CommandResult redo(Model model) throws CommandException {
+    public CommandResult redo(Model model) {
         model.setAddressBook(new AddressBook());
         return new CommandResult((MESSAGE_REDO));
     }
