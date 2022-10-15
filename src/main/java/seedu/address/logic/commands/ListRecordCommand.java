@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECORDS;
 
 import java.util.List;
@@ -33,17 +32,7 @@ public class ListRecordCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        // Inverse condition: listR is an addressbook command
-        if (model.isRecordListDisplayed()) {
-            throw new CommandException(MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE);
-        }
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        List<Person> lastShownList = CommandUtil.prepareFilteredList(model, targetIndex);
 
         Person personToListRecords = lastShownList.get(targetIndex.getZeroBased());
 

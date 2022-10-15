@@ -1,12 +1,10 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -23,7 +21,7 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the patient specified.\n"
             + "Parameters: "
             + "INDEX "
-            + PREFIX_DATE + "appointment_date\n"
+            + PREFIX_DATE + "appointment_date "
             + "Example: " + COMMAND_WORD + " "
             + "INDEX "
             + PREFIX_DATE + "01-01-2000 1200 (must be formatted in dd-MM-yyyy HHmm)";
@@ -50,18 +48,7 @@ public class AddAppointmentCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (model.isRecordListDisplayed()) {
-            throw new CommandException(MESSAGE_ADDRESS_BOOK_COMMAND_PREREQUISITE);
-        }
-
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        // Check if index given is out of bounds
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
+        List<Person> lastShownList = CommandUtil.prepareFilteredList(model, index);
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
