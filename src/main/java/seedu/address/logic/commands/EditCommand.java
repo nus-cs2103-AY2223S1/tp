@@ -106,6 +106,7 @@ public class EditCommand extends Command {
         }
         if (!isEditingClass && !personToEdit.getAClass().classDateTime.equals("")) {
             editedPerson.setClass(personToEdit.getAClass());
+            editedPerson.setDisplayClass(personToEdit.getDisplayedClass());
         }
 
         model.setPerson(personToEdit, editedPerson);

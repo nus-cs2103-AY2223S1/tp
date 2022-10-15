@@ -109,6 +109,14 @@ public class Person {
         this.aClass = aClass;
     }
 
+    public void setDisplayClass(Class displayedClass) {
+        if (mark.isPresent) {
+            this.displayedClass = displayedClass;
+        } else {
+            this.displayedClass = aClass;
+        }
+    }
+
     public Money getMoneyOwed() {
         return moneyOwed;
     }
@@ -231,4 +239,5 @@ public class Person {
     public int compareTo(Person person) {
         return this.displayedClass.startTime.compareTo(person.displayedClass.startTime);
     }
+
 }
