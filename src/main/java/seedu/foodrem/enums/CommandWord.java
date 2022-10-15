@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
@@ -55,7 +54,8 @@ public enum CommandWord {
     LIST_COMMAND("list") {
         @Override
         public String getUsage() {
-            return ListCommand.getUsage();
+            return getCommandWord() + ": List all items in FoodRem."
+                    + "Example: " + getCommandWord();
         }
     },
     FIND_COMMAND("find") {
