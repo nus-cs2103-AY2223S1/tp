@@ -56,10 +56,6 @@ public class MarkCommand extends SelectAppointmentCommand {
     }
 
     private void addRecurringAppointment(Model model, Person person, Appointment appointment) {
-        if (appointment.getTimePeriod().isEmpty()) {
-            return;
-        }
-
         Appointment recurringAppointment = new Appointment(appointment);
         List<Appointment> appointmentList = person.getAppointments();
         if (!hasSameAppointment(appointmentList, recurringAppointment)) {
