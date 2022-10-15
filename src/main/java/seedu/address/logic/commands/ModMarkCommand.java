@@ -62,7 +62,7 @@ public class ModMarkCommand extends ModCommand {
             throw new CommandException(MESSAGE_INVALID_MOD);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit), false, false, false);
     }
 
     @Override
