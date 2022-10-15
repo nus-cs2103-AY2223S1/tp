@@ -38,6 +38,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
 
+    /** Returns an unmodifiable view of the sorted list of tasks */
+    ObservableList<Task> getSortedTaskList();
+
     /**
      * Returns the user prefs' task book file path.
      */

@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static taskbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import taskbook.commons.core.GuiSettings;
 import taskbook.commons.core.LogsCenter;
 import taskbook.model.person.Name;
@@ -25,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given taskBook and userPrefs.
@@ -38,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.taskBook.getPersonList());
         filteredTasks = new FilteredList<>(this.taskBook.getTaskList());
+        sortedTasks = new SortedList<>(filteredTasks);
     }
 
     public ModelManager() {
@@ -183,6 +187,23 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Task> getFilteredTaskList() {
         return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Task} backed by the internal list of
+     * {@code versionedTaskBook}
+     */
+    @Override
+    public ObservableList<Task> getSortedTaskList() {
+        return sortedTasks;
+    }
+
+    /**
+     * Sorts the task list using the input comparator.
+     * @param comparator input comparator. If null, list will be sorted chronologically by time added.
+     */
+    public void updateSort(Comparator<Task> comparator) {
+        sortedTasks.setComparator(comparator);
     }
 
     @Override
