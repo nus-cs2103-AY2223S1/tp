@@ -173,8 +173,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Updates the personIdCounter to avoid duplicate Ids.
      */
     public void addPerson(Person p) {
-        updateNextPersonId();
-
         persons.add(p);
 
         Internship i = findInternshipById(p.getInternshipId());
@@ -236,8 +234,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
-
-        updateNextPersonId();
 
         Internship i = findInternshipById(key.getInternshipId());
         if (i != null) {
