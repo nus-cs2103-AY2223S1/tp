@@ -113,10 +113,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Build a new person.
+     */
     public Person build() {
         return new Person(name, phone, email, address, riskTag, tags);
     }
 
+    /**
+     * Build a new person without appointments.
+     */
     public Person buildWithoutAppointments() {
         return new Person(name, phone, email, address, riskTag,
                 tags, null);

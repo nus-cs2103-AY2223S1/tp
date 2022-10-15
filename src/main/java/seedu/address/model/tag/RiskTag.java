@@ -1,13 +1,12 @@
 package seedu.address.model.tag;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a RiskTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class RiskTag extends Tag{
+public class RiskTag extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Risk tag name should be [LOW], [MEDIUM], or [HIGH]";
     public static final String VALIDATION_REGEX = "(HIGH|MEDIUM|LOW)";
@@ -17,7 +16,7 @@ public class RiskTag extends Tag{
      *
      * @param tagName A valid tag name.
      */
-    public RiskTag(String tagName){
+    public RiskTag(String tagName) {
         super(tagName);
         checkArgument(isValidRiskTagName(tagName), MESSAGE_CONSTRAINTS);
     }

@@ -73,14 +73,14 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + RISKTAG_DESC_HIGH + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
         //multiple riskTags - last riskTag accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + RISKTAG_DESC_LOW  + RISKTAG_DESC_HIGH
+                + ADDRESS_DESC_BOB + RISKTAG_DESC_LOW + RISKTAG_DESC_HIGH
                 + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + RISKTAG_DESC_HIGH+ TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
+                + RISKTAG_DESC_HIGH + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
