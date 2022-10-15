@@ -29,8 +29,9 @@ import seedu.foodrem.model.tag.Tag;
 public class EditCommand extends Command {
     // FIXME: Make this implementation detail private
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    // FIXME: Make this implementation detail private
+    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
     private static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
-    private static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
 
     private final EditItemDescriptor editItemDescriptor;
     private final Index index;
