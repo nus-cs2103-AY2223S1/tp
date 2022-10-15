@@ -14,15 +14,19 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** New Book should be created for the user. */
+    private final boolean showNewBook;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showNewBook, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showNewBook = showNewBook;
         this.exit = exit;
     }
 
@@ -31,7 +35,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -41,6 +45,8 @@ public class CommandResult {
     public boolean isShowHelp() {
         return showHelp;
     }
+
+    public boolean isNewBook() {return showNewBook; }
 
     public boolean isExit() {
         return exit;

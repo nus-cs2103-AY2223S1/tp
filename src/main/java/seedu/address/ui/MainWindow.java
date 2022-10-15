@@ -147,6 +147,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Creates a new address book
+     */
+    @FXML
+    private void handleNewAddress() {
+        
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -174,6 +182,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isNewBook()) {
+                handleNewAddress();
             }
 
             if (commandResult.isExit()) {
