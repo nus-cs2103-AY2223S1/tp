@@ -4,18 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.io.FileWriter;
-
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -57,8 +51,10 @@ public class DeletePersonCommandTest {
     public void equals() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(new FullNamePredicate(firstPerson.getName().toString()));
-        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(new FullNamePredicate(secondPerson.getName().toString()));
+        DeletePersonCommand deleteFirstCommand = new DeletePersonCommand(
+                new FullNamePredicate(firstPerson.getName().toString()));
+        DeletePersonCommand deleteSecondCommand = new DeletePersonCommand(
+                new FullNamePredicate(secondPerson.getName().toString()));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));

@@ -13,7 +13,6 @@ import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_FIRST_PER
 import static seedu.address.model.person.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.model.person.testutil.TypicalPersons.getTypicalAddressBook;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -39,8 +38,8 @@ public class EditPersonCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        FullNamePredicate predicate = new FullNamePredicate(model.getFilteredPersonList().get(0).
-                getName().toString());
+        FullNamePredicate predicate = new FullNamePredicate(model.getFilteredPersonList().get(0)
+                        .getName().toString());
         EditPersonCommand editPersonCommand = new EditPersonCommand(predicate, descriptor);
 
         String expectedMessage = String.format(EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -146,7 +145,8 @@ public class EditPersonCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different predicate -> returns false
-        assertFalse(standardCommand.equals(new EditPersonCommand(new FullNamePredicate(secondPerson.getName().toString()), DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditPersonCommand(new FullNamePredicate(secondPerson
+                .getName().toString()), DESC_AMY)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditPersonCommand(fullNamePredicate, DESC_BOB)));
