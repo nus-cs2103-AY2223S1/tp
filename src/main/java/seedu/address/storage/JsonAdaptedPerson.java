@@ -17,7 +17,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -115,14 +114,14 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        final NokPhone modelNokPhone;
+        final Phone modelNokPhone;
         if (nokPhone == null) {
-            modelNokPhone = new NokPhone("000");
+            modelNokPhone = new Phone();
         } else {
-            if (!NokPhone.isValidNokPhone(nokPhone)) {
-                throw new IllegalValueException(NokPhone.MESSAGE_CONSTRAINTS);
+            if (!Phone.isValidPhone(nokPhone)) {
+                throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
             }
-            modelNokPhone = new NokPhone(nokPhone);
+            modelNokPhone = new Phone(nokPhone);
         }
 
         if (email == null) {
