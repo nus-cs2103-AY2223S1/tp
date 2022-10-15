@@ -36,7 +36,7 @@ public class GradeProgressList {
     }
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Grade Progress:\n");
+        StringBuilder description = new StringBuilder();
         if (gradeProgressList.isEmpty()) {
             description.append("No Grade Progress found!\n");
         } else {
