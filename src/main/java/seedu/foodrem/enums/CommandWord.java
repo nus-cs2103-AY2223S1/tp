@@ -22,6 +22,13 @@ import seedu.foodrem.logic.parser.CliSyntax;
  */
 public enum CommandWord {
     // General Commands
+    EXIT_COMMAND("exit") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Exits FoodRem."
+                    + "Example: " + getCommandWord();
+        }
+    },
     HELP_COMMAND("help") {
         @Override
         public String getUsage() {
@@ -36,35 +43,29 @@ public enum CommandWord {
                     + "Example: " + getCommandWord();
         }
     },
-    EXIT_COMMAND("exit") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Exits FoodRem."
-                    + "Example: " + getCommandWord();
-        }
-    },
 
     // Item Commands
-    NEW_COMMAND("new") {
+    DECREMENT_COMMAND("dec") {
         @Override
         public String getUsage() {
-            return NewCommand.getUsage();
+            return getCommandWord()
+                    + ": Decrements the quantity of the item identified by the "
+                    + "index number used in the displayed item list.\n"
+                    + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
+                    + "Parameters:\n"
+                    + "INDEX (must be a positive integer) [" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+                    + "Example:\n"
+                    + getCommandWord() + " 10\n"
+                    + getCommandWord() + " 10 " + CliSyntax.PREFIX_ITEM_QUANTITY + "100";
         }
     },
-    LIST_COMMAND("list") {
+    DELETE_COMMAND("del") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": List all items in FoodRem."
-                    + "Example: " + getCommandWord();
-        }
-    },
-    FIND_COMMAND("find") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Finds all items whose names contain any of "
-                    + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-                    + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-                    + "Example: " + getCommandWord() + " Potatoes Carrots Cucumbers";
+            return getCommandWord()
+                    + ": Deletes the item identified by the index number used in the displayed item list.\n"
+                    + "Parameters: INDEX (must be a positive integer)\n"
+                    + "Example: " + getCommandWord() + " 1";
         }
     },
     EDIT_COMMAND("edit") {
@@ -84,6 +85,15 @@ public enum CommandWord {
                     + CliSyntax.PREFIX_ITEM_QUANTITY + "grams";
         }
     },
+    FIND_COMMAND("find") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Finds all items whose names contain any of "
+                    + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+                    + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+                    + "Example: " + getCommandWord() + " Potatoes Carrots Cucumbers";
+        }
+    },
     INCREMENT_COMMAND("inc") {
         @Override
         public String getUsage() {
@@ -98,33 +108,23 @@ public enum CommandWord {
                     + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
         }
     },
-    DECREMENT_COMMAND("dec") {
+    LIST_COMMAND("list") {
         @Override
         public String getUsage() {
-            return getCommandWord()
-                    + ": Decrements the quantity of the item identified by the "
-                    + "index number used in the displayed item list.\n"
-                    + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
-                    + "Parameters:\n"
-                    + "INDEX (must be a positive integer) [" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
-                    + "Example:\n"
-                    + getCommandWord() + " 10\n"
-                    + getCommandWord() + " 10 " + CliSyntax.PREFIX_ITEM_QUANTITY + "100";
+            return getCommandWord() + ": List all items in FoodRem."
+                    + "Example: " + getCommandWord();
+        }
+    },
+    NEW_COMMAND("new") {
+        @Override
+        public String getUsage() {
+            return NewCommand.getUsage();
         }
     },
     SORT_COMMAND("sort") {
         @Override
         public String getUsage() {
             return SortCommand.getUsage();
-        }
-    },
-    DELETE_COMMAND("del") {
-        @Override
-        public String getUsage() {
-            return getCommandWord()
-                    + ": Deletes the item identified by the index number used in the displayed item list.\n"
-                    + "Parameters: INDEX (must be a positive integer)\n"
-                    + "Example: " + getCommandWord() + " 1";
         }
     },
     VIEW_COMMAND("view") {
@@ -135,6 +135,18 @@ public enum CommandWord {
     },
 
     // Tag Commands
+    DELETE_TAG_COMMAND("deletetag") {
+        @Override
+        public String getUsage() {
+            return DeleteTagCommand.getUsage();
+        }
+    },
+    LIST_TAG_COMMAND("listtag") {
+        @Override
+        public String getUsage() {
+            return ListTagCommand.getUsage();
+        }
+    },
     NEW_TAG_COMMAND("newtag") {
         @Override
         public String getUsage() {
@@ -157,18 +169,6 @@ public enum CommandWord {
         @Override
         public String getUsage() {
             return UntagCommand.getUsage();
-        }
-    },
-    DELETE_TAG_COMMAND("deletetag") {
-        @Override
-        public String getUsage() {
-            return DeleteTagCommand.getUsage();
-        }
-    },
-    LIST_TAG_COMMAND("listtag") {
-        @Override
-        public String getUsage() {
-            return ListTagCommand.getUsage();
         }
     },
 
@@ -232,4 +232,4 @@ public enum CommandWord {
         }
         return stringJoiner.toString();
     }
-}
+    }
