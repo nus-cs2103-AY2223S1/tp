@@ -260,7 +260,7 @@ public enum CommandWord {
      * Returns the list of all command words separated by commas
      */
     public static String listAllCommandWords() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
+        StringJoiner stringJoiner = new StringJoiner(", ");
         for (CommandWord commandWord : values()) {
             if (commandWord.equals(DEFAULT)) {
                 continue;
