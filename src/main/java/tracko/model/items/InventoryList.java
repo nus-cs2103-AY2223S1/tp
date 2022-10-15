@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tracko.model.items.exceptions.DuplicateItemException;
+import tracko.model.items.exceptions.ItemNotFoundException;
 
 /**
  * Represents the list of items in the inventory.
@@ -34,6 +36,34 @@ public class InventoryList implements Iterable<Item> {
     public void delete(Item toDelete) {
         requireNonNull(toDelete);
         internalList.remove(toDelete);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent item as the given argument.
+     */
+    public boolean contains(Item toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameItem);
+    }
+
+    /**
+     * Replaces the item {@code target} in the list with {@code editedItem}.
+     * {@code target} must exist in the list.
+     * The item identity of {@code editedItem} must not be the same as another existing item in the list.
+     */
+    public void setItem(Item target, Item editedItem) {
+        requireAllNonNull(target, editedItem);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ItemNotFoundException();
+        }
+
+        if (!target.isSameItem(editedItem) && contains(editedItem)) {
+            throw new DuplicateItemException();
+        }
+
+        internalList.set(index, editedItem);
     }
 
     public void setItems(InventoryList replacement) {
