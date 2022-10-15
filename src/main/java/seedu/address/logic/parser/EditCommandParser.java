@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -40,7 +42,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_TIME, PREFIX_TAG);
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_TIME, PREFIX_TAG,
+                        PREFIX_DATE_AND_TIME_INDEX);
 
         Uid uid;
 
@@ -73,6 +76,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseDatesTimesForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_TIME))
                 .ifPresent(editPersonDescriptor::setDatesTimes);
 
+        parseDateTimeIndexesForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_TIME_INDEX))
+                .ifPresent(editPersonDescriptor::setDateTimeIndexes);
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -101,8 +107,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     /**
      * Parses {@code Collection<String> datesTimes} into a {@code List<DateTime>} if {@code dateTimes} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<DateTime>} containing zero tags.
+     * If {@code datesTimes} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<DateTime>} containing zero dateTime.
      */
     private Optional<List<DateTime>> parseDatesTimesForEdit(Collection<String> datesTimes) throws ParseException {
         assert datesTimes != null;
@@ -113,6 +119,22 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> dateTimeList = datesTimes.size() == 1 && datesTimes.contains("")
                 ? Collections.emptyList() : datesTimes;
         return Optional.of(ParserUtil.parseDatesTimes(dateTimeList));
+    }
+
+    /**
+     * Parses {@code Collection<String> dateTimeIndexes} into a {@code List<Integer>}
+     * if {@code dateTimeIndexes} is non-empty.
+     */
+    private Optional<List<Index>> parseDateTimeIndexesForEdit(Collection<String> dateTimeIndexes)
+            throws ParseException {
+        assert dateTimeIndexes != null;
+
+        if (dateTimeIndexes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> dateTimeIndexList = dateTimeIndexes.size() == 1 && dateTimeIndexes.contains("")
+                ? Collections.emptyList() : dateTimeIndexes;
+        return Optional.of(ParserUtil.parseDateTimesIndexes(dateTimeIndexList));
     }
 
 }

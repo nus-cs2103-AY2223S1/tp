@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
@@ -22,6 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.UID_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.UID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
@@ -33,6 +37,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_UID_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -54,9 +60,28 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String DATE_AND_TIME_EMPTY = " " + PREFIX_DATE_AND_TIME;
+    private static final String DATE_AND_TIME_INDEXES_EMPTY = " " + PREFIX_DATE_AND_TIME_INDEX;
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             EditCommand.MESSAGE_USAGE);
+
+    private static final String OTHER_DATES_AND_TIMES = "2022-12-17T18:30";
+    private static final String OTHER_DATES_AND_TIMES_TWO = "2022-06-18T19:30";
+    private static final String OTHER_DATES_AND_TIMES_DESC = " " + PREFIX_DATE_AND_TIME + OTHER_DATES_AND_TIMES;
+    private static final String OTHER_DATES_AND_TIMES_DESC_TWO = " " + PREFIX_DATE_AND_TIME
+            + OTHER_DATES_AND_TIMES_TWO;
+    private static final String OTHER_DATES_AND_TIMES_INDEX = "1";
+    private static final String OTHER_DATES_AND_tIMES_INDEX_TWO = "2";
+    private static final String OTHER_DATES_AND_TIMES_INDEX_DESC = " " + PREFIX_DATE_AND_TIME_INDEX
+            + OTHER_DATES_AND_TIMES_INDEX;
+    private static final String OTHER_DATES_AND_TIMES_INDEX_DESC_TWO = " " + PREFIX_DATE_AND_TIME_INDEX
+            + OTHER_DATES_AND_tIMES_INDEX_TWO;
+    private static final String OTHER_TAG = "heartDisease";
+    private static final String OTHER_TAG_TWO = "children";
+    private static final String OTHER_TAG_DESC = " " + PREFIX_TAG + OTHER_TAG;
+    private static final String OTHER_TAG_DESC_TWO = " " + PREFIX_TAG + OTHER_TAG_TWO;
+
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -189,6 +214,7 @@ public class EditCommandParserTest {
         descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(new Uid(VALID_UID_BOB), descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 
     @Test
@@ -206,6 +232,21 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+
+    }
+
+    @Test
+    public void parse_multipleRepeatedFields_acceptsAll() {
+        // tags with different inputs
+        String userInput = UID_DESC_AMY + TAG_DESC_FRIEND
+                + TAG_DESC_HUSBAND + OTHER_TAG_DESC + OTHER_TAG_DESC_TWO;
+
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND,
+                        VALID_TAG_HUSBAND, OTHER_TAG, OTHER_TAG_TWO).build();
+        EditCommand expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 
     @Test
@@ -233,5 +274,63 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_allDatesTimesCases_success() {
+        //empty dateTimes, empty dateTimeIndexes
+        String userInput = UID_DESC_AMY + DATE_AND_TIME_EMPTY + DATE_AND_TIME_INDEXES_EMPTY;
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withDatesTimes()
+                .withDateTimeIndexes().build();
+        EditCommand expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //empty dateTimeIndexes only
+        userInput = UID_DESC_AMY + DATE_AND_TIME_INDEXES_EMPTY;
+        descriptor = new EditPersonDescriptorBuilder().withDateTimeIndexes().build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // non-empty dateTimes only
+        userInput = UID_DESC_AMY + DATETIME_DESC_BOB + DATETIME_DESC_AMY + OTHER_DATES_AND_TIMES_DESC;
+        descriptor = new EditPersonDescriptorBuilder().withDatesTimes(VALID_DATETIME_BOB,
+                VALID_DATETIME_AMY, OTHER_DATES_AND_TIMES).build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // non-empty dateTimes, non-empty dateTimeIndexes
+        userInput = UID_DESC_AMY + OTHER_DATES_AND_TIMES_DESC_TWO + OTHER_DATES_AND_TIMES_INDEX_DESC;
+        descriptor = new EditPersonDescriptorBuilder().withDateTimeIndexes(OTHER_DATES_AND_TIMES_INDEX)
+                .withDatesTimes(OTHER_DATES_AND_TIMES_TWO).build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // non-empty dateTimeIndexes only
+        userInput = UID_DESC_AMY + OTHER_DATES_AND_TIMES_INDEX_DESC + OTHER_DATES_AND_TIMES_INDEX_DESC_TWO;
+        descriptor = new EditPersonDescriptorBuilder().withDateTimeIndexes(OTHER_DATES_AND_TIMES_INDEX,
+                        OTHER_DATES_AND_tIMES_INDEX_TWO).build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        //non-empty dateTimes and empty dateTimeIndexes
+        userInput = UID_DESC_AMY + OTHER_DATES_AND_TIMES_DESC_TWO + DATE_AND_TIME_INDEXES_EMPTY;
+        descriptor = new EditPersonDescriptorBuilder().withDatesTimes(OTHER_DATES_AND_TIMES_TWO)
+                .withDateTimeIndexes().build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // non-empty dateTimeIndexes and empty dateTimeIndexes
+        userInput = UID_DESC_AMY + OTHER_DATES_AND_TIMES_INDEX_DESC + DATE_AND_TIME_EMPTY;
+        descriptor = new EditPersonDescriptorBuilder().withDateTimeIndexes(OTHER_DATES_AND_TIMES_INDEX)
+                .withDatesTimes().build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // empty dateTimes only
+        userInput = UID_DESC_AMY + DATE_AND_TIME_EMPTY;
+        descriptor = new EditPersonDescriptorBuilder().withDatesTimes().build();
+        expectedCommand = new EditCommand(new Uid(VALID_UID_AMY), descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
     }
 }

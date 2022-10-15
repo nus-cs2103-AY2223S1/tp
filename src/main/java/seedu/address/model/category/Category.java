@@ -51,4 +51,14 @@ public class Category {
         return categoryName;
     }
 
+    /**
+     * Checks if the two category objects are equal, ignoring case.
+     * @param other other object to be checked against
+     * @return true if both categories are the same, false otherwise
+     */
+    public boolean equalsIgnoreCase(Object other) {
+        return other == this
+                || (other instanceof Category)
+                && categoryName.equalsIgnoreCase(((Category) other).categoryName);
+    }
 }

@@ -28,6 +28,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    //public static final String MESSAGE_INVALID_DATE_TIME_INDEX = "Date time index is not a
+    // non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
@@ -75,6 +77,19 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
+
+    /**
+     * Parses {@code Collection<String> dateTimeIndex} into a {@code List<Index>}.
+     */
+    public static List<Index> parseDateTimesIndexes(Collection<String> dateTimeIndexes) throws ParseException {
+        requireNonNull(dateTimeIndexes);
+        List<Index> dateTimeIndexList = new ArrayList<>();
+        for (String dateTimeIndex : dateTimeIndexes) {
+            dateTimeIndexList.add(parseIndex(dateTimeIndex));
+        }
+        return dateTimeIndexList;
+    }
+
 
     /**
      * Parses a {@code String dateTime} into a {@code DateTime}.
