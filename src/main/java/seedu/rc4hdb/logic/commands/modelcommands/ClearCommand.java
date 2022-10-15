@@ -9,7 +9,7 @@ import seedu.rc4hdb.model.ResidentBook;
 /**
  * Clears the address book.
  */
-public class ClearCommand extends ModelCommand {
+public class ClearCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Resident book has been cleared!";

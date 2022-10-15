@@ -5,7 +5,7 @@ import seedu.rc4hdb.logic.commands.CommandResult;
 /**
  * Format full help instructions for every command for display.
  */
-public class HelpCommand extends MiscCommand {
+public class HelpCommand implements MiscCommand {
 
     public static final String COMMAND_WORD = "help";
 
