@@ -4,12 +4,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_NETFLIX;
+import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_TENNIS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GITHUB_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTEREST_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MOD_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTEREST_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.MOD_DESC_CS2103;
@@ -19,18 +21,16 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_TENNIS;
-import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_NETFLIX;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MOD_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -82,7 +82,8 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleInterests = new PersonBuilder(BOB).withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
+        Person expectedPersonMultipleInterests = new PersonBuilder(BOB)
+                .withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
@@ -92,7 +93,8 @@ public class AddCommandParserTest {
         Person expectedPersonMultipleMods = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100, VALID_MOD_CS2103)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
-                        + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS + MOD_DESC_CS2100 + MOD_DESC_CS2103,
+                        + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS
+                        + MOD_DESC_CS2100 + MOD_DESC_CS2103,
                 new AddCommand(expectedPersonMultipleMods));
     }
 

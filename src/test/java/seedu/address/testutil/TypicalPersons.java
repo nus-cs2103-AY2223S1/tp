@@ -5,12 +5,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 

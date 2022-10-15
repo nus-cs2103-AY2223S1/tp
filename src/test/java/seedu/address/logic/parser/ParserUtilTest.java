@@ -16,13 +16,13 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
-import seedu.address.model.interest.Interest;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -198,7 +198,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseInterests_collectionWithInvalidInterests_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseInterests(Arrays.asList(VALID_INTEREST_1, INVALID_INTEREST)));
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterests(
+                Arrays.asList(VALID_INTEREST_1, INVALID_INTEREST)));
     }
 
     @Test
@@ -209,7 +210,8 @@ public class ParserUtilTest {
     @Test
     public void parseInterests_collectionWithValidInterests_returnsInterestSet() throws Exception {
         Set<Interest> actualInterestSet = ParserUtil.parseInterests(Arrays.asList(VALID_INTEREST_1, VALID_INTEREST_2));
-        Set<Interest> expectedInterestSet = new HashSet<Interest>(Arrays.asList(new Interest(VALID_INTEREST_1), new Interest(VALID_INTEREST_2)));
+        Set<Interest> expectedInterestSet = new HashSet<>(
+                Arrays.asList(new Interest(VALID_INTEREST_1), new Interest(VALID_INTEREST_2)));
 
         assertEquals(expectedInterestSet, actualInterestSet);
     }

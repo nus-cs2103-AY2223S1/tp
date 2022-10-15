@@ -3,29 +3,29 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_NETFLIX;
+import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_TENNIS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTEREST_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTEREST_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TELEGRAM_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_TENNIS;
-import static seedu.address.logic.commands.CommandTestUtil.INTEREST_DESC_NETFLIX;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_TENNIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INTEREST_NETFLIX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -98,9 +98,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX + INTEREST_EMPTY, Interest.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_EMPTY + INTEREST_DESC_NETFLIX, Interest.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INTEREST_EMPTY + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX, Interest.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX + INTEREST_EMPTY,
+                Interest.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_EMPTY + INTEREST_DESC_NETFLIX,
+                Interest.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INTEREST_EMPTY + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX,
+                Interest.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_TELEGRAM_AMY + VALID_PHONE_AMY,
