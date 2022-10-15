@@ -40,7 +40,7 @@ public abstract class CustomiseCommand extends Command {
             + "[" + PREFIX_TAG + "]\n"
             + "Examples: " + COMMAND_WORD + " hide p/ a/, " + COMMAND_WORD + " show a/ e/ p/ t/";
 
-    public static final String MESSAGE_UNKNOWN_CUSTOMISE_COMMAND = "Unknown customise command";
+    public static final String MESSAGE_UNKNOWN_CUSTOMISE_COMMAND = "Unknown customise command\n%1$s";
 
     public static final String MESSAGE_DUPLICATE_ATTRIBUTE = "There should not be duplicate attributes";
 

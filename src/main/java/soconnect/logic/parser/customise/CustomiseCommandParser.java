@@ -47,7 +47,7 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
     public CustomiseCommand parse(String input) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -61,7 +61,7 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
         case CustomiseOrderCommand.COMMAND_WORD:
             return new CustomiseOrderCommandParser().parse(arguments);
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_CUSTOMISE_COMMAND);
+            throw new ParseException(String.format(MESSAGE_UNKNOWN_CUSTOMISE_COMMAND, CustomiseCommand.MESSAGE_USAGE));
         }
     }
 
