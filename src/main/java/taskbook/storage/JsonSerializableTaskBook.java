@@ -12,7 +12,10 @@ import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Deadline;
+import taskbook.model.task.Event;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 
 /**
  * An Immutable TaskBook that is serializable to JSON format.
@@ -43,7 +46,18 @@ class JsonSerializableTaskBook {
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(task -> {
+            Class<? extends Task> c = task.getClass();
+            if (c.equals(Todo.class)) {
+                return new JsonAdaptedTodo(task);
+            } else if (c.equals(Event.class)) {
+                return new JsonAdaptedEvent((Event) task);
+            } else if (c.equals(Deadline.class)) {
+                return new JsonAdaptedDeadline((Deadline) task);
+            }
+            return null;
+        })
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -53,7 +67,6 @@ class JsonSerializableTaskBook {
      */
     public TaskBook toModelType() throws IllegalValueException {
         TaskBook taskBook = new TaskBook();
-        // Persons must be loaded before tasks.
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (taskBook.hasPerson(person)) {

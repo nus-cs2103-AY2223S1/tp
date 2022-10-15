@@ -2,27 +2,33 @@ package taskbook.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import taskbook.commons.exceptions.IllegalValueException;
-import taskbook.model.person.Email;
-import taskbook.model.person.Name;
-import taskbook.model.task.Description;
 import taskbook.model.task.Task;
-import taskbook.model.task.Todo;
-import taskbook.model.task.enums.Assignment;
 
 /**
  * Jackson-friendly version of {@link Task}.
  */
-class JsonAdaptedTask {
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = JsonAdaptedTodo.class, name = "Todo"),
+    @JsonSubTypes.Type(value = JsonAdaptedEvent.class, name = "Event"),
+    @JsonSubTypes.Type(value = JsonAdaptedDeadline.class, name = "Deadline")
+})
+public abstract class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String name;
+
     private final String assignment;
     private final String description;
     private final boolean isDone;
-
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
@@ -45,37 +51,26 @@ class JsonAdaptedTask {
         isDone = source.isDone();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getAssignment() {
+        return assignment;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
     /**
      * Converts this Jackson-friendly adapted Task object into the model's {@code Task} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
-    public Task toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (assignment == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Assignment.class.getSimpleName()));
-        }
-        if (!Assignment.isValidAssignment(assignment)) {
-            throw new IllegalValueException(Assignment.MESSAGE_CONSTRAINTS);
-        }
-        final Assignment modelAssignment = Assignment.valueOf(assignment);
-
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        }
-        final Description modelDescription = new Description(description);
-
-        return new Todo(modelName, modelAssignment, modelDescription, isDone);
-    }
+    public abstract Task toModelType() throws IllegalValueException;
 }
