@@ -5,7 +5,6 @@ import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_H
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
@@ -62,7 +61,10 @@ public enum CommandWord {
     FIND_COMMAND("find") {
         @Override
         public String getUsage() {
-            return FindCommand.getUsage();
+            return getCommandWord() + ": Finds all items whose names contain any of "
+                    + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+                    + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+                    + "Example: " + getCommandWord() + " Potatoes Carrots Cucumbers";
         }
     },
     EDIT_COMMAND("edit") {
