@@ -13,7 +13,7 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.interest.*;
+import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.address.model.interest.*;
+import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
 import seedu.address.model.person.Mod;
