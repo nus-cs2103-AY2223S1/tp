@@ -2,6 +2,7 @@ package seedu.intrack.ui;
 
 import java.util.Comparator;
 
+import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -50,6 +51,11 @@ public class InternshipCard extends UiPart<Region> {
      */
     public InternshipCard(Internship internship, int displayedIndex) {
         super(FXML);
+        Label lab = new Label(internship.getStatus().toString());
+        PseudoClass rejected = PseudoClass.getPseudoClass("rejected");
+        lab.pseudoClassStateChanged(rejected, (internship.getStatus().toString()).equals("Rejected"));
+        PseudoClass offered = PseudoClass.getPseudoClass("offered");
+        lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
@@ -57,7 +63,7 @@ public class InternshipCard extends UiPart<Region> {
         phone.setText(internship.getPhone().value);
         address.setText(internship.getAddress().value);
         email.setText(internship.getEmail().value);
-        status.getChildren().add(new Label(internship.getStatus().toString()));
+        status.getChildren().add(lab);
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
