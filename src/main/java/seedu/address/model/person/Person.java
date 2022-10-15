@@ -38,7 +38,9 @@ public class Person {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
-        this.gitHubUser = null;
+        // mock user
+        // Todo: Add githubUser to constructor
+        this.gitHubUser = new User("");
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
     }
