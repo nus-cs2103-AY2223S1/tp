@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands;
+package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
 
 import java.nio.file.Path;
 
@@ -17,6 +17,17 @@ public abstract class FileCommand implements Command {
             + "forward and backslashes.";
 
     protected Path filePath;
+
+    protected String fileName;
+
+    /**
+     * Base constructor for all file commands.
+     * @param filePath the path of the file to be executed on.
+     */
+    public FileCommand(Path filePath) {
+        this.filePath = filePath;
+        fileName = filePath.getFileName().toString();
+    }
 
     /**
      * Checks if the file path string provided is valid.

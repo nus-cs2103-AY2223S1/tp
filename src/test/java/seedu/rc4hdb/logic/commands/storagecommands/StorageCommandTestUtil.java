@@ -1,7 +1,5 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommands;
+package seedu.rc4hdb.logic.commands.storagecommands;
 
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 
 /**
@@ -17,14 +15,5 @@ public class StorageCommandTestUtil {
     public static final String INVALID_FILE_NAME_WHITESPACE = "te st";
     public static final String INVALID_FILE_NAME_FORWARD_SLASH = "/test";
     public static final String INVALID_FILE_NAME_BACKSLASH = "\\test";
-
-    /**
-     * Creates a temporary file for testing purposes.
-     */
-    public static void createTempFile(Path tempFilePath) throws IOException {
-        File tempFile = tempFilePath.toFile();
-        tempFile.createNewFile();
-        tempFile.deleteOnExit();
-    }
 
 }

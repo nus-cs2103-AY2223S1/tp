@@ -10,7 +10,6 @@ import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MAT
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand.MESSAGE_NON_EXISTENT_FILE;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalResidents.AMY;
 
@@ -26,8 +25,6 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
@@ -77,6 +74,7 @@ public class LogicManagerTest {
         assertModelCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
+    // To implement StorageCommand execute success test
     // To implement StorageModelCommand execute success test
 
     @Test
@@ -85,12 +83,10 @@ public class LogicManagerTest {
         assertModelCommandException(deleteCommand, MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, CommandException.class);
     }
 
+    // To implement StorageCommand execute failure test
+
     @Test
     public void execute_storageModelCommandExecutionError_throwsCommandException() {
-        String fileSwitchCommand = FileCommand.COMMAND_WORD + " " + FileSwitchCommand.COMMAND_WORD + " "
-                + " residentBook1";
-        assertStorageModelCommandException(fileSwitchCommand, "residentBook1.json" + MESSAGE_NON_EXISTENT_FILE,
-                CommandException.class);
     }
 
     @Test

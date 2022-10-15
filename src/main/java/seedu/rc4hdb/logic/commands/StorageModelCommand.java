@@ -1,7 +1,5 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommands;
+package seedu.rc4hdb.logic.commands;
 
-import seedu.rc4hdb.logic.commands.Command;
-import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.storage.Storage;

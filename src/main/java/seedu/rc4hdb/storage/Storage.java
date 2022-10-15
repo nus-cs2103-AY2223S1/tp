@@ -32,4 +32,7 @@ public interface Storage extends ResidentBookStorage, UserPrefsStorage {
     @Override
     void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException;
 
+    @Override
+    void deleteResidentBook(Path filePath) throws IOException;
+
 }

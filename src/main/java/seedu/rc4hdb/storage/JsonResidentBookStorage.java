@@ -76,6 +76,16 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(residentBook), filePath);
     }
 
+    /**
+     * Deletes the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath location of the data file to be deleted. Cannot be null.
+     */
+    public void deleteResidentBook(Path filePath) throws IOException {
+        requireNonNull(filePath);
+        FileUtil.deleteFile(filePath);
+    }
+
     @Override
     public void setResidentBookFilePath(Path filePath) {
         requireNonNull(filePath);

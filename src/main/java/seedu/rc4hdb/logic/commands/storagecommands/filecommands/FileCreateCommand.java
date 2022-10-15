@@ -1,20 +1,19 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands;
+package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Path;
 
-import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
 import seedu.rc4hdb.model.ResidentBook;
-import seedu.rc4hdb.storage.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.Storage;
 
 /**
  * Creates a new data file corresponding to the arguments provided.
  */
-public class FileCreateCommand extends FileCommand implements MiscCommand {
+public class FileCreateCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "create";
 
@@ -23,17 +22,16 @@ public class FileCreateCommand extends FileCommand implements MiscCommand {
     public static final String MESSAGE_SUCCESS = " successfully created.";
 
     public FileCreateCommand(Path filePath) {
-        this.filePath = filePath;
+        super(filePath);
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
+    public CommandResult execute(Storage storage) throws CommandException {
         try {
-            FileUtil.createFile(filePath);
-            new JsonResidentBookStorage(filePath).saveResidentBook(new ResidentBook());
-            return new CommandResult(filePath.getFileName() + MESSAGE_SUCCESS);
+            storage.saveResidentBook(new ResidentBook(), filePath);
+            return new CommandResult(fileName + MESSAGE_SUCCESS);
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(filePath.getFileName() + MESSAGE_FILE_EXISTS);
+            throw new CommandException(fileName + MESSAGE_FILE_EXISTS);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "creating"));
         }

@@ -47,4 +47,12 @@ public interface ResidentBookStorage {
      */
     void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) throws IOException;
 
+    /**
+     * Deletes the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath location of the data file to be deleted. Cannot be null.
+     * @throws IOException if there was any problem deleting the file.
+     */
+    void deleteResidentBook(Path filePath) throws IOException;
+
 }

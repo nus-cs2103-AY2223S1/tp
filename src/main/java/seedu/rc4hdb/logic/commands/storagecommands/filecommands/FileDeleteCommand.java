@@ -1,18 +1,18 @@
-package seedu.rc4hdb.logic.commands.storagemodelcommands.filecommands;
+package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 
-import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
+import seedu.rc4hdb.storage.Storage;
 
 /**
  * Deletes the file corresponding to the argument.
  */
-public class FileDeleteCommand extends FileCommand implements MiscCommand {
+public class FileDeleteCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -21,20 +21,16 @@ public class FileDeleteCommand extends FileCommand implements MiscCommand {
     public static final String MESSAGE_SUCCESS = " has been deleted.";
 
     public FileDeleteCommand(Path filePath) {
-        this.filePath = filePath;
+        super(filePath);
     }
 
     @Override
-    public CommandResult execute() throws CommandException {
-        if (!FileUtil.isFileExists(filePath)) {
-            throw new CommandException(filePath.getFileName() + MESSAGE_FILE_NON_EXISTENT);
-        }
-
+    public CommandResult execute(Storage storage) throws CommandException {
         try {
-            FileUtil.deleteFile(filePath);
-            return new CommandResult(filePath.getFileName() + MESSAGE_SUCCESS);
+            storage.deleteResidentBook(filePath);
+            return new CommandResult(fileName + MESSAGE_SUCCESS);
         } catch (NoSuchFileException e) {
-            throw new CommandException(filePath.getFileName() + MESSAGE_FILE_NON_EXISTENT);
+            throw new CommandException(fileName + MESSAGE_FILE_NON_EXISTENT);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "deleting"));
         }
