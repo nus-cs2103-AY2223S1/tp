@@ -1,5 +1,6 @@
 package seedu.address.model.item;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
@@ -16,6 +17,10 @@ import seedu.address.model.tag.Tag;
  */
 public class SupplyItem {
 
+
+    public static final String VALIDATION_REGEX = "(?![0-9]+$)[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Item can take any values, and it should not be blank";
+
     // Identity fields
     private final String name;
 
@@ -26,16 +31,26 @@ public class SupplyItem {
     private final Set<Tag> tags = new HashSet<>();
 
 
+    /*
+     * The first character of the item must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+
     /**
      * Every field must be present and not null.
      */
     public SupplyItem(String name, int currentStock, int minStock, Person supplier, Set<Tag>tags) {
         requireAllNonNull(name, currentStock, minStock, supplier, tags);
+        checkArgument(isValidSupplyItem(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.currentStock = currentStock;
         this.minStock = minStock;
         this.supplier = supplier;
         this.tags.addAll(tags);
+    }
+
+    public static boolean isValidSupplyItem(String name) {
+        return name.matches(VALIDATION_REGEX);
     }
 
     public String getName() {
@@ -73,7 +88,7 @@ public class SupplyItem {
         final StringBuilder builder = new StringBuilder();
         builder.append("Item: ")
                 .append(getName())
-                .append("; Supplier: ")
+                .append(", Supplier: ")
                 .append(getSupplier())
                 .append(", Price: ")
                 .append(getPrice())
