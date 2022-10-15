@@ -8,9 +8,9 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
@@ -77,7 +77,7 @@ public class LogicManager implements Logic {
 
 
     @Override
-    public ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList() {
+    public ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList() {
         return model.getObservableFilteredCommissionList();
     }
 
@@ -127,9 +127,12 @@ public class LogicManager implements Logic {
 
     @Override
     public void selectValidCommission() {
-        if (!model.getFilteredCommissionList().contains(model.getSelectedCommission().getValue())) {
+        FilteredList<Commission> commissions = model.getFilteredCommissionList();
+        if (commissions == null) {
+            model.selectCommission(null);
+        } else if (!commissions.contains(model.getSelectedCommission().getValue())) {
             model.updateFilteredCommissionList(PREDICATE_SHOW_ALL_COMMISSIONS);
-            List<Commission> commissions = model.getFilteredCommissionList();
+            commissions = model.getObservableFilteredCommissionList().getValue().getValue();
             model.selectCommission(commissions.size() > 0 ? commissions.get(0) : null);
         }
     }

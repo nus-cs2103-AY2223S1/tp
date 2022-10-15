@@ -3,9 +3,9 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.ObservableObject;
 import seedu.address.model.commission.Commission;
@@ -112,12 +112,12 @@ public interface Model {
      * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
      * {@code versionedAddressBook}
      */
-    ObservableList<Commission> getFilteredCommissionList();
+    FilteredList<Commission> getFilteredCommissionList();
 
     /**
      * Returns an observable instance of the current filtered list of {@code Commission}
      */
-    ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList();
+    ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList();
 
     /**
      * Updates the filter of the current filtered commission list to filter by the given {@code predicate}.

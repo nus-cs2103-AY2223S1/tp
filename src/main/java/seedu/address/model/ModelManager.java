@@ -4,12 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.ObservableObject;
@@ -27,7 +28,10 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Customer> filteredCustomers;
-    private final ObservableObject<FilteredList<Commission>> observableFilteredCommissions = new ObservableObject<>();
+    private final ObservableObject<Pair<Customer, FilteredList<Commission>>> observableFilteredCommissions =
+            new ObservableObject<>();
+    private final ObservableObject<Pair<Customer, UniqueCommissionList>> observableUniqueCommissions =
+            new ObservableObject<>();
     private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
     private final ObservableObject<Commission> selectedCommission = new ObservableObject<>();
 
@@ -48,14 +52,17 @@ public class ModelManager implements Model {
 
         setSelectedCustomerCommissions(null);
 
+        // Makes observableFilteredCommissions reflect to the current observableUniqueCommissions list.
+        observableUniqueCommissions.addListener((observableUniqueCommissions, oldList, newList) ->
+                observableFilteredCommissions.setValue(new Pair<>(
+                        newList.getKey(),
+                        new FilteredList<>(newList.getValue().asUnmodifiableObservableList()))));
+
+
         // selectedCustomerCommissions is tied to the selectedCustomer,
         // it should only be updated here.
-        selectedCustomer.addListener((selectedCustomer, oldCustomer, newCustomer) -> {
-            if (oldCustomer == null || !oldCustomer.isSameCustomer(newCustomer)) {
-                setSelectedCustomerCommissions(newCustomer);
-            }
-        });
-
+        selectedCustomer.addListener((selectedCustomer, oldCustomer, newCustomer) ->
+                setSelectedCustomerCommissions(newCustomer));
 
         // Temporarily set selected customer to the first customer.
         // TODO: Should be fixed by implementer of the opencus command.
@@ -65,8 +72,9 @@ public class ModelManager implements Model {
 
         // Temporarily sets selected commission to the first commission
         // TODO: Should be fixed by implementer of the opencom command
-        if (observableFilteredCommissions.getValue() != null && observableFilteredCommissions.getValue().size() > 0) {
-            selectCommission(observableFilteredCommissions.getValue().get(0));
+        List<Commission> commissionList = getFilteredCommissionList();
+        if (commissionList != null && commissionList.size() > 0) {
+            selectCommission(commissionList.get(0));
         }
     }
 
@@ -75,10 +83,10 @@ public class ModelManager implements Model {
     }
 
     private void setSelectedCustomerCommissions(Customer customer) {
-        ObservableList<Commission> commissionsList = customer == null
-                ? new UniqueCommissionList().asUnmodifiableObservableList()
-                : customer.getCommissionList();
-        observableFilteredCommissions.setValue(new FilteredList<>(commissionsList));
+        Pair<Customer, UniqueCommissionList> commissionsList = customer == null
+                ? new Pair<>(null, new UniqueCommissionList())
+                : new Pair<>(customer, customer.getCommissions());
+        observableUniqueCommissions.setValue(commissionsList);
     }
 
     //=========== UserPrefs ==================================================================================
@@ -156,7 +164,6 @@ public class ModelManager implements Model {
     @Override
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireAllNonNull(target, editedCustomer);
-
         addressBook.setCustomer(target, editedCustomer);
     }
 
@@ -178,7 +185,7 @@ public class ModelManager implements Model {
         if (filteredCustomers.size() == 0) {
             selectCustomer(null);
         } else if (hasSelectedCustomer() && filteredCustomers.stream()
-                .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
+                    .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
             selectCustomer(filteredCustomers.get(0));
         }
     }
@@ -187,28 +194,28 @@ public class ModelManager implements Model {
 
     @Override
     public FilteredList<Commission> getFilteredCommissionList() {
-        return observableFilteredCommissions.getValue();
+        if (observableFilteredCommissions.getValue() == null) {
+            return null;
+        }
+        return observableFilteredCommissions.getValue().getValue();
     }
 
     @Override
-    public ObservableValue<FilteredList<Commission>> getObservableFilteredCommissionList() {
+    public ObservableObject<Pair<Customer, FilteredList<Commission>>> getObservableFilteredCommissionList() {
         return observableFilteredCommissions;
     }
 
     @Override
     public void updateFilteredCommissionList(Predicate<Commission> predicate) {
-        requireAllNonNull(observableFilteredCommissions.getValue(), predicate);
-        observableFilteredCommissions.getValue().setPredicate(predicate);
+        requireAllNonNull(getFilteredCommissionList(), predicate);
+        getFilteredCommissionList().setPredicate(predicate);
     }
 
     //=========== Selected Customer =============================================================
 
     @Override
     public void selectCustomer(Customer customer) {
-        if (customer == null || !customer.isSameCustomer(selectedCustomer.getValue())) {
-            selectedCommission.setValue(null); // resets the selected commission
-            selectedCustomer.setValue(customer);
-        }
+        selectedCustomer.setValue(customer);
     }
 
     @Override
