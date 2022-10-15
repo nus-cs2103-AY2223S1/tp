@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.parser.generalcommandparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.foodrem.enums.CommandType.parseWord;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getCommandHelpMessage;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getGeneralHelpMessage;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -106,7 +107,7 @@ class HelpCommandParserTest {
 
     @Test
     void getHelp_blankCommands() {
-        assertEquals(HelpCommand.DEFAULT_HELP_MESSAGE, CommandType.parseWord("").getUsage());
+        assertEquals(HelpCommand.DEFAULT_HELP_MESSAGE, parseWord("").getUsage());
     }
 
     @Test
@@ -119,85 +120,85 @@ class HelpCommandParserTest {
 
     @Test
     void getHelp_nonExistentCommand() {
-        assertEquals(CommandType.DEFAULT.getUsage(), CommandType.parseWord("destroytheworld").getUsage());
+        assertEquals(CommandType.DEFAULT.getUsage(), parseWord("destroytheworld").getUsage());
     }
 
     @Test
     void parse_generalCommands() {
         assertParseSuccess(parser, CommandType.HELP_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("help"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("help"))));
         assertParseSuccess(parser, CommandType.EXIT_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("exit"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("exit"))));
         assertParseSuccess(parser, CommandType.RESET_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("reset"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("reset"))));
     }
 
     // TODO: Rewrite all the tests
     @Test
     void getHelp_generalCommands() {
-        assertEquals(ExitCommand.getUsage(), CommandType.parseWord("exit").getUsage());
-        assertEquals(HelpCommand.getUsage(), CommandType.parseWord("help").getUsage());
-        assertEquals(ResetCommand.getUsage(), CommandType.parseWord("reset").getUsage());
+        assertEquals(ExitCommand.getUsage(), parseWord("exit").getUsage());
+        assertEquals(HelpCommand.getUsage(), parseWord("help").getUsage());
+        assertEquals(ResetCommand.getUsage(), parseWord("reset").getUsage());
     }
 
     @Test
     void parse_itemCommands() {
         assertParseSuccess(parser, CommandType.NEW_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("new"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("new"))));
         assertParseSuccess(parser, CommandType.EDIT_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("edit"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("edit"))));
         assertParseSuccess(parser, CommandType.INCREMENT_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("inc"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("inc"))));
         assertParseSuccess(parser, CommandType.DECREMENT_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("dec"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("dec"))));
         assertParseSuccess(parser, CommandType.DELETE_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("del"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("del"))));
         assertParseSuccess(parser, CommandType.FIND_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("find"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("find"))));
         assertParseSuccess(parser, CommandType.LIST_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("list"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("list"))));
         assertParseSuccess(parser, CommandType.SORT_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("sort"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("sort"))));
         assertParseSuccess(parser, CommandType.VIEW_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("view"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("view"))));
     }
 
     @Test
     void getHelp_itemCommands() {
-        assertEquals(NewCommand.getUsage(), CommandType.parseWord("new").getUsage());
-        assertEquals(EditCommand.getUsage(), CommandType.parseWord("edit").getUsage());
-        assertEquals(IncrementCommand.getUsage(), CommandType.parseWord("inc").getUsage());
-        assertEquals(DecrementCommand.getUsage(), CommandType.parseWord("dec").getUsage());
-        assertEquals(DeleteCommand.getUsage(), CommandType.parseWord("del").getUsage());
-        assertEquals(FindCommand.getUsage(), CommandType.parseWord("find").getUsage());
-        assertEquals(ListCommand.getUsage(), CommandType.parseWord("list").getUsage());
-        assertEquals(SortCommand.getUsage(), CommandType.parseWord("sort").getUsage());
-        assertEquals(ViewCommand.getUsage(), CommandType.parseWord("view").getUsage());
+        assertEquals(NewCommand.getUsage(), parseWord("new").getUsage());
+        assertEquals(EditCommand.getUsage(), parseWord("edit").getUsage());
+        assertEquals(IncrementCommand.getUsage(), parseWord("inc").getUsage());
+        assertEquals(DecrementCommand.getUsage(), parseWord("dec").getUsage());
+        assertEquals(DeleteCommand.getUsage(), parseWord("del").getUsage());
+        assertEquals(FindCommand.getUsage(), parseWord("find").getUsage());
+        assertEquals(ListCommand.getUsage(), parseWord("list").getUsage());
+        assertEquals(SortCommand.getUsage(), parseWord("sort").getUsage());
+        assertEquals(ViewCommand.getUsage(), parseWord("view").getUsage());
     }
 
     @Test
     void parse_tagCommands() {
         assertParseSuccess(parser, CommandType.NEW_TAG_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("newtag"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("newtag"))));
         assertParseSuccess(parser, CommandType.RENAME_TAG_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("renametag"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("renametag"))));
         assertParseSuccess(parser, CommandType.TAG_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("tag"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("tag"))));
         assertParseSuccess(parser, CommandType.UNTAG_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("untag"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("untag"))));
         assertParseSuccess(parser, CommandType.DELETE_TAG_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("deletetag"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("deletetag"))));
         assertParseSuccess(parser, CommandType.LIST_TAG_COMMAND.getCommandWord(),
-                new HelpCommand(getCommandHelpMessage(CommandType.parseWord("listtag"))));
+                new HelpCommand(getCommandHelpMessage(parseWord("listtag"))));
     }
 
     @Test
     void getHelp_tagCommands() {
-        assertEquals(NewTagCommand.getUsage(), CommandType.parseWord("newtag").getUsage());
-        assertEquals(RenameTagCommand.getUsage(), CommandType.parseWord("renametag").getUsage());
-        assertEquals(TagCommand.getUsage(), CommandType.parseWord("tag").getUsage());
-        assertEquals(UntagCommand.getUsage(), CommandType.parseWord("untag").getUsage());
-        assertEquals(DeleteTagCommand.getUsage(), CommandType.parseWord("deletetag").getUsage());
-        assertEquals(ListTagCommand.getUsage(), CommandType.parseWord("listtag").getUsage());
+        assertEquals(NewTagCommand.getUsage(), parseWord("newtag").getUsage());
+        assertEquals(RenameTagCommand.getUsage(), parseWord("renametag").getUsage());
+        assertEquals(TagCommand.getUsage(), parseWord("tag").getUsage());
+        assertEquals(UntagCommand.getUsage(), parseWord("untag").getUsage());
+        assertEquals(DeleteTagCommand.getUsage(), parseWord("deletetag").getUsage());
+        assertEquals(ListTagCommand.getUsage(), parseWord("listtag").getUsage());
     }
 }
