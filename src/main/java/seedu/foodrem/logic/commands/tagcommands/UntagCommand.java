@@ -1,13 +1,11 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.foodrem.enums.CommandWord.UNTAG_COMMAND;
 
 import java.util.List;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -19,18 +17,11 @@ import seedu.foodrem.model.tag.Tag;
  * Untags an item with a Tag.
  */
 public class UntagCommand extends Command {
-
-    public static final String MESSAGE_SUCCESS = "Item untagged successfully";
-    public static final String ITEM_NOT_TAGGED = "This item is not tagged with this tag";
-    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This tag does not exist";
-    public static final String MESSAGE_ITEM_INDEX_DOES_NOT_EXIST = "The item index does not exist";
-
-    private static final String COMMAND_WORD = CommandWord.UNTAG_COMMAND.getCommandWord();
-    private static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Untags the item identified by the index number used in the displayed item list with a valid Tag.\n"
-            + "Parameters: " + PREFIX_NAME + "TAG_NAME " + PREFIX_ID
-            + " INDEX (item index must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
+    // TODO: Test this command
+    private static final String MESSAGE_SUCCESS = "Item untagged successfully";
+    private static final String ERROR_DUPLICATE = "This item is not tagged with this tag";
+    private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
+    private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
     private final Index index;
     private final Tag tag;
@@ -50,19 +41,17 @@ public class UntagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
-            throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
+            throw new CommandException(ERROR_NOT_FOUND_TAG);
         }
 
         List<Item> lastShownList = model.getFilteredItemList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_ITEM_INDEX_DOES_NOT_EXIST);
+            throw new CommandException(ERROR_NOT_FOUND_ITEM);
         }
 
         Item itemToUntag = lastShownList.get(index.getZeroBased());
-
         if (!itemToUntag.containsTag(tag)) {
-            throw new CommandException(ITEM_NOT_TAGGED);
+            throw new CommandException(ERROR_DUPLICATE);
         }
 
         Item newTagSetItem = Item.createUntaggedItem(itemToUntag, tag);
@@ -74,6 +63,6 @@ public class UntagCommand extends Command {
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return UNTAG_COMMAND.getUsage();
     }
 }

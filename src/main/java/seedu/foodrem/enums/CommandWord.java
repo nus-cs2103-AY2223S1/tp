@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 import seedu.foodrem.logic.parser.CliSyntax;
 
 /**
@@ -210,7 +209,13 @@ public enum CommandWord {
     UNTAG_COMMAND("untag") {
         @Override
         public String getUsage() {
-            return UntagCommand.getUsage();
+            return getCommandWord()
+                    + ": Untags the item identified by the index number used in "
+                    + "the displayed item list with a valid Tag.\n"
+                    + "Parameters: " + CliSyntax.PREFIX_NAME + "TAG_NAME " + CliSyntax.PREFIX_ID
+                    + " INDEX (item index must be a positive integer)\n"
+                    + "Example: " + getCommandWord() + " " + CliSyntax.PREFIX_NAME + "Condiments "
+                    + CliSyntax.PREFIX_ID + "1";
         }
     },
 
