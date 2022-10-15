@@ -45,6 +45,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New %1$s added: %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This %1$s already exists in the address book";
+    public static final String MESSAGE_SIMILAR_PERSON = "This %1$s is similar someone we found"
+            + " in the address book: %2$s. We have added them anyways.";
     private final Person toAdd;
 
     /**
@@ -63,8 +65,12 @@ public class AddCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, toAdd.getCategoryIndicator()));
         }
 
+        if (model.findSimilarPerson(toAdd).isPresent()) {
+            model.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SIMILAR_PERSON, toAdd.getCategoryIndicator(),
+                    model.findSimilarPerson(toAdd).get()));
+        }
         model.addPerson(toAdd);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getCategoryIndicator(), toAdd));
     }
 
@@ -72,7 +78,7 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                        && toAdd.equals(((AddCommand) other).toAdd));
     }
 
 }

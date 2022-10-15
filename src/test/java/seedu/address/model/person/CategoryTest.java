@@ -10,7 +10,6 @@ import seedu.address.model.category.Category;
 
 public class CategoryTest {
 
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Category(null));
@@ -25,7 +24,7 @@ public class CategoryTest {
     @Test
     public void isValiCategory() {
         // nullCategory
-        assertThrows(NullPointerException.class, () ->Category.isValidCategoryName(null));
+        assertThrows(NullPointerException.class, () -> Category.isValidCategoryName(null));
 
         // invalidCategory formats
         assertFalse(Category.isValidCategoryName("")); // empty string

@@ -35,7 +35,7 @@ public class Patient extends Person {
     }
 
     public String getCategoryIndicator() {
-        return "patient";
+        return PersonType.PATIENT.toString();
     }
 
     @Override
@@ -67,7 +67,6 @@ public class Patient extends Person {
         for (DateTime datetime : this.dateTimes) {
             dateTimeListSB.append(datetime.toString()).append(" , ");
         }
-
 
         return dateTimeListSB.toString();
     }

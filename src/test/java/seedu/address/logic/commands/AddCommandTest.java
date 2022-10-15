@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -18,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Uid;
+import seedu.address.model.person.PersonType;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -35,7 +36,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, "patient", validPerson),
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, PersonType.PATIENT.toString(), validPerson),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
@@ -46,8 +47,9 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, String.format(AddCommand.MESSAGE_DUPLICATE_PERSON, "patient"), () ->
-                addCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(
+                AddCommand.MESSAGE_DUPLICATE_PERSON,
+                PersonType.PATIENT.toString()), () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -149,7 +151,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Uid getNextUid() {
+        public boolean hasSimilarPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Person> findSimilarPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -193,6 +200,18 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public boolean hasSimilarPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isSimilarPerson);
+        }
+
+        @Override
+        public Optional<Person> findSimilarPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().filter(person::isSimilarPerson).findAny();
         }
     }
 

@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -11,10 +12,14 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.*;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
+ * A list of persons that enforces uniqueness between its elements and does not
+ * allow nulls.
+ * A person is considered unique by comparing using
+ * {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality so as to ensure that
+ * the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of
+ * a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
@@ -24,8 +29,8 @@ import seedu.address.model.person.exceptions.*;
 public class UniquePersonList implements Iterable<Person> {
 
     private final ObservableList<Person> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Person> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Person> internalUnmodifiableList = FXCollections
+            .unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -33,6 +38,22 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains an similar person as the given argument.
+     */
+    public boolean containsSimilar(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSimilarPerson);
+    }
+
+    /**
+     * Returns an optional that contains an similar person as the given argument.
+     */
+    public Optional<Person> findSimilarPerson(Person toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().filter(toCheck::isSimilarPerson).findFirst();
     }
 
     /**
@@ -50,7 +71,8 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the list.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);

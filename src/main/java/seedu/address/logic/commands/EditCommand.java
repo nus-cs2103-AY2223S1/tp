@@ -61,7 +61,8 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid            Uid of the person in the filtered person list to edit
+     * @param targetUid            Uid of the person in the filtered person list to
+     *                             edit
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
@@ -385,7 +386,8 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
