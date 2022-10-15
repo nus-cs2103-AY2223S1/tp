@@ -10,14 +10,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    ArrayList<Name> currentNames = new ArrayList<>();
-    Predicate<Person> currentPrediate =  (person) -> currentNames.contains(person.getName());
+    ArrayList<Name> CURRENT_NAMES = new ArrayList<>();
+    Predicate<Person> CURRENT_PREDICATE = (person) -> CURRENT_NAMES.contains(person.getName());
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 

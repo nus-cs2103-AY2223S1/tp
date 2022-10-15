@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FilterAppointmentsCommand;
 import seedu.address.logic.commands.HidePatientsCommand;
@@ -28,7 +27,8 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
         String trimmedArgs = args.trim();
         String[] keywords = trimmedArgs.split("\\s+");
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            return new HidePatientsCommand(new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
+            return new HidePatientsCommand(
+                    new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(

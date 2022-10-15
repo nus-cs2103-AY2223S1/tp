@@ -12,17 +12,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,16 +84,22 @@ public class EditPatientCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
+    /**
+     * updates the current names to be shown on idENTify.
+     * @param model current model shown to the user.
+     * @param personToEdit person's information to be updated.
+     * @param editedPerson person with updated information.
+     */
     public static void updateModelNames(Model model, Person personToEdit, Person editedPerson) {
         model.setPerson(personToEdit, editedPerson);
         ObservableList<Person> currentList = model.getFilteredPersonList();
         for (int i = 0; i < currentList.size(); i++) {
-            model.currentNames.add(currentList.get(i).getName());
+            model.CURRENT_NAMES.add(currentList.get(i).getName());
         }
-        model.currentNames.remove(personToEdit.getName());
-        model.currentNames.add(editedPerson.getName());
-        model.updateFilteredPersonList(Model.currentPrediate);
-        model.currentNames.clear();
+        model.CURRENT_NAMES.remove(personToEdit.getName());
+        model.CURRENT_NAMES.add(editedPerson.getName());
+        model.updateFilteredPersonList(Model.CURRENT_PREDICATE);
+        model.CURRENT_NAMES.clear();
     }
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}

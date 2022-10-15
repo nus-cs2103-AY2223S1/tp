@@ -4,15 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.AppointmentContainsKeywordsPredicate;
-import seedu.address.model.person.AppointmentOfFilteredPersonsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all persons and their appointments in address book whose name contains any of the argument keywords.
@@ -40,10 +34,6 @@ public class FilterAppointmentsCommand extends Command {
         requireNonNull(model);
 
         model.updateFilteredAppointmentList(predicate);
-//        List<Person> validPersons = model.getFilteredPersonList();
-//        AppointmentOfFilteredPersonsPredicate appointmentPredicate =
-//                new AppointmentOfFilteredPersonsPredicate(validPersons);
-//        model.updateFilteredAppointmentList(appointmentPredicate);
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESULTS_LISTED_OVERVIEW,

@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.person.HiddenPersonPredicateSingleton;
 
 /**
