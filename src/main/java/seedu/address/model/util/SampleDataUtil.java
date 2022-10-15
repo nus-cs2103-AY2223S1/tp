@@ -67,7 +67,7 @@ public class SampleDataUtil {
         p.add(alex);
 
         return new Meeting[] {
-            new Meeting(p, "CS2103", "02-04-2022", "COM3")
+            new Meeting(p, "CS2103", "02-04-2022 1500", "COM3")
         };
     }
 
