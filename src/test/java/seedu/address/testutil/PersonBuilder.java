@@ -53,6 +53,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        income = personToCopy.getIncome();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new HashSet<>(personToCopy.getAppointments());
     }
@@ -119,13 +120,7 @@ public class PersonBuilder {
      * By default, the set of appointments field is created but is empty
      */
     public Person build() {
-        return new Person(name, phone, email, address, income, tags);
-    }
-
-
-    public Person buildWithAppointments() {
         return new Person(name, phone, email, address, income, tags, appointments);
     }
-
 
 }

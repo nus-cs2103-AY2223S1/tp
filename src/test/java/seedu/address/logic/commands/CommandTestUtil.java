@@ -4,30 +4,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.DateTimeParserTest.FIRST_VALID_DATE_TIME;
-import static seedu.address.logic.parser.DateTimeParserTest.SECOND_VALID_DATE_TIME;
-import static seedu.address.logic.parser.DateTimeParserTest.THIRD_VALID_DATE_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -50,31 +45,14 @@ public class CommandTestUtil {
     public static final String VALID_INCOME_BOB = "$10000";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_APPOINTMENT_21_JAN_2023 = "21-Jan-2023 01:00 AM";
-    public static final String VALID_APPOINTMENT_22_JAN_2023 = "22-Jan-2023 01:00 AM";
-    public static final String VALID_APPOINTMENT_23_JAN_2023 = "23-Jan-2023 01:00 AM";
+    public static final String VALID_DATETIME_21_JAN_2023 = "21-Jan-2023 01:00 AM";
+    public static final String VALID_DATETIME_22_JAN_2023 = "22-Jan-2023 01:00 AM";
+    public static final String VALID_DATETIME_23_JAN_2023 = "23-Jan-2023 01:00 AM";
+    public static final String INVALID_DATETIME_210_JAN_2023 = "210-Jan-2023 01:00 AM";
 
-    public static final String INVALID_APPOINTMENT_210_JAN_2023 = "210-Jan-2023 01:00 AM";
-
-    public static final LocalDateTime FIRST_VALID_LOCAL_DATE_TIME = DateTimeParser
-            .parseLocalDateTimeFromString(FIRST_VALID_DATE_TIME);
-    public static final LocalDateTime SECOND_VALID_LOCAL_DATE_TIME = DateTimeParser
-            .parseLocalDateTimeFromString(SECOND_VALID_DATE_TIME);
-
-    public static final DateTime INVALID_DATETIME_OBJECT = ParserUtil.parseDateTime("as dasd a aas");
-    public static final DateTime FIRST_VALID_DATETIME_OBJECT = ParserUtil.parseDateTime(FIRST_VALID_DATE_TIME);
-    public static final DateTime SECOND_VALID_DATETIME_OBJECT = ParserUtil.parseDateTime(SECOND_VALID_DATE_TIME);
-    public static final DateTime THIRD_VALID_DATETIME_OBJECT = ParserUtil.parseDateTime(THIRD_VALID_DATE_TIME);
-    public static final Location INVALID_LOCATION_OBJECT = new Location("  ");
-    public static final Location FIRST_VALID_LOCATION_OBJECT = new Location("NUS TechnoEdge");
-    public static final Location SECOND_VALID_LOCATION_OBJECT = new Location("NUS Starbucks");
-    public static final Location THIRD_VALID_LOCATION_OBJECT = new Location("NUS Frontier");
-
-    public static final Appointment FIRST_VALID_APPOINTMENT_OBJECT = new Appointment(FIRST_VALID_DATETIME_OBJECT, FIRST_VALID_LOCATION_OBJECT);
-    public static final Appointment SECOND_VALID_APPOINTMENT_OBJECT = new Appointment(SECOND_VALID_DATETIME_OBJECT, SECOND_VALID_LOCATION_OBJECT);
-    public static final Appointment THIRD_VALID_APPOINTMENT_OBJECT = new Appointment(THIRD_VALID_DATETIME_OBJECT, THIRD_VALID_LOCATION_OBJECT);
-    public static final Appointment INVALID_APPOINTMENT_OBJECT = new Appointment(THIRD_VALID_DATETIME_OBJECT, THIRD_VALID_LOCATION_OBJECT);
-
+    public static final String VALID_LOCATION_NUS = "NUS";
+    public static final String VALID_LOCATION_JURONGPOINT = "Jurong Point";
+    public static final String VALID_LOCATION_WESTMALL = "West Mall";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -85,8 +63,8 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
-    public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_APPOINTMENT_21_JAN_2023;
-    public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_APPOINTMENT_22_JAN_2023;
+    public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
+    public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_DATETIME_22_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_JURONGPOINT;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -95,7 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "000"; // income should include "$" sign
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + INVALID_APPOINTMENT_210_JAN_2023;
+    public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + INVALID_DATETIME_210_JAN_2023;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -112,7 +90,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPOINTMENT = new EditPersonDescriptorBuilder()
-                          .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
+                          .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023), new Location(VALID_LOCATION_NUS)))
                           .build();
     }
 

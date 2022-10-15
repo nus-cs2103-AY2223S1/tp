@@ -1,11 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -18,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 
 /**
@@ -32,7 +33,7 @@ public class TypicalPersons {
             .withPhone("94351253").withIncome("$1000")
             .withTags("friends").build();
 
-    public static final Person MUSAB = new PersonBuilder().withName("Musab")
+    public static final Person MUSAB_WITH_NO_APPT = new PersonBuilder().withName("Musab")
             .withAddress("301 Upper Thomson Rd, Singapore 574408")
             .withEmail("musab@gmail.com").withPhone("92345678")
             .withTags("gay")
@@ -40,10 +41,10 @@ public class TypicalPersons {
 
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withIncome("$1000")
+            .withEmail("johnd@example.com")
+            .withPhone("98765432")
+            .withIncome("$1000")
             .withTags("owesMoney", "friends")
-            .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
-            .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withIncome("$1000").build();

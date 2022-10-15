@@ -1,11 +1,5 @@
 package seedu.address.model.person;
 
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_DATETIME_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_LOCATION_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_DATETIME_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_LOCATION_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_DATETIME_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_LOCATION_OBJECT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Assertions;
@@ -52,7 +46,7 @@ public class AppointmentTest {
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
         Appointment newAppointment = new Appointment(new DateTimeStub(), new LocationStub());
-        Assertions.assertEquals("1-Apr-2023 12:30 PM", newAppointment.toString());
+        Assertions.assertEquals("1-Apr-2023 12:30 PM, NUS TechnoEdge", newAppointment.toString());
     }
 
     @Test

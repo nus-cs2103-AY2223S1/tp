@@ -3,15 +3,14 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SECOND_APPOINTMENT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.THIRD_VALID_APPOINTMENT_OBJECT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -20,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class AddAppointmentCommandParserTest {
@@ -31,7 +31,11 @@ public class AddAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointment(THIRD_VALID_APPOINTMENT_OBJECT).build();
+                .withAppointment(new AppointmentBuilder()
+                                .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                .withLocation(VALID_LOCATION_NUS).build())
+                .build();
+
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -43,8 +47,12 @@ public class AddAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC + SECOND_APPOINTMENT_DESC;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
-                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(new AppointmentBuilder()
+                                .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                .withLocation(VALID_LOCATION_NUS).build())
+                .withAppointment(new AppointmentBuilder()
+                                .withDateTime(VALID_DATETIME_22_JAN_2023)
+                                .withLocation(VALID_LOCATION_JURONGPOINT).build())
                 .build();
         AddAppointmentCommand expectedCommand = new AddAppointmentCommand(targetIndex, descriptor);
 

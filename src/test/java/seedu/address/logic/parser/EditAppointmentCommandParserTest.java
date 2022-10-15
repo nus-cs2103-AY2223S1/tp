@@ -3,14 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.FIRST_APPOINTMENT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPOINTMENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SECOND_APPOINTMENT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_VALID_APPOINTMENT_OBJECT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_21_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPOINTMENT_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -20,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditAppointmentCommandParserTest {
@@ -43,10 +43,10 @@ public class EditAppointmentCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + VALID_APPOINTMENT_21_JAN_2023, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + VALID_DATETIME_21_JAN_2023, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + VALID_APPOINTMENT_22_JAN_2023, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + VALID_DATETIME_22_JAN_2023, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -89,22 +89,12 @@ public class EditAppointmentCommandParserTest {
         String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT).build();
-        EditAppointmentCommand expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_validMultipleAppointmentField_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + FIRST_APPOINTMENT_DESC + SECOND_APPOINTMENT_DESC;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
-                .withAppointment(FIRST_VALID_APPOINTMENT_OBJECT)
-                .withAppointment(SECOND_VALID_APPOINTMENT_OBJECT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
                 .build();
         EditAppointmentCommand expectedCommand = new EditAppointmentCommand(targetIndex, descriptor);
+
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
 }
