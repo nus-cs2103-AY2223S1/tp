@@ -134,10 +134,10 @@ public class ParserUtil {
     public static Slack parseSlack(String slack) throws ParseException {
         requireNonNull(slack);
         String trimmedSlack = slack.trim();
-        if (!Slack.isValidSlack(slack)) {
+        if (!Slack.isValidSlack(trimmedSlack)) {
             throw new ParseException(Slack.MESSAGE_CONSTRAINTS);
         }
-        return new Slack(slack);
+        return new Slack(trimmedSlack);
     }
 
     /**
@@ -149,9 +149,9 @@ public class ParserUtil {
     public static Telegram parseTelegram(String telegram) throws ParseException {
         requireNonNull(telegram);
         String trimmedTele = telegram.trim();
-        if (!Telegram.isValidTelegram(telegram)) {
+        if (!Telegram.isValidTelegram(trimmedTele)) {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
-        return new Telegram(telegram);
+        return new Telegram(trimmedTele);
     }
 }
