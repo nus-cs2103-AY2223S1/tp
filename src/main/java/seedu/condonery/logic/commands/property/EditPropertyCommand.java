@@ -59,6 +59,10 @@ public class EditPropertyCommand extends Command {
         this.editPropertyDescriptor = new EditPropertyDescriptor(editPropertyDescriptor);
     }
 
+    public EditPropertyDescriptor getEditPropertyDescriptor() {
+        return editPropertyDescriptor;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -92,6 +96,27 @@ public class EditPropertyCommand extends Command {
         Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
 
         return new Property(updatedName, updatedAddress, updatedTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditPropertyCommand)) {
+            return false;
+        }
+
+        EditPropertyCommand e = (EditPropertyCommand) other;
+
+        if (!this.targetIndex.equals(e.targetIndex)) {
+            return false;
+        }
+
+        return editPropertyDescriptor.equals(e.getEditPropertyDescriptor());
     }
 
     /**
@@ -174,7 +199,23 @@ public class EditPropertyCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
+
+        @Override
+        public String toString() {
+            return "EditPropertyDescriptor{"
+                    + "name=" + name
+                    + ", address=" + address
+                    + ", tags=" + tags
+                    + '}';
+        }
     }
 
+    @Override
+    public String toString() {
+        return "EditPropertyCommand{"
+                + "targetIndex=" + targetIndex
+                + ", editPropertyDescriptor=" + editPropertyDescriptor
+                + '}';
+    }
 }
 

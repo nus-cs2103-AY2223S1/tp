@@ -11,8 +11,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.condonery.commons.core.index.Index;
-import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.parser.ArgumentMultimap;
 import seedu.condonery.logic.parser.ArgumentTokenizer;
 import seedu.condonery.logic.parser.Parser;
@@ -35,14 +35,20 @@ public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
     public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
-        EditPropertyCommand.EditPropertyDescriptor editPropertyDescriptor =
-                new EditPropertyCommand.EditPropertyDescriptor();
+        EditPropertyDescriptor editPropertyDescriptor =
+                new EditPropertyDescriptor();
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditPropertyCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
+            throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

@@ -1,6 +1,7 @@
 package seedu.condonery.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.parser.exceptions.ParseException;
@@ -18,6 +19,9 @@ public class CommandParserTestUtil {
                                           Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
+            System.out.println(command);
+            System.out.println(expectedCommand);
+            System.out.println(command.equals(expectedCommand));
             assertEquals(expectedCommand, command);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);

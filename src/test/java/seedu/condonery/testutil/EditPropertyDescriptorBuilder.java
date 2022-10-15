@@ -1,10 +1,12 @@
 package seedu.condonery.testutil;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
+import seedu.condonery.logic.commands.property.EditPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
@@ -28,11 +30,11 @@ public class EditPropertyDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public EditPropertyDescriptorBuilder(Property person) {
+    public EditPropertyDescriptorBuilder(Property property) {
         descriptor = new EditPropertyDescriptor();
-        descriptor.setName(person.getName());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setName(property.getName());
+        descriptor.setAddress(property.getAddress());
+        descriptor.setTags(property.getTags());
     }
 
     /**
@@ -59,6 +61,13 @@ public class EditPropertyDescriptorBuilder {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
+    }
+
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(descriptor);
     }
 
     public EditPropertyDescriptor build() {

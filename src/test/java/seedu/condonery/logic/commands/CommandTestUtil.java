@@ -13,6 +13,8 @@ import java.util.List;
 
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.exceptions.CommandException;
+import seedu.condonery.logic.commands.property.EditPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
 import seedu.condonery.model.property.NameContainsKeywordsPredicate;
@@ -51,8 +53,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPropertyDescriptor DESC_AMY;
-    public static final EditCommand.EditPropertyDescriptor DESC_BOB;
+    public static final EditPropertyDescriptor DESC_AMY;
+    public static final EditPropertyDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPropertyDescriptorBuilder().withName(VALID_NAME_AMY)

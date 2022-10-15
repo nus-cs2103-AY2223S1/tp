@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.condonery.logic.commands.ClearCommand;
-import seedu.condonery.logic.commands.EditCommand;
-import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
@@ -57,9 +57,9 @@ public class CondoneryParserTest {
     public void parseCommand_edit() throws Exception {
         Property property = new PropertyBuilder().build();
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(property).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditPropertyCommand command = (EditPropertyCommand) parser.parseCommand(EditPropertyCommand.COMMAND_WORD + " "
             + INDEX_FIRST_PROPERTY.getOneBased() + " " + PropertyUtil.getEditPropertyDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PROPERTY, descriptor), command);
+        assertEquals(new EditPropertyCommand(INDEX_FIRST_PROPERTY, descriptor).getEditPropertyDescriptor(), command.getEditPropertyDescriptor());
     }
 
     @Test
