@@ -37,7 +37,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.addressBook = AddressBook.getNew(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
@@ -46,7 +46,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(AddressBook.getNew(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

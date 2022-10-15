@@ -19,11 +19,13 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
 
 /**
@@ -91,7 +93,8 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
         List<Project> projectList = new ArrayList<>();
         projectList.add(project);
-        ClientId clientId = new ClientId(UniqueClientList.generateId());
+        ClientId clientId = new ClientId(HasIntegerIdentifier.generateNextID(
+                AddressBook.get().getClientList()));
 
         Client client = new Client(name, phone, email, projectList, clientId);
 

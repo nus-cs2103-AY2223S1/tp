@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.interfaces.HasIntegerIdentifier;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +15,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.*;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.Priority;
@@ -74,8 +76,9 @@ public class ParserUtil {
         } catch (NumberFormatException e) {
             throw new ParseException(ClientId.MESSAGE_INVALID);
         }
-        ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
-        Client client = AddressBook.get().getClientList() (clientIdRes);
+//        ClientId clientIdRes = new ClientId(Integer.parseInt(trimmedClientId));
+        Client client = HasIntegerIdentifier.getElementById(
+                AddressBook.get().getClientList(), Integer.parseInt(trimmedClientId));
         if (!Client.isValidClient(client)) {
             throw new ParseException(Client.MESSAGE_INVALID);
         }

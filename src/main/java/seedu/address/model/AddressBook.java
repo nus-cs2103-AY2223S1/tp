@@ -42,12 +42,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         issues = new UniqueEntityList<Issue>();
     }
 
-    public static AddressBook newAddressBook() {
+    public static AddressBook getNew() {
         instance = new AddressBook();
         return instance;
     }
 
-    public static AddressBook newAddressBook(ReadOnlyAddressBook toBeCopied) {
+    public static AddressBook getNew(ReadOnlyAddressBook toBeCopied) {
         instance = new AddressBook(toBeCopied);
         return instance;
     }
@@ -286,6 +286,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {

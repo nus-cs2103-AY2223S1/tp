@@ -1,5 +1,7 @@
 package seedu.address.model.interfaces;
 
+import seedu.address.model.list.NotFoundException;
+
 import java.util.List;
 
 public interface HasIntegerIdentifier {
@@ -9,5 +11,33 @@ public interface HasIntegerIdentifier {
      * @return an integer
      */
     int getID();
+
+    /**
+     * Generate the next object ID.
+     * @return the max ID in list + 1
+     */
+    public static <T extends HasIntegerIdentifier> int generateNextID(Iterable<T> i) {
+        int maxID = 0;
+        for (T t: i) {
+            maxID = t.getID() > maxID ? t.getID() : maxID;
+        }
+        return maxID + 1;
+    }
+
+    /**
+     * Get an element from a list of objects by ID
+     * @param iterable iterable to queyr
+     * @param id id of item to retrieve
+     * @param <T> object type
+     * @return
+     */
+    public static <T extends HasIntegerIdentifier> T getElementById(Iterable<T> iterable, int id) {
+        for (T item: iterable) {
+            if (item.getID() == id) {
+                return item;
+            }
+        }
+        throw new NotFoundException();
+    }
 
 }

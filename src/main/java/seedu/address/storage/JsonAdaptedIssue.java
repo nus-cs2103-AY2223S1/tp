@@ -11,7 +11,6 @@ import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.tag.exceptions.IllegalValueException;
 
 /**
