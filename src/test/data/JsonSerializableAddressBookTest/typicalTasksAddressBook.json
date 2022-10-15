@@ -59,10 +59,12 @@
   ],
   "tasks": [
     {
+      "id": "bfbf250c-fd58-49b4-be15-ca12095ca2ee",
       "taskName": "Buy Milk",
       "contactIndex": 0
     },
     {
+      "id": "41478d11-dbba-441f-ab0f-99ddf097eac1",
       "taskName": "CS2103T",
       "contactIndex": 0
     }

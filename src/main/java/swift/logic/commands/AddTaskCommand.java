@@ -19,10 +19,11 @@ public class AddTaskCommand extends Command {
             + ": Adds a task to the task list.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_CONTACT + "CONTACT\n"
+            + "[" + PREFIX_CONTACT + "CONTACT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T Tutorial "
-            + PREFIX_CONTACT + "1";
+            + PREFIX_CONTACT + "1 "
+            + PREFIX_CONTACT + "2";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";

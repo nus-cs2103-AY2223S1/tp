@@ -4,6 +4,8 @@ import static swift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import swift.commons.core.index.Index;
@@ -27,16 +29,15 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTACT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CONTACT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         try {
             TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).get());
+            Set<Index> indices = ParserUtil.parseIndices(argMultimap.getAllValues(PREFIX_CONTACT));
 
-            Task task = new Task(name, index);
+            Task task = new Task(UUID.randomUUID(), name);
 
             return new AddTaskCommand(task);
         } catch (ParseException pe) {

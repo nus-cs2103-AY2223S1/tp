@@ -1,48 +1,47 @@
 package swift.model.task;
 
-import static java.util.Objects.requireNonNull;
+import static swift.commons.util.CollectionUtil.requireAllNonNull;
 
-import swift.commons.core.index.Index;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Represents a Task in the address book.
  */
 public class Task {
+    private final UUID id;
     public final TaskName taskName;
-    public final Index contactIndex;
 
     /**
      * Constructs a {@code Task}.
      *
-     * @param taskName     A valid task name.
-     * @param contactIndex A valid contact index.
+     * @param id       A unique identifier for the task.
+     * @param taskName A valid task name.
      */
-    public Task(TaskName taskName, Index contactIndex) {
-        requireNonNull(taskName);
-        requireNonNull(contactIndex);
+    public Task(UUID id, TaskName taskName) {
+        requireAllNonNull(id, taskName);
+        this.id = id;
         this.taskName = taskName;
-        this.contactIndex = contactIndex;
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public TaskName getTaskName() {
         return taskName;
     }
 
-    public Index getContactIndex() {
-        return contactIndex;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Task
-                && taskName.equals(((Task) other).taskName)
-                && contactIndex.equals(((Task) other).contactIndex));
+                && taskName.equals(((Task) other).taskName));
     }
 
     @Override
     public int hashCode() {
-        return taskName.hashCode() ^ contactIndex.hashCode();
+        return Objects.hash(id, taskName);
     }
 
     /**

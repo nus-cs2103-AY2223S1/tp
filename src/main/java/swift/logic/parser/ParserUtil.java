@@ -38,6 +38,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> oneBasedIndices} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseIndices(Collection<String> oneBasedIndices) throws ParseException {
+        requireNonNull(oneBasedIndices);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String oneBasedIndex : oneBasedIndices) {
+            indexSet.add(parseIndex(oneBasedIndex));
+        }
+        return indexSet;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

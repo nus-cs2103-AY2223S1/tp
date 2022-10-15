@@ -7,6 +7,7 @@ import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
@@ -80,10 +81,10 @@ public class EditTaskCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
+        UUID updatedId = taskToEdit.getId();
         TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
-        Index updatedContactIndex = editTaskDescriptor.getContactIndex().orElse(taskToEdit.getContactIndex());
 
-        return new Task(updatedTaskName, updatedContactIndex);
+        return new Task(updatedId, updatedTaskName);
     }
 
     @Override
