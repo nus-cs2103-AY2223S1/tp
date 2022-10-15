@@ -13,11 +13,12 @@ import java.time.format.DateTimeParseException;
  */
 public class Appointment {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final String NO_APPOINTMENT_SCHEDULED = "no appointment scheduled";
 
     private final LocalDateTime appointmentDate;
 
     /**
-     * Constructs an appointment.
+     * Constructs an appointment with a given date.
      *
      * @param appointmentDate Date of the appointment.
      */
@@ -25,6 +26,13 @@ public class Appointment {
         requireNonNull(appointmentDate);
         checkArgument(isValidDate(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
         this.appointmentDate = LocalDateTime.parse(appointmentDate, DATE_FORMAT);
+    }
+
+    /**
+     * Constructs an empty Appointment.
+     */
+    public Appointment() {
+        this.appointmentDate = null;
     }
 
     /**
@@ -43,6 +51,43 @@ public class Appointment {
     }
 
     /**
+     * Returns true is appointment is valid.
+     *
+     * @param test Input args for appointment test.
+     * @return True if valid.
+     */
+    public static boolean isValidAppointment(String test) {
+        return test.equals(NO_APPOINTMENT_SCHEDULED) || isValidDate(test);
+    }
+
+    /**
+     * Factory method for the construction of an appointment from the JSON storage file.
+     *
+     * @param in Json storage format of an appointment.
+     * @return An appointment with the input field.
+     */
+    public static Appointment of(String in) {
+        if (in.equals(NO_APPOINTMENT_SCHEDULED)) {
+            return new Appointment();
+        } else {
+            return new Appointment(in);
+        }
+    }
+
+    /**
+     * Converts the appointment into string format for Jackson storage.
+     *
+     * @return Storage format for an appointment.
+     */
+    public String storageFormat() {
+        if (this.appointmentDate == null) {
+            return NO_APPOINTMENT_SCHEDULED;
+        } else {
+            return this.toString();
+        }
+    }
+
+    /**
      * Appointment date getter.
      *
      * @return The record date.
@@ -53,7 +98,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return appointmentDate.format(DATE_FORMAT);
+        return "Appointment: "
+                + (appointmentDate == null ? NO_APPOINTMENT_SCHEDULED : appointmentDate.format(DATE_FORMAT));
     }
 
     @Override

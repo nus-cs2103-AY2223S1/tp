@@ -18,6 +18,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DisplayedPerson;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -56,7 +57,8 @@ public class ModelManager implements Model {
                 new Email(DEFAULT_EMAIL),
                 new Address(DEFAULT_ADDRESS),
                 new HashSet<Tag>(),
-                new RecordList());
+                new RecordList(),
+                new Appointment());
         this.personWithRecords = new DisplayedPerson(placeholderPerson);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredRecords = new FilteredList<>(FXCollections.observableArrayList()); // empty FilteredList

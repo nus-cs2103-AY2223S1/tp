@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedRecord> recordList = new ArrayList<>();
+    private final String appointment;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,11 +41,13 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("recordList") List<JsonAdaptedRecord> recordList) {
+                             @JsonProperty("recordList") List<JsonAdaptedRecord> recordList,
+                             @JsonProperty("appointment") String appointment) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.appointment = appointment;
 
         if (recordList != null) {
             this.recordList.addAll(recordList);
@@ -62,6 +66,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        appointment = source.getAppointment().storageFormat();
         recordList.addAll(source.getRecordList().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedRecord::new)
                 .collect(Collectors.toList()));
@@ -119,9 +124,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!Appointment.isValidAppointment(appointment)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Appointment modelAppointment = Appointment.of(appointment);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelRecordList);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelTags, modelRecordList, modelAppointment);
     }
 
 }
