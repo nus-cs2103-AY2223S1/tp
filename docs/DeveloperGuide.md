@@ -277,150 +277,198 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​          | I want to …​                             | So that I can…​                                                            |
 |----------|------------------|------------------------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
-| `* * *`  | student          | add a classmate to the addressbook       | conveniently refer to their contact details all in one place               |
-| `* * *`  | student          | list all classmates                      | see a list of all classmates in my class                                   |
-| `* * *`  | student          | edit a classmate                         | change their details without deleting them                                 |
-| `* * *`  | student          | delete a classmate                       | remove unneeded entries                                                    |
-| `* * *`  | student          | find a classmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
-| `* * *`  | student          | tag a classmate with a tag               | find them easily                                                           |
-| `* * *`  | student          | find classmates using specified tags     | locate classmates with the specified tag easily                            |
+| `* * *`  | student          | add a batchmate to the addressbook       | conveniently refer to their contact details all in one place               |
+| `* * *`  | student          | list all batchmates                      | see a list of all batchmates in my class                                   |
+| `* * *`  | student          | edit a batchmate                         | change their details without deleting them                                 |
+| `* * *`  | student          | delete a batchmate                       | remove unneeded entries                                                    |
+| `* * *`  | student          | find a batchmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
+| `* * *`  | student          | tag a batchmate with a tag               | find them easily                                                           |
+| `* * *`  | student          | find batchmates using specified tags     | locate batchmates with the specified tag easily                            |
 | `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
 | `* *`    | technical person | close the App using a command            | close the App easily                                                       |
 
 *{More to be added}*
 
 ### Use cases
+(For all use cases below, the **System** is Mass Linkers and the **Actor** is the student, unless specified otherwise)
 
-(For all use cases below, the **System** is `MassLinkers` and the **Actor** is the `student`, unless specified otherwise)
-
-**Use case 1: Add a classmate’s information**
+**Use case 1: Add a batchmate’s information**
 
 **MSS**
-1. Student chooses to add a classmate's contact.
-2. Student enters the command to add a classmate.
-3. MassLinkers verifies entered command has valid syntax.
-4. MassLinkers adds user to the list of classmates. \
+1. Student chooses to add a batchmate's contact.
+2. Student enters batchmate's particulars.
+3. Mass Linkers adds batchmate to current list of batchmates. \
    Use case ends.
 
 **Extensions**
-* 4a. MassLinkers detects an error in the entered command.
-    * 4a1. MassLinkers requests for the correct command.
-    * 4a2. Student enters new command.
-    * Steps 4a1-4a2 are repeated until the command entered are correct. \
-      Use case resumes from step 4.
-
-
-* a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program. \
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file. \
       Use case ends.
 
-**Use case 2: Delete a classmate**
+**Use case 2: Remove a batchmate**
 
 **MSS**
-
-1. Student requests to list classmates.
-2. MassLinkers shows a list of classmates.
-3. Student requests to delete a specific classmate in the list.
-4. MassLinkers deletes the classmate using his index.
+1. Student requests for the list of batchmates.
+2. Mass Linkers shows the current list of batchmates.
+3. Student requests to delete a specific batchmate in the list.
+4. Mass Linkers deletes the specified batchmate.
    \
    Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
-\
-Use case ends.
+  \
+  Use case ends.
 
+* 4a. The specified batchmate is not found.
+    * a1. Mass Linkers detects an error in specified batchmate (non valid index).
+    * a2. Mass Linkers requests for a valid batchmate. 
+    * Step a1 is repeated until a valid index is given. \
+      Use case resumes from step 3.
 
-* 3a. The given index is invalid.
-    * 3a1. MassLinkers shows an error message.
-      \
-      Use case resumes at step 2.
-
-
-* a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
-**Use case 3: Search classmate via a tag**
+**Use case 3: Search batchmates via tags**
 
 **MSS**
 
-1. Student searches classmate with a particular tag.
-2. MassLinkers verifies syntax of the search command is valid.
-3. MassLinkers searches through the list of added tags.
-4. MassLinkers returns the list of classmates associated with the particular tag and display it through the GUI.
+1. Student requests the list of batchmates with tags.
+2. Mass Linkers returns the list of batchmates associated with the particular tags.
    \
    Use case ends.
 
 **Extensions**
-* 3a. MassLinkers detects an error in the sequence or syntax of entered command.
-    * 3a1. MassLinkers prompts error message.
-    * 3a2. MassLinkers requests for the correct command.
-    * 3a3. Student enters new command.
-      Steps 3a1-3a3 are repeated until the command entered are correct.
-      \
-      Use case resumes from step 4.
-
-
-* 4a. MassLinkers detects there is no such tag.
-    * 4a1. MassLinkers prompts error message.
-    * 4a2. MassLinkers requests for the correct command.
-    * 4a3. Student enters new command.
-      \
-      Steps 4a1-4a3 are repeated until the command entered are correct.
-      \
-      Use case resumes from step 4.
-
-
-* a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program.
+* 1a. Mass Linkers detects an invalid input. (No tags specified by the student)
+* 1a1. Mass Linkers requests for at least one tag to be specified.
+* 1a2. Student inputs new tags.
+* Steps 1a1-1a2 are repeated until input is valid.
+  \
+  Use case resumes from step 2.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-
-
-**Use case 4: Add a tag to a classmate**
+    
+**Use case 4: Add a tag to a batchmate**
 
 **MSS**
 
-1. Student chooses to add a tag on a classmate, could be himself or others.
-2. Student enters the add tag command with the associated classmate.
-3. MassLinkers verifies the syntax of the command.
-4. MassLinkers searches through the list of people for the selected classmate.
-5. MassLinkers adds tag to the classmate.
+1. Student chooses to add a tag to a batchmate.
+2. Mass Linkers searches through the list of batchmates for the selected batchmate.
+3. Mass Linkers adds tag to the batchmate.
    \
    Use case ends.
 
 **Extensions**
-* 3a. MassLinkers detects an error in the entered command.
-    * 3a1. MassLinkers requests for the correct command.
+* 2a. The list of batchmates is empty.
+* a1. Mass Linkers warns adding a tag is invalid.
+  \
+  Use case ends.
+* 2b. Mass Linkers detects an error in specified batchmate (non valid index).
+    * b1. Mass Linkers requests for new batchmate details.
+    * Step b1 is repeated until a batchmate is found.
+      \
+      Use case resumes from step 2.
+
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
+      \
+      Use case ends.
+    
+**Use case 5: Mark a module completed**
+
+**MSS**
+
+1. Student requests the list of modules for a batchmate.
+2. Student requests to mark a module complete.
+3. Mass Linkers marks the module completed.
+   \
+   Use case ends.
+
+**Extensions**
+* 2a. The list of modules is empty.
+    * a1. Mass Linkers warns marking a module is invalid.
+      \
+      Use case ends.
+* 2b. Mass Linkers detects the specified module is invalid (out of range).
+    * b1. Mass Linkers requests for new module.
+    * Step b1 is repeated until a module is found.
+      \
+      Use case resumes from step 2.
+
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
+      \
+      Use case ends.
+
+
+**Use case 6: Edit Batchmate**
+
+**MSS**
+
+1. Student requests the list of batchmates.
+2. Mass Linkers displays list of batchmates.
+3. Student requests to edit a specific batchmate in the list with the new details.
+4. Mass Linkers updates the details of said batchmate.
+   \
+   Use case ends.
+
+**Extensions**
+* 2a. The list of batchmates is empty.
+  \
+  Use case ends.
+* 3a. Mass Linkers detects an error in the entered command.
+    * 3a1. Mass Linkers requests for the correct command.
     * 3a2. Student enters new command.
+      Steps 3a1-3a2 are repeated until the command entered is correct.
       \
-      Steps 3a1-3a2 are repeated until the data entered are correct.
+      Use case resumes from step 4.
+* 3b. Mass Linkers could not find the batchmate specified.
+    * 3b1. Mass Linkers requests the user to input a valid batchmate.
+    * 3b2. Student enters new command.
+      Steps 3b1-3b2 are repeated until the command entered are correct.
       \
       Use case resumes from step 4.
 
-
-* 5a. MassLinkers cannot find classmate in MassLinkers.
-    * 5a1. MassLinkers requests for correct command argument.
-    * 5a2. Student enters new command.
-      \
-      Steps 5a1-5a2 are repeated until the data entered are correct.
-      \
-      Use case resumes from step 5.
-
-
-* a. At any time, Student chooses to close MassLinkers.
-    * a1. MassLinkers updates the written storage file.
-    * a2. MassLinkers closes the program.
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
 
 
+**Use case 7: Add module**
+
+**MSS**
+
+1. Student requests to add modules to a specific batchmate.
+2. Mass Linkers add modules to said batchmate.
+   \
+   Use case ends.
+
+**Extensions**
+* 1a. The list of batchmates is empty.
+  \
+  Use case ends.
+* 2a. Mass Linkers detects an error in the entered command.
+    * 2a1. Mass Linkers requests for the correct command.
+    * 2a2. Student enters new command.
+      Steps 2a1-2a2 are repeated until the command entered are correct.
+      \
+      Use case ends.
+* 2b. Mass Linkers could not find the batchmate specified.
+    * 2b1. Mass Linkers requests the user to input a valid batchmate.
+    * 2b2. Student enters new command.
+      Steps 2b1-2b2 are repeated until the command entered are correct.
+      \
+      Use case ends.
+
+* *a. At any time, Student chooses to close Mass Linkers.
+    * a1. Mass Linkers updates the storage file.
+      \
+      Use case ends.
 
 ### Non-Functional Requirements
 
@@ -443,7 +491,7 @@ Use case ends.
 * **Command Line Interface (CLI)**: A text of lines input by the users to send instructions to the system.
 * **Graphical User Interface (GUI)**: A means, supported by visuals, for the users to send instructions to the system.
 * **Student**: The main user.
-* **Classmate**: The people whom the users need to link to and interact with.
+* **Batchmate**: The people whom the users need to link to and interact with.
 
 --------------------------------------------------------------------------------------------------------------------
 
