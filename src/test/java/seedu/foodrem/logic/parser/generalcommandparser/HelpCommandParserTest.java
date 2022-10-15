@@ -28,6 +28,9 @@ import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
 class HelpCommandParserTest {
+    private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
+            + "dec, del, edit, find, inc, list, new, sort, view, " // Item commands
+            + "deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
 
     private final HelpCommandParser parser = new HelpCommandParser();
 
@@ -53,8 +56,7 @@ class HelpCommandParserTest {
 
     @Test
     void parse_text() {
-        assertEquals("Please refer to the user guide.",
-                HelpCommand.DEFAULT_HELP_MESSAGE);
+        assertEquals("Please refer to the user guide.", HelpCommand.DEFAULT_HELP_MESSAGE);
 
         // // Commented out pending reevaluation of usefulness of test case
         // assertEquals("https://se-education.org/addressbook-level3/UserGuide.html",
@@ -64,9 +66,7 @@ class HelpCommandParserTest {
         // assertEquals("For more information please head to:\n"
         //         + "https://se-education.org/addressbook-level3/UserGuide.html", HelpCommand.MORE_INFORMATION);
 
-        assertEquals("help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag",
-                CommandWord.listAllCommandWords());
+        assertEquals(EXPECTED_ALL_COMMANDS, CommandWord.listAllCommandWords());
 
         // // Commented out pending reevaluation of usefulness of test case
         // assertEquals("To receive help for a specific command, enter "
@@ -88,14 +88,13 @@ class HelpCommandParserTest {
         //         String.format(HelpCommand.HELP_FOR_SPECIFIC_COMMAND, "hehe"));
 
         // Not a command constant
-        assertEquals(String.format(HelpCommand.NOT_A_COMMAND, "testing"),
-                "\"testing\" is not a valid command\n\n"
+        assertEquals("\"testing\" is not a valid command\n\n"
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
-                        + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-                        + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
-                        + "For more information please head to:\n"
-                        + "https://se-education.org/addressbook-level3/UserGuide.html");
+                        + EXPECTED_ALL_COMMANDS
+                        + "\n\nFor more information please head to:\n"
+                        + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide",
+                String.format(HelpCommand.NOT_A_COMMAND, "testing"));
     }
 
     @Test
