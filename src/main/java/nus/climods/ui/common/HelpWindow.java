@@ -42,8 +42,6 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private WebView webView;
 
-    private WebEngine webEngine;
-
     /**
      * Creates a new HelpWindow.
      *
@@ -102,22 +100,50 @@ public class HelpWindow extends UiPart<Stage> {
      */
     private void displayUserManual() {
         WebEngine webEngine = webView.getEngine();
+        boolean isConnectedToInternet = hasInternet();
 
+        if (isConnectedToInternet) {
+            preventRedirection(webEngine);
+            webEngine.load(USERGUIDE_URL);
+        } else {
+            loadLocalUserManual(webEngine);
+        }
+    }
+
+    private void loadLocalUserManual(WebEngine webEngine) {
+        try {
+            Stream<String> lines = Files.lines(
+                Paths.get(ClassLoader.getSystemResource("html/UserManual.html").toURI())
+            );
+            webEngine.loadContent(lines.collect(Collectors.joining("\n")));
+        } catch (URISyntaxException | IOException e) {
+            logger.warning("User Manual not found!");
+        }
+    }
+
+    private boolean hasInternet() {
         try {
             URL url = new URL(USERGUIDE_URL);
             URLConnection urlConnection = url.openConnection();
             urlConnection.connect();
-            webEngine.load(USERGUIDE_URL);
+            return true;
         } catch (IOException ioException) {
-            try {
-                Stream<String> lines = Files.lines(
-                    Paths.get(ClassLoader.getSystemResource("html/UserManual.html").toURI())
-                );
-                webEngine.loadContent(lines.collect(Collectors.joining("\n")));
-            } catch (URISyntaxException | IOException e) {
-                logger.warning("User Manual not found!");
-            }
+            return false;
         }
+    }
+
+    private void preventRedirection(WebEngine webEngine) {
+        webEngine.locationProperty().addListener((obs, oldLocation, newLocation) -> {
+            if (newLocation != null && !newLocation.startsWith(CLIMODS_BASE_URL)) {
+                showWarningMessage("You are assessing a website outside of CLIMods.  "
+                    + "You will be redirected to our website.");
+                if (oldLocation.contains("#")) {
+                    webEngine.load(oldLocation.substring(0, oldLocation.indexOf("#")));
+                } else {
+                    webEngine.load(oldLocation);
+                }
+            }
+        });
     }
 
     /**
