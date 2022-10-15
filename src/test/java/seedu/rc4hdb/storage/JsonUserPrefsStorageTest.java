@@ -2,6 +2,7 @@ package seedu.rc4hdb.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -118,6 +119,28 @@ public class JsonUserPrefsStorageTest {
         jsonUserPrefsStorage.saveUserPrefs(original);
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
+    }
+
+    @Test
+    public void equals() {
+        Path filePath = Path.of("original.json");
+        Path otherFilePath = Path.of("other.json");
+
+        JsonUserPrefsStorage original = new JsonUserPrefsStorage(filePath);
+        JsonUserPrefsStorage samePath = new JsonUserPrefsStorage(filePath);
+        JsonUserPrefsStorage other = new JsonUserPrefsStorage(otherFilePath);
+
+        // Same object
+        assertTrue(original.equals(original));
+
+        // Same file path
+        assertTrue(original.equals(samePath));
+
+        // null json resident book storage
+        assertFalse(original.equals(null));
+
+        // different file path
+        assertFalse(original.equals(other));
     }
 
 }

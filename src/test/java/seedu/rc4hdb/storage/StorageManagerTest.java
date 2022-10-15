@@ -22,6 +22,9 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
 
+/**
+ * Unit test for {@link StorageManager}.
+ */
 public class StorageManagerTest {
 
     @TempDir

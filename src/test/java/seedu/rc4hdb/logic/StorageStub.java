@@ -11,7 +11,7 @@ import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.storage.Storage;
 
 /**
- * A default ResidentBookStorage stub where all methods fail.
+ * A default storage stub where all methods fail.
  */
 public class StorageStub implements Storage {
 

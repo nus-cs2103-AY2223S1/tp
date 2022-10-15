@@ -24,6 +24,9 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 
+/**
+ * Unit tests for {@link JsonResidentBookStorage}.
+ */
 public class JsonResidentBookStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonResidentBookStorageTest");
 
@@ -170,5 +173,27 @@ public class JsonResidentBookStorageTest {
         JsonResidentBookStorage jsonResidentBookStorage = new JsonResidentBookStorage(Path.of("SomeFile.json"));
         jsonResidentBookStorage.setResidentBookFilePath(expectedPath);
         assertEquals(expectedPath, jsonResidentBookStorage.getResidentBookFilePath());
+    }
+
+    @Test
+    public void equals() {
+        Path filePath = Path.of("original.json");
+        Path otherFilePath = Path.of("other.json");
+
+        JsonResidentBookStorage original = new JsonResidentBookStorage(filePath);
+        JsonResidentBookStorage samePath = new JsonResidentBookStorage(filePath);
+        JsonResidentBookStorage other = new JsonResidentBookStorage(otherFilePath);
+
+        // Same object
+        assertTrue(original.equals(original));
+
+        // Same file path
+        assertTrue(original.equals(samePath));
+
+        // null json resident book storage
+        assertFalse(original.equals(null));
+
+        // different file path
+        assertFalse(original.equals(other));
     }
 }

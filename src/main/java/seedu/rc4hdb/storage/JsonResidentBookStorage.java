@@ -104,4 +104,21 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
         this.filePath = filePath;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof JsonResidentBookStorage)) {
+            return false;
+        }
+
+        // state check
+        JsonResidentBookStorage other = (JsonResidentBookStorage) obj;
+        return filePath.equals(other.filePath);
+    }
+
 }
