@@ -28,20 +28,32 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_DATE_AMY = "1/1/2020";
-    public static final String VALID_DATE_BOB = "31/12/2021";
+    public static final String VALID_DATE_AMY = "20/09/2022";
+    public static final String VALID_DATE_BOB = "20/08/2022";
     public static final String VALID_CONTENT_AMY = "Good, 5/5";
     public static final String VALID_CONTENT_BOB = "Bad, 1/5";
     public static final Integer VALID_RATING_AMY = 4;
     public static final Integer VALID_RATING_BOB = 3;
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String STALL_INDEX_DESC = " " + CliSyntax.PREFIX_STALL_INDEX + "1";
+    public static final String DATE_DESC_AMY = " " + CliSyntax.PREFIX_DATE + VALID_DATE_AMY;
+    public static final String DATE_DESC_BOB = " " + CliSyntax.PREFIX_DATE + VALID_DATE_BOB;
+    public static final String CONTENT_DESC_AMY = " " + CliSyntax.PREFIX_CONTENT + VALID_CONTENT_AMY;
+    public static final String CONTENT_DESC_BOB = " " + CliSyntax.PREFIX_CONTENT + VALID_CONTENT_BOB;
+
     public static final String NAME_DESC_AMY = " " + CliSyntax.PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
     public static final String ADDRESS_DESC_AMY = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String RATING_DESC_AMY = " " + CliSyntax.PREFIX_RATING + VALID_RATING_AMY;
+    public static final String RATING_DESC_BOB = " " + CliSyntax.PREFIX_RATING + VALID_RATING_BOB;
     public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_HUSBAND;
+
+    public static final String INVALID_DATE_DESC = " "
+            + CliSyntax.PREFIX_DATE + ""; //invalid date format
 
     public static final String INVALID_NAME_DESC = " " + CliSyntax.PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_ADDRESS_DESC = " "
