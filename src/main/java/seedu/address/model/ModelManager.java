@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -149,8 +150,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Tag> getTagList() {
-        return addressBook.getTagList();
+    public ObservableMap<String, Tag> getTagMapping() {
+        return addressBook.getTagMapping();
     }
 
     //=========== Filtered Person List Accessors =============================================================

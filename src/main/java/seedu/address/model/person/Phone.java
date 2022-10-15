@@ -50,4 +50,8 @@ public class Phone {
         return value.hashCode();
     }
 
+    public Phone deepCopy() {
+        return new Phone(value);
+    }
+
 }

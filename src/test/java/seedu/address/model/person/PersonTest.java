@@ -1,6 +1,9 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -11,8 +14,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
@@ -87,5 +96,103 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void deepCopy_notSameButEqual() {
+        String tagName = "House";
+        Person personA = new PersonBuilder().withName("PersonA").withTags(tagName).build();
+        Person deepCopy = personA.deepCopy();
+
+        assertNotSame(personA, deepCopy);
+        assertEquals(personA, deepCopy);
+    }
+
+    @Test
+    public void deepCopy_tagsCopiedNotSame() {
+        String tagName = "House";
+        Tag tag = new Tag(tagName);
+        Person personA = new Person(
+                new Name("PersonA"),
+                new Phone(PersonBuilder.DEFAULT_PHONE),
+                new Email(PersonBuilder.DEFAULT_EMAIL),
+                new Address(PersonBuilder.DEFAULT_ADDRESS),
+                Set.of(tag),
+                new Loan(PersonBuilder.DEFAULT_LOAN));
+
+        tag.addPerson(personA);
+
+        Person deepCopy = personA.deepCopy();
+
+        assertEquals(1, personA.getTags().size());
+        assertEquals(1, deepCopy.getTags().size());
+        assertNotSame(personA.getTags().toArray()[0], deepCopy.getTags().toArray()[0]);
+        assertEquals(personA.getTags().toArray()[0], deepCopy.getTags().toArray()[0]);
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    public void deepCopy_tagsCopiedPointToOtherSamePerson() {
+        String tagName = "House";
+        Tag tag = new Tag(tagName);
+        Set<Tag> tagSet = Set.of(tag);
+        Person personA = new Person(
+                new Name("PersonA"),
+                new Phone(PersonBuilder.DEFAULT_PHONE),
+                new Email(PersonBuilder.DEFAULT_EMAIL),
+                new Address(PersonBuilder.DEFAULT_ADDRESS),
+                tagSet,
+                new Loan(PersonBuilder.DEFAULT_LOAN));
+
+        Person personB = new Person(
+                new Name("PersonB"),
+                new Phone(PersonBuilder.DEFAULT_PHONE),
+                new Email(PersonBuilder.DEFAULT_EMAIL),
+                new Address(PersonBuilder.DEFAULT_ADDRESS),
+                tagSet,
+                new Loan(PersonBuilder.DEFAULT_LOAN));
+
+        tag.addPerson(personA);
+        tag.addPerson(personB);
+
+        Person deepCopy = personA.deepCopy();
+        Tag deepCopyTag = deepCopy.getTags().toArray(Tag[]::new)[0];
+
+        assertEquals(1, personA.getTags().size());
+        assertEquals(1, deepCopy.getTags().size());
+
+        // By equality, personA and personB exist
+        assertTrue(deepCopyTag.getDeepCopiedPersonList().contains(personA));
+        assertTrue(deepCopyTag.getDeepCopiedPersonList().contains(personB));
+
+        // for testing purposes, use reflection to set accessibility of a normally hidden field to true
+        List<Person> personList;
+        try {
+            Field personListField = deepCopyTag.getClass().getDeclaredField("personList");
+            personListField.setAccessible(true);
+            personList = (List<Person>) personListField.get(deepCopyTag);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            personList = new ArrayList<>();
+        }
+
+        // By reference, personB exists, but personA does not exist and is
+        // instead replaced by deepCopy
+        assertSame(personB, personList
+                .stream()
+                .filter(p -> p.equals(personB))
+                .findFirst()
+                .orElseGet(() -> new PersonBuilder().build()));
+
+        assertNotSame(personA, personList
+                .stream()
+                .filter(p -> p.equals(personA))
+                .findFirst()
+                .orElseGet(() -> new PersonBuilder().build()));
+
+        assertSame(deepCopy, personList
+                .stream()
+                .filter(p -> p.equals(personA))
+                .findFirst()
+                .orElseGet(() -> new PersonBuilder().build()));
     }
 }

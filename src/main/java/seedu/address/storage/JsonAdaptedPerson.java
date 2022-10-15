@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -64,26 +63,22 @@ class JsonAdaptedPerson {
         loan = String.valueOf(source.getLoan().getAmount());
     }
 
-    public Person toModelType() throws IllegalValueException {
-        return toModelType(new ArrayList<>());
-    }
-
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
+     * @param addressBookTagList the list of tags that exist in the addressBook to be assigned to
+     *                           the model's {@code Person} object
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType(List<Tag> addressBookTagList) throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            for (Tag realTag : addressBookTagList) {
-                if (realTag.isSameTag(tag.toModelType())) {
-                    // Add the unique tag object reference in AddressBook's uniqueTagList to this Person's tags
-                    personTags.add(realTag);
-                }
-            }
+        final List<Tag> convertedTags = new ArrayList<>();
+        for (JsonAdaptedTag adaptedTag : tagged) {
+            convertedTags.add(adaptedTag.toModelType());
         }
+
+        final Set<Tag> modelTags = addressBookTagList.stream()
+                .filter(convertedTags::contains)
+                .collect(Collectors.toSet());
 
         // We could really use some abstraction here -- Rui Han
 
@@ -123,8 +118,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         // Loan validity check
         if (loan == null) {

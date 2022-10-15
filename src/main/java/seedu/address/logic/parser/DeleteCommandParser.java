@@ -14,6 +14,10 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class DeleteCommandParser implements Parser<DeleteCommand> {
     private Model model;
 
+    /**
+     * Constructs a {@code DeleteCommandParser}
+     * @param model the model of the current state
+     */
     public DeleteCommandParser(Model model) {
         this.model = model;
     }

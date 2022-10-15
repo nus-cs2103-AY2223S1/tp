@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
@@ -101,7 +102,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the address book's unique tag list.
      */
-    ObservableList<Tag> getTagList();
+    ObservableMap<String, Tag> getTagMapping();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

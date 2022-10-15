@@ -3,14 +3,16 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.NoteBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.tag.UniqueTagMapping;
 
 
 /**
@@ -21,7 +23,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final NoteBook notebook;
-    private final UniqueTagList tags;
+    private final UniqueTagMapping tags;
 
 
     /*
@@ -34,7 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         notebook = new NoteBook();
-        tags = new UniqueTagList();
+        tags = new UniqueTagMapping();
     }
 
     public AddressBook() {}
@@ -65,7 +67,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setTags(List<Tag> tags) {
+    public void setTags(Map<String, Tag> tags) {
         this.tags.setTags(tags);
     }
 
@@ -77,7 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setNotes(newData.getNoteBook());
         setPersons(newData.getPersonList());
-        setTags(newData.getTagList());
+        setTags(newData.getTagMapping());
     }
 
     //// note-level operations
@@ -174,9 +176,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Note> getNoteBook() {
         return notebook.asUnmodifiableObservableList();
     }
+
     @Override
-    public ObservableList<Tag> getTagList() {
-        return tags.asUnmodifiableObservableList();
+    public ObservableMap<String, Tag> getTagMapping() {
+        return tags.asUnmodifiableObservableMap();
     }
 
     @Override

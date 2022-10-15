@@ -3,13 +3,15 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.DeepCopyable;
+
 /**
  * Loan represents a class encapsulating an amount of money presently owed to the club.
  */
-public class Loan {
+public class Loan implements DeepCopyable {
     public static final String MESSAGE_CONSTRAINTS =
             "Loan amount should only contain numerics, possibly with decimal point, optional negative";
-    public static final String VALIDATION_REGEX = "^-?[0-9]\\d*(\\.\\d+)?$";
+    public static final String VALIDATION_REGEX = "^-?[$]?[0-9]\\d*(\\.\\d+)?[$]?$";
 
     private double amountOwed = 0;
 
@@ -21,6 +23,7 @@ public class Loan {
     public Loan(String amountString) {
         requireNonNull(amountString);
         checkArgument(isValidLoan(amountString), MESSAGE_CONSTRAINTS);
+        amountString = amountString.replace("$", "");
         amountOwed = Double.parseDouble(amountString);
     }
 
@@ -84,5 +87,10 @@ public class Loan {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Double.hashCode(amountOwed);
+    }
+
+    @Override
+    public Loan deepCopy() {
+        return new Loan(String.valueOf(amountOwed));
     }
 }
