@@ -13,6 +13,7 @@ import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.commons.util.JsonUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.ResidentBook;
 
 /**
  * A class to access ResidentBook data stored as a json file on the hard disk.
@@ -79,11 +80,22 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
     /**
      * Deletes the resident book data file corresponding to {@code filePath}.
      *
-     * @param filePath location of the data file to be deleted. Cannot be null.
+     * @param filePath path of the data file to be deleted. Cannot be null.
      */
-    public void deleteResidentBook(Path filePath) throws IOException {
+    public void deleteResidentBookFile(Path filePath) throws IOException {
         requireNonNull(filePath);
         FileUtil.deleteFile(filePath);
+    }
+
+    /**
+     * Creates the resident book data file corresponding to {@code filePath}.
+     *
+     * @param filePath path of the data file to be created. Cannot be null.
+     */
+    public void createResidentBookFile(Path filePath) throws IOException {
+        requireNonNull(filePath);
+        FileUtil.createFile(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableResidentBook(new ResidentBook()), filePath);
     }
 
     @Override

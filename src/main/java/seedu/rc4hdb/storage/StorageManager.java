@@ -28,14 +28,6 @@ public class StorageManager implements Storage {
         this.userPrefsStorage = userPrefsStorage;
     }
 
-    /**
-     * Creates a defensive copy of the {@code StorageManager}.
-     * @return the defensive copy.
-     */
-    public StorageManager getCopy() {
-        return new StorageManager(residentBookStorage, userPrefsStorage);
-    }
-
     // ================ UserPrefs methods ==============================
 
     @Override
@@ -88,8 +80,13 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void deleteResidentBook(Path filePath) throws IOException {
-        residentBookStorage.deleteResidentBook(filePath);
+    public void deleteResidentBookFile(Path filePath) throws IOException {
+        residentBookStorage.deleteResidentBookFile(filePath);
+    }
+
+    @Override
+    public void createResidentBookFile(Path filePath) throws IOException {
+        residentBookStorage.createResidentBookFile(filePath);
     }
 
     // ================ End of ResidentBook methods ======================

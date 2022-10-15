@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
-import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.storage.Storage;
 
 /**
@@ -17,9 +16,9 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "create";
 
-    public static final String MESSAGE_FILE_EXISTS = " already exists.";
+    public static final String MESSAGE_FILE_EXISTS = "%s already exists.";
 
-    public static final String MESSAGE_SUCCESS = " successfully created.";
+    public static final String MESSAGE_SUCCESS = "%s successfully created.";
 
     public FileCreateCommand(Path filePath) {
         super(filePath);
@@ -28,12 +27,12 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
     @Override
     public CommandResult execute(Storage storage) throws CommandException {
         try {
-            storage.saveResidentBook(new ResidentBook(), filePath);
-            return new CommandResult(fileName + MESSAGE_SUCCESS);
+            storage.createResidentBookFile(filePath);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(fileName + MESSAGE_FILE_EXISTS);
+            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, fileName), e);
         } catch (IOException e) {
-            throw new CommandException(String.format(MESSAGE_FAILED, "creating"));
+            throw new CommandException(String.format(MESSAGE_FAILED, "creating"), e);
         }
     }
 

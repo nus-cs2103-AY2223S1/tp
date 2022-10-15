@@ -16,9 +16,9 @@ public class FileDeleteCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_FILE_NON_EXISTENT = " does not exist. Please provide a valid file";
+    public static final String MESSAGE_FILE_NON_EXISTENT = "%s does not exist. Please provide a valid file";
 
-    public static final String MESSAGE_SUCCESS = " has been deleted.";
+    public static final String MESSAGE_SUCCESS = "%s has been deleted.";
 
     public FileDeleteCommand(Path filePath) {
         super(filePath);
@@ -27,12 +27,12 @@ public class FileDeleteCommand extends FileCommand implements StorageCommand {
     @Override
     public CommandResult execute(Storage storage) throws CommandException {
         try {
-            storage.deleteResidentBook(filePath);
-            return new CommandResult(fileName + MESSAGE_SUCCESS);
+            storage.deleteResidentBookFile(filePath);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
         } catch (NoSuchFileException e) {
-            throw new CommandException(fileName + MESSAGE_FILE_NON_EXISTENT);
+            throw new CommandException(String.format(MESSAGE_FILE_NON_EXISTENT, fileName), e);
         } catch (IOException e) {
-            throw new CommandException(String.format(MESSAGE_FAILED, "deleting"));
+            throw new CommandException(String.format(MESSAGE_FAILED, "deleting"), e);
         }
     }
 
