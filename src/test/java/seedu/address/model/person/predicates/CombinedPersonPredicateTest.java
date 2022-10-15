@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyAddress;
 import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyEmail;
 import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyName;
 import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyPhone;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyTags;
 
 import org.junit.jupiter.api.Test;
 
@@ -134,7 +136,7 @@ class CombinedPersonPredicateTest {
         Person personToTest = new PersonBuilder().withName(nameToTest).build();
 
         // Same name
-        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyName("Alice Yeoh");
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyName(nameToTest);
         assertTrue(predicate.test(personToTest));
 
         // Contains sequence
@@ -179,7 +181,7 @@ class CombinedPersonPredicateTest {
         Person personToTest = new PersonBuilder().withPhone(phoneToTest).build();
 
         // Same phone
-        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyPhone("44556677");
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyPhone(phoneToTest);
         assertTrue(predicate.test(personToTest));
 
         // Contains sequence
@@ -216,7 +218,7 @@ class CombinedPersonPredicateTest {
         Person personToTest = new PersonBuilder().withEmail(emailToTest).build();
 
         // Same email
-        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyEmail("Alice@gmail.com");
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyEmail(emailToTest);
         assertTrue(predicate.test(personToTest));
 
         // Contains sequence
@@ -253,5 +255,84 @@ class CombinedPersonPredicateTest {
         predicate = generateCombinedPersonPredicateWithOnlyEmail("John");
         assertFalse(predicate.test(new PersonBuilder().withName("John").withPhone("12345")
                 .withEmail("Alice@gmail.com").withAddress("John Street").build()));
+    }
+
+    @Test
+    public void test_personFufillsPredicateAddressOnly_returnsTrue() {
+        String addressToTest = "Blk 22 Potato Street 29, #06-40, Singapore 123456";
+        Person personToTest = new PersonBuilder().withAddress(addressToTest).build();
+
+        // Same address
+        CombinedPersonPredicate predicate =
+                generateCombinedPersonPredicateWithOnlyAddress(addressToTest);
+        assertTrue(predicate.test(personToTest));
+
+        // Contains sequence
+        predicate = generateCombinedPersonPredicateWithOnlyAddress("ato Str");
+        assertTrue(predicate.test(personToTest));
+
+        // Mixed-case sequence
+        predicate = generateCombinedPersonPredicateWithOnlyAddress("SINgAPORE");
+        assertTrue(predicate.test(personToTest));
+    }
+
+    @Test
+    public void test_personNotFufillPredicateAddressOnly_returnsFalse() {
+        String addressToTest = "Potato Street, Blk 123 #12-34, Singapore 123456";
+        Person personToTest = new PersonBuilder().withAddress(addressToTest).build();
+
+        // Non-matching sequence
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyAddress("Malaysia");
+        assertFalse(predicate.test(personToTest));
+
+        // Incomplete match
+        predicate = generateCombinedPersonPredicateWithOnlyAddress("Blk 123a");
+        assertFalse(predicate.test(personToTest));
+
+        // Incomplete match
+        predicate = generateCombinedPersonPredicateWithOnlyAddress("Potato Street, Blk 123 #12-34, Singapore 123456789");
+        assertFalse(predicate.test(personToTest));
+
+        // Sequence match name, phone, email, but does not match address
+        predicate = generateCombinedPersonPredicateWithOnlyAddress("12345");
+        assertFalse(predicate.test(new PersonBuilder().withName("12345").withPhone("12345")
+                .withEmail("12345@gmail.com").withAddress("Clementi Street Singapore 88888").build()));
+    }
+
+    @Test
+    public void test_personFufillsPredicateTagsOnly_returnsTrue() {
+        String[] tagsToTest = new String[]{"Tag3", "Tag4", "Tag5"};
+        Person personToTest = new PersonBuilder().withTags(tagsToTest).build();
+
+        // Same tags
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyTags(tagsToTest);
+        assertTrue(predicate.test(personToTest));
+
+        // Matches all search tags, mixed-case works
+        predicate = generateCombinedPersonPredicateWithOnlyTags("TAG3", "tAg4");
+        assertTrue(predicate.test(personToTest));
+    }
+
+    @Test
+    public void test_personNotFufillPredicateTagsOnly_returnsFalse() {
+        String[] tagsToTest = new String[]{"Tag6", "Tag7", "Tag8"};
+        Person personToTest = new PersonBuilder().withTags(tagsToTest).build();
+
+        // Non-matching tag
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyTags("Hi");
+        assertFalse(predicate.test(personToTest));
+
+        // Different tag
+        predicate = generateCombinedPersonPredicateWithOnlyTags("Tag60");
+        assertFalse(predicate.test(personToTest));
+
+        // Some tags not match
+        predicate = generateCombinedPersonPredicateWithOnlyTags("Tag6", "Wrong", "Tag8");
+        assertFalse(predicate.test(personToTest));
+
+        // Tags match name and address, but does not match tag
+        predicate = generateCombinedPersonPredicateWithOnlyTags("Tag");
+        assertFalse(predicate.test(new PersonBuilder().withName("Tag").withEmail("Tag@gmail.com")
+                .withAddress("Tag").withTags("SomethingElse").build()));
     }
 }

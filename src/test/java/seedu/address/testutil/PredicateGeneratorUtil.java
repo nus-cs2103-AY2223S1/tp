@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
@@ -70,7 +71,8 @@ public class PredicateGeneratorUtil {
         return generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, address, EMPTY_STRING);
     }
 
-    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyTags(String tagString) {
+    public static CombinedPersonPredicate generateCombinedPersonPredicateWithOnlyTags(String... tags) {
+        String tagString = String.join(" ", tags);
         return generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, tagString);
     }
 
