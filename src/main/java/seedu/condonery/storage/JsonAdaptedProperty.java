@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.condonery.commons.exceptions.IllegalValueException;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.property.Property;
@@ -25,17 +26,22 @@ class JsonAdaptedProperty {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedClient> interestedClients = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProperty} with the given property details.
      */
     @JsonCreator
     public JsonAdaptedProperty(@JsonProperty("name") String name, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("interestedClients") List<JsonAdaptedClient> interestedClients) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (interestedClients != null) {
+            this.interestedClients.addAll(interestedClients);
         }
     }
 
@@ -48,6 +54,9 @@ class JsonAdaptedProperty {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        interestedClients.addAll(source.getInterestedClients().stream()
+                .map(JsonAdaptedClient::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -57,8 +66,13 @@ class JsonAdaptedProperty {
      */
     public Property toModelType() throws IllegalValueException {
         final List<Tag> propertyTags = new ArrayList<>();
+        final List<Client> interestedClients = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             propertyTags.add(tag.toModelType());
+        }
+
+        for (JsonAdaptedClient client : this.interestedClients) {
+            interestedClients.add(client.toModelType());
         }
 
         if (name == null) {
@@ -78,7 +92,9 @@ class JsonAdaptedProperty {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(propertyTags);
-        return new Property(modelName, modelAddress, modelTags);
+
+        final Set<Client> modelInterestedClients = new HashSet<>(interestedClients);
+        return new Property(modelName, modelAddress, modelTags, modelInterestedClients);
     }
 
 }
