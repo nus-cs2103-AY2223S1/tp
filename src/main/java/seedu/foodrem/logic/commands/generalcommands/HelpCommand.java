@@ -47,7 +47,7 @@ public class HelpCommand extends Command {
 
     public static String getCommandHelpMessage(CommandWord command) {
         // TODO: Create tests for this method
-        return String.format(HelpCommand.HELP_FOR_SPECIFIC_COMMAND, command.getHelp());
+        return String.format(HelpCommand.HELP_FOR_SPECIFIC_COMMAND, command.getUsage());
     }
 
     @Override

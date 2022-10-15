@@ -113,7 +113,7 @@ public enum CommandWord {
      *
      * @return the string representation a help message for a CommandWord.
      */
-    public String getHelp() {
+    public String getUsage() {
         return help;
     }
 
