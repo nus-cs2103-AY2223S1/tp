@@ -18,13 +18,16 @@ public class PetNameContainsKeywordsPredicteTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PetNameContainsKeywordsPredicate firstPredicate = new PetNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        PetNameContainsKeywordsPredicate secondPredicate = new PetNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        PetNameContainsKeywordsPredicate firstPredicate = new PetNameContainsKeywordsPredicate(
+                firstPredicateKeywordList);
+        PetNameContainsKeywordsPredicate secondPredicate = new PetNameContainsKeywordsPredicate(
+                secondPredicateKeywordList);
 
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PetNameContainsKeywordsPredicate firstPredicateCopy = new PetNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        PetNameContainsKeywordsPredicate firstPredicateCopy = new PetNameContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +43,8 @@ public class PetNameContainsKeywordsPredicteTest {
     @Test
     public void test_petNameContainsKeywords_returnsTrue() {
         // One keyword
-        PetNameContainsKeywordsPredicate predicate = new PetNameContainsKeywordsPredicate(Collections.singletonList("Plum"));
+        PetNameContainsKeywordsPredicate predicate = new PetNameContainsKeywordsPredicate(
+                Collections.singletonList("Plum"));
         assertTrue(predicate.test(TypicalPets.PLUM));
 
         // Multiple keywords
