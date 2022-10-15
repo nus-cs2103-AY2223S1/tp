@@ -7,9 +7,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.schedule.ClassType;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.module.schedule.Venue;
+import seedu.address.model.module.schedule.Weekdays;
 
 /**
  * Edit an existing schedule
@@ -19,47 +28,169 @@ public class EditScheduleCommand extends Command {
     public static final String COMMAND_WORD = "sedit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an existing schedule. "
-            + "Parameters: "
-            + PREFIX_MODULE_OF_SCHEDULE + "MODULE CODE "
-            + PREFIX_CLASS_CATEGORY + "CLASS CATEGORY "
-            + PREFIX_WEEKDAY + "NEW WEEKDAY "
-            + PREFIX_CLASS_TIME + "NEW TIME PERIOD "
-            + PREFIX_CLASS_VENUE + "NEW CLASS VENUE \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE_OF_SCHEDULE + "CS2103T "
-            + PREFIX_CLASS_CATEGORY + "lec "
-            + PREFIX_WEEKDAY + "Thursday"
-            + PREFIX_CLASS_TIME + "12:00-14:00 "
-            + PREFIX_CLASS_VENUE + "LT17 ";
+            + "Parameters: INDEX (must be a positive integer)"
+            + "[" + PREFIX_MODULE_OF_SCHEDULE + "MODULE CODE]"
+            + "[" + PREFIX_WEEKDAY + "WEEKDAY]"
+            + "[" + PREFIX_CLASS_TIME + "TIME PERIOD]"
+            + "[" + PREFIX_CLASS_CATEGORY + "CLASS TYPE]"
+            + "[" + PREFIX_CLASS_VENUE + "CLASS VENUE] \n"
+            + "Example: " + COMMAND_WORD + "1"
+            + PREFIX_WEEKDAY + "Wednesday"
+            + PREFIX_CLASS_TIME + "08:00-10:00 "
+            + PREFIX_CLASS_VENUE + "LT31 ";
 
     public static final String MESSAGE_SUCCESS = "Schedule edited: %1$s";
     public static final String MESSAGE_SCHEDULE_NOT_EXIST = "The schedule doesn't exist";
+    public static final String MESSAGE_MODULE_NOT_EXIST = "The module doesn't exist";
     public static final String MESSAGE_CONFLICT_SCHEDULE = "This schedule conflicts with other schedules";
-    public static final String MESSAGE_DISALLOWED_MODIFICATION = "Only the venue, slot, and weekday are allowed to be "
-            + "modified";
-    private final Schedule scheduleAfterEdit;
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    private final EditScheduleDescriptor editScheduleDescriptor;
+    private final Index index;
 
     /**
      * Creates an EditScheduleCommand to edit the specified schedule.
      */
-    public EditScheduleCommand(Schedule toEdit) {
-        requireNonNull(toEdit);
-        this.scheduleAfterEdit = toEdit;
+    public EditScheduleCommand(Index index, EditScheduleDescriptor editScheduleDescriptor) {
+        requireNonNull(index);
+        requireNonNull(editScheduleDescriptor);
+        this.index = index;
+        this.editScheduleDescriptor = editScheduleDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Schedule target = model.findSchedule(scheduleAfterEdit);
-        if (target == null) {
+        List<Schedule> lastShownList = model.getFilteredScheduleList();
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_SCHEDULE_NOT_EXIST);
         }
-        if (model.conflictSchedule(scheduleAfterEdit)) {
+        Schedule target = lastShownList.get(index.getZeroBased());
+        Schedule editedSchedule = EditScheduleCommand.createEditedSchedule(target, editScheduleDescriptor);
+        if (model.getModuleByModuleCode(editedSchedule.getModule()) == null) {
+            throw new CommandException(MESSAGE_MODULE_NOT_EXIST);
+        }
+        if (model.conflictSchedule(editedSchedule)) {
             throw new CommandException(MESSAGE_CONFLICT_SCHEDULE);
         }
-        model.editSchedule(target, scheduleAfterEdit);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, scheduleAfterEdit), false, false, false,
+        model.setSchedule(target, editedSchedule);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedSchedule), false, false, false,
                 false, false, true);
 
+    }
+    /**
+     * Creates and returns a {@code Schedule} with the details of {@code scheduleToEdit}
+     * edited with {@code editScheduleDescriptor}.
+     */
+    public static Schedule createEditedSchedule(Schedule scheduleToEdit, EditScheduleDescriptor scheduleDescriptor) {
+        assert scheduleToEdit != null;
+        String module = scheduleDescriptor.getModule().orElse(scheduleToEdit.getModule());
+        Venue venue = scheduleDescriptor.getVenue().orElse(scheduleToEdit.getVenue());
+        Weekdays weekday = scheduleDescriptor.getWeekday().orElse(scheduleToEdit.getWeekday());
+        String startTime = scheduleDescriptor.getStartTime().orElse(scheduleToEdit.getStartTime());
+        String endTime = scheduleDescriptor.getEndTime().orElse(scheduleToEdit.getEndTime());
+        ClassType classType = scheduleDescriptor.getClassType().orElse(scheduleToEdit.getClassType());
+
+        return new Schedule(module, venue, weekday, startTime, endTime, classType);
+    }
+
+    /**
+     * Stores the details to edit the schedule with. Each non-empty field value will replace the
+     * corresponding field value of the schedule.
+     */
+    public static class EditScheduleDescriptor {
+        private String module;
+        private Venue venue;
+        private Weekdays weekday;
+        private String startTime;
+        private String endTime;
+        private ClassType classType;
+
+        public EditScheduleDescriptor() {}
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditScheduleDescriptor(EditScheduleDescriptor toCopy) {
+            setModule(toCopy.module);
+            setClassType(toCopy.classType);
+            setWeekday(toCopy.weekday);
+            setStartTime(toCopy.startTime);
+            setEndTime(toCopy.endTime);
+            setVenue(toCopy.venue);
+        }
+
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(module, venue, classType, startTime, endTime, weekday);
+        }
+        public void setVenue(Venue venue) {
+            this.venue = venue;
+        }
+
+        public void setWeekday(Weekdays weekday) {
+            this.weekday = weekday;
+        }
+
+        public void setStartTime(String startTime) {
+            this.startTime = startTime;
+        }
+
+        public void setEndTime(String endTime) {
+            this.endTime = endTime;
+        }
+
+        public void setClassType(ClassType classType) {
+            this.classType = classType;
+        }
+
+        public void setModule(String module) {
+            this.module = module;
+        }
+
+        public Optional<String> getModule() {
+            return Optional.ofNullable(module);
+        }
+
+        public Optional<Venue> getVenue() {
+            return Optional.ofNullable(venue);
+        }
+
+        public Optional<Weekdays> getWeekday() {
+            return Optional.ofNullable(weekday);
+        }
+
+        public Optional<String> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public Optional<String> getEndTime() {
+            return Optional.ofNullable(endTime);
+        }
+
+        public Optional<ClassType> getClassType() {
+            return Optional.ofNullable(classType);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            EditScheduleDescriptor that = (EditScheduleDescriptor) o;
+            return Objects.equals(module, that.module)
+                    && Objects.equals(venue, that.venue)
+                    && weekday == that.weekday
+                    && Objects.equals(startTime, that.startTime)
+                    && Objects.equals(endTime, that.endTime)
+                    && classType == that.classType;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(module, venue, weekday, startTime, endTime, classType);
+        }
     }
 }

@@ -112,21 +112,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Schedule findSchedule(Schedule toFind) {
-        requireNonNull(toFind);
-        Module module = getModuleByModuleCode(toFind.getModule());
-        if (module == null) {
-            return null;
-        }
-        for (Schedule schedule: module.getSchedules()) {
-            if (schedule.match(toFind)) {
-                return schedule;
-            }
-        }
-        return null;
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -161,11 +146,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void editSchedule(Schedule target, Schedule editedSchedule) {
-        target.setWeekday(editedSchedule.getWeekday());
-        target.setVenue(editedSchedule.getVenue());
-        target.setStartTime(editedSchedule.getStartTime());
-        target.setEndTime(editedSchedule.getEndTime());
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
+        addressBook.setSchedule(target, editedSchedule);
     }
 
     @Override

@@ -66,11 +66,6 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Returns the schedule if can find.
-     */
-    Schedule findSchedule(Schedule toFind);
-
-    /**
      * Checks if the new schedule conflicts with existing schedules.
      */
     boolean conflictSchedule(Schedule schedule);
@@ -92,7 +87,7 @@ public interface Model {
      */
     void addSchedule(Schedule schedule);
 
-    void editSchedule(Schedule target, Schedule editedSchedule);
+    void setSchedule(Schedule target, Schedule editedSchedule);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

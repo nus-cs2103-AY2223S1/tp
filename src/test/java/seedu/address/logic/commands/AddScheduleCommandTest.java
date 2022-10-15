@@ -100,11 +100,7 @@ public class AddScheduleCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public Schedule findSchedule(Schedule toFind) {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
-        public void editSchedule(Schedule target, Schedule editedSchedule) {
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
             throw new AssertionError("This method should not be called.");
         }
         @Override

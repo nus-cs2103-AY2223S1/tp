@@ -15,12 +15,12 @@ public class Schedule {
     public static final String MESSAGE_CLASS_TIME_CONSTRAINT = "The time slot of a class should follow the format of "
             + "HH:MM-HH:MM";
     public static final String MESSAGE_CLASS_TYPE_CONSTRAINT = "Class type should be one of lec, tut, lab, rec.";
-    private final String module;
+    private String module;
     private Venue venue;
     private Weekdays weekday;
     private String startTime;
     private String endTime;
-    private final ClassType classType;
+    private ClassType classType;
 
     /**
      * Requires all fields to be not null
@@ -87,6 +87,14 @@ public class Schedule {
 
     public void setWeekday(Weekdays newWeekday) {
         this.weekday = newWeekday;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public void setClassType(ClassType classType) {
+        this.classType = classType;
     }
 
     /**

@@ -9,17 +9,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditScheduleCommand;
+import seedu.address.logic.commands.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.schedule.ClassType;
-import seedu.address.model.module.schedule.Schedule;
-import seedu.address.model.module.schedule.Venue;
-import seedu.address.model.module.schedule.Weekdays;
 
 /**
  * Parses input arguments and creates an EditScheduleCommand.
  */
-public class EditScheduleCommandParser {
+public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditScheduleCommand
@@ -28,22 +26,41 @@ public class EditScheduleCommandParser {
      */
     public EditScheduleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_OF_SCHEDULE,
-                PREFIX_CLASS_CATEGORY, PREFIX_WEEKDAY, PREFIX_CLASS_TIME, PREFIX_CLASS_VENUE);
+                PREFIX_WEEKDAY, PREFIX_CLASS_TIME, PREFIX_CLASS_CATEGORY, PREFIX_CLASS_VENUE);
+        Index index;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_OF_SCHEDULE, PREFIX_CLASS_CATEGORY, PREFIX_WEEKDAY,
-                PREFIX_CLASS_TIME, PREFIX_CLASS_VENUE) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                   EditScheduleCommand.MESSAGE_USAGE));
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditScheduleCommand.MESSAGE_USAGE),
+                    pe);
         }
-        String module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE_OF_SCHEDULE).get());
-        ClassType classType = ParserUtil.parseClassType(argMultimap.getValue(PREFIX_CLASS_CATEGORY).get());
-        Weekdays weekday = ParserUtil.parseWeekday(argMultimap.getValue(PREFIX_WEEKDAY).get());
-        String startTime = ParserUtil.parseClassStartTime(argMultimap.getValue(PREFIX_CLASS_TIME).get());
-        String endTime = ParserUtil.parseClassEndTime(argMultimap.getValue(PREFIX_CLASS_TIME).get());
-        Venue venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_CLASS_VENUE).get());
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptor();
+        if (argMultimap.getValue(PREFIX_MODULE_OF_SCHEDULE).isPresent()) {
+            editScheduleDescriptor.setModule(ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE_OF_SCHEDULE)
+                    .get()));
+        }
+        if (argMultimap.getValue(PREFIX_CLASS_TIME).isPresent()) {
+            editScheduleDescriptor.setStartTime(ParserUtil.parseClassStartTime(argMultimap.getValue(PREFIX_CLASS_TIME)
+                    .get()));
+            editScheduleDescriptor.setEndTime(ParserUtil.parseClassEndTime(argMultimap.getValue(PREFIX_CLASS_TIME)
+                    .get()));
+        }
+        if (argMultimap.getValue(PREFIX_WEEKDAY).isPresent()) {
+            editScheduleDescriptor.setWeekday(ParserUtil.parseWeekday(argMultimap.getValue(PREFIX_WEEKDAY).get()));
+        }
+        if (argMultimap.getValue(PREFIX_CLASS_CATEGORY).isPresent()) {
+            editScheduleDescriptor.setClassType(ParserUtil.parseClassType(argMultimap.getValue(PREFIX_CLASS_CATEGORY)
+                    .get()));
+        }
+        if (argMultimap.getValue(PREFIX_CLASS_VENUE).isPresent()) {
+            editScheduleDescriptor.setVenue(ParserUtil.parseVenue(argMultimap.getValue(PREFIX_CLASS_VENUE).get()));
+        }
 
-        Schedule editedSchedule = new Schedule(module, venue, weekday, startTime, endTime, classType);
-        return new EditScheduleCommand(editedSchedule);
+        if (!editScheduleDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditScheduleCommand.MESSAGE_NOT_EDITED);
+        }
+        return new EditScheduleCommand(index, editScheduleDescriptor);
     }
 
     /**
