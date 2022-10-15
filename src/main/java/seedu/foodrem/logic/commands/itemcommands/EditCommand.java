@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.foodrem.enums.CommandWord.EDIT_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
@@ -10,11 +11,9 @@ import java.util.Set;
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.commons.util.CollectionUtil;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
-import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
@@ -28,25 +27,10 @@ import seedu.foodrem.model.tag.Tag;
  * Edits the details of an existing item in FoodRem.
  */
 public class EditCommand extends Command {
-
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
+    // FIXME: Make this implementation detail private
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
-
-    private static final String COMMAND_WORD = CommandWord.EDIT_COMMAND.getCommandWord();
-
-    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the item identified "
-            + "by the index number used in the displayed item list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + CliSyntax.PREFIX_NAME + "NAME] "
-            + "[" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY] "
-            + "[" + CliSyntax.PREFIX_ITEM_UNIT + "UNIT] "
-            + "[" + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
-            + "[" + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_ITEM_QUANTITY + "1000 "
-            + CliSyntax.PREFIX_ITEM_QUANTITY + "grams";
+    private static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
+    private static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
 
     private final EditItemDescriptor editItemDescriptor;
     private final Index index;
@@ -102,7 +86,7 @@ public class EditCommand extends Command {
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return EDIT_COMMAND.getUsage();
     }
 
     @Override

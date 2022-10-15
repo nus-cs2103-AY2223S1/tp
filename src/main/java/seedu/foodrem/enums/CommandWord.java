@@ -1,12 +1,10 @@
 package seedu.foodrem.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
@@ -19,6 +17,7 @@ import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
+import seedu.foodrem.logic.parser.CliSyntax;
 
 /**
  * Represents the command word to be keyed in by a user to execute a command.
@@ -69,7 +68,18 @@ public enum CommandWord {
     EDIT_COMMAND("edit") {
         @Override
         public String getUsage() {
-            return EditCommand.getUsage();
+            return getCommandWord() + ": Updates the details of the item identified "
+                    + "by the index number used in the displayed item list. "
+                    + "Existing values will be overwritten by the input values.\n"
+                    + "Parameters: INDEX (must be a positive integer) "
+                    + "[" + CliSyntax.PREFIX_NAME + "NAME] "
+                    + "[" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY] "
+                    + "[" + CliSyntax.PREFIX_ITEM_UNIT + "UNIT] "
+                    + "[" + CliSyntax.PREFIX_ITEM_BOUGHT_DATE + "BOUGHT DATE] "
+                    + "[" + CliSyntax.PREFIX_ITEM_EXPIRY_DATE + "EXPIRY DATE]...\n"
+                    + "Example: " + getCommandWord() + " 1 "
+                    + CliSyntax.PREFIX_ITEM_QUANTITY + "1000 "
+                    + CliSyntax.PREFIX_ITEM_QUANTITY + "grams";
         }
     },
     INCREMENT_COMMAND("inc") {
@@ -86,10 +96,10 @@ public enum CommandWord {
                     + "index number used in the displayed item list.\n"
                     + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
                     + "Parameters:\n"
-                    + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+                    + "INDEX (must be a positive integer) [" + CliSyntax.PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
                     + "Example:\n"
                     + getCommandWord() + " 10\n"
-                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
+                    + getCommandWord() + " 10 " + CliSyntax.PREFIX_ITEM_QUANTITY + "100";
         }
     },
     SORT_COMMAND("sort") {

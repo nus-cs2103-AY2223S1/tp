@@ -29,6 +29,7 @@ import seedu.foodrem.testutil.ItemBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
 public class EditCommandTest {
+    private static final String EXPECTED_SUCCESS_FORMAT = "Edited Item: %1$s";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
@@ -38,7 +39,7 @@ public class EditCommandTest {
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder(editedItem).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, editedItem);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
@@ -63,7 +64,7 @@ public class EditCommandTest {
                 .build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, editedItem);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setItem(lastItem, editedItem);
@@ -76,7 +77,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditItemDescriptor());
         Item editedItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, editedItem);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
 
@@ -96,7 +97,7 @@ public class EditCommandTest {
                         .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
                         .build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+        String expectedMessage = String.format(EXPECTED_SUCCESS_FORMAT, editedItem);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
