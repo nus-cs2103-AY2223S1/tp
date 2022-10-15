@@ -30,6 +30,9 @@ public class Person {
     private final AdditionalNotes additionalNotes;
     private Class aClass;
     private final Set<Tag> tags = new HashSet<>();
+    private final Mark mark;
+    private Class displayedClass;
+
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
@@ -48,6 +51,8 @@ public class Person {
         this.ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         this.additionalNotes = new AdditionalNotes("");
         this.tags.addAll(tags);
+        this.mark = new Mark();
+        this.displayedClass = new Class();
     }
 
     /**
@@ -56,7 +61,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, NokPhone nokPhone, Email email, Address address, Class aClass,
                   Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes,
-                  Set<Tag> tags) {
+                  Set<Tag> tags, Mark mark, Class displayedClass) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
@@ -69,6 +74,8 @@ public class Person {
         this.ratesPerClass = ratesPerClass;
         this.additionalNotes = additionalNotes;
         this.tags.addAll(tags);
+        this.mark = mark;
+        this.displayedClass = displayedClass;
     }
 
     public Name getName() {
@@ -116,6 +123,14 @@ public class Person {
 
     public AdditionalNotes getAdditionalNotes() {
         return additionalNotes;
+    }
+
+    public Mark getMarkStatus() {
+        return mark;
+    }
+
+    public Class getDisplayedClass() {
+        return displayedClass;
     }
 
     /**
@@ -166,14 +181,16 @@ public class Person {
                 && otherPerson.getRatesPerClass().equals(getRatesPerClass())
                 && otherPerson.getAdditionalNotes().equals(getAdditionalNotes())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getMarkStatus().equals(getMarkStatus())
+                && otherPerson.getDisplayedClass().equals(getDisplayedClass());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
-                additionalNotes, tags);
+                additionalNotes, tags, mark, displayedClass);
     }
 
     @Override
@@ -197,7 +214,11 @@ public class Person {
                 .append("; Money Per Class: ")
                 .append(getRatesPerClass())
                 .append("; Additional notes: ")
-                .append(getAdditionalNotes());
+                .append(getAdditionalNotes())
+                .append("; Mark: ")
+                .append(getMarkStatus())
+                .append("; Displayed Class: ")
+                .append(getDisplayedClass());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -208,6 +229,6 @@ public class Person {
     }
 
     public int compareTo(Person person) {
-        return this.aClass.startTime.compareTo(person.aClass.startTime);
+        return this.displayedClass.startTime.compareTo(person.displayedClass.startTime);
     }
 }
