@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a word describing the personality of the student
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class Remark {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Personalities should only contain alphabets and spaces, and it should not be blank";
+            "Remarks should only contain alphabets and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -44,13 +45,20 @@ public class Remark {
     }
 
     @Override
-    public String toString() {
-        return value;
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof Remark // instanceof handles nulls
+            && value.equals(((Remark) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 
 }

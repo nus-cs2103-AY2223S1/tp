@@ -144,14 +144,6 @@ public class JsonAdaptedPersonTest {
 //    }
 
     @Test
-    public void toModelType_nullPersonality_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                                                         VALID_STUDENTCLASS, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidSubject_throwsIllegalValueException() {
         JsonAdaptedPerson person =
             new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,

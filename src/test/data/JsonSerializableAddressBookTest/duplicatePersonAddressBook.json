@@ -12,7 +12,6 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "studentClass": "1A",
-    "remarks": [ "friendly" ]
+    "studentClass": "1A"
   } ]
 }

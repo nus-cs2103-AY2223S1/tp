@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Remark;
 
@@ -10,6 +12,7 @@ public class JsonAdaptedRemark {
     /**
      * Constructs a {@code JsonAdaptedRemark} with the given {@code remark}.
      */
+    @JsonCreator
     public JsonAdaptedRemark(String remark) {
         this.remark = remark;
     }
@@ -21,6 +24,7 @@ public class JsonAdaptedRemark {
         remark = source.value;
     }
 
+    @JsonValue
     public String getRemark() {
         return remark;
     }

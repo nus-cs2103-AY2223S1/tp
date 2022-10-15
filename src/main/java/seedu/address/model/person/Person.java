@@ -71,7 +71,7 @@ public class Person {
     }
 
     public Set<Remark> getRemarks() {
-        return remarksList;
+        return Collections.unmodifiableSet(remarksList);
     }
 
     public SubjectHandler getSubjectHandler() {
@@ -119,7 +119,8 @@ public class Person {
                && otherPerson.getEmail().equals(getEmail())
                && otherPerson.getAddress().equals(getAddress())
                && otherPerson.getTags().equals(getTags())
-               && otherPerson.getStudentClass().equals(getStudentClass());
+               && otherPerson.getStudentClass().equals(getStudentClass())
+               && otherPerson.getRemarks().equals(getRemarks());
     }
 
     @Override
