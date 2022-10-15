@@ -486,6 +486,37 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No internship is deleted. Error details shown in the status message.
 
+### Finding internship(s)
+1. Finding internship(s)
+    1. Prerequisites: Add internships using the add command. The list can be empty
+    
+    2. Test case: `find Shop`<br>
+        Expected: List all internships with company name containing `Shop`.
+   
+    3. Test case: `find` <br>
+        Expected: The application shows an error message
+   
+    4. Test case: `find c/unknown_category keyword`
+        Expected: The application shows an error message
+   
+    5. Test case: `find c/p engineer`
+        Expected: List all internships with position containing the word `engineer`.
+   
+    6. Test case: `find c/t skip`
+        Expected: List all internships with at least one tag containing the word `skip`.   
+
+    7. Test case: `find c/d 02-02-2022`
+        Expected: List all internships with date on `02-02-2022`.
+   
+    8. Test case: `find c/d 2022-02-02`
+        Expected: The application throws an error message since an invalid date format is given.
+   
+    9. Test case: `find c/pr APPLY`
+        Expected: The application lists all application process in stage `APPLY`
+   
+    10. Test case: `find c/pr Unknown_Process`
+        Expected: The applications throws an error message.
+
 ### Update internship
 
 1. Updating internship while all internships are being shown
@@ -508,7 +539,7 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `edit 0 n/Citadel Securities`<br>
         Expected: No internship is edited. Error details shown in the status message.
-    
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
