@@ -21,17 +21,30 @@ public class SampleDataUtil {
     public static Property[] getSampleProperties() {
         return new Property[] {
             new Property(new Name("PINNACLE@DUXTON"), new Address("Cantonment Rd, #1G, S085301"),
-                    getTagSet("High-End", "Available")),
+                    getTagSet("High-End", "Available"),
+                    getClientSet(
+                            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("")),
+                            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend")))),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
-                    getTagSet("High-End", "Sold")),
+                    getTagSet("High-End", "Sold"),
+                    getClientSet(new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")))),
             new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
-                    getTagSet("High-End", "Reserved"))
+                    getTagSet("High-End", "Reserved"),
+                    getClientSet(
+                            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent")),
+                            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("")),
+                            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich"))))
         };
     }
 
     public static Client[] getSampleClients() {
-        // TODO: add sample client data
         return new Client[] {
+            new Client(new Name("Jac"), new Address("JacAddress"), getTagSet("Urgent")),
+            new Client(new Name("Jack"), new Address("JackAddress"), getTagSet("")),
+            new Client(new Name("Hamster"), new Address("Hamster"), getTagSet("Friend", "Rich")),
+            new Client(new Name("Casey"), new Address("CaseyAddress"), getTagSet("Rich")),
+            new Client(new Name("Bobby"), new Address("BobbyAddress"), getTagSet("")),
+            new Client(new Name("Samuel"), new Address("SamuelAddress"), getTagSet("Friend"))
         };
     }
 
@@ -58,6 +71,14 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a Client set containing the list of clients given.
+     */
+    public static Set<Client> getClientSet(Client... clients) {
+        return Arrays.stream(clients)
+            .collect(Collectors.toSet());
     }
 
 }
