@@ -182,7 +182,7 @@ public class ModelManager implements Model {
 
     @Override
     public User getUserDetails() {
-        return user;
+        return nutriGoals.getUser();
     }
 
     @Override

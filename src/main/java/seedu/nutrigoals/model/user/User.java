@@ -3,13 +3,14 @@ package seedu.nutrigoals.model.user;
 import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents a user object
+ * Represents the user of NutriGoals
  */
 public class User {
     private final Height height;
     private final Weight weight;
     private final Weight idealWeight;
     private final Gender gender;
+    private final Bmi bmi;
 
 
     /**
@@ -25,6 +26,7 @@ public class User {
         this.weight = weight;
         this.idealWeight = idealWeight;
         this.gender = gender;
+        bmi = new Bmi(height, weight);
     }
 
     /**
@@ -35,6 +37,7 @@ public class User {
         this.weight = new Weight();
         this.idealWeight = new Weight();
         this.gender = new Gender();
+        bmi = new Bmi(height, weight);
     }
 
     public Weight getWeight() {
@@ -53,6 +56,10 @@ public class User {
         return height;
     }
 
+    public Bmi getBmi() {
+        return bmi;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -64,5 +71,21 @@ public class User {
                     && this.idealWeight.equals(u.idealWeight) && this.gender.equals(u.gender));
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("\nUser profile:\n");
+        stringBuilder.append("Gender: ")
+                .append(getGender())
+                .append("\nCurrent Height: ")
+                .append(getHeight())
+                .append("\nCurrent Weight: ")
+                .append(getWeight())
+                .append("\nIdeal Weight: ")
+                .append(getIdealWeight())
+                .append("\nBMI: ")
+                .append(getBmi());
+        return stringBuilder.toString();
     }
 }
