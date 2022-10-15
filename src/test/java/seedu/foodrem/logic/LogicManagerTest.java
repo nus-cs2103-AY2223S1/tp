@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -60,7 +60,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = CommandWord.LIST_COMMAND.getCommandWord();
+        String listCommand = CommandType.LIST_COMMAND.getCommandWord();
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
@@ -75,7 +75,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = CommandWord.NEW_COMMAND.getCommandWord()
+        String addCommand = CommandType.NEW_COMMAND.getCommandWord()
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES

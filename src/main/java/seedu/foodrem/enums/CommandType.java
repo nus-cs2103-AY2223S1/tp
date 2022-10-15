@@ -14,7 +14,7 @@ import java.util.StringJoiner;
 /**
  * Represents the command word to be keyed in by a user to execute a command.
  */
-public enum CommandWord {
+public enum CommandType {
     // General Commands
     EXIT_COMMAND("exit") {
         @Override
@@ -237,7 +237,7 @@ public enum CommandWord {
      *
      * @param commandWord the value representing the string value of the enum.
      */
-    CommandWord(String commandWord) {
+    CommandType(String commandWord) {
         this.commandWord = commandWord;
     }
 
@@ -263,7 +263,7 @@ public enum CommandWord {
      * @param word a string value of the enum represented by the value provided.
      * @return a CommandWord object of the command represented by the string.
      */
-    public static CommandWord parseWord(String word) {
+    public static CommandType parseWord(String word) {
         return Arrays.stream(values())
                 .filter(type -> type.commandWord.equals(word))
                 .findFirst().orElse(DEFAULT);
@@ -274,7 +274,7 @@ public enum CommandWord {
      */
     public static String listAllCommandWords() {
         StringJoiner stringJoiner = new StringJoiner(", ");
-        for (CommandWord type : values()) {
+        for (CommandType type : values()) {
             if (type.equals(DEFAULT)) {
                 continue;
             }

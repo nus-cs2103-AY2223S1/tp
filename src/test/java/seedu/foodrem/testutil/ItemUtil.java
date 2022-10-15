@@ -1,6 +1,6 @@
 package seedu.foodrem.testutil;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.item.Item;
@@ -14,7 +14,7 @@ public class ItemUtil {
      * Returns an add command string for adding the {@code item}.
      */
     public static String getAddCommand(Item item) {
-        return CommandWord.NEW_COMMAND.getCommandWord() + " " + getItemDetails(item);
+        return CommandType.NEW_COMMAND.getCommandWord() + " " + getItemDetails(item);
     }
 
     /**

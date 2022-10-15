@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandWord.DELETE_TAG_COMMAND;
+import static seedu.foodrem.enums.CommandType.DELETE_TAG_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import seedu.foodrem.logic.commands.Command;

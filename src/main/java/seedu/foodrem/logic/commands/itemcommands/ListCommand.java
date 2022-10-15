@@ -3,7 +3,7 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
@@ -22,6 +22,6 @@ public class ListCommand extends Command {
     }
 
     public static String getUsage() {
-        return CommandWord.LIST_COMMAND.getUsage();
+        return CommandType.LIST_COMMAND.getUsage();
     }
 }

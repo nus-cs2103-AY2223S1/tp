@@ -1,9 +1,9 @@
 package seedu.foodrem.logic.commands.generalcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandWord.HELP_COMMAND;
+import static seedu.foodrem.enums.CommandType.HELP_COMMAND;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
@@ -22,7 +22,7 @@ public class HelpCommand extends Command {
             "To receive help for a specific command, enter "
                     + "\"" + COMMAND_WORD + " COMMAND_WORD\" "
                     + "in the command box, where COMMAND_WORD is any one of the following:\n"
-                    + CommandWord.listAllCommandWords() + "\n\n"
+                    + CommandType.listAllCommandWords() + "\n\n"
                     + MORE_INFORMATION;
     public static final String NOT_A_COMMAND = "\"%s\" is not a valid command\n\n" + HELP_FORMAT_GENERAL;
     private static final String SHOWING_HELP_MESSAGE = "Opened help window.";
@@ -38,7 +38,7 @@ public class HelpCommand extends Command {
         this.message = message;
     }
 
-    public static String getCommandHelpMessage(CommandWord command) {
+    public static String getCommandHelpMessage(CommandType command) {
         // TODO: Create tests for this method
         return String.format(HELP_FORMAT_SPECIFIC, command.getUsage());
     }

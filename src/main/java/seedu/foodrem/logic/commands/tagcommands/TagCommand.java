@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandWord.TAG_COMMAND;
+import static seedu.foodrem.enums.CommandType.TAG_COMMAND;
 
 import java.util.List;
 import java.util.Set;

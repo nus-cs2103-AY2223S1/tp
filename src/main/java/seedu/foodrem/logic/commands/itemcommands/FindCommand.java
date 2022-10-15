@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandWord.FIND_COMMAND;
+import static seedu.foodrem.enums.CommandType.FIND_COMMAND;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.Command;

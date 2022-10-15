@@ -1,6 +1,6 @@
 package seedu.foodrem.logic.commands.generalcommands;
 
-import static seedu.foodrem.enums.CommandWord.EXIT_COMMAND;
+import static seedu.foodrem.enums.CommandType.EXIT_COMMAND;
 
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;

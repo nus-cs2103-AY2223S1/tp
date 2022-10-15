@@ -2,7 +2,7 @@ package seedu.foodrem.testutil;
 
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -13,7 +13,7 @@ public class TagUtil {
      * Returns an add command string for adding the {@code tag}.
      */
     public static String getNewTagCommand(Tag tag) {
-        return CommandWord.NEW_TAG_COMMAND.getCommandWord() + " " + getTagDetails(tag);
+        return CommandType.NEW_TAG_COMMAND.getCommandWord() + " " + getTagDetails(tag);
     }
 
     /**

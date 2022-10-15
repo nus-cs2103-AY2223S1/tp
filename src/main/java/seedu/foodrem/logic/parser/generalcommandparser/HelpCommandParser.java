@@ -5,7 +5,7 @@ import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.NOT_A_COM
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getCommandHelpMessage;
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getGeneralHelpMessage;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
@@ -32,11 +32,11 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpCommand(getGeneralHelpMessage());
         }
 
-        CommandWord commandWord = CommandWord.parseWord(commandWordString);
-        if (commandWord.equals(CommandWord.DEFAULT)) {
+        CommandType commandType = CommandType.parseWord(commandWordString);
+        if (commandType.equals(CommandType.DEFAULT)) {
             return new HelpCommand(String.format(NOT_A_COMMAND, commandWordString));
         }
 
-        return new HelpCommand(getCommandHelpMessage(commandWord));
+        return new HelpCommand(getCommandHelpMessage(commandType));
     }
 }

@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.generalcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandWord.RESET_COMMAND;
+import static seedu.foodrem.enums.CommandType.RESET_COMMAND;
 
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;

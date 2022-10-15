@@ -6,7 +6,7 @@ import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
@@ -55,9 +55,9 @@ public class FoodRemParser {
 
         final String commandWordString = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        CommandWord commandWord = CommandWord.parseWord(commandWordString);
+        CommandType commandType = CommandType.parseWord(commandWordString);
 
-        switch (commandWord) {
+        switch (commandType) {
 
         case NEW_COMMAND:
             return new NewCommandParser().parse(arguments);
