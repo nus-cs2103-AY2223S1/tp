@@ -191,7 +191,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isResetModPanel()) {
-                System.out.println("HEY");
                 modListPanel.clearModPanel();
             }
 
