@@ -10,6 +10,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.ObservableObject;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ModelStub;
@@ -34,6 +35,7 @@ public class AddCustomerCommandTest {
         assertEquals(String.format(AddCustomerCommand.MESSAGE_SUCCESS, validCustomer),
                 commandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(validCustomer), modelStub.customersAdded);
+        assertEquals(validCustomer, modelStub.getSelectedCustomer().getValue());
     }
 
     @Test
@@ -93,6 +95,7 @@ public class AddCustomerCommandTest {
      */
     private static class ModelStubAcceptingCustomerAdded extends ModelStub {
         final ArrayList<Customer> customersAdded = new ArrayList<>();
+        private final ObservableObject<Customer> selectedCustomer = new ObservableObject<>();
 
         @Override
         public boolean hasCustomer(Customer customer) {
@@ -109,6 +112,16 @@ public class AddCustomerCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public ObservableObject<Customer> getSelectedCustomer() {
+            return selectedCustomer;
+        }
+
+        @Override
+        public void selectCustomer(Customer customer) {
+            selectedCustomer.setValue(customer);
         }
     }
 

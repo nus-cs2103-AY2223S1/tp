@@ -42,11 +42,15 @@ public class DeleteCustomerCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
         }
 
+        model.selectTab(GuiTab.CUSTOMER);
+        Customer selectedCustomer = model.getSelectedCustomer().getValue();
         Customer customerToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCustomer(customerToDelete);
+        if (!selectedCustomer.isSameCustomer(customerToDelete)) {
+            model.selectCustomer(selectedCustomer);
+        }
 
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-        model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete));
     }
 
