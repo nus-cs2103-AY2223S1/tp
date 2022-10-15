@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.travelr.commons.core.Messages;
 import seedu.travelr.model.Model;
-import seedu.travelr.model.trip.NameContainsKeywordsPredicate;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 
 /**
  * Finds and lists all trips in address book whose name contains any of the argument keywords.
@@ -19,9 +19,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final TitleContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(TitleContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
