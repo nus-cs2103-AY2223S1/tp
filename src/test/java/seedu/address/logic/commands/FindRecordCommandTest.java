@@ -70,7 +70,7 @@ public class FindRecordCommandTest {
         FindRecordCommand command = new FindRecordCommand(predicate);
         expectedModel.updateFilteredRecordList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(RECORD1, RECORD2, RECORD3), model.getFilteredRecordList());
+        assertEquals(Arrays.asList(RECORD3, RECORD1, RECORD2), model.getFilteredRecordList());
     }
 
 
