@@ -18,7 +18,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class PersonTest {
 
-    public final String EDITED_PHONE = "90008000";
+    public static final String EDITED_PHONE = "90008000";
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
