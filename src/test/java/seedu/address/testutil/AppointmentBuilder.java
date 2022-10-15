@@ -55,7 +55,7 @@ public class AppointmentBuilder {
      * By default, the set of appointments field is created but is empty
      */
     public Appointment build() {
-        return new Appointment(dateTime,location);
+        return new Appointment(dateTime, location);
     }
 
 }

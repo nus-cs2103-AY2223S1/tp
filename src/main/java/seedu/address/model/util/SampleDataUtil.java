@@ -58,15 +58,4 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-//
-//    /**
-//     * Returns a tag set containing the list of strings given.
-//     */
-//    public static Set<Appointment> getAppointmentSet(String... dateTimes) {
-//        return Arrays.stream(dateTimes)
-//                .map(DateTimeParser::parseLocalDateTimeFromString)
-//                .map(DateTime::new)
-//                .map(Appointment::new)
-//                .collect(Collectors.toSet());
-//    }
 }

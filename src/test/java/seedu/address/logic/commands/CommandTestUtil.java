@@ -63,8 +63,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
-    public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
-    public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + VALID_DATETIME_22_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_JURONGPOINT;
+    public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
+            + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
+    public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
+            + VALID_DATETIME_22_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_JURONGPOINT;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -90,7 +92,8 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPOINTMENT = new EditPersonDescriptorBuilder()
-                          .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023), new Location(VALID_LOCATION_NUS)))
+                          .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023),
+                                           new Location(VALID_LOCATION_NUS)))
                           .build();
     }
 

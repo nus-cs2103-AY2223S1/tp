@@ -115,18 +115,6 @@ public class ParserUtil {
         return new Appointment(appointmentDateTime, appointmentLocation);
     }
 
-//    /**
-//     * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
-//     */
-//    public static Set<Appointment> parseAppointments(Collection<String> datesAndTimes) throws ParseException {
-//        requireNonNull(datesAndTimes);
-//        final Set<Appointment> appointmentSet = new HashSet<>();
-//        for (String dateAndTime : datesAndTimes) {
-//            appointmentSet.add(parseAppointment(dateAndTime));
-//        }
-//        return appointmentSet;
-//    }
-
     /**
      * Parses a {@code String dateAndTime} into an {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
@@ -137,7 +125,7 @@ public class ParserUtil {
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }
-      /**
+    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *

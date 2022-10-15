@@ -20,14 +20,6 @@ public class Appointment {
     private final DateTime dateTime;
     private final Location location;
 
-    public DateTime getDateTime() {
-        return dateTime;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
     /**
      * Constructs an {@code Appointment}.
      *
@@ -35,8 +27,17 @@ public class Appointment {
      */
     public Appointment(DateTime dateTime, Location location) {
         requireNonNull(dateTime);
+        requireNonNull(location);
         this.dateTime = dateTime;
         this.location = location;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     @Override

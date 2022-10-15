@@ -107,7 +107,8 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void equals() {
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(new PersonBuilder(MUSAB_WITH_NO_APPT).build()).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(
+                new PersonBuilder(MUSAB_WITH_NO_APPT).build()).build();
         final EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(
                 INDEX_FIRST_PERSON, descriptor);
 

@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.person.Appointment;
@@ -19,10 +18,12 @@ public class JsonAdaptedAppointment {
     private final String appointmentLocation;
 
     /**
-     * Constructs a {@code JsonAdaptedAppointment} with the given {@code appointmentDateTime} and {@code appointmentLocation}.
+     * Constructs a {@code JsonAdaptedAppointment} with
+     * the given {@code appointmentDateTime} and {@code appointmentLocation}.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(@JsonProperty("dateTime") String dateTime, @JsonProperty("location") String location) {
+    public JsonAdaptedAppointment(@JsonProperty("dateTime") String dateTime,
+                                  @JsonProperty("location") String location) {
         this.appointmentDateTime = dateTime;
         this.appointmentLocation = location;
     }

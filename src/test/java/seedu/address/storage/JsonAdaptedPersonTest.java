@@ -26,9 +26,9 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_INCOME = "301222";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_DATETIME= "21/05/2023 2359";
+    private static final String INVALID_DATETIME = "21/05/2023 2359";
 
-    private static final String INVALID_LOCATION= " ";
+    private static final String INVALID_LOCATION = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -138,7 +138,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidAppointments_throwsDateTimeParseException() {
         List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_DATETIME,INVALID_LOCATION));
+        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_DATETIME, INVALID_LOCATION));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_INCOME,
                         VALID_TAGS, invalidAppointments);

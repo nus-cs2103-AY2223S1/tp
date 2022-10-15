@@ -30,7 +30,7 @@ import seedu.address.testutil.PersonBuilder;
 public class DeleteAppointmentCommandTest {
 
     @Test
-    public void execute_deleteAppts_validPersonIndexUnfilteredList_success() {
+    public void execute_validPersonIndexUnfilteredList_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
@@ -56,7 +56,7 @@ public class DeleteAppointmentCommandTest {
     }
 
     @Test
-    public void execute_deleteAppts_invalidPersonIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidPersonIndexUnfilteredList_throwsCommandException() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                             .withAppointment(new AppointmentBuilder()
@@ -86,7 +86,7 @@ public class DeleteAppointmentCommandTest {
     }
 
     @Test
-    public void execute_deleteAppts_validPersonIndexFilteredList_success() {
+    public void execute_validPersonIndexFilteredList_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
@@ -115,7 +115,7 @@ public class DeleteAppointmentCommandTest {
         assertCommandSuccess(deleteAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
     @Test
-    public void execute_deleteAppts_invalidPersonIndexFilteredList_throwsCommandException() {
+    public void execute_invalidPersonIndexFilteredList_throwsCommandException() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                             .withAppointment(new AppointmentBuilder()

@@ -28,7 +28,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION);
 
-        if (argMultimap.getPreamble().isEmpty() || !arePrefixesPresent(argMultimap, PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION)) {
+        if (argMultimap.getPreamble().isEmpty()
+            || !arePrefixesPresent(argMultimap, PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
@@ -64,18 +65,4 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         return new AddAppointmentCommand(index, editPersonDescriptor);
     }
-
-//    /**
-//     * Parses {@code Collection<String> datesAndTimes} into a
-//     * {@code Set<Appointment>} if {@code datesAndTimes} is non-empty.
-//     */
-//    private Optional<Set<Appointment>> parseAppointmentsForEdit(Collection<String> datesAndTimes)
-//            throws ParseException {
-//        assert datesAndTimes != null;
-//
-//        if (datesAndTimes.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        return Optional.of(ParserUtil.parseAppointments(datesAndTimes));
-//    }
 }
