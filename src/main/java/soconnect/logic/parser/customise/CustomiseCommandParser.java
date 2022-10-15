@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.customise.CustomiseCommand;
 import soconnect.logic.commands.customise.CustomiseHideCommand;
 import soconnect.logic.commands.customise.CustomiseOrderCommand;
@@ -101,7 +100,8 @@ public class CustomiseCommandParser implements Parser<CustomiseCommand> {
             return TAGS;
         case "":
         default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CustomiseOrderCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CustomiseOrderCommand.MESSAGE_USAGE));
         }
     }
 

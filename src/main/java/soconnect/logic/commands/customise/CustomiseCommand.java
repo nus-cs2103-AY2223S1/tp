@@ -62,7 +62,8 @@ public abstract class CustomiseCommand extends Command {
      * @param model {@code Model} which the command operates on.
      * @throws CommandException If an error occurs during command execution.
      */
-    protected void toggleAttributes(Model model, boolean isSetToHide, List<Attribute> attributeList) throws CommandException {
+    protected void toggleAttributes(Model model, boolean isSetToHide, List<Attribute> attributeList)
+            throws CommandException {
         GuiSettings currSettings = model.getGuiSettings();
         String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
         boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
