@@ -11,7 +11,7 @@ public class Mark {
     public static final String MESSAGE_CONSTRAINTS = "Mark can take in a boolean value,"
             + " and its default value is false";
 
-    public final Boolean isPresent;
+    public Boolean isPresent;
 
     /**
      * Constructs an {@code Mark}.
@@ -42,6 +42,10 @@ public class Mark {
             return false;
         }
         return true;
+    }
+
+    public void reset() {
+        this.isPresent = Boolean.FALSE;
     }
 
     @Override

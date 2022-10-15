@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -240,4 +241,10 @@ public class Person {
         return this.displayedClass.startTime.compareTo(person.displayedClass.startTime);
     }
 
+    public void updateDisplayClass(LocalDate date) {
+        if (aClass.date != null && aClass.date.equals(date)) {
+            this.displayedClass = aClass;
+            mark.reset();
+        }
+    }
 }
