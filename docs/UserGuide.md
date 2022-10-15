@@ -71,12 +71,11 @@ SectresBook helps **secretaries** to maintain all the information of the members
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a person: `add`
 
@@ -223,8 +222,8 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SectresBook home folder.
 
-**Q**: Double clicking the jar file does not open the jar file!<br>
-**A**: Make sure that Java 11 is install on your computer. You may also open the terminal or command prompt and type `java -jar SectresBook.jar`.
+**Q**: Double-clicking the jar file does not open the jar file!<br>
+**A**: Make sure that Java 11 is installed on your computer. You may also open the terminal or command prompt and type `java -jar SectresBook.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 
