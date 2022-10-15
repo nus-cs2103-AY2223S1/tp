@@ -217,10 +217,10 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
+**Book** | `book INDEX r/REASON d/DATE [pe/TIME PERIOD]` <br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`
 **Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
-**Edit Appointment** | `edit appts PATIENT_INDEX APPOINTMENT_INDEX [r/REASON] [d/DATE]` <br> e.g., `edit appts 1 1 r/Cough` 
+**Edit Appointment** | `edit appts INDEX [r/REASON] [d/DATE] [pe/TIME PERIOD]` <br> e.g., `edit appts 1 r/Cough` 
 **List** | `list patients` <br> `list appointments`
 **Help** | `help`
 **Exit** | `exit`
