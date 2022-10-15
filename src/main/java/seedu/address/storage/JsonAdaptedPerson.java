@@ -78,11 +78,11 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedHomework::new)
                 .collect(Collectors.toList()));
         attendanceList.addAll(source.getAttendanceList().attendanceList.stream()
-                        .map(JsonAdaptedAttendance::new)
-                        .collect(Collectors.toList()));
+                .map(JsonAdaptedAttendance::new)
+                .collect(Collectors.toList()));
         sessionList.addAll(source.getSessionList().sessionList.stream()
-                        .map(JsonAdaptedSession::new)
-                        .collect(Collectors.toList()));
+                .map(JsonAdaptedSession::new)
+                .collect(Collectors.toList()));
         gradeProgressList.addAll(source.getGradeProgressList().gradeProgressList.stream()
                 .map(JsonAdaptedGradeProgress::new)
                 .collect(Collectors.toList()));
