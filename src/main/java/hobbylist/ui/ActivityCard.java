@@ -36,6 +36,8 @@ public class ActivityCard extends UiPart<Region> {
     private Label description;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane date;
 
     /**
      * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
@@ -49,6 +51,7 @@ public class ActivityCard extends UiPart<Region> {
         activity.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        activity.getDate().stream().forEach(d -> date.getChildren().add(new Label(d.toString())));
     }
 
     @Override

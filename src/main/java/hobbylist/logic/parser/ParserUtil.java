@@ -2,8 +2,11 @@ package hobbylist.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import hobbylist.commons.core.index.Index;
@@ -11,7 +14,9 @@ import hobbylist.commons.util.StringUtil;
 import hobbylist.logic.parser.exceptions.ParseException;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
+
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -76,6 +81,29 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
+    }
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     * The String date is in yyyy-mm-dd format
+     * @throws ParseException if the given {@code date} is invalid or out of calendar.
+     */
+    public static List<Date> parseDate(List<String> listDate) throws ParseException {
+        requireNonNull(listDate);
+        List<Date> s = new ArrayList<>();
+        for (String d : listDate) {
+            requireNonNull(d);
+            String trimmedD = d.trim();
+            if (!Date.isValidDateString(trimmedD)) {
+                throw new ParseException(Date.MESSAGE_EXCEPTION);
+            }
+            try {
+                s.add(new Date(d));
+            } catch (DateTimeParseException de) {
+                throw new ParseException("Sorry, the input date is out of human calendar scope.");
+            }
+        }
+        return s;
     }
 
     /**

@@ -23,7 +23,8 @@ public class AddCommand extends Command {
             + CliSyntax.PREFIX_NAME + "And Then There Were None "
             + CliSyntax.PREFIX_DESCRIPTION + "mystery book by Agatha Christie "
             + CliSyntax.PREFIX_TAG + "book "
-            + CliSyntax.PREFIX_TAG + "entertainment";
+            + CliSyntax.PREFIX_TAG + "entertainment"
+            + CliSyntax.PREFIX_DATE + "2003-03-03";;
 
     public static final String MESSAGE_SUCCESS = "New activity added: %1$s";
     public static final String MESSAGE_DUPLICATE_ACTIVITY = "This activity already exists in the HobbyList";

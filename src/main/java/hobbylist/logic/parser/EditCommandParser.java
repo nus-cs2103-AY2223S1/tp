@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import hobbylist.commons.core.index.Index;
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.commands.EditCommand.EditActivityDescriptor;
 import hobbylist.logic.parser.exceptions.ParseException;
+import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -28,7 +30,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_NAME,
-                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG);
+                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG, CliSyntax.PREFIX_DATE);
 
         Index index;
 
@@ -48,7 +50,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editActivityDescriptor::setTags);
-
+        parseDateForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_DATE)).ifPresent(editActivityDescriptor::setDate);
         if (!editActivityDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -69,6 +71,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+    private Optional<List<Date>> parseDateForEdit(List<String> s) throws ParseException {
+        assert s != null;
+        if (s.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(ParserUtil.parseDate(s));
     }
 
 }
