@@ -50,7 +50,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags, appointment);
     }
 
     public void setName(Name name) {
