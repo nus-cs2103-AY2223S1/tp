@@ -13,9 +13,12 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
@@ -28,6 +31,7 @@ public class ParserUtilTest {
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_MOD = "#CS2103";
 
     private static final String VALID_GITHUB = "racheltan";
     private static final String VALID_NAME = "Rachel Walker";
@@ -36,6 +40,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_MOD_1 = "CS2103";
+    private static final String VALID_MOD_2 = "CS2101";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -206,5 +212,61 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseMod_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMod(null));
+    }
+
+    @Test
+    public void parseMod_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMod(INVALID_MOD));
+    }
+
+    @Test
+    public void parseMod_validValueWithoutWhitespace_returnsTag() throws Exception {
+        Mod expectedMod = new Mod(VALID_MOD_1);
+        assertEquals(expectedMod, ParserUtil.parseMod(VALID_MOD_1));
+    }
+
+    @Test
+    public void parseMod_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+        String modWithWhitespace = WHITESPACE + VALID_MOD_1 + WHITESPACE;
+        Mod expectedMod = new Mod(VALID_MOD_1);
+        assertEquals(expectedMod, ParserUtil.parseMod(modWithWhitespace));
+    }
+
+    @Test
+    public void parseMods_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMods(null));
+    }
+
+    @Test
+    public void parseMods_collectionWithInvalidMods_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, INVALID_MOD)));
+    }
+
+    @Test
+    public void parseMods_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseMods(Collections.emptyList()).isEmpty());
+    }
+
+    @SuppressWarnings("checkstyle:SingleSpaceSeparator")
+    @Test
+    public void parseMods_collectionWithValidMods_returnsModSet() throws Exception {
+        ObservableList<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_2));
+        ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(
+                new Mod(VALID_MOD_2), new Mod(VALID_MOD_1)));
+
+        assertEquals(expectedModSet, actualModSet);
+    }
+
+    @Test
+    public void parseMods_collectionWithValidDuplicateMods_returnsModSet() throws Exception {
+        ObservableList<Mod> actualModSet = ParserUtil.parseMods(Arrays.asList(VALID_MOD_1, VALID_MOD_1));
+        ObservableList<Mod> expectedModSet = FXCollections.observableArrayList(Arrays.asList(new Mod(VALID_MOD_1)));
+
+        assertEquals(expectedModSet, actualModSet);
     }
 }

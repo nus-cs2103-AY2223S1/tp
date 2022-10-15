@@ -2,15 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitHub;
+import seedu.address.model.person.Mod;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Telegram;
@@ -131,5 +136,31 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String mod} into a {@code Mod}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code mod} is invalid.
+     */
+    public static Mod parseMod(String mod) throws ParseException {
+        String trimmedMod = mod.trim();
+        if (!Mod.isValidModName(trimmedMod)) {
+            throw new ParseException(Mod.MESSAGE_CONSTRAINTS);
+        }
+        return new Mod(trimmedMod);
+    }
+
+    /**
+     * Parses {@code Collection<String> mods} into a {@code Set<Mod>}.
+     */
+    public static ObservableList<Mod> parseMods(Collection<String> mods) throws ParseException {
+        List<String> deDupStringList = new ArrayList<>(new HashSet<>(mods));
+        final ObservableList<Mod> modSet = FXCollections.observableArrayList();
+        for (String modName : deDupStringList) {
+            modSet.add(parseMod(modName));
+        }
+        return modSet;
     }
 }

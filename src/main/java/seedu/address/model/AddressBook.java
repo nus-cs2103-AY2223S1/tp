@@ -13,7 +13,6 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
     private final UniquePersonList persons;
 
     /*
@@ -38,7 +37,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
+    /**
+     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     */
 
+    public void resetData(ReadOnlyAddressBook newData) {
+        requireNonNull(newData);
+
+        setPersons(newData.getPersonList());
+
+    }
     /**
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
@@ -47,17 +55,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyAddressBook newData) {
-        requireNonNull(newData);
-
-        setPersons(newData.getPersonList());
-    }
-
     //// person-level operations
-
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -94,10 +92,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// util methods
-
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().size()
+                + " persons";
         // TODO: refine later
     }
 
@@ -107,14 +105,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public int hashCode() {
+        return persons.hashCode();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons));
     }
 
-    @Override
-    public int hashCode() {
-        return persons.hashCode();
-    }
 }
