@@ -47,6 +47,9 @@ public class VisitStatus {
         return this.visitStatusString;
     }
 
+    /**
+     * Returns true if the given string is a valid visit status.
+     */
     public static boolean isValidVisitStatus(String testVisitStatusString) {
         return testVisitStatusString.matches(VALIDATION_REGEX);
     }

@@ -8,7 +8,8 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "dateTimes": [ ],
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "visit status" : "false"
   }, {
     "category": "P",
     "uid": "1",
@@ -18,6 +19,7 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "dateTimes": [ ],
-    "tagged": [  ]
+    "tagged": [  ],
+    "visit status" : "false"
   } ]
 }

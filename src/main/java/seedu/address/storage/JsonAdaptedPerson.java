@@ -171,8 +171,6 @@ class JsonAdaptedPerson {
 
         final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
 
-        final VisitStatus modelVisitStatus = new VisitStatus(visitStatus);
-
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Category.class.getSimpleName()));
@@ -180,6 +178,13 @@ class JsonAdaptedPerson {
         if (category.equals(NURSE_SYMBOL)) {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
         } else if (category.equals(PATIENT_SYMBOL)) {
+            if (visitStatus == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, VisitStatus.class.getSimpleName()));
+            }
+            if (!VisitStatus.isValidVisitStatus(visitStatus)) {
+                throw new IllegalValueException(VisitStatus.MESSAGE_CONSTRAINTS);
+            }
+            final VisitStatus modelVisitStatus = new VisitStatus(visitStatus);
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
                     modelAddress, modelTags, modelDatesTimes, modelVisitStatus);
         } else {

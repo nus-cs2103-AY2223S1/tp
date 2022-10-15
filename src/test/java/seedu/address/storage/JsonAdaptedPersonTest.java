@@ -185,16 +185,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_UID, VALID_NAME, VALID_CATEGORY, VALID_GENDER, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_DATETIME, VALID_TAGS, INVALID_VISIT_STATUS);
-        String expectedMessage = Category.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullVisitStatus_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_UID, VALID_NAME, VALID_CATEGORY, VALID_GENDER, VALID_PHONE, VALID_EMAIL,
-                        VALID_ADDRESS, VALID_DATETIME, VALID_TAGS, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, VisitStatus.class.getSimpleName());
+        String expectedMessage = VisitStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }
