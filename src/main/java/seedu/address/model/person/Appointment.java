@@ -13,7 +13,8 @@ import java.time.format.DateTimeParseException;
  */
 public class Appointment {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-    public static final String NO_APPOINTMENT_SCHEDULED = "no appointment scheduled";
+    public static final String NO_APPOINTMENT_SCHEDULED = "No appointment scheduled!";
+    public static final String MESSAGE_CONSTRAINTS = "Appointment dates have to be of format dd-MM-yyyy HHmm!";
 
     private final LocalDateTime appointmentDate;
 
@@ -98,8 +99,7 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return "Appointment: "
-                + (appointmentDate == null ? NO_APPOINTMENT_SCHEDULED : appointmentDate.format(DATE_FORMAT));
+        return appointmentDate == null ? NO_APPOINTMENT_SCHEDULED : appointmentDate.format(DATE_FORMAT);
     }
 
     @Override

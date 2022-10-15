@@ -125,7 +125,7 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (!Appointment.isValidAppointment(appointment)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
         }
         final Appointment modelAppointment = Appointment.of(appointment);
 
