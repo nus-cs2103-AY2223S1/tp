@@ -18,7 +18,6 @@ import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
-import seedu.address.model.client.Address;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
