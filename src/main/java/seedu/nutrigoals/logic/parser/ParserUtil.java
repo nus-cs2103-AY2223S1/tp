@@ -10,6 +10,7 @@ import seedu.nutrigoals.commons.core.index.Index;
 import seedu.nutrigoals.commons.util.StringUtil;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.Calorie;
+import seedu.nutrigoals.model.Location;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
 
@@ -87,5 +88,11 @@ public class ParserUtil {
             throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
         }
         return new Calorie(trimmedCalorie);
+    }
+
+    public static Location parseLocation(String locationName) throws ParseException {
+        requireNonNull(locationName);
+        String trimmedLocationName = locationName.trim();
+        if ()
     }
 }
