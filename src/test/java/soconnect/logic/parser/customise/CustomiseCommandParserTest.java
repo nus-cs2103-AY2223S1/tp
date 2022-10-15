@@ -14,6 +14,6 @@ class CustomiseCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", MESSAGE_UNKNOWN_CUSTOMISE_COMMAND);
+        assertParseFailure(parser, "a", String.format(MESSAGE_UNKNOWN_CUSTOMISE_COMMAND, CustomiseCommand.MESSAGE_USAGE));
     }
 }

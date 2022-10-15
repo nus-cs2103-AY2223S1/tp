@@ -47,7 +47,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane attributeD;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex, Logic logic) {
         super(FXML);
@@ -89,17 +89,26 @@ public class PersonCard extends UiPart<Region> {
 
         if (flowpanes[0] != null) {
             flowpanes[0].getChildren().add(new Label(person.getAddress().value));
+            flowpanes[0].getChildren().forEach(label -> label.setStyle(
+                    "-fx-font-size: 12;-fx-font-family: \"Segoe UI Semibold\";"));
         }
         if (flowpanes[1] != null) {
             flowpanes[1].getChildren().add(new Label(person.getEmail().value));
+            flowpanes[1].getChildren().forEach(label -> label.setStyle(
+                    "-fx-font-size: 12;-fx-font-family: \"Segoe UI Semibold\";"));
         }
         if (flowpanes[2] != null) {
             flowpanes[2].getChildren().add(new Label(person.getPhone().value));
+            flowpanes[2].getChildren().forEach(label -> label.setStyle(
+                    "-fx-font-size: 12;-fx-font-family: \"Segoe UI Semibold\";"));
         }
         if (flowpanes[3] != null) {
             person.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
-                    .forEach(tag -> flowpanes[3].getChildren().add(new Label(tag.tagName)));
+                    .forEach(tag -> flowpanes[3].getChildren().add((new Label(tag.tagName))));
+            flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3e7b91;"
+                    + "-fx-font-size: 11;-fx-background-radius: 2;"
+                    + "-fx-border-radius: 2;-fx-padding: 1 3 1 3;"));
         }
     }
 
