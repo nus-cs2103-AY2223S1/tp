@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyPersons;
+import static seedu.address.testutil.TypicalModules.CS2106;
+import static seedu.address.testutil.TypicalModules.MA2001;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.Arrays;
@@ -17,8 +19,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -28,6 +32,7 @@ public class AddressBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getModuleList());
     }
 
     @Test
@@ -80,6 +85,56 @@ public class AddressBookTest {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
+    @Test
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasModule(null));
+    }
+
+    @Test
+    public void hasModule_moduleNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasModule(CS2106));
+        assertFalse(addressBook.hasModule(MA2001));
+    }
+
+    @Test
+    public void hasModule_moduleInAddressBook_returnsTrue() {
+        addressBook.addModule(CS2106);
+        assertTrue(addressBook.hasModule(CS2106));
+    }
+
+    @Test
+    public void hasModule_moduleWithSameModuleCodeInAddressBook_returnsTrue() {
+        Module moduleWithSameModuleCode =
+                new ModuleBuilder().withModuleCode(CS2106.getModuleCode().value).build();
+        addressBook.addModule(CS2106);
+        assertTrue(addressBook.hasModule(moduleWithSameModuleCode));
+    }
+
+    @Test
+    public void getModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.getModule(null));
+    }
+
+    @Test
+    public void getModule_moduleNotInAddressBook_throwsModuleNotFoundException() {
+        assertThrows(ModuleNotFoundException.class, () -> addressBook.getModule(CS2106));
+        assertThrows(ModuleNotFoundException.class, () -> addressBook.getModule(MA2001));
+    }
+
+    @Test
+    public void getModule_moduleInAddressBook_returnsTrue() {
+        addressBook.addModule(CS2106);
+        assertEquals(CS2106, addressBook.getModule(CS2106));
+    }
+
+    @Test
+    public void getModule_moduleWithSameModuleCodeInAddressBook_returnsTrue() {
+        Module moduleWithSameModuleCode =
+                new ModuleBuilder().withModuleCode(CS2106.getModuleCode().value).build();
+        addressBook.addModule(CS2106);
+        assertEquals(CS2106, addressBook.getModule(moduleWithSameModuleCode));
+    }
+    
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
