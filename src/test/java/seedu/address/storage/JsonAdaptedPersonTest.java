@@ -119,7 +119,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidMods_throwsIllegalValueException() {
         List<JsonAdaptedMod> invalidMods = new ArrayList<>(VALID_MODS);
-        invalidMods.add(new JsonAdaptedMod(INVALID_MOD));
+        invalidMods.add(new JsonAdaptedMod(INVALID_MOD, false));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_TELEGRAM, VALID_GITHUB, VALID_TAGS, invalidMods);

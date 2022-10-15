@@ -12,6 +12,7 @@ public class Mod {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String modName;
+    private boolean hasTaken;
 
     /**
      * Constructs a {@code Mod}.
@@ -21,7 +22,21 @@ public class Mod {
     public Mod(String modName) {
         requireNonNull(modName);
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
-        this.modName = modName;
+        this.modName = modName.toUpperCase();
+        this.hasTaken = false;
+    }
+
+    /**
+     * Constructs a {@code Mod} with name and hasTaken status.
+     *
+     * @param modName A valid mod name.
+     * @param hasTaken The mod status, i.e. whether it has been taken.
+     */
+    public Mod(String modName, boolean hasTaken) {
+        requireNonNull(modName);
+        checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
+        this.modName = modName.toUpperCase();
+        this.hasTaken = hasTaken;
     }
 
     /**
@@ -44,6 +59,38 @@ public class Mod {
                 && otherMod.modName.equals((this.modName));
     }
 
+    /**
+     * Marks a module as taken.
+     */
+    public void markMod() {
+        this.hasTaken = true;
+    }
+
+    /**
+     * Unmarks a module as not taken.
+     */
+    public void unmarkMod() {
+        this.hasTaken = false;
+    }
+
+    /**
+     * Gets the module name.
+     *
+     * @return String representation of module name.
+     */
+    public String getModName() {
+        return this.modName;
+    }
+
+    /**
+     * Gets the status of the module.
+     *
+     * @return True if the batchmate has taken the mod; false otherwise.
+     */
+    public boolean getModStatus() {
+        return this.hasTaken;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -60,6 +107,6 @@ public class Mod {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + modName + ']';
+        return '[' + modName + ": " + hasTaken + ']';
     }
 }

@@ -13,20 +13,21 @@ import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes mods from the person specified.
+ * Deletes mods from the batchmate specified.
  */
 public class ModDeleteCommand extends ModCommand {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_SUCCESS = "Successfully deleted the specified mods.";
-    public static final String MESSAGE_INVALID_MOD = "This person is not taking all of the modules specified."
-            + "\nPlease check your list of mods and try again.";
+    public static final String MESSAGE_INVALID_MOD = "This batchmate is not taking all of the modules specified."
+            + "\nPlease check the list of mods and try again.";
     private final Index targetIndex;
     private final ObservableList<Mod> mods;
 
     /**
-     * Constructs a command that deletes all mods specified from the list of the person at the target index.
-     * @param index The index of the person to add to.
+     * Constructs a command that deletes all mods specified from the list of the batchmate at the target index.
+     *
+     * @param index The index of the batchmate.
      * @param mods The set of mods to be deleted.
      */
     public ModDeleteCommand(Index index, ObservableList<Mod> mods) {
@@ -55,7 +56,7 @@ public class ModDeleteCommand extends ModCommand {
 
         Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
 
-        if (personToEdit.canDeleteMods(mods)) {
+        if (personToEdit.canEditMods(mods)) {
             personToEdit.deleteMods(mods);
         } else {
             throw new CommandException(MESSAGE_INVALID_MOD);
