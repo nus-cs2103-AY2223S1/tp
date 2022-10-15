@@ -56,6 +56,8 @@ public class AddScheduleCommand extends Command {
             throw new CommandException(MESSAGE_CONFLICT_SCHEDULE);
         }
         model.addSchedule(scheduleToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, scheduleToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, scheduleToAdd),
+                false, false, false,
+                false, false, true);
     }
 }
