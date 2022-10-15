@@ -24,7 +24,7 @@ import seedu.foodrem.model.util.ChainComparator;
 public class SortCommand extends Command {
     private static final String COMMAND_WORD = CommandWord.SORT_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE =
+    private static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Sorts all items according to a specified criteria."
                     + "Available criteria includes sorting by name, quantity, type, bought date, expiry date.\n"
                     + "Parameters: "
@@ -49,8 +49,7 @@ public class SortCommand extends Command {
                 String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW, model.getSortedItemList().size()));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

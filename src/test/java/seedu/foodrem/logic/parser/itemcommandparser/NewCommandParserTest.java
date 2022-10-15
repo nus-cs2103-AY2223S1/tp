@@ -97,7 +97,7 @@ public class NewCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage());
 
         // missing name prefix
         assertParseFailure(parser,
@@ -175,6 +175,6 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
     }
 }

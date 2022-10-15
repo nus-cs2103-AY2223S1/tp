@@ -20,7 +20,7 @@ public class ViewCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.VIEW_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the information about an Item. The command "
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the information about an Item. The command "
             + "displays the name, quantity, bought date, expiry date, unit, and associated tags of the item.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -50,8 +50,7 @@ public class ViewCommand extends Command {
         return new CommandResult(itemToDisplayInformation.toString());
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 }

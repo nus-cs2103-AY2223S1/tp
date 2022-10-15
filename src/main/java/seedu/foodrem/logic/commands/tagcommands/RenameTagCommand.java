@@ -21,7 +21,7 @@ public class RenameTagCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.RENAME_TAG_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Renames an existing tag in FoodRem. "
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Renames an existing tag in FoodRem. "
             + "Parameters: "
             + PREFIX_NAME + "ORIGINAL_TAG_NAME "
             + PREFIX_NAME + "NEW_TAG_NAME "
@@ -58,8 +58,7 @@ public class RenameTagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_RENAME_TAG_SUCCESS, renamedTag));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

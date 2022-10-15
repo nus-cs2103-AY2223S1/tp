@@ -32,7 +32,7 @@ public class HelpCommand extends Command {
     private static final String HELP_FOR_SPECIFIC_COMMAND = "%s\n\n" + HELP_FOR_ALL_COMMANDS;
 
     private static final String COMMAND_WORD = CommandWord.HELP_COMMAND.getCommandWord();
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays help for FoodRem.\n"
             + "Example: " + COMMAND_WORD;
 
     private final String message;
@@ -55,8 +55,7 @@ public class HelpCommand extends Command {
         return new CommandResult(SHOWING_HELP_MESSAGE, message);
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

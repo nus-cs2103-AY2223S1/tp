@@ -20,7 +20,7 @@ public class NewTagCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.NEW_TAG_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to FoodRem. "
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to FoodRem. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
@@ -48,8 +48,7 @@ public class NewTagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

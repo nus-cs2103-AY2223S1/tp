@@ -128,11 +128,12 @@ class HelpCommandParserTest {
                 new HelpCommand(getCommandHelpMessage(CommandWord.parseWord("reset"))));
     }
 
+    // TODO: Rewrite all the tests
     @Test
     void getHelp_generalCommands() {
-        assertEquals(ExitCommand.MESSAGE_USAGE, CommandWord.parseWord("exit").getHelp());
-        assertEquals(HelpCommand.MESSAGE_USAGE, CommandWord.parseWord("help").getHelp());
-        assertEquals(ResetCommand.MESSAGE_USAGE, CommandWord.parseWord("reset").getHelp());
+        assertEquals(ExitCommand.getUsage(), CommandWord.parseWord("exit").getHelp());
+        assertEquals(HelpCommand.getUsage(), CommandWord.parseWord("help").getHelp());
+        assertEquals(ResetCommand.getUsage(), CommandWord.parseWord("reset").getHelp());
     }
 
     @Test
@@ -159,15 +160,15 @@ class HelpCommandParserTest {
 
     @Test
     void getHelp_itemCommands() {
-        assertEquals(NewCommand.MESSAGE_USAGE, CommandWord.parseWord("new").getHelp());
-        assertEquals(EditCommand.MESSAGE_USAGE, CommandWord.parseWord("edit").getHelp());
-        assertEquals(IncrementCommand.MESSAGE_USAGE, CommandWord.parseWord("inc").getHelp());
-        assertEquals(DecrementCommand.MESSAGE_USAGE, CommandWord.parseWord("dec").getHelp());
-        assertEquals(DeleteCommand.MESSAGE_USAGE, CommandWord.parseWord("del").getHelp());
-        assertEquals(FindCommand.MESSAGE_USAGE, CommandWord.parseWord("find").getHelp());
-        assertEquals(ListCommand.MESSAGE_USAGE, CommandWord.parseWord("list").getHelp());
-        assertEquals(SortCommand.MESSAGE_USAGE, CommandWord.parseWord("sort").getHelp());
-        assertEquals(ViewCommand.MESSAGE_USAGE, CommandWord.parseWord("view").getHelp());
+        assertEquals(NewCommand.getUsage(), CommandWord.parseWord("new").getHelp());
+        assertEquals(EditCommand.getUsage(), CommandWord.parseWord("edit").getHelp());
+        assertEquals(IncrementCommand.getUsage(), CommandWord.parseWord("inc").getHelp());
+        assertEquals(DecrementCommand.getUsage(), CommandWord.parseWord("dec").getHelp());
+        assertEquals(DeleteCommand.getUsage(), CommandWord.parseWord("del").getHelp());
+        assertEquals(FindCommand.getUsage(), CommandWord.parseWord("find").getHelp());
+        assertEquals(ListCommand.getUsage(), CommandWord.parseWord("list").getHelp());
+        assertEquals(SortCommand.getUsage(), CommandWord.parseWord("sort").getHelp());
+        assertEquals(ViewCommand.getUsage(), CommandWord.parseWord("view").getHelp());
     }
 
     @Test
@@ -188,11 +189,11 @@ class HelpCommandParserTest {
 
     @Test
     void getHelp_tagCommands() {
-        assertEquals(NewTagCommand.MESSAGE_USAGE, CommandWord.parseWord("newtag").getHelp());
-        assertEquals(RenameTagCommand.MESSAGE_USAGE, CommandWord.parseWord("renametag").getHelp());
-        assertEquals(TagCommand.MESSAGE_USAGE, CommandWord.parseWord("tag").getHelp());
-        assertEquals(UntagCommand.MESSAGE_USAGE, CommandWord.parseWord("untag").getHelp());
-        assertEquals(DeleteTagCommand.MESSAGE_USAGE, CommandWord.parseWord("deletetag").getHelp());
-        assertEquals(ListTagCommand.MESSAGE_USAGE, CommandWord.parseWord("listtag").getHelp());
+        assertEquals(NewTagCommand.getUsage(), CommandWord.parseWord("newtag").getHelp());
+        assertEquals(RenameTagCommand.getUsage(), CommandWord.parseWord("renametag").getHelp());
+        assertEquals(TagCommand.getUsage(), CommandWord.parseWord("tag").getHelp());
+        assertEquals(UntagCommand.getUsage(), CommandWord.parseWord("untag").getHelp());
+        assertEquals(DeleteTagCommand.getUsage(), CommandWord.parseWord("deletetag").getHelp());
+        assertEquals(ListTagCommand.getUsage(), CommandWord.parseWord("listtag").getHelp());
     }
 }

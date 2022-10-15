@@ -35,7 +35,7 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
 
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RenameTagCommand.MESSAGE_USAGE));
+                    RenameTagCommand.getUsage()));
         }
 
         final String originalName = matcher.group("originalName").trim();

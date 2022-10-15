@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all items";
 
     private static final String COMMAND_WORD = CommandWord.LIST_COMMAND.getCommandWord();
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List all items in FoodRem."
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": List all items in FoodRem."
             + "Example: " + COMMAND_WORD;
 
     @Override
@@ -26,8 +26,7 @@ public class ListCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 }

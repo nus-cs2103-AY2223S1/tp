@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     private static final String COMMAND_WORD = CommandWord.EXIT_COMMAND.getCommandWord();
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits FoodRem."
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits FoodRem."
             + "Example: " + COMMAND_WORD;
 
     @Override
@@ -21,8 +21,7 @@ public class ExitCommand extends Command {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 }

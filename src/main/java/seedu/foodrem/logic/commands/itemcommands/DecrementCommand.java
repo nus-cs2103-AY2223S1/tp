@@ -25,7 +25,7 @@ public class DecrementCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.DECREMENT_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    private static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Decrements the quantity of the item identified by the index number used in the displayed item list.\n"
             + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
             + "Parameters:\n"
@@ -88,8 +88,7 @@ public class DecrementCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, decrementedItem));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 }

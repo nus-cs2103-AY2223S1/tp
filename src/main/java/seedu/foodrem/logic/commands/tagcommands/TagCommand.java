@@ -27,7 +27,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_ITEM_INDEX_DOES_NOT_EXIST = "The item index does not exist";
 
     private static final String COMMAND_WORD = CommandWord.TAG_COMMAND.getCommandWord();
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    private static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"
             + "Parameters: " + PREFIX_NAME + "TAG_NAME" + PREFIX_ID + "INDEX (item index must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
@@ -91,8 +91,7 @@ public class TagCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 }

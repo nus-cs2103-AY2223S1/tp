@@ -62,28 +62,28 @@ public enum CommandWord {
     // https://stackoverflow.com/questions/11419519/enums-static-and-instance-blocks
     static {
         // General Commands
-        EXIT_COMMAND.help = ExitCommand.MESSAGE_USAGE;
-        HELP_COMMAND.help = HelpCommand.MESSAGE_USAGE;
-        RESET_COMMAND.help = ResetCommand.MESSAGE_USAGE;
+        EXIT_COMMAND.help = ExitCommand.getUsage();
+        HELP_COMMAND.help = HelpCommand.getUsage();
+        RESET_COMMAND.help = ResetCommand.getUsage();
 
         // Item Commands
-        NEW_COMMAND.help = NewCommand.MESSAGE_USAGE;
-        EDIT_COMMAND.help = EditCommand.MESSAGE_USAGE;
-        INCREMENT_COMMAND.help = IncrementCommand.MESSAGE_USAGE;
-        DECREMENT_COMMAND.help = DecrementCommand.MESSAGE_USAGE;
-        DELETE_COMMAND.help = DeleteCommand.MESSAGE_USAGE;
-        LIST_COMMAND.help = ListCommand.MESSAGE_USAGE;
-        SORT_COMMAND.help = SortCommand.MESSAGE_USAGE;
-        FIND_COMMAND.help = FindCommand.MESSAGE_USAGE;
-        VIEW_COMMAND.help = ViewCommand.MESSAGE_USAGE;
+        NEW_COMMAND.help = NewCommand.getUsage();
+        EDIT_COMMAND.help = EditCommand.getUsage();
+        INCREMENT_COMMAND.help = IncrementCommand.getUsage();
+        DECREMENT_COMMAND.help = DecrementCommand.getUsage();
+        DELETE_COMMAND.help = DeleteCommand.getUsage();
+        LIST_COMMAND.help = ListCommand.getUsage();
+        SORT_COMMAND.help = SortCommand.getUsage();
+        FIND_COMMAND.help = FindCommand.getUsage();
+        VIEW_COMMAND.help = ViewCommand.getUsage();
 
         // Tag Commands
-        NEW_TAG_COMMAND.help = NewTagCommand.MESSAGE_USAGE;
-        RENAME_TAG_COMMAND.help = RenameTagCommand.MESSAGE_USAGE;
-        TAG_COMMAND.help = TagCommand.MESSAGE_USAGE;
-        UNTAG_COMMAND.help = UntagCommand.MESSAGE_USAGE;
-        DELETE_TAG_COMMAND.help = DeleteTagCommand.MESSAGE_USAGE;
-        LIST_TAG_COMMAND.help = ListTagCommand.MESSAGE_USAGE;
+        NEW_TAG_COMMAND.help = NewTagCommand.getUsage();
+        RENAME_TAG_COMMAND.help = RenameTagCommand.getUsage();
+        TAG_COMMAND.help = TagCommand.getUsage();
+        UNTAG_COMMAND.help = UntagCommand.getUsage();
+        DELETE_TAG_COMMAND.help = DeleteTagCommand.getUsage();
+        LIST_TAG_COMMAND.help = ListTagCommand.getUsage();
     }
 
     private final String commandWord;

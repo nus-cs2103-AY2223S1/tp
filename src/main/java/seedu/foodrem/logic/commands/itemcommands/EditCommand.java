@@ -35,7 +35,7 @@ public class EditCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.EDIT_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the item identified "
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the item identified "
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -101,8 +101,7 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

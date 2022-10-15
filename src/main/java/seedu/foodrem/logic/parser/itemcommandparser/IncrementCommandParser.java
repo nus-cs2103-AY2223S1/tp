@@ -32,14 +32,14 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.getUsage()), pe);
         }
 
         // Default increment by 1 if PREFIX_ITEM_QUANTITY not provided
         ItemQuantity incrementQuantity = ParserUtil.parseQuantity("1");
 
         if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.getUsage()));
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_ITEM_QUANTITY)) {

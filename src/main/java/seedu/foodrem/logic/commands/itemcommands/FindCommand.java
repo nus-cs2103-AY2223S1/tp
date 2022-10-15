@@ -17,7 +17,7 @@ public class FindCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.FIND_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " Potatoes Carrots Cucumbers";
@@ -36,8 +36,7 @@ public class FindCommand extends Command {
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredItemList().size()));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

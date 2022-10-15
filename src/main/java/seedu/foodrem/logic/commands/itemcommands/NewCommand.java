@@ -20,7 +20,7 @@ public class NewCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.NEW_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    private static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a new item in FoodRem. "
             + "\n"
             + "Parameters: "
@@ -63,8 +63,7 @@ public class NewCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, newItem));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 

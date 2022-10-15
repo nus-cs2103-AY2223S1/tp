@@ -56,6 +56,6 @@ public class RenameTagCommandParserTest {
         // invalid args
         assertParseFailure(parser,
                 VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS + VALID_DESC_ITEM_QUANTITY_CUCUMBERS,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RenameTagCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, RenameTagCommand.getUsage()));
     }
 }

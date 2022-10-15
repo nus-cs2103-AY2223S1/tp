@@ -21,7 +21,7 @@ public class DeleteTagCommand extends Command {
 
     private static final String COMMAND_WORD = CommandWord.DELETE_TAG_COMMAND.getCommandWord();
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing tag in FoodRem. "
+    private static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing tag in FoodRem. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "Example: " + COMMAND_WORD + " "
@@ -50,8 +50,7 @@ public class DeleteTagCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
-    @Override
-    public String getUsage() {
+    public static String getUsage() {
         return MESSAGE_USAGE;
     }
 
