@@ -148,6 +148,11 @@ public class AddCommandTest {
         public void updateFilteredInternshipList(Predicate<Internship> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public int getFilteredStatusInternshipListSize(Predicate<Internship> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
