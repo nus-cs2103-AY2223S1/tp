@@ -68,6 +68,11 @@ public class Trip {
     }
 
     /**
+     * Returns the itinerary of this trip.
+     */
+    public Itineraries getItinerary() { return this.events; }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
