@@ -21,15 +21,11 @@ import seedu.foodrem.model.tag.Tag;
 public class UntagCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Item untagged successfully";
-
     public static final String ITEM_NOT_TAGGED = "This item is not tagged with this tag";
-
     public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This tag does not exist";
-
     public static final String MESSAGE_ITEM_INDEX_DOES_NOT_EXIST = "The item index does not exist";
 
     private static final String COMMAND_WORD = CommandWord.UNTAG_COMMAND.getCommandWord();
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Untags the item identified by the index number used in the displayed item list with a valid Tag.\n"
             + "Parameters: " + PREFIX_NAME + "TAG_NAME " + PREFIX_ID
@@ -72,11 +68,9 @@ public class UntagCommand extends Command {
         Item newTagSetItem = Item.createUntaggedItem(itemToUntag, tag);
 
         model.setItem(itemToUntag, newTagSetItem);
-
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
         return new CommandResult(MESSAGE_SUCCESS);
-
     }
 
     @Override

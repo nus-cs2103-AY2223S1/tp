@@ -22,15 +22,11 @@ import seedu.foodrem.model.tag.Tag;
 public class TagCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Item tagged successfully";
-
     public static final String MESSAGE_DUPLICATE_TAG = "This item has already been tagged with this tag";
-
     public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This tag does not exist";
-
     public static final String MESSAGE_ITEM_INDEX_DOES_NOT_EXIST = "The item index does not exist";
 
     private static final String COMMAND_WORD = CommandWord.TAG_COMMAND.getCommandWord();
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"
             + "Parameters: " + PREFIX_NAME + "TAG_NAME" + PREFIX_ID + "INDEX (item index must be a positive integer)\n"
@@ -90,11 +86,9 @@ public class TagCommand extends Command {
         Item newTagSetItem = createTaggedItem(itemToTag, tag);
 
         model.setItem(itemToTag, newTagSetItem);
-
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
         return new CommandResult(MESSAGE_SUCCESS);
-
     }
 
     @Override
