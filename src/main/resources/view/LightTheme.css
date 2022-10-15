@@ -364,3 +364,13 @@
     -fx-font-size: 12pt;
     -fx-text-fill: black;
 }
+
+.help-panel .label {
+    -fx-text-fill: black !important;
+}
+
+.command-text {
+    -fx-font-family: "Courier New";
+    -fx-font-weight: 700;
+    -fx-padding: 0 10.0 0 0;
+}

@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +25,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final User gitHubUser;
     private final Set<Tag> tags = new HashSet<>();
     private final Map<ContactType, Contact> contacts = new HashMap<>();
 
@@ -36,6 +38,9 @@ public class Person {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
+        // mock user
+        // Todo: Add githubUser to constructor
+        this.gitHubUser = new User("");
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
     }
@@ -46,6 +51,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public User getGitHubUser() {
+        return gitHubUser;
     }
 
     /**
@@ -95,13 +104,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
             && otherPerson.getAddress().equals(getAddress())
             && otherPerson.getTags().equals(getTags())
-            && otherPerson.getContacts().equals(getContacts());
+            && otherPerson.getContacts().equals(getContacts())
+            && otherPerson.getGitHubUser().equals(getGitHubUser());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags, contacts);
+        return Objects.hash(name, address, tags, contacts, gitHubUser);
     }
 
     @Override
@@ -124,6 +134,9 @@ public class Person {
                 builder.append(contacts.get(contactType));
             }
         }
+
+        builder.append("; Github: ")
+                .append(getGitHubUser());
         return builder.toString();
     }
 

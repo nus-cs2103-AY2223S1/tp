@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.contact.Contact;
+import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,17 +29,23 @@ class JsonAdaptedPerson {
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedContact> contacts = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("contacts") List<JsonAdaptedContact> contacts) {
         this.name = name;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+
+        if (contacts != null) {
+            this.contacts.addAll(contacts);
         }
     }
 
@@ -49,6 +58,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
+        contacts.addAll(source.getContacts().values().stream()
+                        .map(JsonAdaptedContact::new)
+                        .collect(Collectors.toList()));
     }
 
     /**
@@ -79,8 +91,14 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        // Todo: Integrate contacts with storage
-        return new Person(modelName, modelAddress, modelTags, new HashMap<>());
+
+        final Map<ContactType, Contact> modelContacts = new HashMap<>();
+        for (JsonAdaptedContact contact: contacts) {
+            Contact contactModel = contact.toModelType();
+            modelContacts.put(contactModel.getContactType(), contactModel);
+        }
+
+        return new Person(modelName, modelAddress, modelTags, modelContacts);
     }
 
 }
