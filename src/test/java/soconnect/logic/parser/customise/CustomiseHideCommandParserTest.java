@@ -1,6 +1,5 @@
 package soconnect.logic.parser.customise;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.commands.customise.CustomiseCommand.Attribute.ADDRESS;
 import static soconnect.logic.commands.customise.CustomiseCommand.Attribute.EMAIL;
