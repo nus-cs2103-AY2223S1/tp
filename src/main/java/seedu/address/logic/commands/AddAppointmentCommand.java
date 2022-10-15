@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointment;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -33,7 +35,13 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled this "
                                                                 + "appointment for the client";
+<<<<<<< HEAD
 
+=======
+    public static final String MESSAGE_DATE_FIELD_NOT_INCLUDED = "Date field must be provided.";
+    public static final String MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS = "You have already reached the "
+            + "maximum number of appointments (" + MAXIMUM_NUM_OF_APPOINTMENTS + ") for this client";
+>>>>>>> musab_max_appointmnet
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -62,7 +70,17 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+<<<<<<< HEAD
         Person editedPerson = createEditedPersonByAddingAppointment(personToEdit, editPersonDescriptor);
+=======
+        Person editedPerson;
+
+        try {
+            editedPerson = createEditedPersonByAddingAppointments(personToEdit, editPersonDescriptor);
+        } catch (ParseException e) {
+            throw new CommandException(e.getMessage());
+        }
+>>>>>>> musab_max_appointmnet
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);

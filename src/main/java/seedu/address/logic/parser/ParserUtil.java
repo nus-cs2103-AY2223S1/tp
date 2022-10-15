@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
@@ -33,11 +35,44 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        requireNonNull(oneBasedIndex);
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the appointment index.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseAppointmentIndex(String personAppointmentIndex) throws ParseException {
+        requireNonNull(personAppointmentIndex);
+        String trimmedAppointmentIndex = personAppointmentIndex.trim();
+        String[] splitStr = trimmedAppointmentIndex.split(".");
+
+        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[1])) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(splitStr[1]));
+    }
+
+    /**
+     * Parses {@code personAppointmentIndex} into an {@code Index} and returns the person index.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parsePersonIndex(String personAppointmentIndex) throws ParseException {
+        requireNonNull(personAppointmentIndex);
+        String trimmedAppointmentIndex = personAppointmentIndex.trim();
+        String[] splitStr = trimmedAppointmentIndex.split(".");
+
+        if (splitStr.length != 2 || !StringUtil.isNonZeroUnsignedInteger(splitStr[0])) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return Index.fromOneBased(Integer.parseInt(splitStr[0]));
     }
 
     /**
@@ -113,6 +148,19 @@ public class ParserUtil {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
         return new Appointment(appointmentDateTime, appointmentLocation);
+    }
+
+    /**
+     * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
+     */
+    public static MaximumSortedList<Appointment> parseAppointmentsIntoSortedList(Collection<Appointment> appointments) {
+        requireNonNull(appointments);
+        final MaximumSortedList<Appointment> appointmentSet =
+                new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        for (Appointment appointment : appointments) {
+            appointmentSet.add(appointment);
+        }
+        return appointmentSet;
     }
 
     /**

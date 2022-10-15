@@ -17,6 +17,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -31,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -56,6 +58,7 @@ public class AddAppointmentCommandTest {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         actualModel.addPerson(new PersonBuilder().build());
 
+<<<<<<< HEAD
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
         expectedModel.addPerson(new PersonBuilder().build());
@@ -63,6 +66,13 @@ public class AddAppointmentCommandTest {
         expectedPerson.getAppointments().add(new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build());
+=======
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+                VALID_APPOINTMENT_21_JAN_2023))));
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+>>>>>>> musab_max_appointmnet
 
         // Create addAppointmentCommand
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
@@ -85,6 +95,7 @@ public class AddAppointmentCommandTest {
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
+<<<<<<< HEAD
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
         expectedModel.addPerson(new PersonBuilder().build());
@@ -93,6 +104,15 @@ public class AddAppointmentCommandTest {
         expectedPerson.getAppointments().add(new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build());
+=======
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+                VALID_APPOINTMENT_21_JAN_2023))));
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+                VALID_APPOINTMENT_22_JAN_2023))));
+        Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
+        expectedPerson.setAppointments(appointments);
+>>>>>>> musab_max_appointmnet
 
         // Create addAppointmentCommand
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
@@ -112,11 +132,19 @@ public class AddAppointmentCommandTest {
         // Create testModel
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
         testModel.addPerson(new PersonBuilder().build());
+<<<<<<< HEAD
         Set<Appointment> appointments = new HashSet<>();
         appointments.add(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_NUS).build());
         Person testPerson = testModel.getFilteredPersonList().get(0);
+=======
+
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
+                VALID_APPOINTMENT_21_JAN_2023))));
+        Person testPerson = testModel.getAddressBook().getPersonList().get(0);
+>>>>>>> musab_max_appointmnet
         testPerson.setAppointments(appointments);
 
         // Create addAppointmentCommand

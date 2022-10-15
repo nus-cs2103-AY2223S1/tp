@@ -1,10 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -100,6 +103,21 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withAppointments(String... appointments) {
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
+                .map(DateTime::new).map(Appointment::new).forEach(appointmentList::add);
+        descriptor.setAppointments(appointmentList);
+        return this;
+    }
+
+>>>>>>> musab_max_appointmnet
     public EditPersonDescriptor build() {
         return descriptor;
     }

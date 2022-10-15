@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -14,7 +15,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
+    public static final int MAXIMUM_NUM_OF_APPOINTMENTS = 3;
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -24,7 +25,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Set<Appointment> appointments = new HashSet<>();
+    private MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 
     /**
      * Every field must be present and not null.
@@ -43,7 +44,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
-                  Set<Tag> tags, Set<Appointment> appointments) {
+                  Set<Tag> tags, MaximumSortedList<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -70,12 +71,12 @@ public class Person {
         return address;
     }
 
-    public IncomeLevel getIncome() {
-        return incomeLevel;
+    public MaximumSortedList<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public Set<Appointment> getAppointments() {
-        return appointments;
+    public IncomeLevel getIncome() {
+        return incomeLevel;
     }
 
     /**
@@ -86,7 +87,7 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public void setAppointments(Set<Appointment> newAppointments) {
+    public void setAppointments(MaximumSortedList<Appointment> newAppointments) {
         appointments = newAppointments;
     }
 
@@ -143,7 +144,7 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Appointment> appointments = getAppointments();
+        MaximumSortedList<Appointment> appointments = getAppointments();
         if (!Objects.isNull(appointments) && !appointments.isEmpty()) {
             builder.append("; Appointments: ");
             appointments.forEach(

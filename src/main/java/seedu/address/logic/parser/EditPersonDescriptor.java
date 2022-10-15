@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -8,7 +9,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -17,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -29,7 +32,7 @@ public class EditPersonDescriptor {
     private Address address;
     private IncomeLevel income;
     private Set<Tag> tags;
-    private Appointment appointment;
+    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
 
     /**
@@ -43,14 +46,14 @@ public class EditPersonDescriptor {
         setAddress(toCopy.address);
         setIncome(toCopy.income);
         setTags(toCopy.tags);
-        setAppointment(toCopy.appointment);
+//        setAppointment(toCopy.appointments);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags, appointment);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags, appointments);
     }
 
     public void setName(Name name) {
@@ -81,17 +84,17 @@ public class EditPersonDescriptor {
         this.address = address;
     }
 
-    /**
-     * Sets {@code appointments} to this object's {@code appointments}.
-     * A defensive copy of {@code appointments} is used internally.
-     */
-    public void setAppointment(Appointment appointment) {
-        this.appointment = appointment;
-    }
-
-    public Optional<Appointment> getAppointment() {
-        return Optional.ofNullable(appointment);
-    }
+//    /**
+//     * Sets {@code appointments} to this object's {@code appointments}.
+//     * A defensive copy of {@code appointments} is used internally.
+//     */
+//    public void setAppointments(MaximumSortedList<Appointment> appointments) {
+//        this.appointments = (appointments != null) ? new MaximumSortedList<>(appointments) : null;
+//    }
+//
+//    public Optional<MaximumSortedList<Appointment>> getAppointments() {
+//        return Optional.ofNullable(appointments);
+//    }
 
     public Optional<Address> getAddress() {
         return Optional.ofNullable(address);
@@ -137,74 +140,103 @@ public class EditPersonDescriptor {
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel, updatedTags);
     }
 
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with appointments added from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByAddingAppointment(Person personToEdit,
-                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
-        assert personToEdit != null;
-
-        Set<Appointment> currentAppointments = personToEdit.getAppointments();
-        Appointment newAppointment = editPersonDescriptor.getAppointment().get();
-        for (Appointment currentAppointment:currentAppointments) {
-            if (currentAppointment.equals(newAppointment)) {
-                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-            }
-        }
-        currentAppointments.add(newAppointment);
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, tags, currentAppointments);
-        return newPerson;
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * overwritten with appointments from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByDeletingAllAppointments(Person personToEdit) {
-        assert personToEdit != null;
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        IncomeLevel income = personToEdit.getIncome();
-        Set<Appointment> emptyAppointments = new HashSet<>();
-        Person newPerson = new Person(name, phone, email, address, income, tags, emptyAppointments);
-
-        return newPerson;
-    }
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with appointments added from {@code editPersonDescriptor}.
-     */
-    public static Person createEditedPersonByOverwritingAppointment(Person personToEdit,
-                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
-        assert personToEdit != null;
-
-        Appointment newAppointment = editPersonDescriptor.getAppointment().get();
-
-        Name name = personToEdit.getName();
-        Phone phone = personToEdit.getPhone();
-        Email email = personToEdit.getEmail();
-        Address address = personToEdit.getAddress();
-        Set<Tag> tags = personToEdit.getTags();
-        IncomeLevel income = personToEdit.getIncome();
-        Set<Appointment> appointments = new HashSet<>();
-        appointments.add(newAppointment);
-        Person newPerson = new Person(name, phone, email, address, income, tags, appointments);
-        return newPerson;
-    }
-
+//
+//    /**
+//     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+//     * edited with appointments added from {@code editPersonDescriptor}.
+//     */
+//<<<<<<< HEAD
+//    public static Person createEditedPersonByAddingAppointment(Person personToEdit,
+//                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
+//        assert personToEdit != null;
+//
+//        Set<Appointment> currentAppointments = personToEdit.getAppointments();
+//        Appointment newAppointment = editPersonDescriptor.getAppointment().get();
+//        for (Appointment currentAppointment:currentAppointments) {
+//            if (currentAppointment.equals(newAppointment)) {
+//                throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+//            }
+//        }
+//        currentAppointments.add(newAppointment);
+//=======
+//    public static Person createEditedPersonByAddingAppointments(
+//            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws ParseException {
+//        assert personToEdit != null;
+//
+//        MaximumSortedList<Appointment> updatedAppointments = personToEdit.getAppointments();
+//
+//        Optional<Boolean> hasAppointment = editPersonDescriptor.appointments.stream()
+//                .map(updatedAppointments::contains).reduce((x, y) -> x || y);
+//        Optional<Boolean> isAppointmentsEdited = editPersonDescriptor.appointments.stream()
+//                .map(updatedAppointments::add).reduce((x, y) -> x || y);
+//
+//        if (hasAppointment.isEmpty() || hasAppointment.get()) {
+//            throw new ParseException(MESSAGE_DUPLICATE_APPOINTMENT);
+//        }
+//
+//        if (isAppointmentsEdited.isEmpty() || !isAppointmentsEdited.get()) {
+//            throw new ParseException(MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS);
+//        }
+//>>>>>>> musab_max_appointmnet
+//
+//        Name name = personToEdit.getName();
+//        Phone phone = personToEdit.getPhone();
+//        Email email = personToEdit.getEmail();
+//        Address address = personToEdit.getAddress();
+//        Set<Tag> tags = personToEdit.getTags();
+//        IncomeLevel income = personToEdit.getIncome();
+//        Person newPerson = new Person(name, phone, email, address, income, tags, updatedAppointments);
+//        return newPerson;
+//    }
+//
+//    /**
+//     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+//     * overwritten with appointments from {@code editPersonDescriptor}.
+//     */
+//    public static Person createEditedPersonByDeletingAllAppointments(Person personToEdit) {
+//        assert personToEdit != null;
+//
+//        Name name = personToEdit.getName();
+//        Phone phone = personToEdit.getPhone();
+//        Email email = personToEdit.getEmail();
+//        Address address = personToEdit.getAddress();
+//        Set<Tag> tags = personToEdit.getTags();
+//        IncomeLevel income = personToEdit.getIncome();
+//<<<<<<< HEAD
+//        Set<Appointment> emptyAppointments = new HashSet<>();
+//        Person newPerson = new Person(name, phone, email, address, income, tags, emptyAppointments);
+//=======
+//        MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
+//        Person newPerson = new Person(name, phone, email, address, income, tags, newAppointmentsOnly);
+//>>>>>>> musab_max_appointmnet
+//
+//        return newPerson;
+//    }
+//    /**
+//     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+//     * edited with appointments added from {@code editPersonDescriptor}.
+//     */
+//    public static Person createEditedPersonByOverwritingAppointment(Person personToEdit,
+//                         EditPersonDescriptor editPersonDescriptor) throws CommandException {
+//        assert personToEdit != null;
+//
+//<<<<<<< HEAD
+//        Appointment newAppointment = editPersonDescriptor.getAppointment().get();
+//
+//        Name name = personToEdit.getName();
+//        Phone phone = personToEdit.getPhone();
+//        Email email = personToEdit.getEmail();
+//        Address address = personToEdit.getAddress();
+//        Set<Tag> tags = personToEdit.getTags();
+//        IncomeLevel income = personToEdit.getIncome();
+//        Set<Appointment> appointments = new HashSet<>();
+//        appointments.add(newAppointment);
+//        Person newPerson = new Person(name, phone, email, address, income, tags, appointments);
+//        return newPerson;
+//    }
+//
+//=======
+//>>>>>>> musab_max_appointmnet
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -224,7 +256,7 @@ public class EditPersonDescriptor {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags())
-                && getAppointment().equals(e.getAppointment());
+                && getTags().equals(e.getTags());
+//                && getAppointment().equals(e.getAppointment());
     }
 }

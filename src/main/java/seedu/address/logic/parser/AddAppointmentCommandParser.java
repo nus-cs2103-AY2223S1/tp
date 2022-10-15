@@ -34,6 +34,15 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
 
+        Index personIndex;
+
+        try {
+            personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddAppointmentCommand.MESSAGE_USAGE), pe);
+        }
+
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         Appointment appointment;
         DateTime appointmentDateTime;
@@ -54,15 +63,21 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
                     AddAppointmentCommand.MESSAGE_USAGE));
         }
 
-        Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAppointmentCommand.MESSAGE_USAGE), pe);
-        }
-
-        return new AddAppointmentCommand(index, editPersonDescriptor);
+        return new AddAppointmentCommand(personIndex, editPersonDescriptor);
     }
+
+//    /**
+//     * Parses {@code Collection<String> datesAndTimes} into a
+//     * {@code Set<Appointment>} if {@code datesAndTimes} is non-empty.
+//     */
+//    private Optional<MaximumSortedList<Appointment>> parseAppointmentsForEdit(Collection<String> datesAndTimes)
+//            throws ParseException {
+//        assert datesAndTimes != null;
+//
+//        if (datesAndTimes.isEmpty()) {
+//            return Optional.empty();
+//        }
+//        return Optional.of(ParserUtil.parseAppointmentsIntoSortedList(datesAndTimes));
+//    }
 }

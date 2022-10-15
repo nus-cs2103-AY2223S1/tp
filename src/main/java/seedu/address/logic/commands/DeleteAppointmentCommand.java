@@ -3,12 +3,18 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByDeletingAllAppointments;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+<<<<<<< HEAD
+=======
+import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
+>>>>>>> musab_max_appointmnet
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -49,6 +55,13 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+<<<<<<< HEAD
+=======
+        MaximumSortedList<Appointment> emptyAppointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setAppointments(emptyAppointments);
+
+>>>>>>> musab_max_appointmnet
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPersonByDeletingAllAppointments(personToEdit);
 

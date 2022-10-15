@@ -1,21 +1,22 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.util.MaximumSortedList;
 
 /**
  * Represents one of the Person's appointments.
  * Guarantees: immutable;
  */
-public class Appointment {
-    public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and time in the format,"
-            + "d-MMM-yyyy hh:mm a, and it should not be blank";
-    public static final Set<Appointment> EMPTY_APPOINTMENTS = new HashSet<>();
+public class Appointment implements Comparable<Appointment> {
+    public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and "
+            + "time in the format, d-MMM-yyyy hh:mm a, and it should not be blank";
+    public static final MaximumSortedList<Appointment> EMPTY_APPOINTMENTS =
+            new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
 
     private final DateTime dateTime;
     private final Location location;
@@ -40,6 +41,14 @@ public class Appointment {
         return location;
     }
 
+    public Date getDate() {
+        return dateTime.getDate();
+    }
+
+    public Time getTime() {
+        return dateTime.getTime();
+    }
+
     @Override
     public String toString() {
         return dateTime.toString() + ", " + location.toString();
@@ -58,6 +67,10 @@ public class Appointment {
                 && Location.isValidLocation(location.toString());
     }
 
+    @Override
+    public int compareTo(Appointment other) {
+        return this.dateTime.compareTo(other.dateTime);
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
