@@ -42,7 +42,7 @@ public class Person {
     }
 
     /**
-     * Constructor with no remark, for AddCommand only.
+     * Constructor with no remark, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   NetWorth netWorth, Set<Tag> tags) {
