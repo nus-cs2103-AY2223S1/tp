@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.contact.Telegram;
 
 /**
  * Parses user input.
@@ -64,7 +66,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case SetCommand.COMMAND_WORD:
-            return new SetCommand();
+            return new SetCommand(ContactType.TELEGRAM, new Telegram("@sakana"));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
