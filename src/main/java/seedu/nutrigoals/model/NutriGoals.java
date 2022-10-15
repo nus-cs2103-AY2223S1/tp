@@ -2,6 +2,7 @@ package seedu.nutrigoals.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -18,18 +19,23 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     private User user = new User();
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
+    private final List<Location> nusGymsLocations;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-    */ {
+    */
+    {
         foods = new UniqueFoodList();
+        nusGymsLocations = new ArrayList<>(List.of(
+            new Location("MPSH", "1.3007599674153045, 103.77578206094384"),
+            new Location("STEPHEN RIADY CENTRE", "1.304511666901411, 103.77205745840185"),
+            new Location("USC", "1.2998680145010344, 103.77528575803385")));
     }
 
-    public NutriGoals() {
-    }
+    public NutriGoals() {}
 
     /**
      * Creates NutriGoals using the Foods in the {@code toBeCopied}
@@ -56,6 +62,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         setCalorieTarget(newData.getCalorieTarget());
         setFoods(newData.getFoodList());
         setUser(newData.getUser());
+        setNusGymsLocations(newData.getGymLocations());
     }
 
     //// food-level operations
@@ -81,7 +88,6 @@ public class NutriGoals implements ReadOnlyNutriGoals {
      */
     public void setFood(Food target, Food editedFood) {
         requireNonNull(editedFood);
-
         foods.setFood(target, editedFood);
     }
 
@@ -107,6 +113,16 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         return user;
     }
 
+    public void setNusGymsLocations(List<Location> nusGymsLocations) {
+        requireNonNull(nusGymsLocations);
+        this.nusGymsLocations.clear();
+        this.nusGymsLocations.addAll(nusGymsLocations);
+    }
+    @Override
+    public List<Location> getGymLocations() {
+        return new ArrayList<>(this.nusGymsLocations); // #defensive-programming
+    }
+
     /**
      * @return Calorie
      */
@@ -114,6 +130,8 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     public Calorie getCalorieTarget() {
         return this.calorieTarget;
     }
+
+
 
     //// util methods
 

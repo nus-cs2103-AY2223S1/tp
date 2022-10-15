@@ -73,7 +73,6 @@ public class JsonNutriGoalsStorage implements NutriGoalsStorage {
     public void saveNutriGoals(ReadOnlyNutriGoals nutriGoals, Path filePath) throws IOException {
         requireNonNull(nutriGoals);
         requireNonNull(filePath);
-
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableNutriGoals(nutriGoals), filePath);
     }

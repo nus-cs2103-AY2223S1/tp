@@ -106,11 +106,17 @@ public class ParserUtil {
      */
     public static Location parseLocation(String locationName) throws ParseException {
         requireNonNull(locationName);
+        String trimmedLocationName = locationName.trim().toUpperCase();
         Map<String, Location> out = new HashMap<>();
+        // ANY UPDATES HERE SHOULD UPDATE LOCATE'S MESSAGE_USAGE SORRY FOR COUPLING
+        // https://goo.gl/maps/8a2h8ciNGcc2DUxs8
         out.put("COM2", new Location("COM2", "1.2942815638814327, 103.77410024788284"));
+        // https://goo.gl/maps/MgTnNAnMCVqokPqx9
         out.put("S17", new Location("S17", "1.2976996370988612, 103.78060787462833"));
+        // https://goo.gl/maps/2Zxpi6xsmfUNzU2h7
         out.put("CLB", new Location("CLB", "1.296642317024345, 103.77322870790687"));
-        String trimmedLocationName = locationName.trim();
+        // https://goo.gl/maps/TBxRtewZLVCgkEdF6
+        out.put("CLB", new Location("UHC", "1.2991034341416665, 103.77639982958577"));
         if (!out.containsKey(trimmedLocationName)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }

@@ -3,13 +3,10 @@ package seedu.nutrigoals.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.nutrigoals.commons.util.AppUtil.checkArgument;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 /**
- *
+ * Represents a Location object
  */
 public class Location {
     // REGEX credit:
@@ -23,9 +20,16 @@ public class Location {
     public final double latitude;
     public final double longitude;
 
+    Location() { // just for the purpose of serializing
+        this.name = "";
+        this.latitude = 0;
+        this.longitude = 0;
+    }
+
     /**
      * @param value Latitude and Longitude
      */
+    // Right now this is for developer's use and not for the user. so the parsing is not a big issue
     public Location(String name, String value) {
         requireNonNull(name);
         requireNonNull(value);
@@ -55,11 +59,7 @@ public class Location {
         return degree * (Math.PI / 180);
     }
 
-    /**
-     * @param latAndLong
-     * @return
-     */
-    public static boolean isValidLocation(String latAndLong) {
+    private static boolean isValidLocation(String latAndLong) {
         return Optional.of(latAndLong)
             .map(v -> v.matches(VALIDATION_REGEX))
             .orElse(false);

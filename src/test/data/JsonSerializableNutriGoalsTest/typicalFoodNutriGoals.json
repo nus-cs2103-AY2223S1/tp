@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "AddressBook save file which contains the same Food values as in TypicalFoods#getTypicalNutriGoals()",
   "foods" : [ {
     "calorie" : "2000",
     "tagged" : "breakfast",
@@ -35,6 +35,19 @@
     "tagged" : "dinner",
     "dateTime" : "2022-10-04T13:05:29.586882100",
     "name" : "Grapes"
+  } ],
+  "nusGymsLocations" : [ {
+    "name" : "MPSH",
+    "latitude" : 1.3007599674153045,
+    "longitude" : 103.77578206094384
+  }, {
+    "name" : "STEPHEN RIADY CENTRE",
+    "latitude" : 1.304511666901411,
+    "longitude" : 103.77205745840185
+  }, {
+    "name" : "USC",
+    "latitude" : 1.2998680145010344,
+    "longitude" : 103.77528575803385
   } ],
   "calorieTarget" : {
     "value" : "2000"

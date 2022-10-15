@@ -70,7 +70,7 @@ public class NutriGoalsParser {
         case ReviewCommand.COMMAND_WORD:
             return new ReviewCommand();
         case LocateGymCommand.COMMAND_WORD:
-            return new LocateGymCommand();
+            return new LocateGymCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

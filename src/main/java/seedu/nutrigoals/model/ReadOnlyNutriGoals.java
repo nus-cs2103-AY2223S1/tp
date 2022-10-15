@@ -1,5 +1,7 @@
 package seedu.nutrigoals.model;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.user.User;
@@ -17,4 +19,6 @@ public interface ReadOnlyNutriGoals {
     Calorie getCalorieTarget();
 
     User getUser();
+
+    List<Location> getGymLocations();
 }
