@@ -11,15 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.model.person.AdditionalNotes;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.*;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Money;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,6 +33,8 @@ class JsonAdaptedPerson {
     private final Integer ratesPerClass;
     private final String additionalNotes;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final Boolean isPresent;
+    private final String displayedClass;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -53,7 +48,9 @@ class JsonAdaptedPerson {
                              @JsonProperty("moneyPaid") Integer moneyPaid,
                              @JsonProperty("ratesPerClass") Integer ratesPerClass,
                              @JsonProperty("additionalNotes") String additionalNotes,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("isPresent") Boolean isPresent,
+                             @JsonProperty("displayedClass") String displayedClass) {
         this.name = name;
         this.phone = phone;
         this.nokPhone = nokPhone;
@@ -67,6 +64,8 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isPresent = isPresent;
+        this.displayedClass = displayedClass;
     }
 
     /**
@@ -86,6 +85,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isPresent = source.getMarkStatus().isPresent;
+        displayedClass = source.getDisplayedClass().classDateTime;
+
     }
 
     /**
@@ -188,9 +190,32 @@ class JsonAdaptedPerson {
             modelAdditionalNotes = new AdditionalNotes("");
         }
 
+        final Mark modelIsPresent;
+        if (isPresent != null) {
+            if (!Mark.isValidAttendance(isPresent)) {
+                throw new IllegalValueException(Mark.MESSAGE_CONSTRAINTS);
+            }
+            modelIsPresent = new Mark(isPresent);
+        } else {
+            modelIsPresent = new Mark(Boolean.FALSE);
+        }
+
+        final Class modelDisplayedClass;
+        if (displayedClass != null && !displayedClass.equals("")) {
+            if (!Class.isValidClassString(displayedClass)) {
+                throw new IllegalValueException(Class.MESSAGE_CONSTRAINTS);
+            }
+            modelDisplayedClass = ParserUtil.parseClass(displayedClass);
+        } else {
+            modelDisplayedClass = new Class();
+        }
+
+
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelNokPhone, modelEmail, modelAddress, modelClassDateTime,
-                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes, modelTags);
+                modelMoneyOwed, modelMoneyPaid, modelRatesPerClass, modelAdditionalNotes, modelTags, modelIsPresent,
+                modelDisplayedClass);
     }
 
 }
