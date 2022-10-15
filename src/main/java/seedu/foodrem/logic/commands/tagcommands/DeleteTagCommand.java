@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
+import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -15,7 +16,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
 
-    private static final String COMMAND_WORD = "deletetag";
+    private static final String COMMAND_WORD = CommandWord.DELETE_TAG_COMMAND.getCommandWord();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an existing tag in FoodRem. "
             + "Parameters: "
