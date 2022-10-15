@@ -4,7 +4,7 @@
   "modules" : [ {
     "moduleCode": "CS2103T",
     "moduleTitle": "Software Engineering",
-    "tasks" : [ "Submit quiz" ]
+    "tasks" : [ ]
   }, {
     "moduleCode": "CS2106",
     "moduleTitle": "Introduction to Operating Systems",
@@ -13,5 +13,10 @@
     "moduleCode": "MA2001",
     "moduleTitle": "Linear Algebra I",
     "tasks" : [ ]
+  }, {
+    "moduleCode": "GE3238",
+    "moduleTitle": "GIS Design and Practices",
+    "tasks" : [ ],
+    "linked" : ["qgis.org", "www.arcgis.com"]
   }]
 }
