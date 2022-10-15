@@ -16,7 +16,9 @@ import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
+import seedu.address.model.client.Address;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
@@ -78,7 +80,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         Status status = Status.EmptyStatus.EMPTY_STATUS;
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
-        IssueId issueId = new IssueId(HasIntegerIdentifier.generateNextID(project.getIssueList()));
+        IssueId issueId = new IssueId(HasIntegerIdentifier.generateNextID(AddressBook.get().getIssueList()));
 
         Issue issue = new Issue(description, deadline, priority, status, project, issueId);
 
