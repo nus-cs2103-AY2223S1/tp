@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<HBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane fx:id="personListPanelPlaceholder" minWidth="100.0" HBox.hgrow="ALWAYS" />
+      <StackPane fx:id="reminderListPanelPlaceholder" minWidth="105.0" HBox.hgrow="ALWAYS" />
+   </children>
+</HBox>
