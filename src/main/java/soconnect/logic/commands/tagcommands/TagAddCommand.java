@@ -13,6 +13,7 @@ import java.util.Set;
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.logic.commands.CommandResult;
+import soconnect.logic.commands.EditCommand;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.person.Address;
@@ -71,14 +72,16 @@ public class TagAddCommand extends TagCommand {
 
         if (!model.hasTag(tag)) {
             throw new CommandException(MESSAGE_NO_SUCH_TAG);
-        } else if (personToEdit.getTags().contains(tag)) {
-            throw new CommandException(MESSAGE_TAG_ALREADY_ADDED);
-        } else {
-            Person editedPerson = createEditedPerson(personToEdit, tag);
-            model.setPerson(personToEdit, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tag));
         }
+
+        if (personToEdit.contains(tag)) {
+            throw new CommandException(MESSAGE_TAG_ALREADY_ADDED);
+        }
+
+        Person editedPerson = createEditedPerson(personToEdit, tag);
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tag));
     }
 
     /**

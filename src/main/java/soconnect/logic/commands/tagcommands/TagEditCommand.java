@@ -28,8 +28,8 @@ public class TagEditCommand extends TagCommand {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tag has changed from %1$s to %2$s";
     public static final String MESSAGE_NOT_EDITED = "Both tags need to be provided";
-    public static final String MESSAGE_DUPLICATE_TAG = "This new tag already exists";
-    public static final String MESSAGE_TAG_NOT_FOUND = "This old tag does not exist";
+    public static final String MESSAGE_DUPLICATE_TAG = "%1$s tag already exists";
+    public static final String MESSAGE_TAG_NOT_FOUND = "%1$s tag does not exist";
 
     private final Tag oldTag;
     private final Tag newTag;
@@ -50,9 +50,9 @@ public class TagEditCommand extends TagCommand {
         requireNonNull(model);
 
         if (!model.hasTag(oldTag)) {
-            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+            throw new CommandException(String.format(MESSAGE_TAG_NOT_FOUND, oldTag));
         } else if (model.hasTag(newTag)) {
-            throw new CommandException((MESSAGE_DUPLICATE_TAG));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_TAG, newTag));
         } else {
             model.editTag(oldTag, newTag);
             return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, oldTag, newTag));

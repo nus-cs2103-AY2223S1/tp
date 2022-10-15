@@ -74,6 +74,16 @@ public class Person {
     }
 
     /**
+     * Checks if the person has the tag.
+     *
+     * @param tag The tag to be added
+     * @return True if tag already exists. False if otherwise.
+     */
+    public boolean contains(Tag tag) {
+        return this.getTags().contains(tag);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

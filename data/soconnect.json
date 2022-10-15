@@ -10,7 +10,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "John street, block 123, #01-01",
-    "tagged" : [ ]
+    "tagged" : [ "colleagues" ]
   }, {
     "name" : "Roy Balakrishnan",
     "phone" : "92624417",

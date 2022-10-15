@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import soconnect.logic.commands.Command;
-import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.tagcommands.TagAddCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.logic.commands.tagcommands.TagEditCommand;
@@ -22,6 +21,7 @@ public class TagCommandParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final String MESSAGE_INCOMPLETE = "Please use the help command if you are unsure.";
 
     /**
      * Parses user input into command for execution.
@@ -33,7 +33,7 @@ public class TagCommandParser {
     public Command parse(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INCOMPLETE));
         }
 
         final String commandWord = matcher.group("commandWord");
