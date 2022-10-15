@@ -3,10 +3,8 @@ package seedu.nutrigoals.logic.parser;
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.NAME_DESC_BREAD;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.TAG_DESC_LUNCH;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_BREAD_NAME;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_BREAKFAST;
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.nutrigoals.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -66,17 +64,8 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
         assertParseFailure(parser, "1" + " " + PREFIX_TAG + "breakfast*", Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // as long as the last tag provided is valid, i.e. not {@code PREFIX_TAG} alone or tags with
-        // invalid tag names, no error will be thrown
-        assertParseFailure(parser, "1" + TAG_DESC_BREAKFAST + TAG_EMPTY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
-
-        // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_CALORIE_DESC, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -125,21 +114,6 @@ public class EditCommandParserTest {
         userInput = targetIndex.getOneBased() + VALID_CALORIE_DESC;
         descriptor = new EditFoodDescriptorBuilder().withCalorie(VALID_CALORIE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_MEAL;
-        String userInput = targetIndex.getOneBased()
-                + TAG_DESC_BREAKFAST + TAG_DESC_BREAKFAST
-                + TAG_DESC_LUNCH;
-
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder()
-                .withTags(VALID_TAG_BREAKFAST, VALID_TAG_BREAKFAST, VALID_TAG_LUNCH)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

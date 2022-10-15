@@ -14,6 +14,7 @@ import seedu.nutrigoals.commons.core.LogsCenter;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.user.User;
 
 /**
  * Represents the in-memory model of the nutrigoals data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
+    private User user;
 
     private IsFoodAddedOnThisDatePredicate currentDatePredicate;
 
@@ -135,7 +137,6 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Person List Accessors =============================================================
-
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedNutriGoals}
@@ -171,6 +172,17 @@ public class ModelManager implements Model {
     @Override
     public boolean isFilteredFoodListEmpty() {
         return filteredFoods.isEmpty();
+    }
+
+    @Override
+    public void setUserDetails(User user) {
+        requireNonNull(user);
+        nutriGoals.setUser(user);
+    }
+
+    @Override
+    public User getUserDetails() {
+        return user;
     }
 
     @Override

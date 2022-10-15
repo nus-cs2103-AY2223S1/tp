@@ -44,9 +44,9 @@ public class EditFoodDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditFoodDescriptor}
      * that we are building.
      */
-    public EditFoodDescriptorBuilder withTags(String... tags) {
+    public EditFoodDescriptorBuilder withTags(String tag) {
         // Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        String tagName = tags[tags.length - 1];
+        String tagName = tag;
         descriptor.setTag(new Tag(tagName));
         return this;
     }

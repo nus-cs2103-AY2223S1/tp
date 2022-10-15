@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.Food;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
+import seedu.nutrigoals.model.user.User;
 
 /**
  * The API of the Model component.
@@ -103,6 +104,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFoodList(Predicate<Food> predicate);
+
+    void setUserDetails(User user);
+
+    User getUserDetails();
 
     /** Returns the most recent {@code IsFoodAddedOnThisDatePredicate} applied on the filtered food list */
     IsFoodAddedOnThisDatePredicate getDatePredicate();

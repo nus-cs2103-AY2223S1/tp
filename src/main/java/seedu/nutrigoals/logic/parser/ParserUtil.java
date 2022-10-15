@@ -13,6 +13,9 @@ import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
+import seedu.nutrigoals.model.user.Gender;
+import seedu.nutrigoals.model.user.Height;
+import seedu.nutrigoals.model.user.Weight;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -78,6 +81,7 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code String calorie} into a {@code Calorie}
      * @param calorie Calorie
      * @return Calorie
      * @throws ParseException if the given {@code calorie} is invalid.
@@ -89,6 +93,51 @@ public class ParserUtil {
             throw new ParseException(Calorie.MESSAGE_CONSTRAINTS);
         }
         return new Calorie(trimmedCalorie);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}
+     * @param gender gender of the user
+     * @return Gender
+     * @throws ParseException if the given {@code gender} is invalid
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim().toUpperCase();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String height} into a {@code Height}
+     * @param height height of the user
+     * @return Height
+     * @throws ParseException if the given {@code height} is invalid
+     */
+    public static Height parseHeight(String height) throws ParseException {
+        requireNonNull(height);
+        String trimmedHeight = height.trim();
+        if (!Height.isValidHeight(trimmedHeight)) {
+            throw new ParseException(Height.MESSAGE_CONSTRAINTS);
+        }
+        return new Height(trimmedHeight);
+    }
+
+    /**
+     * Parses a {@code String weight} into a {@code Weight}
+     * @param weight weight of the user
+     * @return Weight
+     * @throws ParseException if the given {@code weight} is invalid
+     */
+    public static Weight parseWeight(String weight) throws ParseException {
+        requireNonNull(weight);
+        String trimmedWeight = weight.trim();
+        if (!Weight.isValidWeight(trimmedWeight)) {
+            throw new ParseException(Weight.MESSAGE_CONSTRAINTS);
+        }
+        return new Weight(trimmedWeight);
     }
 
     /**
