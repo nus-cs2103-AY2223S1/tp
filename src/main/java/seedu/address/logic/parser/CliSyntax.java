@@ -13,7 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_ID = new Prefix("i/");
     public static final Prefix PREFIX_HANDLE = new Prefix("h/");
-    public static final Prefix PREFIX_STUDENT_INFO = new Prefix("m/");
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("c/");
     public static final Prefix PREFIX_MODULE_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_STUDENT_TA = new Prefix("ta/");

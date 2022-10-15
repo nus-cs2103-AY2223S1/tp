@@ -5,9 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_INFO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_TA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -39,7 +39,7 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
     public AddStuCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_ID, PREFIX_HANDLE, PREFIX_STUDENT_INFO, PREFIX_STUDENT_TA);
+                        PREFIX_ID, PREFIX_HANDLE, PREFIX_MODULE_CODE, PREFIX_STUDENT_TA);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ID, PREFIX_HANDLE)
@@ -54,7 +54,7 @@ public class AddStuCommandParser implements Parser<AddStuCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         StudentId id = ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get());
         TelegramHandle handle = ParserUtil.parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get());
-        Set<ModuleCode> studentInfo = ParserUtil.parseStudentInfo(argMultimap.getAllValues(PREFIX_STUDENT_INFO));
+        Set<ModuleCode> studentInfo = ParserUtil.parseStudentInfo(argMultimap.getAllValues(PREFIX_MODULE_CODE));
         Set<ModuleCode> teachingAssistantInfo = ParserUtil.parseStudentInfo(
                 argMultimap.getAllValues(PREFIX_STUDENT_TA));
 
