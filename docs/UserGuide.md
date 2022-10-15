@@ -223,6 +223,16 @@ Format: `appt INDEX d/DATE`
 * The index refers to the index number in the list of patients.
 * The index must be positive and available in the list.
 * The appointment is created with the given date.
+* If a pre-existing appointment is present, it will be overriden by the new appointment.
+
+### Clearing an appointment: `apptcl`
+
+Clears the appointment for a specified patient. This command is only valid in the patient list view.
+
+Format: `apptcl INDEX`
+* Clears any appointment under the patient with the specified `INDEX`.
+* The index refers to the index number in the list of patients.
+* The index must be positive and available in the list.
 
 ### Exiting the program : `exit`
 
