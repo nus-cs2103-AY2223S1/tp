@@ -34,9 +34,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Patient> getFilteredPersonList();
 
-    /** Returns a supplier to get the flag to display tasks */
-    Supplier<Boolean> getTaskListFlagSupplier();
-
     /**
      * Returns the user prefs' address book file path.
      */

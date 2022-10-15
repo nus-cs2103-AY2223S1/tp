@@ -49,7 +49,10 @@
                   <RowConstraints maxHeight="93.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="outputHeader" text="\$outputHeader" GridPane.columnIndex="1" />
+                  <Label fx:id="outputHeader" text="\$outputHeader" GridPane.columnIndex="1">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding></Label>
                   <Label fx:id="patientHeader" text="\$patientHeader">
                      <padding>
                         <Insets left="15.0" />

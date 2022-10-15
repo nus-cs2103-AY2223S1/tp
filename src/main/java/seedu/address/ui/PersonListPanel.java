@@ -24,21 +24,20 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Patient> personList, Supplier<Boolean> taskListFlagSupplier) {
+    public PersonListPanel(ObservableList<Patient> personList) {
         super(FXML);
         personListView.setItems(personList);
-        personListView.setCellFactory(listView -> new PersonListViewCell(taskListFlagSupplier));
+        personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Patient} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Patient> {
-        private final Supplier<Boolean> taskListFlagSupplier;
 
-        PersonListViewCell(Supplier<Boolean> taskListFlagSupplier) {
+
+        PersonListViewCell() {
             super();
-            this.taskListFlagSupplier = taskListFlagSupplier;
         }
 
         @Override
@@ -49,7 +48,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1, taskListFlagSupplier.get()).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
             }
         }
     }

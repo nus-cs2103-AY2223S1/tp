@@ -66,11 +66,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Supplier<Boolean> getTaskListFlagSupplier() {
-        return model.getTaskListFlagSupplier();
-    }
-
-    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

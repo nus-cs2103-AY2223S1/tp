@@ -24,7 +24,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPersons;
 
-    private boolean taskListFlag;
     private Patient patientOfInterest;
 
     /**
@@ -39,7 +38,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        taskListFlag = false;
         this.patientOfInterest = null;
     }
 
@@ -132,14 +130,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        taskListFlag = false;
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredPersonListWithTasks(Predicate<Patient> predicate) {
-        requireNonNull(predicate);
-        taskListFlag = true;
         filteredPersons.setPredicate(predicate);
     }
 
@@ -154,11 +144,6 @@ public class ModelManager implements Model {
     @Override
     public Patient getPatientOfInterest() {
         return this.patientOfInterest;
-    }
-
-    @Override
-    public Supplier<Boolean> getTaskListFlagSupplier() {
-        return (() -> taskListFlag);
     }
 
     @Override

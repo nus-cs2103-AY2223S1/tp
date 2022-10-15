@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" layoutX="10.0" layoutY="10.0" maxHeight="152.0" minHeight="152.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+ <VBox alignment="CENTER_LEFT" minHeight="105" minWidth="-Infinity" prefHeight="152.0" prefWidth="314.0">
+   <HBox alignment="CENTER_LEFT" spacing="5">
+     <Label fx:id="id" styleClass="cell_big_label">
+       <minWidth>
+         <!-- Ensures that the label text is never truncated -->
+         <Region fx:constant="USE_PREF_SIZE" />
+       </minWidth>
+     </Label>
+     <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+         <opaqueInsets>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </opaqueInsets>
+   </HBox>
+   <FlowPane fx:id="tags" />
+      <padding>
+         <Insets left="15.0" />
+      </padding>
+ </VBox>
+   <stylesheets>
+      <URL value="@Fonts.css" />
+      <URL value="@DarkTheme.css" />
+      <URL value="@Extensions.css" />
+   </stylesheets>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</HBox>

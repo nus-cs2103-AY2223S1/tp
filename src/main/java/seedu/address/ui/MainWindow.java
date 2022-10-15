@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getTaskListFlagSupplier());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -220,6 +220,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isDeletePatient()) {
                 outputPanel.handleDeletePatient(logic.getPatientOfInterest());
             }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {
