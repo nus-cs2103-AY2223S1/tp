@@ -88,4 +88,14 @@ public class LogicManager implements Logic {
     public Autocomplete getAutocompleteManager() {
         return this.autocomplete;
     }
+
+    @Override
+    public String getAttributeOrder() {
+        return model.getAttributeOrder();
+    }
+
+    @Override
+    public String getHiddenAttributes() {
+        return model.getHiddenAttributes();
+    }
 }

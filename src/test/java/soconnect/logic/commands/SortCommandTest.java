@@ -88,6 +88,16 @@ class SortCommandTest {
         }
 
         @Override
+        public String getAttributeOrder() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getHiddenAttributes() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getSoConnectFilePath() {
             throw new AssertionError("This method should not be called.");
         }

@@ -1,5 +1,7 @@
 package soconnect.ui;
 
+import static soconnect.logic.commands.customise.CustomiseCommand.NUMBER_OF_CUSTOMISABLE_ATTRIBUTES;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import soconnect.commons.core.GuiSettings;
 import soconnect.logic.Logic;
 import soconnect.model.person.Person;
 
@@ -58,30 +59,12 @@ public class PersonCard extends UiPart<Region> {
         setAttributes();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
-            return false;
-        }
-
-        // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
-    }
-
     /**
      * Sets the attributes in the order required.
      */
     private void setAttributes() {
         int[] order = filterAttributes(orderAttributes());
-        FlowPane[] flowpanes = new FlowPane[5];
+        FlowPane[] flowpanes = new FlowPane[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES + 1];
         flowpanes[order[0]] = attributeA;
         flowpanes[order[1]] = attributeB;
         flowpanes[order[2]] = attributeC;
@@ -113,27 +96,55 @@ public class PersonCard extends UiPart<Region> {
     }
 
     /**
-     * Filters the attributes based on what attributes were chosen to be hidden.
+     * Generates the order of the attributes based on the order set by the user.
+     *
+     * @return The required order.
+     */
+    private int[] orderAttributes() {
+        int[] order = new int[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
+        String orderStr = logic.getAttributeOrder();
+        String[] orderArr = orderStr.trim().split(">");
+
+        if (orderArr.length != NUMBER_OF_CUSTOMISABLE_ATTRIBUTES) {
+            //Returns default order when the orderStr is not in correct format.
+            order = new int[]{3, 2, 1, 0};
+            return order;
+        }
+
+        try {
+            for (int i = 0; i < NUMBER_OF_CUSTOMISABLE_ATTRIBUTES; i++) {
+                order[i] = convertToIndex(orderArr[i]);
+            }
+        } catch (IllegalArgumentException e) {
+            order = new int[]{3, 2, 1, 0};
+        }
+
+        return order;
+    }
+
+    /**
+     * Filters the attributes based on what attributes were chosen to be hidden by setting the hidden attributes'
+     * associated index to the index of the empty last FlowPane element.
      *
      * @param order The order that is unfiltered.
-     * @return The order with attributes filtered where 4 represents a filtered attribute.
+     * @return The order with attributes filtered.
      */
     private int[] filterAttributes(int[] order) {
-        boolean[] isHidden = new boolean[4];
-        GuiSettings currSettings = logic.getGuiSettings();
-        String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
+        boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
+        String currHiddenAttributes = logic.getHiddenAttributes();
 
         if (!currHiddenAttributes.equals("NONE")) {
-            String[] strArr = currHiddenAttributes.split(",");
+            String[] strArr = currHiddenAttributes.trim().split(",");
             try {
                 readHidden(strArr, isHidden);
             } catch (IllegalArgumentException e) {
-                isHidden = new boolean[4];
+                isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
             }
         }
 
-        for (int i = 0; i < 4; i++) {
-            order[i] = isHidden[order[i]] ? 4 : order[i];
+        for (int i = 0; i < NUMBER_OF_CUSTOMISABLE_ATTRIBUTES; i++) {
+            //Sets the element in the array to the index of the empty last FlowPane element.
+            order[i] = isHidden[order[i]] ? NUMBER_OF_CUSTOMISABLE_ATTRIBUTES : order[i];
         }
 
         return order;
@@ -150,29 +161,6 @@ public class PersonCard extends UiPart<Region> {
         for (String s : strArr) {
             isHidden[convertToIndex(s)] = true;
         }
-    }
-
-    /**
-     * Generates the order of the attributes based on the order set by the user.
-     *
-     * @return The required order.
-     */
-    private int[] orderAttributes() {
-        int[] order = new int[4];
-        String orderStr = logic.getGuiSettings().getAttributeOrder();
-        String[] orderArr = orderStr.trim().split(">");
-
-        if (orderArr.length != 4) {
-            //Returns default order when the orderStr is not in correct format.
-            order = new int[]{3, 2, 1, 0};
-            return order;
-        }
-
-        for (int i = 0; i < 4; i++) {
-            order[i] = convertToIndex(orderArr[i]);
-        }
-
-        return order;
     }
 
     /**
@@ -194,5 +182,23 @@ public class PersonCard extends UiPart<Region> {
         default:
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PersonCard)) {
+            return false;
+        }
+
+        // state check
+        PersonCard card = (PersonCard) other;
+        return id.getText().equals(card.id.getText())
+                && person.equals(card.person);
     }
 }

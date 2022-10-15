@@ -54,6 +54,16 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
+     * Returns the user prefs' attribute order in GUI settings.
+     */
+    String getAttributeOrder();
+
+    /**
+     * Returns the user prefs' hidden attributes in GUI settings.
+     */
+    String getHiddenAttributes();
+
+    /**
      * Returns the AutocompleteManager.
      */
     Autocomplete getAutocompleteManager();

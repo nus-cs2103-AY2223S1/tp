@@ -47,6 +47,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    public String getAttributeOrder() {
+        return guiSettings.getAttributeOrder();
+    }
+
+    public String getHiddenAttributes() {
+        return guiSettings.getHiddenAttributes();
+    }
+
     public Path getSoConnectFilePath() {
         return soConnectFilePath;
     }

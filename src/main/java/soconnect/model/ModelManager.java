@@ -69,6 +69,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getAttributeOrder() {
+        return userPrefs.getAttributeOrder();
+    }
+
+    @Override
+    public String getHiddenAttributes() {
+        return userPrefs.getHiddenAttributes();
+    }
+
+    @Override
     public Path getSoConnectFilePath() {
         return userPrefs.getSoConnectFilePath();
     }
