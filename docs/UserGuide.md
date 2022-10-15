@@ -278,7 +278,8 @@ you may find useful for your use:
 
 Key | Functionality
 ----|------------------
-`F1` | Redirects you to our user guide.
+`Esc`| Closes the Help Window if it's open
+`F1` | Redirects you to our user guide
 `F2` | Highlights the first row of the displayed list
 `F3` | Quick-access to the command input box
 
