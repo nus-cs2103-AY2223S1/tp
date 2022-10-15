@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.UnMarkTaskCommand;
+import seedu.address.logic.commands.UpdateTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -116,5 +118,16 @@ public class AddressBookParserTest {
     public void parseCommand_addTask() throws Exception {
         assertTrue(parser.parseCommand(AddTaskCommand.COMMAND_WORD + " d/"
                 + "Buy fish dl/2020-12-12 t/food") instanceof AddTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteTask() throws Exception {
+        assertTrue(parser.parseCommand(DeleteTaskCommand.COMMAND_WORD + " 1") instanceof DeleteTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_updateTask() throws Exception {
+        assertTrue(parser.parseCommand(UpdateTaskCommand.COMMAND_WORD + " 1 d/Purchase oil dl/2022-10-20"
+                + "t/Important t/Urgent") instanceof UpdateTaskCommand);
     }
 }
