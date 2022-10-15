@@ -13,6 +13,14 @@ public class JsonAdaptedContact {
     private final String contactValue;
 
     /**
+     * Converts to JsonAdaptedContact with given {@code ContactType} and {code String} value.
+     */
+    public JsonAdaptedContact(ContactType type, String value) {
+        contactType = type;
+        contactValue = value;
+    }
+
+    /**
      * Converts a given {@code Contact} into this class for Jackson use.
      */
     public JsonAdaptedContact(Contact source) {

@@ -14,11 +14,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.contact.ContactType;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TELEGRAM = "hello-world";
+    private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_SLACK = "@+213";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
@@ -74,4 +79,35 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
+    @Test
+    public void toModelType_invalidTelegram_throwsIllegalValueException() {
+        List<JsonAdaptedContact> invalidContacts = new ArrayList<>();
+        invalidContacts.add(new JsonAdaptedContact(ContactType.TELEGRAM, INVALID_TELEGRAM));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_ADDRESS, VALID_TAGS, invalidContacts);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPhone_throwsIllegalValueException() {
+        List<JsonAdaptedContact> invalidContacts = new ArrayList<>();
+        invalidContacts.add(new JsonAdaptedContact(ContactType.PHONE, INVALID_PHONE));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_ADDRESS, VALID_TAGS, invalidContacts);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidEmail_throwsIllegalValueException() {
+        List<JsonAdaptedContact> invalidContacts = new ArrayList<>();
+        invalidContacts.add(new JsonAdaptedContact(ContactType.EMAIL, INVALID_EMAIL));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_ADDRESS, VALID_TAGS, invalidContacts);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidSlack_throwsIllegalValueException() {
+        List<JsonAdaptedContact> invalidContacts = new ArrayList<>();
+        invalidContacts.add(new JsonAdaptedContact(ContactType.SLACK, INVALID_SLACK));
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_ADDRESS, VALID_TAGS, invalidContacts);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
 }
