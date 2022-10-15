@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -11,6 +12,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliverers.ALICE;
 import static seedu.address.testutil.TypicalDeliverers.BOB;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
@@ -21,6 +24,13 @@ public class DelivererTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Deliverer deliverer = new PersonBuilder().buildDeliverer();
         assertThrows(UnsupportedOperationException.class, () -> deliverer.getTags().remove(0));
+    }
+
+    @Test
+    public void getOrders_noParam() {
+        Deliverer deliverer = new PersonBuilder().buildDeliverer();
+        assertTrue(deliverer.getOrders().size() == 0);
+        assertEquals(deliverer.getOrders(), new ArrayList<>());
     }
 
     @Test
@@ -87,5 +97,18 @@ public class DelivererTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).buildDeliverer();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void hashCode_sameObject() {
+        Deliverer alice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).buildDeliverer();
+        assertEquals(alice.hashCode(), alice.hashCode());
+    }
+
+    @Test
+    public void hashCode_diffObject() {
+        Deliverer deliverer1 = new PersonBuilder().buildDeliverer();
+        Deliverer deliverer2 = new PersonBuilder().buildDeliverer();
+        assertEquals(deliverer1.hashCode(), deliverer2.hashCode());
     }
 }
