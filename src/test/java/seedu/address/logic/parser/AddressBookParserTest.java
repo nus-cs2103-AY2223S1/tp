@@ -4,19 +4,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
-import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.List;
 //import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AttendanceCommand;
+import seedu.address.logic.commands.ClassGroupCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveTaskCommand;
+import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
 import seedu.address.model.student.ClassGroup;
@@ -106,9 +119,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTask() throws Exception {
         Task task = new TaskBuilder().build();
-        TaskCommand command = (TaskCommand) parser.parseCommand(TaskCommand.COMMAND_WORD + " " +
-                PREFIX_TASK_TITLE + TaskBuilder.DEFAULT_TITLE + " " +
-                PREFIX_TASK_DESCRIPTION + TaskBuilder.DEFAULT_DESCRIPTION);
+        TaskCommand command = (TaskCommand) parser.parseCommand(TaskCommand.COMMAND_WORD + " "
+                + PREFIX_TASK_TITLE + TaskBuilder.DEFAULT_TITLE + " "
+                + PREFIX_TASK_DESCRIPTION + TaskBuilder.DEFAULT_DESCRIPTION);
         assertEquals(new TaskCommand(task), command);
     }
 
@@ -116,7 +129,8 @@ public class AddressBookParserTest {
     public void parseCommand_removeTask() throws Exception {
         RemoveTaskCommand command = (RemoveTaskCommand) parser.parseCommand(
                 RemoveTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new RemoveTaskCommand(INDEX_FIRST_STUDENT), command);    }
+        assertEquals(new RemoveTaskCommand(INDEX_FIRST_STUDENT), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

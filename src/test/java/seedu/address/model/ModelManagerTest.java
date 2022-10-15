@@ -8,8 +8,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalTasks.FIRST;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 import static seedu.address.testutil.TypicalTasks.SECOND;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

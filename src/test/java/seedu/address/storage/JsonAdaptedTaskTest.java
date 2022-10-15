@@ -47,7 +47,8 @@ public class JsonAdaptedTaskTest {
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASK_TITLE, INVALID_TASK_DESCRIPTION);
-        String expectedMessage = String.format(TaskDescription.MESSAGE_CONSTRAINTS, TaskDescription.class.getSimpleName());
+        String expectedMessage = String.format(
+                TaskDescription.MESSAGE_CONSTRAINTS, TaskDescription.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 }
