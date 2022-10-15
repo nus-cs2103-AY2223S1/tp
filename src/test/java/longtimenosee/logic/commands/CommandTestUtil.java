@@ -20,8 +20,8 @@ import longtimenosee.commons.core.index.Index;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.AddressBook;
 import longtimenosee.model.Model;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.testutil.EditPersonDescriptorBuilder;
 
 /**

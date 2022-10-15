@@ -1,6 +1,8 @@
-package longtimenosee.model.person;
+package longtimenosee.model.person.predicate;
 
 import java.util.function.Predicate;
+
+import longtimenosee.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code Address} matches the input given.
@@ -14,6 +16,6 @@ public class AddressMatchesInputPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getAddress().value.equals(address);
+        return person.getAddress().value.contains(address);
     }
 }

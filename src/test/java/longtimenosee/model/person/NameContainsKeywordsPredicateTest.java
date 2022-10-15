@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.testutil.PersonBuilder;
 
 public class NameContainsKeywordsPredicateTest {

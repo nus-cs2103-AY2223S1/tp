@@ -23,8 +23,8 @@ import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.commands.HelpCommand;
 import longtimenosee.logic.commands.ListCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
 import longtimenosee.model.person.Person;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.testutil.EditPersonDescriptorBuilder;
 import longtimenosee.testutil.PersonBuilder;
 import longtimenosee.testutil.PersonUtil;
@@ -73,7 +73,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(List.of(new NameContainsKeywordsPredicate(keywords))), command);
     }
 
     @Test

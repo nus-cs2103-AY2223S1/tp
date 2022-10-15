@@ -2,7 +2,7 @@ package longtimenosee.logic.parser;
 
 import longtimenosee.logic.commands.ViewPinCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
-import longtimenosee.model.person.PinnedPersonPredicate;
+import longtimenosee.model.person.predicate.PinnedPersonPredicate;
 
 /**
  * parses the command to view pinned clients.

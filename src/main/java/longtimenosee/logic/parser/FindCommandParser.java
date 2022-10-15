@@ -8,15 +8,19 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 import longtimenosee.logic.commands.FindCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
-import longtimenosee.model.person.AddressMatchesInputPredicate;
-import longtimenosee.model.person.EmailMatchesInputPredicate;
-import longtimenosee.model.person.NameContainsKeywordsPredicate;
-import longtimenosee.model.person.PhoneMatchesNumberPredicate;
-import longtimenosee.model.person.TagContainsKeywordsPredicate;
+import longtimenosee.model.person.Person;
+import longtimenosee.model.person.predicate.AddressMatchesInputPredicate;
+import longtimenosee.model.person.predicate.EmailMatchesInputPredicate;
+import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
+import longtimenosee.model.person.predicate.PhoneMatchesNumberPredicate;
+import longtimenosee.model.person.predicate.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -36,40 +40,40 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (!isAtLeastOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EMAIL,
                 PREFIX_TAG)
-                || !argMultimap.getPreamble().isEmpty()
-                || moreThanOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EMAIL,
-                PREFIX_TAG)) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
+        List<Predicate<Person>> predicates = new ArrayList<Predicate<Person>>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName.trim();
             String[] nameKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String phoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()).value;
-            return new FindCommand(new PhoneMatchesNumberPredicate(phoneNumber));
+            predicates.add(new PhoneMatchesNumberPredicate(phoneNumber));
         }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             String address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()).value;
-            return new FindCommand(new AddressMatchesInputPredicate(address));
+            predicates.add(new AddressMatchesInputPredicate(address));
         }
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()).value;
-            return new FindCommand(new EmailMatchesInputPredicate(email));
+            predicates.add(new EmailMatchesInputPredicate(email));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String trimmedArgs = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()).tagName.trim();
             String[] tagKeywords = trimmedArgs.split("\\s+");
-            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
+            predicates.add(new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords)));
         }
 
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        return new FindCommand(predicates);
     }
 
     /**
@@ -87,22 +91,4 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         return false;
     }
-
-    /**
-     * Checks if there is more than one of the specified prefixes present in the argument multimap.
-     *
-     * @param argumentMultimap contains the tokenized arguments
-     * @param prefixes to be checked
-     * @return boolean to indicate if more than one prefix is present
-     */
-    boolean moreThanOnePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        int count = 0;
-        for (Prefix prefix : prefixes) {
-            if (argumentMultimap.getValue(prefix).isPresent()) {
-                count += 1;
-            }
-        }
-        return count > 1;
-    }
-
 }
