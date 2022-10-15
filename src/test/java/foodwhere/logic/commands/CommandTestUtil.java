@@ -28,8 +28,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_DATE_AMY = "2022-09-20";
-    public static final String VALID_DATE_BOB = "2022-09-20";
+    public static final String VALID_DATE_AMY = ""20/09/2022";
+    public static final String VALID_DATE_BOB = ""20/08/2022";
     public static final String VALID_CONTENT_AMY = "Good, 5/5";
     public static final String VALID_CONTENT_BOB = "Bad, 1/5";
     public static final Integer VALID_RATING_AMY = 4;
