@@ -18,7 +18,6 @@ public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentListCard.fxml";
 
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -45,11 +44,10 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label classGroup;
-
-    @FXML
-    private Label attendance;
     @FXML
     private ImageView picture;
+    @FXML
+    private Label attendanceList;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -62,9 +60,8 @@ public class StudentCard extends UiPart<Region> {
         phone.setText(student.getPhone().value);
         studentId.setText(student.getStudentId().value);
         email.setText(student.getEmail().value);
-        attendance.setText(student.getAttendance().value);
+        attendanceList.setText(student.getAttendanceList().toString());
         classGroup.setText(student.getClassGroup().value);
-
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

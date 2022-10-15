@@ -11,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -83,6 +84,21 @@ public class ParserUtil {
         }
         return new Attendance(trimmedAttendance);
     }
+    /**
+     * Parses {@code String size}
+     * @param size with the input
+     * @return String
+     * @throws ParseException
+     */
+    public static String parseSize(String size) throws ParseException {
+        requireNonNull(size);
+        String trimmedSize = size.trim();
+        if (!AttendanceList.isValidSize(trimmedSize)) {
+            throw new ParseException(AttendanceList.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedSize;
+    }
+
 
     /**
      * Parses a {@code String address} into a {@code StudentId}.

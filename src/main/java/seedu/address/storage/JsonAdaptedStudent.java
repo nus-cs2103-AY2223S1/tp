@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -31,7 +31,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String classGroup;
     private final String studentId;
-    private final String attendance;
+    private final JsonAdaptedAttendanceList attendanceList;
 
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -44,7 +44,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("classGroup") String classGroup,
                               @JsonProperty("studentId") String studentId,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("attendance") String attendance) {
+                              @JsonProperty("attendanceList") JsonAdaptedAttendanceList attendanceList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -53,7 +53,7 @@ class JsonAdaptedStudent {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.attendance = attendance;
+        this.attendanceList = attendanceList;
     }
 
     /**
@@ -68,7 +68,10 @@ class JsonAdaptedStudent {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        attendance = source.getAttendance().value;
+        attendanceList = new JsonAdaptedAttendanceList(source.getAttendanceList().getMod(),
+                source.getAttendanceList()
+                .getAttendanceList().stream().map(JsonAdaptedAttendance::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -122,21 +125,17 @@ class JsonAdaptedStudent {
 
         final StudentId modelStudentId = new StudentId(studentId);
 
-        if (attendance == null) {
+        if (attendanceList == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Attendance.class.getSimpleName()));
+                    AttendanceList.class.getSimpleName()));
         }
-
-        if (!Attendance.isValidMark(attendance)) {
-            throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
-        }
-
-        final Attendance modelAttendance = new Attendance(attendance);
+        //might need more checks here
+        final AttendanceList modelAttendanceList = attendanceList.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
         return new Student(modelName, modelPhone, modelEmail, modelClassGroup,
-                modelStudentId, modelTags, modelAttendance);
+                modelStudentId, modelTags, modelAttendanceList);
     }
 
 }

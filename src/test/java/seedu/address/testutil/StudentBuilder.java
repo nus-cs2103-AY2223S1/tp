@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -25,8 +25,6 @@ public class StudentBuilder {
     public static final String DEFAULT_CLASS_GROUP = "CS2030 Lab 22";
     public static final String DEFAULT_STUDENTID = "e0707070";
 
-    public static final String DEFAULT_ATTENDANCE = "0";
-
     private Name name;
     private Phone phone;
     private Email email;
@@ -34,7 +32,7 @@ public class StudentBuilder {
     private StudentId studentId;
     private Set<Tag> tags;
 
-    private Attendance attendance;
+    private AttendanceList attendanceList;
     private Picture picture;
 
     /**
@@ -47,7 +45,7 @@ public class StudentBuilder {
         classGroup = new ClassGroup(DEFAULT_CLASS_GROUP);
         studentId = new StudentId(DEFAULT_STUDENTID);
         tags = new HashSet<>();
-        attendance = new Attendance(DEFAULT_ATTENDANCE);
+        attendanceList = new AttendanceList();
     }
 
     /**
@@ -60,7 +58,7 @@ public class StudentBuilder {
         classGroup = studentToCopy.getClassGroup();
         studentId = studentToCopy.getStudentId();
         tags = new HashSet<>(studentToCopy.getTags());
-        attendance = studentToCopy.getAttendance();
+        attendanceList = studentToCopy.getAttendanceList();
     }
 
     /**
@@ -103,10 +101,10 @@ public class StudentBuilder {
         return this;
     }
     /**
-     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     * Sets the {@code AttendanceList} of the {@code Student} that we are building.
      */
-    public StudentBuilder withAttendance(String attendance) {
-        this.attendance = new Attendance(attendance);
+    public StudentBuilder withAttendanceList(String mod, String size) {
+        this.attendanceList = new AttendanceList(mod, size);
         return this;
     }
 
@@ -118,9 +116,8 @@ public class StudentBuilder {
         return this;
     }
 
-
     public Student build() {
-        return new Student(name, phone, email, classGroup, studentId, tags, attendance);
+        return new Student(name, phone, email, classGroup, studentId, tags, attendanceList);
     }
 
 }
