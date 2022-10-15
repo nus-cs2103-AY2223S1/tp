@@ -5,7 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SortField;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -15,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueEventList events;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        events = new UniqueEventList();
     }
 
     public AddressBook() {}
@@ -38,6 +43,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
+
+    /**
+     * Replaces the contents of the event list with {@code events}.
+     * {@code events} must not contain duplicate events.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -54,7 +67,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setEvents(newData.getEventList());
     }
+
+    /**
+     * Sorts the persons by the given {@code SortField}.
+     *
+     * @param sortField field to sort by.
+     */
+    public void sortPersons(SortField sortField) {
+        requireNonNull(sortField);
+
+        persons.sort(sortField);
+    }
+
+
 
     //// person-level operations
 
@@ -93,6 +120,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// event-level operations
+
+    public void addEvent(Event e) {
+        this.events.add(e);
+    }
+
+    public void deleteEvent(Event e) {
+        this.events.remove(e);
+    }
+
     //// util methods
 
     @Override
@@ -104,6 +141,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return events.asUnmodifiableObservableList();
     }
 
     @Override
