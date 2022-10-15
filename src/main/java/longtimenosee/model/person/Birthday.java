@@ -82,7 +82,7 @@ public class Birthday {
         try {
             LocalDate dateTime = LocalDate.parse(s);
         } catch (DateTimeParseException f) {
-            return LocalDate.parse("2020-05-05"); //TODO: Change to a better default value
+            return LocalDate.parse("2000-05-05"); //TODO: Change to a better default value
         }
         LocalDate dateTime = LocalDate.parse(s);
         return dateTime;

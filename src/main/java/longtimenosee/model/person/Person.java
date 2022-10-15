@@ -39,7 +39,6 @@ public class Person {
 
     //private ArrayList<Policy> policies;
     private Birthday birthday;
-    //private ArrayList<Event> events; // TODO: EventList class
     //private PersonNotes notes; //TODO: Just a string
     private Income income;
     private RiskAppetite ra;
