@@ -55,6 +55,18 @@ public class Class {
         this.classDateTime = classDateTime;
     }
 
+    public Class(LocalDate date, LocalTime startTime, LocalTime endTime) {
+        requireAllNonNull(date, startTime, endTime);
+        String stringOfDateTime = String.format("%s %s-%s", date.toString(),
+                startTime.format(DateTimeFormatter.ofPattern("hhmm")),
+                endTime.format(DateTimeFormatter.ofPattern("hhmm")));
+
+        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.classDateTime = stringOfDateTime;
+    }
+
     /**
      * Returns a formatted date and time.
      *
@@ -181,6 +193,12 @@ public class Class {
         }
         return true;
     }
+
+    public Class addDays(int numberOfDays) {
+        LocalDate updatedDate = this.date.plusDays(numberOfDays);
+        return new Class(updatedDate, this.startTime, this.endTime);
+    }
+
 
     @Override
     public boolean equals(Object other) {
