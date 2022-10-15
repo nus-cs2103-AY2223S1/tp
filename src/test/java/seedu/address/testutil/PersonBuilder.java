@@ -7,6 +7,8 @@ import java.util.Set;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.contact.Contact;
+import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,6 +23,7 @@ public class PersonBuilder {
     private Name name;
     private Address address;
     private Set<Tag> tags;
+    private HashMap<ContactType, Contact> contacts;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -29,6 +32,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        contacts = new HashMap<>();
     }
 
     /**
@@ -64,6 +68,13 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Contacts} of the {@code Person} that we are building
+     */
+    public PersonBuilder withContact(ContactType type, String name) {
+        this.contacts.put(type, Contact.of(type, name));
+        return this;
+    }
 
     /**
      * Build the Person Model

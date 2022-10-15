@@ -13,6 +13,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.contact.ContactType;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -21,10 +22,14 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111")
-        .withTags("friends").build();
+        .withTags("friends")
+        .withContact(ContactType.TELEGRAM, "@alice")
+        .withContact(ContactType.EMAIL, "alice@gmail.com").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
-        .withTags("owesMoney", "friends").build();
+        .withTags("owesMoney", "friends")
+        .withContact(ContactType.TELEGRAM, "@benson")
+        .withContact(ContactType.EMAIL, "benson@gmail.com").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withAddress("wall street").build();
     public static final Person DANIEL =
         new PersonBuilder().withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
