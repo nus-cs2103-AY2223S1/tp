@@ -28,7 +28,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final List<JsonAdaptedModuleCode> teaching = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      *
      * @param name
      * @param phone

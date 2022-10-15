@@ -49,7 +49,7 @@ public class AddStuCommandTest {
         Student validStudent = new StudentBuilder().build();
         AddStuCommand addStuCommand = new AddStuCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
-        assertThrows(CommandException.class, AddStuCommand.MESSAGE_DUPLICATE_PERSON, ()
+        assertThrows(CommandException.class, AddStuCommand.MESSAGE_DUPLICATE_STUDENT, ()
                 -> addStuCommand.execute(modelStub));
     }
 

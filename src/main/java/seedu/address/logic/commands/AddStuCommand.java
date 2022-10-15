@@ -45,7 +45,7 @@ public class AddStuCommand extends Command {
             + PREFIX_MODULE_CODE + "CS1101S ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
 
     private final Student toAdd;
 
@@ -62,7 +62,7 @@ public class AddStuCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.addPerson(toAdd);
