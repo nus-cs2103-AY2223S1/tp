@@ -30,6 +30,7 @@ public class Student {
 
     /**
      * Every field must be present and not null.
+     * Profile picture is initially set to the default profile picture.
      */
     public Student(Name name, Phone phone, Email email,
                    ClassGroup classGroup, StudentId studentId, Set<Tag> tags, Attendance attendance) {
@@ -66,6 +67,7 @@ public class Student {
     public StudentId getStudentId() {
         return studentId;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

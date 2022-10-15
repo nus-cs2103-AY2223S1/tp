@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
+import seedu.address.storage.ImageStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -106,6 +107,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudent(Student target) {
         addressBook.removeStudent(target);
+        ImageStorage.remove(target);
     }
 
     @Override
@@ -117,6 +119,9 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
+        if (!target.hasSameId(editedStudent)) {
+            ImageStorage.renamePictureFile(target, editedStudent);
+        }
 
         addressBook.setStudent(target, editedStudent);
     }
