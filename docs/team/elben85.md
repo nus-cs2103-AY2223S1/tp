@@ -21,13 +21,13 @@ Given below are my contributions to the project.
     * To be added soon
 
 * **Enhancements to existing features**:
-    * To be added soon
+    * Enable find command to filter by several categories (company name, position, tags, date, and application process)
 
 * **Documentation**:
     * User Guide:
         * Added documentations for the features `find`
     * Developer Guide:
-        * To be added soon
+        * Added documentations for the features `find`
 
 * **Community**:
     * To be added soon
