@@ -94,10 +94,11 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getItemName())
-                .append("; Description: ")
-                .append(getDescription())
-                .append("; Quantity: ")
+        builder.append("Name: ")
+                .append(getItemName() + "\n")
+                .append("Description: ")
+                .append(getDescription() + "\n")
+                .append("Quantity: ")
                 .append(getQuantity());
 
         Set<Tag> tags = getTags();
