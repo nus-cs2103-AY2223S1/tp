@@ -50,8 +50,9 @@ public class MarkCommand extends Command {
             throw new CommandException("Person has been marked previously");
         }
 
-        ClassStorage.saveClass(markedPerson, this.targetIndex.getZeroBased());
 
+        ClassStorage.saveClass(markedPerson, this.targetIndex.getZeroBased());
+        ClassStorage.removeExistingClass(personToMark);
 
         model.setPerson(personToMark, markedPerson);
 
