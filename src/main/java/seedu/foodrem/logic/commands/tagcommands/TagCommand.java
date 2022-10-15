@@ -1,14 +1,12 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.foodrem.enums.CommandWord.TAG_COMMAND;
 
 import java.util.List;
 import java.util.Set;
 
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -20,17 +18,11 @@ import seedu.foodrem.model.tag.Tag;
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
-
-    public static final String MESSAGE_SUCCESS = "Item tagged successfully";
-    public static final String MESSAGE_DUPLICATE_TAG = "This item has already been tagged with this tag";
-    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "This tag does not exist";
-    public static final String MESSAGE_ITEM_INDEX_DOES_NOT_EXIST = "The item index does not exist";
-
-    private static final String COMMAND_WORD = CommandWord.TAG_COMMAND.getCommandWord();
-    private static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"
-            + "Parameters: " + PREFIX_NAME + "TAG_NAME" + PREFIX_ID + "INDEX (item index must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
+    // TODO: Test this command
+    private static final String MESSAGE_SUCCESS = "Item tagged successfully";
+    private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
+    private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
+    private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
     private final Index index;
     private final Tag tag;
@@ -68,19 +60,17 @@ public class TagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
-            throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
+            throw new CommandException(ERROR_NOT_FOUND_TAG);
         }
 
         List<Item> lastShownList = model.getFilteredItemList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_ITEM_INDEX_DOES_NOT_EXIST);
+            throw new CommandException(ERROR_NOT_FOUND_ITEM);
         }
 
         Item itemToTag = lastShownList.get(index.getZeroBased());
-
         if (itemToTag.containsTag(tag)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            throw new CommandException(ERROR_DUPLICATE);
         }
 
         Item newTagSetItem = createTaggedItem(itemToTag, tag);
@@ -92,6 +82,6 @@ public class TagCommand extends Command {
     }
 
     public static String getUsage() {
-        return MESSAGE_USAGE;
+        return TAG_COMMAND.getUsage();
     }
 }
