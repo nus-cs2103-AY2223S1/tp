@@ -1,12 +1,13 @@
 package seedu.address.model.datetime;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a start and end datetime in the ModQuik.
@@ -16,10 +17,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class DatetimeRange {
     public static final String MESSAGE_CONSTRAINTS =
             "Date and time should be in yyyy-MM-dd HH:mm format, e.g. 2022-01-01 08:00";
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String MESSAGE_INVALID_DURATION = "The start time should be before end time.";
+    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public final LocalDateTime startDatetime;
     public final LocalDateTime endDatetime;
+
 
 
     /**
@@ -83,13 +85,6 @@ public class DatetimeRange {
      */
     public String getEndDatetimeFormatted() {
         return endDatetime.format(DATE_TIME_FORMAT);
-    }
-
-    public String toStorageString() {
-        // String that uniquely stores info
-        return String.format("%s to %s",
-                startDatetime.format(DATE_TIME_FORMAT),
-                endDatetime.format(DATE_TIME_FORMAT));
     }
 
     @Override

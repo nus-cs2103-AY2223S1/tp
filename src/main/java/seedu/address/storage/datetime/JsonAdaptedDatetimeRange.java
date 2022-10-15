@@ -2,6 +2,7 @@ package seedu.address.storage.datetime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.DatetimeRange;
 
@@ -40,7 +41,8 @@ class JsonAdaptedDatetimeRange {
      */
     public DatetimeRange toModelType() throws IllegalValueException {
         if (startDatetime == null || endDatetime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DatetimeRange.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DatetimeRange.class.getSimpleName()));
         }
         if (!DatetimeRange.isValidDatetimeRange(startDatetime, endDatetime)) {
             throw new IllegalValueException(DatetimeRange.MESSAGE_CONSTRAINTS);

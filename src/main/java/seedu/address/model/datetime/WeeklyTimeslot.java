@@ -1,5 +1,8 @@
 package seedu.address.model.datetime;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -7,9 +10,6 @@ import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Objects;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a timeslot that repeats every week in ModQuik.
@@ -21,15 +21,15 @@ public class WeeklyTimeslot {
             "Times should be in HH:mm format, e.g. 08:00";
     public static final String MESSAGE_CONSTRAINTS_DAY =
             "Days should only contain numbers from 1 (Monday) to 7 (Sunday)";
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     public static final String MESSAGE_INVALID_DURATION = "The start time should be before end time.";
+    public static final String VALIDATION_REGEX = "[1-7]";
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 
     public final DayOfWeek dayValue;
     public final LocalTime startTime;
     public final LocalTime endTime;
 
 
-    public static final String VALIDATION_REGEX = "[1-7]";
 
 
     /**

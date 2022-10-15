@@ -1,10 +1,10 @@
 package seedu.address.model.consultation;
-import seedu.address.model.datetime.DatetimeRange;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Date;
 import java.util.Objects;
+
+import seedu.address.model.datetime.DatetimeRange;
 
 /**
  * Represents a Consultation in the ModQuik.

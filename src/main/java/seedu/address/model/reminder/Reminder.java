@@ -1,10 +1,10 @@
 package seedu.address.model.reminder;
 
-import seedu.address.model.datetime.Datetime;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.datetime.Datetime;
 
 /**
  * Represents a Person in the address book.

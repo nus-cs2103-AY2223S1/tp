@@ -9,8 +9,6 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 
-import java.util.Date;
-
 /**
  * Jackson-friendly version of {@link Reminder}.
  */
@@ -56,18 +54,9 @@ class JsonAdaptedReminder {
         }
         final ReminderName modelName = new ReminderName(name);
 
-//        if (deadline == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-//                    ReminderDeadline.class.getSimpleName()));
-//        }
-//        if (!ReminderDeadline.isValidTimeslot(deadline)) {
-//            throw new IllegalValueException(ReminderDeadline.MESSAGE_CONSTRAINTS);
-//        }
-//        final ReminderDeadline modelDeadline = new ReminderDeadline(deadline);
-
         final ReminderDescription modelDescription = new ReminderDescription(description);
 
-        Datetime modelDeadline = new Datetime("fe");
+        Datetime modelDeadline = new Datetime("Not implemetned");
 
         return new Reminder(modelName, modelDeadline, modelDescription);
     }

@@ -30,6 +30,12 @@ public class Datetime {
         this.datetime = LocalDateTime.parse(datetime, DATE_TIME_FORMAT);
     }
 
+    /**
+     * Checks whether datetime string is of valid format.
+     *
+     * @param datetimeString A datetime string
+     * @return Whether format is valid
+     */
     public static boolean isValidDatetime(String datetimeString) {
         try {
             LocalDateTime.parse(datetimeString, DATE_TIME_FORMAT);

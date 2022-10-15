@@ -2,6 +2,7 @@ package seedu.address.storage.datetime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.WeeklyTimeslot;
 
@@ -44,13 +45,15 @@ public class JsonAdaptedWeeklyTimeslot {
      */
     public WeeklyTimeslot toModelType() throws IllegalValueException {
         if (day == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, WeeklyTimeslot.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, WeeklyTimeslot.class.getSimpleName()));
         }
         if (!WeeklyTimeslot.isValidDay(day)) {
             throw new IllegalValueException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_DAY);
         }
         if (startTime == null || endTime == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, WeeklyTimeslot.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, WeeklyTimeslot.class.getSimpleName()));
         }
         if (!WeeklyTimeslot.isValidTimeRange(startTime, endTime)) {
             throw new IllegalValueException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);

@@ -83,15 +83,6 @@ public class JsonAdaptedConsultation {
         }
         final ConsultationVenue modelVenue = new ConsultationVenue(venue);
 
-//        if (timeslot == null) {
-//            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-//                    ConsultationTimeslot.class.getSimpleName()));
-//        }
-//        if (!ConsultationTimeslot.isValidTimeslot(timeslot)) {
-//            throw new IllegalValueException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
-//        }
-//        final ConsultationTimeslot modelTimeslot = new ConsultationTimeslot(timeslot);
-
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ConsultationDescription.class.getSimpleName()));
@@ -102,7 +93,7 @@ public class JsonAdaptedConsultation {
 
         final ConsultationDescription modelDescription = new ConsultationDescription(description);
 
-        DatetimeRange modelTimeslot = new DatetimeRange("fe", "fe");
+        DatetimeRange modelTimeslot = new DatetimeRange("Not implemented", "Not implemented");
 
         return new Consultation(modelName, modelModule, modelVenue, modelTimeslot, modelDescription);
     }

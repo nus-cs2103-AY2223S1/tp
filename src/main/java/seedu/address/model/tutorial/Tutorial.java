@@ -1,10 +1,10 @@
 package seedu.address.model.tutorial;
 
-import seedu.address.model.datetime.WeeklyTimeslot;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
+
+import seedu.address.model.datetime.WeeklyTimeslot;
 
 /**
  * Represents a Tutorial in the ModQuik.
