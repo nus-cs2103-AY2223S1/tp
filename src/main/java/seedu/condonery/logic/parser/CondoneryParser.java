@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import seedu.condonery.logic.commands.ClearCommand;
 import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.EditCommand;
 import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
