@@ -244,7 +244,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void getTargetClassDate_NextWeekSuccessful() {
+    public void getTargetClassDate_nextWeekSuccessful() {
         // This date falls on a saturday
         LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
         ParserUtil.setTargetDayOfWeek(6);
@@ -255,7 +255,18 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void getTargetClassDate_ThisWeekSuccessful() {
+    public void getTargetClassDate_nextTwoDaysSuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(1);
+        LocalTime startTime = LocalTime.of(14, 0);
+        // 2 more days -> monday
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 17));
+    }
+
+    @Test
+    public void getTargetClassDate_tomorrowSuccessful() {
         // This date falls on a saturday
         LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
         ParserUtil.setTargetDayOfWeek(7);
