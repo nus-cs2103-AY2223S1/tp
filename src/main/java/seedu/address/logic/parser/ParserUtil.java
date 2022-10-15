@@ -6,6 +6,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -16,8 +19,8 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -70,18 +73,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nokPhone} into a {@code NokPhone}.
+     * Parses a {@code String nokPhone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code NokPhone} is invalid.
      */
-    public static NokPhone parseNokPhone(String nokPhone) throws ParseException {
-        requireNonNull(nokPhone);
-        String trimmedNokPhone = nokPhone.trim();
-        if (!NokPhone.isValidNokPhone(trimmedNokPhone)) {
-            throw new ParseException(NokPhone.MESSAGE_CONSTRAINTS);
-        }
-        return new NokPhone(trimmedNokPhone);
+    public static Phone parseNokPhone(String nokPhone) throws ParseException {
+        return parsePhone(nokPhone);
     }
 
     /**
@@ -199,4 +197,30 @@ public class ParserUtil {
         return new AdditionalNotes(additionalNotes.trim());
     }
 
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
 }

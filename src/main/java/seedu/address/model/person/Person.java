@@ -2,8 +2,12 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -15,7 +19,7 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final NokPhone nokPhone;
+    private final Phone nokPhone;
     private final Email email;
 
     // Data fields
@@ -25,16 +29,17 @@ public class Person {
     private final Money ratesPerClass;
     private final AdditionalNotes additionalNotes;
     private Class aClass;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs a {@code Person} class when first initialized with add command.
      * // Todo: Note that this is a temporary design and subject to update in future iteration
      */
-    public Person(Name name, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, phone, email, address);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
-        this.nokPhone = new NokPhone();
+        this.nokPhone = new Phone();
         this.email = email;
         this.address = address;
         this.aClass = new Class();
@@ -42,14 +47,16 @@ public class Person {
         this.moneyPaid = new Money();
         this.ratesPerClass = new Money(DEFAULT_RATES_PER_CLASS);
         this.additionalNotes = new AdditionalNotes("");
+        this.tags.addAll(tags);
     }
 
     /**
      * Overloaded constructor.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, NokPhone nokPhone, Email email, Address address, Class aClass,
-                Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes) {
+    public Person(Name name, Phone phone, Phone nokPhone, Email email, Address address, Class aClass,
+                  Money moneyOwed, Money moneyPaid, Money ratesPerClass, AdditionalNotes additionalNotes,
+                  Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, additionalNotes, aClass);
         this.name = name;
         this.phone = phone;
@@ -61,6 +68,7 @@ public class Person {
         this.moneyPaid = moneyPaid;
         this.ratesPerClass = ratesPerClass;
         this.additionalNotes = additionalNotes;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -71,7 +79,7 @@ public class Person {
         return phone;
     }
 
-    public NokPhone getNokPhone() {
+    public Phone getNokPhone() {
         return nokPhone;
     }
 
@@ -105,12 +113,21 @@ public class Person {
     public Money getRatesPerClass() {
         return ratesPerClass;
     }
+
     public AdditionalNotes getAdditionalNotes() {
         return additionalNotes;
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns true if both persons have the same phone number.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -156,14 +173,16 @@ public class Person {
                 && otherPerson.getMoneyOwed().equals(getMoneyOwed())
                 && otherPerson.getMoneyPaid().equals(getMoneyPaid())
                 && otherPerson.getRatesPerClass().equals(getRatesPerClass())
-                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes());
+                && otherPerson.getAdditionalNotes().equals(getAdditionalNotes())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(
-                name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass, additionalNotes);
+        return Objects.hash(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
+                additionalNotes, tags);
     }
 
     @Override
@@ -189,6 +208,11 @@ public class Person {
                 .append("; Additional notes: ")
                 .append(getAdditionalNotes());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
         return builder.toString();
     }
 
