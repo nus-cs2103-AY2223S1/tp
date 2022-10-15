@@ -24,11 +24,11 @@ public class SummaryCommandTest {
         SummaryCommand summaryCommand = new SummaryCommand();
         Double totalExpenditure = model.getFilteredExpenditureList()
                 .stream()
-                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
                 .sum();
         Double totalIncome = model.getFilteredIncomeList()
                 .stream()
-                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
                 .sum();
         String expectedMessage = String.format(
                 SummaryCommand.MESSAGE_SUCCESS,

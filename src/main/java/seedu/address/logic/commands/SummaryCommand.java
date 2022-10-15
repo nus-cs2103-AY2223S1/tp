@@ -50,11 +50,11 @@ public class SummaryCommand extends Command {
         List<Entry> incomeList = model.getFilteredIncomeList();
         Double totalExpenditure = expenditureList
                 .stream()
-                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
                 .sum();
         Double totalIncome = incomeList
                 .stream()
-                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().amount))
+                .mapToDouble(entry -> Double.parseDouble(entry.getAmount().toString()))
                 .sum();
         Double totalBalance = totalIncome - totalExpenditure;
         return new CommandResult(String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance));
