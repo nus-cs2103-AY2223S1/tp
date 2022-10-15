@@ -117,7 +117,9 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<TeachingAssistant> getTeachingAssistantList() { return teachingAssistants; }
+        public ObservableList<TeachingAssistant> getTeachingAssistantList() {
+            return teachingAssistants;
+        }
 
         @Override
         public ObservableList<Consultation> getConsultationList() {

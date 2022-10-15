@@ -1,15 +1,15 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUT1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_TUT1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUT2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_TUT2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TUT1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TUT2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_TUT1_START;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUT1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TUT2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_TUT1_END;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_TUT2_START;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_TUT1_START;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_TUT2_END;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_TUT2_START;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_TUT1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_VENUE_TUT2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
