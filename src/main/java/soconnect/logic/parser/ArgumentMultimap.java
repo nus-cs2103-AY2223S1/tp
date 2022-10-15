@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Stores mapping of prefixes to their respective arguments.
@@ -62,6 +64,17 @@ public class ArgumentMultimap {
             return new ArrayList<>();
         }
         return new ArrayList<>(argMultimap.get(prefix));
+    }
+
+    /**
+     * Returns all available values without considering the prefix.
+     * If the prefix does not exist or has no values, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List<String> getAllValues() {
+        List<List<String>> values = new ArrayList<>();
+        argMultimap.forEach((prefix, arguments) -> values.add(getAllValues(prefix)));
+        return values.stream().flatMap(List<String>::stream).collect(Collectors.toList());
     }
 
     /**

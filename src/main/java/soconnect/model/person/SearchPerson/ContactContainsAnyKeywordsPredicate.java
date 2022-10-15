@@ -37,7 +37,7 @@ public class ContactContainsAnyKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         for (Prefix prefix : argMultimap.getAllPrefixes()) {
-             SearchPrefixCommand prefixCommand = convertPrefixToEnumType(prefix);
+            SearchPrefixCommand prefixCommand = convertPrefixToEnumType(prefix);
             List<String> keywords = argMultimap.getAllValues(prefix);
             switch (prefixCommand) {
             case NAME:

@@ -10,8 +10,14 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.parser.exceptions.ParseException;
+import soconnect.model.ModelManager;
+import soconnect.model.person.Person;
 import soconnect.model.person.SearchPerson.ContactContainsAllKeywordsPredicate;
 import soconnect.model.person.SearchPerson.ContactContainsAnyKeywordsPredicate;
+
+import java.util.List;
+import java.util.Observable;
+import java.util.function.Predicate;
 
 /**
  * Parses input arguments and creates a new {@code SearchCommand} object.
@@ -32,10 +38,10 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
-
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
+        List<String> searchKeywords = argMultimap.getAllValues();
         String condition = argMultimap.getPreamble().toLowerCase();
         return parseSearchCondition(argMultimap, condition);
     }
