@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.UpdateTaskCommand.UpdateTaskDescriptor;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Task;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.logic.commands.UpdateTaskCommand.UpdateTaskDescriptor;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * A utility class to help with building UpdateTaskDescriptor objects.
