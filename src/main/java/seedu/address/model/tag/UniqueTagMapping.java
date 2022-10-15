@@ -12,11 +12,12 @@ import seedu.address.model.tag.exceptions.DuplicateTagException;
 import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 /**
- *  * A list of tags that enforces uniqueness between its elements and does not allow nulls.
- *  * A tag is considered unique by comparing using {@code Tag#isSameTag(Tag)}. As such, adding and updating of
- *  * tags uses Tag#isSameTag(Tag) for equality so as to ensure that the tag being added or updated is
- *  * unique in terms of identity in the UniqueTagList. However, the removal of a tag uses Tag#equals(Object) so
- *  * as to ensure that the tag with exactly the same fields will be removed.
+ *  A list of tags that enforces uniqueness between its elements and does not allow nulls.
+ *  A tag is considered unique by comparing using {@code Tag#equal(Tag)}. As such,
+ *  adding, updating and the removal of a tag uses {@code Tag#equals(Tag)}
+ *  in order to ensure that the tag with exactly the same fields will be removed.
+ *  {@code Tag#tagsAreUnique(tags)} will enforce a uniqueness check to guarantee that
+ *  added Tags are unique, even if they are given by unique keys paired with non-unique tags.
  *
  * Supports a minimal set of list operations.
  */
@@ -38,7 +39,7 @@ public class UniqueTagMapping implements Iterable<Tag> {
     /**
      * Returns true if the map contains the given tagName
      * @param tagName the name of the tag to check against
-     * @return
+     * @return whether the mapping contains this tagName
      */
     public boolean contains(String tagName) {
         requireNonNull(tagName);
@@ -67,8 +68,16 @@ public class UniqueTagMapping implements Iterable<Tag> {
         internalMap.remove(toRemove.tagName);
     }
 
+    /**
+     * Sets the internal mapping of this object to the same internal
+     * mapping of the replacement object, only if the tags are unique
+     * @param replacement the UniqueTagMapping to replace this object with
+     */
     public void setTags(UniqueTagMapping replacement) {
         requireNonNull(replacement);
+        if (!tagsAreUnique(replacement.internalMap)) {
+            throw new DuplicateTagException();
+        }
         internalMap.clear();
         internalMap.putAll(replacement.internalMap);
     }
@@ -115,14 +124,6 @@ public class UniqueTagMapping implements Iterable<Tag> {
      * Returns true if {@code tags} contains only unique tags.
      */
     private boolean tagsAreUnique(Map<String, Tag> tags) {
-        /* for (int i = 0; i < tags.size() - 1; i++) {
-            for (int j = i + 1; j < tags.size(); j++) {
-                if (tags.get(i).equals(tags.get(j))) {
-                    return false;
-                }
-            }
-        }
-        */
         return tags.values().stream().distinct().count() == tags.size();
     }
 }

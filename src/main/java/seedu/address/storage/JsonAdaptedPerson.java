@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -75,15 +74,14 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType(List<Tag> addressBookTagList) throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            for (Tag realTag : addressBookTagList) {
-                if (realTag.equals(tag.toModelType())) {
-                    // Add the unique tag object reference in AddressBook's uniqueTagList to this Person's tags
-                    personTags.add(realTag);
-                }
-            }
+        final List<Tag> convertedTags = new ArrayList<>();
+        for (JsonAdaptedTag adaptedTag : tagged) {
+            convertedTags.add(adaptedTag.toModelType());
         }
+
+        final Set<Tag> modelTags = addressBookTagList.stream()
+                .filter(convertedTags::contains)
+                .collect(Collectors.toSet());
 
         // We could really use some abstraction here -- Rui Han
 
@@ -123,8 +121,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
 
         // Loan validity check
         if (loan == null) {
