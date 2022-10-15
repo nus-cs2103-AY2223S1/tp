@@ -16,7 +16,6 @@ import static seedu.address.logic.commands.PersonCommandTestUtil.PREAMBLE_NON_EM
 import static seedu.address.logic.commands.PersonCommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.PersonCommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.PersonCommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.PersonCommandTestUtil.VALID_TAG_HUSBAND;
