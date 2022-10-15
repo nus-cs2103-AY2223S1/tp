@@ -19,6 +19,10 @@ public class CalendarEvent {
         this.localDateTime = this.appointment.getLocalDateTime();
     }
 
+    public Name getName() {
+        return name;
+    }
+
     public int getDay() {
         return localDateTime.getDayOfMonth();
     }
