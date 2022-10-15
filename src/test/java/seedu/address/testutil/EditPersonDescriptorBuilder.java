@@ -11,6 +11,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -83,6 +84,15 @@ public class EditPersonDescriptorBuilder {
         descriptor.setIncome(new IncomeLevel(income));
         return this;
     }
+
+    /**
+     * Sets the {@code Monthly} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMonthly(String monthly) {
+        descriptor.setMonthly(new Monthly(monthly));
+        return this;
+    }
+
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
