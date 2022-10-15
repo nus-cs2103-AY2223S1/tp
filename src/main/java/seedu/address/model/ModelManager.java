@@ -185,7 +185,7 @@ public class ModelManager implements Model {
         if (filteredCustomers.size() == 0) {
             selectCustomer(null);
         } else if (hasSelectedCustomer() && filteredCustomers.stream()
-                    .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
+                .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
             selectCustomer(filteredCustomers.get(0));
         }
     }
