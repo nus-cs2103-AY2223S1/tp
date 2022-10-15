@@ -35,24 +35,24 @@ public class FindInterestCommandTest {
         PersonContainsInterestPredicate secondPredicate =
                 new PersonContainsInterestPredicate(Collections.singletonList("second"));
 
-        FindInterestCommand findTagFirstCommand = new FindInterestCommand(firstPredicate);
-        FindInterestCommand findTagSecondCommand = new FindInterestCommand(secondPredicate);
+        FindInterestCommand findInterestFirstCommand = new FindInterestCommand(firstPredicate);
+        FindInterestCommand findInterestSecondCommand = new FindInterestCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findTagFirstCommand.equals(findTagFirstCommand));
+        assertTrue(findInterestFirstCommand.equals(findInterestFirstCommand));
 
         // same values -> returns true
         FindInterestCommand findFirstCommandCopy = new FindInterestCommand(firstPredicate);
-        assertTrue(findTagFirstCommand.equals(findFirstCommandCopy));
+        assertTrue(findInterestFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findTagFirstCommand.equals(1));
+        assertFalse(findInterestFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findTagFirstCommand.equals(null));
+        assertFalse(findInterestFirstCommand.equals(null));
 
         // different tag -> returns false
-        assertFalse(findTagFirstCommand.equals(findTagSecondCommand));
+        assertFalse(findInterestFirstCommand.equals(findInterestSecondCommand));
     }
 
     @Test
@@ -68,7 +68,7 @@ public class FindInterestCommandTest {
     @Test
     public void execute_oneKeyword_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsInterestPredicate predicate = preparePredicate("friends");
+        PersonContainsInterestPredicate predicate = preparePredicate("tennis");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class FindInterestCommandTest {
     @Test
     public void execute_multipleKeywords_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        PersonContainsInterestPredicate predicate = preparePredicate("friends owesMoney");
+        PersonContainsInterestPredicate predicate = preparePredicate("tennis netflix");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -88,7 +88,7 @@ public class FindInterestCommandTest {
     @Test
     public void execute_multipleCasingKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsInterestPredicate predicate = preparePredicate("friends FRIENDS fRieNDs");
+        PersonContainsInterestPredicate predicate = preparePredicate("tennis TENNIS TenNiS");
         FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -96,7 +96,7 @@ public class FindInterestCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonContainsInterestPredicate}.
      */
     private PersonContainsInterestPredicate preparePredicate(String userInput) {
         return new PersonContainsInterestPredicate(Arrays.asList(userInput.split("\\s+")));

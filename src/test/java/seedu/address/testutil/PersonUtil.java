@@ -13,9 +13,9 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.interest.*;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
-import seedu.address.model.interest.Tag;
 
 /**
  * A utility class for Person.
@@ -59,11 +59,11 @@ public class PersonUtil {
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.handle).append(" "));
         descriptor.getGitHub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.username).append(" "));
         if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+            Set<Interest> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_INTEREST);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_INTEREST).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_INTEREST).append(s.interestName).append(" "));
             }
         }
         if (descriptor.getMods().isPresent()) {

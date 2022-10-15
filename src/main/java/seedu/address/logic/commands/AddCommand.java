@@ -26,15 +26,15 @@ public class AddCommand extends Command {
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_INTEREST + "TAG]...\n"
+            + "[" + PREFIX_INTEREST + "INTEREST]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_TELEGRAM + "johnxyz "
             + PREFIX_GITHUB + "john_doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_INTEREST + "friends "
-            + PREFIX_INTEREST + "owesMoney";
+            + PREFIX_INTEREST + "tennis "
+            + PREFIX_INTEREST + "netflix";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

@@ -38,8 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_TELEGRAM_BOB = "bobby";
     public static final String VALID_GITHUB_AMY = "amybee";
     public static final String VALID_GITHUB_BOB = "bobby_choo";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_INTEREST_NETFLIX = "netflix";
+    public static final String VALID_INTEREST_TENNIS = "tennis";
     public static final String VALID_MOD_CS2100 = "CS2100";
     public static final String VALID_MOD_CS2103 = "CS2103";
     public static final String INVALID_MOD_CS2103 = "#CS2103";
@@ -54,8 +54,8 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_INTEREST + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_INTEREST + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_INTEREST + VALID_INTEREST_TENNIS;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_INTEREST + VALID_INTEREST_NETFLIX;
     public static final String MOD_DESC_CS2100 = " " + PREFIX_MOD + VALID_MOD_CS2100;
     public static final String MOD_DESC_CS2103 = " " + PREFIX_MOD + VALID_MOD_CS2103;
     public static final String INVALID_MOD_DESC_CS2103 = " " + PREFIX_MOD + INVALID_MOD_CS2103;
@@ -77,10 +77,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY)
-                .withGitHub(VALID_GITHUB_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withGitHub(VALID_GITHUB_AMY).withInterests(VALID_INTEREST_TENNIS).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
-                .withGitHub(VALID_GITHUB_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withGitHub(VALID_GITHUB_BOB).withInterests(VALID_INTEREST_NETFLIX, VALID_INTEREST_TENNIS).build();
     }
 
     /**
