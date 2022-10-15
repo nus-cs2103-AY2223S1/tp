@@ -278,14 +278,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                  | I want to …​                                        | So that I can…​                                                    |
 |----------|--------------------------|-----------------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | business owner           | choose which client and point-of-contact to delete | save only relevant clients and point-of-contact to remove clutter |
+| `* * *`  | business owner           | choose which client and company to delete | save only relevant clients and company to remove clutter |
 | `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application     |
 | `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                         |
-| `* * *`  | new business owner       | view a client's details and point-of-contact       | easily know who to contact for that client                        |
+| `* * *`  | new business owner       | view a client's details and company       | easily know who to contact for that client                        |
 | `* * *`  | busy business owner      | quickly retrieve the data of the client            | save time without having to go through multiple layers             |
 | `* * *`  | new business owner       | create a new client input                          | keep track of all the new clients I work with                    |
-| `* * *`  | new business owner       | add a point-of-contact to a client                 | know who to contact in that client                                |
-| `* *`    | careless business owner  | edit the details of point-of-contact                | correct the mistakes that I did                                    |
+| `* * *`  | new business owner       | add a company to a client                 | know who to contact in that client                                |
+| `* *`    | careless business owner  | edit the details of company                | correct the mistakes that I did                                    |
 | `* *`    | efficient business owner | sort the search result by price                     | quickly know which client I have made the most transaction with   |
 
 *{More to be added}*
@@ -332,14 +332,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: Add a Point-Of-Contact**
+**Use case: Add a company**
 
 **MSS**
 
 1. User requests to create a Mcdonalds client
 2. JeeqTracker creates and adds a client called McDonalds into JeeqTracker
-3. User requests to add Justin as a POC to Mcdonalds
-4. JeeqTracker adds Justin and his details into the Mcdonalds as the POC
+3. User requests to add Justin as a Company to Mcdonalds
+4. JeeqTracker adds Justin and his details into the Mcdonalds as the Company
 
     Use case ends.
 
@@ -349,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. JeeqTracker shows an error message.
 
         Use case resumes at 1.
-* 3a. User fails to provide all necessary details to create a POC.
+* 3a. User fails to provide all necessary details to create a Company.
     * 3a1. JeeqTracker shows an error message.
 
         Use case resumes at 2.
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 clients / point-of-contacts without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 clients / companies without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  JeeqTracker should respond within 2 seconds
 5.  The system should be usable by a business owner who has basic knowledge of how to use a computer

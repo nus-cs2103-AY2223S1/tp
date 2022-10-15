@@ -13,7 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
-import seedu.address.model.poc.Poc;
+import seedu.address.model.company.Company;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,12 +22,12 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
-    private static final String MESSAGE_DUPLICATE_POC = "Client contains duplicate poc(s).";
+    private static final String MESSAGE_DUPLICATE_COMPANY = "Client contains duplicate company(s).";
 
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedPoc> pocs = new ArrayList<>();
+    private final List<JsonAdaptedCompany> companies = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -35,9 +35,9 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("pocs") List<JsonAdaptedPoc> pocs) {
+                             @JsonProperty("companies") List<JsonAdaptedCompany> companies) {
         this.name = name;
-        this.pocs.addAll(pocs);
+        this.companies.addAll(companies);
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -50,7 +50,7 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
-        pocs.addAll(source.getPocList().stream().map(JsonAdaptedPoc::new).collect(Collectors.toList()));
+        companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -87,12 +87,12 @@ class JsonAdaptedClient {
 
         Client client = new Client(modelName, modelAddress, modelTags);
 
-        for (JsonAdaptedPoc jsonAdaptedPoc : pocs) {
-            Poc poc = jsonAdaptedPoc.toModelType();
-            if (client.hasPoc(poc)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_POC);
+        for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
+            Company company = jsonAdaptedCompany.toModelType();
+            if (client.hasCompany(company)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
             }
-            client.addPoc(poc);
+            client.addCompany(company);
         }
         return client;
     }

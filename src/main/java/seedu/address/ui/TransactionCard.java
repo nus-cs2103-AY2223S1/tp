@@ -27,7 +27,7 @@ public class TransactionCard extends UiPart<Region> {
     public final Transaction transaction;
 
     @FXML
-    private HBox pocCardPane;
+    private HBox companyCardPane;
     @FXML
     private Label id;
     @FXML

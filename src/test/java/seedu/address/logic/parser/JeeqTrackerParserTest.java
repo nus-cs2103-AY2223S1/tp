@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalCompany.ALICE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalPoc.ALICE;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 
 import java.util.Arrays;
@@ -41,8 +41,8 @@ import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.ClientUtil;
+import seedu.address.testutil.CompanyUtil;
 import seedu.address.testutil.EditClientDescriptorBuilder;
-import seedu.address.testutil.PocUtil;
 import seedu.address.testutil.TransactionUtil;
 
 public class JeeqTrackerParserTest {
@@ -113,7 +113,7 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_create() throws Exception {
         CreateCommand command = (CreateCommand) parser.parseCommand(
-                PocUtil.getCreateCommand(ALICE, INDEX_FIRST_CLIENT));
+                CompanyUtil.getCreateCommand(ALICE, INDEX_FIRST_CLIENT));
         assertEquals(new CreateCommand(INDEX_FIRST_CLIENT, ALICE), command);
     }
 

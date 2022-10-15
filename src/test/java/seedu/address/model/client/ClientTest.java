@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
-import static seedu.address.testutil.TypicalPoc.AMY;
-import static seedu.address.testutil.TypicalPoc.BENSON;
-import static seedu.address.testutil.TypicalPoc.ELLE;
+import static seedu.address.testutil.TypicalCompany.AMY;
+import static seedu.address.testutil.TypicalCompany.BENSON;
+import static seedu.address.testutil.TypicalCompany.ELLE;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,38 +19,38 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CreateCommand;
-import seedu.address.model.poc.Poc;
-import seedu.address.model.poc.UniquePocList;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.TransactionLog;
 import seedu.address.testutil.ClientBuilder;
-import seedu.address.testutil.PocBuilder;
+import seedu.address.testutil.CompanyBuilder;
 import seedu.address.testutil.TypicalClients;
-import seedu.address.testutil.TypicalPoc;
+import seedu.address.testutil.TypicalCompany;
 
 public class ClientTest {
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
-        UniquePocList pocs = new UniquePocList();
+        UniqueCompanyList companies = new UniqueCompanyList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
-                new Client(null, new Address(VALID_ADDRESS_BOB), tags, pocs, transactions));
+                new Client(null, new Address(VALID_ADDRESS_BOB), tags, companies, transactions));
     }
 
     @Test
     public void constructor_nullAddress_throwsNullPointerException() {
-        UniquePocList pocs = new UniquePocList();
+        UniqueCompanyList companies = new UniqueCompanyList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
-                new Client(new Name(VALID_NAME_BOB), null, tags, pocs, transactions));
+                new Client(new Name(VALID_NAME_BOB), null, tags, companies, transactions));
     }
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalPoc.ALICE));
+        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalCompany.ALICE));
     }
 
     @Test
@@ -87,22 +87,22 @@ public class ClientTest {
     }
 
     @Test
-    public void addPoc() {
+    public void addCompany() {
         Client aliceCopy = new ClientBuilder(ALICE).build();
-        Poc elleCopy = new PocBuilder(ELLE).build();
-        aliceCopy.addPoc(elleCopy);
-        assertTrue(aliceCopy.getPocs().contains(elleCopy));
+        Company elleCopy = new CompanyBuilder(ELLE).build();
+        aliceCopy.addCompany(elleCopy);
+        assertTrue(aliceCopy.getCompanies().contains(elleCopy));
 
-        assertFalse(aliceCopy.getPocs().contains(AMY));
+        assertFalse(aliceCopy.getCompanies().contains(AMY));
     }
 
     @Test
-    public void containsPoc() {
+    public void containsCompany() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
-        assertTrue(client.hasPoc(BENSON));
+        assertTrue(client.hasCompany(BENSON));
 
-        // Invalid Poc
-        assertFalse(client.hasPoc(AMY));
+        // Invalid Company
+        assertFalse(client.hasCompany(AMY));
     }
 
     @Test
@@ -140,6 +140,6 @@ public class ClientTest {
     public void toStringTest() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
-                + "#02-25; Tags: [owesMoney][friends]; POCs: Benson Meier; Total transactions: $0");
+                + "#02-25; Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: $0");
     }
 }

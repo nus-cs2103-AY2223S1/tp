@@ -12,7 +12,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Features](#features)
   * [Adding a client: `add`](#adding-a-client-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a point-of-contact: `create`](#creating-a-person-create)
+  * [Creating a company: `create`](#creating-a-person-create)
   * [Deleting a client: `delete`](#deleting-a-client--delete)
   * [Editing a client: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -48,11 +48,11 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all clients.
 
-   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the client at index 2.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainCompany t/owesMoney` : Creates a company named `James` linked to the client at index 2.
 
    * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of clients, and displays all its details (point-of-contact, transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of clients, and displays all its details (company, transactions).
 
   * **`clear`** : Deletes all clients with all their contacts and transactions.
 
@@ -90,13 +90,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 ### Adding a client: `add`
 
-Adds an empty client to the list without any POC (Point-Of-Contact) and transactions.
+Adds an empty client to the list without any Company and transactions.
 
 Format: `add n/NAME a/ADDRESS [t/TAG]...`
 
 * Tags are optional.
 * Multiple tags can be tagged to the client.
-* Use `create` command to add POC to the client.
+* Use `create` command to add Company to the client.
 
 Examples:
 * `add n/MacDonalds a/West Coast Park`
@@ -117,18 +117,18 @@ Example:
 
 ### Creating a Person: `create`
 
-Creates a new person (point-of-contact) for a specific client.
+Creates a new person (company) for a specific client.
 
 Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
 
 * Tags are optional.
-* Multiple tags can be tagged to the point-of-contact.
+* Multiple tags can be tagged to the company.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the client at index 1.
-* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainPoc` tags can also be added.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a company for the client at index 1.
+* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainCompany` tags can also be added.
 
 ### Deleting a client : `delete`
 
@@ -211,7 +211,7 @@ Examples:
 
 ### Viewing a client : `view`
 
-`view` displays the points of contact and transaction log of the specified client.
+`view` displays the companies and transaction log of the specified client.
 
 Format: `view INDEX`
 

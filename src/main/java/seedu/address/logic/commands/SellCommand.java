@@ -43,7 +43,7 @@ public class SellCommand extends Command {
     private final Transaction transaction;
 
     /**
-     * @param index of the client in the client list to add the POC to
+     * @param index of the client in the client list to add the Company to
      * @param transaction to be added
      */
     public SellCommand(Index index, Transaction transaction) {
