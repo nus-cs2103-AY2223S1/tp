@@ -55,12 +55,12 @@ public class CreateCommandTest {
     public void undo_commandExecuted_undoSuccessful() throws Exception{
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person toAdd = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(toAdd);
+        CreateCommand createCommand = new CreateCommand(toAdd);
 
-        addCommand.execute(modelStub);
-        CommandResult undoCommandResult = addCommand.undo(modelStub);
+        createCommand.execute(modelStub);
+        CommandResult undoCommandResult = createCommand.undo(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_UNDO, toAdd), undoCommandResult.getFeedbackToUser());
+        assertEquals(String.format(CreateCommand.MESSAGE_UNDO, toAdd), undoCommandResult.getFeedbackToUser());
         assertEquals(new ArrayList<Person>(), modelStub.personsAdded);
     }
 
@@ -68,13 +68,13 @@ public class CreateCommandTest {
     public void redo_commandUndone_redoSuccessful() throws Exception{
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person personToAdd = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(personToAdd);
+        CreateCommand createCommand = new CreateCommand(personToAdd);
 
-        addCommand.execute(modelStub);
-        addCommand.undo(modelStub);
-        CommandResult redoCommandResult = addCommand.redo(modelStub);
+        createCommand.execute(modelStub);
+        createCommand.undo(modelStub);
+        CommandResult redoCommandResult = createCommand.redo(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_REDO, personToAdd), redoCommandResult.getFeedbackToUser());
+        assertEquals(String.format(CreateCommand.MESSAGE_REDO, personToAdd), redoCommandResult.getFeedbackToUser());
         assertEquals(Collections.singletonList(personToAdd), modelStub.personsAdded);
     }
 

@@ -151,14 +151,14 @@ public class UpdateCommandTest {
         Person uneditedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON, descriptor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        editCommand.execute(model);
-        CommandResult commandResult = editCommand.undo(model);
+        updateCommand.execute(model);
+        CommandResult commandResult = updateCommand.undo(model);
 
-        assertEquals(String.format(EditCommand.MESSAGE_UNDO, uneditedPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(UpdateCommand.MESSAGE_UNDO, uneditedPerson), commandResult.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 
@@ -166,16 +166,16 @@ public class UpdateCommandTest {
     public void redo_commandUndone_redoSuccessful() throws Exception {
         Person editedPerson = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON, descriptor);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        editCommand.execute(model);
-        editCommand.undo(model);
-        CommandResult commandResult = editCommand.redo(model);
+        updateCommand.execute(model);
+        updateCommand.undo(model);
+        CommandResult commandResult = updateCommand.redo(model);
 
-        assertEquals(String.format(EditCommand.MESSAGE_REDO, editedPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(UpdateCommand.MESSAGE_REDO, editedPerson), commandResult.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 
