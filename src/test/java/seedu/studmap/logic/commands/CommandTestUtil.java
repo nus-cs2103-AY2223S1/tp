@@ -15,8 +15,8 @@ import java.util.List;
 
 import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.logic.commands.exceptions.CommandException;
-import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.student.NameContainsKeywordsPredicate;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.testutil.EditStudentDescriptorBuilder;

@@ -20,9 +20,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.studmap.commons.core.Messages;
 import seedu.studmap.commons.core.index.Index;
-import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.UserPrefs;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.tag.Tag;

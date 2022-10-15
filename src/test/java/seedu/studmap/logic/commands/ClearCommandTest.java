@@ -5,9 +5,9 @@ import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
+import seedu.studmap.model.StudMap;
 import seedu.studmap.model.UserPrefs;
 
 public class ClearCommandTest {

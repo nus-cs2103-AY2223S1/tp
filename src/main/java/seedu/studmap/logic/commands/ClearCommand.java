@@ -2,8 +2,8 @@ package seedu.studmap.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.studmap.model.StudMap;
 import seedu.studmap.model.Model;
+import seedu.studmap.model.StudMap;
 
 /**
  * Clears the student map.
