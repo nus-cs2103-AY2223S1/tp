@@ -14,7 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="FoodWhere" minWidth="650" minHeight="600" onCloseRequest="#handleExit">
+         title="FoodWhere" minWidth="850" minHeight="750" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/food-where_icon.png" />
   </icons>
