@@ -168,8 +168,9 @@ Format: `delete <name>`
 
 * Delete the entry of the person who has the given name.
 * Will not perform any operation if the name of the person does not exist.
-
-An optional argument `add` can be specified to complete erase all data in the book.
+* The `<name>` portion has to be the persons First or Last name in complete.
+* If the SectresBook contains persons with the same first or last name that has been input,
+the delete command will not execute but will return a list of all people with the given name.
 
 Format: `delete all`
 
