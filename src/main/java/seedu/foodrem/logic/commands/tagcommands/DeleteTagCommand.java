@@ -15,7 +15,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class DeleteTagCommand extends Command {
     private static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
-    private static final String MESSAGE_TAG_NOT_FOUND = "This tag does not exist in the FoodRem";
+    private static final String ERROR_NOT_FOUND = "This tag does not exist in the FoodRem";
 
     private final Tag toDelete;
 
@@ -32,7 +32,7 @@ public class DeleteTagCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasTag(toDelete)) {
-            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+            throw new CommandException(ERROR_NOT_FOUND);
         }
 
         model.deleteTag(toDelete);
