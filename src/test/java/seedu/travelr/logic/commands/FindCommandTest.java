@@ -1,23 +1,27 @@
 package seedu.travelr.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.model.Model;
-import seedu.travelr.model.ModelManager;
-import seedu.travelr.model.UserPrefs;
-import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.travelr.commons.core.Messages.MESSAGE_TRIPS_LISTED_OVERVIEW;
 import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.travelr.testutil.TypicalTrips.EUROPE;
 import static seedu.travelr.testutil.TypicalTrips.TAIWAN;
 import static seedu.travelr.testutil.TypicalTrips.THAILAND;
-import static seedu.travelr.testutil.TypicalTrips.EUROPE;
 import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
+import seedu.travelr.model.UserPrefs;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
+
+
+
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

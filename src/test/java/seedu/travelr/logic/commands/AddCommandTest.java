@@ -1,7 +1,20 @@
 package seedu.travelr.logic.commands;
 
-import javafx.collections.ObservableList;
+
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.travelr.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.AddressBook;
@@ -11,17 +24,6 @@ import seedu.travelr.model.ReadOnlyUserPrefs;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.travelr.testutil.Assert.assertThrows;
 
 public class AddCommandTest {
 
@@ -137,7 +139,6 @@ public class AddCommandTest {
         public boolean hasEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
-        
         @Override
         public void deleteEvent(Event event) {
             throw new AssertionError("This method should not be called.");

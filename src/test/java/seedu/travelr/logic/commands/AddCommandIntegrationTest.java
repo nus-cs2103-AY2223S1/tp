@@ -1,16 +1,18 @@
 package seedu.travelr.logic.commands;
 
+import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ModelManager;
 import seedu.travelr.model.UserPrefs;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
 
-import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.

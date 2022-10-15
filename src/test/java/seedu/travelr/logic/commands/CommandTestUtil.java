@@ -1,5 +1,16 @@
 package seedu.travelr.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EVENT;
+import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.travelr.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.AddressBook;
@@ -8,16 +19,6 @@ import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.EditTripDescriptorBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_DESC;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_EVENT;
-import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.travelr.testutil.Assert.assertThrows;
 
 /**
  * Contains helper methods for testing commands.

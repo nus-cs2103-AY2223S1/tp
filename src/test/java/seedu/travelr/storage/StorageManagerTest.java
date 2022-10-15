@@ -1,18 +1,19 @@
 package seedu.travelr.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.UserPrefs;
-
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 public class StorageManagerTest {
 
@@ -23,8 +24,10 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        seedu.travelr.storage.JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
-        seedu.travelr.storage.JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        seedu.travelr.storage.JsonAddressBookStorage addressBookStorage =
+                new JsonAddressBookStorage(getTempFilePath("ab"));
+        seedu.travelr.storage.JsonUserPrefsStorage userPrefsStorage =
+                new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
 

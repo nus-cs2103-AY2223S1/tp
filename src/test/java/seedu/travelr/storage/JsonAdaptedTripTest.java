@@ -1,18 +1,18 @@
 package seedu.travelr.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.model.component.Description;
-import seedu.travelr.model.component.Title;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.travelr.storage.JsonAdaptedTrip.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.MALAYSIA;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.commons.exceptions.IllegalValueException;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 
 public class JsonAdaptedTripTest {
     private static final String INVALID_TITLE = "R@chel";
@@ -48,7 +48,7 @@ public class JsonAdaptedTripTest {
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedTrip trip = new JsonAdaptedTrip(VALID_TITLE, null,  VALID_EVENTS);
+        JsonAdaptedTrip trip = new JsonAdaptedTrip(VALID_TITLE, null, VALID_EVENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, trip::toModelType);
     }

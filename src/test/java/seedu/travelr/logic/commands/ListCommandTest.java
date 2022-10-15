@@ -1,15 +1,17 @@
 package seedu.travelr.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.travelr.model.Model;
-import seedu.travelr.model.ModelManager;
-import seedu.travelr.model.UserPrefs;
-
 import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.travelr.logic.commands.CommandTestUtil.showTripAtIndex;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
+import seedu.travelr.model.UserPrefs;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

@@ -1,16 +1,17 @@
 package seedu.travelr.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
-import seedu.travelr.testutil.EditTripDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.travelr.logic.commands.CommandTestUtil.DESC_ANTARCTICA;
 import static seedu.travelr.logic.commands.CommandTestUtil.DESC_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_ANTARCTICA;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_ANTARCTICA;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
+import seedu.travelr.testutil.EditTripDescriptorBuilder;
 
 public class EditTripDescriptorTest {
 
@@ -33,7 +34,8 @@ public class EditTripDescriptorTest {
         assertFalse(DESC_GERMANY.equals(DESC_ANTARCTICA));
 
         // different title -> returns false
-        EditTripDescriptor editedAmy = new EditTripDescriptorBuilder(DESC_GERMANY).withTitle(VALID_TITLE_ANTARCTICA).build();
+        EditTripDescriptor editedAmy = new EditTripDescriptorBuilder(DESC_GERMANY).withTitle(
+                VALID_TITLE_ANTARCTICA).build();
         assertFalse(DESC_GERMANY.equals(editedAmy));
 
         // different description -> returns false

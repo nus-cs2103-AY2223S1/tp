@@ -1,19 +1,20 @@
 package seedu.travelr.storage;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.travelr.commons.core.GuiSettings;
-import seedu.travelr.commons.exceptions.DataConversionException;
-import seedu.travelr.model.UserPrefs;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.travelr.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.travelr.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.travelr.commons.core.GuiSettings;
+import seedu.travelr.commons.exceptions.DataConversionException;
+import seedu.travelr.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
 

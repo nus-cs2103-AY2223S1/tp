@@ -1,16 +1,16 @@
 package seedu.travelr.testutil;
 
-import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
-import seedu.travelr.model.component.Description;
-import seedu.travelr.model.component.Title;
-import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Trip;
+import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
+import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * A utility class to help with building EditTripDescriptor objects.
@@ -58,7 +58,8 @@ public class EditTripDescriptorBuilder {
      * that we are building.
      */
     public EditTripDescriptorBuilder withEvents(String... events) {
-        Set<Event> eventSet = Stream.of(events).map(title -> new Event(new Title(title), new Description(EVENT_DESCRIPTION_PLACEHOLDER))).collect(Collectors.toSet());
+        Set<Event> eventSet = Stream.of(events).map(title -> new Event(new Title(title),
+                new Description(EVENT_DESCRIPTION_PLACEHOLDER))).collect(Collectors.toSet());
         descriptor.setEvents(eventSet);
         return this;
     }

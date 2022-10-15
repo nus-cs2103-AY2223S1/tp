@@ -1,13 +1,13 @@
 package seedu.travelr.testutil;
 
-import seedu.travelr.model.component.Description;
-import seedu.travelr.model.component.Title;
-import seedu.travelr.model.util.SampleDataUtil;
-import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Trip;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Trip;
+import seedu.travelr.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Trip objects.
@@ -46,7 +46,6 @@ public class TripBuilder {
         this.title = new Title(title);
         return this;
     }
-    
     /**
      * Sets the {@code Email} of the {@code Trip} that we are building.
      */
@@ -54,7 +53,6 @@ public class TripBuilder {
         this.description = new Description(description);
         return this;
     }
-    
     /**
      * Parses the {@code events} into a {@code Set<Event>} and set it to the {@code Trip} that we are building.
      */
@@ -62,7 +60,6 @@ public class TripBuilder {
         this.events = SampleDataUtil.getEventSet(events);
         return this;
     }
-    
     public Trip build() {
         return new Trip(title, description, events);
     }

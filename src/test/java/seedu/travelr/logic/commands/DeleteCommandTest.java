@@ -1,13 +1,5 @@
 package seedu.travelr.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.commons.core.Messages;
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.model.Model;
-import seedu.travelr.model.ModelManager;
-import seedu.travelr.model.UserPrefs;
-import seedu.travelr.model.trip.Trip;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -16,6 +8,15 @@ import static seedu.travelr.logic.commands.CommandTestUtil.showTripAtIndex;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_SECOND_TRIP;
 import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.commons.core.Messages;
+import seedu.travelr.commons.core.index.Index;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.ModelManager;
+import seedu.travelr.model.UserPrefs;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

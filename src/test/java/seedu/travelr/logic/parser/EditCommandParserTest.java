@@ -1,25 +1,16 @@
 package seedu.travelr.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.logic.commands.EditCommand;
-import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
-import seedu.travelr.model.component.Description;
-import seedu.travelr.model.component.Title;
-import seedu.travelr.model.event.Event;
-import seedu.travelr.testutil.EditTripDescriptorBuilder;
-
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_EATING;
 import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_SIGHTSEEING;
 import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_EVENT_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GERMANY;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_EATING;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_GERMANY;
@@ -29,6 +20,16 @@ import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_SECOND_TRIP;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_THIRD_TRIP;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.commons.core.index.Index;
+import seedu.travelr.logic.commands.EditCommand;
+import seedu.travelr.logic.commands.EditCommand.EditTripDescriptor;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.testutil.EditTripDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -69,14 +70,18 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid description
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
+        // invalid description
         assertParseFailure(parser, "1" + INVALID_EVENT_DESC, Event.MESSAGE_CONSTRAINTS); // invalid event
 
         // while parsing {@code PREFIX_EVENT} alone will reset the events of the {@code Trip} being edited,
         // parsing it together with a valid event results in error
-        assertParseFailure(parser, "1" + EVENT_DESC_EATING + EVENT_DESC_SIGHTSEEING + EVENT_EMPTY, Event.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + EVENT_DESC_EATING + EVENT_EMPTY + EVENT_DESC_SIGHTSEEING, Event.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + EVENT_EMPTY + EVENT_DESC_EATING + EVENT_DESC_SIGHTSEEING, Event.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + EVENT_DESC_EATING + EVENT_DESC_SIGHTSEEING + EVENT_EMPTY,
+                Event.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + EVENT_DESC_EATING + EVENT_EMPTY + EVENT_DESC_SIGHTSEEING,
+                Event.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + EVENT_EMPTY + EVENT_DESC_EATING + EVENT_DESC_SIGHTSEEING,
+                Event.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC,
@@ -151,7 +156,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TRIP;
         String userInput = targetIndex.getOneBased() + INVALID_TITLE_DESC + VALID_DESCRIPTION_ANTARCTICA;
-        EditTripDescriptor descriptor = new EditTripDescriptorBuilder().withDescription(VALID_DESCRIPTION_ANTARCTICA).build();
+        EditTripDescriptor descriptor = new EditTripDescriptorBuilder().withDescription(
+                VALID_DESCRIPTION_ANTARCTICA).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

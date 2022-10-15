@@ -1,33 +1,34 @@
 package seedu.travelr.logic.parser;
 
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_EATING;
+import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_SIGHTSEEING;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_EVENT_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_EATING;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_ANTARCTICA;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.travelr.testutil.TypicalTrips.ANTARCTICA;
+import static seedu.travelr.testutil.TypicalTrips.GERMANY;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
-
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
-import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_ANTARCTICA;
-import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
-import static seedu.travelr.logic.commands.CommandTestUtil.INVALID_EVENT_DESC;
-import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
-import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_ANTARCTICA;
-import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.travelr.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_EATING;
-import static seedu.travelr.logic.commands.CommandTestUtil.EVENT_DESC_SIGHTSEEING;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_ANTARCTICA;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_EATING;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
-import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.travelr.testutil.TypicalTrips.GERMANY;
-import static seedu.travelr.testutil.TypicalTrips.ANTARCTICA;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -57,7 +58,8 @@ public class AddCommandParserTest {
                 + DESCRIPTION_DESC_ANTARCTICA + EVENT_DESC_EATING, new AddCommand(expectedTrip));
 
         // multiple events - all accepted
-        Trip expectedTripMultipleEvents = new TripBuilder(ANTARCTICA).withEvents(VALID_EVENT_EATING, VALID_EVENT_SIGHTSEEING)
+        Trip expectedTripMultipleEvents = new TripBuilder(ANTARCTICA).withEvents(
+                VALID_EVENT_EATING, VALID_EVENT_SIGHTSEEING)
                 .build();
         assertParseSuccess(parser, TITLE_DESC_ANTARCTICA + DESCRIPTION_DESC_ANTARCTICA
                 + EVENT_DESC_SIGHTSEEING + EVENT_DESC_EATING, new AddCommand(expectedTripMultipleEvents));

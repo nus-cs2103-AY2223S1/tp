@@ -1,13 +1,13 @@
 package seedu.travelr.testutil;
 
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.model.Model;
-import seedu.travelr.model.trip.Trip;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import seedu.travelr.commons.core.index.Index;
+import seedu.travelr.model.Model;
+import seedu.travelr.model.trip.Trip;
 
 /**
  * A utility class for test cases.

@@ -1,14 +1,15 @@
 package seedu.travelr.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.logic.commands.FindCommand;
-import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
-
-import java.util.Arrays;
-
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.logic.commands.FindCommand;
+import seedu.travelr.model.trip.TitleContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

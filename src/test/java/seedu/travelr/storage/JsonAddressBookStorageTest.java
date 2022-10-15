@@ -1,25 +1,27 @@
 package seedu.travelr.storage;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-import seedu.travelr.commons.exceptions.DataConversionException;
-import seedu.travelr.model.AddressBook;
-import seedu.travelr.model.ReadOnlyAddressBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalTrips.EUROPE;
+import static seedu.travelr.testutil.TypicalTrips.MARS;
+import static seedu.travelr.testutil.TypicalTrips.MOON;
+import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.travelr.testutil.Assert.assertThrows;
-import static seedu.travelr.testutil.TypicalTrips.EUROPE;
-import static seedu.travelr.testutil.TypicalTrips.MOON;
-import static seedu.travelr.testutil.TypicalTrips.MARS;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import seedu.travelr.commons.exceptions.DataConversionException;
+import seedu.travelr.model.AddressBook;
+import seedu.travelr.model.ReadOnlyAddressBook;
 
 public class JsonAddressBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonAddressBookStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -30,7 +32,8 @@ public class JsonAddressBookStorageTest {
     }
 
     private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new seedu.travelr.storage.JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+        return new seedu.travelr.storage.JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(
+                addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -63,7 +66,8 @@ public class JsonAddressBookStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         AddressBook original = getTypicalAddressBook();
-        seedu.travelr.storage.JsonAddressBookStorage jsonAddressBookStorage = new seedu.travelr.storage.JsonAddressBookStorage(filePath);
+        seedu.travelr.storage.JsonAddressBookStorage jsonAddressBookStorage =
+                new seedu.travelr.storage.JsonAddressBookStorage(filePath);
 
         // Save in new file and read back
         jsonAddressBookStorage.saveAddressBook(original, filePath);

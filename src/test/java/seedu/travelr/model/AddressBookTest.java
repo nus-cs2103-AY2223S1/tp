@@ -1,18 +1,5 @@
 package seedu.travelr.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Trip;
-import seedu.travelr.model.trip.exceptions.DuplicateTripException;
-import seedu.travelr.testutil.TripBuilder;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,6 +8,20 @@ import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEI
 import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.SUN;
 import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.travelr.model.event.Event;
+import seedu.travelr.model.trip.Trip;
+import seedu.travelr.model.trip.exceptions.DuplicateTripException;
+import seedu.travelr.testutil.TripBuilder;
 
 public class AddressBookTest {
 
@@ -46,8 +47,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateTrips_throwsDuplicateTripException() {
         // Two trips with the same identity fields
-        Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(VALID_EVENT_SIGHTSEEING)
-                .build();
+        Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(
+                VALID_EVENT_SIGHTSEEING).build();
         List<Trip> newTrips = Arrays.asList(SUN, editedAlice);
         AddressBookStub newData = new AddressBookStub(newTrips);
 
@@ -73,8 +74,8 @@ public class AddressBookTest {
     @Test
     public void hasTrip_tripWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addTrip(SUN);
-        Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(VALID_EVENT_SIGHTSEEING)
-                .build();
+        Trip editedAlice = new TripBuilder(SUN).withDescription(VALID_DESCRIPTION_ANTARCTICA).withEvents(
+                VALID_EVENT_SIGHTSEEING).build();
         assertTrue(addressBook.hasTrip(editedAlice));
     }
 

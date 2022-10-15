@@ -1,9 +1,9 @@
 package seedu.travelr.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import seedu.travelr.logic.commands.Command;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Contains helper methods for testing command parsers.

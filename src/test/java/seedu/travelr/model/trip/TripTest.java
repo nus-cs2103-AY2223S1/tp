@@ -1,16 +1,17 @@
 package seedu.travelr.model.trip;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.testutil.TripBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
-import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ANTARCTICA;
+import static seedu.travelr.logic.commands.CommandTestUtil.VALID_EVENT_SIGHTSEEING;
 import static seedu.travelr.logic.commands.CommandTestUtil.VALID_TITLE_ANTARCTICA;
+import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.ANTARCTICA;
 import static seedu.travelr.testutil.TypicalTrips.GERMANY;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.testutil.TripBuilder;
 
 public class TripTest {
 

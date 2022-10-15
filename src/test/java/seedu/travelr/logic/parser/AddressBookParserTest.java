@@ -1,6 +1,18 @@
 package seedu.travelr.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.commands.ClearCommand;
 import seedu.travelr.logic.commands.DeleteCommand;
@@ -16,17 +28,6 @@ import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.EditTripDescriptorBuilder;
 import seedu.travelr.testutil.TripBuilder;
 import seedu.travelr.testutil.TripUtil;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.travelr.testutil.Assert.assertThrows;
-import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
 
 public class AddressBookParserTest {
 

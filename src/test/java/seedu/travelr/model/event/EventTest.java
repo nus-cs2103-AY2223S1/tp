@@ -1,9 +1,9 @@
 package seedu.travelr.model.event;
 
-import org.junit.jupiter.api.Test;
-
 import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 import static seedu.travelr.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
@@ -18,7 +18,8 @@ public class EventTest {
     @Test
     public void constructor_invalidEventTitle_throwsIllegalArgumentException() {
         String invalidEventTitle = "";
-        assertThrows(IllegalArgumentException.class, () -> new Event(new Title(invalidEventTitle), new Description(EVENT_DESCRIPTION_PLACEHOLDER)));
+        assertThrows(IllegalArgumentException.class, () -> new Event(new Title(invalidEventTitle),
+                new Description(EVENT_DESCRIPTION_PLACEHOLDER)));
     }
 
     @Test

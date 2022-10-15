@@ -1,8 +1,8 @@
 package seedu.travelr.model;
 
-import org.junit.jupiter.api.Test;
-
 import static seedu.travelr.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
 
 public class UserPrefsTest {
 

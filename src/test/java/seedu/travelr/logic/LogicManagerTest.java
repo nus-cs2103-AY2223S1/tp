@@ -1,8 +1,20 @@
 package seedu.travelr.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX;
+import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
+import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
+import static seedu.travelr.testutil.Assert.assertThrows;
+import static seedu.travelr.testutil.TypicalTrips.GERMANY;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.travelr.logic.commands.AddCommand;
 import seedu.travelr.logic.commands.CommandResult;
 import seedu.travelr.logic.commands.ListCommand;
@@ -17,17 +29,6 @@ import seedu.travelr.storage.JsonAddressBookStorage;
 import seedu.travelr.storage.JsonUserPrefsStorage;
 import seedu.travelr.storage.StorageManager;
 import seedu.travelr.testutil.TripBuilder;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_TRIP_DISPLAYED_INDEX;
-import static seedu.travelr.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.travelr.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GERMANY;
-import static seedu.travelr.logic.commands.CommandTestUtil.TITLE_DESC_GERMANY;
-import static seedu.travelr.testutil.Assert.assertThrows;
-import static seedu.travelr.testutil.TypicalTrips.GERMANY;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");

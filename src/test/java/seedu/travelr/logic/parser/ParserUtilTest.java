@@ -1,22 +1,23 @@
 package seedu.travelr.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.component.Description;
-import seedu.travelr.model.component.Title;
-import seedu.travelr.model.event.Event;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.travelr.logic.parser.ParserUtil.EVENT_DESCRIPTION_PLACEHOLDER;
 import static seedu.travelr.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalIndexes.INDEX_FIRST_TRIP;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.Event;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -137,7 +138,9 @@ public class ParserUtilTest {
     @Test
     public void parseEvents_collectionWithValidEvents_returnsEventSet() throws Exception {
         Set<Event> actualEventSet = ParserUtil.parseEvents(Arrays.asList(VALID_EVENT_1, VALID_EVENT_2));
-        Set<Event> expectedEventSet = new HashSet<Event>(Arrays.asList(new Event(new Title(VALID_EVENT_1), new Description(EVENT_DESCRIPTION_PLACEHOLDER)), new Event(new Title(VALID_EVENT_2), new Description(EVENT_DESCRIPTION_PLACEHOLDER))));
+        Set<Event> expectedEventSet = new HashSet<Event>(Arrays.asList(new Event(new Title(VALID_EVENT_1),
+                new Description(EVENT_DESCRIPTION_PLACEHOLDER)), new Event(new Title(VALID_EVENT_2),
+                    new Description(EVENT_DESCRIPTION_PLACEHOLDER))));
 
         assertEquals(expectedEventSet, actualEventSet);
     }
