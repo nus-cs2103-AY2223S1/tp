@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.stream.Stream;
@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.GraphType;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -21,15 +22,16 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_MONTH);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_GRAPH);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TYPE, PREFIX_MONTH) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_TYPE, PREFIX_GRAPH) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
         EntryType entryType = ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get());
+        GraphType graphType = ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get());
 
-        return new ViewCommand(entryType);
+        return new ViewCommand(entryType, graphType);
     }
 
     /**

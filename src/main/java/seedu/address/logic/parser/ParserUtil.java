@@ -11,6 +11,7 @@ import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.GraphType;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,6 +63,21 @@ public class ParserUtil {
             throw new ParseException(EntryType.MESSAGE_CONSTRAINTS);
         }
         return new EntryType(trimmedEntryType);
+    }
+
+    /**
+     * Parses a {@code String graphType} into a {@code GraphType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code graphType} is invalid.
+     */
+    public static GraphType parseGraphType(String graphType) throws ParseException {
+        requireNonNull(graphType);
+        String trimmedGraphType = graphType.trim();
+        if (!GraphType.isValidGraphType(trimmedGraphType)) {
+            throw new ParseException(GraphType.MESSAGE_CONSTRAINTS);
+        }
+        return new GraphType(trimmedGraphType);
     }
 
     /**
