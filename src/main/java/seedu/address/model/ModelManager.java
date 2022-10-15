@@ -12,8 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.model.student.Student;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Student;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 

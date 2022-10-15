@@ -2,8 +2,8 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.model.student.Student;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Student;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 

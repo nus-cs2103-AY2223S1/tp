@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.model.student.Student;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Student;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 

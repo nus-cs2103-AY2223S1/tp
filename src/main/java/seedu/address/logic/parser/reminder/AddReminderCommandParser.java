@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -33,7 +32,7 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
 
         ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION);
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
         ReminderName name = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
