@@ -24,7 +24,27 @@ public class ClassTest {
     @Test
     public void isInvalidClassString() {
         assertFalse(Class.isValidClassString("2022-05-05 1200 1300"));
+        assertFalse(Class.isValidClassString("1200-1300"));
+        assertFalse(Class.isValidClassString("2022-05-05"));
         assertFalse(Class.isValidClassString(""));
+    }
+
+    @Test
+    public void isValidFlexibleClassString() {
+        assertTrue(Class.isValidFlexibleClassString("Mon 1330-1400"));
+        assertTrue(Class.isValidFlexibleClassString("mon 1330-1400"));
+        assertTrue(Class.isValidFlexibleClassString("Thu 1330-1400"));
+    }
+
+    @Test
+    public void isInvalidFlexibleClassString() {
+        assertFalse(Class.isValidFlexibleClassString("tues 1200-1300"));
+        assertFalse(Class.isValidFlexibleClassString("monday 1200-1300"));
+        assertFalse(Class.isValidFlexibleClassString("thur 1200-1300"));
+        assertFalse(Class.isValidFlexibleClassString("Thur 1200-1300"));
+        assertFalse(Class.isValidFlexibleClassString("Thursday 1200-1300"));
+        assertFalse(Class.isValidFlexibleClassString("1200-1300"));
+        assertFalse(Class.isValidFlexibleClassString(""));
     }
 
     @Test
@@ -34,7 +54,7 @@ public class ClassTest {
         LocalTime validEndTime = LocalTime.of(23, 59);
         String validClassDateTimeString = "2022-10-11 0000-2359";
         Class validClass = new Class(validDate, validStartTime, validEndTime, validClassDateTimeString);
-        String expectedValidToStringResult = "11 Oct 2022 0AM-11.59PM";
+        String expectedValidToStringResult = "11 Oct 2022 12AM-11.59PM";
         assertTrue(validClass.toString().equals(expectedValidToStringResult));
 
         Class emptyClass = new Class();
@@ -48,7 +68,7 @@ public class ClassTest {
         LocalTime validEndTime = LocalTime.of(23, 59);
         String validClassDateTimeString = "2022-10-11 0000-2359";
         Class validClass = new Class(validDate, validStartTime, validEndTime, validClassDateTimeString);
-        String expectedTimeString = "0AM-11.59PM";
+        String expectedTimeString = "12AM-11.59PM";
         assertTrue(validClass.toTimeString().equals(expectedTimeString));
 
         Class emptyClass = new Class();

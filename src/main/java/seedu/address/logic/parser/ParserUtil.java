@@ -97,7 +97,7 @@ public class ParserUtil {
      * Parses a {@code String nokPhone} into a {@code NokPhone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code NokPhone} is invalid.
+     * @throws ParseException if the given {@code nokPhone} is invalid.
      */
     public static NokPhone parseNokPhone(String nokPhone) throws ParseException {
         requireNonNull(nokPhone);
@@ -142,7 +142,7 @@ public class ParserUtil {
      * Parses a {@code String classDatetime} into a {@code Class}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTime} is invalid.
+     * @throws ParseException if the given {@code classDateTime} is invalid.
      */
     public static Class parseClass(String classDatetime) throws ParseException {
         requireNonNull(classDatetime);

@@ -131,6 +131,9 @@ public class Class {
                 time += hour + "." + min + "PM";
             }
         } else {
+            if (hour == 0) {
+                hour = 12;
+            }
             if (min == 0) {
                 time += hour + "AM";
             } else if (min < 10) {
