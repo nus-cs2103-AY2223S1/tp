@@ -1,14 +1,11 @@
 package seedu.foodrem.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
-import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
-import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
-import seedu.foodrem.logic.commands.itemcommands.DecrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
@@ -85,7 +82,15 @@ public enum CommandWord {
     DECREMENT_COMMAND("dec") {
         @Override
         public String getUsage() {
-            return DecrementCommand.getUsage();
+            return getCommandWord()
+                    + ": Decrements the quantity of the item identified by the "
+                    + "index number used in the displayed item list.\n"
+                    + "If a quantity is not provided, the item quantity will be decremented by 1. \n"
+                    + "Parameters:\n"
+                    + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
+                    + "Example:\n"
+                    + getCommandWord() + " 10\n"
+                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
         }
     },
     SORT_COMMAND("sort") {
