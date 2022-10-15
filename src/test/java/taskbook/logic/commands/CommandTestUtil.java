@@ -8,14 +8,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import taskbook.commons.core.index.Index;
+import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.CliSyntax;
 import taskbook.model.Model;
 import taskbook.model.TaskBook;
 import taskbook.model.person.NameContainsKeywordsPredicate;
 import taskbook.model.person.Person;
+import taskbook.model.task.EditTaskDescriptor;
+import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.Assert;
 import taskbook.testutil.EditPersonDescriptorBuilder;
+import taskbook.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -69,8 +73,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final ContactEditCommand.EditPersonDescriptor DESC_AMY;
+    public static final ContactEditCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -79,6 +83,24 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditTaskDescriptor TASK_WORK;
+    public static final EditTaskDescriptor TASK_STUDY;
+
+    static {
+        TASK_WORK = new EditTaskDescriptorBuilder()
+            .withName(VALID_NAME_AMY)
+            .withAssignment(Assignment.FROM)
+            .withIsDone(false)
+            .withDate(VALID_DATE_1999)
+            .build();
+        TASK_STUDY = new EditTaskDescriptorBuilder()
+            .withName(VALID_NAME_BOB)
+            .withAssignment(Assignment.TO)
+            .withIsDone(true)
+            .withDate(VALID_DATE_2022)
+            .build();
     }
 
     /**
@@ -116,11 +138,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        TaskBook expectedtaskBook = new TaskBook(actualModel.getTaskBook());
+        TaskBook expectedTaskBook = new TaskBook(actualModel.getTaskBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         Assert.assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedtaskBook, actualModel.getTaskBook());
+        assertEquals(expectedTaskBook, actualModel.getTaskBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**

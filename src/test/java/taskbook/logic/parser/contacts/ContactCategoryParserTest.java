@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
+import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
 
 public class ContactCategoryParserTest {
@@ -32,5 +33,12 @@ public class ContactCategoryParserTest {
         String arguments = "";
         Command command = ContactCategoryParser.parseCommand(ContactListCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof ContactListCommand);
+    }
+
+    @Test
+    public void parseCommand_edit() throws Exception {
+        String arguments = " i/1 n/Editing name";
+        Command command = ContactCategoryParser.parseCommand(ContactEditCommand.COMMAND_WORD, arguments);
+        assertTrue(command instanceof ContactEditCommand);
     }
 }

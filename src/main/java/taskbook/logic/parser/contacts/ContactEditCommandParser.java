@@ -1,8 +1,9 @@
-package taskbook.logic.parser;
+package taskbook.logic.parser.contacts;
 
 import static java.util.Objects.requireNonNull;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static taskbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static taskbook.logic.parser.CliSyntax.PREFIX_INDEX;
 import static taskbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static taskbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -14,35 +15,46 @@ import java.util.Set;
 
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
-import taskbook.logic.commands.EditCommand;
+import taskbook.logic.commands.contacts.ContactEditCommand;
+import taskbook.logic.parser.ArgumentMultimap;
+import taskbook.logic.parser.ArgumentTokenizer;
+import taskbook.logic.parser.Parser;
+import taskbook.logic.parser.ParserUtil;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new ContactEditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class ContactEditCommandParser implements Parser<ContactEditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public ContactEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        Index index;
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
+            args, PREFIX_INDEX, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        if (argMultimap.getValue(PREFIX_INDEX).isEmpty()) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactEditCommand.MESSAGE_USAGE));
         }
 
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
+        String stringIndex = argMultimap.getValue(PREFIX_INDEX).get();
+        Index index;
+        try {
+            int integerIndex = Integer.parseInt(stringIndex);
+            index = Index.fromOneBased(integerIndex);
+        } catch (NumberFormatException ne) {
+            throw new ParseException(
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactEditCommand.MESSAGE_USAGE), ne);
+        }
+
+        ContactEditCommand.EditPersonDescriptor editPersonDescriptor = new ContactEditCommand.EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -58,10 +70,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(ContactEditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new ContactEditCommand(index, editPersonDescriptor);
     }
 
     /**

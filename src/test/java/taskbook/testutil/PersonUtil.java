@@ -2,9 +2,9 @@ package taskbook.testutil;
 
 import java.util.Set;
 
-import taskbook.logic.commands.EditCommand;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
+import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.logic.parser.CliSyntax;
 import taskbook.model.person.Person;
 import taskbook.model.tag.Tag;
@@ -46,7 +46,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCommand.EditPersonDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(ContactEditCommand.EditPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(CliSyntax.PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(CliSyntax.PREFIX_PHONE).append(phone.value).append(" "));

@@ -1,8 +1,10 @@
-package taskbook.logic.commands;
+package taskbook.logic.commands.contacts;
 
 import static java.util.Objects.requireNonNull;
+import static taskbook.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static taskbook.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static taskbook.logic.parser.CliSyntax.PREFIX_INDEX;
 import static taskbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static taskbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,9 +15,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.commons.util.CollectionUtil;
+import taskbook.logic.commands.Command;
+import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.Model;
 import taskbook.model.person.Address;
@@ -28,22 +31,22 @@ import taskbook.model.tag.Tag;
 /**
  * Edits the details of an existing person in the task book.
  */
-public class EditCommand extends Command {
+public class ContactEditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+        + "by the index number used in the displayed person list. "
+        + "Existing values will be overwritten by the input values.\n"
+        + "Parameters: " + PREFIX_INDEX + "INDEX (must be a positive integer) "
+        + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_EMAIL + "EMAIL] "
+        + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
+        + PREFIX_PHONE + "91234567 "
+        + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -56,7 +59,7 @@ public class EditCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public ContactEditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -70,7 +73,7 @@ public class EditCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
@@ -109,12 +112,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof ContactEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        ContactEditCommand e = (ContactEditCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

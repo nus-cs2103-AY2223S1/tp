@@ -27,6 +27,13 @@ import taskbook.model.task.enums.Assignment;
 public class TypicalTaskBook {
 
     // Typical Persons
+    /**
+    * Do not add any tasks to Zed. Leave Zed as the *first* element in {@link TypicalTaskBook#getTypicalTasks()} .
+    * Changing these will break the testcases which rely on Zed *not* having tests and being the first element.
+    */
+    public static final Person ZED = new PersonBuilder().withName("Zed HatesTasks")
+        .withAddress("NUS School of Computing, COM1, 13, Computing Dr, 117417").withEmail("zed@example.com")
+        .withPhone("91234567").build();
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
@@ -91,7 +98,7 @@ public class TypicalTaskBook {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ZED, ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
     public static List<Task> getTypicalTasks() {

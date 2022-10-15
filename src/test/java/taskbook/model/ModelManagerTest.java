@@ -61,12 +61,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void settaskBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTaskBookFilePath_nullPath_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> modelManager.setTaskBookFilePath(null));
     }
 
     @Test
-    public void settaskBookFilePath_validPath_setstaskBookFilePath() {
+    public void setTaskBookFilePath_validPath_setsTaskBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTaskBookFilePath(path);
         assertEquals(path, modelManager.getTaskBookFilePath());
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotIntaskBook_returnsFalse() {
+    public void hasPerson_personNotInTaskBook_returnsFalse() {
         assertFalse(modelManager.hasPerson(TypicalTaskBook.ALICE));
     }
 
     @Test
-    public void hasPerson_personIntaskBook_returnsTrue() {
+    public void hasPerson_personInTaskBook_returnsTrue() {
         modelManager.addPerson(TypicalTaskBook.ALICE);
         assertTrue(modelManager.hasPerson(TypicalTaskBook.ALICE));
     }
@@ -94,8 +94,25 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void findPerson_personNotIntaskBook_returnsNull() {
+    public void findPerson_personNotInTaskBook_returnsNull() {
         assertNull(modelManager.findPerson(TypicalTaskBook.ALICE.getName()));
+    }
+
+    @Test
+    public void canDeletePerson_personNoTask_returnsTrue() {
+        ModelManager model = new ModelManager();
+        model.addPerson(TypicalTaskBook.ZED);
+
+        assertTrue(model.canDeletePerson(TypicalTaskBook.ZED));
+    }
+
+    @Test
+    public void canDeletePerson_personHasTask_returnsFalse() {
+        ModelManager model = new ModelManager();
+        model.addPerson(TypicalTaskBook.ALICE);
+        model.addTask(TypicalTaskBook.EATING);
+
+        assertFalse(model.canDeletePerson(TypicalTaskBook.ALICE));
     }
 
     @Test
@@ -112,7 +129,7 @@ public class ModelManagerTest {
     public void equals() {
         TaskBook taskBook = new TaskBookBuilder()
                 .withPerson(TypicalTaskBook.ALICE).withPerson(TypicalTaskBook.BENSON).build();
-        TaskBook differenttaskBook = new TaskBook();
+        TaskBook differentTaskBook = new TaskBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
@@ -130,7 +147,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different taskBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differenttaskBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentTaskBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = TypicalTaskBook.ALICE.getName().fullName.split("\\s+");

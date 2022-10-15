@@ -52,7 +52,7 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -84,7 +84,7 @@ Shows a list of all tasks assigned by the user to contacts in the taskbook, and 
 
 Format: `task list`
 
-### Adding a contact: `contact add`
+### Adding a contact : `contact add`
 
 Adds a contact to the taskbook.
 
@@ -94,7 +94,7 @@ Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `contact add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
  
-### Adding a todo: `task todo`
+### Adding a todo : `task todo`
 
 Adds a task of type todo into the task list.
 
@@ -108,7 +108,7 @@ Examples:
 * `task todo m/John d/Finish user guide` adds a todo called “Finish user guide” assigned by John to the user.
 * `task todo o/Sam d/Finish the assignment` adds a todo called “Finish the assignment” which is assigned to Sam.
 
-### Adding a deadline: `task deadline`
+### Adding a deadline : `task deadline`
 
 Adds a task of type deadline into the task list.
 
@@ -122,7 +122,7 @@ Examples:
 * `task deadline m/John d/Finish user guide t/2022-12-31` adds a deadline called “Finish user guide” assigned by John to the user.
 * `task deadline o/Sam d/Finish the assignment t/Jan 31 2022` adds a deadline called “Finish the assignment” which is assigned to Sam.
 
-### Adding an event: `task event`
+### Adding an event : `task event`
 
 Adds a task of type event into the task list.
 
@@ -135,7 +135,42 @@ Format: `task event o/ASSIGNEE d/DESCRIPTION t/DATE`
 Examples:
 * `task event m/John d/Finish user guide t/2022-12-31` adds an event called “Finish user guide” assigned by John to the user.
 * `task event o/Sam d/Finish the assignment t/Jan 31 2022` adds an event called “Finish the assignment” which is assigned to Sam.
-    
+
+### Editing a contact : `contact edit`
+
+Edits the specified contact in the contact list.
+
+Format: `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
+* Edits the contact at the specified `INDEX` with the parameters provided.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* **At least 1 field** must be edited.
+
+Examples:
+* `contact edit i/1 n/James Lee e/jameslee@example.com`
+* `contact edit i/2 p/98765433`
+
+### Editing a task : `task edit`
+
+Edits the specified task in the task list.
+
+Format: `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE]`
+
+* Edits the contact at the specified `INDEX` with the parameters provided.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* **At least 1 field** must be edited.
+* Only one of assignor `m/` or assignee `o/` can be specified.
+    * If the task currently has an **assignor** of "Person X", it can be changed to have an **assignee** of "Person Y" by providing parameter `o/Person Y`.
+    * If the task currently has an **assignee** of "Person Y", it can be changed to have an **assignor** of "Person X" by providing parameter `m/Person X`.
+    * If neither `m/` or `o/` is specified, the current **assignor** or **assignee** will not be changed.
+
+Examples:
+* `task edit i/1 m/Jackie Chan d/Practice kick 10000 times`
+* `task edit i/2 o/James Lee`
+* `task edit i/3 t/2023-12-31`
+
 ### Deleting a contact : `contact delete`
 
 Deletes the specified contact from the contact list.
@@ -145,6 +180,7 @@ Format: `contact delete i/INDEX`
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Deletion of contact is blocked if the contact has tasks associated to it.
 
 Examples:
 * `contact list` followed by `contact delete i/2` deletes the 2nd contact in the contact list.
@@ -179,8 +215,6 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
-
-### Editing a person : `edit` [coming soon]
 
 ### Locating persons by name: `find` [coming soon]
 
@@ -223,6 +257,8 @@ The following date formats are accepted:
 | **Add Deadline: Assignee** | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022`                                             |
 | **Add Event: Assignor**    | `task event m/ASSIGNOR d/DESCRIPTION t/DATE` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31`                                                       |
 | **Add Event: Assignee**    | `task event o/ASSIGNEE d/DESCRIPTION t/DATE` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022`                                                   |
+| **Edit Contact**           | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com`                     |
+| **Edit Task**              | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE]`<br> e.g.,`task edit i/2 o/James Lee`                                                                |
 | **Delete Contact**         | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
 | **Delete Task**            | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
 | **Quit**                   | `bye`                                                                                                                                                              |

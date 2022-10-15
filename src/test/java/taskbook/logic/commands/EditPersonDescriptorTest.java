@@ -4,6 +4,7 @@ package taskbook.logic.commands;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -11,7 +12,7 @@ public class EditPersonDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditPersonDescriptor descriptorWithSameValues = new EditCommand.EditPersonDescriptor(
+        ContactEditCommand.EditPersonDescriptor descriptorWithSameValues = new ContactEditCommand.EditPersonDescriptor(
             CommandTestUtil.DESC_AMY);
         Assertions.assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
 
@@ -28,7 +29,7 @@ public class EditPersonDescriptorTest {
         Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
+        ContactEditCommand.EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(CommandTestUtil.DESC_AMY)
                 .withName(CommandTestUtil.VALID_NAME_BOB).build();
         Assertions.assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
 

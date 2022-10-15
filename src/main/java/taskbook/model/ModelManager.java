@@ -107,6 +107,15 @@ public class ModelManager implements Model {
         return taskBook.findPerson(name);
     }
 
+    /**
+     * {@inheritDoc}
+     * A person cannot be deleted if there are tasks associated with that person.
+     */
+    @Override
+    public boolean canDeletePerson(Person person) {
+        return taskBook.canDeletePerson(person);
+    }
+
     @Override
     public void deletePerson(Person target) {
         taskBook.removePerson(target);
@@ -135,6 +144,19 @@ public class ModelManager implements Model {
         taskBook.deleteTask(task);
     }
 
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return taskBook.hasTask(task);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        taskBook.setTask(target, editedTask);
+    }
+
     //=========== Filtered Person & Task List Accessors =============================================================
 
     /**
@@ -150,6 +172,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
     }
 
     /**

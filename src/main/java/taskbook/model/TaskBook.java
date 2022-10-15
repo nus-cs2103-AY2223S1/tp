@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.person.UniquePersonList;
+import taskbook.model.task.EditTaskDescriptor;
 import taskbook.model.task.Task;
 import taskbook.model.task.TaskList;
 
@@ -105,14 +108,77 @@ public class TaskBook implements ReadOnlyTaskBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
 
+        propagateNameChange(target, editedPerson);
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Propagates name change to all associated tasks.
+     */
+    private void propagateNameChange(Person original, Person edited) {
+        Name name = original.getName();
+        Name editedName = edited.getName();
+
+        if (name.equals(editedName)) {
+            return;
+        }
+
+        for (Task task : tasks) {
+            if (!task.getName().equals(name)) {
+                continue;
+            }
+
+            EditTaskDescriptor descriptor = new EditTaskDescriptor();
+            descriptor.setName(editedName);
+            Task editedTask;
+            try {
+                editedTask = task.createEditedCopy(descriptor);
+            } catch (CommandException e) {
+                // Should not happen because name exists on all task types.
+                String logMessage = String.format("Failed to propagate name change to task %s.", task);
+                Logger.getGlobal().warning(logMessage);
+                continue;
+            }
+            tasks.setTask(task, editedTask);
+        }
+    }
+
+    /**
+     * Returns true if a person can be deleted.
+     * A person cannot be deleted if there are tasks associated with that person.
+     * Returns false if the person does not exist in the {@code TaskBook}.
+     *
+     * @param key Key of the person.
+     * @return True if a person can be deleted.
+     */
+    public boolean canDeletePerson(Person key) {
+        requireNonNull(key);
+
+        if (!hasPerson(key)) {
+            return false;
+        }
+
+        Name name = key.getName();
+
+        for (Task task : tasks) {
+            if (task.getName().equals(name)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
      * Removes {@code key} from this {@code TaskBook}.
      * {@code key} must exist in the task book.
+     * {@code key} must be deletable as per {@link TaskBook#canDeletePerson(Person)}.
      */
     public void removePerson(Person key) {
+        if (!canDeletePerson(key)) {
+            return;
+        }
+
         persons.remove(key);
     }
 

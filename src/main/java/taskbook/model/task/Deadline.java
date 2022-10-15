@@ -50,6 +50,17 @@ public class Deadline extends Task {
     }
 
     @Override
+    public Deadline createEditedCopy(EditTaskDescriptor descriptor) {
+        Name name = descriptor.getName().orElse(getName());
+        Assignment assignment = descriptor.getAssignment().orElse(getAssignment());
+        Description description = descriptor.getDescription().orElse(getDescription());
+        Boolean isDone = descriptor.getIsDone().orElse(isDone());
+        LocalDate date = descriptor.getDate().orElse(getDate());
+
+        return new Deadline(name, assignment, description, isDone, date);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

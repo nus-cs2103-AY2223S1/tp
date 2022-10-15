@@ -146,7 +146,21 @@ public class ContactAddCommandTest {
         @Override
         public void deleteTask(Task task) {
             throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canDeletePerson(Person person) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -181,6 +195,11 @@ public class ContactAddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
