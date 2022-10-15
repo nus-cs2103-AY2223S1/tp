@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
 import seedu.condonery.model.tag.Tag;
@@ -23,15 +24,17 @@ public class Property {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Set<Client> interestedClients = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Property(Name name, Address address, Set<Tag> tags) {
+    public Property(Name name, Address address, Set<Tag> tags, Set<Client> interestedClients) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
         this.tags.addAll(tags);
+        this.interestedClients.addAll(interestedClients);
     }
 
     public Name getName() {
@@ -51,6 +54,14 @@ public class Property {
     }
 
     /**
+     * Returns an immutable interested client set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getInterestedClients() {
+        return Collections.unmodifiableSet(interestedClients);
+    }
+
+    /**
      * Returns an immutable set containing tag names, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
@@ -60,6 +71,15 @@ public class Property {
         return Collections.unmodifiableSet(stringTags);
     }
 
+    /**
+     * Returns an immutable set containing interested client names, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<String> getInterestedClientNames() {
+        HashSet<String> stringInterestedClients = new HashSet<>(client.size());
+        interestedClients.forEach(interestedClient -> stringInterestedClients.add(interestedClient.getName()));
+        return Collections.unmodifiableSet(stringInterestedClients);
+    }
 
     /**
      * Returns true if both properties have the same name.
@@ -91,13 +111,14 @@ public class Property {
         Property otherProperty = (Property) other;
         return otherProperty.getName().equals(getName())
             && otherProperty.getAddress().equals(getAddress())
-            && otherProperty.getTags().equals(getTags());
+            && otherProperty.getTags().equals(getTags())
+            && otherProperty.getInterestedClients().equals(getInterestedClients());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(name, address, tags, interestedClients);
     }
 
     @Override
@@ -111,6 +132,12 @@ public class Property {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        Set<Client> interestedClients = getInterestedClients();
+        if (!interestedClients.isEmpty()) {
+            builder.append(": Interested clients: ");
+            interestedClients.forEach(builder::append);
         }
         return builder.toString();
     }
