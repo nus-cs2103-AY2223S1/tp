@@ -21,6 +21,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Stall> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(stall.getName().fullName, keyword));
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

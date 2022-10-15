@@ -13,6 +13,8 @@ import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.AddressBook;
 import foodwhere.model.Model;
+import foodwhere.model.review.NameContainsStallPredicate;
+import foodwhere.model.review.Review;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
 import foodwhere.testutil.EditStallDescriptorBuilder;
@@ -34,7 +36,6 @@ public class CommandTestUtil {
     public static final Integer VALID_RATING_BOB = 3;
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-
     public static final String NAME_DESC_AMY = " " + CliSyntax.PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
     public static final String ADDRESS_DESC_AMY = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_AMY;
@@ -118,4 +119,19 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredStallList().size());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the review at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showReviewAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStallList().size());
+
+        Review review = model.getFilteredReviewList().get(targetIndex.getZeroBased());
+        final String[] splitName = review.getName().fullName.split("\\s+");
+        model.updateFilteredReviewList(new NameContainsStallPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredReviewList().size());
+    }
+
 }

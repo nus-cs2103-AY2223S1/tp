@@ -129,6 +129,7 @@ public class ModelManager implements Model {
     public void addReview(Review review) {
         addressBook.addReview(review);
         updateFilteredReviewList(PREDICATE_SHOW_ALL_REVIEWS);
+        updateFilteredStallList(PREDICATE_SHOW_ALL_STALLS);
     }
 
     @Override
@@ -190,5 +191,6 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredStalls.equals(other.filteredStalls);
     }
+
 
 }
