@@ -62,7 +62,7 @@ I reviewed the following pull requests:
 3. [Edit README #28](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/28)
 4. [Update index.md #29](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/29)
 
-I also gave guidance to my team on the following matters:
+I also gave guidance to my team on the following matters: test
 1. *Enter contributions here*
 2. *Enter contributions here*
 3. *Enter contributions here*
