@@ -128,6 +128,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseLocationTest() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseLocation(""));
+    }
+
+    @Test
     public void parseDate_invalidDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
