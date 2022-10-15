@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SLACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
