@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.TypicalTransaction.BUY_TOYS;
 
@@ -24,9 +24,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
+import seedu.address.testutil.ClientBuilder;
 
 class BuyCommandTest {
 
@@ -34,7 +34,7 @@ class BuyCommandTest {
 
     @Test
     public void constructor_nullTransaction_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_COMPANY, null));
+        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_CLIENT, null));
     }
 
     @Test
@@ -44,37 +44,37 @@ class BuyCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE)
+        assertThrows(NullPointerException.class, () -> new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE)
                 .execute(null));
     }
 
     @Test
-    public void execute_invalidCompanyIndex_failure() {
+    public void execute_invalidClientIndex_failure() {
         assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
-                model.getFilteredCompanyList().size() + 10), BUY_ORANGE).execute(model));
+                model.getFilteredClientList().size() + 10), BUY_ORANGE).execute(model));
 
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new ClientBuilder().build();
+        Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new BuyCommand(Index.fromZeroBased(
-                modelStub.getFilteredCompanyList().size() + 10), BUY_ORANGE).execute(model));
+                modelStub.getFilteredClientList().size() + 10), BUY_ORANGE).execute(model));
     }
 
     @Test
     public void execute_addTransaction_success() throws Exception {
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
-        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        Client validClient = new ClientBuilder().build();
+        Model modelStub = new ModelStub(validClient);
+        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE);
         buyCommand.execute(modelStub);
-        assertEquals(-10101.00, modelStub.getFilteredCompanyList().get(0).getTotalTransacted());
+        assertEquals(-10101.00, modelStub.getFilteredClientList().get(0).getTotalTransacted());
     }
 
     @Test
     public void equals() {
-        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        BuyCommand buyCommand = new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE);
 
         // same values -> returns true
-        BuyCommand buyCommandCopy = new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE);
+        BuyCommand buyCommandCopy = new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE);
         assertTrue(buyCommand.equals(buyCommandCopy));
 
         // same object -> returns true
@@ -87,22 +87,22 @@ class BuyCommandTest {
         assertFalse(buyCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(buyCommand.equals(new BuyCommand(INDEX_SECOND_COMPANY, BUY_ORANGE)));
+        assertFalse(buyCommand.equals(new BuyCommand(INDEX_SECOND_CLIENT, BUY_ORANGE)));
 
         // different Transaction -> returns false
-        assertFalse(buyCommand.equals(new BuyCommand(INDEX_FIRST_COMPANY, BUY_TOYS)));
+        assertFalse(buyCommand.equals(new BuyCommand(INDEX_FIRST_CLIENT, BUY_TOYS)));
     }
 
     /**
      * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
-        private Company company;
-        private final UniqueCompanyList coys = new UniqueCompanyList();
+        private Client client;
+        private final UniqueClientList clientList = new UniqueClientList();
 
-        public ModelStub(Company company) {
-            this.company = company;
-            coys.add(company);
+        public ModelStub(Client client) {
+            this.client = client;
+            clientList.add(client);
         }
 
         @Override
@@ -136,7 +136,7 @@ class BuyCommandTest {
         }
 
         @Override
-        public void addCompany(Company company) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,27 +151,27 @@ class BuyCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Company company) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Company target) {
+        public void deleteClient(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Company target, Company editedCompany) {
+        public void setClient(Client target, Client editedClient) {
             // method body is left empty intentionally
         }
 
         @Override
-        public ObservableList<Company> getFilteredCompanyList() {
-            return coys.asUnmodifiableObservableList();
+        public ObservableList<Client> getFilteredClientList() {
+            return clientList.asUnmodifiableObservableList();
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        public void updateFilteredClientList(Predicate<Client> predicate) {
             // method body is left empty intentionally
         }
     }

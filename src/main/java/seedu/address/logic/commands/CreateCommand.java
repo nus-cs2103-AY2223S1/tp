@@ -12,18 +12,18 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.poc.Poc;
 
 /**
- * Creates a new poc to be added to the specified company.
+ * Creates a new poc to be added to the specified client.
  */
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
 
     //Update here
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a Point-Of-Contact and links to Company. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a Point-Of-Contact and links to Client. "
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
@@ -37,8 +37,8 @@ public class CreateCommand extends Command {
             + PREFIX_TAG + "MainPoc "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New POC created: %1$s\nLinked to Company: %2$s";
-    public static final String MESSAGE_DUPLICATE_POC = "This company already has %1$s as POC";
+    public static final String MESSAGE_SUCCESS = "New POC created: %1$s\nLinked to Client: %2$s";
+    public static final String MESSAGE_DUPLICATE_POC = "This client already has %1$s as POC";
     public static final String MESSAGE_POC_INVALID = "POC cannot be created. Enter a valid POC details:\n"
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "HP "
@@ -48,7 +48,7 @@ public class CreateCommand extends Command {
     private final Poc poc;
 
     /**
-     * @param index of the company in the company list to add the POC to
+     * @param index of the client in the client list to add the POC to
      * @param poc to be added
      */
     public CreateCommand(Index index, Poc poc) {
@@ -63,24 +63,24 @@ public class CreateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
-        // if index of company not valid
+        // if index of client not valid
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
 
-        if (companyToEdit.hasPoc(poc)) {
+        if (clientToEdit.hasPoc(poc)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_POC, poc.getName()));
         }
 
-        Company editedCompany = companyToEdit;
-        editedCompany.addPoc(poc);
-        model.setCompany(companyToEdit, editedCompany);
+        Client editedClient = clientToEdit;
+        editedClient.addPoc(poc);
+        model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedCompany));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, poc.getName(), editedClient));
     }
 
     @Override

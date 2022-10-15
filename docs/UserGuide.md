@@ -10,17 +10,17 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Adding a company: `add`](#adding-a-company-add)
+  * [Adding a client: `add`](#adding-a-client-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
   * [Creating a point-of-contact: `create`](#creating-a-person-create)
-  * [Deleting a company: `delete`](#deleting-a-company--delete)
-  * [Editing a company: `edit`](#editing-a-company--edit)
+  * [Deleting a client: `delete`](#deleting-a-client--delete)
+  * [Editing a client: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
   * [Filtering the address book display: `filter`](#filtering-the-address-book-display--filter)
-  * [Listing all companies: `list`](#listing-all-companies--list)
-  * [Locating companies by name: `find`](#locating-companies-by-name-find)
+  * [Listing all clients: `list`](#listing-all-clients--list)
+  * [Locating clients by name: `find`](#locating-clients-by-name-find)
   * [Viewing help: `help`](#viewing-help--help)
-  * [Viewing a company: `view`](#viewing-a-company--view)
+  * [Viewing a client: `view`](#viewing-a-client--view)
   * [Getting the User Guide: `user_guide`](#getting-the-user-guide-user_guide)
   * [Sorting the address book: `sort`](#sorting-the-address-book-sort)
   * [Creating a transaction: `transaction`](#creating-a-transaction-transaction)
@@ -46,15 +46,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all companies.
+   * **`list`** : Lists all clients.
 
-   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the company at index 2.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainPoc t/owesMoney` : Creates a point-of-contact named `James` linked to the client at index 2.
 
-   * **`delete`**`delete 1` : Deletes the company at the first index together with all their contacts and transactions in the current list.
+   * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of companies, and displays all its details (point-of-contact, transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of clients, and displays all its details (point-of-contact, transactions).
 
-  * **`clear`** : Deletes all companies with all their contacts and transactions.
+  * **`clear`** : Deletes all clients with all their contacts and transactions.
 
   * **`exit`** : Exits the app.
 
@@ -69,7 +69,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `create coy/COMPANY`, `COMPANY` is a parameter which can be used as `add coy/MacDonalds`.
+  e.g. in `add n/CLIENT`, `CLIENT` is a parameter which can be used as `add n/MacDonalds`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -88,15 +88,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 </div>
 
-### Adding a company: `add`
+### Adding a client: `add`
 
-Adds an empty company to the list without any POC (Point-Of-Contact) and transactions.
+Adds an empty client to the list without any POC (Point-Of-Contact) and transactions.
 
 Format: `add n/NAME a/ADDRESS [t/TAG]...`
 
 * Tags are optional.
-* Multiple tags can be tagged to the company.
-* Use `create` command to add POC to the company.
+* Multiple tags can be tagged to the client.
+* Use `create` command to add POC to the client.
 
 Examples:
 * `add n/MacDonalds a/West Coast Park`
@@ -117,34 +117,34 @@ Example:
 
 ### Creating a Person: `create`
 
-Creates a new person (point-of-contact) for a specific company.
+Creates a new person (point-of-contact) for a specific client.
 
 Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
 
 * Tags are optional.
 * Multiple tags can be tagged to the point-of-contact.
-* The index refers to the index number shown in the displayed company list.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the company at index 1.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a point-of-contact for the client at index 1.
 * `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainPoc` tags can also be added.
 
-### Deleting a company : `delete`
+### Deleting a client : `delete`
 
-Deletes the specified company from JeeqTracker.
+Deletes the specified client from JeeqTracker.
 
 Format: `delete INDEX`
 
-* Deletes the company at the specified `INDEX`.
-* The index refers to the index number shown in the displayed company list.
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd company in the address book.
-* `find cold` followed by `delete 1` deletes the 1st company in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `find cold` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Editing a company : `edit`
+### Editing a client : `edit`
 
 Coming Soon.
 
@@ -158,22 +158,22 @@ Format: `exit`
 
 Coming Soon.
 
-### Listing all companies : `list`
+### Listing all clients : `list`
 
-Lists all the companies stored in JeeqTracker.
+Lists all the clients stored in JeeqTracker.
 
 Format: `list`
 
-* Displays all the companies and their details in JeeqTracker.
-* If address book is empty, the companies name section will be blank.
+* Displays all the clients and their details in JeeqTracker.
+* If address book is empty, the clients name section will be blank.
 
 Examples:
 
-* `list` Displays all stored companies name and details.
+* `list` Displays all stored clients name and details.
 
-### Locating companies by name: `find`
+### Locating clients by name: `find`
 
-Find companies whose names contain any of the given keywords.
+Find clients whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -181,7 +181,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `MacDonald` will not match `MacDonalds`
-* Companies matching at least one keyword will be returned (i.e. `OR` search).
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Cold Storage` will return `Urban Storage`, `Cold Drink Store`
 
 ### Getting the User Guide: `user_guide`
@@ -209,14 +209,14 @@ Examples:
 * `find Mac` returns `MacDonald`
 * `find fairprice` returns `NTUC Fairprice` <br>
 
-### Viewing a company : `view`
+### Viewing a client : `view`
 
-`view` displays the points of contact and transaction log of the specified company.
+`view` displays the points of contact and transaction log of the specified client.
 
 Format: `view INDEX`
 
-* Views the company at the specified `INDEX`.
-* The index refers to the index number shown in the displayed company list.
+* Views the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 ### Sorting the address book: `sort`
@@ -225,11 +225,11 @@ Coming soon.
 
 ### Creating a Transaction: `buy` or `sell`
 
-Creates a transaction related to a company (buy/sell).
+Creates a transaction related to a client (buy/sell).
 
 Format:
-- `buy INDEX coy/COMPANY_NAME  g/GOODS  q/QUANTITY  price/PRICE`
-- `sell INDEX coy/COMPANY_NAME  g/GOODS q/QUANTITY  price/PRICE`
+- `buy INDEX coy/CLIENT_NAME  g/GOODS  q/QUANTITY  price/PRICE`
+- `sell INDEX coy/CLIENT_NAME  g/GOODS q/QUANTITY  price/PRICE`
 
 Examples:
 - `buy 3 g/apples q/100 price/1.5`
@@ -263,22 +263,22 @@ _Details coming soon ..._
 ## Command summary
 
 
-| Action         | Format, Examples                                                                                                           |
-|----------------|----------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/COMPANY a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                         |
-| **Clear**      | `clear` followed by `confirm`                                                                                              |
- | **Create**     | `create n/NAME coy/COMPANY_NAME p/NUMBER e/EMAIL`<br> e.g., `create n/James coy/MacDonalds p/82692192 e/James@example.com` |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                        |
-| **Edit**       | Coming Soon                                                                                                                |
-| **Exit**       | `exit`                                                                                                                     |
-| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                 |
-| **Filter**     | Coming Soon                                                                                                                |
-| **List**       | `list`                                                                                                                     |
-| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                   |
-| **Sort**       | Coming Soon                                                                                                                |
-| **Buy**        | `buy INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `buy 2 g/apples q/100 price/1.5`                                      |
-| **Sell**       | `sell INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `sell 2 g/apples q/100 price/1.5`                                    |
-| **User Guide** | `user_guide`                                                                                                               |
+| Action         | Format, Examples                                                                                                  |
+|----------------|-------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/CLIENT a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                 |
+| **Clear**      | `clear` followed by `confirm`                                                                                     |
+ | **Create**     | `create INDEX n/NAME p/NUMBER e/EMAIL`<br> e.g., `create 1 n/James coy/MacDonalds p/82692192 e/James@example.com` |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                               |
+| **Edit**       | Coming Soon                                                                                                       |
+| **Exit**       | `exit`                                                                                                            |
+| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                        |
+| **Filter**     | Coming Soon                                                                                                       |
+| **List**       | `list`                                                                                                            |
+| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                          |
+| **Sort**       | Coming Soon                                                                                                       |
+| **Buy**        | `buy INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `buy 2 g/apples q/100 price/1.5`                             |
+| **Sell**       | `sell INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `sell 2 g/apples q/100 price/1.5`                           |
+| **User Guide** | `user_guide`                                                                                                      |
                                                                                                                                                                                                                                                              |
 
 

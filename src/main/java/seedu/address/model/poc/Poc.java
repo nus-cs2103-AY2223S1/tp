@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Point of contact in the company.
+ * Represents a Point of contact in the client.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Poc {

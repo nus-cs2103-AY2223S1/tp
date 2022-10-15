@@ -18,7 +18,7 @@ package "JeeqTracker Storage" #F4F6F6{
 Class "<<interface>>\nJeeqTrackerStorage" as JeeqTrackerStorage
 Class JsonJeeqTrackerStorage
 Class JsonSerializableJeeqTracker
-Class JsonAdaptedCompany
+Class JsonAdaptedClient
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> JeeqTrackerStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonJeeqTrackerStorage .up.|> JeeqTrackerStorage
 JsonJeeqTrackerStorage ..> JsonSerializableJeeqTracker
-JsonSerializableJeeqTracker --> "*" JsonAdaptedCompany
-JsonAdaptedCompany --> "*" JsonAdaptedTag
+JsonSerializableJeeqTracker --> "*" JsonAdaptedClient
+JsonAdaptedClient --> "*" JsonAdaptedTag
 
 @enduml

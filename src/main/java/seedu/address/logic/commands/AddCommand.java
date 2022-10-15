@@ -7,16 +7,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 
 /**
- * Adds a company to the address book.
+ * Adds a client to the address book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a company to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a client to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -27,28 +27,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "favouriteFood "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New company added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New client added: %1$s";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
 
-    private final Company toAdd;
+    private final Client toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Company}
+     * Creates an AddCommand to add the specified {@code Client}
      */
-    public AddCommand(Company company) {
-        requireNonNull(company);
-        toAdd = company;
+    public AddCommand(Client client) {
+        requireNonNull(client);
+        toAdd = client;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasCompany(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
+        if (model.hasClient(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        model.addCompany(toAdd);
+        model.addClient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

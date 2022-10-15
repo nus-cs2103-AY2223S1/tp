@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.JeeqTracker;
 import seedu.address.model.ReadOnlyJeeqTracker;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 
 /**
  * An Immutable JeeqTracker that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.address.model.company.Company;
 @JsonRootName(value = "jeeqtracker")
 class JsonSerializableJeeqTracker {
 
-    public static final String MESSAGE_DUPLICATE_COMPANY = "Companies list contains duplicate company(s).";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
 
-    private final List<JsonAdaptedCompany> companies = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableJeeqTracker} with the given companies.
+     * Constructs a {@code JsonSerializableJeeqTracker} with the given clients.
      */
     @JsonCreator
-    public JsonSerializableJeeqTracker(@JsonProperty("companies") List<JsonAdaptedCompany> companies) {
-        this.companies.addAll(companies);
+    public JsonSerializableJeeqTracker(@JsonProperty("clients") List<JsonAdaptedClient> clients) {
+        this.clients.addAll(clients);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableJeeqTracker {
      * @param source future changes to this will not affect the created {@code JsonSerializableJeeqTracker}.
      */
     public JsonSerializableJeeqTracker(ReadOnlyJeeqTracker source) {
-        companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableJeeqTracker {
      */
     public JeeqTracker toModelType() throws IllegalValueException {
         JeeqTracker jeeqTracker = new JeeqTracker();
-        for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
-            Company company = jsonAdaptedCompany.toModelType();
-            if (jeeqTracker.hasCompany(company)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (jeeqTracker.hasClient(client)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            jeeqTracker.addCompany(company);
+            jeeqTracker.addClient(client);
         }
         return jeeqTracker;
     }

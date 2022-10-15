@@ -11,16 +11,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * Adds a sell transaction to an existing company in the address book.
+ * Adds a sell transaction to an existing client in the address book.
  */
 public class SellCommand extends Command {
     public static final String COMMAND_WORD = "sell";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the company. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the client. "
             + "Parameters: "
             + "Index (must be a positive integer) "
             + PREFIX_QUANTITY + "QUANTITY "
@@ -43,7 +43,7 @@ public class SellCommand extends Command {
     private final Transaction transaction;
 
     /**
-     * @param index of the company in the company list to add the POC to
+     * @param index of the client in the client list to add the POC to
      * @param transaction to be added
      */
     public SellCommand(Index index, Transaction transaction) {
@@ -56,20 +56,20 @@ public class SellCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
-        // if index of company not valid
+        // if index of client not valid
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
 
-        Company editedCompany = companyToEdit;
-        editedCompany.addTransaction(transaction);
-        model.setCompany(companyToEdit, editedCompany);
+        Client editedClient = clientToEdit;
+        editedClient.addTransaction(transaction);
+        model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedCompany.getName(), transaction.getQuantity(),
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient.getName(), transaction.getQuantity(),
                 transaction.getGoods(), transaction.getPrice()));
     }
 

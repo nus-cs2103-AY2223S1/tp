@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalPoc.ALICE;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 
@@ -24,7 +24,6 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -33,16 +32,16 @@ import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.NameContainsKeywordsPredicate;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
 import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.testutil.CompanyBuilder;
-import seedu.address.testutil.CompanyUtil;
-import seedu.address.testutil.EditCompanyDescriptorBuilder;
+import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.ClientUtil;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 import seedu.address.testutil.PocUtil;
 import seedu.address.testutil.TransactionUtil;
 
@@ -52,9 +51,9 @@ public class JeeqTrackerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Company company = new CompanyBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(CompanyUtil.getAddCommand(company));
-        assertEquals(new AddCommand(company), command);
+        Client client = new ClientBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(ClientUtil.getAddCommand(client));
+        assertEquals(new AddCommand(client), command);
     }
 
     @Test
@@ -66,17 +65,17 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_COMPANY), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_CLIENT), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Company company = new CompanyBuilder().build();
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder(company).build();
+        Client client = new ClientBuilder().build();
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_COMPANY.getOneBased() + " " + CompanyUtil.getEditCompanyDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_COMPANY, descriptor), command);
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
     }
 
     @Test
@@ -114,15 +113,15 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_create() throws Exception {
         CreateCommand command = (CreateCommand) parser.parseCommand(
-                PocUtil.getCreateCommand(ALICE, INDEX_FIRST_COMPANY));
-        assertEquals(new CreateCommand(INDEX_FIRST_COMPANY, ALICE), command);
+                PocUtil.getCreateCommand(ALICE, INDEX_FIRST_CLIENT));
+        assertEquals(new CreateCommand(INDEX_FIRST_CLIENT, ALICE), command);
     }
 
     @Test
     public void parseCommand_view() throws Exception {
         ViewCommand command = (ViewCommand) parser.parseCommand(
-                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_COMPANY.getOneBased());
-        assertEquals(new ViewCommand(INDEX_FIRST_COMPANY), command);
+                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
+        assertEquals(new ViewCommand(INDEX_FIRST_CLIENT), command);
     }
 
     @Test
@@ -139,8 +138,8 @@ public class JeeqTrackerParserTest {
     @Test
     public void parseCommand_buy() throws Exception {
         BuyCommand command = (BuyCommand) parser.parseCommand(
-                TransactionUtil.getBuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE));
-        assertEquals(new BuyCommand(INDEX_FIRST_COMPANY, BUY_ORANGE), command);
+                TransactionUtil.getBuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE));
+        assertEquals(new BuyCommand(INDEX_FIRST_CLIENT, BUY_ORANGE), command);
     }
 
     @Test
@@ -151,9 +150,9 @@ public class JeeqTrackerParserTest {
         Quantity quantity = new Quantity("200");
         Transaction transaction = new SellTransaction(goods, price, quantity);
         SellCommand command = (SellCommand) parser.parseCommand(SellCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_COMPANY.getOneBased() + " " + PREFIX_QUANTITY + "200 " + PREFIX_GOODS + "Orange "
+                + INDEX_FIRST_CLIENT.getOneBased() + " " + PREFIX_QUANTITY + "200 " + PREFIX_GOODS + "Orange "
                 + PREFIX_PRICE
                 + "2.5 ");
-        assertEquals(new SellCommand(INDEX_FIRST_COMPANY, transaction), command);
+        assertEquals(new SellCommand(INDEX_FIRST_CLIENT, transaction), command);
     }
 }

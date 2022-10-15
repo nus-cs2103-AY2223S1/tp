@@ -18,7 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 import seedu.address.model.poc.Poc;
 import seedu.address.model.transaction.Transaction;
 
@@ -36,7 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private CompanyListPanel companyListPanel;
+    private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private PocListPanel pocListPanel;
@@ -49,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane companyListPanelPlaceholder;
+    private StackPane clientListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -126,8 +126,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        companyListPanel = new CompanyListPanel(logic.getFilteredCompanyList());
-        companyListPanelPlaceholder.getChildren().add(companyListPanel.getRoot());
+        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+        clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         transactionListPanel = new TransactionListPanel();
         transactionListPanelPlaceholder.getChildren().add(transactionListPanel.getRoot());
@@ -187,22 +187,22 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles changes to the UI whenever the POC or Transaction information is updated in a company.
+     * Handles changes to the UI whenever the POC or Transaction information is updated in a client.
      * @param commandResult the result of command executed.
      */
-    private void handleCompanyDetailsUpdate(CommandResult commandResult) {
-        ObservableList<Company> companies = logic.getFilteredCompanyList();
+    private void handleClientDetailsUpdate(CommandResult commandResult) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
 
-        if (companies.size() != 1) {
+        if (clientList.size() != 1) {
             // Empty poc list panel.
             pocListPanel.setPocList(FXCollections.observableArrayList());
             transactionListPanel.setTransactionList(FXCollections.observableArrayList());
             return;
         }
 
-        Company company = companies.get(0);
-        ObservableList<Poc> pocs = company.getPocs().asUnmodifiableObservableList();
-        ObservableList<Transaction> transactions = company.getTransactions().asUnmodifiableObservableList();
+        Client client = clientList.get(0);
+        ObservableList<Poc> pocs = client.getPocs().asUnmodifiableObservableList();
+        ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
         pocListPanel.setPocList(pocs);
         transactionListPanel.setTransactionList(transactions);
     }
@@ -226,7 +226,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            handleCompanyDetailsUpdate(commandResult);
+            handleClientDetailsUpdate(commandResult);
 
             return commandResult;
         } catch (CommandException | ParseException e) {

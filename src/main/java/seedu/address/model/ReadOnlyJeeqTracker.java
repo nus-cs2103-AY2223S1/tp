@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 
 /**
  * Unmodifiable view of an address book
@@ -9,9 +9,9 @@ import seedu.address.model.company.Company;
 public interface ReadOnlyJeeqTracker {
 
     /**
-     * Returns an unmodifiable view of the companies list.
-     * This list will not contain any duplicate companies.
+     * Returns an unmodifiable view of the clients list.
+     * This list will not contain any duplicate clients.
      */
-    ObservableList<Company> getCompanyList();
+    ObservableList<Client> getClientList();
 
 }

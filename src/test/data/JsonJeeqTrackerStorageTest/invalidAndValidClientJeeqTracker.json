@@ -1,0 +1,9 @@
+{
+  "clients": [ {
+    "name": "Valid Client",
+    "address": "4th street"
+  }, {
+    "name": "Client With Invalid name Field @",
+    "address": "4th street"
+  } ]
+}

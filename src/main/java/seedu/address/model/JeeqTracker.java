@@ -5,16 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameCompany comparison)
+ * Duplicates are not allowed (by .isSameClient comparison)
  */
 public class JeeqTracker implements ReadOnlyJeeqTracker {
 
-    private final UniqueCompanyList companies;
+    private final UniqueClientList clients;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
      *   among constructors.
      */
     {
-        companies = new UniqueCompanyList();
+        clients = new UniqueClientList();
     }
 
     public JeeqTracker() {}
 
     /**
-     * Creates an JeeqTracker using the Companies in the {@code toBeCopied}
+     * Creates an JeeqTracker using the Clients in the {@code toBeCopied}
      */
     public JeeqTracker(ReadOnlyJeeqTracker toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the company list with {@code companies}.
-     * {@code companies} must not contain duplicate companies.
+     * Replaces the contents of the client list with {@code clients}.
+     * {@code clients} must not contain duplicate clients.
      */
-    public void setCompanies(List<Company> companies) {
-        this.companies.setCompanies(companies);
+    public void setClients(List<Client> clients) {
+        this.clients.setClients(clients);
     }
 
     /**
@@ -53,68 +53,68 @@ public class JeeqTracker implements ReadOnlyJeeqTracker {
     public void resetData(ReadOnlyJeeqTracker newData) {
         requireNonNull(newData);
 
-        setCompanies(newData.getCompanyList());
+        setClients(newData.getClientList());
     }
 
-    //// company-level operations
+    //// client-level operations
 
     /**
-     * Returns true if a company with the same identity as {@code company} exists in the address book.
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
      */
-    public boolean hasCompany(Company company) {
-        requireNonNull(company);
-        return companies.contains(company);
+    public boolean hasClient(Client client) {
+        requireNonNull(client);
+        return clients.contains(client);
     }
 
     /**
-     * Adds a company to the address book.
-     * The company must not already exist in the address book.
+     * Adds a client to the address book.
+     * The client must not already exist in the address book.
      */
-    public void addCompany(Company p) {
-        companies.add(p);
+    public void addClient(Client p) {
+        clients.add(p);
     }
 
     /**
-     * Replaces the given company {@code target} in the list with {@code editedCompany}.
+     * Replaces the given client {@code target} in the list with {@code editedClient}.
      * {@code target} must exist in the address book.
-     * The identity of {@code editedCompany} must not be the same as another existing company in the address book.
+     * The identity of {@code editedClient} must not be the same as another existing client in the address book.
      */
-    public void setCompany(Company target, Company editedCompany) {
-        requireNonNull(editedCompany);
+    public void setClient(Client target, Client editedClient) {
+        requireNonNull(editedClient);
 
-        companies.setCompany(target, editedCompany);
+        clients.setClient(target, editedClient);
     }
 
     /**
      * Removes {@code key} from this {@code JeeqTracker}.
      * {@code key} must exist in the address book.
      */
-    public void removeCompany(Company key) {
-        companies.remove(key);
+    public void removeClient(Client key) {
+        clients.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return companies.asUnmodifiableObservableList().size() + " companies";
+        return clients.asUnmodifiableObservableList().size() + " clients";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Company> getCompanyList() {
-        return companies.asUnmodifiableObservableList();
+    public ObservableList<Client> getClientList() {
+        return clients.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof JeeqTracker // instanceof handles nulls
-                && companies.equals(((JeeqTracker) other).companies));
+                && clients.equals(((JeeqTracker) other).clients));
     }
 
     @Override
     public int hashCode() {
-        return companies.hashCode();
+        return clients.hashCode();
     }
 }

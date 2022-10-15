@@ -171,7 +171,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Stepping through the method shows that it calls `ArgumentTokenizer#tokenize()` and `ParserUtil#parseIndex()` to obtain the arguments and index required.
 
-1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditCompanyDescriptor`. Recall that we can verify the contents of `editCompanyDesciptor` through the 'Variables' window.<br>
+1. The rest of the method seems to exhaustively check for the existence of each possible parameter of the `edit` command and store any possible changes in an `EditClientDescriptor`. Recall that we can verify the contents of `editClientDesciptor` through the 'Variables' window.<br>
    ![EditCommand](../images/tracing/EditCommand.png)
 
 1. As you just traced through some code involved in parsing a command, you can take a look at this class diagram to see where the various parsing-related classes you encountered fit into the design of the `Logic` component.
@@ -189,22 +189,22 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Company companyToEdit = lastShownList.get(index.getZeroBased());
-       Company editedCompany = createEditedCompany(companyToEdit, editCompanyDescriptor);
-       if (!companyToEdit.isSameCompany(editedCompany) && model.hasCompany(editedCompany)) {
-           throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
+       Client clientToEdit = lastShownList.get(index.getZeroBased());
+       Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+       if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
+           throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
        }
-       model.setCompany(companyToEdit, editedCompany);
-       model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-       return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany));
+       model.setClient(clientToEdit, editedClient);
+       model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+       return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
    }
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setCompany()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the company data.
-   * it uses the `updateFilteredCompanyList` method to ask the `Model` to populate the 'filtered list' with _all_ companies.<br>
-     FYI, The 'filtered list' is the list of companies resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the companies so that the user can see the edited company along with all other companies. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of companies is being tracked.
+   * it uses the `setClient()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the client data.
+   * it uses the `updateFilteredClientList` method to ask the `Model` to populate the 'filtered list' with _all_ clients.<br>
+     FYI, The 'filtered list' is the list of clients resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the clients so that the user can see the edited client along with all other clients. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of clients is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
@@ -231,15 +231,15 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      * {@code JsonSerializableJeeqTracker}.
      */
     public JsonSerializableJeeqTracker(ReadOnlyJeeqTracker source) {
-        companies.addAll(
-            source.getCompanyList()
+        clients.addAll(
+            source.getClientList()
                   .stream()
-                  .map(JsonAdaptedCompany::new)
+                  .map(JsonAdaptedClient::new)
                   .collect(Collectors.toList()));
     }
     ```
 
-1. It appears that a `JsonAdaptedCompany` is created for each `Company` and then added to the `JsonSerializableJeeqTracker`.
+1. It appears that a `JsonAdaptedClient` is created for each `Client` and then added to the `JsonSerializableJeeqTracker`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
@@ -296,6 +296,6 @@ Here are some quick questions you can try to answer based on your execution path
 
     4.  Add a new command
 
-    5.  Add a new field to `Company`
+    5.  Add a new field to `Client`
 
     6.  Add a new entity to the address book

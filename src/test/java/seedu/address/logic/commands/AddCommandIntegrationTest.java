@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.company.Company;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.model.client.Client;
+import seedu.address.testutil.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -26,20 +26,20 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newCompany_success() {
-        Company validCompany = new CompanyBuilder().build();
+    public void execute_newClient_success() {
+        Client validClient = new ClientBuilder().build();
 
         Model expectedModel = new ModelManager(model.getJeeqTracker(), new UserPrefs());
-        expectedModel.addCompany(validCompany);
+        expectedModel.addClient(validClient);
 
-        assertCommandSuccess(new AddCommand(validCompany), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validCompany), expectedModel);
+        assertCommandSuccess(new AddCommand(validClient), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validClient), expectedModel);
     }
 
     @Test
-    public void execute_duplicateCompany_throwsCommandException() {
-        Company companyInList = model.getJeeqTracker().getCompanyList().get(0);
-        assertCommandFailure(new AddCommand(companyInList), model, AddCommand.MESSAGE_DUPLICATE_COMPANY);
+    public void execute_duplicateClient_throwsCommandException() {
+        Client clientInList = model.getJeeqTracker().getClientList().get(0);
+        assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
 }

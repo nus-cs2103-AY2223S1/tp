@@ -3,10 +3,10 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.ALICE;
-import static seedu.address.testutil.TypicalCompanies.BENSON;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.company.NameContainsKeywordsPredicate;
+import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.testutil.JeeqTrackerBuilder;
 
 public class ModelManagerTest {
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasCompany_nullCompany_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasCompany(null));
+    public void hasClient_nullClient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
     }
 
     @Test
-    public void hasCompany_companyNotInJeeqTracker_returnsFalse() {
-        assertFalse(modelManager.hasCompany(ALICE));
+    public void hasClient_clientNotInJeeqTracker_returnsFalse() {
+        assertFalse(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void hasCompany_companyInJeeqTracker_returnsTrue() {
-        modelManager.addCompany(ALICE);
-        assertTrue(modelManager.hasCompany(ALICE));
+    public void hasClient_clientInJeeqTracker_returnsTrue() {
+        modelManager.addClient(ALICE);
+        assertTrue(modelManager.hasClient(ALICE));
     }
 
     @Test
-    public void getFilteredCompanyList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCompanyList().remove(0));
+    public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
     }
 
     @Test
     public void equals() {
-        JeeqTracker jeeqTracker = new JeeqTrackerBuilder().withCompany(ALICE).withCompany(BENSON).build();
+        JeeqTracker jeeqTracker = new JeeqTrackerBuilder().withClient(ALICE).withClient(BENSON).build();
         JeeqTracker differentJeeqTracker = new JeeqTracker();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredCompanyList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(jeeqTracker, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        modelManager.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

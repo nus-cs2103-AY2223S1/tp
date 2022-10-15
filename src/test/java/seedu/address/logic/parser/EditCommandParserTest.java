@@ -17,19 +17,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_COMPANY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_CLIENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditCompanyDescriptor;
-import seedu.address.model.company.Address;
-import seedu.address.model.company.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditCompanyDescriptorBuilder;
+import seedu.address.testutil.EditClientDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -73,7 +72,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Company} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Client} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
@@ -86,11 +85,11 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_COMPANY;
+        Index targetIndex = INDEX_SECOND_CLIENT;
         String userInput = targetIndex.getOneBased() + TAG_DESC_HUSBAND + ADDRESS_DESC_AMY
                 + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -101,33 +100,34 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_COMPANY;
+        Index targetIndex = INDEX_THIRD_CLIENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
+                .withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
         userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditCompanyDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        descriptor = new EditClientDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditCompanyDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        descriptor = new EditClientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_COMPANY;
+        Index targetIndex = INDEX_FIRST_CLIENT;
         String userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY
                 + TAG_DESC_FRIEND + ADDRESS_DESC_AMY + TAG_DESC_FRIEND
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder()
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder()
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -137,10 +137,10 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_COMPANY;
+        Index targetIndex = INDEX_THIRD_CLIENT;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditCompanyDescriptor descriptor = new EditCompanyDescriptorBuilder().withTags().build();
+        EditCommand.EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

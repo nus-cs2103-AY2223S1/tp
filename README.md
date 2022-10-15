@@ -7,7 +7,7 @@
 
 * This is a **brownfield project** for CS2103T (Software Engineering) module.<br>
   Example usages:
-  * for small business owners to keep track of transactions with different companies.
+  * for small business owners to keep track of transactions with different clients.
   * for small business owners to keep track of supplier contacts.
 
 

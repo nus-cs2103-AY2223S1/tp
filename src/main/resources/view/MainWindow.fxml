@@ -49,16 +49,16 @@
             <HBox maxHeight="1.7976931348623157E308" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
 
-                <VBox fx:id="companyList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                <VBox fx:id="clientList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="336.0" styleClass="header-text" stylesheets="@Label.css" text="Companies" textFill="RED">
+                     <Label alignment="CENTER" prefHeight="30.0" prefWidth="336.0" styleClass="header-text" stylesheets="@Label.css" text="Clients" textFill="RED">
                         <VBox.margin>
                            <Insets bottom="15.0" />
                         </VBox.margin>
                      </Label>
-                <StackPane fx:id="companyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
                   <VBox prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>

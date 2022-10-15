@@ -1,7 +1,0 @@
-{
-  "companies": [ {
-    "name": "Company with invalid name field: Ha!ns Mu@ster",
-    "address": "4th street",
-    "pocs": [ ]
-  } ]
-}

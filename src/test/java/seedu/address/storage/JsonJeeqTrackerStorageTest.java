@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.ALICE;
-import static seedu.address.testutil.TypicalCompanies.HOON;
-import static seedu.address.testutil.TypicalCompanies.IDA;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.ALICE;
+import static seedu.address.testutil.TypicalClients.HOON;
+import static seedu.address.testutil.TypicalClients.IDA;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonJeeqTrackerStorageTest {
     }
 
     @Test
-    public void readJeeqTracker_invalidCompanyJeeqTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidCompanyJeeqTracker.json"));
+    public void readJeeqTracker_invalidClientJeeqTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidClientJeeqTracker.json"));
     }
 
     @Test
-    public void readJeeqTracker_invalidAndValidCompanyJeeqTracker_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidAndValidCompanyJeeqTracker.json"));
+    public void readJeeqTracker_invalidAndValidClientJeeqTracker_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readJeeqTracker("invalidAndValidClientJeeqTracker.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonJeeqTrackerStorageTest {
         assertEquals(original, new JeeqTracker(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addCompany(HOON);
-        original.removeCompany(ALICE);
+        original.addClient(HOON);
+        original.removeClient(ALICE);
         jsonJeeqTrackerStorage.saveJeeqTracker(original, filePath);
         readBack = jsonJeeqTrackerStorage.readJeeqTracker(filePath).get();
         assertEquals(original, new JeeqTracker(readBack));
 
         // Save and read without specifying file path
-        original.addCompany(IDA);
+        original.addClient(IDA);
         jsonJeeqTrackerStorage.saveJeeqTracker(original); // file path not specified
         readBack = jsonJeeqTrackerStorage.readJeeqTracker().get(); // file path not specified
         assertEquals(original, new JeeqTracker(readBack));

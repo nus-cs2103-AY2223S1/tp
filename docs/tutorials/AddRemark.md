@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing company in the address book.
+ * Changes the remark of an existing client in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -65,8 +65,8 @@ Following the convention in other commands, we add relevant messages as constant
 
 ``` java
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the remark of the company identified "
-            + "by the index number used in the last company listing. "
+            + ": Edits the remark of the client identified "
+            + "by the index number used in the last client listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -101,8 +101,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the company in the filtered company list to edit the remark
-     * @param remark of the company to be updated to
+     * @param index of the client in the filtered client list to edit the remark
+     * @param remark of the client to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -225,11 +225,11 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of company data. We achieve that by working with the `Company` model. Each field in a Company is implemented as a separate class (e.g. a `Name` object represents the company’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a company.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of client data. We achieve that by working with the `Client` model. Each field in a Client is implemented as a separate class (e.g. a `Name` object represents the client’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a client.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.company`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.client`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-41bb13c581e280c686198251ad6cc337cd5e27032772f06ed9bf7f1440995ece). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -240,11 +240,11 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each company.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each client.
 
-Simply add the following to [`seedu.address.ui.CompanyCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
+Simply add the following to [`seedu.address.ui.ClientCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-639834f1e05afe2276a86372adf0fe5f69314642c2d93cfa543d614ce5a76688).
 
-**`CompanyCard.java`:**
+**`ClientCard.java`:**
 
 ``` java
 @FXML
@@ -254,9 +254,9 @@ private Label remark;
 
 `@FXML` is an annotation that marks a private or protected field and makes it accessible to FXML. It might sound like Greek to you right now, don’t worry — we will get back to it later.
 
-Then insert the following into [`main/resources/view/CompanyListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
+Then insert the following into [`main/resources/view/ClientListCard.fxml`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-d44c4f51c24f6253c277a2bb9bc440b8064d9c15ad7cb7ceda280bca032efce9).
 
-**`CompanyListCard.fxml`:**
+**`ClientListCard.fxml`:**
 
 ``` xml
 <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
@@ -266,21 +266,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Company` to support a `Remark` field
+## Modify `Client` to support a `Remark` field
 
-Since `CompanyCard` displays data from a `Company`, we need to update `Company` to get our `Remark` displayed!
+Since `ClientCard` displays data from a `Client`, we need to update `Client` to get our `Remark` displayed!
 
-### Modify `Company`
+### Modify `Client`
 
-We change the constructor of `Company` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Client` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Company`
+### Update other usages of `Client`
 
-Unfortunately, a change to `Company` will cause other commands to break, you will have to modify these commands to use the updated `Company`!
+Unfortunately, a change to `Client` will cause other commands to break, you will have to modify these commands to use the updated `Client`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Company` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Client` class to find these commands.
 
 </div>
 
@@ -289,7 +289,7 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-JeeqTracker stores data by serializing `JsonAdaptedCompany` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedCompany` to work with our new `Company`!
+JeeqTracker stores data by serializing `JsonAdaptedClient` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedClient` to work with our new `Client`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
@@ -304,16 +304,16 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Company` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Client` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
-**`CompanyCard.java`:**
+**`ClientCard.java`:**
 
 ``` java
-public CompanyCard(Company company, int displayedIndex) {
+public ClientCard(Client client, int displayedIndex) {
     //...
-    remark.setText(company.getRemark().value);
+    remark.setText(client.getRemark().value);
 }
 ```
 
@@ -325,43 +325,43 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Company`. Since all fields in a `Company` are immutable, we create a new instance of a `Company` with the values that we want and
-save it with `Model#setCompany()`.
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Client`. Since all fields in a `Client` are immutable, we create a new instance of a `Client` with the values that we want and
+save it with `Model#setClient()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Company: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Company: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Client: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Client: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_Client_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
-        Company editedCompany = new Company(
-                companyToEdit.getName(), companyToEdit.getPhone(), companyToEdit.getEmail(),
-                companyToEdit.getAddress(), remark, companyToEdit.getTags());
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = new Client(
+                clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
+                clientToEdit.getAddress(), remark, clientToEdit.getTags());
 
-        model.setCompany(companyToEdit, editedCompany);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
+        model.setClient(clientToEdit, editedClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage(editedCompany));
+        return new CommandResult(generateSuccessMessage(editedClient));
     }
 
     /**
      * Generates a command execution success message based on whether
      * the remark is added to or removed from
-     * {@code companyToEdit}.
+     * {@code clientToEdit}.
      */
-    private String generateSuccessMessage(Company companyToEdit) {
+    private String generateSuccessMessage(Client clientToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, companyToEdit);
+        return String.format(message, clientToEdit);
     }
 ```
 

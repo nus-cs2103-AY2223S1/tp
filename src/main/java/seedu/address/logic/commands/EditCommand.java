@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_COMPANIES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -17,22 +17,22 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.company.Address;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.Name;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.Name;
 import seedu.address.model.poc.UniquePocList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.TransactionLog;
 
 /**
- * Edits the details of an existing company in the address book.
+ * Edits the details of an existing client in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the company identified "
-            + "by the index number used in the displayed company list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the client identified "
+            + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -40,60 +40,60 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS + "Blk 221 Yishun St 81";
 
-    public static final String MESSAGE_EDIT_COMPANY_SUCCESS = "Edited Company: %1$s";
+    public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_COMPANY = "This company already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     private final Index index;
-    private final EditCompanyDescriptor editCompanyDescriptor;
+    private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * @param index of the company in the filtered company list to edit
-     * @param editCompanyDescriptor details to edit the company with
+     * @param index of the client in the filtered client list to edit
+     * @param editClientDescriptor details to edit the client with
      */
-    public EditCommand(Index index, EditCompanyDescriptor editCompanyDescriptor) {
+    public EditCommand(Index index, EditClientDescriptor editClientDescriptor) {
         requireNonNull(index);
-        requireNonNull(editCompanyDescriptor);
+        requireNonNull(editClientDescriptor);
 
         this.index = index;
-        this.editCompanyDescriptor = new EditCompanyDescriptor(editCompanyDescriptor);
+        this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Company> lastShownList = model.getFilteredCompanyList();
+        List<Client> lastShownList = model.getFilteredClientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Company companyToEdit = lastShownList.get(index.getZeroBased());
-        Company editedCompany = createEditedCompany(companyToEdit, editCompanyDescriptor);
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
 
-        if (!companyToEdit.isSameCompany(editedCompany) && model.hasCompany(editedCompany)) {
-            throw new CommandException(MESSAGE_DUPLICATE_COMPANY);
+        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        model.setCompany(companyToEdit, editedCompany);
-        model.updateFilteredCompanyList(PREDICATE_SHOW_ALL_COMPANIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_COMPANY_SUCCESS, editedCompany));
+        model.setClient(clientToEdit, editedClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
     /**
-     * Creates and returns a {@code Company} with the details of {@code companyToEdit}
-     * edited with {@code editCompanyDescriptor}.
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
+     * edited with {@code editClientDescriptor}.
      */
-    private static Company createEditedCompany(Company companyToEdit, EditCompanyDescriptor editCompanyDescriptor) {
-        assert companyToEdit != null;
+    private static Client createEditedClient(Client clientToEdit, EditClientDescriptor editClientDescriptor) {
+        assert clientToEdit != null;
 
-        Name updatedName = editCompanyDescriptor.getName().orElse(companyToEdit.getName());
-        Address updatedAddress = editCompanyDescriptor.getAddress().orElse(companyToEdit.getAddress());
-        Set<Tag> updatedTags = editCompanyDescriptor.getTags().orElse(companyToEdit.getTags());
-        UniquePocList pocs = editCompanyDescriptor.getUniquePocList().orElse(companyToEdit.getPocs());
-        TransactionLog transactions = editCompanyDescriptor.getTransactionLog().orElse(companyToEdit.getTransactions());
+        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
+        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
+        UniquePocList pocs = editClientDescriptor.getUniquePocList().orElse(clientToEdit.getPocs());
+        TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
-        return new Company(updatedName, updatedAddress, updatedTags, pocs, transactions);
+        return new Client(updatedName, updatedAddress, updatedTags, pocs, transactions);
     }
 
     @Override
@@ -111,27 +111,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editCompanyDescriptor.equals(e.editCompanyDescriptor);
+                && editClientDescriptor.equals(e.editClientDescriptor);
     }
 
     /**
-     * Stores the details to edit the company with. Each non-empty field value will replace the
-     * corresponding field value of the company.
+     * Stores the details to edit the client with. Each non-empty field value will replace the
+     * corresponding field value of the client.
      */
-    public static class EditCompanyDescriptor {
+    public static class EditClientDescriptor {
         private Name name;
         private Address address;
         private Set<Tag> tags;
         private UniquePocList pocs;
         private TransactionLog transactions;
 
-        public EditCompanyDescriptor() {}
+        public EditClientDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditCompanyDescriptor(EditCompanyDescriptor toCopy) {
+        public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -203,12 +203,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditCompanyDescriptor)) {
+            if (!(other instanceof EditClientDescriptor)) {
                 return false;
             }
 
             // state check
-            EditCompanyDescriptor e = (EditCompanyDescriptor) other;
+            EditClientDescriptor e = (EditClientDescriptor) other;
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())

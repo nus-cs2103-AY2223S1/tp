@@ -1,0 +1,44 @@
+{
+  "_comment": "JeeqTracker save file which contains the same Client values as in TypicalClients#getTypicalJeeqTracker()",
+  "clients" : [ {
+    "name" : "Alice Pauline",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tagged" : [ "friends" ],
+    "pocs": [ ]
+  }, {
+    "name" : "Benson Meier",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tagged" : [ "owesMoney", "friends" ],
+    "pocs" : [ {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "tagged" : [ "owesMoney", "friends" ]
+    } ]
+  }, {
+    "name" : "Carl Kurz",
+    "address" : "wall street",
+    "tagged" : [ ],
+    "pocs": [ ]
+  }, {
+    "name" : "Daniel Meier",
+    "address" : "10th street",
+    "tagged" : [ "friends" ],
+    "pocs": [ ]
+  }, {
+    "name" : "Elle Meyer",
+    "address" : "michegan ave",
+    "tagged" : [ ],
+    "pocs": [ ]
+  }, {
+    "name" : "Fiona Kunz",
+    "address" : "little tokyo",
+    "tagged" : [ ],
+    "pocs": [ ]
+  }, {
+    "name" : "George Best",
+    "address" : "4th street",
+    "tagged" : [ ],
+    "pocs": [ ]
+  } ]
+}

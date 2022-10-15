@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import org.junit.jupiter.api.Test;
 

@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_COMPANY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_COMPANY;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.address.testutil.TypicalPoc.ALICE;
 import static seedu.address.testutil.TypicalPoc.AMY;
 import static seedu.address.testutil.TypicalPoc.BOB;
@@ -24,9 +24,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.UniqueClientList;
+import seedu.address.testutil.ClientBuilder;
 
 
 
@@ -36,7 +36,7 @@ class CreateCommandTest {
 
     @Test
     public void constructor_nullPoc_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_COMPANY, null));
+        assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, null));
     }
 
     @Test
@@ -46,46 +46,46 @@ class CreateCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_COMPANY, ALICE).execute(null));
+        assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, ALICE).execute(null));
     }
 
     @Test
-    public void execute_invalidCompanyIndex_failure() {
+    public void execute_invalidClientIndex_failure() {
         assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
-                model.getFilteredCompanyList().size() + 10), ALICE).execute(model));
+                model.getFilteredClientList().size() + 10), ALICE).execute(model));
 
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new ClientBuilder().build();
+        Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new CreateCommand(Index.fromZeroBased(
-                modelStub.getFilteredCompanyList().size() + 10), ALICE).execute(model));
+                modelStub.getFilteredClientList().size() + 10), ALICE).execute(model));
     }
 
     @Test
     public void execute_duplicatePoc_failure() {
-        Company validCompany = new CompanyBuilder().build();
-        validCompany.addPoc(AMY);
-        Model modelStub = new ModelStub(validCompany);
+        Client validClient = new ClientBuilder().build();
+        validClient.addPoc(AMY);
+        Model modelStub = new ModelStub(validClient);
 
-        assertThrows(CommandException.class, () -> new CreateCommand(INDEX_FIRST_COMPANY, AMY).execute(modelStub));
+        assertThrows(CommandException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, AMY).execute(modelStub));
     }
 
     @Test
     public void execute_addPoc_success() throws Exception {
-        Company validCompany = new CompanyBuilder().build();
-        Model modelStub = new ModelStub(validCompany);
-        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_COMPANY, AMY);
+        Client validClient = new ClientBuilder().build();
+        Model modelStub = new ModelStub(validClient);
+        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_CLIENT, AMY);
         createCommand.execute(modelStub);
-        assertTrue(modelStub.getFilteredCompanyList().get(0).hasPoc(AMY));
+        assertTrue(modelStub.getFilteredClientList().get(0).hasPoc(AMY));
     }
 
 
     @Test
     public void equals() {
-        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_COMPANY, ALICE);
+        CreateCommand createCommand = new CreateCommand(INDEX_FIRST_CLIENT, ALICE);
 
         // same values -> returns true
-        CreateCommand createCommandCopy = new CreateCommand(INDEX_FIRST_COMPANY, ALICE);
+        CreateCommand createCommandCopy = new CreateCommand(INDEX_FIRST_CLIENT, ALICE);
         assertTrue(createCommand.equals(createCommandCopy));
 
         // same object -> returns true
@@ -98,22 +98,22 @@ class CreateCommandTest {
         assertFalse(createCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(createCommand.equals(new CreateCommand(INDEX_SECOND_COMPANY, ALICE)));
+        assertFalse(createCommand.equals(new CreateCommand(INDEX_SECOND_CLIENT, ALICE)));
 
         // different Poc -> returns false
-        assertFalse(createCommand.equals(new CreateCommand(INDEX_FIRST_COMPANY, BOB)));
+        assertFalse(createCommand.equals(new CreateCommand(INDEX_FIRST_CLIENT, BOB)));
     }
 
     /**
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-        private Company company;
-        private final UniqueCompanyList coys = new UniqueCompanyList();
+        private Client client;
+        private final UniqueClientList clientList = new UniqueClientList();
 
-        public ModelStub(Company company) {
-            this.company = company;
-            coys.add(company);
+        public ModelStub(Client client) {
+            this.client = client;
+            clientList.add(client);
         }
 
         @Override
@@ -147,7 +147,7 @@ class CreateCommandTest {
         }
 
         @Override
-        public void addCompany(Company company) {
+        public void addClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,27 +162,27 @@ class CreateCommandTest {
         }
 
         @Override
-        public boolean hasCompany(Company company) {
+        public boolean hasClient(Client client) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteCompany(Company target) {
+        public void deleteClient(Client target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setCompany(Company target, Company editedCompany) {
+        public void setClient(Client target, Client editedClient) {
 
         }
 
         @Override
-        public ObservableList<Company> getFilteredCompanyList() {
-            return coys.asUnmodifiableObservableList();
+        public ObservableList<Client> getFilteredClientList() {
+            return clientList.asUnmodifiableObservableList();
         }
 
         @Override
-        public void updateFilteredCompanyList(Predicate<Company> predicate) {
+        public void updateFilteredClientList(Predicate<Client> predicate) {
 
         }
     }

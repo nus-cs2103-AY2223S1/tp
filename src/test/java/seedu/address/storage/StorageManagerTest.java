@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalCompanies.getTypicalJeeqTracker;
+import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 
 import java.nio.file.Path;
 

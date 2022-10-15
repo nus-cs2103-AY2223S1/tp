@@ -8,7 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyJeeqTracker;
-import seedu.address.model.company.Company;
+import seedu.address.model.client.Client;
 
 /**
  * API of the Logic component
@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyJeeqTracker getJeeqTracker();
 
-    /** Returns an unmodifiable view of the filtered list of companies */
-    ObservableList<Company> getFilteredCompanyList();
+    /** Returns an unmodifiable view of the filtered list of clients */
+    ObservableList<Client> getFilteredClientList();
 
     /**
      * Returns the user prefs' address book file path.

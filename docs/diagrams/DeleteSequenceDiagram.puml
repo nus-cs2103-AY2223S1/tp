@@ -48,7 +48,7 @@ deactivate JeeqTrackerParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteCompany(1)
+DeleteCommand -> Model : deleteClient(1)
 activate Model
 
 Model --> DeleteCommand
