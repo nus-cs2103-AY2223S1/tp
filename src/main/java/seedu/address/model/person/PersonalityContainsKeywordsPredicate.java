@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -18,11 +17,11 @@ public class PersonalityContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> setContainsWord(person.getRemarks(), keyword));
+                       .anyMatch(keyword -> setContainsWord(person.getRemarks(), keyword));
     }
 
     private boolean setContainsWord(Set<Remark> set, String keyword) {
-        for (Remark remark: set) {
+        for (Remark remark : set) {
             if (remark.value.equals(keyword)) {
                 return true;
             }
@@ -33,8 +32,8 @@ public class PersonalityContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PersonalityContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((PersonalityContainsKeywordsPredicate) other).keywords)); // state check
+               || (other instanceof PersonalityContainsKeywordsPredicate // instanceof handles nulls
+                   && keywords.equals(((PersonalityContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

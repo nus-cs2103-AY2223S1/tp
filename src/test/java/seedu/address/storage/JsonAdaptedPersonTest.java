@@ -16,7 +16,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 
 public class JsonAdaptedPersonTest {
@@ -132,16 +131,6 @@ public class JsonAdaptedPersonTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, StudentClass.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
-
-//    @Test
-//    public void toModelType_invalidPersonality_throwsIllegalValueException() {
-//        JsonAdaptedPerson person =
-//            new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-//                                  VALID_STUDENTCLASS,
-//                                  INVALID_PERSONALITY, VALID_TAGS);
-//        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
-//        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-//    }
 
     @Test
     public void toModelType_invalidSubject_throwsIllegalValueException() {

@@ -4,15 +4,21 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-public class FindCommand extends Command{
+/**
+ * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Parameters such as "address/", "phone/", "class/" etc. can be added to further filter results.
+ * Keyword matching is case insensitive.
+ */
+public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching the specified criteria "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... subj/SUBJECT (OPTIONAL)\n"
-            + "Example: " + COMMAND_WORD + " names/alice bob charlie\n"
-            + "Example: " + COMMAND_WORD + " names/alice bob charlie subj/English";
+                                               + "the specified keywords (case-insensitive) and"
+                                               + " displays them as a list with index numbers.\n"
+                                               + "Parameters: KEYWORD [MORE_KEYWORDS]... subj/SUBJECT (OPTIONAL)\n"
+                                               + "Example: " + COMMAND_WORD + " names/alice bob charlie\n"
+                                               + "Example: " + COMMAND_WORD + " names/alice bob charlie subj/English";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -23,8 +29,8 @@ public class FindCommand extends Command{
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && this.predicate.equals(((FindCommand) other).predicate)); // state check
+               || (other instanceof FindCommand // instanceof handles nulls
+                   && this.predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
     /**

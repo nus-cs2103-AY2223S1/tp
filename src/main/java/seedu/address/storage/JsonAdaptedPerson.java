@@ -14,8 +14,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Remark;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
@@ -69,8 +69,8 @@ class JsonAdaptedPerson {
 
         // Remarks follow the tag system
         remarks.addAll(source.getRemarks().stream()
-                            .map(JsonAdaptedRemark::new)
-                            .collect(Collectors.toList()));
+                             .map(JsonAdaptedRemark::new)
+                             .collect(Collectors.toList()));
         //        subject = source.getSubjectsTaken().toString();
         tagged.addAll(source.getTags().stream()
                             .map(JsonAdaptedTag::new)
