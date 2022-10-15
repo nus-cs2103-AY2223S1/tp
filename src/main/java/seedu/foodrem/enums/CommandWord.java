@@ -269,4 +269,4 @@ public enum CommandWord {
         }
         return stringJoiner.toString();
     }
-    }
+}
