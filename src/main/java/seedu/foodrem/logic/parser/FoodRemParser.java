@@ -33,7 +33,6 @@ import seedu.foodrem.logic.parser.tagcommandparser.UntagCommandParser;
  * Parses user input.
  */
 public class FoodRemParser {
-
     /**
      * Used for initial separation of command word and args.
      */
@@ -58,64 +57,44 @@ public class FoodRemParser {
         CommandType commandType = CommandType.parseWord(commandWordString);
 
         switch (commandType) {
-
         case NEW_COMMAND:
             return new NewCommandParser().parse(arguments);
-
         case EDIT_COMMAND:
             return new EditCommandParser().parse(arguments);
-
         case VIEW_COMMAND:
             return new ViewCommandParser().parse(arguments);
-
         case INCREMENT_COMMAND:
             return new IncrementCommandParser().parse(arguments);
-
         case DECREMENT_COMMAND:
             return new DecrementCommandParser().parse(arguments);
-
         case DELETE_COMMAND:
             return new DeleteCommandParser().parse(arguments);
-
         case NEW_TAG_COMMAND:
             return new NewTagCommandParser().parse(arguments);
-
         case RENAME_TAG_COMMAND:
             return new RenameTagCommandParser().parse(arguments);
-
         case DELETE_TAG_COMMAND:
             return new DeleteTagCommandParser().parse(arguments);
-
         case RESET_COMMAND:
             return new ResetCommand();
-
         case FIND_COMMAND:
             return new FindCommandParser().parse(arguments);
-
         case LIST_COMMAND:
             return new ListCommand();
-
         case SORT_COMMAND:
             return new SortCommandParser().parse(arguments);
-
         case EXIT_COMMAND:
             return new ExitCommand();
-
         case HELP_COMMAND:
             return new HelpCommandParser().parse(arguments);
-
         case TAG_COMMAND:
             return new TagCommandParser().parse(arguments);
-
         case UNTAG_COMMAND:
             return new UntagCommandParser().parse(arguments);
-
         case LIST_TAG_COMMAND:
             return new ListTagCommand();
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
