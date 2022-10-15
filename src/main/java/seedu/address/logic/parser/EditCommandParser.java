@@ -65,7 +65,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
             editPersonDescriptor.setGitHub(ParserUtil.parseGitHub(argMultimap.getValue(PREFIX_GITHUB).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_INTEREST)).ifPresent(editPersonDescriptor::setTags);
+        parseInterestsForEdit(argMultimap.getAllValues(PREFIX_INTEREST)).ifPresent(editPersonDescriptor::setInterests);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -75,18 +75,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Interest>} containing zero tags.
+     * Parses {@code Collection<String> interests} into a {@code Set<Interest>} if {@code interests} is non-empty.
+     * If {@code interests} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Interest>} containing zero interests.
      */
-    private Optional<Set<Interest>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Interest>> parseInterestsForEdit(Collection<String> interests) throws ParseException {
+        assert interests != null;
 
-        if (tags.isEmpty()) {
+        if (interests.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseInterests(tagSet));
+        Collection<String> interestsSet = interests.size() == 1 && interests.contains("") ? Collections.emptySet() : interests;
+        return Optional.of(ParserUtil.parseInterests(interestsSet));
     }
 
 }

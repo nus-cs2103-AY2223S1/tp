@@ -117,25 +117,25 @@ public class ParserUtil {
      * Parses an {@code String interest} into an {@code interest}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code interest} is invalid.
      */
-    public static Interest parseTag(String tag) throws ParseException {
-        String trimmedTag = tag.trim();
-        if (!Interest.isValidInterest(trimmedTag)) {
+    public static Interest parseInterest(String interest) throws ParseException {
+        String trimmedInterest = interest.trim();
+        if (!Interest.isValidInterest(trimmedInterest)) {
             throw new ParseException(Interest.MESSAGE_CONSTRAINTS);
         }
-        return new Interest(trimmedTag);
+        return new Interest(trimmedInterest);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> interests} into a {@code Set<Interest>}.
      */
-    public static Set<Interest> parseInterests(Collection<String> tags) throws ParseException {
-        final Set<Interest> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Interest> parseInterests(Collection<String> interests) throws ParseException {
+        final Set<Interest> interestSet = new HashSet<>();
+        for (String tagName : interests) {
+            interestSet.add(parseInterest(tagName));
         }
-        return tagSet;
+        return interestSet;
     }
 
     /**

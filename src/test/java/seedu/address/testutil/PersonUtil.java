@@ -58,8 +58,8 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.handle).append(" "));
         descriptor.getGitHub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.username).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Interest> tags = descriptor.getTags().get();
+        if (descriptor.getInterests().isPresent()) {
+            Set<Interest> tags = descriptor.getInterests().get();
             if (tags.isEmpty()) {
                 sb.append(PREFIX_INTEREST);
             } else {

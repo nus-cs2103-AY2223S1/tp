@@ -274,18 +274,18 @@ Students can search for their teammates, view their repos and view each other’
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                             | So that I can…​                                                            |
-|----------|------------------|------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | new user         | see usage instructions and FAQ           | understand how to use the App                                              |
-| `* * *`  | student          | add a batchmate to the addressbook       | conveniently refer to their contact details all in one place               |
-| `* * *`  | student          | list all batchmates                      | see a list of all batchmates in my class                                   |
-| `* * *`  | student          | edit a batchmate                         | change their details without deleting them                                 |
-| `* * *`  | student          | delete a batchmate                       | remove unneeded entries                                                    |
-| `* * *`  | student          | find a batchmate by name/Github username | locate their details to review and give feedback on their iP and tP easily |
-| `* * *`  | student          | tag a batchmate with a tag               | find them easily                                                           |
-| `* * *`  | student          | find batchmates using specified tags     | locate batchmates with the specified tag easily                            |
-| `* *`    | student          | save my data to a file                   | access the data on different devices                                       |
-| `* *`    | technical person | close the App using a command            | close the App easily                                                       |
+| Priority | As a …​          | I want to …​                               | So that I can…​                                                            |
+|----------|------------------|--------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user         | see usage instructions and FAQ             | understand how to use the App                                              |
+| `* * *`  | student          | add a batchmate to the addressbook         | conveniently refer to their contact details all in one place               |
+| `* * *`  | student          | list all batchmates                        | see a list of all batchmates in my class                                   |
+| `* * *`  | student          | edit a batchmate                           | change their details without deleting them                                 |
+| `* * *`  | student          | delete a batchmate                         | remove unneeded entries                                                    |
+| `* * *`  | student          | find a batchmate by name/Github username   | locate their details to review and give feedback on their iP and tP easily |
+| `* * *`  | student          | tag a batchmate with their interests       | find them easily                                                           |
+| `* * *`  | student          | find batchmates using specified interests  | locate batchmates by their interests easily                                |
+| `* *`    | student          | save my data to a file                     | access the data on different devices                                       |
+| `* *`    | technical person | close the App using a command              | close the App easily                                                       |
 
 *{More to be added}*
 
@@ -331,19 +331,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       \
       Use case ends.
 
-**Use case 3: Search batchmates via tags**
+**Use case 3: Search batchmates via interests**
 
 **MSS**
 
-1. Student requests the list of batchmates with tags.
-2. Mass Linkers returns the list of batchmates associated with the particular tags.
+1. Student requests the list of batchmates with the specified interests.
+2. Mass Linkers returns the list of batchmates associated with the particular interests.
    \
    Use case ends.
 
 **Extensions**
-* 1a. Mass Linkers detects an invalid input. (No tags specified by the student)
-* 1a1. Mass Linkers requests for at least one tag to be specified.
-* 1a2. Student inputs new tags.
+* 1a. Mass Linkers detects an invalid input. (No interests specified by the student)
+* 1a1. Mass Linkers requests for at least one interest to be specified.
+* 1a2. Student inputs new interests.
 * Steps 1a1-1a2 are repeated until input is valid.
   \
   Use case resumes from step 2.
@@ -352,19 +352,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       \
       Use case ends.
     
-**Use case 4: Add a tag to a batchmate**
+**Use case 4: Add an interest to a batchmate**
 
 **MSS**
 
-1. Student chooses to add a tag to a batchmate.
+1. Student chooses to add an interest to a batchmate.
 2. Mass Linkers searches through the list of batchmates for the selected batchmate.
-3. Mass Linkers adds tag to the batchmate.
+3. Mass Linkers adds the interests to the batchmate.
    \
    Use case ends.
 
 **Extensions**
 * 2a. The list of batchmates is empty.
-* a1. Mass Linkers warns adding a tag is invalid.
+* a1. Mass Linkers warns adding an interest is invalid.
   \
   Use case ends.
 * 2b. Mass Linkers detects an error in specified batchmate (non valid index).

@@ -25,9 +25,9 @@ public class FindInterestCommandParser implements Parser<FindInterestCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindInterestCommand.MESSAGE_USAGE));
         }
 
-        String[] tagNameKeywords = trimmedArgs.split("\\s+");
+        String[] interestNameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindInterestCommand(new PersonContainsInterestPredicate(Arrays.asList(tagNameKeywords)));
+        return new FindInterestCommand(new PersonContainsInterestPredicate(Arrays.asList(interestNameKeywords)));
     }
 
 }

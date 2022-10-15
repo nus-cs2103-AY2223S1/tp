@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_GITHUB + "GITHUB] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_INTEREST + "TAG]...\n"
+            + "[" + PREFIX_INTEREST + "INTEREST]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_GITHUB + "john_doe "
             + PREFIX_PHONE + "91234567 "
@@ -105,10 +105,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
         GitHub updatedGitHub = editPersonDescriptor.getGitHub().orElse(personToEdit.getGitHub());
-        Set<Interest> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getInterests());
+        Set<Interest> updatedInterests = editPersonDescriptor.getInterests().orElse(personToEdit.getInterests());
         ObservableList<Mod> mods = personToEdit.getMods();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub, updatedTags, mods);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedTelegram, updatedGitHub, updatedInterests, mods);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
         private Email email;
         private Telegram handle;
         private GitHub username;
-        private Set<Interest> tags;
+        private Set<Interest> interests;
         private ObservableList<Mod> mods;
 
         public EditPersonDescriptor() {}
@@ -154,7 +154,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setTelegram(toCopy.handle);
             setGitHub(toCopy.username);
-            setTags(toCopy.tags);
+            setInterests(toCopy.interests);
         }
 
         /**
@@ -162,7 +162,7 @@ public class EditCommand extends Command {
          * Editing mods should be done on a separate command.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, handle, username, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, handle, username, interests);
         }
 
         public void setName(Name name) {
@@ -205,11 +205,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(username);
         }
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code interests} to this object's {@code interests}.
+         * A defensive copy of {@code interests} is used internally.
          */
-        public void setTags(Set<Interest> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setInterests(Set<Interest> interests) {
+            this.interests = (interests != null) ? new HashSet<>(interests) : null;
         }
 
         /**
@@ -217,8 +217,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Interest>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Interest>> getInterests() {
+            return (interests != null) ? Optional.of(Collections.unmodifiableSet(interests)) : Optional.empty();
         }
 
         /**
@@ -249,7 +249,7 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getTelegram().equals(e.getTelegram())
-                    && getTags().equals(e.getTags());
+                    && getInterests().equals(e.getInterests());
         }
     }
 }

@@ -26,7 +26,7 @@ public class Person {
 
     // Data fields
     private final Telegram handle;
-    private final Set<Interest> tags = new HashSet<>();
+    private final Set<Interest> interests = new HashSet<>();
     private final ObservableList<Mod> mods =
             FXCollections.observableArrayList();
 
@@ -34,13 +34,13 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Telegram handle,
-                  GitHub gitHub, Set<Interest> tags, ObservableList<Mod> mods) {
+                  GitHub gitHub, Set<Interest> interests, ObservableList<Mod> mods) {
         requireAllNonNull(name, handle);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.handle = handle;
-        this.tags.addAll(tags);
+        this.interests.addAll(interests);
         this.gitHub = gitHub;
         this.mods.addAll(mods);
     }
@@ -70,7 +70,7 @@ public class Person {
      * if modification is attempted.
      */
     public Set<Interest> getInterests() {
-        return Collections.unmodifiableSet(tags);
+        return Collections.unmodifiableSet(interests);
     }
 
     /**
@@ -173,7 +173,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, handle, gitHub, tags, mods);
+        return Objects.hash(name, phone, email, handle, gitHub, interests, mods);
     }
 
     @Override

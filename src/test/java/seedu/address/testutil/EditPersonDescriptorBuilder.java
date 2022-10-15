@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setTelegram(person.getTelegram());
         descriptor.setGitHub(person.getGitHub());
-        descriptor.setTags(person.getInterests());
+        descriptor.setInterests(person.getInterests());
     }
 
     /**
@@ -90,7 +90,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withInterests(String... interests) {
         Set<Interest> tagSet = Stream.of(interests).map(Interest::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+        descriptor.setInterests(tagSet);
         return this;
     }
 

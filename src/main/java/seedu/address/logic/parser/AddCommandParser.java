@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         GitHub gitHub = null;
         Phone phone = null;
         Email email = null;
-        Set<Interest> tagList = ParserUtil.parseInterests(argMultimap.getAllValues(PREFIX_INTEREST));
+        Set<Interest> interestSet = ParserUtil.parseInterests(argMultimap.getAllValues(PREFIX_INTEREST));
         ObservableList<Mod> modList = ParserUtil.parseMods(argMultimap.getAllValues(PREFIX_MOD));
 
         if (argMultimap.getValue(PREFIX_GITHUB).isPresent()) {
@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
-        Person person = new Person(name, phone, email, handle, gitHub, tagList, modList);
+        Person person = new Person(name, phone, email, handle, gitHub, interestSet, modList);
 
         return new AddCommand(person);
     }

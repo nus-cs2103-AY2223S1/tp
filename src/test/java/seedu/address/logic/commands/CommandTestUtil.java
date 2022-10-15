@@ -54,8 +54,8 @@ public class CommandTestUtil {
     public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String GITHUB_DESC_AMY = " " + PREFIX_GITHUB + VALID_GITHUB_AMY;
     public static final String GITHUB_DESC_BOB = " " + PREFIX_GITHUB + VALID_GITHUB_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_INTEREST + VALID_INTEREST_TENNIS;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_INTEREST + VALID_INTEREST_NETFLIX;
+    public static final String INTEREST_DESC_TENNIS = " " + PREFIX_INTEREST + VALID_INTEREST_TENNIS;
+    public static final String INTEREST_DESC_NETFLIX = " " + PREFIX_INTEREST + VALID_INTEREST_NETFLIX;
     public static final String MOD_DESC_CS2100 = " " + PREFIX_MOD + VALID_MOD_CS2100;
     public static final String MOD_DESC_CS2103 = " " + PREFIX_MOD + VALID_MOD_CS2103;
     public static final String INVALID_MOD_DESC_CS2103 = " " + PREFIX_MOD + INVALID_MOD_CS2103;
@@ -66,7 +66,7 @@ public class CommandTestUtil {
     public static final String INVALID_GITHUB_DESC = " " + PREFIX_GITHUB;
     // empty string not allowed for GitHub usernames
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM; // empty string not allowed for telegram
-    public static final String INVALID_TAG_DESC = " " + PREFIX_INTEREST + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_INTEREST_DESC = " " + PREFIX_INTEREST + "tennis*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

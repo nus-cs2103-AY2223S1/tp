@@ -7,14 +7,15 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonContainsInterestPredicate;
 
 /**
- * Lists batchmates that match all tags specified by the user.
+ * Lists batchmates that match all interests specified by the user.
  * Keyword matching is case-insensitive.
  */
 public class FindInterestCommand extends Command {
 
     public static final String COMMAND_WORD = "findInt";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists batchmates that match all interests specified\n"
-            + "Example: " + COMMAND_WORD + " tennis";
+            + "Parameters: INTEREST [MORE_INTERESTS]...\n"
+            + "Example: " + COMMAND_WORD + " tennis netflix";
 
     private final PersonContainsInterestPredicate predicate;
 
