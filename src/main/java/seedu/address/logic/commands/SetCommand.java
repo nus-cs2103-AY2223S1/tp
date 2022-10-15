@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,6 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
 /**
@@ -77,6 +79,7 @@ public class SetCommand extends Command {
         assert personToEdit != null;
         Name name = personToEdit.getName();
         Address addr = personToEdit.getAddress();
+        Set<Tag> tags = personToEdit.getTags();
 
         // get map of contacts from person
         Map<ContactType, Contact> oldContacts = personToEdit.getContacts();
@@ -87,7 +90,7 @@ public class SetCommand extends Command {
             }
         }
 
-        return new Person(name, addr, new HashSet<>(), newContacts);
+        return new Person(name, addr, tags, newContacts);
     }
 
     @Override
