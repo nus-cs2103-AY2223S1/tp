@@ -188,11 +188,39 @@ Clears all entries of people from the SectresBook.
 
 Format: `clear`
 
-### Adding Notes `[coming in v1.2.1]`
+### Adding Notes `addNote`
 
-### Editing Notes `[coming in v1.2.1]`
+Adds a note to the SectresBook.
 
-### Deleting Notes `[coming in v1.2.1]`
+Format: `addNote n_t/TITLE n_c/CONTENT `
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+TITLE must be unique and not longer than 100 characters.
+</div>
+
+Examples:
+* `add n_t/Club meeting soon! n_c/Remind club members to attend meeting.`
+* `add n_t/T-Shirt payment due n_c/Collect money`
+
+### Listing Notes `listNote`
+
+Shows a list of all notes in the SectresBook.
+
+Format: `listNote`
+
+### Deleting Notes `deleteNote`
+
+Deletes the specified note from the SectresBook.
+
+Format: `deleteNote INDEX`
+
+* Deletes the note at the specified `INDEX`.
+* The index refers to the index number shown in the displayed note list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listNote` followed by `deleteNote 2` deletes the 2nd note in the SectresBook.
+
 
 ### Exiting the program : `exit`
 
