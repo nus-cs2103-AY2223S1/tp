@@ -7,6 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,12 +24,13 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_INCOME = "$1000";
-
+    public static final String DEFAULT_MONTHLY = "$200";
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private IncomeLevel income;
+    private Monthly monthly;
     private Set<Tag> tags;
     private Set<Appointment> appointments;
 
@@ -41,6 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         income = new IncomeLevel(DEFAULT_INCOME);
+        monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
         appointments = new HashSet<>();
     }
@@ -106,6 +109,13 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMonthly(String monthly) {
+        this.monthly = new Monthly(monthly);
+        return this;
+    }
+    /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
     public PersonBuilder withAppointments(String ... appointments) {
@@ -113,18 +123,17 @@ public class PersonBuilder {
         return this;
     }
 
-
     /**
      * Returns a Person with the respective arguments as fields
      * By default, the set of appointments field is created but is empty
      */
     public Person build() {
-        return new Person(name, phone, email, address, income, tags);
+        return new Person(name, phone, email, address, income, monthly, tags);
     }
 
 
     public Person buildWithAppointments() {
-        return new Person(name, phone, email, address, income, tags, appointments);
+        return new Person(name, phone, email, address, income, monthly, tags, appointments);
     }
 
 
