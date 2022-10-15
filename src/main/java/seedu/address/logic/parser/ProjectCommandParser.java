@@ -18,9 +18,11 @@ import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
@@ -98,7 +100,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         List<Issue> issueList = new ArrayList<>();
-        ProjectId projectId = new ProjectId(UniqueProjectList.generateId());
+        ProjectId projectId = new ProjectId(HasIntegerIdentifier.generateNextID(AddressBook.get().getProjectList()));
 
         Project project = new Project(name, repository, deadline, client, issueList, projectId);
 

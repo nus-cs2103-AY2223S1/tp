@@ -5,11 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
+import seedu.address.model.list.UniqueEntityList;
 import seedu.address.model.project.Project;
 import seedu.address.model.tag.exceptions.IllegalValueException;
 
@@ -105,7 +107,8 @@ class JsonAdaptedIssue {
         //            Project.class.getSimpleName()));
         //        }
         //
-        final Project modelProject = UniqueProjectList.getProject(Integer.parseInt(project));
+        final Project modelProject = HasIntegerIdentifier.getElementById(
+                AddressBook.get().getProjectList(), Integer.parseInt(project));
 
 
         if (issueId == null) {

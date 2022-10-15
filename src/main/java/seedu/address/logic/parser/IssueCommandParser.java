@@ -78,7 +78,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         Status status = Status.EmptyStatus.EMPTY_STATUS;
         Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 //        project.getIssueList()
-        IssueId issueId = new IssueId(project.getIssueList().);
+        IssueId issueId = new IssueId(HasIntegerIdentifier.generateNextID(project.getIssueList()));
 
         Issue issue = new Issue(description, deadline, priority, status, project, issueId);
 

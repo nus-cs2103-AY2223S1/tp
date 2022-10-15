@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.interfaces.HasIntegerIdentifier;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -244,10 +243,11 @@ public class ParserUtil {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
         // TODO: to retrieve project through a project getter (modify based on getter)
-        if (UniqueProjectList.getProject(trimmedIdInt) == null) {
-            throw new ParseException("No project with this project Id");
-        }
-        return UniqueProjectList.getProject(trimmedIdInt);
+        // Function throws error when not found.
+//        if (HasIntegerIdentifier.getElementById(AddressBook.get().getProjectList() ,trimmedIdInt) == null) {
+//            throw new ParseException("No project with this project Id");
+//        }
+        return HasIntegerIdentifier.getElementById(AddressBook.get().getProjectList() ,trimmedIdInt);
     }
 
     /**
