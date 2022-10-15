@@ -42,8 +42,6 @@ public class DeleteTaskCommand extends Command {
             "Deleted task from: %1$s";
     public static final String MESSAGE_TASK_NUMBER_DOES_NOT_EXIST =
             "Task number given does not exist.";
-    public static final String MESSAGE_MODULE_CODE_DOES_NOT_EXIST =
-            "The given module code does not exist!";
 
     private final DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor;
 
