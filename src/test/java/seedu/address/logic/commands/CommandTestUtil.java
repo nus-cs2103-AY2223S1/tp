@@ -21,7 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCodeContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -158,8 +159,8 @@ public class CommandTestUtil {
      */
     public static void showModuleWithModuleCode(Model model, Index targetIndex) {
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
-        final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final ModuleCode moduleCode = module.getCode();
+        model.updateFilteredModuleList(new ModuleCodeContainsKeywordPredicate(moduleCode));
 
         assertEquals(1, model.getFilteredModuleList().size());
     }
