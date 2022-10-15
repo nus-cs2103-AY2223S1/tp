@@ -19,13 +19,14 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.project.AddProjectCommand;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
-import seedu.address.model.project.UniqueProjectList;
 
 class AddProjectCommandParserTest {
     private ProjectCommandParser parser = new ProjectCommandParser();
@@ -34,7 +35,7 @@ class AddProjectCommandParserTest {
     public void parse_compulsoryAndOptionalFieldsPresent_success() {
         Project project = new Project(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
                 new Deadline(VALID_DEADLINE), Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(),
-                new ProjectId(UniqueProjectList.generateId()));
+                new ProjectId(HasIntegerIdentifier.generateNextID(AddressBook.get().getProjectList())));
         //compulsory and optional fields
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB + REPOSITORY_DESC_REPOSITORY
                 + DEADLINE_DESC_DEADLINE, new AddProjectCommand(project));
@@ -44,7 +45,7 @@ class AddProjectCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         Project project = new Project(new Name(VALID_NAME_BOB), Repository.EmptyRepository.EMPTY_REPOSITORY,
                 Deadline.EmptyDeadline.EMPTY_DEADLINE, Client.EmptyClient.EMPTY_CLIENT, new ArrayList<>(),
-                new ProjectId(UniqueProjectList.generateId()));
+                new ProjectId(HasIntegerIdentifier.generateNextID(AddressBook.get().getProjectList())));
         // only name
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_BOB,
                 new AddProjectCommand(project));

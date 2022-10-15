@@ -43,12 +43,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public static AddressBook getNew() {
-        instance = new AddressBook();
+        instance = AddressBook.getNew();
         return instance;
     }
 
     public static AddressBook getNew(ReadOnlyAddressBook toBeCopied) {
-        instance = new AddressBook(toBeCopied);
+        instance = AddressBook.getNew(toBeCopied);
         return instance;
     }
 
