@@ -268,8 +268,12 @@ public class EditCommand extends Command {
             this.location = location;
         }
 
-        public Optional<Rating> getRating() { return Optional.ofNullable(rating); }
-        public void setRating(Rating rating) { this.rating = rating; }
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.

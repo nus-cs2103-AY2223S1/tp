@@ -115,8 +115,9 @@ abstract class JsonAdaptedPerson {
         return location;
     }
 
-    public String getRating() { return rating; }
-
+    public String getRating() {
+        return rating;
+    }
     public abstract Person toModelType() throws IllegalValueException;
 
 }

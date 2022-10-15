@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.ParserUtil;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Professor/Teaching Assistant's rating in the address book.
@@ -60,7 +60,6 @@ public class Rating {
     }
 
     /**
-     *
      * @return Rating based on the given {@code ArgumentMultimap}.
      */
     public static Rating getRatingFromMultimap(ArgumentMultimap argMultimap) throws ParseException {

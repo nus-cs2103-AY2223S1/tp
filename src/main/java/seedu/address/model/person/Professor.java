@@ -29,7 +29,9 @@ public class Professor extends Person {
         return this.moduleCode;
     }
 
-    public Rating getRating() { return this.rating; }
+    public Rating getRating() {
+        return this.rating;
+    }
 
     @Override
     public boolean equals(Object other) {

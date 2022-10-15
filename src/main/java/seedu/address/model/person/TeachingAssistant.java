@@ -29,7 +29,9 @@ public class TeachingAssistant extends Person {
         return moduleCode;
     }
 
-    public Rating getRating() { return this.rating;}
+    public Rating getRating() {
+        return this.rating;
+    }
 
     @Override
     public boolean equals(Object other) {
