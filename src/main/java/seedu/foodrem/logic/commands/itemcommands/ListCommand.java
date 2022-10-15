@@ -25,4 +25,9 @@ public class ListCommand extends Command {
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
 }

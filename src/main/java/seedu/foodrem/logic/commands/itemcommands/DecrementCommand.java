@@ -87,4 +87,9 @@ public class DecrementCommand extends Command {
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, decrementedItem));
     }
+
+    @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
 }

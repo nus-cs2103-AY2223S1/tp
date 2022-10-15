@@ -38,4 +38,9 @@ public class ListTagCommand extends Command {
 
         return new CommandResult(tagList);
     }
+
+    @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
 }

@@ -102,6 +102,11 @@ public class EditCommand extends Command {
     }
 
     @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {

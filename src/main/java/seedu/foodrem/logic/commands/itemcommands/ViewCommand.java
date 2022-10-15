@@ -49,4 +49,9 @@ public class ViewCommand extends Command {
 
         return new CommandResult(itemToDisplayInformation.toString());
     }
+
+    @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
 }

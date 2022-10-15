@@ -25,4 +25,9 @@ public class ResetCommand extends Command {
         model.setFoodRem(new FoodRem());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
 }

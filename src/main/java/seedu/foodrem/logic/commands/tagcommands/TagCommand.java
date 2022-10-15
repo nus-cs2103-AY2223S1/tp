@@ -96,4 +96,9 @@ public class TagCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
 
     }
+
+    @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
 }

@@ -50,6 +50,11 @@ public class SortCommand extends Command {
     }
 
     @Override
+    public String getUsage() {
+        return MESSAGE_USAGE;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
