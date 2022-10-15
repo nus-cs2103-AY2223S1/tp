@@ -6,13 +6,14 @@ import java.util.Optional;
 
 import soconnect.commons.exceptions.DataConversionException;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.UserPrefs;
 
 /**
  * API of the Storage component.
  */
-public interface Storage extends SoConnectStorage, UserPrefsStorage {
+public interface Storage extends SoConnectStorage, TodoListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -28,5 +29,14 @@ public interface Storage extends SoConnectStorage, UserPrefsStorage {
 
     @Override
     void saveSoConnect(ReadOnlySoConnect soConnect) throws IOException;
+
+    @Override
+    Path getTodoListFilePath();
+
+    @Override
+    Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException;
+
+    @Override
+    void saveTodoList(ReadOnlyTodoList todoList) throws IOException;
 
 }

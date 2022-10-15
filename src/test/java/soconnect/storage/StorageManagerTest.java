@@ -25,8 +25,9 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonSoConnectStorage soConnectStorage = new JsonSoConnectStorage(getTempFilePath("ab"));
+        JsonTodoListStorage todoListStorage = new JsonTodoListStorage(getTempFilePath("todolist"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(soConnectStorage, userPrefsStorage);
+        storageManager = new StorageManager(soConnectStorage, todoListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

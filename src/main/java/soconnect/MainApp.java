@@ -23,10 +23,12 @@ import soconnect.model.SoConnect;
 import soconnect.model.UserPrefs;
 import soconnect.model.util.SampleDataUtil;
 import soconnect.storage.JsonSoConnectStorage;
+import soconnect.storage.JsonTodoListStorage;
 import soconnect.storage.JsonUserPrefsStorage;
 import soconnect.storage.SoConnectStorage;
 import soconnect.storage.Storage;
 import soconnect.storage.StorageManager;
+import soconnect.storage.TodoListStorage;
 import soconnect.storage.UserPrefsStorage;
 import soconnect.ui.Ui;
 import soconnect.ui.UiManager;
@@ -57,7 +59,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         SoConnectStorage soConnectStorage = new JsonSoConnectStorage(userPrefs.getSoConnectFilePath());
-        storage = new StorageManager(soConnectStorage, userPrefsStorage);
+        TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
+        storage = new StorageManager(soConnectStorage, todoListStorage, userPrefsStorage);
 
         initLogging(config);
 

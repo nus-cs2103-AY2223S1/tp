@@ -26,10 +26,12 @@ import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
 import soconnect.storage.JsonSoConnectStorage;
+import soconnect.storage.JsonTodoListStorage;
 import soconnect.storage.JsonUserPrefsStorage;
 import soconnect.storage.StorageManager;
 import soconnect.testutil.PersonBuilder;
@@ -40,15 +42,17 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
         JsonSoConnectStorage soConnectStorage =
                 new JsonSoConnectStorage(temporaryFolder.resolve("soConnect.json"));
+        JsonTodoListStorage todoListStorage =
+            new JsonTodoListStorage(temporaryFolder.resolve("todoList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(soConnectStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(soConnectStorage, todoListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -76,9 +80,11 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonSoConnectIoExceptionThrowingStub
         JsonSoConnectStorage soConnectStorage =
                 new JsonSoConnectIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionSoConnect.json"));
+        JsonTodoListStorage todoListStorage =
+            new JsonToDoListStorageIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTodoList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(soConnectStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(soConnectStorage, todoListStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -160,6 +166,20 @@ public class LogicManagerTest {
 
         @Override
         public void saveSoConnect(ReadOnlySoConnect soConnect, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonToDoListStorageIoExceptionThrowingStub extends JsonTodoListStorage {
+        private JsonToDoListStorageIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

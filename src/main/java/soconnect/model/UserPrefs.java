@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path soConnectFilePath = Paths.get("data" , "soconnect.json");
+    private Path todoListFilePath = Paths.get("data" , "todolist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setSoConnectFilePath(newUserPrefs.getSoConnectFilePath());
+        setTodoListFilePath(newUserPrefs.getTodoListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -54,6 +56,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setSoConnectFilePath(Path soConnectFilePath) {
         requireNonNull(soConnectFilePath);
         this.soConnectFilePath = soConnectFilePath;
+    }
+
+    public Path getTodoListFilePath() {
+        return todoListFilePath;
+    }
+
+    public void setTodoListFilePath(Path todoListFilePath) {
+        requireNonNull(todoListFilePath);
+        this.todoListFilePath = todoListFilePath;
     }
 
     @Override
