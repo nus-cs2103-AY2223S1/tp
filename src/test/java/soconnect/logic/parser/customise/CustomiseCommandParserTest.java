@@ -1,6 +1,5 @@
 package soconnect.logic.parser.customise;
 
-import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.commands.customise.CustomiseCommand.MESSAGE_UNKNOWN_CUSTOMISE_COMMAND;
 import static soconnect.logic.parser.CommandParserTestUtil.assertParseFailure;
 
