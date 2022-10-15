@@ -20,33 +20,41 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final IncomeLevel incomeLevel;
+    private final Monthly monthly;
 
     // Data fields
     private final Address address;
     private final RiskTag riskTag;
     private final Set<Tag> specialTags = new HashSet<>();
+
     private final Set<Tag> tags = new HashSet<>();
     private Set<Appointment> appointments = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, RiskTag riskTag, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, riskTag, tags);
+    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
+                  Monthly monthly, RiskTag riskTag, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, incomeLevel, monthly riskTag, tags);
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.riskTag = riskTag;
         this.specialTags.add(riskTag);
+        this.incomeLevel = incomeLevel;
+        this.monthly = monthly;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, RiskTag riskTag, Set<Tag> tags,
-                  Set<Appointment> appointments) {
+
+    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Monthly monthly,
+                  RiskTag, riskTag, Set<Tag> tags, Set<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -54,8 +62,10 @@ public class Person {
         this.address = address;
         this.riskTag = riskTag;
         this.specialTags.add(riskTag);
+        this.monthly = monthly;
         this.tags.addAll(tags);
         this.appointments = appointments;
+        this.incomeLevel = incomeLevel;
     }
 
     public Name getName() {
@@ -72,6 +82,13 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public Monthly getMonthly() {
+        return monthly;
+    }
+
+    public IncomeLevel getIncome() {
+        return incomeLevel;
     }
 
     public Set<Appointment> getAppointments() {

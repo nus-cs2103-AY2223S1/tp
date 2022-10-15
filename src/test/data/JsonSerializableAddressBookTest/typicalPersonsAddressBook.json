@@ -6,6 +6,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "riskTag": "HIGH",
+    "income": "$1000",
+    "monthly": "$100",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +15,8 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "riskTag": "LOW",
+    "income": "$10000",
+    "monthly": "$200",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +24,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "riskTag": "MEDIUM",
+    "income": "$100000",
+    "monthly": "$300",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +33,8 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "riskTag": "HIGH",
+    "income": "$100000",
+    "monthly": "$250",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +42,8 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "riskTag": "LOW",
+    "income": "$100000",
+    "monthly": "$1000",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +51,8 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "riskTag": "HIGH",
+    "income": "$100000",
+    "monthly": "$350",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +60,8 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "riskTag": "MEDIUM",
+    "income": "$1000000",
+    "monthly": "$500",
     "tagged" : [ ]
   } ]
 }

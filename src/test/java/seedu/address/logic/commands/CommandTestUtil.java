@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
@@ -40,10 +42,15 @@ public class CommandTestUtil {
     public static final String VALID_RISKTAG_HIGH = "HIGH";
     public static final String VALID_RISKTAG_LOW = "LOW";
 
+    public static final String VALID_INCOME_AMY = "$1000";
+    public static final String VALID_INCOME_BOB = "$10000";
     public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_MONTHLY_AMY = "$200";
+    public static final String VALID_MONTHLY_BOB = "$1000";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_APPOINTMENT_21_JAN_2023 = "21-Jan-2023 01:00 AM";
     public static final String VALID_APPOINTMENT_22_JAN_2023 = "22-Jan-2023 01:00 AM";
+    public static final String VALID_APPOINTMENT_23_JAN_2023 = "23-Jan-2023 01:00 AM";
 
     public static final String INVALID_APPOINTMENT_210_JAN_2023 = "210-Jan-2023 01:00 AM";
 
@@ -55,6 +62,10 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
+    public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
+    public static final String MONTHLY_DESC_AMY = " " + PREFIX_MONTHLY + VALID_MONTHLY_AMY;
+    public static final String MONTHLY_DESC_BOB = " " + PREFIX_MONTHLY + VALID_MONTHLY_BOB;
     public static final String FIRST_APPOINTMENT_DESC = " " + PREFIX_DATE + VALID_APPOINTMENT_21_JAN_2023;
     public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_DATE + VALID_APPOINTMENT_22_JAN_2023;
     public static final String RISKTAG_DESC_HIGH = " " + PREFIX_RISKTAG + VALID_RISKTAG_HIGH;
@@ -66,6 +77,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_RISKTAG_DESC = " " + PREFIX_RISKTAG + "none"; // must be HIGH LOW or MEDIUM
+    public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "000"; // income should include "$" sign
+    public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "000"; // monthly should include "$"
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_DATE + INVALID_APPOINTMENT_210_JAN_2023;
 
@@ -79,9 +92,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withIncome(VALID_INCOME_AMY).withMonthly(VALID_MONTHLY_AMY)
                 .withRiskTag(VALID_RISKTAG_LOW).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withIncome(VALID_INCOME_BOB).withMonthly(VALID_MONTHLY_AMY)
                 .withRiskTag(VALID_RISKTAG_HIGH).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPOINTMENT = new EditPersonDescriptorBuilder().withAppointments(VALID_APPOINTMENT_21_JAN_2023).build();
     }

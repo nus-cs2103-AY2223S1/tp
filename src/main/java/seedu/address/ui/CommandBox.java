@@ -4,9 +4,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,8 +36,12 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         // displays command parameters in ResultDisplay when a COMMAND_WORD is typed.
+        // clears ResultDisplay when a single character is in the CommandBox
         commandTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             setStyleToDefault();
+            if (newValue.length() == 1) {
+                resultDisplay.setFeedbackToUser("");
+            }
             switch (newValue) {
             case AddCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(AddCommand.MESSAGE_USAGE);
@@ -48,8 +55,14 @@ public class CommandBox extends UiPart<Region> {
             case FindCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(FindCommand.MESSAGE_USAGE);
                 break;
-            case "":
-                resultDisplay.setFeedbackToUser("");
+            case AddAppointmentCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(AddAppointmentCommand.MESSAGE_USAGE);
+                break;
+            case EditAppointmentCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(EditAppointmentCommand.MESSAGE_USAGE);
+                break;
+            case DeleteAppointmentCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(DeleteAppointmentCommand.MESSAGE_USAGE);
                 break;
             default:
                 break;
