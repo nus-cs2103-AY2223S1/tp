@@ -117,25 +117,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseNokPhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseNokPhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }
 
     @Test
     public void parseNokPhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseNokPhone(INVALID_NOK_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_NOK_PHONE));
     }
 
     @Test
     public void parseNokPhone_validValueWithoutWhitespace_returnsNokPhone() throws Exception {
         Phone expectedNokPhone = new Phone(VALID_NOK_PHONE);
-        assertEquals(expectedNokPhone, ParserUtil.parseNokPhone(VALID_NOK_PHONE));
+        assertEquals(expectedNokPhone, ParserUtil.parsePhone(VALID_NOK_PHONE));
     }
 
     @Test
     public void parseNokPhone_validValueWithWhitespace_returnsTrimmedNokPhone() throws Exception {
         String nokPhoneWithWhitespace = WHITESPACE + VALID_NOK_PHONE + WHITESPACE;
         Phone expectedNokPhone = new Phone(VALID_NOK_PHONE);
-        assertEquals(expectedNokPhone, ParserUtil.parseNokPhone(nokPhoneWithWhitespace));
+        assertEquals(expectedNokPhone, ParserUtil.parsePhone(nokPhoneWithWhitespace));
     }
 
     @Test

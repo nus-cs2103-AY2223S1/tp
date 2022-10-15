@@ -110,15 +110,14 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(
-                parser, "1" + INVALID_NOK_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid nok phone
+        assertParseFailure(parser, "1" + INVALID_NOK_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid nok phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_CLASS_DATE_TIME_DESC, Class.MESSAGE_CONSTRAINTS); // invalid class
         assertParseFailure(parser, "1" + INVALID_MONEY_OWED_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money owed
         assertParseFailure(parser, "1" + INVALID_MONEY_PAID_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money paid
         assertParseFailure(parser,
-                "1" + INVALID_RATES_PER_CLASS_DESC, Money.MESSAGE_CONSTRAINTS); // invalid money per class
+                "1" + INVALID_RATES_PER_CLASS_DESC, Money.MESSAGE_CONSTRAINTS); // invalid rates per class
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
