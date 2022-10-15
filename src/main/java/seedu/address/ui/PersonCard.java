@@ -57,7 +57,7 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        number.setText(displayedIndex + ". ");
+        id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         gender.setImage(getGenderImage(person));
@@ -69,7 +69,7 @@ public class PersonCard extends UiPart<Region> {
         if (person instanceof Professor) {
             title.setText("Professor");
         } else if (person instanceof TeachingAssistant) {
-            title.setText("TA");
+            title.setText("Teaching\nAssistant");
         } else {
             title.setText("Student");
         }
