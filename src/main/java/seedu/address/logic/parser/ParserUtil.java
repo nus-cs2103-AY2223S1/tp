@@ -153,7 +153,7 @@ public class ParserUtil {
             LocalDate date = parseDate(trimmedClassDatetime.substring(0, 10));
             LocalTime startTime = parseTime(trimmedClassDatetime.substring(11, 15));
             LocalTime endTime = parseTime(trimmedClassDatetime.substring(16));
-            if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
+            if (!Class.isValidDuration(startTime, endTime)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
             }
             return new Class(date, startTime, endTime, classDatetime);
@@ -162,7 +162,7 @@ public class ParserUtil {
             // ie Mon 0000-2359
             LocalTime startTime = parseTime(trimmedClassDatetime.substring(4, 8));
             LocalTime endTime = parseTime(trimmedClassDatetime.substring(9));
-            if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
+            if (!Class.isValidDuration(startTime, endTime)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
             }
             targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedClassDatetime.substring(0, 3).toUpperCase());

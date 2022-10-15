@@ -209,6 +209,21 @@ public class Class {
         return true;
     }
 
+    /**
+     * Returns true if duration is valid.
+     *
+     * @param startTime LocalTime object.
+     * @param endTime LocalTime object.
+     * @return True if startTime is before endTime.
+     */
+    public static boolean isValidDuration(LocalTime startTime, LocalTime endTime) {
+        if (endTime.getHour() == 0 && endTime.getMinute() == 0) {
+            // corner case where endTime is 12AM
+            return !startTime.equals(endTime) || startTime.getHour() != 0;
+        }
+        return endTime.isAfter(startTime) && !endTime.equals(startTime);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

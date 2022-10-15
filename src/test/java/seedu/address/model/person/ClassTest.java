@@ -48,6 +48,23 @@ public class ClassTest {
     }
 
     @Test
+    public void isValidDuration() {
+        assertTrue(Class.isValidDuration(LocalTime.of(15, 0), LocalTime.of(16, 0)));
+        assertTrue(Class.isValidDuration(LocalTime.of(15, 0), LocalTime.of(0, 0)));
+        assertTrue(Class.isValidDuration(LocalTime.of(0, 0), LocalTime.of(16, 0)));
+        assertTrue(Class.isValidDuration(LocalTime.of(0, 5), LocalTime.of(0, 0)));
+        assertTrue(Class.isValidDuration(LocalTime.of(23, 5), LocalTime.of(0, 0)));
+        assertTrue(Class.isValidDuration(LocalTime.of(3, 5), LocalTime.of(0, 0)));
+    }
+
+    @Test
+    public void isInValidDuration() {
+        assertFalse(Class.isValidDuration(LocalTime.of(15, 0), LocalTime.of(15, 0)));
+        assertFalse(Class.isValidDuration(LocalTime.of(15, 0), LocalTime.of(14, 0)));
+        assertFalse(Class.isValidDuration(LocalTime.of(0, 0), LocalTime.of(0, 0)));
+    }
+
+    @Test
     public void toStringTest() {
         LocalDate validDate = LocalDate.of(2022, 10, 11);
         LocalTime validStartTime = LocalTime.of(0, 0);
