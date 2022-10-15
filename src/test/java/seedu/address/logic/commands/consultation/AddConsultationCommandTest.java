@@ -23,7 +23,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
-import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.ConsultationBuilder;
 
@@ -211,16 +210,6 @@ public class AddConsultationCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
-         *
-         * @param ta
-         */
-        @Override
-        public boolean hasTeachingAssistant(TeachingAssistant ta) {
-            return false;
-        }
-
         @Override
         public boolean hasConsultation(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
@@ -228,27 +217,6 @@ public class AddConsultationCommandTest {
 
         @Override
         public boolean hasConsultationClashingWith(Consultation consultation) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        /**
-         * Adds the given teaching assistant.
-         * {@code ta} must not already exist in the ModQuik.
-         *
-         * @param ta
-         */
-        @Override
-        public void addTeachingAssistant(TeachingAssistant ta) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<TeachingAssistant> getFilteredTeachingAssistantList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

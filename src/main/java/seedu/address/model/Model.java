@@ -8,7 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
-import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -19,7 +18,6 @@ public interface Model {
     Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDERS = unused -> true;
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
-    Predicate<TeachingAssistant> PREDICATE_SHOW_ALL_TEACHING_ASSISTANTS = unused -> true;
     Predicate<Consultation> PREDICATE_SHOW_ALL_CONSULTATIONS = unused -> true;
 
     /**
@@ -151,11 +149,6 @@ public interface Model {
     void updateFilteredTutorialList(Predicate<Tutorial> predicate);
 
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the ModQuik.
-     */
-    boolean hasTeachingAssistant(TeachingAssistant ta);
-
-    /**
      * Returns true if a consultation with the same identity as {@code tutorial} exists in the ModQuik.
      */
     boolean hasConsultation(Consultation consultation);
@@ -164,18 +157,6 @@ public interface Model {
      * Returns true if a tutorial with the same venue and timeslot as {@code tutorial} exists in the ModQuik.
      */
     boolean hasConsultationClashingWith(Consultation consultation);
-
-
-    /**
-     * Adds the given tutorial.
-     * {@code tutorial} must not already exist in the ModQuik.
-     */
-
-    void addTeachingAssistant(TeachingAssistant ta);
-
-    ObservableList<TeachingAssistant> getFilteredTeachingAssistantList();
-
-    void updateFilteredTeachingAssistantList(Predicate<TeachingAssistant> predicate);
 
     void addConsultation(Consultation consultation);
 

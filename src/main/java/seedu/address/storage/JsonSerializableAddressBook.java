@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import static seedu.address.logic.commands.consultation.AddConsultationCommand.MESSAGE_DUPLICATE_CONSULTATION;
-import static seedu.address.logic.commands.ta.AddTeachingAssistantCommand.MESSAGE_DUPLICATE_TA;
 import static seedu.address.logic.commands.tutorial.AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL;
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.student.Student;
-import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
@@ -33,7 +31,6 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedStudent> persons = new ArrayList<>();
     private final List<JsonAdaptedTutorial> tutorials = new ArrayList<>();
     private final List<JsonAdaptedConsultation> consultations = new ArrayList<>();
-    private final List<JsonAdaptedTeachingAssistant> teachingAssistants = new ArrayList<>();
     private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
@@ -43,13 +40,10 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedStudent> persons,
                                        @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
                                        @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials,
-                                       @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations,
-                                       @JsonProperty("teachingAssistants")
-                                                   List<JsonAdaptedTeachingAssistant> teachingAssistants) {
+                                       @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations) {
         this.persons.addAll(persons);
         this.tutorials.addAll(tutorials);
         this.consultations.addAll(consultations);
-        this.teachingAssistants.addAll(teachingAssistants);
         this.reminders.addAll(reminders);
     }
 
@@ -63,8 +57,6 @@ class JsonSerializableAddressBook {
         reminders.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
         tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
         consultations.addAll(source.getConsultationList().stream().map(JsonAdaptedConsultation::new)
-                .collect(Collectors.toList()));
-        teachingAssistants.addAll(source.getTeachingAssistantList().stream().map(JsonAdaptedTeachingAssistant::new)
                 .collect(Collectors.toList()));
     }
 
@@ -105,14 +97,6 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CONSULTATION);
             }
             addressBook.addConsulation(consultation);
-        }
-
-        for (JsonAdaptedTeachingAssistant jsonAdaptedTeachingAssistant : teachingAssistants) {
-            TeachingAssistant teachingAssistant = jsonAdaptedTeachingAssistant.toModelType();
-            if (addressBook.hasTeachingAssistant(teachingAssistant)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TA);
-            }
-            addressBook.addTeachingAssistant(teachingAssistant);
         }
 
         return addressBook;
