@@ -23,7 +23,7 @@ public class Quantity {
     }
 
     public static boolean isValidQuantity(Integer test) {
-        return !(test < 0) && (test <= Integer.MAX_VALUE);
+        return !(test < 0);
     }
 
     public Integer getQuantity() {

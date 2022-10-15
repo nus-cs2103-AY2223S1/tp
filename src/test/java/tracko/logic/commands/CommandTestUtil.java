@@ -1,32 +1,25 @@
 package tracko.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tracko.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
-// import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-// import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// import tracko.commons.core.index.Index;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.exceptions.CommandException;
-// import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.Model;
 import tracko.model.TrackO;
-// import tracko.model.order.NameContainsKeywordsPredicate;
 import tracko.model.items.Item;
 import tracko.model.items.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
 import tracko.model.order.OrderContainsKeywordsPredicate;
-// import tracko.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
