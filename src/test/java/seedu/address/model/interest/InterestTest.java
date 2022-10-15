@@ -12,9 +12,9 @@ public class InterestTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Interest(invalidTagName));
+    public void constructor_invalidInterestName_throwsIllegalArgumentException() {
+        String invalidInterestName = "";
+        assertThrows(IllegalArgumentException.class, () -> new Interest(invalidInterestName));
     }
 
     @Test

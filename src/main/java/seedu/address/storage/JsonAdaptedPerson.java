@@ -93,10 +93,10 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Interest> personTags = new ArrayList<>();
+        final List<Interest> interests = new ArrayList<>();
         final List<Mod> personMods = new ArrayList<>();
-        for (JsonAdaptedInterest tag : tagged) {
-            personTags.add(tag.toModelType());
+        for (JsonAdaptedInterest interest : tagged) {
+            interests.add(interest.toModelType());
         }
         for (JsonAdaptedMod mod : mods) {
             personMods.add(mod.toModelType());
@@ -146,9 +146,9 @@ class JsonAdaptedPerson {
             modelGitHub = new GitHub(username);
         }
 
-        final Set<Interest> modelTags = new HashSet<>(personTags);
+        final Set<Interest> interestSet = new HashSet<>(interests);
         final ObservableList<Mod> modelMods = FXCollections.observableArrayList(personMods);
-        return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, modelTags, modelMods);
+        return new Person(modelName, modelPhone, modelEmail, modelHandle, modelGitHub, interestSet, modelMods);
     }
 
 }

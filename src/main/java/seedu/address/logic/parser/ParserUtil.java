@@ -132,8 +132,8 @@ public class ParserUtil {
      */
     public static Set<Interest> parseInterests(Collection<String> interests) throws ParseException {
         final Set<Interest> interestSet = new HashSet<>();
-        for (String tagName : interests) {
-            interestSet.add(parseInterest(tagName));
+        for (String interestName : interests) {
+            interestSet.add(parseInterest(interestName));
         }
         return interestSet;
     }

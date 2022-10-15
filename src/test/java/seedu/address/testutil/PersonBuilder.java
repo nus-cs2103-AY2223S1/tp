@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Telegram handle;
     private GitHub username;
-    private Set<Interest> tags;
+    private Set<Interest> interests;
     private ObservableList<Mod> mods;
 
     /**
@@ -43,7 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         handle = new Telegram(DEFAULT_TELEGRAM);
         username = new GitHub(DEFAULT_GITHUB);
-        tags = new HashSet<>();
+        interests = new HashSet<>();
         mods = FXCollections.observableArrayList();
     }
 
@@ -56,7 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         handle = personToCopy.getTelegram();
         username = personToCopy.getGitHub();
-        tags = new HashSet<>(personToCopy.getInterests());
+        interests = new HashSet<>(personToCopy.getInterests());
         mods = FXCollections.observableArrayList(personToCopy.getMods());
     }
 
@@ -72,7 +72,7 @@ public class PersonBuilder {
      * Parses the {@code interests} into a {@code Set<Interest>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withInterests(String ... interests) {
-        this.tags = SampleDataUtil.getInterestsSet(interests);
+        this.interests = SampleDataUtil.getInterestsSet(interests);
         return this;
     }
 
@@ -117,6 +117,6 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, handle, username, tags, mods);
+        return new Person(name, phone, email, handle, username, interests, mods);
     }
 }

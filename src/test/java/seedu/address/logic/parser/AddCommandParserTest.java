@@ -82,11 +82,11 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
+        Person expectedPersonMultipleInterests = new PersonBuilder(BOB).withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedPersonMultipleInterests));
 
         // multiple mods - all accepted
         Person expectedPersonMultipleMods = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100, VALID_MOD_CS2103)

@@ -46,7 +46,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_INTEREST;
+    private static final String INTEREST_EMPTY = " " + PREFIX_INTEREST;
     private static final String MOD_EMPTY = " " + PREFIX_MOD;
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -98,9 +98,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX + TAG_EMPTY, Interest.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + TAG_EMPTY + INTEREST_DESC_NETFLIX, Interest.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX, Interest.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX + INTEREST_EMPTY, Interest.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INTEREST_DESC_TENNIS + INTEREST_EMPTY + INTEREST_DESC_NETFLIX, Interest.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INTEREST_EMPTY + INTEREST_DESC_TENNIS + INTEREST_DESC_NETFLIX, Interest.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_TELEGRAM_AMY + VALID_PHONE_AMY,
@@ -202,9 +202,9 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetInterests_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + INTEREST_EMPTY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withInterests().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

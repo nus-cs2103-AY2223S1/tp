@@ -89,8 +89,8 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withInterests(String... interests) {
-        Set<Interest> tagSet = Stream.of(interests).map(Interest::new).collect(Collectors.toSet());
-        descriptor.setInterests(tagSet);
+        Set<Interest> interestSet = Stream.of(interests).map(Interest::new).collect(Collectors.toSet());
+        descriptor.setInterests(interestSet);
         return this;
     }
 

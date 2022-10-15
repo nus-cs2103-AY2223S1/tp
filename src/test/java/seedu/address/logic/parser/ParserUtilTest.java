@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_GITHUB = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_INTEREST = "#tennis";
     private static final String INVALID_MOD = "#CS2103";
 
     private static final String VALID_GITHUB = "racheltan";
@@ -38,8 +38,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_INTEREST_1 = "tennis";
+    private static final String VALID_INTEREST_2 = "baking";
     private static final String VALID_MOD_1 = "CS2103";
     private static final String VALID_MOD_2 = "CS2101";
 
@@ -169,49 +169,49 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
+    public void parseInterest_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseInterest(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseInterest(INVALID_TAG));
+    public void parseInterest_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterest(INVALID_INTEREST));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Interest expectedTag = new Interest(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseInterest(VALID_TAG_1));
+    public void parseInterest_validValueWithoutWhitespace_returnsInterest() throws Exception {
+        Interest expectedInterest = new Interest(VALID_INTEREST_1);
+        assertEquals(expectedInterest, ParserUtil.parseInterest(VALID_INTEREST_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Interest expectedTag = new Interest(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseInterest(tagWithWhitespace));
+    public void parseInterest_validValueWithWhitespace_returnsTrimmedInterest() throws Exception {
+        String interestWithWhitespace = WHITESPACE + VALID_INTEREST_1 + WHITESPACE;
+        Interest expectedInterest = new Interest(VALID_INTEREST_1);
+        assertEquals(expectedInterest, ParserUtil.parseInterest(interestWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
+    public void parseInterests_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseInterests(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseInterests(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseInterests_collectionWithInvalidInterests_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterests(Arrays.asList(VALID_INTEREST_1, INVALID_INTEREST)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
+    public void parseInterests_emptyCollection_returnsEmptySet() throws Exception {
         assertTrue(ParserUtil.parseInterests(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Interest> actualTagSet = ParserUtil.parseInterests(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Interest> expectedTagSet = new HashSet<Interest>(Arrays.asList(new Interest(VALID_TAG_1), new Interest(VALID_TAG_2)));
+    public void parseInterests_collectionWithValidInterests_returnsInterestSet() throws Exception {
+        Set<Interest> actualInterestSet = ParserUtil.parseInterests(Arrays.asList(VALID_INTEREST_1, VALID_INTEREST_2));
+        Set<Interest> expectedInterestSet = new HashSet<Interest>(Arrays.asList(new Interest(VALID_INTEREST_1), new Interest(VALID_INTEREST_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedInterestSet, actualInterestSet);
     }
 
     @Test
@@ -225,13 +225,13 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMod_validValueWithoutWhitespace_returnsTag() throws Exception {
+    public void parseMod_validValueWithoutWhitespace_returnsInterest() throws Exception {
         Mod expectedMod = new Mod(VALID_MOD_1);
         assertEquals(expectedMod, ParserUtil.parseMod(VALID_MOD_1));
     }
 
     @Test
-    public void parseMod_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
+    public void parseMod_validValueWithWhitespace_returnsTrimmedInterest() throws Exception {
         String modWithWhitespace = WHITESPACE + VALID_MOD_1 + WHITESPACE;
         Mod expectedMod = new Mod(VALID_MOD_1);
         assertEquals(expectedMod, ParserUtil.parseMod(modWithWhitespace));
