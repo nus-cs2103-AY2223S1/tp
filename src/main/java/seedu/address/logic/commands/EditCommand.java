@@ -133,9 +133,18 @@ public class EditCommand extends Command {
         AdditionalNotes updatedNotes = editPersonDescriptor.getAdditionalNotes()
                 .orElse(personToEdit.getAdditionalNotes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Class updatedDisplayedClass;
+
+        if (personToEdit.getMarkStatus().isPresent) {
+            updatedDisplayedClass = personToEdit.getDisplayedClass();
+        } else {
+            updatedDisplayedClass = updatedClassDateTime;
+        }
+
+
         return new Person(updatedName, updatedPhone, updatedNokPhone, updatedEmail, updatedAddress,
                 updatedClassDateTime, updatedMoneyOwed, updatedMoneyPaid, updatedRatesPerClass, updatedNotes,
-                updatedTags);
+                updatedTags, personToEdit.getMarkStatus(), updatedDisplayedClass);
 
     }
 
