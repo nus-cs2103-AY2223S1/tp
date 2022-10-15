@@ -102,6 +102,13 @@ public class AddCommandParserTest {
         //         PREAMBLE_WHITESPACE + TYPE_INCOME + DESC_ALLOWANCE
         //                 + AMT_ALLOWANCE + DATE_DINNER + DATE_ALLOWANCE + TAG_ALLOWANCE,
         //         new AddCommand(expectedExpenditure, incomeType));
+        // multiple tags - last tag accepted
+        assertParseSuccess(
+                parser,
+                PREAMBLE_WHITESPACE + TYPE_EXPENDITURE + DESC_LUNCH
+                        + AMT_LUNCH + DATE_LUNCH + TAG_MOVIE
+                        + TAG_LUNCH,
+                new AddCommand(expectedExpenditure, expenditureType));
     }
 
     @Test

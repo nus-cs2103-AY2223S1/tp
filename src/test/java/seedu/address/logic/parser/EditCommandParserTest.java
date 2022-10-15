@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MEAL;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_PERSONAL;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_INCOME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_DINNER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMT_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_DINNER;
@@ -91,7 +92,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TYPE_EXPENDITURE + INVALID_DATE,
                 Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + TYPE_EXPENDITURE + INVALID_TAG,
-                Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                Tag.EXPENDITURE_CONSTRAINTS); // invalid tag
+        assertParseFailure(parser, "1" + TYPE_INCOME + INVALID_TAG,
+                Tag.INCOME_CONSTRAINTS); // invalid tag
 
         // invalid type followed by valid amount
         assertParseFailure(parser, "1" + INVALID_TYPE + VALID_AMT_LUNCH, EntryType.MESSAGE_CONSTRAINTS);
