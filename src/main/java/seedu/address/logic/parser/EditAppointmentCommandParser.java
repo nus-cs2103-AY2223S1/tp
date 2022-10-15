@@ -49,37 +49,43 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     }
 
     private void addReason(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {
-        if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
-            String reason = argMultimap.getValue(PREFIX_REASON).get().trim();
-            if (Appointment.isValidReason(reason)) {
-                descriptor.setReason(reason);
-            } else {
-                throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
-            }
+        if (argMultimap.getValue(PREFIX_REASON).isEmpty()) {
+            return;
+        }
+
+        String reason = argMultimap.getValue(PREFIX_REASON).get().trim();
+        if (Appointment.isValidReason(reason)) {
+            descriptor.setReason(reason);
+        } else {
+            throw new ParseException(Appointment.REASON_MESSAGE_CONSTRAINTS);
         }
     }
 
     private void addDate(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap) throws ParseException {
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            String dateTime = argMultimap.getValue(PREFIX_DATE).get().trim();
-            if (Appointment.isValidDateTime(dateTime)) {
-                String temp = String.join(" ", dateTime.split("\\s+", 2));
-                descriptor.setDateTime(LocalDateTime.parse(temp, Appointment.DATE_FORMATTER));
-            } else {
-                throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
-            }
+        if (argMultimap.getValue(PREFIX_DATE).isEmpty()) {
+            return;
+        }
+
+        String dateTime = argMultimap.getValue(PREFIX_DATE).get().trim();
+        if (Appointment.isValidDateTime(dateTime)) {
+            String temp = String.join(" ", dateTime.split("\\s+", 2));
+            descriptor.setDateTime(LocalDateTime.parse(temp, Appointment.DATE_FORMATTER));
+        } else {
+            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
         }
     }
 
     private void addTimePeriod(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap)
             throws ParseException {
-        if (argMultimap.getValue(PREFIX_RECURRING_PERIOD).isPresent()) {
-            String timePeriod = argMultimap.getValue(PREFIX_RECURRING_PERIOD).get().trim();
-            if (Appointment.isValidTimePeriod(timePeriod)) {
-                descriptor.setTimePeriod(Appointment.parseTimePeriod(timePeriod));
-            } else {
-                throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
-            }
+        if (argMultimap.getValue(PREFIX_RECURRING_PERIOD).isEmpty()) {
+            return;
+        }
+
+        String timePeriod = argMultimap.getValue(PREFIX_RECURRING_PERIOD).get().trim();
+        if (Appointment.isValidTimePeriod(timePeriod)) {
+            descriptor.setTimePeriod(Appointment.parseTimePeriod(timePeriod));
+        } else {
+            throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
         }
     }
 }

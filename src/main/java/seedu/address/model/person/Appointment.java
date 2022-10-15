@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -115,18 +117,20 @@ public class Appointment {
     public static List<Integer> parseTimePeriod(String timePeriod) {
         List<Integer> list = Arrays.asList(0, 0, 0);
         final Matcher matcher = TIME_PERIOD_FORMAT.matcher(timePeriod);
-        if (timePeriod.isEmpty()) {
+        if (timePeriod.isEmpty() || !matcher.matches()) {
             return list;
         }
-        if (matcher.matches()) {
-            List<String> durations = Stream.of(matcher.group("year"), matcher.group("month"),
-                    matcher.group("day")).map(x -> x == null ? "" : x.trim()).collect(Collectors.toList());
-            durations.forEach(x -> {
-                if (!x.isEmpty()) {
-                    list.set(durations.indexOf(x), Integer.parseInt(x.substring(0, x.length() - 1)));
-                }
-            });
-        }
+
+        Function<String, String> f = x -> x == null ? "" : x.trim();
+        List<String> durations = Stream.of(matcher.group("year"), matcher.group("month"),
+                matcher.group("day")).map(f).collect(Collectors.toList());
+
+        Consumer<String> c = x -> {
+            if (!x.isEmpty()) {
+                list.set(durations.indexOf(x), Integer.parseInt(x.substring(0, x.length() - 1)));
+            }
+        };
+        durations.forEach(c);
         return list;
     }
 

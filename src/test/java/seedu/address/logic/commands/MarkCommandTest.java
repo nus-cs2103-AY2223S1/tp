@@ -82,9 +82,10 @@ class MarkCommandTest {
         recurringAppointment.setPatient(markedPerson);
 
         MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
+        String recurringMessage = "\nA recurring appointment has been automatically added";
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
                 targetAppointmentIndex.getOneBased(),
-                markedPerson.getName());
+                markedPerson.getName()) + recurringMessage;
 
         ModelManager expectedModel = new ModelManager(testModel.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personToMarkFor, markedPerson);

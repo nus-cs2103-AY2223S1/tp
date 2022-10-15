@@ -37,6 +37,7 @@ public class MarkCommand extends SelectAppointmentCommand {
     public CommandResult execute(Model model) throws CommandException {
         Person person = getTargetPerson(model);
         Appointment appointmentToMark = getTargetAppointment(model);
+        int size = model.getFilteredAppointmentList().size();
 
         if (appointmentToMark.isMarked()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
@@ -44,19 +45,26 @@ public class MarkCommand extends SelectAppointmentCommand {
 
         appointmentToMark.mark();
         addRecurringAppointment(model, person, appointmentToMark);
-        return new CommandResult(String.format(MESSAGE_MARK_PERSON_SUCCESS,
+        String addRecurringSuccessMsg = "";
+        if (size < model.getFilteredAppointmentList().size()) {
+            addRecurringSuccessMsg += "\nA recurring appointment has been automatically added";
+        }
+        String markSuccessMsg = String.format(MESSAGE_MARK_PERSON_SUCCESS,
                 indexOfAppointment.getOneBased(),
-                getTargetPerson(model).getName()));
+                getTargetPerson(model).getName());
+        return new CommandResult(markSuccessMsg + addRecurringSuccessMsg);
     }
 
     private void addRecurringAppointment(Model model, Person person, Appointment appointment) {
-        if (!appointment.getTimePeriod().isEmpty()) {
-            Appointment recurringAppointment = new Appointment(appointment);
-            List<Appointment> appointmentList = person.getAppointments();
-            if (!hasSameAppointment(appointmentList, recurringAppointment)) {
-                appointmentList.add(recurringAppointment);
-                model.addAppointment(recurringAppointment);
-            }
+        if (appointment.getTimePeriod().isEmpty()) {
+            return;
+        }
+
+        Appointment recurringAppointment = new Appointment(appointment);
+        List<Appointment> appointmentList = person.getAppointments();
+        if (!hasSameAppointment(appointmentList, recurringAppointment)) {
+            appointmentList.add(recurringAppointment);
+            model.addAppointment(recurringAppointment);
         }
     }
 
