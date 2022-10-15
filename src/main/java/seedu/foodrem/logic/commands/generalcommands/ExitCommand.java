@@ -10,11 +10,11 @@ import seedu.foodrem.model.Model;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
-    private static final String SUCCESS_MESSAGE = "Exiting Address Book as requested ...";
+    private static final String MESSAGE_SUCCESS = "Exiting Address Book as requested ...";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SUCCESS_MESSAGE, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, false, true);
     }
 
     public static String getUsage() {
