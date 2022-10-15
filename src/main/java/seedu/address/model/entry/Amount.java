@@ -1,6 +1,7 @@
 
 package seedu.address.model.entry;
 
+import static java.lang.Double.parseDouble;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -13,7 +14,8 @@ public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Expense amount should only contain positive numbers, "
                     + "and it should be formatted to accept 2 decimal places";
     public static final String VALIDATION_REGEX = "^\\s*(?=.*[1-9])\\d*(?:\\.\\d{1,2})?\\s*$";
-    public final String amount;
+    private final double amount;
+    private final String amountString;
 
     /**
      * Constructs a {@code Amount}.
@@ -23,7 +25,8 @@ public class Amount {
     public Amount(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
-        this.amount = amount;
+        this.amount = parseDouble(amount);
+        this.amountString = amount;
     }
 
     /**
@@ -33,21 +36,25 @@ public class Amount {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public double getValue() {
+        return amount;
+    }
+
     @Override
     public String toString() {
-        return amount;
+        return amountString;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Amount // instanceof handles nulls
-                && amount.equals(((Amount) other).amount)); // state check
+                && amountString.equals(((Amount) other).amountString)); // state check
     }
 
     @Override
     public int hashCode() {
-        return amount.hashCode();
+        return amountString.hashCode();
     }
 }
 
