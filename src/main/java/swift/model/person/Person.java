@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import swift.model.tag.Tag;
 
@@ -14,6 +15,7 @@ import swift.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+    private final UUID id;
 
     // Identity fields
     private final Name name;
@@ -27,13 +29,18 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(UUID id, Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(id, name, phone, email, address, tags);
+        this.id = id;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public Name getName() {
@@ -98,7 +105,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(id, name, phone, email, address, tags);
     }
 
     @Override

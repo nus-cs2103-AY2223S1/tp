@@ -1,9 +1,12 @@
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
-  } ],
+  "persons": [
+    {
+      "id": "98d83410-f9db-45a9-8be5-55cbdd766cf9",
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "address": "4th street"
+    }
+  ],
   "tasks": []
 }

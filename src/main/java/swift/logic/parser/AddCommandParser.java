@@ -8,6 +8,7 @@ import static swift.logic.parser.CliSyntax.PREFIX_PHONE;
 import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import swift.logic.commands.AddContactCommand;
@@ -38,13 +39,14 @@ public class AddCommandParser implements Parser<AddContactCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }
 
+        UUID id = UUID.randomUUID();
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, tagList);
+        Person person = new Person(id, name, phone, email, address, tagList);
 
         return new AddContactCommand(person);
     }
