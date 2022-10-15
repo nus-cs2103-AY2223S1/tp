@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FindCommandPredicate;
 
 public class FindCommand extends Command{
 
@@ -10,13 +10,14 @@ public class FindCommand extends Command{
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching the specified criteria "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... subj/SUBJECT (OPTIONAL)\n"
-            + "Example: " + COMMAND_WORD + " names/alice bob charlie\n"
-            + "Example: " + COMMAND_WORD + " names/alice bob charlie subj/English";
+            + "Parameters: n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)\n"
+            + "However, the command should not be blank.\n"
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie c/1A s/English";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final FindCommandPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(FindCommandPredicate predicate) {
         this.predicate = predicate;
     }
 
