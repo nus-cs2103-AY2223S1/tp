@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,13 +23,13 @@ public class CommandManagerTest {
     @Test
     public void undo_undoableCommandExecuted_undoSuccess() throws Exception {
         Person personToAdd = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(personToAdd);
+        CreateCommand createCommand = new CreateCommand(personToAdd);
 
-        addCommand.execute(model);
-        commandManager.pushNewCommand(addCommand);
+        createCommand.execute(model);
+        commandManager.pushNewCommand(createCommand);
         CommandResult commandResult = commandManager.undo(model);
 
-        assertEquals(String.format(addCommand.MESSAGE_UNDO, personToAdd), commandResult.getFeedbackToUser());
+        assertEquals(String.format(createCommand.MESSAGE_UNDO, personToAdd), commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -39,14 +40,14 @@ public class CommandManagerTest {
     @Test
     public void redo_undoableCommandUndone_redoSuccess() throws Exception {
         Person personToAdd = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(personToAdd);
+        CreateCommand createCommand = new CreateCommand(personToAdd);
 
-        addCommand.execute(model);
-        commandManager.pushNewCommand(addCommand);
+        createCommand.execute(model);
+        commandManager.pushNewCommand(createCommand);
         commandManager.undo(model);
         CommandResult commandResult = commandManager.redo(model);
 
-        assertEquals(String.format(addCommand.MESSAGE_REDO, personToAdd), commandResult.getFeedbackToUser());
+        assertEquals(String.format(createCommand.MESSAGE_REDO, personToAdd), commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -57,11 +58,11 @@ public class CommandManagerTest {
     @Test
     public void redo_newUndoableCommandExecutedAfterUndo_throwsCommandException() throws Exception {
         Person personToAdd = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(personToAdd);
+        CreateCommand createCommand = new CreateCommand(personToAdd);
         UndoableCommand nextCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        addCommand.execute(model);
-        addCommand.undo(model);
+        createCommand.execute(model);
+        createCommand.undo(model);
         nextCommand.execute(model);
         commandManager.pushNewCommand(nextCommand);
 
