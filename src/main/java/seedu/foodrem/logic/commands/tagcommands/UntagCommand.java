@@ -78,4 +78,13 @@ public class UntagCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                // instanceof handles nulls
+                || (other instanceof UntagCommand
+                && index.equals(((UntagCommand) other).index)
+                && tag.equals(((UntagCommand) other).tag));
+    }
 }

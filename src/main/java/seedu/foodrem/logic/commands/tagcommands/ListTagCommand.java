@@ -37,4 +37,11 @@ public class ListTagCommand extends Command {
 
         return new CommandResult(tagList);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                // instanceof handles nulls
+                || (other instanceof ListTagCommand);
+    }
 }
