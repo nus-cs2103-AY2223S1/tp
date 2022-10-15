@@ -50,17 +50,17 @@ public class DateTime {
             put("^\\d{1,2}\\s[a-z]{4,}\\s\\d{4}\\s\\d{1,2}:\\d{2}:\\d{2}$", "dd MMMM yyyy HH:mm:ss");
         }};
 
-    public final LocalDateTime datetime;
+    public final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code DateTime}.
      *
-     * @param datetime A valid datetime string.
+     * @param dateTime A valid datetime string.
      */
-    public DateTime(String datetime) {
-        requireNonNull(datetime);
-        checkArgument(isValidDateTime(datetime), MESSAGE_CONSTRAINTS);
-        this.datetime = parseDateTime(datetime);
+    public DateTime(String dateTime) {
+        requireNonNull(dateTime);
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        this.dateTime = parseDateTime(dateTime);
     }
 
     /**
@@ -107,19 +107,19 @@ public class DateTime {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(RECOMMENDED_FORMAT);
-        return datetime.format(formatter);
+        return dateTime.format(formatter);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateTime // instanceof handles nulls
-                && datetime.equals(((DateTime) other).datetime)); // state check
+                && dateTime.equals(((DateTime) other).dateTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return datetime.hashCode();
+        return dateTime.hashCode();
     }
 
 }
