@@ -1,8 +1,9 @@
-package soconnect.logic.commands;
+package soconnect.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
@@ -11,7 +12,7 @@ import soconnect.model.tag.Tag;
 /**
  * Edits the details of an existing tag in the SoConnect.
  */
-public class TagEditCommand extends Command {
+public class TagEditCommand extends TagCommand {
 
     public static final String COMMAND_WORD = "edit";
 

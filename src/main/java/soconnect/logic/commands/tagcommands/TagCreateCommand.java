@@ -1,8 +1,9 @@
-package soconnect.logic.commands;
+package soconnect.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.tag.Tag;
@@ -10,7 +11,7 @@ import soconnect.model.tag.Tag;
 /**
  * Creates a tag in the tagList.
  */
-public class TagCreateCommand extends Command {
+public class TagCreateCommand extends TagCommand {
 
     public static final String COMMAND_WORD = "create";
 

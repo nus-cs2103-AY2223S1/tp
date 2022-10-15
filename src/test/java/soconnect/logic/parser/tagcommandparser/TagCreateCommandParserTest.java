@@ -1,4 +1,4 @@
-package soconnect.logic.parser;
+package soconnect.logic.parser.tagcommandparser;
 
 
 import static soconnect.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -9,7 +9,8 @@ import static soconnect.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import soconnect.logic.commands.TagCreateCommand;
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
+import soconnect.logic.parser.tagcommandparsers.TagCreateCommandParser;
 import soconnect.model.tag.Tag;
 
 class TagCreateCommandParserTest {

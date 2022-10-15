@@ -1,4 +1,4 @@
-package soconnect.logic.commands;
+package soconnect.logic.commands.tagcommand;
 
 import static soconnect.logic.commands.CommandTestUtil.assertCommandFailure;
 import static soconnect.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -7,6 +7,7 @@ import static soconnect.testutil.TypicalPersons.getTypicalSoConnect;
 
 import org.junit.jupiter.api.Test;
 
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;

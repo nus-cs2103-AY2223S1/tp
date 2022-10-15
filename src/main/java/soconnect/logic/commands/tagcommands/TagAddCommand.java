@@ -1,4 +1,4 @@
-package soconnect.logic.commands;
+package soconnect.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
@@ -12,6 +12,7 @@ import java.util.Set;
 
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
+import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.person.Address;
@@ -24,7 +25,7 @@ import soconnect.model.tag.Tag;
 /**
  * Adds a tag to a contact.
  */
-public class TagAddCommand extends Command {
+public class TagAddCommand extends TagCommand {
 
     public static final String COMMAND_WORD = "add";
 

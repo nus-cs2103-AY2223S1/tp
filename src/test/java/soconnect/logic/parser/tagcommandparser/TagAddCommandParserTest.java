@@ -1,4 +1,4 @@
-package soconnect.logic.parser;
+package soconnect.logic.parser.tagcommandparser;
 
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -10,7 +10,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import soconnect.commons.core.index.Index;
-import soconnect.logic.commands.TagAddCommand;
+import soconnect.logic.commands.tagcommands.TagAddCommand;
+import soconnect.logic.parser.CommandParserTestUtil;
+import soconnect.logic.parser.tagcommandparsers.TagAddCommandParser;
 import soconnect.model.tag.Tag;
 
 

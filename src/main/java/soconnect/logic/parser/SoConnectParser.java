@@ -16,8 +16,9 @@ import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.ListCommand;
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.commands.SortCommand;
-import soconnect.logic.commands.TagCommand;
+import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.parser.exceptions.ParseException;
+import soconnect.logic.parser.tagcommandparsers.TagCommandParser;
 
 /**
  * Parses user input.

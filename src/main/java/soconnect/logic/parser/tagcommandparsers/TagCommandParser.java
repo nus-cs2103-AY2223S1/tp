@@ -1,4 +1,4 @@
-package soconnect.logic.parser;
+package soconnect.logic.parser.tagcommandparsers;
 
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 import soconnect.logic.commands.Command;
 import soconnect.logic.commands.HelpCommand;
-import soconnect.logic.commands.TagAddCommand;
-import soconnect.logic.commands.TagCreateCommand;
-import soconnect.logic.commands.TagEditCommand;
+import soconnect.logic.commands.tagcommands.TagAddCommand;
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
+import soconnect.logic.commands.tagcommands.TagEditCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
