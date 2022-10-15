@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,12 +14,9 @@ import seedu.address.model.person.Duration;
 import seedu.address.model.person.DurationList;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Adds duration to an existing person in the address book.
+ */
 public class DurationCommand extends Command {
 
     public static final String COMMAND_WORD = "duration";
@@ -33,6 +36,10 @@ public class DurationCommand extends Command {
     private final Index index;
     private final Duration duration;
 
+    /**
+     * @param index of the person in the filtered person to edit the duration.
+     * @param duration of the person to add.
+     */
     public DurationCommand(Index index, Duration duration) {
         requireAllNonNull(index, duration);
 

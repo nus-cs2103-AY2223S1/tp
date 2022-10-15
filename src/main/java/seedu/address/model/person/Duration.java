@@ -22,6 +22,11 @@ public class Duration implements Comparable<Duration> {
     public final LocalTime start;
     public final LocalTime end;
 
+    /**
+     * Constructs an {@code Duration}.
+     *
+     * @param duration a description of the duration.
+     */
     public Duration(String duration) {
         requireNonNull(duration);
         checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
@@ -29,6 +34,9 @@ public class Duration implements Comparable<Duration> {
         this.end = LocalTime.parse(duration.substring(6), DTF);
     }
 
+    /**
+     * Returns true if a given string is a valid duration.
+     */
     public static boolean isValidDuration(String test) {
         if (test.length() < 11) {
             return false;

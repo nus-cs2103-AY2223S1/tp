@@ -54,7 +54,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         GradeProgressList gradeProgressList =
                 new GradeProgressList(); // add command does not allow adding Grade Progress at the start
 
-        Person person = new Person(name, phone, lessonPlan, homeworkList, attendanceList, durationList, gradeProgressList, tagList);
+        Person person = new Person(name, phone, lessonPlan,
+                homeworkList, attendanceList, durationList, gradeProgressList, tagList);
 
         return new AddCommand(person);
     }

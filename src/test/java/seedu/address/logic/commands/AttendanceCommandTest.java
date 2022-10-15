@@ -23,8 +23,6 @@ import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-import java.util.List;
-
 public class AttendanceCommandTest {
 
     private static final String ATTENDANCE_STUB = "2022-01-07";
@@ -49,27 +47,24 @@ public class AttendanceCommandTest {
 
     }
 
-        @Test
-        public void execute_addAttendanceFilteredList_success() {
-            showPersonAtIndex(model, INDEX_FIRST_PERSON);
+    @Test
+    public void execute_addAttendanceFilteredList_success() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-            Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-            Person editedPerson = new PersonBuilder(personInFilteredList).withAttendance(ATTENDANCE_STUB).build();
+        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(personInFilteredList).withAttendance(ATTENDANCE_STUB).build();
 
-            personInFilteredList.clearAttendanceList();
+        personInFilteredList.clearAttendanceList();
 
-            AttendanceCommand attendanceCommand = new AttendanceCommand(INDEX_FIRST_PERSON,
-                    new Attendance(ATTENDANCE_STUB));
-            String expectedMessage = String.format(AttendanceCommand.MESSAGE_ADD_ATTENDANCE_SUCCESS, editedPerson);
+        AttendanceCommand attendanceCommand = new AttendanceCommand(INDEX_FIRST_PERSON,
+                new Attendance(ATTENDANCE_STUB));
+        String expectedMessage = String.format(AttendanceCommand.MESSAGE_ADD_ATTENDANCE_SUCCESS, editedPerson);
 
-            Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-            expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-            List<Person> lst = model.getAddressBook().getPersonList();
-            List<Person> comLst = expectedModel.getAddressBook().getPersonList();
-
-            assertCommandSuccess(attendanceCommand, model, expectedMessage, expectedModel);
-        }
+        assertCommandSuccess(attendanceCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_filteredList_success() {

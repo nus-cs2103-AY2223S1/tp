@@ -96,6 +96,10 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code DurationList} into a {@code List<Duration>} and set it to the {@code Person}
+     * that we are building.
+     */
     public PersonBuilder withDuration(String... durationList) {
         this.durationList = new DurationList(SampleDataUtil.getDurationList(durationList));
         return this;

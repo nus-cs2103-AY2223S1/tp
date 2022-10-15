@@ -3,9 +3,15 @@ package seedu.address.model.person;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a Person's duration list in the address book.
+ */
 public class DurationList {
     public final List<Duration> durationList;
 
+    /**
+     * Constructs a {@code DurationList}.
+     */
     public DurationList() {
         durationList = new ArrayList<>();
     }
@@ -14,10 +20,18 @@ public class DurationList {
         this.durationList = durationList;
     }
 
+    /**
+     * Adds a duration to the attendance list.
+     *
+     * @param duration The duration object to be added.
+     */
     public void addDuration(Duration duration) {
         durationList.add(duration);
     }
 
+    /**
+     * Returns a description of the next duration in the duration list.
+     */
     public String shortDescription() {
         if (durationList.isEmpty()) {
             return toString();
@@ -28,6 +42,9 @@ public class DurationList {
         return shortDesc;
     }
 
+    /**
+     * clears the duration list.
+     */
     public void clearList() {
         durationList.clear();
     }
