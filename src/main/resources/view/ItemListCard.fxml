@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -32,6 +33,7 @@
                     <Region styleClass="quantity-icon" id="quantityIcon"/>
                     <Label fx:id="quantity" styleClass="quantity-text" text="\$quantity" wrapText="true"/>
                 </HBox>
+                <FlowPane fx:id="tags" />
                 </VBox>
                 <VBox id="descriptionBox">
                     <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />

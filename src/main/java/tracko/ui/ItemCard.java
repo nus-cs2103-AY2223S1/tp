@@ -1,9 +1,12 @@
 package tracko.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
@@ -38,6 +41,8 @@ public class ItemCard extends UiPart<Region> {
     private Label quantity;
     @FXML
     private Label description;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
@@ -61,6 +66,11 @@ public class ItemCard extends UiPart<Region> {
         description.setWrapText(true);
         description.setTextAlignment(TextAlignment.JUSTIFY);
         description.setPadding(new Insets(0, 10, 0, 0));
+
+        item.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.setPadding(new Insets(0, 10, 0, 0));
     }
 
     @Override
