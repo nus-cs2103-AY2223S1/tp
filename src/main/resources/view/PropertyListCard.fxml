@@ -20,7 +20,7 @@
       <padding>
         <Insets top="20" right="20" left="20" />
       </padding>
-      <ImageView fx:id="displayPicture" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="displayPicture" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
         <padding>
           <Insets top="5" right="5" bottom="5" left="15" />

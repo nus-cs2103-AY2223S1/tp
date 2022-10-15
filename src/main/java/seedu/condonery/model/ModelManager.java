@@ -35,7 +35,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + propertyDirectory + " and user prefs " + userPrefs);
 
-        this.propertyDirectory = new PropertyDirectory(propertyDirectory);
+        this.propertyDirectory = new PropertyDirectory(propertyDirectory, userPrefs.getUserImageDirectoryPath());
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProperties = new FilteredList<>(this.propertyDirectory.getPropertyList());
 

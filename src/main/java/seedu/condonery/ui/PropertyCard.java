@@ -1,5 +1,7 @@
 package seedu.condonery.ui;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -55,12 +57,18 @@ public class PropertyCard extends UiPart<Region> {
         property.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (property.getImage() != null) {
-            displayPicture.setImage(property.getImage());
-        }
-        Image img = new Image(this.getClass().getResourceAsStream(DEFAULT_PROPERTY_IMAGE));
         displayPicture.setClip(new Circle(40, 40, 40));
-        displayPicture.setImage(img);
+        Path imagePath = property.getImagePath();
+        if (imagePath != null) {
+            File file = new File(property.getImagePath().toString());
+            if (file.exists()) {
+                Image img = new Image(file.toURI().toString());
+                displayPicture.setImage(img);
+            } else {
+                Image img = new Image(this.getClass().getResourceAsStream(DEFAULT_PROPERTY_IMAGE));
+                displayPicture.setImage(img);
+            }
+        }
     }
 
     @Override
