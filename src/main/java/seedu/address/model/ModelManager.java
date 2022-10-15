@@ -112,6 +112,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Schedule findSchedule(Schedule toFind) {
+        requireNonNull(toFind);
+        Module module = getModuleByModuleCode(toFind.getModule());
+        if (module == null) {
+            return null;
+        }
+        for (Schedule schedule: module.getSchedules()) {
+            if (schedule.match(toFind)) {
+                return schedule;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -143,6 +158,14 @@ public class ModelManager implements Model {
         addressBook.addSchedule(schedule);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
+    }
+
+    @Override
+    public void editSchedule(Schedule target, Schedule editedSchedule) {
+        target.setWeekday(editedSchedule.getWeekday());
+        target.setVenue(editedSchedule.getVenue());
+        target.setStartTime(editedSchedule.getStartTime());
+        target.setEndTime(editedSchedule.getEndTime());
     }
 
     @Override
@@ -209,15 +232,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        ObservableList<Schedule> tempary = new FilteredList<>(this.addressBook.getScheduleList());
-        return tempary;
+        return new FilteredList<>(this.addressBook.getScheduleList());
     }
 
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
-        System.out.println("1");
         filteredSchedule.setPredicate(predicate);
     }
 

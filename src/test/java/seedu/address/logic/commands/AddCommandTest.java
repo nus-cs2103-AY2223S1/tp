@@ -111,22 +111,23 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean conflictSchedule(Schedule schedule) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void addModule(Module module) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
         public void addSchedule(Schedule schedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public Schedule findSchedule(Schedule toFind) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void editSchedule(Schedule target, Schedule editedSchedule) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
         @Override
@@ -146,6 +147,10 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean conflictSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
 

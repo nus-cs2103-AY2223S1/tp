@@ -16,10 +16,10 @@ public class Schedule {
             + "HH:MM-HH:MM";
     public static final String MESSAGE_CLASS_TYPE_CONSTRAINT = "Class type should be one of lec, tut, lab, rec.";
     private final String module;
-    private final Venue venue;
-    private final Weekdays weekday;
-    private final String startTime;
-    private final String endTime;
+    private Venue venue;
+    private Weekdays weekday;
+    private String startTime;
+    private String endTime;
     private final ClassType classType;
 
     /**
@@ -73,6 +73,22 @@ public class Schedule {
         return module;
     }
 
+    public void setVenue(Venue newVenue) {
+        this.venue = newVenue;
+    }
+
+    public void setStartTime(String newStartTime) {
+        this.startTime = newStartTime;
+    }
+
+    public void setEndTime(String newEndTime) {
+        this.endTime = newEndTime;
+    }
+
+    public void setWeekday(Weekdays newWeekday) {
+        this.weekday = newWeekday;
+    }
+
     /**
      * Checks if the time is valid.
      */
@@ -89,14 +105,20 @@ public class Schedule {
      * @return conflict or not
      */
     public boolean isConflictWith(Schedule newSchedule) {
-        if (newSchedule.startTime.compareTo(this.endTime) > 0
-                || newSchedule.endTime.compareTo(this.startTime) < 0) {
+        if (newSchedule.startTime.compareTo(this.endTime) >= 0
+                || newSchedule.endTime.compareTo(this.startTime) <= 0) {
             return false;
         }
-        if (!newSchedule.weekday.equals(this.weekday)) {
-            return false;
-        }
-        return true;
+        return newSchedule.weekday.equals(this.weekday);
+    }
+
+    /**
+     * Checks if the module code and class type of another schedule match the module code
+     * and class type of current schedule.
+     * @param other another schedule
+     */
+    public boolean match(Schedule other) {
+        return module.equals(other.getModule()) && classType.equals(other.classType);
     }
 
     @Override
