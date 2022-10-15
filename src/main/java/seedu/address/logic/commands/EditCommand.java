@@ -123,6 +123,8 @@ public class EditCommand extends Command {
         Date updatedDate = editEntryDescriptor.getDate().orElse(entryToEdit.getDate());
         Set<Tag> updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
 
+        System.out.println(editEntryDescriptor.getTags());
+
         return new Entry(updatedDescription, updatedDate, updatedAmount, updatedTags);
     }
 
