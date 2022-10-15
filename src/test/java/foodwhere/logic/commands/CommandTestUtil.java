@@ -1,7 +1,6 @@
 package foodwhere.logic.commands;
 
 import static foodwhere.testutil.Assert.assertThrows;
-import static foodwhere.testutil.TypicalIndexes.INDEX_FIRST_STALL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -45,6 +44,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + CliSyntax.PREFIX_NAME + VALID_NAME_BOB;
     public static final String ADDRESS_DESC_AMY = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + CliSyntax.PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String RATING_DESC_AMY = " " + CliSyntax.PREFIX_RATING + VALID_RATING_AMY;
+    public static final String RATING_DESC_BOB = " " + CliSyntax.PREFIX_RATING + VALID_RATING_BOB;
     public static final String TAG_DESC_FRIEND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + CliSyntax.PREFIX_TAG + VALID_TAG_HUSBAND;
 

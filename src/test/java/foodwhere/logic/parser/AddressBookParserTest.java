@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import foodwhere.testutil.*;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
@@ -24,9 +23,14 @@ import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
-import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.review.Review;
+import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
+import foodwhere.testutil.EditStallDescriptorBuilder;
+import foodwhere.testutil.ReviewBuilder;
+import foodwhere.testutil.StallBuilder;
+import foodwhere.testutil.StallUtil;
+import foodwhere.testutil.TypicalIndexes;
 
 public class AddressBookParserTest {
 
@@ -45,9 +49,11 @@ public class AddressBookParserTest {
         RAddCommand command = (RAddCommand) parser.parseCommand(RAddCommand.COMMAND_WORD + " "
                 + "s/" + TypicalIndexes.INDEX_FIRST_REVIEW.getOneBased() + " "
                 + "d/" + review.getDate() + " "
-                + "c/" + review.getContent());
+                + "c/" + review.getContent() + " "
+                + "r/" + review.getRating());
 
-        assertEquals(new RAddCommand(TypicalIndexes.INDEX_FIRST_REVIEW, review.getDate(), review.getContent(), review.getTags()), command);
+        assertEquals(new RAddCommand(TypicalIndexes.INDEX_FIRST_REVIEW, review.getDate(),
+                review.getContent(), review.getRating(), review.getTags()), command);
     }
 
     @Test
