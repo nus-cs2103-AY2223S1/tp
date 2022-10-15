@@ -8,6 +8,7 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_INCOME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import longtimenosee.model.person.predicate.EmailMatchesInputPredicate;
 import longtimenosee.model.person.predicate.IncomeMatchesInputPredicate;
 import longtimenosee.model.person.predicate.NameContainsKeywordsPredicate;
 import longtimenosee.model.person.predicate.PhoneMatchesNumberPredicate;
+import longtimenosee.model.person.predicate.RiskAppetiteMatchesInputPredicate;
 import longtimenosee.model.person.predicate.TagContainsKeywordsPredicate;
 
 /**
@@ -40,10 +42,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EMAIL,
-                        PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_INCOME);
+                        PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_INCOME, PREFIX_RISK_APPETITE);
 
         if (!isAtLeastOnePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_EMAIL,
-                PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_INCOME)
+                PREFIX_TAG, PREFIX_BIRTHDAY, PREFIX_INCOME, PREFIX_RISK_APPETITE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -85,6 +87,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_INCOME).isPresent()) {
             String income = ParserUtil.parseIncome(argMultimap.getValue(PREFIX_INCOME).get()).value;
             predicates.add(new IncomeMatchesInputPredicate(income));
+        }
+
+        if (argMultimap.getValue(PREFIX_RISK_APPETITE).isPresent()) {
+            String riskAppetite = ParserUtil.parseRA(argMultimap.getValue(PREFIX_RISK_APPETITE).get()).value;
+            predicates.add(new RiskAppetiteMatchesInputPredicate(riskAppetite));
         }
 
         return new FindCommand(predicates);
