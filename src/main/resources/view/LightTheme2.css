@@ -194,21 +194,20 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#ffffff, 20%);
+     -fx-background-color: #ffffff;
 }
 
 .pane-without-border {
-     -fx-background-color: derive(#ffffff, 50%);
-     -fx-background-radius: 10px;
+     -fx-background-color: #ffffff;
      -fx-border-color: derive(#eeeeee, 50%);
      -fx-border-width: 0px;
-     -fx-border-radius: 10px;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(ffffff, 50%);
-     -fx-border-color: derive(#cccccc, 50%);
+     -fx-background-color: #ffffff;
+     -fx-border-color:#cccccc transparent;
      -fx-border-width: 1px;
+     -fx-border-radius: 0;
 }
 
 .pane-with-shadow {
@@ -229,7 +228,7 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #ffffff;
     -fx-font-family: "Droid Sans Mono";
     -fx-font-size: 10pt;
     -fx-text-fill: #444444;
@@ -395,6 +394,17 @@
     -fx-padding: 8 1 8 1;
 }
 
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+
+
 #cardPane {
 }
 
@@ -419,12 +429,38 @@
 #filterField, #patientListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, #cccccc, 10, 0, 0, 0);
 }
+#resultDisplay {
+    -fx-background-color: #ffffff;
+}
 
 #resultDisplay .content {
     -fx-background-color: #ffffff;
     -fx-background-radius: 15px;
     -fx-border-radius: 15px;
     -fx-effect: innershadow(gaussian, #cccccc, 10, 0, 0, 0);
+}
+#sendButton {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #48C9B0;
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 11pt;
+    -fx-text-fill: #ffffff;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+#sendButton:hover {
+    -fx-background-color: #75d6c4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 7, 0, 1, 1);
+}
+
+#sendButton:pressed, #sendButton:default:hover:pressed {
+    -fx-background-color: #3ac4a9;
+    -fx-text-fill: #ffffff;
+    -fx-effect: innershadow(gaussian, #666666, 7, 0, 0, 0)
 }
 
 #tags {
