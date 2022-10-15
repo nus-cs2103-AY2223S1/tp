@@ -6,7 +6,6 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-import seedu.foodrem.logic.commands.tagcommands.ListTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
@@ -173,7 +172,8 @@ public enum CommandWord {
     LIST_TAG_COMMAND("listtag") {
         @Override
         public String getUsage() {
-            return ListTagCommand.getUsage();
+            return getCommandWord() + ": List all tags in FoodRem."
+                    + "Example: " + getCommandWord();
         }
     },
     NEW_TAG_COMMAND("newtag") {
