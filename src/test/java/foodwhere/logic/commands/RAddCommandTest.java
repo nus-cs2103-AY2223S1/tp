@@ -32,8 +32,8 @@ public class RAddCommandTest {
         String name = lastStall.getName().toString();
 
         Review review = new ReviewBuilder().withName(name).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
-        RAddCommand rAddCommand = new RAddCommand(indexLastStall, review.getDate(), review.getContent(),
-                review.getTags());
+        RAddCommand rAddCommand = new RAddCommand(indexLastStall, review.getDate(),
+                review.getContent(), review.getRating(), review.getTags());
         String expectedMessage = String.format(RAddCommand.MESSAGE_SUCCESS, review);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -49,8 +49,8 @@ public class RAddCommandTest {
         String name = lastStall.getName().toString();
 
         Review review = new ReviewBuilder().withName(name).build();
-        RAddCommand rAddCommand = new RAddCommand(indexLastStall, review.getDate(), review.getContent(),
-                review.getTags());
+        RAddCommand rAddCommand = new RAddCommand(indexLastStall, review.getDate(),
+                review.getContent(), review.getRating(), review.getTags());
         String expectedMessage = String.format(RAddCommand.MESSAGE_SUCCESS, review);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -71,7 +71,7 @@ public class RAddCommandTest {
         Review review = new ReviewBuilder().withName(name).build();
 
         RAddCommand rAddCommand = new RAddCommand(TypicalIndexes.INDEX_FIRST_STALL, review.getDate(),
-                review.getContent(), review.getTags());
+                review.getContent(), review.getRating(), review.getTags());
         String expectedMessage = String.format(RAddCommand.MESSAGE_SUCCESS, review);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -86,7 +86,7 @@ public class RAddCommandTest {
         Review firstReview = model.getFilteredReviewList().get(TypicalIndexes.INDEX_FIRST_REVIEW.getZeroBased());
         Review review = new ReviewBuilder(firstReview).build();
         RAddCommand rAddCommand = new RAddCommand(TypicalIndexes.INDEX_FIRST_STALL, review.getDate(),
-                review.getContent(), review.getTags());
+                review.getContent(), review.getRating(), review.getTags());
 
         CommandTestUtil.assertCommandFailure(rAddCommand, model, RAddCommand.MESSAGE_DUPLICATE_REVIEW);
     }
@@ -97,7 +97,7 @@ public class RAddCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReviewList().size() + 1);
         Review review = new ReviewBuilder().build();
         RAddCommand rAddCommand = new RAddCommand(outOfBoundIndex, review.getDate(),
-                review.getContent(), review.getTags());
+                review.getContent(), review.getRating(), review.getTags());
 
         CommandTestUtil.assertCommandFailure(rAddCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
@@ -107,11 +107,11 @@ public class RAddCommandTest {
     public void equals() {
         Review review = new ReviewBuilder().build();
         final RAddCommand standardCommand = new RAddCommand(TypicalIndexes.INDEX_FIRST_REVIEW, review.getDate(),
-                review.getContent(), review.getTags());
+                review.getContent(), review.getRating(), review.getTags());
 
         // same values -> returns true
         RAddCommand commandWithSameValues = new RAddCommand(TypicalIndexes.INDEX_FIRST_STALL,
-                review.getDate(), review.getContent(), review.getTags());
+                review.getDate(), review.getContent(), review.getRating(), review.getTags());
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
