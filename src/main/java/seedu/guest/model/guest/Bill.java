@@ -10,7 +10,7 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class Bill {
     public static final String MESSAGE_CONSTRAINTS =
             "Bill should only contain numerical digits and a decimal point, and it should be a non-negative value.";
-    public static final String VALIDATION_REGEX = "^\\d*(.\\d{2})?$";
+    public static final String VALIDATION_REGEX = "^\\d+(.\\d{2})?$";
     public final String value;
 
     /**
