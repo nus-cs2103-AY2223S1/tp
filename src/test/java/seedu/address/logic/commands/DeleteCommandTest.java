@@ -75,7 +75,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void undo_commandExecuted_undoSuccessful() throws Exception{
+    public void undo_commandExecuted_undoSuccessful() throws Exception {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
@@ -90,7 +90,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void redo_commandUndone_redoSuccessful() throws Exception{
+    public void redo_commandUndone_redoSuccessful() throws Exception {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
