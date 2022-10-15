@@ -150,7 +150,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, INVALID_LOAN);
         String expectedMessage = Loan.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        List<Tag> tagList = new ArrayList<>(BENSON.getTags());
+        assertThrows(IllegalValueException.class, expectedMessage, () -> person.toModelType(tagList));
     }
 
     @Test
@@ -158,7 +159,8 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Loan.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        List<Tag> tagList = new ArrayList<>(BENSON.getTags());
+        assertThrows(IllegalValueException.class, expectedMessage, () -> person.toModelType(tagList));
     }
 
 }

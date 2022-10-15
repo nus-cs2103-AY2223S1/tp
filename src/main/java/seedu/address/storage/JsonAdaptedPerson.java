@@ -63,14 +63,11 @@ class JsonAdaptedPerson {
         loan = String.valueOf(source.getLoan().getAmount());
     }
 
-    public Person toModelType() throws IllegalValueException {
-        return toModelType(new ArrayList<>());
-    }
-
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
+     * @param addressBookTagList the list of tags that exist in the addressBook to be assigned to
+     *                           the model's {@code Person} object
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType(List<Tag> addressBookTagList) throws IllegalValueException {
