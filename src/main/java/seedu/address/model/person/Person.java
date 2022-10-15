@@ -24,6 +24,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final RiskTag riskTag;
+    private final Set<Tag> specialTags = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     private Set<Appointment> appointments = new HashSet<>();
 
@@ -37,7 +38,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.riskTag = riskTag;
-        this.tags.add(riskTag);
+        this.specialTags.add(riskTag);
         this.tags.addAll(tags);
     }
 
@@ -51,7 +52,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.riskTag = riskTag;
-        this.tags.add(riskTag);
+        this.specialTags.add(riskTag);
         this.tags.addAll(tags);
         this.appointments = appointments;
     }
@@ -85,6 +86,9 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+    public Set<Tag> getSpecialTags() {
+        return Collections.unmodifiableSet(specialTags);
     }
 
     public void setAppointments(Set<Appointment> newAppointments) {

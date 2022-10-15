@@ -140,7 +140,7 @@ public class ParserUtil {
     public static RiskTag parseRiskTag(String riskTag) throws ParseException {
         requireNonNull(riskTag);
         String trimmedRiskTag = riskTag.trim();
-        if (!Tag.isValidTagName(trimmedRiskTag)) {
+        if (!RiskTag.isValidRiskTagName(trimmedRiskTag)) {
             throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
         }
         return new RiskTag(trimmedRiskTag);

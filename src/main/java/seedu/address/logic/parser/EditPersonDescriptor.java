@@ -90,7 +90,6 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(riskTag);
     }
 
-
     /**
      * Sets {@code appointments} to this object's {@code appointments}.
      * A defensive copy of {@code appointments} is used internally.

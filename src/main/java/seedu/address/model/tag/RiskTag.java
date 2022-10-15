@@ -17,9 +17,9 @@ public class RiskTag extends Tag{
      *
      * @param tagName A valid tag name.
      */
-    public RiskTag(String tagName) {
+    public RiskTag(String tagName){
         super(tagName);
-        checkArgument(isValidRiskTagName(tagName));
+        checkArgument(isValidRiskTagName(tagName), MESSAGE_CONSTRAINTS);
     }
 
 
@@ -28,6 +28,12 @@ public class RiskTag extends Tag{
      */
     public static boolean isValidRiskTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof RiskTag // instanceof handles nulls
+                && tagName.equals(((RiskTag) other).tagName)); // state check
     }
 
 }
