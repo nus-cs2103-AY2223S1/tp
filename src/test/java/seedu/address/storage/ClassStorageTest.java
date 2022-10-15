@@ -70,7 +70,8 @@ public class ClassStorageTest {
 
     @Test
     public void execute_getIndexZero() throws Exception {
-        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("999")
+        // phone number here intentionally be wrong
+        Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableAddressBook.class).get();
