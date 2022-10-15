@@ -66,9 +66,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case SetCommand.COMMAND_WORD:
-            SetCommand.SetContactDescriptor setContactDescriptor = new SetCommand.SetContactDescriptor();
-            setContactDescriptor.updateContacts(ContactType.TELEGRAM, new Telegram("@sakana"));
-            return new SetCommand(setContactDescriptor);
+            return new SetCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
