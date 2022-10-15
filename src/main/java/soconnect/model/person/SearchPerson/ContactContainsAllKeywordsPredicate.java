@@ -2,16 +2,14 @@ package soconnect.model.person.SearchPerson;
 
 import soconnect.commons.util.StringUtil;
 import soconnect.logic.parser.ArgumentMultimap;
+import soconnect.logic.parser.Prefix;
 import soconnect.model.person.Person;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import static soconnect.logic.parser.CliSyntax.INDICATOR_ADDRESS;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_EMAIL;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_NAME;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_PHONE;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
+import static soconnect.model.person.SearchPerson.SearchPrefix.SearchPrefixCommand;
+import static soconnect.model.person.SearchPerson.SearchPrefix.convertPrefixToEnumType;
 
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
@@ -25,7 +23,7 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
     private boolean isTagContained = true;
 
     /**
-     * Constructs the ContactContainsAllKeywordsPredicate object.
+     * Constructs the {@code ContactContainsAllKeywordsPredicate} object.
      */
     public ContactContainsAllKeywordsPredicate(ArgumentMultimap argMultimap) {
         this.argMultimap = argMultimap;
@@ -33,28 +31,30 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        for (prefix : argMultimap.get) {
-            String prefix = prefixes.get(i);
-            List<String> keywords = searchedKeywords.get(i);
-            switch (prefix) {
-            case INDICATOR_NAME:
+        for (Prefix prefix : argMultimap.getAllPrefixes()) {
+            SearchPrefixCommand prefixCommand = convertPrefixToEnumType(prefix);
+            List<String> keywords = argMultimap.getAllValues(prefix);
+            switch (prefixCommand) {
+            case NAME:
                 isNameContained = keywords.stream()
                         .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getName().fullName, keyword));
                 break;
-            case INDICATOR_ADDRESS:
+            case ADDRESS:
                 isAddressContained = keywords.stream()
                         .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getAddress().value, keyword));
                 break;
-            case INDICATOR_EMAIL:
+            case EMAIL:
                 isEmailContained = keywords.stream()
                         .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getEmail().value, keyword));
                 break;
-            case INDICATOR_PHONE:
+            case PHONE:
                 isPhoneContained = keywords.stream()
                         .allMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(person.getPhone().value, keyword));
                 break;
-            case INDICATOR_TAG:
-                isTagContained = true; // Implementation postponed, waiting for tag feature
+            case TAG:
+                isTagContained = keywords.stream()
+                        .allMatch(keyword -> person.getTags().stream()
+                                .anyMatch(tag -> StringUtil.containsKeywordsIgnoreCase(tag.tagName, keyword)));
                 break;
             default:
                 break;
@@ -65,26 +65,9 @@ public class ContactContainsAllKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-        if (!(other instanceof ContactContainsAllKeywordsPredicate)) {
-            return false;
-        }
-        ContactContainsAllKeywordsPredicate otherPred = (ContactContainsAllKeywordsPredicate) other;
-
-        if (prefixes.size() != otherPred.prefixes.size()
-                || searchedKeywords.size() != otherPred.searchedKeywords.size()) {
-            return false;
-        }
-        boolean result = true;
-        for (int i = 0; i < prefixes.size(); i++) {
-            result = prefixes.get(i).equals(otherPred.prefixes.get(i))
-                    && searchedKeywords.get(i).equals(otherPred.searchedKeywords.get(i));
-            if (!result) {
-                break;
-            }
-        }
-        return result;
+        return other == this // short circuit if same object
+                || (other instanceof ContactContainsAllKeywordsPredicate // instanceof handles nulls
+                // state check
+                && argMultimap.equals(((ContactContainsAllKeywordsPredicate) other).argMultimap));
     }
 }

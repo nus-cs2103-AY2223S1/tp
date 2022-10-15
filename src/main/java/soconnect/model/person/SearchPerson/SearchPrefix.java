@@ -29,12 +29,10 @@ public class SearchPrefix {
     }
 
     /**
-     * Determines the enum type of {@code SearchPrefixCommand} based on
-     * the specified {@code Prefix} command.
-     *
-     * @throws ParseException If the user input does not conform the expected format.
+     * Determines the enum type of {@code SearchPrefixCommand} based on the specified {@code Prefix} command.
+     * If there is no matching prefix, a default prefix tag is assumed to show relevant search result.
      */
-    public SearchPrefixCommand convertPrefixToEnumType(Prefix prefix) throws ParseException {
+    public static SearchPrefixCommand convertPrefixToEnumType(Prefix prefix) {
         String prefixInString = prefix.getPrefix();
         switch (prefixInString) {
         case INDICATOR_NAME:
@@ -45,10 +43,8 @@ public class SearchPrefix {
             return SearchPrefixCommand.EMAIL;
         case INDICATOR_PHONE:
             return SearchPrefixCommand.PHONE;
-        case INDICATOR_TAG:
-            return SearchPrefixCommand.TAG;
         default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
+            return SearchPrefixCommand.TAG;
         }
     }
 }
