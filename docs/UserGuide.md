@@ -126,6 +126,21 @@ Format: `rdel INDEX`
 Example:
 * `rdel 2` deletes the 2nd review in the application.
 
+### Finding a stall: `sfind`
+
+Finds stalls whose names contain any of the given keywords.
+
+Format: `sfind KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g. `eatery` will match `Eatery`
+* The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
+* Only the name is searched
+* Only full words will be matched e.g. `Joh` will not match `John`
+* Stalls matching at least one keyword will be returned (i.e. OR search) e.g. `John Doe` will return `John Eatery`, `Doe Restaurant`
+
+Example:
+* `sfind eatery` returns `John's eatery` and `Doe eatery`
+
 ### Clearing all entries : `clear`
 
 Deletes all entries from the stall list and review list.

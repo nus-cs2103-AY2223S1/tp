@@ -18,9 +18,9 @@ import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.testutil.TypicalStalls;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code SFindCommand}.
  */
-public class FindCommandTest {
+public class SFindCommandTest {
     private Model model = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
 
@@ -31,14 +31,14 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        SFindCommand findFirstCommand = new SFindCommand(firstPredicate);
+        SFindCommand findSecondCommand = new SFindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        SFindCommand findFirstCommandCopy = new SFindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -55,7 +55,7 @@ public class FindCommandTest {
     public void execute_zeroKeywords_noStallFound() {
         String expectedMessage = String.format(Messages.MESSAGE_STALLS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        SFindCommand command = new SFindCommand(predicate);
         expectedModel.updateFilteredStallList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStallList());
@@ -65,7 +65,7 @@ public class FindCommandTest {
     public void execute_multipleKeywords_multipleStallsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_STALLS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        SFindCommand command = new SFindCommand(predicate);
         expectedModel.updateFilteredStallList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalStalls.CARL,
