@@ -62,7 +62,7 @@ public class GradeProgressCommand extends Command {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
                 personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
-                personToEdit.getDurationList(),
+                personToEdit.getSessionList(),
                 gradeProgressList, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

@@ -63,7 +63,7 @@ public class HomeworkCommand extends Command {
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
                 homeworkList, personToEdit.getAttendanceList(),
-                personToEdit.getDurationList(),
+                personToEdit.getSessionList(),
                 personToEdit.getGradeProgressList(),
                 personToEdit.getTags());
         model.setPerson(personToEdit, editedPerson);

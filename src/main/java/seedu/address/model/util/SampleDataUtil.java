@@ -9,8 +9,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.AttendanceList;
-import seedu.address.model.person.Duration;
-import seedu.address.model.person.DurationList;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.Homework;
@@ -19,6 +17,8 @@ import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -29,26 +29,26 @@ public class SampleDataUtil {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new LessonPlan("Sec 4 Biology"),
                         new HomeworkList(), new AttendanceList(),
-                        new DurationList(),
+                        new SessionList(),
                         new GradeProgressList(), getTagSet("Science", "Math")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new LessonPlan("Focus on trigo"),
-                        new HomeworkList(), new AttendanceList(), new DurationList(),
+                        new HomeworkList(), new AttendanceList(), new SessionList(),
                         new GradeProgressList(), getTagSet()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new LessonPlan("Java and C#"), new HomeworkList(),
-                        new AttendanceList(), new DurationList(),
+                        new AttendanceList(), new SessionList(),
                         new GradeProgressList(),
                         getTagSet("Coding")),
             new Person(new Name("David Li"), new Phone("91031282"), new LessonPlan("Sec 3 biology"),
-                        new HomeworkList(), new AttendanceList(), new DurationList(),
+                        new HomeworkList(), new AttendanceList(), new SessionList(),
                         new GradeProgressList(), getTagSet()),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new LessonPlan("Math"),
-                        new HomeworkList(), new AttendanceList(), new DurationList(),
+                        new HomeworkList(), new AttendanceList(), new SessionList(),
                         new GradeProgressList(),
                         getTagSet()),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
                         new LessonPlan("Test papers"), new HomeworkList(), new AttendanceList(),
-                        new DurationList(),
+                        new SessionList(),
                         new GradeProgressList(), getTagSet())
         };
     }
@@ -85,9 +85,9 @@ public class SampleDataUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<Duration> getDurationList(String... strings) {
+    public static List<Session> getSessionList(String... strings) {
         return Arrays.stream(strings)
-                .map(Duration::new)
+                .map(Session::new)
                 .collect(Collectors.toList());
     }
 

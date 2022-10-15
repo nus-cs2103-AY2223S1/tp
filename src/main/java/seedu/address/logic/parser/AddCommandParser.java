@@ -12,13 +12,13 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AttendanceList;
-import seedu.address.model.person.DurationList;
 import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,14 +48,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         HomeworkList homeworkList = new HomeworkList(); // add command does not allow adding homework straight away
         AttendanceList attendanceList =
                 new AttendanceList(); // add command does not allow adding attendance straight away
-        DurationList durationList =
-                new DurationList(); // add command does not allow adding duration straight away
+        SessionList sessionList =
+                new SessionList(); // add command does not allow adding session straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         GradeProgressList gradeProgressList =
                 new GradeProgressList(); // add command does not allow adding Grade Progress at the start
 
         Person person = new Person(name, phone, lessonPlan,
-                homeworkList, attendanceList, durationList, gradeProgressList, tagList);
+                homeworkList, attendanceList, sessionList, gradeProgressList, tagList);
 
         return new AddCommand(person);
     }

@@ -2,28 +2,28 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AttendanceCommand;
-import seedu.address.logic.commands.DurationCommand;
+import seedu.address.logic.commands.SessionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Duration;
+import seedu.address.model.person.Session;
 
 /**
- * Parses input command and creates a new DurationCommand object.
+ * Parses input command and creates a new SessionCommand object.
  */
-public class DurationCommandParser implements Parser<DurationCommand> {
+public class SessionCommandParser implements Parser<SessionCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DurationCommand
-     * and returns a DurationCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SessionCommand
+     * and returns a SessionCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public DurationCommand parse(String args) throws ParseException {
+    public SessionCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DURATION);
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SESSION);
         Index index;
 
         try {
@@ -32,7 +32,7 @@ public class DurationCommandParser implements Parser<DurationCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AttendanceCommand.MESSAGE_USAGE), pe);
         }
-        String duration = argumentMultimap.getValue(PREFIX_DURATION).orElse("");
-        return new DurationCommand(index, new Duration(duration));
+        String session = argumentMultimap.getValue(PREFIX_SESSION).orElse("");
+        return new SessionCommand(index, new Session(session));
     }
 }

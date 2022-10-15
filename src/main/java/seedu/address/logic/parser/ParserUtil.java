@@ -17,12 +17,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Duration;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.Homework;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -164,18 +164,26 @@ public class ParserUtil {
         }
         return args;
     }
-
-    public static Duration parseDuration(String duration) throws ParseException {
-        requireNonNull(duration);
-        String trimmedDuration = duration.trim();
-        if (!Duration.isValidDuration(duration)) {
-            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
+    /**
+     * Parses a {@code String Session} into a {@code Session}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Session parseSession(String session) throws ParseException {
+        requireNonNull(session);
+        String trimmedSession = session.trim();
+        if (!Session.isValidSession(session)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
-        return new Duration(trimmedDuration);
+        return new Session(trimmedSession);
     }
-
-    public static String[] parseDurationInfo(String durationInfo) throws ParseException {
-        String[] args = durationInfo.split(" ", 2);
+    /**
+     * Parses a {@code String sessionInfo} and disassembles it into index and session.
+     *
+     * @param sessionInfo index and description of session.
+     * @return array containing index in position 0 and session in position 1.
+     */
+    public static String[] parseSessionInfo(String sessionInfo) throws ParseException {
+        String[] args = sessionInfo.split(" ", 2);
         if (args.length < 2 || !StringUtil.isNonZeroUnsignedInteger(args[0])) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_EDIT_COMMAND_FORMAT));
         }

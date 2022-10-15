@@ -2,12 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -24,8 +24,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Attendance;
 import seedu.address.model.person.AttendanceList;
-import seedu.address.model.person.Duration;
-import seedu.address.model.person.DurationList;
 import seedu.address.model.person.GradeProgress;
 import seedu.address.model.person.GradeProgressList;
 import seedu.address.model.person.Homework;
@@ -34,6 +32,8 @@ import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,7 +52,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LESSON_PLAN + "LESSON PLAN] "
             + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_ATTENDANCE + "INDEX ATTENDANCE]"
-            + "[" + PREFIX_DURATION + "INDEX DURATION]"
+            + "[" + PREFIX_SESSION + "INDEX SESSION]"
             + "[" + PREFIX_GRADEPROGRESS + "INDEX GRADE PROGRESS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -113,11 +113,11 @@ public class EditCommand extends Command {
         HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToEdit, editPersonDescriptor);
         AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToEdit, editPersonDescriptor);
         GradeProgressList updatedGradeProgressList = getUpdatedGradeProgressList(personToEdit, editPersonDescriptor);
-        DurationList updatedDurationList = getUpdatedDurationList(personToEdit, editPersonDescriptor);
+        SessionList updatedSessionList = getUpdatedSessionList(personToEdit, editPersonDescriptor);
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedLessonPlan,
-                updatedHomeworkList, updatedAttendanceList, updatedDurationList, updatedGradeProgressList, updatedTags);
+                updatedHomeworkList, updatedAttendanceList, updatedSessionList, updatedGradeProgressList, updatedTags);
     }
 
     /**
@@ -141,8 +141,8 @@ public class EditCommand extends Command {
     /**
      * Returns the updated {@code AttendanceList} if edited, or the original list if not.
      */
-    public static AttendanceList getUpdatedAttendanceList(Person personToEdit,
-                                                          EditPersonDescriptor editPersonDescriptor) throws CommandException {
+    public static AttendanceList getUpdatedAttendanceList(
+            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
         Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
         Optional<Index> attendanceIndex = editPersonDescriptor.getAttendanceIndex();
@@ -157,28 +157,28 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Returns the updated {@code DurationList} if edited, or the original list if not.
+     * Returns the updated {@code SessionList} if edited, or the original list if not.
      */
-    public static DurationList getUpdatedDurationList(Person personToEdit,
-                                                      EditPersonDescriptor editPersonDescriptor) throws CommandException {
-        DurationList updatedDurationList = personToEdit.getDurationList();
-        Optional<Duration> duration = editPersonDescriptor.getDuration();
-        Optional<Index> durationIndex = editPersonDescriptor.getDurationIndex();
-        if (durationIndex.isEmpty() || duration.isEmpty()) {
-            return updatedDurationList;
+    public static SessionList getUpdatedSessionList(Person personToEdit,
+                                                    EditPersonDescriptor editPersonDescriptor) throws CommandException {
+        SessionList updatedSessionList = personToEdit.getSessionList();
+        Optional<Session> session = editPersonDescriptor.getSession();
+        Optional<Index> sessionIndex = editPersonDescriptor.getSessionIndex();
+        if (sessionIndex.isEmpty() || session.isEmpty()) {
+            return updatedSessionList;
         }
-        if (!updatedDurationList.isValidIndex(durationIndex.get())) {
-            throw new CommandException(DurationList.MESSAGE_INVALID_DURATION_INDEX);
+        if (!updatedSessionList.isValidIndex(sessionIndex.get())) {
+            throw new CommandException(SessionList.MESSAGE_INVALID_SESSION_INDEX);
         }
-        updatedDurationList.editAtIndex(durationIndex.get(), duration.get());
-        return updatedDurationList;
+        updatedSessionList.editAtIndex(sessionIndex.get(), session.get());
+        return updatedSessionList;
     }
 
     /**
      * Returns the updated {@code GradeProgressList} if edited, or the original list if not.
      */
-    public static GradeProgressList getUpdatedGradeProgressList(Person personToEdit,
-                                                                EditPersonDescriptor editPersonDescriptor) throws CommandException {
+    public static GradeProgressList getUpdatedGradeProgressList(
+            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
         Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
         Optional<Index> gradeProgressIndex = editPersonDescriptor.getGradeProgressIndex();
@@ -224,8 +224,8 @@ public class EditCommand extends Command {
         private GradeProgress gradeProgress;
         private Index attendanceIndex;
         private Attendance attendance;
-        private Index durationIndex;
-        private Duration duration;
+        private Index sessionIndex;
+        private Session session;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -245,8 +245,8 @@ public class EditCommand extends Command {
             setGradeProgress(toCopy.gradeProgress);
             setAttendanceIndex(toCopy.attendanceIndex);
             setAttendance(toCopy.attendance);
-            setDurationIndex(toCopy.durationIndex);
-            setDuration(toCopy.duration);
+            setSessionIndex(toCopy.sessionIndex);
+            setSession(toCopy.session);
             setTags(toCopy.tags);
         }
 
@@ -255,7 +255,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework,
-                    gradeProgress, attendance, duration, tags);
+                    gradeProgress, attendance, session, tags);
         }
 
         public void setName(Name name) {
@@ -330,20 +330,20 @@ public class EditCommand extends Command {
             return Optional.ofNullable(attendanceIndex);
         }
 
-        public Optional<Duration> getDuration() {
-            return Optional.ofNullable(duration);
+        public Optional<Session> getSession() {
+            return Optional.ofNullable(session);
         }
 
-        public Optional<Index> getDurationIndex() {
-            return Optional.ofNullable(durationIndex);
+        public Optional<Index> getSessionIndex() {
+            return Optional.ofNullable(sessionIndex);
         }
 
-        public void setDurationIndex(Index durationIndex) {
-            this.durationIndex = durationIndex;
+        public void setSessionIndex(Index sessionIndex) {
+            this.sessionIndex = sessionIndex;
         }
 
-        public void setDuration(Duration duration) {
-            this.duration = duration;
+        public void setSession(Session session) {
+            this.session = session;
         }
 
         /**

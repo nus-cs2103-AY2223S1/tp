@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -10,41 +10,41 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Duration;
-import seedu.address.model.person.DurationList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
+import seedu.address.model.person.SessionList;
 
 /**
- * Adds duration to an existing person in the address book.
+ * Adds session to an existing person in the address book.
  */
-public class DurationCommand extends Command {
+public class SessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "duration";
+    public static final String COMMAND_WORD = "session";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds duration to the person identified "
+            + ": Adds session to the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing duration will not be modified.\n"
+            + "Existing session will not be modified.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DURATION + "DURATION]...\n"
+            + "[" + PREFIX_SESSION + "SESSION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_DURATION + "08:30-09:30";
+            + PREFIX_SESSION + "08:30-09:30";
 
-    public static final String MESSAGE_ADD_DURATION_SUCCESS = "Added duration to Person: %1$s";
-    public static final String MESSAGE_DELETE_DURATION_SUCCESS = "Removed duration from Person: %1$s";
+    public static final String MESSAGE_ADD_SESSION_SUCCESS = "Added session to Person: %1$s";
+    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Removed session from Person: %1$s";
 
     private final Index index;
-    private final Duration duration;
+    private final Session session;
 
     /**
-     * @param index of the person in the filtered person to edit the duration.
-     * @param duration of the person to add.
+     * @param index of the person in the filtered person to edit the session.
+     * @param session of the person to add.
      */
-    public DurationCommand(Index index, Duration duration) {
-        requireAllNonNull(index, duration);
+    public SessionCommand(Index index, Session session) {
+        requireAllNonNull(index, session);
 
         this.index = index;
-        this.duration = duration;
+        this.session = session;
     }
 
     @Override
@@ -55,12 +55,12 @@ public class DurationCommand extends Command {
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        DurationList durationList = personToEdit.getDurationList();
-        durationList.addDuration(duration);
+        SessionList sessionList = personToEdit.getSessionList();
+        sessionList.addSession(session);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
                 personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
-                durationList,
+                sessionList,
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
@@ -70,12 +70,12 @@ public class DurationCommand extends Command {
 
     /**
      * Generates a command execution success message based on
-     * whether the duration is added or removed
+     * whether the session is added or removed
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !duration.toString().isEmpty() ? MESSAGE_ADD_DURATION_SUCCESS
-                : MESSAGE_DELETE_DURATION_SUCCESS;
+        String message = !session.toString().isEmpty() ? MESSAGE_ADD_SESSION_SUCCESS
+                : MESSAGE_DELETE_SESSION_SUCCESS;
         return String.format(message, personToEdit);
     }
 
@@ -87,13 +87,13 @@ public class DurationCommand extends Command {
         }
 
         //instanceof handles nulls
-        if (!(other instanceof DurationCommand)) {
+        if (!(other instanceof SessionCommand)) {
             return false;
         }
 
         //state check
-        DurationCommand temp = (DurationCommand) other;
-        return index.equals(temp.index) && duration.equals(temp.duration);
+        SessionCommand temp = (SessionCommand) other;
+        return index.equals(temp.index) && session.equals(temp.session);
     }
 
 

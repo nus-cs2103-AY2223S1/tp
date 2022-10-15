@@ -2,14 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,50 +19,50 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Duration;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
 import seedu.address.testutil.PersonBuilder;
 
-class DurationCommandTest {
+class SessionCommandTest {
 
-    private static final String DURATION_STUB = "08:30-09:00";
+    private static final String SESSION_STUB = "08:30-09:00";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    void execute_addDurationUnfilteredList_success() {
+    void execute_addSessionUnfilteredList_success() {
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(secondPerson).withDuration(DURATION_STUB).build();
-        secondPerson.clearDurationList();
+        Person editedPerson = new PersonBuilder(secondPerson).withSession(SESSION_STUB).build();
+        secondPerson.clearSessionList();
 
-        DurationCommand durationCommand = new DurationCommand(INDEX_SECOND_PERSON,
-                new Duration(DURATION_STUB));
+        SessionCommand sessionCommand = new SessionCommand(INDEX_SECOND_PERSON,
+                new Session(SESSION_STUB));
 
-        String expectedMessage = String.format(DurationCommand.MESSAGE_ADD_DURATION_SUCCESS, editedPerson);
+        String expectedMessage = String.format(SessionCommand.MESSAGE_ADD_SESSION_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(secondPerson, editedPerson);
 
-        assertCommandSuccess(durationCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_addDurationFilteredList_success() {
+    public void execute_addSessionFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withDuration(DURATION_STUB).build();
-        personInFilteredList.clearDurationList();
+        Person editedPerson = new PersonBuilder(personInFilteredList).withSession(SESSION_STUB).build();
+        personInFilteredList.clearSessionList();
 
-        DurationCommand durationCommand = new DurationCommand(INDEX_FIRST_PERSON,
-                new Duration(DURATION_STUB));
+        SessionCommand sessionCommand = new SessionCommand(INDEX_FIRST_PERSON,
+                new Session(SESSION_STUB));
 
-        String expectedMessage = String.format(DurationCommand.MESSAGE_ADD_DURATION_SUCCESS, editedPerson);
+        String expectedMessage = String.format(SessionCommand.MESSAGE_ADD_SESSION_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(durationCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -71,27 +71,27 @@ class DurationCommandTest {
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withDuration(DURATION_STUB).build();
-        firstPerson.clearDurationList();
+                .withSession(SESSION_STUB).build();
+        firstPerson.clearSessionList();
 
-        DurationCommand durationCommand = new DurationCommand(
-                INDEX_FIRST_PERSON, new Duration(DURATION_STUB));
+        SessionCommand sessionCommand = new SessionCommand(
+                INDEX_FIRST_PERSON, new Session(SESSION_STUB));
 
-        String expectedMessage = String.format(DurationCommand.MESSAGE_ADD_DURATION_SUCCESS, editedPerson);
+        String expectedMessage = String.format(SessionCommand.MESSAGE_ADD_SESSION_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
 
-        assertCommandSuccess(durationCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sessionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DurationCommand durationCommand = new DurationCommand(
-                outOfBoundIndex, new Duration(DURATION_STUB));
+        SessionCommand sessionCommand = new SessionCommand(
+                outOfBoundIndex, new Session(SESSION_STUB));
 
-        assertCommandFailure(durationCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(sessionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
@@ -105,18 +105,18 @@ class DurationCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DurationCommand durationCommand = new DurationCommand(
-                outOfBoundIndex, new Duration(DURATION_STUB));
-        assertCommandFailure(durationCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        SessionCommand sessionCommand = new SessionCommand(
+                outOfBoundIndex, new Session(SESSION_STUB));
+        assertCommandFailure(sessionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final DurationCommand standardCommand = new DurationCommand(INDEX_FIRST_PERSON,
-                new Duration(VALID_DURATION_AMY));
+        final SessionCommand standardCommand = new SessionCommand(INDEX_FIRST_PERSON,
+                new Session(VALID_SESSION_AMY));
         // same values -> returns true
-        DurationCommand commandWithSameValues = new DurationCommand(INDEX_FIRST_PERSON,
-                new Duration(VALID_DURATION_AMY));
+        SessionCommand commandWithSameValues = new SessionCommand(INDEX_FIRST_PERSON,
+                new Session(VALID_SESSION_AMY));
         assertTrue(standardCommand.equals(commandWithSameValues));
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
@@ -125,10 +125,10 @@ class DurationCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
         // different index -> returns false
-        assertFalse(standardCommand.equals(new DurationCommand(INDEX_SECOND_PERSON,
-                new Duration(VALID_DURATION_AMY))));
+        assertFalse(standardCommand.equals(new SessionCommand(INDEX_SECOND_PERSON,
+                new Session(VALID_SESSION_AMY))));
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new DurationCommand(INDEX_FIRST_PERSON,
-                new Duration(VALID_DURATION_BOB))));
+        assertFalse(standardCommand.equals(new SessionCommand(INDEX_FIRST_PERSON,
+                new Session(VALID_SESSION_BOB))));
     }
 }

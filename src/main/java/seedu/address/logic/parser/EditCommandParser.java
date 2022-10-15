@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -36,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_LESSON_PLAN,
-                        PREFIX_HOMEWORK, PREFIX_GRADEPROGRESS, PREFIX_ATTENDANCE, PREFIX_DURATION, PREFIX_TAG);
+                        PREFIX_HOMEWORK, PREFIX_GRADEPROGRESS, PREFIX_ATTENDANCE, PREFIX_SESSION, PREFIX_TAG);
 
         Index index;
 
@@ -73,10 +73,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAttendanceIndex(ParserUtil.parseIndex(attendanceArgs[0]));
             editPersonDescriptor.setAttendance(ParserUtil.parseAttendance(attendanceArgs[1]));
         }
-        if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
-            String[] durationArgs = ParserUtil.parseDurationInfo(argMultimap.getValue(PREFIX_DURATION).get());
-            editPersonDescriptor.setDurationIndex(ParserUtil.parseIndex(durationArgs[0]));
-            editPersonDescriptor.setDuration(ParserUtil.parseDuration(durationArgs[1]));
+        if (argMultimap.getValue(PREFIX_SESSION).isPresent()) {
+            String[] sessionArgs = ParserUtil.parseSessionInfo(argMultimap.getValue(PREFIX_SESSION).get());
+            editPersonDescriptor.setSessionIndex(ParserUtil.parseIndex(sessionArgs[0]));
+            editPersonDescriptor.setSession(ParserUtil.parseSession(sessionArgs[1]));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

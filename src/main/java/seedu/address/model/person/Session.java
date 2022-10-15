@@ -11,10 +11,10 @@ import java.time.format.DateTimeFormatter;
  * Represents a Person's remark in the address book.
  * Guarantees: immutable; is always valid
  */
-public class Duration implements Comparable<Duration> {
+public class Session implements Comparable<Session> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Duration should only be in the format of HH:mm to HH:mm";
+            "Session should only be in the format of HH:mm to HH:mm";
 
     public static final String VALIDATION_REGEX = "^(\\d){2}:(\\d){2}$";
 
@@ -23,21 +23,21 @@ public class Duration implements Comparable<Duration> {
     public final LocalTime end;
 
     /**
-     * Constructs an {@code Duration}.
+     * Constructs an {@code Session}.
      *
-     * @param duration a description of the duration.
+     * @param session a description of the session.
      */
-    public Duration(String duration) {
-        requireNonNull(duration);
-        checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
-        this.start = LocalTime.parse(duration.substring(0, 5), DTF);
-        this.end = LocalTime.parse(duration.substring(6), DTF);
+    public Session(String session) {
+        requireNonNull(session);
+        checkArgument(isValidSession(session), MESSAGE_CONSTRAINTS);
+        this.start = LocalTime.parse(session.substring(0, 5), DTF);
+        this.end = LocalTime.parse(session.substring(6), DTF);
     }
 
     /**
-     * Returns true if a given string is a valid duration.
+     * Returns true if a given string is a valid session.
      */
-    public static boolean isValidDuration(String test) {
+    public static boolean isValidSession(String test) {
         if (test.length() < 11) {
             return false;
         }
@@ -48,24 +48,24 @@ public class Duration implements Comparable<Duration> {
 
     @Override
     public String toString() {
-        String duration = start.format(DTF) + "-" + end.format(DTF);
-        return duration;
+        String session = start.format(DTF) + "-" + end.format(DTF);
+        return session;
     }
 
     @Override
     public boolean equals(Object other) {
         if (other == this) { //short circuit if same object
             return true;
-        } else if (!(other instanceof Duration)) { //instanceof handles nulls
+        } else if (!(other instanceof Session)) { //instanceof handles nulls
             return false;
         }
-        Duration temp = (Duration) other;
+        Session temp = (Session) other;
         return temp.toString().equalsIgnoreCase(this.toString());
     }
 
 
     @Override
-    public int compareTo(Duration other) {
+    public int compareTo(Session other) {
         return this.start.compareTo(other.start);
     }
 
