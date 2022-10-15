@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 public class ClearCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "clear";
+    public static final String COMMAND_SHORTCUT = "cl";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
     public static final String MESSAGE_UNDO = "Address book has been restored";
     public static final String MESSAGE_REDO = "Address book has been re-cleared!";
