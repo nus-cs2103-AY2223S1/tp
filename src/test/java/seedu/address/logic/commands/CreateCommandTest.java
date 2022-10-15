@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -52,7 +51,7 @@ public class CreateCommandTest {
     }
 
     @Test
-    public void undo_commandExecuted_undoSuccessful() throws Exception{
+    public void undo_commandExecuted_undoSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person toAdd = new PersonBuilder().build();
         CreateCommand createCommand = new CreateCommand(toAdd);
@@ -65,7 +64,7 @@ public class CreateCommandTest {
     }
 
     @Test
-    public void redo_commandUndone_redoSuccessful() throws Exception{
+    public void redo_commandUndone_redoSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person personToAdd = new PersonBuilder().build();
         CreateCommand createCommand = new CreateCommand(personToAdd);
