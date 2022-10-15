@@ -21,11 +21,12 @@ import soconnect.commons.core.GuiSettings;
 import soconnect.logic.commands.CustomiseCommand.Attribute;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 class CustomiseCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void execute_order_success() {
@@ -34,7 +35,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseCommand customiseCommand = new CustomiseCommand(ORDER, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -58,7 +59,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseCommand customiseCommand = new CustomiseCommand(HIDE, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS"));
 
@@ -72,7 +73,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseCommand customiseCommand = new CustomiseCommand(HIDE, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,EMAIL,PHONE,TAGS"));
 
@@ -86,7 +87,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseCommand customiseCommand = new CustomiseCommand(HIDE, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "PHONE,TAGS"));
 
@@ -100,7 +101,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,EMAIL,PHONE,TAGS"));
         CustomiseCommand customiseCommand = new CustomiseCommand(SHOW, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,PHONE,TAGS"));
 
@@ -114,7 +115,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,EMAIL,PHONE,TAGS"));
         CustomiseCommand customiseCommand = new CustomiseCommand(SHOW, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -128,7 +129,7 @@ class CustomiseCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,EMAIL,PHONE,TAGS"));
         CustomiseCommand customiseCommand = new CustomiseCommand(SHOW, attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "EMAIL,TAGS"));
 

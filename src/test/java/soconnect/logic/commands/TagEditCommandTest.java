@@ -11,19 +11,20 @@ import org.junit.jupiter.api.Test;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.tag.Tag;
 
 public class TagEditCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void edit_tag_successful() {
         TagEditCommand tagEditCommand = new TagEditCommand(FRIENDS, new Tag("bestFriend"));
         String expectedMessage = String.format(TagEditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                 FRIENDS, new Tag("bestFriend"));
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
         expectedModel.editTag(FRIENDS, new Tag("bestFriend"));
 
         assertCommandSuccess(tagEditCommand, model, expectedMessage, expectedModel);

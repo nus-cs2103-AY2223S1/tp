@@ -18,8 +18,10 @@ import soconnect.logic.LogicManager;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.util.SampleDataUtil;
 import soconnect.storage.JsonSoConnectStorage;
@@ -72,28 +74,45 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s SoConnect and {@code userPrefs}. <br>
-     * The data from the sample SoConnect will be used instead if {@code storage}'s SoConnect is not found,
-     * or an empty SoConnect will be used instead if errors occur when reading {@code storage}'s SoConnect.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s SoConnect and TodoList and
+     * from {@code userPrefs}.<br> Sample data will be used instead if SoConnect or TodoList is not found, or empty
+     * data files will be used instead if errors occur when reading.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlySoConnect> soConnectOptional;
-        ReadOnlySoConnect initialData;
+        ReadOnlySoConnect initialSoConnectData;
+        Optional<ReadOnlyTodoList> todoListOptional;
+        ReadOnlyTodoList initialTodoListData;
+
         try {
             soConnectOptional = storage.readSoConnect();
             if (soConnectOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample SoConnect");
             }
-            initialData = soConnectOptional.orElseGet(SampleDataUtil::getSampleSoConnect);
+            initialSoConnectData = soConnectOptional.orElseGet(SampleDataUtil::getSampleSoConnect);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty SoConnect");
-            initialData = new SoConnect();
+            initialSoConnectData = new SoConnect();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty SoConnect");
-            initialData = new SoConnect();
+            initialSoConnectData = new SoConnect();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            todoListOptional = storage.readTodoList();
+            if (todoListOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample TodoList");
+            }
+            initialTodoListData = todoListOptional.orElseGet(SampleDataUtil::getSampleTodoList);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TodoList");
+            initialTodoListData = new TodoList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TodoList");
+            initialTodoListData = new TodoList();
+        }
+
+        return new ModelManager(initialSoConnectData, initialTodoListData, userPrefs);
     }
 
     private void initLogging(Config config) {

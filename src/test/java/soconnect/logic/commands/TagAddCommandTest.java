@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
@@ -22,7 +23,7 @@ import soconnect.testutil.PersonBuilder;
 
 public class TagAddCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void addNullTag_throwsNullPointerException() {
@@ -36,7 +37,7 @@ public class TagAddCommandTest {
                 new TagAddCommand(INDEX_THIRD_PERSON, OWESMONEY);
         Person editedPerson = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         String expectedMessage = String.format(TagAddCommand.MESSAGE_ADD_TAG_SUCCESS, OWESMONEY);
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
         Person newPerson = new PersonBuilder(editedPerson).withTags("owesMoney").build();
         expectedModel.setPerson(editedPerson, newPerson);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

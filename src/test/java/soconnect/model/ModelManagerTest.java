@@ -101,11 +101,12 @@ public class ModelManagerTest {
     public void equals() {
         SoConnect soConnect = new SoConnectBuilder().withPerson(ALICE).withPerson(BENSON).build();
         SoConnect differentSoConnect = new SoConnect();
+        TodoList todoList = new TodoList();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(soConnect, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(soConnect, userPrefs);
+        modelManager = new ModelManager(soConnect, todoList, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(soConnect, todoList, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,12 +119,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different soConnect -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentSoConnect, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentSoConnect, todoList, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(soConnect, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(soConnect, todoList, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -131,7 +132,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setSoConnectFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(soConnect, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(soConnect, todoList, differentUserPrefs)));
     }
 
     @Test

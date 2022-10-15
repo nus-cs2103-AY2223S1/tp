@@ -27,6 +27,7 @@ import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
@@ -139,7 +140,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
