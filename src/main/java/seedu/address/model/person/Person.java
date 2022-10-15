@@ -62,12 +62,14 @@ public class Person {
     public HomeworkList getHomeworkList() {
         return homeworkList;
     }
+
     public AttendanceList getAttendanceList() {
         return attendanceList;
     }
     public DurationList getDurationList() {
         return durationList;
     }
+
     public GradeProgressList getGradeProgressList() {
         return gradeProgressList;
     }
@@ -160,6 +162,7 @@ public class Person {
                 && otherPerson.getAttendanceList().equals(getAttendanceList())
                 && otherPerson.getDurationList().equals(getDurationList())
                 && otherPerson.getGradeProgressList().equals(getGradeProgressList())
+                && otherPerson.getAttendanceList().equals(getAttendanceList())
                 && otherPerson.getTags().equals(getTags());
     }
 
