@@ -169,6 +169,21 @@ public class ContactAddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getSortedTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortDescriptionAlphabetical() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortAddedChronological() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
