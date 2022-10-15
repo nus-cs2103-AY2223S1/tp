@@ -12,10 +12,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.poc.Email;
-import seedu.address.model.poc.PersonName;
-import seedu.address.model.poc.Phone;
-import seedu.address.model.poc.Poc;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.Email;
+import seedu.address.model.company.PersonName;
+import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,7 +43,7 @@ public class CreateCommandParser implements Parser<CreateCommand> {
 
         if (argMultimap.getValue(PREFIX_NAME).isEmpty() || argMultimap.getValue(PREFIX_PHONE).isEmpty()
                 || argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
-            throw new ParseException(CreateCommand.MESSAGE_POC_INVALID);
+            throw new ParseException(CreateCommand.MESSAGE_COMPANY_INVALID);
         }
 
         PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
@@ -51,9 +51,9 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Poc poc = new Poc(name, phone, email, tagList);
+        Company company = new Company(name, phone, email, tagList);
 
-        return new CreateCommand(index, poc);
+        return new CreateCommand(index, company);
     }
 
 }

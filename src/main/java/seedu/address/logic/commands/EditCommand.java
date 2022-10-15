@@ -20,7 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Name;
-import seedu.address.model.poc.UniquePocList;
+import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.TransactionLog;
 
@@ -90,10 +90,10 @@ public class EditCommand extends Command {
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        UniquePocList pocs = editClientDescriptor.getUniquePocList().orElse(clientToEdit.getPocs());
+        UniqueCompanyList companies = editClientDescriptor.getUniqueCompanyList().orElse(clientToEdit.getCompanies());
         TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
-        return new Client(updatedName, updatedAddress, updatedTags, pocs, transactions);
+        return new Client(updatedName, updatedAddress, updatedTags, companies, transactions);
     }
 
     @Override
@@ -122,7 +122,7 @@ public class EditCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
-        private UniquePocList pocs;
+        private UniqueCompanyList companies;
         private TransactionLog transactions;
 
         public EditClientDescriptor() {}
@@ -135,7 +135,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setUniquePocList(toCopy.pocs);
+            setUniqueCompanyList(toCopy.companies);
             setTransactionLog(toCopy.transactions);
         }
 
@@ -162,12 +162,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setUniquePocList(UniquePocList pocs) {
-            this.pocs = pocs;
+        public void setUniqueCompanyList(UniqueCompanyList companies) {
+            this.companies = companies;
         }
 
-        public Optional<UniquePocList> getUniquePocList() {
-            return Optional.ofNullable(pocs);
+        public Optional<UniqueCompanyList> getUniqueCompanyList() {
+            return Optional.ofNullable(companies);
         }
 
         public void setTransactionLog(TransactionLog transactions) {

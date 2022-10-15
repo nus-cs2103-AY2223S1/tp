@@ -4,12 +4,12 @@
     "name" : "Alice Pauline",
     "address" : "123, Jurong West Ave 6, #08-111",
     "tagged" : [ "friends" ],
-    "pocs": [ ]
+    "companies": [ ]
   }, {
     "name" : "Benson Meier",
     "address" : "311, Clementi Ave 2, #02-25",
     "tagged" : [ "owesMoney", "friends" ],
-    "pocs" : [ {
+    "companies" : [ {
       "name" : "Benson Meier",
       "phone" : "98765432",
       "email" : "johnd@example.com",
@@ -19,26 +19,26 @@
     "name" : "Carl Kurz",
     "address" : "wall street",
     "tagged" : [ ],
-    "pocs": [ ]
+    "companies": [ ]
   }, {
     "name" : "Daniel Meier",
     "address" : "10th street",
     "tagged" : [ "friends" ],
-    "pocs": [ ]
+    "companies": [ ]
   }, {
     "name" : "Elle Meyer",
     "address" : "michegan ave",
     "tagged" : [ ],
-    "pocs": [ ]
+    "companies": [ ]
   }, {
     "name" : "Fiona Kunz",
     "address" : "little tokyo",
     "tagged" : [ ],
-    "pocs": [ ]
+    "companies": [ ]
   }, {
     "name" : "George Best",
     "address" : "4th street",
     "tagged" : [ ],
-    "pocs": [ ]
+    "companies": [ ]
   } ]
 }

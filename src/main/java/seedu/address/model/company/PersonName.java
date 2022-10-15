@@ -1,10 +1,10 @@
-package seedu.address.model.poc;
+package seedu.address.model.company;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a point of contact's name in the address book.
+ * Represents a company's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class PersonName {

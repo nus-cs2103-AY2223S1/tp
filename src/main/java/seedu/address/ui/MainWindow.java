@@ -19,7 +19,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
-import seedu.address.model.poc.Poc;
+import seedu.address.model.company.Company;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -39,7 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private PocListPanel pocListPanel;
+    private CompanyListPanel companyListPanel;
     private TransactionListPanel transactionListPanel;
 
     @FXML
@@ -58,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private StackPane pocListPanelPlaceholder;
+    private StackPane companyListPanelPlaceholder;
 
     @FXML
     private StackPane transactionListPanelPlaceholder;
@@ -135,8 +135,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        pocListPanel = new PocListPanel();
-        pocListPanelPlaceholder.getChildren().add(pocListPanel.getRoot());
+        companyListPanel = new CompanyListPanel();
+        companyListPanelPlaceholder.getChildren().add(companyListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getJeeqTrackerFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -187,23 +187,23 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles changes to the UI whenever the POC or Transaction information is updated in a client.
+     * Handles changes to the UI whenever the Company or Transaction information is updated in a client.
      * @param commandResult the result of command executed.
      */
     private void handleClientDetailsUpdate(CommandResult commandResult) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
 
         if (clientList.size() != 1) {
-            // Empty poc list panel.
-            pocListPanel.setPocList(FXCollections.observableArrayList());
+            // Empty company list panel.
+            companyListPanel.setCompanyList(FXCollections.observableArrayList());
             transactionListPanel.setTransactionList(FXCollections.observableArrayList());
             return;
         }
 
         Client client = clientList.get(0);
-        ObservableList<Poc> pocs = client.getPocs().asUnmodifiableObservableList();
+        ObservableList<Company> companies = client.getCompanies().asUnmodifiableObservableList();
         ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
-        pocListPanel.setPocList(pocs);
+        companyListPanel.setCompanyList(companies);
         transactionListPanel.setTransactionList(transactions);
     }
 

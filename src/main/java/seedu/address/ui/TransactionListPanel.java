@@ -17,7 +17,7 @@ import seedu.address.model.transaction.Transaction;
  */
 public class TransactionListPanel extends UiPart<Region> {
     private static final String FXML = "TransactionPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PocListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(CompanyListPanel.class);
 
     @FXML
     private ListView<Transaction> transactionListView;

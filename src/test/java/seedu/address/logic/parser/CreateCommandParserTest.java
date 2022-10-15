@@ -39,21 +39,21 @@ class CreateCommandParserTest {
     }
 
     @Test
-    public void parse_invalidPocFields_failure() {
+    public void parse_invalidCompanyFields_failure() {
         // name but no phone and email
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
         // only phone
-        assertParseFailure(parser, "1 p/912988", CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1 p/912988", CreateCommand.MESSAGE_COMPANY_INVALID);
         // only email
-        assertParseFailure(parser, "1 e/james@gmail.com", CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1 e/james@gmail.com", CreateCommand.MESSAGE_COMPANY_INVALID);
         // name and phone but no email
-        assertParseFailure(parser, "1 n/james p/99191919", CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1 n/james p/99191919", CreateCommand.MESSAGE_COMPANY_INVALID);
         // name and email but no phone
-        assertParseFailure(parser, "1 n/james e/james@gmail.com", CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1 n/james e/james@gmail.com", CreateCommand.MESSAGE_COMPANY_INVALID);
         // phone and email but no name
-        assertParseFailure(parser, "1 p/91298129 e/james@gmail.com", CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1 p/91298129 e/james@gmail.com", CreateCommand.MESSAGE_COMPANY_INVALID);
         // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, CreateCommand.MESSAGE_POC_INVALID);
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
     }
 
     @Test
