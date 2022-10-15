@@ -42,10 +42,10 @@ public class ScheduleCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(person.getName().fullName + person.getMarkStatus().isPresent);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
-        classTime.setText(person.getAClass().toTimeString());
+        classTime.setText(person.getDisplayedClass().toTimeString());
     }
 
     @Override
