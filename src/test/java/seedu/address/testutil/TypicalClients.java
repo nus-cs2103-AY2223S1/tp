@@ -24,10 +24,10 @@ public class TypicalClients {
             .withTags("friends").build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withTags("owesMoney", "friends").withAddedPoc(TypicalPoc.BENSON).build();
+            .withTags("owesMoney", "friends").withAddedCompany(TypicalCompany.BENSON).build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withAddress("wall street").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier")
-            .withAddress("10th street").withTags("friends").withAddedPoc(TypicalPoc.DANIEL).build();
+            .withAddress("10th street").withTags("friends").withAddedCompany(TypicalCompany.DANIEL).build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
             .withAddress("michegan ave").build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz")

@@ -8,7 +8,7 @@ title: JeeqTracker
 
 ![Ui](images/Ui.png)
 
-**JeeqTracker is a desktop application for managing the clients you are in contact with, and their respective point-of-contact.**
+**JeeqTracker is a desktop application for managing the clients you are in contact with, and their respective company.**
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using JeeqTracker, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).

@@ -12,14 +12,14 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameEqualsKeywordPredicate;
 
 /**
- * Views the details (point-of-contacts, transactions) of an existing client in the address book.
+ * Views the details (companies, transactions) of an existing client in the address book.
  */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the point-of-contact list and transactions "
+            + ": Views the company list and transactions "
             + "of the client by the index number given in the displayed client list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";

@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.poc.Poc;
+import seedu.address.model.company.Company;
 
 /**
  * Unmodifiable view of a client
@@ -9,9 +9,9 @@ import seedu.address.model.poc.Poc;
 public interface ReadOnlyClient {
 
     /**
-     * Returns an unmodifiable view of the pocs list.
-     * This list will not contain any duplicate pocs.
+     * Returns an unmodifiable view of the companies list.
+     * This list will not contain any duplicate companies.
      */
-    ObservableList<Poc> getPocList();
+    ObservableList<Company> getCompanyList();
 
 }

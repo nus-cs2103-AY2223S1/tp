@@ -12,8 +12,8 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyClient;
-import seedu.address.model.poc.Poc;
-import seedu.address.model.poc.UniquePocList;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
@@ -32,14 +32,14 @@ public class Client implements ReadOnlyClient {
     private final ClientPhone phone;
     private final ClientEmail email;
     private final Set<Tag> tags = new HashSet<>();
-    private final UniquePocList pocs;
+    private final UniqueCompanyList companies;
     private final TransactionLog transactions;
 
     /**
      * Every field must be present and not null.
      */
     public Client(Name name, Address address, ClientPhone phone, ClientEmail email, Set<Tag> tags) {
-        this(name, address, phone, email, tags, new UniquePocList(), new TransactionLog());
+        this(name, address, phone, email, tags, new UniqueCompanyList(), new TransactionLog());
     }
 
     /**
@@ -49,18 +49,18 @@ public class Client implements ReadOnlyClient {
      * @param phone number of client.
      * @param email email of client.
      * @param tags tags of client.
-     * @param pocs list of unique pocs.
+     * @param companies list of unique companies.
      * @param transactions list of transactions.
      */
     public Client(Name name, Address address, ClientPhone phone, ClientEmail email,
-                  Set<Tag> tags, UniquePocList pocs, TransactionLog transactions) {
-        requireAllNonNull(name, address, tags, pocs);
+                  Set<Tag> tags, UniqueCompanyList companies, TransactionLog transactions) {
+        requireAllNonNull(name, address, tags, companies);
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-        this.pocs = pocs;
+        this.companies = companies;
         this.transactions = transactions;
     }
 
@@ -88,8 +88,8 @@ public class Client implements ReadOnlyClient {
         return Collections.unmodifiableSet(tags);
     }
 
-    public UniquePocList getPocs() {
-        return pocs;
+    public UniqueCompanyList getCompanies() {
+        return companies;
     }
 
     public TransactionLog getTransactions() {
@@ -97,21 +97,21 @@ public class Client implements ReadOnlyClient {
     }
 
     /**
-     * Adds a poc to the unique list in the client.
-     * @param poc to be added to the list.
+     * Adds a company to the unique list in the client.
+     * @param company to be added to the list.
      */
-    public void addPoc(Poc poc) {
-        this.pocs.add(poc);
+    public void addCompany(Company company) {
+        this.companies.add(company);
     }
 
     /**
-     * Returns true if poc is in the list of pocs
-     * @param poc to be checked
+     * Returns true if company is in the list of companies
+     * @param company to be checked
      * @return true if contains
      */
-    public boolean hasPoc(Poc poc) {
-        requireNonNull(poc);
-        return pocs.contains(poc);
+    public boolean hasCompany(Company company) {
+        requireNonNull(company);
+        return companies.contains(company);
     }
 
     public double getTotalTransacted() {
@@ -184,15 +184,15 @@ public class Client implements ReadOnlyClient {
             tags.forEach(builder::append);
         }
 
-        UniquePocList pocs = getPocs();
-        builder.append("; POCs: ");
-        Iterator<Poc> itr = pocs.iterator();
+        UniqueCompanyList companies = getCompanies();
+        builder.append("; Companies: ");
+        Iterator<Company> itr = companies.iterator();
         String prefix = "";
         while (itr.hasNext()) {
-            Poc poc = itr.next();
+            Company company = itr.next();
             builder.append(prefix);
             prefix = ", ";
-            builder.append(poc.getName());
+            builder.append(company.getName());
         }
 
         TransactionLog transactions = getTransactions();
@@ -207,8 +207,8 @@ public class Client implements ReadOnlyClient {
     }
 
     @Override
-    public ObservableList<Poc> getPocList() {
-        return pocs.asUnmodifiableObservableList();
+    public ObservableList<Company> getCompanyList() {
+        return companies.asUnmodifiableObservableList();
     }
 
 }

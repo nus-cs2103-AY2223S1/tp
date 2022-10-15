@@ -1,4 +1,4 @@
-package seedu.address.model.poc;
+package seedu.address.model.company;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Point of contact in the client.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Poc {
+public class Company {
 
     // Identity fields
     private final PersonName name;
@@ -26,7 +26,7 @@ public class Poc {
     /**
      * Every field must be present and not null.
      */
-    public Poc(PersonName name, Phone phone, Email email, Set<Tag> tags) {
+    public Company(PersonName name, Phone phone, Email email, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
@@ -56,21 +56,21 @@ public class Poc {
     }
 
     /**
-     * Returns true if both points of contacts have the same name.
-     * This defines a weaker notion of equality between two points of contact.
+     * Returns true if both companies have the same name.
+     * This defines a weaker notion of equality between two companies.
      */
-    public boolean isSamePoc(Poc otherPoc) {
-        if (otherPoc == this) {
+    public boolean isSameCompany(Company otherCompany) {
+        if (otherCompany == this) {
             return true;
         }
 
-        return otherPoc != null
-                && otherPoc.getName().equals(getName());
+        return otherCompany != null
+                && otherCompany.getName().equals(getName());
     }
 
     /**
-     * Returns true if both points of contact have the same identity and data fields.
-     * This defines a stronger notion of equality between two points of contact.
+     * Returns true if both companies have the same identity and data fields.
+     * This defines a stronger notion of equality between two companies.
      */
     @Override
     public boolean equals(Object other) {
@@ -78,11 +78,11 @@ public class Poc {
             return true;
         }
 
-        if (!(other instanceof Poc)) {
+        if (!(other instanceof Company)) {
             return false;
         }
 
-        Poc otherPerson = (Poc) other;
+        Company otherPerson = (Company) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())

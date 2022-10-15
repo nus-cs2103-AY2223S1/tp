@@ -30,7 +30,7 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="pocs" styleClass="cell_small_label" text="\$pocs" />
+      <Label fx:id="companies" styleClass="cell_small_label" text="\$companies" />
       <Label fx:id="transactions" styleClass="cell_small_label" text="\$transactions" />
     </VBox>
       <rowConstraints>

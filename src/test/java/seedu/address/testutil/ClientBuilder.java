@@ -8,8 +8,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.poc.Poc;
-import seedu.address.model.poc.UniquePocList;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
@@ -30,7 +30,7 @@ public class ClientBuilder {
     private ClientPhone phone;
     private ClientEmail email;
     private Set<Tag> tags;
-    private UniquePocList pocs;
+    private UniqueCompanyList companies;
     private TransactionLog transactions;
 
     /**
@@ -42,7 +42,7 @@ public class ClientBuilder {
         phone = new ClientPhone(DEFAULT_PHONE);
         email = new ClientEmail(DEFAULT_EMAIL);
         tags = new HashSet<>();
-        pocs = new UniquePocList();
+        companies = new UniqueCompanyList();
         transactions = new TransactionLog();
     }
 
@@ -55,7 +55,7 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         tags = new HashSet<>(clientToCopy.getTags());
-        pocs = clientToCopy.getPocs();
+        companies = clientToCopy.getCompanies();
         transactions = clientToCopy.getTransactions();
     }
 
@@ -100,10 +100,10 @@ public class ClientBuilder {
     }
 
     /**
-     * Sets the {@code UniquePocList} of the {@code Client} that we are building.
+     * Sets the {@code UniqueCompanyList} of the {@code Client} that we are building.
      */
-    public ClientBuilder withUniquePocList(UniquePocList pocs) {
-        this.pocs = pocs;
+    public ClientBuilder withUniqueCompanyList(UniqueCompanyList companies) {
+        this.companies = companies;
         return this;
     }
 
@@ -116,10 +116,10 @@ public class ClientBuilder {
     }
 
     /**
-     * Adds poc to the {@code UniquePocList} of the {@code Client} that we are building.
+     * Adds company to the {@code UniqueCompanyList} of the {@code Client} that we are building.
      */
-    public ClientBuilder withAddedPoc(Poc poc) {
-        this.pocs.add(poc);
+    public ClientBuilder withAddedCompany(Company company) {
+        this.companies.add(company);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, address, phone, email, tags, pocs, transactions);
+        return new Client(name, address, phone, email, tags, companies, transactions);
     }
 
 }

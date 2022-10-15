@@ -8,7 +8,7 @@ import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * A utility class to help with building Poc objects.
+ * A utility class to help with building Company objects.
  */
 public class TransactionBuilder {
 
