@@ -91,7 +91,7 @@ A person can have any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Member`
 * `add n/Jane Doe p/98876542 e/jane@example.com a/That Street, block 133, #11-10 t/Member l/10`
-* `add n/Neethesh t/Vice-president e/neethesh@example.com a/Happy Avenue p/91234567`
+* `add n/Neethesh t/VicePresident e/neethesh@example.com a/Happy Avenue p/91234567`
 
 ### Listing all persons : `list`
 
