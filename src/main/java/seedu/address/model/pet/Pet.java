@@ -285,6 +285,10 @@ public class Pet {
         return weight;
     }
 
+    public Age getAge() {
+        return Age.generateAge(this);
+    }
+
     public VaccinationStatus getVaccinationStatus() {
         return vaccinationStatus;
     }

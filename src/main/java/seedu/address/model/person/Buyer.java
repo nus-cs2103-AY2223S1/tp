@@ -71,7 +71,7 @@ public class Buyer extends Person {
     /**
      * Converts the buyer's orders from a {@code List} to a {@code ObservableList} and returns the result.
      *
-     * @return An {@code ObservableList} instance.
+     * @return An {@code ObservableList} instance containing all the buyer's orders.
      */
     public ObservableList<Order> getOrdersAsObservableList() {
         return  FXCollections.observableList(getOrders());

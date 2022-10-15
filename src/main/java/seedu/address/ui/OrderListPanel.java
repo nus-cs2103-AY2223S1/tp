@@ -44,7 +44,8 @@ public class OrderListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new OrderCard(order, getIndex() + 1, true).getRoot());
+                setGraphic(new OrderCard(order, getIndex() + 1, OrderCard.SHOULD_DISPLAY_BUYER_NAME)
+                        .getRoot());
             }
         }
     }

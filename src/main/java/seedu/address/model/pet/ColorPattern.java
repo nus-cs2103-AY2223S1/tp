@@ -5,18 +5,18 @@ package seedu.address.model.pet;
  */
 public class ColorPattern {
 
-    private final String colorPattern;
+    private final String value;
 
     /**
      * Constructs a ColorPattern object.
      *
-     * @param colorPattern The string representation of color pattern.
+     * @param value The string representation of color pattern.
      */
-    public ColorPattern(String colorPattern) {
-        if (colorPattern == null) {
-            this.colorPattern = "";
+    public ColorPattern(String value) {
+        if (value == null) {
+            this.value = "";
         } else {
-            this.colorPattern = colorPattern;
+            this.value = value;
         }
     }
 
@@ -25,8 +25,8 @@ public class ColorPattern {
      *
      * @return The color pattern.
      */
-    public String getColorPattern() {
-        return colorPattern;
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ColorPattern {
             return true;
         } else if (other instanceof ColorPattern) {
             ColorPattern otherColorPattern = (ColorPattern) other;
-            return colorPattern.equals(otherColorPattern.getColorPattern());
+            return value.equals(otherColorPattern.getValue());
         } else {
             return false;
         }
@@ -43,11 +43,11 @@ public class ColorPattern {
 
     @Override
     public int hashCode() {
-        return colorPattern.hashCode();
+        return value.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Color pattern: " + colorPattern;
+        return "Color pattern: " + value;
     }
 }

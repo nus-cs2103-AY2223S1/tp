@@ -33,7 +33,7 @@ public class Height {
 
     @Override
     public String toString() {
-        return value + " " + UNIT;
+        return "Height: " + value + " " + UNIT;
     }
 
     public double getValue() {

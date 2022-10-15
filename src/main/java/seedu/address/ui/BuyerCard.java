@@ -71,7 +71,7 @@ public class BuyerCard extends UiPart<Region> {
 
         // Set the buyer's orders in the list view
         orderListView.setItems(buyer.getOrdersAsObservableList());
-        orderListView.setCellFactory(listView -> new BuyerOrderListViewCell());
+        orderListView.setCellFactory(listView -> new BuyerOrdersListViewCell());
 
         /*buyer.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -82,7 +82,7 @@ public class BuyerCard extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
      */
-    private static class BuyerOrderListViewCell extends ListCell<Order> {
+    private static class BuyerOrdersListViewCell extends ListCell<Order> {
         @Override
         protected void updateItem(Order order, boolean empty) {
             super.updateItem(order, empty);
@@ -91,7 +91,8 @@ public class BuyerCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new OrderCard(order, getIndex() + 1, false).getRoot());
+                setGraphic(new OrderCard(order, getIndex() + 1, OrderCard.SHOULD_NOT_DISPLAY_BUYER_NAME)
+                        .getRoot());
             }
         }
     }

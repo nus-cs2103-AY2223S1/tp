@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
@@ -59,6 +61,15 @@ public class Supplier extends Person {
 
     public ArrayList<Pet> getPetsOnSale() {
         return petsOnSale;
+    }
+
+    /**
+     * Converts the supplier's pets from a {@code List} to a {@code ObservableList} and returns the result.
+     *
+     * @return An {@code ObservableList} instance containing all the supplier's pets on sale.
+     */
+    public ObservableList<Pet> getPetsAsObservableList() {
+        return  FXCollections.observableList(getPetsOnSale());
     }
 
     public void addPet(Pet pet) {

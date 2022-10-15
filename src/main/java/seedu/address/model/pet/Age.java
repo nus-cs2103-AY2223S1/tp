@@ -14,14 +14,14 @@ public class Age {
 
     public static final String MESSAGE_USAGE =
             "Age should be a non-negative integer, such as 0, 5, and 10";
-    private final int age;
+    private final int value;
 
     /**
      * Constructs the Age object.
-     * @param age The integer to be wrapped.
+     * @param value The integer to be wrapped.
      */
-    public Age(int age) {
-        this.age = age;
+    public Age(int value) {
+        this.value = value;
     }
 
     /**
@@ -30,20 +30,21 @@ public class Age {
      * @param pet The pet that needs to be updated the age.
      * @return Age in integer
      */
-    public int getPetAge(Pet pet) {
+    public static Age generateAge(Pet pet) {
         requireNonNull(pet);
         LocalDate currentDate = LocalDate.now();
         LocalDate dateOfBirth = pet.getDateOfBirth().getDate();
         requireAllNonNull(currentDate, dateOfBirth);
-        return Period.between(dateOfBirth, currentDate).getYears();
+        int result = Period.between(dateOfBirth, currentDate).getYears();
+        return new Age(result);
     }
 
     /**
      * Gets the age.
      * @return Age in integer
      */
-    public int getAge() {
-        return age;
+    public int getValue() {
+        return value;
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Age {
             return true;
         } else if (other instanceof Age) {
             Age otherAge = (Age) other;
-            return age == otherAge.age;
+            return value == otherAge.value;
         } else {
             return false;
         }
@@ -60,11 +61,11 @@ public class Age {
 
     @Override
     public int hashCode() {
-        return Integer.hashCode(age);
+        return Integer.hashCode(value);
     }
 
     @Override
     public String toString() {
-        return "Age: " + Integer.toString(age);
+        return "Age: " + Integer.toString(value);
     }
 }

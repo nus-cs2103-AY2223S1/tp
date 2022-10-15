@@ -1,36 +1,161 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
-            </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            </HBox>
-        </VBox>
         <rowConstraints>
             <RowConstraints />
         </rowConstraints>
+      <children>
+         <VBox style="-fx-background-radius: 30px;">
+            <children>
+               <HBox alignment="CENTER_LEFT" spacing="5" style="-fx-background-radius: 30px;" styleClass="context-menu" stylesheets="@DarkTheme.css">
+                  <padding>
+                     <Insets left="10.0" right="10.0" top="5.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets left="15.0" right="15.0" top="10.0" />
+                  </VBox.margin>
+                  <children>
+                     <Label text="Pet" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="id" text="\$id" textFill="WHITE">
+                        <minWidth>
+                           <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="supplierName" textFill="WHITE">
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="species" contentDisplay="CENTER" style="-fx-background-color: #5DADE2; -fx-background-radius: 10px;" text="\$species" textAlignment="CENTER" textFill="WHITE">
+                        <HBox.margin>
+                           <Insets bottom="4.0" left="5.0" />
+                        </HBox.margin>
+                        <padding>
+                           <Insets left="5.0" right="5.0" />
+                        </padding>
+                        <font>
+                           <Font name="System Bold" size="14.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
+               <HBox style="-fx-background-radius: 30px;">
+                  <children>
+                     <VBox style="-fx-background-radius: 30px; -fx-background-color: #7F8C8D;" HBox.hgrow="ALWAYS">
+                        <children>
+                           <Label fx:id="petName" text="\$pet name" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="5.0" />
+                              </VBox.margin>
+                              <font>
+                                 <Font name="System Bold" size="14.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="age" text="\$age" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="5.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Label fx:id="dateOfBirth" text="\$date of birth" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="2.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Label fx:id="color" text="\$color" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="2.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Label fx:id="colorPattern" text="\$color pattern" textFill="#fafafa">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="2.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Label fx:id="height" text="\$height" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="2.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Label fx:id="weight" text="\$weight" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets left="5.0" top="2.0" />
+                              </VBox.margin>
+                           </Label>
+                        </children>
+                        <HBox.margin>
+                           <Insets right="10.0" top="10.0" />
+                        </HBox.margin>
+                        <padding>
+                           <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+                        </padding>
+                     </VBox>
+                     <VBox style="-fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
+                        <padding>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                        <children>
+                           <StackPane fx:id="petPhotoHolder" style="-fx-background-radius: 30px;">
+                              <children>
+                                 <ImageView fx:id="petPhoto" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </StackPane>
+                           <Label fx:id="salePrice" text="\$sale price">
+                              <VBox.margin>
+                                 <Insets top="5.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Hyperlink fx:id="vaccinationProof" onAction="#handleVaccinationLink" text="Hyperlink to vaccination proof">
+                              <VBox.margin>
+                                 <Insets top="2.0" />
+                              </VBox.margin>
+                           </Hyperlink>
+                           <Hyperlink fx:id="petCertificates" onAction="#handleCertificatesLink" text="Hyperlink to pet certificates">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </Hyperlink>
+                        </children>
+                     </VBox>
+                  </children>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="5.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+      </children>
     </GridPane>
 </HBox>
-

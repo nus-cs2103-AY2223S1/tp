@@ -22,6 +22,8 @@ public class OrderCard extends UiPart<Region> {
 
     private final Order order;
     private final int displayedIndex;
+    protected static final boolean SHOULD_DISPLAY_BUYER_NAME = true;
+    protected static final boolean SHOULD_NOT_DISPLAY_BUYER_NAME = false;
 
     @FXML
     private Label additionalRequestsDescription;
@@ -56,11 +58,11 @@ public class OrderCard extends UiPart<Region> {
     /**
      * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
      */
-    public OrderCard(Order order, int displayedIndex, boolean shouldDisplayBuyerName) {
+    public OrderCard(Order order, int displayedIndex, boolean isBuyerNameShown) {
         super(FXML);
         this.order = order;
         this.displayedIndex = displayedIndex;
-        fillOrderCard(shouldDisplayBuyerName);
+        fillOrderCard(isBuyerNameShown);
     }
 
     /**
@@ -70,7 +72,7 @@ public class OrderCard extends UiPart<Region> {
      */
     public void fillOrderCard(boolean shouldDisplayBuyerName) {
         if (shouldDisplayBuyerName) {
-            buyerName.setText(order.getBuyer().getName().fullName);
+            buyerName.setText("from " + order.getBuyer().getName().fullName);
         }
         id.setText("#" + displayedIndex);
         orderStatus.setText(order.getOrderStatus().getStatus());
@@ -80,7 +82,7 @@ public class OrderCard extends UiPart<Region> {
         colorPattern.setText(order.getRequest().getRequestedColorPattern().toString());
         priceRange.setText(order.getRequestedPriceRange().toString());
         settledPrice.setText(order.getSettledPrice().toString());
-        // additionalRequestsDescription.setText("");
+        // additionalRequestsDescription.setText(order.getAdditionalRequests().toString());
     }
 
     @Override

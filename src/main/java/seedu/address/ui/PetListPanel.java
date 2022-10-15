@@ -43,7 +43,7 @@ public class PetListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PetCard(pet, getIndex() + 1).getRoot());
+                setGraphic(new PetCard(pet, getIndex() + 1, PetCard.SHOULD_DISPLAY_SUPPLIER_NAME).getRoot());
             }
         }
     }

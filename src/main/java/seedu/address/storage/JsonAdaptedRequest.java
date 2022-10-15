@@ -34,10 +34,10 @@ public class JsonAdaptedRequest {
      * Converts a given {@code Request} into this class for Jackson use.
      */
     public JsonAdaptedRequest(Request request) {
-        this.age = request.getRequestedAge().getAge();
-        this.color = request.getRequestedColor().getColor();
-        this.colorPattern = request.getRequestedColorPattern().getColorPattern();
-        this.species = request.getRequestedSpecies().getSpecies();
+        this.age = request.getRequestedAge().getValue();
+        this.color = request.getRequestedColor().getValue();
+        this.colorPattern = request.getRequestedColorPattern().getValue();
+        this.species = request.getRequestedSpecies().getValue();
     }
 
     /**
