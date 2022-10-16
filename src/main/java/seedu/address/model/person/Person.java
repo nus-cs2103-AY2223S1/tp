@@ -65,6 +65,7 @@ public class Person {
         return internshipId;
     }
 
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
