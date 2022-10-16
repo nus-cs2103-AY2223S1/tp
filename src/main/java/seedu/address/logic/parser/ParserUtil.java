@@ -168,9 +168,12 @@ public class ParserUtil {
      * Parses a {@code String dateAndTime} into an {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static DateTime parseDateTime(String dateAndTime) {
+    public static DateTime parseDateTime(String dateAndTime) throws ParseException {
         requireNonNull(dateAndTime);
         String trimmedDateAndTime = dateAndTime.trim();
+        if (!DateTimeParser.isValidDateTime(trimmedDateAndTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }

@@ -26,13 +26,12 @@ public class EditAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "ea";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Overwrites all "
-            + "appointment details of the person identified "
-            + "by the index number used in the displayed person list.\n"
-            + "Parameters: [INDEX] "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a person's appointment "
+            + "using the index numbers from the displayed person list and the identified person's appointment list.\n"
+            + "Parameters: [PERSON_INDEX].[APPOINTMENT_INDEX] "
             + "[" + PREFIX_APPOINTMENT_DATE + "DATE] "
             + "[" + PREFIX_APPOINTMENT_LOCATION + "LOCATION]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " 3.1 "
             + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
@@ -75,6 +74,10 @@ public class EditAppointmentCommand extends Command {
         Person personWithAppointmentToEdit = lastShownList.get(personIndex.getZeroBased());
         MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToEdit.getAppointments();
 
+        if (appointmentIndex.getZeroBased() >= appointmentSet.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
         if (appointmentSet.isEmpty()) {
             throw new CommandException(MESSAGE_NO_APPOINTMENT_TO_EDIT);
         }
@@ -84,7 +87,7 @@ public class EditAppointmentCommand extends Command {
             appointmentToEdit = appointmentSet.get(appointmentIndex.getZeroBased());
             appointmentSet.remove(appointmentToEdit);
         } catch (SortedListException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_APPOINTMENT_INDEX_FORMAT, appointmentIndex));
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);

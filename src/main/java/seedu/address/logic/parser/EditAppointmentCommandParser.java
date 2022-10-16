@@ -28,12 +28,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION);
 
-        if (argMultimap.getPreamble().isEmpty()
-            || !arePrefixesPresent(argMultimap, PREFIX_APPOINTMENT_DATE, PREFIX_APPOINTMENT_LOCATION)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAppointmentCommand.MESSAGE_USAGE));
-        }
-
         Index personIndex;
         Index appointmentIndex;
 
