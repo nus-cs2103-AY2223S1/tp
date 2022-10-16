@@ -11,11 +11,11 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-
 
 /**
  * Stores the details to edit the person with. Each non-empty field value will replace the
@@ -27,6 +27,7 @@ public class EditPersonDescriptor {
     private Email email;
     private Address address;
     private IncomeLevel income;
+    private Monthly monthly;
     private Set<Tag> tags;
 //    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
@@ -41,6 +42,7 @@ public class EditPersonDescriptor {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setIncome(toCopy.income);
+        setMonthly(toCopy.monthly);
         setTags(toCopy.tags);
 //        setAppointment(toCopy.appointments);
     }
@@ -49,7 +51,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, tags);
     }
 
     public void setName(Name name) {
@@ -102,6 +104,12 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(income);
     }
 
+    public void setMonthly(Monthly monthly) {
+        this.monthly = monthly;
+    }
+    public Optional<Monthly> getMonthly() {
+        return Optional.ofNullable(monthly);
+    }
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
@@ -131,9 +139,11 @@ public class EditPersonDescriptor {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
+        Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
+                updateMonthly, updatedTags);
     }
 
 //
@@ -252,6 +262,7 @@ public class EditPersonDescriptor {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
+                && getMonthly().equals(e.getMonthly())
                 && getTags().equals(e.getTags());
 //                && getAppointment().equals(e.getAppointment());
     }

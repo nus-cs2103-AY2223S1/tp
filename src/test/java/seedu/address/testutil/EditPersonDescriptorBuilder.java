@@ -12,6 +12,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -86,10 +87,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Monthly} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAppointment(Appointment appointment) {
-        descriptor.setAppointment(appointment);
+    public EditPersonDescriptorBuilder withMonthly(String monthly) {
+        descriptor.setMonthly(new Monthly(monthly));
         return this;
     }
 
@@ -103,21 +104,17 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withAppointments(String... appointments) {
-        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
-        Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new).map(Appointment::new).forEach(appointmentList::add);
-        descriptor.setAppointments(appointmentList);
+        Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
+                .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
+        descriptor.setAppointments(appointmentSet);
         return this;
     }
 
->>>>>>> musab_max_appointmnet
     public EditPersonDescriptor build() {
         return descriptor;
     }

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -44,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_INCOME_AMY = "$1000";
     public static final String VALID_INCOME_BOB = "$10000";
     public static final String VALID_TAG_HUSBAND = "husband";
+    public static final String VALID_MONTHLY_AMY = "$200";
+    public static final String VALID_MONTHLY_BOB = "$1000";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DATETIME_21_JAN_2023 = "21-Jan-2023 01:00 AM";
     public static final String VALID_DATETIME_22_JAN_2023 = "22-Jan-2023 01:00 AM";
@@ -67,6 +70,8 @@ public class CommandTestUtil {
             + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
     public static final String SECOND_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
             + VALID_DATETIME_22_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_JURONGPOINT;
+    public static final String MONTHLY_DESC_AMY = " " + PREFIX_MONTHLY + VALID_MONTHLY_AMY;
+    public static final String MONTHLY_DESC_BOB = " " + PREFIX_MONTHLY + VALID_MONTHLY_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
@@ -74,8 +79,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "000"; // income should include "$" sign
+    public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "000"; // monthly should include "$"
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE + INVALID_DATETIME_210_JAN_2023;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -87,14 +92,15 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withIncome(VALID_INCOME_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withIncome(VALID_INCOME_AMY).withMonthly(VALID_MONTHLY_AMY).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withIncome(VALID_INCOME_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withIncome(VALID_INCOME_BOB).withMonthly(VALID_MONTHLY_AMY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPOINTMENT = new EditPersonDescriptorBuilder()
-                          .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023),
-                                           new Location(VALID_LOCATION_NUS)))
-                          .build();
+                .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023),
+                                                new Location(VALID_LOCATION_NUS)))
+                .build();
     }
 
     /**

@@ -14,5 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_APPOINTMENT_DATE = new Prefix("d/");
     public static final Prefix PREFIX_APPOINTMENT_LOCATION = new Prefix("l/");
     public static final Prefix PREFIX_INCOME = new Prefix("i/");
-
+    public static final Prefix PREFIX_MONTHLY = new Prefix("m/");
 }

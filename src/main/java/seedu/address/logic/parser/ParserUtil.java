@@ -18,6 +18,7 @@ import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Location;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -199,6 +200,19 @@ public class ParserUtil {
             throw new ParseException(IncomeLevel.MESSAGE_CONSTRAINTS);
         }
         return new IncomeLevel(trimmedIncome);
+    }
+
+    /**
+     * Parses a {@code String monthly} into an {@code Monthly}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Monthly parseMonthly(String monthly) throws ParseException {
+        requireNonNull(monthly);
+        String trimmedMonthly = monthly.trim();
+        if (!Monthly.isValidMonthly(monthly)) {
+            throw new ParseException(Monthly.MESSAGE_CONSTRAINTS);
+        }
+        return new Monthly(trimmedMonthly);
     }
 
     /**
