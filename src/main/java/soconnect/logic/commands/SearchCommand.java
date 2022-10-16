@@ -56,6 +56,7 @@ public class SearchCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SearchCommand // instanceof handles nulls
-                && predicate.equals(((SearchCommand) other).predicate)); // state check
+                && predicate.equals(((SearchCommand) other).predicate)
+                && alternativePredicate.equals(((SearchCommand) other).alternativePredicate)); // state check
     }
 }
