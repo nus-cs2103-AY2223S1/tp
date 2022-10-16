@@ -25,7 +25,9 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, CommandType commandType) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
+        requireNonNull(feedbackToUser);
+        requireNonNull(commandType);
+        this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
     }
 
