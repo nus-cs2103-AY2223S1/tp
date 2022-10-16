@@ -172,10 +172,6 @@ Format: `delete <name>`
 * If the SectresBook contains persons with the same first or last name that has been input,
 the delete command will not execute but will return a list of all people with the given name.
 
-Format: `delete all`
-
-* `delete all` is functionally the same as `clear`
-
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the SectresBook.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
