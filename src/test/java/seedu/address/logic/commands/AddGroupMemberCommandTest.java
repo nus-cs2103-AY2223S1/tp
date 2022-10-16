@@ -48,10 +48,11 @@ public class AddGroupMemberCommandTest {
     public void execute_invalidPerson_commandFailure() {
         Person personToAddGroup = model.getPersonWithName(CARL.getName()).get(0);
         Person editedPerson = new PersonBuilder(personToAddGroup).build();
+        String name = "Bob";
         AddGroupMemberCommand addGroupMemberCommand =
-                new AddGroupMemberCommand("Alpha", "Bob");
+                new AddGroupMemberCommand("Alpha", name);
 
-        String expectedMessage = String.format(AddGroupMemberCommand.MESSAGE_INVALID_PERSON);
+        String expectedMessage = String.format(AddGroupMemberCommand.MESSAGE_INVALID_PERSON, name);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAddGroup, editedPerson);
         assertCommandFailure(addGroupMemberCommand, expectedModel, expectedMessage);
