@@ -130,6 +130,24 @@ Format: `get /wn WARD_NUMBER`
 * The ward number refers to the ward the patient is in.
   e.g. `get /wn D12` will return `John` `Peter` `Mary`
 
+#### by patient type: `/inp`
+
+Finds inpatients in checkUp.
+
+Format: `get /inp`
+
+Example:
+* `get /inp` returns `Alex`, `Charlotte` and `Roy`
+
+#### by patient type: `/outp`
+
+Finds outpatients in checkUp.
+
+Format: `get /outp`
+
+Example:
+* `get /outp` returns `Bernice`, `David` and `Irfan`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
