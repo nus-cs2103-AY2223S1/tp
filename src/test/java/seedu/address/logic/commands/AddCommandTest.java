@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -167,6 +168,26 @@ public class AddCommandTest {
 
         @Override
         public void deleteMeeting(Meeting newMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingList(ReadOnlyMeetingList meetingList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getMeetingListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMeetingList getMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingListFilePath(Path meetingListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

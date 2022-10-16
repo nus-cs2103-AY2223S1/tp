@@ -16,15 +16,19 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonMeetingListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MeetingListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        MeetingListStorage meetingListStorage = new JsonMeetingListStorage(userPrefs.getMeetingListFilePath());
+        storage = new StorageManager(addressBookStorage, meetingListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,22 +80,41 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyMeetingList> meetingListOptional;
+        ReadOnlyAddressBook initialDataAddressBook;
+        ReadOnlyMeetingList initialDataMeetingList;
         try {
             addressBookOptional = storage.readAddressBook();
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialDataAddressBook = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialDataAddressBook = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            initialDataAddressBook = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        try {
+            meetingListOptional = storage.readMeetingList();
+            if (!meetingListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample MeetingList");
+            }
+
+            initialDataMeetingList = meetingListOptional.orElseGet(SampleDataUtil::getSampleMeetingList);
+
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty MeetingList");
+            initialDataMeetingList = new MeetingList();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty MeetingList");
+            initialDataMeetingList = new MeetingList();
+        }
+        return new ModelManager(initialDataAddressBook, initialDataMeetingList, userPrefs);
     }
 
     private void initLogging(Config config) {
@@ -167,7 +191,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting AddressBook " + "Starting MeetingList " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

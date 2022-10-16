@@ -66,6 +66,7 @@ public class DateTimeProcessor {
      * @return date and time in MONTH dd yyyy hh:mm aa format
      */
     public String processDateTime(String dateAndTime) throws ParseException {
+
         String[] tempStringArray = dateAndTime.strip().split("\\s+", 2);
 
         String dueDate = tempStringArray[0];

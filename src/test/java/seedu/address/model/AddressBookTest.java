@@ -100,10 +100,11 @@ public class AddressBookTest {
             return persons;
         }
 
-        @Override
-        public ObservableList<Meeting> getMeetingList() {
-            return meetings;
-        }
+        // @Override
+        // public ObservableList<Meeting> getMeetingList() {
+        //    return meetings;
+        // }
+
     }
 
 }

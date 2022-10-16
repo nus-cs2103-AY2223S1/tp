@@ -6,15 +6,24 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+//import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.meeting.Meeting;
+//import seedu.address.model.person.Address;
+//import seedu.address.model.person.Email;
+//import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+//import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +32,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
+    private final MeetingList meetingList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Meeting> filteredMeetings;
@@ -30,20 +40,53 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingList meetingList, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(addressBook, meetingList, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
+        this.meetingList = new MeetingList(meetingList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
+        filteredMeetings = new FilteredList<>(this.meetingList.getMeetingList());
 
+        // To check
+
+        //        ObservableList<Meeting> internalList = FXCollections.observableArrayList();
+        //        ObservableList<Meeting> internalUnmodifiableList =
+        //                FXCollections.unmodifiableObservableList(internalList);
+        //
+        //        ArrayList<Person> myArray = new ArrayList<>();
+        //
+        //        myArray.add(new Person(new Name("Alex Yeoh"), new Phone("87438807"),
+        //                new Email("alexyeoh@example.com"),
+        //                new Address("Blk 30 Geylang Street 29, #06-40"),
+        //                getTagSet("friends")));
+        //
+        //        myArray.add(new Person(new Name("Bernice Yu"), new Phone("99272758"),
+        //                new Email("berniceyu@example.com"),
+        //                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+        //                getTagSet("colleagues", "friends")));
+        //        try {
+        //            internalList.addAll(this.meetingList.getMeetingList().stream().collect(Collectors.toList()));
+        //            internalList.add(new Meeting(myArray, "Study Session", "06-10-2022 2015", "UTown"));
+        //            internalList.add(new Meeting(myArray, "Ice Skating", "12-10-2022 2015", "Jurong East"));
+        //        } catch (Exception e) {
+        //            System.out.println("Exception: " + e);
+        //        }
+        //
+        //        filteredMeetings = new FilteredList<>(internalList);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new MeetingList(), new UserPrefs());
+    }
+
+    public static Set<Tag> getTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Tag::new)
+                .collect(Collectors.toSet());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -73,6 +116,11 @@ public class ModelManager implements Model {
     @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getMeetingListFilePath() {
+        return userPrefs.getMeetingListFilePath();
     }
 
     @Override
@@ -136,6 +184,22 @@ public class ModelManager implements Model {
     //=========== Meetings ================================================================================
 
     @Override
+    public void setMeetingList(ReadOnlyMeetingList meetingList) {
+        this.meetingList.resetData(meetingList);
+    }
+
+    @Override
+    public void setMeetingListFilePath(Path meetingListFilePath) {
+        requireNonNull(meetingListFilePath);
+        userPrefs.setMeetingListFilePath(meetingListFilePath);
+    }
+
+    @Override
+    public ReadOnlyMeetingList getMeetingList() {
+        return meetingList;
+    }
+
+    @Override
     public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                                     String meetingDateAndTime, String meetingLocation) throws ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
@@ -149,7 +213,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addMeeting(Meeting newMeeting) {
-        addressBook.addMeeting(newMeeting);
+        meetingList.addMeeting(newMeeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -160,7 +224,7 @@ public class ModelManager implements Model {
     }
 
     public void deleteMeeting(Meeting target) {
-        addressBook.removeMeeting(target);
+        meetingList.removeMeeting(target);
     }
 
     @Override
@@ -185,8 +249,10 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
+                && meetingList.equals(other.meetingList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredMeetings.equals(other.filteredMeetings);
     }
 
 }

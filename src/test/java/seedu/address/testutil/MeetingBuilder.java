@@ -1,9 +1,13 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 import seedu.address.model.meeting.Meeting;
@@ -11,10 +15,16 @@ import seedu.address.model.person.Person;
 import seedu.address.model.util.DateTimeProcessor;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Meeting objects.
  */
 public class MeetingBuilder {
+    public static final ArrayList<Person> DEFAULT_PERSONS = new ArrayList<>(Arrays.asList(ALICE, BENSON));
+    public static final String DEFAULT_DESCRIPTION = "CS2040";
+    public static final String DEFAULT_DATETIME = "02-12-2021";
+    public static final String DEFAULT_LOCATION = "COM3";
 
+    private ArrayList<Person> peopleToMeet;
+    
     public static final Person DEFAULT_PERSON_IN_MEETING_BUILDER = new PersonBuilder()
         .withTags("Classmate", "Dalao").build();
     public static final String DEFAULT_DESCRIPTION = "Do CS2103 Project";
@@ -22,6 +32,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_LOCATION = "University Town";
 
     private final ArrayList<Person> personsToMeetArray = new ArrayList<>();
+    
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
@@ -29,7 +40,7 @@ public class MeetingBuilder {
     /**
      * Creates a {@code MeetingBuilder} with the default details.
      */
-    public MeetingBuilder() throws ParseException {
+    public MeetingBuilderOne() throws ParseException {
         this.personsToMeetArray.add(MeetingBuilder.DEFAULT_PERSON_IN_MEETING_BUILDER);
         this.meetingDescription = MeetingBuilder.DEFAULT_DESCRIPTION;
         this.meetingDateAndTime = MeetingBuilder.DEFAULT_DATE_AND_TIME;
@@ -49,13 +60,42 @@ public class MeetingBuilder {
     /**
      * Sets the {@code description} of the {@code Meeting} that we are building.
      */
+    public MeetingBuilderTwo() {
+        this.peopleToMeet = DEFAULT_PERSONS;
+        this.meetingDescription = DEFAULT_DESCRIPTION;
+        this.meetingDateAndTime = DEFAULT_DATETIME;
+        this.meetingLocation = DEFAULT_LOCATION;
+    }
+
+    /**
+     * Initializes the MeetingBuilder with the data of {@code meetingToCopy}.
+     */
+    public MeetingBuilder(Meeting meetingToCopy) {
+        this.peopleToMeet = meetingToCopy.getArrayListPersonToMeet();
+        this.meetingDescription = meetingToCopy.getDescription();
+        this.meetingDateAndTime = meetingToCopy.getDateAndTime();
+        this.meetingLocation = meetingToCopy.getLocation();
+    }
+
+    /**
+     * Sets the {@code ArrayList<Person>} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withPersons(Person ... persons) {
+        ArrayList<Person> listOfPeople = new ArrayList<>(Arrays.asList(persons));
+        this.peopleToMeet = listOfPeople;
+        return this;
+    }
+    
+    /**
+     * Sets the {@code Description} of the {@code Meeting} that we are building.
+     */
     public MeetingBuilder withDescription(String description) {
         this.meetingDescription = description;
         return this;
     }
 
     /**
-     * Sets the {@code date and time} of the {@code Meeting} that we are building.
+     * Sets the {@code dateAndTime} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withDateAndTime(String dateAndTime) throws ParseException {
         this.meetingDateAndTime = dateAndTime;
@@ -74,4 +114,5 @@ public class MeetingBuilder {
         return new Meeting(this.personsToMeetArray, this.meetingDescription,
             this.meetingDateAndTime, this.meetingLocation);
     }
+
 }

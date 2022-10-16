@@ -15,6 +15,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -132,6 +133,10 @@ public class CreateMeetingCommand extends Command {
 
         } catch (DuplicateMeetingException e) {
             return new CommandResult(DUPLICATE_MEETINGS);
+           
+        } catch (DuplicatePersonException e) {
+            return new CommandResult("It looks like you are adding the same "
+                + "person to a meeting twice!");
         }
     }
 

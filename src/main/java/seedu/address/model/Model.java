@@ -19,6 +19,8 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -58,6 +60,7 @@ public interface Model {
      * Returns the AddressBook
      */
     ReadOnlyAddressBook getAddressBook();
+
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -134,5 +137,14 @@ public interface Model {
     void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
     void deleteMeeting(Meeting target);
+
+    void setMeetingList(ReadOnlyMeetingList meetingList);
+
+    ReadOnlyMeetingList getMeetingList();
+
+    Path getMeetingListFilePath();
+
+    void setMeetingListFilePath(Path meetingListFilePath);
+
 
 }
