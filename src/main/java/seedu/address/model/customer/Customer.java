@@ -76,7 +76,7 @@ public class Customer {
     }
 
     /**
-     * Get total number of commission made by this customer.
+     * Returns the total number of commissions made by this customer.
      */
     public long getCommissionCount() {
         return commissions.getSize();
