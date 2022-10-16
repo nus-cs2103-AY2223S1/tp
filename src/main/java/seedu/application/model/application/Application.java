@@ -1,11 +1,11 @@
 package seedu.application.model.application;
 
-import seedu.application.model.application.interview.Interview;
-
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+
+import seedu.application.model.application.interview.Interview;
 
 /**
  * Represents an Application in the Application book.
@@ -22,16 +22,29 @@ public class Application {
     private final Optional<Interview> interview;
 
     /**
-     * Every field must be present and not null.
+     * Instantiate Application with empty Interview.
      */
-    public Application(Company company, Contact contact, Email email, Position position, Date date, Optional<Interview> interview) {
-        requireAllNonNull(company, contact, email, position, date, interview);
+    public Application(Company company, Contact contact, Email email, Position position, Date date) {
+        requireAllNonNull(company, contact, email, position, date);
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
         this.date = date;
-        this.interview = interview;
+        this.interview = Optional.empty();
+    }
+
+    /**
+     * Instantiate Application with non-empty Interview.
+     */
+    public Application(Application application, Interview interview) {
+        requireAllNonNull(application, interview);
+        this.company = application.getCompany();
+        this.contact = application.getContact();
+        this.email = application.getEmail();
+        this.position = application.getPosition();
+        this.date = application.getDate();
+        this.interview = Optional.of(interview);
     }
 
     public Company getCompany() {

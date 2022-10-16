@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents the Time of Interview for the specific Application.
@@ -15,6 +17,8 @@ public class InterviewTime {
     public static final String MESSAGE_CONSTRAINTS = "Time should be in the format of HHMM";
     //Only valid if time in HHMM format
     public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
+    public static final DateTimeFormatter COMMAND_TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
+    public static final DateTimeFormatter DISPLAY_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
     public final LocalTime value;
 
     /**
@@ -32,18 +36,35 @@ public class InterviewTime {
      * Returns true if a given string is a valid time string.
      */
     public static boolean isValidTime(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            COMMAND_TIME_FORMATTER.parse(test);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     private LocalTime parseLocalTime(String timeString) {
+        /*
         //desired date format HHMM e.g."2359"
         String validatedTimeString = timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + ":" + "00";
         return LocalTime.parse(validatedTimeString);
+         */
+        return LocalTime.parse(timeString, COMMAND_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns the command string that corresponds to this {@code InterviewTime}.
+     *
+     * @return The command string that corresponds to this {@code InterviewTime}.
+     */
+    public String toCommandString() {
+        return COMMAND_TIME_FORMATTER.format(value);
     }
 
     @Override
     public String toString() {
-        return this.value.toString();
+        return this.value.format(DISPLAY_TIME_FORMATTER);
     }
 
     @Override
@@ -57,5 +78,4 @@ public class InterviewTime {
     public int hashCode() {
         return value.hashCode();
     }
-
 }
