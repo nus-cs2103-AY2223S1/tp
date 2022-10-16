@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s {@code Tag} matches the keyword given.
  */
-public class TagContainsKeywordPredicate implements Predicate<Person> {
+public class TagContainsKeywordPredicate implements Predicate<Patient> {
 
     public final String keyword;
 
@@ -14,8 +14,8 @@ public class TagContainsKeywordPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return person.getTags().stream()
+    public boolean test(Patient patient) {
+        return patient.getTags().stream()
                 .anyMatch(tag -> tag.toString().contains(keyword));
     }
 

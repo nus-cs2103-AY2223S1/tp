@@ -23,7 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -53,10 +53,10 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons, null);
+        List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newPatients, null);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
@@ -64,12 +64,12 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateAppointments_throwsDuplicateAppointmentException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE);
+        List<Patient> newPatients = Arrays.asList(ALICE);
         List<Appointment> appointments = Arrays.asList(
                 APPOINTMENT_1, new AppointmentBuilder(APPOINTMENT_1).build());
-        AddressBookStub newData = new AddressBookStub(newPersons, appointments);
+        AddressBookStub newData = new AddressBookStub(newPatients, appointments);
         assertThrows(DuplicateAppointmentException.class, () -> addressBook.resetData(newData));
     }
 
@@ -108,7 +108,7 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
@@ -127,17 +127,17 @@ public class AddressBookTest {
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Patient> patients = FXCollections.observableArrayList();
         private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons, Collection<Appointment> appointments) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<Patient> patients, Collection<Appointment> appointments) {
+            this.patients.setAll(patients);
             this.appointments.setAll(Optional.ofNullable(appointments).orElse(new ArrayList<>()));
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<Patient> getPersonList() {
+            return patients;
         }
 
         @Override

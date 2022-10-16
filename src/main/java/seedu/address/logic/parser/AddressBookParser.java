@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
-import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
@@ -20,7 +20,7 @@ import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
-import seedu.address.logic.commands.SelectPersonCommand;
+import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -49,53 +49,38 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
-        case SortCommand.COMMAND_WORD:
+
+        if (SortCommand.COMMAND_WORD.matches(commandWord)) {
             return new SortCommandParser().parse(arguments);
-
-        case AddPersonCommand.COMMAND_WORD:
-            return new AddPersonCommandParser().parse(arguments);
-
-        case AddAppointmentCommand.COMMAND_WORD:
+        } else if (AddPatientCommand.COMMAND_WORD.matches(commandWord)) {
+            return new AddPatientCommandParser().parse(arguments);
+        } else if (AddAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new AddAppointmentCommandParser().parse(arguments);
-
-        case EditAppointmentCommand.COMMAND_WORD:
+        } else if (EditAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditAppointmentCommandParser().parse(arguments);
-
-        case EditPersonCommand.COMMAND_WORD:
-            return new EditPersonCommandParser().parse(arguments);
-
-        case DeleteAppointmentCommand.COMMAND_WORD:
+        } else if (EditPersonCommand.COMMAND_WORD.matches(commandWord)) {
+            return new EditPatientCommandParser().parse(arguments);
+        } else if (DeleteAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeleteAppointmentCommandParser().parse(arguments);
-
-        case DeletePatientCommand.COMMAND_WORD:
+        } else if (DeletePatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeletePatientCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
+        } else if (ClearCommand.COMMAND_WORD.matches(commandWord)) {
             return new ClearCommand();
-
-        case FilterNameCommand.COMMAND_WORD:
+        } else if (FilterNameCommand.COMMAND_WORD.matches(commandWord)) {
             return new FilterNameCommandParser().parse(arguments);
-
-        case FilterTagCommand.COMMAND_WORD:
+        } else if (FilterTagCommand.COMMAND_WORD.matches(commandWord)) {
             return new FilterTagCommandParser().parse(arguments);
-
-        case RemarkCommand.COMMAND_WORD:
+        } else if (RemarkCommand.COMMAND_WORD.matches(commandWord)) {
             return new RemarkCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
+        } else if (ListCommand.COMMAND_WORD.matches(commandWord)) {
             return new ListCommand();
-
-        case ExitCommand.COMMAND_WORD:
+        } else if (ExitCommand.COMMAND_WORD.matches(commandWord)) {
             return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
+        } else if (HelpCommand.COMMAND_WORD.matches(commandWord)) {
             return new HelpCommand();
-
-        case SelectPersonCommand.COMMAND_WORD:
-            return new SelectPersonCommandParser().parse(arguments);
-
-        default:
+        } else if (SelectPatientCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SelectPatientCommandParser().parse(arguments);
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

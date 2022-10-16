@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <Label styleClass="section-header-label" text="APPOINTMENTS" />
 <GridPane HBox.hgrow="ALWAYS">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
@@ -18,7 +19,7 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
   </columnConstraints>
-<Label fx:id="name" minHeight="30.0" text="Patient" styleClass="cell_small_label">
+<Label fx:id="name" minHeight="30.0" styleClass="cell_small_label" text="Patient">
          <padding>
             <Insets left="20.0" />
          </padding>
@@ -26,7 +27,8 @@
             <Font size="16.0" />
          </font>
       </Label>
-    <Label fx:id="medicalTest" minHeight="30.0" styleClass="cell_small_label" text="Medical Test" GridPane.columnIndex="1">
+    <Label fx:id="medicalTest" minHeight="30.0" styleClass="cell_small_label"
+           text="Medical Test" GridPane.columnIndex="1">
          <font>
             <Font size="16.0" />
          </font></Label>

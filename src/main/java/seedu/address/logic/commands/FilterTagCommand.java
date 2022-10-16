@@ -11,9 +11,9 @@ import seedu.address.model.person.TagContainsKeywordPredicate;
  */
 public class FilterTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "filtertag";
+    public static final CommandWord COMMAND_WORD = new CommandWord("filtertag", "ft");
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all patients who have tag(s) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all patients who have tag(s) "
             + "containing the keyword and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD\n"
             + "Example: " + COMMAND_WORD + "critical";

@@ -23,49 +23,49 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddPersonCommandTest {
+public class AddPatientCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPatientCommand(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Patient validPatient = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddPatientCommand(validPatient).execute(modelStub);
 
-        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPatient), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Patient validPatient = new PersonBuilder().build();
+        AddPatientCommand addPatientCommand = new AddPatientCommand(validPatient);
+        ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
         assertThrows(CommandException.class,
-                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
+                AddPatientCommand.MESSAGE_DUPLICATE_PERSON, () -> addPatientCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
-        AddPersonCommand addBobCommand = new AddPersonCommand(bob);
+        Patient alice = new PersonBuilder().withName("Alice").build();
+        Patient bob = new PersonBuilder().withName("Bob").build();
+        AddPatientCommand addAliceCommand = new AddPatientCommand(alice);
+        AddPatientCommand addBobCommand = new AddPatientCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice);
+        AddPatientCommand addAliceCommandCopy = new AddPatientCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -113,7 +113,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addPerson(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -128,7 +128,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasPerson(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -138,22 +138,22 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deletePerson(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setPerson(Patient target, Patient editedPatient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPatientList() {
+        public ObservableList<Patient> getFilteredPatientList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<Patient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,8 +188,13 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void sort(Comparator<Person> comparator) {
+        public void sort(Comparator<Patient> comparator) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRelativeAppointments(Patient patient) {
+            //TODO
         }
     }
 
@@ -197,17 +202,17 @@ public class AddPersonCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Patient patient;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Patient patient) {
+            requireNonNull(patient);
+            this.patient = patient;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasPerson(Patient patient) {
+            requireNonNull(patient);
+            return this.patient.isSamePerson(patient);
         }
     }
 
@@ -215,18 +220,18 @@ public class AddPersonCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Patient> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasPerson(Patient patient) {
+            requireNonNull(patient);
+            return personsAdded.stream().anyMatch(patient::isSamePerson);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPerson(Patient patient) {
+            requireNonNull(patient);
+            personsAdded.add(patient);
         }
 
         @Override
