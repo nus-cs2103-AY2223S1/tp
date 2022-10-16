@@ -23,43 +23,24 @@ import seedu.waddle.model.itinerary.Itinerary;
  */
 public class TypicalItineraries {
 
-    public static final Itinerary ALICE = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary BENSON = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary CARL = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary DANIEL = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary ELLE = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary FIONA = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary GEORGE = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-
-    // Manually added
-    public static final Itinerary HOON = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-    public static final Itinerary IDA = new ItineraryBuilder().withName("Alice Pauline")
-            .withCountry("123, Jurong West Ave 6, #08-111").withStartDate("alice@example.com")
-            .withEndDate("94351253").withPeople("friends").build();
-
-    // Manually added - Person's details found in {@code CommandTestUtil}
+    // Manually added - Itinerary's details found in {@code CommandTestUtil}
     public static final Itinerary SUMMER = new ItineraryBuilder().withName(VALID_NAME_SUMMER)
             .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
             .withEndDate(VALID_END_DATE_SUMMER).withPeople(VALID_PEOPLE_SUMMER).build();
     public static final Itinerary WINTER = new ItineraryBuilder().withName(VALID_NAME_WINTER)
             .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
             .withEndDate(VALID_END_DATE_WINTER).withPeople(VALID_PEOPLE_WINTER).build();
+
+    public static final Itinerary SPRING = new ItineraryBuilder().withName("Summer Trip")
+            .withCountry("Australia").withStartDate("2022-01-01")
+            .withEndDate("2022-01-15").withPeople("1").build();
+    public static final Itinerary AUTUMN = new ItineraryBuilder().withName("Winter Trip")
+            .withCountry("Canada").withStartDate("2022-02-02")
+            .withEndDate("2022-02-23").withPeople("2").build();
+    public static final Itinerary GRADUATION = new ItineraryBuilder().withName("Graduation Trip")
+            .withCountry("France").withStartDate("2022-03-03")
+            .withEndDate("2022-03-07").withPeople("4").build();
+
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -69,14 +50,14 @@ public class TypicalItineraries {
      * Returns a {@code Waddle} with all the typical itineraries.
      */
     public static Waddle getTypicalWaddle() {
-        Waddle ab = new Waddle();
-        for (Itinerary person : getTypicalItineraries()) {
-            ab.addItinerary(person);
+        Waddle waddle = new Waddle();
+        for (Itinerary itinerary : getTypicalItineraries()) {
+            waddle.addItinerary(itinerary);
         }
-        return ab;
+        return waddle;
     }
 
     public static List<Itinerary> getTypicalItineraries() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(SUMMER, WINTER, SPRING));
     }
 }
