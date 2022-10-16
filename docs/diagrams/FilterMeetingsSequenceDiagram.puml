@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FilterMeetingCommandParser" as FilterMeetingCommandParser LOGIC_COLOR
+participant ":DateTimeConverter\n<<class>>" as DateTimeConverter LOGIC_COLOR
+participant "mp:MeetingFilterDatePredicate" as MeetingFilterDatePredicate LOGIC_COLOR
+participant "f:FilterMeetingCommand" as FilterMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute\n("filtermeetingsbetween\n 10-10-2022 1010 ;;;\n20-10-2022 1010")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand\n("filtermeetingsbetween\n 10-10-2022 1010 ;;;\n20-10-2022 1010")
+activate AddressBookParser
+
+create FilterMeetingCommandParser
+AddressBookParser -> FilterMeetingCommandParser
+activate FilterMeetingCommandParser
+FilterMeetingCommandParser --> AddressBookParser
+deactivate FilterMeetingCommandParser
+
+
+AddressBookParser -> FilterMeetingCommandParser : parse(args)
+activate FilterMeetingCommandParser
+
+FilterMeetingCommandParser -> DateTimeConverter : stringToLocalDateTime(afterDate)
+FilterMeetingCommandParser <-- DateTimeConverter :
+FilterMeetingCommandParser -> DateTimeConverter : stringToLocalDateTime(beforeDate)
+FilterMeetingCommandParser <-- DateTimeConverter :
+
+create MeetingFilterDatePredicate
+FilterMeetingCommandParser -> MeetingFilterDatePredicate : MeetingFilterDatePredicate(afterDate, beforeDate)
+activate MeetingFilterDatePredicate
+FilterMeetingCommandParser <-- MeetingFilterDatePredicate : mp
+deactivate MeetingFilterDatePredicate
+
+create FilterMeetingCommand
+FilterMeetingCommandParser -> FilterMeetingCommand : FilterMeetingCommand(mp)
+deactivate FilterMeetingCommandParser
+
+activate FilterMeetingCommand
+destroy FilterMeetingCommandParser
+FilterMeetingCommand --> LogicManager : f
+FilterMeetingCommand <- LogicManager : execute(model)
+FilterMeetingCommand -> Model : updateFilteredMeetingList(mp)
+activate Model
+Model --> FilterMeetingCommand
+deactivate Model
+
+create CommandResult
+FilterMeetingCommand -> CommandResult
+
+activate CommandResult
+CommandResult --> FilterMeetingCommand
+deactivate CommandResult
+
+FilterMeetingCommand --> LogicManager : result
+deactivate FilterMeetingCommand
+
+[<--LogicManager
+
+@enduml
