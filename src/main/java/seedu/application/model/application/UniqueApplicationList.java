@@ -10,8 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.application.model.application.exceptions.ApplicationNotFoundException;
 import seedu.application.model.application.exceptions.DuplicateApplicationException;
+import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.exceptions.DuplicateInterviewException;
-
 
 /**
  * A list of applications that enforces uniqueness between its elements and does not allow nulls.
@@ -40,21 +40,35 @@ public class UniqueApplicationList implements Iterable<Application> {
     }
 
     /**
-     * Returns true if the list contains an equivalent interview as the given argument.
+     * Returns true if the list contains an equivalent interview in the {@code toCheck}as the given argument.
      */
     public boolean hasSameInterviewTimeAs(Application toCheck) {
+        requireNonNull(toCheck);
+        if (toCheck.getInterview().isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < internalList.size() - 1; i++) {
+            if (internalList.get(i).getInterview().isEmpty()) {
+                continue;
+            }
+            if (internalList.get(i).getInterview().get().isOnSameTime(toCheck.getInterview().get())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the list contains an equivalent interview as the given argument.
+     */
+    public boolean hasSameInterviewTimeAs(Interview toCheck) {
         requireNonNull(toCheck);
         for (int i = 0; i < internalList.size() - 1; i++) {
             if (internalList.get(i).getInterview().isEmpty()) {
                 continue;
             }
-            for (int j = i + 1; j < internalList.size(); j++) {
-                if (internalList.get(j).getInterview().isEmpty()) {
-                    continue;
-                }
-                if (internalList.get(i).getInterview().get().isOnSameTime(internalList.get(j).getInterview().get())) {
-                    return true;
-                }
+            if (internalList.get(i).getInterview().get().isOnSameTime(toCheck)) {
+                return true;
             }
         }
         return false;
