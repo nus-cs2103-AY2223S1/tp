@@ -18,11 +18,11 @@ import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import foodwhere.logic.commands.SEditCommand;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
+import foodwhere.logic.commands.SEditCommand;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
