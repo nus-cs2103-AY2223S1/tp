@@ -54,8 +54,7 @@ public class StringUtil {
         requireNonNull(phone);
         requireNonNull(numbers);
 
-        checkArgument(numbers.length() >= 2, "numbers to check must be at least 2 digits");
-        return phone.contains(numbers);
+        return phone.startsWith(numbers);
     }
 
     /**
