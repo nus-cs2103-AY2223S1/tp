@@ -3,6 +3,7 @@ package seedu.address.model.commission;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,6 +48,39 @@ public class UniqueCommissionList implements Iterable<Commission> {
             throw new DuplicateCommissionException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns the size of the commission list.
+     */
+    public int getSize() {
+        return internalList.size();
+    }
+
+    /**
+     * Returns the number of active commissions.
+     */
+    public long getActiveSize() {
+        return internalList.stream()
+                .filter(commission -> !commission.getCompletionStatus().isCompleted)
+                .count();
+    }
+
+    /**
+     * Returns the last Deadline.
+     */
+    public LocalDate getLastDate() {
+        return internalList.stream()
+                .map(commission -> commission.getDeadline().deadline)
+                .reduce(null, (result, date) -> {
+                    if (result == null) {
+                        return date;
+                    }
+                    if (result.compareTo(date) < 0) {
+                        return date;
+                    }
+                    return result;
+                });
     }
 
     /**

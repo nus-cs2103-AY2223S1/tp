@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCommissions.ALICE_CAT;
 import static seedu.address.testutil.TypicalCommissions.BENSON_DOG;
+import static seedu.address.testutil.TypicalCommissions.CARL_ELEPHANT;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 
 import java.util.Arrays;
@@ -129,6 +130,31 @@ public class UniqueCommissionListTest {
         uniqueCommissionList.remove(ALICE_CAT);
         UniqueCommissionList expectedUniqueCommissionList = new UniqueCommissionList();
         assertEquals(expectedUniqueCommissionList, uniqueCommissionList);
+    }
+
+    @Test
+    public void getSize_check() {
+        uniqueCommissionList.add(ALICE_CAT);
+        uniqueCommissionList.add(BENSON_DOG);
+        uniqueCommissionList.add(CARL_ELEPHANT);
+        assertEquals(uniqueCommissionList.getSize(), 3);
+    }
+
+    @Test
+    public void getActiveSize_check() {
+        uniqueCommissionList.add(ALICE_CAT);
+        uniqueCommissionList.add(BENSON_DOG);
+        uniqueCommissionList.add(CARL_ELEPHANT);
+        assertEquals(uniqueCommissionList.getActiveSize(), 1);
+    }
+
+    @Test
+    public void getLastDate_check() {
+        assertEquals(uniqueCommissionList.getLastDate(), null);
+        uniqueCommissionList.add(ALICE_CAT);
+        uniqueCommissionList.add(BENSON_DOG);
+        uniqueCommissionList.add(CARL_ELEPHANT);
+        assertEquals(uniqueCommissionList.getLastDate(), BENSON_DOG.getDeadline().deadline);
     }
 
     @Test
