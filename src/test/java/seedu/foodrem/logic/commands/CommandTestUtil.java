@@ -41,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_NAME_NUMBERS = "2 1 0 3 t";
     public static final String VALID_TAG_NAME_VEGETABLES = "vegetables";
 
+    public static final String VALID_ID_NUMBER_ONE = "1";
+
     public static final String VALID_DESC_ITEM_NAME_POTATOES = " " + CliSyntax.PREFIX_NAME
             + VALID_ITEM_NAME_POTATOES;
     public static final String VALID_DESC_ITEM_QUANTITY_POTATOES = " " + CliSyntax.PREFIX_ITEM_QUANTITY
@@ -71,6 +73,8 @@ public class CommandTestUtil {
 
     public static final String VALID_DESC_TAG_NAME_NUMBERS = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_NUMBERS;
+
+    public static final String VALID_DESC_ID_FIRST = " " + CliSyntax.PREFIX_ID + VALID_ID_NUMBER_ONE;
 
     public static final String INVALID_ITEM_NAME_POTATOES = "Potatoe@s";
     public static final String INVALID_ITEM_QUANTITY_POTATOES = "1@0";
