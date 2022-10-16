@@ -7,6 +7,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Room;
 
 /**
  * A utility class to help with building Guest objects.
@@ -16,6 +17,7 @@ public class GuestBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_ROOM = "05-73";
     public static final String DEFAULT_DATE_RANGE = "13/09/22 - 15/09/22";
     public static final String DEFAULT_NUMBER_OF_GUESTS = "1";
     public static final String DEFAULT_IS_ROOM_CLEAN = "yes";
@@ -23,6 +25,7 @@ public class GuestBuilder {
     private Name name;
     private Phone phone;
     private Email email;
+    private Room room;
     private DateRange dateRange;
     private NumberOfGuests numberOfGuests;
     private IsRoomClean isRoomClean;
@@ -34,6 +37,7 @@ public class GuestBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        room = new Room(DEFAULT_ROOM);
         dateRange = new DateRange(DEFAULT_DATE_RANGE);
         numberOfGuests = new NumberOfGuests(DEFAULT_NUMBER_OF_GUESTS);
         isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
@@ -46,6 +50,7 @@ public class GuestBuilder {
         name = guestToCopy.getName();
         phone = guestToCopy.getPhone();
         email = guestToCopy.getEmail();
+        room = guestToCopy.getRoom();
         dateRange = guestToCopy.getDateRange();
         numberOfGuests = guestToCopy.getNumberOfGuests();
         isRoomClean = guestToCopy.getIsRoomClean();
@@ -76,6 +81,14 @@ public class GuestBuilder {
     }
 
     /**
+     * Sets the {@code Room} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withRoom(String room) {
+        this.room = new Room(room);
+        return this;
+    }
+
+    /**
      * Sets the {@code DateRange} of the {@code Guest} that we are building.
      */
     public GuestBuilder withDateRange(String dateRange) {
@@ -100,7 +113,7 @@ public class GuestBuilder {
     }
 
     public Guest build() {
-        return new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean);
+        return new Guest(name, phone, email, room, dateRange, numberOfGuests, isRoomClean);
     }
 
 }

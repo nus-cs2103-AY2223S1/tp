@@ -30,7 +30,7 @@ guest management tasks done faster than traditional GUI apps.
 
    * **`list`** : Lists all guests.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com dr/13/09/22 - 15/09/22 ng/3 rc/yes`: Adds a guest named `John Doe` to the guest book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rc/yes`: Adds a guest named `John Doe` to the guest book.
 
    * **`edit`** `3` `n/Bob rc/no`: Edits the 3rd guest shown in the current list.
 
@@ -87,7 +87,7 @@ Format: `help`
 
 Adds a guest to the guest book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN​`
 
 [//]: # (Commented out first as not relevant since we do not have optional fields)
 [//]: # (But may be relevant in the future)
@@ -98,8 +98,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/
 [//]: # (</div>)
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com dr/19/05/22 - 24/05/22 ng/3 rc/no`
-* `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com dr/10/01/12 - 11/01/12 ng/1 rc/yes`
+* `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3 rc/no`
+* `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rc/yes`
 
 ### Listing all guests : `list`
 
@@ -111,7 +111,7 @@ Format: `list`
 
 Edits an existing guest in the guest book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] ​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] ​`
 
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -192,12 +192,12 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action     | Format, Examples                                                                                                                                                                            |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN ​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com dr/19/05/20 - 24/05/22 ng/3 rc/no`       |
-| **Clear**  | `clear`                                                                                                                                                                                     |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                         |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS]​`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5`                                       |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                  |
-| **List**   | `list`                                                                                                                                                                                      |
-| **Help**   | `help`                                                                                                                                                                                      
+| Action     | Format, Examples                                                                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS rc/IS_ROOM_CLEAN ​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/20 - 24/05/22 ng/3 rc/no` |
+| **Clear**  | `clear`                                                                                                                                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS]​`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5`                                                  |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                             |
+| **List**   | `list`                                                                                                                                                                                                 |
+| **Help**   | `help`                                                                                                                                                                                                 |

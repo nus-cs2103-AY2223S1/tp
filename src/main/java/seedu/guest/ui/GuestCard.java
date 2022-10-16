@@ -32,11 +32,13 @@ public class GuestCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label numberOfGuests;
-    @FXML
     private Label email;
     @FXML
+    private Label room;
+    @FXML
     private Label dateRange;
+    @FXML
+    private Label numberOfGuests;
     @FXML
     private Label isRoomClean;
 
@@ -50,6 +52,7 @@ public class GuestCard extends UiPart<Region> {
         name.setText(guest.getName().fullName);
         phone.setText(guest.getPhone().value);
         email.setText(guest.getEmail().value);
+        room.setText(guest.getRoom().value);
         dateRange.setText(guest.getDateRange().value);
         numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
         isRoomClean.setText("Room Cleaned: " + guest.getIsRoomClean().value);

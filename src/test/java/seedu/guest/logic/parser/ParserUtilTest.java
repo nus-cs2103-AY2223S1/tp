@@ -14,11 +14,13 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Room;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_ROOM = "!06-73";
     private static final String INVALID_DATE_RANGE = "13/09/22 - 13/09/22";
     private static final String INVALID_NUMBER_OF_GUESTS = "5";
     private static final String INVALID_IS_ROOM_CLEAN = "false";
@@ -26,6 +28,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_ROOM = "05-73";
     private static final String VALID_DATE_RANGE = "13/09/22 - 15/09/22";
     private static final String VALID_NUMBER_OF_GUESTS = "4";
     private static final String VALID_IS_ROOM_CLEAN = "yes";
@@ -119,6 +122,29 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseRoom_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRoom((String) null));
+    }
+
+    @Test
+    public void parseRoom_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRoom(INVALID_ROOM));
+    }
+
+    @Test
+    public void parseRoom_validValueWithoutWhitespace_returnsRoom() throws Exception {
+        Room expectedRoom = new Room(VALID_ROOM);
+        assertEquals(expectedRoom, ParserUtil.parseRoom(VALID_ROOM));
+    }
+
+    @Test
+    public void parseRoom_validValueWithWhitespace_returnsTrimmedRoom() throws Exception {
+        String roomWithWhitespace = WHITESPACE + VALID_ROOM + WHITESPACE;
+        Room expectedRoom = new Room(VALID_ROOM);
+        assertEquals(expectedRoom, ParserUtil.parseRoom(roomWithWhitespace));
     }
 
     @Test

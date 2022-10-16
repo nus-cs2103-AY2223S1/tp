@@ -7,6 +7,7 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Room;
 
 /**
  * Edits the details of an existing guest in the guest book.
@@ -39,6 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ROOM + "ROOM] "
             + "[" + PREFIX_DATE_RANGE + "DATE_RANGE] "
             + "[" + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS] "
             + "[" + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN] "
@@ -96,11 +99,12 @@ public class EditCommand extends Command {
         Name updatedName = editGuestDescriptor.getName().orElse(guestToEdit.getName());
         Phone updatedPhone = editGuestDescriptor.getPhone().orElse(guestToEdit.getPhone());
         Email updatedEmail = editGuestDescriptor.getEmail().orElse(guestToEdit.getEmail());
+        Room updatedRoom = editGuestDescriptor.getRoom().orElse(guestToEdit.getRoom());
         DateRange updatedDateRange = editGuestDescriptor.getDateRange().orElse(guestToEdit.getDateRange());
         NumberOfGuests updatedNumberOfGuests = editGuestDescriptor.getNumberOfGuests()
                 .orElse(guestToEdit.getNumberOfGuests());
         IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
-        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange,
+        return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
                 updatedNumberOfGuests, updatedIsRoomClean);
     }
 
@@ -130,6 +134,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private Room room;
         private DateRange dateRange;
         private NumberOfGuests numberOfGuests;
         private IsRoomClean isRoomClean;
@@ -143,6 +148,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setRoom(toCopy.room);
             setDateRange(toCopy.dateRange);
             setNumberOfGuests(toCopy.numberOfGuests);
             setIsRoomClean(toCopy.isRoomClean);
@@ -152,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean);
+            return CollectionUtil.isAnyNonNull(name, phone, email, room, dateRange, numberOfGuests, isRoomClean);
         }
 
         public void setName(Name name) {
@@ -177,6 +183,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setRoom(Room room) {
+            this.room = room;
+        }
+
+        public Optional<Room> getRoom() {
+            return Optional.ofNullable(room);
         }
 
         public void setDateRange(DateRange dateRange) {
@@ -221,6 +235,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
+                    && getRoom().equals(e.getRoom())
                     && getDateRange().equals(e.getDateRange())
                     && getNumberOfGuests().equals(e.getNumberOfGuests())
                     && getIsRoomClean().equals(e.getIsRoomClean());

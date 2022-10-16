@@ -3,6 +3,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
+    "room": "04-28",
     "dateRange": "13/09/22 - 15/09/22",
     "numberOfGuests" : "1",
     "isRoomClean" : "yes"
@@ -10,6 +11,7 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "room": "04-28",
     "dateRange": "13/09/22 - 15/09/22",
     "numberOfGuests" : "1",
     "isRoomClean" : "yes"

@@ -10,6 +10,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_IS_ROOM_CLEAN_BOB
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_ROOM_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,6 +47,10 @@ public class EditGuestDescriptorTest {
 
         // different email -> returns false
         editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different room -> returns false
+        editedAmy = new EditGuestDescriptorBuilder(DESC_AMY).withRoom(VALID_ROOM_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different date range -> returns false

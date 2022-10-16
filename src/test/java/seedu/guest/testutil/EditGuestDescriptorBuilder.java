@@ -8,6 +8,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Room;
 
 /**
  * A utility class to help with building EditGuestDescriptor objects.
@@ -32,6 +33,7 @@ public class EditGuestDescriptorBuilder {
         descriptor.setName(guest.getName());
         descriptor.setPhone(guest.getPhone());
         descriptor.setEmail(guest.getEmail());
+        descriptor.setRoom(guest.getRoom());
         descriptor.setDateRange(guest.getDateRange());
         descriptor.setNumberOfGuests(guest.getNumberOfGuests());
         descriptor.setIsRoomClean(guest.getIsRoomClean());
@@ -58,6 +60,14 @@ public class EditGuestDescriptorBuilder {
      */
     public EditGuestDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Room} of the {@code EditGuestDescriptor} that we are building.
+     */
+    public EditGuestDescriptorBuilder withRoom(String room) {
+        descriptor.setRoom(new Room(room));
         return this;
     }
 

@@ -11,6 +11,7 @@ import static seedu.guest.logic.commands.CommandTestUtil.INVALID_IS_ROOM_CLEAN_D
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_NUMBER_OF_GUESTS_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.guest.logic.commands.CommandTestUtil.INVALID_ROOM_DESC;
 import static seedu.guest.logic.commands.CommandTestUtil.IS_ROOM_CLEAN_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.IS_ROOM_CLEAN_DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -18,6 +19,8 @@ import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_A
 import static seedu.guest.logic.commands.CommandTestUtil.NUMBER_OF_GUESTS_DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.ROOM_DESC_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.ROOM_DESC_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_DATE_RANGE_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -29,6 +32,8 @@ import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_NUMBER_OF_GUESTS_BOB;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.guest.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_ROOM_AMY;
+import static seedu.guest.logic.commands.CommandTestUtil.VALID_ROOM_BOB;
 import static seedu.guest.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.guest.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_GUEST;
@@ -46,6 +51,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Room;
 import seedu.guest.testutil.EditGuestDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -87,6 +93,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_ROOM_DESC, Room.MESSAGE_CONSTRAINTS); // invalid room
         assertParseFailure(parser, "1" + INVALID_DATE_RANGE_DESC,
                 DateRange.MESSAGE_CONSTRAINTS); // invalid date range
         assertParseFailure(parser, "1" + INVALID_NUMBER_OF_GUESTS_DESC,
@@ -102,7 +109,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_DATE_RANGE_AMY
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC
+                + VALID_ROOM_AMY + VALID_DATE_RANGE_AMY
                         + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -110,11 +118,12 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_GUEST;
 
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY + ROOM_DESC_AMY
                 + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + NAME_DESC_AMY + IS_ROOM_CLEAN_DESC_AMY;
 
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withDateRange(VALID_DATE_RANGE_AMY)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withRoom(VALID_ROOM_AMY)
+                .withDateRange(VALID_DATE_RANGE_AMY)
                 .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_AMY).withIsRoomClean(VALID_IS_ROOM_CLEAN_AMY)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -155,6 +164,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // room
+        userInput = targetIndex.getOneBased() + ROOM_DESC_AMY;
+        descriptor = new EditGuestDescriptorBuilder().withRoom(VALID_ROOM_AMY).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // date range
         userInput = targetIndex.getOneBased() + DATE_RANGE_DESC_AMY;
         descriptor = new EditGuestDescriptorBuilder().withDateRange(VALID_DATE_RANGE_AMY).build();
@@ -178,14 +193,14 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_GUEST;
 
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY + ROOM_DESC_AMY
                 + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + IS_ROOM_CLEAN_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + DATE_RANGE_DESC_AMY + NUMBER_OF_GUESTS_DESC_AMY + IS_ROOM_CLEAN_DESC_AMY
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + DATE_RANGE_DESC_BOB
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ROOM_DESC_BOB + DATE_RANGE_DESC_BOB
                 + NUMBER_OF_GUESTS_DESC_BOB + IS_ROOM_CLEAN_DESC_BOB;
 
         EditGuestDescriptor descriptor = new EditGuestDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withDateRange(VALID_DATE_RANGE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withRoom(VALID_ROOM_BOB).withDateRange(VALID_DATE_RANGE_BOB)
                 .withNumberOfGuests(VALID_NUMBER_OF_GUESTS_BOB).withIsRoomClean(VALID_IS_ROOM_CLEAN_BOB)
                 .build();
 

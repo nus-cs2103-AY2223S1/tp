@@ -6,6 +6,7 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import seedu.guest.logic.commands.AddCommand;
 import seedu.guest.logic.commands.EditCommand.EditGuestDescriptor;
@@ -31,6 +32,7 @@ public class GuestUtil {
         sb.append(PREFIX_NAME + guest.getName().fullName + " ");
         sb.append(PREFIX_PHONE + guest.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + guest.getEmail().value + " ");
+        sb.append(PREFIX_ROOM + guest.getRoom().value + " ");
         sb.append(PREFIX_DATE_RANGE + guest.getDateRange().value + " ");
         sb.append(PREFIX_NUMBER_OF_GUESTS + guest.getNumberOfGuests().value + " ");
         sb.append(PREFIX_IS_ROOM_CLEAN + guest.getIsRoomClean().value + " ");
@@ -45,6 +47,7 @@ public class GuestUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getRoom().ifPresent(room -> sb.append(PREFIX_ROOM).append(room.value).append(" "));
         descriptor.getDateRange().ifPresent(dateRange -> sb.append(PREFIX_DATE_RANGE).append(dateRange.value)
                 .append(" "));
         descriptor.getNumberOfGuests().ifPresent(numberOfGuests -> sb.append(PREFIX_NUMBER_OF_GUESTS)
