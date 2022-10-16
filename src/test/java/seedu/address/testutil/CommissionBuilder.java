@@ -23,7 +23,7 @@ public class CommissionBuilder {
     public static final Double DEFAULT_FEE = 10.0;
     public static final LocalDate DEFAULT_DEADLINE = LocalDate.of(2022, 1, 1);
     public static final Boolean DEFAULT_COMPLETION_STATUS = false;
-    private final Deadline deadline;
+    private Deadline deadline;
     private Title title;
     private Description description;
     private Fee fee;
@@ -59,6 +59,14 @@ public class CommissionBuilder {
      */
     public CommissionBuilder withTitle(String title) {
         this.title = new Title(title);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Deadline} of the {@code Commission} that we are building.
+     */
+    public CommissionBuilder withDeadline(LocalDate deadline) {
+        this.deadline = new Deadline(deadline);
         return this;
     }
 
