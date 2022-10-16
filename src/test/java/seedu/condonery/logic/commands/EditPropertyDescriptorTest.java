@@ -10,7 +10,7 @@ import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.testutil.EditPropertyDescriptorBuilder;
 
 public class EditPropertyDescriptorTest {

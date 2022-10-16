@@ -23,7 +23,8 @@ public class TypicalClients {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withTags("owesMoney", "friends").build();
 
-    public static final Client CARL_CLIENT = new ClientBuilder().withName("Carl Kurz").withAddress("wall street").build();
+    public static final Client CARL_CLIENT = new ClientBuilder().withName("Carl Kurz")
+            .withAddress("wall street").build();
     public static final Client DANIEL_CLIENT = new ClientBuilder()
             .withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
     public static final Client ELLE_CLIENT = new ClientBuilder().withName("Elle Meyer")
@@ -32,11 +33,11 @@ public class TypicalClients {
             .withAddress("little tokyo").build();
     public static final Client GEORGE_CLIENT = new ClientBuilder().withName("George Best")
             .withAddress("4th street").build();
-    public static final Set<Tag> TYPICAL_CLIENT_TAG =new HashSet<Tag>(){{
-        add(new Tag("tag1"));
-        add(new Tag("tag2"));
-        add(new Tag("tag3"));
-    }};
+    public static final Set<Tag> TYPICAL_CLIENT_TAG = new HashSet<Tag>() { {
+            add(new Tag("tag1"));
+            add(new Tag("tag2"));
+            add(new Tag("tag3"));
+        }};
 
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
