@@ -1,5 +1,9 @@
 package seedu.address.model.reminder;
 
+import static seedu.address.logic.parser.DateTimeParser.DATE_TIME_FORMATTER;
+
+import java.time.LocalDateTime;
+
 /**
  * Represents a date and time.
  */
@@ -19,5 +23,9 @@ public class DateTime {
 
     public String getDateTimeString() {
         return this.dateTime;
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return LocalDateTime.parse(DATE_TIME_FORMATTER);
     }
 }

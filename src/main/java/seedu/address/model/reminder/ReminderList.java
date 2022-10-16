@@ -7,16 +7,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 
 /**
  * A list of all reminders.
  */
 public class ReminderList implements ReadOnlyReminderList {
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
+    private final SortedList<Reminder> sortedList = new SortedList(internalList);
     private final ObservableList<Reminder> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+            FXCollections.unmodifiableObservableList(sortedList);
 
-    public ReminderList() {}
+    public ReminderList() {
+        this.sortedList.setComparator(((Reminder r1, Reminder r2) ->
+                r1.dateTime.getLocalDateTime().compareTo(r1.dateTime.getLocalDateTime())));
+    }
 
     /**
      * Creates a ReminderList using the Reminders in the {@code toBeCopied}

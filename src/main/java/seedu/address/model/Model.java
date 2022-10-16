@@ -136,6 +136,9 @@ public interface Model {
     /** Returns the target {@code Person} */
     Person getTargetPerson();
 
+    /** Returns an unmodifiable view of the list of target person */
+    ObservableList<Reminder> getReminderListAsObservableList();
+
     /**
      * Deletes the given reminder.
      * The reminder must exist in the address book.
