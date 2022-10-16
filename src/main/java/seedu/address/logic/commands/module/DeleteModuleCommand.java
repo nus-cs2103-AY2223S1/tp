@@ -59,7 +59,9 @@ public class DeleteModuleCommand extends Command {
         Index targetIndex = Index.fromZeroBased(positionInList);
         moduleToDelete = moduleList.get(targetIndex.getZeroBased());
         model.deleteModule(moduleToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
+                false, false, true,
+                false, false, false);
     }
 
     @Override

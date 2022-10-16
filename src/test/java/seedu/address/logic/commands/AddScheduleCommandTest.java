@@ -99,7 +99,10 @@ public class AddScheduleCommandTest {
         public void addSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
-
+        @Override
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");

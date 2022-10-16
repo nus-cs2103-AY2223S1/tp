@@ -17,6 +17,7 @@ public class Student extends Person {
     private final StudentId id;
     private final TelegramHandle telegramHandle;
     private final Set<ModuleCode> studentModuleInfo = new HashSet<>();
+    private final Set<ModuleCode> teachingAssistantInfo = new HashSet<>();
     /**
      * Every field must be present and not null.
      *
@@ -27,12 +28,14 @@ public class Student extends Person {
      * @param tags
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, StudentId id,
-                   TelegramHandle telegramHandle, Set<ModuleCode> studentModuleInfo) {
+                   TelegramHandle telegramHandle, Set<ModuleCode> studentModuleInfo,
+                   Set<ModuleCode> teachingAssistantInfo) {
         super(name, phone, email, address, tags);
         requireAllNonNull(id, telegramHandle, studentModuleInfo);
         this.id = id;
         this.telegramHandle = telegramHandle;
         this.studentModuleInfo.addAll(studentModuleInfo);
+        this.teachingAssistantInfo.addAll(teachingAssistantInfo);
     }
 
     public StudentId getId() {
@@ -45,6 +48,14 @@ public class Student extends Person {
 
     public Set<ModuleCode> getStudentModuleInfo() {
         return Collections.unmodifiableSet(studentModuleInfo);
+    }
+
+    public boolean isTeachingAssistant() {
+        return teachingAssistantInfo.size() > 0;
+    }
+
+    public Set<ModuleCode> getTeachingAssistantInfo() {
+        return Collections.unmodifiableSet(teachingAssistantInfo);
     }
 
     /**
@@ -89,6 +100,11 @@ public class Student extends Person {
         if (!moduleInfo.isEmpty()) {
             builder.append("; Module Info: ");
             moduleInfo.forEach(builder::append);
+        }
+        Set<ModuleCode> taInfo = getTeachingAssistantInfo();
+        if (!taInfo.isEmpty()) {
+            builder.append("; Teaching Assistant Info: ");
+            taInfo.forEach(builder::append);
         }
         return builder.toString();
     }
