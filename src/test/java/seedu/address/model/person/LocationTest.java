@@ -20,7 +20,7 @@ public class LocationTest {
     }
 
     @Test
-    public void hashcode() {
+    public void hashCodeTest() {
         int expected = "Singapore".hashCode();
         Location singapore = new Location("Singapore");
         assertEquals(singapore.hashCode(), expected);

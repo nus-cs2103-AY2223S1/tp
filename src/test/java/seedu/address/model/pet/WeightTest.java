@@ -34,7 +34,7 @@ public class WeightTest {
     }
 
     @Test
-    public void hashcode() {
+    public void hashCodeTest() {
         Weight weight1 = new Weight(5.5);
         Weight weight2 = new Weight(6.5);
         assertEquals(weight1.hashCode(), Double.hashCode(5.5));

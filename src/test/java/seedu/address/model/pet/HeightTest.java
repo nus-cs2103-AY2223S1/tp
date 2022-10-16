@@ -34,7 +34,7 @@ public class HeightTest {
     }
 
     @Test
-    public void hashcode() {
+    public void hashCodeTest() {
         Height height1 = new Height(5.5);
         Height height2 = new Height(6.5);
         assertEquals(height1.hashCode(), Double.hashCode(5.5));
