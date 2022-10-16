@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DateTimeParser;
 
 public class AppointmentTest {
@@ -114,11 +115,11 @@ public class AppointmentTest {
 
     @Test
     public void isValidAppointment_invalidLocation_returnsFalse() {
-        Assertions.assertFalse(Appointment.isValidAppointment(new ValidDateTimeStub(), new InvalidLocationStub()));
+        assertThrows(IllegalArgumentException.class, () -> new Appointment(new InvalidDateTimeStub(), new InvalidLocationStub()));
     }
     @Test
     public void isValidAppointment_invalidLocationAndDateTime_returnsFalse() {
-        Assertions.assertFalse(Appointment.isValidAppointment(new InvalidDateTimeStub(), new InvalidLocationStub()));
+        assertThrows(IllegalArgumentException.class, () -> new Appointment(new InvalidDateTimeStub(), new InvalidLocationStub()));
     }
     @Test
     public void getDateTime_sameDateTime_success() {

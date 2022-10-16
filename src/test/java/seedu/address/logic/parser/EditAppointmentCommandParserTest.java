@@ -103,7 +103,7 @@ public class EditAppointmentCommandParserTest {
     public void parse_validSingleAppointmentField_success() {
         Index targetPersonIndex = INDEX_SECOND_PERSON;
         Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
-        String userInput = targetPersonIndex.getOneBased() + targetAppointmentIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
+        String userInput = targetPersonIndex.getOneBased() + "." + targetAppointmentIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
         descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));

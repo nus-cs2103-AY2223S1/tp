@@ -54,4 +54,23 @@ public class EditAppointmentDescriptor {
 
         return new Appointment(updatedDateTime, updatedLocation);
     }
+
+     @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditAppointmentDescriptor)) {
+            return false;
+        }
+
+        // state check
+        EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
+
+        return getDateTime().equals(e.getDateTime())
+                && getLocation().equals(e.getLocation());
+    }
 }

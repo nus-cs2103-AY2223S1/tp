@@ -72,7 +72,7 @@ public class AddAppointmentCommandTest {
                 .withLocation(VALID_LOCATION_NUS).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
 
         assertCommandSuccess(addAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
@@ -100,7 +100,7 @@ public class AddAppointmentCommandTest {
                 .withLocation(VALID_LOCATION_NUS).build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
-        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(AddAppointmentCommand.MESSAGE_SUCCESS, appointmentToAdd);
 
         assertCommandSuccess(addAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }

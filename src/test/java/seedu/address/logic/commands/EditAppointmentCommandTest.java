@@ -39,28 +39,30 @@ public class EditAppointmentCommandTest {
     public void execute_editAppointmnetBothFields_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Appointment appointmentToEdit = new AppointmentBuilder()
+                                            .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                            .withLocation(VALID_LOCATION_NUS).build();
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .build());
+                    .withAppointment(appointmentToEdit)
+                    .build());
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Appointment editedAppointment = new AppointmentBuilder()
+                                            .withDateTime(VALID_DATETIME_23_JAN_2023)
+                                            .withLocation(VALID_LOCATION_WESTMALL).build();
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_23_JAN_2023)
-                        .withLocation(VALID_LOCATION_WESTMALL).build())
+                .withAppointment(editedAppointment)
                 .build());
-        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
 
         // Create editAppointmentCommand
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
         descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
         descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
+
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
-        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment);
 
         assertCommandSuccess(editAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
@@ -68,28 +70,29 @@ public class EditAppointmentCommandTest {
     public void execute_editAppointmentLocationFieldOnly_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Appointment appointmentToEdit = new AppointmentBuilder()
+                                            .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                            .withLocation(VALID_LOCATION_NUS).build();
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
+                .withAppointment(appointmentToEdit)
                 .build());
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Appointment editedAppointment = new AppointmentBuilder()
+                .withDateTime(VALID_DATETIME_21_JAN_2023)
+                .withLocation(VALID_LOCATION_WESTMALL).build();
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_WESTMALL).build())
+                .withAppointment(editedAppointment)
                 .build());
-        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
 
         // Create editAppointmentCommand
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
-        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
-        descriptor.setLocation(new Location(VALID_LOCATION_NUS));
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
-        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment);
 
         assertCommandSuccess(editAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
@@ -97,20 +100,22 @@ public class EditAppointmentCommandTest {
     public void execute_editAppointmentDateFieldOnly_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
-        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
+        Appointment appointmentToEdit = new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
+                        .withLocation(VALID_LOCATION_NUS).build();
+        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(appointmentToEdit)
                 .build());
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Appointment editedAppointment = new AppointmentBuilder()
+                .withDateTime(VALID_DATETIME_23_JAN_2023)
+                .withLocation(VALID_LOCATION_NUS).build();
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_23_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
+                .withAppointment(editedAppointment)
                 .build());
-        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
+
 
         // Create editAppointmentCommand
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
@@ -118,7 +123,7 @@ public class EditAppointmentCommandTest {
         descriptor.setLocation(new Location(VALID_LOCATION_NUS));
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
-        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, expectedPerson);
+        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment);
 
         assertCommandSuccess(editAppointmentCommand, actualModel, expectedMessage, expectedModel);
     }
@@ -136,7 +141,7 @@ public class EditAppointmentCommandTest {
         descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
-        String expectedMessage = MESSAGE_NO_APPOINTMENT_TO_EDIT;
+        String expectedMessage = Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 
         assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
     }
@@ -173,6 +178,7 @@ public class EditAppointmentCommandTest {
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_NUS).build())
                 .build();
+        testModel.addPerson(testPerson);
 
         Index outOfBoundsAppointmentIndex = Index.fromOneBased(testModel.getFilteredPersonList().get(0).getAppointments().size() + 1);
         Appointment editedAppointment = new AppointmentBuilder()
@@ -185,7 +191,7 @@ public class EditAppointmentCommandTest {
         descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
         EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, outOfBoundsAppointmentIndex, descriptor);
 
-        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+        String expectedMessage = Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
 
         assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
     }

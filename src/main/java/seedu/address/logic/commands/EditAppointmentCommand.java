@@ -35,7 +35,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
-    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Person's Appointment: %1$s";
+    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nfrom:%1$s\nto%1$s";
     public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
             + "Use command \"aa\" to add appointment instead";
     public static final String MESSAGE_INVALID_APPOINTMENT_INDEX_FORMAT = "This client does not have appointment at index %d";
@@ -98,7 +98,7 @@ public class EditAppointmentCommand extends Command {
 
         model.setPerson(personWithAppointmentToEdit, personWithAppointmentToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
+        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, appointmentToEdit, editedAppointment));
     }
 
 

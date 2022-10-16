@@ -34,8 +34,7 @@ public class AddAppointmentCommandParserTest {
     @Test
     public void parse_allFieldsPresentOneAppointment_success() {
         Index targetPersonIndex = INDEX_SECOND_PERSON;
-        Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
-        String userInput = targetPersonIndex.getOneBased() + "." + targetAppointmentIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
+        String userInput = targetPersonIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
         Appointment appointmentToAdd = new AppointmentBuilder()
                                     .withDateTime(VALID_DATETIME_21_JAN_2023)

@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_NO_APPOINTMENT_TO_DELETE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
@@ -52,8 +51,8 @@ public class DeleteAppointmentCommandTest {
                         .withLocation(VALID_LOCATION_JURONGPOINT).build())
                 .build());
         Appointment deletedAppointment = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_22_JAN_2023)
-                .withLocation(VALID_LOCATION_JURONGPOINT).build();
+                .withDateTime(VALID_DATETIME_21_JAN_2023)
+                .withLocation(VALID_LOCATION_NUS).build();
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
 
@@ -87,8 +86,8 @@ public class DeleteAppointmentCommandTest {
                                 .build());
         expectedModel.addPerson(ALICE);
         Appointment deletedAppointment = new AppointmentBuilder()
-                .withDateTime(VALID_DATETIME_22_JAN_2023)
-                .withLocation(VALID_LOCATION_JURONGPOINT).build();
+                .withDateTime(VALID_DATETIME_21_JAN_2023)
+                .withLocation(VALID_LOCATION_NUS).build();
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
 
@@ -183,7 +182,7 @@ public class DeleteAppointmentCommandTest {
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
 
-        assertCommandFailure(deleteAppointmentCommand, testModel, MESSAGE_NO_APPOINTMENT_TO_DELETE);
+        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
 
@@ -198,7 +197,7 @@ public class DeleteAppointmentCommandTest {
 
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT);
 
-        assertCommandFailure(deleteAppointmentCommand, testModel, MESSAGE_NO_APPOINTMENT_TO_DELETE);
+        assertCommandFailure(deleteAppointmentCommand, testModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 
 
