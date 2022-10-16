@@ -36,9 +36,9 @@ public class SampleDataUtil {
 
     public static Review[] getSampleReviews() {
         return new Review[] {
-            new Review(new Name("Alex Chicken Rice"), new Date("2022-09-20"),
+            new Review(new Name("Alex Chicken Rice"), new Date("20/09/2022"),
                     new Content("Very tasty. Worth the trip"), new Rating(5), getTagSet("travelworthy")),
-            new Review(new Name("Irfan Muslim Food"), new Date("2022-09-20"),
+            new Review(new Name("Irfan Muslim Food"), new Date("21/09/2022"),
                     new Content("Very affordable"), new Rating(3), getTagSet("halal"))
         };
     }

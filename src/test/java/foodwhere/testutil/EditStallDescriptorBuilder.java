@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import foodwhere.logic.commands.EditCommand;
+import foodwhere.logic.commands.SEditCommand;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Address;
@@ -15,21 +15,21 @@ import foodwhere.model.stall.Stall;
  */
 public class EditStallDescriptorBuilder {
 
-    private EditCommand.EditStallDescriptor descriptor;
+    private SEditCommand.EditStallDescriptor descriptor;
 
     public EditStallDescriptorBuilder() {
-        descriptor = new EditCommand.EditStallDescriptor();
+        descriptor = new SEditCommand.EditStallDescriptor();
     }
 
-    public EditStallDescriptorBuilder(EditCommand.EditStallDescriptor descriptor) {
-        this.descriptor = new EditCommand.EditStallDescriptor(descriptor);
+    public EditStallDescriptorBuilder(SEditCommand.EditStallDescriptor descriptor) {
+        this.descriptor = new SEditCommand.EditStallDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditStallDescriptor} with fields containing {@code stall}'s details
      */
     public EditStallDescriptorBuilder(Stall stall) {
-        descriptor = new EditCommand.EditStallDescriptor();
+        descriptor = new SEditCommand.EditStallDescriptor();
         descriptor.setName(stall.getName());
         descriptor.setAddress(stall.getAddress());
         descriptor.setTags(stall.getTags());
@@ -61,7 +61,7 @@ public class EditStallDescriptorBuilder {
         return this;
     }
 
-    public EditCommand.EditStallDescriptor build() {
+    public SEditCommand.EditStallDescriptor build() {
         return descriptor;
     }
 }

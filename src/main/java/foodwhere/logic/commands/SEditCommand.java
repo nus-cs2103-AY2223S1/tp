@@ -23,11 +23,11 @@ import foodwhere.model.stall.Stall;
 /**
  * Edits the details of an existing stall in the address book.
  */
-public class EditCommand extends Command {
+public class SEditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "sedit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the tags of the stall identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the stall identified "
             + "by the index number used in the displayed stall list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
@@ -47,7 +47,7 @@ public class EditCommand extends Command {
      * @param index of the stall in the filtered stall list to edit
      * @param editStallDescriptor details to edit the stall with
      */
-    public EditCommand(Index index, EditStallDescriptor editStallDescriptor) {
+    public SEditCommand(Index index, EditStallDescriptor editStallDescriptor) {
         requireNonNull(index);
         requireNonNull(editStallDescriptor);
 
@@ -98,12 +98,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof SEditCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        SEditCommand e = (SEditCommand) other;
         return index.equals(e.index)
                 && editStallDescriptor.equals(e.editStallDescriptor);
     }
