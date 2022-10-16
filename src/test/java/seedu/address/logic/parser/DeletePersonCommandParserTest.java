@@ -18,10 +18,11 @@ public class DeletePersonCommandParserTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void parse_validArgs_returnsDeleteUserByNameCommand() {
+    public void parse_validArgs_returnsDeletePersonCommand() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         FullNamePredicate predicate = new FullNamePredicate(personToDelete.getName().toString());
         assertParseSuccess(parser, personToDelete.getName().toString(), new DeletePersonCommand(predicate));
     }
+
 
 }

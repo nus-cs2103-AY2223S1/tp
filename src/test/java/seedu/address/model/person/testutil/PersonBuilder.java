@@ -121,9 +121,11 @@ public class PersonBuilder {
      * Parses the {@code PersonGroup} into a {@code Arraylist<PersonGroup>}
      * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withGroups(String groups) {
+    public PersonBuilder withGroups(String[] groups) {
         ArrayList<PersonGroup> personGroupArrayList = new ArrayList<>();
-        personGroupArrayList.add(new PersonGroup(groups));
+        for (String group : groups) {
+            personGroupArrayList.add(new PersonGroup(group));
+        }
         this.personGroup.addAll(personGroupArrayList);
         return this;
 
