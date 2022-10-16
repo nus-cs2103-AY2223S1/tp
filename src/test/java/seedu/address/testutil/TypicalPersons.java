@@ -33,7 +33,7 @@ public class TypicalPersons {
             .withPatientType(PatientTypes.OUTPATIENT).withMedication("Ibuprofen").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
             .withEmail("johnd@example.com").withNextOfKin("Daniel Meier, Husband, 81273546")
-            .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south").withFloorNumber(1).withWardNumber(26)
+            .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south").withFloorNumber(1).withWardNumber("B690")
             .withMedication("Paracetamol", "Xanax").withPastAppointment("120622", "Paracetamol Ibuprofen", "Sick")
             .withPastAppointment("140622", "Chlormine Amoxycillin", "Sick").withUpcomingAppointment("120622").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
@@ -42,14 +42,14 @@ public class TypicalPersons {
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withNextOfKin("Benson Meier, Husband, 81236848")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south")
-            .withFloorNumber(1).withWardNumber(25).build();
+            .withFloorNumber(1).withWardNumber("A123").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822245")
             .withEmail("werner@example.com").withNextOfKin("Charles Meyer, Husband, 83646756")
             .withPatientType(PatientTypes.OUTPATIENT).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824275")
             .withEmail("lydia@example.com").withNextOfKin("Violet Kunz, Daugther, 92725635")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("north")
-            .withFloorNumber(2).withWardNumber(53).build();
+            .withFloorNumber(2).withWardNumber("F528").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824424")
             .withEmail("anna@example.com").withNextOfKin("Charlie Worst, Son, 92347462")
             .withPatientType(PatientTypes.OUTPATIENT).build();
@@ -61,14 +61,14 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821631")
             .withEmail("hans@example.com").withNextOfKin("Nooh Meier, Sister, 92346127")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("east")
-            .withFloorNumber(1).withWardNumber(24).build();
+            .withFloorNumber(1).withWardNumber("G490").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withNextOfKin(VALID_NEXT_OF_KIN_AMY)
             .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_AMY))
             .withHospitalWing(VALID_HOSPITAL_WING_AMY).withFloorNumber(Integer.valueOf(VALID_FLOOR_NUMBER_AMY))
-            .withWardNumber(Integer.valueOf(VALID_WARD_NUMBER_AMY)).withMedication(VALID_MEDICATION_IBUPROFEN).build();
+            .withWardNumber(VALID_WARD_NUMBER_AMY).withMedication(VALID_MEDICATION_IBUPROFEN).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withNextOfKin(VALID_NEXT_OF_KIN_BOB)
             .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_BOB))

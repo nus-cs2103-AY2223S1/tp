@@ -96,7 +96,7 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE)
                 .withPatientType(PatientType.PatientTypes.parsePatientType(VALID_PATIENT_TYPE_AMY))
                 .withHospitalWing(VALID_HOSPITAL_WING_AMY).withFloorNumber(Integer.valueOf(VALID_FLOOR_NUMBER_AMY))
-                .withWardNumber(Integer.valueOf(VALID_WARD_NUMBER_AMY)).build();
+                .withWardNumber(VALID_WARD_NUMBER_AMY).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
