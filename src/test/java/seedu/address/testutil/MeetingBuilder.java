@@ -14,10 +14,10 @@ import seedu.address.model.person.Person;
  * A utility class to help with building Meeting objects.
  */
 public class MeetingBuilder {
-//    public static final ArrayList<Person> DEFAULT_PERSONS = new ArrayList<>(Arrays.asList(ALICE, BENSON));
-//    public static final String DEFAULT_DESCRIPTION = "CS2040";
-//    public static final String DEFAULT_DATETIME = "02-12-2021";
-//    public static final String DEFAULT_LOCATION = "COM3";
+    //    public static final ArrayList<Person> DEFAULT_PERSONS = new ArrayList<>(Arrays.asList(ALICE, BENSON));
+    //    public static final String DEFAULT_DESCRIPTION = "CS2040";
+    //    public static final String DEFAULT_DATETIME = "02-12-2021";
+    //    public static final String DEFAULT_LOCATION = "COM3";
 
     public static final Person DEFAULT_PERSON_IN_MEETING_BUILDER_TWO = new PersonBuilder()
         .withTags("Classmate", "Dalao").build();
@@ -51,15 +51,15 @@ public class MeetingBuilder {
         this.meetingLocation = MeetingBuilder.DEFAULT_LOCATION_TWO;
     }
 
-//    /**
-//     * Sets the {@code description} of the {@code Meeting} that we are building.
-//     */
-//    public MeetingBuilder() {
-//        this.peopleToMeet = DEFAULT_PERSONS;
-//        this.meetingDescription = DEFAULT_DESCRIPTION;
-//        this.meetingDateAndTime = DEFAULT_DATETIME;
-//        this.meetingLocation = DEFAULT_LOCATION;
-//    }
+    //    /**
+    //     * Sets the {@code description} of the {@code Meeting} that we are building.
+    //     */
+    //    public MeetingBuilder() {
+    //        this.peopleToMeet = DEFAULT_PERSONS;
+    //        this.meetingDescription = DEFAULT_DESCRIPTION;
+    //        this.meetingDateAndTime = DEFAULT_DATETIME;
+    //        this.meetingLocation = DEFAULT_LOCATION;
+    //    }
 
     /**
      * Initializes the MeetingBuilder with the data of {@code meetingToCopy}.
@@ -104,6 +104,9 @@ public class MeetingBuilder {
         return this;
     }
 
+    /**
+     * Builds a Meeting
+     */
     public Meeting build() {
         try {
             return new Meeting(this.personsToMeetArray, this.meetingDescription,

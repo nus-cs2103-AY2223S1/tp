@@ -17,6 +17,14 @@ import seedu.address.testutil.PersonBuilder;
 
 public class MeetingTest {
 
+    private Meeting meetingOne = new MeetingBuilder().build();
+    private Meeting meetingTwo = new MeetingBuilder().build();
+    private Person johann = new PersonBuilder().withName("Johann").build();
+    private Meeting meetingOneDifferentPerson = new MeetingBuilder(johann).build();
+    private Meeting meetingOneDifferentTitle = new MeetingBuilder().withDescription("Play chess").build();
+    private Meeting meetingOneDifferentDateTime = new MeetingBuilder().withDateAndTime("10-10-2022").build();
+    private Meeting meetingOneDifferentLocation = new MeetingBuilder().withLocation("in lounge").build();
+
     /**
      * A simplified dummy function to substitute the convertNameToPerson(Model, String[]) in CreateMeetingCommand
      */
@@ -54,17 +62,9 @@ public class MeetingTest {
 
         ArrayList<Person> arrayOfPeopleToMeet = dummyConvertNameToPerson(peopleToMeet);
 
-        assertThrows(ParseException.class, "Meeting date: tomorrow is not in dd-MM-yyyy format",
-            () -> new Meeting(arrayOfPeopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation));
+        assertThrows(ParseException.class, "Meeting date: tomorrow is not in dd-MM-yyyy format", () ->
+            new Meeting(arrayOfPeopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation));
     }
-
-    Meeting meetingOne = new MeetingBuilder().build();
-    Meeting meetingTwo = new MeetingBuilder().build();
-    Person johann = new PersonBuilder().withName("Johann").build();
-    Meeting meetingOneDifferentPerson = new MeetingBuilder(johann).build();
-    Meeting meetingOneDifferentTitle = new MeetingBuilder().withDescription("Play chess").build();
-    Meeting meetingOneDifferentDateTime = new MeetingBuilder().withDateAndTime("10-10-2022").build();
-    Meeting meetingOneDifferentLocation = new MeetingBuilder().withLocation("in lounge").build();
 
     /**
      * Testing the stronger notion of equality

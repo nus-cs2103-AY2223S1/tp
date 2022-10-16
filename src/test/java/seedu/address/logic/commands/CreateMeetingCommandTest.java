@@ -13,13 +13,15 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingList;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
@@ -27,9 +29,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
-
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 
 public class CreateMeetingCommandTest {
 
@@ -257,7 +256,7 @@ public class CreateMeetingCommandTest {
      * A default model stub that has most of the methods failing.
      */
     private class ModelStub implements Model {
-        AddressBookStub addressBookStub = new AddressBookStub();
+        private AddressBookStub addressBookStub = new AddressBookStub();
         private final FilteredList<Person> filteredPersons =
             new FilteredList<>(addressBookStub.getPersonList());
 
@@ -335,7 +334,7 @@ public class CreateMeetingCommandTest {
         @Override
         public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                                         String meetingDateAndTime, String meetingLocation)
-            throws ParseException, java.text.ParseException {
+                throws ParseException, java.text.ParseException {
             return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
         }
 
@@ -346,7 +345,7 @@ public class CreateMeetingCommandTest {
 
         @Override
         public void addMeeting(Meeting newMeeting) {
-            throw new AssertionError("This method should not be called.");
+            this.addressBookStub.addMeeting(newMeeting);
         }
 
         @Override
@@ -404,12 +403,7 @@ public class CreateMeetingCommandTest {
         ModelStubWithMeeting(Meeting meeting) {
             requireNonNull(meeting);
             this.meeting = meeting;
-            addressBookStub.addMeeting(meeting);
-        }
-
-        @Override
-        public void addMeeting(Meeting newMeeting) {
-            addressBookStub.addMeeting(newMeeting);
+            addMeeting(meeting);
         }
 
         @Override
