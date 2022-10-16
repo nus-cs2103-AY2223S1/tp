@@ -207,8 +207,8 @@ public class ModelManager implements Model {
     public void selectCustomer(Customer customer) {
         if (customer == null || !customer.isSameCustomer(selectedCustomer.getValue())) {
             selectedCommission.setValue(null); // resets the selected commission
-            selectedCustomer.setValue(customer);
         }
+        selectedCustomer.setValue(customer);
     }
 
     @Override

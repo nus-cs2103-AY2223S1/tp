@@ -107,6 +107,11 @@ public class EditCustomerCommand extends Command {
         }
 
         model.setCustomer(customerToEdit, editedCustomer);
+
+        if (model.getSelectedCustomer().getValue().isSameCustomer(customerToEdit)) {
+            model.selectCustomer(editedCustomer);
+        }
+
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.selectTab(GuiTab.CUSTOMER);
         return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer));
