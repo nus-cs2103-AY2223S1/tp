@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PredicateGeneratorUtil;
 
 class CombinedPersonPredicateTest {
 
@@ -290,7 +289,8 @@ class CombinedPersonPredicateTest {
         assertFalse(predicate.test(personToTest));
 
         // Incomplete match
-        predicate = generateCombinedPersonPredicateWithOnlyAddress("Potato Street, Blk 123 #12-34, Singapore 123456789");
+        predicate = generateCombinedPersonPredicateWithOnlyAddress(
+                "Potato Street, Blk 123 #12-34, Singapore 123456789");
         assertFalse(predicate.test(personToTest));
 
         // Sequence match name, phone, email, but does not match address

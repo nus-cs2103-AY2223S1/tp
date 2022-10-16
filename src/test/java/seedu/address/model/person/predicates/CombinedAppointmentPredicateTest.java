@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.PersonBuilder;
 
 class CombinedAppointmentPredicateTest {
 
