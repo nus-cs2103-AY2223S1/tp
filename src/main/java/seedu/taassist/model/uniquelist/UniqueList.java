@@ -34,7 +34,7 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
         return internalList.stream().anyMatch(toCheck::isSame);
     }
 
-    /**g
+    /**
      * Returns true if the list contains an element that matches the given {@code predicate}.
      */
     public boolean containsMatch(Predicate<T> predicate) {
