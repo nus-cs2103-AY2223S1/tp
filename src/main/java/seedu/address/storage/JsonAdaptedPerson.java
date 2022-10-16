@@ -21,6 +21,7 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 
@@ -35,6 +36,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String riskTag;
     private final String income;
     private final String monthly;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -47,12 +49,14 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("income") String income,
-            @JsonProperty("monthly") String monthly, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("monthly") String monthly,
+            @JsonProperty("riskTag") String riskTag, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.riskTag = riskTag;
         this.income = income;
         this.monthly = monthly;
         if (tagged != null) {
@@ -71,6 +75,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        riskTag = source.getRiskTag().tagName;
         income = source.getIncome().value;
         monthly = source.getMonthly().value;
         tagged.addAll(source.getTags().stream()
@@ -140,9 +145,17 @@ class JsonAdaptedPerson {
         }
         final Monthly modelMonthly = new Monthly(monthly);
 
+        if (riskTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RiskTag.class.getSimpleName()));
+        }
+        if (!RiskTag.isValidRiskTagName(riskTag)) {
+            throw new IllegalValueException(RiskTag.MESSAGE_CONSTRAINTS);
+        }
+        final RiskTag modelRiskTag = new RiskTag(riskTag);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress,
-                modelIncome, modelMonthly, modelTags);
+
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome,
+                modelMonthly, modelRiskTag, modelTags);
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;
