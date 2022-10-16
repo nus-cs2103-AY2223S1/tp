@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.profile;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
@@ -19,7 +18,6 @@ import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
