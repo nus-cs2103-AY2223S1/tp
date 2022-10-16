@@ -9,6 +9,7 @@ import soconnect.logic.commands.todo.TodoAddCommand;
 import soconnect.logic.commands.todo.TodoClearCommand;
 import soconnect.logic.commands.todo.TodoDeleteCommand;
 import soconnect.logic.commands.todo.TodoEditCommand;
+import soconnect.logic.commands.todo.TodoShowCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
@@ -49,6 +50,9 @@ public class TodoParser {
 
         case TodoClearCommand.SUB_COMMAND_WORD:
             return new TodoClearCommand();
+
+        case TodoShowCommand.SUB_COMMAND_WORD:
+            return new TodoShowCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
