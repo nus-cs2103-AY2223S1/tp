@@ -113,7 +113,7 @@ Example of usage:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names/email contain any of the given keywords.
+Finds persons whose names match any of the given keywords, or phone numbers contain any of the given keywords(in digits).
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -123,14 +123,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Email usernames that contain at least one keyword will be returned.
+* Phone numbers starting with any of the given keywords(in digits) will be returned.
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find lid` returns `David Li` since email username of David (`lidavid@example.com`) contains `lid`
-  ![result for 'find lid'](images/findlidResult.png)
+* `find 86` returns `Theodore`
+  ![result for `find 86`](images/find86result.png)
 
 ### Locating persons by tag: `findTag`
 
