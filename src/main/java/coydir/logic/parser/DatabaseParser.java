@@ -70,14 +70,12 @@ public class DatabaseParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-<<<<<<< HEAD:src/main/java/coydir/logic/parser/AddressBookParser.java
         case BatchAddCommand.COMMAND_WORD:
             return new BatchAddCommandParser().parse(arguments);
-=======
+
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
->>>>>>> 6703fc7a8b8fe64a145b92ea669c553d55869b5d:src/main/java/coydir/logic/parser/DatabaseParser.java
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
         }

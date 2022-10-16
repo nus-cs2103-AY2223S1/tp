@@ -99,13 +99,6 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(actualModel.getAddressBook().toString());
-            System.out.println(expectedModel.getAddressBook().toString());
-            System.out.println(actualModel.getUserPrefs().toString());
-            System.out.println(expectedModel.getUserPrefs().toString());
-            System.out.println(actualModel.getFilteredPersonList().toString());
-            System.out.println(expectedModel.getFilteredPersonList().toString());
-
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {

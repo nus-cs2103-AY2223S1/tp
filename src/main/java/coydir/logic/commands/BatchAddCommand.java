@@ -14,7 +14,7 @@ import java.util.List;
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.logic.parser.AddCommandParser;
 import coydir.logic.parser.exceptions.ParseException;
-import coydir.model.AddressBook;
+import coydir.model.Database;
 import coydir.model.Model;
 import coydir.model.person.Person;
 
@@ -85,7 +85,7 @@ public class BatchAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<AddCommand> addCommandList = this.getInfo();
         List<Person> copyOfPersonList = new ArrayList<>();
-        for (Person p : model.getAddressBook().getPersonList()) {
+        for (Person p : model.getDatabase().getPersonList()) {
             copyOfPersonList.add(p);
         }
 
@@ -97,9 +97,9 @@ public class BatchAddCommand extends Command {
                 item.execute(model);
             }
         } catch (CommandException e) {
-            AddressBook ab = new AddressBook();
+            Database ab = new Database();
             ab.setPersons(copyOfPersonList);
-            model.setAddressBook(ab);
+            model.setDatabase(ab);
             throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, addCommandList.size()));

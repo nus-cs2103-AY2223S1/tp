@@ -1,7 +1,7 @@
 package coydir.logic.commands;
 
 import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +14,7 @@ import coydir.model.UserPrefs;
 
 class BatchAddCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
 
     @Test

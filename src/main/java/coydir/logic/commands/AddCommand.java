@@ -38,11 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-<<<<<<< HEAD
     public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already exists in the address book";
-=======
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the database";
->>>>>>> 6703fc7a8b8fe64a145b92ea669c553d55869b5d
 
     private final Person toAdd;
 
