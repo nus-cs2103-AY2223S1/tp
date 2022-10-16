@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -45,7 +44,8 @@ public class AddTaskCommandTest {
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet());
-    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), true);
+    private final Task testTask = new Task(testName, testDisc, testPriority, testCat,
+            testDeadline, testPerson.getEmail(), true);
 
     private final Email test = new Email("test@gmail.com");
 

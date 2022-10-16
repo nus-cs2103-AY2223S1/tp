@@ -97,7 +97,8 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        Task a = new Task(new TaskName("A"), testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), false);
+        Task a = new Task(new TaskName("A"), testDisc, testPriority, testCat, testDeadline,
+                testPerson.getEmail(), false);
 
         DESC_ONE = new EditTaskDescriptorBuilder(a).withName("A").build();
         DESC_TWO = new EditTaskDescriptorBuilder(a).withName("B").build();

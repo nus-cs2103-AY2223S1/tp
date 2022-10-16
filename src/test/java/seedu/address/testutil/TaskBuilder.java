@@ -1,13 +1,8 @@
 package seedu.address.testutil;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityEnum;
@@ -110,7 +105,7 @@ public class TaskBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public TaskBuilder withTaskPersonEmailAddressPerson (Email email) {
+    public TaskBuilder withTaskPersonEmailAddressPerson(Email email) {
         this.taskPersonEmailAddress = email;
         return this;
     }
@@ -130,7 +125,8 @@ public class TaskBuilder {
      */
 
     public Task build() {
-        return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline, taskPersonEmailAddress, taskStatus);
+        return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline,
+                taskPersonEmailAddress, taskStatus);
     }
 
 }
