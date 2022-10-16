@@ -25,7 +25,7 @@ import seedu.address.testutil.PersonBuilder;
 
 class SessionCommandTest {
 
-    private static final String SESSION_STUB = "08:30-09:00";
+    private static final String SESSION_STUB = "Mon 08:00";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 

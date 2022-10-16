@@ -33,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_HOMEWORK_BOB = "Chemistry worksheet 14";
     public static final String VALID_ATTENDANCE_AMY = "2022-07-07";
     public static final String VALID_ATTENDANCE_BOB = "2022-08-08";
-    public static final String VALID_SESSION_AMY = "08:30-09:00";
-    public static final String VALID_SESSION_BOB = "09:00-10:00";
+    public static final String VALID_SESSION_AMY = "Tue 09:00";
+    public static final String VALID_SESSION_BOB = "Mon 08:30";
     public static final String VALID_GRADE_PROGRESS_AMY = "Math: A";
     public static final String VALID_GRADE_PROGRESS_BOB = "Math: B";
     public static final String VALID_LESSON_PLAN_AMY = "Amy's course basics";

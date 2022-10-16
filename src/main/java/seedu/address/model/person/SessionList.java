@@ -62,7 +62,7 @@ public class SessionList {
             return toString();
         }
         sessionList.sort(Session::compareTo);
-        String shortDesc = "NEXT UP: \n"
+        String shortDesc = "NEXT UP: "
                 + sessionList.get(0).toString() + ".";
         return shortDesc;
     }

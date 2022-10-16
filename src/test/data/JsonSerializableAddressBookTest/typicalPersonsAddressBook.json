@@ -6,7 +6,7 @@
     "lessonPlan" : "Algorithms",
     "homework": [ "Science worksheet" ],
     "attendance": [ "2019-01-01" ],
-    "session": ["12:30-13:00"],
+    "session": ["Tue 09:00"],
     "gradeProgress": [ "English: A+" ],
     "tagged" : [ "friends" ]
   }, {
@@ -15,7 +15,7 @@
     "lessonPlan" : "Trigonometry",
     "homework": [ "Science worksheet", "math asst" ],
     "attendance": [ "2022-07-12", "2022-07-17" ],
-    "session": ["08:30-09:30"],
+    "session": ["Mon 08:30"],
     "gradeProgress": ["Math: A"],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
