@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CYBERSEC;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SWE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CYBERSEC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_SWE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CYBERSEC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_SWE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -59,11 +61,12 @@ public class EditModuleCommandTest {
         ModuleCode lastModuleCode = lastModule.getCode();
 
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
-        Module editedModule = moduleInList.withName(VALID_MODULE_NAME_SWE).withModuleCode(VALID_MODULE_CODE_SWE)
+        Module editedModule = moduleInList.withName(VALID_MODULE_NAME_CYBERSEC)
+                .withModuleCode(VALID_MODULE_CODE_CYBERSEC)
                 .withTags(VALID_TAG_IMPORTANT).build();
 
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_SWE)
-                .withCode(VALID_MODULE_CODE_SWE).withTags(VALID_TAG_IMPORTANT).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_CYBERSEC)
+                .withCode(VALID_MODULE_CODE_CYBERSEC).withTags(VALID_TAG_IMPORTANT).build();
         EditModuleCommand editCommand = new EditModuleCommand(lastModuleCode, descriptor);
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);

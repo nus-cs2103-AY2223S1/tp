@@ -19,9 +19,9 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class ModuleBuilder {
 
-    public static final String DEFAULT_MODULE_NAME = "Intro to Software Engineering";
-    public static final String DEFAULT_MODULE_CODE = "CS2103T";
-    public static final String DEFAULT_MODULE_DESCRIPTION = "Students are to practice software engineering "
+    public static final String DEFAULT_MODULE_NAME = "Intro to Programming Languages";
+    public static final String DEFAULT_MODULE_CODE = "CS2104";
+    public static final String DEFAULT_MODULE_DESCRIPTION = "Students are to learn different languages "
             + "skills";
     public static final String DEFAULT_MODULE_TAG = "IMPORTANT";
     public static final Student DEFAULT_STUDENT_1 = new StudentBuilder().build();
