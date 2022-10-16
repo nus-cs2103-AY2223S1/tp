@@ -4,6 +4,12 @@ Copyright by Freepik - https://www.flaticon.com/
 - food-where_icon.png
 - review.png
 - stall.png
+- stars_0.png
+- stars_1.png
+- stars_2.png
+- stars_3.png
+- stars_4.png
+- stars_5.png
 
 Copyright by Susumu Yoshida - http://www.mcdodesign.com/
 - address_book_32.png
