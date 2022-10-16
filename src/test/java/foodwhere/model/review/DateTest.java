@@ -72,11 +72,11 @@ public class DateTest {
         assertThrows(IllegalArgumentException.class, Date.MESSAGE_CONSTRAINTS, () -> new Date("29-02/2000"));
 
         // invalid day
-        assertThrows(IllegalArgumentException.class, Date.MESSAGE_CONSTRAINTS, () -> new Date("32/01/2000"));
-        assertThrows(IllegalArgumentException.class, Date.MESSAGE_CONSTRAINTS, () -> new Date("29/02/2100"));
-        assertThrows(IllegalArgumentException.class, Date.MESSAGE_CONSTRAINTS, () -> new Date("00/01/2100"));
-        assertThrows(IllegalArgumentException.class, Date.MESSAGE_CONSTRAINTS, () -> new Date("01/00/2100"));
-        assertThrows(IllegalArgumentException.class, Date.MESSAGE_CONSTRAINTS, () -> new Date("01-01-0000"));
+        assertThrows(IllegalArgumentException.class, Date.VALID_DATE_CONSTRAINTS, () -> new Date("32/01/2000"));
+        assertThrows(IllegalArgumentException.class, Date.VALID_DATE_CONSTRAINTS, () -> new Date("29/02/2100"));
+        assertThrows(IllegalArgumentException.class, Date.VALID_DATE_CONSTRAINTS, () -> new Date("00/01/2100"));
+        assertThrows(IllegalArgumentException.class, Date.VALID_DATE_CONSTRAINTS, () -> new Date("01/00/2100"));
+        assertThrows(IllegalArgumentException.class, Date.VALID_DATE_CONSTRAINTS, () -> new Date("01-01-0000"));
     }
 
     @Test

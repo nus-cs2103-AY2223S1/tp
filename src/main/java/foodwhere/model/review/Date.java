@@ -16,10 +16,6 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates can be written as DD/MM/YYYY or DD-MM-YYYY";
     public static final String VALID_DATE_CONSTRAINTS = "Dates have to be a valid date";
 
-    /*
-     * The first character of the date must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
     public static final String VALIDATION_REGEX = "\\d{1,2}-\\d{1,2}-\\d{4}|\\d{1,2}/\\d{1,2}/\\d{4}";
 
     public static final DateFormat SLASH_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
@@ -44,7 +40,8 @@ public class Date implements Comparable<Date> {
      */
     public Date(String date) {
         requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidFormat(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), VALID_DATE_CONSTRAINTS);
         this.date = parseDate(date, PARSING_DATE_FORMATS);
         value = OUTPUT_DATE_FORMAT.format(this.date);
     }
@@ -73,10 +70,17 @@ public class Date implements Comparable<Date> {
     }
 
     /**
+     * Returns true if a given string is in a valid format.
+     */
+    public static boolean isValidFormat(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
+        if (!isValidFormat(test)) {
             return false;
         }
         try {
