@@ -18,14 +18,17 @@ public class NameContainsKeywordsPredicatePatientTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicatePatient firstPredicate = new NameContainsKeywordsPredicatePatient(firstPredicateKeywordList);
-        NameContainsKeywordsPredicatePatient secondPredicate = new NameContainsKeywordsPredicatePatient(secondPredicateKeywordList);
+        NameContainsKeywordsPredicatePatient firstPredicate =
+                new NameContainsKeywordsPredicatePatient(firstPredicateKeywordList);
+        NameContainsKeywordsPredicatePatient secondPredicate =
+                new NameContainsKeywordsPredicatePatient(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicatePatient firstPredicateCopy = new NameContainsKeywordsPredicatePatient(firstPredicateKeywordList);
+        NameContainsKeywordsPredicatePatient firstPredicateCopy =
+                new NameContainsKeywordsPredicatePatient(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class NameContainsKeywordsPredicatePatientTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicatePatient predicate = new NameContainsKeywordsPredicatePatient(Collections.singletonList("Alice"));
+        NameContainsKeywordsPredicatePatient predicate =
+                new NameContainsKeywordsPredicatePatient(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -60,7 +64,8 @@ public class NameContainsKeywordsPredicatePatientTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPredicatePatient predicate = new NameContainsKeywordsPredicatePatient(Collections.emptyList());
+        NameContainsKeywordsPredicatePatient predicate =
+                new NameContainsKeywordsPredicatePatient(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
 
         // Non-matching keyword
@@ -68,7 +73,8 @@ public class NameContainsKeywordsPredicatePatientTest {
         assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicatePatient(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new NameContainsKeywordsPredicatePatient(Arrays
+                .asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
