@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "ModuleClass and Student" <<Rectangle>>{
+Class Student
+Class ModuleClass {
+    -className: String
+}
+Class Session {
+    -sessionName: String
+}
+Class Date
+Class StudentModuleData
+Class SessionData {
+    -grade: double
+}
+Class Address
+Class Email
+Class Name
+Class Phone
+}
+
+Class HiddenOutside #FFFFFF
+
+Student --> "1" Name
+Student --> "0..1" Address
+Student --> "0..1" Email
+Student --> "0..1" Phone
+
+ModuleClass *--> "*" Session
+
+StudentModuleData --> "1" ModuleClass
+Student *-up-> "*" StudentModuleData
+StudentModuleData --> "*" SessionData
+
+Session -right-> "1" Date
+SessionData *--> "1" Session
+
+
+
+@enduml

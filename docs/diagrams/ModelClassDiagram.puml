@@ -11,16 +11,8 @@ Class "<<interface>>\nModel" as Model
 Class TaAssist
 Class ModelManager
 Class UserPrefs
-
-Class UniqueStudentList
-Class UniqueModuleClassList
 Class Student
-Class Address
-Class Email
-Class Name
-Class Phone
 Class ModuleClass
-Class Session
 }
 
 Class HiddenOutside #FFFFFF
@@ -28,30 +20,17 @@ HiddenOutside ..> Model
 
 TaAssist .up.|> ReadOnlyTaAssist
 
-ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyTaAssist
+Model ..> ReadOnlyTaAssist
+
+ModelManager .up.|> Model
 ModelManager -left-> "1" TaAssist
 ModelManager -right-> "1" UserPrefs
 ModelManager ---> "0..1 \nfocused" ModuleClass
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-TaAssist *---> "1" UniqueStudentList
-TaAssist *--> "1" UniqueModuleClassList
+TaAssist *-> "~* all" Student
+TaAssist *--> "~* all" ModuleClass
 
-UniqueStudentList -right-> "~* all" Student
-UniqueModuleClassList -left-> "all*" ModuleClass
-Student *--> "1" Name
-Student *--> "0..1" Phone
-Student *--> "0..1" Email
-Student *--> "0..1" Address
-Student -up-> "~*" ModuleClass
-
-ModuleClass -> "*" Session
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -left->"~* filtered" Student
+ModelManager -down->"~* filtered" Student
 @enduml
