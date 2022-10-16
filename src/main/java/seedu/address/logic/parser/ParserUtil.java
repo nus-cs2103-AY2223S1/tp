@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -29,6 +30,7 @@ import seedu.address.model.iteration.Feedback;
 import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.IterationDescription;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SortDirection;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -268,9 +270,46 @@ public class ParserUtil {
      * Parses a {@code String feedback} into a {@code Feedback}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Feedback parseFeedback(String feedback) throws ParseException {
+    public static Feedback parseFeedback(String feedback) {
         requireNonNull(feedback);
         String trimmedFeedback = feedback.trim();
         return new Feedback(trimmedFeedback);
+    }
+
+    /**
+     * Parses a {@code String sort direction} into a {@code SortDirection}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static SortDirection parseSortDirection(String direction) throws ParseException {
+        requireNonNull(direction);
+        String trimmedDirection = direction.trim();
+        if (!SortDirection.isValidSortDirection(trimmedDirection)) {
+            throw new ParseException(SortDirection.MESSAGE_CONSTRAINTS);
+        }
+        return new SortDirection(trimmedDirection);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if not all the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+
+    /**
+     * Returns count of prefixes present in the given {@code ArgumentMultimap}.
+     */
+    public static long countPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent()).count();
     }
 }

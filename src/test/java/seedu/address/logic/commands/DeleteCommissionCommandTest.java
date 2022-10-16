@@ -34,7 +34,7 @@ class DeleteCommissionCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        model.selectCustomer(model.getFilteredCustomerList().get(0));
+        model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         model.getSelectedCustomer().getValue().addCommission(
                 DOG_PRODUCER.apply(model.getSelectedCustomer().getValue()));
         Commission commissionToDelete = model.getFilteredCommissionList().get(0);
@@ -51,7 +51,7 @@ class DeleteCommissionCommandTest {
 
     @Test
     public void execute_indexTooHigh_throwsCommandException() {
-        model.selectCustomer(model.getFilteredCustomerList().get(0));
+        model.selectCustomer(model.getSortedFilteredCustomerList().get(0));
         DeleteCommissionCommand deleteCommissionCommand = new DeleteCommissionCommand(INDEX_FIRST);
         assertCommandFailure(deleteCommissionCommand, model, Messages.MESSAGE_INVALID_COMMISSION_DISPLAYED_INDEX);
     }

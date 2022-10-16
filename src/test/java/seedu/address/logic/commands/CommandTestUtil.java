@@ -121,11 +121,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Customer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCustomerList());
+        List<Customer> expectedFilteredList = new ArrayList<>(actualModel.getSortedFilteredCustomerList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredCustomerList());
+        assertEquals(expectedFilteredList, actualModel.getSortedFilteredCustomerList());
     }
 
     /**
@@ -133,13 +133,13 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showCustomerAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredCustomerList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getSortedFilteredCustomerList().size());
 
-        Customer customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
+        Customer customer = model.getSortedFilteredCustomerList().get(targetIndex.getZeroBased());
         final String[] splitName = customer.getName().fullName.split("\\s+");
         model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
-        assertEquals(1, model.getFilteredCustomerList().size());
+        assertEquals(1, model.getSortedFilteredCustomerList().size());
     }
 
 }

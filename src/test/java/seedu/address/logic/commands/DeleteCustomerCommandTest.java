@@ -29,7 +29,7 @@ public class DeleteCustomerCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        Customer customerToDelete = model.getSortedFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         DeleteCustomerCommand deleteCommand = new DeleteCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete);
@@ -42,7 +42,7 @@ public class DeleteCustomerCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCustomerList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredCustomerList().size() + 1);
         DeleteCustomerCommand deleteCommand = new DeleteCustomerCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CUSTOMER_DISPLAYED_INDEX);
@@ -52,7 +52,7 @@ public class DeleteCustomerCommandTest {
     public void execute_validIndexFilteredList_success() {
         showCustomerAtIndex(model, INDEX_FIRST);
 
-        Customer customerToDelete = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
+        Customer customerToDelete = model.getSortedFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         DeleteCustomerCommand deleteCommand = new DeleteCustomerCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete);
@@ -105,6 +105,6 @@ public class DeleteCustomerCommandTest {
     private void showNoCustomer(Model model) {
         model.updateFilteredCustomerList(p -> false);
 
-        assertTrue(model.getFilteredCustomerList().isEmpty());
+        assertTrue(model.getSortedFilteredCustomerList().isEmpty());
     }
 }

@@ -24,4 +24,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ITERATION_DESCRIPTION = new Prefix("n/");
     public static final Prefix PREFIX_ITERATION_IMAGEPATH = new Prefix("p/");
     public static final Prefix PREFIX_ITERATION_FEEDBACK = new Prefix("f/");
+
+    /* Sorting Prefixes */
+    public static final Prefix PREFIX_SORT_CUSTOMER_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_SORT_CUSTOMER_COMMISSION_COUNT = new Prefix("c/");
 }

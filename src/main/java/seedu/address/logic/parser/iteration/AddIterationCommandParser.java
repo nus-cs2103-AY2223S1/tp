@@ -5,15 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
-
-import java.util.stream.Stream;
+import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.address.logic.commands.iteration.AddIterationCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
@@ -25,15 +23,6 @@ import seedu.address.model.iteration.IterationDescription;
  * Parses input arguments and creates a new AddIterationCommand object.
  */
 public class AddIterationCommandParser implements Parser<AddIterationCommand> {
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddIterationCommand
      * and returns an AddIteration object for execution.

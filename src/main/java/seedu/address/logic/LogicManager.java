@@ -71,8 +71,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Customer> getFilteredCustomerList() {
-        return model.getFilteredCustomerList();
+    public ObservableList<Customer> getSortedFilteredCustomerList() {
+        return model.getSortedFilteredCustomerList();
     }
 
 
@@ -118,9 +118,9 @@ public class LogicManager implements Logic {
 
     @Override
     public void selectValidCustomer() {
-        if (!model.getFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
+        if (!model.getSortedFilteredCustomerList().contains(model.getSelectedCustomer().getValue())) {
             model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
-            List<Customer> customers = model.getFilteredCustomerList();
+            List<Customer> customers = model.getSortedFilteredCustomerList();
             model.selectCustomer(customers.size() > 0 ? customers.get(0) : null);
         }
     }

@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the customer in the {@code model}'s customer list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredCustomerList().size() / 2);
+        return Index.fromOneBased(model.getSortedFilteredCustomerList().size() / 2);
     }
 
     /**
      * Returns the last index of the customer in the {@code model}'s customer list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredCustomerList().size());
+        return Index.fromOneBased(model.getSortedFilteredCustomerList().size());
     }
 
     /**
      * Returns the customer in the {@code model}'s customer list at {@code index}.
      */
     public static Customer getCustomer(Model model, Index index) {
-        return model.getFilteredCustomerList().get(index.getZeroBased());
+        return model.getSortedFilteredCustomerList().get(index.getZeroBased());
     }
 }

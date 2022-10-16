@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -27,6 +29,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final SortedList<Customer> sortedFilteredCustomers;
     private final FilteredList<Customer> filteredCustomers;
     private final ObservableObject<Pair<Customer, FilteredList<Commission>>> observableFilteredCommissions =
             new ObservableObject<>();
@@ -49,6 +52,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        sortedFilteredCustomers = new SortedList<>(filteredCustomers);
+        sortedFilteredCustomers.setComparator(CUSTOMER_NAME_COMPARATOR);
 
         setSelectedCustomerCommissions(null);
 
@@ -174,8 +179,8 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Customer> getFilteredCustomerList() {
-        return filteredCustomers;
+    public ObservableList<Customer> getSortedFilteredCustomerList() {
+        return sortedFilteredCustomers;
     }
 
     @Override
@@ -188,6 +193,12 @@ public class ModelManager implements Model {
                 .noneMatch(selectedCustomer.getValue()::isSameCustomer)) {
             selectCustomer(filteredCustomers.get(0));
         }
+    }
+
+    @Override
+    public void updateSortedCustomerList(Comparator<Customer> comparator) {
+        requireNonNull(comparator);
+        sortedFilteredCustomers.setComparator(comparator);
     }
 
     //=========== Filtered Commission List Accessors =============================================================

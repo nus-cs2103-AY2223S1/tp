@@ -35,8 +35,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of customers */
-    ObservableList<Customer> getFilteredCustomerList();
+    /** Returns an unmodifiable view of the sorted and filtered list of customers */
+    ObservableList<Customer> getSortedFilteredCustomerList();
 
     /**
      * Returns an unmodifiable view of the filtered list of commission

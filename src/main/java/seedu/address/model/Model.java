@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -25,6 +26,17 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Commission> PREDICATE_SHOW_ALL_COMMISSIONS = unused -> true;
+
+    /**
+     * {@code Comparator} that sorts by name
+     */
+    Comparator<Customer> CUSTOMER_NAME_COMPARATOR = Comparator.comparing(Customer::getName);
+
+    /**
+     * {@code Comparator} that sorts by number of commissions
+     */
+    Comparator<Customer> CUSTOMER_NUM_COMMISSIONS_COMPARATOR = Comparator.comparing(Customer::getCommissionsCount);
+
 
     /**
      * Returns the user prefs.
@@ -95,9 +107,9 @@ public interface Model {
     void selectCustomer(Customer customer);
 
     /**
-     * Returns an unmodifiable view of the filtered customer list
+     * Returns an unmodifiable view of the sorted and filtered customer list
      */
-    ObservableList<Customer> getFilteredCustomerList();
+    ObservableList<Customer> getSortedFilteredCustomerList();
 
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
@@ -107,6 +119,12 @@ public interface Model {
 
     void updateFilteredCustomerList(Predicate<Customer> predicate);
 
+    /**
+     * Updates the comparator of the sorted customer list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedCustomerList(Comparator<Customer> comparator);
 
     /**
      * Returns an unmodifiable view of the list of {@code Commission} backed by the internal list of
