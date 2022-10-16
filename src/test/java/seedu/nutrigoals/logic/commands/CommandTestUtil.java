@@ -2,6 +2,7 @@ package seedu.nutrigoals.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_CALORIE;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_HEIGHT;
@@ -51,6 +52,7 @@ public class CommandTestUtil {
     public static final String GENDER_VALID_GENDER = " " + PREFIX_GENDER + VALID_GENDER;
     public static final String HEIGHT_VALID_HEIGHT = " " + PREFIX_HEIGHT + VALID_HEIGHT_AMOUNT;
     public static final String IDEAL_VALID_WEIGHT = " " + PREFIX_IDEAL_WEIGHT + VALID_WEIGHT_AMOUNT;
+    public static final String VALID_AGE_DESC = " " + PREFIX_AGE + "20";
 
     public static final String INVALID_WEIGHT_NEGATIVE = " " + PREFIX_WEIGHT + "-40"; //negative weights not allowed
     public static final String INVALID_WEIGHT_TOO_MUCH = " " + PREFIX_WEIGHT + "1000"; //number too large

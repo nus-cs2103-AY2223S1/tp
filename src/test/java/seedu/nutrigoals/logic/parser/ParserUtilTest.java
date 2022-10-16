@@ -17,6 +17,7 @@ import seedu.nutrigoals.logic.parser.exceptions.ParseException;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
+import seedu.nutrigoals.model.user.Age;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "sushi#";
@@ -30,6 +31,9 @@ public class ParserUtilTest {
     private static final String INVALID_DATE_FORMAT = "2022";
 
     private static final String VALID_DATE_FORMAT = "2022-11-11";
+
+    private static final String VALID_AGE_FORMAT = "10";
+    private static final String INVALID_AGE_FORMAT = "abc";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -141,5 +145,16 @@ public class ParserUtilTest {
     public void parseDate_validDateFormat_success() throws Exception {
         DateTime expectedDateTime = new DateTime(VALID_DATE_FORMAT + ParserUtil.DEFAULT_TIME);
         assertEquals(expectedDateTime, ParserUtil.parseDate(VALID_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseAge_validAge_success() throws Exception {
+        Age expectedAge = new Age("10");
+        assertEquals(expectedAge, ParserUtil.parseAge(VALID_AGE_FORMAT));
+    }
+
+    @Test
+    public void parseAge_invalidAge_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAge(INVALID_AGE_FORMAT));
     }
 }

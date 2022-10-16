@@ -1,6 +1,7 @@
 package seedu.nutrigoals.logic.parser;
 
 import static seedu.nutrigoals.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_IDEAL_WEIGHT;
@@ -10,6 +11,7 @@ import java.util.stream.Stream;
 
 import seedu.nutrigoals.logic.commands.SetupCommand;
 import seedu.nutrigoals.logic.parser.exceptions.ParseException;
+import seedu.nutrigoals.model.user.Age;
 import seedu.nutrigoals.model.user.Gender;
 import seedu.nutrigoals.model.user.Height;
 import seedu.nutrigoals.model.user.User;
@@ -29,9 +31,10 @@ public class SetupCommandParser implements Parser<SetupCommand> {
      */
     public SetupCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_GENDER,
-                PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_IDEAL_WEIGHT);
+                PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_IDEAL_WEIGHT, PREFIX_AGE);
 
-        if (!arePrefixesPresent(argumentMultimap, PREFIX_GENDER, PREFIX_HEIGHT, PREFIX_WEIGHT, PREFIX_IDEAL_WEIGHT)
+        if (!arePrefixesPresent(argumentMultimap, PREFIX_GENDER, PREFIX_HEIGHT, PREFIX_WEIGHT,
+                PREFIX_IDEAL_WEIGHT, PREFIX_AGE)
                 || !argumentMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetupCommand.MESSAGE_USAGE));
         }
@@ -39,8 +42,9 @@ public class SetupCommandParser implements Parser<SetupCommand> {
         Weight weight = ParserUtil.parseWeight(argumentMultimap.getValue(PREFIX_WEIGHT).get());
         Weight idealWeight = ParserUtil.parseWeight(argumentMultimap.getValue(PREFIX_IDEAL_WEIGHT).get());
         Height height = ParserUtil.parseHeight(argumentMultimap.getValue(PREFIX_HEIGHT).get());
+        Age age = ParserUtil.parseAge(argumentMultimap.getValue(PREFIX_AGE).get());
 
-        User user = new User(gender, height, weight, idealWeight);
+        User user = new User(gender, height, weight, idealWeight, age);
         return new SetupCommand(user);
     }
 

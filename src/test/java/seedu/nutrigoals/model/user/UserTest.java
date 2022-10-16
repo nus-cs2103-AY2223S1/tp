@@ -13,7 +13,8 @@ public class UserTest {
 
     @Test
     public void constructor_nullThrowsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new User(null, null, null, null));
+        assertThrows(NullPointerException.class, () ->
+                new User(null, null, null, null, null));
     }
 
     @Test

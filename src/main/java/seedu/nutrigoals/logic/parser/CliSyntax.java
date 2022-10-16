@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_HEIGHT = new Prefix("h/");
     public static final Prefix PREFIX_WEIGHT = new Prefix("w/");
     public static final Prefix PREFIX_IDEAL_WEIGHT = new Prefix("i/");
+    public static final Prefix PREFIX_AGE = new Prefix("a/");
 }

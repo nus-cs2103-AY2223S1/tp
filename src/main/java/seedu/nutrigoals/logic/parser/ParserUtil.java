@@ -13,6 +13,7 @@ import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.Name;
 import seedu.nutrigoals.model.tag.Tag;
+import seedu.nutrigoals.model.user.Age;
 import seedu.nutrigoals.model.user.Gender;
 import seedu.nutrigoals.model.user.Height;
 import seedu.nutrigoals.model.user.Weight;
@@ -154,5 +155,21 @@ public class ParserUtil {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
         return new DateTime(trimmedDateTime);
+    }
+
+    /**
+     * Parses a {@code String age} into a {@code Age}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @param age The string representing the age to parse.
+     * @return A {@code Age} representing the given {@code String age}.
+     * @throws ParseException if the given {@code age} is invalid
+     */
+    public static Age parseAge(String age) throws ParseException {
+        requireNonNull(age);
+        String trimmedAge = age.trim();
+        if (!Age.isValidAge(trimmedAge)) {
+            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+        }
+        return new Age(trimmedAge);
     }
 }

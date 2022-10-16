@@ -16,6 +16,7 @@ import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_IDEAL_TOO_
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_WEIGHT_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_WEIGHT_NEGATIVE;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.INVALID_WEIGHT_TOO_MUCH;
+import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_AGE_DESC;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_GENDER;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_HEIGHT_AMOUNT;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.VALID_WEIGHT_AMOUNT;
@@ -41,7 +42,7 @@ public class SetupCommandParserTest {
                 .withWeight(VALID_WEIGHT_AMOUNT).withGender(VALID_GENDER).build();
 
         assertParseSuccess(parser, WEIGHT_VALID_WEIGHT + HEIGHT_VALID_HEIGHT + IDEAL_VALID_WEIGHT
-                + GENDER_VALID_GENDER, new SetupCommand(expected));
+                + GENDER_VALID_GENDER + VALID_AGE_DESC, new SetupCommand(expected));
     }
 
     @Test
@@ -67,40 +68,40 @@ public class SetupCommandParserTest {
     public void parse_invalidHeightFailure() {
         String expected = Height.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser, INVALID_HEIGHT_DESC + GENDER_VALID_GENDER + WEIGHT_VALID_WEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
         assertParseFailure(parser, INVALID_HEIGHT_TOO_MUCH + GENDER_VALID_GENDER + WEIGHT_VALID_WEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
         assertParseFailure(parser, INVALID_HEIGHT_NEGATIVE + GENDER_VALID_GENDER + WEIGHT_VALID_WEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
     }
 
     @Test
     public void parse_invalidWeightFailure() {
         String expected = Weight.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser, INVALID_WEIGHT_DESC + GENDER_VALID_GENDER + HEIGHT_VALID_HEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
         assertParseFailure(parser, INVALID_WEIGHT_NEGATIVE + GENDER_VALID_GENDER + HEIGHT_VALID_HEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
         assertParseFailure(parser, INVALID_WEIGHT_TOO_MUCH + GENDER_VALID_GENDER + HEIGHT_VALID_HEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
     }
 
     @Test
     public void parse_invalidGenderFailure() {
         String expected = Gender.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser, INVALID_GENDER_DESC + WEIGHT_VALID_WEIGHT + HEIGHT_VALID_HEIGHT
-                + IDEAL_VALID_WEIGHT, expected);
+                + IDEAL_VALID_WEIGHT + VALID_AGE_DESC, expected);
     }
 
     @Test
     public void parse_invalidIdealFailure() {
         String expected = Weight.MESSAGE_CONSTRAINTS;
         assertParseFailure(parser, INVALID_IDEAL_DESC + GENDER_VALID_GENDER + HEIGHT_VALID_HEIGHT
-                + WEIGHT_VALID_WEIGHT, expected);
+                + WEIGHT_VALID_WEIGHT + VALID_AGE_DESC, expected);
         assertParseFailure(parser, INVALID_IDEAL_NEGATIVE + GENDER_VALID_GENDER + HEIGHT_VALID_HEIGHT
-                + WEIGHT_VALID_WEIGHT, expected);
+                + WEIGHT_VALID_WEIGHT + VALID_AGE_DESC, expected);
         assertParseFailure(parser, INVALID_IDEAL_TOO_MUCH + GENDER_VALID_GENDER + HEIGHT_VALID_HEIGHT
-                + WEIGHT_VALID_WEIGHT, expected);
+                + WEIGHT_VALID_WEIGHT + VALID_AGE_DESC, expected);
     }
 
 

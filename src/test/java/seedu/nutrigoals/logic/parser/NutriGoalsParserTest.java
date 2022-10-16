@@ -110,7 +110,7 @@ public class NutriGoalsParserTest {
 
     @Test
     public void parseCommand_setup() throws Exception {
-        assertTrue(parser.parseCommand(SetupCommand.COMMAND_WORD + " h/150 w/50 i/60 g/M"
+        assertTrue(parser.parseCommand(SetupCommand.COMMAND_WORD + " h/150 w/50 i/60 g/M a/20"
         ) instanceof SetupCommand);
     }
 

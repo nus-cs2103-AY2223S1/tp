@@ -1,6 +1,7 @@
 package seedu.nutrigoals.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static seedu.nutrigoals.logic.parser.CliSyntax.PREFIX_IDEAL_WEIGHT;
@@ -23,12 +24,14 @@ public class SetupCommand extends Command {
             + PREFIX_GENDER + "Gender "
             + PREFIX_HEIGHT + "Height "
             + PREFIX_WEIGHT + "Weight "
-            + PREFIX_IDEAL_WEIGHT + "Ideal Weight\n"
+            + PREFIX_IDEAL_WEIGHT + "Ideal Weight "
+            + PREFIX_AGE + "Age\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_GENDER + "M "
             + PREFIX_HEIGHT + "170 "
             + PREFIX_WEIGHT + "70 "
-            + PREFIX_IDEAL_WEIGHT + "65 ";
+            + PREFIX_IDEAL_WEIGHT + "65 "
+            + PREFIX_AGE + "20";
 
     public static final String MESSAGE_SUCCESS = "Successfully set up user profile";
 
