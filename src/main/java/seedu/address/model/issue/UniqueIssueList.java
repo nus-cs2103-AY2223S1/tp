@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.exceptions.DuplicateIssueException;
 import seedu.address.model.issue.exceptions.IssueNotFoundException;
+import seedu.address.model.project.Project;
 
 /**
  * A list of issues that enforces uniqueness between its elements and does not allow nulls.
@@ -68,14 +69,14 @@ public class UniqueIssueList implements Iterable<Issue> {
         internalList.set(index, editedIssue);
     }
 
-    public Issue getIssue(IssueId id) {
-        requireAllNonNull(id);
+    public static Issue getIssue(int issueId) {
+        requireAllNonNull(issueId);
         for (Issue i: internalList) {
-            if (i.getIssueId().equals(id)) {
+            if (i.getIssueId().getIdInt() == issueId) {
                 return i;
             }
         }
-        return null;
+        return Issue.EmptyIssue.EMPTY_ISSUE;
     }
 
     /**

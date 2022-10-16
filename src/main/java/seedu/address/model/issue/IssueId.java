@@ -9,6 +9,20 @@ import static java.util.Objects.requireNonNull;
  */
 public class IssueId {
 
+    public static final String MESSAGE_CONSTRAINTS = "Issue ID must be a valid integer";
+    public static final String MESSAGE_INVALID = "No existing issue with this issue ID";
+    private int issueId;
+
+    /**
+     * Construct's an issue's id.
+     *
+     * @param id A valid issue id.
+     */
+    public IssueId(int id) {
+        requireNonNull(id);
+        this.issueId = id;
+    }
+
     /**
      * Represents an empty issue id.
      */
@@ -23,20 +37,6 @@ public class IssueId {
         public boolean isEmpty() {
             return true;
         }
-    }
-
-    public static final String MESSAGE_CONSTRAINTS = "Issue ID must be a valid integer";
-
-    private int issueId;
-
-    /**
-     * Construct's an issue's id.
-     *
-     * @param id A valid issue id.
-     */
-    public IssueId(int id) {
-        requireNonNull(id);
-        this.issueId = id;
     }
 
     public int getIdInt() {

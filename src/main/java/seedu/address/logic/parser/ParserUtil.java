@@ -19,7 +19,11 @@ import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Status;
+import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -243,7 +247,6 @@ public class ParserUtil {
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
-        // TODO: to retrieve project through a project getter (modify based on getter)
         if (UniqueProjectList.getProject(trimmedIdInt) == null) {
             throw new ParseException("No project with this project Id");
         }
@@ -286,4 +289,25 @@ public class ParserUtil {
         }
         return new ProjectId(trimmedIdInt);
     }
+
+    /**
+     * Parses a {@code String issueId} into a {@code IssueId}.
+     *
+     * @param issueId is the id of the issue
+     * @return An issueId object
+     */
+    public static IssueId parseIssueId(String issueId) throws ParseException {
+        requireNonNull(issueId);
+        String trimmedId = issueId.trim();
+        if (!IssueId.isValidIssueId(trimmedId)) {
+            throw new ParseException(IssueId.MESSAGE_CONSTRAINTS);
+        }
+        int trimmedIdInt = Integer.parseInt(trimmedId);
+        if (UniqueIssueList.getIssue(trimmedIdInt).equals(Issue.EmptyIssue.EMPTY_ISSUE)) {
+            throw new ParseException(IssueId.MESSAGE_INVALID);
+        }
+        return new IssueId(trimmedIdInt);
+    }
+
+
 }
