@@ -18,6 +18,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.TagMatchesQueryPredicate;
+import seedu.address.model.reminder.DateTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -194,4 +195,14 @@ public class ParserUtil {
                 .flatMap((keyword) -> parseCommaSeparatedKeywords(keyword).stream())
                 .collect(Collectors.toList());
     }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     *
+     * @throws ParseException if the given {@code String dateTime} is invalid.
+     */
+    public static DateTime parseDateTime(String dateTimeString) throws ParseException {
+        return DateTimeParser.parseDateTime(dateTimeString);
+    }
+
 }

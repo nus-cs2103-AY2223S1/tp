@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -134,4 +135,17 @@ public interface Model {
 
     /** Returns the target {@code Person} */
     Person getTargetPerson();
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in the address book.
+     */
+    void deleteReminder(Reminder reminder);
+
+    /**
+     * Adds the given reminder.
+     * {@code Reminder} must not already exist in the address book.
+     */
+    void addReminder(Reminder reminder);
+
 }

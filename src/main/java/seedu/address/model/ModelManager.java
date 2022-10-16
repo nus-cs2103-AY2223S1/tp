@@ -16,6 +16,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +28,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final ReminderList reminderList;
     private final Set<Predicate<Person>> personPredicates;
     private final FilteredList<Person> filteredPersons;
     private final TargetPerson targetPerson;
@@ -40,6 +43,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        // this.reminderList = new ReminderList(reminderList);
+        this.reminderList = new ReminderList();
         this.personPredicates = new HashSet<>();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         targetPerson = new TargetPerson();
@@ -234,5 +239,16 @@ public class ModelManager implements Model {
     @Override
     public Person getTargetPerson() {
         return targetPerson.get();
+    }
+
+    // =========== Reminder ====================================================================
+    @Override
+    public void deleteReminder(Reminder reminder) {
+        reminderList.delete(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderList.add(reminder);
     }
 }
