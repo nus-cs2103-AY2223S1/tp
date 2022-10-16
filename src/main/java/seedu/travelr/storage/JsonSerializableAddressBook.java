@@ -59,13 +59,16 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
             addressBook.addTrip(trip);
+            for (Event e : trip.getEvents()) {
+                addressBook.addEventToAllEventsList(e);
+            }
         }
         for (JsonAdaptedEvent jsonAdaptedEvent : bucketList) {
             Event event = jsonAdaptedEvent.toModelType();
             if (addressBook.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
-            addressBook.addEvent(event);
+            addressBook.addEventToBucketListAndAllEventsList(event);
         }
         return addressBook;
     }

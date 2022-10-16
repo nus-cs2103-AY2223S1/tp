@@ -62,13 +62,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.bucketList.setEvents(events);
     }
 
+    public void setAllEventsList(List<Event> events) {
+        this.allEventsList.setEvents(events);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         assert !newData.getTripList().isEmpty();
-
+        setAllEventsList(newData.getAllEventList());
         setTrips(newData.getTripList());
         setEvents(newData.getEventList());
     }
@@ -102,8 +106,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds an event to Travelr.
      */
-    public void addEvent(Event e) {
+    public void addEventToBucketListAndAllEventsList(Event e) {
         bucketList.add(e);
+        addEventToAllEventsList(e);
+    }
+    
+    public void addEventToAllEventsList(Event e) {
         allEventsList.add(e);
     }
 
