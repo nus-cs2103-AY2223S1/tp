@@ -28,10 +28,20 @@ public class ActivityTest {
         // null -> returns false
         assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Activity editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
                 .withDescription(VALID_DESCRIPTION_BOXING).withTags(VALID_TAG_ENTERTAINMENT).build();
-        assertTrue(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
+
+        // same name, description different -> returns false
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
+                .withDescription(VALID_DESCRIPTION_BOXING).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
+
+        // same name, tags different -> returns false
+        editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A)
+                .withTags(VALID_TAG_ENTERTAINMENT).build();
+        assertFalse(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
 
         // different name, all other attributes same -> returns false
         editedA = new ActivityBuilder(TypicalActivities.ACTIVITY_A).withName(VALID_NAME_BOXING).build();
@@ -46,6 +56,10 @@ public class ActivityTest {
         String nameWithTrailingSpaces = VALID_NAME_BOXING + " ";
         editedB = new ActivityBuilder(TypicalActivities.BOXING).withName(nameWithTrailingSpaces).build();
         assertFalse(TypicalActivities.BOXING.isSameActivity(editedB));
+
+        // name, description and tags are all the same -> returns true
+        editedA = new ActivityBuilder((TypicalActivities.ACTIVITY_A)).build();
+        assertTrue(TypicalActivities.ACTIVITY_A.isSameActivity(editedA));
     }
 
     @Test
