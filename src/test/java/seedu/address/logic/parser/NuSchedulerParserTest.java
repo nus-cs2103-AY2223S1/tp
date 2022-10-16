@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -11,13 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.profile.ProfileCommandParser;
-import seedu.address.model.profile.Profile;
-import seedu.address.testutil.ProfileBuilder;
-import seedu.address.testutil.ProfileUtil;
 
 public class NuSchedulerParserTest {
 
@@ -25,11 +19,7 @@ public class NuSchedulerParserTest {
 
     @Test
     public void parseCommand_profile() throws Exception {
-        Profile profile = new ProfileBuilder().build();
-        String addProfileArguments = ProfileUtil.getAddProfileCommand(profile);
-        AddProfileCommand command =
-                (AddProfileCommand) parser.parseCommand(ProfileCommand.COMMAND_WORD + addProfileArguments);
-        assertEquals(new ProfileCommandParser().parse(addProfileArguments), command);
+        assertTrue(parser.parseCommand(ProfileCommand.COMMAND_WORD + " -v") instanceof ProfileCommand);
     }
 
     @Test
