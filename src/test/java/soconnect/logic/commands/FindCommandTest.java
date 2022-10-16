@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.NameContainsKeywordsPredicate;
 
@@ -24,8 +25,8 @@ import soconnect.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -20,9 +20,11 @@ import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.logic.parser.Prefix;
 import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Todo;
 
 class SortCommandTest {
 
@@ -98,6 +100,16 @@ class SortCommandTest {
         }
 
         @Override
+        public Path getTodoListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodoListFilePath(Path soConnectFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -124,6 +136,21 @@ class SortCommandTest {
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void editTag(Tag oldTag, Tag newTag) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -158,6 +185,36 @@ class SortCommandTest {
         }
 
         @Override
+        public void addTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodoList(ReadOnlyTodoList newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTodoList getTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTodo(Todo target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodo(Todo target, Todo editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -168,17 +225,12 @@ class SortCommandTest {
         }
 
         @Override
-        public boolean hasTag(Tag tag) {
+        public ObservableList<Todo> getFilteredTodoList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addTag(Tag tag) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void editTag(Tag oldTag, Tag newTag) {
+        public void updateFilteredTodoList(Predicate<Todo> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

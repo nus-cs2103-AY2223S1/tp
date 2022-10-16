@@ -11,12 +11,13 @@ import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.tag.Tag;
 
 public class TagCreateCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void tag_create_success() {
@@ -24,7 +25,7 @@ public class TagCreateCommandTest {
 
         String expectedMessage = String.format(TagCreateCommand.MESSAGE_SUCCESS, new Tag("sibling"));
 
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
         expectedModel.addTag(new Tag("sibling"));
 
         assertCommandSuccess(tagCreateCommand, model, expectedMessage, expectedModel);
