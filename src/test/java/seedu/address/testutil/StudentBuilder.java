@@ -41,9 +41,12 @@ public class StudentBuilder extends PersonBuilder {
         return this;
     }
 
+    @Override
     public Student build() {
-        return new Student(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(), moduleCodes);
+        return new Student(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
+                getGithubUsername(), getModuleCodes());
     }
+
     public Set<ModuleCode> getModuleCodes() {
         return Collections.unmodifiableSet(moduleCodes);
     }
