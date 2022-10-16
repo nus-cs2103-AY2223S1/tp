@@ -3,6 +3,7 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
+    "riskTag": "HIGH"
     "income": "$1000",
     "address": "4th street",
     "monthly": "$1000"
@@ -10,6 +11,7 @@
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
+    "riskTag": "HIGH"
     "income": "$1000",
     "address": "4th street",
     "monthly": "$1000"

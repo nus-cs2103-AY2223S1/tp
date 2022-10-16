@@ -14,6 +14,7 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,12 +27,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_RISKTAG = "LOW";
     public static final String DEFAULT_INCOME = "$1000";
     public static final String DEFAULT_MONTHLY = "$200";
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private RiskTag riskTag;
     private IncomeLevel income;
     private Monthly monthly;
     private Set<Tag> tags;
@@ -45,6 +48,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        riskTag = new RiskTag(DEFAULT_RISKTAG);
         income = new IncomeLevel(DEFAULT_INCOME);
         monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
@@ -59,6 +63,9 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        income = personToCopy.getIncome();
+        monthly = personToCopy.getMonthly();
+        riskTag = personToCopy.getRiskTag();
         income = personToCopy.getIncome();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new MaximumSortedList<>(personToCopy.getAppointments());
@@ -105,6 +112,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code RiskTag} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withRiskTag(String riskTag) {
+        this.riskTag = new RiskTag(riskTag);
+        return this;
+    }
+
+    /**
      * Sets the {@code Income} of the {@code Person} that we are building.
      */
     public PersonBuilder withIncome(String income) {
@@ -113,7 +128,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Monthly} of the {@code Person} that we are building.
      */
     public PersonBuilder withMonthly(String monthly) {
         this.monthly = new Monthly(monthly);
@@ -132,7 +147,7 @@ public class PersonBuilder {
      * By default, the set of appointments field is created but is empty
      */
     public Person build() {
-        return new Person(name, phone, email, address, income, tags, appointments);
+        return new Person(name, phone, email, address, income, monthly, risktag, tags, appointments);
     }
 
 }

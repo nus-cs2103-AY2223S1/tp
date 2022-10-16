@@ -4,6 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "riskTag": "HIGH",
     "income": "$1000",
     "monthly": "$1000",
     "tagged": [ "friends" ]
@@ -12,6 +13,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "riskTag": "HIGH",
     "income": "$1000",
     "monthly": "$1000"
   } ]

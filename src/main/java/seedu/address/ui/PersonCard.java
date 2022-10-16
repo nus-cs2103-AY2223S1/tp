@@ -50,6 +50,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label monthly;
     @FXML
+    private FlowPane specialTags;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane appointments;
@@ -80,6 +82,8 @@ public class PersonCard extends UiPart<Region> {
     }
 
     private void addTagLabels(Person person) {
+        person.getSpecialTags().stream()
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         income.setText(person.getIncome().value);
         monthly.setText(person.getMonthly().value);
         person.getTags().stream()

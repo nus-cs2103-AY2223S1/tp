@@ -15,6 +15,7 @@ import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ public class EditPersonDescriptor {
     private Address address;
     private IncomeLevel income;
     private Monthly monthly;
+    private RiskTag riskTag;
     private Set<Tag> tags;
 //    private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
@@ -43,6 +45,7 @@ public class EditPersonDescriptor {
         setAddress(toCopy.address);
         setIncome(toCopy.income);
         setMonthly(toCopy.monthly);
+        setRiskTag(toCopy.riskTag);
         setTags(toCopy.tags);
 //        setAppointment(toCopy.appointments);
     }
@@ -51,7 +54,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, riskTag, tags);
     }
 
     public void setName(Name name) {
@@ -82,6 +85,18 @@ public class EditPersonDescriptor {
         this.address = address;
     }
 
+    public Optional<Address> getAddress() {
+        return Optional.ofNullable(address);
+    }
+
+    public void setRiskTag(RiskTag riskTag) {
+        this.riskTag = riskTag;
+    }
+
+    public Optional<RiskTag> getRiskTag() {
+        return Optional.ofNullable(riskTag);
+    }
+
 //    /**
 //     * Sets {@code appointments} to this object's {@code appointments}.
 //     * A defensive copy of {@code appointments} is used internally.
@@ -94,9 +109,6 @@ public class EditPersonDescriptor {
 //        return Optional.ofNullable(appointments);
 //    }
 
-    public Optional<Address> getAddress() {
-        return Optional.ofNullable(address);
-    }
     public void setIncome(IncomeLevel income) {
         this.income = income;
     }
@@ -140,10 +152,11 @@ public class EditPersonDescriptor {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
         Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
+        RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
-                updateMonthly, updatedTags);
+                updateMonthly, updatedRiskTag, updatedTags);
     }
 
 //
@@ -262,6 +275,7 @@ public class EditPersonDescriptor {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
+                && getRiskTag().equals(e.getRiskTag())
                 && getMonthly().equals(e.getMonthly())
                 && getTags().equals(e.getTags());
 //                && getAppointment().equals(e.getAppointment());

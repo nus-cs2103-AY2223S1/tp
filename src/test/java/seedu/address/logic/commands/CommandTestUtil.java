@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INCOME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTHLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RISKTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,6 +43,9 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_RISKTAG_HIGH = "HIGH";
+    public static final String VALID_RISKTAG_LOW = "LOW";
+
     public static final String VALID_INCOME_AMY = "$1000";
     public static final String VALID_INCOME_BOB = "$10000";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -72,12 +76,15 @@ public class CommandTestUtil {
             + VALID_DATETIME_22_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_JURONGPOINT;
     public static final String MONTHLY_DESC_AMY = " " + PREFIX_MONTHLY + VALID_MONTHLY_AMY;
     public static final String MONTHLY_DESC_BOB = " " + PREFIX_MONTHLY + VALID_MONTHLY_BOB;
+    public static final String RISKTAG_DESC_HIGH = " " + PREFIX_RISKTAG + VALID_RISKTAG_HIGH;
+    public static final String RISKTAG_DESC_LOW = " " + PREFIX_RISKTAG + VALID_RISKTAG_LOW;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_RISKTAG_DESC = " " + PREFIX_RISKTAG + "none"; // must be HIGH LOW or MEDIUM
     public static final String INVALID_INCOME_DESC = " " + PREFIX_INCOME + "000"; // income should include "$" sign
     public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "000"; // monthly should include "$"
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -92,11 +99,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withIncome(VALID_INCOME_AMY).withMonthly(VALID_MONTHLY_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withIncome(VALID_INCOME_AMY).withMonthly(VALID_MONTHLY_AMY)
+                .withRiskTag(VALID_RISKTAG_LOW).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withMonthly(VALID_MONTHLY_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withRiskTag(VALID_RISKTAG_HIGH).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_APPOINTMENT = new EditPersonDescriptorBuilder()
                 .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023),
                                                 new Location(VALID_LOCATION_NUS)))

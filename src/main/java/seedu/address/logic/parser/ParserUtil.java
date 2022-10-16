@@ -21,6 +21,7 @@ import seedu.address.model.person.Location;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -217,6 +218,20 @@ public class ParserUtil {
         }
         return new Monthly(trimmedMonthly);
     }
+
+    /**
+     * Parses a {@code String dateAndTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static RiskTag parseRiskTag(String riskTag) throws ParseException {
+        requireNonNull(riskTag);
+        String trimmedRiskTag = riskTag.trim();
+        if (!RiskTag.isValidRiskTagName(trimmedRiskTag)) {
+            throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
+        }
+        return new RiskTag(trimmedRiskTag);
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
