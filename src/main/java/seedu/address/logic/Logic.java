@@ -47,4 +47,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the user prefs' Stored address book array setting.
+     */
+    void setAllAddressBookFilePath(Path[] updatedPaths);
 }

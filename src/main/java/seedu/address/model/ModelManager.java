@@ -3,7 +3,9 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -74,6 +79,17 @@ public class ModelManager implements Model {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
+
+    @Override
+    public Path[] getAllAddressBookFilePath() {
+        return userPrefs.getAllAddressBookFilePath();
+    }
+
+    @Override
+    public void setAllAddressBookFilePath(Path[] updatedPaths) {
+        userPrefs.setAllAddressBookFilePath(updatedPaths);
+    }
+
 
     //=========== AddressBook ================================================================================
 

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -10,12 +13,18 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.UserPrefs;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.UserPrefsStorage;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -151,7 +160,32 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleNewBook() {
-        System.out.println("New book created");
+        Config config = new Config();
+        JsonUserPrefsStorage userPreferences = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        UserPrefs initializedPrefs;
+        try {
+            Optional<UserPrefs> prefsOptional = userPreferences.readUserPrefs();
+            initializedPrefs = prefsOptional.orElse(new UserPrefs());
+        } catch (DataConversionException e) {
+            logger.warning("UserPrefs file at " + userPreferences + " is not in the correct format. "
+                    + "Using default user prefs");
+            initializedPrefs = new UserPrefs();
+        }
+        if (!initializedPrefs.addAddressBook()) {
+            logger.warning("Maximum amount of address book created");
+            resultDisplay.setFeedbackToUser("Maximum amount of address book created");
+        } else {
+            //Update prefs file in case it was missing to begin with or there are new/unused fields
+            try {
+                System.out.println(config.getUserPrefsFilePath());
+                logic.setAllAddressBookFilePath(initializedPrefs.getAllAddressBookFilePath());
+                UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+                userPrefsStorage.saveUserPrefs(initializedPrefs);
+            } catch (IOException e) {
+                logger.warning("Failed to save preference file : " + StringUtil.getDetails(e));
+            }
+        }
+        System.out.println(List.of(initializedPrefs.getAllAddressBookFilePath()));
     }
 
     /**

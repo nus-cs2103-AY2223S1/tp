@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * The API of the Model component.
  */
@@ -44,13 +46,21 @@ public interface Model {
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
+    /** Returns the AddressBook */
+    ReadOnlyAddressBook getAddressBook();
+
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns all address book's paths*/
+    Path[] getAllAddressBookFilePath();
+
+    /**
+     * Replaces all address book data with the data in {@code addressBook}.
+     */
+    void setAllAddressBookFilePath(Path[] updatedPaths);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
