@@ -24,32 +24,36 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Monthly monthly;
     private final Set<Tag> tags = new HashSet<>();
     private MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
+                  Monthly monthly, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.incomeLevel = incomeLevel;
+        this.monthly = monthly;
         this.tags.addAll(tags);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel,
+    public Person(Name name, Phone phone, Email email, Address address, IncomeLevel incomeLevel, Monthly monthly,
                   Set<Tag> tags, MaximumSortedList<Appointment> appointments) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.monthly = monthly;
         this.tags.addAll(tags);
         this.appointments = appointments;
         this.incomeLevel = incomeLevel;
@@ -69,6 +73,9 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+    public Monthly getMonthly() {
+        return monthly;
     }
 
     public MaximumSortedList<Appointment> getAppointments() {

@@ -15,6 +15,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -31,6 +32,7 @@ public class EditPersonDescriptor {
     private Email email;
     private Address address;
     private IncomeLevel income;
+    private Monthly monthly;
     private Set<Tag> tags;
     private MaximumSortedList<Appointment> appointments;
     public EditPersonDescriptor() {}
@@ -45,6 +47,7 @@ public class EditPersonDescriptor {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setIncome(toCopy.income);
+        setMonthly(toCopy.monthly);
         setTags(toCopy.tags);
         setAppointments(toCopy.appointments);
     }
@@ -53,7 +56,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, appointments);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, income, monthly, tags, appointments);
     }
 
     public void setName(Name name) {
@@ -106,6 +109,12 @@ public class EditPersonDescriptor {
         return Optional.ofNullable(income);
     }
 
+    public void setMonthly(Monthly monthly) {
+        this.monthly = monthly;
+    }
+    public Optional<Monthly> getMonthly() {
+        return Optional.ofNullable(monthly);
+    }
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
@@ -135,9 +144,11 @@ public class EditPersonDescriptor {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         IncomeLevel updatedIncomeLevel = editPersonDescriptor.getIncome().orElse(personToEdit.getIncome());
+        Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
+                updateMonthly, updatedTags);
     }
 
 
@@ -169,8 +180,11 @@ public class EditPersonDescriptor {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Set<Tag> tags = personToEdit.getTags();
+        Monthly monthly = personToEdit.getMonthly();
+
         IncomeLevel income = personToEdit.getIncome();
-        Person newPerson = new Person(name, phone, email, address, income, tags, updatedAppointments);
+        Person newPerson = new Person(name, phone, email, address, income, monthly, tags, updatedAppointments);
+
         return newPerson;
     }
 
@@ -186,10 +200,11 @@ public class EditPersonDescriptor {
         Phone phone = personToEdit.getPhone();
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
+        Monthly monthly = personToEdit.getMonthly();
         Set<Tag> tags = personToEdit.getTags();
         IncomeLevel income = personToEdit.getIncome();
         MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, income, tags, newAppointmentsOnly);
+        Person newPerson = new Person(name, phone, email, address, income, monthly, tags, newAppointmentsOnly);
 
         return newPerson;
     }
@@ -213,6 +228,7 @@ public class EditPersonDescriptor {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
+                && getMonthly().equals(e.getMonthly())
                 && getTags().equals(e.getTags())
                 && getAppointments().equals(e.getAppointments());
     }
