@@ -19,11 +19,9 @@ import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
-import seedu.nutrigoals.model.user.Gender;
-import seedu.nutrigoals.model.user.Height;
 import seedu.nutrigoals.model.user.User;
-import seedu.nutrigoals.model.user.Weight;
 import seedu.nutrigoals.testutil.NutriGoalsBuilder;
+import seedu.nutrigoals.testutil.UserBuilder;
 
 public class ModelManagerTest {
 
@@ -128,7 +126,8 @@ public class ModelManagerTest {
 
     @Test
     public void isUserCreated_userCreated_returnsTrue() {
-        modelManager.setUserDetails(new UserStub());
+        User validUser = new UserBuilder().build();
+        modelManager.setUserDetails(validUser);
         assertTrue(modelManager.isUserCreated());
     }
 
@@ -179,27 +178,4 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(nutriGoals, userPrefs)));
     }
 
-    private static class UserStub extends User {
-
-        private static final String DEFAULT_HEIGHT = "160";
-        private static final String DEFAULT_WEIGHT = "45";
-        private static final String DEFAULT_GENDER = "F";
-        private final Height height;
-        private final Weight weight;
-        private final Gender gender;
-        private final Weight idealWeight;
-
-        public UserStub() {
-            super();
-            this.height = new Height(DEFAULT_HEIGHT);
-            this.weight = new Weight(DEFAULT_WEIGHT);
-            this.gender = new Gender(DEFAULT_GENDER);
-            this.idealWeight = new Weight(DEFAULT_WEIGHT);
-        }
-
-        @Override
-        public boolean isUserCreated() {
-            return !height.isZero() && !weight.isZero();
-        }
-    }
 }

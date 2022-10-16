@@ -69,12 +69,13 @@ public class User {
         if (other == this) {
             return true;
         }
-        if (other instanceof User) {
-            User u = (User) other;
-            return (this.weight.equals(u.weight) && this.height.equals(u.height)
-                    && this.idealWeight.equals(u.idealWeight) && this.gender.equals(u.gender));
+        if (!(other instanceof User)) {
+            return false;
         }
-        return false;
+
+        User u = (User) other;
+        return (this.weight.equals(u.weight) && this.height.equals(u.height)
+                && this.idealWeight.equals(u.idealWeight) && this.gender.equals(u.gender));
     }
 
     @Override
