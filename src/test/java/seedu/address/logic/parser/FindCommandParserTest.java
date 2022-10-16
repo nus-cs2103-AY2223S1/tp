@@ -14,6 +14,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommandParserTest {
 
     public static final String COMMAND_WORD = "find";
+    public static final String VAlID_KEYWORD_NOSPACE = " n/Alice Bob";
+    public static final String VAlID_KEYWORD_WITHSPACE = " n/ \n Alice \n \t Bob  \t";
 
     private FindCommandParser parser = new FindCommandParser();
 
@@ -27,10 +29,10 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, COMMAND_WORD + " n/Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, COMMAND_WORD + VAlID_KEYWORD_NOSPACE, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, COMMAND_WORD + " n/ \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, COMMAND_WORD + VAlID_KEYWORD_WITHSPACE, expectedFindCommand);
     }
 
 }
