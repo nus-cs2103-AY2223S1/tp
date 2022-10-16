@@ -10,10 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
@@ -30,7 +29,7 @@ public class AddTaskCommand extends Command {
             + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
             + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PERSON + "PERSON INDEX (must be a positive integer)]\n"
+            + "[" + PREFIX_PERSON + "PERSON Email Address (must be a valid email)]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Create Initial UIUX Design "
             + PREFIX_DESCRIPTION + "Use FIGMA to create initial UIUX Design "
@@ -41,17 +40,16 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
-
     private final Task toAdd;
-    private final Index personIndex;
+    private final Email personEmailAddress;
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
      */
-    public AddTaskCommand(Task task, Index personIndex) {
+    public AddTaskCommand(Task task, Email personEmailAddress) {
         requireNonNull(task);
         toAdd = task;
-        this.personIndex = personIndex;
+        this.personEmailAddress = personEmailAddress;
     }
 
     @Override
@@ -59,11 +57,7 @@ public class AddTaskCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (personIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-        Person person = lastShownList.get(personIndex.getZeroBased());
-        toAdd.assignPerson(person);
+        toAdd.setPersonEmailAddress(personEmailAddress);
 
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
