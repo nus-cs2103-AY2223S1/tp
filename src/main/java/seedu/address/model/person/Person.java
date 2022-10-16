@@ -123,8 +123,8 @@ public class Person {
             for (int j = 0; j < this.mods.size(); j++) {
 
                 Mod currentMod = this.mods.get(j);
-                String currentModName = currentMod.modName;
-                String targetModName = mods.get(i).modName;
+                String currentModName = currentMod.getModName();
+                String targetModName = mods.get(i).getModName();
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.markMod();

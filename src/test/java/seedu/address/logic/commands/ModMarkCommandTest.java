@@ -66,7 +66,7 @@ public class ModMarkCommandTest {
     @Test
     public void execute_markOneMod_success() throws CommandException {
 
-        Person batchmate = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.modName).build();
+        Person batchmate = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
         model.addPerson(batchmate);
 
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
@@ -91,9 +91,9 @@ public class ModMarkCommandTest {
     public void execute_markMultipleMod_success() throws CommandException {
 
         Person batchmate = new PersonBuilder(BOB).withMods(
-                VALID_MOD_CS2100.modName,
-                VALID_MOD_CS2103.modName,
-                VALID_MOD_CS2101.modName)
+                VALID_MOD_CS2100.getModName(),
+                VALID_MOD_CS2103.getModName(),
+                VALID_MOD_CS2101.getModName())
                 .build();
         model.addPerson(batchmate);
 
@@ -121,9 +121,9 @@ public class ModMarkCommandTest {
     public void execute_markNonExistingMod1_throwsCommandException() {
 
         Person batchmate = new PersonBuilder(BOB).withMods(
-                        VALID_MOD_CS2100.modName,
-                        VALID_MOD_CS2103.modName,
-                        VALID_MOD_CS2101.modName)
+                        VALID_MOD_CS2100.getModName(),
+                        VALID_MOD_CS2103.getModName(),
+                        VALID_MOD_CS2101.getModName())
                 .build();
         model.addPerson(batchmate);
 
@@ -148,9 +148,9 @@ public class ModMarkCommandTest {
     public void execute_markNonExistingMod2_throwsCommandException() {
 
         Person batchmate = new PersonBuilder(BOB).withMods(
-                        VALID_MOD_CS2100.modName,
-                        VALID_MOD_CS2103.modName,
-                        VALID_MOD_CS2101.modName)
+                        VALID_MOD_CS2100.getModName(),
+                        VALID_MOD_CS2103.getModName(),
+                        VALID_MOD_CS2101.getModName())
                 .build();
         model.addPerson(batchmate);
 
