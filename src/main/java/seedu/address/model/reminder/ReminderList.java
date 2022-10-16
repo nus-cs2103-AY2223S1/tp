@@ -14,10 +14,13 @@ import javafx.collections.transformation.SortedList;
  */
 public class ReminderList implements ReadOnlyReminderList {
     private final ObservableList<Reminder> internalList = FXCollections.observableArrayList();
-    private final SortedList<Reminder> sortedList = new SortedList(internalList);
+    private final SortedList<Reminder> sortedList = new SortedList<>(internalList);
     private final ObservableList<Reminder> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(sortedList);
 
+    /**
+     * Creates an empty ReminderList.
+     */
     public ReminderList() {
         this.sortedList.setComparator(((Reminder r1, Reminder r2) ->
                 r1.dateTime.getLocalDateTime().compareTo(r1.dateTime.getLocalDateTime())));
