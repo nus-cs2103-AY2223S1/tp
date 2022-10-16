@@ -49,6 +49,14 @@ public class ActivityCard extends UiPart<Region> {
         activity.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().forEach(child -> {
+            Label tagLabel = (Label) child;
+            tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
+        });
+    }
+
+    private String intToHexColor(String tag) {
+        return String.format("#%06X", (0xFFFFFF & tag.hashCode()));
     }
 
     @Override
