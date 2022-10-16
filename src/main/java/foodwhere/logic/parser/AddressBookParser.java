@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import foodwhere.logic.commands.ClearCommand;
 import foodwhere.logic.commands.Command;
-import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.RAddCommand;
@@ -16,6 +15,7 @@ import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
+import foodwhere.logic.commands.SEditCommand;
 import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
@@ -74,8 +74,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case SEditCommand.COMMAND_WORD:
+            return new SEditCommandParser().parse(arguments);
 
         case SFindCommand.COMMAND_WORD:
             return new SFindCommandParser().parse(arguments);

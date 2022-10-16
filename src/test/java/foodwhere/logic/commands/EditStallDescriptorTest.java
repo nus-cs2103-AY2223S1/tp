@@ -12,8 +12,8 @@ public class EditStallDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditStallDescriptor descriptorWithSameValues =
-                new EditCommand.EditStallDescriptor(CommandTestUtil.DESC_AMY);
+        SEditCommand.EditStallDescriptor descriptorWithSameValues =
+                new SEditCommand.EditStallDescriptor(CommandTestUtil.DESC_AMY);
         assertTrue(CommandTestUtil.DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -29,7 +29,7 @@ public class EditStallDescriptorTest {
         assertFalse(CommandTestUtil.DESC_AMY.equals(CommandTestUtil.DESC_BOB));
 
         // different name -> returns false
-        EditCommand.EditStallDescriptor editedAmy =
+        SEditCommand.EditStallDescriptor editedAmy =
                 new EditStallDescriptorBuilder(CommandTestUtil.DESC_AMY)
                         .withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertFalse(CommandTestUtil.DESC_AMY.equals(editedAmy));
