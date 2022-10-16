@@ -67,7 +67,7 @@ public class UniqueCommissionList implements Iterable<Commission> {
     }
 
     /**
-     * Get Last Deadline.
+     * Returns the last Deadline.
      */
     public LocalDate getLastDate() {
         return internalList.stream()
