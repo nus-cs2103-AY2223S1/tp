@@ -21,6 +21,7 @@ import seedu.application.model.Model;
 import seedu.application.model.ReadOnlyApplicationBook;
 import seedu.application.model.ReadOnlyUserPrefs;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
 import seedu.application.testutil.ApplicationBuilder;
 
 public class AddCommandTest {
@@ -126,6 +127,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasApplication(Application application) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameInterviewTime(Interview interview) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSameInterviewTime(Application application) {
             throw new AssertionError("This method should not be called.");
         }
 
