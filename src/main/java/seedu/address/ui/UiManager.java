@@ -33,6 +33,27 @@ public class UiManager implements Ui {
         this.logic = logic;
     }
 
+    /**
+     * Shows an alert dialog on {@code owner} with the given parameters.
+     * This method only returns after the user has closed the alert dialog.
+     */
+    private static void showAlertDialogAndWait(
+        Stage owner,
+        AlertType type,
+        String title,
+        String headerText,
+        String contentText
+    ) {
+        final Alert alert = new Alert(type);
+        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        alert.initOwner(owner);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
+        alert.showAndWait();
+    }
+
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting UI...");
@@ -67,27 +88,6 @@ public class UiManager implements Ui {
             headerText,
             contentText
         );
-    }
-
-    /**
-     * Shows an alert dialog on {@code owner} with the given parameters.
-     * This method only returns after the user has closed the alert dialog.
-     */
-    private static void showAlertDialogAndWait(
-        Stage owner,
-        AlertType type,
-        String title,
-        String headerText,
-        String contentText
-    ) {
-        final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        alert.initOwner(owner);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
-        alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
-        alert.showAndWait();
     }
 
     /**

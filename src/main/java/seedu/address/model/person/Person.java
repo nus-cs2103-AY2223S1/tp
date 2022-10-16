@@ -98,6 +98,12 @@ public class Person {
                && otherPerson.getName().equals(getName());
     }
 
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(name, phone, email, address, studentClass, remarksList, subjectHandler, tags);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -120,12 +126,6 @@ public class Person {
                && otherPerson.getTags().equals(getTags())
                && otherPerson.getStudentClass().equals(getStudentClass())
                && otherPerson.getRemarks().equals(getRemarks());
-    }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, studentClass, remarksList, subjectHandler, tags);
     }
 
     @Override

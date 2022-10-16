@@ -18,19 +18,23 @@ public class FindCommandPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         boolean checkName = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName,
+                                                                                           keyword));
         boolean checkClass = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getStudentClass().value, keyword));
+                                     .anyMatch(
+                                         keyword -> StringUtil.containsWordIgnoreCase(person.getStudentClass().value,
+                                                                                      keyword));
         boolean checkSubject = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getSubjectHandler().toString(), keyword));
+                                       .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                                           person.getSubjectHandler().toString(), keyword));
         return checkName || checkClass || checkSubject;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommandPredicate // instanceof handles nulls
-                && keywords.equals(((FindCommandPredicate) other).keywords)); // state check
+               || (other instanceof FindCommandPredicate // instanceof handles nulls
+                   && keywords.equals(((FindCommandPredicate) other).keywords)); // state check
     }
 
 }

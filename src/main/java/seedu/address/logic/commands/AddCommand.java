@@ -64,6 +64,11 @@ public class AddCommand extends Command {
     }
 
     @Override
+    public String toString() {
+        return this.toAdd.toString();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                || (other instanceof AddCommand // instanceof handles nulls
@@ -72,10 +77,5 @@ public class AddCommand extends Command {
 
     public Person getToAdd() {
         return toAdd;
-    }
-
-    @Override
-    public String toString() {
-        return this.toAdd.toString();
     }
 }
