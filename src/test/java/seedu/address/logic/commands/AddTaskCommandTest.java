@@ -45,9 +45,9 @@ public class AddTaskCommandTest {
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet());
-    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson, true);
+    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), true);
 
-    private final Index test = new Index(0);
+    private final Email test = new Email("test@gmail.com");
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -183,5 +183,6 @@ public class AddTaskCommandTest {
             requireNonNull(task);
             return this.task.isSameTask(task);
         }
+
     }
 }

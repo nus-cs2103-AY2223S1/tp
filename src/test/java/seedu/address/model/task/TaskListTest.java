@@ -29,7 +29,7 @@ public class TaskListTest {
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet());
-    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson, true);
+    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson.getEmail(), true);
 
     @Test
     public void contains_null_throwsNullPointerException() {

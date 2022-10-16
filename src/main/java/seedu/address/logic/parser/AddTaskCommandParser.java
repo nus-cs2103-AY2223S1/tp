@@ -10,9 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Email;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -43,10 +43,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        Index personIndex;
+        Email personEmailAddress;
 
         try {
-            personIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PERSON).get());
+            personEmailAddress = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_PERSON).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
         }
@@ -58,7 +58,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         TaskDeadline deadline = ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
 
         Task task = new Task(taskName, description, priority, category, deadline, null, false);
-        return new AddTaskCommand(task, personIndex);
+        return new AddTaskCommand(task, personEmailAddress);
     }
 
     /**

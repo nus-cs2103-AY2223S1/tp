@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Email;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -81,11 +81,12 @@ public class EditTaskCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         TaskDeadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Person updatedPerson = editTaskDescriptor.getPerson().orElse(taskToEdit.getPerson());
+        Email updatedPersonEmailAddress = editTaskDescriptor.getPersonEmailAddress()
+                .orElse(taskToEdit.getPersonEmailAddress());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
         return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
-                updatedPerson, updatedIsDone);
+                updatedPersonEmailAddress, updatedIsDone);
     }
 
     @Override
@@ -140,7 +141,7 @@ public class EditTaskCommand extends Command {
         // Data fields
         private Priority priority;
         private TaskDeadline deadline;
-        private Person person;
+        private Email personEmailAddress;
         private boolean isDone;
 
         public EditTaskDescriptor() {
@@ -156,7 +157,7 @@ public class EditTaskCommand extends Command {
             setDescription(toCopy.description);
             setPriority(toCopy.priority);
             setDeadline(toCopy.deadline);
-            setPerson(toCopy.person);
+            setPersonEmailAddress(toCopy.personEmailAddress);
             setDone(toCopy.isDone);
         }
 
@@ -164,7 +165,8 @@ public class EditTaskCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, category, description, priority, deadline, person, isDone);
+            return CollectionUtil.isAnyNonNull(name, category, description, priority,
+                    deadline, personEmailAddress, isDone);
         }
 
         public Optional<TaskName> getName() {
@@ -206,13 +208,12 @@ public class EditTaskCommand extends Command {
         public void setDeadline(TaskDeadline deadline) {
             this.deadline = deadline;
         }
-
-        public Optional<Person> getPerson() {
-            return ofNullable(person);
+        public void setPersonEmailAddress(Email personEmailAddress) {
+            this.personEmailAddress = personEmailAddress;
         }
 
-        public void setPerson(Person person) {
-            this.person = person;
+        public Optional<Email> getPersonEmailAddress() {
+            return ofNullable(personEmailAddress);
         }
 
         public void setDone(boolean isDone) {
@@ -244,7 +245,7 @@ public class EditTaskCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getPriority().equals(e.getPriority())
                     && getDeadline().equals(e.getDeadline())
-                    && getPerson().equals(e.getPerson())
+                    && getPersonEmailAddress().equals(e.getPersonEmailAddress())
                     && getIsDone().equals(e.getIsDone());
         }
     }

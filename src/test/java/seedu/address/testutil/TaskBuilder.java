@@ -37,7 +37,8 @@ public class TaskBuilder {
     private Description taskDescription;
     private Priority taskPriority;
     private TaskDeadline taskDeadline;
-    private Person taskPerson;
+
+    private Email taskPersonEmailAddress;
     private boolean taskStatus;
 
     /**
@@ -49,8 +50,7 @@ public class TaskBuilder {
         taskDescription = new Description(defaultDescription);
         taskPriority = new Priority(defaultPriority);
         taskDeadline = new TaskDeadline(defaultLocalDate);
-        taskPerson = new Person(new Name("test"), new Phone("99999999"),
-                new Email("test@gmail.com"), new Address("test"), new HashSet());
+        taskPersonEmailAddress = new Email("test@gmail.com");
         taskStatus = defaultStatus;
     }
 
@@ -63,7 +63,7 @@ public class TaskBuilder {
         taskDescription = taskToCopy.getDescription();
         taskPriority = taskToCopy.getPriority();
         taskDeadline = taskToCopy.getDeadline();
-        taskPerson = taskToCopy.getPerson();
+        taskPersonEmailAddress = taskToCopy.getPersonEmailAddress();
         taskStatus = taskToCopy.isDone();
     }
 
@@ -110,8 +110,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
-    public TaskBuilder withPerson(Person person) {
-        this.taskPerson = person;
+    public TaskBuilder withTaskPersonEmailAddressPerson (Email email) {
+        this.taskPersonEmailAddress = email;
         return this;
     }
 
@@ -130,7 +130,7 @@ public class TaskBuilder {
      */
 
     public Task build() {
-        return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline, taskPerson, taskStatus);
+        return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline, taskPersonEmailAddress, taskStatus);
     }
 
 }
