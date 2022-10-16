@@ -18,10 +18,12 @@ import soconnect.commons.core.GuiSettings;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.SoConnect;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Todo;
 import soconnect.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -76,7 +78,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -106,6 +108,16 @@ public class AddCommandTest {
 
         @Override
         public void setSoConnectFilePath(Path soConnectFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getTodoListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodoListFilePath(Path soConnectFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -185,12 +197,52 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodoList(ReadOnlyTodoList newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyTodoList getTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTodo(Todo target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTodo(Todo target, Todo editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Todo> getFilteredTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTodoList(Predicate<Todo> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

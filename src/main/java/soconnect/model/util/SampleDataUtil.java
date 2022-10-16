@@ -5,7 +5,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.person.Address;
 import soconnect.model.person.Email;
 import soconnect.model.person.Name;
@@ -46,6 +48,16 @@ public class SampleDataUtil {
             sampleSC.addPerson(samplePerson);
         }
         return sampleSC;
+    }
+
+    public static ReadOnlyTodoList getSampleTodoList() {
+        TodoList sampleTodoList = new TodoList();
+        /*
+        for (Person samplePerson : getSamplePersons()) {
+            sampleSC.addPerson(samplePerson);
+        }
+         */
+        return sampleTodoList;
     }
 
     /**

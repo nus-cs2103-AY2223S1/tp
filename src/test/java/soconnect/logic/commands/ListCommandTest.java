@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 /**
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
-        expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
+        expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
     }
 
     @Test
