@@ -45,10 +45,6 @@ public class Project {
         //todo: set other fields to emptyOptionals post-merge
     }
 
-    public void setClient(Client toAddClient) {
-        this.client = toAddClient;
-    }
-
     /**
      * Represents an Empty Project.
      */
@@ -93,6 +89,22 @@ public class Project {
         return issueList;
     }
 
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public void setRepository(Repository repository) {
+        this.repository = repository;
+    }
+
+    public void setDeadline(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public void removeClient() {
         this.client = Client.EmptyClient.EMPTY_CLIENT;
     }
@@ -103,10 +115,6 @@ public class Project {
      */
     public boolean isEmpty() {
         return false;
-    }
-
-    public boolean hasValidClientId() {
-        return !this.getClient().getClientId().isEmpty();
     }
 
     /**

@@ -7,8 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class ProjectId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Project ID must exist in Project list";
-    public static final String MESSAGE_INVALID = "Project ID must be an integer";
+    public static final String MESSAGE_CONSTRAINTS = "Project ID must be an integer";
+    public static final String MESSAGE_INVALID = "No existing project with this project ID";
     private int projectId;
 
     /**
