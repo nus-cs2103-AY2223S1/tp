@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BENSON;
 import static seedu.address.testutil.TypicalCustomers.CARL;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,15 +26,17 @@ import seedu.address.model.customer.Customer;
 public class TypicalCommissions {
 
     public static final Function<Customer, Commission> CAT_PRODUCER = customer -> new CommissionBuilder()
-            .withTitle(VALID_TITLE_CAT).withDescription(VALID_DESCRIPTION_CAT)
+            .withTitle(VALID_TITLE_CAT).withDeadline(LocalDate.of(2021, 1, 1))
+            .withDescription(VALID_DESCRIPTION_CAT)
             .withCompletionStatus(false).withFee(2.0)
             .withTags(VALID_TAG_ANIMAL).build(customer);
     public static final Function<Customer, Commission> DOG_PRODUCER = customer -> new CommissionBuilder()
-            .withTitle(VALID_TITLE_DOG)
+            .withTitle(VALID_TITLE_DOG).withDeadline(LocalDate.of(2022, 12, 25))
             .withDescription(VALID_DESCRIPTION_DOG).withCompletionStatus(true).withFee(1.0)
             .withTags(VALID_TAG_ANIMAL).build(customer);
     public static final Function<Customer, Commission> ELEPHANT_PRODUCER = customer -> new CommissionBuilder()
-            .withTitle(VALID_TITLE_ELEPHANT).withDescription(VALID_DESCRIPTION_ELEPHANT)
+            .withTitle(VALID_TITLE_ELEPHANT).withDeadline(LocalDate.of(2022, 12, 24))
+            .withDescription(VALID_DESCRIPTION_ELEPHANT)
             .withCompletionStatus(true).build(customer);
     public static final Commission ALICE_CAT = CAT_PRODUCER.apply(ALICE);
     public static final Commission BENSON_DOG = DOG_PRODUCER.apply(BENSON);
