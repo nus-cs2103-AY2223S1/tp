@@ -117,6 +117,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
     }
 
+    /**
+     * Sorts the stall list by name.
+     */
+    public void sortStalls() {
+        stalls.sort();
+    }
+
     //// review methods
 
     /**
@@ -152,6 +159,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeReview(Review key) {
         reviews.remove(key);
+    }
+
+    /**
+     * Sorts the review list by name.
+     */
+    public void sortReviews() {
+        reviews.sort();
     }
 
     //// util methods

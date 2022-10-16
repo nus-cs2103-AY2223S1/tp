@@ -81,6 +81,11 @@ public interface Model {
     void setStall(Stall target, Stall editedStall);
 
     /**
+     * Sorts the stall list by name.
+     */
+    void sortStalls();
+
+    /**
      * Returns true if a review with the same identity as {@code review} exists in the address book.
      */
     boolean hasReview(Review review);
@@ -103,6 +108,11 @@ public interface Model {
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.
      */
     void setReview(Review target, Review editedReview);
+
+    /**
+     * Sorts the review list by name.
+     */
+    void sortReviews();
 
     /** Returns an unmodifiable view of the filtered stall list */
     ObservableList<Stall> getFilteredStallList();
