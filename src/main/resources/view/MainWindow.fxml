@@ -24,21 +24,10 @@
             </stylesheets>
 
             <VBox>
-                <!--        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">-->
-                <!--          <Menu mnemonicParsing="false" text="File">-->
-                <!--            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />-->
-                <!--          </Menu>-->
-                <!--          <Menu mnemonicParsing="false" text="Help">-->
-                <!--            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />-->
-                <!--          </Menu>-->
-                <!--        </MenuBar>-->
-
-
                 <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder"/>
-                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" maxHeight="100"/>
-
+                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100"
+                           maxHeight="100"/>
                 <StackPane fx:id="mainPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
             </VBox>
         </Scene>

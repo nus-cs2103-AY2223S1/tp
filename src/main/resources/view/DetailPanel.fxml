@@ -15,16 +15,16 @@
                     <Circle fx:id="profileImageContainer" radius="60.0"/>
                     <VBox spacing="8.0" HBox.hgrow="ALWAYS">
                         <children>
-                            <Label fx:id="nameLabel" text="Name" />
-                            <Label fx:id="roleLabel" text="Role" />
-                            <Label fx:id="timezoneLabel" text="Timezone" />
+                            <Label fx:id="nameLabel" text="Name"/>
+                            <Label fx:id="roleLabel" text="Role"/>
+                            <Label fx:id="timezoneLabel" text="Timezone"/>
                         </children>
                     </VBox>
                 </children>
             </HBox>
             <VBox spacing="8.0" fx:id="contactsSection">
                 <Label styleClass="sub-header" text="CONTACTS"/>
-                <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS" />
+                <HBox spacing="10.0" fx:id="contactBoxContainer" VBox.vgrow="ALWAYS"/>
             </VBox>
         </VBox>
     </children>
