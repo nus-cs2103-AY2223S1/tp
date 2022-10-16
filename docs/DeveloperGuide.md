@@ -154,12 +154,74 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Student Attendance feature ###
+### Student Attendance feature ###
 The student attendance feature keeps track of student's attendance. The feature comprises of commands namely,
-- AttendanceAddCommand
-- AttendanceDeleteCommand
-- AttendanceMarkCommand
+- ```AttendanceAddCommand``` - Adds an attendance list to the student in the class list.
+- ```AttendanceDeleteCommand``` - Removes the attendance list to the student in the class list.
+- ```AttendanceMarkCommand``` - Marks or unmarks student's attendance in his attendance list.
 
+The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram. Tis is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
+
+The attendance commands when executed will use methods exposed by the ```Model``` interface and perform the related operations.
+
+**Common steps among the Attendance Commands**
+ 
+1. The ```AddressBookParser``` will select ```AttendanceCommandParser``` and parse the user input.
+2. The ```AttendanceCommandParser#parse``` will select another AttendanceParser to parse in the arguments.
+3. The arguments are tokenized and the respective refined inputs of each argument is created.
+
+**Add Attendance command**
+Implementation:
+
+The following is a more detailed explanation on how ```AttendanceAddCommand``` works.
+
+1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceAddCommandParser``` to further separate user input.
+2. Following which, ```AttendanceAddCommand#execute(Model model)``` method is called which validates the attendance list.
+3. If the student index or size specified is invalid, a `ParserExeception` will be thrown and attendance will not be added to the student.
+ 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the format of adding attendance contains error(s), GREWZ will display either an unknown command or wrong formatting error message.
+ 
+4. The method `Model#setStudent(studentToEdit, editedStudent)` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
+
+**Mark Attendance command**
+Implementation:
+ 
+The following is a more detailed explanation on how `AttendanceMarkCommand` works.
+
+1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceMarkCommandParser``` to further separate user input.
+2. Following which, ```AttendanceMarkCommand#execute(Model model)``` method is called which validates the attendance list.
+3. If the student index, lesson number or attendance value specified is invalid, a ```ParserExeception``` will be thrown and attendance will not be marked.
+4. The method ```Model#setStudent(studentToEdit, editedStudent)``` gets called and a new `CommandResult` will be returned with the success message. 
+
+**Delete Attendance command**
+Implementation:
+ 
+The following is a more detailed explanation on how `AttendanceDeleteCommand` works.
+
+1. After the successful parsing of user input into ```AttendanceCommandParser```, the input gets parsed into ```AttendanceDeleteCommandParser``` to further separate user input.
+2. Following which, ```AttendanceDeleteCommand#execute(Model model)``` method is called which validates the attendance list.
+3. If the student index specified is invalid, a ```ParserExeception``` will be thrown and attendance list will not be delete.
+4. The method ```Model#setStudent(studentToEdit, editedStudent)``` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
+
+![attendance delete activity](image/AttendanceDeleteActivityDiagram.png)
+Figure No. Activity diagram for AttendanceDeleteCommand
+![attendance delete sequence](image/AttendanceDeleteSequenceDiagram.png)
+Figure No. Sequence diagram for AttendanceDeleteCommand
+#### Design considerations:
+
+**Aspect: Command Syntax**
+- Current implementation: Using 2 command word syntax \n E.g. ```attendance add``
+ - Pros: Increases clarity and flexibility of future commands
+ - Cons: Users have to type more 
+- Alternatives considered: We considered using only ```attendance```, while using the forward slash ```/``` with specific prefixes for attendance commands, e.g. ```attendance 1 a/10 s/12```, which adds an attendance list of size 12 to the first student.
+ - Pros: Users type less
+ - Cons: Users might accidentally delete/alter attendance lists and takes a longer time to learn command prefixes.
+ 
+**Aspect: Size of attendance lists**
+- Current Implementation: Max size of 12
+ - Pros: No need to resize attendance list display, users typically do not have more than 12 tutorials.
+ - Cons: Less flexibility in size of attendance list.
+ 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
