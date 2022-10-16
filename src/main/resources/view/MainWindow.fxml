@@ -62,7 +62,7 @@
               </VBox>
                   <VBox prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Points Of Contact">
+                        <Label alignment="CENTER" styleClass="header-text" stylesheets="@Label.css" text="Companies">
                            <font>
                               <Font size="24.0" />
                            </font>
