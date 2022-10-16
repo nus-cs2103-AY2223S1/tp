@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddListingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 
@@ -36,7 +37,7 @@ public class AddListingCommandParser implements Parser<AddListingCommand> {
         String id = argMultimap.getValue(PREFIX_ID).get();
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        int askingPrice = Integer.parseInt(String.valueOf(argMultimap.getValue(PREFIX_ASKING_PRICE)));
+        Price askingPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ASKING_PRICE).get());
 
         return new AddListingCommand(id, address, name, askingPrice);
     }

@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -39,13 +40,13 @@ public class AddListingCommand extends Command {
     private final String id;
     private final Address address;
     private final Name name;
-    private final int askingPrice;
+    private final Price askingPrice;
     private Listing toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddListingCommand(String id, Address address, Name name, int askingPrice) {
+    public AddListingCommand(String id, Address address, Name name, Price askingPrice) {
         requireAllNonNull(address, name);
         this.id = id;
         this.address = address;

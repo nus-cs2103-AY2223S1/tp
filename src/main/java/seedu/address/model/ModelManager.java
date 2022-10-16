@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.offer.Offer;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Listing> filteredListings;
+    private final FilteredList<Offer> filteredOffers;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredListings = new FilteredList<>(this.addressBook.getListingList());
+        filteredOffers = new FilteredList<>(this.addressBook.getOfferList());
     }
 
     public ModelManager() {
@@ -156,11 +159,31 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasOffer(Offer offer) {
-        return false;
+        requireNonNull(offer);
+        return addressBook.hasOffer(offer);
+    }
+
+    @Override
+    public void deleteOffer(Offer target) {
+        addressBook.removeOffer(target);
     }
 
     @Override
     public void addOffer(Offer offer) {
+        addressBook.addOffer(offer);
+        updateFilteredOfferList(PREDICATE_SHOW_ALL_OFFERS);
+    }
+
+    @Override
+    public Offer getOffer(Name name, Address address) {
+        return addressBook.getOffer(name, address);
+    }
+
+    @Override
+    public void setOffer(Offer target, Offer editedOffer) {
+        requireAllNonNull(target, editedOffer);
+
+        addressBook.setOffer(target, editedOffer);
     }
 
     //=========== Filtered List Accessors =============================================================
@@ -192,6 +215,17 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Offer> getFilteredOfferList() {
+        return filteredOffers;
+    }
+
+    @Override
+    public void updateFilteredOfferList(Predicate<Offer> predicate) {
+        requireNonNull(predicate);
+        filteredOffers.setPredicate(predicate);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -208,6 +242,7 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredListings.equals(other.filteredListings);
+                && filteredListings.equals(other.filteredListings)
+                && filteredOffers.equals(other.filteredOffers);
     }
 }

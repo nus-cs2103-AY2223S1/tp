@@ -61,7 +61,7 @@ public class AddressBookParser {
 
         case AddTagsToListingCommand.COMMAND_WORD:
             return new AddTagsToListingCommandParser().parse(arguments);
-
+            
         case AddOfferCommand.COMMAND_WORD:
             return new AddOfferCommandParser().parse(arguments);
 

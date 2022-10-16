@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -125,22 +126,12 @@ public class ParserUtil {
     /**
      * Parses {@code int askingPrice} into a {@code Integer}.
      */
-    public static Integer parseAskingPrice(int askingPrice) throws ParseException {
-        requireNonNull(askingPrice);
-        if (askingPrice < 0) {
-            throw new ParseException("Asking Price can't be negative");
-        }
-        return askingPrice;
-    }
-
-    /**
-     * Parses {@code int askingPrice} into a {@code Integer}.
-     */
-    public static Integer parseOfferPrice(int offerPrice) throws ParseException {
+    public static Price parsePrice(String offerPrice) throws ParseException {
         requireNonNull(offerPrice);
-        if (offerPrice < 0) {
-            throw new ParseException("Offer Price can't be negative");
+        String trimmedPrice = offerPrice.trim();
+        if (!Price.isValidPrice(offerPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return offerPrice;
+        return new Price(offerPrice);
     }
 }
