@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
         }
         this.timeZone = timeZone;
 
-        if (this.gameTypes != null) {
+        if (gameTypes != null) {
             this.gameTypes.addAll(gameTypes);
         }
     }
