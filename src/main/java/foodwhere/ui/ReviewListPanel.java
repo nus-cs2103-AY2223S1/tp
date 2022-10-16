@@ -5,14 +5,12 @@ import java.util.logging.Logger;
 import foodwhere.commons.core.LogsCenter;
 import foodwhere.model.review.Review;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Region;
 
 /**
@@ -43,36 +41,26 @@ public class ReviewListPanel extends UiPart<Region> {
     @FXML
     public void handleMouseClicked() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent content = new ClipboardContent();
-
         final ContextMenu contextMenu = new ContextMenu();
-        MenuItem copyReviewName = new MenuItem("Copy Name");
-        MenuItem copyReviewDate = new MenuItem("Copy Date");
-        MenuItem copyReviewContent = new MenuItem("Copy Content");
-        MenuItem copyReviewTag = new MenuItem("Copy Tag");
-        contextMenu.getItems().addAll(copyReviewName, copyReviewDate, copyReviewContent, copyReviewTag);
+        final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
+        final Review selectedReview = reviewListView.getSelectionModel().getSelectedItem();
+
+        CopyMenuItem<Review> copyReviewName = new CopyMenuItem<>("Copy Name",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_NAME);
+        CopyMenuItem<Review> copyReviewDate = new CopyMenuItem<>("Copy Date",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_DATE);
+        CopyMenuItem<Review> copyReviewContent = new CopyMenuItem<>("Copy Content",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_CONTENT);
+
+        contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent);
+
+        if (!selectedReview.getTags().isEmpty()) {
+            CopyMenuItem<Review> copyReviewTag = new CopyMenuItem<>("Copy Tag",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_TAG);
+            contextMenuItems.add(copyReviewTag);
+        }
 
         reviewListView.setContextMenu(contextMenu);
-
-        copyReviewName.setOnAction((ActionEvent actionEvent) -> {
-            content.putString(reviewListView.getSelectionModel().getSelectedItem().getName().toString());
-            clipboard.setContent(content);
-        });
-
-        copyReviewDate.setOnAction((ActionEvent actionEvent) -> {
-            content.putString(reviewListView.getSelectionModel().getSelectedItem().getDate().toString());
-            clipboard.setContent(content);
-        });
-
-        copyReviewContent.setOnAction((ActionEvent actionEvent) -> {
-            content.putString(reviewListView.getSelectionModel().getSelectedItem().getContent().toString());
-            clipboard.setContent(content);
-        });
-
-        copyReviewTag.setOnAction((ActionEvent actionEvent) -> {
-            content.putString(reviewListView.getSelectionModel().getSelectedItem().getTags().toString());
-            clipboard.setContent(content);
-        });
     }
 
     /**
