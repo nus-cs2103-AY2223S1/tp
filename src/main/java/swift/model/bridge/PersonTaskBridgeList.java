@@ -6,10 +6,10 @@ import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import swift.model.bridge.exceptions.BridgeNotFoundException;
+import swift.model.bridge.exceptions.DuplicateBridgeException;
 import swift.model.person.Person;
 import swift.model.task.Task;
-import swift.model.task.exceptions.DuplicateTaskException;
-import swift.model.task.exceptions.TaskNotFoundException;
 
 /**
  * Represents a list of person-task bridges.
@@ -40,7 +40,7 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
     public void add(PersonTaskBridge toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateTaskException();
+            throw new DuplicateBridgeException();
         }
         internalList.add(toAdd);
     }
@@ -54,7 +54,7 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
     public void remove(PersonTaskBridge toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new TaskNotFoundException();
+            throw new BridgeNotFoundException();
         }
     }
 
@@ -63,7 +63,7 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
      *
      * @param person The person whose person-task bridges are to be removed.
      */
-    public void remove(Person person) {
+    public void removePerson(Person person) {
         requireNonNull(person);
         internalList.removeIf(bridge -> bridge.getPersonId().equals(person.getId()));
     }
@@ -73,7 +73,7 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
      *
      * @param task The task whose person-task bridges are to be removed.
      */
-    public void remove(Task task) {
+    public void removeTask(Task task) {
         requireNonNull(task);
         internalList.removeIf(bridge -> bridge.getTaskId().equals(task.getId()));
     }
@@ -94,7 +94,7 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonTaskBridgeList // instanceof handles nulls
-                && internalList.equals(((PersonTaskBridgeList) other).internalList));
+                        && internalList.equals(((PersonTaskBridgeList) other).internalList));
     }
 
     @Override
