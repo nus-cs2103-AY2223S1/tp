@@ -162,6 +162,19 @@ Format: `task delete i/INDEX`
 Examples:
 * `task list` followed by `task delete i/2` deletes the 2nd task in the task list.
 
+### Sorting tasks : `task sort`
+
+Sorts the task list based on the input flag.
+
+Format: `task delete s/SORT`
+
+SORT flags:
+* ac: Chronologically sort tasks by date and time added
+* a: Alphabetically sort task descriptions
+
+Examples:
+* `task sort s/a` will change the task list in the GUI to show a task list sorted by description alphabetical order
+
 ### Exiting the program : `bye`
 
 Ends the application.

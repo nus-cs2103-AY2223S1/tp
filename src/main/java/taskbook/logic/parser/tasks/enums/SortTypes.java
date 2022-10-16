@@ -4,8 +4,8 @@ package taskbook.logic.parser.tasks.enums;
  * Represents the different types of sorts that TaskBook supports for its task list
  */
 public enum SortTypes {
-    DESC_ALPHA("a"),
-    DESC_ADDED_CHRON("ac"),
+    DESC_ALPHABETICAL("a"),
+    DESC_CHRONOLOGICAL_ADDED("ca"),
     INVALID("INVALID_SORT_TYPE");
 
     public final String flag;
@@ -25,9 +25,9 @@ public enum SortTypes {
     public static SortTypes parse(String str) {
         switch (str) {
         case "a":
-            return DESC_ALPHA;
-        case "ac":
-            return DESC_ADDED_CHRON;
+            return DESC_ALPHABETICAL;
+        case "ca":
+            return DESC_CHRONOLOGICAL_ADDED;
         default:
             return INVALID;
         }
