@@ -167,4 +167,12 @@ public class ParserUtil {
         }
         return new Description(trimmedDescription);
     }
+
+    /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code address} is invalid.
+     */
+    public static
 }

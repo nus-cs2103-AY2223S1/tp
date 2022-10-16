@@ -1,5 +1,7 @@
 package tracko.model.items;
 
+import java.math.BigDecimal;
+
 import static tracko.commons.util.AppUtil.checkArgument;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -7,23 +9,23 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should be non-negative.";
 
-    public final float price;
+    public final BigDecimal price;
 
     /**
      * Constructs a {@code Price}.
      * @param price The Price of an item.
      */
-    public Price(int price) {
+    public Price(String price) {
         requireAllNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = price;
+        checkArgument(isValidPrice(Float.parseFloat(price)), MESSAGE_CONSTRAINTS);
+        this.price = new BigDecimal(price);
     }
 
-    public static boolean isValidPrice(int test) {
+    public static boolean isValidPrice(float test) {
         return !(test < 0);
     }
 
-    public Float getPrice() {
+    public BigDecimal getPrice() {
         return this.price;
     }
 
@@ -43,6 +45,6 @@ public class Price {
         }
 
         Price otherPrice = (Price) other;
-        return this.equals(otherPrice.getPrice());
+        return this.price.equals(otherPrice.getPrice());
     }
 }

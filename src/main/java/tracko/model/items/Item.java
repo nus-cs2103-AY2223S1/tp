@@ -30,8 +30,9 @@ public class Item {
      * @param sellPrice The price the item is sold at.
      * @param costPrice The price the item was bought at.
      */
-    public Item(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags, Price sellPrice, Price costPrice) {
-        requireAllNonNull(itemName, description, tags);
+    public Item(ItemName itemName, Description description, Quantity quantity, Set<Tag> tags,
+                Price sellPrice, Price costPrice) {
+        requireAllNonNull(itemName, description, tags, sellPrice, costPrice);
         this.itemName = itemName;
         this.description = description;
         this.quantity = quantity;

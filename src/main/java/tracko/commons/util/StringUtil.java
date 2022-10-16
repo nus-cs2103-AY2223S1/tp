@@ -82,4 +82,8 @@ public class StringUtil {
             return false;
         }
     }
+
+    public static boolean is2dpFloat() {
+
+    }
 }
