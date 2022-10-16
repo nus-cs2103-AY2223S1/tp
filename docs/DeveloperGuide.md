@@ -272,22 +272,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                           | I want to …​                                                                                | So that I can…​                                                                          |
-| -------- |-----------------------------------|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
-| `* * *`  | student                           | add an internship position that I have applied to                                           | begin tracking my internship application progress                                        |
-| `* * *`  | student                           | update an internship position that I have applied to                                        | keep the tracker updated on the current state of my internship application               |
-| `* * *`  | student                           | add an interview dateTime to an internship application                                          | track when my interview for that particular internship application is coming up          |
-| `* * *`  | student                           | filter my internship applications according to position                                     | view all my internship applications for that particular position that I am interested in |
-| `* *`    | student                           |  delete an internship that I am not interested in anymore                         | get rid of internship applications that are not relevant to me anymore                   |
-| `*`      | student                           |  add an interview dateTime to an application in the "Interview" stage                 | track when my interview is coming up.                                                    |
-| `*`      | student                           | add an expiry dateTime to an application that is in the “Online Assessment” stage.              | keep track of when I have to complete the Online Assesment by                            |
-| `*`      | student                           |  rank all my internship applications                                              | decide which applications that I have to focus on more.                                  |
+| Priority | As a …​                           | I want to …​                                                                                  | So that I can…​                                                                          |
+| -------- |-----------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| `* * *`  | student                           | add an internship position that I have applied to                                             | begin tracking my internship application progress                                        |
+| `* * *`  | student                           | update an internship position that I have applied to                                          | keep the tracker updated on the current state of my internship application               |
+| `* * *`  | student                           | add an interview date and time to an internship application                                        | track when my interview for that particular internship application is coming up          |
+| `* * *`  | student                           | filter my internship applications according to position                                       | view all my internship applications for that particular position that I am interested in |
+| `* *`    | student                           | delete an internship that I am not interested in anymore                                      | get rid of internship applications that are not relevant to me anymore                   |
+| `*`      | student                           | add an interview date and time to an application in the "Interview" stage                     | track when my interview is coming up.                                                    |
+| `*`      | student                           | add an expiry date and time to an application that is in the “Online Assessment” stage.       | keep track of when I have to complete the Online Assesment by                            |
+| `*`      | student                           | rank all my internship applications                                                           | decide which applications that I have to focus on more.                                  |
 | `*`      | student                           | move an existing application to the "Rejection" stage and provide a reason why I got rejected | keep track of common trends or reasons for my failed applications                        |
-| `*`      | easily confused student           | prevent myself from adding the same internship application twice                 | I dont get distracted by duplicate internships                                           |
-| `*`      | broke student                     | sort the internships based on pay                                                           | determine which applications are more worth it in this current economic state.           |
-| `*`      | less experienced student with CLI | view the list of commands                                                                   | familiarise myself with the commands.                                                    |
-| `*`      | less experienced student          | view some helpful resources                                                                 | understand the hiring process and tech landscapes better.                                |
-| `*`      | anxious student                   |  switch to a calender view                                                        |       easily see all my upcoming interviews/OAs/expiring offers                      |
+| `*`      | easily confused student           | prevent myself from adding the same internship application twice                              | I dont get distracted by duplicate internships                                           |
+| `*`      | broke student                     | sort the internships based on pay                                                             | determine which applications are more worth it in this current economic state.           |
+| `*`      | less experienced student with CLI | view the list of commands                                                                     | familiarise myself with the commands.                                                    |
+| `*`      | less experienced student          | view some helpful resources                                                                   | understand the hiring process and tech landscapes better.                                |
+| `*`      | anxious student                   | switch to a calender view                                                                     |       easily see all my upcoming interviews/OAs/expiring offers                      |
 
 
 
