@@ -59,8 +59,12 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personWithAppointmentToEdit = lastShownList.get(index.getZeroBased());
-        MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToEdit.getAppointments();
+        Person personWithAppointmentToAdd = lastShownList.get(index.getZeroBased());
+        MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToAdd.getAppointments();
+
+        if(appointmentSet.contains(appointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
 
         if (appointmentSet.size() == MAXIMUM_NUM_OF_APPOINTMENTS) {
             throw new CommandException(MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS);
@@ -68,6 +72,7 @@ public class AddAppointmentCommand extends Command {
 
         appointmentSet.add(appointment);
 
+        model.setPerson(personWithAppointmentToAdd, personWithAppointmentToAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment));
     }

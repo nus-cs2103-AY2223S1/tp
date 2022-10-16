@@ -43,7 +43,7 @@ public class EditAppointmentDescriptor {
     }
 
     public void setLocation(Location location) {
-        this.dateTime = dateTime;
+        this.location = location;
     }
 
     public static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {

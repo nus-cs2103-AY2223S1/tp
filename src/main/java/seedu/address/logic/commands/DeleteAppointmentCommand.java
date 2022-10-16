@@ -69,7 +69,7 @@ public class DeleteAppointmentCommand extends Command {
             throw new CommandException(String.format(MESSAGE_INVALID_APPOINTMENT_INDEX_FORMAT, appointmentIndex));
         }
 
-
+        model.setPerson(personWithAppointmentToDelete, personWithAppointmentToDelete);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, deletedAppointment));
     }

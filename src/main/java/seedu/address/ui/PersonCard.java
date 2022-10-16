@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Flow;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Appointment;
@@ -70,11 +72,8 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
         int listSize = appointmentList.size();
         for (int i = 0; i < listSize; i++) {
-            if (i == listSize - 1) {
-                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()));
-            } else {
-                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString() + COMMA));
-            }
+            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
+                    + "                                                                                 "));
         }
     }
 
