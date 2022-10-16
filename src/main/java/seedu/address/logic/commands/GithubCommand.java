@@ -22,7 +22,7 @@ public class GithubCommand extends Command {
 
     public static final String COMMAND_WORD = "github";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens up Github Profile page associated to chosen "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens up Github Profile page associated to index specified "
             + "address in default browser.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
