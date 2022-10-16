@@ -21,7 +21,7 @@ public class AddProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-a";
 
-    public static final String MESSAGE_ADD_PROJECT_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_ID + "CLIENT_ID "
@@ -35,7 +35,7 @@ public class AddProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
-    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 
     private final Project toAddProject;
     private final Client projectClient;
@@ -65,7 +65,7 @@ public class AddProjectCommand extends ProjectCommand {
         model.addProject(toAddProject);
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_ADD_PROJECT_SUCCESS, toAddProject));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddProject));
     }
 
     @Override
