@@ -20,7 +20,9 @@ public class TaskMarkCommandParser implements Parser<TaskMarkCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public TaskMarkCommand parse(String args) throws ParseException {
+
         requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TEAM_INDEX, PREFIX_TASK_INDEX);
 
