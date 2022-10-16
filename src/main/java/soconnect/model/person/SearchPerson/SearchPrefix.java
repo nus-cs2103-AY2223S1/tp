@@ -25,7 +25,8 @@ public class SearchPrefix {
         ADDRESS,
         EMAIL,
         PHONE,
-        TAG
+        TAG,
+        NOTPREFIX
     }
 
     /**
@@ -43,8 +44,10 @@ public class SearchPrefix {
             return SearchPrefixCommand.EMAIL;
         case INDICATOR_PHONE:
             return SearchPrefixCommand.PHONE;
-        default:
+        case INDICATOR_TAG:
             return SearchPrefixCommand.TAG;
+        default:
+            return SearchPrefixCommand.NOTPREFIX;
         }
     }
 }
