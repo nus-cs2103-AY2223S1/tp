@@ -23,7 +23,6 @@ import seedu.address.logic.commands.ViewListingClientsCommand;
 import seedu.address.logic.commands.ViewListingOffersCommand;
 import seedu.address.logic.commands.ViewListingsCommand;
 import seedu.address.logic.commands.ViewPersonListCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

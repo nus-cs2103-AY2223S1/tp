@@ -1,17 +1,19 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
+import java.util.Set;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
+/**
+ * Adds a set of Tags to the Listing.
+ */
+public class AddTagsToListingCommand extends Command {
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-
-public class AddTagsToListingCommand extends Command{
     public static final String COMMAND_WORD = "addTags";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tags to the listing in the address book. "

@@ -128,7 +128,7 @@ public class Listing {
 
     /**
      * Checks if the tag already exists for this listing.
-     * @param tag the tag to be checked
+     * @param toCheck the tags to be checked
      * @return true if the tag exists, false otherwise
      */
     public boolean hasTag(Set<Tag> toCheck) {

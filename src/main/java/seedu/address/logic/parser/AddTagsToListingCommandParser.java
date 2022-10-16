@@ -1,17 +1,20 @@
 package seedu.address.logic.parser;
 
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.AddTagsToListingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LISTING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-public class AddTagsToListingCommandParser implements Parser<AddTagsToListingCommand>{
+/**
+ * Parses input arguments and creates a new AddTagsToListingCommand object.
+ */
+public class AddTagsToListingCommandParser implements Parser<AddTagsToListingCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTagsToListingCommand
@@ -24,7 +27,8 @@ public class AddTagsToListingCommandParser implements Parser<AddTagsToListingCom
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG, PREFIX_LISTING_ID)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagsToListingCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddTagsToListingCommand.MESSAGE_USAGE));
         }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
