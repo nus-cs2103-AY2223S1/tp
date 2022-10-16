@@ -44,6 +44,9 @@ public class CreateMeetingCommand extends Command {
     public static final String DUPLICATE_MEETINGS = "Oops! Seems that you have already scheduled to meet "
         + "the same person(s) at the same time";
 
+    private static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
+        + "person to a meeting twice!";
+
     private final String meetingInfo;
 
     public CreateMeetingCommand(String meetingInfo) {
@@ -126,18 +129,16 @@ public class CreateMeetingCommand extends Command {
             return new CommandResult(e.getMessage());
 
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(INCORRECT_NUMBER_OF_ARGUMENTS);
+            return new CommandResult(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS);
 
         } catch (PersonNotFoundException e) {
-            return new CommandResult(PERSON_NOT_FOUND);
+            return new CommandResult(CreateMeetingCommand.PERSON_NOT_FOUND);
 
         } catch (DuplicateMeetingException e) {
-            return new CommandResult(DUPLICATE_MEETINGS);
+            return new CommandResult(CreateMeetingCommand.DUPLICATE_MEETINGS);
 
         } catch (DuplicatePersonException e) {
-            return new CommandResult("It looks like you are adding the same "
-                + "person to a meeting twice!");
-
+            return new CommandResult(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET);
         }
     }
 

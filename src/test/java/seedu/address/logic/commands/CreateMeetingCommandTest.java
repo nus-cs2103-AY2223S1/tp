@@ -71,6 +71,17 @@ public class CreateMeetingCommandTest {
     }
 
     @Test
+    public void execute_duplicatePersonToMeet_throwsDuplicatePersonException() throws Exception {
+        String meetingInfo = "Amy }} Amy ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+
+        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
+    }
+
+    @Test
     public void execute_personToMeetIsBlank_throwsParseException() throws Exception {
         String meetingInfo = ";;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
