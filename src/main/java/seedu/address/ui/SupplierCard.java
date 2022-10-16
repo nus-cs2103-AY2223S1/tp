@@ -57,6 +57,9 @@ public class SupplierCard extends UiPart<Region> {
         fillSupplierCard();
     }
 
+    /**
+     * Fills the relevant fields in the supplier card.
+     */
     public void fillSupplierCard() {
         // Set the contact details
         id.setText(displayedIndex + ". ");

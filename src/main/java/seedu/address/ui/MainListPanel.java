@@ -8,11 +8,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.pet.Pet;
 
 /**
  * Panel containing the list of all contacts.
@@ -59,14 +57,14 @@ public class MainListPanel extends UiPart<Region> {
                     Deliverer deliverer = (Deliverer) object;
                     setGraphic(new DelivererCard(deliverer, getIndex() + 1).getRoot());
                 }
-/*                if (object instanceof Pet) {
+                /* if (object instanceof Pet) {
 
                 }
                 if (object instanceof Order) {
                     Order order = (Order) object;
                     setGraphic(new OrderCard(order, getIndex() + 1, OrderCard.SHOULD_DISPLAY_BUYER_NAME)
                             .getRoot());
-                }*/
+                } */
 
             }
         }

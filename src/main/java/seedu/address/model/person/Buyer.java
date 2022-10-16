@@ -74,7 +74,7 @@ public class Buyer extends Person {
      * @return An {@code ObservableList} instance containing all the buyer's orders.
      */
     public ObservableList<Order> getOrdersAsObservableList() {
-        return  FXCollections.observableList(getOrders());
+        return FXCollections.observableList(getOrders());
     }
 
     public void addOrder(Order order) {

@@ -70,7 +70,7 @@ public class Supplier extends Person {
      */
     public ObservableList<Pet> getPetsAsObservableList() {
         // TODO: this should be FXCollections.observableList(getPetsOnSale()) but it will cause exception
-        return  FXCollections.observableList(getPetsOnSale() == null ? new ArrayList<>() : getPetsOnSale());
+        return FXCollections.observableList(getPetsOnSale() == null ? new ArrayList<>() : getPetsOnSale());
     }
 
     public void addPet(Pet pet) {

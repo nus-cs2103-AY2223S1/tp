@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
+import java.awt.Rectangle;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,9 +20,9 @@ import seedu.address.model.pet.Pet;
  */
 public class PetCard extends UiPart<Region> {
     private static final String FXML = "PetListCard.fxml";
-    private final int displayedIndex;
     protected static final boolean SHOULD_DISPLAY_SUPPLIER_NAME = true;
     protected static final boolean SHOULD_NOT_DISPLAY_SUPPLIER_NAME = false;
+    private final int displayedIndex;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

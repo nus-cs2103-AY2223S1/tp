@@ -69,7 +69,7 @@ public class Deliverer extends Person {
      */
     public ObservableList<Order> getOrdersAsObservableList() {
         // TODO: should be FXCollections.observableList(getOrders()) but it causes exception
-        return  FXCollections.observableList(getOrders() == null ? new ArrayList<>() : getOrders());
+        return FXCollections.observableList(getOrders() == null ? new ArrayList<>() : getOrders());
     }
 
     @Override
