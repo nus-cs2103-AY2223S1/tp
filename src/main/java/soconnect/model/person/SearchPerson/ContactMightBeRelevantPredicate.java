@@ -24,31 +24,30 @@ public class ContactMightBeRelevantPredicate implements Predicate<Person> {
 
     /**
      * Constructs the {@code ContactMightBeRelevantPredicate} object.
+     * Tests the person by matching the keywords to all the information field, ignoring prefix groupings.
      */
     public ContactMightBeRelevantPredicate(List<String> keywords) {
         this.keywords = keywords;
-    }
-    private String getHalfKeyword(String keyword) {
-        return keyword.substring(0, keyword.length() / 2);
     }
 
     @Override
     public boolean test(Person person) {
         isNameContained = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(
-                        person.getName().fullName, getHalfKeyword(keyword)));
+                .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
+                        person.getName().fullName, keyword
+                ));
         isAddressContained = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(
-                        person.getAddress().value, getHalfKeyword(keyword)));
+                .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
+                        person.getAddress().value, keyword));
         isEmailContained = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(
-                        person.getEmail().value, getHalfKeyword(keyword)));
+                .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
+                        person.getEmail().value, keyword));
         isPhoneContained = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsKeywordsIgnoreCase(
-                        person.getPhone().value, getHalfKeyword(keyword)));
+                .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
+                        person.getPhone().value, keyword));
         isTagContained = keywords.stream()
-                .anyMatch(keyword -> person.getTags().stream()
-                        .anyMatch(tag -> StringUtil.containsKeywordsIgnoreCase(tag.tagName, getHalfKeyword(keyword))));
+                .allMatch(keyword -> person.getTags().stream()
+                        .anyMatch(tag -> StringUtil.containsSomeKeywordsIgnoreCase(tag.tagName, keyword)));
         return isNameContained || isAddressContained || isEmailContained || isPhoneContained || isTagContained;
     }
 

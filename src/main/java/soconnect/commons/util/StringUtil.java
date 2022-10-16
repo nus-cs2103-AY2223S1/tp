@@ -64,6 +64,34 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains some of the {@code keywords}.
+     *   Ignores case and order, but full keywords match is not required.
+     *   In the event of not match, decrease the keywords size by one-forth.
+     *   <br>examples:<pre>
+     *       containsWordIgnoreCase("ABc def", "abc") == true
+     *       containsWordIgnoreCase("ABc def", "abc DEF") == true
+     *       containsWordIgnoreCase("ABc def", "AB") == true //not a full word match
+     *       </pre>
+     *
+     * @param sentence Cannot be null.
+     * @param keywords Cannot be null, cannot be empty, can be multiple words.
+     */
+    public static boolean containsSomeKeywordsIgnoreCase(String sentence, String keywords) {
+        requireAllNonNull(sentence, keywords);
+
+        List<String> preppedKeywords = Arrays.asList(keywords.toUpperCase().trim().split("(?!^)"));
+        checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
+
+        List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("(?!^)"));
+
+        if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
+            return wordsInPreppedSentence.containsAll(preppedKeywords);
+        }
+
+        return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, preppedKeywords.size() * 3 / 4));
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
