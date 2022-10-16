@@ -154,6 +154,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Mod mark feature
+
+#### Implementation
+
+The `ModCommandParser` implements the operation `ModCommandParser#parseMarkCommand(String args)` to read inputs entered by the student for execution in `ModMarkCommand`. `ModMarkCommand` extends `ModCommand` to execute the `mod mark` command.
+
+During execution, all modules specified by the student are marked in the `Person` class with the operation `Person#markMods(ObservableList<Mod> mods)`. This is because the list of modules is stored and associated with a `Person`, hence any updates on the module status in the current list of modules will be handled in `Person`. Each individual module is then marked in the `Mod` class with the operation `Mod#markMod()`.
+
+The following (partial) class diagram shows how the different classes involved in the mod mark operation interacts with one another:
+
+![ModMarkClassDiagram](images/ModMarkClassDiagram.png)
+
+The following activity diagram summarises what happens when a student enters a `mod mark` command, assuming the command is valid and no error occurs:
+
+![ModMarkWithLoopActivityDiagram](images/ModMarkWithLoopActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How mod mark executes:**
+
+* **Alternative 1 (current choice):** Marks mods of a batchmate whose index is specified.
+    * Pros: Easier to implement. Shorter command to enter.
+    * Cons: May be hard to find and locate the index of the batchmate especially when the list of batchmates is long.
+
+* **Alternative 2:** Marks mods of a batchmate whose name is specified.
+    * Pros: Easier to find the batchmate by directly entering the name.
+    * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -322,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. The specified batchmate is not found.
     * a1. Mass Linkers detects an error in specified batchmate (non valid index).
-    * a2. Mass Linkers requests for a valid batchmate. 
+    * a2. Mass Linkers requests for a valid batchmate.
     * Step a1 is repeated until a valid index is given. \
       Use case resumes from step 3.
 
@@ -351,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 4: Add a tag to a batchmate**
 
 **MSS**
@@ -377,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 5: Mark a module completed**
 
 **MSS**
