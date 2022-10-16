@@ -11,7 +11,7 @@ import taskbook.model.person.Person;
 import taskbook.model.task.Task;
 
 /**
- * A Model stub that always accept the person being added.
+ * A Model stub that always accept the task being added.
  */
 public class ModelStubAcceptingTaskAdded extends ModelStub {
     final ArrayList<Person> personsAdded = new ArrayList<>();

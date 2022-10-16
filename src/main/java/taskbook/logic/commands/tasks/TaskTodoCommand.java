@@ -28,7 +28,6 @@ public class TaskTodoCommand extends TaskAddCommand {
             + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION";
     public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "";
 
     /**
      * Creates a TaskTodoCommand to add a task with the specified
