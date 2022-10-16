@@ -21,6 +21,7 @@ public class StudentBuilder extends PersonBuilder {
     private StudentId id;
     private TelegramHandle telegramHandle;
     private Set<ModuleCode> studentInfo;
+    private Set<ModuleCode> teachingInfo;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -30,6 +31,7 @@ public class StudentBuilder extends PersonBuilder {
         id = new StudentId(DEFAULT_ID);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         studentInfo = new HashSet<>();
+        teachingInfo = new HashSet<>();
     }
 
     /**
@@ -41,6 +43,7 @@ public class StudentBuilder extends PersonBuilder {
         id = new StudentId(DEFAULT_ID);
         telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM_HANDLE);
         studentInfo = new HashSet<>();
+        teachingInfo = new HashSet<>();
     }
 
     /**
@@ -79,6 +82,15 @@ public class StudentBuilder extends PersonBuilder {
     }
 
     /**
+     * Sets the {@code studentInfo} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTeachingInfo(String ... moduleCodes) {
+        this.teachingInfo = SampleDataUtil.getModuleCodeSet(moduleCodes);
+        return this;
+    }
+
+
+    /**
      * Builds a {@code Student}.
      *
      * @return the student built for testing
@@ -86,7 +98,7 @@ public class StudentBuilder extends PersonBuilder {
     public Student build() {
         Person person = super.build();
         return new Student(person.getName(), person.getPhone(), person.getEmail(),
-                person.getAddress(), person.getTags(), id, telegramHandle, studentInfo);
+                person.getAddress(), person.getTags(), id, telegramHandle, studentInfo, teachingInfo);
     }
 
 }
