@@ -88,7 +88,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
-        if (appointmentSet.contains(editedAppointment)) {
+        if (appointmentSet.contains(editedAppointment) || appointmentToEdit.equals(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
         appointmentSet.add(editedAppointment);
