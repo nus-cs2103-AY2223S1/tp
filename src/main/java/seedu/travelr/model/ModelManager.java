@@ -125,9 +125,14 @@ public class ModelManager implements Model {
         updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
+    /**
+     * This is when we create a new event
+     *
+     * @param event
+     */
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        addressBook.addEventToBucketListAndAllEventsList(event);
         //update filtered trip list??
     }
 
@@ -178,6 +183,7 @@ public class ModelManager implements Model {
     public AllInBucketListPredicate getBucketPredicate() {
         return new AllInBucketListPredicate(bucketList);
     }
+
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
