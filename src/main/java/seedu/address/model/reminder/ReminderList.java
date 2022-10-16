@@ -60,7 +60,7 @@ public class ReminderList implements ReadOnlyReminderList {
     }
 
     /**
-     * Returns true if the set contains an equivalent tag as the given argument.
+     * Returns true if the list contains an equivalent reminder as the given argument.
      */
     public boolean contains(Reminder toCheck) {
         requireNonNull(toCheck);
