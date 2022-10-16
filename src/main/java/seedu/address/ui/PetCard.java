@@ -20,9 +20,9 @@ import seedu.address.model.pet.Pet;
  */
 public class PetCard extends UiPart<Region> {
     private static final String FXML = "PetListCard.fxml";
-    protected static final boolean SHOULD_DISPLAY_SUPPLIER_NAME = true;
-    protected static final boolean SHOULD_NOT_DISPLAY_SUPPLIER_NAME = false;
-    private final int displayedIndex;
+    public static final boolean SHOULD_DISPLAY_SUPPLIER_NAME = true;
+    public static final boolean SHOULD_NOT_DISPLAY_SUPPLIER_NAME = false;
+
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -32,7 +32,8 @@ public class PetCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Pet pet;
+    private final Pet pet;
+    private final int displayedIndex;
 
     @FXML
     private Label age;
