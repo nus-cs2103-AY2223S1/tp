@@ -34,7 +34,7 @@ public class FilterCommand extends ModelCommand {
             + "[" + PREFIX_HOUSE + "HOUSE] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -42,13 +42,15 @@ public class FilterCommand extends ModelCommand {
 
     /** description to filter the resident with */
     private final ResidentDescriptor filterPersonDescriptor;
+    private final String specifier;
 
     /**
      * @param filterPersonDescriptor description object to filter the resident with
      */
-    public FilterCommand(ResidentDescriptor filterPersonDescriptor) {
+    public FilterCommand(ResidentDescriptor filterPersonDescriptor, String specifier) {
         requireNonNull(filterPersonDescriptor);
         this.filterPersonDescriptor = new ResidentDescriptor(filterPersonDescriptor);
+        this.specifier = specifier;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class FilterCommand extends ModelCommand {
         //return new CommandResult("Command Still in progress");
         requireNonNull(model);
         AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(filterPersonDescriptor);
+                new AttributesMatchKeywordsPredicate(filterPersonDescriptor, specifier);
         model.updateFilteredResidentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, model.getFilteredResidentList().size()));

@@ -24,6 +24,9 @@ import seedu.rc4hdb.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SPECIFIER = "Specifier should be either /any or /all";
+    public static final String VALID_ALL_SPECIFIER = "/all";
+    public static final String VALID_ANY_SPECIFIER = "/any";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -169,4 +172,21 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses a {@code String house} into an {@code House}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code house} is invalid.
+     */
+    public static String parseFilterSpecifier(String specifier) throws ParseException {
+        requireNonNull(specifier);
+        String trimmedSpecifier = specifier.trim();
+        if (specifier != VALID_ANY_SPECIFIER && specifier != VALID_ALL_SPECIFIER) {
+            throw new ParseException(MESSAGE_INVALID_SPECIFIER);
+        }
+        return specifier;
+    }
+
+
 }
