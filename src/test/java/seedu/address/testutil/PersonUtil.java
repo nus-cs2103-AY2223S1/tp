@@ -43,7 +43,7 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         person.getMods().stream().forEach(
-                s -> sb.append(PREFIX_MOD + s.modName + " ")
+                s -> sb.append(PREFIX_MOD + s.getModName() + " ")
         );
         return sb.toString();
     }
@@ -71,7 +71,7 @@ public class PersonUtil {
             if (mods.isEmpty()) {
                 sb.append(PREFIX_MOD);
             } else {
-                mods.forEach(s -> sb.append(PREFIX_MOD).append(s.modName).append(" "));
+                mods.forEach(s -> sb.append(PREFIX_MOD).append(s.getModName()).append(" "));
             }
         }
         return sb.toString();

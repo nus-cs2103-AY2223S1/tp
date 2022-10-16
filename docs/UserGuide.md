@@ -156,8 +156,8 @@ Format: `mod add INDEX MODULE [MORE_MODULES]...`
 * Adds module(s) to the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod add 1 cs2103t` adds the module `cs2103t` to the 1st batchmate in the currently displayed list.
-* `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` to the 3rd batchmate in the currently displayed list.
+* `mod add 1 cs2103t` adds the module `CS2103T` to the 1st batchmate in the currently displayed list.
+* `mod add 3 cs2100 cs2103t cs2101 cs2105` adds the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` to the 3rd batchmate in the currently displayed list.
 
 ### Deleting module from a batchmate: `mod delete`
 
@@ -168,8 +168,8 @@ Format: `mod delete INDEX MODULE [MORE_MODULES]...`
 * Deletes module(s) from the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod delete 1 cs2103t` deletes the module `cs2103t` from the 1st batchmate in the currently displayed list.
-* `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` from the 3rd batchmate in the currently displayed list.
+* `mod delete 1 cs2103t` deletes the module `CS2103T` from the 1st batchmate in the currently displayed list.
+* `mod delete 3 cs2100 cs2103t cs2101 cs2105` deletes the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` from the 3rd batchmate in the currently displayed list.
 
 ### Marking module as taken: `mod mark`
 
@@ -180,8 +180,8 @@ Format: `mod mark INDEX MODULE [MORE_MODULES]...`
 * Marks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod mark 1 cs2103t` marks the module `cs2103t` of the 1st batchmate in the currently displayed list as `taken`.
-* `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` of the 3rd batchmate in the currently displayed list as `taken`.
+* `mod mark 1 cs2103t` marks the module `CS2103T` of the 1st batchmate in the currently displayed list as `taken`.
+* `mod mark 3 cs2100 cs2103t cs2101 cs2105` marks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `taken`.
 
 ### Unmarking module as not taken: `mod unmark`
 
@@ -192,8 +192,8 @@ Format: `mod unmark INDEX MODULE [MORE_MODULES]...`
 * Unmarks module(s) of the batchmate at the specific `INDEX` in the __currently displayed list__. Refer to the section on _Notes about parameters_ at the start of [Features](#features) for more details.
 
 Examples:
-* `mod unmark 1 cs2103t` unmarks the module `cs2103t` of the 1st batchmate in the currently displayed list as `not taken`.
-* `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `cs2100`, `cs2103t`, `cs2101` and `cs2105` of the 3rd batchmate in the currently displayed list as `not taken`.
+* `mod unmark 1 cs2103t` unmarks the module `CS2103T` of the 1st batchmate in the currently displayed list as `not taken`.
+* `mod unmark 3 cs2100 cs2103t cs2101 cs2105` unmarks the modules `CS2100`, `CS2103T`, `CS2101` and `CS2105` of the 3rd batchmate in the currently displayed list as `not taken`.
 
 ### Find modules: `mod find`
 
@@ -202,12 +202,12 @@ Finds batchmates with modules matching all the specified modules.
 Format: `mod find MODULE [MORE_MODULES]...`
 
 * The search is case-insensitive. e.g `cs2100` will match `CS2100`.
-* Partial words will be matched e.g. `cs21` will match `cs2100` and `CS2101`.
+* Partial words will be matched e.g. `cs21` will match `CS2100` and `CS2101`.
 
 Examples:
-* `mod find cs21` returns batchmates who have taken `cs2100`, `cs2101` or `cs2103t`.
-* `mod find cs21 cs2030s` returns batchmates who have taken `cs2100` and `cs2030`, or `cs2103t` and `cs2030`, or `cs2103t` and `cs2030s`.
-* `mod find cs2101 cs2103t` returns batchmates who have taken `cs2101` and `cs2103t`.
+* `mod find cs21` returns batchmates who have taken `CS2100`, `CS2101` or `CS2103T`.
+* `mod find cs21 cs2030s` returns batchmates who have taken `CS2100` and `CS2030`, or `CS2103T` and `CS2030`, or `CS2103T` and `CS2030S`.
+* `mod find cs2101 cs2103t` returns batchmates who have taken `CS2101` and `CS2103T`.
 
 ### Exiting the program : `exit`
 
@@ -218,6 +218,22 @@ Format: `exit`
 ### Saving the data
 
 Data in Mass Linkers is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
+
+### Module Categorisation
+
+Modules are automatically categorised upon their creation.
+
+Below is the categorisation.
+
+| Category                  | Module Prefix      | Colour      |
+|---------------------------|--------------------|-------------|
+| Computing Modules         | CS, IS, CP         | To be added |
+| Math Modules              | ST, MA             | To be added |
+| Science Modules           | LS, CM, PC         | To be added |
+| General Education Modules | GE, UT             | To be added |
+| Unrestricted Electives    | All other prefixes | To be added |
+
+Module prefix refers to the first two characters of every module name.
 
 --------------------------------------------------------------------------------------------------------------------
 
