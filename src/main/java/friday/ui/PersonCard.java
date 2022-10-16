@@ -51,7 +51,7 @@ public class PersonCard extends UiPart<Region> {
         this.student = student;
         id.setText(displayedIndex + ". ");
         name.setText(student.getName().fullName);
-        telegramHandle.setText(student.getTelegramHandle().toString());
+        telegramHandle.setText(String.format("Telegram: %s", student.getTelegramHandle().toString()));
         masteryCheck.setText(String.format("Mastery Check: %s", student.getMasteryCheck().toString()));
         consultation.setText(String.format("Consultation: %s", student.getConsultation().toString()));
         remark.setText(String.format("Remark(s): %s", student.getRemark().toString()));
