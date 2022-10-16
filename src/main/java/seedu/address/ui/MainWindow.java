@@ -212,6 +212,12 @@ public class MainWindow extends UiPart<Stage> {
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
     }
+    @FXML
+    public void handleShowTabAllSchedule() {
+        scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+        tabPane.getSelectionModel().select(SCHEDULE);
+    }
 
     void show() {
         primaryStage.show();

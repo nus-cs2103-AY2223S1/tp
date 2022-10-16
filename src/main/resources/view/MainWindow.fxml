@@ -40,7 +40,8 @@
             <MenuItem fx:id="tabStudents" mnemonicParsing="false" onAction="#handleShowTabStudents" text="Students" />
           </Menu>
           <Menu mnemonicParsing="false" text="Schedules">
-            <MenuItem fx:id="tabSchedule" mnemonicParsing="false" onAction="#handleShowTabSchedule" text="Schedules" />
+            <MenuItem fx:id="tabSchedule" mnemonicParsing="false" onAction="#handleShowTabAllSchedule"
+                      text="Schedules" />
           </Menu>
         </MenuBar>
 

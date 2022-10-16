@@ -217,6 +217,11 @@ public class ModelManager implements Model {
         return filteredSchedule;
     }
 
+    @Override
+    public ObservableList<Schedule> getAllScheduleList() {
+        return new FilteredList<>(this.addressBook.getScheduleList());
+    }
+
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {

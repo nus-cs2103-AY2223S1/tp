@@ -134,6 +134,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered module schedule list */
     ObservableList<Schedule> getFilteredScheduleList();
 
+    /** Returns an unmodifiable view of the whole module schedule list */
+    ObservableList<Schedule> getAllScheduleList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

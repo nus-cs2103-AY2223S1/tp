@@ -41,6 +41,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of module schedules */
     ObservableList<Schedule> getFilteredScheduleList();
 
+    /** Returns an unmodifiable view of the whole list of module schedules */
+    ObservableList<Schedule> getAllScheduleList();
+
     /**
      * Returns the user prefs' address book file path.
      */
