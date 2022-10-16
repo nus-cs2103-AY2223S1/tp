@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.function.Supplier;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;

@@ -9,6 +9,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Patient;
 
+
+// TODO: KIV this class for viewPatientDetails(TBC)
+/**
+ * TruncatedPersonCard is a UI component that displays only the name and tags of a {@code Patient}.
+ */
 public class TruncatedPersonCard extends UiPart<Region> {
     private static final String FXML = "TruncatedPersonListCard.fxml";
 
@@ -23,6 +28,9 @@ public class TruncatedPersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Creates a {@code TruncatedPersonCard} with the given {@code Patient} and index to display.
+     */
     public TruncatedPersonCard(Patient patient, int displayedIndex) {
         super(FXML);
         cardPane.setSpacing(1);

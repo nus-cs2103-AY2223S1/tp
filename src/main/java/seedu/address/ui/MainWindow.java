@@ -17,7 +17,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -206,7 +205,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isTaskRelated()) {
-                outputPanel.handleTask(logic.getFilteredPersonList().get(0));
+                outputPanel.handleTask(logic.getPatientOfInterest());
             }
 
             if (commandResult.isAddPatient()) {
