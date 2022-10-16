@@ -63,9 +63,4 @@ public class ClientEmail {
                 && value.equals(((ClientEmail) other).value)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }
