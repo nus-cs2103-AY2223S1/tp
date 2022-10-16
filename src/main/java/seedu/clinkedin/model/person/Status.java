@@ -10,7 +10,7 @@ import static seedu.clinkedin.commons.util.AppUtil.checkArgument;
 public class Status {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Status should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the status  must not be a whitespace,
