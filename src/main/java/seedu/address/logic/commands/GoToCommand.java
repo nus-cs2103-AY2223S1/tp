@@ -2,9 +2,16 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonIsInModulePredicate;
 
 /**
  * Go to the exact module in address book whose module code is the argument keywords.
@@ -18,19 +25,37 @@ public class GoToCommand extends Command {
             + "Example: " + COMMAND_WORD + " CS1231S";
 
     private final ModuleCodeMatchesKeywordPredicate predicate;
+    private final ModuleCode moduleCode;
 
-    public GoToCommand(ModuleCodeMatchesKeywordPredicate predicate) {
+    /**
+     * Constructs a {@code GoToCommand}, with a {@code Predicate} that filters {@code Module}s and a {@code ModuleCode}.
+     *
+     * @param predicate A predicate that filters {@code Module}.
+     * @param moduleCode A valid {@code ModuleCode}.
+     */
+    public GoToCommand(ModuleCodeMatchesKeywordPredicate predicate, ModuleCode moduleCode) {
         this.predicate = predicate;
+        this.moduleCode = moduleCode;
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Module moduleToGoTo = model.getModuleUsingModuleCode(moduleCode, false);
+
+        Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleToGoTo);
+
         model.updateFilteredModuleList(predicate);
 
         if (model.getFilteredModuleList().isEmpty()) {
-            return new CommandResult(Messages.MESSAGE_NO_SUCH_MODULE);
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         }
+
+        assert(model.getFilteredModuleList().size() == 1); // GoTo should display maximally one module.
+
+        model.updateFilteredPersonList(moduleContainsPersonPredicate);
+
+
 
         return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
     }

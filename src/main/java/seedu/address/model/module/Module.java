@@ -2,6 +2,7 @@ package seedu.address.model.module;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Module in the address book.
@@ -29,6 +31,7 @@ public class Module {
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
     private final Set<Link> links = new HashSet<>();
+    private final List<Person> listOfPersons = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -106,7 +109,7 @@ public class Module {
      * Returns a copied links set
      */
     public Set<Link> copyLinks() {
-        return new HashSet<Link>(links);
+        return new HashSet<>(links);
     }
 
     /**
@@ -123,6 +126,14 @@ public class Module {
      */
     public Boolean hasDuplicateTasks() {
         return tasks.containsDuplicate();
+    }
+
+    /**
+     * Returns an immutable {@code Person} list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Person> getListOfPersons() {
+        return listOfPersons;
     }
 
 
