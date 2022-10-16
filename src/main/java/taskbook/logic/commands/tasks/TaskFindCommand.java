@@ -21,7 +21,7 @@ public class TaskFindCommand extends Command {
     };
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.changeFilteredTaskList(predicate);
+        model.updateFilteredTaskList(predicate);
         return new CommandResult("SUCCESS");
     }
 }

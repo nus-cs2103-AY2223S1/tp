@@ -106,7 +106,7 @@ public interface Model {
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void changeFilteredTaskList(Predicate<Task> predicate);
+    void updateFilteredTaskList(Predicate<Task> predicate);
 
     /** Returns an unmodifiable view of the sorted task list */
     ObservableList<Task> getSortedTaskList();
