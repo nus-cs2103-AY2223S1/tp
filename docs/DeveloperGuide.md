@@ -154,6 +154,41 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### [Implemented] Filter Meetings between Dates
+#### Implementation
+
+The filter meetings between dates command consists of these various classes:
+- `FilterMeetingCommand` which extends `Command`
+- `FilterMeetingCommandParser` which extends `Parser<FilterMeetingCommand>`
+- `MeetingFilterPredicate` which extends `Predicate<Meeting>`
+
+As with all other commands in Yellow Pages, filter meetings has a `Parser` subclass that goes through the 
+`AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object.
+
+Utilizing the `Predicate` system allows the command to simply offer up a new `Predicate` object. In this case, it
+utilizes the `MeetingFilterDatePredicate` class which extends `Predicate<Meeting>`. It is simply a predicate checking 
+if each Meeting Object's date is between two given dates. The `MeetingFilterDatePredicate` then updates the 
+`FilteredMeetingList` allowing it to temporarily store and display the meetings matching the `Predicate`.
+
+Command: `filtermeetingsbetween Date A ;;; Date B`, both Date A and B must be real dates that follow the 
+dd-MM-yyyy HHmm format.
+
+Primarily there are three main cases for this command,
+- `Date A < Date B` - this is the intended use of the command and will correctly display Meeting Object's whose dates 
+are within the range of Date A and Date B. 
+- `Date A = Date B` - while not being the intended use also works, and will display Meeting Objects whose
+  date = Date A = Date B.
+- `Date A > Date B` - will throw an error as this is an invalid syntax.
+
+The diagram below should sufficiently explain the main cases for the command.
+
+![FilterMeetingsActivityDiagram](images/FilterMeetingsActivityDiagram.png)
+
+#### Sequence Diagram for Filter Meetings between Dates
+![FilterMeetingsSequenceDiagram](images/FilterMeetingsSequenceDiagram.png)
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

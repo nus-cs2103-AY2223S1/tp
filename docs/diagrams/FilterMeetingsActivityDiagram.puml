@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:"filtermeetingsbetween Date A ;;; Date B";
+if () then (Date A = Date B \nor\nDate A < Date B)
+  :Display meetings \nmatching predicate;
+else (Date A > Date B)
+  :Throw syntax error;
+endif
+
+stop
+
+@enduml
