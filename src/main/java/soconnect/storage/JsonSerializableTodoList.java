@@ -34,7 +34,7 @@ class JsonSerializableTodoList {
     /**
      * Converts a given {@code ReadOnlyTodoList} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableTodoList}.
+     * @param source Future changes to this will not affect the created {@code JsonSerializableTodoList}.
      */
     public JsonSerializableTodoList(ReadOnlyTodoList source) {
         todos.addAll(source.getTodoList().stream().map(JsonAdaptedTodo::new).collect(Collectors.toList()));
@@ -43,7 +43,7 @@ class JsonSerializableTodoList {
     /**
      * Converts this todo list into the model's {@code TodoList} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @throws IllegalValueException If there were any data constraints violated.
      */
     public TodoList toModelType() throws IllegalValueException {
         TodoList todoList = new TodoList();

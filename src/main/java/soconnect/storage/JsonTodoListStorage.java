@@ -40,8 +40,8 @@ public class JsonTodoListStorage implements TodoListStorage {
     /**
      * Similar to {@link #readTodoList()}.
      *
-     * @param filePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file is not in the correct format.
+     * @param filePath Location of the data. Cannot be null.
+     * @throws DataConversionException If the file is not in the correct format.
      */
     @Override
     public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException {
@@ -69,7 +69,7 @@ public class JsonTodoListStorage implements TodoListStorage {
     /**
      * Similar to {@link #saveTodoList(ReadOnlyTodoList)}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param filePath Location of the data. Cannot be null.
      */
     @Override
     public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
