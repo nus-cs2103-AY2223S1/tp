@@ -160,6 +160,16 @@ public class SAddCommandTest {
         }
 
         @Override
+        public void sortStalls() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortReviews() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Stall> getFilteredStallList() {
             throw new AssertionError("This method should not be called.");
         }
