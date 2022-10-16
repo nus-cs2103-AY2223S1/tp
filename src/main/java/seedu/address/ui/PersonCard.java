@@ -29,8 +29,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label occupation;
-    @FXML
     private Label name;
     @FXML
     private Label id;
@@ -40,6 +38,8 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label occupation;
     @FXML
     private FlowPane tags;
 
@@ -55,10 +55,10 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        occupation.setText(s);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        //occupation.setText(s);
     }
 
     @Override
