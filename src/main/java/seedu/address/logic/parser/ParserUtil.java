@@ -2,8 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -21,6 +25,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Deadline must follow the dd/MM/yyyy format.";
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -150,5 +156,20 @@ public class ParserUtil {
             throw new ParseException(seedu.address.model.team.Name.MESSAGE_CONSTRAINTS);
         }
         return new seedu.address.model.team.Name(trimmedName);
+    }
+
+    public static Optional<LocalDate> parseDeadline(String deadline) throws ParseException {
+        if (deadline == null) {
+            return Optional.empty();
+        }
+
+        String trimmedDeadline = deadline.trim();
+
+        try {
+            LocalDate date = LocalDate.parse(trimmedDeadline, DateTimeFormatter.ofPattern(DATE_FORMAT));
+            return Optional.ofNullable(date);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
     }
 }
