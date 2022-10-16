@@ -104,7 +104,7 @@ public class EditModuleCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateModuleUnfilteredList_failure() {
         Module firstModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(firstModule).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_SECOND_MODULE, descriptor);
@@ -113,10 +113,10 @@ public class EditModuleCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateModuleFilteredList_failure() {
         showModuleWithModuleCode(model, INDEX_FIRST_MODULE);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit module in filtered list into a duplicate in address book
         Module moduleInList = model.getAddressBook().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE,
                 new EditModuleDescriptorBuilder(moduleInList).build());
@@ -142,7 +142,7 @@ public class EditModuleCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different code -> returns false
+        // different module code -> returns false
         assertFalse(standardCommand.equals(new EditModuleCommand(CODE_SECOND_MODULE, DESC_SWE)));
 
         // different descriptor -> returns false
