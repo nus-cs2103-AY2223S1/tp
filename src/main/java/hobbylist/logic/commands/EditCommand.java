@@ -2,6 +2,7 @@ package hobbylist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +18,7 @@ import hobbylist.model.Model;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -88,8 +90,8 @@ public class EditCommand extends Command {
         Description updatedDescription = editActivityDescriptor.getDescription()
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
-
-        return new Activity(updatedName, updatedDescription, updatedTags);
+        List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
+        return new Activity(updatedName, updatedDescription, updatedTags, date);
     }
 
     @Override
@@ -118,6 +120,7 @@ public class EditCommand extends Command {
         private Name name;
         private Description description;
         private Set<Tag> tags;
+        private List<Date> date;
 
         public EditActivityDescriptor() {}
 
@@ -129,6 +132,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
+            setDate(toCopy.date);
         }
 
         /**
@@ -141,6 +145,7 @@ public class EditCommand extends Command {
         public void setName(Name name) {
             this.name = name;
         }
+
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
@@ -161,7 +166,9 @@ public class EditCommand extends Command {
         public void setTags(Set<Tag> tags) {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
-
+        public void setDate(List<Date> dl) {
+            this.date = (dl != null) ? new ArrayList<>(dl) : null;
+        }
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -170,7 +177,9 @@ public class EditCommand extends Command {
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
-
+        public Optional<List<Date>> getDate() {
+            return (date != null) ? Optional.of(Collections.unmodifiableList(date)) : Optional.empty();
+        }
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -188,7 +197,8 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getDate().equals((e.getDate()));
         }
     }
 }

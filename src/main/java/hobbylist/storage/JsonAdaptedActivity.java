@@ -13,6 +13,7 @@ import hobbylist.commons.exceptions.IllegalValueException;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -25,17 +26,23 @@ class JsonAdaptedActivity {
     private final String name;
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedDate> date = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedActivity} with the given activity details.
      */
     @JsonCreator
     public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("description") String description,
-                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                               @JsonProperty("date") List<JsonAdaptedDate> date) {
         this.name = name;
         this.description = description;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (date != null) {
+            this.date.addAll(date);
         }
     }
 
@@ -48,6 +55,11 @@ class JsonAdaptedActivity {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        //JsonAdaptedDate d = new JsonAdaptedDate("2003-03-03");
+        //date.add(d);
+        if (!source.getDate().isEmpty()) {
+            date.add(new JsonAdaptedDate(source.getDate().get(0)));
+        }
     }
 
     /**
@@ -57,6 +69,10 @@ class JsonAdaptedActivity {
      */
     public Activity toModelType() throws IllegalValueException {
         final List<Tag> activityTags = new ArrayList<>();
+        final List<Date> activityDate = new ArrayList<>();
+        for (JsonAdaptedDate date : date) {
+            activityDate.add(date.toModelType());
+        }
         for (JsonAdaptedTag tag : tagged) {
             activityTags.add(tag.toModelType());
         }
@@ -79,7 +95,7 @@ class JsonAdaptedActivity {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(activityTags);
-        return new Activity(modelName, modelDescription, modelTags);
+        return new Activity(modelName, modelDescription, modelTags, activityDate);
     }
 
 }

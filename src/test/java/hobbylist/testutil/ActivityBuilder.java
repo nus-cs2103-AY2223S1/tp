@@ -1,11 +1,14 @@
 package hobbylist.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 import hobbylist.model.util.SampleDataUtil;
 
@@ -20,6 +23,7 @@ public class ActivityBuilder {
     private Name name;
     private Description description;
     private Set<Tag> tags;
+    private List<Date> dateList;
 
     /**
      * Creates a {@code ActivityBuilder} with the default details.
@@ -28,6 +32,7 @@ public class ActivityBuilder {
         name = new Name(DEFAULT_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
+        dateList = new ArrayList<>();
     }
 
     /**
@@ -37,6 +42,7 @@ public class ActivityBuilder {
         name = activityToCopy.getName();
         description = activityToCopy.getDescription();
         tags = new HashSet<>(activityToCopy.getTags());
+        dateList = new ArrayList<>(activityToCopy.getDate());
     }
 
     /**
@@ -62,9 +68,12 @@ public class ActivityBuilder {
         this.description = new Description(description);
         return this;
     }
-
+    /**
+     * Try to build an activity for test.
+     */
     public Activity build() {
-        return new Activity(name, description, tags);
+
+        return new Activity(name, description, tags, dateList);
     }
 
 }

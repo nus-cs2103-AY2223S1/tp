@@ -1,11 +1,14 @@
 package hobbylist.model.activity;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import hobbylist.commons.util.CollectionUtil;
+import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -20,15 +23,17 @@ public class Activity {
     // Data fields
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Date> listDate = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags) {
-        CollectionUtil.requireAllNonNull(name, description, tags);
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate) {
+        CollectionUtil.requireAllNonNull(name, description, tags, listDate);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
+        this.listDate.addAll(listDate);
     }
 
     public Name getName() {
@@ -46,6 +51,11 @@ public class Activity {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+    public List<Date> getDate() {
+        return this.listDate;
+    }
+
+
 
     /**
      * Returns true if both activities have the same name.
@@ -99,6 +109,10 @@ public class Activity {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+        if (!listDate.isEmpty()) {
+            builder.append("; Date: ")
+                    .append(this.listDate.get(0).toString());
         }
         return builder.toString();
     }
