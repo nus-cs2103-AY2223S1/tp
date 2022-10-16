@@ -1,6 +1,5 @@
 package seedu.address.model.meeting;
 
-import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.Locale;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -42,7 +42,7 @@ public class Meeting {
      * @param meetingLocation the location of the meeting
      */
     public Meeting(ArrayList<Person> peopleToMeetArray, String meetingTitle,
-        String meetingDateAndTime, String meetingLocation) throws ParseException {
+        String meetingDateAndTime, String meetingLocation) throws ParseException, java.text.ParseException {
         this.peopleToMeetArray = peopleToMeetArray;
         this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
@@ -102,7 +102,7 @@ public class Meeting {
      * @param dateAndTime of the meeting
      * @throws ParseException when the dateAndTime is in the wrong format
      */
-    public void editMeetingDateAndTime(String dateAndTime) throws ParseException {
+    public void editMeetingDateAndTime(String dateAndTime) throws ParseException, java.text.ParseException {
         this.meetingDateAndTime = validator.processDateTime(dateAndTime);
     }
 

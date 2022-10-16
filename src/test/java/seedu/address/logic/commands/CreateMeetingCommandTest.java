@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
@@ -334,7 +334,8 @@ public class CreateMeetingCommandTest {
 
         @Override
         public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                                        String meetingDateAndTime, String meetingLocation) throws ParseException {
+                                        String meetingDateAndTime, String meetingLocation)
+            throws ParseException, java.text.ParseException {
             return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
         }
 

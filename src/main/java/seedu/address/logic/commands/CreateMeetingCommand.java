@@ -3,13 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
@@ -122,7 +122,7 @@ public class CreateMeetingCommand extends Command {
                     + String.format("At: %1$s\n", meetingLocation)
             );
 
-        } catch (ParseException e) {
+        } catch (ParseException | java.text.ParseException e) {
             return new CommandResult(e.getMessage());
 
         } catch (IndexOutOfBoundsException e) {
@@ -137,6 +137,7 @@ public class CreateMeetingCommand extends Command {
         } catch (DuplicatePersonException e) {
             return new CommandResult("It looks like you are adding the same "
                 + "person to a meeting twice!");
+
         }
     }
 

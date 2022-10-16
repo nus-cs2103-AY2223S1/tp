@@ -1,7 +1,7 @@
 package seedu.address.model.util;
 
 import java.text.DateFormat;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,6 +11,8 @@ import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Checks whether the format of a due is in valid date-time format
@@ -65,7 +67,7 @@ public class DateTimeProcessor {
      * @param dateAndTime date and time of meeting
      * @return date and time in MONTH dd yyyy hh:mm aa format
      */
-    public String processDateTime(String dateAndTime) throws ParseException {
+    public String processDateTime(String dateAndTime) throws ParseException, java.text.ParseException {
 
         String[] tempStringArray = dateAndTime.strip().split("\\s+", 2);
 
@@ -73,7 +75,7 @@ public class DateTimeProcessor {
         String dueTime = tempStringArray.length < 2 ? "" : tempStringArray[1];
 
         if (!isDateValid(dueDate)) {
-            throw new ParseException(String.format("Meeting date: %1$s is not in dd-MM-yyyy format", dueDate), 0);
+            throw new ParseException(String.format("Meeting date: %1$s is not in dd-MM-yyyy format", dueDate));
         }
 
         DateTimeFormatter newFormatter = DateTimeFormatter
@@ -93,7 +95,7 @@ public class DateTimeProcessor {
             return dayAndDate;
 
         } else if (!isTimeValid(dueTime)) {
-            throw new ParseException("Meeting Time is not in HHmm format", 0);
+            throw new ParseException("Meeting Time is not in HHmm format");
         }
 
         Date inputTime = inputTimeFormat.parse(dueTime);

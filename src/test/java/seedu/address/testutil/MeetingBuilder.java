@@ -3,10 +3,10 @@ package seedu.address.testutil;
 //import static seedu.address.testutil.TypicalPersons.ALICE;
 //import static seedu.address.testutil.TypicalPersons.BENSON;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -108,7 +108,7 @@ public class MeetingBuilder {
         try {
             return new Meeting(this.personsToMeetArray, this.meetingDescription,
                 this.meetingDateAndTime, this.meetingLocation);
-        } catch (ParseException e) {
+        } catch (ParseException | java.text.ParseException e) {
             e.printStackTrace();
         }
         return null;

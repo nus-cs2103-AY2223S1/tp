@@ -4,20 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class MeetingTest {
-
-    public MeetingTest() throws ParseException {
-    }
 
     /**
      * A simplified dummy function to substitute the convertNameToPerson(Model, String[]) in CreateMeetingCommand
@@ -72,7 +70,7 @@ public class MeetingTest {
      * Testing the stronger notion of equality
      */
     @Test
-    public void equals() throws ParseException {
+    public void equals() {
         // same object -> returns true
         assertTrue(meetingOne.equals(meetingOne));
 
@@ -96,7 +94,7 @@ public class MeetingTest {
      * Testing the weaker notion of equality
      */
     @Test
-    public void isSameMeeting() throws ParseException {
+    public void isSameMeeting() {
         // same object -> returns true
         assertTrue(meetingOne.isSameMeeting(meetingOne));
 
