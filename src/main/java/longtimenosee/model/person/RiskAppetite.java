@@ -10,15 +10,15 @@ public class RiskAppetite {
     public static final Comparator<Person> RISK_APPETITE_COMPARATOR = new Comparator<Person>() {
         @Override
         public int compare(Person p1, Person p2) {
-            RiskLevel RA1 = p1.getRiskAppetite().getRiskLevel();
-            RiskLevel RA2 = p2.getRiskAppetite().getRiskLevel();
-            if (RA1 == RA2) {
+            RiskLevel ra1 = p1.getRiskAppetite().getRiskLevel();
+            RiskLevel ra2 = p2.getRiskAppetite().getRiskLevel();
+            if (ra1 == ra2) {
                 return 0;
-            } else if (RA1 == RiskLevel.HIGH && (RA2 == RiskLevel.LOW || RA2 == RiskLevel.MEDIUM)) {
+            } else if (ra1 == RiskLevel.HIGH && (ra2 == RiskLevel.LOW || ra2 == RiskLevel.MEDIUM)) {
                 return 1;
-            } else if (RA1 == RiskLevel.MEDIUM && RA2 == RiskLevel.LOW) {
+            } else if (ra1 == RiskLevel.MEDIUM && ra2 == RiskLevel.LOW) {
                 return 1;
-            } else if (RA2 == RiskLevel.HIGH && (RA1 == RiskLevel.LOW || RA1 == RiskLevel.MEDIUM)) {
+            } else if (ra2 == RiskLevel.HIGH && (ra1 == RiskLevel.LOW || ra1 == RiskLevel.MEDIUM)) {
                 return -1;
             } else {
                 return -1;

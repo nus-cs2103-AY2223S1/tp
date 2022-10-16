@@ -88,8 +88,8 @@ public class SortCommand extends Command {
         if (this.toSort.equals(SORT_DEFAULT)) {
             return new CommandResult(DEFAULT_SUCCESS_MESSAGE, false, true);
         } else {
-                return new CommandResult(MESSAGE_SUCCESS + this.toSort, false, true);
-            }
+            return new CommandResult(MESSAGE_SUCCESS + this.toSort, false, true);
+        }
     }
 
     @Override

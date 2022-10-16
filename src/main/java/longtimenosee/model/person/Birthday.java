@@ -12,25 +12,22 @@ import java.util.Comparator;
  */
 
 public class Birthday {
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
-    public static final String STANDARD_DATE = "yyyy-MM-dd";
-    public static final String SORT_BIRTHDAY = "birthday";
-    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Date of Birth must follow Format: " + STANDARD_DATE;
-    private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final Comparator<Person> BIRTHDAY_COMPARATOR = new Comparator<Person>() {
         @Override
         public int compare(Person p1, Person p2) {
             return p1.getBirthday().getBirthday().compareTo(p2.getBirthday().getBirthday());
         }
     };
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
+    public static final String STANDARD_DATE = "yyyy-MM-dd";
+    public static final String SORT_BIRTHDAY = "birthday";
+    public static final String MESSAGE_FORMAT_CONSTRAINTS = "Date of Birth must follow Format: " + STANDARD_DATE;
+    private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
 
     public final String value;
 
-
     private LocalDate birthday;
     private boolean celebrated;
-
-
 
     /**
      * Main constructor for Birthday
