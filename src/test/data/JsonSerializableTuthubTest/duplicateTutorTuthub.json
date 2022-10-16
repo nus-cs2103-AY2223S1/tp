@@ -6,6 +6,7 @@
     "module": "CS2103T",
     "year": "4",
     "studentId": "A1234567X",
+    "teachingNomination": "1",
     "comment" : "",
     "tagged": [ "friends" ]
   }, {
@@ -15,6 +16,7 @@
     "module": "CS2100",
     "year": "3",
     "studentId": "A1234566P",
+    "teachingNomination": "0",
     "comment" : ""
   } ]
 }

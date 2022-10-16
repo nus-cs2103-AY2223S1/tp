@@ -17,6 +17,7 @@ import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
 import tuthub.model.tutor.StudentId;
+import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Tutor;
 import tuthub.model.tutor.Year;
 
@@ -34,6 +35,7 @@ class JsonAdaptedTutor {
     private final String year;
     private final String studentId;
     private final String comment;
+    private final String teachingNomination;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -43,6 +45,7 @@ class JsonAdaptedTutor {
     public JsonAdaptedTutor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("module") String module,
             @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
+            @JsonProperty("teaching nominations") String teachingNomination,
             @JsonProperty("comment") String comment,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -52,6 +55,7 @@ class JsonAdaptedTutor {
         this.year = year;
         this.studentId = studentId;
         this.comment = comment;
+        this.teachingNomination = teachingNomination;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -68,6 +72,7 @@ class JsonAdaptedTutor {
         year = source.getYear().value;
         studentId = source.getStudentId().value;
         comment = source.getComment().value;
+        teachingNomination = source.getTeachingNomination().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -138,10 +143,19 @@ class JsonAdaptedTutor {
         }
         final Comment modelComment = new Comment(comment);
 
+        if (teachingNomination == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TeachingNomination.class.getSimpleName()));
+        }
+        if (!TeachingNomination.isValidTeachingNomination(teachingNomination)) {
+            throw new IllegalValueException(TeachingNomination.MESSAGE_CONSTRAINTS);
+        }
+        final TeachingNomination modelTeachingNomination = new TeachingNomination(teachingNomination);
+
         final Set<Tag> modelTags = new HashSet<>(tutorTags);
 
         return new Tutor(modelName, modelPhone, modelEmail, modelModule, modelYear,
-                modelStudentId, modelComment, modelTags);
+                modelStudentId, modelComment, modelTeachingNomination, modelTags);
     }
 
 }
