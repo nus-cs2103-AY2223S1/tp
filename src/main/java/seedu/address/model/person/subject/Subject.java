@@ -51,8 +51,8 @@ public class Subject {
     }
 
     @Override
-    public String toString() {
-        return subjectName;
+    public int hashCode() {
+        return subjectName.hashCode();
     }
 
     @Override
@@ -63,8 +63,8 @@ public class Subject {
     }
 
     @Override
-    public int hashCode() {
-        return subjectName.hashCode();
+    public String toString() {
+        return subjectName;
     }
 
 }

@@ -48,6 +48,11 @@ public class GuiSettings implements Serializable {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(windowWidth, windowHeight, windowCoordinates);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -59,13 +64,8 @@ public class GuiSettings implements Serializable {
         GuiSettings o = (GuiSettings) other;
 
         return windowWidth == o.windowWidth
-                && windowHeight == o.windowHeight
-                && Objects.equals(windowCoordinates, o.windowCoordinates);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(windowWidth, windowHeight, windowCoordinates);
+               && windowHeight == o.windowHeight
+               && Objects.equals(windowCoordinates, o.windowCoordinates);
     }
 
     @Override

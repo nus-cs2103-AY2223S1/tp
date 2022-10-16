@@ -68,6 +68,22 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
     }
 
+    @Override
+    public void start(Stage primaryStage) {
+        logger.info("Starting AddressBook " + MainApp.VERSION);
+        ui.start(primaryStage);
+    }
+
+    @Override
+    public void stop() {
+        logger.info("============================ [ Stopping Address Book ] =============================");
+        try {
+            storage.saveUserPrefs(model.getUserPrefs());
+        } catch (IOException e) {
+            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+        }
+    }
+
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
@@ -163,21 +179,5 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
-        ui.start(primaryStage);
-    }
-
-    @Override
-    public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
-        try {
-            storage.saveUserPrefs(model.getUserPrefs());
-        } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
-        }
     }
 }
