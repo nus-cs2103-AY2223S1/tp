@@ -1,10 +1,6 @@
 package seedu.phu.logic.parser;
 
-import static seedu.phu.logic.parser.CliSyntax.PREFIX_CATEGORY;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import seedu.phu.logic.parser.exceptions.InvalidCategoryException;
 import seedu.phu.model.internship.ComparableCategory;
 
 
@@ -13,36 +9,32 @@ import seedu.phu.model.internship.ComparableCategory;
  */
 public class ComparableCategoryParser {
 
+    public static final String EXCEPTION_MESSAGE = "Category can only be one of the following:\n"
+            + "company_name (or n), position (or p), "
+            + "application_process(or pr), date (or d)";
 
-    private static final String CATEGORY_PATTERN = PREFIX_CATEGORY.getPrefix() + "*";
     /**
      * Parses the given {@code String} of arguments in the context of categories available
      * and returns a Category
-     * @throws ClassNotFoundException if no such category is found
+     * @throws InvalidCategoryException if no such category is found
      */
-    public static ComparableCategory parse(String keyword) throws ClassNotFoundException {
-        keyword = keyword.toLowerCase().trim();
-        Pattern p = Pattern.compile(PREFIX_CATEGORY.getPrefix() + "(.+)");
-        Matcher m = p.matcher(keyword);
-        if (m.matches()) {
-            keyword = keyword.replace(PREFIX_CATEGORY.getPrefix(), "");
-            switch (keyword) {
-            case "company_name":
-            case "n":
-                return ComparableCategory.NAME;
-            case "application_process":
-            case "pr":
-                return ComparableCategory.APPLICATION_PROCESS;
-            case "position":
-            case "p":
-                return ComparableCategory.POSITION;
-            case "date":
-            case "d":
-                return ComparableCategory.DATE;
-            default:
-                throw new ClassNotFoundException();
-            }
+
+    public static ComparableCategory parse(String keyword) throws InvalidCategoryException {
+        switch (keyword.toLowerCase()) {
+        case "company_name":
+        case "n":
+            return ComparableCategory.NAME;
+        case "application_process":
+        case "pr":
+            return ComparableCategory.APPLICATION_PROCESS;
+        case "position":
+        case "p":
+            return ComparableCategory.POSITION;
+        case "date":
+        case "d":
+            return ComparableCategory.DATE;
+        default:
+            throw new InvalidCategoryException(EXCEPTION_MESSAGE);
         }
-        throw new ClassNotFoundException();
     }
 }

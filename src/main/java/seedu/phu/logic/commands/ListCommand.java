@@ -27,31 +27,31 @@ public class ListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all internships";
 
     private final ComparableCategory category;
-    private final boolean descending;
+    private final boolean isDescending;
 
     /**
      * Creates a ListCommand
      */
     public ListCommand() {
         this.category = ComparableCategory.NULL;
-        this.descending = false;
+        this.isDescending = false;
     }
 
     /**
      * Creates a ListCommand sorted by the category in ascending or descending order
      */
-    public ListCommand(ComparableCategory category, boolean descending) {
+    public ListCommand(ComparableCategory category, boolean isDescending) {
         this.category = category;
-        this.descending = descending;
+        this.isDescending = isDescending;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
-        if (category != null) {
+        if (category != ComparableCategory.NULL) {
             model.sortList(category);
-            if (descending) {
+            if (isDescending) {
                 model.reverseList();
             }
         }
@@ -74,7 +74,7 @@ public class ListCommand extends Command {
 
         // state check
         ListCommand l = (ListCommand) other;
-        return category.equals(l.category)
-                && descending == l.descending;
+        return this.category.equals(l.category)
+                && this.isDescending == l.isDescending;
     }
 }
