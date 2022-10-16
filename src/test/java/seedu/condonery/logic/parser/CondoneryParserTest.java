@@ -18,9 +18,9 @@ import seedu.condonery.logic.commands.ExitCommand;
 import seedu.condonery.logic.commands.FindCommand;
 import seedu.condonery.logic.commands.HelpCommand;
 import seedu.condonery.logic.commands.property.AddPropertyCommand;
+import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
-import seedu.condonery.logic.commands.property.DeletePropertyCommand;
 import seedu.condonery.logic.commands.property.ListPropertyCommand;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.NameContainsKeywordsPredicate;
@@ -59,7 +59,8 @@ public class CondoneryParserTest {
         EditPropertyDescriptor descriptor = new EditPropertyDescriptorBuilder(property).build();
         EditPropertyCommand command = (EditPropertyCommand) parser.parseCommand(EditPropertyCommand.COMMAND_WORD + " "
             + INDEX_FIRST_PROPERTY.getOneBased() + " " + PropertyUtil.getEditPropertyDescriptorDetails(descriptor));
-        assertEquals(new EditPropertyCommand(INDEX_FIRST_PROPERTY, descriptor).getEditPropertyDescriptor(), command.getEditPropertyDescriptor());
+        assertEquals(new EditPropertyCommand(INDEX_FIRST_PROPERTY, descriptor).getEditPropertyDescriptor(),
+                command.getEditPropertyDescriptor());
     }
 
     @Test

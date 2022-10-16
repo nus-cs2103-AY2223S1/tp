@@ -1,7 +1,6 @@
 package seedu.condonery.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.parser.exceptions.ParseException;

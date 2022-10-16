@@ -9,13 +9,14 @@ import static seedu.condonery.testutil.TypicalClients.ALICE_CLIENT;
 import static seedu.condonery.testutil.TypicalClients.BOB_CLIENT;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.condonery.testutil.ClientBuilder;
 
 public class ClientTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Client(null,null,null));
+        assertThrows(NullPointerException.class, () -> new Client(null, null, null));
     }
 
     @Test

@@ -150,12 +150,15 @@ public class EditPropertyCommandTest {
 
     @Test
     public void equals() {
-        final EditPropertyCommand standardCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY, CommandTestUtil.DESC_AMY);
+        final EditPropertyCommand standardCommand =
+                new EditPropertyCommand(INDEX_FIRST_PROPERTY, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
         EditPropertyDescriptor copyDescriptor = new EditPropertyDescriptor(CommandTestUtil.DESC_AMY);
-        EditPropertyCommand commandWithSameValues = new EditPropertyCommand(INDEX_FIRST_PROPERTY, copyDescriptor);
-        assertTrue(standardCommand.getEditPropertyDescriptor().equals(commandWithSameValues.getEditPropertyDescriptor()));
+        EditPropertyCommand commandWithSameValues =
+                new EditPropertyCommand(INDEX_FIRST_PROPERTY, copyDescriptor);
+        assertTrue(standardCommand.getEditPropertyDescriptor()
+                .equals(commandWithSameValues.getEditPropertyDescriptor()));
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));

@@ -13,7 +13,6 @@ import java.util.List;
 
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.logic.commands.exceptions.CommandException;
-import seedu.condonery.logic.commands.property.EditPropertyCommand;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
