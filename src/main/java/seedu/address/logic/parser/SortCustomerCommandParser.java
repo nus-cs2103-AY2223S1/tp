@@ -64,10 +64,8 @@ public class SortCustomerCommandParser implements Parser<SortCustomerCommand> {
     public SortCustomerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         Prefix[] allPrefixes = PREFIX_DESCRIPTION_MAP.keySet().toArray(new Prefix[0]);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, allPrefixes);
-        if (!areAnyPrefixesPresent(argMultimap, allPrefixes)
-                || !argMultimap.getPreamble().isEmpty()) {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPrefixes);
+        if (!areAnyPrefixesPresent(argMultimap, allPrefixes) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCustomerCommand.MESSAGE_USAGE));
         }
 
