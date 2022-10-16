@@ -76,7 +76,7 @@ public class SupplierCard extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Order} using a {@code OrderCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Pet} using a {@code PetCard}.
      */
     private static class SupplierPetsListViewCell extends ListCell<Pet> {
         @Override

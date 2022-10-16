@@ -129,12 +129,13 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set the display window
         personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(supplierListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
         // Initialise the remaining components in the main window
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        // TODO: debug this
 /*        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusBarPlaceholder.getChildren().add(statusBarFooter.getRoot());*/
 

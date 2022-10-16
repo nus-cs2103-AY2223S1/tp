@@ -14,14 +14,14 @@
 <HBox id="cardPane" fx:id="cardPane" prefHeight="350.0" style="-fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
+      <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" prefWidth="300.0" />
          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="840.0" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" GridPane.hgrow="NEVER">
       <padding>
         <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
       </padding>
-      <HBox alignment="CENTER_LEFT" prefWidth="130.0" spacing="5.0">
+      <HBox alignment="CENTER_LEFT" spacing="5.0">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -60,7 +60,7 @@
                <Insets top="2.0" />
             </VBox.margin>
          </Label>
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address">
+      <Label fx:id="address" minWidth="-Infinity" styleClass="cell_small_label" text="\$address">
             <VBox.margin>
                <Insets top="2.0" />
             </VBox.margin></Label>

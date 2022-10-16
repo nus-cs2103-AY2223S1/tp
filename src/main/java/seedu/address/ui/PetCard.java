@@ -79,7 +79,8 @@ public class PetCard extends UiPart<Region> {
     private Label weight;
 
     /**
-     * Creates a {@code PetCode} with the given {@code Pet} and index to display.
+     * Creates a {@code PetCard} with the given {@code Pet} and index to display.
+     * The boolean indicates whether the supplier name should be displayed.
      */
     public PetCard(Pet pet, int displayedIndex, boolean isSupplierNameShown) {
         super(FXML);

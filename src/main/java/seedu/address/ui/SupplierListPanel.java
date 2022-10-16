@@ -35,7 +35,7 @@ public class SupplierListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Supplier} using a {@code SupplierCard}.
      */
-    class SupplierListViewCell extends ListCell<Supplier> {
+    private static class SupplierListViewCell extends ListCell<Supplier> {
         @Override
         protected void updateItem(Supplier supplier, boolean empty) {
             super.updateItem(supplier, empty);

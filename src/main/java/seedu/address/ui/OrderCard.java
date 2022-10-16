@@ -6,7 +6,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
 
 /**
- * An UI component that displays information of a {@code Order}.
+ * A UI component that displays information of a {@code Order}.
  */
 public class OrderCard extends UiPart<Region> {
 
@@ -56,7 +56,8 @@ public class OrderCard extends UiPart<Region> {
     private Label species;
 
     /**
-     * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
+     * Creates a {@code OrderCard} with the given {@code Order} and index to display.
+     * The boolean indicates whether the buyer name should be displayed.
      */
     public OrderCard(Order order, int displayedIndex, boolean isBuyerNameShown) {
         super(FXML);
@@ -82,6 +83,7 @@ public class OrderCard extends UiPart<Region> {
         colorPattern.setText(order.getRequest().getRequestedColorPattern().toString());
         priceRange.setText(order.getRequestedPriceRange().toString());
         settledPrice.setText(order.getSettledPrice().toString());
+        // TODO: debug this
         // additionalRequestsDescription.setText(order.getAdditionalRequests().toString());
     }
 
