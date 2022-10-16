@@ -53,8 +53,8 @@ public class TypicalPersons {
             .withPhone("94351253").withTags("friends").build();
     public static final Person BENSON = new StudentBuilder().withName("Benson Meier")
             .withGender("M")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withEmail("Benm@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").withGithubUsername("ben10").build();
     public static final Person CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withGender("M").build();
     public static final Person DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
