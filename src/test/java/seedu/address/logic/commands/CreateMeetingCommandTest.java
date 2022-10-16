@@ -12,11 +12,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingList;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
@@ -25,14 +28,17 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+
 public class CreateMeetingCommandTest {
 
     @Test
     public void execute_meetingCreatedByModel_addSuccessful() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
-        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
-            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
         CommandResult commandResult = createMeetingCommand.execute(modelStub);
 
         Meeting validMeeting = new MeetingBuilder().build();
@@ -47,8 +53,8 @@ public class CreateMeetingCommandTest {
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
 
         Meeting validMeeting = new MeetingBuilder().build();
-        CreateMeetingCommandTest.ModelStubWithMeeting modelStub
-            = new CreateMeetingCommandTest.ModelStubWithMeeting(validMeeting);
+        CreateMeetingCommandTest.ModelStubWithMeeting modelStub =
+            new CreateMeetingCommandTest.ModelStubWithMeeting(validMeeting);
         String actualFeedBack = createMeetingCommand.execute(modelStub).getFeedbackToUser();
 
         assertEquals(CreateMeetingCommand.DUPLICATE_MEETINGS, actualFeedBack);
@@ -58,8 +64,8 @@ public class CreateMeetingCommandTest {
     public void execute_personToMeetNotFound_throwsPersonNotFoundException() throws Exception {
         String meetingInfo = "Ben ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
-        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
-            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
         String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
         assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
@@ -69,8 +75,8 @@ public class CreateMeetingCommandTest {
     public void execute_personToMeetIsBlank_throwsParseException() throws Exception {
         String meetingInfo = ";;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
-        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
-            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
         String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
         assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
@@ -80,8 +86,8 @@ public class CreateMeetingCommandTest {
     public void execute_wrongNumberOfArguments_throwsIndexOutOfBoundsException() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
-        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
-            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
         String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
         assertEquals(CreateMeetingCommand.INCORRECT_NUMBER_OF_ARGUMENTS, actualFeedback);
@@ -91,8 +97,8 @@ public class CreateMeetingCommandTest {
     public void execute_dateAndTimeInWrongFormat_throwsParseException() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; tomorrow ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
-        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
-            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
         String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
         assertEquals("Meeting date: tomorrow is not in dd-MM-yyyy format", actualFeedback);
@@ -113,8 +119,8 @@ public class CreateMeetingCommandTest {
         CreateMeetingCommand createMeetingWithBob = new CreateMeetingCommand(meetBob);
         CreateMeetingCommand createMeetingWithAliceAndBob = new CreateMeetingCommand(meetAliceAndBob);
         CreateMeetingCommand createMeetingWithAliceAndCharlie = new CreateMeetingCommand(meetAliceAndCharlie);
-        CreateMeetingCommand createMeetingWithAliceAndCharlieConflict
-            = new CreateMeetingCommand(meetAliceAndCharlieConflict);
+        CreateMeetingCommand createMeetingWithAliceAndCharlieConflict =
+            new CreateMeetingCommand(meetAliceAndCharlieConflict);
 
         // same object -> returns true
         assertTrue(createMeetingWithAlice.equals(createMeetingWithAlice));
@@ -252,8 +258,8 @@ public class CreateMeetingCommandTest {
      */
     private class ModelStub implements Model {
         AddressBookStub addressBookStub = new AddressBookStub();
-        private final FilteredList<Person> filteredPersons
-            =  new FilteredList<>(addressBookStub.getPersonList());
+        private final FilteredList<Person> filteredPersons =
+            new FilteredList<>(addressBookStub.getPersonList());
 
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
