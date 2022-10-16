@@ -166,7 +166,7 @@ Examples:
 
 Sorts the task list based on the input flag.
 
-Format: `task delete s/SORT`
+Format: `task sort s/SORT`
 
 SORT flags:
 * ca: Chronologically sort tasks by date and time added
@@ -238,4 +238,5 @@ The following date formats are accepted:
 | **Add Event: Assignee**    | `task event o/ASSIGNEE d/DESCRIPTION t/DATE` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022`                                                   |
 | **Delete Contact**         | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
 | **Delete Task**            | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
+| **Sort Tasks**             | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                       |
 | **Quit**                   | `bye`                                                                                                                                                              |
