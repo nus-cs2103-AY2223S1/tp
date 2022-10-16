@@ -81,7 +81,7 @@ interactions recorded faster and simpler than traditional GUI applications.
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `coy/KFC coy/MacDonalds`, only `coy/MacDonalds` will be taken.
+  e.g. if you specify `n/KFC n/MacDonalds`, only `n/MacDonalds` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
@@ -92,15 +92,15 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 Adds an empty client to the list without any Company and transactions.
 
-Format: `add n/NAME a/ADDRESS [t/TAG]...`
+Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]`
 
 * Tags are optional.
 * Multiple tags can be tagged to the client.
 * Use `create` command to add Company to the client.
 
 Examples:
-* `add n/MacDonalds a/West Coast Park`
-* `add n/KFC a/Yishun Street 81 t/FriedChicken`
+* `add n/MacDonalds a/West Coast Park p/9876542 e/mcd@mcd.com`
+* `add n/KFC a/Yishun Street 81 p/9876543 e/kfc@kfc.com t/FriedChicken`
 
 ### Clearing all entries : `clear`
 
@@ -119,7 +119,7 @@ Example:
 
 Creates a new person (company) for a specific client.
 
-Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]...`
+Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`
 
 * Tags are optional.
 * Multiple tags can be tagged to the company.
@@ -146,7 +146,17 @@ Examples:
 
 ### Editing a client : `edit`
 
-Coming Soon.
+Edits the details of the client specified by the index number.
+
+Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]`
+
+* At least one field to edit must be provided.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `edit 1 a/Blk 221 Yishun St 81` replaces the first index client's address with the new input.
+* `edit 5 p/8765432` replaces the fifth index client's phone number with the new input.
 
 ### Exiting the program : `exit`
 
@@ -228,12 +238,12 @@ Coming soon.
 Creates a transaction related to a client (buy/sell).
 
 Format:
-- `buy INDEX coy/CLIENT_NAME  g/GOODS  q/QUANTITY  price/PRICE`
-- `sell INDEX coy/CLIENT_NAME  g/GOODS q/QUANTITY  price/PRICE`
+- `buy INDEX q/QUANTITY g/GOODS price/PRICE`
+- `sell INDEX q/QUANTITY g/GOODS price/PRICE`
 
 Examples:
-- `buy 3 g/apples q/100 price/1.5`
-- `sell 3 g/Chicken q/50 price/5.55`
+- `buy 3 q/100 g/apples price/1.5`
+- `sell 3 q/50 g/Chicken price/5.55`
 
 ### Saving the data
 
@@ -263,22 +273,22 @@ _Details coming soon ..._
 ## Command summary
 
 
-| Action         | Format, Examples                                                                                                  |
-|----------------|-------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/CLIENT a/ADDRESS`<br> e.g., `add n/KFC a/Yishun Street 81`                                                 |
-| **Clear**      | `clear` followed by `confirm`                                                                                     |
- | **Create**     | `create INDEX n/NAME p/NUMBER e/EMAIL`<br> e.g., `create 1 n/James coy/MacDonalds p/82692192 e/James@example.com` |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                               |
-| **Edit**       | Coming Soon                                                                                                       |
-| **Exit**       | `exit`                                                                                                            |
-| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                        |
-| **Filter**     | Coming Soon                                                                                                       |
-| **List**       | `list`                                                                                                            |
-| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                          |
-| **Sort**       | Coming Soon                                                                                                       |
-| **Buy**        | `buy INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `buy 2 g/apples q/100 price/1.5`                             |
-| **Sell**       | `sell INDEX g/GOODS q/QUANTITY price/PRICE` <br/> e.g `sell 2 g/apples q/100 price/1.5`                           |
-| **User Guide** | `user_guide`                                                                                                      |
+| Action         | Format, Examples                                                                                                          |
+|----------------|---------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]`<br> e.g., `add n/KFC a/Yishun Street 81 p/9876543 e/kfc@kfc.com`         |
+| **Clear**      | `clear` followed by `confirm`                                                                                             |
+ | **Create**     | `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`<br> e.g., `create 1 n/James coy/MacDonalds p/82692192 e/James@example.com` |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                       |
+| **Edit**       | `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG] `<br> e.g.,`edit 1 a/Blk 221 Yishun St 81`                   |
+| **Exit**       | `exit`                                                                                                                    |
+| **Find**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find MacDonalds`                                                                |
+| **Filter**     | Coming Soon                                                                                                               |
+| **List**       | `list`                                                                                                                    |
+| **Help**       | `help` or `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                  |
+| **Sort**       | Coming Soon                                                                                                               |
+| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE` <br/> e.g `buy 2 q/100 g/apples price/1.5`                                     |
+| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE` <br/> e.g `sell 2 q/100 g/apples price/1.5`                                   |
+| **User Guide** | `user_guide`                                                                                                              |
                                                                                                                                                                                                                                                              |
 
 

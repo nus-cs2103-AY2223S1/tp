@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
@@ -36,7 +38,8 @@ public class ClientTest {
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
-                new Client(null, new Address(VALID_ADDRESS_BOB), tags, companies, transactions));
+                new Client(null, new Address(VALID_ADDRESS_BOB), new ClientPhone(VALID_PHONE_BOB),
+                        new ClientEmail(VALID_EMAIL_BOB), tags, companies, transactions));
     }
 
     @Test
@@ -45,7 +48,8 @@ public class ClientTest {
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
-                new Client(new Name(VALID_NAME_BOB), null, tags, companies, transactions));
+                new Client(new Name(VALID_NAME_BOB), null, new ClientPhone(VALID_PHONE_BOB),
+                        new ClientEmail(VALID_EMAIL_BOB), tags, companies, transactions));
     }
 
     @Test
@@ -140,6 +144,7 @@ public class ClientTest {
     public void toStringTest() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
-                + "#02-25; Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: $0");
+                + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
+                + "Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: $0");
     }
 }

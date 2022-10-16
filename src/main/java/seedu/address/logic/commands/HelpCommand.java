@@ -18,11 +18,11 @@ public class HelpCommand extends Command {
 
     // All commands summary
     public static final String ALL_COMMANDS_MESSAGE = "Here are all the valid commands:\n"
-            + "add n/CLIENT loc/ADDRESS\n"
+            + "add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]\n"
             + "create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]\n"
             + "buy INDEX q/QUANTITY g/GOODS price/PRICE\n"
             + "sell INDEX q/QUANTITY g/GOODS price/PRICE\n"
-            + "edit INDEX a/NEW_ADDRESS\n"
+            + "edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [t/TAG]\n"
             + "view INDEX\n"
             + "delete INDEX\n"
             + "find KEYWORD\n"
