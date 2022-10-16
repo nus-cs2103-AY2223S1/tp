@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 public class ListAllCommand extends Command {
     public static final String COMMAND_WORD = "listAll";
 
-    public static final String MESSAGE_SUCCESS = "Listed all items in Salesy!";
+    public static final String MESSAGE_SUCCESS = "Listed all entities in Salesy!";
 
     @Override
     public CommandResult execute(Model model) {
