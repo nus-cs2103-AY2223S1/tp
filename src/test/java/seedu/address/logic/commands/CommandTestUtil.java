@@ -45,7 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_HOSPITAL_WING_BOB = "hes an outpatient, so no hospital wing";
     public static final String VALID_FLOOR_NUMBER_AMY = "1";
     public static final String VALID_FLOOR_NUMBER_BOB = "hes an outpatient, so no floor number";
-    public static final String VALID_WARD_NUMBER_AMY = "26";
+    public static final String VALID_WARD_NUMBER_AMY = "D312";
     public static final String VALID_WARD_NUMBER_BOB = "hes an outpatient, so no ward number";
     public static final String VALID_MEDICATION_IBUPROFEN = "Ibuprofen";
     public static final String VALID_MEDICATION_PARACETAMOL = "Paracetamol";
@@ -99,7 +99,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withNextOfKin(VALID_NEXT_OF_KIN_AMY)
                 .withPatientType(PatientTypes.parsePatientType(VALID_PATIENT_TYPE_AMY))
                 .withHospitalWing(VALID_HOSPITAL_WING_AMY).withFloorNumber(Integer.valueOf(VALID_FLOOR_NUMBER_AMY))
-                .withWardNumber(Integer.valueOf(VALID_WARD_NUMBER_AMY))
+                .withWardNumber(VALID_WARD_NUMBER_AMY)
                 .withMedication(VALID_MEDICATION_IBUPROFEN).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withNextOfKin(VALID_NEXT_OF_KIN_BOB)

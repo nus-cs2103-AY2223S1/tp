@@ -107,7 +107,7 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code Ward Number} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withWardNumber(Integer wardNumber) {
+    public EditPersonDescriptorBuilder withWardNumber(String wardNumber) {
         descriptor.setWardNumber(new WardNumber(wardNumber));
         return this;
     }

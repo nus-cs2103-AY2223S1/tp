@@ -166,16 +166,10 @@ public class ParserUtil {
     public static WardNumber parseWardNumber(String wardNumber) throws ParseException {
         requireNonNull(wardNumber);
         String trimmedWardNumber = wardNumber.trim();
-        Integer parsedWardNumber;
-        try {
-            parsedWardNumber = Integer.valueOf(trimmedWardNumber);
-        } catch (NumberFormatException nfe) {
+        if (!WardNumber.isValidWardNumber(trimmedWardNumber)) {
             throw new ParseException(WardNumber.MESSAGE_CONSTRAINTS);
         }
-        if (!FloorNumber.isValidFloorNumber(parsedWardNumber)) {
-            throw new ParseException(WardNumber.MESSAGE_CONSTRAINTS);
-        }
-        return new WardNumber(parsedWardNumber);
+        return new WardNumber(trimmedWardNumber);
     }
 
     /**
