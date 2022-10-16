@@ -2,6 +2,7 @@ package soconnect.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -132,6 +133,16 @@ public class SoConnect implements ReadOnlySoConnect {
         return persons.contains(person);
     }
 
+    public boolean areTagsAvailable(Person person) {
+        List<Tag> personTags = new ArrayList<>(person.getTags());
+        for (int i = 0; i < personTags.size(); i++) {
+            if (!tags.hasTag(personTags.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Adds a person to the SoConnect.
      * The person must not already exist in the SoConnect.
@@ -195,6 +206,10 @@ public class SoConnect implements ReadOnlySoConnect {
     public void deleteTag(Tag tag) {
         tags.removeTags(tag);
         persons.removeRelevantPersonTag(tag);
+    }
+
+    public Tag getTagFromList(Tag tag) {
+        return tags.getTag(tag);
     }
 
     //// util methods

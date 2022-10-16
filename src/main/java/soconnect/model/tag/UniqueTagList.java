@@ -60,6 +60,11 @@ public class UniqueTagList implements Iterable<Tag> {
         tagArrayList.remove(tag);
     }
 
+    public Tag getTag(Tag tag) {
+        int index = tagArrayList.indexOf(tag);
+        return tagArrayList.get(index);
+    }
+
     /**
      * Changes the old tags to a new list of tags.
      *

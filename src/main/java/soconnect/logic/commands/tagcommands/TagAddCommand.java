@@ -77,7 +77,8 @@ public class TagAddCommand extends TagCommand {
             throw new CommandException(MESSAGE_TAG_ALREADY_ADDED);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, tag);
+        Tag tagFromList = model.getTagFromList(tag);
+        Person editedPerson = createEditedPerson(personToEdit, tagFromList);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tag));
