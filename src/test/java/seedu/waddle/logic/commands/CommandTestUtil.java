@@ -46,11 +46,11 @@ public class CommandTestUtil {
     public static final String PEOPLE_DESC_SUMMER = " " + PREFIX_PEOPLE + VALID_PEOPLE_SUMMER;
     public static final String PEOPLE_DESC_WINTER = " " + PREFIX_PEOPLE + VALID_PEOPLE_WINTER;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    // public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_START_DATE= " " + PREFIX_START_DATE + "Jan 01"; // wrong format
-    public static final String INVALID_END_DATE = " " + PREFIX_END_DATE; // empty string not allowed for dates
-    public static final String INVALID_PEOPLE = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Family Trip&"; // '&' not allowed in names
+    public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
+    public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
+    public static final String INVALID_END_DATE_DESC = " " + PREFIX_END_DATE; // empty string not allowed for dates
+    public static final String INVALID_PEOPLE_DESC = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

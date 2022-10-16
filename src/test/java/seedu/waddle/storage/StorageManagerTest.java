@@ -2,7 +2,7 @@ package seedu.waddle.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.waddle.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.nio.file.Path;
 
@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.waddle.commons.core.GuiSettings;
-import seedu.waddle.model.AddressBook;
-import seedu.waddle.model.ReadOnlyAddressBook;
+import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.UserPrefs;
+import seedu.waddle.model.Waddle;
 
 public class StorageManagerTest {
 
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonWaddleStorage waddleStorage = new JsonWaddleStorage(getTempFilePath("waddle"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(waddleStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void waddleReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonWaddleStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonWaddleStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        Waddle original = getTypicalWaddle();
+        storageManager.saveWaddle(original);
+        ReadOnlyWaddle retrieved = storageManager.readWaddle().get();
+        assertEquals(original, new Waddle(retrieved));
     }
 
     @Test
     public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+        assertNotNull(storageManager.getWaddleFilePath());
     }
 
 }

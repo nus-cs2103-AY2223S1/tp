@@ -1,14 +1,15 @@
 package seedu.waddle.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.waddle.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.waddle.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.waddle.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.testutil.Assert.assertThrows;
-import static seedu.waddle.testutil.TypicalPersons.AMY;
+import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -24,13 +25,13 @@ import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
-import seedu.waddle.model.ReadOnlyAddressBook;
+import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.UserPrefs;
-import seedu.waddle.model.person.Person;
-import seedu.waddle.storage.JsonAddressBookStorage;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.storage.JsonWaddleStorage;
 import seedu.waddle.storage.JsonUserPrefsStorage;
 import seedu.waddle.storage.StorageManager;
-import seedu.waddle.testutil.PersonBuilder;
+import seedu.waddle.testutil.ItineraryBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -43,10 +44,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonWaddleStorage waddleStorage =
+                new JsonWaddleStorage(temporaryFolder.resolve("waddle.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(waddleStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -59,7 +60,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -70,27 +71,27 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        // Setup LogicManager with JsonWaddleIoExceptionThrowingStub
+        JsonWaddleStorage waddleStorage =
+                new JsonWaddleIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionWaddle.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(waddleStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
+                + END_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER;
+        Itinerary expectedItinerary = new ItineraryBuilder(SUMMER).build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        expectedModel.addItinerary(expectedItinerary);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    public void getFilteredItineraryList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItineraryList().remove(0));
     }
 
     /**
@@ -129,7 +130,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getWaddle(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +150,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonWaddleIoExceptionThrowingStub extends JsonWaddleStorage {
+        private JsonWaddleIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveWaddle(ReadOnlyWaddle waddle, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

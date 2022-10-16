@@ -3,12 +3,12 @@ package seedu.waddle.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.waddle.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.waddle.commons.core.Messages.MESSAGE_ITINERARIES_LISTED_OVERVIEW;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.waddle.testutil.TypicalPersons.CARL;
-import static seedu.waddle.testutil.TypicalPersons.ELLE;
-import static seedu.waddle.testutil.TypicalPersons.FIONA;
-import static seedu.waddle.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.waddle.testutil.TypicalItineraries.SPRING;
+import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
+import static seedu.waddle.testutil.TypicalItineraries.WINTER;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,14 +18,14 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
 import seedu.waddle.model.UserPrefs;
-import seedu.waddle.model.person.NameContainsKeywordsPredicate;
+import seedu.waddle.model.itinerary.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalWaddle(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -50,28 +50,28 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different itinerary -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_ITINERARIES_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredItineraryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredItineraryList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        String expectedMessage = String.format(MESSAGE_ITINERARIES_LISTED_OVERVIEW, 3);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Spring Summer Winter");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredItineraryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(SPRING, SUMMER, WINTER), model.getFilteredItineraryList());
     }
 
     /**

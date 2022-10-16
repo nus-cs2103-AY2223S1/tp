@@ -23,7 +23,7 @@ public class WaddleBuilder {
     /**
      * Adds a new {@code Itinerary} to the {@code Waddle} that we are building.
      */
-    public WaddleBuilder withPerson(Itinerary itinerary) {
+    public WaddleBuilder withItinerary(Itinerary itinerary) {
         waddle.addItinerary(itinerary);
         return this;
     }
