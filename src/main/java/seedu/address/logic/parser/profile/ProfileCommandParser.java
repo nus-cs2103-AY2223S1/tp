@@ -14,6 +14,7 @@ import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -69,16 +70,20 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
     }
 
     /**
-     *
-     * @return
+     * Returns a hash map containing the details about profile commands to display in the help window.
      */
     public static Map<String, String> getProfileCommands() {
-        return new HashMap<>() {{
-            put(AddProfileCommand.COMMAND_OPTION, AddProfileCommand.MESSAGE_USAGE);
-            put(DeleteProfileCommand.COMMAND_OPTION, DeleteProfileCommand.MESSAGE_USAGE);
-            put(EditProfileCommand.COMMAND_OPTION, EditProfileCommand.MESSAGE_USAGE);
-            put(FindProfileCommand.COMMAND_OPTION, FindProfileCommand.MESSAGE_USAGE);
-            put(ViewProfilesCommand.COMMAND_OPTION, "List Commands");
+        return new LinkedHashMap<>() {{
+            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION,
+                    AddProfileCommand.MESSAGE_USAGE);
+            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION,
+                    DeleteProfileCommand.MESSAGE_USAGE);
+            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION,
+                    EditProfileCommand.MESSAGE_USAGE);
+            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION,
+                    FindProfileCommand.MESSAGE_USAGE);
+            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION,
+                    "List Commands");
         }};
     }
 

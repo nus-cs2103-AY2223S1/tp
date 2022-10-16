@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.NuSchedulerParser;
 import seedu.address.logic.parser.profile.ProfileCommandParser;
 
 /**
@@ -35,7 +36,9 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private Accordion accordion;
+    private Accordion generalAccordion;
+    @FXML
+    private Accordion profileAccordion;
 
     /**
      * Creates a new HelpWindow.
@@ -46,15 +49,26 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
 
-        Map<String, String> profileCommands = ProfileCommandParser.getProfileCommands();
-        profileCommands.forEach((x, y) -> {
-            Label label = new Label(y);
+        Map<String, String> generalCommands = NuSchedulerParser.getGeneralCommands();
+        generalCommands.forEach((format, description) -> {
+            Label label = new Label(description);
             label.setWrapText(true);
             HBox hBox = new HBox();
             hBox.getChildren().add(label);
             hBox.setAlignment(Pos.TOP_LEFT);
             hBox.prefWidth(288.0);
-            accordion.getPanes().add(new TitledPane(x, hBox));
+            generalAccordion.getPanes().add(new TitledPane(format, hBox));
+        });
+
+        Map<String, String> profileCommands = ProfileCommandParser.getProfileCommands();
+        profileCommands.forEach((format, description) -> {
+            Label label = new Label(description);
+            label.setWrapText(true);
+            HBox hBox = new HBox();
+            hBox.getChildren().add(label);
+            hBox.setAlignment(Pos.TOP_LEFT);
+            hBox.prefWidth(288.0);
+            profileAccordion.getPanes().add(new TitledPane(format, hBox));
         });
 
     }
