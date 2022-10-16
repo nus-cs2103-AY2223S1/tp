@@ -210,7 +210,7 @@ public class EditPersonDescriptor {
         PlanTag planTag = personToEdit.getPlanTag();
         IncomeLevel income = personToEdit.getIncome();
         Person newPerson = new Person(name, phone, email, address, income, monthly, risktag, planTag,
-                tags, currentAppointments);
+                tags, updatedAppointments);
         return newPerson;
     }
 
@@ -232,7 +232,8 @@ public class EditPersonDescriptor {
         Set<NormalTag> tags = personToEdit.getTags();
         IncomeLevel income = personToEdit.getIncome();
         MaximumSortedList<Appointment> newAppointmentsOnly = editPersonDescriptor.getAppointments().get();
-        Person newPerson = new Person(name, phone, email, address, income, monthly, riskTag, plantTag, tags, newAppointmentsOnly);
+        Person newPerson = new Person(name, phone, email, address, income,
+                monthly, riskTag, planTag, tags, newAppointmentsOnly);
 
         return newPerson;
     }

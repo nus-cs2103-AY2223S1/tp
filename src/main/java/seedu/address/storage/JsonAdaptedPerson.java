@@ -168,7 +168,6 @@ class JsonAdaptedPerson {
         final PlanTag modelPlanTag = new PlanTag(planTag);
 
         final Set<NormalTag> modelTags = new HashSet<>(personTags);
-        final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
 
         Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome,
                 modelMonthly, modelRiskTag, modelPlanTag, modelTags);
