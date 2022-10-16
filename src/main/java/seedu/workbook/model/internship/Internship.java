@@ -30,7 +30,8 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Role role, Phone phone, Email email, Stage stage, DateTime dateTime, Set<Tag> tags) {
+    public Internship(
+            Company company, Role role, Phone phone, Email email, Stage stage, DateTime dateTime, Set<Tag> tags) {
         requireAllNonNull(company, role, phone, email, stage, dateTime, tags);
         this.company = company;
         this.role = role;

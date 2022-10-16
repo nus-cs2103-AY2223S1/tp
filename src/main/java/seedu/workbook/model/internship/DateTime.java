@@ -1,12 +1,12 @@
 package seedu.workbook.model.internship;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.workbook.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Date in WorkBook.
@@ -14,13 +14,13 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
  */
 public class DateTime {
 
+    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm";
+
     private static final String datePattern = "d-MMM-yyyy HH:mm";
     private static final DateTimeFormatterBuilder formatterBuilder = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
             .appendPattern(datePattern);
     private static final DateTimeFormatter dateFormatter = formatterBuilder.toFormatter();
-
-    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm";
 
     public final String value;
 

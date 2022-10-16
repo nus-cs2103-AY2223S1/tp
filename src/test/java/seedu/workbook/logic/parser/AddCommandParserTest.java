@@ -3,9 +3,12 @@ package seedu.workbook.logic.parser;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.DATETIME_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.DATETIME_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
@@ -37,6 +40,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
@@ -55,35 +59,38 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                         + STAGE_DESC_BOB + TAG_DESC_FRIEND,
+                         + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedInternship));
 
         // multiple company names - last company name accepted
         assertParseSuccess(parser, COMPANY_DESC_AMY + COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+                + EMAIL_DESC_BOB + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedInternship));
 
         // multiple roles - last role accepted
         assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_AMY + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-               + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+               + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+                + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+                + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple stages - last stage accepted
         assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + STAGE_DESC_AMY + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
+                + STAGE_DESC_AMY + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + STAGE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedInternshipMultipleTags));
+                + STAGE_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                new AddCommand(expectedInternshipMultipleTags));
     }
 
     @Test
@@ -91,7 +98,8 @@ public class AddCommandParserTest {
         // zero tags
         Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
-                COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + STAGE_DESC_AMY,
+                COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY +
+                        STAGE_DESC_AMY + DATETIME_DESC_AMY,
                 new AddCommand(expectedInternship));
     }
 
@@ -162,6 +170,12 @@ public class AddCommandParserTest {
                 COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_STAGE_DESC
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Stage.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser,
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
+                        + INVALID_DATETIME_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                DateTime.MESSAGE_CONSTRAINTS);
+
 
         // invalid tag
         assertParseFailure(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

@@ -57,7 +57,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasInternship(toAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.addInternship(toAdd);

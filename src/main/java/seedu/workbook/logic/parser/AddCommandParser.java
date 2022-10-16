@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;

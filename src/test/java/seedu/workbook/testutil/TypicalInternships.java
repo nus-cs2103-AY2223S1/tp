@@ -2,6 +2,8 @@ package seedu.workbook.testutil;
 
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_DATETIME_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -32,6 +34,7 @@ public class TypicalInternships {
         .withEmail("alice@example.com")
         .withPhone("94351253")
         .withStage("Technical Interview")
+        .withDateTime("12-Oct-2022 12:00")
         .withTags("friends").build();
     public static final Internship BENSON = new InternshipBuilder()
         .withCompany("Benson Meier")
@@ -39,6 +42,7 @@ public class TypicalInternships {
         .withEmail("johnd@example.com")
         .withPhone("98765432")
         .withStage("HR Interview")
+        .withDateTime("12-Dec-2022 14:00")
         .withTags("owesMoney", "friends").build();
     public static final Internship CARL = new InternshipBuilder()
         .withCompany("Carl Kurz")
@@ -94,6 +98,7 @@ public class TypicalInternships {
         .withPhone(VALID_PHONE_AMY)
         .withEmail(VALID_EMAIL_AMY)
         .withStage(VALID_STAGE_AMY)
+        .withDateTime(VALID_DATETIME_AMY)
         .withTags(VALID_TAG_FRIEND).build();
     public static final Internship BOB = new InternshipBuilder()
         .withCompany(VALID_COMPANY_BOB)
@@ -101,6 +106,7 @@ public class TypicalInternships {
         .withPhone(VALID_PHONE_BOB)
         .withEmail(VALID_EMAIL_BOB)
         .withStage(VALID_STAGE_BOB)
+        .withDateTime(VALID_DATETIME_BOB)
         .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
