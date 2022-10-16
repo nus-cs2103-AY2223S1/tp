@@ -169,7 +169,7 @@ Sorts the task list based on the input flag.
 Format: `task delete s/SORT`
 
 SORT flags:
-* ac: Chronologically sort tasks by date and time added
+* ca: Chronologically sort tasks by date and time added
 * a: Alphabetically sort task descriptions
 
 Examples:
