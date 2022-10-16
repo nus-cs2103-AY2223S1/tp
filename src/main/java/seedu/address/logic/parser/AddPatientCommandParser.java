@@ -13,22 +13,22 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddPersonCommand object
+ * Parses input arguments and creates a new AddPatientCommand object
  */
 public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
-     * and returns an AddPersonCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPatientCommand
+     * and returns an AddPatientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPatientCommand parse(String args) throws ParseException {

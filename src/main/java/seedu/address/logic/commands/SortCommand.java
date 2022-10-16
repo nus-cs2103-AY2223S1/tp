@@ -8,7 +8,7 @@ import java.util.Comparator;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Patient;
+import seedu.address.model.patient.Patient;
 
 /**
  * Sorts data in Address Book.
@@ -58,7 +58,7 @@ public class SortCommand extends Command {
     }
 
     /**
-     * Compares two persons by name.
+     * Compares two patients by name.
      */
     public class NameComparator implements Comparator<Patient> {
         @Override
@@ -68,7 +68,7 @@ public class SortCommand extends Command {
     }
 
     /**
-     * Compares two persons by phone.
+     * Compares two patients by phone.
      */
     public class PhoneComparator implements Comparator<Patient> {
         @Override
@@ -78,7 +78,7 @@ public class SortCommand extends Command {
     }
 
     /**
-     * Compares two persons by email.
+     * Compares two patients by email.
      */
     public class EmailComparator implements Comparator<Patient> {
         @Override
@@ -88,7 +88,7 @@ public class SortCommand extends Command {
     }
 
     /**
-     * Compares two persons by address.
+     * Compares two patients by address.
      */
     public class AddressComparator implements Comparator<Patient> {
         @Override

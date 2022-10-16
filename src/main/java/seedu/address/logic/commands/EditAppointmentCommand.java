@@ -19,7 +19,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 
 /**
  * Edits the details of an existing appointment in the address book.
@@ -45,7 +45,7 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book.";
-    public static final String MESSAGE_PERSON_NOT_EXIST = "This person does not exist in the address book";
+    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the address book";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -74,8 +74,8 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
-        if (!model.hasPerson(editedAppointment.getName())) {
-            throw new CommandException(MESSAGE_PERSON_NOT_EXIST);
+        if (!model.hasPatient(editedAppointment.getName())) {
+            throw new CommandException(MESSAGE_PATIENT_NOT_EXIST);
         }
 
         if (!appointmentToEdit.equals(editedAppointment) && model.hasAppointment(editedAppointment)) {

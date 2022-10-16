@@ -32,7 +32,7 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 public class EditAppointmentCommandParserTest {

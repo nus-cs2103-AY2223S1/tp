@@ -8,26 +8,26 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Patient;
+import seedu.address.model.patient.Patient;
 
 /**
- * Select the given person and filter appointment list by given person.
+ * Select the given patient and filter appointment list by given patient.
  */
 public class SelectPatientCommand extends Command {
     public static final CommandWord COMMAND_WORD = new CommandWord("select", "sel");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Selects the indicated patient and filter "
-            + "the appointments list only containing selected person\n"
+            + "the appointments list only containing selected patient\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Selected Patient: %1$s";
-    public static final String MESSAGE_NOT_SELECTED = "Index of person to select must be provided.";
+    public static final String MESSAGE_NOT_SELECTED = "Index of patient to select must be provided.";
 
     private final Index index;
 
     /**
-     * @param index of the person in the filtered person list to select
+     * @param index of the patient in the filtered patient list to select
      */
     public SelectPatientCommand(Index index) {
         requireNonNull(index);

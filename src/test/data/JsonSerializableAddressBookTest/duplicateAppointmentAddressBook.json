@@ -1,5 +1,5 @@
 {
-  "persons": [],
+  "patients": [],
   "appointments": [{
       "name" : "Benson Meier",
       "medicalTest" : "gastric fluid analysis",

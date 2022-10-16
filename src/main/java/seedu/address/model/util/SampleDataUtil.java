@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static final Remark EMPTY_REMARK = new Remark("");
 
-    public static Patient[] getSamplePersons() {
+    public static Patient[] getSamplePatients() {
         return new Patient[] {
             new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
@@ -45,8 +45,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
-        for (Patient samplePatient : getSamplePersons()) {
-            sampleAb.addPerson(samplePatient);
+        for (Patient samplePatient : getSamplePatients()) {
+            sampleAb.addPatient(samplePatient);
         }
         return sampleAb;
     }

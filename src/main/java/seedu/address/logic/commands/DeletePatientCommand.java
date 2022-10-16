@@ -8,10 +8,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Patient;
+import seedu.address.model.patient.Patient;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a patient identified using it's displayed index from the address book.
  */
 public class DeletePatientCommand extends Command {
 
@@ -40,7 +40,7 @@ public class DeletePatientCommand extends Command {
         }
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(patientToDelete);
+        model.deletePatient(patientToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PATIENT_SUCCESS, patientToDelete));
     }
 
