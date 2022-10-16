@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,6 +17,7 @@ import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
 
@@ -40,8 +42,6 @@ public class DeleteTaskCommand extends Command {
             "Deleted task from: %1$s";
     public static final String MESSAGE_TASK_NUMBER_DOES_NOT_EXIST =
             "Task number given does not exist.";
-    public static final String MESSAGE_MODULE_CODE_DOES_NOT_EXIST =
-            "The given module code does not exist!";
 
     private final DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor;
 
@@ -59,16 +59,16 @@ public class DeleteTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
+        ModuleCode moduleCodeOfTaskToDeleteTaskFrom =
+                deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete;
         Module moduleToDeleteTaskFrom = null;
-        // Search for module with matching module code.
-        for (Module module : lastShownList) {
-            if (module.getModuleCode().equals(deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete)) {
-                moduleToDeleteTaskFrom = module;
-            }
+        try {
+            moduleToDeleteTaskFrom =
+                    model.getModuleUsingModuleCode(moduleCodeOfTaskToDeleteTaskFrom, true);
+        } catch (ModuleNotFoundException e) {
+            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         }
-        if (moduleToDeleteTaskFrom == null) {
-            throw new CommandException(MESSAGE_MODULE_CODE_DOES_NOT_EXIST);
-        }
+        assert moduleToDeleteTaskFrom != null;
         int indexOfTaskToDelete = deleteTaskFromModuleDescriptor
                 .getTaskIndexToDelete().getZeroBased();
         int numberOfTasksInTaskList = moduleToDeleteTaskFrom.getTasks().size();

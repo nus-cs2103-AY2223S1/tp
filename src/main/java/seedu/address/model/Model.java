@@ -6,6 +6,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
@@ -98,6 +100,12 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Returns true if a module with the same identity as {@code module}
+     * exists in the filtered list of modules being displayed to the user.
+     */
+    boolean hasModuleInFilteredList(Module module);
+
+    /**
      * Deletes the given module.
      * The module must exist in the address book.
      */
@@ -121,4 +129,19 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Searches for and retrieves a module currently present in the address
+     * book using the module code. Depending on the {@code isFiltered}
+     * parameter, we can choose to search in the full list of modules in the
+     * address book or only search from the current filtered list of modules
+     * being displayed to the user.
+     * @param moduleCodeOfModuleToGet {@code ModuleCode} of the module we would
+     *                                like to search for and retrieve.
+     * @param isFiltered {@boolean} value of whether the search should be
+     *                   conducted in the full list or filtered list.
+     * @return {@code Module} with the specified {@code ModuleCode}
+     */
+    Module getModuleUsingModuleCode(ModuleCode moduleCodeOfModuleToGet,
+                                    boolean isFiltered) throws ModuleNotFoundException;
 }

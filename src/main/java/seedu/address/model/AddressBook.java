@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -144,6 +145,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules.setModule(target, editedModule);
     }
 
+    /**
+     * Returns the {@code Module} in {@code modules} with the matching module
+     * code as the given {@code module}.
+     * @param module Module with the module code which we would like to
+     *               search for.
+     * @return {@code Module} with the same module code as the given
+     *         {@code module} argument.
+     */
+    public Module getModule(Module module) throws ModuleNotFoundException {
+        requireNonNull(module);
+        return modules.getModule(module);
+    }
+
     //// util methods
 
     @Override
@@ -166,7 +180,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons)
+                && modules.equals(((AddressBook) other).modules));
     }
 
     @Override
