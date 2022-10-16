@@ -12,14 +12,23 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tasks" : [ "Insert urinary catheter", "Check vitals" ],
+    "tasks" : [ {
+      "taskDescription" : "Insert urinary catheter",
+      "dateTime" : "2022-10-16T10:15:30"
+    }, {
+      "taskDescription" : "Check vitals",
+      "dateTime" : "2022-10-16T10:15:30"
+    } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tasks" : [ "Update health records" ],
+    "tasks" : [ {
+      "taskDescription" : "Update health records",
+      "dateTime": "2022-10-16T10:15:30"
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",

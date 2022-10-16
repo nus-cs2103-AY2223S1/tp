@@ -37,6 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TASK_DESC_FIRST = "Administer 80mg of valsartan";
     public static final String VALID_TASK_DESC_SECOND = "Advise on over-the-counter prescriptions";
+    public static final String VALID_TASK_DATE_FIRST = "2022-10-16T10:15:30";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
