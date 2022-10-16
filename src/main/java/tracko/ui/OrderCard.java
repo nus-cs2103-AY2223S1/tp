@@ -74,14 +74,18 @@ public class OrderCard extends UiPart<Region> {
 
         if (order.getPaidStatus()) {
             paidStatus.setText("Paid");
+            paidStatus.setStyle("-fx-background-color: #D9DCFF; -fx-text-fill: #707BE3");
         } else {
-            paidStatus.setText("!Unpaid");
+            paidStatus.setText("Unpaid");
+            paidStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
         }
 
         if (order.getDeliveryStatus()) {
             deliveryStatus.setText("Delivered");
+            deliveryStatus.setStyle("-fx-background-color: #D9DCFF; -fx-text-fill: #707BE3");
         } else {
-            deliveryStatus.setText("!Undelivered");
+            deliveryStatus.setText("Undelivered");
+            deliveryStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
         }
 
         items.setPadding(new Insets(15, 10, 15, 10));

@@ -28,8 +28,8 @@
         <Label fx:id="name" styleClass="cell_big_label_order" text="\$first" />
       </HBox>
       <HBox>
-        <Label fx:id="paidStatus"/>
-        <Label fx:id="deliveryStatus"/>
+        <Label fx:id="paidStatus" styleClass="status-labels"/>
+        <Label fx:id="deliveryStatus" styleClass="status-labels"/>
       </HBox>
       <VBox>
         <HBox alignment="CENTER_LEFT" spacing="10.0">
