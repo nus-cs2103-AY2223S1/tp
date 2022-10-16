@@ -43,8 +43,8 @@ public class CommandBox extends UiPart<Region> {
         // autocomplete
         AutoCompletionBinding<String> autoComplete = TextFields.bindAutoCompletion(commandTextField, commands);
         AutoCompletePopup<String> autoCompletePopup = autoComplete.getAutoCompletionPopup();
-        autoCompletePopup.setStyle("-fx-font-size: 12pt;-fx-font-family: \"Minecraft\";" +
-                "-fx-control-inner-background:WHITE;-fx-selection-bar-non-focused:red;");
+        autoCompletePopup.setStyle("-fx-font-size: 12pt;-fx-font-family: \"Minecraft\";"
+                + "-fx-control-inner-background:WHITE;-fx-selection-bar-non-focused:red;");
     }
 
     /**
