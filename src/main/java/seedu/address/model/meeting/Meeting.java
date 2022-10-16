@@ -44,7 +44,7 @@ public class Meeting {
     public Meeting(ArrayList<Person> peopleToMeetArray, String meetingTitle,
         String meetingDateAndTime, String meetingLocation) throws ParseException {
         this.peopleToMeetArray = peopleToMeetArray;
-        this.people.setPersons(peopleToMeetArray);
+        this.peopleToMeetList.setPersons(peopleToMeetArray);
         this.meetingDescription = meetingTitle;
         this.meetingDateAndTime = validator.processDateTime(meetingDateAndTime);
         this.meetingLocation = meetingLocation;
@@ -118,7 +118,7 @@ public class Meeting {
 
     public ArrayList<Person> getArrayListPersonToMeet() {
         ArrayList<Person> a = new ArrayList<>();
-        this.peopleToMeet.iterator().forEachRemaining(a::add);
+        this.peopleToMeetList.iterator().forEachRemaining(a::add);
         return a;
     }
 
@@ -140,7 +140,7 @@ public class Meeting {
 
     public String getPeopleToMeetAsString() {
         String res = "";
-        for (Person p : peopleToMeet) {
+        for (Person p : peopleToMeetList) {
             res = res + p.getName().fullName + ", ";
         }
         return res.substring(0, res.length() - 2);

@@ -18,20 +18,18 @@ import seedu.address.model.util.DateTimeProcessor;
  * A utility class to help with building Meeting objects.
  */
 public class MeetingBuilder {
-    public static final ArrayList<Person> DEFAULT_PERSONS = new ArrayList<>(Arrays.asList(ALICE, BENSON));
-    public static final String DEFAULT_DESCRIPTION = "CS2040";
-    public static final String DEFAULT_DATETIME = "02-12-2021";
-    public static final String DEFAULT_LOCATION = "COM3";
-
-    private ArrayList<Person> peopleToMeet;
+//    public static final ArrayList<Person> DEFAULT_PERSONS = new ArrayList<>(Arrays.asList(ALICE, BENSON));
+//    public static final String DEFAULT_DESCRIPTION = "CS2040";
+//    public static final String DEFAULT_DATETIME = "02-12-2021";
+//    public static final String DEFAULT_LOCATION = "COM3";
     
-    public static final Person DEFAULT_PERSON_IN_MEETING_BUILDER = new PersonBuilder()
+    public static final Person DEFAULT_PERSON_IN_MEETING_BUILDER_TWO = new PersonBuilder()
         .withTags("Classmate", "Dalao").build();
-    public static final String DEFAULT_DESCRIPTION = "Do CS2103 Project";
-    public static final String DEFAULT_DATE_AND_TIME = "16-10-2022 1530";
-    public static final String DEFAULT_LOCATION = "University Town";
+    public static final String DEFAULT_DESCRIPTION_TW0 = "Do CS2103 Project";
+    public static final String DEFAULT_DATE_AND_TIME_TWO = "16-10-2022 1530";
+    public static final String DEFAULT_LOCATION_TWO = "University Town";
 
-    private final ArrayList<Person> personsToMeetArray = new ArrayList<>();
+    private ArrayList<Person> personsToMeetArray = new ArrayList<>();
     
     private String meetingDescription;
     private String meetingDateAndTime;
@@ -40,38 +38,38 @@ public class MeetingBuilder {
     /**
      * Creates a {@code MeetingBuilder} with the default details.
      */
-    public MeetingBuilderOne() throws ParseException {
-        this.personsToMeetArray.add(MeetingBuilder.DEFAULT_PERSON_IN_MEETING_BUILDER);
-        this.meetingDescription = MeetingBuilder.DEFAULT_DESCRIPTION;
-        this.meetingDateAndTime = MeetingBuilder.DEFAULT_DATE_AND_TIME;
-        this.meetingLocation = MeetingBuilder.DEFAULT_LOCATION;
+    public MeetingBuilder() {
+        this.personsToMeetArray.add(MeetingBuilder.DEFAULT_PERSON_IN_MEETING_BUILDER_TWO);
+        this.meetingDescription = MeetingBuilder.DEFAULT_DESCRIPTION_TW0;
+        this.meetingDateAndTime = MeetingBuilder.DEFAULT_DATE_AND_TIME_TWO;
+        this.meetingLocation = MeetingBuilder.DEFAULT_LOCATION_TWO;
     }
 
     /**
      * Creates a {@code MeetingBuilder} with the data of {@code personToMeet}.
      */
-    public MeetingBuilder(Person personToMeet) throws ParseException {
+    public MeetingBuilder(Person personToMeet) {
         this.personsToMeetArray.add(personToMeet);
-        this.meetingDescription = MeetingBuilder.DEFAULT_DESCRIPTION;
-        this.meetingDateAndTime = MeetingBuilder.DEFAULT_DATE_AND_TIME;
-        this.meetingLocation = MeetingBuilder.DEFAULT_LOCATION;
+        this.meetingDescription = MeetingBuilder.DEFAULT_DESCRIPTION_TW0;
+        this.meetingDateAndTime = MeetingBuilder.DEFAULT_DATE_AND_TIME_TWO;
+        this.meetingLocation = MeetingBuilder.DEFAULT_LOCATION_TWO;
     }
 
-    /**
-     * Sets the {@code description} of the {@code Meeting} that we are building.
-     */
-    public MeetingBuilderTwo() {
-        this.peopleToMeet = DEFAULT_PERSONS;
-        this.meetingDescription = DEFAULT_DESCRIPTION;
-        this.meetingDateAndTime = DEFAULT_DATETIME;
-        this.meetingLocation = DEFAULT_LOCATION;
-    }
+//    /**
+//     * Sets the {@code description} of the {@code Meeting} that we are building.
+//     */
+//    public MeetingBuilder() {
+//        this.peopleToMeet = DEFAULT_PERSONS;
+//        this.meetingDescription = DEFAULT_DESCRIPTION;
+//        this.meetingDateAndTime = DEFAULT_DATETIME;
+//        this.meetingLocation = DEFAULT_LOCATION;
+//    }
 
     /**
      * Initializes the MeetingBuilder with the data of {@code meetingToCopy}.
      */
     public MeetingBuilder(Meeting meetingToCopy) {
-        this.peopleToMeet = meetingToCopy.getArrayListPersonToMeet();
+        this.personsToMeetArray = meetingToCopy.getArrayListPersonToMeet();
         this.meetingDescription = meetingToCopy.getDescription();
         this.meetingDateAndTime = meetingToCopy.getDateAndTime();
         this.meetingLocation = meetingToCopy.getLocation();
@@ -82,7 +80,7 @@ public class MeetingBuilder {
      */
     public MeetingBuilder withPersons(Person ... persons) {
         ArrayList<Person> listOfPeople = new ArrayList<>(Arrays.asList(persons));
-        this.peopleToMeet = listOfPeople;
+        this.personsToMeetArray = listOfPeople;
         return this;
     }
     
@@ -97,7 +95,7 @@ public class MeetingBuilder {
     /**
      * Sets the {@code dateAndTime} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withDateAndTime(String dateAndTime) throws ParseException {
+    public MeetingBuilder withDateAndTime(String dateAndTime) {
         this.meetingDateAndTime = dateAndTime;
         return this;
     }
@@ -110,9 +108,14 @@ public class MeetingBuilder {
         return this;
     }
 
-    public Meeting build() throws ParseException {
-        return new Meeting(this.personsToMeetArray, this.meetingDescription,
-            this.meetingDateAndTime, this.meetingLocation);
+    public Meeting build() {
+        try {
+            return new Meeting(this.personsToMeetArray, this.meetingDescription,
+                this.meetingDateAndTime, this.meetingLocation);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

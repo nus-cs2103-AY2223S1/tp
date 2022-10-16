@@ -16,10 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
@@ -240,11 +237,6 @@ public class CreateMeetingCommandTest {
         }
 
         @Override
-        public ObservableList<Meeting> getMeetingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public boolean equals(Object other) {
             throw new AssertionError("This method should not be called.");
         }
@@ -352,6 +344,26 @@ public class CreateMeetingCommandTest {
 
         @Override
         public void deleteMeeting(Meeting newMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingList(ReadOnlyMeetingList meetingList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMeetingList getMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getMeetingListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMeetingListFilePath(Path meetingListFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

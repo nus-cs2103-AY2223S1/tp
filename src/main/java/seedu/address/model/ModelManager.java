@@ -208,7 +208,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
-        return addressBook.hasMeeting(meeting);
+        return meetingList.hasMeeting(meeting);
     }
 
     @Override
