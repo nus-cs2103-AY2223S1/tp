@@ -28,12 +28,16 @@ public class RoomTest {
         assertFalse(Room.isValidRoom("")); // empty string
         assertFalse(Room.isValidRoom(" ")); // spaces only
         assertFalse(Room.isValidRoom("-50-23")); // not allowed to start with a hyphen
+        assertFalse(Room.isValidRoom("50 - 23")); // not allowed to have spacings in between
+        assertFalse(Room.isValidRoom("50--23")); // not allowed to have more than 1 hyphen in between
         assertFalse(Room.isValidRoom("$50")); // '$' is not allowed
         assertFalse(Room.isValidRoom("^&*")); // special symbols only are not allowed
         assertFalse(Room.isValidRoom("aloha-5()")); // '(' or ')' is not allowed
 
         // valid room
         assertTrue(Room.isValidRoom("05-73")); // only alphanumeric characters and hyphen
+        assertTrue(Room.isValidRoom("RoomA")); // only alphanumeric characters
+        assertTrue(Room.isValidRoom("Room5")); // hyphens are optional
         assertTrue(Room.isValidRoom("Aloha-5")); // only alphanumeric characters and hyphen
 
     }

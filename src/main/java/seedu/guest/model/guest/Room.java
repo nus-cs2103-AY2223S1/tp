@@ -9,10 +9,13 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class Room {
     public static final String MESSAGE_CONSTRAINTS =
-            "Room should only contain alphanumeric characters and hyphens";
+            "Room should only contain alphanumeric characters and a hyphen. "
+            + "Should it contain a hyphen, it must be in between 2 alphanumeric characters. "
+            + "There should also be no spacings in between. "
+            + "E.g 05-73 or Aloha-5 are accepted.";
 
-    // Room contains //alphanumeric characters with hyphen only, and don't start with a hyphen
-    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9][a-zA-Z0-9\\-]*$";
+    // Room contains alphanumeric characters with an optional hyphen only in between, and don't start with a hyphen
+    private static final String VALIDATION_REGEX = "^[A-Za-z0-9]+(?:-?[A-Za-z0-9]+)+$";
 
     public final String value;
 
@@ -50,7 +53,4 @@ public class Room {
     public int hashCode() {
         return value.hashCode();
     }
-
-
-
 }

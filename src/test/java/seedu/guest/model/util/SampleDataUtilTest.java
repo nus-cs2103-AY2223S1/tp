@@ -14,7 +14,6 @@ import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
 import seedu.guest.model.guest.Room;
 
-
 public class SampleDataUtilTest {
 
     @Test
