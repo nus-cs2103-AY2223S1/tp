@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
 /**
  * Represents a single record in the record list of a Person object.
  */
-public class Record {
+public class Record implements Comparable<Record> {
     public static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     /* Data Fields */
     public final String record;
@@ -63,6 +63,11 @@ public class Record {
      */
     public String getRecordDate() {
         return recordDate.format(DATE_FORMAT);
+    }
+
+    @Override
+    public int compareTo(Record record) {
+        return this.recordDate.compareTo(record.recordDate);
     }
 
     @Override
