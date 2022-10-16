@@ -130,6 +130,24 @@ Format: `get /wn WARD_NUMBER`
 * The ward number refers to the ward the patient is in.
   e.g. `get /wn D12` will return `John` `Peter` `Mary`
 
+#### by patient type: `/inp`
+
+Finds inpatients in checkUp.
+
+Format: `get /inp`
+
+Example:
+* `get /inp` returns `Alex`, `Charlotte` and `Roy`
+
+#### by patient type: `/outp`
+
+Finds outpatients in checkUp.
+
+Format: `get /outp`
+
+Example:
+* `get /outp` returns `Bernice`, `David` and `Irfan`
+
 ### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -171,10 +189,26 @@ Format: `exit`
 
 _Details coming soon ..._
 
-### Editing the data file
+### Editing the data file: `edit`
 
+Edits a patient in checkUp.
 
-_Details coming soon ..._
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT TYPE] [hw/HOSPITAL WING] 
+        [fn/FLOOR NUMBER] [wn/WARD NUMBER] [m/MEDICATION]...`
+
+* Edits the details of the patient at the specified `INDEX`. The index refers to the index number shown in the 
+displayed patient list. The index **must be a positive integer** 1, 2, 3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing medication, the existing medication of the person will be removed i.e adding of medication is not 
+cumulative.
+* You can remove all the person’s tags by typing m/ without specifying any medication after it.
+
+Examples:
+
+* `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st patient to be `91234567`
+and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower m/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medication.
 
 ### Archiving data files `[coming in v2.0]`
 
