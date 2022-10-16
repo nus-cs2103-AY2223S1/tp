@@ -11,4 +11,5 @@ public class TypicalIndexes {
     public static final Index INDEX_THIRD_PERSON = Index.fromOneBased(3);
     public static final Index INDEX_FIRST_MODULE = Index.fromOneBased(1);
     public static final Index INDEX_FIRST_SCHEDULE = Index.fromOneBased(1);
+    public static final Index INDEX_SECOND_SCHEDULE = Index.fromOneBased(2);
 }
