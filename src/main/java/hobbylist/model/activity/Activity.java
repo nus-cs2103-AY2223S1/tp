@@ -67,7 +67,9 @@ public class Activity {
         }
 
         return otherActivity != null
-                && otherActivity.getName().equals(getName());
+                && otherActivity.getName().equals(getName())
+                && otherActivity.getDescription().equals(getDescription())
+                && otherActivity.getTags().equals(getTags());
     }
 
     /**

@@ -4,25 +4,24 @@ import static java.util.Objects.requireNonNull;
 
 import hobbylist.commons.core.Messages;
 import hobbylist.model.Model;
-import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
+import hobbylist.model.activity.TagMatchesKeywordPredicate;
 
 /**
- * Finds and lists all activities in HobbyList whose name or description contains any of the argument keywords.
+ * Finds and lists all activities in HobbyList whose tag matches any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose names or descriptions"
-            + "contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose tags match"
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " sleep exercise code";
+            + "Example: " + COMMAND_WORD + "sport";
 
-    private final NameOrDescContainsKeywordsPredicate predicate;
+    private final TagMatchesKeywordPredicate predicate;
 
-    public FindCommand(NameOrDescContainsKeywordsPredicate predicate) {
+    public FindTagCommand(TagMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -37,7 +36,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindTagCommand // instanceof handles nulls
+                && predicate.equals(((FindTagCommand) other).predicate)); // state check
     }
 }
