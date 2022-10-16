@@ -9,8 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS = "Mod names should be numbers prefixed with letters.";
+    /** Categories for mods */
     public enum ModCategory { CS, MATH, COMMS, GE, UE };
-    public static final String VALIDATION_REGEX = "[A-Z]+\\d+";
+    public static final String VALIDATION_REGEX = "[A-Z]+\\d+[A-Z]?";
     private final String modName;
     private boolean hasTaken;
     private final ModCategory modCategory;
@@ -110,7 +111,7 @@ public class Mod {
      * @return The mod category.
      */
     private ModCategory getModCategory(String modName) {
-        String modPrefix = modName.split("[0-9]")[0].substring(0,2);
+        String modPrefix = modName.split("[0-9]")[0].substring(0, 2);
         switch (modPrefix) {
         case "CS":
             return ModCategory.CS;

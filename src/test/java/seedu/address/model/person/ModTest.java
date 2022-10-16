@@ -28,10 +28,16 @@ public class ModTest {
         assertFalse(Mod.isValidModName(" ")); // spaces only
         assertFalse(Mod.isValidModName("9312 1534")); // spaces within digits
         assertFalse(Mod.isValidModName("this is a mod")); // spaces within words
+        assertFalse(Mod.isValidModName("ALLWORDS")); // all words
+        assertFalse(Mod.isValidModName("1234")); // all numbers
+        assertFalse(Mod.isValidModName("cs2103")); // not uppercase
+        assertFalse(Mod.isValidModName("CS2103t")); // not uppercase
+        assertFalse(Mod.isValidModName("#CS@2103")); // special characters
 
         // valid mod names
-        assertTrue(Mod.isValidModName("CS1")); // exactly 3 chars
-        assertTrue(Mod.isValidModName("CS2103"));
-        assertTrue(Mod.isValidModName("ST124293842033123")); // long phone numbers
+        assertTrue(Mod.isValidModName("CS1101")); // regular mod name
+        assertTrue(Mod.isValidModName("GESS1025")); // mod with long prefix
+        assertTrue(Mod.isValidModName("CS2103T")); // mod name with letter(s) behind
+        assertTrue(Mod.isValidModName("CS1231S")); // mod name with letter(s) behind
     }
 }
