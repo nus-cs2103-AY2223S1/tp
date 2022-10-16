@@ -1,26 +1,26 @@
-package seedu.address.logic.commands;
+package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.uninurse.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Patient;
-import seedu.address.testutil.EditPatientDescriptorBuilder;
+import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -104,21 +104,21 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the uninurse book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        UninurseBook expectedUninurseBook = new UninurseBook(actualModel.getUninurseBook());
         List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedUninurseBook, actualModel.getUninurseBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s uninurse book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());

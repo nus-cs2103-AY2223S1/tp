@@ -1,17 +1,17 @@
-package seedu.address.logic.parser;
+package seedu.uninurse.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditTaskCommand;
-import seedu.address.model.task.Task;
+import seedu.uninurse.logic.commands.EditTaskCommand;
+import seedu.uninurse.model.task.Task;
 
 /**
  * Contains unit tests for {@code EditTaskCommandParser}.

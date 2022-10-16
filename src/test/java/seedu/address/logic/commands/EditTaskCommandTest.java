@@ -1,29 +1,29 @@
-package seedu.address.logic.commands;
+package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.TASK_CARE_PLAN;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalTasks.TASK_CARE_PLAN;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
+import seedu.uninurse.commons.core.Messages;
+import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.ModelManager;
+import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.UserPrefs;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.Task;
+import seedu.uninurse.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditTaskCommand}.
@@ -32,7 +32,7 @@ class EditTaskCommandTest {
 
     private static final String TASK_STUB = "Some task";
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
 
     @Test
     public void constructor_nullPatientIndex_throwsNullPointerException() {
@@ -74,7 +74,7 @@ class EditTaskCommandTest {
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(secondPatient, editedPatient);
 
         assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
@@ -93,7 +93,7 @@ class EditTaskCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
 
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_TASK, new Task(TASK_STUB));
 
