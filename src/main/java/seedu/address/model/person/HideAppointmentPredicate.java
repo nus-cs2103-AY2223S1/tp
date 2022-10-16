@@ -27,27 +27,28 @@ public class HideAppointmentPredicate implements Predicate<Appointment> {
     @Override
     public boolean test(Appointment appt) {
         List<String> keywordsParts = Arrays.asList(keywords.split(" "));
-        boolean passed = false;
+        boolean passed = true;
+
         switch (condition) {
         case KEYWORD:
             passed = keywordsParts.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(appt.getReason(), keyword));
+                    .anyMatch(keyword -> appt.getReason().contains(keyword));
             break;
-        case TAG:
-            Set<Tag> tags = appt.getTags(); //appt does not have tag yet
-            for (Tag t: tags) {
-                if (keywordsParts.stream().anyMatch(t.tagName::equalsIgnoreCase)) {
-                    passed = true;
-                }
-            }
-            break;
+//        case TAG:
+//            Set<Tag> tags = appt.getTags(); //appt does not have tag yet
+//            for (Tag t: tags) {
+//                if (keywordsParts.stream().anyMatch(t.tagName::equalsIgnoreCase)) {
+//                    passed = true;
+//                }
+//            }
+//            break;
         case IS_MARKED:
-            passed = appt.isMarked();
+            passed = keywordsParts.get(0).equals("marked") ? !appt.isMarked() : appt.isMarked();
             break;
         default:
             assert false : condition; //should not reach here
         }
-        if (passed) {
+        if (!passed) {
             HiddenPredicateSingleton.addToHiddenApptList(appt);
         }
         return passed;

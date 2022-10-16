@@ -68,10 +68,12 @@ public class HiddenPredicateSingleton implements Predicate<Person> {
     }
 
     public static void clearHiddenPatients() {
+        currPersonPredicate = Model.PREDICATE_SHOW_ALL_PERSONS;
         hiddenPersons.clear();
     }
 
     public static void clearHiddenAppts() {
+        currApptPredicate = Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
         hiddenAppts.clear();
     }
 

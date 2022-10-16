@@ -2,18 +2,17 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
-
 import seedu.address.logic.commands.HideAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.HiddenPredicateSingleton;
 import seedu.address.model.person.HideAppointmentPredicate;
+
+import java.util.function.Predicate;
 
 /**
  * Parses input arguments and creates a new FilterPatientCommand object
@@ -35,14 +34,26 @@ public class HideAppointmentsCommandParser implements Parser<HideAppointmentsCom
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
         }
 
-        String reason = argMultimap.getValue(PREFIX_REASON).orElse("");
-        String tag = argMultimap.getValue(PREFIX_TAG).orElse("");
-        String status = argMultimap.getValue(PREFIX_STATUS).orElse("");
-        HiddenPredicateSingleton.combineWithApptPredicate(new HideAppointmentPredicate(HideAppointmentPredicate.hideBy.TAG, tag));
-        HiddenPredicateSingleton.combineWithApptPredicate(new HideAppointmentPredicate(HideAppointmentPredicate.hideBy.KEYWORD, reason));
-        HiddenPredicateSingleton.combineWithApptPredicate(new HideAppointmentPredicate(HideAppointmentPredicate.hideBy.IS_MARKED, status));
-        return new HideAppointmentsCommand(HiddenPredicateSingleton.getCurrApptPredicate());
+        HideAppointmentPredicate.hideBy cond;
+        String val;
+        if (argMultimap.getValue(PREFIX_REASON).isPresent()) {
+            val = argMultimap.getValue(PREFIX_REASON).orElse("");
+            cond = HideAppointmentPredicate.hideBy.KEYWORD;
+        }
+        else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            val = argMultimap.getValue(PREFIX_TAG).orElse("");
+            cond = HideAppointmentPredicate.hideBy.TAG;
+        }
+        else if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            val = argMultimap.getValue(PREFIX_STATUS).orElse("");
+            cond = HideAppointmentPredicate.hideBy.IS_MARKED;
+        }
+        else {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
+        }
 
+        return new HideAppointmentsCommand(new HideAppointmentPredicate(cond, val));
     }
 
 }

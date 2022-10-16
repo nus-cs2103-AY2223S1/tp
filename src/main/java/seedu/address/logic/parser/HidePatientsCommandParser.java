@@ -24,6 +24,7 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
     public HidePatientsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            System.out.println(argMultimap.getValue(PREFIX_TAG));
             return new HidePatientsCommand(
                     new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }
