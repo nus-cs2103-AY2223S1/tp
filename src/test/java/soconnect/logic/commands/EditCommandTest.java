@@ -21,6 +21,7 @@ import soconnect.logic.commands.EditCommand.EditPersonDescriptor;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.testutil.EditPersonDescriptorBuilder;
@@ -31,7 +32,7 @@ import soconnect.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -41,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -61,7 +62,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -74,7 +75,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -90,7 +91,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SoConnect(model.getSoConnect()), new TodoList(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

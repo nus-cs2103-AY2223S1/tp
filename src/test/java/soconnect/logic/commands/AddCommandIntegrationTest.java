@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.testutil.PersonBuilder;
@@ -21,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddCommand(validPerson), model,

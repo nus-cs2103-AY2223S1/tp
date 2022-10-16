@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 public class ClearCommandTest {
@@ -22,8 +23,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptySoConnect_success() {
-        Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setSoConnect(new SoConnect());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
