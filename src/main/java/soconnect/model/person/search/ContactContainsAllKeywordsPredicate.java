@@ -1,15 +1,15 @@
 package soconnect.model.person.search;
 
-import soconnect.commons.util.StringUtil;
-import soconnect.logic.parser.ArgumentMultimap;
-import soconnect.logic.parser.Prefix;
-import soconnect.model.person.Person;
+import static soconnect.model.person.search.SearchPrefix.SearchPrefixCommand;
+import static soconnect.model.person.search.SearchPrefix.convertPrefixToEnumType;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import static soconnect.model.person.search.SearchPrefix.SearchPrefixCommand;
-import static soconnect.model.person.search.SearchPrefix.convertPrefixToEnumType;
+import soconnect.commons.util.StringUtil;
+import soconnect.logic.parser.ArgumentMultimap;
+import soconnect.logic.parser.Prefix;
+import soconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
