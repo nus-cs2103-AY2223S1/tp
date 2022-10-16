@@ -26,16 +26,16 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Gender("M"),
-                getTagSet("friends"), new Location("Chess club room"),
-                    new GithubUsername("", false)),
+                new Gender("M"), getTagSet("friends"), new Location("Chess club room"),
+                    new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Gender("M"),
                 getTagSet("colleagues", "friends"), new Location("UTown"),
-                    new GithubUsername("", false)),
+                    new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Gender("F"),
-                getTagSet("neighbours"), new Location("NUS"), new GithubUsername("", false)),
+                getTagSet("neighbours"), new Location("NUS"), new GithubUsername("", false),
+                    getModuleCodeSet("CS4534", "CS5234")),
             new Professor(new Name("Wong Tin Lok"), new ModuleCode("CS1231S"),
                 new Phone("91031282"), new Email("wongtk@example.com"),
                 new Gender("M"),
@@ -45,9 +45,8 @@ public class SampleDataUtil {
                 new Gender("M"),
                 getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false)),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Gender("M"),
-                getTagSet("colleagues"), new Location("Research Lab"),
-                    new GithubUsername("", false))
+                new Gender("M"), getTagSet("colleagues"), new Location("Research Lab"),
+                    new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"))
         };
     }
 
@@ -65,6 +64,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a moduleCode set containing the list of strings given.
+     */
+    public static Set<ModuleCode> getModuleCodeSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(ModuleCode::new)
                 .collect(Collectors.toSet());
     }
 
