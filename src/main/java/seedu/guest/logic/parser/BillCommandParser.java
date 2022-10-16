@@ -29,6 +29,10 @@ public class BillCommandParser implements Parser<BillCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BillCommand.MESSAGE_USAGE), pe);
         }
 
+        if (argMultimap.getValue(PREFIX_BILL).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BillCommand.MESSAGE_USAGE));
+        }
+
         Bill bill = ParserUtil.parseBill(argMultimap.getValue(PREFIX_BILL).get());
 
         return new BillCommand(index, bill);

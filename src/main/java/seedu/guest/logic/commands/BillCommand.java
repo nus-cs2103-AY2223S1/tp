@@ -1,5 +1,6 @@
 package seedu.guest.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 
@@ -48,6 +49,7 @@ public class BillCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Guest> lastShownList = model.getFilteredGuestList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
