@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public enum Priority {
     NONE, LOW, MEDIUM, HIGH;
 
-    public static final String MESSAGE_CONSTRAINTS = "PRIORITY NOT IMPLEMENTED";
+    public static final String MESSAGE_CONSTRAINTS = "Priority should be an integer 0, 1 or 2";
 
     /**
      * Checks if the priority string is valid.

@@ -15,13 +15,13 @@ import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
 /**
- * Lists all persons in the address book to the user.
+ * Edit project command to edit projects
  */
 public class EditProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a project in the address book. "
             + "Parameters: "
             + PREFIX_PROJECT_ID + "PROJECT_ID "
             + PREFIX_NAME + "NAME "

@@ -68,14 +68,14 @@ public class UniqueIssueList implements Iterable<Issue> {
         internalList.set(index, editedIssue);
     }
 
-    public Issue getIssue(IssueId id) {
-        requireAllNonNull(id);
+    public static Issue getIssue(int issueId) {
+        requireAllNonNull(issueId);
         for (Issue i: internalList) {
-            if (i.getIssueId().equals(id)) {
+            if (i.getIssueId().getIdInt() == issueId) {
                 return i;
             }
         }
-        return null;
+        return Issue.EmptyIssue.EMPTY_ISSUE;
     }
 
     /**
