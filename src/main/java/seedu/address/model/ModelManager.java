@@ -202,7 +202,7 @@ public class ModelManager implements Model {
     @Override
     public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
                                     String meetingDateAndTime, String meetingLocation)
-        throws ParseException, java.text.ParseException {
+            throws ParseException, java.text.ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
     }
 
