@@ -98,8 +98,9 @@ public class StringUtil {
         if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
             return true;
         }
-
-        return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, preppedKeywords.size() * 3 / 4));
+        double reductionMultiplier = 0.75;
+        int reducedKeywordsLength = (int) (preppedKeywords.size() * reductionMultiplier);
+        return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, reducedKeywordsLength));
     }
 
     /**
