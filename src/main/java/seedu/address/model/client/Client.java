@@ -190,4 +190,9 @@ public class Client implements ReadOnlyClient {
         return companies.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Transaction> getTransactionList() {
+        return transactions.asUnmodifiableObservableList();
+    }
+
 }
