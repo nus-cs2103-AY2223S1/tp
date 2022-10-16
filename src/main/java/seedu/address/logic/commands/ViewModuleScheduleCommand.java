@@ -47,4 +47,11 @@ public class ViewModuleScheduleCommand extends Command {
                 false, true);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ViewModuleScheduleCommand
+                && predicate.equals(((ViewModuleScheduleCommand) other).predicate));
+    }
+
 }

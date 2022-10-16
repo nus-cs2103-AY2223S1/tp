@@ -22,6 +22,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.module.schedule.ScheduleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -162,6 +164,19 @@ public class CommandTestUtil {
         model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredModuleList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered schedule list to show only the schedule at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showScheduleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredScheduleList().size());
+
+        Schedule schedule = model.getFilteredScheduleList().get(targetIndex.getZeroBased());
+        final String weekday = schedule.getWeekday().name();
+        model.updateFilteredScheduleList(new ScheduleContainsKeywordsPredicate(Arrays.asList(weekday)));
+        assertEquals(1, model.getFilteredPersonList().size());
     }
 
 }

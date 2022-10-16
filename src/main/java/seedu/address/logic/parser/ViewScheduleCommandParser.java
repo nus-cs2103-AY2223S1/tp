@@ -31,7 +31,6 @@ public class ViewScheduleCommandParser implements Parser<ViewModuleScheduleComma
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WEEKDAY, PREFIX_MODULE_OF_SCHEDULE);
-//        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE_OF_SCHEDULE, PREFIX_WEEKDAY) || !argMultimap.getPreamble().isEmpty()) {
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ViewModuleScheduleCommand.MESSAGE_USAGE));
