@@ -90,6 +90,13 @@ public class Person {
         return timeZone;
     }
 
+    public Set<ITimesAvailable> getTimesAvailable() {
+        // TODO: Remove placeholder and implement TimesAvailable
+        Set<ITimesAvailable> set = new HashSet<>();
+        set.add(dayTimeInWeek -> true);
+        return set;
+    }
+
     /**
      * Returns true if both persons have the same Minecraft name.
      * Minecraft names are guaranteed to be unique,
@@ -156,6 +163,21 @@ public class Person {
         builder.append("Socials: ").append(getFieldOrElse(getSocials()));
         return builder.toString();
 
+    }
+
+    /**
+     * Gets the string to be checked against in the predicate.
+     * @return The predicate string
+     */
+    public String toPredicateCheckingString() {
+        return getName() + "\n"
+                + getMinecraftName() + "\n"
+                + getPhone() + "\n"
+                + getEmail() + "\n"
+                + getAddress() + "\n"
+                + getTimeZone() + "\n"
+                + getServers() + "\n"
+                + getSocials();
     }
 
     private String getFieldOrElse(String s) {

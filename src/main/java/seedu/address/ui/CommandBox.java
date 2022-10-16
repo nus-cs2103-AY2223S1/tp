@@ -23,7 +23,7 @@ public class CommandBox extends UiPart<Region> {
 
     private final CommandExecutor commandExecutor;
     private final List<String> commands = List.of("add", "clear", "delete", "edit", "exit", "find",
-                                                  "help", "list", "select");
+                                                  "help", "list", "suggest");
 
     @FXML
     private TextField commandTextField;
