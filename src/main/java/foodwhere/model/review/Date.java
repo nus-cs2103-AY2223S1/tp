@@ -3,9 +3,13 @@ package foodwhere.model.review;
 import static foodwhere.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.chrono.IsoChronology;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoField;
 
 /**
  * Represents a Review's date in the address book.
@@ -18,20 +22,29 @@ public class Date implements Comparable<Date> {
 
     public static final String VALIDATION_REGEX = "\\d{1,2}-\\d{1,2}-\\d{4}|\\d{1,2}/\\d{1,2}/\\d{4}";
 
-    public static final DateFormat SLASH_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
-    public static final DateFormat DASH_DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
-
-    static {
-        SLASH_DATE_FORMAT.setLenient(false);
-        DASH_DATE_FORMAT.setLenient(false);
-    }
-
-    public static final DateFormat[] PARSING_DATE_FORMATS = new DateFormat[]{ SLASH_DATE_FORMAT, DASH_DATE_FORMAT };
-    public static final DateFormat OUTPUT_DATE_FORMAT = SLASH_DATE_FORMAT;
+    //@@author clarence-chew-reused
+    //Reused from https://stackoverflow.com/a/30478777
+    // with minor modifications
+    public static final DateTimeFormatter SLASH_DATE_FORMAT = new DateTimeFormatterBuilder()
+            .appendPattern("d/M/yyyy")
+            .parseDefaulting(ChronoField.ERA, 1)
+            .toFormatter()
+            .withChronology(IsoChronology.INSTANCE)
+            .withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DASH_DATE_FORMAT = new DateTimeFormatterBuilder()
+            .appendPattern("d-M-yyyy")
+            .parseDefaulting(ChronoField.ERA, 1)
+            .toFormatter()
+            .withChronology(IsoChronology.INSTANCE)
+            .withResolverStyle(ResolverStyle.STRICT);
+    //@@author
+    public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static final DateTimeFormatter[] PARSING_DATE_FORMATS =
+            new DateTimeFormatter[]{ SLASH_DATE_FORMAT, DASH_DATE_FORMAT };
 
     public final String value;
 
-    public final java.util.Date date;
+    public final LocalDate date;
 
     /**
      * Constructs an {@code Date}.
@@ -43,7 +56,7 @@ public class Date implements Comparable<Date> {
         checkArgument(isValidFormat(date), MESSAGE_CONSTRAINTS);
         checkArgument(isValidDate(date), VALID_DATE_CONSTRAINTS);
         this.date = parseDate(date, PARSING_DATE_FORMATS);
-        value = OUTPUT_DATE_FORMAT.format(this.date);
+        value = this.date.format(OUTPUT_DATE_FORMAT);
     }
 
     /**
@@ -54,15 +67,15 @@ public class Date implements Comparable<Date> {
      * @return Successfully parsed date.
      * @throws IllegalArgumentException If the string cannot be parsed.
      */
-    public static java.util.Date parseDate(String date, DateFormat[] formats) {
-        for (DateFormat format : formats) {
+    private static LocalDate parseDate(String date, DateTimeFormatter[] formats) {
+        for (DateTimeFormatter format : formats) {
             try {
-                java.util.Date result = format.parse(date);
+                LocalDate result = LocalDate.parse(date, format);
                 if (result == null) {
                     continue;
                 }
                 return result;
-            } catch (ParseException ex) {
+            } catch (DateTimeParseException ex) {
                 // fallthrough - try another parser
             }
         }
