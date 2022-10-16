@@ -28,10 +28,10 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION,
-                        PREFIX_COST_PRICE, PREFIX_SELL_PRICE);
+                        PREFIX_SELL_PRICE, PREFIX_COST_PRICE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ITEM, PREFIX_QUANTITY, PREFIX_DESCRIPTION,
-                PREFIX_COST_PRICE, PREFIX_SELL_PRICE)
+                PREFIX_SELL_PRICE, PREFIX_COST_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
         }
@@ -39,6 +39,8 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
         ItemName itemName = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_ITEM).get());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Price sellPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_SELL_PRICE).get());
+        Price costPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_COST_PRICE).get());
 
 
         Item item = new Item(itemName, description, quantity, new HashSet<>(), sellPrice, costPrice);

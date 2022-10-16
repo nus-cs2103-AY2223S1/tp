@@ -1,6 +1,7 @@
 package tracko.model.items;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static tracko.commons.util.AppUtil.checkArgument;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
@@ -17,16 +18,21 @@ public class Price {
      */
     public Price(String price) {
         requireAllNonNull(price);
-        checkArgument(isValidPrice(Float.parseFloat(price)), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         this.price = new BigDecimal(price);
+        roundToNearestCent(this.price);
     }
 
-    public static boolean isValidPrice(float test) {
-        return !(test < 0);
+    public static boolean isValidPrice(String test) {
+        return !(Float.parseFloat(test) < 0);
     }
 
     public BigDecimal getPrice() {
         return this.price;
+    }
+
+    public BigDecimal roundToNearestCent(BigDecimal price) {
+        return price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override

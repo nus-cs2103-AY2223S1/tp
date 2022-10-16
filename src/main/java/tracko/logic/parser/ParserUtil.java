@@ -11,6 +11,7 @@ import tracko.commons.util.StringUtil;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.items.Description;
 import tracko.model.items.ItemName;
+import tracko.model.items.Price;
 import tracko.model.items.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
@@ -174,5 +175,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(price)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+        return new Price(price);
+    }
 }
