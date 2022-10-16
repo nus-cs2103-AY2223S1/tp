@@ -109,7 +109,7 @@ class JsonAdaptedInternship {
 
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelRole,  modelEmail, modelStage, modelTags);
+        return new Internship(modelCompany, modelRole, modelEmail, modelStage, modelTags);
     }
 
 }

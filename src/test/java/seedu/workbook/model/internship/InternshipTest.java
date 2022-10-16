@@ -70,9 +70,6 @@ public class InternshipTest {
         Internship editedAlice = new InternshipBuilder(ALICE).withCompany(VALID_COMPANY_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new InternshipBuilder(ALICE).build();
-        assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false
         editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();

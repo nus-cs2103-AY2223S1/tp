@@ -158,7 +158,7 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + INVALID_EMAIL_DESC + EMAIL_DESC_BOB;
-        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_EMAIL_BOB).build();
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withEmail(VALID_EMAIL_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
