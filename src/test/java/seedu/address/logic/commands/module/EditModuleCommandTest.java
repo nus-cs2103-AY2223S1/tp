@@ -93,8 +93,8 @@ public class EditModuleCommandTest {
         showModuleWithModuleCode(model, INDEX_FIRST_MODULE);
 
         Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        Module editedModule = new ModuleBuilder(moduleInFilteredList).
-                withModuleCode(VALID_MODULE_CODE_PL).build();
+        Module editedModule = new ModuleBuilder(moduleInFilteredList)
+                .withModuleCode(VALID_MODULE_CODE_PL).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE,
                 new EditModuleDescriptorBuilder().withCode(VALID_MODULE_CODE_PL).build());
 
