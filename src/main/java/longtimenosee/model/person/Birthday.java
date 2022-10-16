@@ -5,6 +5,7 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
+import java.util.Comparator;
 
 /**
  * Encapsulation for a client's birthday
@@ -13,8 +14,15 @@ import java.time.format.FormatStyle;
 public class Birthday {
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date of birth cannot be in the future or invalid";
     public static final String STANDARD_DATE = "yyyy-MM-dd";
+    public static final String SORT_BIRTHDAY = "birthday";
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Date of Birth must follow Format: " + STANDARD_DATE;
     private static final String BIRTHDAY_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final Comparator<Person> BIRTHDAY_COMPARATOR = new Comparator<Person>() {
+        @Override
+        public int compare(Person p1, Person p2) {
+            return p1.getBirthday().getBirthday().compareTo(p2.getBirthday().getBirthday());
+        }
+    };
 
     public final String value;
 
