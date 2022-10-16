@@ -27,6 +27,10 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label_order" text="\$first" />
       </HBox>
+      <HBox>
+        <Label fx:id="paidStatus"/>
+        <Label fx:id="deliveryStatus"/>
+      </HBox>
       <VBox>
         <HBox alignment="CENTER_LEFT" spacing="10.0">
           <Region styleClass="icon-button" id="phoneIcon"/>

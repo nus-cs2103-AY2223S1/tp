@@ -59,8 +59,8 @@ public class JsonAdaptedOrder {
         address = source.getAddress().value;
         source.getItemList().stream()
             .forEach(item -> itemList.add(new JsonAdaptedItemQuantityPair(item)));
-        isPaid = source.getPaidStatus();
-        isDelivered = source.getDeliveryStatus();
+        this.isPaid = source.getPaidStatus();
+        this.isDelivered = source.getDeliveryStatus();
     }
 
     /**
@@ -111,6 +111,6 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Item List"));
         }
 
-        return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs);
+        return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs, isPaid, isDelivered);
     }
 }

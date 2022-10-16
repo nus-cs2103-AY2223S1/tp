@@ -23,7 +23,8 @@ public class Order {
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Phone phone, Email email, Address address, List<ItemQuantityPair> itemList) {
+    public Order(Name name, Phone phone, Email email, Address address, List<ItemQuantityPair> itemList,
+                 boolean isPaid, boolean isDelivered) {
         requireAllNonNull(name, phone, email, address, itemList);
         this.name = name;
         this.phone = phone;
@@ -31,8 +32,8 @@ public class Order {
         this.address = address;
         this.itemList = itemList;
         this.timeCreated = LocalDateTime.now();
-        this.isPaid = false;
-        this.isDelivered = false;
+        this.isPaid = isPaid;
+        this.isDelivered = isDelivered;
     }
 
     public Name getName() {
