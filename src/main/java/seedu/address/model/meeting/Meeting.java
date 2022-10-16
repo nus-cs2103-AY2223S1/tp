@@ -131,6 +131,10 @@ public class Meeting {
         }
     }
 
+    public int getNumPersons() {
+        return peopleToMeet.getSize();
+    }
+
     public ArrayList<Person> getArrayListPersonToMeet() {
         ArrayList<Person> a = new ArrayList<>();
         this.peopleToMeet.iterator().forEachRemaining(a::add);

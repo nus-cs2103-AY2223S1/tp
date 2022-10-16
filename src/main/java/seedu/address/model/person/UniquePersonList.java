@@ -98,6 +98,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Gets the number of people in the list
+     * @return
+     */
+    public int getSize() {
+        return internalList.size();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Person> asUnmodifiableObservableList() {
