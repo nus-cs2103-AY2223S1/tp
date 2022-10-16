@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Todo;
 
 /**
  * The API of the Model component.
@@ -17,6 +18,11 @@ public interface Model {
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
+    Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -47,6 +53,16 @@ public interface Model {
      * Sets the user prefs' SoConnect file path.
      */
     void setSoConnectFilePath(Path soConnectFilePath);
+
+    /**
+     * Returns the user prefs' TodoList file path.
+     */
+    Path getTodoListFilePath();
+
+    /**
+     * Sets the user prefs' TodoList file path.
+     */
+    void setTodoListFilePath(Path todoListFilePath);
 
     /**
      * Returns the SoConnect.
@@ -125,6 +141,40 @@ public interface Model {
     TreeSet<String> getUniqueNames();
 
     /**
+     * Returns the TodoList.
+     */
+    ReadOnlyTodoList getTodoList();
+
+    /**
+     * Replaces TodoList data with the data in {@code todoList}.
+     */
+    void setTodoList(ReadOnlyTodoList todoList);
+
+    /**
+     * Returns true if a Todo identical to {@code todo} exists in the TodoList.
+     */
+    boolean hasTodo(Todo todo);
+
+    /**
+     * Deletes the given Todo.
+     * The Todo must exist in the TodoList.
+     */
+    void deleteTodo(Todo target);
+
+    /**
+     * Adds the given Todo.
+     * {@code todo} must not already exist in the TodoList.
+     */
+    void addTodo(Todo todo);
+
+    /**
+     * Replaces the given Todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the TodoList.
+     * {@code editedTodo} must not be the same as another existing Todo in the TodoList.
+     */
+    void setTodo(Todo target, Todo editedTodo);
+
+    /**
      * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Person> getFilteredPersonList();
@@ -135,6 +185,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns an unmodifiable view of the filtered todo list.
+     */
+    ObservableList<Todo> getFilteredTodoList();
+
+    /**
+     * Updates the filter of the filtered todo list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTodoList(Predicate<Todo> predicate);
 
     /**
      * Returns true if tag exists.
