@@ -218,13 +218,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Schedule> getScheduleList() {
 
         ObservableList<Schedule> l = modules.getUnmodifiableObservableScheduleList();
-        int i = 0;
-        for (Schedule s : l) {
-            System.out.println(i);
-            i++;
-            System.out.println(s.toString());
-        }
-
         return modules.getUnmodifiableObservableScheduleList();
     }
 

@@ -24,8 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
-
-    private final FilteredList<Schedule> filteredSchedule;
+    private FilteredList<Schedule> filteredSchedule;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -215,12 +214,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        return new FilteredList<>(this.addressBook.getScheduleList());
+        return filteredSchedule;
     }
 
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
+        filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
         requireNonNull(predicate);
         filteredSchedule.setPredicate(predicate);
     }

@@ -8,23 +8,29 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Schedule}'s {@code Weekday} matches any of the keywords given.
  */
-public class WeekdayContainsKeywordsPredicate implements Predicate<Schedule> {
+public class ScheduleContainsKeywordsPredicate implements Predicate<Schedule> {
     private final List<String> keywords;
 
-    public WeekdayContainsKeywordsPredicate(List<String> keywords) {
+    public ScheduleContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Schedule schedule) {
-        return keywords.stream()
+        boolean containsWeekday = keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(schedule.getWeekday().name(), keyword));
+        boolean containsModuleCode = keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(schedule.getModule(), keyword));
+        return containsModuleCode || containsWeekday;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof WeekdayContainsKeywordsPredicate)
-                && keywords.equals(((WeekdayContainsKeywordsPredicate) other).keywords);
+                || (other instanceof ScheduleContainsKeywordsPredicate)
+                && keywords.equals(((ScheduleContainsKeywordsPredicate) other).keywords);
     }
+
+
+
 }
