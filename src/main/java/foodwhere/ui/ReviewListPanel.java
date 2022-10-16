@@ -34,9 +34,9 @@ public class ReviewListPanel extends UiPart<Region> {
     }
 
     /**
-     * Handles the activity when the user clicks on the review in the list
+     * Handles the activity when the user clicks on the review in the list.
      *
-     * Adapted code from https://stackoverflow.com/questions/20635192/how-to-create-popup-menu
+     * Adapted code from https://stackoverflow.com/questions/20635192/how-to-create-popup-menu.
      */
     @FXML
     public void handleMouseClicked() {
@@ -51,8 +51,10 @@ public class ReviewListPanel extends UiPart<Region> {
                 selectedReview, clipboard, CopyMenuItem.Action.FIELDS_DATE);
         CopyMenuItem<Review> copyReviewContent = new CopyMenuItem<>("Copy Content",
                 selectedReview, clipboard, CopyMenuItem.Action.FIELDS_CONTENT);
+        CopyMenuItem<Review> copyReviewRating = new CopyMenuItem<>("Copy Rating",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_RATING);
 
-        contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent);
+        contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent, copyReviewRating);
 
         if (!selectedReview.getTags().isEmpty()) {
             CopyMenuItem<Review> copyReviewTag = new CopyMenuItem<>("Copy Tag",

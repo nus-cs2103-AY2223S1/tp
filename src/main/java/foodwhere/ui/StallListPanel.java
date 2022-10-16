@@ -33,9 +33,9 @@ public class StallListPanel extends UiPart<Region> {
     }
 
     /**
-     * Handles the activity when the user clicks on the stall in the list
+     * Handles the activity when the user clicks on the stall in the list.
      *
-     * Adapted code from https://stackoverflow.com/questions/20635192/how-to-create-popup-menu
+     * Adapted code from https://stackoverflow.com/questions/20635192/how-to-create-popup-menu.
      */
     @FXML
     public void handleMouseClicked() {

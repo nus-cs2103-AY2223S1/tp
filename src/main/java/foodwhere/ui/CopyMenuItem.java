@@ -18,12 +18,64 @@ public class CopyMenuItem<T> extends MenuItem {
      * Enum to decide what content is copied.
      */
     public enum Action {
-        FIELDS_ADDRESS, FIELDS_CONTENT, FIELDS_DATE, FIELDS_NAME, FIELDS_TAG
+        FIELDS_ADDRESS, FIELDS_CONTENT, FIELDS_DATE, FIELDS_NAME, FIELDS_RATING, FIELDS_TAG;
+
+        /**
+         * Returns the content of the Stall according to the type.
+         *
+         * @param stallItem Stall object.
+         * @param action Type of content to return.
+         * @return String content to be copied to clipboard.
+         */
+        public String describeStall(Stall stallItem, Action action) {
+            switch(action) {
+            case FIELDS_ADDRESS:
+                return stallItem.getAddress().toString();
+            case FIELDS_NAME:
+                return stallItem.getName().toString();
+            case FIELDS_TAG:
+                return stallItem.getTags().toString();
+            case FIELDS_CONTENT:
+                // fallthrough
+            case FIELDS_DATE:
+                // fallthrough
+            case FIELDS_RATING:
+                // fallthrough
+            default:
+                throw new RuntimeException("Invalid type!");
+            }
+        }
+
+        /**
+         * Returns the content of the Review according to the type.
+         *
+         * @param reviewItem Stall object.
+         * @param action Type of content to return.
+         * @return String content to be copied to clipboard.
+         */
+        public String describeReview(Review reviewItem, Action action) {
+            switch(action) {
+            case FIELDS_CONTENT:
+                return reviewItem.getContent().toString();
+            case FIELDS_DATE:
+                return reviewItem.getDate().toString();
+            case FIELDS_NAME:
+                return reviewItem.getName().toString();
+            case FIELDS_RATING:
+                return reviewItem.getRating().toString();
+            case FIELDS_TAG:
+                return reviewItem.getTags().toString();
+            case FIELDS_ADDRESS:
+                // fallthrough
+            default:
+                throw new RuntimeException("Invalid type!");
+            }
+        }
     }
 
     private final T item;
-    private Clipboard clipboard;
-    private Action action;
+    private final Clipboard clipboard;
+    private final Action action;
 
     /**
      * Every field must be present and not null.
@@ -42,67 +94,24 @@ public class CopyMenuItem<T> extends MenuItem {
     }
 
     /**
-     * Sets the content of the clipboard according to the type of the item
+     * Sets the content of the clipboard according to the type of the item.
      */
     public void setOnAction() {
         ClipboardContent content = new ClipboardContent();
 
-        switch(this.action) {
-        case FIELDS_ADDRESS:
-            if (this.item instanceof Stall) {
-                Stall stallItem = (Stall) this.item;
-                content.putString(stallItem.getAddress().toString());
-            } else {
-                setError();
-            }
-            break;
-        case FIELDS_CONTENT:
-            if (this.item instanceof Review) {
-                Review reviewItem = (Review) this.item;
-                content.putString(reviewItem.getContent().toString());
-            } else {
-                setError();
-            }
-            break;
-        case FIELDS_DATE:
-            if (this.item instanceof Review) {
-                Review reviewItem = (Review) this.item;
-                content.putString(reviewItem.getDate().toString());
-            } else {
-                setError();
-            }
-            break;
-        case FIELDS_NAME:
-            if (this.item instanceof Review) {
-                Review reviewItem = (Review) this.item;
-                content.putString(reviewItem.getName().toString());
-            } else if (this.item instanceof Stall) {
-                Stall stallItem = (Stall) this.item;
-                content.putString(stallItem.getName().toString());
-            } else {
-                setError();
-            }
-            break;
-        case FIELDS_TAG:
-            if (this.item instanceof Review) {
-                Review reviewItem = (Review) this.item;
-                content.putString(reviewItem.getTags().toString());
-            } else if (this.item instanceof Stall) {
-                Stall stallItem = (Stall) this.item;
-                content.putString(stallItem.getTags().toString());
-            } else {
-                setError();
-            }
-            break;
-        default:
+        String result = "";
+        if (this.item instanceof Stall) {
+            result = this.action.describeStall((Stall) this.item, this.action);
+        } else if (this.item instanceof Review) {
+            result = this.action.describeReview((Review) this.item, this.action);
+        } else {
             setError();
-            break;
         }
 
+        content.putString(result);
+
         if (content.hasString()) {
-            super.setOnAction((ActionEvent actionEvent) -> {
-                this.clipboard.setContent(content);
-            });
+            super.setOnAction((ActionEvent actionEvent) -> this.clipboard.setContent(content));
         }
     }
 
