@@ -80,7 +80,6 @@ public class Event {
         if (otherEvent == this) {
             return true;
         }
-
         return otherEvent != null
                 && otherEvent.getTitle().equals(getTitle());
     }

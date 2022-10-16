@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.list.BucketList;
+import seedu.travelr.model.list.UniqueEventList;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.UniqueTripList;
 
@@ -17,6 +18,7 @@ import seedu.travelr.model.trip.UniqueTripList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final BucketList bucketList;
+    private final UniqueEventList allEventsList;
     private final UniqueTripList trips;
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         trips = new UniqueTripList();
         bucketList = new BucketList();
+        allEventsList = new UniqueEventList();
     }
 
     public AddressBook() {}
@@ -46,6 +49,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
+
     public void setTrips(List<Trip> trips) {
         this.trips.setTrips(trips);
     }
@@ -100,6 +104,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addEvent(Event e) {
         bucketList.add(e);
+        allEventsList.add(e);
+    }
+
+    /**
+     * Adds an event back into the bucket list after deleting it from a trip.
+     */
+    public void returnToBucketList(Event e) {
+        bucketList.add(e);
     }
 
     /**
@@ -136,6 +148,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the bucketList.
      */
     public Event getEvent(Event key) {
+
         return bucketList.getEvent(key);
     }
 
@@ -150,7 +163,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in Travelr.
-     * @return
      */
     public void removeEvent(Event key) {
         bucketList.remove(key);
@@ -173,6 +185,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Event> getEventList() {
         return bucketList.asUnmodifiableObservableList();
     }
+
+    @Override
+    public ObservableList<Event> getAllEventList() {
+        return allEventsList.asUnmodifiableObservableList();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
