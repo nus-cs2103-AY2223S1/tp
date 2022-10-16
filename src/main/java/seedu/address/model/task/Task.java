@@ -2,7 +2,9 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -12,6 +14,8 @@ import seedu.address.model.person.Person;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Task {
+
+    static private final String NO_PERSON_ASSIGNED = "NONE";
 
     // Identity fields
     private TaskName name;
@@ -171,6 +175,22 @@ public class Task {
      */
     public Email getPersonEmailAddress() {
         return personEmailAddress;
+    }
+
+    /**
+     * Returns the name of the person assigned to this task
+     *
+     * @param persons List of persons associated with the address book
+     * @return the name of the person assigned to this task
+     */
+    public String getPersonName(List<Person> persons) {
+        String name = NO_PERSON_ASSIGNED;
+        for (Person person: persons) {
+            if (person.getEmail().equals(personEmailAddress)) {
+                name = person.getName().toString();
+            }
+        }
+        return name;
     }
 
     /**
