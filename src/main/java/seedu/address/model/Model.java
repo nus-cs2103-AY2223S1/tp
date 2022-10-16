@@ -110,10 +110,10 @@ public interface Model {
     void addModule(Module module);
 
     /**
-     * Replaces the given module {@code target} in the list with {@code
-     * editedModule}. {@code target} must exist in the address book.
-     * The person identity of {@code editedModule} must not be the same as
-     * another existing person in the address book.
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in the address book.
+     * The module given in {@code editedModule} must not be the same as
+     * another existing module in the address book.
      */
     void setModule(Module target, Module editedModule);
 

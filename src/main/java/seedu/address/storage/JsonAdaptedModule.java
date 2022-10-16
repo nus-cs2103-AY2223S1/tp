@@ -26,6 +26,7 @@ class JsonAdaptedModule {
 
     private final String moduleCode;
     private final String moduleTitle;
+    private final List<JsonAdaptedLink> linked = new ArrayList<>();
     private final List<JsonAdaptedTask> moduleTasks;
 
     /**
@@ -34,9 +35,13 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("moduleTitle") String moduleTitle,
+                             @JsonProperty("linked") List<JsonAdaptedLink> linked,
                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
+        if (linked != null) {
+            this.linked.addAll(linked);
+        }
         this.moduleTasks = tasks;
     }
 
@@ -46,6 +51,9 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         moduleCode = source.getModuleCode().value;
         moduleTitle = source.getModuleTitle().value;
+        linked.addAll(source.getLinks().stream()
+                .map(JsonAdaptedLink::new)
+                .collect(Collectors.toList()));
         moduleTasks = source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList());
@@ -57,6 +65,7 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted module.
      */
     public Module toModelType() throws IllegalValueException {
+
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ModuleCode.class.getSimpleName()));
@@ -72,6 +81,12 @@ class JsonAdaptedModule {
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
 
+        final List<Link> moduleLinks = new ArrayList<>();
+        for (JsonAdaptedLink links : linked) {
+            moduleLinks.add(links.toModelType());
+        }
+        final Set<Link> modelModuleLinks = new HashSet<>(moduleLinks);
+
         if (moduleTasks == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskList.class.getSimpleName()));
@@ -80,9 +95,8 @@ class JsonAdaptedModule {
         for (JsonAdaptedTask task : moduleTasks) {
             modelTasks.add(task.toModelType());
         }
-        final Set<Link> links = new HashSet<>();
 
-        return new Module(modelModuleCode, modelModuleTitle, modelTasks, links);
+        return new Module(modelModuleCode, modelModuleTitle, modelTasks, modelModuleLinks);
     }
 
 }

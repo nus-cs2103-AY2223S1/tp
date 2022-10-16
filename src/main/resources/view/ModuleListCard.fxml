@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -50,7 +51,7 @@
                  prefWidth="200" maxWidth="Infinity">
             Links
           </Label>
-          <!--  TODO: Add Ui components for individual links.-->
+          <FlowPane fx:id="links" />
         </VBox>
       </HBox>
     </VBox>
