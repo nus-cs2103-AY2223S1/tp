@@ -59,7 +59,7 @@ public class AddEventToTripCommand extends Command {
 
         Event event = model.getEvent(new Event(eventToAdd));
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
-        model.deleteEvent(event);
+        model.removeFromBucketList(event);
         toAddInto.addEvent(event);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }

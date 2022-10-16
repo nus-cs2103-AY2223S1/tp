@@ -136,6 +136,11 @@ public class ModelManager implements Model {
         addressBook.returnToBucketList(event);
     }
 
+    @Override
+    public void removeFromBucketList(Event event) {
+        addressBook.removeFromBucketList(event);
+    }
+
     public Event getEvent(Event event) {
         return addressBook.getEvent(event);
     }

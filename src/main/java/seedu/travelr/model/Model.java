@@ -104,6 +104,12 @@ public interface Model {
      * Returns the given event to the bucket list.
      */
     void returnToBucketList(Event event);
+
+    /**
+     * Removes the given event from the bucket list.
+     */
+    void removeFromBucketList(Event event);
+    
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
