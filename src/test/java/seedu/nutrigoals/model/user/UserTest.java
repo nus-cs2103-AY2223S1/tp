@@ -50,4 +50,10 @@ public class UserTest {
         User userA = new UserBuilder().build();
         assertEquals(userA.getGender(), new Gender(UserBuilder.DEFAULT_GENDER));
     }
+
+    @Test
+    public void testGetAge() {
+        User userA = new UserBuilder().withAge("20").build();
+        assertEquals(userA.getAge(), new Age(UserBuilder.DEFAULT_AGE));
+    }
 }
