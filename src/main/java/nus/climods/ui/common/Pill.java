@@ -19,7 +19,7 @@ public class Pill extends Button {
      * @param textColor text color
      */
     public Pill(String text, String bgColor, String textColor) {
-        setText(text);
+        setText(setSpecialTerm(text));
         setStyle(String.format("%s;-fx-background-color:%s;-fx-text-fill:%s;", DEFAULT_STYLE, bgColor, textColor));
     }
 
@@ -34,5 +34,15 @@ public class Pill extends Button {
     public Pill(String text, String bgColor, String textColor, int fontSize) {
         this(text, bgColor, textColor);
         setFont(new Font(getFont().getName(), fontSize));
+    }
+
+    private String setSpecialTerm(String text) {
+        if (text.equals("Semester 3")) {
+            return "Special Term I";
+        } else if (text.equals("Semester 4")) {
+            return "Special Term II";
+        } else {
+            return text;
+        }
     }
 }
