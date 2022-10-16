@@ -21,8 +21,9 @@ public class ModuleBuilder {
 
     public static final String DEFAULT_MODULE_NAME = "Intro to Software Engineering";
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
-    public static final String DEFAULT_MODULE_DESCRIPTION = "Students are to practice software engineering"
+    public static final String DEFAULT_MODULE_DESCRIPTION = "Students are to practice software engineering "
             + "skills";
+    public static final String DEFAULT_MODULE_TAG = "IMPORTANT";
     public static final Student DEFAULT_STUDENT_1 = new StudentBuilder().build();
 
     private ModuleName moduleName;
@@ -36,10 +37,11 @@ public class ModuleBuilder {
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
-        ModuleName moduleName = new ModuleName(DEFAULT_MODULE_NAME);
-        ModuleCode moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
-        ModuleDescription moduleDescription = new ModuleDescription(DEFAULT_MODULE_DESCRIPTION);
+        moduleName = new ModuleName(DEFAULT_MODULE_NAME);
+        moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
+        moduleDescription = new ModuleDescription(DEFAULT_MODULE_DESCRIPTION);
         tags = new HashSet<>();
+        tags.add(new Tag(DEFAULT_MODULE_TAG));
     }
 
     /**

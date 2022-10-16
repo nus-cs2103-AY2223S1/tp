@@ -18,6 +18,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -25,6 +26,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCodeContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -82,9 +84,10 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_SWE;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CYBERSEC;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -93,6 +96,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_SWE = new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_SWE)
+                .withCode(VALID_MODULE_CODE_SWE).withDescription(VALID_MODULE_DESCRIPTION_SWE)
+                .withTags(VALID_TAG_MODULE_COORDINATOR, VALID_TAG_IMPORTANT).build();
+        DESC_CYBERSEC = new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_CYBERSEC)
+                .withCode(VALID_MODULE_CODE_CYBERSEC).withDescription(VALID_MODULE_DESCRIPTION_CYBERSEC)
+                .withTags(VALID_TAG_MODULE_COORDINATOR, VALID_TAG_IMPORTANT).build();
     }
 
     /**
