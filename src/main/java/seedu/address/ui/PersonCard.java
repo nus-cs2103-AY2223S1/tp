@@ -38,6 +38,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label title;
+    @FXML
+    private Label number;
+    @FXML
     private Label phone;
     @FXML
     private FlowPane moduleCodes;
@@ -67,14 +71,17 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (person instanceof Professor) {
             moduleCodes.getChildren().add(new Label(((Professor) person).getModuleCode().value));
+            title.setText("Professor");
         }
         if (person instanceof TeachingAssistant) {
             moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
+            title.setText("Teaching\nAssistant");
         }
         if (person instanceof Student) {
             Student student = (Student) person;
             student.getModuleCodes().stream()
                     .forEach(moduleCode -> moduleCodes.getChildren().add(new Label(moduleCode.value)));
+            title.setText("Student");
         }
     }
 
