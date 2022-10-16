@@ -270,7 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * Teacher assistant have a lot of students information to manage and our product will make it easier for teacher assistants to remember student information, such as names, faces, attendance, etc
 * Teacher assistants also want to ensure their students are doing well and our product will ensure that they can keep track of student's performance
 

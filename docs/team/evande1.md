@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Implemented the *attendance feature* of GREWZ
     * What it does: Assist the user in keeping track of attendance of students. The user can mark and umark attendance of students.
-    * Justification: This feature improves the product significantly because teacher assistants can easily monitor students' attendance in one application and do not need to rely on third party applications to keep track of students. Having the details stored locally ensures that student data is not leaked to other vendors. Teacher assistants also can see if students are struggling to attend class and provide checks on them. <ADD MORE> 
+    * Justification: This feature improves the product significantly because teacher assistants can easily monitor students' attendance in one application and do not need to rely on third party applications to keep track of students. Having the details stored locally ensures that student data is not leaked to other vendors. Teacher assistants also can see if students are struggling to attend class and provide checks on them. <ADD MORE>
     * Highlights: This enhancement keeps track of students total attendance.
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 

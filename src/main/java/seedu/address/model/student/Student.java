@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Student in the studentId book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable except for attendance.
  */
 public class Student {
 
@@ -26,14 +26,14 @@ public class Student {
     private final StudentId studentId;
     private final Set<Tag> tags = new HashSet<>();
 
-    private final Attendance attendance;
+    private final AttendanceList attendanceList;
 
     /**
      * Every field must be present and not null.
      * Profile picture is initially set to the default profile picture.
      */
     public Student(Name name, Phone phone, Email email,
-                   ClassGroup classGroup, StudentId studentId, Set<Tag> tags, Attendance attendance) {
+                   ClassGroup classGroup, StudentId studentId, Set<Tag> tags, AttendanceList attendanceList) {
         requireAllNonNull(name, studentId);
         this.name = name;
         this.phone = phone;
@@ -41,11 +41,11 @@ public class Student {
         this.classGroup = classGroup;
         this.studentId = studentId;
         this.tags.addAll(tags);
-        this.attendance = attendance;
+        this.attendanceList = attendanceList;
     }
 
-    public Attendance getAttendance() {
-        return attendance;
+    public AttendanceList getAttendanceList() {
+        return attendanceList;
     }
 
     public Name getName() {
@@ -151,8 +151,8 @@ public class Student {
                 .append(getClassGroup())
                 .append("; StudentId: ")
                 .append(getStudentId())
-                .append("; Attendance: ")
-                .append(getAttendance());
+                .append("; AttendanceList: ")
+                .append(getAttendanceList().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

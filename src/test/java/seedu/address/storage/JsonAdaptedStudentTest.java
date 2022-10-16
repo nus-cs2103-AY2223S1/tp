@@ -25,14 +25,16 @@ public class JsonAdaptedStudentTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String INVALID_ATTENDANCE = "#help";
-
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_CLASS_GROUP = BENSON.getClassGroup().toString();
     private static final String VALID_STUDENTID = BENSON.getStudentId().toString();
-    private static final String VALID_ATTENDANCE = BENSON.getAttendance().toString();
+    private static final JsonAdaptedAttendanceList VALID_ATTENDANCE = new JsonAdaptedAttendanceList(BENSON
+            .getAttendanceList().getMod(),
+            BENSON.getAttendanceList()
+                    .getAttendanceList().stream().map(JsonAdaptedAttendance::new)
+                    .collect(Collectors.toList()));
 
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
