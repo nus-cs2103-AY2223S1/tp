@@ -44,68 +44,38 @@ public class NameContainsKeywordsPredicatePatientTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-<<<<<<<< HEAD:src/test/java/seedu/address/model/patient/NameContainsKeywordsPredicatePatientTest.java
         NameContainsKeywordsPredicatePatient predicate =
                 new NameContainsKeywordsPredicatePatient(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new NameContainsKeywordsPredicatePatient(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicatePatient(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
-
-        // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicatePatient(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-========
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
-
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
-
-        // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new PatientBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new NameContainsKeywordsPredicatePatient(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
->>>>>>>> 54bf2330ac8bd2f4c3dd66a2ab1ccd30100ef7eb:src/test/java/seedu/address/model/patient/NameContainsKeywordsPredicateTest.java
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-<<<<<<<< HEAD:src/test/java/seedu/address/model/patient/NameContainsKeywordsPredicatePatientTest.java
         NameContainsKeywordsPredicatePatient predicate =
                 new NameContainsKeywordsPredicatePatient(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new PatientBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicatePatient(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicatePatient(Arrays
                 .asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
-========
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PatientBuilder().withName("Alice").build()));
-
-        // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PatientBuilder().withName("Alice").withPhone("12345")
->>>>>>>> 54bf2330ac8bd2f4c3dd66a2ab1ccd30100ef7eb:src/test/java/seedu/address/model/patient/NameContainsKeywordsPredicateTest.java
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 }
