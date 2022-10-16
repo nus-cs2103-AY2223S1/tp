@@ -133,7 +133,7 @@ public class CreateMeetingCommand extends Command {
 
         } catch (DuplicateMeetingException e) {
             return new CommandResult(DUPLICATE_MEETINGS);
-           
+
         } catch (DuplicatePersonException e) {
             return new CommandResult("It looks like you are adding the same "
                 + "person to a meeting twice!");

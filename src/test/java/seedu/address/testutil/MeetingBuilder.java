@@ -1,18 +1,14 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+//import static seedu.address.testutil.TypicalPersons.ALICE;
+//import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.text.ParseException;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * A utility class to help with building Meeting objects.
@@ -22,7 +18,7 @@ public class MeetingBuilder {
 //    public static final String DEFAULT_DESCRIPTION = "CS2040";
 //    public static final String DEFAULT_DATETIME = "02-12-2021";
 //    public static final String DEFAULT_LOCATION = "COM3";
-    
+
     public static final Person DEFAULT_PERSON_IN_MEETING_BUILDER_TWO = new PersonBuilder()
         .withTags("Classmate", "Dalao").build();
     public static final String DEFAULT_DESCRIPTION_TW0 = "Do CS2103 Project";
@@ -30,7 +26,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_LOCATION_TWO = "University Town";
 
     private ArrayList<Person> personsToMeetArray = new ArrayList<>();
-    
+
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
@@ -83,7 +79,7 @@ public class MeetingBuilder {
         this.personsToMeetArray = listOfPeople;
         return this;
     }
-    
+
     /**
      * Sets the {@code Description} of the {@code Meeting} that we are building.
      */

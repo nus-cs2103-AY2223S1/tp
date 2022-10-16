@@ -3,7 +3,7 @@
 ### Project: Yellow Pages
 Yellow Pages is a desktop address book application used for students in universities. User interaction is done through CLI and its GUI is created using JavaFX
 
-Contributions: 
+Contributions:
 - **New Features**: WIP
 	- *Description*:
 	- *Justifications*:
@@ -11,7 +11,7 @@ Contributions:
 	- *Credits*:
 
 - **Code contributed**: [RepoSense link]()
-    
+
 -   **Project management**: WIP
 
 -   **Enhancements to existing features**: WIP

@@ -310,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. Software displays acknowledgement message
 5. Software searches for contacts associated with the tag and displays the entire list
 6. Use case ends
-   
+
 **Use case: Find all contacts taking same module**
 
 **MSS**

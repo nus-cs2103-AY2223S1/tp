@@ -10,26 +10,26 @@ Yellow Pages is a desktop address book application used for students in universi
 Given below are my contributions to the project.
 
 * **New Feature**: To be added
-    * What it does: 
-    * Justification: 
-    * Highlights: 
-    * Credits: 
-    
+    * What it does:
+    * Justification:
+    * Highlights:
+    * Credits:
+
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-    * 
+    *
 
 * **Enhancements to existing features**:
-    * 
-    * 
+    *
+    *
 
 * **Documentation**:
     * User Guide:
-        
+
     * Developer Guide:
-        
+
 
 * **Community**:
-   
+
 * **Tools**:
