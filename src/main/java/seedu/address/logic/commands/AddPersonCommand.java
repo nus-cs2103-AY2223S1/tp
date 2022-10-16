@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 
 /**
  * The abstract base class of all AddPersonCommand variations,
- * including AddBuyerCommand, AddOrderCommand, AddPetCommand etc.
+ * including AddBuyerCommand, AddDelivererCommand, and AddSupplierCommand.
  */
 public abstract class AddPersonCommand extends Command {
 
@@ -36,7 +36,7 @@ public abstract class AddPersonCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     /**
