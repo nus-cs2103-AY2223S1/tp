@@ -28,7 +28,6 @@ public class StatsCommandTest {
         Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalInTrack(), new UserPrefs());
 
-        model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Offered"));
         int offered = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Offered"));
         int progress = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Progress"));
         int rejected = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Rejected"));

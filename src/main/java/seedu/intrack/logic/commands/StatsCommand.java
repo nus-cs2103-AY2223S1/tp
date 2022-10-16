@@ -13,19 +13,12 @@ public class StatsCommand extends Command {
 
     public static final String COMMAND_WORD = "stats";
 
-    private static int offered = 0;
-
-    private static int progress = 0;
-
-    private static int rejected = 0;
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Offered"));
-        offered = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Offered"));
-        progress = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Progress"));
-        rejected = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Rejected"));
+        int offered = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Offered"));
+        int progress = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Progress"));
+        int rejected = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Rejected"));
         return new CommandResult(
                 String.format(Messages.MESSAGE_INTERNSHIPS_STATS_OVERVIEW, offered, progress, rejected));
     }
