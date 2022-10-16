@@ -253,7 +253,7 @@
 }
 
 .quantity-row {
-    -fx-background-color: #FFEDEC40;
+    -fx-background-color: #FFEDEC60;
     -fx-background-radius: 10px;
     -fx-padding: 4 10 4 10;
     -fx-background-insets: 1 0 1 0;
@@ -297,7 +297,7 @@
 }
 
 .costPrice-icon {
-    -icon-paint: #FF2F2F; // to set the color
+    -icon-paint: #FF4E4E; // to set the color
     -fx-background-color: -icon-paint !important;
     -size: 20; // to set the icon size
     -fx-min-width: -size;
@@ -555,21 +555,21 @@
 
 #quantity {
     -fx-font-weight: 900 !important;
-    -fx-text-fill: #FFEDEC;
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 18px;
     -fx-font-family: Poppins;
 }
 
 #sellPrice {
     -fx-font-weight: 900 !important;
-    -fx-text-fill: #FFEDEC;
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 18px;
     -fx-font-family: Poppins;
 }
 
 #costPrice {
     -fx-font-weight: 900 !important;
-    -fx-text-fill: #FFEDEC;
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 18px;
     -fx-font-family: Poppins;
 }

@@ -17,10 +17,15 @@ public class ItemBuilder {
     public static final String DEFAULT_ITEM_NAME = "Chair";
     public static final String DEFAULT_DESCRIPTION = "This is a wooden dining chair.";
     public static final int DEFAULT_QUANTITY = 300;
+    public static final BigDecimal DEFAULT_SELL_PRICE = new BigDecimal("60");
+    public static final BigDecimal DEFAULT_COST_PRICE = new BigDecimal("45");
+
 
     private ItemName itemName;
     private Description description;
     private Quantity quantity;
+    private Price sellPrice;
+    private Price costPrice;
 
     /**
      * Creates a {@code ItemBuilder} with the default details.
@@ -29,6 +34,8 @@ public class ItemBuilder {
         itemName = new ItemName(DEFAULT_ITEM_NAME);
         description = new Description(DEFAULT_DESCRIPTION);
         quantity = new Quantity(DEFAULT_QUANTITY);
+        sellPrice = new Price(DEFAULT_SELL_PRICE);
+        costPrice = new Price(DEFAULT_COST_PRICE);
     }
 
     /**
@@ -38,6 +45,8 @@ public class ItemBuilder {
         itemName = itemToCopy.getItemName();
         description = itemToCopy.getDescription();
         quantity = itemToCopy.getQuantity();
+        sellPrice = itemToCopy.getSellPrice();
+        costPrice = itemToCopy.getCostPrice();
     }
 
     /**
@@ -65,11 +74,27 @@ public class ItemBuilder {
     }
 
     /**
+     * Sets the {@code Sell Price} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withSellPrice(BigDecimal sellPrice) {
+        this.sellPrice = new Price(sellPrice);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Cost Price} of the {@code Item} that we are building.
+     */
+    public ItemBuilder withCostPrice(BigDecimal costPrice) {
+        this.costPrice = new Price(costPrice);
+        return this;
+    }
+
+    /**
      * Builds an item.
      */
     public Item build() {
         return new Item(itemName, description, quantity, new HashSet<>(),
-                new Price(new BigDecimal("0")), new Price(new BigDecimal("0")));
+                sellPrice, costPrice);
     }
 
 }
