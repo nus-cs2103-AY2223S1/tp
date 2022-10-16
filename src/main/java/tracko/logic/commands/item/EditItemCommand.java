@@ -16,7 +16,11 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.*;
+import tracko.model.items.Description;
+import tracko.model.items.Item;
+import tracko.model.items.ItemName;
+import tracko.model.items.Price;
+import tracko.model.items.Quantity;
 import tracko.model.tag.Tag;
 
 /**

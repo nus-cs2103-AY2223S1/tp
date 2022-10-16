@@ -1,7 +1,11 @@
 package tracko.logic.parser.item;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static tracko.logic.parser.CliSyntax.*;
+import static tracko.logic.parser.CliSyntax.PREFIX_COST_PRICE;
+import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
+import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static tracko.logic.parser.CliSyntax.PREFIX_SELL_PRICE;
 
 import java.util.HashSet;
 import java.util.stream.Stream;
@@ -13,7 +17,11 @@ import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.items.*;
+import tracko.model.items.Description;
+import tracko.model.items.Item;
+import tracko.model.items.ItemName;
+import tracko.model.items.Price;
+import tracko.model.items.Quantity;
 
 /**
  * Parses input arguments and creates a new/update AddItemCommand Object.

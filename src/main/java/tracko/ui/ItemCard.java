@@ -38,6 +38,10 @@ public class ItemCard extends UiPart<Region> {
     private Label quantity;
     @FXML
     private Label description;
+    @FXML
+    private Label sellPrice;
+    @FXML
+    private Label costPrice;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.

@@ -1,11 +1,14 @@
 package tracko.model.items;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import static tracko.commons.util.AppUtil.checkArgument;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+/**
+ *  Represents the price of an item.
+ */
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should be non-negative.";
@@ -16,15 +19,14 @@ public class Price {
      * Constructs a {@code Price}.
      * @param price The Price of an item.
      */
-    public Price(String price) {
+    public Price(BigDecimal price) {
         requireAllNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = new BigDecimal(price);
-        roundToNearestCent(this.price);
+        this.price = roundToNearestCent(price);
     }
 
-    public static boolean isValidPrice(String test) {
-        return !(Float.parseFloat(test) < 0);
+    public static boolean isValidPrice(BigDecimal test) {
+        return !(test.compareTo(BigDecimal.ZERO) < 0);
     }
 
     public BigDecimal getPrice() {

@@ -2,6 +2,7 @@ package tracko.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -178,9 +179,10 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        if (!Price.isValidPrice(price)) {
+        BigDecimal bigDecimalPrice = new BigDecimal(price);
+        if (!Price.isValidPrice(bigDecimalPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return new Price(price);
+        return new Price(bigDecimalPrice);
     }
 }
