@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
 
 /**
  * The API of the Model component.
@@ -62,6 +63,12 @@ public interface Model {
      * in the application book.
      */
     boolean hasSameInterviewTime(Application application);
+
+    /**
+     * Returns true if an application with the same interview date and time as {@code interview} exists
+     * in the application book.
+     */
+    boolean hasSameInterviewTime(Interview interview);
 
     /**
      * Deletes the given application.

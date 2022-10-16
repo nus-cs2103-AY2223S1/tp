@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.commons.core.LogsCenter;
 import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
 
 /**
  * Represents the in-memory model of the application book data.
@@ -97,6 +98,12 @@ public class ModelManager implements Model {
     public boolean hasSameInterviewTime(Application application) {
         requireNonNull(application);
         return applicationBook.hasSameInterviewTime(application);
+    }
+
+    @Override
+    public boolean hasSameInterviewTime(Interview interview) {
+        requireNonNull(interview);
+        return applicationBook.hasSameInterviewTime(interview);
     }
 
     @Override
