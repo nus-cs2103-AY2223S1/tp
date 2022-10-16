@@ -20,7 +20,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     private PersonMatchesPredicate predicate = new PersonMatchesPredicate();
     private ArgumentMultimap argMultimap;
     private Pattern allArgumentsPattern = Pattern.compile("^all/.+");
-    private boolean hasAllTags = false;
+    private boolean needsAllTags = false;
+    private boolean needsAllModules = false;
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -42,7 +43,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
-            predicate.setModulesList(getKeywordList(PREFIX_MODULE_CODE));
+            setModulesList();
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
@@ -84,7 +85,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             return false;
         } else {
             return presentArgs.get().allMatch(prefix ->
-                    argMultimap.getValue(prefix).get().trim().length() != 0) && areTagsArgsValid();
+                    argMultimap.getValue(prefix).get().trim().length() != 0)
+                    && areTagsArgsValid() && areModulesArgsValid();
         }
     }
 
@@ -92,7 +94,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String input = argMultimap.getValue(PREFIX_TAG).get();
             if (input.contains("all/")) {
-                hasAllTags = true;
+                needsAllTags = true;
+                return allArgumentsPattern.matcher(input.trim()).matches();
+            }
+        }
+        return true;
+    }
+
+    private boolean areModulesArgsValid() {
+        if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
+            String input = argMultimap.getValue(PREFIX_MODULE_CODE).get();
+            if (input.contains("all/")) {
+                needsAllModules = true;
                 return allArgumentsPattern.matcher(input.trim()).matches();
             }
         }
@@ -107,13 +120,27 @@ public class FindCommandParser implements Parser<FindCommand> {
     private void setTagsList() {
         String tagsKeywords = argMultimap.getValue(PREFIX_TAG).get();
         Set<String> tagsKeywordsList;
-        if (hasAllTags) {
+        if (needsAllTags) {
             tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.replace("all/", "")
                     .trim().toLowerCase().split("\\s+")));
-            predicate.setTagsList(tagsKeywordsList, hasAllTags);
+            predicate.setTagsList(tagsKeywordsList, needsAllTags);
         } else {
             tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.toLowerCase().split("\\s+")));
-            predicate.setTagsList(tagsKeywordsList, hasAllTags);
+            predicate.setTagsList(tagsKeywordsList, needsAllTags);
+        }
+
+    }
+
+    private void setModulesList() {
+        String modulesKeywords = argMultimap.getValue(PREFIX_MODULE_CODE).get();
+        Set<String> modulesKeywordsList;
+        if (needsAllModules) {
+            modulesKeywordsList = new HashSet<>(Arrays.asList(modulesKeywords.replace("all/", "")
+                    .trim().toLowerCase().split("\\s+")));
+            predicate.setModulesList(modulesKeywordsList, needsAllModules);
+        } else {
+            modulesKeywordsList = new HashSet<>(Arrays.asList(modulesKeywords.toLowerCase().split("\\s+")));
+            predicate.setModulesList(modulesKeywordsList, needsAllModules);
         }
 
     }

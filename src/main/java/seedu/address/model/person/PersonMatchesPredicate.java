@@ -16,7 +16,7 @@ import seedu.address.commons.util.StringUtil;
 public class PersonMatchesPredicate implements Predicate<Person> {
 
     private List<String> namesList;
-    private List<String> modulesList;
+    private Set<String> modulesList;
     private List<String> phonesList;
     private List<String> emailsList;
     private List<String> gendersList;
@@ -41,7 +41,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public PersonMatchesPredicate() {
         namesList = new ArrayList<>();
-        modulesList = new ArrayList<>();
+        modulesList = new HashSet<>();
         phonesList = new ArrayList<>();
         emailsList = new ArrayList<>();
         gendersList = new ArrayList<>();
@@ -96,21 +96,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         if (!hasModulesList) {
             return true;
         }
-        if (person instanceof Student) {
-            return false;
-        }
-
-        return modulesList.stream()
-                .anyMatch(module -> {
-                    if (person instanceof Professor) {
-                        Professor prof = (Professor) person;
-                        return StringUtil.containsWordIgnoreCase(prof.getModuleCode().toString(), module);
-                    } else if (person instanceof TeachingAssistant) {
-                        TeachingAssistant ta = (TeachingAssistant) person;
-                        return StringUtil.containsWordIgnoreCase(ta.getModuleCode().toString(), module);
-                    }
-                    return false;
-                });
+        return person.doModulesMatch(modulesList, needsAllModules);
     }
 
     public boolean phoneMatches(Person person) {
@@ -176,9 +162,10 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasNamesList = true;
     }
 
-    public void setModulesList(List<String> otherList) {
+    public void setModulesList(Set<String> otherList, boolean needsAllModules) {
         this.modulesList = otherList;
         hasModulesList = true;
+        this.needsAllModules = needsAllModules;
     }
 
     public void setPhonesList(List<String> phonesList) {
@@ -196,9 +183,9 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasGendersList = true;
     }
 
-    public void setTagsList(Set<String> tagsList, boolean hasAllTags) {
+    public void setTagsList(Set<String> tagsList, boolean needsAllTags) {
         this.tagsList = tagsList;
-        this.needsAllTags = hasAllTags;
+        this.needsAllTags = needsAllTags;
         hasTagsList = true;
     }
 
@@ -248,7 +235,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return namesList;
     }
 
-    public List<String> getModulesList() {
+    public Set<String> getModulesList() {
         return modulesList;
     }
 
@@ -287,7 +274,9 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && gendersList.equals(((PersonMatchesPredicate) other).gendersList)
                 && tagsList.equals(((PersonMatchesPredicate) other).tagsList)
                 && locationsList.equals(((PersonMatchesPredicate) other).locationsList)
-                && typesList.equals(((PersonMatchesPredicate) other).typesList)); // state check
+                && typesList.equals(((PersonMatchesPredicate) other).typesList)
+                && needsAllTags == ((PersonMatchesPredicate) other).needsAllTags
+                && needsAllModules == ((PersonMatchesPredicate) other).needsAllModules); // state check
     }
 
     private Set<String> makeTagsList(Person person) {

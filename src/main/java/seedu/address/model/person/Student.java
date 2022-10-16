@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
 
@@ -65,5 +66,21 @@ public class Student extends Person {
     @Override
     public String getTypeString() {
         return "stu";
+    }
+
+    @Override
+    public boolean doModulesMatch(Set<String> modulesList, boolean needsAllModules) {
+        Set<String> personModulesList = getModulesSetString();
+        if (needsAllModules) {
+            return personModulesList.equals(modulesList);
+        } else {
+            personModulesList.retainAll(modulesList);
+            return !personModulesList.isEmpty();
+        }
+    }
+
+    public Set<String> getModulesSetString() {
+        return getModuleCodes().stream()
+                .map(moduleCode -> moduleCode.value.toLowerCase()).collect(Collectors.toSet());
     }
 }

@@ -136,4 +136,7 @@ public abstract class Person {
     }
 
     public abstract String getTypeString();
+
+    public abstract boolean doModulesMatch(Set<String> modulesList, boolean needsAllTags);
+
 }

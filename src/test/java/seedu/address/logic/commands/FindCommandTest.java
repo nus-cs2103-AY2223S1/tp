@@ -31,21 +31,24 @@ public class FindCommandTest {
     public void equals() {
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
         firstPredicate.setNamesList(Collections.singletonList("firstNamesList"));
-        firstPredicate.setModulesList(Collections.singletonList("firstModulesList"));
+        firstPredicate.setModulesList(Collections.singleton("firstModulesSet"), false);
 
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
         secondPredicate.setNamesList(Collections.singletonList("secondNamesList"));
-        secondPredicate.setModulesList(Collections.singletonList("secondModulesList"));
+        secondPredicate.setModulesList(Collections.singleton("secondModulesSet"), false);
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findSecondCommand.equals(findSecondCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findSecondCommandCopy = new FindCommand(secondPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        assertTrue(findSecondCommand.equals(findSecondCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
@@ -77,6 +80,7 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
     }
 
+    
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */

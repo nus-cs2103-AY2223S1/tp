@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -86,5 +87,11 @@ public class TeachingAssistant extends Person {
     @Override
     public String getTypeString() {
         return "ta";
+    }
+
+    @Override
+    public boolean doModulesMatch(Set<String> modulesList, boolean needsAllTags) {
+        return modulesList.stream()
+                .anyMatch(module -> StringUtil.containsWordIgnoreCase(this.moduleCode.value, module));
     }
 }
