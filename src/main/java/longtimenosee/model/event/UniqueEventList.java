@@ -3,6 +3,7 @@ package longtimenosee.model.event;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -174,7 +175,7 @@ public class UniqueEventList implements Iterable<Event> {
      */
     public List<Event> listEventOverlap(Event toAdd) {
         List<Event> clashingEvents = new ArrayList<>();
-        for (int i = 0; i < internalList.size() ; i++) {
+        for (int i = 0; i < internalList.size(); i++) {
             if (Event.eventClash(internalList.get(i), toAdd)) {
                 clashingEvents.add(internalList.get(i));
             }
@@ -189,11 +190,29 @@ public class UniqueEventList implements Iterable<Event> {
      */
     public List<Event> listEventSameDay(Event toAdd) {
         List<Event> sameDayEvents = new ArrayList<>();
-        for (int i = 0; i < internalList.size() ; i++) {
+        for (int i = 0; i < internalList.size(); i++) {
             if (toAdd.getDate().equals(internalList.get(i).getDate())) {
                 sameDayEvents.add(internalList.get(i));
             }
         }
         return sameDayEvents;
+    }
+
+    /**
+     * Lists upcoming events in the next 7 days from the day that this method is called
+     * @return list of events in the next 7 days
+     */
+    public List<Event> calendarView() {
+        List<Event> thisWeek = new ArrayList<>();
+        LocalDate todaysDate = LocalDate.now();
+        LocalDate weekLater = todaysDate.plusDays(7);
+        for (Event e : internalList) {
+            LocalDate eventDate = e.getDate().getDate();
+            if ((eventDate.isAfter(todaysDate) || eventDate.isEqual(todaysDate))
+                    && (eventDate.isBefore(weekLater) || eventDate.isEqual(weekLater))) {
+                thisWeek.add(e);
+            }
+        }
+        return thisWeek;
     }
 }

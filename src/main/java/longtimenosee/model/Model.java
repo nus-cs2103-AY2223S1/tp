@@ -159,15 +159,26 @@ public interface Model {
      */
     boolean hasEvent(Event toAdd);
 
-    void deleteEvent(Event toDelete); //TODO: Delete event
+    /**
+     * Deletes an event from event list
+     * @param toDelete event to delete
+     */
+    void deleteEvent(Event toDelete);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * List events on the same day as an event to add
+     * Lists events on the same day as an event to add
      * @param toAdd
      * @return
      */
     List<Event> listEventsSameDay(Event toAdd);
+
+    /**
+     * Shows upcoming events in the next 7 days
+     */
+    List<Event> calendarView();
+
+
 }

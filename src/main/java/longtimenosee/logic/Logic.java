@@ -38,8 +38,10 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of policies */
     ObservableList<Policy> getFilteredPolicyList();
 
-    /** Returns an unmodifiable view of the filtered list of events */
-    //ObservableList<Policy> getFilteredEventList(); //TODO: For GUI purposes, you might need this.
+
+    /** Returns an unmodifiable view of the filtered list of events
+    ObservableList<Policy> getFilteredEventList(); //TODO: For GUI purposes, you might need this.
+     */
 
 
     /**

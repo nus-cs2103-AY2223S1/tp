@@ -14,7 +14,6 @@ import longtimenosee.logic.parser.AddressBookParser;
 import longtimenosee.logic.parser.exceptions.ParseException;
 import longtimenosee.model.Model;
 import longtimenosee.model.ReadOnlyAddressBook;
-import longtimenosee.model.event.Event;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.Policy;
 import longtimenosee.storage.Storage;
@@ -73,10 +72,12 @@ public class LogicManager implements Logic {
         return model.getFilteredPolicyList();
     }
 
-/*    @Override
+    /**
+    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
-    }*/ //TODO: For GUI you might need this
+    } //TODO: For GUI you might need this
+     */
 
     @Override
     public Path getAddressBookFilePath() {

@@ -252,4 +252,9 @@ public class ModelManager implements Model {
         return addressBook.listEventsSameDay(toAdd);
     }
 
+    @Override
+    public List<Event> calendarView() {
+        return addressBook.calendarView();
+    }
+
 }

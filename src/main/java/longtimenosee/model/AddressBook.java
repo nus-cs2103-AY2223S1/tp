@@ -243,4 +243,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public List<Event> listEventsSameDay(Event toAdd) {
         return events.listEventSameDay(toAdd);
     }
+
+    /**
+     * Lists upcoming events in the next 7 days
+     */
+    public List<Event> calendarView() {
+        return events.calendarView();
+    }
+
 }
