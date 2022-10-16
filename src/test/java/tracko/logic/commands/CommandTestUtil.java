@@ -1,26 +1,25 @@
 package tracko.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static tracko.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
-// import static tracko.logic.parser.CliSyntax.PREFIX_TAG;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-// import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-// import tracko.commons.core.index.Index;
+import tracko.commons.core.index.Index;
 import tracko.logic.commands.exceptions.CommandException;
-// import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.Model;
 import tracko.model.TrackO;
-// import tracko.model.order.NameContainsKeywordsPredicate;
+import tracko.model.items.Item;
+import tracko.model.items.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
-// import tracko.testutil.EditPersonDescriptorBuilder;
+import tracko.model.order.OrderContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -111,18 +110,34 @@ public class CommandTestUtil {
         assertEquals(expectedTrackO, actualModel.getTrackO());
     }
 
-    // /**
-    //  * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-    //  * {@code model}'s order list.
-    //  */
-    // public static void showOrderAtIndex(Model model, Index targetIndex) {
-    //     assertTrue(targetIndex.getZeroBased() < model.getOrderList().size());
-    //
-    //     Order order = model.getOrderList().get(targetIndex.getZeroBased());
-    //     final String[] splitName = order.getName().fullName.split("\\s+");
-    //     model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-    //
-    //     assertEquals(1, model.getOrderList().size());
-    // }
+    /**
+     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
+     * {@code model}'s order list.
+     */
+    public static void showOrderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+
+        Order order = model.getOrderList().get(targetIndex.getZeroBased());
+        // Index is at 1 because at 0, every person is initialized to have a keychain.
+        final String[] splitName = order.getItemList().get(1).getItem().split("\\s+");
+        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+
+        assertEquals(1, model.getFilteredOrderList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the item at the given {@code targetIndex} in the
+     * {@code model}'s order list.
+     */
+    public static void showItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());
+
+        Item item = model.getInventoryList().get(targetIndex.getZeroBased());
+        // Index is at 1 because at 0, every person is initialized to have a keychain.
+        final String[] splitName = item.getItemName().toString().split("\\s+");
+        model.updateFilteredItemList(new ItemContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+
+        assertEquals(1, model.getFilteredItemListSize());
+    }
 
 }

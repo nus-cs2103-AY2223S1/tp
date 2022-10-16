@@ -31,7 +31,7 @@ public class AddItemCommand extends Command {
             + CliSyntax.PREFIX_COST_PRICE + "1.98";
 
 
-    public static final String MESSAGE_SUCCESS = "New item and quantity added:\n %1$s";
+    public static final String MESSAGE_SUCCESS = "New item and quantity added:\n%1$s";
 
     private final Item toAdd;
 

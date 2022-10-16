@@ -9,9 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.control.Button?>
 <HBox id="cardPane" styleClass="card-pane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane prefWidth="175.0" HBox.hgrow="ALWAYS">
     <columnConstraints>

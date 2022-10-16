@@ -35,11 +35,16 @@ public class AddOrderCommand extends MultiLevelCommand {
     public static final String MESSAGE_USAGE_2 = "To add an item and its quantity to the order being created: \n"
         + CliSyntax.PREFIX_ITEM + "ITEM_NAME "
         + CliSyntax.PREFIX_QUANTITY + "ITEM_QUANTITY \n"
-        + "Enter 'done' or 'cancel' to finish or abort the command accordingly";
+        + "Enter 'done' or 'cancel' to finish or abort the command accordingly.";
 
-    public static final String MESSAGE_ADDED_ITEM = "New item and quantity added:\n %1$s";
+    public static final String MESSAGE_ADDED_ITEM = "New item and quantity added:\n%1$s"
+            + "\nTo add more items and their quantities, enter:"
+            + "\n" + CliSyntax.PREFIX_ITEM + "ITEM_NAME "
+            + CliSyntax.PREFIX_QUANTITY + "ITEM_QUANTITY"
+            + "\nOtherwise, enter 'done' or 'cancel' to finish or abort the command accordingly.";
 
-    public static final String MESSAGE_SUCCESS = "New order added: %1$s";
+
+    public static final String MESSAGE_SUCCESS = "New order added:\n%1$s";
 
     private final Order toAdd;
     private Pair<String, Integer> lastItemQuantityPair;

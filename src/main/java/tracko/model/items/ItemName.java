@@ -10,7 +10,7 @@ public class ItemName {
     public static final String MESSAGE_CONSTRAINTS =
             "Item names should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String itemName;
 

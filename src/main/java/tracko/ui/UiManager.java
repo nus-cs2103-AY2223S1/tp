@@ -20,7 +20,7 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/track_o_logo.png";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -38,9 +38,6 @@ public class UiManager implements Ui {
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
-
-        //To prevent UI text bugs (text turns to ... when the window is too narrow.)
-        primaryStage.setResizable(false);
 
         try {
             mainWindow = new MainWindow(primaryStage, logic);
