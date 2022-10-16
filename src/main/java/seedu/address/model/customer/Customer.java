@@ -83,7 +83,7 @@ public class Customer {
     }
 
     /**
-     * Get total number of active commissions made by this customer.
+     * Returns the total number of active commissions made by this customer.
      */
     public long getActiveCommissionCount() {
         return commissions.getActiveSize();
