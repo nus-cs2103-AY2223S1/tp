@@ -16,7 +16,6 @@ class BatchAddCommandTest {
 
     private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
-
     @Test
     void execute_batchAddFileNoExist_throwsCommandException() {
         Path testData = Paths.get("src", "test", "data", "BatchAddTest", "filename.csv");
