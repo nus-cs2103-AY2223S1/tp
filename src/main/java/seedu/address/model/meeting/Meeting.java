@@ -1,5 +1,7 @@
 package seedu.address.model.meeting;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -14,8 +16,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.util.DateTimeProcessor;
-
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Class for a new Meeting
@@ -54,7 +54,8 @@ public class Meeting {
      *
      * @param peopleToMeet the array of people names
      */
-    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) throws PersonNotFoundException {
+    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet)
+            throws PersonNotFoundException {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
