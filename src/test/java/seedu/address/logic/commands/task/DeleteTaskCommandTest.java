@@ -32,7 +32,7 @@ public class DeleteTaskCommandTest {
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(targetIndex);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_SUCCESS, taskToDelete);
         ModelManager expectedModel = new ModelManager(
-                new AddressBook(model.getAddressBook()), new TaskPanel(model.getTaskPanel()), new UserPrefs());;
+                new AddressBook(model.getAddressBook()), new TaskPanel(model.getTaskPanel()), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
