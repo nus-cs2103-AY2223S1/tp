@@ -5,7 +5,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 
 /**
  * A utility class to help with building EditAppointmentDescriptor objects.

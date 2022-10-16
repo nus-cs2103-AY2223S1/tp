@@ -4,15 +4,16 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
 
 /**
- * Filters and lists all persons in address book whose name contains any of the argument keywords.
+ * Filters and lists all patients in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FilterNameCommand extends Command {
 
-    public static final CommandWord COMMAND_WORD = new CommandWord("filtername", "fn");
+    public static final CommandWord COMMAND_WORD =
+            new CommandWord("filtername", "findname", "fn");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all patients whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
@@ -28,9 +29,9 @@ public class FilterNameCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPatientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
+                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()));
     }
 
     @Override

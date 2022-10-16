@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.FilterTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagContainsKeywordPredicate;
+import seedu.address.model.patient.TagContainsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
