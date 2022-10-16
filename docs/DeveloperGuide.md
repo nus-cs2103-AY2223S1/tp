@@ -422,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
   
-**Use case: UC07 - Mark a task as complete or incomplete**
+**Use case: UC07 - Mark a task as complete**
 
 **MSS**
 
@@ -511,6 +511,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
+**Use case: UC11 - Mark a task as incomplete**
+
+**MSS**
+
+1.  User requests to mark a task to be incomplete.
+2.  Arrow shows the task to be incomplete.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given task index is invalid.
+
+    * 1a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+* 2a. The tasks list is empty.
+
+  Use case ends.
 
 *{More to be added}*
 
