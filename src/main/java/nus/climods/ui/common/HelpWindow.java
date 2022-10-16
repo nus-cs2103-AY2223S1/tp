@@ -151,7 +151,9 @@ public class HelpWindow extends UiPart<Stage> {
     private void showWarningMessage(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
-        alert.setContentText(message);
+        Label warningMessage = new Label(message);
+        warningMessage.setWrapText(true);
+        alert.getDialogPane().setContent(warningMessage);
         alert.showAndWait();
     }
 
