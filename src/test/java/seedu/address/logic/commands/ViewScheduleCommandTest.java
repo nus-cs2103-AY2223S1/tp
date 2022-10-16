@@ -67,22 +67,5 @@ public class ViewScheduleCommandTest {
                         Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
                 false, false, false, false,
                 false, true), expectedModel);
-
     }
-
-    @Test
-    public void execute_zeroKeywords_AllSchedulesFound() {
-        CommandResult expectedCommandResult = new CommandResult(String.format(String.format(
-                Messages.MESSAGE_SCHEDULES_LISTED_OVERVIEW, model.getFilteredScheduleList().size())),
-                false, false, false, false,
-                false, true);
-
-        ViewModuleScheduleCommand command = new ViewModuleScheduleCommand();
-        expectedModel.updateFilteredScheduleList(Model.PREDICATE_SHOW_ALL_SCHEDULES);
-        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
-
-    }
-
-
-
 }
