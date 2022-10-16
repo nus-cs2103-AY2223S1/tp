@@ -217,6 +217,9 @@ Sorts the persons list by their names in alphabetical order, ignoring upper and 
 
 Format: `sortp n/`
 
+Note:
+* The list will remain sorted by names in alphabetical order, until InterNUS is closed or if it is changed to sort by associated company names instead.
+
 ### Sorting persons by associated company name: `sortp c/`
 
 Sorts the persons list by their associated company names in alphabetical order, ignoring upper and lower cases.
@@ -225,6 +228,7 @@ Format: `sortp c/`
 
 Note:
 * For persons that are not associated with a company yet, they will be listed at the bottom of the list.
+* The list will remain sorted by associated company names in alphabetical order, until InterNUS is closed or if it is changed to sort by person names instead.
 
 ### Clearing all entries : `clear`
 
