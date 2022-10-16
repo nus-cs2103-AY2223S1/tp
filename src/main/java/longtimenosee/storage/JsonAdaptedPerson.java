@@ -72,9 +72,9 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         pinned = source.getPin();
-        birthday = source.getBirthday().toString();
+        birthday = source.getBirthday().value;
         income = source.getIncome().value;
-        riskAppetite = source.getRiskAppetite().toString();
+        riskAppetite = source.getRiskAppetite().value;
     }
 
     /**
