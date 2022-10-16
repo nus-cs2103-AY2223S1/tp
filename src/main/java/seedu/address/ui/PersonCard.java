@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 
 /**
@@ -43,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private FlowPane moduleCodes;
+    @FXML
     private ImageView gender;
     @FXML
     private Label email;
@@ -67,10 +70,17 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (person instanceof Professor) {
+            moduleCodes.getChildren().add(new Label(((Professor) person).getModuleCode().value));
             title.setText("Professor");
-        } else if (person instanceof TeachingAssistant) {
+        }
+        if (person instanceof TeachingAssistant) {
+            moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
             title.setText("Teaching\nAssistant");
-        } else {
+        }
+        if (person instanceof Student) {
+            Student student = (Student) person;
+            student.getModuleCodes().stream()
+                    .forEach(moduleCode -> moduleCodes.getChildren().add(new Label(moduleCode.value)));
             title.setText("Student");
         }
     }

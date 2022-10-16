@@ -39,7 +39,7 @@ public class ModuleCode {
 
     @Override
     public String toString() {
-        return value;
+        return '[' + value + ']';
     }
 
     @Override
@@ -49,6 +49,12 @@ public class ModuleCode {
                 && value.equals(((ModuleCode) other).value)); // state check
     }
 
+    /**
+     * Returns true if a given string is a valid moduleCode name.
+     */
+    public static boolean isValidModuleCodeName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     @Override
     public int hashCode() {
         return value.hashCode();

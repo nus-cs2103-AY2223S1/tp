@@ -26,13 +26,14 @@ public class SampleDataUtil {
         return new Person[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Gender("M"),
-                getTagSet("friends"), new Location("Chess club room")),
+                getTagSet("friends"), new Location("Chess club room"), getModuleCodeSet("CS4534", "CS5234")),
             new Student(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Gender("M"),
-                getTagSet("colleagues", "friends"), new Location("UTown")),
+                getTagSet("colleagues", "friends"), new Location("UTown"),
+                    getModuleCodeSet("CS2313", "CS1388", "CS6001")),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Gender("F"),
-                getTagSet("neighbours"), new Location("NUS")),
+                getTagSet("neighbours"), new Location("NUS"), getModuleCodeSet("CS2334", "CS1312S")),
             new Professor(new Name("Wong Tin Lok"), new ModuleCode("CS1231S"),
                 new Phone("91031282"), new Email("wongtk@example.com"),
                 new Gender("M"),
@@ -43,7 +44,7 @@ public class SampleDataUtil {
                 getTagSet("testing"), new Location("COM2-0210")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Gender("M"),
-                getTagSet("colleagues"), new Location("Research Lab"))
+                getTagSet("colleagues"), new Location("Research Lab"), getModuleCodeSet("CS1101S", "CS2103T"))
         };
     }
 
@@ -61,6 +62,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a moduleCode set containing the list of strings given.
+     */
+    public static Set<ModuleCode> getModuleCodeSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(ModuleCode::new)
                 .collect(Collectors.toSet());
     }
 
