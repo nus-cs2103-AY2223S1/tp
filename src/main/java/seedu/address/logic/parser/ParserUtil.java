@@ -189,9 +189,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code GithubUsername} is invalid.
      */
-    public static GithubUsername parseGitHubUsername(String username) throws ParseException {
+    public static GithubUsername parseGitHubUsername(String username, Boolean isPresent) throws ParseException {
         requireNonNull(username);
         String trimmedUsername = username.trim();
+        if (!isPresent) {
+            return new GithubUsername(trimmedUsername, false);
+        }
         if (!GithubUsername.isValidUsername(username)) {
             throw new ParseException(GithubUsername.MESSAGE_CONSTRAINTS);
         }

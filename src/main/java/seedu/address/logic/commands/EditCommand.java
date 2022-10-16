@@ -1,7 +1,13 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -41,6 +47,7 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_TAG + "TAG]... "
         + "[" + PREFIX_LOCATION + "LOCATION] "

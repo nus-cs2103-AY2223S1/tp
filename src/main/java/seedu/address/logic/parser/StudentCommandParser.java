@@ -49,7 +49,9 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(DEFAULT_LOC_STRING));
-        GithubUsername username = GithubUsername.getGithubUsername(argMultimap);
+        GithubUsername username = ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_LOCATION)
+                .orElse(DEFAULT_LOC_STRING), false);
+
         Student person = new Student(name, phone, email, gender, tagList, location, username);
 
         return new StudentCommand(person);

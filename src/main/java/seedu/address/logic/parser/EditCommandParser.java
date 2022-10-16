@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -68,8 +69,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent()) {
-            editPersonDescriptor.setGithubUsername(ParserUtil
-                    .parseGitHubUsername(argMultimap.getValue(PREFIX_GITHUBUSERNAME).get()));
+            String usernameInput = argMultimap.getValue(PREFIX_GITHUBUSERNAME).orElse(GithubUsername.DEFAULT_USERNAME);
+            if (usernameInput.equals(GithubUsername.DEFAULT_USERNAME)) {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(usernameInput, false));
+            } else {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(usernameInput, true));
+            }
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);

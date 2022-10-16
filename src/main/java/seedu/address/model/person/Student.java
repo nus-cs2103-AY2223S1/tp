@@ -29,11 +29,15 @@ public class Student extends Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Gender: ")
-                .append(getGender())
-                .append("; Location: ")
-                .append(getLocation())
-                .append("; Github Username: ")
-                .append(getUsername());
+                .append(getGender());
+
+        if (!getUsername().value.equals(GithubUsername.DEFAULT_USERNAME)) {
+            builder.append("; Github Username: ")
+                    .append(getUsername());
+        }
+
+        builder.append("; Location: ")
+                .append(getLocation());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
