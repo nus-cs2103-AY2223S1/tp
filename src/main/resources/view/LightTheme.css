@@ -345,7 +345,6 @@
 }
 
 #profileImageContainer {
-    -fx-fill: #e8e8e8;
     -fx-stroke-type: inside;
 }
 
@@ -382,11 +381,6 @@
 
 .help-panel .label {
     -fx-text-fill: black !important;
-}
-
-@font-face {
-    font-family: "Cascadia Code";
-    src: url("fonts/CascadiaCode-Regular.ttf")
 }
 
 .help-panel .label {
