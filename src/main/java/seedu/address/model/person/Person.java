@@ -23,21 +23,24 @@ public class Person {
     // Data fields
     private final Address address;
     private final Remark remark;
-    private NetWorth netWorth;
+    private final NetWorth netWorth;
+    private final FilePath filePath;
+
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
-                  NetWorth netWorth, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, tags);
+                  NetWorth netWorth, FilePath filePath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, filePath,  tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.netWorth = netWorth;
+        this.filePath = filePath;
         this.tags.addAll(tags);
     }
 
@@ -45,14 +48,15 @@ public class Person {
      * Constructor with no remark, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  NetWorth netWorth, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, tags);
+                  NetWorth netWorth, FilePath filepath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, filepath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = new Remark("");
         this.netWorth = netWorth;
+        this.filePath = filepath;
         this.tags.addAll(tags);
     }
 
@@ -78,6 +82,10 @@ public class Person {
 
     public NetWorth getNetWorth() {
         return netWorth;
+    }
+
+    public FilePath getFilePath() {
+        return filePath;
     }
 
     /**
@@ -123,13 +131,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getNetWorth().equals(getNetWorth());
+                && otherPerson.getNetWorth().equals(getNetWorth())
+                && otherPerson.getFilePath().equals(getFilePath());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, netWorth);
+        return Objects.hash(name, phone, email, address, tags, remark, netWorth, filePath);
     }
 
     @Override
@@ -146,6 +155,8 @@ public class Person {
                 .append(getRemark())
                 .append(" Net Worth: ")
                 .append(getNetWorth())
+                .append(" File Path ")
+                .append(getFilePath())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

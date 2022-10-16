@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +12,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Phone;
@@ -124,6 +126,15 @@ public class ParserUtil {
             throw new ParseException(NetWorth.MESSAGE_CONSTRAINTS);
         }
         return new NetWorth(trimmedNetWorth);
+    }
+
+    public static FilePath parseFilePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedFilePath = filePath.trim();
+        if (!FilePath.isValidFilePath(trimmedFilePath)) {
+            throw new ParseException(FilePath.MESSAGE_CONSTRAINTS);
+        }
+        return new FilePath(trimmedFilePath);
     }
 
     /**

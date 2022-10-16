@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String remark;
     private final String netWorth;
+    private final String filePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,6 +44,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark,
                              @JsonProperty("netWorth") String netWorth,
+                             @JsonProperty("filePath") String filePath,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.remark = remark;
         this.netWorth = netWorth;
+        this.filePath = filePath;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -64,6 +68,7 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         remark = source.getRemark().value;
         netWorth = source.getNetWorth().value;
+        filePath = source.getFilePath().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -121,6 +126,15 @@ class JsonAdaptedPerson {
         }
         final NetWorth modelNetWorth = new NetWorth(netWorth);
 
+        if (filePath == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, FilePath.class.getSimpleName()));
+        }
+        if (!FilePath.isValidFilePath(filePath)) {
+            throw new IllegalValueException(FilePath.MESSAGE_CONSTRAINTS);
+        }
+        final FilePath modelFilePath = new FilePath(filePath);
+
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Remark.class.getSimpleName()));
@@ -129,6 +143,6 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelNetWorth, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelNetWorth, modelFilePath, modelTags);
     }
 }

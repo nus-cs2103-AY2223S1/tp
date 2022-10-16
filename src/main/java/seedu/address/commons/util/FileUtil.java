@@ -1,5 +1,7 @@
 package seedu.address.commons.util;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -78,6 +80,20 @@ public class FileUtil {
      */
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
+    }
+
+    public static void openPDFFile(String filePath) throws IOException {
+        File pdfFile = new File(filePath);
+        if (pdfFile.exists()) {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(pdfFile);
+            } else {
+                System.out.println("Awt Desktop is not supported!");
+            }
+
+        } else {
+            System.out.println("File is not exists!");
+        }
     }
 
 }

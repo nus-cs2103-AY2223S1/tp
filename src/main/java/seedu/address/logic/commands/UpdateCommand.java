@@ -22,6 +22,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
@@ -125,11 +126,12 @@ public class UpdateCommand extends UndoableCommand {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
+        FilePath updatedFilePath = editPersonDescriptor.getFilePath().orElse(personToEdit.getFilePath());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRemark, updatedNetWorth, updatedTags);
+                updatedRemark, updatedNetWorth, updatedFilePath, updatedTags);
     }
 
     @Override
@@ -160,6 +162,7 @@ public class UpdateCommand extends UndoableCommand {
         private Email email;
         private Address address;
         private NetWorth netWorth;
+        private FilePath filePath;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -174,6 +177,7 @@ public class UpdateCommand extends UndoableCommand {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setNetWorth(toCopy.netWorth);
+            setFilePath(toCopy.filePath);
             setTags(toCopy.tags);
         }
 
@@ -222,6 +226,14 @@ public class UpdateCommand extends UndoableCommand {
 
         public Optional<NetWorth> getNetWorth() {
             return Optional.ofNullable(netWorth);
+        }
+
+        public void setFilePath(FilePath filePath) {
+            this.filePath = filePath;
+        }
+
+        public Optional<FilePath> getFilePath() {
+            return Optional.ofNullable(filePath);
         }
 
         /**
