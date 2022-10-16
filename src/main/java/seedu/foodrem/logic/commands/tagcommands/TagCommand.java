@@ -26,7 +26,7 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the item identified by the index number used in the displayed item list with a valid Tag.\n"
-            + "Parameters: " + PREFIX_NAME + "TAG_NAME" + PREFIX_ID + "INDEX (item index must be a positive integer)\n"
+            + "Parameters: " + PREFIX_NAME + "TAG_NAME " + PREFIX_ID + "INDEX (item index must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Condiments " + PREFIX_ID + "1";
 
     public static final String MESSAGE_SUCCESS = "Item tagged successfully";
