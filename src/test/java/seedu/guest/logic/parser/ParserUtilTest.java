@@ -8,6 +8,7 @@ import static seedu.guest.testutil.TypicalIndexes.INDEX_FIRST_GUEST;
 import org.junit.jupiter.api.Test;
 
 import seedu.guest.logic.parser.exceptions.ParseException;
+import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.IsRoomClean;
@@ -22,6 +23,7 @@ public class ParserUtilTest {
     private static final String INVALID_DATE_RANGE = "13/09/22 - 13/09/22";
     private static final String INVALID_NUMBER_OF_GUESTS = "5";
     private static final String INVALID_IS_ROOM_CLEAN = "false";
+    private static final String INVALID_BILL = "-1.00";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -29,6 +31,7 @@ public class ParserUtilTest {
     private static final String VALID_DATE_RANGE = "13/09/22 - 15/09/22";
     private static final String VALID_NUMBER_OF_GUESTS = "4";
     private static final String VALID_IS_ROOM_CLEAN = "yes";
+    private static final String VALID_BILL = "10.00";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -174,7 +177,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIsRoomClean_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseNumberOfGuests(INVALID_IS_ROOM_CLEAN));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIsRoomClean(INVALID_IS_ROOM_CLEAN));
     }
 
     @Test
@@ -188,5 +191,28 @@ public class ParserUtilTest {
         String isRoomCleanWithWhitespace = WHITESPACE + VALID_IS_ROOM_CLEAN + WHITESPACE;
         IsRoomClean expectedIsRoomClean = new IsRoomClean(VALID_IS_ROOM_CLEAN);
         assertEquals(expectedIsRoomClean, ParserUtil.parseIsRoomClean(isRoomCleanWithWhitespace));
+    }
+
+    @Test
+    public void parseBill_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseBill((String) null));
+    }
+
+    @Test
+    public void parseBill_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseBill(INVALID_BILL));
+    }
+
+    @Test
+    public void parseBill_validValueWithoutWhitespace_returnsBill() throws Exception {
+        Bill expectedBill = new Bill(VALID_BILL);
+        assertEquals(expectedBill, ParserUtil.parseBill(VALID_BILL));
+    }
+
+    @Test
+    public void parseBill_validValueWithWhitespace_returnsTrimmedBill() throws Exception {
+        String billWithWhitespace = WHITESPACE + VALID_BILL + WHITESPACE;
+        Bill expectedBill = new Bill(VALID_BILL);
+        assertEquals(expectedBill, ParserUtil.parseBill(billWithWhitespace));
     }
 }

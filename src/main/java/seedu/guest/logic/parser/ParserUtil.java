@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.guest.commons.core.index.Index;
 import seedu.guest.commons.util.StringUtil;
 import seedu.guest.logic.parser.exceptions.ParseException;
+import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.IsRoomClean;
@@ -78,7 +79,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateRange} into an {@code DateRange}.
+     * Parses a {@code String dateRange} into a {@code DateRange}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code dateRange} is invalid.
@@ -93,7 +94,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String numberOfGuests} into an {@code NumberOfGuests}.
+     * Parses a {@code String numberOfGuests} into a {@code NumberOfGuests}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code numberOfGuests} is invalid.
@@ -120,5 +121,20 @@ public class ParserUtil {
             throw new ParseException(IsRoomClean.MESSAGE_CONSTRAINTS);
         }
         return new IsRoomClean(trimmedIsRoomClean);
+    }
+
+    /**
+     * Parses a {@code String bill} into a {@code Bill}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code bill} is invalid.
+     */
+    public static Bill parseBill(String bill) throws ParseException {
+        requireNonNull(bill);
+        String trimmedBill = bill.trim();
+        if (!Bill.isValidBill(trimmedBill)) {
+            throw new ParseException(Bill.MESSAGE_CONSTRAINTS);
+        }
+        return new Bill(trimmedBill);
     }
 }

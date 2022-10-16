@@ -19,19 +19,21 @@ public class Guest {
     private final DateRange dateRange;
     private final NumberOfGuests numberOfGuests;
     private final IsRoomClean isRoomClean;
+    private final Bill bill;
 
     /**
      * Every field must be present and not null.
      */
     public Guest(Name name, Phone phone, Email email, DateRange dateRange,
-                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean) {
-        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean);
+                 NumberOfGuests numberOfGuests, IsRoomClean isRoomClean, Bill bill) {
+        requireAllNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.dateRange = dateRange;
         this.numberOfGuests = numberOfGuests;
         this.isRoomClean = isRoomClean;
+        this.bill = bill;
     }
 
     public Name getName() {
@@ -56,6 +58,10 @@ public class Guest {
 
     public IsRoomClean getIsRoomClean() {
         return isRoomClean;
+    }
+
+    public Bill getBill() {
+        return bill;
     }
 
     /**
@@ -92,13 +98,14 @@ public class Guest {
                 && otherGuest.getEmail().equals(getEmail())
                 && otherGuest.getDateRange().equals(getDateRange())
                 && otherGuest.getNumberOfGuests().equals(getNumberOfGuests())
-                && otherGuest.getIsRoomClean().equals(getIsRoomClean());
+                && otherGuest.getIsRoomClean().equals(getIsRoomClean())
+                && otherGuest.getBill().equals(getBill());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, dateRange, numberOfGuests, isRoomClean);
+        return Objects.hash(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
     }
 
     @Override
@@ -114,7 +121,9 @@ public class Guest {
                 .append("; No. of Guests: ")
                 .append(getNumberOfGuests())
                 .append("; Is Room Clean: ")
-                .append(getIsRoomClean());
+                .append(getIsRoomClean())
+                .append("; Bill: ")
+                .append(getBill());
 
         return builder.toString();
     }
