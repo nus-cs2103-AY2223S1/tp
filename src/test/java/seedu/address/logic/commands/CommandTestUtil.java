@@ -44,6 +44,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_MODULE_CODE_CYBERSEC = "CS2107";
     public static final String VALID_MODULE_CODE_SWE = "CS2103T";
+    public static final String VALID_MODULE_CODE_PL = "CS2104";
     public static final String VALID_MODULE_DESCRIPTION_CYBERSEC = "Cryptography basics";
     public static final String VALID_MODULE_DESCRIPTION_SWE = "Module teaches about software engineering";
     public static final String VALID_MODULE_NAME_CYBERSEC = "Introduction to Cybersecurity";

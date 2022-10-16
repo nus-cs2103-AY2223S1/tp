@@ -6,9 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CYBERSEC;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SWE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CYBERSEC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_SWE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_PL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CYBERSEC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_SWE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -94,9 +93,10 @@ public class EditModuleCommandTest {
         showModuleWithModuleCode(model, INDEX_FIRST_MODULE);
 
         Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_MODULE_NAME_SWE).build();
+        Module editedModule = new ModuleBuilder(moduleInFilteredList).
+                withModuleCode(VALID_MODULE_CODE_PL).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE,
-                new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_SWE).build());
+                new EditModuleDescriptorBuilder().withCode(VALID_MODULE_CODE_PL).build());
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
