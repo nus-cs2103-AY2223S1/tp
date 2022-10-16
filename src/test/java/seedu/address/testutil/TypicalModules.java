@@ -54,6 +54,6 @@ public class TypicalModules {
     }
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS2102, CS2106));
+        return new ArrayList<>(Arrays.asList(CS2102, CS2106, CS2103T, CS2107));
     }
 }

@@ -120,6 +120,9 @@ public class AddModuleCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void addModule(Module module) {
             throw new AssertionError("This method should not be called.");
@@ -187,6 +190,7 @@ public class AddModuleCommandTest {
         public ObservableList<Schedule> getFilteredScheduleList() {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");

@@ -19,7 +19,7 @@ import seedu.address.model.module.schedule.Weekdays;
 /**
  * Parses input arguments and creates an AddScheduleCommand.
  */
-public class AddScheduleCommandParser {
+public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddScheduleCommand
      * and returns an AddScheduleCommand object for execution.

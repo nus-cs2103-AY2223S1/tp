@@ -129,7 +129,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public Module getModuleByModuleCode(String moduleCode) {
         for (Module module: modules) {
-            if (module.getCode().toString().toLowerCase().equals(moduleCode)) {
+            if (module.getCode().toString().toLowerCase().equals(moduleCode.toLowerCase())) {
                 return module;
             }
         }
@@ -143,6 +143,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addSchedule(Schedule s) {
         Module targetModule = getModuleByModuleCode(s.getModule());
         targetModule.addSchedule(s);
+    }
+
+    /**
+     * Replaces the given schedule {@code target} in the list with {@code editedSchedule}.
+     * {@code target} must exist in the address book.
+     */
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        target.setModule(editedSchedule.getModule());
+        target.setVenue(editedSchedule.getVenue());
+        target.setStartTime(editedSchedule.getStartTime());
+        target.setEndTime(editedSchedule.getEndTime());
+        target.setWeekday(editedSchedule.getWeekday());
+        target.setClassType(editedSchedule.getClassType());
     }
 
     /**
