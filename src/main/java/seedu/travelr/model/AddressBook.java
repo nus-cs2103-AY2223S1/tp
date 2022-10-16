@@ -116,7 +116,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Removes an event from bucket list before adding it to trip.
-     * 
      */
     public void removeFromBucketList(Event e) {
         bucketList.remove(e);
