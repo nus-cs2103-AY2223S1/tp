@@ -22,7 +22,7 @@ public class RenameTagCommand extends Command {
             + PREFIX_NAME + "ORIGINAL_TAG_NAME "
             + PREFIX_NAME + "NEW_TAG_NAME "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Vegetables "
+            + PREFIX_NAME + "vegetables "
             + PREFIX_NAME + "fruits";
 
     public static final String MESSAGE_RENAME_TAG_SUCCESS = "Renamed tag: %1$s";

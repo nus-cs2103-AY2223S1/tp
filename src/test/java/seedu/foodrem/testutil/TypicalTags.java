@@ -22,6 +22,6 @@ public class TypicalTags {
     } // prevents instantiation
 
     public static List<Tag> getTypicalTags() {
-        return new ArrayList<>(Arrays.asList(FRUITS, FRUITS_WITH_WHITESPACE, NUMBERS, VEGETABLES));
+        return new ArrayList<>(Arrays.asList(FRUITS, VEGETABLES));
     }
 }
