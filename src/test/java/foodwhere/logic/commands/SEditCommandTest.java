@@ -21,7 +21,7 @@ import foodwhere.testutil.TypicalStalls;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for SEditCommand.
  */
-public class EditCommandTest {
+public class SEditCommandTest {
 
     private Model model = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
 
