@@ -5,7 +5,8 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-border-width: 0px;
+    -fx-background-color: transparent;
 }
 
 .tag-selector {
@@ -17,4 +18,16 @@
 
 .tooltip-text {
     -fx-text-fill: white;
+}
+
+#information {
+    -fx-text-fill: #B0B0B0;
+}
+
+#resultDisplay {
+    -fx-background-image: url("../images/texture_dirt.png");
+}
+
+#personListPanelPlaceholder {
+    -fx-background-image: url("../images/texture_dirt.png");
 }

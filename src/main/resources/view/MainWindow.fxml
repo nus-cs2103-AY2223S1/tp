@@ -20,9 +20,10 @@
          <stylesheets>
             <URL value="@DarkTheme.css" />
             <URL value="@Extensions.css" />
+            <URL value="@../fonts/fontstyle.css" />
          </stylesheets>
 
-         <VBox>
+         <VBox maxHeight="1.7976931348623157E308">
 
             <MenuBar fx:id="menuBar">
                <Menu mnemonicParsing="false" text="File">
@@ -33,11 +34,11 @@
                </Menu>
             </MenuBar>
 
-            <AnchorPane>
+            <AnchorPane maxHeight="1.7976931348623157E308">
 
-               <StackPane fx:id="commandBoxPlaceholder" layoutX="14.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="574.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               <StackPane fx:id="resultDisplayPlaceholder" layoutX="14.0" layoutY="45.0" prefHeight="500.0" prefWidth="400.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="32.0" />
-               <StackPane fx:id="personListPanelPlaceholder" layoutX="323.0" layoutY="45.0" prefHeight="500.0" prefWidth="500.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
+               <StackPane fx:id="commandBoxPlaceholder" layoutX="14.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" prefWidth="574.0" styleClass="stack-pane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               <StackPane fx:id="resultDisplayPlaceholder" layoutX="14.0" layoutY="45.0" maxHeight="1.7976931348623157E308" prefHeight="3500.0" prefWidth="400.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="32.0" />
+               <StackPane fx:id="personListPanelPlaceholder" layoutX="323.0" layoutY="45.0" maxHeight="1.7976931348623157E308" prefHeight="3500.0" prefWidth="500.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
                <StackPane fx:id="statusbarPlaceholder" layoutX="12.0" layoutY="355.0" prefHeight="32.0" prefWidth="574.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
 
             </AnchorPane>
