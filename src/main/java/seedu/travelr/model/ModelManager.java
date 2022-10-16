@@ -25,8 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Trip> filteredTrips;
 
-    private final FilteredList<Event> allEvents;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> bucketList;
 
 
     /**
@@ -40,8 +40,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
-        allEvents = new FilteredList<>(this.addressBook.getAllEventList());
-        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
+        bucketList = new FilteredList<>(this.addressBook.getEventList());
         System.out.println("One retrieval");
     }
 
@@ -171,11 +171,11 @@ public class ModelManager implements Model {
 
     @Override
     public AllInBucketListPredicate getBucketPredicate() {
-        return new AllInBucketListPredicate(filteredEvents);
+        return new AllInBucketListPredicate(bucketList);
     }
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        return allEvents;
+        return filteredEvents;
     }
 
     @Override
@@ -187,7 +187,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredEventList(Predicate<Event> predicate) {
         requireNonNull(predicate);
-        allEvents.setPredicate(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
