@@ -14,8 +14,10 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching the specified criteria "
-                                               + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-                                               + "Parameters: n/NAMES (OPTIONAL) c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)\n"
+                                               + "the specified keywords (case-insensitive) and displays them"
+                                               + " as a list with index numbers.\n"
+                                               + "Parameters: n/NAMES (OPTIONAL) "
+                                               + "c/CLASS (OPTIONAL) s/SUBJECT (OPTIONAL)\n"
                                                + "However, the command should not be blank.\n"
                                                + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
                                                + "Example: " + COMMAND_WORD + " n/alice bob charlie c/1A s/English";

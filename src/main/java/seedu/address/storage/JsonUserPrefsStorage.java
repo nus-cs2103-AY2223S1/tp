@@ -26,13 +26,13 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     }
 
     @Override
-    public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
-        return readUserPrefs(filePath);
+    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+        JsonUtil.saveJsonFile(userPrefs, filePath);
     }
 
     @Override
-    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-        JsonUtil.saveJsonFile(userPrefs, filePath);
+    public Optional<UserPrefs> readUserPrefs() throws DataConversionException {
+        return readUserPrefs(filePath);
     }
 
     /**
