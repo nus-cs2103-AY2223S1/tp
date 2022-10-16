@@ -158,6 +158,12 @@ public class ParserUtil {
         return new seedu.address.model.team.Name(trimmedName);
     }
 
+    /**
+     * Parses a {@code String deadline} into a task {@code deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given task {@code deadline} is in an invalid format.
+     */
     public static Optional<LocalDate> parseDeadline(String deadline) throws ParseException {
         if (deadline == null) {
             return Optional.empty();

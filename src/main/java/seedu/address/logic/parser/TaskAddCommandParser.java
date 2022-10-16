@@ -42,7 +42,8 @@ public class TaskAddCommandParser implements Parser<TaskAddCommand> {
         }
 
         Name taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
-        LocalDate taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null)).orElse(null);
+        LocalDate taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null))
+                                           .orElse(null);
 
         Task task = new Task(taskName, taskDeadline);
 
