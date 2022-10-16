@@ -6,7 +6,6 @@ import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.BENSON;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -125,13 +124,13 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
-/*    @Test
+    @Test
     public void toModelType_invalidDateTime_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_ROLE, VALID_PHONE,
                 VALID_EMAIL, VALID_STAGE, INVALID_DATETIME, VALID_TAGS);
         String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalArgumentException.class, expectedMessage, internship::toModelType);
-    }*/
+        assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
+    }
 
 
     @Test

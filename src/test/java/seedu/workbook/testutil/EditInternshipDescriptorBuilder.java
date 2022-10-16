@@ -82,7 +82,9 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setStage(new Stage(stage));
         return this;
     }
-
+    /**
+     * Sets the {@code DateTime} of the {@code EditInternshipDescriptor} that we are building.
+     */
     public EditInternshipDescriptorBuilder withDateTime(String dateTime) {
         descriptor.setDate(new DateTime(dateTime));
         return this;

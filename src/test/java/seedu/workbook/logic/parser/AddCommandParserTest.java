@@ -98,8 +98,8 @@ public class AddCommandParserTest {
         // zero tags
         Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
-                COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY +
-                        STAGE_DESC_AMY + DATETIME_DESC_AMY,
+                COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + STAGE_DESC_AMY + DATETIME_DESC_AMY,
                 new AddCommand(expectedInternship));
     }
 
