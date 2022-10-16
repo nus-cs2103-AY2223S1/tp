@@ -1,11 +1,6 @@
 package coydir.logic.commands;
 
-import coydir.logic.commands.exceptions.CommandException;
-import coydir.logic.parser.AddCommandParser;
-import coydir.logic.parser.exceptions.ParseException;
-import coydir.model.AddressBook;
-import coydir.model.Model;
-import coydir.model.person.Person;
+import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,18 +11,25 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static coydir.commons.util.CollectionUtil.requireAllNonNull;
-import static coydir.logic.commands.AddCommand.MESSAGE_DUPLICATE_PERSON;
+import coydir.logic.commands.exceptions.CommandException;
+import coydir.logic.parser.AddCommandParser;
+import coydir.logic.parser.exceptions.ParseException;
+import coydir.model.AddressBook;
+import coydir.model.Model;
+import coydir.model.person.Person;
 
-public class BatchAddCommand extends Command{
-    private static final String[] PREFIX_LIST = {"n/","p/","e/","j/","a/","t/"};
+/**
+ * Adds multiple person to the database
+ */
+public class BatchAddCommand extends Command {
     public static final String COMMAND_WORD = "batchadd";
-    public static final String MESSAGE_USAGE = COMMAND_WORD +
-            ": Adds multiple people into the database from a csv file \n" +
-            "Parameters: filename (must be in the data folder of the repository and CSV format)\n" +
-            "Example: " + COMMAND_WORD + " coydir.csv";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds multiple people into the database from a csv file \n"
+            + "Parameters: filename (must be in the data folder of the repository and CSV format)\n"
+            + "Example: " + COMMAND_WORD + " coydir.csv";
     public static final String MESSAGE_SUCCESS = "Batch Add Success. %d employees were added";
 
+    private static final String[] PREFIX_LIST = { "n/", "p/", "e/", "j/", "a/", "t/"};
     private final String filename;
     private Path filePath;
 
@@ -37,7 +39,7 @@ public class BatchAddCommand extends Command{
     public BatchAddCommand(String filename) {
         requireAllNonNull(filename);
         this.filename = filename;
-        this.filePath = Paths.get("data",this.filename);
+        this.filePath = Paths.get("data", this.filename);
     }
 
     public void setFilePath(Path filePath) {
@@ -53,12 +55,11 @@ public class BatchAddCommand extends Command{
             // parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(file.toString()));
             br.readLine();
-            while ((line = br.readLine()) != null) // returns a Boolean value
-            {
+            while ((line = br.readLine()) != null) {
                 String[] data = line.split(splitBy); // use comma as separator
                 String arg = " ";
-                for (int i = 0; i < data.length; i++){
-                    if (i == (data.length - 1)){
+                for (int i = 0; i < data.length; i++) {
+                    if (i == (data.length - 1)) {
                         String[] tags = data[i].split("/");
                         for (String tag : tags) {
                             arg += PREFIX_LIST[i] + tag + " ";
@@ -84,7 +85,7 @@ public class BatchAddCommand extends Command{
     public CommandResult execute(Model model) throws CommandException {
         List<AddCommand> addCommandList = this.getInfo();
         List<Person> copyOfPersonList = new ArrayList<>();
-        for(Person p : model.getAddressBook().getPersonList()) {
+        for (Person p : model.getAddressBook().getPersonList()) {
             copyOfPersonList.add(p);
         }
 
@@ -96,12 +97,12 @@ public class BatchAddCommand extends Command{
                 item.execute(model);
             }
         } catch (CommandException e) {
-                AddressBook ab = new AddressBook();
-                ab.setPersons(copyOfPersonList);
-                model.setAddressBook(ab);
-                throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
-            }
-        return new CommandResult(String.format(MESSAGE_SUCCESS,addCommandList.size()));
+            AddressBook ab = new AddressBook();
+            ab.setPersons(copyOfPersonList);
+            model.setAddressBook(ab);
+            throw new CommandException("One person in the list is found to be a duplicate. Call aborted");
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS, addCommandList.size()));
     }
 
     @Override

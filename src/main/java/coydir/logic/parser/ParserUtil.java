@@ -153,11 +153,17 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses a {@code String filename}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the  given {@code filename} length is less than 1.
+     */
     public static String parseFileName(String filename) throws ParseException {
         requireNonNull(filename);
         String trimmedFileName = filename.trim();
         System.out.println(trimmedFileName);
-        if (trimmedFileName.length() < 1){
+        if (trimmedFileName.length() < 1) {
             throw new ParseException("Fail");
         }
         return trimmedFileName;

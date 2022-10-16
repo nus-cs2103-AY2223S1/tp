@@ -1,12 +1,9 @@
 package coydir.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.function.Predicate;
 
 import coydir.commons.core.GuiSettings;
-import coydir.logic.commands.AddCommand;
-import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 

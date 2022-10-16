@@ -3,27 +3,16 @@ package coydir.model;
 import static coydir.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.io.FileNotFoundException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import coydir.commons.core.GuiSettings;
 import coydir.commons.core.LogsCenter;
-import coydir.logic.commands.AddCommand;
-import coydir.logic.commands.exceptions.CommandException;
-import coydir.logic.parser.AddCommandParser;
-import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 /**
  * Represents the in-memory model of the address book data.
