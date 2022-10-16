@@ -16,13 +16,13 @@ import seedu.guest.testutil.TypicalGuests;
 public class JsonSerializableGuestBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableGuestBookTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalGuestGuestBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidGuestGuestBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateGuestGuestBook.json");
+    private static final Path TYPICAL_GUESTS_FILE = TEST_DATA_FOLDER.resolve("typicalGuestGuestBook.json");
+    private static final Path INVALID_GUEST_FILE = TEST_DATA_FOLDER.resolve("invalidGuestGuestBook.json");
+    private static final Path DUPLICATE_GUEST_FILE = TEST_DATA_FOLDER.resolve("duplicateGuestGuestBook.json");
 
     @Test
-    public void toModelType_typicalPersonsFile_success() throws Exception {
-        JsonSerializableGuestBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+    public void toModelType_typicalGuestsFile_success() throws Exception {
+        JsonSerializableGuestBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_GUESTS_FILE,
                 JsonSerializableGuestBook.class).get();
         GuestBook guestBookFromFile = dataFromFile.toModelType();
         GuestBook typicalPersonsGuestBook = TypicalGuests.getTypicalGuestBook();
@@ -30,15 +30,15 @@ public class JsonSerializableGuestBookTest {
     }
 
     @Test
-    public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableGuestBook dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+    public void toModelType_invalidGuestFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableGuestBook dataFromFile = JsonUtil.readJsonFile(INVALID_GUEST_FILE,
                 JsonSerializableGuestBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
-    public void toModelType_duplicatePersons_throwsIllegalValueException() throws Exception {
-        JsonSerializableGuestBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+    public void toModelType_duplicateGuests_throwsIllegalValueException() throws Exception {
+        JsonSerializableGuestBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_GUEST_FILE,
                 JsonSerializableGuestBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableGuestBook.MESSAGE_DUPLICATE_GUEST,
                 dataFromFile::toModelType);

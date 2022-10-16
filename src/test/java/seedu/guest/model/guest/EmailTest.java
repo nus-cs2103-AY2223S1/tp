@@ -1,6 +1,8 @@
 package seedu.guest.model.guest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.guest.testutil.Assert.assertThrows;
 
@@ -64,5 +66,16 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+    }
+
+    @Test
+    public void hashcode() {
+        Email tempEmail = new Email("test@localhost");
+
+        // same values -> return true
+        assertEquals(tempEmail, new Email("test@localhost"));
+
+        // different values -> return false
+        assertNotEquals(tempEmail, new Email("test@localhost1"));
     }
 }

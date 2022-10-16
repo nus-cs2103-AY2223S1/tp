@@ -1,7 +1,10 @@
 package seedu.guest.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.guest.model.guest.Guest;
@@ -37,6 +40,8 @@ public class GuestCard extends UiPart<Region> {
     private Label email;
     @FXML
     private Label dateRange;
+    @FXML
+    private Label isRoomClean;
 
     /**
      * Creates a {@code GuestCode} with the given {@code Guest} and index to display.
@@ -53,6 +58,24 @@ public class GuestCard extends UiPart<Region> {
         email.setWrapText(true);
         dateRange.setText(guest.getDateRange().value);
         numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
+        isRoomClean.setText("Room Cleaned: ");
+
+        // Set graphic based on status of isRoomClean
+        if (guest.getIsRoomClean().value == "yes") {
+            Image image = new Image(getClass().getResourceAsStream("/images/roomClean.png"));
+            ImageView setImage = new ImageView(image);
+            setImage.setFitWidth(18);
+            setImage.setFitHeight(18);
+            isRoomClean.setGraphic(setImage);
+        } else {
+            Image image = new Image(getClass().getResourceAsStream("/images/roomNotClean.png"));
+            ImageView setImage = new ImageView(image);
+            setImage.setFitWidth(18);
+            setImage.setFitHeight(18);
+            isRoomClean.setGraphic(setImage);
+        }
+
+        isRoomClean.setContentDisplay(ContentDisplay.RIGHT);
     }
 
     @Override

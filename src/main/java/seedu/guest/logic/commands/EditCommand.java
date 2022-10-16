@@ -3,6 +3,7 @@ package seedu.guest.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -19,6 +20,7 @@ import seedu.guest.model.Model;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
@@ -39,6 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DATE_RANGE + "DATE_RANGE] "
             + "[" + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS] "
+            + "[" + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -96,7 +99,9 @@ public class EditCommand extends Command {
         DateRange updatedDateRange = editGuestDescriptor.getDateRange().orElse(guestToEdit.getDateRange());
         NumberOfGuests updatedNumberOfGuests = editGuestDescriptor.getNumberOfGuests()
                 .orElse(guestToEdit.getNumberOfGuests());
-        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange, updatedNumberOfGuests);
+        IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
+        return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange,
+                updatedNumberOfGuests, updatedIsRoomClean);
     }
 
     @Override
@@ -127,6 +132,7 @@ public class EditCommand extends Command {
         private Email email;
         private DateRange dateRange;
         private NumberOfGuests numberOfGuests;
+        private IsRoomClean isRoomClean;
 
         public EditGuestDescriptor() {}
 
@@ -139,13 +145,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setDateRange(toCopy.dateRange);
             setNumberOfGuests(toCopy.numberOfGuests);
+            setIsRoomClean(toCopy.isRoomClean);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, dateRange, numberOfGuests);
+            return CollectionUtil.isAnyNonNull(name, phone, email, dateRange, numberOfGuests, isRoomClean);
         }
 
         public void setName(Name name) {
@@ -188,6 +195,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(numberOfGuests);
         }
 
+        public void setIsRoomClean(IsRoomClean isRoomClean) {
+            this.isRoomClean = isRoomClean;
+        }
+
+        public Optional<IsRoomClean> getIsRoomClean() {
+            return Optional.ofNullable(isRoomClean);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -207,7 +222,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getDateRange().equals(e.getDateRange())
-                    && getNumberOfGuests().equals(e.getNumberOfGuests());
+                    && getNumberOfGuests().equals(e.getNumberOfGuests())
+                    && getIsRoomClean().equals(e.getIsRoomClean());
         }
     }
 }

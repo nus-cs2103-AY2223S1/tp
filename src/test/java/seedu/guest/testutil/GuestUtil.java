@@ -2,6 +2,7 @@ package seedu.guest.testutil;
 
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -32,6 +33,7 @@ public class GuestUtil {
         sb.append(PREFIX_EMAIL + guest.getEmail().value + " ");
         sb.append(PREFIX_DATE_RANGE + guest.getDateRange().value + " ");
         sb.append(PREFIX_NUMBER_OF_GUESTS + guest.getNumberOfGuests().value + " ");
+        sb.append(PREFIX_IS_ROOM_CLEAN + guest.getIsRoomClean().value + " ");
         return sb.toString();
     }
 
@@ -47,6 +49,8 @@ public class GuestUtil {
                 .append(" "));
         descriptor.getNumberOfGuests().ifPresent(numberOfGuests -> sb.append(PREFIX_NUMBER_OF_GUESTS)
                 .append(numberOfGuests.value).append(" "));
+        descriptor.getIsRoomClean().ifPresent(isRoomClean -> sb.append(PREFIX_IS_ROOM_CLEAN)
+                .append(isRoomClean.value).append(" "));
         return sb.toString();
     }
 }

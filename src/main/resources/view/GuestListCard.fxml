@@ -62,25 +62,12 @@
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
           </HBox>
 
-          <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
-            <ImageView
-                    fitHeight="12.0"
-                    fitWidth="12.0"
-                    smooth="false"
-                    HBox.hgrow="NEVER" >
-              <image>
-                <Image url="@/images/group.png" />
-              </image>
-            </ImageView>
-            <Region minWidth="5" HBox.hgrow="NEVER" />
-            <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
-          </HBox>
         </VBox>
 
         <Region minWidth="5" HBox.hgrow="NEVER" />
 
-        <HBox minWidth="280" maxWidth="280" >
-          <VBox id="roomDetails" minWidth="280" HBox.hgrow="NEVER">
+        <HBox minWidth="240" maxWidth="240" >
+          <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
             <Label fx:id="roomDetails" text="Room Details" />
 
             <HBox fx:id="roomDetailsBox" alignment="CENTER_LEFT">
@@ -97,14 +84,42 @@
               <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
             </HBox>
 
+            <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
+              <ImageView
+                      fitHeight="12.0"
+                      fitWidth="12.0"
+                      smooth="false"
+                      HBox.hgrow="NEVER" >
+                <image>
+                  <Image url="@/images/group.png" />
+                </image>
+              </ImageView>
+              <Region minWidth="5" HBox.hgrow="NEVER" />
+              <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
+            </HBox>
+
           </VBox>
         </HBox>
 
         <Region minWidth="10" HBox.hgrow="NEVER"/>
 
-        <HBox minWidth="120" maxWidth="120" HBox.hgrow="NEVER">
-          <VBox id="roomStatus" minWidth="120" HBox.hgrow="NEVER">
+        <HBox minWidth="280" maxWidth="280" HBox.hgrow="NEVER">
+          <VBox id="roomStatus" minWidth="280" HBox.hgrow="NEVER">
             <Label fx:id="roomStatus" text="Room Status" />
+
+            <HBox fx:id="roomStatusBox" alignment="CENTER_LEFT">
+              <ImageView
+                      fitHeight="12.0"
+                      fitWidth="12.0"
+                      smooth="false"
+                      HBox.hgrow="NEVER" >
+                <image>
+                  <Image url="@/images/isRoomClean.png" />
+                </image>
+              </ImageView>
+              <Region minWidth="5" HBox.hgrow="NEVER" />
+              <Label fx:id="isRoomClean" styleClass="cell_small_label" text="\$isRoomClean" />
+            </HBox>
 
             <HBox alignment="CENTER_LEFT">
             </HBox>

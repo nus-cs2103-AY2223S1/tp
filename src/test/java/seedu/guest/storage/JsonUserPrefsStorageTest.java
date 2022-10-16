@@ -2,6 +2,7 @@ package seedu.guest.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.guest.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -120,4 +121,11 @@ public class JsonUserPrefsStorageTest {
         assertEquals(original, readBack);
     }
 
+    @Test
+    public void getUserPrefsFilePath() {
+        Path prefsFilePath = testFolder.resolve("TempPrefs.json");
+        JsonUserPrefsStorage jsonUserPrefsStorage = new JsonUserPrefsStorage(prefsFilePath);
+        assertEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), prefsFilePath);
+        assertNotEquals(jsonUserPrefsStorage.getUserPrefsFilePath(), testFolder.resolve(""));
+    }
 }
