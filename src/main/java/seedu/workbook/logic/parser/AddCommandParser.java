@@ -48,9 +48,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Stage stage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
+        // todo extract method out to parse optional and parse mandatory
         Date date = argMultimap.getValue(PREFIX_DATE).isPresent()
                 ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get())
-                : null;
+                : new Date("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Internship internship = new Internship(company, role, phone, email, stage, date, tagList);

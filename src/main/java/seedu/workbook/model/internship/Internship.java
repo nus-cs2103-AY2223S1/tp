@@ -31,7 +31,7 @@ public class Internship {
      * Every field must be present and not null.
      */
     public Internship(Company company, Role role, Phone phone, Email email, Stage stage, Date date, Set<Tag> tags) {
-        requireAllNonNull(company, role, phone, email, stage, tags);
+        requireAllNonNull(company, role, phone, email, stage, date, tags);
         this.company = company;
         this.role = role;
         this.phone = phone;
@@ -127,11 +127,9 @@ public class Internship {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Stage: ")
-                .append(getStage());
-
-        if (date != null) {
-            builder.append("; Date: ").append(getDate());
-        }
+                .append(getStage())
+                .append("; Date: ")
+                .append(getDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
