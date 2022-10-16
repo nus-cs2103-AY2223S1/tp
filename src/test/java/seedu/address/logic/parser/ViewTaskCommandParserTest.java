@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.uninurse.logic.parser;
 
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static org.junit.jupiter.api.Assertions.assertTrue;

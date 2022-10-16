@@ -1,16 +1,16 @@
-package seedu.address.testutil;
+package seedu.uninurse.testutil;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditPatientCommand.EditPatientDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.uninurse.logic.commands.EditPatientCommand.EditPatientDescriptor;
+import seedu.uninurse.model.person.Address;
+import seedu.uninurse.model.person.Email;
+import seedu.uninurse.model.person.Name;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Phone;
+import seedu.uninurse.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPatientDescriptor objects.

@@ -1,9 +1,9 @@
-package seedu.address.logic.parser;
+package seedu.uninurse.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.uninurse.logic.commands.Command;
+import seedu.uninurse.logic.parser.exceptions.ParseException;
 
 /**
  * Contains helper methods for testing command parsers.
