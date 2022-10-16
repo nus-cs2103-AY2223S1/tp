@@ -3,6 +3,7 @@ package seedu.address.logic.parser.getparsers;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.getcommands.GetWardNumberCommand;
@@ -23,22 +24,9 @@ public class GetWardNumberCommandParser implements Parser<GetWardNumberCommand> 
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetWardNumberCommand.MESSAGE_USAGE));
         }
 
-        List<Integer> wardNumbers = new ArrayList<>();
-        for (String arg : trimmedArgs.split("\\s+")) {
-            try {
-                int ward = Integer.parseInt(arg);
-                if (ward < 1) { // Throw exception if input is invalid ward number.
-                    throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetWardNumberCommand.MESSAGE_USAGE));
-                }
-                wardNumbers.add(ward);
-            } catch (NumberFormatException e) { // Catches both String input and negative number errors.
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetWardNumberCommand.MESSAGE_USAGE));
-            }
-        }
+        String[] wardNumbers = trimmedArgs.split("\\s+");
 
-        return new GetWardNumberCommand(new WardNumberPredicate(wardNumbers));
+        return new GetWardNumberCommand(new WardNumberPredicate(Arrays.asList(wardNumbers)));
     }
 
 }

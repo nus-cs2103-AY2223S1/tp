@@ -216,18 +216,10 @@ class JsonAdaptedPerson {
         if (!modelPatientType.isInpatient() && wardNumber != null) {
             throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
         }
-        Integer wN = null;
-        if (wardNumber != null) {
-            try {
-                wN = Integer.valueOf(wardNumber);
-            } catch (NumberFormatException nfe) {
-                throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
-            }
-            if (!WardNumber.isValidWardNumber(wN)) {
-                throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
-            }
+        if (wardNumber != null && !WardNumber.isValidWardNumber(wardNumber)) {
+            throw new IllegalValueException(WardNumber.MESSAGE_CONSTRAINTS);
         }
-        final WardNumber modelWardNumber = wardNumber == null ? null : new WardNumber(wN);
+        final WardNumber modelWardNumber = wardNumber == null ? null : new WardNumber(wardNumber);
 
         final Set<Medication> modelMedication = new HashSet<>(personMedications);
         final List<PastAppointment> modelPastAppointments = new ArrayList<>(personPastAppointments);

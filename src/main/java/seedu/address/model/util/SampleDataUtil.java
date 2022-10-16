@@ -31,7 +31,7 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new NextOfKin("Kwee Yeoh, Husband, 91912626"), new PatientType(PatientTypes.INPATIENT),
-                    new HospitalWing("South"), new FloorNumber(10), new WardNumber(26),
+                    new HospitalWing("South"), new FloorNumber(10), new WardNumber("D312"),
                     getMedicationSet("Paracetamol", "IV Drip"), new ArrayList<>(),
                     new UpcomingAppointment("120622")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
@@ -40,7 +40,7 @@ public class SampleDataUtil {
                     new UpcomingAppointment("120622")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new NextOfKin("Kenneth Oliverio, Son, 81249567"), new PatientType(PatientTypes.INPATIENT),
-                    new HospitalWing("Wing 1"), new FloorNumber(1), new WardNumber(20),
+                    new HospitalWing("Wing 1"), new FloorNumber(1), new WardNumber("T349"),
                     getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("120622")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new NextOfKin("Candince Yeo, Wife, 87598274"), new PatientType(PatientTypes.OUTPATIENT),
@@ -52,7 +52,7 @@ public class SampleDataUtil {
                     new ArrayList<>(), new UpcomingAppointment("120622")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new NextOfKin("Mary Balakrishnan, Wife, 87259826"), new PatientType(PatientTypes.INPATIENT),
-                    new HospitalWing("South"), new FloorNumber(5), new WardNumber(29),
+                    new HospitalWing("South"), new FloorNumber(5), new WardNumber("A001"),
                     getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("120622"))
         };
     }
