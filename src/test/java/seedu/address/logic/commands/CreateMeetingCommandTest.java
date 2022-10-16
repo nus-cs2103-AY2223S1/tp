@@ -2,7 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.text.ParseException;
@@ -15,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -23,10 +23,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
-import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -46,7 +44,6 @@ public class CreateMeetingCommandTest {
         assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
-    // TODO: This test keeps failing, not sure why
     @Test
     public void execute_duplicateMeeting_throwsDuplicateMeetingException() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
@@ -63,6 +60,17 @@ public class CreateMeetingCommandTest {
     @Test
     public void execute_personToMeetNotFound_throwsPersonNotFoundException() throws Exception {
         String meetingInfo = "Ben ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
+            = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+
+        String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
+    }
+
+    @Test
+    public void execute_personToMeetIsBlank_throwsParseException() throws Exception {
+        String meetingInfo = ";;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommand(meetingInfo);
         CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub
             = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
@@ -90,36 +98,63 @@ public class CreateMeetingCommandTest {
             = new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
         String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
-        assertEquals("Meeting date is not in dd-MM-yyyy format", actualFeedback);
-
-//        Person validPerson = new PersonBuilder().build();
-//        AddCommand addCommand = new AddCommand(validPerson);
-//        CreateMeetingCommandTest.ModelStub modelStub = new CreateMeetingCommandTest.ModelStubWithMeeting(validPerson);
+        assertEquals("Meeting date: tomorrow is not in dd-MM-yyyy format", actualFeedback);
     }
 
-    /*@Test
-    public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+
+    @Test
+    public void equals() throws ParseException {
+        String meetAlice = "Alice ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        String meetAliceAgain = "Alice ;;; Do CS2103 Project ;;; 17-10-2022 1200 ;;; University Town";
+        String meetBob = "Bob ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        String meetAliceAndBob = "Alice }} Bob ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        String meetAliceAndCharlie = "Alice }} Charlie ;;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
+        String meetAliceAndCharlieConflict = "Alice }} Charlie ;;; Shopping ;;; 16-10-2022 1530 ;;; VivoCity";
+
+        CreateMeetingCommand createMeetingWithAlice = new CreateMeetingCommand(meetAlice);
+        CreateMeetingCommand createMeetingWithAliceAgain = new CreateMeetingCommand(meetAliceAgain);
+        CreateMeetingCommand createMeetingWithBob = new CreateMeetingCommand(meetBob);
+        CreateMeetingCommand createMeetingWithAliceAndBob = new CreateMeetingCommand(meetAliceAndBob);
+        CreateMeetingCommand createMeetingWithAliceAndCharlie = new CreateMeetingCommand(meetAliceAndCharlie);
+        CreateMeetingCommand createMeetingWithAliceAndCharlieConflict
+            = new CreateMeetingCommand(meetAliceAndCharlieConflict);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(createMeetingWithAlice.equals(createMeetingWithAlice));
 
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        // single person meeting: same values -> returns true
+        CreateMeetingCommand createMeetingWithAliceCopy = new CreateMeetingCommand(meetAlice);
+        assertTrue(createMeetingWithAlice.equals(createMeetingWithAliceCopy));
+
+        // multiple people meeting: same values -> returns true
+        CreateMeetingCommand createMeetingWithAliceAndBobCopy = new CreateMeetingCommand(meetAliceAndBob);
+        assertTrue(createMeetingWithAliceAndBob.equals(createMeetingWithAliceAndBobCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(createMeetingWithAlice.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(createMeetingWithAlice.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));*//*
-    }*/
+        // single person meeting: different person -> returns false
+        assertFalse(createMeetingWithAlice.equals(createMeetingWithBob));
+
+        // single vs multiple person meeting: different person -> returns false
+        assertFalse(createMeetingWithAliceAndBob.equals(createMeetingWithAlice));
+
+        // multiple person meeting: different people -> returns false
+        assertFalse(createMeetingWithAliceAndCharlie.equals(createMeetingWithAliceAndBob));
+
+        // meeting same person at different time -> returns false
+        assertFalse(createMeetingWithAlice.equals(createMeetingWithAliceAgain));
+
+        // meeting same people at same time but at different location and different meeting title -> returns false
+        // NOTE: Under Meeting::isSameMeeting(Meeting), the meeting objects created are equal
+        // under the weaker notion of equality
+        // Under Meeting::equals(Object), the meeting objects created are NOT equal
+        // under the stronger notion of equality
+        assertFalse(createMeetingWithAliceAndCharlie.equals(createMeetingWithAliceAndCharlieConflict));
+    }
 
     /**
      * A default address book stub that has most of the methods failing.
@@ -350,14 +385,12 @@ public class CreateMeetingCommandTest {
         ModelStubWithMeeting(Meeting meeting) {
             requireNonNull(meeting);
             this.meeting = meeting;
+            addressBookStub.addMeeting(meeting);
         }
 
         @Override
         public void addMeeting(Meeting newMeeting) {
-            throw new DuplicateMeetingException();
-//            if (this.meeting.isSameMeeting(newMeeting)) {
-//                throw new DuplicateMeetingException();
-//            }
+            addressBookStub.addMeeting(newMeeting);
         }
 
         @Override

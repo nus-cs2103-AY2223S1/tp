@@ -59,8 +59,8 @@ public class Meeting {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
-            NameContainsKeywordsPredicate personNamePredicate =
-                    new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
+            NameContainsKeywordsPredicate personNamePredicate
+                = new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
 
             // updates the list of persons in address book based on predicate
             model.updateFilteredPersonList(personNamePredicate);
@@ -108,7 +108,7 @@ public class Meeting {
 
     /**
      * Adds the array of persons to the unique persons list
-     * @param people
+     * @param people the array list of people to be added to the meeting
      */
     public void addPersons(ArrayList<Person> people) {
         for (int i = 0; i < people.size(); i++) {
@@ -175,6 +175,5 @@ public class Meeting {
             + "On: " + this.meetingDateAndTime + "\n"
             + "At: " + this.meetingLocation + "\n";
     }
-
 
 }
