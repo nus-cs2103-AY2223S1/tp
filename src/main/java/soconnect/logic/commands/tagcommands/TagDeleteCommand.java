@@ -9,7 +9,11 @@ import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
 import soconnect.model.tag.Tag;
 
+/**
+ * Deletes a tag from the tagList.
+ */
 public class TagDeleteCommand extends TagCommand {
+
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD + " "
@@ -21,12 +25,12 @@ public class TagDeleteCommand extends TagCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
-    public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist";
+    public static final String MESSAGE_NO_SUCH_TAG = "This tag does not exist in SoConnect";
 
     private final Tag tag;
 
     /**
-     * Constructs an {@code TagCreateCommand} to create the specified {@code Tag} in SoConnect.
+     * Constructs an {@code TagDeleteCommand} to delete the specified {@code Tag} in SoConnect.
      */
     public TagDeleteCommand(Tag tag) {
         requireNonNull(tag);
@@ -43,5 +47,12 @@ public class TagDeleteCommand extends TagCommand {
 
         model.deleteTag(tag);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tag));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagCreateCommand // instanceof handles nulls
+                && tag.equals(((TagDeleteCommand) other).tag));
     }
 }

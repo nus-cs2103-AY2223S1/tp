@@ -13,6 +13,9 @@ import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new TagRemoveCommand object
+ */
 public class TagRemoveCommandParser implements Parser<TagRemoveCommand> {
 
     /**

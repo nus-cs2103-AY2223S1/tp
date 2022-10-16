@@ -81,7 +81,7 @@ public class TagAddCommand extends TagCommand {
         Person editedPerson = createEditedPerson(personToEdit, tagFromList);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tag));
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, tagFromList));
     }
 
     /**

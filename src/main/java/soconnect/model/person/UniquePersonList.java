@@ -131,6 +131,11 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Removes the tag in every contact.
+     *
+     * @param tag The tag to be removed.
+     */
     public void removeRelevantPersonTag(Tag tag) {
         for (int i = 0; i < internalList.size(); i++) {
             Person oldPerson = internalList.get(i);

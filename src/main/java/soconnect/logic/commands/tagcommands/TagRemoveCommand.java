@@ -21,6 +21,10 @@ import soconnect.model.person.Name;
 import soconnect.model.person.Person;
 import soconnect.model.person.Phone;
 import soconnect.model.tag.Tag;
+
+/**
+ * Removes a tag from a contact.
+ */
 public class TagRemoveCommand extends TagCommand {
 
     public static final String COMMAND_WORD = "remove";
@@ -42,12 +46,17 @@ public class TagRemoveCommand extends TagCommand {
     private final Index index;
     private final Tag tag;
 
+    /**
+     * Constructs an {@code TagRemoveCommand} to remove the specified {@code Tag} from the
+     * person identified using it's displayed {@code Index} from SoConnect.
+     */
     public TagRemoveCommand(Index index, Tag tag) {
         requireAllNonNull(index, tag);
 
         this.index = index;
         this.tag = tag;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -59,14 +68,17 @@ public class TagRemoveCommand extends TagCommand {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
+        assert model.hasTag(tag) : "The tag should exist in the list";
+
         if (!personToEdit.contains(tag)) {
             throw new CommandException(MESSAGE_NO_SUCH_TAG);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, tag);
+        Tag tagFromList = model.getTagFromList(tag);
+        Person editedPerson = createEditedPerson(personToEdit, tagFromList);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS, tag));
+        return new CommandResult(String.format(MESSAGE_REMOVE_TAG_SUCCESS, tagFromList));
     }
 
     /**

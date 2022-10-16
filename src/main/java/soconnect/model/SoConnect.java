@@ -133,6 +133,12 @@ public class SoConnect implements ReadOnlySoConnect {
         return persons.contains(person);
     }
 
+    /**
+     * Returns true if all the tags in the contact exist in the Tag list
+     *
+     * @param person The person to be added
+     * @return True if all the tags exists in the tagList. False if otherwise
+     */
     public boolean areTagsAvailable(Person person) {
         List<Tag> personTags = new ArrayList<>(person.getTags());
         for (int i = 0; i < personTags.size(); i++) {
@@ -203,11 +209,22 @@ public class SoConnect implements ReadOnlySoConnect {
         persons.changeRelevantPersonTag(oldTag, newTag);
     }
 
+    /**
+     * Deletes the tag from the tagList.
+     *
+     * @param tag The tag top be deleted
+     */
     public void deleteTag(Tag tag) {
-        tags.removeTags(tag);
+        tags.deleteTags(tag);
         persons.removeRelevantPersonTag(tag);
     }
 
+    /**
+     * Gets the tag from the tagList.
+     *
+     * @param tag The reference tag
+     * @return The tag that has the same name as the reference tag
+     */
     public Tag getTagFromList(Tag tag) {
         return tags.getTag(tag);
     }

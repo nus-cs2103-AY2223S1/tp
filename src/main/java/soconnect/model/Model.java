@@ -177,8 +177,8 @@ public interface Model {
     /**
      * Returns the right tag from the Tag list.
      *
-     * @param tag
-     * @return
+     * @param tag The reference tag
+     * @return the tag that has the same name as the reference tag
      */
     Tag getTagFromList(Tag tag);
 
