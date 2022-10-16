@@ -72,7 +72,7 @@ public class DateTimeProcessor {
         String dueTime = tempStringArray.length < 2 ? "" : tempStringArray[1];
 
         if (!isDateValid(dueDate)) {
-            throw new ParseException("Meeting date is not in dd-MM-yyyy format", 0);
+            throw new ParseException(String.format("Meeting date: %1$s is not in dd-MM-yyyy format", dueDate), 0);
         }
 
         DateTimeFormatter newFormatter = DateTimeFormatter

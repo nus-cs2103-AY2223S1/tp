@@ -6,6 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -49,6 +50,11 @@ public class CreateMeetingCommand extends Command {
     }
 
     private ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) throws PersonNotFoundException {
+
+        if (Objects.equals(peopleToMeet[0], "")) {
+            throw new PersonNotFoundException();
+        }
+
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
@@ -79,12 +85,12 @@ public class CreateMeetingCommand extends Command {
      * @return a String of all the Persons' names and tags, with every person separated by a line break
      */
     public static String peopleToNameAndTagList(ArrayList<Person> arrayOfPeopleToMeet) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (Person personToMeet : arrayOfPeopleToMeet) {
             String toAppend = String.format("%1$s %2$s \n", personToMeet.getName(), personToMeet.getTags());
-            output += toAppend;
+            output.append(toAppend);
         }
-        return output;
+        return output.toString();
     }
 
     @Override
@@ -97,6 +103,10 @@ public class CreateMeetingCommand extends Command {
             String meetingTitle = newMeetingInformation[1].strip();
             String meetingDateAndTime = newMeetingInformation[2].strip();
             String meetingLocation = newMeetingInformation[3].strip();
+
+            if ((Objects.equals(meetingTitle, "")) || (Objects.equals(meetingLocation, ""))) {
+                return new CommandResult(INCORRECT_NUMBER_OF_ARGUMENTS);
+            }
 
             ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
 
