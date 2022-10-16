@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.profile.Telegram;
 
 /**
  * An UI component that displays information of a {@code Profile}.
@@ -37,6 +39,8 @@ public class ProfileCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private HBox telegram;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -44,11 +48,20 @@ public class ProfileCard extends UiPart<Region> {
      */
     public ProfileCard(Profile profile, int displayedIndex) {
         super(FXML);
+        ImageView telegramIcon = new ImageView("/images/telegram_icon.png");
+        telegramIcon.setFitHeight(15);
+        telegramIcon.setFitWidth(15);
+
         this.profile = profile;
         id.setText(displayedIndex + ". ");
         name.setText(profile.getName().fullName);
         phone.setText(profile.getPhone().value);
         email.setText(profile.getEmail().value);
+        if (!profile.getTelegram().isEmpty()) {
+            telegram.getChildren().add(telegramIcon);
+            Label telegramLabel = new Label(Telegram.PREFIX + profile.getTelegram().value);
+            telegram.getChildren().add(telegramLabel);
+        }
         profile.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

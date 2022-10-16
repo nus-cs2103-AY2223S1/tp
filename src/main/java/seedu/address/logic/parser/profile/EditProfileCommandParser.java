@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -37,7 +38,7 @@ public class EditProfileCommandParser implements Parser<EditProfileCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+                        PREFIX_OPTION, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
         Index index;
 
         try {
@@ -56,6 +57,10 @@ public class EditProfileCommandParser implements Parser<EditProfileCommand> {
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editProfileDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            editProfileDescriptor.setTelegram(
+                    ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editProfileDescriptor::setTags);
 

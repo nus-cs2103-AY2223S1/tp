@@ -19,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ProfileCommandParser implements Parser<ProfileCommand> {
     private static final Pattern PROFILE_COMMAND_FORMAT = Pattern.compile(
-            "\\s+(-(?<profileOption>\\S*)(\\s+(?!-)\\S+)?)(\\s+(?!-)\\S*.)*");
+            "\\s+(-(?<profileOption>\\S*))(\\s+(?!-)\\S+)*");
 
     /**
      * Parses the given {@code String} of arguments in the context of the ProfileCommand
@@ -52,12 +52,12 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         switch (profileOption) {
         case AddProfileCommand.COMMAND_OPTION:
             return new AddProfileCommandParser().parse(args);
-        case FindProfileCommand.COMMAND_OPTION:
-            return new FindProfileCommandParser().parse(args);
         case DeleteProfileCommand.COMMAND_OPTION:
             return new DeleteProfileCommandParser().parse(args);
         case EditProfileCommand.COMMAND_OPTION:
             return new EditProfileCommandParser().parse(args);
+        case FindProfileCommand.COMMAND_OPTION:
+            return new FindProfileCommandParser().parse(args);
         case ViewProfilesCommand.COMMAND_OPTION:
             return new ViewProfilesCommandParser().parse(args);
         default:

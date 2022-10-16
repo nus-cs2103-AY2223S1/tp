@@ -1,8 +1,8 @@
 package seedu.address.logic.parser.profile;
 
-import static seedu.address.commons.core.Messages.MESSAGE_MISSING_KEYWORDS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.profile.FindProfileCommandParser.MESSAGE_MISSING_KEYWORDS;
 
 import java.util.Arrays;
 

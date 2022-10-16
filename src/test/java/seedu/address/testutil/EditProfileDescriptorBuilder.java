@@ -9,6 +9,7 @@ import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,6 +35,7 @@ public class EditProfileDescriptorBuilder {
         descriptor.setName(profile.getName());
         descriptor.setPhone(profile.getPhone());
         descriptor.setEmail(profile.getEmail());
+        descriptor.setTelegram(profile.getTelegram());
         descriptor.setTags(profile.getTags());
     }
 
@@ -58,6 +60,14 @@ public class EditProfileDescriptorBuilder {
      */
     public EditProfileDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code EditProfileDescriptor} that we are building.
+     */
+    public EditProfileDescriptorBuilder withTelegram(String telegram) {
+        descriptor.setTelegram(new Telegram(telegram));
         return this;
     }
 

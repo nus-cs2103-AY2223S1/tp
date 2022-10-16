@@ -25,7 +25,7 @@ public class DeleteProfileCommand extends ProfileCommand {
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1";
 
     public static final String MESSAGE_MISSING_INDEX = "Index is required!\n%1$s";
-    public static final String MESSAGE_DELETE_PROFILE_SUCCESS = "Deleted Profile: \n%1$s";
+    public static final String MESSAGE_DELETE_PROFILE_SUCCESS = "Deleted Profile:\n%1$s";
 
     private final Index targetIndex;
 
