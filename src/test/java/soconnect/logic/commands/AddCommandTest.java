@@ -232,6 +232,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Boolean isFilteredPersonListEmpty() {
+            return getFilteredPersonList().size() == 0;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }

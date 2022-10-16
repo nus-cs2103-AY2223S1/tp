@@ -30,8 +30,8 @@ import soconnect.model.person.search.ContactMightBeRelevantPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class SearchCommandTest {
-    private final Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
     private final ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize("n/name p/phone e/email",
                     PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
