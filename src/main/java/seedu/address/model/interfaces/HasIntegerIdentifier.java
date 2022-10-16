@@ -2,10 +2,12 @@ package seedu.address.model.interfaces;
 
 import seedu.address.model.list.NotFoundException;
 
+import java.util.function.Function;
+
 /**
  * Interface for any class whose objects can be identified by an integer ID.
  */
-public interface HasIntegerIdentifier {
+public interface HasIntegerIdentifier<T> {
 
     /**
      * Method to get the integer identifier of an object
@@ -40,5 +42,11 @@ public interface HasIntegerIdentifier {
         }
         throw new NotFoundException();
     }
+
+    /**
+     * A method to construct most of the object, without the ID (when you need a list to generate said ID)
+     * @return a function that returns a new object.
+     */
+    Function<Iterable<T>, T> newSupplierWithoutID(T object);
 
 }

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import seedu.address.model.Name;
 import seedu.address.model.interfaces.ComparableByName;
@@ -13,7 +14,7 @@ import seedu.address.model.project.Project;
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.
  */
-public class Client implements ComparableByName<Client>, HasIntegerIdentifier {
+public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Client> {
 
     public static final String MESSAGE_INVALID = "Client does not exist in the project.";
 
@@ -78,6 +79,22 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier {
     @Override
     public int getID() {
         return this.getClientId().getIdInt();
+    }
+
+    /**
+     * This method creates a function that generates an ID for a client object based on the relevant list.
+     *
+     * @param client client object whose ID needs to be generated
+     * @return a client object with a ID
+     */
+    @Override
+    public Function<Iterable<Client>, Client> newSupplierWithoutID(Client client) {
+        return (Iterable<Client> it) -> {
+            client.clientId = new ClientId(
+                    HasIntegerIdentifier.generateNextID(it)
+            );
+            return client;
+        };
     }
 
     /**

@@ -6,17 +6,20 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
 
 import seedu.address.model.Name;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person implements ComparableByName<Person>, HasIntegerIdentifier {
+public class Person implements ComparableByName<Person>, HasIntegerIdentifier<Person> {
 
     // Identity fields
     private final Name name;
@@ -132,5 +135,12 @@ public class Person implements ComparableByName<Person>, HasIntegerIdentifier {
     @Override
     public int getID() {
         return 0;
+    }
+
+    @Override
+    public Function<Iterable<Person>, Person> newSupplierWithoutID(Person person) {
+        return (Iterable<Person> it) -> {
+            return person;
+        };
     }
 }

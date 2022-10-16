@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.function.Function;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -10,11 +11,12 @@ import seedu.address.model.client.Client;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
 
 /**
  * Represents a Project.
  */
-public class Project implements ComparableByName<Project>, HasIntegerIdentifier {
+public class Project implements ComparableByName<Project>, HasIntegerIdentifier<Project> {
 
     // Components of a project
     private Name name;
@@ -56,17 +58,29 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier 
         return this.projectId.getIdInt();
     }
 
+    @Override
+    public Function<Iterable<Project>, Project> newSupplierWithoutID(Project project) {
+        return (Iterable<Project> it) -> {
+            project.projectId = new ProjectId(
+                    HasIntegerIdentifier.generateNextID(it)
+            );
+            return project;
+        };
+    }
+
     /**
      * Represents an Empty Project.
      */
     public static class EmptyProject extends Project {
         public static final Project EMPTY_PROJECT = new EmptyProject();
+
         private EmptyProject() {
             super(Name.EmptyName.EMPTY_NAME);
         }
 
         /**
          * Checks if this Project is empty.
+         *
          * @return true if the Project is empty.
          */
         @Override
@@ -106,6 +120,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier 
 
     /**
      * Checks if this Project is empty.
+     *
      * @return true if the Project is empty.
      */
     public boolean isEmpty() {

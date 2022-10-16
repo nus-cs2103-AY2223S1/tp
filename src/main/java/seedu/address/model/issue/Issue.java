@@ -3,15 +3,19 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientId;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
+
+import java.util.function.Function;
 
 /**
  * Represents an Issue.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier {
+public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issue> {
 
     // Components of an issue
     private Description description;
@@ -110,5 +114,15 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier {
     @Override
     public int getID() {
         return this.issueId.getIdInt();
+    }
+
+    @Override
+    public Function<Iterable<Issue>, Issue> newSupplierWithoutID(Issue issue) {
+        return (Iterable<Issue> it) -> {
+            issue.issueId = new IssueId(
+                    HasIntegerIdentifier.generateNextID(it)
+            );
+            return issue;
+        };
     }
 }

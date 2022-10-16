@@ -10,7 +10,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
 
 /**
@@ -38,20 +40,24 @@ public class AddClientCommand extends ClientCommand {
     private static final String MESSAGE_EXISTING_CLIENT = "This project already has a client";
 
     private final Client toAddClient;
-    private final Project toModifyProject;
+    private final ProjectId toModifyProjectId;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
      */
-    public AddClientCommand(Client client, Project project) {
+    public AddClientCommand(Client client, ProjectId projectId) {
         requireNonNull(client);
         toAddClient = client;
-        toModifyProject = project;
+        toModifyProjectId = projectId;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+
+        Project toModifyProject =
+                HasIntegerIdentifier.getElementById(
+                        model.getAddressBook().getProjectList(), toModifyProjectId.getIdInt());
 
         if (model.hasClient(toAddClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -60,7 +66,7 @@ public class AddClientCommand extends ClientCommand {
             throw new CommandException(MESSAGE_EXISTING_CLIENT);
         }
         toModifyProject.setClient(toAddClient);
-        model.setProject(toModifyProject, toModifyProject);
+//        model.setProject(toModifyProject, toModifyProject);
         model.addClient(toAddClient);
 
         ui.showClients();

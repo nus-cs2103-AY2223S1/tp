@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -38,12 +37,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-//    {
-//        clients = new UniqueEntityList<Client>();
-//        projects = new UniqueEntityList<Project>();
-//        persons = new UniqueEntityList<Person>();
-//        issues = new UniqueEntityList<Issue>();
-//    }
+    //    {
+    //        clients = new UniqueEntityList<Client>();
+    //        projects = new UniqueEntityList<Project>();
+    //        persons = new UniqueEntityList<Person>();
+    //        issues = new UniqueEntityList<Issue>();
+    //    }
 
     private AddressBook() {
         clients = new UniqueEntityList<Client>();
@@ -75,9 +74,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return AddressBook.instance;
     }
 
-    public static AddressBook getEmpty() {
-        return emptyInstance;
-    }
 
     //// list overwrite operations
 
