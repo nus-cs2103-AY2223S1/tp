@@ -19,7 +19,7 @@ import foodwhere.testutil.TypicalIndexes;
 import foodwhere.testutil.TypicalStalls;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for SEditCommand.
  */
 public class EditCommandTest {
 
@@ -28,15 +28,15 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Stall editedStall = new StallBuilder().build();
-        EditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(editedStall).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, descriptor);
+        SEditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(editedStall).build();
+        SEditCommand sEditCommand = new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
+        String expectedMessage = String.format(SEditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStall(model.getFilteredStallList().get(0), editedStall);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -49,30 +49,30 @@ public class EditCommandTest {
                 stallInList.withName(CommandTestUtil.VALID_NAME_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditStallDescriptor descriptor =
+        SEditCommand.EditStallDescriptor descriptor =
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastStall, descriptor);
+        SEditCommand sEditCommand = new SEditCommand(indexLastStall, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
+        String expectedMessage = String.format(SEditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStall(lastStall, editedStall);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand =
-                new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, new EditCommand.EditStallDescriptor());
+        SEditCommand sEditCommand =
+                new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, new SEditCommand.EditStallDescriptor());
         Stall editedStall = model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
+        String expectedMessage = String.format(SEditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -82,24 +82,24 @@ public class EditCommandTest {
         Stall stallInFilteredList =
                 model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
         Stall editedStall = new StallBuilder(stallInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_STALL,
+        SEditCommand sEditCommand = new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL,
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
+        String expectedMessage = String.format(SEditCommand.MESSAGE_EDIT_STALL_SUCCESS, editedStall);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStall(model.getFilteredStallList().get(0), editedStall);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateStallUnfilteredList_failure() {
         Stall firstStall = model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
-        EditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(firstStall).build();
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SECOND_STALL, descriptor);
+        SEditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(firstStall).build();
+        SEditCommand sEditCommand = new SEditCommand(TypicalIndexes.INDEX_SECOND_STALL, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STALL);
+        CommandTestUtil.assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_DUPLICATE_STALL);
     }
 
     @Test
@@ -109,20 +109,20 @@ public class EditCommandTest {
         // edit stall in filtered list into a duplicate in address book
         Stall stallInList =
                 model.getAddressBook().getStallList().get(TypicalIndexes.INDEX_SECOND_STALL.getZeroBased());
-        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_STALL,
+        SEditCommand sEditCommand = new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL,
                 new EditStallDescriptorBuilder(stallInList).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STALL);
+        CommandTestUtil.assertCommandFailure(sEditCommand, model, SEditCommand.MESSAGE_DUPLICATE_STALL);
     }
 
     @Test
     public void execute_invalidStallIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStallList().size() + 1);
-        EditCommand.EditStallDescriptor descriptor =
+        SEditCommand.EditStallDescriptor descriptor =
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        SEditCommand sEditCommand = new SEditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sEditCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 
     /**
@@ -136,21 +136,21 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStallList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        SEditCommand sEditCommand = new SEditCommand(outOfBoundIndex,
                 new EditStallDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(sEditCommand, model, Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand =
-                new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, CommandTestUtil.DESC_AMY);
+        final SEditCommand standardCommand =
+                new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
-        EditCommand.EditStallDescriptor copyDescriptor =
-                new EditCommand.EditStallDescriptor(CommandTestUtil.DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, copyDescriptor);
+        SEditCommand.EditStallDescriptor copyDescriptor =
+                new SEditCommand.EditStallDescriptor(CommandTestUtil.DESC_AMY);
+        SEditCommand commandWithSameValues = new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -164,11 +164,11 @@ public class EditCommandTest {
 
         // different index -> returns false
         assertFalse(standardCommand.equals(
-                new EditCommand(TypicalIndexes.INDEX_SECOND_STALL, CommandTestUtil.DESC_AMY)));
+                new SEditCommand(TypicalIndexes.INDEX_SECOND_STALL, CommandTestUtil.DESC_AMY)));
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(
-                new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, CommandTestUtil.DESC_BOB)));
+                new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, CommandTestUtil.DESC_BOB)));
     }
 
 }
