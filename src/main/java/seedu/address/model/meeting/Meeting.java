@@ -59,8 +59,8 @@ public class Meeting {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
-            NameContainsKeywordsPredicate personNamePredicate
-                = new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
+            NameContainsKeywordsPredicate personNamePredicate =
+                new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
 
             // updates the list of persons in address book based on predicate
             model.updateFilteredPersonList(personNamePredicate);
