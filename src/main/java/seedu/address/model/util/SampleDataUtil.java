@@ -8,7 +8,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
-import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -26,7 +26,7 @@ import seedu.address.model.task.TaskTitle;
 public class SampleDataUtil {
 
     public static final ClassGroup EMPTY_CLASS_GROUP = new ClassGroup("");
-    public static final Attendance EMPTY_ATTENDANCE = new Attendance("0");
+    public static final AttendanceList EMPTY_ATTENDANCE = new AttendanceList();
 
     public static Student[] getSampleStudents() {
 

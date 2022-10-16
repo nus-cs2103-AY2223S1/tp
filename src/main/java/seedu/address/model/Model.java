@@ -88,6 +88,16 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
+     * Returns the user prefs' task book file path.
+     */
+    Path getTaskBookFilePath();
+
+    /**
+     * Sets the user prefs' task book file path.
+     */
+    void setTaskBookFilePath(Path taskBookFilePath);
+
+    /**
      * Replaces task book data with the data in {@code taskBook}.
      */
     void setTaskBook(ReadOnlyTaskBook taskBook);

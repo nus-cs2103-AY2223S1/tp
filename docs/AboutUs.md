@@ -2,7 +2,7 @@
 
 # About Us
 
-GREWZ is an integrated platform for teacher assistants in university, with the aim of helping teacher assistants to manage their students efficiently. 
+GREWZ is an integrated platform for teacher assistants in university, with the aim of helping teacher assistants to manage their students efficiently.
 Wanting to help fellow teacher assistants, we are working together to develop a comprehensive address book that answers their needs.
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).

@@ -20,7 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.AttendanceList;
 import seedu.address.model.student.ClassGroup;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -110,7 +110,7 @@ public class EditCommand extends Command {
         ClassGroup updatedClassGroup = editStudentDescriptor.getClassGroup().orElse(studentToEdit.getClassGroup());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
-        Attendance updatedAttendance = studentToEdit.getAttendance();
+        AttendanceList updatedAttendance = studentToEdit.getAttendanceList();
 
         return new Student(updatedName, updatedPhone, updatedEmail,
                 updatedClassGroup, updatedStudentId, updatedTags, updatedAttendance);

@@ -13,7 +13,6 @@ import seedu.address.model.student.UniqueStudentList;
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
     private final UniqueStudentList students;
 
     /*

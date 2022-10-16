@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+//import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -73,6 +73,8 @@ public class CommandTestUtil {
 
     public static final String VALID_TASK_TITLE = "Grade assignments";
     public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
+    public static final String INVALID_TASK_TITLE = "invalid title#";
+    public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
 
     public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
     public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;

@@ -4,9 +4,9 @@
 ![Ui](docs/images/Ui.png)
 
 ## Aim
-- GREWZ is an integrated platform for teacher assistants in university, with the aim of helping teacher assistants to manage their students efficiently. 
+- GREWZ is an integrated platform for teacher assistants in university, with the aim of helping teacher assistants to manage their students efficiently.
 Wanting to help fellow teacher assistants, we are working together to develop a comprehensive address book that answers their needs.
-- GREWZ is optimised for teacher assistants who prefer to work with a Command Line interface(CLI). 
+- GREWZ is optimised for teacher assistants who prefer to work with a Command Line interface(CLI).
 
 ## Site map
 - [About Us](docs/AboutUs.md)

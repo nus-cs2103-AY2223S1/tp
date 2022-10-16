@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -25,6 +26,7 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.ImageStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonTaskBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -54,6 +56,11 @@ public class MainApp extends Application {
     public void init() throws Exception {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
+        File images = new File("images");
+        if (!images.exists()) {
+            logger.info("Images folder does not exist, creating one now.");
+            images.mkdir();
+        }
 
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
@@ -183,6 +190,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting AddressBook " + MainApp.VERSION);
         ui.start(primaryStage);
+        ImageStorage.setStage(primaryStage);
     }
 
     @Override
