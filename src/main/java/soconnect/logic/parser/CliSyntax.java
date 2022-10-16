@@ -10,6 +10,7 @@ public class CliSyntax {
     public static final String INDICATOR_EMAIL = "e/";
     public static final String INDICATOR_ADDRESS = "a/";
     public static final String INDICATOR_TAG = "t/";
+    public static final String INDICATOR_DESCRIPTION = "d/";
 
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix(INDICATOR_NAME);
@@ -17,5 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix(INDICATOR_EMAIL);
     public static final Prefix PREFIX_ADDRESS = new Prefix(INDICATOR_ADDRESS);
     public static final Prefix PREFIX_TAG = new Prefix(INDICATOR_TAG);
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix(INDICATOR_DESCRIPTION);
 
 }

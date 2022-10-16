@@ -2,8 +2,8 @@ package soconnect.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import soconnect.commons.exceptions.IllegalValueException;
+import soconnect.model.todo.Description;
 import soconnect.model.todo.Todo;
 
 /**
@@ -27,7 +27,7 @@ class JsonAdaptedTodo {
      * Converts a given {@code Todo} into this class for Jackson use.
      */
     public JsonAdaptedTodo(Todo source) {
-        description = source.getDescription();
+        description = source.getDescription().value;
     }
 
     /**
@@ -37,9 +37,14 @@ class JsonAdaptedTodo {
      */
     public Todo toModelType() throws IllegalValueException {
         if (description == null) {
-            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Description.class.getSimpleName()));
         }
-        return new Todo(description);
+        if (!Description.isValidDescription(description)) {
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+        final Description modelDescription = new Description(description);
+        return new Todo(modelDescription);
     }
 
 }

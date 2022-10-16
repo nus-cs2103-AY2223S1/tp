@@ -3,11 +3,12 @@ package soconnect.logic.parser.todo;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import soconnect.commons.core.Messages;
-import soconnect.logic.commands.AddCommand;
-import soconnect.logic.commands.ClearCommand;
 import soconnect.logic.commands.Command;
 import soconnect.logic.commands.HelpCommand;
-import soconnect.logic.parser.AddCommandParser;
+import soconnect.logic.commands.todo.TodoAddCommand;
+import soconnect.logic.commands.todo.TodoClearCommand;
+import soconnect.logic.commands.todo.TodoDeleteCommand;
+import soconnect.logic.commands.todo.TodoEditCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
@@ -37,11 +38,17 @@ public class TodoParser {
         final String arguments = matcher.group("arguments");
         switch (subCommandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case TodoAddCommand.SUB_COMMAND_WORD:
+            return new TodoAddCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+        case TodoEditCommand.SUB_COMMAND_WORD:
+            return new TodoEditCommandParser().parse(arguments);
+
+        case TodoDeleteCommand.SUB_COMMAND_WORD:
+            return new TodoDeleteCommandParser().parse(arguments);
+
+        case TodoClearCommand.SUB_COMMAND_WORD:
+            return new TodoClearCommand();
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

@@ -9,19 +9,19 @@ import java.util.Objects;
  * Guarantees: description is not null and not an empty string.
  */
 public class Todo {
-    private final String description;
+    private final Description description;
 
     /**
      * Constructs a Todo.
      *
      * @param description Must not be null.
      */
-    public Todo(String description) {
+    public Todo(Description description) {
         requireAllNonNull(description);
         this.description = description;
     }
 
-    public String getDescription() {
+    public Description getDescription() {
         return this.description;
     }
 
@@ -58,7 +58,7 @@ public class Todo {
 
     @Override
     public String toString() {
-        return description;
+        return description.toString();
     }
 
 }

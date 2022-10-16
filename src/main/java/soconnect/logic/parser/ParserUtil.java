@@ -16,6 +16,7 @@ import soconnect.model.person.Email;
 import soconnect.model.person.Name;
 import soconnect.model.person.Phone;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -135,5 +136,20 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String description} into an {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 }
