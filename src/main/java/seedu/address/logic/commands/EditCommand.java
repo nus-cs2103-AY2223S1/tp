@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
@@ -39,6 +41,8 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS + "Blk 221 Yishun St 81";
 
@@ -97,7 +101,8 @@ public class EditCommand extends Command {
         UniqueCompanyList companies = editClientDescriptor.getUniqueCompanyList().orElse(clientToEdit.getCompanies());
         TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
-        return new Client(updatedName, updatedAddress, updatedPhone, updatedEmail, updatedTags, companies, transactions);
+        return new Client(updatedName, updatedAddress, updatedPhone,
+                updatedEmail, updatedTags, companies, transactions);
     }
 
     @Override
@@ -170,8 +175,16 @@ public class EditCommand extends Command {
             this.phone = phone;
         }
 
+        public Optional<ClientPhone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
         public void setEmail(ClientEmail email) {
             this.email = email;
+        }
+
+        public Optional<ClientEmail> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public Optional<Address> getAddress() {

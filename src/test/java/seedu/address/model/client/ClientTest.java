@@ -144,6 +144,7 @@ public class ClientTest {
     public void toStringTest() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
-                + "#02-25; Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: $0");
+                + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
+                + "Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: $0");
     }
 }
