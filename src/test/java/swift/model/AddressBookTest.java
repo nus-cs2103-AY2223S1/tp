@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,7 @@ import swift.model.person.exceptions.DuplicatePersonException;
 import swift.model.task.Task;
 import swift.model.task.exceptions.DuplicateTaskException;
 import swift.testutil.PersonBuilder;
+import swift.testutil.TaskBuilder;
 
 public class AddressBookTest {
 
@@ -88,11 +90,12 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withDuplicateTaks_throwsDuplicateTaskException() {
+    public void resetData_withDuplicateTask_throwsDuplicateTaskException() {
         List<Task> newTasks = Arrays.asList(BUY_MILK, BUY_MILK);
         AddressBookStub newData = new AddressBookStub(Arrays.asList(), newTasks, Arrays.asList());
         assertThrows(DuplicateTaskException.class, () -> addressBook.resetData(newData));
     }
+
     @Test
     public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasTask(null));
@@ -102,6 +105,7 @@ public class AddressBookTest {
     public void hasTask_taskNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasTask(BUY_MILK));
     }
+
     @Test
     public void hasTask_taskInAddressBook_returnsTrue() {
         addressBook.addTask(BUY_MILK);
@@ -112,6 +116,31 @@ public class AddressBookTest {
     public void getTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(
             UnsupportedOperationException.class, () -> addressBook.getTaskList().remove(0)
+        );
+    }
+
+    @Test
+    public void hasBridge_nullBridge_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasBridge(null));
+    }
+
+    @Test
+    public void hasBridge_bridgeNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
+                UUID.fromString(TaskBuilder.DEFAULT_ID))));
+    }
+    @Test
+    public void hasBridge_bridgeInAddressBook_returnsTrue() {
+        addressBook.addBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
+                UUID.fromString(TaskBuilder.DEFAULT_ID)));
+        assertTrue(addressBook.hasBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
+                UUID.fromString(TaskBuilder.DEFAULT_ID))));
+    }
+
+    @Test
+    public void getBridgeList_modifyBridge_throwsUnsupportedOperationException() {
+        assertThrows(
+            UnsupportedOperationException.class, () -> addressBook.getBridgeList().remove(0)
         );
     }
 
