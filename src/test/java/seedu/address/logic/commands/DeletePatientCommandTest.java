@@ -1,30 +1,30 @@
-package seedu.address.logic.commands;
+package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
+import seedu.uninurse.commons.core.Messages;
+import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.ModelManager;
+import seedu.uninurse.model.UserPrefs;
+import seedu.uninurse.model.person.Patient;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeletePatientCommand}.
  */
 public class DeletePatientCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class DeletePatientCommandTest {
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getUninurseBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +56,7 @@ public class DeletePatientCommandTest {
 
         String expectedMessage = String.format(DeletePatientCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getUninurseBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -68,8 +68,8 @@ public class DeletePatientCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of uninurse book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
         DeletePatientCommand deleteCommand = new DeletePatientCommand(outOfBoundIndex);
 

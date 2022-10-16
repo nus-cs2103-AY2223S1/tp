@@ -1,36 +1,36 @@
-package seedu.address.logic.commands;
+package seedu.uninurse.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DESC_FIRST;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.TASK_HEALTH_RECORDS;
-import static seedu.address.testutil.TypicalTasks.TASK_INSULIN;
+import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TASK_DESC_FIRST;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalTasks.TASK_HEALTH_RECORDS;
+import static seedu.uninurse.testutil.TypicalTasks.TASK_INSULIN;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.PersonBuilder;
+import seedu.uninurse.commons.core.Messages;
+import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.ModelManager;
+import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.UserPrefs;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.Task;
+import seedu.uninurse.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code AddTaskCommand}.
  */
 public class AddTaskCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
@@ -61,7 +61,7 @@ public class AddTaskCommandTest {
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
                 editedPatient.getName().toString(), addedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTask, editedPatient);
 
         assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
@@ -90,7 +90,7 @@ public class AddTaskCommandTest {
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS,
                 editedPatient.getName().toString(), addedTask);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTask, editedPatient);
 
         assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
@@ -101,8 +101,8 @@ public class AddTaskCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of uninurse book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(outOfBoundIndex, TASK_INSULIN);
 

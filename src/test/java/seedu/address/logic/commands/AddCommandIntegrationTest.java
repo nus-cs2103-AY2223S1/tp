@@ -1,17 +1,17 @@
-package seedu.address.logic.commands;
+package seedu.uninurse.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Patient;
-import seedu.address.testutil.PersonBuilder;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.ModelManager;
+import seedu.uninurse.model.UserPrefs;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddPatientCommand}.
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Patient validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getUninurseBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddPatientCommand(validPerson), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient personInList = model.getAddressBook().getPersonList().get(0);
+        Patient personInList = model.getUninurseBook().getPersonList().get(0);
         assertCommandFailure(new AddPatientCommand(personInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
