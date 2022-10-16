@@ -45,7 +45,6 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
-
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 
     /*
@@ -132,7 +131,7 @@ public class StringUtilTest {
     @Test
     public void getDetails_exceptionGiven() {
         assertTrue(StringUtil.getDetails(new FileNotFoundException("file not found"))
-            .contains("java.io.FileNotFoundException: file not found"));
+                             .contains("java.io.FileNotFoundException: file not found"));
     }
 
     @Test
