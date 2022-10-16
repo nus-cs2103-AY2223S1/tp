@@ -24,9 +24,9 @@ public class PersonMatchesPredicateTest {
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
         firstPredicate.setNamesList(firstPredicateNamesList);
-        firstPredicate.setModuleList(firstPredicateModuleList);
+        firstPredicate.setModulesList(firstPredicateModuleList);
         secondPredicate.setNamesList(secondPredicateNamesList);
-        secondPredicate.setModuleList(secondPredicateModuleList);
+        secondPredicate.setModulesList(secondPredicateModuleList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -34,7 +34,7 @@ public class PersonMatchesPredicateTest {
         // same values -> returns true
         PersonMatchesPredicate firstPredicateCopy = new PersonMatchesPredicate();
         firstPredicateCopy.setNamesList(firstPredicateNamesList);
-        firstPredicateCopy.setModuleList(firstPredicateModuleList);
+        firstPredicateCopy.setModulesList(firstPredicateModuleList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

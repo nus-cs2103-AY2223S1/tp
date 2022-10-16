@@ -2,11 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -19,6 +17,8 @@ import seedu.address.model.person.PersonMatchesPredicate;
  */
 public class FindCommandParser implements Parser<FindCommand> {
     private PersonMatchesPredicate predicate = new PersonMatchesPredicate();
+    private ArgumentMultimap argMultimap;
+
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
@@ -26,28 +26,43 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE);
+        argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION);
 
-        if (!areAllArgsValid(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE)) {
+        if (!areAllArgsValid(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            String[] nameKeywordsString = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            List<String> nameKeywordsList = Arrays.asList(nameKeywordsString);
-            predicate.setNamesList(nameKeywordsList);
-            return new FindCommand(predicate);
+            predicate.setNamesList(getKeywordList(PREFIX_NAME));
         }
 
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
-            String[] modKeywordsString = argMultimap.getValue(PREFIX_MODULE_CODE).get().split("\\s+");
-            List<String> modKeywordsList = Arrays.asList(modKeywordsString);
-            predicate.setModuleList(modKeywordsList);
-            return new FindCommand(predicate);
+            predicate.setModulesList(getKeywordList(PREFIX_MODULE_CODE));
         }
 
-        return new FindCommand(new PersonMatchesPredicate());
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            predicate.setPhonesList(getKeywordList(PREFIX_PHONE));
+        }
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            predicate.setEmailsList(getKeywordList(PREFIX_EMAIL));
+        }
+
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            predicate.setGendersList(getKeywordList(PREFIX_GENDER));
+        }
+
+        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+            predicate.setLocationsList(getKeywordList(PREFIX_LOCATION));
+        }
+
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            setTagsList();
+        }
+
+        return new FindCommand(predicate);
 
     }
 
@@ -55,14 +70,32 @@ public class FindCommandParser implements Parser<FindCommand> {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean areAllArgsValid(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private boolean areAllArgsValid(Prefix... prefixes) {
         Supplier<Stream<Prefix>> presentArgs = () ->
-                Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isPresent());
+                Stream.of(prefixes).filter(prefix -> argMultimap.getValue(prefix).isPresent());
         if (presentArgs.get().count() == 0) {
             return false;
         } else {
             return presentArgs.get().allMatch(prefix ->
-                    argumentMultimap.getValue(prefix).get().trim().length() != 0);
+                    argMultimap.getValue(prefix).get().trim().length() != 0);
+        }
+    }
+
+    private List<String> getKeywordList(Prefix prefix) {
+        String[] keywordsString = argMultimap.getValue(prefix).get().split("\\s+");
+        return Arrays.asList(keywordsString);
+    }
+
+    private void setTagsList() {
+        String tagsKeywords = argMultimap.getValue(PREFIX_TAG).get();
+        Set<String> tagsKeywordsList;
+        if (tagsKeywords.contains("&&")) {
+            tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.replace("&&", "")
+                    .toLowerCase().split("\\s+")));
+            predicate.setTagsList(tagsKeywordsList, true);
+        } else {
+            tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.toLowerCase().split("\\s+")));
+            predicate.setTagsList(tagsKeywordsList, false);
         }
     }
 }

@@ -31,11 +31,11 @@ public class FindCommandTest {
     public void equals() {
         PersonMatchesPredicate firstPredicate = new PersonMatchesPredicate();
         firstPredicate.setNamesList(Collections.singletonList("firstNamesList"));
-        firstPredicate.setModuleList(Collections.singletonList("firstModulesList"));
+        firstPredicate.setModulesList(Collections.singletonList("firstModulesList"));
 
         PersonMatchesPredicate secondPredicate = new PersonMatchesPredicate();
         secondPredicate.setNamesList(Collections.singletonList("secondNamesList"));
-        secondPredicate.setModuleList(Collections.singletonList("secondModulesList"));
+        secondPredicate.setModulesList(Collections.singletonList("secondModulesList"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

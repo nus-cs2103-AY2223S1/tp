@@ -102,14 +102,15 @@ public class PersonUtil {
 
     public static String getFindCommandDetails(PersonMatchesPredicate predicate) {
         String commandDetails = "";
-        if (predicate.hasNamesListPredicate()) {
+        if (predicate.getHasNamesList()) {
             commandDetails += PREFIX_NAME + String.join(" ", predicate.getNamesList()) + " ";
 
         }
 
-        if (predicate.hasModuleListPredicate()) {
-            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModuleList());
+        if (predicate.getHasModulesList()) {
+            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesList());
         }
+
         return commandDetails;
     }
 }
