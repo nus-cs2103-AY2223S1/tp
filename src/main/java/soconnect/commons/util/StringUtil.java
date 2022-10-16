@@ -54,7 +54,9 @@ public class StringUtil {
     public static boolean containsKeywordsIgnoreCase(String sentence, String keywords) {
         requireAllNonNull(sentence, keywords);
 
-        List<String> preppedKeywords = Arrays.asList(keywords.toUpperCase().trim().split("\\s+"));
+        String preppedWord = keywords.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().trim().split("\\s+"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
         List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("\\s+"));
@@ -78,10 +80,12 @@ public class StringUtil {
     public static boolean containsSomeKeywordsIgnoreCase(String sentence, String keywords) {
         requireAllNonNull(sentence, keywords);
 
-        List<String> preppedKeywords = Arrays.asList(keywords.toUpperCase().trim().split("(?!^)"));
+        String preppedWord = keywords.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().trim().split("(?!^\\s+)"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
-        List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("(?!^)"));
+        List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("(?!^\\s+)"));
 
         if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
             return wordsInPreppedSentence.containsAll(preppedKeywords);
