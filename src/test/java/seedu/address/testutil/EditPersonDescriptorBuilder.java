@@ -1,15 +1,11 @@
 package seedu.address.testutil;
 
-import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.EditPersonDescriptor;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;

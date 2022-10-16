@@ -62,7 +62,7 @@ public class AddAppointmentCommand extends Command {
         Person personWithAppointmentToAdd = lastShownList.get(index.getZeroBased());
         MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToAdd.getAppointments();
 
-        if(appointmentSet.contains(appointment)) {
+        if (appointmentSet.contains(appointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 

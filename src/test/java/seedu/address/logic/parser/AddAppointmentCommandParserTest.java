@@ -69,13 +69,16 @@ public class AddAppointmentCommandParserTest {
         int targetAppointmentIndex = INDEX_FIRST_APPOINTMENT.getOneBased();
 
         // add appointment with invalid date
-        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex + INVALID_DATE_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
+                + INVALID_DATE_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
 
         // add appointment with invalid location
-        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex + INVALID_LOCATION_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
+                + INVALID_LOCATION_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
 
         // add appointment with invalid location and invalid date
-        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex + INVALID_BOTH_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
+        assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex
+                + INVALID_BOTH_FIELD_APPOINTMENT_DESC, expectedFailureMessage);
 
         // add appointment with no field
         assertParseFailure(parser, targetPersonIndex + "." + targetAppointmentIndex, expectedFailureMessage);

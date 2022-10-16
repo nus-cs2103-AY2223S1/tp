@@ -21,11 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Location;
-import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditAppointmentCommandParserTest {
 
@@ -103,13 +99,15 @@ public class EditAppointmentCommandParserTest {
     public void parse_validSingleAppointmentField_success() {
         Index targetPersonIndex = INDEX_SECOND_PERSON;
         Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
-        String userInput = targetPersonIndex.getOneBased() + "." + targetAppointmentIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
+        String userInput = targetPersonIndex.getOneBased() + "."
+                + targetAppointmentIndex.getOneBased() + FIRST_APPOINTMENT_DESC;
 
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
         descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));
         descriptor.setLocation(new Location(VALID_LOCATION_NUS));
 
-        EditAppointmentCommand expectedCommand = new EditAppointmentCommand(targetPersonIndex, targetAppointmentIndex, descriptor);
+        EditAppointmentCommand expectedCommand =
+                new EditAppointmentCommand(targetPersonIndex, targetAppointmentIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

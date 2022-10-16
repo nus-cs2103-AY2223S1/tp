@@ -9,7 +9,6 @@ import java.time.LocalTime;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DateTimeParser;
 
 public class AppointmentTest {
@@ -115,11 +114,13 @@ public class AppointmentTest {
 
     @Test
     public void isValidAppointment_invalidLocation_returnsFalse() {
-        assertThrows(IllegalArgumentException.class, () -> new Appointment(new InvalidDateTimeStub(), new InvalidLocationStub()));
+        assertThrows(IllegalArgumentException.class, () -> new Appointment(
+                new InvalidDateTimeStub(), new InvalidLocationStub()));
     }
     @Test
     public void isValidAppointment_invalidLocationAndDateTime_returnsFalse() {
-        assertThrows(IllegalArgumentException.class, () -> new Appointment(new InvalidDateTimeStub(), new InvalidLocationStub()));
+        assertThrows(IllegalArgumentException.class, () -> new Appointment(
+                new InvalidDateTimeStub(), new InvalidLocationStub()));
     }
     @Test
     public void getDateTime_sameDateTime_success() {
@@ -143,12 +144,11 @@ public class AppointmentTest {
     }
 
     @Test
-     public void getLocation_sameLocation_success() {
+    public void getLocation_sameLocation_success() {
         ValidLocationStub locationStub = new ValidLocationStub();
         Appointment appointment = new Appointment(new ValidDateTimeStub(), new ValidLocationStub());
         appointment.getLocation().equals(locationStub);
     }
-    
     @Test
     public void equals_success() {
         Appointment firstAppointment = new Appointment(new DateTimeStub(), new ValidLocationStub());

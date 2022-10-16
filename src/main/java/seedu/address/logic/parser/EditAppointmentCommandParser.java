@@ -1,18 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ArgumentMultimap.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
-
-import java.time.format.DateTimeParseException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Location;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object
@@ -43,10 +37,12 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
 
 
         if (argMultimap.getValue(PREFIX_APPOINTMENT_DATE).isPresent()) {
-            editAppointmentDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
+            editAppointmentDescriptor.setDateTime(
+                    ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APPOINTMENT_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).isPresent()) {
-            editAppointmentDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get()));
+            editAppointmentDescriptor.setLocation(
+                    ParserUtil.parseLocation(argMultimap.getValue(PREFIX_APPOINTMENT_LOCATION).get()));
         }
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
@@ -56,18 +52,4 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
 
         return new EditAppointmentCommand(personIndex, appointmentIndex, editAppointmentDescriptor);
     }
-
-//    /**
-//     * Parses {@code Collection<String> datesAndTimes} into a
-//     * {@code Set<Appointment>} if {@code datesAndTimes} is non-empty.
-//     */
-//    private Optional<MaximumSortedList<Appointment>> parseAppointmentsForEdit(Collection<String> datesAndTimes)
-//            throws ParseException {
-//        assert datesAndTimes != null;
-//
-//        if (datesAndTimes.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        return Optional.of(ParserUtil.parseAppointmentsIntoSortedList(datesAndTimes));
-//    }
 }

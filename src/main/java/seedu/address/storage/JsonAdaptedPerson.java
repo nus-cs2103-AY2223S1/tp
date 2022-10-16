@@ -136,7 +136,8 @@ class JsonAdaptedPerson {
         final Address modelAddress = new Address(address);
 
         if (income == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, IncomeLevel.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    IncomeLevel.class.getSimpleName()));
         }
         if (!IncomeLevel.isValidIncome(income)) {
             throw new IllegalValueException(IncomeLevel.MESSAGE_CONSTRAINTS);
@@ -158,7 +159,8 @@ class JsonAdaptedPerson {
         final RiskTag modelRiskTag = new RiskTag(riskTag);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMonthly, modelRiskTag, modelTags);
+        Person newPerson = new Person(modelName, modelPhone, modelEmail,
+                modelAddress, modelIncome, modelMonthly, modelRiskTag, modelTags);
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;

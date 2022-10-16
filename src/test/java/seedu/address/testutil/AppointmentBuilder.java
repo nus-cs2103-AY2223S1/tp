@@ -3,8 +3,6 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.logic.parser.DateTimeParser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Location;
@@ -26,7 +24,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder() {
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(DEFAULT_DATETIME);
-        dateTime= new DateTime(localDateTime);
+        dateTime = new DateTime(localDateTime);
         location = new Location(DEFAULT_LOCATION);
     }
 

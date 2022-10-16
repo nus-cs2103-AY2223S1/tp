@@ -63,10 +63,10 @@ public class MaximumSortedList<T extends Comparable<T>> {
         return true;
     }
 
-   /**
+    /**
      * Returns the specified element to the list
      *
-     * @param
+     * @param zeroBasedIndex the index of the element to get
      * @return a boolean value describing whether the input element has been added.
      */
     public T get(int zeroBasedIndex) throws SortedListException {

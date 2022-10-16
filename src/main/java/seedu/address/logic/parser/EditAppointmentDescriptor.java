@@ -17,7 +17,9 @@ public class EditAppointmentDescriptor {
 
 
     public EditAppointmentDescriptor() {};
-
+    /**
+     * Copy constructor.
+     */
     public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
         setDateTime(toCopy.dateTime);
         setLocation(toCopy.location);
@@ -46,7 +48,12 @@ public class EditAppointmentDescriptor {
         this.location = location;
     }
 
-    public static Appointment createEditedAppointment(Appointment appointmentToEdit, EditAppointmentDescriptor editAppointmentDescriptor) {
+    /**
+     * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
+     * edited with {@code editAppointmentDescriptor}.
+     */
+    public static Appointment createEditedAppointment(Appointment appointmentToEdit,
+                                                      EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         DateTime updatedDateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
@@ -55,7 +62,7 @@ public class EditAppointmentDescriptor {
         return new Appointment(updatedDateTime, updatedLocation);
     }
 
-     @Override
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {

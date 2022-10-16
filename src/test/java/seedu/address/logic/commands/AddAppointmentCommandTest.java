@@ -3,36 +3,23 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_WESTMALL;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.EditPersonDescriptor;
-import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -40,7 +27,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
@@ -119,7 +105,8 @@ public class AddAppointmentCommandTest {
         Appointment duplicateAppointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
+        AddAppointmentCommand addAppointmentCommand =
+                new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
 
         assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
     }
@@ -140,7 +127,8 @@ public class AddAppointmentCommandTest {
         Appointment duplicateAppointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
+        AddAppointmentCommand addAppointmentCommand =
+                new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
 
         assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
     }
@@ -151,7 +139,8 @@ public class AddAppointmentCommandTest {
         Appointment appointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
+        AddAppointmentCommand addAppointmentCommand =
+                new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
 
         assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -169,7 +158,8 @@ public class AddAppointmentCommandTest {
         Appointment appointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
+        AddAppointmentCommand addAppointmentCommand =
+                new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
 
         assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -179,13 +169,15 @@ public class AddAppointmentCommandTest {
         Appointment appointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        final AddAppointmentCommand standardCommand = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
+        final AddAppointmentCommand standardCommand =
+                new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAdd);
 
         // same values -> returns true
         Appointment appointmentToAddCopy = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
-        AddAppointmentCommand commandWithSameValues = new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAddCopy);
+        AddAppointmentCommand commandWithSameValues =
+                new AddAppointmentCommand(INDEX_FIRST_PERSON, appointmentToAddCopy);
 
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -199,12 +191,14 @@ public class AddAppointmentCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new AddAppointmentCommand(INDEX_SECOND_PERSON, appointmentToAdd)));
+        assertFalse(standardCommand.equals(
+                new AddAppointmentCommand(INDEX_SECOND_PERSON, appointmentToAdd)));
 
         // different appointment -> returns false
         Appointment differentAppointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_22_JAN_2023)
                 .withLocation(VALID_LOCATION_WESTMALL).build();
-        assertFalse(standardCommand.equals(new AddAppointmentCommand(INDEX_FIRST_PERSON, differentAppointmentToAdd)));
+        assertFalse(standardCommand.equals(
+                new AddAppointmentCommand(INDEX_FIRST_PERSON, differentAppointmentToAdd)));
     }
 }

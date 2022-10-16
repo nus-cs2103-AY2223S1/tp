@@ -38,7 +38,6 @@ public class EditAppointmentCommand extends Command {
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nfrom:%1$s\nto%1$s";
     public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
             + "Use command \"aa\" to add appointment instead";
-    public static final String MESSAGE_INVALID_APPOINTMENT_INDEX_FORMAT = "This client does not have appointment at index %d";
     private final Index personIndex;
     private final Index appointmentIndex;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -47,7 +46,8 @@ public class EditAppointmentCommand extends Command {
      * @param personIndex of the person in the filtered person list
      * @param editAppointmentDescriptor new appointment details to overwrite with
      */
-    public EditAppointmentCommand(Index personIndex, Index appointmentIndex, EditAppointmentDescriptor editAppointmentDescriptor) {
+    public EditAppointmentCommand(Index personIndex, Index appointmentIndex,
+                                  EditAppointmentDescriptor editAppointmentDescriptor) {
         requireNonNull(personIndex);
         requireNonNull(appointmentIndex);
         requireNonNull(editAppointmentDescriptor);
