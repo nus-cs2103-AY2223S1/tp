@@ -233,11 +233,11 @@ Format: `exit`
 
  Action | Format, Examples
 -------------------|------------------
-**Add User** | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g. `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete User** | `deleteuser NAME`<br> e.g. `deleteuser James Ho`
-**Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`
-**Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`
-**List** | `list`
+**Add Person** | `addperson [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g. `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete Person** | `deleteperson NAME`<br> e.g. `deleteuser James Ho`
+**Edit Person** | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`
+**Find Person** | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`
+**List** | `listpersons`
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
 **Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
 **Delete Member** | `deletemember [g/GROUP] [n/NAME]` <br> e.g. `deletemember g/CS2103T n/James Lee, deletemember g/CS2101 n/DefaultUser`
