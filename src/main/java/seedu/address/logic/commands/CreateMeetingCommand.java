@@ -39,33 +39,7 @@ public class CreateMeetingCommand extends Command {
         this.meetingInfo = meetingInfo;
     }
 
-    private ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) throws PersonNotFoundException {
-        ArrayList<Person> output = new ArrayList<>();
-        // Takes in the name of the address book contact, split by words in the name
-        for (String personName: peopleToMeet) {
-            System.out.println(personName);
-            String[] nameKeywords = personName.strip().split("\\s+");
-            for (String word: nameKeywords) {
-                System.out.println(word);
-            }
-            NameContainsKeywordsPredicate personNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
-            // updates the list of persons in address book based on predicate
-            model.updateFilteredPersonList(personNamePredicate);
-            ObservableList<Person> listOfPeople = model.getFilteredPersonList();
-
-            if (listOfPeople.isEmpty()) {
-                throw new PersonNotFoundException();
-            } else { // get the first person in the address book whose name matches
-                output.add(listOfPeople.get(0));
-            }
-
-            // resets the list of persons after every search
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        }
-        return output;
-    }
 
     private String peopleToList(ArrayList<Person> arrayOfPeopleToMeet) {
         String output = "";
@@ -87,7 +61,7 @@ public class CreateMeetingCommand extends Command {
             String meetingDateAndTime = newMeetingInformation[2].strip();
             String meetingLocation = newMeetingInformation[3].strip();
 
-            ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
+            ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
 
             Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
                 meetingDateAndTime, meetingLocation);
