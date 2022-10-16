@@ -31,7 +31,7 @@ class JsonAdaptedInternship {
     private final String phone;
     private final String email;
     private final String stage;
-    private final String dateTime;
+    private final JsonAdaptedDateTime dateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,7 +42,7 @@ class JsonAdaptedInternship {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("stage") String stage,
-            @JsonProperty("date") String dateTime,
+            @JsonProperty("date") JsonAdaptedDateTime dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;
@@ -64,7 +64,7 @@ class JsonAdaptedInternship {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         stage = source.getStage().value;
-        dateTime = source.getDateTime().value;
+        dateTime = new JsonAdaptedDateTime(source.getDateTime());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -126,10 +126,7 @@ class JsonAdaptedInternship {
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-/*        if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-        }*/
-        final DateTime modelDateTime = new DateTime(dateTime);
+        final DateTime modelDateTime = dateTime.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
         return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelStage, modelDateTime, modelTags);

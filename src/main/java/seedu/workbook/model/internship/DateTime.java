@@ -1,8 +1,8 @@
 package seedu.workbook.model.internship;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 
 import static java.util.Objects.requireNonNull;
@@ -14,12 +14,13 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
  */
 public class DateTime {
 
-    private static final String datePattern = "dd-MM-yyyy HH:mm";
-    private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
-    private static final String showcaseDatePattern = "d-MMM-yyyy HH:mm";
-    private static final DateTimeFormatter showcaseDateFormatter = DateTimeFormatter.ofPattern(showcaseDatePattern);
+    private static final String datePattern = "d-MMM-yyyy HH:mm";
+    private static final DateTimeFormatterBuilder formatterBuilder = new DateTimeFormatterBuilder()
+            .parseCaseInsensitive()
+            .appendPattern(datePattern);
+    private static final DateTimeFormatter dateFormatter = formatterBuilder.toFormatter();
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mm-yyyy hh:mm";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm";
 
     public final String value;
 
@@ -33,7 +34,7 @@ public class DateTime {
         if (!date.isEmpty()) {
             checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
             String str = String.join(" ", date.split("\\s+", 2));
-            this.value = LocalDateTime.parse(str, dateFormatter).format(showcaseDateFormatter);
+            this.value = LocalDateTime.parse(str, dateFormatter).format(dateFormatter);
         } else {
             this.value = "";
         }
@@ -44,12 +45,20 @@ public class DateTime {
      */
     public static boolean isValidDate(String test) {
         try {
+            if (test.isEmpty()) {
+                return true;
+            }
             String str = String.join(" ", test.split("\\s+", 2));
-            LocalDate.parse(str, dateFormatter);
+            LocalDateTime.parse(str, dateFormatter);
         } catch (DateTimeParseException e) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 
     @Override

@@ -127,9 +127,12 @@ public class Internship {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Stage: ")
-                .append(getStage())
-                .append("; Date: ")
-                .append(getDateTime());
+                .append(getStage());
+
+        if (!getDateTime().value.isEmpty()) {
+            builder.append("; Date: ")
+                    .append(getDateTime());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
