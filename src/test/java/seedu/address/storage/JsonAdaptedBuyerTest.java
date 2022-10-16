@@ -65,7 +65,7 @@ public class JsonAdaptedBuyerTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedBuyer person =
-                new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, 
+                new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_TAGS, VALID_ORDERS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -73,7 +73,7 @@ public class JsonAdaptedBuyerTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, null, VALID_PHONE, VALID_EMAIL, 
+        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, null, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
@@ -81,7 +81,7 @@ public class JsonAdaptedBuyerTest {
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, INVALID_PHONE, VALID_EMAIL, 
+        JsonAdaptedBuyer person = new JsonAdaptedBuyer(VALID_PERSON_CATEGORY, VALID_NAME, INVALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS, VALID_ORDERS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
