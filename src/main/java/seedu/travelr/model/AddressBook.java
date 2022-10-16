@@ -20,6 +20,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final BucketList bucketList;
     private final UniqueEventList allEventsList;
     private final UniqueTripList trips;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -110,7 +111,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         bucketList.add(e);
         addEventToAllEventsList(e);
     }
-    
+
     public void addEventToAllEventsList(Event e) {
         allEventsList.add(e);
     }

@@ -127,7 +127,7 @@ public class ModelManager implements Model {
 
     /**
      * This is when we create a new event
-     * 
+     *
      * @param event
      */
     @Override
@@ -183,6 +183,7 @@ public class ModelManager implements Model {
     public AllInBucketListPredicate getBucketPredicate() {
         return new AllInBucketListPredicate(bucketList);
     }
+
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
