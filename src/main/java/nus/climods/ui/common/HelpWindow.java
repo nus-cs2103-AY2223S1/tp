@@ -102,9 +102,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     private void displayUserManual() {
         WebEngine webEngine = webView.getEngine();
-        boolean isConnectedToInternet = hasInternet();
 
-        if (isConnectedToInternet) {
+        if (isClimodsWebsiteUp()) {
             preventRedirection(webEngine);
             webEngine.load(USERGUIDE_URL);
         } else {
@@ -123,7 +122,7 @@ public class HelpWindow extends UiPart<Stage> {
         }
     }
 
-    private boolean hasInternet() {
+    private boolean isClimodsWebsiteUp() {
         try {
             URL url = new URL(USERGUIDE_URL);
             URLConnection urlConnection = url.openConnection();
