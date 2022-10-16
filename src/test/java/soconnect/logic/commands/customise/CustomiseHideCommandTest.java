@@ -15,11 +15,12 @@ import org.junit.jupiter.api.Test;
 import soconnect.commons.core.GuiSettings;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 class CustomiseHideCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void execute_hideOneAttribute_success() {
@@ -29,7 +30,7 @@ class CustomiseHideCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseHideCommand customiseHideCommand = new CustomiseHideCommand(attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS"));
 
@@ -47,7 +48,7 @@ class CustomiseHideCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseHideCommand customiseHideCommand = new CustomiseHideCommand(attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,EMAIL,PHONE,TAGS"));
 
@@ -64,7 +65,7 @@ class CustomiseHideCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseHideCommand customiseHideCommand = new CustomiseHideCommand(attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "PHONE,TAGS"));
 

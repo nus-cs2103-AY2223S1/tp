@@ -18,6 +18,7 @@ import soconnect.commons.core.GuiSettings;
 import soconnect.logic.commands.customise.CustomiseCommand;
 import soconnect.logic.commands.customise.CustomiseHideCommand;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 class CustomiseHideCommandParserTest {
@@ -28,7 +29,7 @@ class CustomiseHideCommandParserTest {
     public void parse_hideOneAttribute_success() {
         ArrayList<CustomiseCommand.Attribute> attributes = new ArrayList<>();
         attributes.add(ADDRESS);
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -42,7 +43,7 @@ class CustomiseHideCommandParserTest {
         attributes.add(TAGS);
         attributes.add(PHONE);
         attributes.add(EMAIL);
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -51,7 +52,7 @@ class CustomiseHideCommandParserTest {
 
     @Test
     public void parse_hideInvalidArgs_throwsParseException() {
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
@@ -61,7 +62,7 @@ class CustomiseHideCommandParserTest {
 
     @Test
     public void parse_hideRepeatArgs_throwsParseException() {
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 

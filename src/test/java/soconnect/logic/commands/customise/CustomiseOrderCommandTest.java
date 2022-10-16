@@ -18,11 +18,12 @@ import org.junit.jupiter.api.Test;
 import soconnect.commons.core.GuiSettings;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 class CustomiseOrderCommandTest {
 
-    private Model model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
 
     @Test
     public void execute_order_success() {
@@ -35,7 +36,7 @@ class CustomiseOrderCommandTest {
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
         CustomiseOrderCommand customiseOrderCommand = new CustomiseOrderCommand(attributes);
 
-        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSoConnect(), new TodoList(), new UserPrefs());
         expectedModel.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 

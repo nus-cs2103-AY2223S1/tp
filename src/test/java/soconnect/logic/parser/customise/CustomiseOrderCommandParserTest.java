@@ -17,6 +17,7 @@ import soconnect.commons.core.GuiSettings;
 import soconnect.logic.commands.customise.CustomiseCommand;
 import soconnect.logic.commands.customise.CustomiseOrderCommand;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 class CustomiseOrderCommandParserTest {
@@ -30,7 +31,7 @@ class CustomiseOrderCommandParserTest {
         attributes.add(TAGS);
         attributes.add(PHONE);
         attributes.add(EMAIL);
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -44,7 +45,7 @@ class CustomiseOrderCommandParserTest {
         attributes.add(TAGS);
         attributes.add(PHONE);
         attributes.add(EMAIL);
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
