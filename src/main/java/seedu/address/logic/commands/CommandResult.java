@@ -50,13 +50,17 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isUndo() { return undo; }
+    public boolean isUndo() {
+        return undo;
+    }
 
     public boolean isRedo() {
         return redo;
     }
 
-    public boolean isUndoRedo() { return undo || redo; }
+    public boolean isUndoRedo() {
+        return undo || redo;
+    }
 
     public boolean isExit() {
         return exit;
