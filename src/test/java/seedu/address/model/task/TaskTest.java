@@ -1,12 +1,12 @@
-package seedu.address.model.task;
+package seedu.uninurse.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.TASK_HEALTH_RECORDS;
-import static seedu.address.testutil.TypicalTasks.TASK_INSULIN;
+import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalTasks.TASK_HEALTH_RECORDS;
+import static seedu.uninurse.testutil.TypicalTasks.TASK_INSULIN;
 
 import org.junit.jupiter.api.Test;
 

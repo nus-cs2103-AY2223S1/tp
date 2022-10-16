@@ -1,8 +1,8 @@
-package seedu.address.commons.util;
+package seedu.uninurse.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,8 +13,8 @@ import java.util.logging.Level;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.core.Config;
-import seedu.address.commons.exceptions.DataConversionException;
+import seedu.uninurse.commons.core.Config;
+import seedu.uninurse.commons.exceptions.DataConversionException;
 
 public class ConfigUtilTest {
 

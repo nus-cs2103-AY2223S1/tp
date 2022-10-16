@@ -1,9 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -14,14 +14,14 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Patient;
-import seedu.address.testutil.PersonBuilder;
+import seedu.uninurse.commons.core.GuiSettings;
+import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.ReadOnlyUninurseBook;
+import seedu.uninurse.model.ReadOnlyUserPrefs;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.testutil.PersonBuilder;
 
 public class AddPatientCommandTest {
     @Test
@@ -99,12 +99,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getUninurseBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setUninurseBookFilePath(Path uninurseBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +114,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyUninurseBook getUninurseBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setUninurseBook(ReadOnlyUninurseBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,8 +196,8 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyUninurseBook getUninurseBook() {
+            return new UninurseBook();
         }
     }
 

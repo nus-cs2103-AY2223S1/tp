@@ -1,8 +1,8 @@
-package seedu.address.commons.util;
+package seedu.uninurse.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 

@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "UninurseBook save file which contains the same Person values as in TypicalPersons#getTypicalUninurseBook()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

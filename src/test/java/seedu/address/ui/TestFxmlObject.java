@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.uninurse.ui;
 
 import javafx.beans.DefaultProperty;
 
