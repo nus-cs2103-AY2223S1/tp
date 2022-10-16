@@ -162,11 +162,11 @@ public class ParserUtil {
         String trimmedDateTime = dateTime.trim();
 
         if (!Task.isValidTaskDescription(trimmedTaskDescription) || !DateTime.isValidDateTime(trimmedDateTime)) {
-            System.out.println(dateTime);
+            System.out.println(DateTime.isValidDateTime(trimmedDateTime));
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
-        return new Task(taskDescription, new DateTime(dateTime));
+        return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
     }
 
     /**

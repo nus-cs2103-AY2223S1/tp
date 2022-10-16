@@ -9,7 +9,10 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
 
-    private final LocalDateTime dateTime;
+    public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
+            + "YYYY-MM-DDTHH:mm:ss i.e 2022-10-16T10:15:30";
+
+    public final LocalDateTime dateTime;
 
     /**
      * Constructs a default Date and Time, one day from the current time.
@@ -19,8 +22,7 @@ public class DateTime {
     }
 
     /**
-     * TODO
-     * @param validDateTime
+     * Constructs a {@code DateTime} with the given {@code validDateTime}.
      */
     public DateTime(String validDateTime) {
         assert(isValidDateTime(validDateTime));
@@ -28,8 +30,7 @@ public class DateTime {
     }
 
     /**
-     * TODO
-     * @return
+     * returns if the Date is today's date.
      */
     public boolean isToday() {
         LocalDateTime today = LocalDateTime.now();
@@ -39,9 +40,7 @@ public class DateTime {
     }
 
     /**
-     * TODO
-     * @param test
-     * @return
+     * returns if the {@code test} is a valid date time string.
      */
     public static boolean isValidDateTime(String test) {
         try {

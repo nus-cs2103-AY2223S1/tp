@@ -20,12 +20,10 @@ public class Task {
 
     public final String taskDescription;
 
-    private final DateTime dateTime;
+    public final DateTime dateTime;
 
     /**
-     * Constructs a {@code Task}.
-     *
-     * @param description A valid task description.
+     * Constructs a {@code Task} with the given {@code description}.
      */
     public Task(String description) {
         requireNonNull(description);
@@ -35,10 +33,7 @@ public class Task {
     }
 
     /**
-     * TODO
-     *
-     * @param description todo
-     * @param dateAndTime todo
+     * Constructs a {@code Task} with the given {@code description} and {@code dateAndTime}.
      */
     public Task(String description, DateTime dateAndTime) {
         requireNonNull(description);
