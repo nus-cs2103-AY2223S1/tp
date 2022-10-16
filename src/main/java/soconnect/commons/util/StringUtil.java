@@ -89,7 +89,6 @@ public class StringUtil {
         requireAllNonNull(sentence, keywords);
 
         String preppedWord = keywords.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().split("(?!^\\s+)"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
