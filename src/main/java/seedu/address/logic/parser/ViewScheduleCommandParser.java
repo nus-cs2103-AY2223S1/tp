@@ -4,47 +4,37 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.ViewModuleScheduleCommand;
 import seedu.address.logic.commands.ViewScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.schedule.WeekdayContainsKeywordsPredicate;
+import seedu.address.model.module.schedule.Weekdays;
 
 
 /**
  * Parses input arguments and creates a new ViewScheduleCommand object
  */
-public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
+public class ViewScheduleCommandParser implements Parser<ViewModuleScheduleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewScheduleCommand
      * and returns a ViewScheduleCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public ViewScheduleCommand parse(String args) throws ParseException {
+    public ViewModuleScheduleCommand parse(String args) throws ParseException {
+        String trimmedArgs = args.trim();
 
+//        if (trimmedArgs.isEmpty()) {
+//            return new ViewScheduleCommand();
+//        }
+        String[] weekdayKeywords = trimmedArgs.split("\\s+");
 
-        if (args.trim().isEmpty()) {
-            return new ViewScheduleCommand();
-        }
-
-        ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MODULE_OF_SCHEDULE, PREFIX_WEEKDAY);
-
-        if (!argumentMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewScheduleCommand.MESSAGE_USAGE));
-        } else if (arePrefixesPresent(argumentMultimap, PREFIX_MODULE_OF_SCHEDULE)) {
-            String module = ParserUtil.parseModule(argumentMultimap.getValue(PREFIX_MODULE_OF_SCHEDULE).get());
-            return new ViewScheduleCommand();
-        }
-        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewScheduleCommand.MESSAGE_USAGE));
+        return new ViewModuleScheduleCommand(new WeekdayContainsKeywordsPredicate(Arrays.asList(weekdayKeywords)));
     }
 
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
+
 }

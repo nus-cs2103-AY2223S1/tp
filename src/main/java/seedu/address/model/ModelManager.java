@@ -217,7 +217,6 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
-        System.out.println("1");
         filteredSchedule.setPredicate(predicate);
     }
 

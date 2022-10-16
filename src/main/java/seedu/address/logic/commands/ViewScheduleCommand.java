@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
 import seedu.address.model.Model;
+import seedu.address.model.module.schedule.WeekdayContainsKeywordsPredicate;
 
 /**
  * Views all slots in the schedule which satisfies selection requirements
@@ -13,10 +14,11 @@ public class ViewScheduleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all timeslots which satisfies all selection "
             + "requirements.\n"
-            + "Format: view schedule [w/ WEEKDAY] [m/ MODULE]\n"
-            + "Example: " + COMMAND_WORD + " m/ CS2103T";
+            + "Format: view schedule [w/ WEEKDAY] \n"
+            + "Example: " + COMMAND_WORD + " Friday";
 
     public static final String MESSAGE_SUCCESS = "Showed all schedules";
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

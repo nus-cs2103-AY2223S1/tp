@@ -32,7 +32,7 @@ public class AddStuCommand extends Command {
             + PREFIX_ID + "ID "
             + PREFIX_HANDLE + "HANDLE "
             + "[" + PREFIX_MODULE_CODE + "MODULE]..."
-            + "[" + PREFIX_STUDENT_TA + "TA]..."
+            + "[" + PREFIX_STUDENT_TA + "TA]... \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
