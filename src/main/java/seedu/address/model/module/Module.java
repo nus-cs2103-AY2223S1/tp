@@ -129,11 +129,10 @@ public class Module {
     }
 
     /**
-     * Returns an immutable {@code Person} list, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns a copy of {@code Person} list.
      */
     public List<Person> getListOfPersons() {
-        return listOfPersons;
+        return new ArrayList<>(listOfPersons);
     }
 
 
@@ -168,13 +167,14 @@ public class Module {
         return otherModule.getModuleCode().equals(getModuleCode())
                 && otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getLinks().equals(getLinks())
-                && otherModule.getTasks().equals(getTasks());
+                && otherModule.getTasks().equals(getTasks())
+                && otherModule.getListOfPersons().equals(getListOfPersons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleCode, links, tasks);
+        return Objects.hash(moduleCode, links, tasks, listOfPersons);
     }
 
     @Override
