@@ -226,4 +226,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean checkOverlapEvent(Event toAdd) {
         return events.overlaps(toAdd);
     }
+
+    /**
+     * List overlapping events with event passed into parameter
+     * @param toAdd
+     * @return list of overlapping events.
+     */
+    public List<Event> listEventOverlap(Event toAdd) {
+        return events.listEventOverlap(toAdd);
+    }
+    /**
+     * List events on the same day with event passed into parameter
+     * @param toAdd
+     * @return list of overlapping events.
+     */
+    public List<Event> listEventsSameDay(Event toAdd) {
+        return events.listEventSameDay(toAdd);
+    }
 }

@@ -76,7 +76,7 @@ public class LogicManager implements Logic {
 /*    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
-    }*/
+    }*/ //TODO: For GUI you might need this
 
     @Override
     public Path getAddressBookFilePath() {

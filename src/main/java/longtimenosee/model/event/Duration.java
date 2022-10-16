@@ -116,7 +116,7 @@ public class Duration {
     public String toString() {
         return "Start: " + startTime.format(DateTimeFormatter
                 .ofLocalizedTime(FormatStyle.MEDIUM))
-                + "End: " + startTime.format(DateTimeFormatter
+                + " || End: " + endTime.format(DateTimeFormatter
                 .ofLocalizedTime(FormatStyle.MEDIUM));
     }
 }

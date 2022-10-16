@@ -1,12 +1,5 @@
 package longtimenosee.storage;
 
-import java.security.IdentityScope;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -31,8 +24,10 @@ public class JsonAdaptedEvent {
      * Constructs a {@code JsonAdaptedPerson} with the given event details.
      */
     @JsonCreator
-    public JsonAdaptedEvent(@JsonProperty("description") String description, @JsonProperty("personName") String personName,
-                            @JsonProperty("date") String date, @JsonProperty("duration") String duration) {
+    public JsonAdaptedEvent(@JsonProperty("description") String description,
+                            @JsonProperty("personName") String personName,
+                            @JsonProperty("date") String date,
+                            @JsonProperty("duration") String duration) {
         this.description = description;
         this.personName = personName;
         this.date = date;

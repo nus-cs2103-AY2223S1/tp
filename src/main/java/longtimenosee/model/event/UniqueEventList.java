@@ -3,6 +3,7 @@ package longtimenosee.model.event;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -154,7 +155,7 @@ public class UniqueEventList implements Iterable<Event> {
      * @param events
      * @return
      */
-    private boolean eventsNoClash(List<Event> events) {
+    public boolean eventsNoClash(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {
             for (int j = i + 1; j < events.size(); j++) {
                 if (Event.eventClash(events.get(i), events.get(j))) {
@@ -163,5 +164,36 @@ public class UniqueEventList implements Iterable<Event> {
             }
         }
         return true;
+    }
+
+    /**
+     * List overlapping events in UniqueEventList
+     * comparing event passed into parameter
+     * @param toAdd
+     * @return list of events which overlap with incoming event.
+     */
+    public List<Event> listEventOverlap(Event toAdd) {
+        List<Event> clashingEvents = new ArrayList<>();
+        for (int i = 0; i < internalList.size() ; i++) {
+            if (Event.eventClash(internalList.get(i), toAdd)) {
+                clashingEvents.add(internalList.get(i));
+            }
+        }
+        return clashingEvents;
+    }
+    /**
+     * List events occuring on the same day in UniqueEventList
+     * comparing event passed into parameter
+     * @param toAdd
+     * @return list of events on the same day.
+     */
+    public List<Event> listEventSameDay(Event toAdd) {
+        List<Event> sameDayEvents = new ArrayList<>();
+        for (int i = 0; i < internalList.size() ; i++) {
+            if (toAdd.getDate().equals(internalList.get(i).getDate())) {
+                sameDayEvents.add(internalList.get(i));
+            }
+        }
+        return sameDayEvents;
     }
 }

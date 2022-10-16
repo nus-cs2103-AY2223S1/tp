@@ -2,6 +2,7 @@ package longtimenosee.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -146,6 +147,12 @@ public interface Model {
     boolean hasEventOverlap(Event toAdd);
 
     /**
+     * List overlapping events with event passed into param
+     * @param toAdd
+     * @return
+     */
+    List<Event> listEventsOverlap(Event toAdd);
+    /**
      * Checks if there is already an existing event
      * @param toAdd
      * @return
@@ -156,4 +163,11 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
+
+    /**
+     * List events on the same day as an event to add
+     * @param toAdd
+     * @return
+     */
+    List<Event> listEventsSameDay(Event toAdd);
 }

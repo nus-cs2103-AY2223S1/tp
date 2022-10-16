@@ -5,6 +5,7 @@ import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -220,6 +221,10 @@ public class ModelManager implements Model {
     public boolean hasEventOverlap(Event toAdd) {
         return addressBook.checkOverlapEvent(toAdd);
     }
+    @Override
+    public List<Event> listEventsOverlap(Event toAdd) {
+        return addressBook.listEventOverlap(toAdd);
+    }
 
     @Override
     public boolean hasEvent(Event toAdd) {
@@ -235,6 +240,16 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
+    }
+
+    /**
+     * @param toAdd
+     * @return
+     */
+    @Override
+    public List<Event> listEventsSameDay(Event toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.listEventsSameDay(toAdd);
     }
 
 }

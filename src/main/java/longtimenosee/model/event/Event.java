@@ -1,5 +1,7 @@
 package longtimenosee.model.event;
 
+import java.util.List;
+
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
@@ -21,6 +23,18 @@ public class Event {
         this.personName = personName;
         this.date = date;
         this.duration = duration;
+    }
+    /**
+     * Utility method to view list of events.
+     * @param events
+     * @return
+     */
+    public static String viewEvents(List<Event> events) {
+        StringBuilder s = new StringBuilder();
+        for (Event e: events) {
+            s.append(e + "\n");
+        }
+        return s.toString();
     }
     //TODO: Can you pin an event?
 

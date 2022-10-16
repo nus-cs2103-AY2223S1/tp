@@ -8,10 +8,13 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import longtimenosee.logic.commands.exceptions.CommandException;
+
 import longtimenosee.model.Model;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.event.exceptions.OverlapEventException;
 import longtimenosee.model.person.exceptions.PersonNotFoundException;
+
+import java.util.List;
 
 /**
  * Adds an Event to the address book.
@@ -59,7 +62,14 @@ public class AddEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         if (model.hasEventOverlap(toAdd)) { //TODO: overlapping events?
-            throw new CommandException(MESSAGE_OVERLAP_EVENT);
+            List<Event> clashingEvents = model.listEventsOverlap(toAdd);
+            List<Event> eventsOnTheSameDay = model.listEventsSameDay(toAdd);
+
+            throw new CommandException(MESSAGE_OVERLAP_EVENT
+                    + "\n List of events overlapping: "
+                    + Event.viewEvents(clashingEvents)
+                    + "List of events on the same day : "
+                    + Event.viewEvents(eventsOnTheSameDay));
         }
         try {
             model.addEvent(toAdd, toAdd.getPersonName().personName);
