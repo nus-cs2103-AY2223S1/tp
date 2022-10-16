@@ -12,13 +12,17 @@ import static taskbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static taskbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static taskbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import taskbook.model.TaskBook;
 import taskbook.model.person.Person;
+import taskbook.model.task.Deadline;
+import taskbook.model.task.Event;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -68,18 +72,22 @@ public class TypicalTaskBook {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    // Typical Tasks
-    public static final Task EATING = new TaskBuilder().withPerson(ALICE)
-            .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(true)
-            .build();
+    // Typical Dates
+    public static final LocalDate NOV_NINE = LocalDate.of(2022, 11, 9);
+    public static final LocalDate OCT_ELEVEN = LocalDate.of(2022, 10, 11);
 
-    public static final Task SLEEPING = new TaskBuilder().withPerson(BENSON)
+    // Typical Tasks
+    public static final Deadline EATING = new DeadlineBuilder().withPerson(ALICE)
+            .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(true)
+            .withDeadlineDate(NOV_NINE).build();
+
+    public static final Todo SLEEPING = new TodoBuilder().withPerson(BENSON)
             .withAssignment(Assignment.FROM).withDescription("sleep early").withIsDone(false)
             .build();
 
-    public static final Task PARTYING = new TaskBuilder().withPerson(CARL)
+    public static final Event PARTYING = new EventBuilder().withPerson(CARL)
             .withAssignment(Assignment.TO).withDescription("party at kevin's house")
-            .withIsDone(true).build();
+            .withEventDate(OCT_ELEVEN).withIsDone(true).build();
 
     private TypicalTaskBook() {} // prevents instantiation
 

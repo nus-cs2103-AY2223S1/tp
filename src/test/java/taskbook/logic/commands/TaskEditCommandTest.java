@@ -8,6 +8,7 @@ import static taskbook.logic.commands.CommandTestUtil.TASK_WORK;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static taskbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static taskbook.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static taskbook.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +24,7 @@ import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.EditTaskDescriptorBuilder;
 import taskbook.testutil.PersonBuilder;
-import taskbook.testutil.TaskBuilder;
-import taskbook.testutil.TypicalIndexes;
+import taskbook.testutil.TodoBuilder;
 import taskbook.testutil.TypicalTaskBook;
 
 public class TaskEditCommandTest {
@@ -32,20 +32,20 @@ public class TaskEditCommandTest {
     @Test
     public void execute_validNameChange_success() {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        Task task = TypicalTaskBook.EATING;
-        Task editedTask = new TaskBuilder()
-            .withPerson(TypicalTaskBook.BENSON)
-            .withAssignment(Assignment.TO)
+        Task task = TypicalTaskBook.SLEEPING;
+        Todo editedTask = new TodoBuilder()
+            .withPerson(TypicalTaskBook.ALICE)
+            .withAssignment(Assignment.FROM)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())
             .build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder((Todo) editedTask).build();
-        TaskEditCommand editCommand = new TaskEditCommand(INDEX_FIRST_PERSON, descriptor);
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+        TaskEditCommand editCommand = new TaskEditCommand(INDEX_SECOND_PERSON, descriptor);
 
         String expectedMessage = String.format(TaskEditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
+        expectedModel.setTask(model.getFilteredTaskList().get(1), editedTask);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -54,13 +54,13 @@ public class TaskEditCommandTest {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         Task task = TypicalTaskBook.EATING;
         Person invalidPerson = new PersonBuilder().withName("notintaskbook").build();
-        Task editedTask = new TaskBuilder()
+        Todo editedTask = new TodoBuilder()
             .withPerson(invalidPerson)
             .withAssignment(Assignment.TO)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())
             .build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder((Todo) editedTask).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         TaskEditCommand editCommand = new TaskEditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = TaskEditCommand.MESSAGE_PERSON_NOT_FOUND;
@@ -71,13 +71,13 @@ public class TaskEditCommandTest {
     public void execute_indexOutOfBounds_throwsCommandException() {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         Task task = TypicalTaskBook.EATING;
-        Task editedTask = new TaskBuilder()
+        Todo editedTask = new TodoBuilder()
             .withPerson(TypicalTaskBook.BENSON)
             .withAssignment(Assignment.TO)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())
             .build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder((Todo) editedTask).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         Index index = Index.fromZeroBased(model.getFilteredTaskList().size());
         TaskEditCommand editCommand = new TaskEditCommand(index, descriptor);
 
@@ -103,7 +103,7 @@ public class TaskEditCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new TaskEditCommand(TypicalIndexes.INDEX_SECOND_PERSON, TASK_WORK));
+        assertNotEquals(standardCommand, new TaskEditCommand(INDEX_SECOND_PERSON, TASK_WORK));
 
         // different descriptor -> returns false
         assertNotEquals(standardCommand, new TaskEditCommand(INDEX_FIRST_PERSON, TASK_STUDY));

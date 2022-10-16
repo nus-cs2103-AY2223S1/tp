@@ -3,13 +3,12 @@ package taskbook.testutil;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
-import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Task objects.
  */
-public class TaskBuilder {
+public abstract class TaskBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "This is the default task description.";
 
@@ -62,10 +61,7 @@ public class TaskBuilder {
 
     /**
      * Builds a {@code Task} based on the parameters stored in the {@code TaskBuilder}.
-     *
-     * @return Task, built from the parameters provided.
      */
-    public Task build() {
-        return new Todo(person, assignment, description, isDone);
-    }
+    public abstract Task build();
+
 }

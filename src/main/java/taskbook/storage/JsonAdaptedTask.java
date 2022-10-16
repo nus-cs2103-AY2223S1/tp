@@ -25,7 +25,6 @@ public abstract class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String name;
-
     private final String assignment;
     private final String description;
     private final boolean isDone;

@@ -12,7 +12,6 @@ import taskbook.model.person.Email;
 import taskbook.model.person.Name;
 import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
-import taskbook.model.task.Event;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
 
@@ -47,11 +46,11 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Event object into the model's {@code Event} object.
+     * Converts this Jackson-friendly adapted Deadline object into the model's {@code Deadline} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
-    public Event toModelType() throws IllegalValueException {
+    public Deadline toModelType() throws IllegalValueException {
         if (this.getName() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -79,7 +78,7 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
 
         if (this.getDeadlineDate() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "Event Date"));
+                    "Deadline"));
         }
         final LocalDate modelDeadlineDate;
         try {
@@ -88,6 +87,6 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
             throw new IllegalValueException("Date of Deadline should be in supported date formats.");
         }
 
-        return new Event(modelName, modelAssignment, modelDescription, this.isDone(), modelDeadlineDate);
+        return new Deadline(modelName, modelAssignment, modelDescription, this.isDone(), modelDeadlineDate);
     }
 }
