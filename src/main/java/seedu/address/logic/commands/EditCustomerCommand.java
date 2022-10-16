@@ -32,9 +32,9 @@ import seedu.address.ui.GuiTab;
 /**
  * Edits the details of an existing customer in the address book.
  */
-public class EditCommand extends Command {
+public class EditCustomerCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editcus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
         + "by the index number used in the displayed customer list. "
@@ -60,7 +60,7 @@ public class EditCommand extends Command {
      * @param index                  of the customer in the filtered customer list to edit
      * @param editCustomerDescriptor details to edit the customer with
      */
-    public EditCommand(Index index, EditCustomerDescriptor editCustomerDescriptor) {
+    public EditCustomerCommand(Index index, EditCustomerDescriptor editCustomerDescriptor) {
         requireNonNull(index);
         requireNonNull(editCustomerDescriptor);
 
@@ -120,12 +120,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditCustomerCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditCustomerCommand e = (EditCustomerCommand) other;
         return index.equals(e.index)
                 && editCustomerDescriptor.equals(e.editCustomerDescriptor);
     }
