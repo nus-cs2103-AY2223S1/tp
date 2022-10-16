@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.UniqueApplicationList;
+import seedu.application.model.application.interview.Interview;
 
 /**
  * Wraps all data at the application-book level.
@@ -73,6 +74,15 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     public boolean hasSameInterviewTime(Application application) {
         requireNonNull(application);
         return applications.hasSameInterviewTimeAs(application);
+    }
+
+    /**
+     * Returns true if an application with the same interview date and time as {@code application} exists
+     * in the application book.
+     */
+    public boolean hasSameInterviewTime(Interview interview) {
+        requireNonNull(interview);
+        return applications.hasSameInterviewTimeAs(interview);
     }
 
     /**
