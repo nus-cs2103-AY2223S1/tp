@@ -1,6 +1,10 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+
+import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Location;
@@ -21,7 +25,8 @@ public class AppointmentBuilder {
      * Creates a {@code AppointmentBuilder} with the default details.
      */
     public AppointmentBuilder() {
-        dateTime = ParserUtil.parseDateTime(DEFAULT_DATETIME);
+        LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(DEFAULT_DATETIME);
+        dateTime= new DateTime(localDateTime);
         location = new Location(DEFAULT_LOCATION);
     }
 
@@ -38,7 +43,8 @@ public class AppointmentBuilder {
      * Sets the {@code DateTime} of the {@code Appointment} that we are building.
      */
     public AppointmentBuilder withDateTime(String dateTime) {
-        this.dateTime = ParserUtil.parseDateTime(dateTime);
+        LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(dateTime);
+        this.dateTime = new DateTime(localDateTime);
         return this;
     }
 

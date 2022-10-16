@@ -44,7 +44,6 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
-        // for appointment, use setAppointment(Appointment appointment) method below
     }
 
     /**
@@ -110,17 +109,6 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
-        return this;
-    }
-
-    /**
-     * Parses the {@code appointments} into a {@code Set<Appointment>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditPersonDescriptorBuilder withAppointments(String... appointments) {
-        Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
-        descriptor.setAppointments(appointmentSet);
         return this;
     }
 

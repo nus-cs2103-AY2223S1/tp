@@ -30,13 +30,9 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_INCOME = "301222";
     private static final String INVALID_MONTHLY = "201";
     private static final String INVALID_TAG = "#friend";
-<<<<<<< HEAD
     private static final String INVALID_DATETIME = "21/05/2023 2359";
 
     private static final String INVALID_LOCATION = " ";
-=======
-    private static final String INVALID_APPOINTMENTS = "21/05/2023 2359";
->>>>>>> musab_max_appointmnet
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();

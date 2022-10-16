@@ -69,16 +69,26 @@ public class AppointmentTest {
 
     /**
      * A stub class to check the String representation
-     * of the DateTime and to check equality.
+     * of the Location and to check equality.
      */
-    private static class LocationStub extends Location {
-        LocationStub() {
+    private static class ValidLocationStub extends Location {
+        ValidLocationStub() {
             super("NUS TechnoEdge");
         }
 
         @Override
         public String toString() {
             return "NUS TechnoEdge";
+        }
+    }
+    private static class InvalidLocationStub extends Location {
+        InvalidLocationStub() {
+            super("");
+        }
+
+        @Override
+        public String toString() {
+            return "";
         }
     }
     @Test
@@ -88,44 +98,60 @@ public class AppointmentTest {
 
     @Test
     public void versionToString_validVersion_correctStringRepresentation() {
-        Appointment newAppointment = new Appointment(new DateTimeStub(), new LocationStub());
+        Appointment newAppointment = new Appointment(new DateTimeStub(), new ValidLocationStub());
         Assertions.assertEquals("1-Apr-2023 12:30 PM, NUS TechnoEdge", newAppointment.toString());
     }
 
     @Test
-    public void isValidAppointment_validDateTime_returnsTrue() {
-        Assertions.assertTrue(Appointment.isValidAppointment(new ValidDateTimeStub()));
+    public void isValidAppointment_validDateTimeAndLocation_returnsTrue() {
+        Assertions.assertTrue(Appointment.isValidAppointment(new ValidDateTimeStub(), new ValidLocationStub()));
     }
 
     @Test
     public void isValidAppointment_invalidDateTime_returnsFalse() {
-        Assertions.assertFalse(Appointment.isValidAppointment(new InvalidDateTimeStub()));
+        Assertions.assertFalse(Appointment.isValidAppointment(new InvalidDateTimeStub(), new ValidLocationStub()));
     }
 
     @Test
+    public void isValidAppointment_invalidLocation_returnsFalse() {
+        Assertions.assertFalse(Appointment.isValidAppointment(new ValidDateTimeStub(), new InvalidLocationStub()));
+    }
+    @Test
+    public void isValidAppointment_invalidLocationAndDateTime_returnsFalse() {
+        Assertions.assertFalse(Appointment.isValidAppointment(new InvalidDateTimeStub(), new InvalidLocationStub()));
+    }
+    @Test
     public void getDateTime_sameDateTime_success() {
         ValidDateTimeStub dateTimeStub = new ValidDateTimeStub();
-        Appointment appointment = new Appointment(dateTimeStub);
+        Appointment appointment = new Appointment(dateTimeStub, new ValidLocationStub());
         appointment.getDateTime().equals(dateTimeStub);
     }
 
     @Test
     public void getDate_sameDate_success() {
         ValidDateStub dateStub = new ValidDateStub();
-        Appointment appointment = new Appointment(new ValidDateTimeStub());
+        Appointment appointment = new Appointment(new ValidDateTimeStub(), new ValidLocationStub());
         appointment.getDate().equals(dateStub);
     }
 
     @Test
     public void getTime_sameTime_success() {
         ValidTimeStub timeStub = new ValidTimeStub();
-        Appointment appointment = new Appointment(new ValidDateTimeStub());
+        Appointment appointment = new Appointment(new ValidDateTimeStub(), new ValidLocationStub());
         appointment.getTime().equals(timeStub);
     }
+
+    @Test
+     public void getLocation_sameLocation_success() {
+        ValidLocationStub locationStub = new ValidLocationStub();
+        Appointment appointment = new Appointment(new ValidDateTimeStub(), new ValidLocationStub());
+        appointment.getLocation().equals(locationStub);
+    }
+    
     @Test
     public void equals_success() {
-        Appointment firstAppointment = new Appointment(new DateTimeStub(), new LocationStub());
-        Appointment secondAppointment = new Appointment(new DateTimeStub(), new LocationStub());
+        Appointment firstAppointment = new Appointment(new DateTimeStub(), new ValidLocationStub());
+        Appointment secondAppointment = new Appointment(new DateTimeStub(), new ValidLocationStub());
 
         Assertions.assertEquals(firstAppointment, firstAppointment);
         Assertions.assertNotEquals(firstAppointment, null);

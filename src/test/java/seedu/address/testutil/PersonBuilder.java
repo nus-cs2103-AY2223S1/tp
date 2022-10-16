@@ -147,7 +147,7 @@ public class PersonBuilder {
      * By default, the set of appointments field is created but is empty
      */
     public Person build() {
-        return new Person(name, phone, email, address, income, monthly, risktag, tags, appointments);
+        return new Person(name, phone, email, address, income, monthly, riskTag, tags, appointments);
     }
 
 }

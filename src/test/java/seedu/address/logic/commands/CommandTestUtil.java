@@ -60,6 +60,7 @@ public class CommandTestUtil {
     public static final String VALID_LOCATION_NUS = "NUS";
     public static final String VALID_LOCATION_JURONGPOINT = "Jurong Point";
     public static final String VALID_LOCATION_WESTMALL = "West Mall";
+    public static final String INVALID_LOCATION = "";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -89,12 +90,17 @@ public class CommandTestUtil {
     public static final String INVALID_MONTHLY_DESC = " " + PREFIX_MONTHLY + "000"; // monthly should include "$"
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_BOTH_FIELD_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
+            + INVALID_DATETIME_210_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + INVALID_LOCATION;
+    public static final String INVALID_DATE_FIELD_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
+            + INVALID_DATETIME_210_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + VALID_LOCATION_NUS;
+    public static final String INVALID_LOCATION_FIELD_APPOINTMENT_DESC = " " + PREFIX_APPOINTMENT_DATE
+            + VALID_DATETIME_21_JAN_2023 + " " + PREFIX_APPOINTMENT_LOCATION + INVALID_LOCATION;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditPersonDescriptor DESC_AMY;
     public static final EditPersonDescriptor DESC_BOB;
-    public static final EditPersonDescriptor DESC_APPOINTMENT;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -105,10 +111,6 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withMonthly(VALID_MONTHLY_AMY)
                 .withRiskTag(VALID_RISKTAG_HIGH).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_APPOINTMENT = new EditPersonDescriptorBuilder()
-                .withAppointment(new Appointment(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023),
-                                                new Location(VALID_LOCATION_NUS)))
-                .build();
     }
 
     /**

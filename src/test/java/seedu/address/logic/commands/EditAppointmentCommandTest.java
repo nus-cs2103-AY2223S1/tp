@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_WESTMA
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.EditAppointmentCommand.MESSAGE_NO_APPOINTMENT_TO_EDIT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
@@ -19,11 +20,15 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.EditAppointmentDescriptor;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -31,16 +36,13 @@ import seedu.address.testutil.PersonBuilder;
 
 public class EditAppointmentCommandTest {
     @Test
-    public void execute_overwriteAppointmentsWithOneAppointment_success() {
+    public void execute_editAppointmnetBothFields_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_NUS).build())
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                        .withLocation(VALID_LOCATION_JURONGPOINT).build())
                 .build());
 
         // Create expectedModel
@@ -53,12 +55,68 @@ public class EditAppointmentCommandTest {
         Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
 
         // Create editAppointmentCommand
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
+
+        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, expectedPerson);
+
+        assertCommandSuccess(editAppointmentCommand, actualModel, expectedMessage, expectedModel);
+    }
+    @Test
+    public void execute_editAppointmentLocationFieldOnly_success() {
+        // Create actualModel
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build());
+
+        // Create expectedModel
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_WESTMALL).build())
+                .build());
+        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
+
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_NUS));
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
+
+        String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, expectedPerson);
+
+        assertCommandSuccess(editAppointmentCommand, actualModel, expectedMessage, expectedModel);
+    }
+    @Test
+    public void execute_editAppointmentDateFieldOnly_success() {
+        // Create actualModel
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build());
+
+        // Create expectedModel
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_23_JAN_2023)
-                        .withLocation(VALID_LOCATION_WESTMALL).build())
-                .build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build());
+        Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
+
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_NUS));
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
         String expectedMessage = String.format(EditAppointmentCommand.MESSAGE_EDIT_APPOINTMENT_SUCCESS, expectedPerson);
 
@@ -66,18 +124,17 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_overwriteNoExistingAppointmentsWithAppointment_failure() {
+    public void execute_editNonExistingAppointment_failure() {
+        // Create testModel
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT).build();
         testModel.addPerson(testPerson);
 
-        Person expectedPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_21_JAN_2023)
-                        .withLocation(VALID_LOCATION_NUS).build())
-                .build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(expectedPerson).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
         String expectedMessage = MESSAGE_NO_APPOINTMENT_TO_EDIT;
 
@@ -85,36 +142,63 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
-    public void execute_overwriteUsingAppointmentsWithInvalidIndex_failure() {
+    public void execute_editAppointmentWithInvalidPersonIndex_failure() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_NUS).build())
-                .withAppointment(new AppointmentBuilder()
-                        .withDateTime(VALID_DATETIME_22_JAN_2023)
-                        .withLocation(VALID_LOCATION_JURONGPOINT).build())
                 .build();
 
-        Index outOfBoundIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(testPerson).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(outOfBoundIndex, descriptor);
+        Index outOfBoundsPersonIndex = Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
+        Appointment editedAppointment = new AppointmentBuilder()
+                                        .withDateTime(VALID_DATETIME_22_JAN_2023)
+                                        .withLocation(VALID_LOCATION_WESTMALL).build();
+
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_22_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(outOfBoundsPersonIndex, INDEX_FIRST_APPOINTMENT, descriptor);
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 
         assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
     }
+    @Test
+    public void execute_editAppointmentWithInvalidAppointmentIndex_failure() {
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
+                .withAppointment(new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build())
+                .build();
 
+        Index outOfBoundsAppointmentIndex = Index.fromOneBased(testModel.getFilteredPersonList().get(0).getAppointments().size() + 1);
+        Appointment editedAppointment = new AppointmentBuilder()
+                                        .withDateTime(VALID_DATETIME_22_JAN_2023)
+                                        .withLocation(VALID_LOCATION_WESTMALL).build();
+
+        // Create editAppointmentCommand
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_22_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_PERSON, outOfBoundsAppointmentIndex, descriptor);
+
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+
+        assertCommandFailure(editAppointmentCommand, testModel, expectedMessage);
+    }
     @Test
     public void equals() {
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(
-                new PersonBuilder(MUSAB_WITH_NO_APPT).build()).build();
+                EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
+                descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));
+                descriptor.setLocation(new Location(VALID_LOCATION_NUS));
         final EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(
-                INDEX_FIRST_PERSON, descriptor);
+                INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        EditAppointmentCommand commandWithSameValues = new EditAppointmentCommand(INDEX_FIRST_PERSON, descriptor);
+        EditAppointmentCommand commandWithSameValues = new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
         assertTrue(editAppointmentCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -127,9 +211,10 @@ public class EditAppointmentCommandTest {
         assertFalse(editAppointmentCommand.equals(new ClearCommand()));
 
         // different descriptor -> returns false
-        EditPersonDescriptor differentDescriptor = new EditPersonDescriptorBuilder(
-                new PersonBuilder(BENSON).build()).build();
-        assertFalse(editAppointmentCommand.equals(new EditAppointmentCommand(INDEX_FIRST_PERSON, differentDescriptor)));
+        EditAppointmentDescriptor differentDescriptor = new EditAppointmentDescriptor();
+        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
+        descriptor.setLocation(new Location(VALID_LOCATION_JURONGPOINT));
+        assertFalse(editAppointmentCommand.equals(new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, differentDescriptor)));
     }
 
 }

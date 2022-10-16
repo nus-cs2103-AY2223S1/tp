@@ -58,18 +58,4 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         return new AddAppointmentCommand(personIndex, appointment);
     }
-
-//    /**
-//     * Parses {@code Collection<String> datesAndTimes} into a
-//     * {@code Set<Appointment>} if {@code datesAndTimes} is non-empty.
-//     */
-//    private Optional<MaximumSortedList<Appointment>> parseAppointmentsForEdit(Collection<String> datesAndTimes)
-//            throws ParseException {
-//        assert datesAndTimes != null;
-//
-//        if (datesAndTimes.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        return Optional.of(ParserUtil.parseAppointmentsIntoSortedList(datesAndTimes));
-//    }
 }
