@@ -17,6 +17,7 @@ import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String lessonPlan;
     private final List<JsonAdaptedHomework> homeworkList = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attendanceList = new ArrayList<>();
+    private final List<JsonAdaptedSession> sessionList = new ArrayList<>();
     private final List<JsonAdaptedGradeProgress> gradeProgressList = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -42,6 +44,7 @@ class JsonAdaptedPerson {
             @JsonProperty("lessonPlan") String lessonPlan,
             @JsonProperty("homework") List<JsonAdaptedHomework> homeworkList,
             @JsonProperty("attendance") List<JsonAdaptedAttendance> attendanceList,
+            @JsonProperty("session") List<JsonAdaptedSession> sessionList,
             @JsonProperty("gradeProgress") List<JsonAdaptedGradeProgress> gradeProgressList,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -55,6 +58,9 @@ class JsonAdaptedPerson {
         }
         if (attendanceList != null) {
             this.attendanceList.addAll(attendanceList);
+        }
+        if (sessionList != null) {
+            this.sessionList.addAll(sessionList);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -73,6 +79,9 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         attendanceList.addAll(source.getAttendanceList().attendanceList.stream()
                 .map(JsonAdaptedAttendance::new)
+                .collect(Collectors.toList()));
+        sessionList.addAll(source.getSessionList().sessionList.stream()
+                .map(JsonAdaptedSession::new)
                 .collect(Collectors.toList()));
         gradeProgressList.addAll(source.getGradeProgressList().gradeProgressList.stream()
                 .map(JsonAdaptedGradeProgress::new)
@@ -119,9 +128,15 @@ class JsonAdaptedPerson {
         for (JsonAdaptedHomework homework : homeworkList) {
             modelHomeworkList.addHomework(homework.toModelType());
         }
+
         final AttendanceList modelAttendanceList = new AttendanceList();
         for (JsonAdaptedAttendance attendance: attendanceList) {
             modelAttendanceList.addAttendance(attendance.toModelType());
+        }
+
+        final SessionList modelSessionList = new SessionList();
+        for (JsonAdaptedSession session: sessionList) {
+            modelSessionList.addSession(session.toModelType());
         }
 
         final GradeProgressList modelGradeProgressList = new GradeProgressList();
@@ -131,7 +146,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelLessonPlan, modelHomeworkList,
-                modelAttendanceList, modelGradeProgressList, modelTags);
+                modelAttendanceList, modelSessionList, modelGradeProgressList, modelTags);
     }
 
 }
