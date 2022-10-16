@@ -2,6 +2,9 @@ package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -63,6 +66,20 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         default:
             throw new ParseException(ProfileCommand.OPTION_UNKNOWN + ProfileCommand.VALID_FLAGS);
         }
+    }
+
+    /**
+     *
+     * @return
+     */
+    public static Map<String, String> getProfileCommands() {
+        return new HashMap<>() {{
+            put(AddProfileCommand.COMMAND_OPTION, AddProfileCommand.MESSAGE_USAGE);
+            put(DeleteProfileCommand.COMMAND_OPTION, DeleteProfileCommand.MESSAGE_USAGE);
+            put(EditProfileCommand.COMMAND_OPTION, EditProfileCommand.MESSAGE_USAGE);
+            put(FindProfileCommand.COMMAND_OPTION, FindProfileCommand.MESSAGE_USAGE);
+            put(ViewProfilesCommand.COMMAND_OPTION, "List Commands");
+        }};
     }
 
 }

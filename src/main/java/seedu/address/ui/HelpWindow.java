@@ -1,14 +1,21 @@
 package seedu.address.ui;
 
+import java.util.Arrays;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.profile.ProfileCommandParser;
 
 /**
  * Controller for a help page
@@ -27,6 +34,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Accordion accordion;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +45,18 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+        Map<String, String> profileCommands = ProfileCommandParser.getProfileCommands();
+        profileCommands.forEach((x, y) -> {
+            Label label = new Label(y);
+            label.setWrapText(true);
+            HBox hBox = new HBox();
+            hBox.getChildren().add(label);
+            hBox.setAlignment(Pos.TOP_LEFT);
+            hBox.prefWidth(288.0);
+            accordion.getPanes().add(new TitledPane(x, hBox));
+        });
+
     }
 
     /**
