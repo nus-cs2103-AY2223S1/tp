@@ -12,6 +12,7 @@ import seedu.address.model.person.Person;
 public class ScheduleCard extends UiPart<Region> {
 
     private static final String FXML = "ScheduleListCard.fxml";
+    private static final String COLOUR_OF_DEBTOR = "-fx-text-fill: #FF0000;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -42,10 +43,25 @@ public class ScheduleCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        setWarningIfOwed(person);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         classTime.setText(person.getAClass().toTimeString());
+    }
+
+    /**
+     * Sets off warning indication if the person owes money.
+     *
+     * @param person to check whether he/she is a debtor
+     */
+    private void setWarningIfOwed(Person person) {
+        if (person.isOwingMoney()) {
+            String nameWithAmount = person.getName().fullName + " - To collect $" + person.getMoneyOwed().value;
+            name.setText(nameWithAmount);
+            name.setStyle(COLOUR_OF_DEBTOR);
+        } else {
+            name.setText(person.getName().fullName);
+        }
     }
 
     @Override
