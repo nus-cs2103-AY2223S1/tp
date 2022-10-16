@@ -16,10 +16,8 @@ import seedu.address.model.person.Person;
  * An UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
-
     private static final String FXML = "PersonListCard.fxml";
     private static final String DOT = ". ";
-    private static final String COMMA = ", ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -74,11 +72,11 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
         int listSize = appointmentList.size();
         for (int i = 0; i < listSize; i++) {
-            if (i == listSize - 1) {
-                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()));
-            } else {
-                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString() + COMMA));
-            }
+            AppointmentFlowPane appointmentFlowPane = new AppointmentFlowPane(
+                    i + 1 + DOT, appointmentList.get(i).getDate().toString(),
+                    appointmentList.get(i).getTime().toString()
+            );
+            appointments.getChildren().add(appointmentFlowPane);
         }
     }
 
