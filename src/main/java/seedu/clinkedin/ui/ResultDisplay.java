@@ -13,11 +13,23 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";
 
+    private static final String DEFAULT_INIT_DISPLAY = "Welcome to CLInkedIn!\n\n"
+            + "CLInkedIn is a desktop contact management application for Recruiters to manage their contact list of candidates.\n"
+            + "1. Keep track of the candidates/contacts you have met through events or recruitment applications.\n"
+            + "2. Tag candidates by their skills, experience and stage in the recruitment process.\n"
+            + "3. Filter candidates according to a specific skill, experience or stage in the recruitment process.\n"
+            + "4. Edit/remove details of the candidates/contacts.\n\n"
+            + "To get started:\n"
+            + "- Type 'help' to see the list of commands available.\n"
+            + "- Type 'help COMMAND' to see the usage of a specific command.\n"
+            + "- Type 'exit' to exit the application.\n";
+
     @FXML
     private TextArea resultDisplay;
 
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setText(DEFAULT_INIT_DISPLAY);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
