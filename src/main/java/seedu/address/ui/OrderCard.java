@@ -22,8 +22,8 @@ public class OrderCard extends UiPart<Region> {
 
     public static final boolean SHOULD_DISPLAY_BUYER_NAME = true;
     public static final boolean SHOULD_NOT_DISPLAY_BUYER_NAME = false;
-    public final Order order;
-    public final int displayedIndex;
+    private final Order order;
+    private final int displayedIndex;
 
     @FXML
     private Label additionalRequestsDescription;
