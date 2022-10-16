@@ -8,9 +8,9 @@ import seedu.address.model.Model;
 /**
  * Lists all suppliers in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListSupplierCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "listSuppliers";
 
     public static final String MESSAGE_SUCCESS = "Listed all suppliers";
 

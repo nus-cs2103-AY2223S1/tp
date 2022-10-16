@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -158,5 +159,18 @@ public class CommandTestUtil {
         model.updateFilteredTaskList(t -> t.equals(task));
 
         assertEquals(1, model.getFilteredTaskList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the supply item at the given {@code targetIndex} in the
+     * {@code model}'s inventory.
+     */
+    public static void showSupplyItemAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredSupplyItemList().size());
+
+        SupplyItem supplyItem = model.getFilteredSupplyItemList().get(targetIndex.getZeroBased());
+        model.updateFilteredSupplyItemList(i -> i.equals(supplyItem));
+
+        assertEquals(1, model.getFilteredSupplyItemList().size());
     }
 }
