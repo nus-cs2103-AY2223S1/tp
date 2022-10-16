@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 
 /**
@@ -20,7 +21,7 @@ public class Task {
     // Data fields
     private Priority priority;
     private TaskDeadline deadline;
-    private Person person;
+    private Email personEmailAddress;
     private boolean isDone;
 
     /**
@@ -31,18 +32,18 @@ public class Task {
      * @param desc     Description of task
      * @param priority Priority of task
      * @param deadline Deadline of task
-     * @param person   Person assigned to task
+     * @param personEmailAddress Email address of person assigned to this task
      * @param status   status of task
      */
     public Task(TaskName name, Description desc, Priority priority, TaskCategory category,
-                TaskDeadline deadline, Person person, boolean status) {
+                TaskDeadline deadline, Email personEmailAddress, boolean status) {
         requireAllNonNull(name, category, desc, priority, deadline, status);
         this.name = name;
         this.category = category;
         description = desc;
         this.priority = priority;
         this.deadline = deadline;
-        this.person = person;
+        this.personEmailAddress = personEmailAddress;
         isDone = status;
     }
 
@@ -92,12 +93,12 @@ public class Task {
     }
 
     /**
-     * Setter method for Person field.
+     * Setter method for personEmailAddress field.
      *
-     * @param person new Person assigned to this Task
+     * @param personEmailAddress Email of the new person assigned to this Task
      */
-    public void assignPerson(Person person) {
-        this.person = person;
+    public void setPersonEmailAddress(Email personEmailAddress) {
+        this.personEmailAddress = personEmailAddress;
     }
 
     /**
@@ -164,12 +165,12 @@ public class Task {
     }
 
     /**
-     * Returns the Person assigned to this Task.
+     * Returns the Email Address of the person assigned to this Task.
      *
-     * @return Person assigned to this Task
+     * @return  assigned to this Task
      */
-    public Person getPerson() {
-        return person;
+    public Email getPersonEmailAddress() {
+        return personEmailAddress;
     }
 
     /**
@@ -209,7 +210,7 @@ public class Task {
                 && otherTask.getCategory().equals(getCategory())
                 && otherTask.getDeadline().equals(getDeadline())
                 && otherTask.getDescription().equals(getDescription())
-                && otherTask.getPerson().equals(getPerson())
+                && otherTask.getPersonEmailAddress().equals(getPersonEmailAddress())
                 && otherTask.getPriority().equals(getPriority())
                 && (otherTask.isDone() && this.isDone());
     }
@@ -221,7 +222,7 @@ public class Task {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, priority, category, deadline, person, isDone);
+        return Objects.hash(name, description, priority, category, deadline, personEmailAddress, isDone);
     }
 
     @Override
@@ -237,7 +238,7 @@ public class Task {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Assigned to: ")
-                .append(getPerson())
+                .append(getPersonEmailAddress())
                 .append("; Status: ");
 
         if (isDone) {

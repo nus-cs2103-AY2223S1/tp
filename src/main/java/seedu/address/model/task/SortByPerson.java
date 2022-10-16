@@ -16,10 +16,10 @@ public class SortByPerson implements Comparator<Task> {
      *         equal to, or greater than the second
      */
     public int compare(Task task1, Task task2) {
-        if (task1.getPerson().equals(task2.getPerson())) {
+        if (task1.getPersonEmailAddress().equals(task2.getPersonEmailAddress())) {
             return 0;
         }
 
-        return task1.getPerson().getName().toString().compareTo(task2.getPerson().getName().toString());
+        return task1.getPersonEmailAddress().toString().compareTo(task2.getPersonEmailAddress().toString());
     }
 }

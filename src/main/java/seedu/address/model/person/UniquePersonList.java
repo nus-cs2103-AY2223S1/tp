@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -119,6 +120,14 @@ public class UniquePersonList implements Iterable<Person> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns the list of person (internalList) as an ArrayList
+     */
+    public ArrayList<Person> getPersonList() {
+        ArrayList<Person> personList = new ArrayList<>(internalList);
+        return personList;
     }
 
     /**
