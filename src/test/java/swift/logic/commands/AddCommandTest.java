@@ -20,6 +20,7 @@ import swift.model.AddressBook;
 import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.ReadOnlyUserPrefs;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 import swift.testutil.PersonBuilder;
@@ -177,6 +178,31 @@ public class AddCommandTest {
 
         @Override
         public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBridge(Person person, Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBridge(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBridge(Task task) {
             throw new AssertionError("This method should not be called.");
         }
     }

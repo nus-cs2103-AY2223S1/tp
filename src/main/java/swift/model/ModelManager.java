@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
@@ -135,6 +136,36 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         addressBook.setTask(target, editedTask);
+    }
+
+    @Override
+    public void addBridge(Person person, Task task) {
+        requireAllNonNull(person, task);
+        addressBook.addBridge(new PersonTaskBridge(person.getId(), task.getId()));
+    }
+
+    @Override
+    public void addBridge(PersonTaskBridge bridge) {
+        requireNonNull(bridge);
+        addressBook.addBridge(bridge);
+    }
+
+    @Override
+    public void deleteBridge(PersonTaskBridge bridge) {
+        requireNonNull(bridge);
+        addressBook.removeBridge(bridge);
+    }
+
+    @Override
+    public void deleteBridge(Person person) {
+        requireNonNull(person);
+        addressBook.removeBridge(person);
+    }
+
+    @Override
+    public void deleteBridge(Task task) {
+        requireNonNull(task);
+        addressBook.removeBridge(task);
     }
 
     //=========== Filtered Task List Accessors =============================================================
