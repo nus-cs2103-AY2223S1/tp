@@ -8,8 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidWardNumber(String)}
  */
 public class WardNumber {
-    public static final String MESSAGE_CONSTRAINTS = "Ward Number is one alphabet followed by a 3 digit number for " +
-            "inpatient patients and blank for outpatient patients";
+    public static final String MESSAGE_CONSTRAINTS = "Ward Number is one alphabet followed by a 3 digit number for "
+            + "inpatient patients and blank for outpatient patients";
 
     /*
     * The first character of the ward number must be an alphabet,
