@@ -350,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. The specified batchmate is not found.
     * a1. Mass Linkers detects an error in specified batchmate (non valid index).
-    * a2. Mass Linkers requests for a valid batchmate. 
+    * a2. Mass Linkers requests for a valid batchmate.
     * Step a1 is repeated until a valid index is given. \
       Use case resumes from step 3.
 
@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 4: Add a tag to a batchmate**
 
 **MSS**
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 5: Mark a module completed**
 
 **MSS**
