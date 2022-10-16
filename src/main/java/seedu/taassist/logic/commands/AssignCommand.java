@@ -64,6 +64,9 @@ public class AssignCommand extends Command {
         }
 
         for (Student student : studentsToAssign) {
+            if (student.isInModuleClass(moduleClassToAssign)) {
+                continue;
+            }
             List<StudentModuleData> newModuleData = new ArrayList<>(student.getModuleDataList());
             newModuleData.add(new StudentModuleData(moduleClassToAssign));
             Student editedStudent = new Student(

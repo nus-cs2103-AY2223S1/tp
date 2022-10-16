@@ -3,8 +3,11 @@ package seedu.taassist.model.uniquelist;
 import static java.util.Objects.requireNonNull;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +35,15 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSame);
     }
+
+    /**
+     * Returns true if the list contains an element that matches the given {@code predicate}.
+     */
+    public boolean contains(Predicate<T> predicate) {
+        requireNonNull(predicate);
+        return internalList.stream().anyMatch(predicate);
+    }
+
 
     /**
      * Adds an element to the list.
@@ -86,15 +98,13 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
 
     /**
      * Replaces the contents of this list with {@code elements}.
-     * {@code elements} must not contain duplicate elements.
+     * Duplicates in {@code elements} will be removed.
      */
     public void setElements(List<T> elements) {
         requireAllNonNull(elements);
-        if (!isUniqueList(elements)) {
-            throw new DuplicateElementException();
-        }
-
-        internalList.setAll(elements);
+        Set<T> uniqueElements = new HashSet<>(elements);
+        // Guaranteed to be unique
+        internalList.setAll(uniqueElements);
     }
 
     /**
@@ -130,19 +140,5 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code elements} contains only unique elements.
-     */
-    private boolean isUniqueList(List<T> elements) {
-        for (int i = 0; i < elements.size() - 1; i++) {
-            for (int j = i + 1; j < elements.size(); j++) {
-                if (elements.get(i).isSame(elements.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
