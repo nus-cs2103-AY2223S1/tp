@@ -36,7 +36,7 @@ public class StudentBuilder extends PersonBuilder {
      * Parses the {@code moduleCodes} into a {@code Set<moduleCode>}
      * and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... moduleCodes) {
+    public StudentBuilder withModuleCodes(String ... moduleCodes) {
         this.moduleCodes = SampleDataUtil.getModuleCodeSet(moduleCodes);
         return this;
     }
