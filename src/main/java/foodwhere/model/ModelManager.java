@@ -115,6 +115,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortStalls() {
+        addressBook.sortStalls();
+    }
+
+    @Override
     public boolean hasReview(Review review) {
         requireNonNull(review);
         return addressBook.hasReview(review);
@@ -137,6 +142,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStall);
 
         addressBook.setReview(target, editedStall);
+    }
+
+    @Override
+    public void sortReviews() {
+        addressBook.sortReviews();
     }
 
     //=========== Filtered Stall List Accessors =============================================================

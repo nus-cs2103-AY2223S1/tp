@@ -3,6 +3,7 @@ package foodwhere.model.review;
 import static foodwhere.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -77,6 +78,11 @@ public class UniqueReviewList implements Iterable<Review> {
         if (!internalList.remove(toRemove)) {
             throw new ReviewNotFoundException();
         }
+    }
+
+    /** Sorts the review list by name. */
+    public void sort() {
+        internalList.sort(Comparator.comparing(o -> o.getName().fullName));
     }
 
     public void setStalls(UniqueReviewList replacement) {
