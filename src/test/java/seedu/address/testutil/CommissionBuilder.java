@@ -79,14 +79,6 @@ public class CommissionBuilder {
     }
 
     /**
-     * Sets the {@code deadline} of the {@code Commission} that we are building.
-     */
-    public CommissionBuilder withDeadline(LocalDate date) {
-        this.deadline = new Deadline(date);
-        return this;
-    }
-
-    /**
      * Sets the {@code Description} of the {@code Commission} that we are building to null.
      */
     public CommissionBuilder withoutDescription() {
