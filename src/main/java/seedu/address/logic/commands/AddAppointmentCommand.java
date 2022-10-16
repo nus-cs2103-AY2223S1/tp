@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.EditPersonDescriptor.createEditedPersonByAddingAppointments;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -31,7 +33,8 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled this "
                                                                 + "appointment for the client";
     public static final String MESSAGE_DATE_FIELD_NOT_INCLUDED = "Date field must be provided.";
-
+    public static final String MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS = "You have already reached the "
+            + "maximum number of appointments (" + MAXIMUM_APPOINTMENTS + ") for this client";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -60,8 +63,13 @@ public class AddAppointmentCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPersonByAddingAppointments(personToEdit, editPersonDescriptor);
+        Person editedPerson;
 
+        try {
+            editedPerson = createEditedPersonByAddingAppointments(personToEdit, editPersonDescriptor);
+        } catch (ParseException e) {
+            throw new CommandException(e.getMessage());
+        }
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);

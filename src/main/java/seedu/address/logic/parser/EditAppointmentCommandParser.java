@@ -7,11 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Appointment;
 
 /**
@@ -59,7 +59,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
      * Parses {@code Collection<String> datesAndTimes} into a
      * {@code Set<Appointment>} if {@code datesAndTimes} is non-empty.
      */
-    private Optional<Set<Appointment>> parseAppointmentsForEdit(Collection<String> datesAndTimes)
+    private Optional<MaximumSortedList<Appointment>> parseAppointmentsForEdit(Collection<String> datesAndTimes)
             throws ParseException {
         assert datesAndTimes != null;
 

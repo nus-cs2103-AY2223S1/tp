@@ -1,12 +1,15 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,6 +18,8 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final String DOT = ". ";
+    private static final String COMMA = ", ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -60,6 +65,24 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        addTagLabels(person);
+        addAppointmentLabels(person);
+    }
+
+    private void addAppointmentLabels(Person person) {
+        List<Appointment> appointmentList = person.getAppointments().stream()
+                .sorted(Comparator.comparing(appointment -> appointment.getDateTime())).collect(Collectors.toList());
+        int listSize = appointmentList.size();
+        for (int i = 0; i < listSize; i++) {
+            if (i == listSize - 1) {
+                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()));
+            } else {
+                appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString() + COMMA));
+            }
+        }
+    }
+
+    private void addTagLabels(Person person) {
         person.getSpecialTags().stream()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         income.setText(person.getIncome().value);
@@ -67,16 +90,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        if (person.getAppointments().size() == 1) {
-            person.getAppointments().stream()
-                    .sorted(Comparator.comparing(appointment -> appointment.toString()))
-                    .forEach(appointment -> appointments.getChildren().add(new Label(appointment.toString())));
-        } else {
-            person.getAppointments().stream()
-                    .sorted(Comparator.comparing(appointment -> appointment.toString() + ","))
-                    .forEach(appointment -> appointments.getChildren().add(new Label(appointment.toString() + ",")));
-        }
     }
 
     @Override

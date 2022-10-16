@@ -1,23 +1,24 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.logic.parser.DateTimeParser;
+import seedu.address.logic.util.MaximumSortedList;
 
 /**
  * Represents one of the Person's appointments.
  * Guarantees: immutable;
  */
-public class Appointment {
-    public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and time in the format,"
-            + "d-MMM-yyyy hh:mm a, and it should not be blank";
-    public static final Set<Appointment> EMPTY_APPOINTMENTS = new HashSet<>();
+public class Appointment implements Comparable<Appointment> {
+    public static final String MESSAGE_CONSTRAINTS = "Appointments can only take in a date and "
+            + "time in the format, d-MMM-yyyy hh:mm a, and it should not be blank";
+    public static final MaximumSortedList<Appointment> EMPTY_APPOINTMENTS =
+            new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
 
-    public final DateTime dateTime;
+    private final DateTime dateTime;
 
     /**
      * Constructs an {@code Appointment}.
@@ -42,10 +43,26 @@ public class Appointment {
      * @return boolean value describing whether the input DateTime has
      *         the correct format.
      */
-    public boolean isValidAppointment(DateTime dateTime) {
+    public static boolean isValidAppointment(DateTime dateTime) {
         return DateTimeParser.isValidDateTime(dateTime.toString());
     }
 
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
+    public Date getDate() {
+        return dateTime.getDate();
+    }
+
+    public Time getTime() {
+        return dateTime.getTime();
+    }
+
+    @Override
+    public int compareTo(Appointment other) {
+        return this.dateTime.compareTo(other.dateTime);
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
