@@ -3,21 +3,39 @@ package foodwhere.model.review;
 import static foodwhere.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 /**
  * Represents a Review's date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Dates can be written as DD/MM/YYYY or DD-MM-YYYY";
+    public static final String VALID_DATE_CONSTRAINTS = "Dates have to be a valid date";
 
     /*
      * The first character of the date must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "\\d{1,2}-\\d{1,2}-\\d{4}|\\d{1,2}/\\d{1,2}/\\d{4}";
+
+    public static final DateFormat SLASH_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    public static final DateFormat DASH_DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+
+    static {
+        SLASH_DATE_FORMAT.setLenient(false);
+        DASH_DATE_FORMAT.setLenient(false);
+    }
+
+    public static final DateFormat[] PARSING_DATE_FORMATS = new DateFormat[]{ SLASH_DATE_FORMAT, DASH_DATE_FORMAT };
+    public static final DateFormat OUTPUT_DATE_FORMAT = SLASH_DATE_FORMAT;
 
     public final String value;
+
+    public final java.util.Date date;
 
     /**
      * Constructs an {@code Date}.
@@ -27,14 +45,47 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = date;
+        this.date = parseDate(date, PARSING_DATE_FORMATS);
+        value = OUTPUT_DATE_FORMAT.format(this.date);
+    }
+
+    /**
+     * Parses a date with formats given until one works.
+     *
+     * @param date The string to be parsed.
+     * @param formats The formats to use to parse the string.
+     * @return Successfully parsed date.
+     * @throws IllegalArgumentException If the string cannot be parsed.
+     */
+    public static java.util.Date parseDate(String date, DateFormat[] formats) {
+        for (DateFormat format : formats) {
+            try {
+                java.util.Date result = format.parse(date);
+                if (result == null) {
+                    continue;
+                }
+                return result;
+            } catch (ParseException ex) {
+                // fallthrough - try another parser
+            }
+        }
+        throw new IllegalArgumentException(VALID_DATE_CONSTRAINTS);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        try {
+            parseDate(test, PARSING_DATE_FORMATS);
+        } catch (IllegalArgumentException ex) {
+            // not a valid date
+            return false;
+        }
+        return true;
     }
 
     @Override
