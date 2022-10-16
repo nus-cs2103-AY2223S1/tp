@@ -103,8 +103,18 @@
     -fx-background-color: #3c3e3f;
 }
 
+.list-cell:filled:even #cardPaneLeft {
+    -fx-border-radius: 0 3px 0 0;
+    -fx-border-color: #515658;
+}
+
 .list-cell:filled:odd {
     -fx-background-color: #515658;
+}
+
+.list-cell:filled:odd #cardPaneLeft {
+    -fx-border-radius: 0 3px 0 0;
+    -fx-border-color: #3c3e3f;
 }
 
 .list-cell:filled:selected {
@@ -310,6 +320,11 @@
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
+}
+
+#cardPaneLeft {
+    -fx-border-width: 0 2px 0 0;
+    -fx-border-color: #515658;
 }
 
 #commandTypeLabel {
