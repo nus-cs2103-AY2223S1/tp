@@ -3,7 +3,6 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
-import seedu.address.model.Name;
 import seedu.address.model.project.Project;
 
 /**

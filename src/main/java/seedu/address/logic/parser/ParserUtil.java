@@ -22,7 +22,6 @@ import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
-import seedu.address.model.issue.Status;
 import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;

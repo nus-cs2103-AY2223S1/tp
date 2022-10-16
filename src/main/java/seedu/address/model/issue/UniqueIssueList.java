@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.exceptions.DuplicateIssueException;
 import seedu.address.model.issue.exceptions.IssueNotFoundException;
-import seedu.address.model.project.Project;
 
 /**
  * A list of issues that enforces uniqueness between its elements and does not allow nulls.
