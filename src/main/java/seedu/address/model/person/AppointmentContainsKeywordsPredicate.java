@@ -9,16 +9,26 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
-    private final List<String> keywords;
 
-    public AppointmentContainsKeywordsPredicate(List<String> keywords) {
+    public enum hideBy {
+        TAG, KEYWORD, IS_MARKED;
+    }
+    private final hideBy condition;
+    private List<String> keywords;
+
+    public AppointmentContainsKeywordsPredicate(hideBy condition, List<String> keywords) {
+        this.condition = condition;
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Appointment appt) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(appt.getReason(), keyword));
+        switch (condition) {
+            case hideBy.KEYWORD:
+
+        }
+
+        return false;
     }
 
     @Override
