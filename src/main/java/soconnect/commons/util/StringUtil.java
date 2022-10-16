@@ -67,7 +67,15 @@ public class StringUtil {
     /**
      * Returns true if the {@code sentence} contains some of the {@code keywords}.
      *   Ignores case and order, but full keywords match is not required.
-     *   In the event of not match, decrease the keywords size by one-forth.
+     *   In the event of not match, decrease the keywords size by one-fourth.
+     *
+     *   Matching algorithm:
+     *   1. Matches all occurrences of characters in {@code keywords} to {@code sentence}.
+     *      Returns true if full match is found, despite incorrect ordering
+     *      or unequal number of duplicate characters {@code keywords}.
+     *   2. If (1) returns false, decrease the number of characters in {@code keywords} needed to be matched by 25%.
+     *   3. Repeat from (1) with new {@code keywords} generated from (2).
+     *
      *   <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "abc DEF") == true
