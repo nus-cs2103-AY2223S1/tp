@@ -64,7 +64,6 @@ public class DeleteLinkCommand extends Command {
         Module editedModule = createEditedModule(moduleToEdit, links, index);
 
         model.setModule(moduleToEdit, editedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, editedModule));
     }
 

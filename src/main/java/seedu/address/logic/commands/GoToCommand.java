@@ -31,7 +31,7 @@ public class GoToCommand extends Command {
         if (model.getFilteredModuleList().isEmpty()) {
             return new CommandResult(Messages.MESSAGE_NO_SUCH_MODULE);
         }
-
+        model.setHomeStatus(false);
         return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
     }
 

@@ -20,6 +20,7 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private boolean isHome = true;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -190,6 +191,18 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredModules.equals(other.filteredModules);
+    }
+
+    //// navigation-related methods
+
+    @Override
+    public boolean getHomeStatus() {
+        return isHome;
+    }
+
+    @Override
+    public void setHomeStatus(boolean isHome) {
+        this.isHome = isHome;
     }
 
 }

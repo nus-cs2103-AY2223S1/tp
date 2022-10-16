@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
@@ -65,7 +65,8 @@ public class AddTaskCommand extends Command {
             }
         }
         if (moduleToAddTaskTo == null) {
-            throw new CommandException(MESSAGE_MODULE_CODE_DOES_NOT_EXIST);
+            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                    addTaskToModuleDescriptor.moduleCode));
         }
         Module moduleWithNewTask = createModuleWithNewTask(moduleToAddTaskTo, addTaskToModuleDescriptor);
 
@@ -76,7 +77,6 @@ public class AddTaskCommand extends Command {
         }
 
         model.setModule(moduleToAddTaskTo, moduleWithNewTask);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(
                 String.format(MESSAGE_ADD_TASK_SUCCESS, moduleWithNewTask));
     }

@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.Set;
@@ -67,7 +67,8 @@ public class DeleteTaskCommand extends Command {
             }
         }
         if (moduleToDeleteTaskFrom == null) {
-            throw new CommandException(MESSAGE_MODULE_CODE_DOES_NOT_EXIST);
+            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                    deleteTaskFromModuleDescriptor.moduleCodeOfModuleWithTaskToDelete));
         }
         int indexOfTaskToDelete = deleteTaskFromModuleDescriptor
                 .getTaskIndexToDelete().getZeroBased();
@@ -79,7 +80,6 @@ public class DeleteTaskCommand extends Command {
                 moduleToDeleteTaskFrom, deleteTaskFromModuleDescriptor);
 
         model.setModule(moduleToDeleteTaskFrom, moduleWithTaskDeleted);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
                 moduleWithTaskDeleted));
     }

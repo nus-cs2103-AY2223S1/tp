@@ -121,4 +121,16 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
+
+    //// navigation-related methods
+    /**
+     * Returns the status of Plannit.
+     */
+    boolean getHomeStatus();
+
+    /**
+     * Replaces home status with {@code isHome}.
+     * @param isHome The current status of Plannit
+     */
+    void setHomeStatus(boolean isHome);
 }

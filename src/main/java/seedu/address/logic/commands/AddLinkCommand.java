@@ -69,7 +69,6 @@ public class AddLinkCommand extends Command {
         }
 
         model.setModule(moduleToEdit, editedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_ADD_LINK_SUCCESS, editedModule));
     }
 

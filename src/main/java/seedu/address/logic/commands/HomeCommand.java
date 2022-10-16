@@ -20,6 +20,7 @@ public class HomeCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.setHomeStatus(true);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
