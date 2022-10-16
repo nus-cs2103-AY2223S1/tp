@@ -20,6 +20,7 @@ import soconnect.logic.parser.ArgumentMultimap;
 import soconnect.logic.parser.ArgumentTokenizer;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.search.ContactContainsAllKeywordsPredicate;
 import soconnect.model.person.search.ContactContainsAnyKeywordsPredicate;

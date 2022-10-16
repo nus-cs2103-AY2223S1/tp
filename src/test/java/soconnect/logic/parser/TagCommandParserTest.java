@@ -13,6 +13,7 @@ import soconnect.logic.commands.TagEditCommand;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.SoConnect;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.person.Person;
 import soconnect.model.tag.Tag;
@@ -32,7 +33,7 @@ class TagCommandParserTest {
     @Test
     @Disabled
     public void parseCommand_add() throws Exception {
-        Model model = new ModelManager(new SoConnect(), new UserPrefs());
+        Model model = new ModelManager(new SoConnect(), new TodoList(), new UserPrefs());
         Tag tag = new Tag("nothing");
         Person person = new PersonBuilder().build();
         model.addTag(new Tag("nothing"));
