@@ -17,6 +17,7 @@ import hobbylist.testutil.Assert;
 import hobbylist.testutil.HobbyListBuilder;
 import hobbylist.testutil.TypicalActivities;
 
+
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();

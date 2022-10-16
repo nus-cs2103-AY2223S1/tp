@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import hobbylist.model.Model;
 import hobbylist.model.ModelManager;
 import hobbylist.model.UserPrefs;
-import hobbylist.model.activity.NameContainsKeywordsPredicate;
+import hobbylist.model.activity.NameOrDescContainsKeywordsPredicate;
 import hobbylist.testutil.TypicalActivities;
 
 /**
@@ -26,10 +26,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        NameOrDescContainsKeywordsPredicate firstPredicate =
+                new NameOrDescContainsKeywordsPredicate(Collections.singletonList("first"));
+        NameOrDescContainsKeywordsPredicate secondPredicate =
+                new NameOrDescContainsKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -54,7 +54,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noActivityFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameOrDescContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleActivitiesFound() {
         String expectedMessage = String.format(MESSAGE_ACTIVITIES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Charlotte Exercise Chicken");
+        NameOrDescContainsKeywordsPredicate predicate = preparePredicate("Charlotte Exercise Chicken");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredActivityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,7 +75,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private NameOrDescContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new NameOrDescContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
