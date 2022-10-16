@@ -28,10 +28,16 @@
                     </Label>
                     <Label fx:id="itemName" text="\$first" styleClass="cell_big_label_item" />
                 </HBox>
+
                 <HBox fx:id="quantityRow" alignment="CENTER" styleClass="quantity-row" spacing="10.0">
                     <Region styleClass="quantity-icon" id="quantityIcon"/>
                     <Label fx:id="quantity" styleClass="quantity-text" text="\$quantity" wrapText="true"/>
+                    <Region styleClass="sellPrice-icon" id="sellPriceIcon"/>
+                    <Label fx:id="sellPrice" styleClass="quantity-text" text="\$sellPrice" wrapText="true"/>
+                    <Region styleClass="costPrice-icon" id="costPriceIcon"/>
+                    <Label fx:id="costPrice" styleClass="quantity-text" text="\$costPrice" wrapText="true"/>
                 </HBox>
+
             </VBox>
             <VBox id="descriptionBox">
                     <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />

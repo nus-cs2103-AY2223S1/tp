@@ -1,10 +1,12 @@
 package tracko.testutil;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 
 import tracko.model.items.Description;
 import tracko.model.items.Item;
 import tracko.model.items.ItemName;
+import tracko.model.items.Price;
 import tracko.model.items.Quantity;
 
 /**
@@ -62,8 +64,12 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * Builds an item.
+     */
     public Item build() {
-        return new Item(itemName, description, quantity, new HashSet<>());
+        return new Item(itemName, description, quantity, new HashSet<>(),
+                new Price(new BigDecimal("0")), new Price(new BigDecimal("0")));
     }
 
 }
