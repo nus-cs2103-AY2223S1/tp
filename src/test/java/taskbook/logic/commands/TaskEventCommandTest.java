@@ -1,17 +1,28 @@
 package taskbook.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static taskbook.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.commands.modelstubs.ModelStub;
+import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
+import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
+import taskbook.logic.commands.tasks.TaskAddCommand;
+import taskbook.logic.commands.tasks.TaskDeadlineCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
 import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
+import taskbook.model.task.Event;
 import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.PersonBuilder;
 
 public class TaskEventCommandTest {
 
@@ -46,6 +57,30 @@ public class TaskEventCommandTest {
     public void constructor_nullLocalDate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
                 new TaskEventCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO, null));
+    }
+
+    @Test
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Event validTask = new Event(validPerson, ASSIGNMENT_FROM, DESCRIPTION_ONE, false, DATE_TWO);
+        CommandResult commandResult = new TaskEventCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment(), validTask.getDate()).execute(modelStub);
+
+        assertEquals(String.format(TaskEventCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.getTasks());
+    }
+
+    @Test
+    public void execute_personAssociatedWithTaskNotFound_throwsCommandException() {
+        Person johnny = new PersonBuilder().withName("Johnny").build();
+        TaskEventCommand taskEventCommand = new TaskEventCommand(NAME_AMY, DESCRIPTION_ONE,
+                ASSIGNMENT_TO, DATE_ONE);
+        ModelStub modelStub = new ModelStubWithPerson(johnny);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_PERSON_NOT_FOUND, () -> taskEventCommand.execute(modelStub));
     }
 
     @Test

@@ -25,7 +25,7 @@ public class TaskBuilder {
         person = new PersonBuilder().build();
         assignment = Assignment.FROM;
         description = new Description(DEFAULT_DESCRIPTION);
-        isDone = true;
+        isDone = false;
     }
 
     /**

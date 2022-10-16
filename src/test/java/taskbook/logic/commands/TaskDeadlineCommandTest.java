@@ -1,17 +1,29 @@
 package taskbook.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static taskbook.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.commands.modelstubs.ModelStub;
+import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
+import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
+import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskDeadlineCommand;
+import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.model.person.Name;
+import taskbook.model.person.Person;
+import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
+import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.PersonBuilder;
+import taskbook.testutil.TaskBuilder;
 
 public class TaskDeadlineCommandTest {
 
@@ -46,6 +58,30 @@ public class TaskDeadlineCommandTest {
     public void constructor_nullLocalDate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
                 new TaskDeadlineCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO, null));
+    }
+
+    @Test
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Deadline validTask = new Deadline(validPerson, ASSIGNMENT_FROM, DESCRIPTION_ONE, false, DATE_TWO);
+        CommandResult commandResult = new TaskDeadlineCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment(), validTask.getDate()).execute(modelStub);
+
+        assertEquals(String.format(TaskDeadlineCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.getTasks());
+    }
+
+    @Test
+    public void execute_personAssociatedWithTaskNotFound_throwsCommandException() {
+        Person johnny = new PersonBuilder().withName("Johnny").build();
+        TaskDeadlineCommand taskDeadlineCommand = new TaskDeadlineCommand(NAME_AMY, DESCRIPTION_ONE,
+                ASSIGNMENT_TO, DATE_ONE);
+        ModelStub modelStub = new ModelStubWithPerson(johnny);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_PERSON_NOT_FOUND, () -> taskDeadlineCommand.execute(modelStub));
     }
 
     @Test

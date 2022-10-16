@@ -1,15 +1,31 @@
 package taskbook.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static taskbook.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import taskbook.logic.commands.contacts.ContactAddCommand;
+import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.commands.modelstubs.ModelStub;
+import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
+import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
+import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
+import taskbook.model.ReadOnlyTaskBook;
+import taskbook.model.TaskBook;
 import taskbook.model.person.Name;
+import taskbook.model.person.Person;
 import taskbook.model.task.Description;
+import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.PersonBuilder;
+import taskbook.testutil.TaskBuilder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TaskTodoCommandTest {
 
@@ -33,6 +49,29 @@ public class TaskTodoCommandTest {
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, null));
+    }
+
+    @Test
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Task validTask = new TaskBuilder().withPerson(validPerson).build();
+        CommandResult commandResult = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment()).execute(modelStub);
+
+        assertEquals(String.format(TaskTodoCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.getTasks());
+    }
+
+    @Test
+    public void execute_personAssociatedWithTaskNotFound_throwsCommandException() {
+        Person johnny = new PersonBuilder().withName("Johnny").build();
+        TaskTodoCommand taskTodoCommand = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        ModelStub modelStub = new ModelStubWithPerson(johnny);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_PERSON_NOT_FOUND, () -> taskTodoCommand.execute(modelStub));
     }
 
     @Test
