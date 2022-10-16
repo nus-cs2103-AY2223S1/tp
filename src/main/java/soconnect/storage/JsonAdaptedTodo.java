@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.model.todo.Description;
+import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
 
 /**
@@ -15,13 +16,15 @@ class JsonAdaptedTodo {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Todo's %s field is missing!";
 
     private final String description;
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedTodo} with the given details.
      */
     @JsonCreator
-    public JsonAdaptedTodo(@JsonProperty("description") String description) {
+    public JsonAdaptedTodo(@JsonProperty("description") String description, @JsonProperty("priority") String priority) {
         this.description = description;
+        this.priority = priority;
     }
 
     /**
@@ -29,6 +32,7 @@ class JsonAdaptedTodo {
      */
     public JsonAdaptedTodo(Todo source) {
         description = source.getDescription().value;
+        priority = source.getPriority().priority;
     }
 
     /**
@@ -45,7 +49,16 @@ class JsonAdaptedTodo {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
-        return new Todo(modelDescription);
+
+        if (priority == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                Priority.class.getSimpleName()));
+        }
+        if (!Priority.isValidPriority(priority)) {
+            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+        }
+        final Priority modelPriority = new Priority(priority);
+        return new Todo(modelDescription, modelPriority);
     }
 
 }

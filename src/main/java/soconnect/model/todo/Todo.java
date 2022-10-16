@@ -10,15 +10,18 @@ import java.util.Objects;
  */
 public class Todo {
     private final Description description;
+    private final Priority priority;
 
     /**
      * Constructs a Todo.
      *
      * @param description Must not be null.
+     * @param priority    Must not be null.
      */
-    public Todo(Description description) {
-        requireAllNonNull(description);
+    public Todo(Description description, Priority priority) {
+        requireAllNonNull(description, priority);
         this.description = description;
+        this.priority = priority;
     }
 
     public Description getDescription() {
@@ -29,12 +32,12 @@ public class Todo {
         return "Datetime";
     }
 
-    public String getPriority() {
-        return "Priority";
+    public Priority getPriority() {
+        return this.priority;
     }
 
     /**
-     * Returns true if both todos have the same description.
+     * Returns true if both todos have the same description and priority.
      */
     @Override
     public boolean equals(Object other) {
@@ -47,18 +50,19 @@ public class Todo {
         }
 
         Todo otherTodo = (Todo) other;
-        return otherTodo.getDescription().equals(description);
+        return otherTodo.getDescription().equals(description)
+                && otherTodo.getPriority().equals(priority);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description);
+        return Objects.hash(description, priority);
     }
 
     @Override
     public String toString() {
-        return description.toString();
+        return description.toString() + " " + priority.toString();
     }
 
 }

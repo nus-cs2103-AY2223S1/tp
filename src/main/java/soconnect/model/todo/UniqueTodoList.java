@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import soconnect.model.todo.exceptions.DuplicateTodoException;
 import soconnect.model.todo.exceptions.TodoNotFoundException;
 
@@ -39,6 +40,7 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new DuplicateTodoException();
         }
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -59,6 +61,7 @@ public class UniqueTodoList implements Iterable<Todo> {
         }
 
         internalList.set(index, editedTodo);
+        sort();
     }
 
     /**
@@ -75,6 +78,7 @@ public class UniqueTodoList implements Iterable<Todo> {
     public void setTodos(UniqueTodoList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -88,6 +92,15 @@ public class UniqueTodoList implements Iterable<Todo> {
         }
 
         internalList.setAll(todos);
+        sort();
+    }
+
+    /**
+     * Sort the TodoList in order of decreasing priority.
+     */
+    private void sort() {
+        SortedList<Todo> sorted = internalList.sorted((curr, next) -> curr.getPriority().compareTo(next.getPriority()));
+        internalList.setAll(sorted);
     }
 
     /**

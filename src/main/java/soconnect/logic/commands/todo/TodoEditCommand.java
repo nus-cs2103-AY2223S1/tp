@@ -3,6 +3,7 @@ package soconnect.logic.commands.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.todo.Description;
+import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
 
 /**
@@ -29,7 +31,8 @@ public class TodoEditCommand extends TodoCommand {
         + "by the index number used in the displayed todo list. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
+        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+        + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " 1 "
         + PREFIX_DESCRIPTION + "Watch math lecture recording ";
 
@@ -82,8 +85,9 @@ public class TodoEditCommand extends TodoCommand {
         assert todoToEdit != null;
 
         Description updatedDescription = editTodoDescriptor.getDescription().orElse(todoToEdit.getDescription());
+        Priority updatedPriority = editTodoDescriptor.getPriority().orElse(todoToEdit.getPriority());
 
-        return new Todo(updatedDescription);
+        return new Todo(updatedDescription, updatedPriority);
     }
 
     @Override
@@ -110,6 +114,7 @@ public class TodoEditCommand extends TodoCommand {
      */
     public static class EditTodoDescriptor {
         private Description description;
+        private Priority priority;
 
         public EditTodoDescriptor() {}
 
@@ -118,13 +123,14 @@ public class TodoEditCommand extends TodoCommand {
          */
         public EditTodoDescriptor(EditTodoDescriptor toCopy) {
             setDescription(toCopy.description);
+            setPriority(toCopy.priority);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description);
+            return CollectionUtil.isAnyNonNull(description, priority);
         }
 
         public void setDescription(Description description) {
@@ -133,6 +139,14 @@ public class TodoEditCommand extends TodoCommand {
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
+        }
+
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
         }
 
         @Override
@@ -150,7 +164,7 @@ public class TodoEditCommand extends TodoCommand {
             // state check
             EditTodoDescriptor e = (EditTodoDescriptor) other;
 
-            return getDescription().equals(e.getDescription());
+            return getDescription().equals(e.getDescription()) && getPriority().equals(e.getPriority());
         }
     }
 }

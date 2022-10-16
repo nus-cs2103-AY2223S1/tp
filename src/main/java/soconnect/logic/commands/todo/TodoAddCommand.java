@@ -2,6 +2,7 @@ package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
@@ -17,9 +18,10 @@ public class TodoAddCommand extends TodoCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD + ": Adds a todo to SoConnect. "
         + "Parameters: "
-        + PREFIX_DESCRIPTION + "DESCRIPTION \n"
+        + PREFIX_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_PRIORITY + "PRIORITY \n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
-        + PREFIX_DESCRIPTION + "Watch latest math lecture ";
+        + PREFIX_DESCRIPTION + "Watch latest math lecture " + PREFIX_PRIORITY + "LOW";
 
     public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in SoConnect";

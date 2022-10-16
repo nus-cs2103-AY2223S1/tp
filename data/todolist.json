@@ -1,7 +1,9 @@
 {
   "todos" : [ {
-    "description" : "1"
+    "description" : "Test1",
+    "priority" : "HIGH"
   }, {
-    "description" : "333"
+    "description" : "Test2",
+    "priority" : "MEDIUM"
   } ]
 }
