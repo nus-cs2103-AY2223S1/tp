@@ -89,7 +89,7 @@ public class ModuleViewCommandTest {
         // null -> returns false
         assertFalse(viewFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different module -> returns false
         assertFalse(viewFirstCommand.equals(viewSecondCommand));
     }
 
