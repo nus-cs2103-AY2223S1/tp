@@ -166,30 +166,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         bridges.add(b);
     }
 
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeBridge(PersonTaskBridge key) {
-        bridges.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeBridge(Person key) {
-        bridges.remove(key);
-    }
-
-    /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
-     */
-    public void removeBridge(Task key) {
-        bridges.remove(key);
-    }
-
     //// util methods
 
     @Override
