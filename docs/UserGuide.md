@@ -13,7 +13,8 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
   - Locating persons by name: [`findperson`](#locating-persons-by-name-finduser)
   - Deleting a person : [`deleteperson`](#deleting-a-person--deleteuser)
   - Adding a group: [`addgroup`](#creating-a-group--addgroup)
-  - Add member to  group: [`addmember`](#adding-a-member--addmember)
+  - Add member to group: [`addmember`](#adding-a-member--addmember)
+  - Delete member from group: [`deletemember`](#deleting-a-member--deletemember)
   - Assign member a task: [`assigntask`](#assigning-a-task-to-a-person-assigntask)
   - Delete task from member [`deletetask`](#deleting-a-task-from-a-person-deletetask)
   - Locate group by name: [`display`](#display-a-group--display)
@@ -149,13 +150,23 @@ Examples:
 
 Adds an existing person to an existing group in TABS.
 
-Format: `addmember GROUP NAME`
+Format: `addmember g/GROUP n/NAME`
 
 Examples:
 
-* `addmember CS2103T UserName`
-* `addmember CS2101 DefaultUser`
+* `addmember g/CS2103T n/UserName`
+* `addmember g/CS2101 n/DefaultUser`
 
+### Deleting a member : `deletemember`
+
+Deletes an existing person from an existing group in TABS.
+
+Format: `deletemember g/GROUP n/NAME`
+
+Examples:
+
+* `deletemember g/CS2103T n/UserName`
+* `deletemember g/CS2101 n/DefaultUser`
 ### Assigning a task to a person: `assigntask`
 
 Assigns a task to a person with a group in TABS.
@@ -230,6 +241,7 @@ Format: `exit`
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
 **Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
 **Assign Task** | `assigntask NAME [g/GROUP] [task/TASK]` <br> e.g. `assigntask John g/CS2103T task/TeamProject`
+**Delete Member** | `deletemember [g/GROUP] [n/NAME]` <br> e.g. `deletemember g/CS2103T n/James Lee, deletemember g/CS2101 n/DefaultUser`
 **Delete Task** | `deletetask NAME [g/GROUP] [task/TASK]` <br> e.g. `deletetask John g/CS2103T task/TeamProject`
 **Display Group** | `display GROUP` <br> e.g. `display CS2103T`
 **Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`
