@@ -18,3 +18,12 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+#information {
+    -fx-text-fill: #B0B0B0;
+}
+
+#resultDisplay {
+    -fx-background-image: url("../images/texture_dirt.png");
+}
+

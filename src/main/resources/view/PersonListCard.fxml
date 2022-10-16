@@ -28,9 +28,12 @@
         </Label>
             <Label fx:id="minecraftName" styleClass="cell_big_label" text="\$mcName" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <VBox.margin>
+               <Insets bottom="8.0" />
+            </VBox.margin>
       </HBox>
       <FlowPane fx:id="tags" />
-         <Label fx:id="information" text="Label" wrapText="true" />
+         <Label fx:id="information" lineSpacing="2.5" text="Label" wrapText="true" />
     </VBox>
       <rowConstraints>
          <RowConstraints />
