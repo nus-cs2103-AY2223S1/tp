@@ -179,7 +179,7 @@ public class ParserUtil {
     public static Price parsePrice(String price) throws ParseException {
         requireNonNull(price);
         String trimmedPrice = price.trim();
-        BigDecimal bigDecimalPrice = new BigDecimal(price);
+        BigDecimal bigDecimalPrice = new BigDecimal(trimmedPrice);
         if (!Price.isValidPrice(bigDecimalPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }

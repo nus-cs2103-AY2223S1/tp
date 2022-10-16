@@ -32,10 +32,10 @@
                     <Region styleClass="quantity-icon" id="quantityIcon"/>
                     <Label fx:id="quantity" styleClass="quantity-text" text="\$quantity" wrapText="true"/>
                 </HBox>
-                </VBox>
-                <VBox id="descriptionBox">
+            </VBox>
+            <VBox id="descriptionBox">
                     <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
-                </VBox>
+            </VBox>
         </VBox>
     </GridPane>
 </HBox>

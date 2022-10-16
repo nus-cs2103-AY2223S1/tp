@@ -190,7 +190,7 @@
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: transparent;
+    -fx-background-color: #E9EBFF;
 }
 
 .context-menu .label {
@@ -490,15 +490,15 @@
 }
 
 #itemListView .list-cell {
-    -fx-padding: 2px ;
-    -fx-background-color: transparent, -fx-background ;
-    -fx-background-insets: 0px, 2px ;
+    -fx-padding: 2px;
+    -fx-background-color: transparent, -fx-background;
+    -fx-background-insets: 0px, 2px;
 }
 
-#itemListView .list-cell:empty {
-    -fx-padding: 2px ;
-    -fx-background-color: transparent ;
-    -fx-background-insets: 0 ;
+#orderListView .list-cell:empty {
+    -fx-padding: 2px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
 }
 
 #orderListView {
@@ -545,6 +545,7 @@
 }
 
 #resultDisplay{
+    -fx-background-color: #E8E8E8;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-padding: 5 10 5 10;
     -fx-background-radius: 10px;
