@@ -6,9 +6,11 @@ import java.util.stream.Stream;
 
 import foodwhere.model.review.Review;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -30,6 +32,8 @@ public class ReviewCard extends UiPart<Region> {
 
     public final Review review;
 
+    @FXML
+    private GridPane gridPane;
     @FXML
     private HBox cardPane;
     @FXML
@@ -71,7 +75,7 @@ public class ReviewCard extends UiPart<Region> {
             tags.setText(assigneesNames);
             tagsLabel.setText("Tag:");
         } else {
-            tagsLabel.setText("");
+            removeRow(gridPane, GridPane.getRowIndex(tagsLabel));
         }
     }
 
@@ -112,6 +116,48 @@ public class ReviewCard extends UiPart<Region> {
         }
 
         ratingIcon.setImage(ratingIconImage);
+    }
+
+    /**
+     * Adapted from https://stackoverflow.com/a/70961583.
+     * Gets row index constrain for given node, forcefully as integer: 0 as null.
+     * @param node Node to look up the constraint for.
+     * @return The row index as primitive integer.
+     */
+    public static int getRowIndexAsInteger(Node node) {
+        final var a = GridPane.getRowIndex(node);
+        if (a == null) {
+            return 0;
+        }
+        return a;
+    }
+
+    /**
+     * Adapted from https://stackoverflow.com/a/70961583.
+     * Removes row from grid pane by index.
+     *
+     * @param grid Grid pane to be affected
+     * @param targetRowIndexIntegerObject Target row index to be removed. Integer object type,
+     *                                    because for some reason `getRowIndex` returns null
+     *                                    for children at 0th row.
+     */
+    private void removeRow(GridPane grid, Integer targetRowIndexIntegerObject) {
+        int targetRowIndex = targetRowIndexIntegerObject == null ? 3 : targetRowIndexIntegerObject;
+
+        // Remove children from row
+        grid.getChildren().removeIf(node -> (getRowIndexAsInteger(node) == targetRowIndex));
+
+        // Update indexes of other rows, i.e., shift rows up
+        grid.getChildren().forEach(node -> {
+            int rowIndex = getRowIndexAsInteger(node);
+
+            if (targetRowIndex < rowIndex) {
+                GridPane.setRowIndex(node, rowIndex - 1);
+            }
+        });
+
+        // Remove row constraints
+        grid.getRowConstraints().remove(targetRowIndex);
     }
 
     @Override
