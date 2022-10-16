@@ -35,7 +35,8 @@ public class BillTest {
         assertFalse(Bill.isValidBill("1.")); // end in decimal point
         assertFalse(Bill.isValidBill("1.5")); // only 1 decimal place
         assertFalse(Bill.isValidBill("1.500")); // more than 2 decimal places
-        assertFalse(Bill.isValidBill("1,000")); // comma
+        assertFalse(Bill.isValidBill("1,000")); // comma separator
+        assertFalse(Bill.isValidBill("1 000")); // space separator
 
 
         // valid bill
