@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.TagCommandGroup;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -128,8 +129,8 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        if (Tag.isBannedTagName(trimmedTag)) {
-            throw new ParseException(String.format(Tag.MESSAGE_BANNED_TAG_NAME, trimmedTag));
+        if (TagCommandGroup.isBannedTagName(trimmedTag)) {
+            throw new ParseException(String.format(TagCommandGroup.MESSAGE_BANNED_TAG_NAME, trimmedTag));
         }
         return new Tag(trimmedTag);
     }

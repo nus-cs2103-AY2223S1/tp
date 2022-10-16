@@ -3,7 +3,6 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -12,8 +11,6 @@ import java.util.Collection;
  */
 public class Tag {
 
-    public static final String[] BANNED_TAG_NAMES = new String[]{"create", "c", "remove", "r"};
-    public static final String MESSAGE_BANNED_TAG_NAME = "The following tag name is not allowed: \n%1$s";
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and "
             + "cannot contain only numerals";
     public static final String VALIDATION_REGEX_ALPHA_NUMERIC = "\\p{Alnum}+";
@@ -37,13 +34,6 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return !test.matches(VALIDATION_REGEX_ONLY_NUMERALS) && test.matches(VALIDATION_REGEX_ALPHA_NUMERIC);
-    }
-
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isBannedTagName(String test) {
-        return Arrays.asList(BANNED_TAG_NAMES).stream().anyMatch(test::equals);
     }
 
     @Override
