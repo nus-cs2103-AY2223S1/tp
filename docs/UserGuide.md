@@ -132,18 +132,11 @@ Note: Address cannot be empty. It must contain at least 1 character.
 Note: Email cannot be empty. It must fulfil the above requirements.
 ```
 
-6. Class Date:
-    - Class Date must be in the format YYYY-MM-DD {start time}-{end time}.
-
-```yaml
-Note: Start time and End time must be in 24hour format.
-```
-
-Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE`
+Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS`
 
 Example:
 
-- `add n/Ben Tan p/87201223 np/90125012 a/Avenue 712 e/BenTan@gmail.com dt/2022-04-19 1500-1600`
+- `add n/Ben Tan p/87201223 np/90125012 e/BenTan@gmail.com a/Avenue 712`
 
 ![Add](images/UiAdd.png)
 
@@ -169,7 +162,7 @@ Edits an existing student in the list.
 - Additional notes
 
 1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow 
-the same convention as [adding a student](#adding-a-student).
+the same convention as [adding a student](#adding-a-student-add).
 
 2. Amount paid:
     - Amount paid can be an integer or a double.
@@ -259,7 +252,7 @@ Format: `delete INDEX`
 
 Examples:
 - `list` followed by `delete 2` deletes the 2nd person in the Student's Details panel.
-- `find Betsy` followed by `delete 1` deletes the 1st person in the Stundent's Details panel.
+- `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
 ❗ Caution: Deleting a student is irreversible! Please ensure the correct index number.
