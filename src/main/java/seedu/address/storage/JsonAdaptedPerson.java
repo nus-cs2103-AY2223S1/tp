@@ -141,7 +141,8 @@ class JsonAdaptedPerson {
         final Monthly modelMonthly = new Monthly(monthly);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome, modelMonthly, modelTags);
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress,
+                modelIncome, modelMonthly, modelTags);
         newPerson.setAppointments(modelAppointments);
 
         return newPerson;
