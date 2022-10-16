@@ -128,7 +128,6 @@ public class ModelManager implements Model {
         }
     }
 
-    // =========== Filtered Person List ===========================================================
     @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
@@ -142,6 +141,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Set<Tag> deleteTags(Set<Tag> tags) {
+        requireNonNull(tags);
+        Set<Tag> deletedTags = addressBook.deleteTags(tags);
+        return deletedTags;
+    }
+
+    @Override
     public void removeTags(Person target, Collection<Tag> tags) {
         Person untaggedPerson = addressBook.removeTags(target, tags);
         clearFiltersInFilteredPersonList();
@@ -151,6 +157,7 @@ public class ModelManager implements Model {
         }
     }
 
+    // =========== Filtered Person List ===========================================================
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}

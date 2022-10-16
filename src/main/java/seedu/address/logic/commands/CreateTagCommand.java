@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 
 /**
- *  Creates a tag in the address book.
+ *  Creates tag(s) in the address book.
  */
 public class CreateTagCommand extends TagCommandGroup {
 
@@ -21,10 +21,10 @@ public class CreateTagCommand extends TagCommandGroup {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates tags with the names given. "
             + "Parameters: "
             + "[TAG1] [TAG2] ... \n"
-            + "Example: " + COMMAND_WORD + " tag1 tag2 tag3";
+            + "Example: " + COMMAND_WORD + COMMAND_SPECIFIER + " tag1 tag2 tag3";
 
     public static final String MESSAGE_SUCCESS = "New tags created: %1$s";
-    public static final String MESSAGE_DUPLICATE_TAGS = "Tag(s) %1$s already exist in the address book";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Tag(s) %1$s already exist in Rapporrbook!";
 
     private final Set<Tag> tagsToAdd;
 

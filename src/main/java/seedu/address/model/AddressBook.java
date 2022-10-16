@@ -108,6 +108,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// tag operations
+
     /**
      * Removes the given tags from the person
      * {@code tagsToRemove} must already be tagged to the person.
@@ -124,8 +126,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return untaggedPerson;
     }
 
-    //// tag operations
-
     /**
      * Returns true if the address book contains the given tag.
      */
@@ -140,6 +140,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void createTag(Tag tag) {
         requireNonNull(tag);
         tags.add(tag);
+    }
+
+    /**
+     * Delete tags from address book.
+     */
+    public Set<Tag> deleteTags(Set<Tag> tagsToDelete) {
+        Set<Tag> deletedTags = tags.remove(tagsToDelete);
+        persons.asUnmodifiableObservableList()
+                .forEach(person -> removeTags(person, deletedTags));
+        return deletedTags;
     }
 
     //// util methods
@@ -170,8 +180,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons))
-                && tags.equals(((AddressBook) other).tags);
+                        && persons.equals(((AddressBook) other).persons))
+                        && tags.equals(((AddressBook) other).tags);
     }
 
     @Override

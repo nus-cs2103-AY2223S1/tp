@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -202,6 +203,11 @@ public class CommandTestUtil {
 
         @Override
         public void addTag(Tag tag) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public Set<Tag> deleteTags(Set<Tag> tag) {
             throw new AssertionError("This method should not be called");
         }
 

@@ -25,9 +25,24 @@ public class TagSet implements Iterable<Tag> {
     /**
      * Removes the specified tag from the set.
      */
-    public void remove(Tag toRemove) {
+    public Tag remove(Tag toRemove) {
         requireNonNull(toRemove);
-        internalSet.remove(toRemove);
+        boolean hasChanged = internalSet.remove(toRemove);
+        if (!hasChanged) {
+            return null;
+        }
+        return toRemove;
+    }
+
+    /**
+     * Removes the specified tags from the set.
+     */
+    public Set<Tag> remove(Set<Tag> toRemove) {
+        requireNonNull(toRemove);
+        Set<Tag> intersection = new HashSet<>(internalSet);
+        intersection.retainAll(toRemove);
+        internalSet.removeAll(toRemove);
+        return intersection;
     }
 
     /**
@@ -42,7 +57,7 @@ public class TagSet implements Iterable<Tag> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagSet // instanceof handles nulls
-                && internalSet.equals(((TagSet) other).internalSet));
+                        && internalSet.equals(((TagSet) other).internalSet));
     }
 
     /**
