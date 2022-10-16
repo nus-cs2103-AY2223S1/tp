@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -21,6 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.NormalTag;
 import seedu.address.model.tag.PlanTag;
 import seedu.address.model.tag.RiskTag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -99,10 +103,12 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<Appointment> personAppointments = new ArrayList<>();
+        final MaximumSortedList<Appointment> modelAppointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
-            personAppointments.add(jsonAdaptedAppointment.toModelType());
+            modelAppointments.add(jsonAdaptedAppointment.toModelType());
         }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -134,6 +140,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
         if (!IncomeLevel.isValidIncome(income)) {
             throw new IllegalValueException(IncomeLevel.MESSAGE_CONSTRAINTS);
         }
@@ -162,9 +169,11 @@ class JsonAdaptedPerson {
 
         final Set<NormalTag> modelTags = new HashSet<>(personTags);
         final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
+
         Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome,
                 modelMonthly, modelRiskTag, modelPlanTag, modelTags);
         newPerson.setAppointments(modelAppointments);
+
         return newPerson;
     }
 

@@ -1,11 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
@@ -125,9 +128,10 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withAppointments(String... appointments) {
-        Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
-        descriptor.setAppointments(appointmentSet);
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
+                .map(DateTime::new).map(Appointment::new).forEach(appointmentList::add);
+        descriptor.setAppointments(appointmentList);
         return this;
     }
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -10,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
@@ -116,9 +118,10 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
      */
-    public static Set<Appointment> parseAppointments(Collection<String> datesAndTimes) throws ParseException {
+    public static MaximumSortedList<Appointment> parseAppointments(Collection<String> datesAndTimes) {
         requireNonNull(datesAndTimes);
-        final Set<Appointment> appointmentSet = new HashSet<>();
+        final MaximumSortedList<Appointment> appointmentSet =
+                new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
         for (String dateAndTime : datesAndTimes) {
             appointmentSet.add(parseAppointment(dateAndTime));
         }

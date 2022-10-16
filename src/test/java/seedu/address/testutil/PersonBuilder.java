@@ -1,8 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -38,7 +41,7 @@ public class PersonBuilder {
     private IncomeLevel income;
     private Monthly monthly;
     private Set<NormalTag> tags;
-    private Set<Appointment> appointments;
+    private MaximumSortedList<Appointment> appointments;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -53,7 +56,7 @@ public class PersonBuilder {
         income = new IncomeLevel(DEFAULT_INCOME);
         monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
-        appointments = new HashSet<>();
+        appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
     }
 
     /**
@@ -69,7 +72,7 @@ public class PersonBuilder {
         riskTag = personToCopy.getRiskTag();
         planTag = personToCopy.getPlanTag();
         tags = new HashSet<>(personToCopy.getTags());
-        appointments = new HashSet<>(personToCopy.getAppointments());
+        appointments = new MaximumSortedList<>(personToCopy.getAppointments());
     }
 
     /**

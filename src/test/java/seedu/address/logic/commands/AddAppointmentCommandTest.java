@@ -18,14 +18,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.person.Appointment.EMPTY_APPOINTMENTS;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -34,6 +32,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -66,7 +65,7 @@ public class AddAppointmentCommandTest {
         expectedModel.addPerson(new PersonBuilder().build());
         actualModel.addPerson(new PersonBuilder().build());
 
-        Set<Appointment> appointments = new HashSet<>();
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
         Person expectedPerson = expectedModel.getAddressBook().getPersonList().get(0);
@@ -88,7 +87,7 @@ public class AddAppointmentCommandTest {
         expectedModel.addPerson(new PersonBuilder().build());
         actualModel.addPerson(new PersonBuilder().build());
 
-        Set<Appointment> appointments = new HashSet<>();
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
@@ -110,7 +109,7 @@ public class AddAppointmentCommandTest {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
         testModel.addPerson(new PersonBuilder().build());
 
-        Set<Appointment> appointments = new HashSet<>();
+        MaximumSortedList<Appointment> appointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
         appointments.add(new Appointment(new DateTime(DateTimeParser.parseLocalDateTimeFromString(
                 VALID_APPOINTMENT_21_JAN_2023))));
         Person testPerson = testModel.getAddressBook().getPersonList().get(0);
