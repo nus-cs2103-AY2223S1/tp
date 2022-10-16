@@ -1,5 +1,5 @@
 package seedu.address.logic.commands;
-
+// TODO: Uncomment when AddSupplierCommand is done
 //import static java.util.Objects.requireNonNull;
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,51 +21,55 @@ package seedu.address.logic.commands;
 //import seedu.address.model.ReadOnlyAddressBook;
 //import seedu.address.model.ReadOnlyUserPrefs;
 //import seedu.address.model.person.Buyer;
-//import seedu.address.model.person.Deliverer;
-//import seedu.address.model.person.Person;
 //import seedu.address.model.person.Supplier;
+//import seedu.address.model.person.Deliverer;
+//import seedu.address.model.order.Order;
+//import seedu.address.model.pet.Pet;
 //import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
-//
+
+public class AddSupplierCommandTest {
 //    @Test
-//    public void constructor_nullPerson_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
+//    public void constructor_nullSupplier_throwsNullPointerException() {
+//        assertThrows(NullPointerException.class, () -> new AddSupplierCommand(null));
 //    }
 //
 //    @Test
-//    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-//        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-//        Person validPerson = new PersonBuilder().build();
+//    public void execute_supplierAcceptedByModel_addSuccessful() throws Exception {
+//        AddSupplierCommandTest.ModelStubAcceptingSupplierAdded modelStub =
+//                new AddSupplierCommandTest.ModelStubAcceptingSupplierAdded();
+//        Supplier validSupplier = new PersonBuilder().buildSupplier();
 //
-//        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
+//        CommandResult commandResult = new AddSupplierCommand(validSupplier).execute(modelStub);
 //
-//        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-//        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+//        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier),
+//                commandResult.getFeedbackToUser());
+//        assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
 //    }
 //
 //    @Test
-//    public void execute_duplicatePerson_throwsCommandException() {
-//        Person validPerson = new PersonBuilder().build();
-//        AddPersonCommand addCommand = new AddPersonCommand(validPerson);
-//        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+//    public void execute_duplicateSupplier_throwsCommandException() {
+//        Supplier validSupplier = new PersonBuilder().buildSupplier();
+//        AddSupplierCommand addSupplierCommand = new AddSupplierCommand(validSupplier);
+//        AddSupplierCommandTest.ModelStub modelStub =
+//                new AddSupplierCommandTest.ModelStubWithSupplier(validSupplier);
 //
-//        assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON,
-//              () -> addCommand.execute(modelStub));
+//        assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER,
+//                () -> addSupplierCommand.execute(modelStub));
 //    }
 //
 //    @Test
 //    public void equals() {
-//        Person alice = new PersonBuilder().withName("Alice").build();
-//        Person bob = new PersonBuilder().withName("Bob").build();
-//        AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
-//        AddPersonCommand addBobCommand = new AddPersonCommand(bob);
+//        Supplier alice = new PersonBuilder().withName("Alice").buildSupplier();
+//        Supplier bob = new PersonBuilder().withName("Bob").buildSupplier();
+//        AddSupplierCommand addAliceCommand = new AddSupplierCommand(alice);
+//        AddSupplierCommand addBobCommand = new AddSupplierCommand(bob);
 //
 //        // same object -> returns true
 //        assertTrue(addAliceCommand.equals(addAliceCommand));
 //
 //        // same values -> returns true
-//        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice);
+//        AddSupplierCommand addAliceCommandCopy = new AddSupplierCommand(alice);
 //        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 //
 //        // different types -> returns false
@@ -74,7 +78,7 @@ public class AddCommandTest {
 //        // null -> returns false
 //        assertFalse(addAliceCommand.equals(null));
 //
-//        // different person -> returns false
+//        // different Supplier -> returns false
 //        assertFalse(addAliceCommand.equals(addBobCommand));
 //    }
 //
@@ -138,6 +142,16 @@ public class AddCommandTest {
 //        }
 //
 //        @Override
+//        public boolean hasPet(Pet pet) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public boolean hasOrder(Order order) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
 //        public void deleteBuyer(Buyer target) {
 //            throw new AssertionError("This method should not be called.");
 //        }
@@ -149,6 +163,16 @@ public class AddCommandTest {
 //
 //        @Override
 //        public void deleteDeliverer(Deliverer target) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public void deletePet(Pet target) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public void deleteOrder(Order target) {
 //            throw new AssertionError("This method should not be called.");
 //        }
 //
@@ -168,6 +192,16 @@ public class AddCommandTest {
 //        }
 //
 //        @Override
+//        public void addPet(Pet pet) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public void addOrder(Order order) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
 //        public void setBuyer(Buyer target, Buyer editedBuyer) {
 //            throw new AssertionError("This method should not be called.");
 //        }
@@ -179,6 +213,16 @@ public class AddCommandTest {
 //
 //        @Override
 //        public void setDeliverer(Deliverer target, Deliverer editedDeliverer) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public void setPet(Pet target, Pet editedPet) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public void setOrder(Order target, Order editedOrder) {
 //            throw new AssertionError("This method should not be called.");
 //        }
 //
@@ -198,6 +242,21 @@ public class AddCommandTest {
 //        }
 //
 //        @Override
+//        public ObservableList<Pet> getFilteredPetList() {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public ObservableList<Order> getFilteredOrderList() {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
+//        public ObservableList<Object> getFilteredMainList() {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//
+//        @Override
 //        public void updateFilteredBuyerList(Predicate<Buyer> predicate) {
 //            throw new AssertionError("This method should not be called.");
 //        }
@@ -212,42 +271,51 @@ public class AddCommandTest {
 //            throw new AssertionError("This method should not be called.");
 //        }
 //
-//    }
-//
-//    /**
-//     * A Model stub that contains a single person.
-//     */
-//    private class ModelStubWithPerson extends ModelStub {
-//        private final Person person;
-//
-//        ModelStubWithPerson(Person person) {
-//            requireNonNull(person);
-//            this.person = person;
-//        }
-//
-////        @Override
-////        public boolean hasPerson(Person person) {
-////            requireNonNull(person);
-////            return this.person.isSamePerson(person);
-////        }
-//    }
-//
-//    /**
-//     * A Model stub that always accept the person being added.
-//     */
-//    private class ModelStubAcceptingPersonAdded extends ModelStub {
-//        final ArrayList<Person> personsAdded = new ArrayList<>();
-//
 //        @Override
-//        public boolean hasPerson(Person person) {
-//            requireNonNull(person);
-//            return personsAdded.stream().anyMatch(person::isSamePerson);
+//        public void updateFilteredPetList(Predicate<Pet> predicate) {
+//            throw new AssertionError("This method should not be called.");
 //        }
 //
 //        @Override
-//        public void addPerson(Person person) {
-//            requireNonNull(person);
-//            personsAdded.add(person);
+//        public void updateFilteredOrderList(Predicate<Order> predicate) {
+//            throw new AssertionError("This method should not be called.");
+//        }
+//    }
+//
+//    /**
+//     * A Model stub that contains a single Supplier.
+//     */
+//    private class ModelStubWithSupplier extends ModelStub {
+//        private final Supplier supplier;
+//
+//        ModelStubWithSupplier(Supplier Supplier) {
+//            requireNonNull(Supplier);
+//            this.supplier = Supplier;
+//        }
+//
+//        @Override
+//        public boolean hasSupplier(Supplier Supplier) {
+//            requireNonNull(Supplier);
+//            return this.supplier.isSamePerson(Supplier);
+//        }
+//    }
+//
+//    /**
+//     * A Model stub that always accept the Supplier being added.
+//     */
+//    private class ModelStubAcceptingSupplierAdded extends AddSupplierCommandTest.ModelStub {
+//        final ArrayList<Supplier> suppliersAdded = new ArrayList<>();
+//
+//        @Override
+//        public boolean hasSupplier(Supplier Supplier) {
+//            requireNonNull(Supplier);
+//            return suppliersAdded.stream().anyMatch(Supplier::isSamePerson);
+//        }
+//
+//        @Override
+//        public void addSupplier(Supplier Supplier) {
+//            requireNonNull(Supplier);
+//            suppliersAdded.add(Supplier);
 //        }
 //
 //        @Override
@@ -255,5 +323,4 @@ public class AddCommandTest {
 //            return new AddressBook();
 //        }
 //    }
-
 }

@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 
 /**
  * The abstract base class of all AddPersonCommand variations,
- * including AddBuyerCommand, AddOrderCommand, AddPetCommand etc.
+ * including AddBuyerCommand, AddDelivererCommand, and AddSupplierCommand.
  */
 public abstract class AddPersonCommand extends Command {
 
