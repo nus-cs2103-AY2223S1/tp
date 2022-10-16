@@ -23,13 +23,12 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
      */
     public HidePatientsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
-
-        String trimmedArgs = args.trim();
-        String[] keywords = trimmedArgs.split("\\s+");
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             return new HidePatientsCommand(
                     new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }
+        String trimmedArgs = args.trim();
+        String[] keywords = trimmedArgs.split("\\s+");
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, HideAppointmentsCommand.MESSAGE_USAGE));
