@@ -19,6 +19,7 @@ public abstract class Command {
 
     /**
      * For debugging purposes only.
+     *
      * @return the command string representation.
      */
     public String toString() {

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Arrays;
+
 import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FindCommandPredicate;
@@ -25,6 +26,7 @@ public class FindCommandParser implements Parser<FindNameCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindNameCommand parse(String args) throws ParseException {
@@ -35,7 +37,7 @@ public class FindCommandParser implements Parser<FindNameCommand> {
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindNameCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindNameCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap =
@@ -54,7 +56,8 @@ public class FindCommandParser implements Parser<FindNameCommand> {
         }
 
         return new FindNameCommand(new FindCommandPredicate(Arrays.asList(foundName.toString(),
-            foundClass.toString(), foundSubjects.toString())));
+                                                                          foundClass.toString(),
+                                                                          foundSubjects.toString())));
     }
 
 }

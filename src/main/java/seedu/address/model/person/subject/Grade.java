@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class Grade {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grades should only contain an alphabet, and it should not be blank";
+        "Grades should only contain an alphabet, and it should not be blank";
 
     private HashMap<String, double[]> marks;
 
@@ -24,6 +24,10 @@ public class Grade {
         requireNonNull(command);
         marks = new HashMap<>();
         todoCommand = command;
+    }
+
+    public static boolean isValidGrade(String test) {
+        return true;
     }
 
     public double getCurrentPercentageObtained(HashMap<String, double[]> subjectMarks) {
@@ -39,19 +43,15 @@ public class Grade {
         return (totalMarks / totalWeightage);
     }
 
-    public static boolean isValidGrade(String test) {
-        return true;
+    @Override
+    public int hashCode() {
+        return marks.hashCode();
     }
 
     @Override
     public String toString() {
         double currentPercentageObtained = getCurrentPercentageObtained(marks);
         return String.format("Grade: %.1f", currentPercentageObtained);
-    }
-
-    @Override
-    public int hashCode() {
-        return marks.hashCode();
     }
 
 }
