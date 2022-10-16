@@ -27,11 +27,12 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added: %1$s";
     // public static final String MESSAGE_MISSING_DESCRIPTION = "A task must have a description";
+    // To be implemented later.
 
     private final Task newTask;
 
     /**
-     * Creates an AddTCommand to add the specified {@code Task}
+     * Creates an AddTaskCommand to add the specified {@code Task}
      */
     public AddTaskCommand(Task task) {
         requireNonNull(task);
@@ -42,7 +43,7 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.addT(newTask);
+        model.addTask(newTask);
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, newTask));
     }
 

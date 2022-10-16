@@ -1,7 +1,12 @@
 package seedu.address.model.task;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code task}'s {@code Description} and/or {@code Deadline}
@@ -10,6 +15,7 @@ import java.util.function.Predicate;
 public class TaskContainsKeywordsPredicate implements Predicate<Task> {
     private final List<Description> descriptionKeywords;
     private final List<Deadline> deadlineKeywords;
+    private final Set<Tag> tags;
 
     /**
      * Constructs an {@code TaskContainsKeywordsPredicate}.
@@ -21,6 +27,18 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
                                          List<Deadline> deadlineKeywords) {
         this.descriptionKeywords = descriptionKeywords;
         this.deadlineKeywords = deadlineKeywords;
+        tags = new HashSet<>();
+    }
+
+    /**
+     * Constructs an {@code TaskContainsKeywordsPredicate}.
+     *
+     * @param tags A set containing search terms for {@code Tag}.
+     */
+    public TaskContainsKeywordsPredicate(Set<Tag> tags) {
+        this.descriptionKeywords = new ArrayList<>();
+        this.deadlineKeywords = new ArrayList<>();
+        this.tags = tags;
     }
 
     /**
@@ -30,9 +48,10 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
      * @param  task Task that will be checked for matching keywords.
      * @return boolean indicating if task contains supplied keywords.
      */
+    // TODO Implement for tags
     @Override
     public boolean test(Task task) {
-        return task.containsKeywordsCaseInsensitive(descriptionKeywords, deadlineKeywords);
+        return task.containsKeywordsCaseInsensitive(descriptionKeywords, deadlineKeywords, tags);
     }
 
     @Override
@@ -48,6 +67,7 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         TaskContainsKeywordsPredicate castedOther = (TaskContainsKeywordsPredicate) other;
 
         return descriptionKeywords.equals(castedOther.descriptionKeywords)
-                && deadlineKeywords.equals(castedOther.deadlineKeywords);
+                && deadlineKeywords.equals(castedOther.deadlineKeywords)
+                && tags.equals(castedOther.tags);
     }
 }

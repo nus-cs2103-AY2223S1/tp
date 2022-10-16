@@ -27,7 +27,10 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindTaskCommandParser
      * and returns a FindTaskCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Raw arguments from user input.
+     * @return FindTaskCommand object.
+     * @throws ParseException If the user input does not conform the expected format
      */
     public FindTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

@@ -31,7 +31,10 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindContactCommand
      * and returns a FindContactCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Raw arguments from user.
+     * @return FindContactCommand object.
+     * @throws ParseException If the user input does not conform the expected format
      */
     public FindContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -42,8 +45,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
                 PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                            FindContactCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
         }
 
         List<Name> names = getNames(argMultimap);

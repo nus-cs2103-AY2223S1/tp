@@ -16,7 +16,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    private final String taskDescription;
+    public final String taskDescription;
 
     /**
      * Constructs an {@code Description}.

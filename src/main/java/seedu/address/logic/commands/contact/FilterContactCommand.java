@@ -9,21 +9,21 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose fields contain any of the argument keywords.
+ * Finds and lists all persons whose tags contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindContactCommand extends Command {
+public class FilterContactCommand extends Command {
 
-    public static final String COMMAND_WORD = "findC";
+    public static final String COMMAND_WORD = "filterC";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tag(s) contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " grocery shopping friends";
 
     private final PersonContainsKeywordsPredicate predicate;
 
-    public FindContactCommand(PersonContainsKeywordsPredicate predicate) {
+    public FilterContactCommand(PersonContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -38,7 +38,7 @@ public class FindContactCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindContactCommand // instanceof handles nulls
-                && predicate.equals(((FindContactCommand) other).predicate)); // state check
+                || (other instanceof FilterContactCommand // instanceof handles nulls
+                && predicate.equals(((FilterContactCommand) other).predicate)); // state check
     }
 }
