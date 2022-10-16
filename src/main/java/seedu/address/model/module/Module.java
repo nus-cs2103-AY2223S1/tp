@@ -111,6 +111,14 @@ public class Module {
     }
 
     /**
+     * Deletes the given schedule.
+     * @param target the schedule to be deleted
+     */
+    public void deleteSchedule(Schedule target) {
+        schedules.remove(target);
+    }
+
+    /**
      * Returns true if both modules have the same identity and data fields.
      * This defines a stronger notion of equality between two modules.
      */

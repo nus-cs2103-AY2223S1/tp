@@ -138,7 +138,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a new schedule to a module
-     * @param s
+     * @param s new schedule
      */
     public void addSchedule(Schedule s) {
         Module targetModule = getModuleByModuleCode(s.getModule());
@@ -165,7 +165,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
         persons.setPerson(target, editedPerson);
     }
 
@@ -176,8 +175,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
-
         modules.setModule(target, editedModule);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeSchedule(Schedule key) {
+        Module module = getModuleByModuleCode(key.getModule());
+        module.deleteSchedule(key);
     }
 
     /**
@@ -216,7 +223,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public ObservableList<Schedule> getScheduleList() {
-
         ObservableList<Schedule> l = modules.getUnmodifiableObservableScheduleList();
         int i = 0;
         for (Schedule s : l) {

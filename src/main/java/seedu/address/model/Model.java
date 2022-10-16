@@ -87,7 +87,16 @@ public interface Model {
      */
     void addSchedule(Schedule schedule);
 
+    /**
+     * Updates the {@code target} with information given by the {@code editedSchedule}.
+     */
     void setSchedule(Schedule target, Schedule editedSchedule);
+
+    /**
+     * Deletes the given schedule.
+     * The schedule must exist in the address book.
+     */
+    void deleteSchedule(Schedule target);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
