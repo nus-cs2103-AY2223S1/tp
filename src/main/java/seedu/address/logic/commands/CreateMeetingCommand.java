@@ -44,7 +44,7 @@ public class CreateMeetingCommand extends Command {
     public static final String DUPLICATE_MEETINGS = "Oops! Seems that you have already scheduled to meet "
         + "the same person(s) at the same time";
 
-    private static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
+    public static final String DUPLICATE_PERSON_TO_MEET = "It looks like you are adding the same "
         + "person to a meeting twice!";
 
     private final String meetingInfo;

@@ -78,7 +78,7 @@ public class CreateMeetingCommandTest {
             new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
 
         String actualFeedback = createMeetingCommand.execute(modelStub).getFeedbackToUser();
-        assertEquals(CreateMeetingCommand.PERSON_NOT_FOUND, actualFeedback);
+        assertEquals(CreateMeetingCommand.DUPLICATE_PERSON_TO_MEET, actualFeedback);
     }
 
     @Test
