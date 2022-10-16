@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.UserPrefs;
-import soconnect.model.person.SearchPerson.ContactContainsAnyKeywordsPredicate;
+import soconnect.model.person.search.ContactContainsAnyKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

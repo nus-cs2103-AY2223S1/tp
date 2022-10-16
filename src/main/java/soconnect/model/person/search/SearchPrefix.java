@@ -1,16 +1,12 @@
-package soconnect.model.person.SearchPerson;
+package soconnect.model.person.search;
 
-import soconnect.commons.util.StringUtil;
-import soconnect.logic.commands.SearchCommand;
-import soconnect.logic.parser.Prefix;
-import soconnect.logic.parser.exceptions.ParseException;
-
-import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_ADDRESS;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_EMAIL;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_NAME;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_PHONE;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
+
+import soconnect.logic.parser.Prefix;
 
 /**
  * Translates a {@code Prefix} into the equivalent enum type.

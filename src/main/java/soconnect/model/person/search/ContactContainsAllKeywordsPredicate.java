@@ -1,4 +1,4 @@
-package soconnect.model.person.SearchPerson;
+package soconnect.model.person.search;
 
 import soconnect.commons.util.StringUtil;
 import soconnect.logic.parser.ArgumentMultimap;
@@ -8,8 +8,8 @@ import soconnect.model.person.Person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static soconnect.model.person.SearchPerson.SearchPrefix.SearchPrefixCommand;
-import static soconnect.model.person.SearchPerson.SearchPrefix.convertPrefixToEnumType;
+import static soconnect.model.person.search.SearchPrefix.SearchPrefixCommand;
+import static soconnect.model.person.search.SearchPrefix.convertPrefixToEnumType;
 
 /**
  * Tests that a {@code Person}'s information matches the keyword given.

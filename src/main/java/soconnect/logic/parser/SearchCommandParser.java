@@ -8,17 +8,14 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.function.Predicate;
+
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.parser.exceptions.ParseException;
-import soconnect.model.ModelManager;
 import soconnect.model.person.Person;
-import soconnect.model.person.SearchPerson.ContactContainsAllKeywordsPredicate;
-import soconnect.model.person.SearchPerson.ContactContainsAnyKeywordsPredicate;
-import soconnect.model.person.SearchPerson.ContactMightBeRelevantPredicate;
-
-import java.util.List;
-import java.util.Observable;
-import java.util.function.Predicate;
+import soconnect.model.person.search.ContactContainsAllKeywordsPredicate;
+import soconnect.model.person.search.ContactContainsAnyKeywordsPredicate;
+import soconnect.model.person.search.ContactMightBeRelevantPredicate;
 
 /**
  * Parses input arguments and creates a new {@code SearchCommand} object.

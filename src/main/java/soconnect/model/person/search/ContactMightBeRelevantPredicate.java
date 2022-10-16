@@ -1,26 +1,16 @@
-package soconnect.model.person.SearchPerson;
-
-import soconnect.commons.util.StringUtil;
-import soconnect.logic.parser.ArgumentMultimap;
-import soconnect.logic.parser.Prefix;
-import soconnect.model.person.Person;
+package soconnect.model.person.search;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import static soconnect.model.person.SearchPerson.SearchPrefix.SearchPrefixCommand;
-import static soconnect.model.person.SearchPerson.SearchPrefix.convertPrefixToEnumType;
+import soconnect.commons.util.StringUtil;
+import soconnect.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s information matches the keyword given.
  */
 public class ContactMightBeRelevantPredicate implements Predicate<Person> {
     private final List<String> keywords;
-    private boolean isNameContained = false;
-    private boolean isAddressContained = false;
-    private boolean isEmailContained = false;
-    private boolean isPhoneContained = false;
-    private boolean isTagContained = false;
 
     /**
      * Constructs the {@code ContactMightBeRelevantPredicate} object.
@@ -32,20 +22,20 @@ public class ContactMightBeRelevantPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        isNameContained = keywords.stream()
+        boolean isNameContained = keywords.stream()
                 .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
                         person.getName().fullName, keyword
                 ));
-        isAddressContained = keywords.stream()
+        boolean isAddressContained = keywords.stream()
                 .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
                         person.getAddress().value, keyword));
-        isEmailContained = keywords.stream()
+        boolean isEmailContained = keywords.stream()
                 .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
                         person.getEmail().value, keyword));
-        isPhoneContained = keywords.stream()
+        boolean isPhoneContained = keywords.stream()
                 .allMatch(keyword -> StringUtil.containsSomeKeywordsIgnoreCase(
                         person.getPhone().value, keyword));
-        isTagContained = keywords.stream()
+        boolean isTagContained = keywords.stream()
                 .allMatch(keyword -> person.getTags().stream()
                         .anyMatch(tag -> StringUtil.containsSomeKeywordsIgnoreCase(tag.tagName, keyword)));
         return isNameContained || isAddressContained || isEmailContained || isPhoneContained || isTagContained;
