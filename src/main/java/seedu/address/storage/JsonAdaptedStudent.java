@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -33,8 +34,9 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("gender") String gender,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("location") String location) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location);
+                              @JsonProperty("location") String location,
+                              @JsonProperty("username") String username) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username);
     }
 
     /**
@@ -103,7 +105,18 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
-        return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation);
+        final GithubUsername modelUsername;
+
+        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
+            modelUsername = new GithubUsername(getUsername(), false);
+        } else {
+            if (!GithubUsername.isValidUsername(getUsername())) {
+                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+            }
+            modelUsername = new GithubUsername(getUsername(), true);
+        }
+
+        return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation, modelUsername);
     }
 
 }

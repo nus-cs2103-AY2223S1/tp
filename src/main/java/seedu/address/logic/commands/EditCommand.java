@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -21,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
@@ -44,12 +47,15 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_PHONE + "PHONE] "
+        + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_TAG + "TAG]... "
         + "[" + PREFIX_LOCATION + "LOCATION] "
+        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
+
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -59,7 +65,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the Student with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -115,7 +121,9 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation);
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation,
+                updatedUsername);
     }
 
     /**
@@ -132,9 +140,10 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation);
+            updatedLocation, updatedUsername);
     }
 
     /**
@@ -152,9 +161,9 @@ public class EditCommand extends Command {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-
+        GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-            updatedEmail, updatedGender, updatedTags, updatedLocation);
+            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername);
     }
 
 
@@ -188,6 +197,7 @@ public class EditCommand extends Command {
         private Gender gender;
         private Set<Tag> tags;
         private Location location;
+        private GithubUsername githubUsername;
 
         public EditPersonDescriptor() {
         }
@@ -204,13 +214,14 @@ public class EditCommand extends Command {
             setGender(toCopy.gender);
             setTags(toCopy.tags);
             setLocation(toCopy.location);
+            setGithubUsername(toCopy.githubUsername);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername);
         }
 
         public void setName(Name name) {
@@ -261,6 +272,14 @@ public class EditCommand extends Command {
             this.location = location;
         }
 
+        public Optional<GithubUsername> getGithubUsername() {
+            return Optional.ofNullable(githubUsername);
+        }
+
+        public void setGithubUsername(GithubUsername username) {
+            this.githubUsername = username;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -298,7 +317,8 @@ public class EditCommand extends Command {
                 && getEmail().equals(e.getEmail())
                 && getGender().equals(e.getGender())
                 && getTags().equals(e.getTags())
-                && getLocation().equals(e.getLocation());
+                && getLocation().equals(e.getLocation())
+                && getGithubUsername().equals(e.getGithubUsername());
         }
 
     }
