@@ -20,7 +20,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -101,7 +100,8 @@ public class EditTaskCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         TaskDeadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Email updatedPersonEmailAddress = editTaskDescriptor.getPersonEmailAddress().orElse(taskToEdit.getPersonEmailAddress());
+        Email updatedPersonEmailAddress = editTaskDescriptor.getPersonEmailAddress()
+                .orElse(taskToEdit.getPersonEmailAddress());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
         return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,

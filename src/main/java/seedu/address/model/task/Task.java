@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
@@ -14,8 +13,7 @@ import seedu.address.model.person.Person;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Task {
-
-    static private final String NO_PERSON_ASSIGNED = "NONE";
+    private static final String NO_PERSON_ASSIGNED = "NONE";
 
     // Identity fields
     private TaskName name;

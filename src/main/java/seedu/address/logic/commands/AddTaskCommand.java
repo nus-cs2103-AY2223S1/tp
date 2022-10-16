@@ -10,8 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
@@ -42,7 +40,6 @@ public class AddTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
-
     private final Task toAdd;
     private final Email personEmailAddress;
 
