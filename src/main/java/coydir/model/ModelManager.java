@@ -30,7 +30,6 @@ import java.io.IOException;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private static final String[] PREFIX_LIST = {"n/","p/","e/","j/","a/","t/"};
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -114,43 +113,6 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public List<AddCommand> batchAdd(String filename) throws CommandException {
-            Path file = Paths.get("data", filename);
-            String line = "";
-            String splitBy = ",";
-            List<AddCommand> addCommandList = new ArrayList<>();
-            try {
-                // parsing a CSV file into BufferedReader class constructor
-                BufferedReader br = new BufferedReader(new FileReader(file.toString()));
-                br.readLine();
-                while ((line = br.readLine()) != null) // returns a Boolean value
-                {
-                    String[] data = line.split(splitBy); // use comma as separator
-                    String arg = " ";
-                    for (int i = 0; i < data.length; i++){
-                        if (i == (data.length - 1)){
-                            String[] tags = data[i].split("/");
-                            for (String tag : tags) {
-                                arg += PREFIX_LIST[i] + tag + " ";
-                            }
-                        } else {
-                            arg += PREFIX_LIST[i] + data[i] + " ";
-                        }
-                    }
-                    addCommandList.add(new AddCommandParser().parse(arg));
-                }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                throw new CommandException("File Not Found");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        return addCommandList;
     }
 
 

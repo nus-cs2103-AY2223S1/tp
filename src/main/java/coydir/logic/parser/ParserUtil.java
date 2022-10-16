@@ -156,7 +156,8 @@ public class ParserUtil {
     public static String parseFileName(String filename) throws ParseException {
         requireNonNull(filename);
         String trimmedFileName = filename.trim();
-        if (trimmedFileName == "hello"){
+        System.out.println(trimmedFileName);
+        if (trimmedFileName.length() < 1){
             throw new ParseException("Fail");
         }
         return trimmedFileName;

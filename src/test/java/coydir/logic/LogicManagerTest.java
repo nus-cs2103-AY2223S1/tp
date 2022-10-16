@@ -8,7 +8,7 @@ import static coydir.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.POSITION_DESC_AMY;
 import static coydir.testutil.Assert.assertThrows;
-import static coydir.testutil.TypicalPersons.AMY;
+import static coydir.testutil.TypicalPersons.HOON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -82,11 +82,11 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + POSITION_DESC_AMY + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
+        Person expectedPerson = new PersonBuilder(HOON).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        PersonBuilder.setEmployeeId(AMY.getEmployeeId().value);
+        PersonBuilder.setEmployeeId(HOON.getEmployeeId().value);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
