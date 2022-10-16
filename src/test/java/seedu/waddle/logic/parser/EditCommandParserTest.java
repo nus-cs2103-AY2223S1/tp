@@ -33,20 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
-<<<<<<< HEAD
-import seedu.waddle.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.waddle.model.person.Address;
-import seedu.waddle.model.person.Email;
-import seedu.waddle.model.person.Name;
-import seedu.waddle.model.person.Phone;
-import seedu.waddle.model.tag.Tag;
-=======
 import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
->>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
 public class EditCommandParserTest {
