@@ -96,6 +96,10 @@ public class Customer {
         return commissions.getLastDate();
     }
 
+    public boolean hasTag(Tag tag) {
+        return tags.contains(tag);
+    }
+
     public UniqueCommissionList getCommissions() {
         return commissions;
     }
