@@ -32,16 +32,17 @@ public class TagAddCommandParser implements Parser<TagAddCommand> {
         Index index;
         Tag tag;
 
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
+        }
+
         if (!argMultimap.getValue(PREFIX_TAG).isPresent()) {
             throw new ParseException(TagAddCommand.MESSAGE_NO_TAG);
         }
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
-            return new TagAddCommand(index, tag);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagAddCommand.MESSAGE_USAGE));
-        }
+        tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        return new TagAddCommand(index, tag);
     }
 }

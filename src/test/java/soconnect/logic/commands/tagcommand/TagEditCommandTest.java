@@ -34,15 +34,17 @@ public class TagEditCommandTest {
     @Test
     public void execute_newTagAlreadyExists_throwsCommandException() {
         TagEditCommand tagEditCommand = new TagEditCommand(FRIENDS, OWESMONEY);
+        String expectedMessage = String.format(TagEditCommand.MESSAGE_DUPLICATE_TAG, OWESMONEY);
 
-        assertCommandFailure(tagEditCommand, model, TagEditCommand.MESSAGE_DUPLICATE_TAG);
+        assertCommandFailure(tagEditCommand, model, expectedMessage);
     }
 
     @Test
     public void execute_oldTagDoesNotExist_throwCommandException() {
         TagEditCommand tagEditCommand = new TagEditCommand(new Tag("fake"), new Tag("Fake"));
+        String expectedMessage = String.format(TagEditCommand.MESSAGE_TAG_NOT_FOUND, new Tag("fake"));
 
-        assertCommandFailure(tagEditCommand, model, TagEditCommand.MESSAGE_TAG_NOT_FOUND);
+        assertCommandFailure(tagEditCommand, model, expectedMessage);
     }
 
 }
