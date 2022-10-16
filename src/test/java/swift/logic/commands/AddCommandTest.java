@@ -182,6 +182,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addBridge(Person person, Task task) {
             throw new AssertionError("This method should not be called.");
         }

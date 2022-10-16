@@ -12,12 +12,16 @@ import static swift.testutil.TypicalTasks.BUY_MILK;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import swift.commons.core.GuiSettings;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.testutil.AddressBookBuilder;
+import swift.testutil.PersonBuilder;
+import swift.testutil.TaskBuilder;
 
 public class ModelManagerTest {
 
@@ -108,6 +112,25 @@ public class ModelManagerTest {
     public void hasTask_taskInAddressBook_returnsTrue() {
         modelManager.addTask(BUY_MILK);
         assertTrue(modelManager.hasTask(BUY_MILK));
+    }
+
+    @Test
+    public void hasBridge_nullBridge_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasBridge(null));
+    }
+
+    @Test
+    public void hasBridge_taskNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
+                UUID.fromString(TaskBuilder.DEFAULT_ID))));
+    }
+
+    @Test
+    public void hasBridge_taskInAddressBook_returnsTrue() {
+        modelManager.addBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
+                UUID.fromString(TaskBuilder.DEFAULT_ID)));
+        assertTrue(modelManager.hasBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
+                UUID.fromString(TaskBuilder.DEFAULT_ID))));
     }
 
     @Test

@@ -139,6 +139,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasBridge(PersonTaskBridge bridge) {
+        requireNonNull(bridge);
+        return addressBook.hasBridge(bridge);
+    }
+
+    @Override
     public void addBridge(Person person, Task task) {
         requireAllNonNull(person, task);
         addressBook.addBridge(new PersonTaskBridge(person.getId(), task.getId()));
