@@ -40,5 +40,6 @@ public enum TaskCategoryType {
                 .filter(priority -> priority.name.equals(categoryName))
                 .findFirst();
     }
+
 }
 

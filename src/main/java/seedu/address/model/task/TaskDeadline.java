@@ -1,14 +1,30 @@
 package seedu.address.model.task;
+
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
+
+import seedu.address.model.task.exceptions.DatePastException;
+
+
 
 /**
  * Represents the deadline of a task
  */
 public class TaskDeadline {
-    private LocalDate deadline;
+    private final LocalDate deadline;
 
-    public TaskDeadline(LocalDate level) {
-        this.deadline = level;
+    /**
+     * constructor for deadline
+     *
+     * @param date
+     */
+    public TaskDeadline(LocalDate date) {
+        requireNonNull(date);
+        if (LocalDate.now().isAfter(date)) {
+            throw new DatePastException();
+        }
+        this.deadline = date;
     }
 
     /**
@@ -29,6 +45,7 @@ public class TaskDeadline {
     public int hashCode() {
         return this.deadline.hashCode();
     }
+
     /**
      * Returns the string representation of the task deadline.
      *

@@ -13,13 +13,15 @@ import seedu.address.model.person.Email;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
+
+
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
  * A task is considered unique by comparing using {@code Task#isSameTask(Task)}. As such, adding and updating of tasks
  * uses Task#isSameTask(Task) for equality to ensure that the task being added or updated is unique in terms of
  * identity in the TaskList. However, the removal of a task uses Task#equals(Object) to ensure that the task with
  * exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Task#isSameTask(Task)
@@ -84,7 +86,7 @@ public class TaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
 
-        if (!toEdit.isSameTask(editedTask) && contains(editedTask)) {
+        if (toEdit.isSameTask(editedTask) && contains(editedTask)) {
             throw new DuplicateTaskException();
         }
 
@@ -191,7 +193,7 @@ public class TaskList implements Iterable<Task> {
      * @param toFilter Status to filter the task list by
      */
     public void filter(boolean toFilter) {
-        requireNonNull(toFilter);
+
         Predicate<Task> filterer = i -> (i.isDone() == toFilter);
         internalList.filtered(filterer);
     }

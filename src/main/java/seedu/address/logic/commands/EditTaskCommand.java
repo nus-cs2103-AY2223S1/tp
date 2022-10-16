@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +26,8 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
+
+
 
 /**
  * Adds a Task in the address book.
@@ -67,27 +69,6 @@ public class EditTaskCommand extends Command {
         this.editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor(editTaskDescriptor);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
-
-        Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-
-        model.setTask(taskToEdit, editedTask);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
-    }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -106,6 +87,27 @@ public class EditTaskCommand extends Command {
 
         return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
                 updatedPersonEmailAddress, updatedIsDone);
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
     @Override
@@ -167,46 +169,45 @@ public class EditTaskCommand extends Command {
                     deadline, personEmailAddress, isDone);
         }
 
-        public void setName(TaskName name) {
-            this.name = name;
-        }
-
         public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setCategory(TaskCategory category) {
-            this.category = category;
+        public void setName(TaskName name) {
+            this.name = name;
         }
 
         public Optional<TaskCategory> getCategory() {
             return ofNullable(category);
         }
 
-        public void setDescription(Description description) {
-            this.description = description;
+        public void setCategory(TaskCategory category) {
+            this.category = category;
         }
 
         public Optional<Description> getDescription() {
             return ofNullable(description);
         }
 
-        public void setPriority(Priority priority) {
-            this.priority = priority;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
         public Optional<Priority> getPriority() {
             return ofNullable(priority);
         }
 
-        public void setDeadline(TaskDeadline deadline) {
-            this.deadline = deadline;
+        public void setPriority(Priority priority) {
+            this.priority = priority;
         }
 
         public Optional<TaskDeadline> getDeadline() {
             return ofNullable(deadline);
         }
 
+        public void setDeadline(TaskDeadline deadline) {
+            this.deadline = deadline;
+        }
         public void setPersonEmailAddress(Email personEmailAddress) {
             this.personEmailAddress = personEmailAddress;
         }
@@ -222,6 +223,7 @@ public class EditTaskCommand extends Command {
         public Optional<Boolean> getIsDone() {
             return Optional.of(isDone);
         }
+
 
         @Override
         public boolean equals(Object other) {

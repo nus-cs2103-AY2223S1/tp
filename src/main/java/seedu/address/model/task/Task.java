@@ -190,6 +190,9 @@ public class Task {
         }
         return name;
     }
+    public boolean getStatus() {
+        return isDone;
+    }
 
     /**
      * Returns true if both tasks have the same name.
@@ -230,7 +233,7 @@ public class Task {
                 && otherTask.getDescription().equals(getDescription())
                 && otherTask.getPersonEmailAddress().equals(getPersonEmailAddress())
                 && otherTask.getPriority().equals(getPriority())
-                && (otherTask.isDone() && this.isDone());
+                && (otherTask.isDone() == (this.isDone()));
     }
 
     /**
