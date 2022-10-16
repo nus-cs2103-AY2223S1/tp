@@ -63,6 +63,11 @@ public interface Model {
     void setAllAddressBookFilePath(Path[] updatedPaths);
 
     /**
+     * Creates a new Address Book
+     */
+    boolean addAddressBook();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);

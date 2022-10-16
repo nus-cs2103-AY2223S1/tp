@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -82,5 +83,23 @@ public class LogicManager implements Logic {
     @Override
     public void setAllAddressBookFilePath(Path[] updatedPaths) {
         model.setAllAddressBookFilePath(updatedPaths);
+    }
+
+    @Override
+    public boolean addAddressBook() throws IOException {
+        boolean result = model.addAddressBook();
+        if (result) {
+            Path[] allBooks = model.getAllAddressBookFilePath();
+            Path latestBook = allBooks[allBooks.length - 1];
+            try {
+                FileWriter file = new FileWriter(latestBook.toFile());
+                file.close();
+            } catch (IOException e) {
+                logger.warning("Error creating file" + latestBook);
+                throw e;
+            }
+
+        }
+        return result;
     }
 }

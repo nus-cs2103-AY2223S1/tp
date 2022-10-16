@@ -89,7 +89,14 @@ public class ModelManager implements Model {
     public void setAllAddressBookFilePath(Path[] updatedPaths) {
         userPrefs.setAllAddressBookFilePath(updatedPaths);
     }
-
+    @Override
+    public boolean addAddressBook() {
+        if (!userPrefs.addAddressBook()) {
+            logger.warning("Maximum amount of address book created");
+            return false;
+        }
+        return true;
+    }
 
     //=========== AddressBook ================================================================================
 

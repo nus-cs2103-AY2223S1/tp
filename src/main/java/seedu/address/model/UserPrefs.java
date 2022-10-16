@@ -70,10 +70,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     public Path[] getAllAddressBookFilePath() {
-        Path[] asdf = allAddressBookFilePath.toArray(new Path[allAddressBookFilePath.size()]);
-        for (Path a : asdf) {
-            System.out.println(a);
-        }
         return allAddressBookFilePath.toArray(new Path[allAddressBookFilePath.size()]);
     }
 
@@ -86,9 +82,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         if (allAddressBookFilePath.size() == MAX_ADDRESS_BOOK_LIMIT) {
             return false;
         } else {
-            String newBookName = DEFAULT_ADDRESS_BOOK_NAME + allAddressBookFilePath.size() + ".json";
+            String newBookName;
+            if (allAddressBookFilePath.size() != 0) {
+                newBookName = DEFAULT_ADDRESS_BOOK_NAME + allAddressBookFilePath.size() + ".json";
+            } else  {
+                newBookName = DEFAULT_ADDRESS_BOOK_NAME + ".json";
+            }
+
             Path newBook = Paths.get("data" , newBookName);
             allAddressBookFilePath.add(newBook);
+            System.out.println(allAddressBookFilePath);
             return true;
         }
     }

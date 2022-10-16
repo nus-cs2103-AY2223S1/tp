@@ -77,7 +77,6 @@ public class FileUtil {
      * Will create the file if it does not exist yet.
      */
     public static void writeToFile(Path file, String content) throws IOException {
-        System.out.println("file saved to: " + file);
         Files.write(file, content.getBytes(CHARSET));
     }
 
