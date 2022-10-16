@@ -43,7 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         recordList = new RecordList();
-        appointment = new Appointment(DEFAULT_APPOINTMENT);
+        appointment = Appointment.of(DEFAULT_APPOINTMENT);
     }
 
     /**
@@ -113,7 +113,7 @@ public class PersonBuilder {
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
     public PersonBuilder withAppointment(String appointment) {
-        this.appointment = new Appointment(appointment);
+        this.appointment = Appointment.of(appointment);
         return this;
     }
 

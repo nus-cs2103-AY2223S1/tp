@@ -526,7 +526,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. Patient list is empty
-    
+    * 1a1. OmniHealth displays an error message
+  
     Use case ends
 
 * 1b. Patient index does not exist
@@ -553,7 +554,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. Patient list is empty
-
+    * 1a1. OmniHealth displays an error message
+    * 
     Use case ends
 * 1b. Patient index does not exist
     * 1b1. OmniHealth displays an error message.

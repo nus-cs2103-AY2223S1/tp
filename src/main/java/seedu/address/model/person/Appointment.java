@@ -23,7 +23,7 @@ public class Appointment {
      *
      * @param appointmentDate Date of the appointment.
      */
-    public Appointment(String appointmentDate) {
+    private Appointment(String appointmentDate) {
         requireNonNull(appointmentDate);
         checkArgument(isValidDate(appointmentDate), MESSAGE_INVALID_DATE_FORMAT);
         this.appointmentDate = LocalDateTime.parse(appointmentDate, DATE_FORMAT);
@@ -32,7 +32,7 @@ public class Appointment {
     /**
      * Constructs an empty Appointment.
      */
-    public Appointment() {
+    private Appointment() {
         this.appointmentDate = null;
     }
 

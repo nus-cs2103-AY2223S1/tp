@@ -34,7 +34,7 @@ public class ClearAppointmentCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
-                personToEdit.getRecordList(), new Appointment());
+                personToEdit.getRecordList(), Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED));
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);

@@ -58,7 +58,7 @@ public class ModelManager implements Model {
                 new Address(DEFAULT_ADDRESS),
                 new HashSet<Tag>(),
                 new RecordList(),
-                new Appointment());
+                Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED));
         this.personWithRecords = new DisplayedPerson(placeholderPerson);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredRecords = new FilteredList<>(FXCollections.observableArrayList()); // empty FilteredList
