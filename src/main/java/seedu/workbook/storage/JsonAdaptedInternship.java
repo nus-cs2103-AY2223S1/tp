@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.workbook.commons.exceptions.IllegalValueException;
+import seedu.workbook.model.date.Date;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -30,6 +31,7 @@ class JsonAdaptedInternship {
     private final String phone;
     private final String email;
     private final String stage;
+    private final String date;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,12 +42,14 @@ class JsonAdaptedInternship {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("stage") String stage,
+            @JsonProperty("date") String date,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;
         this.phone = phone;
         this.email = email;
         this.stage = stage;
+        this.date = date;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +64,7 @@ class JsonAdaptedInternship {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         stage = source.getStage().value;
+        date = source.getDate().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -118,10 +123,16 @@ class JsonAdaptedInternship {
         }
         final Stage modelStage = new Stage(stage);
 
-
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        }
+        final Date modelDate = new Date(date);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelStage, modelTags);
+        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelStage, modelDate, modelTags);
     }
 
 }

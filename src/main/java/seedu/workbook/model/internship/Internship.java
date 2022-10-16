@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.workbook.model.date.Date;
 import seedu.workbook.model.tag.Tag;
 
 /**
@@ -21,6 +22,7 @@ public class Internship {
     private final Phone phone;
     private final Email email;
     private final Stage stage;
+    private final Date date;
 
     // Data fields
 
@@ -29,13 +31,14 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Role role, Phone phone, Email email, Stage stage, Set<Tag> tags) {
-        requireAllNonNull(company, role, phone, email, stage, tags);
+    public Internship(Company company, Role role, Phone phone, Email email, Stage stage, Date date, Set<Tag> tags) {
+        requireAllNonNull(company, role, phone, email, stage, date, tags);
         this.company = company;
         this.role = role;
         this.phone = phone;
         this.email = email;
         this.stage = stage;
+        this.date = date;
         this.tags.addAll(tags);
     }
 
@@ -56,6 +59,9 @@ public class Internship {
     }
     public Stage getStage() {
         return stage;
+    }
+    public Date getDate() {
+        return date;
     }
 
 
@@ -101,13 +107,14 @@ public class Internship {
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getStage().equals(getStage())
+                && otherInternship.getDate().equals(getDate())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, role, phone, email, stage, tags);
+        return Objects.hash(company, role, phone, email, stage, date, tags);
     }
 
     @Override
@@ -123,6 +130,9 @@ public class Internship {
                 .append("; Stage: ")
                 .append(getStage());
 
+        if (date != null) {
+            builder.append("; Date: ").append(getDate());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
