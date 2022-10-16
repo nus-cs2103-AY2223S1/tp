@@ -39,8 +39,8 @@ public class DeletePropertyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Property> lastShownList = model.getFilteredPropertyList();
 
+        List<Property> lastShownList = model.getFilteredPropertyList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
@@ -48,7 +48,6 @@ public class DeletePropertyCommand extends Command {
         Property propertyToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteProperty(propertyToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete));
-
     }
 
     @Override

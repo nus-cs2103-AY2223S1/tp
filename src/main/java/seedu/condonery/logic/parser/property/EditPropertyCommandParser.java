@@ -1,6 +1,5 @@
-package seedu.condonery.logic.parser;
+package seedu.condonery.logic.parser.property;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
@@ -12,35 +11,46 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.condonery.commons.core.index.Index;
-import seedu.condonery.logic.commands.EditCommand;
-import seedu.condonery.logic.commands.EditCommand.EditPropertyDescriptor;
+import seedu.condonery.logic.commands.property.EditPropertyCommand;
+import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
+import seedu.condonery.logic.parser.ArgumentMultimap;
+import seedu.condonery.logic.parser.ArgumentTokenizer;
+import seedu.condonery.logic.parser.Parser;
+import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditPropertyCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditPropertyCommandParser implements Parser<EditPropertyCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditPropertyCommand
+     * and returns a Command object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand parse(String args) throws ParseException {
-        requireNonNull(args);
+    @Override
+    public EditPropertyCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
-
+        EditPropertyDescriptor editPropertyDescriptor =
+                new EditPropertyDescriptor();
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditPropertyCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPropertyDescriptor editPropertyDescriptor = new EditPropertyDescriptor();
+        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+            && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
+            throw new ParseException(EditPropertyCommand.MESSAGE_NOT_EDITED);
+        }
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPropertyDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -49,18 +59,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPropertyDescriptor::setTags);
 
-        if (!editPropertyDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand(index, editPropertyDescriptor);
+        return new EditPropertyCommand(index, editPropertyDescriptor);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
     private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
         assert tags != null;
 
@@ -70,5 +71,4 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }

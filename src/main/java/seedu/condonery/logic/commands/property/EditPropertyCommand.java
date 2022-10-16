@@ -1,4 +1,4 @@
-package seedu.condonery.logic.commands;
+package seedu.condonery.logic.commands.property;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -15,6 +15,8 @@ import java.util.Set;
 import seedu.condonery.commons.core.Messages;
 import seedu.condonery.commons.core.index.Index;
 import seedu.condonery.commons.util.CollectionUtil;
+import seedu.condonery.logic.commands.Command;
+import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.fields.Address;
@@ -25,9 +27,9 @@ import seedu.condonery.model.tag.Tag;
 /**
  * Edits the details of an existing property in the address book.
  */
-public class EditCommand extends Command {
+public class EditPropertyCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the property identified "
             + "by the index number used in the displayed property list. "
@@ -38,37 +40,40 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Edited Property: %1$s";
+    public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Property successfully edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book.";
 
-    private final Index index;
+    private final Index targetIndex;
     private final EditPropertyDescriptor editPropertyDescriptor;
 
     /**
-     * @param index of the property in the filtered property list to edit
-     * @param editPropertyDescriptor details to edit the property with
+     * Creates a EditPropertyCommand to edit the specific {@code Property} at the specified index
+     * @param targetIndex of the property to edit
      */
-    public EditCommand(Index index, EditPropertyDescriptor editPropertyDescriptor) {
-        requireNonNull(index);
+    public EditPropertyCommand(Index targetIndex, EditPropertyDescriptor editPropertyDescriptor) {
+        requireNonNull(targetIndex);
         requireNonNull(editPropertyDescriptor);
 
-        this.index = index;
+        this.targetIndex = targetIndex;
         this.editPropertyDescriptor = new EditPropertyDescriptor(editPropertyDescriptor);
+    }
+
+    public EditPropertyDescriptor getEditPropertyDescriptor() {
+        return editPropertyDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Property> lastShownList = model.getFilteredPropertyList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        List<Property> lastShownList = model.getFilteredPropertyList();
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
         }
 
-        Property propertyToEdit = lastShownList.get(index.getZeroBased());
+        Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
         Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
-
         if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
@@ -101,14 +106,17 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditPropertyCommand)) {
             return false;
         }
 
-        // state check
-        EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPropertyDescriptor.equals(e.editPropertyDescriptor);
+        EditPropertyCommand e = (EditPropertyCommand) other;
+
+        if (!this.targetIndex.equals(e.targetIndex)) {
+            return false;
+        }
+
+        return editPropertyDescriptor.equals(e.getEditPropertyDescriptor());
     }
 
     /**
@@ -191,5 +199,23 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
+
+        @Override
+        public String toString() {
+            return "EditPropertyDescriptor{"
+                    + "name=" + name
+                    + ", address=" + address
+                    + ", tags=" + tags
+                    + '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "EditPropertyCommand{"
+                + "targetIndex=" + targetIndex
+                + ", editPropertyDescriptor=" + editPropertyDescriptor
+                + '}';
     }
 }
+
