@@ -218,7 +218,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasEventOverlap(Event toAdd) {
-        return false;
+        return addressBook.checkOverlapEvent(toAdd);
     }
 
     @Override

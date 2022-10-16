@@ -152,7 +152,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean hasPersonByName(String personName) {
         for (int i = 0; i < internalList.size(); i++) {
             Person p = internalList.get(i);
-            if (p.getName().equals(personName)) {
+            if (p.getName().fullName.equals(personName)) {
                 return true;
             }
         }

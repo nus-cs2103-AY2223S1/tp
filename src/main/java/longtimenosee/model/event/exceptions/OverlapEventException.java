@@ -5,6 +5,6 @@ package longtimenosee.model.event.exceptions;
  */
 public class OverlapEventException extends RuntimeException {
     public OverlapEventException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in overlapping events");
     }
 }

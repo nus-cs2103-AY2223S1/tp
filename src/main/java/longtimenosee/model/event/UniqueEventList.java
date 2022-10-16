@@ -1,8 +1,10 @@
 package longtimenosee.model.event;
 
 import static java.util.Objects.requireNonNull;
+import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,7 +54,12 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.add(toAdd);
     }
 
-    private boolean overlaps(Event toAdd) {
+    /**
+     * Checks if an incoming event will cause the events to overlap
+     * @param toAdd
+     * @return
+     */
+    public boolean overlaps(Event toAdd) {
         for (Event e : internalList) {
             if (Event.eventClash(e, toAdd)) {
                 return true;
@@ -71,7 +78,20 @@ public class UniqueEventList implements Iterable<Event> {
             throw new EventNotFoundException();
         }
     }
-
+    /**
+     * Replaces the contents of this list with {@code events}.
+     * {@code events} must not contain duplicate persons.
+     */
+    public void setEvents(List<Event> events) {
+        requireAllNonNull(events);
+        if (!eventsAreUnique(events)) {
+            throw new DuplicateEventException();
+        }
+        if (!eventsNoClash(events)) {
+            throw new OverlapEventException();
+        }
+        internalList.setAll(events);
+    }
     public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -114,4 +134,34 @@ public class UniqueEventList implements Iterable<Event> {
         }
     }
     //TODO: Events are unique?
+
+    /**
+     * Returns true if {@code persons} contains only unique events.
+     */
+    private boolean eventsAreUnique(List<Event> events) {
+        for (int i = 0; i < events.size() - 1; i++) {
+            for (int j = i + 1; j < events.size(); j++) {
+                if (events.get(i).isSameEvent(events.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if{@code events} contain only events that do not clash.
+     * @param events
+     * @return
+     */
+    private boolean eventsNoClash(List<Event> events) {
+        for (int i = 0; i < events.size() - 1; i++) {
+            for (int j = i + 1; j < events.size(); j++) {
+                if (Event.eventClash(events.get(i), events.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

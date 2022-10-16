@@ -10,6 +10,7 @@ import static longtimenosee.logic.parser.CliSyntax.PREFIX_START_TIME;
 import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
 import longtimenosee.model.event.Event;
+import longtimenosee.model.event.exceptions.OverlapEventException;
 import longtimenosee.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -18,10 +19,10 @@ import longtimenosee.model.person.exceptions.PersonNotFoundException;
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "newEvent";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
-    public static final String MESSAGE_OVERLAP_EVENT = "The event you would like to add overlaps with another event"
+    public static final String MESSAGE_OVERLAP_EVENT = "The event you would like to add overlaps with another event \n"
             + "Perhaps choose a different timing? ";
     public static final String MESSAGE_PERSON_NOT_FOUND = "The person you've selected currently does not "
-            + "exist in our addressBook. Please choose another name!";
+            + "exist in our addressBook. \n Please choose another name!";
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
 
@@ -64,6 +65,8 @@ public class AddEventCommand extends Command {
             model.addEvent(toAdd, toAdd.getPersonName().personName);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        } catch (OverlapEventException e) {
+            throw new CommandException(MESSAGE_OVERLAP_EVENT);
         }
         //TODO: Incorporate into GUI by adding a new field: showEvents?
         //TODO: showEvents could immediately show the next 7 days, up to implementation
@@ -73,6 +76,6 @@ public class AddEventCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddEventCommand // instanceof handles nulls
-                && toAdd.equals(((AddPolicyCommand) other).toAdd));
+                && toAdd.equals(((AddEventCommand) other).toAdd));
     }
 }

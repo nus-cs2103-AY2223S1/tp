@@ -77,6 +77,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setPolicies(newData.getPolicyList());
+        setEvents(newData.getEventList());
     }
 
     //// person-level operations
@@ -180,7 +181,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && policies.equals(((AddressBook) other).policies));
+                && policies.equals(((AddressBook) other).policies)
+                && events.equals(((AddressBook) other).events));
     }
 
     @Override
@@ -198,6 +200,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void addEvent(Event e) {
+        events.add(e);
     }
 
     public boolean hasEvent(Event toAdd) {
@@ -210,5 +213,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Replaces the contents of the Event list with {@code events}.
+     * {@code events} must not contain duplicate clients.
+     */
+    public void setEvents(List<Event> events) {
+        this.events.setEvents(events);
+    }
+
+    public boolean checkOverlapEvent(Event toAdd) {
+        return events.overlaps(toAdd);
     }
 }

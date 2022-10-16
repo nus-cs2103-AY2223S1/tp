@@ -22,9 +22,10 @@ public class Duration {
     public static final String FORMAT_CONSTRAINTS =
             "Dates input must follow : HH:MM";
     private static final double MINUTES_IN_HOUR = 60;
-    private static LocalTime startTime;
-    private static LocalTime endTime;
     public final String value;
+    private LocalTime startTime;
+    private LocalTime endTime;
+
 
     /**
      * For Input: The string value is seperated by "__". This is also what is saved in Storage
@@ -84,14 +85,14 @@ public class Duration {
      * @param other
      * @return isOverlap or not
      */
-    public static boolean isOverlap(Duration other) {
+    public boolean isOverlap(Duration other) {
         //check if the other event's start time is before this start time or after the end time
-        boolean otherStartCheck = other.startTime.isBefore(startTime)
-                || other.startTime.isAfter(endTime);
+        boolean otherStartCheck = other.startTime.isBefore(this.startTime)
+                || other.startTime.isAfter(this.endTime);
         //Likewise for the other event's end time
-        boolean otherEndCheck = other.endTime.isBefore(startTime)
-                || other.endTime.isAfter(endTime);
-        return otherStartCheck && otherEndCheck;
+        boolean otherEndCheck = other.endTime.isBefore(this.startTime)
+                || other.endTime.isAfter(this.endTime);
+        return !(otherStartCheck && otherEndCheck);
 
     }
 
@@ -114,9 +115,9 @@ public class Duration {
     @Override
     public String toString() {
         return "Start: " + startTime.format(DateTimeFormatter
-                .ofLocalizedTime(FormatStyle.LONG))
+                .ofLocalizedTime(FormatStyle.MEDIUM))
                 + "End: " + startTime.format(DateTimeFormatter
-                .ofLocalizedTime(FormatStyle.LONG));
+                .ofLocalizedTime(FormatStyle.MEDIUM));
     }
 }
 

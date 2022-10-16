@@ -17,6 +17,9 @@ import longtimenosee.model.event.Duration;
 import longtimenosee.model.event.Event;
 import longtimenosee.model.event.PersonName;
 
+/**
+ * Constructs a {@code JsonAdaptedEvent} with the given person details.
+ */
 public class JsonAdaptedEvent {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
     private final String description;

@@ -55,18 +55,13 @@ public class Event {
 
     /**
      * Weaker notation of equality between two events
+     * TODO: Decide what "unique event" means?
      * We only compare the description of the events and if the same people are involved.
      * @param otherEvent
      * @return
      */
     public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this) {
-            return true;
-        }
-
-        return otherEvent != null
-                && otherEvent.getDescription().equals(getDescription())
-                && otherEvent.getPersonName().equals(getPersonName());
+        return otherEvent.equals(this);
     }
 
     @Override
