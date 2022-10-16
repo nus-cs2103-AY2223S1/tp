@@ -170,12 +170,27 @@ public class ContactAddCommandTest {
         }
 
         @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getSortedTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSort(Comparator<Task> comparator) {
+        public void updateSortedTaskList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetSortedTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 

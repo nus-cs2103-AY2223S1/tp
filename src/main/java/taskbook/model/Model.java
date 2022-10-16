@@ -102,11 +102,28 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+    /**
+     * Updates the filter of the filtered task list to null, thus meaning all tasks are now displayed
+     */
+    void resetFilteredTaskList();
+
     /** Returns an unmodifiable view of the sorted task list */
     ObservableList<Task> getSortedTaskList();
 
-    void updateSort(Comparator<Task> comparator);
-
+    /**
+     * Updates the comparator of the sorted task list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSortedTaskList(Comparator<Task> comparator);
+    /**
+     * Updates the comparator of the sorted task list to be null, which sorts tasks by the time they were added.
+     */
+    void resetSortedTaskList();
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

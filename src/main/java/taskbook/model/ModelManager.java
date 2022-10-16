@@ -161,6 +161,16 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+    @Override
+    public void resetFilteredTaskList() {
+        filteredTasks.setPredicate(null);
+    }
+
     /**
      * Returns an unmodifiable view of the sorted list of {@code Task} backed by the internal list of
      * {@code versionedTaskBook}
@@ -170,12 +180,15 @@ public class ModelManager implements Model {
         return sortedTasks;
     }
 
-    /**
-     * Sorts the task list using the input comparator.
-     * @param comparator input comparator. If null, list will be sorted chronologically by time added.
-     */
-    public void updateSort(Comparator<Task> comparator) {
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
         sortedTasks.setComparator(comparator);
+    }
+
+    @Override
+    public void resetSortedTaskList() {
+        sortedTasks.setComparator(null);
     }
 
     @Override
