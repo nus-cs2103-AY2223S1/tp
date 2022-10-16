@@ -150,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
      * Creates a new address book
      */
     @FXML
-    private void handleNewAddress() {
+    private void handleNewBook() {
         System.out.println("New book created");
     }
 
@@ -185,7 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isNewBook()) {
-                handleNewAddress();
+                handleNewBook();
             }
 
             if (commandResult.isExit()) {
