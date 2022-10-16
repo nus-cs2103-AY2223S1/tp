@@ -24,7 +24,7 @@ public abstract class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_LOCATION = "NUS";
-    public static final String DEFAULT_USERNAME = "amy123";
+    public static final String DEFAULT_USERNAME = "";
 
 
     private Name name;
@@ -45,7 +45,7 @@ public abstract class PersonBuilder {
         gender = new Gender(DEFAULT_GENDER);
         tags = new HashSet<>();
         location = new Location(DEFAULT_LOCATION);
-        githubUsername = new GithubUsername(DEFAULT_USERNAME, true);
+        githubUsername = new GithubUsername(DEFAULT_USERNAME, false);
     }
 
     /**
