@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.testutil.Assert.assertThrows;
 import static seedu.workbook.testutil.TypicalInternships.ALICE;
@@ -31,7 +30,7 @@ public class InternshipTest {
         assertFalse(ALICE.isSameInternship(null));
 
         // same company, all other attributes different -> returns true
-        Internship editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Internship editedAlice = new InternshipBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
@@ -72,7 +71,7 @@ public class InternshipTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
-        editedAlice = new InternshipBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        editedAlice = new InternshipBuilder(ALICE).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different email -> returns false

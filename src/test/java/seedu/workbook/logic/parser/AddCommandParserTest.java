@@ -7,12 +7,9 @@ import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_STAGE_DESC;
 import static seedu.workbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.workbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.workbook.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.workbook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
@@ -23,7 +20,6 @@ import static seedu.workbook.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.workbook.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_STAGE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -39,7 +35,6 @@ import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -54,35 +49,35 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                PREAMBLE_WHITESPACE + COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                PREAMBLE_WHITESPACE + COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
                          + STAGE_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedInternship));
 
         // multiple company names - last company name accepted
-        assertParseSuccess(parser, COMPANY_DESC_AMY + COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_AMY + COMPANY_DESC_BOB + ROLE_DESC_BOB
                 + EMAIL_DESC_BOB + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple roles - last role accepted
-        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_AMY + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_AMY + ROLE_DESC_BOB + EMAIL_DESC_BOB
                + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple phones - last phone accepted
-        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
                 + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple emails - last email accepted
-        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple stages - last stage accepted
-        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
                 + STAGE_DESC_AMY + STAGE_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedInternship));
 
         // multiple tags - all accepted
         Internship expectedInternshipMultipleTags = new InternshipBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseSuccess(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
                 + STAGE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedInternshipMultipleTags));
     }
 
@@ -91,7 +86,7 @@ public class AddCommandParserTest {
         // zero tags
         Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
         assertParseSuccess(parser,
-                COMPANY_DESC_AMY + ROLE_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + STAGE_DESC_AMY,
+                COMPANY_DESC_AMY + ROLE_DESC_AMY + EMAIL_DESC_AMY + STAGE_DESC_AMY,
                 new AddCommand(expectedInternship));
     }
 
@@ -101,33 +96,29 @@ public class AddCommandParserTest {
 
         // missing company prefix
         assertParseFailure(parser,
-                VALID_COMPANY_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
+                VALID_COMPANY_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
                 expectedMessage);
 
         // missing role prefix
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + VALID_ROLE_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
+                COMPANY_DESC_BOB + VALID_ROLE_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
-                expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + STAGE_DESC_BOB,
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + VALID_EMAIL_BOB + STAGE_DESC_BOB,
                 expectedMessage);
 
         // missing stage prefix
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_STAGE_BOB,
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + VALID_STAGE_BOB,
                 expectedMessage);
 
 
         // all prefixes missing
         assertParseFailure(parser,
-                VALID_COMPANY_BOB + VALID_ROLE_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_STAGE_BOB,
+                VALID_COMPANY_BOB + VALID_ROLE_BOB + VALID_EMAIL_BOB + VALID_STAGE_BOB,
                 expectedMessage);
     }
 
@@ -135,46 +126,41 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid company
         assertParseFailure(parser,
-                INVALID_COMPANY_DESC + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
+                INVALID_COMPANY_DESC + ROLE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Company.MESSAGE_CONSTRAINTS);
 
         // invalid role
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + INVALID_ROLE_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB
+                COMPANY_DESC_BOB + INVALID_ROLE_DESC + EMAIL_DESC_BOB + STAGE_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Role.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
-        assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + STAGE_DESC_BOB
-                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + STAGE_DESC_BOB
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + INVALID_EMAIL_DESC + STAGE_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid stage
         assertParseFailure(parser,
-                COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_STAGE_DESC
+                COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB + INVALID_STAGE_DESC
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Stage.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        assertParseFailure(parser, COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
                 + STAGE_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser,
-                INVALID_COMPANY_DESC + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
+                INVALID_COMPANY_DESC + ROLE_DESC_BOB + EMAIL_DESC_BOB + STAGE_DESC_BOB,
                 Company.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser,
-                PREAMBLE_NON_EMPTY + COMPANY_DESC_BOB + ROLE_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                PREAMBLE_NON_EMPTY + COMPANY_DESC_BOB + ROLE_DESC_BOB + EMAIL_DESC_BOB
                         + STAGE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }

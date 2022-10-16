@@ -9,7 +9,6 @@ import seedu.workbook.model.WorkBook;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -23,42 +22,36 @@ public class SampleDataUtil {
             new Internship(
                 new Company("Jane Street"),
                 new Role("Software Engineer"),
-                new Phone("87438807"),
                 new Email("alexyeoh@example.com"),
                 new Stage("HR Interview"),
                 getTagSet("friends")),
             new Internship(
                 new Company("Hudson River Trading"),
                 new Role("Algorithm Engineer"),
-                new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new Stage("Team Lead Interview"),
                 getTagSet("colleagues", "friends")),
             new Internship(
                 new Company("Shopee"),
                 new Role("iOS Engineer"),
-                new Phone("93210283"),
                 new Email("charlotte@example.com"),
                 new Stage("Online Coding Assessment"),
                 getTagSet("neighbours")),
             new Internship(
                 new Company("Visa"),
                 new Role("Backend Engineer"),
-                new Phone("91031282"),
                 new Email("lidavid@example.com"),
                 new Stage("Technical Interview"),
                 getTagSet("family")),
             new Internship(
                 new Company("Binance"),
                 new Role("Blockchain Engineer"),
-                new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Stage("Application Sent"),
                 getTagSet("classmates")),
             new Internship(
                 new Company("Optiver"),
                 new Role("God Engineer"),
-                new Phone("92624417"),
                 new Email("royb@example.com"),
                 new Stage("Rejected"),
                 getTagSet("colleagues"))

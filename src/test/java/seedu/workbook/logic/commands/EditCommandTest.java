@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.workbook.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
-import static seedu.workbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -56,11 +55,11 @@ public class EditCommandTest {
         Internship lastInternship = model.getFilteredInternshipList().get(indexLastInternship.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastInternship);
-        Internship editedInternship = internshipInList.withCompany(VALID_COMPANY_BOB).withPhone(VALID_PHONE_BOB)
+        Internship editedInternship = internshipInList.withCompany(VALID_COMPANY_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastInternship, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship);

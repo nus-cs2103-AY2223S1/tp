@@ -11,7 +11,6 @@ import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -65,22 +64,6 @@ public class ParserUtil {
         }
         return new Role(trimmedRole);
     }
-
-    /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
 
 
     /**

@@ -18,7 +18,6 @@ public class Internship {
     // Identity fields
     private final Company company;
     private final Role role;
-    private final Phone phone;
     private final Email email;
     private final Stage stage;
 
@@ -29,11 +28,10 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Role role, Phone phone, Email email, Stage stage, Set<Tag> tags) {
-        requireAllNonNull(company, role, phone, email, stage, tags);
+    public Internship(Company company, Role role, Email email, Stage stage, Set<Tag> tags) {
+        requireAllNonNull(company, role, email, stage, tags);
         this.company = company;
         this.role = role;
-        this.phone = phone;
         this.email = email;
         this.stage = stage;
         this.tags.addAll(tags);
@@ -47,9 +45,6 @@ public class Internship {
         return role;
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
 
     public Email getEmail() {
         return email;
@@ -98,7 +93,6 @@ public class Internship {
         Internship otherInternship = (Internship) other;
         return otherInternship.getCompany().equals(getCompany())
                 && otherInternship.getRole().equals(getRole())
-                && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getStage().equals(getStage())
                 && otherInternship.getTags().equals(getTags());
@@ -107,7 +101,7 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, role, phone, email, stage, tags);
+        return Objects.hash(company, role, email, stage, tags);
     }
 
     @Override
@@ -116,8 +110,6 @@ public class Internship {
         builder.append(getCompany())
                 .append("; Role: ")
                 .append(getRole())
-                .append("; Phone: ")
-                .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Stage: ")

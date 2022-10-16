@@ -8,7 +8,6 @@ import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
 import seedu.workbook.model.internship.Stage;
 import seedu.workbook.model.tag.Tag;
@@ -35,7 +34,6 @@ public class EditInternshipDescriptorBuilder {
         descriptor = new EditInternshipDescriptor();
         descriptor.setCompany(internship.getCompany());
         descriptor.setRole(internship.getRole());
-        descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
         descriptor.setStage(internship.getStage());
         descriptor.setTags(internship.getTags());
@@ -54,14 +52,6 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withRole(String role) {
         descriptor.setRole(new Role(role));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditInternshipDescriptor} that we are building.
-     */
-    public EditInternshipDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
         return this;
     }
 

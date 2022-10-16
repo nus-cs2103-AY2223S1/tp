@@ -35,8 +35,6 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
     private Label email;
     @FXML
     private Label stage;
@@ -52,7 +50,6 @@ public class InternshipCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         company.setText(internship.getCompany().name);
         role.setText(internship.getRole().value);
-        phone.setText(internship.getPhone().value);
         email.setText(internship.getEmail().value);
         stage.setText(internship.getStage().value);
         internship.getTags().stream()
