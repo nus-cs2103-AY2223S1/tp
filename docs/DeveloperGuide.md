@@ -394,23 +394,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Implementation
 
-This feature is mainly implemented by the `CustomiseCommand` and `PersonCard` classes. The following methods are the main ones:
+This feature is mainly implemented by the `CustomiseOrderCommand` and `PersonCard` classes. The following methods are the main ones:
 
-* `CustomiseCommand#changeAttributeOrder(Model model)` - saves the new attribute order in the `preferences.json` file.
+* `CustomiseOrderCommand#execute()` - saves the new attribute order in the `preferences.json` file by using `Model#setGuiSettings()`.
 * `PersonCard#setAttributes()` - reads the order from the `preferences.json` file and builds the `PersonCard` in the order specified.
 
-_{diagrams and more in depth explanation to be added}_
+Given below is an example usage scenario and how this feature behaves at each part of the mechanism.
+
+Step 1. The user launches the application. Under each contacts' name, the current order the user sees is: Tags, phone number, email and address (This is also the default order)
+
+Step 2. The user wants to have email right below each name instead. The user executes `customise order e/` to make the emails appear right below the name.
+
+1. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse the remaining inputs.
+2. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` for `Logic`.
+3. `Logic` executes the `CustomiseOrderCommand`.
+4. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to set the new ordering into `preferences.json`.
+5. `CustomiseOrderCommand#execute()` calls `CustomiseCommand#refreshList()` to refresh the UI.
+
+_{sequence diagram to be added here}_
+
+6. `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`
+
+_{uml diagram to be added here}_
 
 #### Design consideration
 * **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX `FlowPane`.
   * Pros: Easy to implement.
-  * Cons: Unable to have different styling for different attributes.
+  * Cons: Hard to maintain if different styling required for different attributes.
 
 * **Alternative 2:** Have 24 different FXML files and choose the one with the required order.
-  * Pros: Easy to implement and can have different styling for different attributes.
-  * Cons: Hard to maintain and make changes.
-
-_{more aspects and alternatives to be added}_
+  * Pros: Easy to implement.
+  * Cons: Harder to maintain and make changes.
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
