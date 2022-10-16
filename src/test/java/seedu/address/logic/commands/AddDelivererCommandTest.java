@@ -40,7 +40,8 @@ public class AddDelivererCommandTest {
 //
 //        CommandResult commandResult = new AddDelivererCommand(validDeliverer).execute(modelStub);
 //
-//        assertEquals(String.format(AddDelivererCommand.MESSAGE_SUCCESS, validDeliverer), commandResult.getFeedbackToUser());
+//        assertEquals(String.format(AddDelivererCommand.MESSAGE_SUCCESS, validDeliverer),
+//                commandResult.getFeedbackToUser());
 //        assertEquals(Arrays.asList(validDeliverer), modelStub.deliverersAdded);
 //    }
 //
@@ -48,7 +49,8 @@ public class AddDelivererCommandTest {
 //    public void execute_duplicateDeliverer_throwsCommandException() {
 //        Deliverer validDeliverer = new PersonBuilder().buildDeliverer();
 //        AddDelivererCommand addDelivererCommand = new AddDelivererCommand(validDeliverer);
-//        AddDelivererCommandTest.ModelStub modelStub = new AddDelivererCommandTest.ModelStubWithDeliverer(validDeliverer);
+//        AddDelivererCommandTest.ModelStub modelStub =
+//                new AddDelivererCommandTest.ModelStubWithDeliverer(validDeliverer);
 //
 //        assertThrows(CommandException.class, AddDelivererCommand.MESSAGE_DUPLICATE_DELIVERER,
 //                () -> addDelivererCommand.execute(modelStub));

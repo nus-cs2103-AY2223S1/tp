@@ -20,10 +20,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
-import seedu.address.model.order.Order;
 import seedu.address.model.pet.Pet;
 import seedu.address.testutil.PersonBuilder;
 
@@ -41,10 +41,10 @@ public class AddBuyerCommandTest {
 
         CommandResult commandResult = new AddBuyerCommand(validBuyer).execute(modelStub);
 
-        String EXPECTED_RESULT = "\n" + "0 orders added\n0 pets added\n\n"
+        String expectedResult = "\n" + "0 orders added\n0 pets added\n\n"
                 + String.format(AddBuyerCommand.MESSAGE_SUCCESS, validBuyer);
 
-        assertEquals(EXPECTED_RESULT, commandResult.getFeedbackToUser());
+        assertEquals(expectedResult, commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBuyer), modelStub.buyersAdded);
     }
 
@@ -54,8 +54,8 @@ public class AddBuyerCommandTest {
         AddBuyerCommand addBuyerCommand = new AddBuyerCommand(validBuyer);
         ModelStub modelStub = new ModelStubWithBuyer(validBuyer);
 
-        assertThrows(CommandException.class, AddBuyerCommand.MESSAGE_DUPLICATE_BUYER,
-              () -> addBuyerCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddBuyerCommand.MESSAGE_DUPLICATE_BUYER, () -> addBuyerCommand.execute(modelStub));
     }
 
     @Test

@@ -36,12 +36,14 @@ public class AddSupplierCommandTest {
 //
 //    @Test
 //    public void execute_supplierAcceptedByModel_addSuccessful() throws Exception {
-//        AddSupplierCommandTest.ModelStubAcceptingSupplierAdded modelStub = new AddSupplierCommandTest.ModelStubAcceptingSupplierAdded();
+//        AddSupplierCommandTest.ModelStubAcceptingSupplierAdded modelStub =
+//                new AddSupplierCommandTest.ModelStubAcceptingSupplierAdded();
 //        Supplier validSupplier = new PersonBuilder().buildSupplier();
 //
 //        CommandResult commandResult = new AddSupplierCommand(validSupplier).execute(modelStub);
 //
-//        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier), commandResult.getFeedbackToUser());
+//        assertEquals(String.format(AddSupplierCommand.MESSAGE_SUCCESS, validSupplier),
+//                commandResult.getFeedbackToUser());
 //        assertEquals(Arrays.asList(validSupplier), modelStub.suppliersAdded);
 //    }
 //
@@ -49,7 +51,8 @@ public class AddSupplierCommandTest {
 //    public void execute_duplicateSupplier_throwsCommandException() {
 //        Supplier validSupplier = new PersonBuilder().buildSupplier();
 //        AddSupplierCommand addSupplierCommand = new AddSupplierCommand(validSupplier);
-//        AddSupplierCommandTest.ModelStub modelStub = new AddSupplierCommandTest.ModelStubWithSupplier(validSupplier);
+//        AddSupplierCommandTest.ModelStub modelStub =
+//                new AddSupplierCommandTest.ModelStubWithSupplier(validSupplier);
 //
 //        assertThrows(CommandException.class, AddSupplierCommand.MESSAGE_DUPLICATE_SUPPLIER,
 //                () -> addSupplierCommand.execute(modelStub));
