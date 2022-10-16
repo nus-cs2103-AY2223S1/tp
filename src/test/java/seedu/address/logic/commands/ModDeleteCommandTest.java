@@ -23,9 +23,9 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Test class for ModMarkCommand.
+ * Test class for ModDeleteCommand.
  */
-public class ModMarkCommandTest {
+public class ModDeleteCommandTest {
 
     private static final Mod VALID_MOD_CS2100 = new Mod("CS2100", false);
     private static final Mod VALID_MOD_CS2101 = new Mod("CS2101", false);
@@ -42,53 +42,55 @@ public class ModMarkCommandTest {
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when index is not entered.
+     * Tests the behaviour of ModDeleteCommand when index is not entered.
      */
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ModMarkCommand(null, FXCollections.observableArrayList()));
+        assertThrows(NullPointerException.class, () -> new ModDeleteCommand(null, FXCollections.observableArrayList()));
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when mod is not entered.
+     * Tests the behaviour of ModDeleteCommand when mod is not entered.
      */
     @Test
     public void constructor_nullMods_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ModMarkCommand(INDEX_FIRST_PERSON, null));
+        assertThrows(NullPointerException.class, () -> new ModDeleteCommand(INDEX_FIRST_PERSON, null));
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when the student wants to mark 1 existing mod
-     * in the list of modules of a batchmate.
+     * Tests the behaviour of ModDeleteCommand when the student wants to delete 1 existing mod
+     * from the list of modules of a batchmate.
      *
-     * @throws CommandException If an error which occurs during execution of ModMarkCommand.
+     * @throws CommandException If an error which occurs during execution of ModDeleteCommand.
      */
     @Test
-    public void execute_markOneMod_success() throws CommandException {
+    public void execute_deleteOneMod_success() throws CommandException {
 
-        Person batchmate = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.modName).build();
+        Person batchmate = new PersonBuilder(BOB)
+                .withMods(VALID_MOD_CS2100.modName, VALID_MOD_CS2101.modName)
+                .build();
         model.addPerson(batchmate);
 
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+        ModDeleteCommand commandToExecute = new ModDeleteCommand(indexLastPerson,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
         CommandResult commandResult = commandToExecute.execute(model);
 
-        String actualModStatus = batchmate.getMods().get(0).toString();
-        String expectedModStatus = "[CS2100: true]";
+        String actualModList = batchmate.getMods().toString();
+        String expectedModList = "[[CS2101: false]]";
 
-        assertEquals(expectedModStatus, actualModStatus);
-        assertEquals(ModMarkCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(actualModList, expectedModList);
+        assertEquals(ModDeleteCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when the student wants to mark 2 existing mods
-     * in the list of modules of a batchmate.
+     * Tests the behaviour of ModDeleteCommand when the student wants to delete 2 existing mods
+     * from the list of modules of a batchmate.
      *
-     * @throws CommandException If an error which occurs during execution of ModMarkCommand.
+     * @throws CommandException If an error which occurs during execution of ModDeleteCommand.
      */
     @Test
-    public void execute_markMultipleMod_success() throws CommandException {
+    public void execute_deleteMultipleMods_success() throws CommandException {
 
         Person batchmate = new PersonBuilder(BOB).withMods(
                 VALID_MOD_CS2100.modName,
@@ -98,27 +100,23 @@ public class ModMarkCommandTest {
         model.addPerson(batchmate);
 
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+        ModDeleteCommand commandToExecute = new ModDeleteCommand(indexLastPerson,
                 FXCollections.observableArrayList(VALID_MOD_CS2101, VALID_MOD_CS2100));
         CommandResult commandResult = commandToExecute.execute(model);
 
-        String actualFirstModStatus = batchmate.getMods().get(0).toString();
-        String actualSecondModStatus = batchmate.getMods().get(1).toString();
-        String actualThirdModStatus = batchmate.getMods().get(2).toString();
-        String actualModStatus = actualFirstModStatus + actualSecondModStatus + actualThirdModStatus;
+        String actualModList = batchmate.getMods().toString();
+        String expectedModList = "[[CS2103: false]]";
 
-        String expectedModStatus = "[CS2100: true]" + "[CS2103: false]" + "[CS2101: true]";
-
-        assertEquals(expectedModStatus, actualModStatus);
-        assertEquals(ModMarkCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(actualModList, expectedModList);
+        assertEquals(ModDeleteCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when the student wants to mark 1 non-existing mod
-     * in the list of modules of a batchmate.
+     * Tests the behaviour of ModDeleteCommand when the student wants to delete 1 non-existing mod
+     * from the list of modules of a batchmate.
      */
     @Test
-    public void execute_markNonExistingMod1_throwsCommandException() {
+    public void execute_delete1NonExistingMod_throwsCommandException() {
 
         Person batchmate = new PersonBuilder(BOB).withMods(
                         VALID_MOD_CS2100.modName,
@@ -130,22 +128,22 @@ public class ModMarkCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
 
         try {
-            ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+            ModDeleteCommand commandToExecute = new ModDeleteCommand(indexLastPerson,
                     FXCollections.observableArrayList(MOD_NOT_FOUND_CS2105));
             commandToExecute.execute(model);
             fail(); // Test should not reach this line.
         } catch (CommandException e) {
-            assertEquals(ModMarkCommand.MESSAGE_INVALID_MOD, e.getMessage());
+            assertEquals(ModDeleteCommand.MESSAGE_INVALID_MOD, e.getMessage());
         }
 
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when the student wants to mark multiple mods containing
-     * 1 non-existing mod in the list of modules of a batchmate.
+     * Tests the behaviour of ModDeleteCommand when the student wants to delete multiple mods containing
+     * a mix of existing and non-existing mods from the list of modules of a batchmate.
      */
     @Test
-    public void execute_markNonExistingMod2_throwsCommandException() {
+    public void execute_deleteMixExistingAndNonExistingMods_throwsCommandException() {
 
         Person batchmate = new PersonBuilder(BOB).withMods(
                         VALID_MOD_CS2100.modName,
@@ -157,25 +155,25 @@ public class ModMarkCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
 
         try {
-            ModMarkCommand commandToExecute = new ModMarkCommand(indexLastPerson,
+            ModDeleteCommand commandToExecute = new ModDeleteCommand(indexLastPerson,
                     FXCollections.observableArrayList(VALID_MOD_CS2101, VALID_MOD_CS2103, MOD_NOT_FOUND_CS2105));
             commandToExecute.execute(model);
-            fail(); // Test should not reach this line.
+            fail(); // Test should not reach this line. Goes to Catch block.
         } catch (CommandException e) {
-            assertEquals(ModMarkCommand.MESSAGE_INVALID_MOD, e.getMessage());
+            assertEquals(ModDeleteCommand.MESSAGE_INVALID_MOD, e.getMessage());
         }
 
     }
 
     /**
-     * Tests the behaviour of ModMarkCommand when index is out of range.
+     * Tests the behaviour of ModDeleteCommand when index is out of range.
      *
-     * @throws CommandException If an error which occurs during execution of ModMarkCommand.
+     * @throws CommandException If an error which occurs during execution of ModDeleteCommand.
      */
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() throws CommandException {
         Index indexOutOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        ModMarkCommand invalidCommand = new ModMarkCommand(indexOutOfBounds,
+        ModDeleteCommand invalidCommand = new ModDeleteCommand(indexOutOfBounds,
                 FXCollections.singletonObservableList(VALID_MOD_CS2100));
         assertCommandFailure(invalidCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }

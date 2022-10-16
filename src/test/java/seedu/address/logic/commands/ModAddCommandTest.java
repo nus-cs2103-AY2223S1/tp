@@ -23,15 +23,13 @@ import seedu.address.testutil.PersonBuilder;
 
 public class ModAddCommandTest {
 
-    private static final Mod VALID_MOD_CS2100 = new Mod("CS2100");
-    private static final Mod VALID_MOD_CS2101 = new Mod("CS2101");
+    private static final Mod VALID_MOD_CS2100 = new Mod("CS2100", false);
+    private static final Mod VALID_MOD_CS2101 = new Mod("CS2101", false);
     private static Model model;
-    private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test
