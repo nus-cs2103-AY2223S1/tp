@@ -1,5 +1,7 @@
 package seedu.address.model.meeting;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
@@ -52,24 +54,31 @@ public class Meeting {
      *
      * @param peopleToMeet the array of people names
      */
-    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
+    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet)
+            throws PersonNotFoundException {
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
+            System.out.println(personName);
+            String[] nameKeywords = personName.strip().split("\\s+");
+            for (String word: nameKeywords) {
+                System.out.println(word);
+            }
             NameContainsKeywordsPredicate personNamePredicate =
-                    new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
+                    new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
             // updates the list of persons in address book based on predicate
             model.updateFilteredPersonList(personNamePredicate);
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
-            // Am thinking if there's a better way to check if the person exists
-            // Since model.hasPerson only takes in a person object as argument
             if (listOfPeople.isEmpty()) {
                 throw new PersonNotFoundException();
             } else { // get the first person in the address book whose name matches
                 output.add(listOfPeople.get(0));
             }
+
+            // resets the list of persons after every search
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         }
         return output;
     }
@@ -111,6 +120,20 @@ public class Meeting {
         for (int i = 0; i < people.size(); i++) {
             this.peopleToMeet.add(people.get(i));
         }
+    }
+
+    /**
+     * Deletes the array of persons from the unique persons list
+     * @param people
+     */
+    public void deletePersons(ArrayList<Person> people) {
+        for (int i = 0; i < people.size(); i++) {
+            this.peopleToMeet.remove(people.get(i));
+        }
+    }
+
+    public int getNumPersons() {
+        return peopleToMeet.getSize();
     }
 
     public ArrayList<Person> getArrayListPersonToMeet() {
