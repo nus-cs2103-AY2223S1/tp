@@ -163,13 +163,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteBridge(Person person) {
+    public void deletePersonBridge(Person person) {
         requireNonNull(person);
         addressBook.removeBridge(person);
     }
 
     @Override
-    public void deleteBridge(Task task) {
+    public void deleteTaskBridge(Task task) {
         requireNonNull(task);
         addressBook.removeBridge(task);
     }
