@@ -9,7 +9,7 @@ import swift.model.person.Person;
 
 class SampleDataUtilTest {
     @Test
-    public void getSampleAddressBook() {
+    public void getSampleAddressBook_success() {
         AddressBook addressBook = new AddressBook();
         for (Person samplePerson : SampleDataUtil.getSamplePersons()) {
             addressBook.addPerson(samplePerson);
