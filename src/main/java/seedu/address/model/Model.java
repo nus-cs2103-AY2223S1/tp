@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.offer.Offer;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -19,6 +20,9 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Listing> PREDICATE_SHOW_ALL_LISTINGS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Offer> PREDICATE_SHOW_ALL_OFFERS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -104,17 +108,6 @@ public interface Model {
     boolean hasListing(Listing listing);
 
     /**
-     * Dummy method to pass checkstyle, to be filled later
-     */
-    boolean hasOffer(Offer offer);
-
-    /**
-     * Adds the given offer (Dummy method to pass checkstyle).
-     * {@code listing} must not already exist in the address book.
-     */
-    void addOffer(Offer offer);
-
-    /**
      * Deletes the given listing.
      * The listing must exist in the address book.
      */
@@ -149,5 +142,46 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredListingList(Predicate<Listing> predicate);
+
+    /**
+     * Returns true if an offer with the same identity as {@code offer} exists in the address book.
+     */
+    boolean hasOffer(Offer offer);
+
+    /**
+     * Deletes the given offer.
+     * The offer must exist in the address book.
+     */
+    void deleteOffer(Offer target);
+
+    /**
+     * Adds the given offer.
+     * {@code offer} must not already exist in the address book.
+     */
+    void addOffer(Offer offer);
+
+    /**
+     * Gets the offer from the given name {@code name} and listing address {@code address}.
+     * @param name name of the person in offer
+     * @param address listing address of offer
+     * @return offer with given name and listing address
+     */
+    public Offer getOffer(Name name, Address address);
+
+    /**
+     * Replaces the given offer {@code target} with {@code editedOffer}.
+     * {@code target} must exist in the address book.
+     * The offer identity of {@code editedOffer} must not be the same as another existing offer in the address book.
+     */
+    void setOffer(Offer target, Offer editedOffer);
+
+    /** Returns an unmodifiable view of the filtered offer list */
+    ObservableList<Offer> getFilteredOfferList();
+
+    /**
+     * Updates the filter of the filtered offer list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOfferList(Predicate<Offer> predicate);
 
 }

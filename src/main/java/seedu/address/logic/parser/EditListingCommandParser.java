@@ -45,7 +45,8 @@ public class EditListingCommandParser implements Parser<EditListingCommand> {
             editListingDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_ASKING_PRICE).isPresent()) {
-            editListingDescriptor.setAskingPrice(Integer.parseInt(argMultimap.getValue(PREFIX_ASKING_PRICE).get()));
+            editListingDescriptor.setAskingPrice(
+                ParserUtil.parsePrice(argMultimap.getValue(PREFIX_ASKING_PRICE).get()));
         }
         if (!editListingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditListingCommand.MESSAGE_NOT_EDITED);

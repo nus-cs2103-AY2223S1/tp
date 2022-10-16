@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.offer.exceptions.DuplicateOfferException;
+import seedu.address.model.offer.exceptions.OfferNotFoundException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
 
 /**
  * A list of offers that enforces uniqueness between its elements and does not allow nulls.
@@ -37,13 +39,13 @@ public class UniqueOfferList implements Iterable<Offer> {
     }
 
     /**
-     * Adds a Offer to the list.
+     * Adds an Offer to the list.
      * The Offer must not already exist in the list.
      */
     public void add(Offer toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateOfferException();
         }
         internalList.add(toAdd);
     }
@@ -58,14 +60,30 @@ public class UniqueOfferList implements Iterable<Offer> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new OfferNotFoundException();
         }
 
         if (!target.isSameOffer(editedOffer) && contains(editedOffer)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateOfferException();
         }
 
         internalList.set(index, editedOffer);
+    }
+
+    /**
+     * Gets the offer from the given name {@code name} and listing address {@code address}.
+     * @param name name of the person in offer
+     * @param address listing address of offer
+     * @return offer with given name and listing address
+     */
+    public Offer getOffer(Name name, Address address) {
+        requireNonNull(name);
+        for (Offer offer : internalList) {
+            if (offer.getClient().equals(name) && offer.getListing().equals(address)) {
+                return offer;
+            }
+        }
+        throw new OfferNotFoundException();
     }
 
     /**
@@ -75,11 +93,11 @@ public class UniqueOfferList implements Iterable<Offer> {
     public void remove(Offer toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new OfferNotFoundException();
         }
     }
 
-    public void setOffers(seedu.address.model.offer.UniqueOfferList replacement) {
+    public void setOffers(UniqueOfferList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -91,7 +109,7 @@ public class UniqueOfferList implements Iterable<Offer> {
     public void setOffers(List<Offer> offers) {
         requireAllNonNull(offers);
         if (!offersAreUnique(offers)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateOfferException();
         }
 
         internalList.setAll(offers);
@@ -112,8 +130,8 @@ public class UniqueOfferList implements Iterable<Offer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.offer.UniqueOfferList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.offer.UniqueOfferList) other).internalList));
+                || (other instanceof UniqueOfferList // instanceof handles nulls
+                && internalList.equals(((UniqueOfferList) other).internalList));
     }
 
     @Override
@@ -122,7 +140,7 @@ public class UniqueOfferList implements Iterable<Offer> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique Offers.
+     * Returns true if {@code offers} contains only unique Offers.
      */
     private boolean offersAreUnique(List<Offer> offers) {
         for (int i = 0; i < offers.size() - 1; i++) {
