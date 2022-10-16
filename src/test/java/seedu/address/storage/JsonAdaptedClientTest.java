@@ -13,15 +13,22 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 
 public class JsonAdaptedClientTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_PHONE = "#ab";
+    private static final String INVALID_EMAIL = "  ";
+
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final List<JsonAdaptedCompany> VALID_COMPANIES = BENSON.getCompanyList().stream()
             .map(JsonAdaptedCompany::new)
             .collect(Collectors.toList());
@@ -38,14 +45,16 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedClient client =
-                new JsonAdaptedClient(INVALID_NAME, VALID_ADDRESS, VALID_TAGS, VALID_COMPANIES);
+                new JsonAdaptedClient(INVALID_NAME, VALID_ADDRESS, VALID_PHONE,
+                        VALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedClient client = new JsonAdaptedClient(null, VALID_ADDRESS, VALID_TAGS, VALID_COMPANIES);
+        JsonAdaptedClient client = new JsonAdaptedClient(null, VALID_ADDRESS, VALID_PHONE,
+                VALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
@@ -53,15 +62,51 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, INVALID_ADDRESS, VALID_TAGS, VALID_COMPANIES);
+                new JsonAdaptedClient(VALID_NAME, INVALID_ADDRESS,
+                        VALID_PHONE, VALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, null, VALID_TAGS, VALID_COMPANIES);
+        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, null,
+                VALID_PHONE, VALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidPhone_throwsIllegalValueException() {
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
+                        INVALID_PHONE, VALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
+        String expectedMessage = ClientPhone.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullPhone_throwsIllegalValueException() {
+        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
+                null, VALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientPhone.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidEmail_throwsIllegalValueException() {
+        JsonAdaptedClient client =
+                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
+                        VALID_PHONE, INVALID_EMAIL, VALID_TAGS, VALID_COMPANIES);
+        String expectedMessage = ClientEmail.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullEmail_throwsIllegalValueException() {
+        JsonAdaptedClient client = new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS,
+                VALID_PHONE, null, VALID_TAGS, VALID_COMPANIES);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClientEmail.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
@@ -70,7 +115,8 @@ public class JsonAdaptedClientTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS, invalidTags, VALID_COMPANIES);
+                new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS, VALID_PHONE,
+                        VALID_EMAIL, invalidTags, VALID_COMPANIES);
         assertThrows(IllegalValueException.class, client::toModelType);
     }
 

@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
@@ -19,6 +21,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.model.tag.Tag;
@@ -37,6 +41,8 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS + "Blk 221 Yishun St 81";
 
@@ -89,11 +95,14 @@ public class EditCommand extends Command {
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        ClientPhone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
+        ClientEmail updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         UniqueCompanyList companies = editClientDescriptor.getUniqueCompanyList().orElse(clientToEdit.getCompanies());
         TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
-        return new Client(updatedName, updatedAddress, updatedTags, companies, transactions);
+        return new Client(updatedName, updatedAddress, updatedPhone,
+                updatedEmail, updatedTags, companies, transactions);
     }
 
     @Override
@@ -121,6 +130,8 @@ public class EditCommand extends Command {
     public static class EditClientDescriptor {
         private Name name;
         private Address address;
+        private ClientPhone phone;
+        private ClientEmail email;
         private Set<Tag> tags;
         private UniqueCompanyList companies;
         private TransactionLog transactions;
@@ -134,6 +145,8 @@ public class EditCommand extends Command {
         public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
             setTags(toCopy.tags);
             setUniqueCompanyList(toCopy.companies);
             setTransactionLog(toCopy.transactions);
@@ -156,6 +169,22 @@ public class EditCommand extends Command {
 
         public void setAddress(Address address) {
             this.address = address;
+        }
+
+        public void setPhone(ClientPhone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<ClientPhone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setEmail(ClientEmail email) {
+            this.email = email;
+        }
+
+        public Optional<ClientEmail> getEmail() {
+            return Optional.ofNullable(email);
         }
 
         public Optional<Address> getAddress() {

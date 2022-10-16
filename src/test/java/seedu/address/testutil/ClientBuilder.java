@@ -5,6 +5,8 @@ import java.util.Set;
 
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.UniqueCompanyList;
@@ -20,9 +22,13 @@ public class ClientBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_PHONE = "87654321";
+    public static final String DEFAULT_EMAIL = "amybee@gmail.com";
 
     private Name name;
     private Address address;
+    private ClientPhone phone;
+    private ClientEmail email;
     private Set<Tag> tags;
     private UniqueCompanyList companies;
     private TransactionLog transactions;
@@ -33,6 +39,8 @@ public class ClientBuilder {
     public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
+        phone = new ClientPhone(DEFAULT_PHONE);
+        email = new ClientEmail(DEFAULT_EMAIL);
         tags = new HashSet<>();
         companies = new UniqueCompanyList();
         transactions = new TransactionLog();
@@ -44,6 +52,8 @@ public class ClientBuilder {
     public ClientBuilder(Client clientToCopy) {
         name = clientToCopy.getName();
         address = clientToCopy.getAddress();
+        phone = clientToCopy.getPhone();
+        email = clientToCopy.getEmail();
         tags = new HashSet<>(clientToCopy.getTags());
         companies = clientToCopy.getCompanies();
         transactions = clientToCopy.getTransactions();
@@ -70,6 +80,22 @@ public class ClientBuilder {
      */
     public ClientBuilder withAddress(String address) {
         this.address = new Address(address);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ClientPhone} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withClientPhone(String phone) {
+        this.phone = new ClientPhone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the {@code ClientEmail} of the {@code Client} that we are building.
+     */
+    public ClientBuilder withClientEmail(String email) {
+        this.email = new ClientEmail(email);
         return this;
     }
 
@@ -106,7 +132,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, address, tags, companies, transactions);
+        return new Client(name, address, phone, email, tags, companies, transactions);
     }
 
 }

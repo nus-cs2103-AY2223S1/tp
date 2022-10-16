@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 import seedu.address.model.company.Company;
 import seedu.address.model.tag.Tag;
@@ -26,6 +28,8 @@ class JsonAdaptedClient {
 
     private final String name;
     private final String address;
+    private final String phone;
+    private final String email;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedCompany> companies = new ArrayList<>();
 
@@ -34,11 +38,14 @@ class JsonAdaptedClient {
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("companies") List<JsonAdaptedCompany> companies) {
         this.name = name;
         this.companies.addAll(companies);
         this.address = address;
+        this.phone = phone;
+        this.email = email;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -50,6 +57,8 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
+        phone = source.getPhone().value;
+        email = source.getEmail().value;
         companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -83,9 +92,27 @@ class JsonAdaptedClient {
         }
         final Address modelAddress = new Address(address);
 
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientPhone.class.getSimpleName()));
+        }
+        if (!ClientPhone.isValidPhone(phone)) {
+            throw new IllegalValueException(ClientPhone.MESSAGE_CONSTRAINTS);
+        }
+        final ClientPhone modelPhone = new ClientPhone(phone);
+
+        if (email == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ClientEmail.class.getSimpleName()));
+        }
+        if (!ClientEmail.isValidEmail(email)) {
+            throw new IllegalValueException(ClientEmail.MESSAGE_CONSTRAINTS);
+        }
+        final ClientEmail modelEmail = new ClientEmail(email);
+
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        Client client = new Client(modelName, modelAddress, modelTags);
+        Client client = new Client(modelName, modelAddress, modelPhone, modelEmail, modelTags);
 
         for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
             Company company = jsonAdaptedCompany.toModelType();
