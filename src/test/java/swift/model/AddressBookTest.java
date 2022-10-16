@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +25,7 @@ import swift.model.person.exceptions.DuplicatePersonException;
 import swift.model.task.Task;
 import swift.model.task.exceptions.DuplicateTaskException;
 import swift.testutil.PersonBuilder;
-import swift.testutil.TaskBuilder;
+import swift.testutil.TypicalBridges;
 
 public class AddressBookTest {
 
@@ -126,15 +125,12 @@ public class AddressBookTest {
 
     @Test
     public void hasBridge_bridgeNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
-                UUID.fromString(TaskBuilder.DEFAULT_ID))));
+        assertFalse(addressBook.hasBridge(TypicalBridges.DEFAUL_BRIDGE_1));
     }
     @Test
     public void hasBridge_bridgeInAddressBook_returnsTrue() {
-        addressBook.addBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
-                UUID.fromString(TaskBuilder.DEFAULT_ID)));
-        assertTrue(addressBook.hasBridge(new PersonTaskBridge(UUID.fromString(PersonBuilder.DEFAULT_UUID),
-                UUID.fromString(TaskBuilder.DEFAULT_ID))));
+        addressBook.addBridge(TypicalBridges.DEFAUL_BRIDGE_1);
+        assertTrue(addressBook.hasBridge(TypicalBridges.DEFAUL_BRIDGE_1));
     }
 
     @Test
