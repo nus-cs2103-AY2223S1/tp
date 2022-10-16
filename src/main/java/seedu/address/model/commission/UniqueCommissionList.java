@@ -58,7 +58,7 @@ public class UniqueCommissionList implements Iterable<Commission> {
     }
 
     /**
-     * Returns the size of active commissions.
+     * Returns the number of active commissions.
      */
     public long getActiveSize() {
         return internalList.stream()
