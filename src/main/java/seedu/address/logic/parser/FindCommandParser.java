@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
@@ -18,6 +19,8 @@ import seedu.address.model.person.PersonMatchesPredicate;
 public class FindCommandParser implements Parser<FindCommand> {
     private PersonMatchesPredicate predicate = new PersonMatchesPredicate();
     private ArgumentMultimap argMultimap;
+    private Pattern allArgumentsPattern = Pattern.compile("^all/.+");
+    private boolean hasAllTags = false;
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -27,10 +30,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION);
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE);
 
-        if (!areAllArgsValid(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION)) {
+        if (!(areAllArgsValid(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -58,6 +61,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             predicate.setLocationsList(getKeywordList(PREFIX_LOCATION));
         }
 
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            predicate.setTypesList(getKeywordList(PREFIX_TYPE));
+        }
+
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             setTagsList();
         }
@@ -77,8 +84,19 @@ public class FindCommandParser implements Parser<FindCommand> {
             return false;
         } else {
             return presentArgs.get().allMatch(prefix ->
-                    argMultimap.getValue(prefix).get().trim().length() != 0);
+                    argMultimap.getValue(prefix).get().trim().length() != 0) && areTagsArgsValid();
         }
+    }
+
+    private boolean areTagsArgsValid() {
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            String input = argMultimap.getValue(PREFIX_TAG).get();
+            if (input.contains("all/")) {
+                hasAllTags = true;
+                return allArgumentsPattern.matcher(input.trim()).matches();
+            }
+        }
+        return true;
     }
 
     private List<String> getKeywordList(Prefix prefix) {
@@ -89,13 +107,14 @@ public class FindCommandParser implements Parser<FindCommand> {
     private void setTagsList() {
         String tagsKeywords = argMultimap.getValue(PREFIX_TAG).get();
         Set<String> tagsKeywordsList;
-        if (tagsKeywords.contains("&&")) {
-            tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.replace("&&", "")
-                    .toLowerCase().split("\\s+")));
-            predicate.setTagsList(tagsKeywordsList, true);
+        if (hasAllTags) {
+            tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.replace("all/", "")
+                    .trim().toLowerCase().split("\\s+")));
+            predicate.setTagsList(tagsKeywordsList, hasAllTags);
         } else {
             tagsKeywordsList = new HashSet<>(Arrays.asList(tagsKeywords.toLowerCase().split("\\s+")));
-            predicate.setTagsList(tagsKeywordsList, false);
+            predicate.setTagsList(tagsKeywordsList, hasAllTags);
         }
+
     }
 }

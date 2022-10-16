@@ -22,6 +22,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     private List<String> gendersList;
     private Set<String> tagsList;
     private List<String> locationsList;
+    private List<String> typesList;
 
     private boolean hasNamesList;
     private boolean hasModulesList;
@@ -31,6 +32,8 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     private boolean hasTagsList;
     private boolean hasLocationsList;
     private boolean hasAllTags;
+    private boolean hasTypesList;
+
     /**
      * Creates a PersonMatchesPredicate object and initialises
      * the required variables.
@@ -43,6 +46,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         gendersList = new ArrayList<>();
         tagsList = new HashSet<>();
         locationsList = new ArrayList<>();
+        typesList = new ArrayList<>();
 
         hasNamesList = false;
         hasModulesList = false;
@@ -52,6 +56,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasTagsList = false;
         hasAllTags = false;
         hasLocationsList = false;
+        hasTypesList = false;
     }
 
     @Override
@@ -59,7 +64,8 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return nameMatches(person)
                 && moduleMatches(person) && phoneMatches(person)
                 && emailMatches(person) && genderMatches(person)
-                && tagMatches(person) && locationMatches(person);
+                && tagMatches(person) && locationMatches(person)
+                && typeMatches(person);
     }
 
     /**
@@ -142,6 +148,15 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    public boolean typeMatches(Person person) {
+        if (!hasTypesList) {
+            return true;
+        } else {
+            return typesList.stream()
+                    .anyMatch(type -> StringUtil.containsWordIgnoreCase(person.getTypeString(), type));
+        }
+    }
+
     public boolean tagMatches(Person person) {
         if (!hasTagsList) {
             return true;
@@ -191,6 +206,11 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasLocationsList = true;
     }
 
+    public void setTypesList(List<String> typesList) {
+        this.typesList = typesList;
+        hasTypesList = true;
+    }
+
     public boolean getHasNamesList() {
         return hasNamesList;
     }
@@ -213,6 +233,14 @@ public class PersonMatchesPredicate implements Predicate<Person> {
 
     public boolean getHasLocationsList() {
         return hasLocationsList;
+    }
+
+    public boolean getHasTagsList() {
+        return hasTagsList;
+    }
+
+    public boolean getHasTypesList() {
+        return hasTypesList;
     }
 
     public List<String> getNamesList() {
@@ -243,6 +271,10 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return emailsList;
     }
 
+    public List<String> getTypesList() {
+        return typesList;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -253,7 +285,8 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && emailsList.equals(((PersonMatchesPredicate) other).emailsList)
                 && gendersList.equals(((PersonMatchesPredicate) other).gendersList)
                 && tagsList.equals(((PersonMatchesPredicate) other).tagsList)
-                && locationsList.equals(((PersonMatchesPredicate) other).locationsList)); // state check
+                && locationsList.equals(((PersonMatchesPredicate) other).locationsList)
+                && typesList.equals(((PersonMatchesPredicate) other).typesList)); // state check
     }
 
     private Set<String> makeTagsList(Person person) {

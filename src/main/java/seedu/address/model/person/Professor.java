@@ -83,4 +83,9 @@ public class Professor extends Person {
         }
         return 1;
     }
+
+    @Override
+    public String getTypeString() {
+        return "prof";
+    }
 }

@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("temp");
+    public static final Prefix PREFIX_TYPE = new Prefix("typ/");
 }

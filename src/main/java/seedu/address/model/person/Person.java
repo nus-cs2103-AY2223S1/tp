@@ -134,4 +134,6 @@ public abstract class Person {
         }
         return -1;
     }
+
+    public abstract String getTypeString();
 }

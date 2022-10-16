@@ -83,4 +83,8 @@ public class TeachingAssistant extends Person {
         return 1;
     }
 
+    @Override
+    public String getTypeString() {
+        return "ta";
+    }
 }
