@@ -18,6 +18,7 @@ import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,6 +29,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
@@ -46,11 +48,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         HomeworkList homeworkList = new HomeworkList(); // add command does not allow adding homework straight away
         AttendanceList attendanceList =
                 new AttendanceList(); // add command does not allow adding attendance straight away
+        SessionList sessionList =
+                new SessionList(); // add command does not allow adding session straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         GradeProgressList gradeProgressList =
                 new GradeProgressList(); // add command does not allow adding Grade Progress at the start
 
-        Person person = new Person(name, phone, lessonPlan, homeworkList, attendanceList, gradeProgressList, tagList);
+        Person person = new Person(name, phone, lessonPlan,
+                homeworkList, attendanceList, sessionList, gradeProgressList, tagList);
 
         return new AddCommand(person);
     }

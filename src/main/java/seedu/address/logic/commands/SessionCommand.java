@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -10,40 +10,41 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.AttendanceList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
+import seedu.address.model.person.SessionList;
 
 /**
- * Adds attendance to an existing person in the address book.
+ * Adds session to an existing person in the address book.
  */
-public class AttendanceCommand extends Command {
-    public static final String COMMAND_WORD = "attendance";
+public class SessionCommand extends Command {
+
+    public static final String COMMAND_WORD = "session";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds attendance to the person identified "
+            + ": Adds session to the person identified "
             + "by the index number used in the last person listing. "
-            + "Existing attendance will not be modified.\n"
-            + "Parameters: INDEX (must be a positive integer)"
-            + "[" + PREFIX_ATTENDANCE + "ATTENDANCE]\n"
+            + "Existing session will not be modified.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_SESSION + "SESSION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "a/ 2022-08-08.";
+            + PREFIX_SESSION + "08:30-09:30";
 
-    public static final String MESSAGE_ADD_ATTENDANCE_SUCCESS = "Added attendance to Person: %1$s";
-    public static final String MESSAGE_DELETE_ATTENDANCE_SUCCESS = "Removed attendance from Person: %1$s";
+    public static final String MESSAGE_ADD_SESSION_SUCCESS = "Added session to Person: %1$s";
+    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Removed session from Person: %1$s";
 
     private final Index index;
-    private final Attendance attendance;
+    private final Session session;
 
     /**
-     * @param index of the person in the filtered person list to edit the attendance
-     * @param attendance of the person to add
+     * @param index of the person in the filtered person to edit the session.
+     * @param session of the person to add.
      */
-    public AttendanceCommand(Index index, Attendance attendance) {
-        requireAllNonNull(index, attendance);
+    public SessionCommand(Index index, Session session) {
+        requireAllNonNull(index, session);
 
         this.index = index;
-        this.attendance = attendance;
+        this.session = session;
     }
 
     @Override
@@ -52,14 +53,14 @@ public class AttendanceCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        AttendanceList attendanceList = personToEdit.getAttendanceList();
-        attendanceList.addAttendance(attendance);
+
+        SessionList sessionList = personToEdit.getSessionList();
+        sessionList.addSession(session);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
                 personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
-                personToEdit.getSessionList(),
+                sessionList,
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
@@ -69,12 +70,12 @@ public class AttendanceCommand extends Command {
 
     /**
      * Generates a command execution success message based on
-     * whether the attendance is added or removed
+     * whether the session is added or removed
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !attendance.toString().isEmpty() ? MESSAGE_ADD_ATTENDANCE_SUCCESS
-                                                            : MESSAGE_DELETE_ATTENDANCE_SUCCESS;
+        String message = !session.toString().isEmpty() ? MESSAGE_ADD_SESSION_SUCCESS
+                : MESSAGE_DELETE_SESSION_SUCCESS;
         return String.format(message, personToEdit);
     }
 
@@ -86,15 +87,12 @@ public class AttendanceCommand extends Command {
         }
 
         //instanceof handles nulls
-        if (!(other instanceof AttendanceCommand)) {
+        if (!(other instanceof SessionCommand)) {
             return false;
         }
 
         //state check
-        AttendanceCommand temp = (AttendanceCommand) other;
-        return index.equals(temp.index) && attendance.equals(temp.attendance);
+        SessionCommand temp = (SessionCommand) other;
+        return index.equals(temp.index) && session.equals(temp.session);
     }
-
-
-
 }

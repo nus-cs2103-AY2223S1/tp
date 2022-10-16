@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_HOMEWORK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_PLAN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -43,17 +44,18 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = new PersonBuilder().withHomework(VALID_HOMEWORK_BOB)
-                .withAttendance(VALID_ATTENDANCE_BOB).withGradeProgress(VALID_GRADE_PROGRESS_BOB).build();
+                .withAttendance(VALID_ATTENDANCE_BOB).withGradeProgress(VALID_GRADE_PROGRESS_BOB)
+                .withSession(VALID_SESSION_BOB).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
                 .withHomeworkIndex(INDEX_FIRST_ITEM).withHomework(VALID_HOMEWORK_BOB)
                 .withAttendanceIndex(INDEX_FIRST_ITEM).withAttendance(VALID_ATTENDANCE_BOB)
+                .withSessionIndex(INDEX_FIRST_ITEM).withSession(VALID_SESSION_BOB)
                 .withGradeProgressIndex(INDEX_FIRST_ITEM).withGradeProgress(VALID_GRADE_PROGRESS_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

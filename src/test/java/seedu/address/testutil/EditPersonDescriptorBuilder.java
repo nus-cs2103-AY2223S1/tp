@@ -13,6 +13,7 @@ import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -94,6 +95,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAttendanceIndex(Index attendanceIndex) {
         descriptor.setAttendanceIndex(attendanceIndex);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Session} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSession(String session) {
+        descriptor.setSession(new Session(session));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Index} of the session of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withSessionIndex(Index sessionIndex) {
+        descriptor.setSessionIndex(sessionIndex);
         return this;
     }
 
