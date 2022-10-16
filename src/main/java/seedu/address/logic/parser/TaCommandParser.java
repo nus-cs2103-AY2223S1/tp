@@ -53,8 +53,10 @@ public class TaCommandParser implements Parser<TaCommand> {
         Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(DEFAULT_LOC_STRING));
-        GithubUsername username = ParserUtil.parseGitHubUsername(argMultimap.getValue(PREFIX_LOCATION)
-                .orElse(DEFAULT_LOC_STRING), false);
+        GithubUsername username = ParserUtil.parseGitHubUsername(argMultimap
+                .getValue(PREFIX_GITHUBUSERNAME)
+                .orElse(GithubUsername.DEFAULT_USERNAME), argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent());
+
         TeachingAssistant person = new TeachingAssistant(name, moduleCode, phone, email, gender, tagList,
                 location, username);
 
