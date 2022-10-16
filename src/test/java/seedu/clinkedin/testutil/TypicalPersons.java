@@ -6,6 +6,8 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_NOTE_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
@@ -53,10 +55,10 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
-            .withStatus(VALID_STATUS_AMY).build();
+            .withStatus(VALID_STATUS_AMY).withNote(VALID_NOTE_AMY).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-            .withStatus(VALID_STATUS_BOB).build();
+            .withStatus(VALID_STATUS_BOB).withNote(VALID_NOTE_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

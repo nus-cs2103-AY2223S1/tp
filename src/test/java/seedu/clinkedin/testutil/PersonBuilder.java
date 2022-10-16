@@ -20,6 +20,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "Application Received";
+    public static final String DEFAULT_NOTE = "";
 
     private Name name;
     private Phone phone;
@@ -39,7 +40,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new UniqueTagTypeMap();
         status = new Status(DEFAULT_STATUS);
-        note = new Note("");
+        note = new Note(DEFAULT_NOTE);
     }
 
     /**
@@ -69,21 +70,6 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        //        if (tags.length == 0) {
-        //            return this;
-        //        }
-        //        String tagTypeName = tags[0];
-        //        Prefix p = UniqueTagTypeMap.getPrefixFromTagType(tagTypeName);
-        //        TagType tagType;
-        //        try {
-        //            tagType = ParserUtil.parseTagType(tagTypeName, p);
-        //        } catch (ParseException pe) {
-        //            return this;
-        //        }
-        //        for (int i = 1; i < tags.length; i++) {
-        //            Tag tag = new Tag(tags[i]);
-        //            this.tags.mergeTag(tagType, tag);
-        //        }
         this.tags = SampleDataUtil.getTagTypeMap(tags);
         return this;
     }
