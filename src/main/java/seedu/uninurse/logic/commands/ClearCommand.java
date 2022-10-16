@@ -2,8 +2,8 @@ package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.UninurseBook;
 
 /**
  * Clears the uninurse book.

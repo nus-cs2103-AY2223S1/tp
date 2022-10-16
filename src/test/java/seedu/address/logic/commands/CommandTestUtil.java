@@ -16,8 +16,8 @@ import java.util.List;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
-import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;

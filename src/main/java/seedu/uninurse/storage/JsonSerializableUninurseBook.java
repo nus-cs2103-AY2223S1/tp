@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.uninurse.commons.exceptions.IllegalValueException;
-import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
+import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Patient;
 
 /**
  * An Immutable UninurseBook that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "uninursebook")
 class JsonSerializableUninurseBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";

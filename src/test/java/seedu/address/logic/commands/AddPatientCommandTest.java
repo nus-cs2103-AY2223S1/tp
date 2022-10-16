@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
-import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.ReadOnlyUserPrefs;
+import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.testutil.PersonBuilder;
 

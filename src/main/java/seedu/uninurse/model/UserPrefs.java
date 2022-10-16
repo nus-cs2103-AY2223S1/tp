@@ -14,7 +14,7 @@ import seedu.uninurse.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path uninurseBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path uninurseBookFilePath = Paths.get("data" , "uninursebook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.

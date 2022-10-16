@@ -5,9 +5,9 @@ import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.ModelManager;
+import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 
 public class ClearCommandTest {

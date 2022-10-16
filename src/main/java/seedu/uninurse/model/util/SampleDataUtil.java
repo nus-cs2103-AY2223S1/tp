@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
+import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
