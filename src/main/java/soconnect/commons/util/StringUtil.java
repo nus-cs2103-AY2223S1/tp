@@ -56,7 +56,7 @@ public class StringUtil {
 
         String preppedWord = keywords.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().trim().split("\\s+"));
+        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().split("\\s+"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
         List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("\\s+"));
@@ -82,13 +82,13 @@ public class StringUtil {
 
         String preppedWord = keywords.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().trim().split("(?!^\\s+)"));
+        List<String> preppedKeywords = Arrays.asList(preppedWord.toUpperCase().split("(?!^\\s+)"));
         checkArgument(preppedKeywords.size() > 0, "Word parameter cannot be empty");
 
         List<String> wordsInPreppedSentence = Arrays.asList(sentence.toUpperCase().split("(?!^\\s+)"));
 
         if (wordsInPreppedSentence.containsAll(preppedKeywords)) {
-            return wordsInPreppedSentence.containsAll(preppedKeywords);
+            return true;
         }
 
         return wordsInPreppedSentence.containsAll(preppedKeywords.subList(0, preppedKeywords.size() * 3 / 4));

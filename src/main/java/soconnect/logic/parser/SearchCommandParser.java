@@ -26,7 +26,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * Parses the given {@code String} of arguments in the context of the {@code SearchCommand}
      * and returns a {@code SearchCommand} object for execution.
      *
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform with the expected format.
      */
     public SearchCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -47,7 +47,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * Determines the type of {@code SearchCommand} based on the specified {@code String}
      * condition from the user.
      *
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform with the expected format.
      */
     private SearchCommand parseSearchCondition(ArgumentMultimap argMultimap, String condition) throws ParseException {
         boolean isJointCondition;
