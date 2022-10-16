@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void changeFilteredTaskList(Predicate<Task> predicate) {
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
