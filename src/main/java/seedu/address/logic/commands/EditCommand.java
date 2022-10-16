@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -46,11 +42,13 @@ public class EditCommand extends Command {
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
+        + "[" + PREFIX_TAG + "TAG]... "
         + "[" + PREFIX_LOCATION + "LOCATION] "
+        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
+
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -60,7 +58,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the Student with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -216,7 +214,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername);
         }
 
         public void setName(Name name) {
@@ -312,7 +310,8 @@ public class EditCommand extends Command {
                 && getEmail().equals(e.getEmail())
                 && getGender().equals(e.getGender())
                 && getTags().equals(e.getTags())
-                && getLocation().equals(e.getLocation());
+                && getLocation().equals(e.getLocation())
+                && getGithubUsername().equals(e.getGithubUsername());
         }
 
     }
