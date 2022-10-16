@@ -27,7 +27,7 @@ public class GithubUsername {
     public final String value;
 
     /**
-     * Constructs a Location.
+     * Constructs a Github Username.
      *
      * @param username A valid github username.
      * @param isPresent Whether prefix was present in user input
