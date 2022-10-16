@@ -21,7 +21,7 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
             return new JsonAdaptedProfessor(root.type, root.name, root.moduleCode, root.phone,
                     root.email, root.gender, root.tagged, root.location);
         } else if (root.type.equals("s")) {
-            return new JsonAdaptedStudent(root.type, root.name, "", root.phone,
+            return new JsonAdaptedStudent(root.type, root.name, root.name, root.moduleCodes, root.phone,
                     root.email, root.gender, root.tagged, root.location);
         } else if (root.type.equals("t")) {
             return new JsonAdaptedTeachingAssistant(root.type, root.name, root.moduleCode, root.phone,
@@ -34,6 +34,7 @@ public class JsonAdaptedPersonDeserializer extends JsonDeserializer<JsonAdaptedP
 
     private static class Root {
         private String type;
+        private List<JsonAdaptedModuleCode> moduleCodes;
         private String moduleCode;
         private String name;
         private String phone;

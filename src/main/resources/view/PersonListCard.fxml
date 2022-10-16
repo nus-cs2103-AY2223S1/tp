@@ -31,6 +31,7 @@
             <ImageView fx:id="gender" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
       </HBox>
       <FlowPane fx:id="tags" />
+      <FlowPane fx:id="moduleCodes" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <!-- Label fx:id="gender" styleClass="cell_small_label" text="\$gender" /-->
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />

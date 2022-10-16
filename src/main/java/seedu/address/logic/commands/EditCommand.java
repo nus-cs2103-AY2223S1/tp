@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -43,6 +44,7 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_MODULE_CODE + "MODULE_CODE] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_TAG + "TAG]...\n"
@@ -110,12 +112,22 @@ public class EditCommand extends Command {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
+
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Set<ModuleCode> updatedModuleCodes = editPersonDescriptor
+                .getModuleCodes().orElse(personToEdit.getModuleCodes());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation);
+        Location updatedLocation = editPersonDescriptor
+                .getLocation().orElse(personToEdit.getLocation());
+        return new Student(updatedName,
+                updatedPhone,
+                updatedEmail,
+                updatedGender,
+                updatedTags,
+                updatedLocation,
+                updatedModuleCodes);
     }
 
     /**
@@ -183,6 +195,8 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private ModuleCode moduleCode;
+
+        private Set<ModuleCode> moduleCodes;
         private Phone phone;
         private Email email;
         private Gender gender;
@@ -198,6 +212,7 @@ public class EditCommand extends Command {
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
+            setModuleCodes(toCopy.moduleCodes);
             setModuleCode(toCopy.moduleCode);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -243,6 +258,23 @@ public class EditCommand extends Command {
 
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
+        }
+
+        /**
+         * Sets {@code moduleCodes} to this object's { @code moduleCodes }.
+         * A defensive copy of { @code moduleCodes } is used internally.
+         */
+        public void setModuleCodes(Set<ModuleCode> moduleCodes) {
+            this.moduleCodes = (moduleCodes != null) ? new HashSet<>(moduleCodes) : null;
+        }
+
+        /**
+         * Returns an unmodifiable moduleCode set, which throws { @code UnsupportedOperationException }
+         * if modification is attempted.
+         * Returns { @code Optional#empty() } if { @code moduleCode } is null.
+         */
+        public Optional<Set<ModuleCode>> getModuleCodes() {
+            return (moduleCodes != null) ? Optional.of(Collections.unmodifiableSet(moduleCodes)) : Optional.empty();
         }
 
         public void setModuleCode(ModuleCode moduleCode) {
@@ -295,6 +327,8 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())
+                && getModuleCode().equals(e.getModuleCode())
+                && getModuleCodes().equals(e.getModuleCodes())
                 && getEmail().equals(e.getEmail())
                 && getGender().equals(e.getGender())
                 && getTags().equals(e.getTags())
