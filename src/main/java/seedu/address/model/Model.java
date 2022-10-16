@@ -123,6 +123,18 @@ public interface Model {
     void addMeeting(Meeting newMeeting);
 
     /**
+     * Replaces the given meeting {@code target} with {@code editedMeeting}.
+     * {@code target} must exist in the address book.
+     * The meeting identity of {@code editedMeeting} must not be the same as another existing meeting in the address book.
+     */
+    void setMeeting(Meeting target, Meeting editedMeeting);
+
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
+     */
+    boolean hasMeeting(Meeting editedMeeting);
+
+    /**
      * Updates the filter of the filtered meeting list to filter by implementation.
      *
      * @throws NullPointerException if {@param predicate} is null.
@@ -138,6 +150,5 @@ public interface Model {
     Path getMeetingListFilePath();
 
     void setMeetingListFilePath(Path meetingListFilePath);
-
 
 }
