@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.internship.Date;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Phone;
@@ -120,13 +120,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static DateTime parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        if (!DateTime.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        return new Date(trimmedDate);
+        return new DateTime(trimmedDate);
     }
 
     /**

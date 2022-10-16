@@ -2,7 +2,7 @@ package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
-import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -22,7 +22,7 @@ import seedu.workbook.commons.util.CollectionUtil;
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Company;
-import seedu.workbook.model.internship.Date;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STAGE + "STAGE] "
-            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_DATETIME + "DATE AND TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -106,11 +106,11 @@ public class EditCommand extends Command {
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Stage updatedStage = editInternshipDescriptor.getStage().orElse(internshipToEdit.getStage());
-        Date updatedDate = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDate());
+        DateTime updatedDateTime = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDateTime());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
         return new Internship(updatedCompany, updatedRole, updatedPhone,
-                updatedEmail, updatedStage, updatedDate, updatedTags);
+                updatedEmail, updatedStage, updatedDateTime, updatedTags);
     }
 
     @Override
@@ -141,7 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Stage stage;
-        private Date date;
+        private DateTime dateTime;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setStage(toCopy.stage);
-            setDate(toCopy.date);
+            setDate(toCopy.dateTime);
             setTags(toCopy.tags);
         }
 
@@ -165,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, role, phone, email, stage, date, tags);
+            return CollectionUtil.isAnyNonNull(company, role, phone, email, stage, dateTime, tags);
         }
 
         public void setCompany(Company company) {
@@ -206,12 +206,12 @@ public class EditCommand extends Command {
         public Optional<Stage> getStage() {
             return Optional.ofNullable(stage);
         }
-        public void setDate(Date date) {
-            this.date = date;
+        public void setDate(DateTime dateTime) {
+            this.dateTime = dateTime;
         }
 
-        public Optional<Date> getDate() {
-            return Optional.ofNullable(date);
+        public Optional<DateTime> getDate() {
+            return Optional.ofNullable(dateTime);
         }
 
 

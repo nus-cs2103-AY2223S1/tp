@@ -12,7 +12,7 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
  * Represents a Date in WorkBook.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class DateTime {
 
     private static final String datePattern = "dd-MM-yyyy HH:mm";
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(datePattern);
@@ -28,7 +28,7 @@ public class Date {
      *
      * @param date A valid date.
      */
-    public Date(String date) {
+    public DateTime(String date) {
         requireNonNull(date);
         if (!date.isEmpty()) {
             checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
@@ -55,8 +55,8 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && value.equals(((Date) other).value)); // state check
+                || (other instanceof DateTime // instanceof handles nulls
+                && value.equals(((DateTime) other).value)); // state check
     }
 
     @Override
