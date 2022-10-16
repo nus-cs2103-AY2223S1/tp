@@ -18,8 +18,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.getparsers.GetFloorNumberCommandParser;
 import seedu.address.logic.parser.getparsers.GetHospitalWingCommandParser;
 import seedu.address.logic.parser.getparsers.GetNameCommandParser;
-import seedu.address.logic.parser.getparsers.GetWardNumberCommandParser;
 import seedu.address.logic.parser.getparsers.GetNextOfKinCommandParser;
+import seedu.address.logic.parser.getparsers.GetWardNumberCommandParser;
 
 /**
  * Parses get command input
