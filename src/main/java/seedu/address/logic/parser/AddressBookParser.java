@@ -32,7 +32,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class AddressBookParser {
 
     /**
-     * Used for initial separation of command words and args.
+     * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -61,7 +61,7 @@ public class AddressBookParser {
 
         case AddTagsToListingCommand.COMMAND_WORD:
             return new AddTagsToListingCommandParser().parse(arguments);
-            
+
         case AddOfferCommand.COMMAND_WORD:
             return new AddOfferCommandParser().parse(arguments);
 
