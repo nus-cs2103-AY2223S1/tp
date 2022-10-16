@@ -27,5 +27,7 @@ public class CliSyntax {
 
     /* Sorting Prefixes */
     public static final Prefix PREFIX_SORT_CUSTOMER_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_SORT_CUSTOMER_ACTIVE_COMMISSION_COUNT = new Prefix("a/");
     public static final Prefix PREFIX_SORT_CUSTOMER_COMMISSION_COUNT = new Prefix("c/");
+    public static final Prefix PREFIX_SORT_CUSTOMER_REVENUE = new Prefix("r/");
 }

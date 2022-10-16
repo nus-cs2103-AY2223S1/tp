@@ -3,13 +3,17 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_UNIQUE_COMPARATOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_ACTIVE_COMMISSION_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_COMMISSION_COUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_CUSTOMER_REVENUE;
 import static seedu.address.logic.parser.ParserUtil.areAnyPrefixesPresent;
 import static seedu.address.logic.parser.ParserUtil.countPrefixesPresent;
 import static seedu.address.logic.parser.ParserUtil.parseSortDirection;
 import static seedu.address.model.Model.CUSTOMER_NAME_COMPARATOR;
+import static seedu.address.model.Model.CUSTOMER_NUM_ACTIVE_COMMISSIONS_COMPARATOR;
 import static seedu.address.model.Model.CUSTOMER_NUM_COMMISSIONS_COMPARATOR;
+import static seedu.address.model.Model.CUSTOMER_REVENUE_COMPARATOR;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -34,6 +38,10 @@ public class SortCustomerCommandParser implements Parser<SortCustomerCommand> {
         PREFIX_DESCRIPTION_MAP.put(PREFIX_SORT_CUSTOMER_NAME, new Pair<>("name", CUSTOMER_NAME_COMPARATOR));
         PREFIX_DESCRIPTION_MAP.put(PREFIX_SORT_CUSTOMER_COMMISSION_COUNT,
                 new Pair<>("commission count", CUSTOMER_NUM_COMMISSIONS_COMPARATOR));
+        PREFIX_DESCRIPTION_MAP.put(PREFIX_SORT_CUSTOMER_ACTIVE_COMMISSION_COUNT,
+                new Pair<>("active commissions count", CUSTOMER_NUM_ACTIVE_COMMISSIONS_COMPARATOR));
+        PREFIX_DESCRIPTION_MAP.put(PREFIX_SORT_CUSTOMER_REVENUE,
+                new Pair<>("revenue", CUSTOMER_REVENUE_COMPARATOR));
     }
 
     /**
@@ -43,15 +51,16 @@ public class SortCustomerCommandParser implements Parser<SortCustomerCommand> {
      */
     public SortCustomerCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        Prefix[] allPrefixes = PREFIX_DESCRIPTION_MAP.keySet().toArray(new Prefix[0]);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SORT_CUSTOMER_NAME, PREFIX_SORT_CUSTOMER_COMMISSION_COUNT);
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_SORT_CUSTOMER_NAME, PREFIX_SORT_CUSTOMER_COMMISSION_COUNT)
+                ArgumentTokenizer.tokenize(args, allPrefixes);
+        if (!areAnyPrefixesPresent(argMultimap, allPrefixes)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCustomerCommand.MESSAGE_USAGE));
         }
 
 
-        if (countPrefixesPresent(argMultimap, PREFIX_SORT_CUSTOMER_NAME, PREFIX_SORT_CUSTOMER_COMMISSION_COUNT) != 1) {
+        if (countPrefixesPresent(argMultimap, allPrefixes) != 1) {
             throw new ParseException(MESSAGE_INVALID_UNIQUE_COMPARATOR);
         }
         Comparator<Customer> comparator = (c1, c2) -> 0;

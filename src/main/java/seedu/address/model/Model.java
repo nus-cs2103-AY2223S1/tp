@@ -37,6 +37,17 @@ public interface Model {
      */
     Comparator<Customer> CUSTOMER_NUM_COMMISSIONS_COMPARATOR = Comparator.comparing(Customer::getCommissionsCount);
 
+    /**
+     * {@code Comparator} that sorts by number of active commissions
+     */
+    Comparator<Customer> CUSTOMER_NUM_ACTIVE_COMMISSIONS_COMPARATOR =
+            Comparator.comparing(Customer::getActiveCommissionCount);
+
+    /**
+     * {@code Comparator} that sorts by customer's revenue
+     */
+    Comparator<Customer> CUSTOMER_REVENUE_COMPARATOR = Comparator.comparing(Customer::getRevenue);
+
 
     /**
      * Returns the user prefs.
