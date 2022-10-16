@@ -33,8 +33,8 @@ public class AddSupplierCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
+    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
 
     private final Person toAdd;
 

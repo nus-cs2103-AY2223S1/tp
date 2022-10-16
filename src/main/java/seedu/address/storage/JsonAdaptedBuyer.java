@@ -68,6 +68,9 @@ class JsonAdaptedBuyer {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        orders.addAll(source.getOrders().stream()
+                .map(JsonAdaptedOrder::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -77,12 +80,11 @@ class JsonAdaptedBuyer {
      */
     public Buyer toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
-        final ArrayList<Order> modelOrders = new ArrayList<>();
-
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
 
+        final ArrayList<Order> modelOrders = new ArrayList<>();
         for (JsonAdaptedOrder order : orders) {
             modelOrders.add(order.toModelType());
         }

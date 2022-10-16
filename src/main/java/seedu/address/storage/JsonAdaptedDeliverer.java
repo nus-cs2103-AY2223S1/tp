@@ -33,7 +33,7 @@ class JsonAdaptedDeliverer {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     //TODO JsonAdaptedOrder
-    private final List<Order> orders = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedDeliverer } with the given Deliverer  details.
@@ -43,7 +43,7 @@ class JsonAdaptedDeliverer {
                                 @JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                 @JsonProperty("email") String email, @JsonProperty("address") String address,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                @JsonProperty("orders") List<Order> orders) {
+                                @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
@@ -69,6 +69,9 @@ class JsonAdaptedDeliverer {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        orders.addAll(source.getOrders().stream()
+                .map(JsonAdaptedOrder::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -80,6 +83,11 @@ class JsonAdaptedDeliverer {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final ArrayList<Order> modelOrders = new ArrayList<>();
+        for (JsonAdaptedOrder order : orders) {
+            modelOrders.add(order.toModelType());
         }
 
         if (personCategory == null) {
@@ -125,6 +133,6 @@ class JsonAdaptedDeliverer {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Deliverer(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, null);
+                modelTags, modelOrders);
     }
 }

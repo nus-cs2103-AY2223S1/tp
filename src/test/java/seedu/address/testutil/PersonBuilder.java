@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
@@ -35,6 +36,7 @@ public class PersonBuilder {
     private Address address;
     private Location location;
     private Set<Tag> tags;
+    private Set<Order> orders;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
