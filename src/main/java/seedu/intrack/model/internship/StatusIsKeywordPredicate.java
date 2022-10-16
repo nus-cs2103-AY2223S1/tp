@@ -20,7 +20,7 @@ public class StatusIsKeywordPredicate implements Predicate<Internship> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
+                || (other instanceof StatusIsKeywordPredicate // instanceof handles nulls
                 && keyword.equals(((StatusIsKeywordPredicate) other).keyword)); // state check
     }
 
