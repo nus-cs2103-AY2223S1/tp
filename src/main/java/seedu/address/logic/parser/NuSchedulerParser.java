@@ -12,7 +12,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.profile.*;
+import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.profile.ProfileCommandParser;
 
@@ -63,11 +63,13 @@ public class NuSchedulerParser {
      * Returns a hash map containing the details about general commands to display in the help window.
      */
     public static Map<String, String> getGeneralCommands() {
-        return new LinkedHashMap<>() {{
-            put(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD);
-            put(ExitCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD);
-            put(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD);
-        }};
+        return new LinkedHashMap<>() {
+            {
+                put(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD);
+                put(ExitCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD);
+                put(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD);
+            }
+        };
     }
 
 }

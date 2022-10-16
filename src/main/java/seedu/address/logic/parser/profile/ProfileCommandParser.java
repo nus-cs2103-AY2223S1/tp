@@ -2,7 +2,6 @@ package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -73,18 +72,20 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
      * Returns a hash map containing the details about profile commands to display in the help window.
      */
     public static Map<String, String> getProfileCommands() {
-        return new LinkedHashMap<>() {{
-            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION,
-                    AddProfileCommand.MESSAGE_USAGE);
-            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION,
-                    DeleteProfileCommand.MESSAGE_USAGE);
-            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION,
-                    EditProfileCommand.MESSAGE_USAGE);
-            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION,
-                    FindProfileCommand.MESSAGE_USAGE);
-            put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION,
-                    "List Commands");
-        }};
+        return new LinkedHashMap<>() {
+            {
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION,
+                        AddProfileCommand.MESSAGE_USAGE);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION,
+                        DeleteProfileCommand.MESSAGE_USAGE);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION,
+                        EditProfileCommand.MESSAGE_USAGE);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION,
+                        FindProfileCommand.MESSAGE_USAGE);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION,
+                        "List Commands");
+            }
+        };
     }
 
 }

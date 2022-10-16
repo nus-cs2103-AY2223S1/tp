@@ -1,18 +1,17 @@
 package seedu.address.ui;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.NuSchedulerParser;
