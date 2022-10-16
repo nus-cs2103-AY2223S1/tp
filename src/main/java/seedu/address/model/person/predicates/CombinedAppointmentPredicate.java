@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Appointment;
 
 /**
@@ -47,11 +48,34 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
         List<Predicate<Appointment>> appointmentPredicates = new ArrayList<>();
 
         if (!reason.isEmpty()) {
-            appointmentPredicates.add(new ReasonContainsSequencePredicate(reason));
+            addReasonPredicate(appointmentPredicates);
         }
-        appointmentPredicates.add(new DateTimeWithinRangePredicate(startDateTime, endDateTime));
+
+        addDatePredicate(appointmentPredicates);
 
         return appointmentPredicates.stream().reduce(PREDICATE_SHOW_ALL_APPOINTMENTS, Predicate::and);
+    }
+
+    private void addReasonPredicate(List<Predicate<Appointment>> appointmentPredicates) {
+        Predicate<Appointment> reasonContainsSequencePredicate =
+                appointment -> StringUtil.containsIgnoreCase(appointment.getReason(), reason);
+
+        appointmentPredicates.add(reasonContainsSequencePredicate);
+    }
+
+    private void addDatePredicate(List<Predicate<Appointment>> appointmentPredicates) {
+        Predicate<Appointment> dateTimeWithinRangePredicate =
+                appointment -> {
+                    LocalDateTime appointmentDateTime = appointment.getDateTime();
+                    boolean isAtOrAfterStartTime =
+                            appointmentDateTime.isEqual(startDateTime) || appointmentDateTime.isAfter(startDateTime);
+                    boolean isAtOrBeforeEndTime =
+                            appointmentDateTime.isEqual(endDateTime) || appointmentDateTime.isBefore(endDateTime);
+
+                    return isAtOrAfterStartTime && isAtOrBeforeEndTime;
+                };
+
+        appointmentPredicates.add(dateTimeWithinRangePredicate);
     }
 
     @Override

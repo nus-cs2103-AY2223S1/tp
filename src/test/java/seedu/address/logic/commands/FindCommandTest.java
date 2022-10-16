@@ -6,8 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_RESULTS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedAppointmentPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedAppointmentPredicateWithOnlyDateTime;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedAppointmentPredicateWithOnlyReason;
 import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyName;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyPhone;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateEmptyCombinedAppointmentPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateEmptyCombinedPersonPredicate;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_BENSON;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_CARL;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_CARL;
@@ -94,10 +99,8 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW,
                 model.getFilteredPersonList().size(),
                 model.getFilteredAppointmentList().size());
-        CombinedPersonPredicate personPredicate =
-                generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
-        CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate personPredicate = generateEmptyCombinedPersonPredicate();
+        CombinedAppointmentPredicate appointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, false);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -106,10 +109,8 @@ public class FindCommandTest {
     @Test
     public void execute_findAllAppointments_onlyPersonsWithAppointmentsListed() {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 2, 3);
-        CombinedPersonPredicate personPredicate =
-                generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
-        CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate personPredicate = generateEmptyCombinedPersonPredicate();
+        CombinedAppointmentPredicate appointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, true);
 
         Predicate<Person> atLeastOneAppointment = person -> !person.getAppointments().isEmpty();
@@ -126,10 +127,8 @@ public class FindCommandTest {
         // Should only find Alice, Benson, Daniel, Elle and George, and display Benson's appointment.
         String searchName = "e";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 5, 1);
-        CombinedPersonPredicate personPredicate = generateCombinedPersonPredicate(
-                searchName, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
-        CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate personPredicate = generateCombinedPersonPredicateWithOnlyName(searchName);
+        CombinedAppointmentPredicate appointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, false);
 
         Predicate<Appointment> onlyBensonAppointment = appointment -> appointment.getPatient().isSamePerson(BENSON);
@@ -147,10 +146,9 @@ public class FindCommandTest {
         // Should only find Carl, and display only the cough appointment.
         String searchReason = "cough";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 1, 1);
-        CombinedPersonPredicate personPredicate =
-                generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate personPredicate = generateEmptyCombinedPersonPredicate();
         CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(searchReason, EMPTY_STRING, EMPTY_STRING);
+                generateCombinedAppointmentPredicateWithOnlyReason(searchReason);
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, true);
 
         Predicate<Person> justCarl = person -> person.isSamePerson(CARL);
@@ -169,10 +167,9 @@ public class FindCommandTest {
         // (Benson's first and Carl's second appointment).
         String searchReason = "throat";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 2, 2);
-        CombinedPersonPredicate personPredicate =
-                generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate personPredicate = generateEmptyCombinedPersonPredicate();
         CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(searchReason, EMPTY_STRING, EMPTY_STRING);
+                generateCombinedAppointmentPredicateWithOnlyReason(searchReason);
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, true);
 
         Predicate<Person> justCarlAndBenson = person -> person.isSamePerson(BENSON) || person.isSamePerson(CARL);
@@ -193,10 +190,9 @@ public class FindCommandTest {
         String searchPhone = "3";
         String searchDateEnd = "2015-01-01 00:00";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 1, 1);
-        CombinedPersonPredicate personPredicate =
-                generateCombinedPersonPredicate(EMPTY_STRING, searchPhone, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate personPredicate = generateCombinedPersonPredicateWithOnlyPhone(searchPhone);
         CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, searchDateEnd);
+                generateCombinedAppointmentPredicateWithOnlyDateTime(EMPTY_STRING, searchDateEnd);
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, true);
 
         Predicate<Person> justCarl = person -> person.isSamePerson(CARL);
@@ -219,8 +215,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 2, 0);
         CombinedPersonPredicate personPredicate =
                 generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, searchEmail, EMPTY_STRING, searchTag);
-        CombinedAppointmentPredicate appointmentPredicate =
-                generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedAppointmentPredicate appointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         FindCommand command = new FindCommand(personPredicate, appointmentPredicate, false);
 
         Predicate<Person> onlyAliceAndDaniel = person -> person.isSamePerson(ALICE) || person.isSamePerson(DANIEL);

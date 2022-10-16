@@ -25,6 +25,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_START;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedAppointmentPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedAppointmentPredicateWithOnlyDateTime;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedAppointmentPredicateWithOnlyReason;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateCombinedPersonPredicateWithOnlyTags;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateEmptyCombinedAppointmentPredicate;
+import static seedu.address.testutil.PredicateGeneratorUtil.generateEmptyCombinedPersonPredicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +42,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.PredicateGeneratorUtil;
 
 public class FindCommandParserTest {
 
@@ -50,11 +56,10 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgsAllFieldsProvided_returnsFindCommand() {
-        CombinedPersonPredicate expectedPersonPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
+        CombinedPersonPredicate expectedPersonPredicate = generateCombinedPersonPredicate(
                 VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_COUGH);
         CombinedAppointmentPredicate expectedAppointmentPredicate =
-                PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
-                        VALID_REASON_AMY, validDateTimeStart, validDateTimeEnd);
+                generateCombinedAppointmentPredicate(VALID_REASON_AMY, validDateTimeStart, validDateTimeEnd);
         boolean isAnyAppointmentFieldSpecified = true;
 
         // no leading and trailing whitespaces
@@ -76,11 +81,9 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_noAppointmentFieldsProvided_returnsFindCommandWithFalseBoolean() {
-        CombinedPersonPredicate expectedPersonPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
+        CombinedPersonPredicate expectedPersonPredicate = generateCombinedPersonPredicate(
                 VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_COUGH);
-        CombinedAppointmentPredicate expectedAppointmentPredicate =
-                PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
-                        EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedAppointmentPredicate expectedAppointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         boolean isAnyAppointmentFieldSpecified = false;
 
         FindCommand expectedFindCommand =
@@ -91,69 +94,63 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_somePersonFieldsProvided_success() {
-        CombinedAppointmentPredicate expectedAppointmentPredicate =
-                PredicateGeneratorUtil.generateCombinedAppointmentPredicate(EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedAppointmentPredicate expectedAppointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         boolean hasApptFields = false;
 
         CombinedPersonPredicate expectedPersonPredicate;
         FindCommand expectedFindCommand;
 
         // Only name and phone provided
-        expectedPersonPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
+        expectedPersonPredicate = generateCombinedPersonPredicate(
                 VALID_NAME_AMY, VALID_PHONE_AMY, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY, expectedFindCommand);
 
         // Only email and address provided
-        expectedPersonPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
+        expectedPersonPredicate = generateCombinedPersonPredicate(
                 EMPTY_STRING, EMPTY_STRING, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, EMPTY_STRING);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, EMAIL_DESC_AMY + ADDRESS_DESC_AMY, expectedFindCommand);
 
         // Only tags provided
-        expectedPersonPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
-                EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, VALID_TAG_COUGH);
+        expectedPersonPredicate = generateCombinedPersonPredicateWithOnlyTags(VALID_TAG_COUGH);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, TAG_DESC_COUGH, expectedFindCommand);
 
         // Multiple tags provided
-        expectedPersonPredicate = PredicateGeneratorUtil.generateCombinedPersonPredicate(
-                EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, EMPTY_STRING, VALID_TAG_COUGH + " " + VALID_TAG_SINUS);
+        expectedPersonPredicate = generateCombinedPersonPredicateWithOnlyTags(VALID_TAG_COUGH, VALID_TAG_SINUS);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, TAG_DESC_COUGH + TAG_DESC_SINUS, expectedFindCommand);
     }
 
     @Test
     public void parse_someAppointmentFieldsProvided_success() {
-        CombinedPersonPredicate expectedPersonPredicate =
-                PredicateGeneratorUtil.generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING,
-                        EMPTY_STRING, EMPTY_STRING, EMPTY_STRING);
+        CombinedPersonPredicate expectedPersonPredicate = generateEmptyCombinedPersonPredicate();
         boolean hasApptFields = true;
 
         CombinedAppointmentPredicate expectedAppointmentPredicate;
         FindCommand expectedFindCommand;
 
         // Only reason provided
-        expectedAppointmentPredicate = PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
-                VALID_REASON_AMY, EMPTY_STRING, EMPTY_STRING);
+        expectedAppointmentPredicate = generateCombinedAppointmentPredicateWithOnlyReason(VALID_REASON_AMY);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, REASON_DESC_AMY, expectedFindCommand);
 
         // Only start date provided
-        expectedAppointmentPredicate = PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
-                EMPTY_STRING, validDateTimeStart, EMPTY_STRING);
+        expectedAppointmentPredicate =
+                generateCombinedAppointmentPredicateWithOnlyDateTime(validDateTimeStart, EMPTY_STRING);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, dateTimeStartDesc, expectedFindCommand);
 
         // Only end date provided
-        expectedAppointmentPredicate = PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
-                EMPTY_STRING, EMPTY_STRING, validDateTimeEnd);
+        expectedAppointmentPredicate =
+                generateCombinedAppointmentPredicateWithOnlyDateTime(EMPTY_STRING, validDateTimeEnd);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, dateTimeEndDesc, expectedFindCommand);
 
         // Only start and end date provided
-        expectedAppointmentPredicate = PredicateGeneratorUtil.generateCombinedAppointmentPredicate(
-                EMPTY_STRING, validDateTimeStart, validDateTimeEnd);
+        expectedAppointmentPredicate =
+                generateCombinedAppointmentPredicateWithOnlyDateTime(validDateTimeStart, validDateTimeEnd);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
         assertParseSuccess(parser, dateTimeStartDesc + dateTimeEndDesc, expectedFindCommand);
     }
