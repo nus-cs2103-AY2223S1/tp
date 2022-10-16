@@ -173,7 +173,7 @@ Examples:
 
 ### Marking module as taken: `mod mark`
 
-Marks module(s) of a batchmate as `taken`, which means the batchmate has taken or is currently taking the module(s).
+Marks module(s) of a batchmate as `taken`, which means the batchmate has taken the module(s) before.
 
 Format: `mod mark INDEX MODULE [MORE_MODULES]...`
 
@@ -185,7 +185,7 @@ Examples:
 
 ### Unmarking module as not taken: `mod unmark`
 
-Unmarks module(s) of a batchmate as not taken, which means the batchmate has not taken and is not currently taking the module(s).
+Unmarks module(s) of a batchmate as not taken, which means the batchmate is currently taking the module(s).
 
 Format: `mod unmark INDEX MODULE [MORE_MODULES]...`
 
