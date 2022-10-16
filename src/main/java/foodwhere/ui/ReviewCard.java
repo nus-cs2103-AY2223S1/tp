@@ -1,11 +1,16 @@
 package foodwhere.ui;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import foodwhere.model.review.Review;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -28,6 +33,8 @@ public class ReviewCard extends UiPart<Region> {
     public final Review review;
 
     @FXML
+    private GridPane gridPane;
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -39,6 +46,8 @@ public class ReviewCard extends UiPart<Region> {
     private Label content;
     @FXML
     private Label rating;
+    @FXML
+    private ImageView ratingIcon;
     @FXML
     private Label tags;
     @FXML
@@ -53,8 +62,9 @@ public class ReviewCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(review.getName().fullName);
         date.setText(review.getDate().value);
-        rating.setText(String.valueOf(review.getRating().value));
         content.setText(review.getContent().value);
+
+        setRatingIcon();
 
         if (!review.getTags().isEmpty()) {
             String assigneesNames = review.getTags()
@@ -65,8 +75,89 @@ public class ReviewCard extends UiPart<Region> {
             tags.setText(assigneesNames);
             tagsLabel.setText("Tag:");
         } else {
-            tagsLabel.setText("");
+            removeRow(gridPane, GridPane.getRowIndex(tagsLabel));
         }
+    }
+
+    /**
+     * Sets the image of ratingIcon {@code ImageView} and the text of ratings {@code Label}.
+     */
+    private void setRatingIcon() {
+        Image ratingIconImage;
+
+        Integer val = review.getRating().value;
+        switch (val) {
+        case 0:
+            ratingIconImage = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream("/images/stars_0.png")));
+            break;
+        case 1:
+            ratingIconImage = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream("/images/stars_1.png")));
+            break;
+        case 2:
+            ratingIconImage = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream("/images/stars_2.png")));
+            break;
+        case 3:
+            ratingIconImage = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream("/images/stars_3.png")));
+            break;
+        case 4:
+            ratingIconImage = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream("/images/stars_4.png")));
+            break;
+        case 5:
+            ratingIconImage = new Image(Objects.requireNonNull(
+                    getClass().getResourceAsStream("/images/stars_5.png")));
+            break;
+        default:
+            throw new RuntimeException("Invalid rating");
+        }
+
+        ratingIcon.setImage(ratingIconImage);
+    }
+
+    /**
+     * Adapted from https://stackoverflow.com/a/70961583.
+     * Gets row index constrain for given node, forcefully as integer: 0 as null.
+     * @param node Node to look up the constraint for.
+     * @return The row index as primitive integer.
+     */
+    public static int getRowIndexAsInteger(Node node) {
+        final var a = GridPane.getRowIndex(node);
+        if (a == null) {
+            return 0;
+        }
+        return a;
+    }
+
+    /**
+     * Adapted from https://stackoverflow.com/a/70961583.
+     * Removes row from grid pane by index.
+     *
+     * @param grid Grid pane to be affected
+     * @param targetRowIndexIntegerObject Target row index to be removed. Integer object type,
+     *                                    because for some reason `getRowIndex` returns null
+     *                                    for children at 0th row.
+     */
+    private void removeRow(GridPane grid, Integer targetRowIndexIntegerObject) {
+        int targetRowIndex = targetRowIndexIntegerObject == null ? 3 : targetRowIndexIntegerObject;
+
+        // Remove children from row
+        grid.getChildren().removeIf(node -> (getRowIndexAsInteger(node) == targetRowIndex));
+
+        // Update indexes of other rows, i.e., shift rows up
+        grid.getChildren().forEach(node -> {
+            int rowIndex = getRowIndexAsInteger(node);
+
+            if (targetRowIndex < rowIndex) {
+                GridPane.setRowIndex(node, rowIndex - 1);
+            }
+        });
+
+        // Remove row constraints
+        grid.getRowConstraints().remove(targetRowIndex);
     }
 
     @Override

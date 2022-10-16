@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.ClearCommand;
-import foodwhere.logic.commands.EditCommand;
 import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.RAddCommand;
@@ -20,6 +19,7 @@ import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
+import foodwhere.logic.commands.SEditCommand;
 import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
@@ -77,13 +77,13 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_sedit() throws Exception {
         Stall stall = new StallBuilder().build();
-        EditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(stall).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        SEditCommand.EditStallDescriptor descriptor = new EditStallDescriptorBuilder(stall).build();
+        SEditCommand command = (SEditCommand) parser.parseCommand(SEditCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_STALL.getOneBased() + " "
                 + StallUtil.getEditStallDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_STALL, descriptor), command);
+        assertEquals(new SEditCommand(TypicalIndexes.INDEX_FIRST_STALL, descriptor), command);
     }
 
     @Test

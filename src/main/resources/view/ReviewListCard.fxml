@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="170.0" prefWidth="350.0">
+      <GridPane prefHeight="180.0" prefWidth="350.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -25,7 +26,7 @@
                         <Label fx:id="name" prefHeight="18.0" prefWidth="285.0" snapToPixel="false" styleClass="cell_big_label" text="\$name" translateX="30.0" translateY="5.0" />
                      </children>
                   </HBox>
-                  <GridPane>
+                  <GridPane fx:id="gridPane">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.20001220703125" minWidth="10.0" prefWidth="73.6" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.79999999999995" minWidth="10.0" prefWidth="276.79999999999995" />
@@ -34,17 +35,17 @@
                       <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="60.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label fx:id="contentLabel" styleClass="cell_small_label" text="Content:" translateX="10.0" GridPane.rowIndex="1" />
                         <Label fx:id="dateLabel" styleClass="cell_small_label" text="Date:" translateX="10.0" />
                         <Label fx:id="content" styleClass="cell_small_label" translateX="10.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="date" styleClass="cell_small_label" translateX="10.0" wrapText="true" GridPane.columnIndex="1" />
-                        <Label fx:id="tagsLabel" styleClass="cell_small_label" text="Tags:" translateX="10.0" GridPane.rowIndex="3" />
+                         <Label fx:id="rating" alignment="CENTER" styleClass="cell_small_label" text="Rating:" translateX="10.0" GridPane.rowIndex="2" />
+                         <ImageView fx:id="ratingIcon" fitHeight="17.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                         <Label fx:id="tagsLabel" styleClass="cell_small_label" text="Tags:" translateX="10.0" GridPane.rowIndex="3" />
                         <Label fx:id="tags" styleClass="cell_small_label" translateX="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="ratingLabel" layoutX="10.0" layoutY="64.0" styleClass="cell_small_label" text="Rating:" translateX="10.0" GridPane.rowIndex="2" />
-                        <Label fx:id="rating" layoutX="84.0" layoutY="64.0" styleClass="cell_small_label" translateX="10.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                </children>
