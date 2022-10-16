@@ -42,7 +42,7 @@ class JsonAdaptedInternship {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("stage") String stage,
-            @JsonProperty("date") String dateTime,
+            @JsonProperty("dateTime") String dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;

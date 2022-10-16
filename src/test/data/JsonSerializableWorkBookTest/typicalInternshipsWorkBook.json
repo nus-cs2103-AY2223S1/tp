@@ -6,55 +6,55 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "stage" : "Technical Interview",
-    "tagged" : [ "friends" ],
-    "dateTime": "12-Oct-2022 12:00"
+    "dateTime": "12-Oct-2022 12:00",
+    "tagged" : [ "friends" ]
   }, {
     "company" : "Benson Meier",
     "role" : "Software Engineer",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "stage" : "HR Interview",
-    "tagged" : [ "owesMoney", "friends" ],
-    "dateTime": "12-Dec-2022 14:00"
+    "dateTime": "12-Dec-2022 14:00",
+    "tagged" : [ "owesMoney", "friends" ]
   }, {
     "company" : "Carl Kurz",
     "role" : "Software Engineer",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "stage" : "Rejected",
-    "tagged" : [ ],
-    "dateTime" : ""
+    "dateTime" : "",
+    "tagged" : [ ]
   }, {
     "company" : "Daniel Meier",
     "role" : "Software Engineer",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "stage" : "Technical Interview",
-    "tagged" : [ "friends" ],
-    "dateTime": ""
+    "dateTime": "",
+    "tagged" : [ "friends" ]
   }, {
     "company" : "Elle Meyer",
     "role" : "Software Engineer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "stage" : "Application Sent",
-    "tagged" : [ ],
-    "dateTime": ""
+    "dateTime": "",
+    "tagged" : [ ]
   }, {
     "company" : "Fiona Kunz",
     "role" : "Software Engineer",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "stage" : "Online Assessment",
-    "tagged" : [ ],
-    "dateTime": ""
+    "dateTime": "",
+    "tagged" : [ ]
   }, {
     "company" : "George Best",
     "role" : "Software Engineer",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "stage" : "Team Lead Interview",
-    "tagged" : [ ],
-    "dateTime": ""
+    "dateTime": "",
+    "tagged" : [ ]
   } ]
 }
