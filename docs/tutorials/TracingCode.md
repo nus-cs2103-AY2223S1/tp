@@ -192,11 +192,11 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
        Patient patientToEdit = lastShownList.get(index.getZeroBased());
        Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
-           throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+           throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
        }
        model.setPatient(patientToEdit, editedPatient);
-       model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
+       model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+       return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
    }
    ```
 
