@@ -1,83 +1,79 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCHEDULE;
+import static seedu.address.testutil.TypicalSchedules.getTypicalAddressBookWithSchedules;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.model.module.schedule.Weekdays;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.EditScheduleDescriptorBuilder;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ScheduleBuilder;
 
-public class AddCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditScheduleCommand.
+ */
+public class EditScheduleCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBookWithSchedules(), new UserPrefs());
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_null_throwNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new EditScheduleCommand(null, null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    public void execute_moduleDoesNotExist_throwCommandException() {
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptorBuilder().withModule("CS2309S")
+                .build();
+        EditScheduleCommand editScheduleCommand = new EditScheduleCommand(INDEX_FIRST_SCHEDULE, editScheduleDescriptor);
+        ModelStubWithModuleNotExist modelStub = new ModelStubWithModuleNotExist();
+        assertThrows(CommandException.class, EditScheduleCommand.MESSAGE_MODULE_NOT_EXIST, () ->
+                editScheduleCommand.execute(model));
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    public void execute_conflictWithOtherSchedule_throwCommandException() throws CommandException {
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptorBuilder().withStartTime("16:00")
+                .withEndTime("18:00").withWeekday(Weekdays.Friday).build();
+        EditScheduleCommand editScheduleCommand = new EditScheduleCommand(INDEX_FIRST_SCHEDULE, editScheduleDescriptor);
+        ModelStubWithScheduleConflict modelStub = new ModelStubWithScheduleConflict();
+        // CommandResult result = editScheduleCommand.execute(modelStub);
+        assertThrows(CommandException.class, EditScheduleCommand.MESSAGE_CONFLICT_SCHEDULE, () ->
+                editScheduleCommand.execute(model));
     }
 
     @Test
-    public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+    public void execute_invalidScheduleIndex_throwCommandException() {
+        Index indexOutOfBound = Index.fromOneBased(model.getFilteredScheduleList().size() + 1);
+        EditScheduleDescriptor editScheduleDescriptor = new EditScheduleDescriptorBuilder().build();
+        EditScheduleCommand editScheduleCommand = new EditScheduleCommand(indexOutOfBound, editScheduleDescriptor);
+        assertThrows(CommandException.class, EditScheduleCommand.MESSAGE_SCHEDULE_NOT_EXIST, () -> editScheduleCommand
+                .execute(model));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -118,6 +114,7 @@ public class AddCommandTest {
         public void addSchedule(Schedule schedule) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
         public void setSchedule(Schedule target, Schedule editedSchedule) {
             throw new AssertionError("This method should not be called.");
         }
@@ -211,45 +208,68 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a schedule which cannot find the target module
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+    private class ModelStubWithModuleNotExist extends ModelStub {
+        private List<Schedule> filteredScheduleList;
+        ModelStubWithModuleNotExist() {
+            filteredScheduleList = new ArrayList<>();
+            filteredScheduleList.add(new ScheduleBuilder().build());
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public Module getModuleByModuleCode(String moduleCode) {
+            requireNonNull(moduleCode);
+            return null;
+        }
+
+        @Override
+        public boolean conflictSchedule(Schedule schedule) {
+            return false;
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always has schedule conflict.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubWithScheduleConflict extends ModelStub {
+        ModelStubWithScheduleConflict() {}
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public Module getModuleByModuleCode(String moduleCode) {
+            requireNonNull(moduleCode);
+            return new ModuleBuilder().build();
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public boolean conflictSchedule(Schedule schedule) {
+            return true;
         }
     }
 
+    private class ModelStubWithAcceptingScheduleEdited extends ModelStub {
+
+        ModelStubWithAcceptingScheduleEdited() {}
+        @Override
+        public Module getModuleByModuleCode(String moduleCode) {
+            requireNonNull(moduleCode);
+            return new ModuleBuilder().build();
+        }
+
+        @Override
+        public boolean conflictSchedule(Schedule schedule) {
+            return false;
+        }
+
+        @Override
+        public void setSchedule(Schedule target, Schedule editedSchedule) {
+            target.setModule(editedSchedule.getModule());
+            target.setVenue(editedSchedule.getVenue());
+            target.setStartTime(editedSchedule.getStartTime());
+            target.setEndTime(editedSchedule.getEndTime());
+            target.setWeekday(editedSchedule.getWeekday());
+            target.setClassType(editedSchedule.getClassType());
+        }
+    }
 }
+

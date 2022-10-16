@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalModules.getTypicalAddressBookWithMod
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,12 +34,15 @@ public class DeleteModuleCommandTest {
         ModuleCode moduleToDeleteCode = moduleToDelete.getCode();
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(moduleToDeleteCode);
 
-        String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
+                false, false, true,
+                false, false, false);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
 
-        assertCommandSuccess(deleteModuleCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -57,13 +61,16 @@ public class DeleteModuleCommandTest {
         ModuleCode moduleCode = moduleToDelete.getCode();
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(moduleCode);
 
-        String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete),
+                false, false, true,
+                false, false, false);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteModule(moduleToDelete);
         showNoModule(expectedModel);
 
-        assertCommandSuccess(deleteModuleCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteModuleCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test

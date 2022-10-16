@@ -146,6 +146,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setSchedule(Schedule target, Schedule editedSchedule) {
+        requireAllNonNull(target, editedSchedule);
+        addressBook.setSchedule(target, editedSchedule);
+    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -209,8 +215,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        ObservableList<Schedule> tempary = new FilteredList<>(this.addressBook.getScheduleList());
-        return tempary;
+        return new FilteredList<>(this.addressBook.getScheduleList());
     }
 
 

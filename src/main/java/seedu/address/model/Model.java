@@ -87,6 +87,8 @@ public interface Model {
      */
     void addSchedule(Schedule schedule);
 
+    void setSchedule(Schedule target, Schedule editedSchedule);
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.

@@ -50,7 +50,7 @@ public class ScheduleBuilder {
     /**
      * Sets the {@code module} of the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder buildWithModule(String module) {
+    public ScheduleBuilder withModule(String module) {
         this.module = module;
         return this;
     }
@@ -58,7 +58,7 @@ public class ScheduleBuilder {
     /**
      * Sets the {@code startTime} of the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder buildWithStartTime(String startTime) {
+    public ScheduleBuilder withStartTime(String startTime) {
         this.startTime = startTime;
         return this;
     }
@@ -66,7 +66,7 @@ public class ScheduleBuilder {
     /**
      * Sets the {@code endTime} of the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder buildWithEndTime(String endTime) {
+    public ScheduleBuilder withEndTime(String endTime) {
         this.endTime = endTime;
         return this;
     }
@@ -74,7 +74,7 @@ public class ScheduleBuilder {
     /**
      * Sets the {@code weekday} of the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder buildWithWeekday(Weekdays weekday) {
+    public ScheduleBuilder withWeekday(Weekdays weekday) {
         this.weekday = weekday;
         return this;
     }
@@ -82,7 +82,7 @@ public class ScheduleBuilder {
     /**
      * Sets the {@code classType} of the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder buildWithClassType(ClassType classType) {
+    public ScheduleBuilder withClassType(ClassType classType) {
         this.classType = classType;
         return this;
     }
@@ -90,7 +90,7 @@ public class ScheduleBuilder {
     /**
      * Sets the {@code venue} of the {@code Schedule} that we are building.
      */
-    public ScheduleBuilder buildWithVenue(Venue venue) {
+    public ScheduleBuilder withVenue(Venue venue) {
         this.venue = venue;
         return this;
     }
