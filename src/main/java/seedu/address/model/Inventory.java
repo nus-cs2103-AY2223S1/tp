@@ -31,7 +31,7 @@ public class Inventory implements ReadOnlyInventory {
 
     @Override
     public ObservableList<SupplyItem> getSupplyItems() {
-        return supplyItems;
+        return FXCollections.unmodifiableObservableList(supplyItems);
     }
 
     /// list overwrite operations
@@ -57,6 +57,7 @@ public class Inventory implements ReadOnlyInventory {
      * Adds a supply item to Inventory
      */
     public void addSupplyItem(SupplyItem item) {
+        requireNonNull(item);
         this.supplyItems.add(item);
     }
 
@@ -64,6 +65,7 @@ public class Inventory implements ReadOnlyInventory {
      * Checks whether {@item} is a duplicate in Inventory.
      */
     public boolean hasSupplyItem(SupplyItem item) {
+        requireNonNull(item);
         return this.supplyItems.contains(item);
     }
 
@@ -72,6 +74,8 @@ public class Inventory implements ReadOnlyInventory {
      * {@code target} must exist in the inventory.
      */
     public void setSupplyItem(SupplyItem target, Index targetIndex) {
+        requireNonNull(target);
+        requireNonNull(targetIndex);
         supplyItems.set(targetIndex.getZeroBased(), target);
     }
 
@@ -79,6 +83,7 @@ public class Inventory implements ReadOnlyInventory {
      * Deletes the supply item at the specified {@code Index}.
      */
     public void deleteSupplyItem(Index index) {
+        requireNonNull(index);
         supplyItems.remove(index.getZeroBased());
     }
 
