@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicatePatient;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -27,7 +27,7 @@ public class FilterNameCommandParser implements Parser<FilterNameCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterNameCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FilterNameCommand(new NameContainsKeywordsPredicatePatient(Arrays.asList(nameKeywords)));
     }
 
 }

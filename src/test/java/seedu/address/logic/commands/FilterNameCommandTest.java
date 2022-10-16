@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicatePatient;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -28,10 +28,10 @@ public class FilterNameCommandTest {
     private Model expectedModel = new ModelManager(getTypicalPersonsAddressBook(), new UserPrefs());
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        NameContainsKeywordsPredicatePatient firstPredicate =
+                new NameContainsKeywordsPredicatePatient(Collections.singletonList("first"));
+        NameContainsKeywordsPredicatePatient secondPredicate =
+                new NameContainsKeywordsPredicatePatient(Collections.singletonList("second"));
 
         FilterNameCommand findFirstCommand = new FilterNameCommand(firstPredicate);
         FilterNameCommand findSecondCommand = new FilterNameCommand(secondPredicate);
@@ -56,7 +56,7 @@ public class FilterNameCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsKeywordsPredicatePatient predicate = preparePredicate(" ");
         FilterNameCommand command = new FilterNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,7 +66,7 @@ public class FilterNameCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicatePatient predicate = preparePredicate("Kurz Elle Kunz");
         FilterNameCommand command = new FilterNameCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -74,9 +74,9 @@ public class FilterNameCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicatePatient}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private NameContainsKeywordsPredicatePatient preparePredicate(String userInput) {
+        return new NameContainsKeywordsPredicatePatient(Arrays.asList(userInput.split("\\s+")));
     }
 }
