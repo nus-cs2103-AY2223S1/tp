@@ -22,7 +22,7 @@ public class CreatePastAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a past appointment for a patient.\n"
             + "Parameters: INDEX (Must be a positive integer) "
-            + PREFIX_DATE + "DATE (Must follow dd-mm-yyyy syntax) "
+            + PREFIX_DATE + "DATE (Must follow dd-MM-yyyy syntax) "
             + PREFIX_MEDICATION + "MEDICATION "
             + PREFIX_DIAGNOSIS + "DIAGNOSIS \n"
             + "Example: " + COMMAND_WORD + " 1 "

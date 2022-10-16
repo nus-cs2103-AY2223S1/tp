@@ -33,27 +33,27 @@ public class SampleDataUtil {
                     new NextOfKin("Kwee Yeoh, Husband, 91912626"), new PatientType(PatientTypes.INPATIENT),
                     new HospitalWing("South"), new FloorNumber(10), new WardNumber(26),
                     getMedicationSet("Paracetamol", "IV Drip"), new ArrayList<>(),
-                    new UpcomingAppointment("120622")),
+                    new UpcomingAppointment("12-06-2022")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new NextOfKin("Joe Yu, Husband, 82869128"), new PatientType(PatientTypes.OUTPATIENT),
                     null, null, null, getMedicationSet(), new ArrayList<>(),
-                    new UpcomingAppointment("120622")),
+                    new UpcomingAppointment("12-06-2022")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new NextOfKin("Kenneth Oliverio, Son, 81249567"), new PatientType(PatientTypes.INPATIENT),
                     new HospitalWing("Wing 1"), new FloorNumber(1), new WardNumber(20),
-                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("120622")),
+                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("12-06-2022")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new NextOfKin("Candince Yeo, Wife, 87598274"), new PatientType(PatientTypes.OUTPATIENT),
                     null, null, null, getMedicationSet("Ibuprofen"),
-                    new ArrayList<>(), new UpcomingAppointment("120622")),
+                    new ArrayList<>(), new UpcomingAppointment("12-06-2022")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new NextOfKin("Mary Balakrishnan, Cousin, 87259826"), new PatientType(PatientTypes.OUTPATIENT),
                     null, null, null, getMedicationSet("Anarax", "Canabeez"),
-                    new ArrayList<>(), new UpcomingAppointment("120622")),
+                    new ArrayList<>(), new UpcomingAppointment("12-06-2022")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new NextOfKin("Mary Balakrishnan, Wife, 87259826"), new PatientType(PatientTypes.INPATIENT),
                     new HospitalWing("South"), new FloorNumber(5), new WardNumber(29),
-                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("120622"))
+                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("12-06-2022"))
         };
     }
 
@@ -78,7 +78,7 @@ public class SampleDataUtil {
      * Returns a PastAppointment created from the data given.
      */
     public static PastAppointment getPastAppointment(String... strings) {
-        return new PastAppointment(LocalDate.parse(strings[0], DateTimeFormatter.ofPattern("ddMMyy")),
+        return new PastAppointment(LocalDate.parse(strings[0], DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                 getMedicationSet(strings[1].split(" ")), strings[2]);
     }
 }

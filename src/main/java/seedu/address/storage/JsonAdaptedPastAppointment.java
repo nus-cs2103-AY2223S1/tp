@@ -42,7 +42,7 @@ public class JsonAdaptedPastAppointment {
      * Converts a given {@code PastAppointment} into this class for Jackson use.
      */
     public JsonAdaptedPastAppointment(PastAppointment source) {
-        this.pastAppointmentDate = source.getDate().format(DateTimeFormatter.ofPattern("ddMMyy"));
+        this.pastAppointmentDate = source.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         this.pastAppointmentDiagnosis = source.getDiagnosis();
         this.pastAppointmentMedication.addAll(source.getMedication().stream()
                 .map(JsonAdaptedMedication::new)
@@ -63,7 +63,7 @@ public class JsonAdaptedPastAppointment {
             throw new IllegalValueException(String.format(APPT_MISSING_FIELD_MESSAGE_FORMAT, "date"));
         }
         final LocalDate modelPastAppointmentDate = LocalDate.parse(pastAppointmentDate,
-                DateTimeFormatter.ofPattern("ddMMyy"));
+                DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         if (pastAppointmentMedication == null) {
             throw new IllegalValueException(String.format(APPT_MISSING_FIELD_MESSAGE_FORMAT,
                     Medication.class.getSimpleName()));
