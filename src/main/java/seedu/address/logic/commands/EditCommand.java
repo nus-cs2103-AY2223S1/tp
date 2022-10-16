@@ -58,7 +58,7 @@ public class EditCommand extends Command {
             + "Example: \n" + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_MINECRAFT_NAME + "newMinecraftName "
-            + PREFIX_ADDRESS + " 34 Oxley Road "
+            + PREFIX_ADDRESS + " 38 Oxley Road "
             + PREFIX_EMAIL + " johndoe@example.com "
             + PREFIX_SOCIAL + " fb@John Doe ";
 

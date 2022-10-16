@@ -28,12 +28,25 @@
         </Label>
             <Label fx:id="minecraftName" styleClass="cell_big_label" text="\$mcName" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            <VBox.margin>
-               <Insets bottom="8.0" />
-            </VBox.margin>
       </HBox>
-      <FlowPane fx:id="tags" />
-         <Label fx:id="information" lineSpacing="2.5" text="Label" wrapText="true" />
+      <FlowPane fx:id="tags" styleClass="tagged">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin></FlowPane>
+         <FlowPane fx:id="servers" styleClass="tagged">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin>
+         </FlowPane>
+         <FlowPane fx:id="socials" styleClass="tagged">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin>
+         </FlowPane>
+         <Label fx:id="information" text="Label" wrapText="true">
+            <VBox.margin>
+               <Insets top="2.0" />
+            </VBox.margin></Label>
     </VBox>
       <rowConstraints>
          <RowConstraints />
