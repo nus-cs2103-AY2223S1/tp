@@ -26,12 +26,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
 
     private boolean hasNamesList;
     private boolean hasModulesList;
+    private boolean needsAllModules;
     private boolean hasPhonesList;
     private boolean hasEmailsList;
     private boolean hasGendersList;
     private boolean hasTagsList;
     private boolean hasLocationsList;
-    private boolean hasAllTags;
+    private boolean needsAllTags;
     private boolean hasTypesList;
 
     /**
@@ -54,7 +55,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasEmailsList = false;
         hasGendersList = false;
         hasTagsList = false;
-        hasAllTags = false;
+        needsAllTags = false;
         hasLocationsList = false;
         hasTypesList = false;
     }
@@ -162,7 +163,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
             return true;
         }
         Set<String> personList = makeTagsList(person);
-        if (hasAllTags) {
+        if (needsAllTags) {
             return personList.equals(tagsList);
         } else {
             personList.retainAll(tagsList);
@@ -197,7 +198,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
 
     public void setTagsList(Set<String> tagsList, boolean hasAllTags) {
         this.tagsList = tagsList;
-        this.hasAllTags = hasAllTags;
+        this.needsAllTags = hasAllTags;
         hasTagsList = true;
     }
 
