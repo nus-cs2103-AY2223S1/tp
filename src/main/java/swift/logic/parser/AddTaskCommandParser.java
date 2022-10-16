@@ -39,7 +39,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
             Task task = new Task(UUID.randomUUID(), name);
 
-            return new AddTaskCommand(task);
+            return new AddTaskCommand(task, indices);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);

@@ -1,9 +1,12 @@
 package swift.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static swift.commons.util.CollectionUtil.requireAllNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Collection;
+
+import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.model.Model;
 import swift.model.task.Task;
@@ -29,26 +32,31 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
 
     private final Task toAdd;
+    private final Collection<Index> contactIndices;
 
     /**
      * Creates an AddTaskCommand to add the specified {@code Task}
      *
      * @param task Task to be added.
      */
-    public AddTaskCommand(Task task) {
-        requireNonNull(task);
+    public AddTaskCommand(Task task, Collection<Index> indices) {
+        requireAllNonNull(task, indices);
         toAdd = task;
+        contactIndices = indices;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
+        requireAllNonNull(model);
 
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-
         model.addTask(toAdd);
+        for (Index index : contactIndices) {
+            model.addBridge(model.getAddressBook().getPersonList().get(index.getZeroBased()), toAdd);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

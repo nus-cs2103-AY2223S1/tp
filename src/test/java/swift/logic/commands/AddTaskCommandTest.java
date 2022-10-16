@@ -9,6 +9,7 @@ import static swift.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class AddTaskCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
     }
 
     @Test
@@ -37,7 +38,7 @@ public class AddTaskCommandTest {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask, new HashSet<>()).execute(modelStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
@@ -46,7 +47,7 @@ public class AddTaskCommandTest {
     @Test
     public void execute_duplicateTask_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
-        AddTaskCommand addCommand = new AddTaskCommand(validTask);
+        AddTaskCommand addCommand = new AddTaskCommand(validTask, new HashSet<>());
         ModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(CommandException.class,
@@ -57,14 +58,14 @@ public class AddTaskCommandTest {
     public void equals() {
         Task buyMilk = new TaskBuilder().withTaskName("Buy Milk").build();
         Task cs2103t = new TaskBuilder().withTaskName("CS2103T").build();
-        AddTaskCommand addBuyMilkCommand = new AddTaskCommand(buyMilk);
-        AddTaskCommand addCs2103tCommand = new AddTaskCommand(cs2103t);
+        AddTaskCommand addBuyMilkCommand = new AddTaskCommand(buyMilk, new HashSet<>());
+        AddTaskCommand addCs2103tCommand = new AddTaskCommand(cs2103t, new HashSet<>());
 
         // same object -> returns true
         assertTrue(addBuyMilkCommand.equals(addBuyMilkCommand));
 
         // same values -> returns true
-        AddTaskCommand addBuyMilkCommandCopy = new AddTaskCommand(buyMilk);
+        AddTaskCommand addBuyMilkCommandCopy = new AddTaskCommand(buyMilk, new HashSet<>());
         assertTrue(addBuyMilkCommand.equals(addBuyMilkCommandCopy));
 
         // different types -> returns false

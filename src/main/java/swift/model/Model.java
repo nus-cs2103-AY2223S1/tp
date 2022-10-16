@@ -151,7 +151,7 @@ public interface Model {
     void deleteBridge(Person person);
 
     /**
-     * Deletes all relationships associated with the given task. 
+     * Deletes all relationships associated with the given task.
      *
      * @param task The task to be deleted.
      */
