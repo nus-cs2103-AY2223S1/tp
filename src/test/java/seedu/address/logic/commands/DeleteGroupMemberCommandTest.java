@@ -38,7 +38,7 @@ public class DeleteGroupMemberCommandTest {
         DeleteGroupMemberCommand deleteGroupMemberCommand =
                 new DeleteGroupMemberCommand("Alpha", CARL.getName().fullName);
 
-        String expectedMessage = String.format(seedu.address.logic.commands.DeleteGroupMemberCommand.MESSAGE_INVALID_GROUP);
+        String expectedMessage = String.format(DeleteGroupMemberCommand.MESSAGE_INVALID_GROUP);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAddGroup, editedPerson);
         assertCommandFailure(deleteGroupMemberCommand, expectedModel, expectedMessage);
@@ -51,7 +51,7 @@ public class DeleteGroupMemberCommandTest {
         DeleteGroupMemberCommand deleteGroupMemberCommand =
                 new DeleteGroupMemberCommand("Alpha", "Bob");
 
-        String expectedMessage = String.format(seedu.address.logic.commands.DeleteGroupMemberCommand.MESSAGE_INVALID_PERSON);
+        String expectedMessage = String.format(DeleteGroupMemberCommand.MESSAGE_INVALID_PERSON);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAddGroup, editedPerson);
         assertCommandFailure(deleteGroupMemberCommand, expectedModel, expectedMessage);
