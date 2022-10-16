@@ -95,7 +95,7 @@ class JsonAdaptedPerson {
             floorNumber = null;
         }
         if (source.getWardNumber().isPresent()) {
-            wardNumber = source.getWardNumber().get().value.toString();
+            wardNumber = source.getWardNumber().get().value;
         } else {
             wardNumber = null;
         }
