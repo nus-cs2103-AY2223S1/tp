@@ -143,25 +143,4 @@ public interface Model {
      * @param bridge The bridge to be added.
      */
     void addBridge(PersonTaskBridge bridge);
-
-    /**
-     * Deletes a relationship between the given task and person.
-     *
-     * @param bridge The bridge to be deleted.
-     */
-    void deleteBridge(PersonTaskBridge bridge);
-
-    /**
-     * Deletes all relationships associated with the given person.
-     *
-     * @param person The person to be deleted.
-     */
-    void deletePersonBridge(Person person);
-
-    /**
-     * Deletes all relationships associated with the given task.
-     *
-     * @param task The task to be deleted.
-     */
-    void deleteTaskBridge(Task task);
 }

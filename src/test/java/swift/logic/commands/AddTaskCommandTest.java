@@ -203,21 +203,6 @@ public class AddTaskCommandTest {
         public void addBridge(PersonTaskBridge bridge) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public void deleteBridge(PersonTaskBridge bridge) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePersonBridge(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteTaskBridge(Task task) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**

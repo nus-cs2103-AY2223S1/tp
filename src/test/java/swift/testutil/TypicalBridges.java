@@ -14,10 +14,10 @@ import swift.model.bridge.PersonTaskBridge;
  */
 public class TypicalBridges {
 
-    public static final PersonTaskBridge DEFAUL_BRIDGE_1 = new PersonTaskBridge(
+    public static final PersonTaskBridge DEFAULT_BRIDGE_1 = new PersonTaskBridge(
             UUID.fromString("c4c645da-27b3-454d-9428-5295a6ee1f33"),
             UUID.fromString("bfbf250c-fd58-49b4-be15-ca12095ca2ee"));
-    public static final PersonTaskBridge DEFAUL_BRIDGE_2 = new PersonTaskBridge(
+    public static final PersonTaskBridge DEFAULT_BRIDGE_2 = new PersonTaskBridge(
             UUID.fromString("c4c645da-27b3-454d-9428-5295a6ee1f33"),
             UUID.fromString("41478d11-dbba-441f-ab0f-99ddf097eac1"));
 
@@ -35,6 +35,6 @@ public class TypicalBridges {
     }
 
     public static List<PersonTaskBridge> getTypicalBridges() {
-        return new ArrayList<>(Arrays.asList(DEFAUL_BRIDGE_1, DEFAUL_BRIDGE_2));
+        return new ArrayList<>(Arrays.asList(DEFAULT_BRIDGE_1, DEFAULT_BRIDGE_2));
     }
 }

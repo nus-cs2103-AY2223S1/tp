@@ -156,24 +156,6 @@ public class ModelManager implements Model {
         addressBook.addBridge(bridge);
     }
 
-    @Override
-    public void deleteBridge(PersonTaskBridge bridge) {
-        requireNonNull(bridge);
-        addressBook.removeBridge(bridge);
-    }
-
-    @Override
-    public void deletePersonBridge(Person person) {
-        requireNonNull(person);
-        addressBook.removeBridge(person);
-    }
-
-    @Override
-    public void deleteTaskBridge(Task task) {
-        requireNonNull(task);
-        addressBook.removeBridge(task);
-    }
-
     //=========== Filtered Task List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of

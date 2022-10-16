@@ -125,12 +125,12 @@ public class AddressBookTest {
 
     @Test
     public void hasBridge_bridgeNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasBridge(TypicalBridges.DEFAUL_BRIDGE_1));
+        assertFalse(addressBook.hasBridge(TypicalBridges.DEFAULT_BRIDGE_1));
     }
     @Test
     public void hasBridge_bridgeInAddressBook_returnsTrue() {
-        addressBook.addBridge(TypicalBridges.DEFAUL_BRIDGE_1);
-        assertTrue(addressBook.hasBridge(TypicalBridges.DEFAUL_BRIDGE_1));
+        addressBook.addBridge(TypicalBridges.DEFAULT_BRIDGE_1);
+        assertTrue(addressBook.hasBridge(TypicalBridges.DEFAULT_BRIDGE_1));
     }
 
     @Test
