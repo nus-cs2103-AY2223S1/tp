@@ -1,15 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -23,14 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MinecraftName;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Social;
-import seedu.address.model.person.TimeZone;
+import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -54,7 +39,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_MINECRAFT_SERVER + "SERVERS] "
-            + "[" + PREFIX_TIMEZONE + "TIMEZONE]\n"
+            + "[" + PREFIX_TIMEZONE + "TIMEZONE]"
+            + "[" + PREFIX_GAME_TYPE + "GAME TYPE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_MINECRAFT_NAME + "newMinecraftName "
@@ -119,9 +105,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
         TimeZone updatedTimeZone = editPersonDescriptor.getTimeZone().orElse(personToEdit.getTimeZone());
+        Set<GameType> updatedGameType = editPersonDescriptor.getGameTypes().orElse(personToEdit.getGameType());
 
         return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress,
-                updatedSocials, updatedTags, updatedServers, updatedTimeZone);
+                updatedSocials, updatedTags, updatedServers, updatedTimeZone, updatedGameType);
     }
 
     @Override
@@ -157,6 +144,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Set<Server> servers;
         private TimeZone timeZone;
+        private Set<GameType> gameTypes;
 
         public EditPersonDescriptor() {}
 
@@ -274,6 +262,14 @@ public class EditCommand extends Command {
 
         public Optional<TimeZone> getTimeZone() {
             return Optional.ofNullable(timeZone);
+        }
+
+        public void setGameTypes(Set<GameType> gameTypes) {
+            this.gameTypes = (gameTypes != null) ? new HashSet<>(gameTypes) : null;
+        }
+
+        public Optional<Set<GameType>> getGameTypes() {
+            return (gameTypes != null) ? Optional.of(Collections.unmodifiableSet(gameTypes)) : Optional.empty();
         }
 
         @Override

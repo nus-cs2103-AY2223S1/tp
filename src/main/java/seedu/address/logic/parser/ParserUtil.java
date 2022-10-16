@@ -9,15 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.MinecraftName;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Platform;
-import seedu.address.model.person.PlatformConverter;
-import seedu.address.model.person.Social;
-import seedu.address.model.person.TimeZone;
+import seedu.address.model.person.*;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -226,5 +218,23 @@ public class ParserUtil {
             throw new ParseException(TimeZone.getMessageConstraints());
         }
         return new TimeZone(trimmedOffset);
+    }
+
+    public static GameType parseGameType(String gameType) throws ParseException {
+        requireNonNull(gameType);
+        String trimmedGameType = gameType.trim();
+        if (!GameType.isValidGameType(trimmedGameType)) {
+            throw new ParseException(GameType.getMessageConstraints());
+        }
+        return new GameType(trimmedGameType);
+    }
+
+    public static Set<GameType> parseGameType(Collection<String> gameTypes) throws ParseException {
+        requireNonNull(gameTypes);
+        final Set<GameType> gameTypeSet = new HashSet<>();
+        for (String gameType : gameTypes) {
+            gameTypeSet.add(parseGameType(gameType));
+        }
+        return gameTypeSet;
     }
 }

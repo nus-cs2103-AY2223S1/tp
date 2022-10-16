@@ -57,6 +57,7 @@ public class JsonUtil {
      */
     public static <T> Optional<T> readJsonFile(
             Path filePath, Class<T> classOfObjectToDeserialize) throws DataConversionException {
+
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
@@ -72,7 +73,6 @@ public class JsonUtil {
             logger.warning("Error reading from jsonFile file " + filePath + ": " + e);
             throw new DataConversionException(e);
         }
-
         return Optional.of(jsonFile);
     }
 
