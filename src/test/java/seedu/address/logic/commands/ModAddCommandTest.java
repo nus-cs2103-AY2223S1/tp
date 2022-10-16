@@ -46,7 +46,7 @@ public class ModAddCommandTest {
     public void execute_saveToModels_success() throws CommandException {
 
         // adds a test person to model
-        Person toAdd = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.modName).build();
+        Person toAdd = new PersonBuilder(BOB).withMods(VALID_MOD_CS2100.getModName()).build();
         model.addPerson(toAdd);
 
         // execute ModAddCommand on the test person
@@ -59,7 +59,7 @@ public class ModAddCommandTest {
 
         // expected edited person
         Person editedPersonExpected = new PersonBuilder(BOB)
-                .withMods(VALID_MOD_CS2100.modName, VALID_MOD_CS2101.modName)
+                .withMods(VALID_MOD_CS2100.getModName(), VALID_MOD_CS2101.getModName())
                 .build();
 
         assertEquals(String.format(ModAddCommand.MESSAGE_SUCCESS, editedPerson), commandResult.getFeedbackToUser());

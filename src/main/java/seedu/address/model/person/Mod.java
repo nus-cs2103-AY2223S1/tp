@@ -8,11 +8,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidModName(String)}
  */
 public class Mod {
-    public static final String MESSAGE_CONSTRAINTS = "Mod names should not contain any special characters.";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
-    public final String modName;
+    public static final String MESSAGE_CONSTRAINTS = "Mod names should be numbers prefixed with letters.";
+    public enum ModCategory { CS, MATH, COMMS, GE, UE };
+    public static final String VALIDATION_REGEX = "[A-Z]+\\d+";
+    private final String modName;
     private boolean hasTaken;
+    private final ModCategory modCategory;
 
     /**
      * Constructs a {@code Mod}.
@@ -24,6 +25,7 @@ public class Mod {
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
         this.modName = modName.toUpperCase();
         this.hasTaken = false;
+        this.modCategory = getModCategory(modName);
     }
 
     /**
@@ -37,6 +39,7 @@ public class Mod {
         checkArgument(isValidModName(modName), MESSAGE_CONSTRAINTS);
         this.modName = modName.toUpperCase();
         this.hasTaken = hasTaken;
+        this.modCategory = getModCategory(modName);
     }
 
     /**
@@ -89,6 +92,39 @@ public class Mod {
      */
     public boolean getModStatus() {
         return this.hasTaken;
+    }
+
+    /**
+     * Gets the mod category.
+     *
+     * @return The mod category.
+     */
+    public ModCategory getModCategory() {
+        return this.modCategory;
+    }
+
+    /**
+     * Gets mod category from the given mod name.
+     *
+     * @param modName The mod name.
+     * @return The mod category.
+     */
+    private ModCategory getModCategory(String modName) {
+        String modPrefix = modName.split("[0-9]")[0].substring(0,2);
+        switch (modPrefix) {
+        case "CS":
+            return ModCategory.CS;
+        case "MA":
+        case "ST":
+            return ModCategory.MATH;
+        case "ES":
+            return ModCategory.COMMS;
+        case "GE":
+        case "UT":
+            return ModCategory.GE;
+        default:
+            return ModCategory.UE;
+        }
     }
 
     @Override
