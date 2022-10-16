@@ -35,6 +35,9 @@ public class OrderCard extends UiPart<Region> {
     private Label buyerName;
 
     @FXML
+    private Label byDate;
+
+    @FXML
     private Label color;
 
     @FXML
@@ -82,6 +85,8 @@ public class OrderCard extends UiPart<Region> {
         color.setText(order.getRequest().getRequestedColor().toString());
         colorPattern.setText(order.getRequest().getRequestedColorPattern().toString());
         priceRange.setText(order.getRequestedPriceRange().toString());
+        // TODO: debug this
+        byDate.setText("Complete order by: " + order.getByDate());
         settledPrice.setText(order.getSettledPrice().toString());
         // TODO: debug this
         // additionalRequestsDescription.setText(order.getAdditionalRequests().toString());

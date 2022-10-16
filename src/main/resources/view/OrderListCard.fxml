@@ -103,6 +103,11 @@
                            <Insets top="10.0" />
                         </VBox.margin>
                      </Label>
+                     <Label fx:id="byDate" text="\$by date">
+                        <VBox.margin>
+                           <Insets top="5.0" />
+                        </VBox.margin>
+                     </Label>
                      <Label fx:id="settledPrice" text="\$settled price">
                         <VBox.margin>
                            <Insets top="5.0" />
