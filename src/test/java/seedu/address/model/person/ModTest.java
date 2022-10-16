@@ -83,6 +83,11 @@ public class ModTest {
         assertEquals(Mod.ModCategory.MATH, new Mod("MA1521").getModCategory());
         assertEquals(Mod.ModCategory.MATH, new Mod("MA2001").getModCategory());
 
+        // Sci Mods
+        assertEquals(Mod.ModCategory.SCI, new Mod("LSM1301").getModCategory());
+        assertEquals(Mod.ModCategory.SCI, new Mod("CM1102").getModCategory());
+        assertEquals(Mod.ModCategory.SCI, new Mod("PC1201").getModCategory());
+
         // GE Mods
         assertEquals(Mod.ModCategory.GE, new Mod("GEA1000").getModCategory());
         assertEquals(Mod.ModCategory.GE, new Mod("UTC1102B").getModCategory());
