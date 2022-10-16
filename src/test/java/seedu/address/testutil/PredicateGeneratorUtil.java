@@ -6,13 +6,10 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
-import seedu.address.model.person.predicates.DateTimeWithinRangePredicate;
-import seedu.address.model.person.predicates.PersonContainsTagsPredicate;
 
 /**
  * A helper class consisting of methods to generate predicates more easily for testing without needing to create
@@ -89,35 +86,6 @@ public class PredicateGeneratorUtil {
     public static CombinedAppointmentPredicate generateCombinedAppointmentPredicateWithOnlyDateTime(
             LocalDateTime startDateTime, LocalDateTime endDateTime) {
         return new CombinedAppointmentPredicate(EMPTY_STRING, startDateTime, endDateTime);
-    }
-
-    /**
-     * Provides a simple way to generate a {@code PersonContainsTagsPredicate} without needing to directly provide
-     * a list of tags but an argument of strings instead.
-     *
-     * @param tags List of tags to test.
-     * @return A PersonContainsTagsPredicate that tests if the tags inputted exist on a {@code Person}.
-     */
-    public static PersonContainsTagsPredicate generatePersonsContainsTagsPredicate(String... tags) {
-        List<String> tagList = Arrays.asList(tags);
-        return new PersonContainsTagsPredicate(tagList);
-    }
-
-    /**
-     * Generates a DateTimeWithinRangePredicate without needing to directly provide {@code LocalDateTime}s
-     * but a parsable string of LocalDateTime instead.
-     *
-     * @param startDateTime Tests for appointments after {@code startDateTime}.
-     *                      Empty string denotes no {@code startDateTime} requirement.
-     * @param endDateTime Tests for appointments before {@code endDateTime}.
-     *                    Empty string denotes no {@code endDateTime} requirement.
-     * @return {@Code DateTimeWithinRangePredicate} with the given reason and date range.
-     */
-    public static DateTimeWithinRangePredicate generateDateTimeWIthinRangePredicate(
-            String startDateTime, String endDateTime) {
-        LocalDateTime start = parseStartDateTime(startDateTime);
-        LocalDateTime end = parseEndDateTime(endDateTime);
-        return new DateTimeWithinRangePredicate(start, end);
     }
 
     private static LocalDateTime parseStartDateTime(String startDateTime) {

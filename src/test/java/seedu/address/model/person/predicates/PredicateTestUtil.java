@@ -17,7 +17,7 @@ public class PredicateTestUtil {
      * @param firstPredicate A predicate to compare
      * @param firstPredicateCopy A copy of the firstPredicate that should be equal to {@code firstPredicate}
      * @param secondPredicate Another predicate that should be not equal to {@code firstPredicate}
-     * @param <T>
+     * @param <T> Any class that extends {@code Predicate}
      */
     public static <T extends Predicate<?>> void assertBasicEqualities(T firstPredicate, T firstPredicateCopy,
                                                                       T secondPredicate) {

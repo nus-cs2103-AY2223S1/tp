@@ -75,7 +75,7 @@ public class CombinedAppointmentPredicate implements Predicate<Appointment> {
                     return isAtOrAfterStartTime && isAtOrBeforeEndTime;
                 };
 
-        appointmentPredicates.add(new DateTimeWithinRangePredicate(startDateTime, endDateTime));
+        appointmentPredicates.add(dateTimeWithinRangePredicate);
     }
 
     @Override
