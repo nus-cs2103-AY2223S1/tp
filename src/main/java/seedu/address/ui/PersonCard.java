@@ -67,9 +67,9 @@ public class PersonCard extends UiPart<Region> {
         } else {
             github.setManaged(false);
         }
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getInterests().stream()
+                .sorted(Comparator.comparing(tag -> tag.interestName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.interestName)));
     }
 
     @Override

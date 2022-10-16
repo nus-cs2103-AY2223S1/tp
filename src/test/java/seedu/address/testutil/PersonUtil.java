@@ -2,10 +2,10 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Set;
@@ -13,9 +13,9 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.interest.Interest;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Person.
@@ -39,8 +39,8 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_TELEGRAM + person.getTelegram().handle + " ");
         sb.append(PREFIX_GITHUB + person.getGitHub().username + " ");
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        person.getInterests().stream().forEach(
+            s -> sb.append(PREFIX_INTEREST + s.interestName + " ")
         );
         person.getMods().stream().forEach(
                 s -> sb.append(PREFIX_MOD + s.modName + " ")
@@ -58,12 +58,12 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.handle).append(" "));
         descriptor.getGitHub().ifPresent(github -> sb.append(PREFIX_GITHUB).append(github.username).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
+        if (descriptor.getInterests().isPresent()) {
+            Set<Interest> tags = descriptor.getInterests().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_INTEREST);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_INTEREST).append(s.interestName).append(" "));
             }
         }
         if (descriptor.getMods().isPresent()) {

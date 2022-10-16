@@ -19,47 +19,47 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.PersonContainsTagPredicate;
+import seedu.address.model.person.PersonContainsInterestPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindTagCommand}.
  */
-public class FindTagCommandTest {
+public class FindInterestCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        PersonContainsTagPredicate firstPredicate =
-                new PersonContainsTagPredicate(Collections.singletonList("first"));
-        PersonContainsTagPredicate secondPredicate =
-                new PersonContainsTagPredicate(Collections.singletonList("second"));
+        PersonContainsInterestPredicate firstPredicate =
+                new PersonContainsInterestPredicate(Collections.singletonList("first"));
+        PersonContainsInterestPredicate secondPredicate =
+                new PersonContainsInterestPredicate(Collections.singletonList("second"));
 
-        FindTagCommand findTagFirstCommand = new FindTagCommand(firstPredicate);
-        FindTagCommand findTagSecondCommand = new FindTagCommand(secondPredicate);
+        FindInterestCommand findInterestFirstCommand = new FindInterestCommand(firstPredicate);
+        FindInterestCommand findInterestSecondCommand = new FindInterestCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findTagFirstCommand.equals(findTagFirstCommand));
+        assertTrue(findInterestFirstCommand.equals(findInterestFirstCommand));
 
         // same values -> returns true
-        FindTagCommand findFirstCommandCopy = new FindTagCommand(firstPredicate);
-        assertTrue(findTagFirstCommand.equals(findFirstCommandCopy));
+        FindInterestCommand findFirstCommandCopy = new FindInterestCommand(firstPredicate);
+        assertTrue(findInterestFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(findTagFirstCommand.equals(1));
+        assertFalse(findInterestFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findTagFirstCommand.equals(null));
+        assertFalse(findInterestFirstCommand.equals(null));
 
         // different tag -> returns false
-        assertFalse(findTagFirstCommand.equals(findTagSecondCommand));
+        assertFalse(findInterestFirstCommand.equals(findInterestSecondCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PersonContainsTagPredicate predicate = preparePredicate(" ");
-        FindTagCommand command = new FindTagCommand(predicate);
+        PersonContainsInterestPredicate predicate = preparePredicate(" ");
+        FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -68,8 +68,8 @@ public class FindTagCommandTest {
     @Test
     public void execute_oneKeyword_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsTagPredicate predicate = preparePredicate("friends");
-        FindTagCommand command = new FindTagCommand(predicate);
+        PersonContainsInterestPredicate predicate = preparePredicate("tennis");
+        FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
@@ -78,8 +78,8 @@ public class FindTagCommandTest {
     @Test
     public void execute_multipleKeywords_onePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        PersonContainsTagPredicate predicate = preparePredicate("friends owesMoney");
-        FindTagCommand command = new FindTagCommand(predicate);
+        PersonContainsInterestPredicate predicate = preparePredicate("tennis netflix");
+        FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(BENSON), model.getFilteredPersonList());
@@ -88,17 +88,17 @@ public class FindTagCommandTest {
     @Test
     public void execute_multipleCasingKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PersonContainsTagPredicate predicate = preparePredicate("friends FRIENDS fRieNDs");
-        FindTagCommand command = new FindTagCommand(predicate);
+        PersonContainsInterestPredicate predicate = preparePredicate("tennis TENNIS TenNiS");
+        FindInterestCommand command = new FindInterestCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PersonContainsInterestPredicate}.
      */
-    private PersonContainsTagPredicate preparePredicate(String userInput) {
-        return new PersonContainsTagPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PersonContainsInterestPredicate preparePredicate(String userInput) {
+        return new PersonContainsInterestPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
