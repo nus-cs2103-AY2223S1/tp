@@ -2,7 +2,9 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents a Task in the address book.
@@ -10,16 +12,19 @@ import java.util.Objects;
 public class Task {
 
     private final Name name;
+    private Optional<LocalDate> deadline;
     private boolean isDone;
 
     /**
      * Constructs an unfinished {@code Task}.
      *
      * @param name A valid name.
+     * @param deadline A valid date or null.
      */
-    public Task(Name name) {
+    public Task(Name name, LocalDate deadline) {
         requireAllNonNull(name);
         this.name = name;
+        this.deadline = Optional.ofNullable(deadline);
         this.isDone = false;
     }
 
@@ -27,17 +32,22 @@ public class Task {
      * Constructs a {@code Task} with specified state.
      *
      * @param name A valid name.
+     * @param deadline A valid date or null.
      * @param isDone The state.
      */
-    public Task(Name name, boolean isDone) {
+    public Task(Name name, LocalDate deadline, boolean isDone) {
         requireAllNonNull(name);
         this.name = name;
+        this.deadline = Optional.ofNullable(deadline);
         this.isDone = isDone;
     }
 
-
     public Name getName() {
         return this.name;
+    }
+
+    public Optional<LocalDate> getDeadline() {
+        return this.deadline;
     }
 
     public boolean getIsDone() {
@@ -67,7 +77,7 @@ public class Task {
     }
 
     /**
-     * Returns true if both tasks have the same name.
+     * Returns true if both tasks have the same name and deadline.
      * This defines a weaker notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
@@ -76,17 +86,19 @@ public class Task {
         }
 
         return otherTask != null
-                && otherTask.getName().equals(getName());
+                && otherTask.getName().equals(getName())
+                && otherTask.getDeadline().equals(getDeadline());
     }
 
     /**
-     * Returns true if both task have the same description and both are done or both are not done.
+     * Returns true if both task have the same description, same deadline and both are done or both are not done.
      */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
-                && name.equals(((Task) other).getName())); // state check
+                && name.equals(((Task) other).getName())
+                && getDeadline().equals(((Task) other).getDeadline())); // state check
     }
 
     @Override
@@ -99,6 +111,10 @@ public class Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("[" + getStatusIcon() + "] " + getName());
+
+        if (!getDeadline().isEmpty()) {
+            builder.append(" (by: " + getDeadline().get() + ")");
+        }
         return builder.toString();
     }
 

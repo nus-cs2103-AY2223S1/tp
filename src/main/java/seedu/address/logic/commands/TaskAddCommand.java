@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_INDEX;
 
 import java.util.List;
 
@@ -20,10 +22,14 @@ public class TaskAddCommand extends Command {
     public static final String COMMAND_WORD = "taskadd";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds the specified task to the team "
             + "by the index number used in the displayed team list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TASK_NAME + "TASK-NAME]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_TASK_NAME + "Create GUI for AddressBook";
+            + "Parameters: "
+            + PREFIX_TEAM_INDEX + "INDEX (must be a positive integer) "
+            + PREFIX_TASK_NAME + "TASK-NAME"
+            + " [" + PREFIX_TASK_DEADLINE + "dd-MM-yyyy]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TEAM_INDEX + "1 "
+            + PREFIX_TASK_NAME + "Create GUI for AddressBook "
+            + PREFIX_TASK_DEADLINE + "12-12-2023";
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
     private final Index index;

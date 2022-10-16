@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,14 +15,17 @@ import seedu.address.model.task.Task;
 public class JsonAdaptedTask {
 
     private final String name;
+    private final LocalDate deadline;
     private final Boolean isDone;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given {@code taskName} and {@code isDone}
+     * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}, {@code deadline}, and {@code isDone}
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("isDone") boolean isDone) {
+    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("deadline") LocalDate deadline,
+                           @JsonProperty("isDone") boolean isDone) {
         this.name = name;
+        this.deadline = deadline;
         this.isDone = isDone;
     }
 
@@ -29,6 +34,7 @@ public class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         this.name = source.getName().fullName;
+        this.deadline = source.getDeadline().orElse(null);
         this.isDone = source.getIsDone();
     }
 
@@ -38,6 +44,6 @@ public class JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Task toModelType() throws IllegalValueException {
-        return new Task(new Name(name), isDone);
+        return new Task(new Name(name), deadline, isDone);
     }
 }
