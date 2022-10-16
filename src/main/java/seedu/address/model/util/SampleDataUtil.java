@@ -41,7 +41,7 @@ public class SampleDataUtil {
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new NextOfKin("Kenneth Oliverio, Son, 81249567"), new PatientType(PatientTypes.INPATIENT),
                     new HospitalWing("Wing 1"), new FloorNumber(1), new WardNumber("T349"),
-                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("120622")),
+                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("12-06-2022")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new NextOfKin("Candince Yeo, Wife, 87598274"), new PatientType(PatientTypes.OUTPATIENT),
                     null, null, null, getMedicationSet("Ibuprofen"),
@@ -53,7 +53,7 @@ public class SampleDataUtil {
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new NextOfKin("Mary Balakrishnan, Wife, 87259826"), new PatientType(PatientTypes.INPATIENT),
                     new HospitalWing("South"), new FloorNumber(5), new WardNumber("A001"),
-                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("120622"))
+                    getMedicationSet(), new ArrayList<>(), new UpcomingAppointment("12-06-2022"))
         };
     }
 

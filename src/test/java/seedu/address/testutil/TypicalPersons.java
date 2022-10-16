@@ -34,8 +34,8 @@ public class TypicalPersons {
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPhone("98765432")
             .withEmail("johnd@example.com").withNextOfKin("Daniel Meier, Husband, 81273546")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("south").withFloorNumber(1).withWardNumber("B690")
-            .withMedication("Paracetamol", "Xanax").withPastAppointment("120622", "Paracetamol Ibuprofen", "Sick")
-            .withPastAppointment("140622", "Chlormine Amoxycillin", "Sick").withUpcomingAppointment("120622").build();
+            .withMedication("Paracetamol", "Xanax").withPastAppointment("12-06-2022", "Paracetamol Ibuprofen", "Sick")
+            .withPastAppointment("14-06-2022", "Chlormine Amoxycillin", "Sick").withUpcomingAppointment("12-06-2022").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withNextOfKin("Charlie Pauline, Brother, 81273645")
             .withPatientType(PatientTypes.OUTPATIENT).build();
@@ -47,7 +47,7 @@ public class TypicalPersons {
             .withEmail("werner@example.com").withNextOfKin("Charles Meyer, Husband, 83646756")
             .withPatientType(PatientTypes.OUTPATIENT).build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824275")
-            .withEmail("lydia@example.com").withNextOfKin("Violet Kunz, Daugther, 92725635")
+            .withEmail("lydia@example.com").withNextOfKin("Violet Kunz, Daughter, 92725635")
             .withPatientType(PatientTypes.INPATIENT).withHospitalWing("north")
             .withFloorNumber(2).withWardNumber("F528").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824424")

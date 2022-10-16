@@ -35,7 +35,7 @@ public class PersonBuilder {
     public static final String DEFAULT_HOSPITAL_WING = "south";
     public static final Integer DEFAULT_FLOOR_NUMBER = 3;
     public static final String DEFAULT_WARD_NUMBER = "D312";
-    public static final String DEFAULT_UPCOMING_APPOINTMENT = "120622";
+    public static final String DEFAULT_UPCOMING_APPOINTMENT = "12-06-2022";
 
     private Name name;
     private Phone phone;
