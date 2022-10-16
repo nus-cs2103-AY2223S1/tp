@@ -45,6 +45,18 @@ public class SortCustomerCommandParser implements Parser<SortCustomerCommand> {
     }
 
     /**
+     * Creates a {@code SortCustomerCommand} from an entry in the `PREFIX_DESCRIPTION_MAP` and a {@code SortDirection}
+     */
+    public static SortCustomerCommand convertPrefixDescriptionEntry(Pair<String, Comparator<Customer>> entry,
+                                                                    SortDirection direction) {
+        Comparator<Customer> comparator = entry.getValue();
+        if (!direction.isIncreasing()) {
+            comparator = comparator.reversed();
+        }
+        return new SortCustomerCommand(comparator, entry.getKey(), direction);
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
@@ -59,28 +71,22 @@ public class SortCustomerCommandParser implements Parser<SortCustomerCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCustomerCommand.MESSAGE_USAGE));
         }
 
-
+        SortCustomerCommand command = new SortCustomerCommand((o1, o2) -> 0, "",
+                SortDirection.INCREASING);
         if (countPrefixesPresent(argMultimap, allPrefixes) != 1) {
             throw new ParseException(MESSAGE_INVALID_UNIQUE_COMPARATOR);
         }
-        Comparator<Customer> comparator = (c1, c2) -> 0;
-        String comparatorDescription = "";
-        SortDirection direction = new SortDirection("+");
         for (Prefix key: PREFIX_DESCRIPTION_MAP.keySet()) {
             Optional<String> suffix = argMultimap.getValue(key);
             if (suffix.isEmpty()) {
                 continue;
             }
             Pair<String, Comparator<Customer>> comparatorEntry = PREFIX_DESCRIPTION_MAP.get(key);
-            comparatorDescription = comparatorEntry.getKey();
-            comparator = comparatorEntry.getValue();
-            direction = parseSortDirection(suffix.get());
-            if (!direction.isIncreasing()) {
-                comparator = comparator.reversed();
-            }
+            SortDirection direction = parseSortDirection(suffix.get());
+            command = convertPrefixDescriptionEntry(comparatorEntry, direction);
             break;
         }
-        return new SortCustomerCommand(comparator, comparatorDescription, direction);
+        return command;
     }
 
 }

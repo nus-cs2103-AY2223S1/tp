@@ -8,6 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidSortDirection(String)} (String)}
  */
 public class SortDirection {
+    public static final SortDirection INCREASING = new SortDirection("+");
+    public static final SortDirection DECREASING = new SortDirection("-");
 
 
     public static final String MESSAGE_CONSTRAINTS =
