@@ -12,7 +12,7 @@ import seedu.rc4hdb.model.Model;
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCommand extends ModelCommand {
+public class ListCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "list";
 
