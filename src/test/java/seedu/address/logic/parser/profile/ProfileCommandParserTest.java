@@ -55,54 +55,38 @@ public class ProfileCommandParserTest {
     }
 
     @Test
-    public void parse_profileOption_add() {
+    public void parse_addOption_success() throws Exception {
         Profile profile = new ProfileBuilder().build();
-        try {
-            AddProfileCommand command =
-                    (AddProfileCommand) parser.parse(ProfileUtil.getAddProfileCommand(profile));
-            assertEquals(new AddProfileCommand(profile), command);
-        } catch (ParseException e) {
-            fail();
-        }
+        AddProfileCommand command =
+                (AddProfileCommand) parser.parse(ProfileUtil.getAddProfileCommand(profile));
+        assertEquals(new AddProfileCommand(profile), command);
     }
 
     @Test
-    public void parse_profileOption_delete() {
-        try {
-            DeleteProfileCommand command = (DeleteProfileCommand) parser.parse(
-                    " " + PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION + " "
-                            + INDEX_FIRST_PROFILE.getOneBased());
-            assertEquals(new DeleteProfileCommand(INDEX_FIRST_PROFILE), command);
-        } catch (ParseException e) {
-            fail();
-        }
+    public void parse_deleteOption_success() throws Exception {
+        DeleteProfileCommand command = (DeleteProfileCommand) parser.parse(
+                " " + PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION + " "
+                        + INDEX_FIRST_PROFILE.getOneBased());
+        assertEquals(new DeleteProfileCommand(INDEX_FIRST_PROFILE), command);
     }
 
     @Test
-    public void parseCommand_edit() {
+    public void parse_editOption_success() throws Exception {
         Profile profile = new ProfileBuilder().build();
-        try {
-            EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
-            EditProfileCommand command = (EditProfileCommand) parser.parse(
-                    " " + PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION + " "
-                            + INDEX_FIRST_PROFILE.getOneBased() + " "
-                            + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
-            assertEquals(new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor), command);
-        } catch (ParseException e) {
-            fail();
-        }
+        EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(profile).build();
+        EditProfileCommand command = (EditProfileCommand) parser.parse(
+                " " + PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION + " "
+                        + INDEX_FIRST_PROFILE.getOneBased() + " "
+                        + ProfileUtil.getEditProfileDescriptorDetails(descriptor));
+        assertEquals(new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor), command);
     }
 
     @Test
-    public void parse_profileOption_find() {
+    public void parse_findOption_success() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        try {
-            FindProfileCommand command = (FindProfileCommand) parser.parse(
-                    " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " "
-                            + keywords.stream().collect(Collectors.joining(" ")));
-            assertEquals(new FindProfileCommand(new NameContainsKeywordsPredicate(keywords)), command);
-        } catch (ParseException e) {
-            fail();
-        }
+        FindProfileCommand command = (FindProfileCommand) parser.parse(
+                " " + PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindProfileCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 }
