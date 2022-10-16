@@ -29,8 +29,8 @@ public class TaskSortCommandParser implements Parser<TaskSortCommand> {
             Pattern.compile(String.format("\\s+%s.*", CliSyntax.PREFIX_SORT_TYPE.getPrefix()));
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskTodoCommand
-     * and returns an TaskTodoCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TaskSortCommand
+     * and returns an TaskSortCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
