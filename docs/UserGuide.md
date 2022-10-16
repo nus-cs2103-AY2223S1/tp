@@ -128,7 +128,7 @@ Format: `list [c/CATEGORY [DESCENDING]]`
 
 Examples:
 * `list c/n true`
-* `list c/website true`
+* `list c/date true`
 * `list c/position false`
 
 
