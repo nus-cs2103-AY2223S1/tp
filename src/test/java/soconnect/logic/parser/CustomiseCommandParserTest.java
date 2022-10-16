@@ -18,6 +18,7 @@ import soconnect.commons.core.GuiSettings;
 import soconnect.logic.commands.CustomiseCommand;
 import soconnect.logic.commands.CustomiseCommand.Attribute;
 import soconnect.model.ModelManager;
+import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 
 class CustomiseCommandParserTest {
@@ -27,7 +28,7 @@ class CustomiseCommandParserTest {
     @Test
     public void parse_orderValidArgs_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -37,7 +38,7 @@ class CustomiseCommandParserTest {
     @Test
     public void parse_orderIncompleteArgs_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -47,7 +48,7 @@ class CustomiseCommandParserTest {
     @Test
     public void parse_hideOneAttribute_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS};
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -57,7 +58,7 @@ class CustomiseCommandParserTest {
     @Test
     public void parse_hideFourAttributes_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "NONE"));
 
@@ -67,7 +68,7 @@ class CustomiseCommandParserTest {
     @Test
     public void parse_showOneAttribute_success() {
         Attribute[] attributes = new Attribute[]{TAGS};
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
@@ -77,7 +78,7 @@ class CustomiseCommandParserTest {
     @Test
     public void parse_showFourAttributes_success() {
         Attribute[] attributes = new Attribute[]{ADDRESS, TAGS, PHONE, EMAIL};
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
@@ -86,7 +87,7 @@ class CustomiseCommandParserTest {
 
     @Test
     public void parse_hideInvalidArgs_throwsParseException() {
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
@@ -96,7 +97,7 @@ class CustomiseCommandParserTest {
 
     @Test
     public void parse_hideRepeatArgs_throwsParseException() {
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
@@ -106,7 +107,7 @@ class CustomiseCommandParserTest {
 
     @Test
     public void parse_showInvalidArgs_throwsParseException() {
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
@@ -116,7 +117,7 @@ class CustomiseCommandParserTest {
 
     @Test
     public void parse_showRepeatArgs_throwsParseException() {
-        ModelManager model = new ModelManager(getTypicalSoConnect(), new UserPrefs());
+        ModelManager model = new ModelManager(getTypicalSoConnect(), new TodoList(), new UserPrefs());
         model.setGuiSettings(new GuiSettings(1000, 500, 300, 100,
                 "ADDRESS>TAGS>PHONE>EMAIL", "ADDRESS,TAGS,PHONE,EMAIL"));
 
