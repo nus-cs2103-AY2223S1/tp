@@ -140,11 +140,11 @@ public class Person {
     }
 
     /**
-     * Determines whether the person owes money.
+     * Determines whether the person is owing money.
      *
-     * @return true if the person owes money
+     * @return true if the person is owing money
      */
-    public boolean owesMoney() {
+    public boolean isOwingMoney() {
         return moneyOwed.isGreaterThanZero();
     }
 

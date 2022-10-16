@@ -12,7 +12,6 @@ import seedu.address.model.person.Person;
 public class ScheduleCard extends UiPart<Region> {
 
     private static final String FXML = "ScheduleListCard.fxml";
-
     private static final String COLOUR_OF_DEBTOR = "-fx-text-fill: #FF0000;";
 
     /**
@@ -56,7 +55,7 @@ public class ScheduleCard extends UiPart<Region> {
      * @param person to check whether he/she is a debtor
      */
     private void setWarningIfOwed(Person person) {
-        if (person.owesMoney()) {
+        if (person.isOwingMoney()) {
             String nameWithAmount = person.getName().fullName + " - To collect $" + person.getMoneyOwed().value;
             name.setText(nameWithAmount);
             name.setStyle(COLOUR_OF_DEBTOR);

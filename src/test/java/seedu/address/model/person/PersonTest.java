@@ -105,10 +105,10 @@ public class PersonTest {
     @Test
     public void owesMoneyTest() {
         Person debtor = AVA;
-        assertTrue(debtor.owesMoney());
+        assertTrue(debtor.isOwingMoney());
 
         Person nonDebtor = new PersonBuilder(AVA).withMoneyOwed(0).build();
-        assertFalse(nonDebtor.owesMoney());
+        assertFalse(nonDebtor.isOwingMoney());
     }
 
 }
