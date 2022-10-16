@@ -1,6 +1,7 @@
 package foodwhere.model.review;
 
 import static foodwhere.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -81,15 +82,30 @@ public class DateTest {
     @Test
     public void constructor_validDates_success() {
         // valid dates
-        assertTrue(new Date("01/01/2020").toString().equals("01/01/2020")); // normal date
-        assertTrue(new Date("29/02/2000").toString().equals("29/02/2000")); // leap year
-        assertTrue(new Date("01-01-2020").toString().equals("01/01/2020")); // normal date
-        assertTrue(new Date("29-02-2000").toString().equals("29/02/2000")); // leap year
-        assertTrue(new Date("01-01-0001").toString().equals("01/01/0001")); // normal date
+        assertEquals("01/01/2020", new Date("01/01/2020").toString()); // normal date
+        assertEquals("29/02/2000", new Date("29/02/2000").toString()); // leap year
+        assertEquals("01/01/2020", new Date("01-01-2020").toString()); // normal date
+        assertEquals("29/02/2000", new Date("29-02-2000").toString()); // leap year
+        assertEquals("01/01/0001", new Date("01-01-0001").toString()); // normal date
 
         // 1 digit in day/month
-        assertTrue(new Date("01-1-2020").toString().equals("01/01/2020")); // normal date
-        assertTrue(new Date("1-01-2020").toString().equals("01/01/2020")); // normal date
-        assertTrue(new Date("1-1-2020").toString().equals("01/01/2020")); // normal date
+        assertEquals("01/01/2020", new Date("01-1-2020").toString()); // normal date
+        assertEquals("01/01/2020", new Date("1-01-2020").toString()); // normal date
+        assertEquals("01/01/2020", new Date("1-1-2020").toString()); // normal date
+    }
+
+    @Test
+    public void compareTo_generalTests_returnsExpectedValues() {
+        // dates that make sense
+        assertEquals(1, new Date("1/1/2000").compareTo(new Date("1/1/1999")));
+        assertEquals(1, new Date("1/2/2000").compareTo(new Date("1/1/2000")));
+        assertEquals(1, new Date("2/1/2000").compareTo(new Date("1/1/2000")));
+        assertEquals(-1, new Date("1/1/1999").compareTo(new Date("1/1/2000")));
+        assertEquals(-1, new Date("1/1/2000").compareTo(new Date("1/2/2000")));
+        assertEquals(-1, new Date("1/1/2000").compareTo(new Date("2/1/2000")));
+        assertEquals(0, new Date("29/2/2000").compareTo(new Date("29-02-2000")));
+
+        // throws
+        assertThrows(NullPointerException.class, () -> new Date("1/1/2000").compareTo(null));
     }
 }

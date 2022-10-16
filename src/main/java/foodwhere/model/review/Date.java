@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
  * Represents a Review's date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Dates can be written as DD/MM/YYYY or DD-MM-YYYY";
     public static final String VALID_DATE_CONSTRAINTS = "Dates have to be a valid date";
@@ -105,4 +105,13 @@ public class Date {
         return value.hashCode();
     }
 
+    /**
+     * Compares two dates.
+     * @param other The object to be compared.
+     * @return 1 if this date is later, -1 if this date is earlier, 0 if the dates are the same.
+     */
+    public int compareTo(Date other) {
+        requireNonNull(other);
+        return date.compareTo(other.date);
+    }
 }
