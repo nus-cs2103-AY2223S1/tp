@@ -148,12 +148,12 @@ public class Person {
     public String toDisplayString() {
 
         final StringBuilder builder = new StringBuilder();
-        builder.append("Tel: ").append(getFieldOrElse(getPhone().toString()))
-                .append(", Email: ").append(getFieldOrElse(getEmail().toString())).append("\n");
-        builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
+        builder.append("Phone: ").append(getFieldOrElse(getPhone().toString())).append("\n");
+        builder.append("Email: ").append(getFieldOrElse(getEmail().toString())).append("\n");
         builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
+        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString())).append("\n");
         builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
-        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString()));
+        builder.append("Socials: ").append(getFieldOrElse(getSocials()));
         return builder.toString();
 
     }

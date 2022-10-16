@@ -22,18 +22,18 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book.\n\n"
+            + "Parameters: \n"
             + PREFIX_NAME + "NAME "
-            + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME "
+            + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME \n"
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TIMEZONE + "TIMEZONE] "
             + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
             + "[" + PREFIX_MINECRAFT_SERVER + "SERVER_IP] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "[" + PREFIX_TAG + "TAG]...\n\n"
+            + "Example: \n" + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_MINECRAFT_NAME + "john_doe_12345 "
             + PREFIX_PHONE + "98765432 "
