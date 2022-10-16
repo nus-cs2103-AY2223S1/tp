@@ -123,14 +123,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* Phone numbers containing any of the given keywords(in digits) will be returned.
+* Phone numbers starting with any of the given keywords(in digits) will be returned.
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find 64` returns `Theodore`
-  ![result for `find 64`](images/find64result.png)
+* `find 86` returns `Theodore`
+  ![result for `find 86`](images/find86result.png)
 
 ### Locating persons by tag: `findTag`
 
