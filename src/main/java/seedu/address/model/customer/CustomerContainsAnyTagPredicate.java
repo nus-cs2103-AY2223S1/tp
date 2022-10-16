@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Customer}'s {@code Tags} has any of the tags given.
  */
 public class CustomerContainsAnyTagPredicate implements Predicate<Customer> {
     private final List<Tag> tags;

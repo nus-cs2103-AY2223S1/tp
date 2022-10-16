@@ -10,7 +10,7 @@ import seedu.address.model.customer.CustomerContainsAllTagPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new AllTagCustomerCommand object
  */
 public class AllTagCustomerCommandParser implements Parser<AllTagCustomerCommand> {
 

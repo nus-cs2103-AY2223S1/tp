@@ -10,7 +10,7 @@ import seedu.address.ui.GuiTab;
 
 /**
  * Finds and lists all customers in ArtBuddy who includes at least one of the tags.
- * Keyword matching is case insensitive.
+ * Tag matching is case-sensitive.
  */
 public class AnyTagCustomerCommand extends Command {
 
@@ -18,7 +18,7 @@ public class AnyTagCustomerCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers who includes at least "
             + "one of the tags.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: TAG [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " tag1 tag2 tag3";
 
     private final CustomerContainsAnyTagPredicate predicate;
