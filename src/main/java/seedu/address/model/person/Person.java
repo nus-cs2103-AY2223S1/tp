@@ -23,12 +23,14 @@ public abstract class Person {
 
     // Data fields
     private final Location location;
+    private final GithubUsername username;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags, Location location) {
+    public Person(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags,
+                  Location location, GithubUsername username) {
         requireAllNonNull(name, phone, email, gender, tags, location);
         this.name = name;
         this.phone = phone;
@@ -36,6 +38,7 @@ public abstract class Person {
         this.gender = gender;
         this.tags.addAll(tags);
         this.location = location;
+        this.username = username;
     }
 
     public Name getName() {
@@ -56,6 +59,10 @@ public abstract class Person {
 
     public Location getLocation() {
         return location;
+    }
+
+    public GithubUsername getUsername() {
+        return username;
     }
 
     /**
@@ -95,14 +102,15 @@ public abstract class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getLocation().equals(getLocation());
+                && otherPerson.getLocation().equals(getLocation())
+                && otherPerson.getUsername().equals(getUsername());
     }
 
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, gender, tags, location);
+        return Objects.hash(name, phone, email, gender, tags, location, username);
     }
 
     /**

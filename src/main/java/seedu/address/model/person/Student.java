@@ -16,14 +16,15 @@ public class Student extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, Phone phone, Email email,
-                   Gender gender, Set<Tag> tags, Location location, Set<ModuleCode> moduleCodes) {
-        super(name, phone, email, gender, tags, location);
+
+    public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags,
+                   Location location, GithubUsername username, Set<ModuleCode> moduleCodes) {
+        super(name, phone, email, gender, tags, location, username);
         this.moduleCodes.addAll(moduleCodes);
     }
 
     public Set<ModuleCode> getModuleCodes() {
-        return Collections.unmodifiableSet(moduleCodes);
+        return Collections.unmodifiableSet(this.moduleCodes);
     }
 
     @Override
@@ -33,9 +34,9 @@ public class Student extends Person {
                 .append("; Name: ")
                 .append(getName());
 
-        if (!moduleCodes.isEmpty()) {
+        if (!this.moduleCodes.isEmpty()) {
             builder.append("; Module Code: ");
-            moduleCodes.forEach(builder:: append);
+            this.moduleCodes.forEach(builder:: append);
         }
 
         builder.append("; Phone: ")
@@ -43,8 +44,14 @@ public class Student extends Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Gender: ")
-                .append(getGender())
-                .append("; Location: ")
+                .append(getGender());
+
+        if (!getUsername().value.equals(GithubUsername.DEFAULT_USERNAME)) {
+            builder.append("; Github Username: ")
+                    .append(getUsername());
+        }
+
+        builder.append("; Location: ")
                 .append(getLocation());
 
         Set<Tag> tags = getTags();
