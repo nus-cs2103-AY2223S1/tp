@@ -10,12 +10,14 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
+import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.model.AddressBook;
 import swift.model.Model;
@@ -24,6 +26,7 @@ import swift.model.ReadOnlyUserPrefs;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
+import swift.testutil.PersonBuilder;
 import swift.testutil.TaskBuilder;
 
 public class AddTaskCommandTest {
@@ -38,10 +41,14 @@ public class AddTaskCommandTest {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validTask, new HashSet<>()).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask, new HashSet<>(Arrays.asList(Index.fromOneBased(1))))
+                .execute(modelStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        assertEquals(Arrays.asList(new PersonTaskBridge(
+                UUID.fromString("47005f2b-9c40-4051-8c95-69ca601cb58d"),
+                modelStub.tasksAdded.get(0).getId())), modelStub.bridgesAdded);
     }
 
     @Test
@@ -236,6 +243,7 @@ public class AddTaskCommandTest {
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
+        final ArrayList<PersonTaskBridge> bridgesAdded = new ArrayList<>();
 
         @Override
         public boolean hasTask(Task task) {
@@ -250,8 +258,17 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void addBridge(Person person, Task task) {
+            requireNonNull(person);
+            requireNonNull(task);
+            bridgesAdded.add(new PersonTaskBridge(person.getId(), task.getId()));
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+            AddressBook ab = new AddressBook();
+            ab.addPerson(new PersonBuilder().build());
+            return ab;
         }
     }
 
