@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import coydir.model.AddressBook;
+import coydir.model.Database;
 import coydir.model.person.Person;
 
 /**
@@ -61,9 +61,9 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withPosition("Intern")
             .withAddress("chicago ave").build();
     public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
-            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withPhone("00000000")
-            .withEmail("null@null.com").withPosition("Intern")
-            .withAddress("null").build();
+            .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withEmptyPhone()
+            .withEmptyEmail().withPosition("Intern")
+            .withEmptyAddress().build();
 
 
     // Manually added - Person's details found in {@code CommandTestUtil}
@@ -79,10 +79,10 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code database} with all the typical persons.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static Database getTypicalDatabase() {
+        Database ab = new Database();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }

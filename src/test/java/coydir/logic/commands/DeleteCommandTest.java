@@ -6,7 +6,7 @@ import static coydir.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.ID_SECOND_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static coydir.testutil.TypicalPersons.getTypicalAddressBook;
+import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,7 +25,7 @@ import coydir.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -68,8 +68,8 @@ public class DeleteCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(2 < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of database list
+        assertTrue(2 < model.getDatabase().getPersonList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("2"));
 

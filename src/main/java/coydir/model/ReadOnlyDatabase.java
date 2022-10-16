@@ -4,9 +4,9 @@ import coydir.model.person.Person;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an database
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyDatabase {
 
     /**
      * Returns an unmodifiable view of the persons list.

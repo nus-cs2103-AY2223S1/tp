@@ -13,15 +13,15 @@ import coydir.commons.util.ConfigUtil;
 import coydir.commons.util.StringUtil;
 import coydir.logic.Logic;
 import coydir.logic.LogicManager;
-import coydir.model.AddressBook;
+import coydir.model.Database;
 import coydir.model.Model;
 import coydir.model.ModelManager;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.ReadOnlyUserPrefs;
 import coydir.model.UserPrefs;
 import coydir.model.util.SampleDataUtil;
-import coydir.storage.AddressBookStorage;
-import coydir.storage.JsonAddressBookStorage;
+import coydir.storage.DatabaseStorage;
+import coydir.storage.JsonDatabaseStorage;
 import coydir.storage.JsonUserPrefsStorage;
 import coydir.storage.Storage;
 import coydir.storage.StorageManager;
@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DatabaseStorage databaseStorage = new JsonDatabaseStorage(userPrefs.getDatabaseFilePath());
+        storage = new StorageManager(databaseStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s database and {@code userPrefs}. <br>
+     * The data from the sample database will be used instead if {@code storage}'s database is not found,
+     * or an empty database will be used instead if errors occur when reading {@code storage}'s database.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyDatabase> databaseOptional;
+        ReadOnlyDatabase initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            databaseOptional = storage.readDatabase();
+            if (!databaseOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = databaseOptional.orElseGet(SampleDataUtil::getSampleDatabase);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty database");
+            initialData = new Database();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty database");
+            initialData = new Database();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Database");
             initializedPrefs = new UserPrefs();
         }
 

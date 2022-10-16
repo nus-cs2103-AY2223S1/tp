@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import coydir.model.AddressBook;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.Database;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.person.Address;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
@@ -16,7 +16,7 @@ import coydir.model.person.Position;
 import coydir.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Database} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
@@ -42,8 +42,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyDatabase getSampleDatabase() {
+        Database sampleAb = new Database();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }

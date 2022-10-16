@@ -16,12 +16,13 @@ import coydir.logic.commands.ExitCommand;
 import coydir.logic.commands.FindCommand;
 import coydir.logic.commands.HelpCommand;
 import coydir.logic.commands.ListCommand;
+import coydir.logic.commands.ViewCommand;
 import coydir.logic.parser.exceptions.ParseException;
 
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class DatabaseParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -69,8 +70,14 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+<<<<<<< HEAD:src/main/java/coydir/logic/parser/AddressBookParser.java
         case BatchAddCommand.COMMAND_WORD:
             return new BatchAddCommandParser().parse(arguments);
+=======
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
+>>>>>>> 6703fc7a8b8fe64a145b92ea669c553d55869b5d:src/main/java/coydir/logic/parser/DatabaseParser.java
         default:
             throw new ParseException('"' + commandWord + '"' + MESSAGE_UNKNOWN_COMMAND);
         }

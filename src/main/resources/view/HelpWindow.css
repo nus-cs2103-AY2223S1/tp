@@ -1,19 +1,68 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+.commands-panel {
+  -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-#copyButton {
-    -fx-background-color: dimgray;
+.help-label {
+  -fx-padding: 2 6 2 6px;
+  -fx-font-size: 16pt;
+  -fx-text-fill: white;
+  -fx-opacity: 1;
 }
 
-#copyButton:hover {
-    -fx-background-color: gray;
+.table-view {
+  -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-#copyButton:armed {
-    -fx-background-color: darkgray;
+.table-view .column-header {
+  -fx-background-color: derive(#373737, 20%);
 }
 
-#helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+.table-view .column-header-background {
+  -fx-background-color: derive(#373737, 20%);
+}
+
+.table-view .column-header-background .label {
+  -fx-background-color: transparent;
+  -fx-font-size: 11pt;
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+  -fx-opacity: 1;
+  -fx-padding: 2 0 2 2px;
+}
+
+.table-view .table-cell {
+  -fx-padding: 2 4 2 4px;
+  -fx-font-size: 10pt;
+  -fx-text-fill: white;
+  -fx-opacity: 1;
+}
+
+.table-row-cell {
+  -fx-background-color: dimgray;
+  -fx-background-insets: 0, 1 0 1 0;
+}
+
+.table-row-cell: hover {
+  -fx-background-color: gray;
+}
+
+#helpContainer {
+  -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+#openButton,
+#helpMessage {
+  -fx-text-fill: white;
+}
+
+#openButton {
+  -fx-background-color: dimgray;
+}
+
+#openButton:hover {
+  -fx-background-color: gray;
+}
+
+#openButton:armed {
+  -fx-background-color: darkgray;
 }

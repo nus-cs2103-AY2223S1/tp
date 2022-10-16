@@ -95,6 +95,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmptyAddress() {
+        this.address = new Address();
+        return this;
+    }
+
+    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -103,10 +111,26 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Phone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmptyPhone() {
+        this.phone = new Phone();
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withEmptyEmail() {
+        this.email = new Email();
         return this;
     }
 

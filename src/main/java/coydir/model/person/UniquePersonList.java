@@ -34,6 +34,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+        //return internalList.stream().anyMatch((person) -> toCheck.getEmployeeId().isEqual(person.getEmployeeId()));
     }
 
     /**
@@ -95,6 +96,10 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    public Person getPersons(int index) {
+        return internalList.get(index);
     }
 
     /**

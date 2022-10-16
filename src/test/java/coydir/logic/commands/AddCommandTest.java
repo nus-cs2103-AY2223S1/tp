@@ -15,9 +15,9 @@ import org.junit.jupiter.api.Test;
 
 import coydir.commons.core.GuiSettings;
 import coydir.logic.commands.exceptions.CommandException;
-import coydir.model.AddressBook;
+import coydir.model.Database;
 import coydir.model.Model;
-import coydir.model.ReadOnlyAddressBook;
+import coydir.model.ReadOnlyDatabase;
 import coydir.model.ReadOnlyUserPrefs;
 import coydir.model.person.Person;
 import coydir.testutil.PersonBuilder;
@@ -102,12 +102,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setDatabaseFilePath(Path databaseFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,12 +118,12 @@ public class AddCommandTest {
 
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setDatabase(ReadOnlyDatabase newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyDatabase getDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -190,8 +190,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyDatabase getDatabase() {
+            return new Database();
         }
     }
 

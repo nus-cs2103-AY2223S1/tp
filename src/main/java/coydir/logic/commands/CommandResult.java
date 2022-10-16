@@ -17,6 +17,11 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final boolean view;
+
+    private int viewIndex;
+
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +29,18 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.view = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean view, int index) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.view = view;
+        this.viewIndex = index;
     }
 
     /**
@@ -45,6 +62,15 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
+
+    public boolean isView() {
+        return view;
+    }
+
+    public int getViewIndex() {
+        return viewIndex;
+    }
+
 
     @Override
     public boolean equals(Object other) {

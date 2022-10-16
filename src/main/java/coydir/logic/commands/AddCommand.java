@@ -13,13 +13,13 @@ import coydir.model.Model;
 import coydir.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the database.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the database. \n"
             + "** Employee NAME and POSITION are required **\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -38,7 +38,11 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+<<<<<<< HEAD
     public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already exists in the address book";
+=======
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the database";
+>>>>>>> 6703fc7a8b8fe64a145b92ea669c553d55869b5d
 
     private final Person toAdd;
 
