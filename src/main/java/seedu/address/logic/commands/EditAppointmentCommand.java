@@ -35,7 +35,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_DATE + "21-Jan-2023 12:30 PM "
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
-    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nfrom:%1$s\nto%1$s";
+    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Appointment was edited \nFrom: %1$s\nTo: %2$s";
     public static final String MESSAGE_NO_APPOINTMENT_TO_EDIT = "This client does not have an appointment to edit\n"
             + "Use command \"aa\" to add appointment instead";
     private final Index personIndex;
@@ -85,7 +85,6 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit;
         try {
             appointmentToEdit = appointmentSet.get(appointmentIndex.getZeroBased());
-            appointmentSet.remove(appointmentToEdit);
         } catch (SortedListException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
@@ -94,6 +93,13 @@ public class EditAppointmentCommand extends Command {
         if (appointmentSet.contains(editedAppointment) || appointmentToEdit.equals(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
+
+        try {
+            appointmentSet.remove(appointmentIndex.getZeroBased());
+        } catch (SortedListException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
         appointmentSet.add(editedAppointment);
 
         model.setPerson(personWithAppointmentToEdit, personWithAppointmentToEdit);
