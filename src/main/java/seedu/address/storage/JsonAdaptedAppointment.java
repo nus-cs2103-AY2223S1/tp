@@ -8,7 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.appointment.Appointment}.
@@ -23,7 +23,7 @@ class JsonAdaptedAppointment {
     private final String doctor;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedPatient} with the given patient details.
      */
     @JsonCreator
     public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("medicalTest") String medicalTest,

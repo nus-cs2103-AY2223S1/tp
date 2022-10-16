@@ -31,12 +31,12 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_DOCTOR + "Muhammad Wong";;
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the address book";
-    public static final String MESSAGE_PERSON_NOT_EXIST = "This patient does not exist in the address book";
+    public static final String MESSAGE_PATIENT_NOT_EXIST = "This patient does not exist in the address book";
 
     private final Appointment toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Patient}
      */
     public AddAppointmentCommand(Appointment appointment) {
         requireNonNull(appointment);
@@ -47,8 +47,8 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!model.hasPerson(toAdd.getName())) {
-            throw new CommandException(MESSAGE_PERSON_NOT_EXIST);
+        if (!model.hasPatient(toAdd.getName())) {
+            throw new CommandException(MESSAGE_PATIENT_NOT_EXIST);
         }
 
         if (model.hasAppointment(toAdd)) {

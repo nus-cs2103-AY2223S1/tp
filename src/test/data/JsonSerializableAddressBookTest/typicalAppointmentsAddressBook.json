@@ -1,5 +1,5 @@
 {
-  "persons": [],
+  "patients": [],
   "appointments": [{
       "name" : "Alice Pauline",
       "medicalTest" : "gastric fluid analysis",

@@ -14,7 +14,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
-import seedu.address.model.person.Name;
+import seedu.address.model.patient.Name;
 
 /**
  * Parses input arguments and creates a new AddAppointmentCommand object

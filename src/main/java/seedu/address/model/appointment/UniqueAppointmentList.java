@@ -28,7 +28,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent patient as the given argument.
      */
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
@@ -36,8 +36,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a patient to the list.
+     * The patient must not already exist in the list.
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
@@ -48,9 +48,9 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the patient {@code target} in the list with {@code editedPatient}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
@@ -68,8 +68,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent patient from the list.
+     * The patient must exist in the list.
      */
     public void remove(Appointment toRemove) {
         requireNonNull(toRemove);
@@ -84,8 +84,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code patients}.
+     * {@code patients} must not contain duplicate patients.
      */
     public void setAppointments(List<Appointment> appointments) {
         requireAllNonNull(appointments);
@@ -121,7 +121,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code patients} contains only unique patients.
      */
     private boolean appointmentsAreUnique(List<Appointment> appointments) {
         for (int i = 0; i < appointments.size() - 1; i++) {

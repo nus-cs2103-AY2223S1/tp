@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicatePatient;
+import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
