@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.date.Date;
+import seedu.workbook.model.internship.Date;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
@@ -36,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STAGE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,7 +48,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Stage stage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Date date = argMultimap.getValue(PREFIX_DATE).isPresent()
+                ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get())
+                : null;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Internship internship = new Internship(company, role, phone, email, stage, date, tagList);

@@ -1,4 +1,4 @@
-package seedu.workbook.model.date;
+package seedu.workbook.model.internship;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
@@ -9,12 +9,8 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
  */
 public class Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Dates can only be represented in 'DD/MM/YYYY HH:MM' format.";
-    public static final String VALIDATION_REGEX = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|" +
-            "(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|" +
-            "^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|" +
-            "(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|" +
-            "(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})";
+    public static final String MESSAGE_CONSTRAINTS = "Dates can only be represented in 'DD/MM/YYYY' format.";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String value;
 
@@ -46,12 +42,5 @@ public class Date {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    /**
-     * Format state as text for viewing.
-     */
-    public String toString() {
-        return '[' + value + ']';
     }
 }

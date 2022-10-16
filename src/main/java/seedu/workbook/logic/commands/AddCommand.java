@@ -35,7 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_STAGE + "Interview "
-            + PREFIX_DATE + "03/08/2000 10:00 "
+            + PREFIX_DATE + "10th Oct 2022 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
@@ -57,7 +57,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasInternship(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+                throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.addInternship(toAdd);

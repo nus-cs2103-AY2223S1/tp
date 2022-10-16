@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.logic.parser.exceptions.ParseException;
-import seedu.workbook.model.date.Date;
+import seedu.workbook.model.internship.Date;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Phone;
