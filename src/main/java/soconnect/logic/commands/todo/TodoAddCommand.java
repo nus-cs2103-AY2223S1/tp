@@ -2,6 +2,7 @@ package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
@@ -25,9 +26,12 @@ public class TodoAddCommand extends TodoCommand {
 
     private final Todo toAdd;
 
+    /**
+     * Constructs a TodoAddCommand with the {@code todo} to be added to the TodoList.
+     */
     public TodoAddCommand(Todo todo) {
-         requireNonNull(todo);
-         toAdd = todo;
+        requireNonNull(todo);
+        toAdd = todo;
     }
 
     @Override

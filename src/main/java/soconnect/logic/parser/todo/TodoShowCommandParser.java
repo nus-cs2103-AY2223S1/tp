@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
+
 import java.util.List;
+
 import soconnect.logic.commands.todo.TodoShowCommand;
 import soconnect.logic.parser.ArgumentTokenizer;
 import soconnect.logic.parser.Parser;
@@ -41,7 +43,7 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         return parseShowCondition(argList.get(1));
     }
 
-    private TodoShowCommand parseShowCondition(ArgumentTokenizer.PrefixArgument prefixArg)  throws ParseException {
+    private TodoShowCommand parseShowCondition(ArgumentTokenizer.PrefixArgument prefixArg) throws ParseException {
         Prefix prefix = prefixArg.getPrefix();
         String arg = prefixArg.getArgument();
 

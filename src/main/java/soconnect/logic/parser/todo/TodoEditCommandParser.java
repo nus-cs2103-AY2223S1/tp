@@ -2,6 +2,7 @@ package soconnect.logic.parser.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.logic.commands.todo.TodoEditCommand;

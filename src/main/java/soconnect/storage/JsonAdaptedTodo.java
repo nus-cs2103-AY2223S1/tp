@@ -2,6 +2,7 @@ package soconnect.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Todo;

@@ -1,7 +1,9 @@
 package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
+
 import soconnect.commons.core.Messages;
 import soconnect.logic.commands.CommandResult;
 import soconnect.model.Model;

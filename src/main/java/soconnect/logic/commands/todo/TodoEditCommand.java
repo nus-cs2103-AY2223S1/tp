@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
+
 import java.util.List;
 import java.util.Optional;
+
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.commons.util.CollectionUtil;

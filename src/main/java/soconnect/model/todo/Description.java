@@ -2,7 +2,6 @@ package soconnect.model.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.AppUtil.checkArgument;
-import soconnect.model.person.Address;
 
 /**
  * Represents a {@code Todo}'s description in the TodoList.

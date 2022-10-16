@@ -1,6 +1,7 @@
 package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
+
 import soconnect.logic.commands.CommandResult;
 import soconnect.model.Model;
 import soconnect.model.TodoList;
