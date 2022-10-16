@@ -9,9 +9,12 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
  */
 public class Bill {
     public static final String MESSAGE_CONSTRAINTS =
-            "Bill should only contain numerical digits and a decimal point, and it should be a non-negative value.\n"
-                    + "If a decimal point is used, there must be 2 digits after it (e.g., 9.99)";
-    public static final String VALIDATION_REGEX = "^\\d+(.\\d{2})?$";
+            "Bills should only contain numerical digits, one decimal point, and one hyphen or plus sign.\n"
+                    + "If a decimal point is used, there must be 2 digits after it (e.g., 9.99).\n"
+                    + "A leading hyphen can be used to denote a negative value.\n"
+                    + "A leading plus sign can be used to denote a positive value.\n"
+                    + "If no sign is used, the value is assumed to be positive.";
+    public static final String VALIDATION_REGEX = "^[-+]?\\d+(.\\d{2})?$";
     public final String value;
 
     /**
@@ -32,11 +35,22 @@ public class Bill {
         value = String.format("%.2f", Double.parseDouble(bill));
     }
 
+    public double getValue() {
+        return Double.parseDouble(value);
+    }
+
     /**
      * Returns true if a given string is a valid bill amount.
      */
     public static boolean isValidBill(String test) {
-        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) >= 0;
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns a {@code Bill} containing the sum of values.
+     */
+    public Bill add(Bill addend) {
+        return new Bill(String.format("%.2f", getValue() + addend.getValue()));
     }
 
     @Override

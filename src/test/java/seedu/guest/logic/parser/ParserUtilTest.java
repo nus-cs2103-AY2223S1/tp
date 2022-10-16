@@ -23,7 +23,7 @@ public class ParserUtilTest {
     private static final String INVALID_DATE_RANGE = "13/09/22 - 13/09/22";
     private static final String INVALID_NUMBER_OF_GUESTS = "5";
     private static final String INVALID_IS_ROOM_CLEAN = "false";
-    private static final String INVALID_BILL = "-1.00";
+    private static final String INVALID_BILL = "1.0";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
