@@ -17,8 +17,8 @@ public class Order {
     private final Address address;
     private final LocalDateTime timeCreated;
     private final List<ItemQuantityPair> itemList;
-    private final boolean isPaid;
-    private final boolean isDelivered;
+    private boolean isPaid;
+    private boolean isDelivered;
 
     /**
      * Every field must be present and not null.
@@ -69,6 +69,18 @@ public class Order {
 
     public LocalDateTime getTimeCreated() {
         return timeCreated;
+    }
+
+    public boolean isCompleted() {
+        return isPaid && isDelivered;
+    }
+
+    public void setPaid() {
+        this.isPaid = true;
+    }
+
+    public void setDelivered() {
+        this.isDelivered = true;
     }
 
     @Override
