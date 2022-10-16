@@ -59,8 +59,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         personId = source.getPersonId().id;
         name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        phone = source.getPhone() != null ? source.getPhone().value : null;
+        email = source.getEmail() != null ? source.getEmail().value : null;
         internshipId = source.getInternshipId() != null ? source.getInternshipId().id : null;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -73,12 +73,13 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
+        //personId
         if (personId == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonId.class.getSimpleName()));
         }
         final PersonId modelPersonId = new PersonId(personId);
-
+        //name
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -86,38 +87,39 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-
+        //phone
+        final Phone modelPhone;
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
+            modelPhone = null;
+        } else if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        } else {
+            modelPhone = new Phone(phone);
         }
-        final Phone modelPhone = new Phone(phone);
-
+        //email
+        final Email modelEmail;
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
+            modelEmail = null;
+        } else if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        } else {
+            modelEmail = new Email(email);
         }
-        final Email modelEmail = new Email(email);
-
-
+        //internshipId
         final InternshipId modelInternshipId;
         if (internshipId == null || !InternshipId.isValidId(internshipId)) {
             modelInternshipId = null;
         } else {
             modelInternshipId = new InternshipId(internshipId);
         }
-
+        //tags
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Person(modelPersonId, modelName, modelPhone, modelEmail, modelInternshipId,
+        return new Person(modelPersonId, modelName, modelEmail, modelPhone, modelInternshipId,
                 modelTags);
     }
 }

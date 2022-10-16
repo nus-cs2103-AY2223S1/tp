@@ -202,8 +202,8 @@ public class AddressBook implements ReadOnlyAddressBook {
             Person linkedP = new Person(
                     p.getPersonId(),
                     p.getName(),
-                    p.getPhone(),
                     p.getEmail(),
+                    p.getPhone(),
                     i.getInternshipId(),
                     p.getTags()
             );
@@ -261,8 +261,8 @@ public class AddressBook implements ReadOnlyAddressBook {
             Person linkedP = new Person(
                     p.getPersonId(),
                     p.getName(),
-                    p.getPhone(),
                     p.getEmail(),
+                    p.getPhone(),
                     null,
                     p.getTags()
             );

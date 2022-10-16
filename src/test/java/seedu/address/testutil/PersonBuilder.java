@@ -90,7 +90,11 @@ public class PersonBuilder {
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        if (phone == null) {
+            this.phone = null;
+        } else {
+            this.phone = new Phone(phone);
+        }
         return this;
     }
 
@@ -98,12 +102,16 @@ public class PersonBuilder {
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+        if (email == null) {
+            this.email = null;
+        } else {
+            this.email = new Email(email);
+        }
         return this;
     }
 
     public Person build() {
-        return new Person(personId, name, phone, email, internshipId, tags);
+        return new Person(personId, name, email, phone, internshipId, tags);
     }
 
 }
