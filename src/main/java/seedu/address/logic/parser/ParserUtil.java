@@ -121,4 +121,15 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String title} into a trimmed {@code String title}
+     * @param title The title to parse
+     * @return A parsed title
+     */
+    public static String parseTitle(String title) {
+        requireNonNull(title);
+
+        return title.trim();
+    }
 }
