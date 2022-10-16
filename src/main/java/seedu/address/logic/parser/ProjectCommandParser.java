@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.logic.commands.project.DeleteProjectCommand;
@@ -99,9 +100,9 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         }
 
-        List<Issue> issueList = new ArrayList<>();
+        List<Issue>  issueList = new ArrayList<>();
         ProjectId projectId = new ProjectId(HasIntegerIdentifier.generateNextID(AddressBook.get().getProjectList()));
-
+        ObservableList<Project> projList = AddressBook.get().getProjectList();
         Project project = new Project(name, repository, deadline, client, issueList, projectId);
 
         return new AddProjectCommand(project);

@@ -86,10 +86,10 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = AddressBook.getNew();
+            initialData = AddressBook.get();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = AddressBook.getNew();
+            initialData = AddressBook.get();
         }
 
         return new ModelManager(initialData, userPrefs);

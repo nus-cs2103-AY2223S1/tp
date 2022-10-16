@@ -22,7 +22,7 @@ import seedu.address.model.project.Project;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
@@ -37,7 +37,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = AddressBook.getNew(addressBook);
+        this.addressBook = AddressBook.get(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
@@ -46,7 +46,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(AddressBook.getNew(), new UserPrefs());
+        this(AddressBook.get(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -90,6 +90,7 @@ public class ModelManager implements Model {
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
     }
+
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {

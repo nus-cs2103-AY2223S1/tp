@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -23,6 +24,7 @@ import seedu.address.model.project.Project;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private static AddressBook instance;
+    private static AddressBook emptyInstance = new AddressBook();
 
     private final UniqueEntityList<Client> clients;
     private final UniqueEntityList<Project> projects;
@@ -36,14 +38,19 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
      */
-    {
+//    {
+//        clients = new UniqueEntityList<Client>();
+//        projects = new UniqueEntityList<Project>();
+//        persons = new UniqueEntityList<Person>();
+//        issues = new UniqueEntityList<Issue>();
+//    }
+
+    private AddressBook() {
         clients = new UniqueEntityList<Client>();
         projects = new UniqueEntityList<Project>();
         persons = new UniqueEntityList<Person>();
         issues = new UniqueEntityList<Issue>();
     }
-
-    private AddressBook() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -53,20 +60,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
-    public static AddressBook getNew() {
-        instance = new AddressBook();
-        return instance;
-    }
-
-    public static AddressBook getNew(ReadOnlyAddressBook toBeCopied) {
-        instance = new AddressBook(toBeCopied);
-        return instance;
-    }
-
     public static AddressBook get() {
-        return instance;
+        if (instance == null) {
+            instance = new AddressBook();
+        }
+        return AddressBook.instance;
     }
 
+    public static AddressBook get(ReadOnlyAddressBook toBeCopied) {
+        if (instance == null) {
+            instance = new AddressBook(toBeCopied);
+        }
+        instance.resetData(toBeCopied);
+        return AddressBook.instance;
+    }
+
+    public static AddressBook getEmpty() {
+        return emptyInstance;
+    }
 
     //// list overwrite operations
 
