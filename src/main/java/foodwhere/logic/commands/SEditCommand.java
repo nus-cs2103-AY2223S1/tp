@@ -27,7 +27,7 @@ public class SEditCommand extends Command {
 
     public static final String COMMAND_WORD = "sedit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the tags of the stall identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the stall identified "
             + "by the index number used in the displayed stall list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
