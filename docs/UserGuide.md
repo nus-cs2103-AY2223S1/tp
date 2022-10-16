@@ -7,11 +7,11 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 
 - [`Quick start`](#quick-start)
 - [`Features`](#features)
-  - Adding a person: [`addpeson`](#adding-a-person-adduser)
-  - Listing all persons: [`listpersons`](#listing-all-persons--list)
-  - Edit a person: [`editperson`](#editing-a-person--edituser)
-  - Locating persons by name: [`findperson`](#locating-persons-by-name-finduser)
-  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteuser)
+  - Adding a person: [`addpeson`](#adding-a-person-addperson)
+  - Listing all persons: [`listpersons`](#listing-all-persons--listpersons)
+  - Edit a person: [`editperson`](#editing-a-person--editperson)
+  - Locating persons by name: [`findperson`](#locating-persons-by-name-findperson)
+  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteperson)
   - Adding a group: [`addgroup`](#creating-a-group--addgroup)
   - Add member to group: [`addmember`](#adding-a-member--addmember)
   - Delete member from group: [`deletemember`](#deleting-a-member--deletemember)
@@ -240,8 +240,8 @@ Format: `exit`
 **List** | `list`
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
 **Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
-**Assign Task** | `assigntask NAME [g/GROUP] [task/TASK]` <br> e.g. `assigntask John g/CS2103T task/TeamProject`
 **Delete Member** | `deletemember [g/GROUP] [n/NAME]` <br> e.g. `deletemember g/CS2103T n/James Lee, deletemember g/CS2101 n/DefaultUser`
+**Assign Task** | `assigntask NAME [g/GROUP] [task/TASK]` <br> e.g. `assigntask John g/CS2103T task/TeamProject`
 **Delete Task** | `deletetask NAME [g/GROUP] [task/TASK]` <br> e.g. `deletetask John g/CS2103T task/TeamProject`
 **Display Group** | `display GROUP` <br> e.g. `display CS2103T`
 **Delete Group** | `deletegroup GROUP` <br> e.g. `deletegroup CS2103T`
