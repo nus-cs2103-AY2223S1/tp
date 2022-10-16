@@ -3,19 +3,19 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.util.HashSet;
 
-import seedu.address.logic.task.Description;
-import seedu.address.logic.task.Priority;
-import seedu.address.logic.task.PriorityEnum;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskCategory;
-import seedu.address.logic.task.TaskCategoryType;
-import seedu.address.logic.task.TaskDeadline;
-import seedu.address.logic.task.TaskName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.PriorityEnum;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskCategoryType;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
 
 
 /**
@@ -86,8 +86,8 @@ public class TaskBuilder {
     /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
-    public TaskBuilder withDescription(String Description) {
-        this.taskDescription = new Description(Description);
+    public TaskBuilder withDescription(String description) {
+        this.taskDescription = new Description(description);
         return this;
     }
 
@@ -125,11 +125,12 @@ public class TaskBuilder {
 
     /**
      * Builds a Task
+     *
      * @return the task to be builtF
      */
 
     public Task build() {
-        return new Task(taskName, taskCategory, taskDescription, taskPriority, taskDeadline, taskPerson, taskStatus);
+        return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline, taskPerson, taskStatus);
     }
 
 }

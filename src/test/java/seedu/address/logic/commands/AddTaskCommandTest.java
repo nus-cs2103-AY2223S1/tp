@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -13,16 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.task.Description;
-import seedu.address.logic.task.Priority;
-import seedu.address.logic.task.PriorityEnum;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskCategory;
-import seedu.address.logic.task.TaskCategoryType;
-import seedu.address.logic.task.TaskDeadline;
-import seedu.address.logic.task.TaskList;
-import seedu.address.logic.task.TaskName;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -31,6 +22,16 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.PriorityEnum;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskCategoryType;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskList;
+import seedu.address.model.task.TaskName;
+
 
 
 
@@ -44,21 +45,23 @@ public class AddTaskCommandTest {
     private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet());
-    private final Task testTask = new Task(testName, testCat, testDisc, testPriority, testDeadline, testPerson, true);
+    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson, true);
+
+    private final Index test = new Index(0);
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, test));
     }
 
     @Test
     public void execute_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(testTask).execute(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(testTask, test).execute(null));
     }
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
-        AddTaskCommand addTaskCommand = new AddTaskCommand(testTask);
+        AddTaskCommand addTaskCommand = new AddTaskCommand(testTask, test);
         ModelStub modelStub = new ModelStubWithTask(testTask);
 
         assertThrows(CommandException.class, AddTaskCommand

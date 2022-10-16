@@ -1,10 +1,10 @@
-package seedu.address.logic.task;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 
-import seedu.address.logic.task.exceptions.DatePastException;
+import seedu.address.model.task.exceptions.DatePastException;
 
 
 

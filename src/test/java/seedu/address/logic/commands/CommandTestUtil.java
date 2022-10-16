@@ -1,8 +1,6 @@
 package seedu.address.logic.commands;
 
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -21,15 +19,6 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.task.Description;
-import seedu.address.logic.task.Priority;
-import seedu.address.logic.task.PriorityEnum;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskCategory;
-import seedu.address.logic.task.TaskCategoryType;
-import seedu.address.logic.task.TaskDeadline;
-import seedu.address.logic.task.TaskName;
-import seedu.address.logic.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -38,8 +27,18 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.PriorityEnum;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskCategoryType;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
+
 
 
 
@@ -83,11 +82,11 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditTaskCommand.EditTaskDescriptor DESC_ONE;
     public static final EditTaskCommand.EditTaskDescriptor DESC_TWO;
-    private static TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
-    private static Description testDisc = new Description("Test");
-    private static Priority testPriority = new Priority(PriorityEnum.MEDIUM);
-    private static TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
-    private static Person testPerson = new Person(new Name("test"), new Phone("99999999"),
+    private static final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private static final Description testDisc = new Description("Test");
+    private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
+    private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
+    private static final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet());
 
     static {
@@ -98,7 +97,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-        Task a = new Task(new TaskName("A"), testCat, testDisc, testPriority, testDeadline, testPerson, false);
+        Task a = new Task(new TaskName("A"), testDisc, testPriority, testCat, testDeadline, testPerson, false);
 
         DESC_ONE = new EditTaskDescriptorBuilder(a).withName("A").build();
         DESC_TWO = new EditTaskDescriptorBuilder(a).withName("B").build();

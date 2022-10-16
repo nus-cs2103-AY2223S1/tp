@@ -1,4 +1,4 @@
-package seedu.address.logic.task;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,9 +9,11 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.task.exceptions.DuplicateTaskException;
-import seedu.address.logic.task.exceptions.TaskNotFoundException;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
+
+
 
 /**
  * A list of tasks that enforces uniqueness between its elements and does not allow nulls.
@@ -19,7 +21,7 @@ import seedu.address.model.person.Person;
  * uses Task#isSameTask(Task) for equality to ensure that the task being added or updated is unique in terms of
  * identity in the TaskList. However, the removal of a task uses Task#equals(Object) to ensure that the task with
  * exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Task#isSameTask(Task)

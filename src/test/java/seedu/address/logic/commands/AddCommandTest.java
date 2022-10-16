@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -15,14 +16,13 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.task.Task;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
-
 
 
 

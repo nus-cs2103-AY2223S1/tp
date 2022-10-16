@@ -18,14 +18,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.task.Description;
-import seedu.address.logic.task.Priority;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskCategory;
-import seedu.address.logic.task.TaskDeadline;
-import seedu.address.logic.task.TaskName;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
+
+
 
 /**
  * Adds a Task in the address book.
@@ -67,6 +69,25 @@ public class EditTaskCommand extends Command {
         this.editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor(editTaskDescriptor);
     }
 
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
+        assert editTaskDescriptor != null;
+
+        TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskCategory updatedCategory = editTaskDescriptor.getCategory().orElse(taskToEdit.getCategory());
+        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
+        Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
+        TaskDeadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Person updatedPerson = editTaskDescriptor.getPerson().orElse(taskToEdit.getPerson());
+        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
+
+        return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
+                updatedPerson, updatedIsDone);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -86,25 +107,6 @@ public class EditTaskCommand extends Command {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Task createEditedTask(Task taskToEdit, EditTaskCommand.EditTaskDescriptor editTaskDescriptor) {
-        assert editTaskDescriptor != null;
-
-        TaskName updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
-        TaskCategory updatedCategory = editTaskDescriptor.getCategory().orElse(taskToEdit.getCategory());
-        Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
-        TaskDeadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Person updatedPerson = editTaskDescriptor.getPerson().orElse(taskToEdit.getPerson());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
-
-        return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
-                updatedPerson, updatedIsDone);
     }
 
     @Override
@@ -165,52 +167,52 @@ public class EditTaskCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, category, description, priority, deadline, person, isDone);
         }
 
-        public void setName(TaskName name) {
-            this.name = name;
-        }
-
         public Optional<TaskName> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setCategory(TaskCategory category) {
-            this.category = category;
+        public void setName(TaskName name) {
+            this.name = name;
         }
 
         public Optional<TaskCategory> getCategory() {
             return ofNullable(category);
         }
 
-        public void setDescription(Description description) {
-            this.description = description;
+        public void setCategory(TaskCategory category) {
+            this.category = category;
         }
 
         public Optional<Description> getDescription() {
             return ofNullable(description);
         }
 
-        public void setPriority(Priority priority) {
-            this.priority = priority;
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
         public Optional<Priority> getPriority() {
             return ofNullable(priority);
         }
 
-        public void setDeadline(TaskDeadline deadline) {
-            this.deadline = deadline;
+        public void setPriority(Priority priority) {
+            this.priority = priority;
         }
 
         public Optional<TaskDeadline> getDeadline() {
             return ofNullable(deadline);
         }
 
-        public void setPerson(Person person) {
-            this.person = person;
+        public void setDeadline(TaskDeadline deadline) {
+            this.deadline = deadline;
         }
 
         public Optional<Person> getPerson() {
             return ofNullable(person);
+        }
+
+        public void setPerson(Person person) {
+            this.person = person;
         }
 
         public void setDone(boolean isDone) {

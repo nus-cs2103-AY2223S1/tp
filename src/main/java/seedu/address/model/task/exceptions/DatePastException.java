@@ -1,4 +1,4 @@
-package seedu.address.logic.task.exceptions;
+package seedu.address.model.task.exceptions;
 
 
 /**

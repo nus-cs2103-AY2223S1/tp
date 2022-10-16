@@ -1,14 +1,17 @@
 package seedu.address.model;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskList;
+
+
 
 
 /**
@@ -20,19 +23,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final TaskList tasks;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
     {
         persons = new UniquePersonList();
         tasks = new TaskList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}

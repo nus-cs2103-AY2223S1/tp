@@ -8,37 +8,28 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.task.Description;
-import seedu.address.logic.task.Priority;
-import seedu.address.logic.task.PriorityEnum;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskCategory;
-import seedu.address.logic.task.TaskCategoryType;
-import seedu.address.logic.task.TaskDeadline;
-import seedu.address.logic.task.TaskList;
-import seedu.address.logic.task.TaskName;
-import seedu.address.logic.task.exceptions.DuplicateTaskException;
-import seedu.address.logic.task.exceptions.TaskNotFoundException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.task.exceptions.DuplicateTaskException;
+import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 
 
 
 public class TaskListTest {
 
-    private TaskList testList = new TaskList();
-    private TaskName testName = new TaskName("Test");
-    private TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
-    private Description testDisc = new Description("Test");
-    private Priority testPriority = new Priority(PriorityEnum.MEDIUM);
-    private TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
-    private Person testPerson = new Person(new Name("test"), new Phone("99999999"),
+    private final TaskList testList = new TaskList();
+    private final TaskName testName = new TaskName("Test");
+    private final TaskCategory testCat = new TaskCategory(3, TaskCategoryType.OTHERS);
+    private final Description testDisc = new Description("Test");
+    private final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
+    private final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
+    private final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
             new Email("test@gmail.com"), new Address("test"), new HashSet());
-    private Task testTask = new Task(testName, testCat, testDisc, testPriority, testDeadline, testPerson, true);
+    private final Task testTask = new Task(testName, testDisc, testPriority, testCat, testDeadline, testPerson, true);
 
     @Test
     public void contains_null_throwsNullPointerException() {

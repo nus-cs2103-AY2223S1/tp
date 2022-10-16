@@ -1,4 +1,4 @@
-package seedu.address.logic.task;
+package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 

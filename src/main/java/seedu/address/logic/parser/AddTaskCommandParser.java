@@ -13,12 +13,12 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.task.Description;
-import seedu.address.logic.task.Priority;
-import seedu.address.logic.task.Task;
-import seedu.address.logic.task.TaskCategory;
-import seedu.address.logic.task.TaskDeadline;
-import seedu.address.logic.task.TaskName;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskCategory;
+import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
 
 
 
