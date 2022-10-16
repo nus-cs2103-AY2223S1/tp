@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class ListInventoryCommand extends Command {
     public static final String COMMAND_WORD = "listInventory";
 
-    public static final String MESSAGE_SUCCESS = "List all supply items in inventory";
+    public static final String MESSAGE_SUCCESS = "List all items in inventory";
 
     @Override
     public CommandResult execute(Model model) {
