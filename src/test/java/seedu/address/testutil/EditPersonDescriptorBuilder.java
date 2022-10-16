@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -139,5 +140,13 @@ public class EditPersonDescriptorBuilder {
 
     public EditPersonDescriptor build() {
         return descriptor;
+    }
+
+    /**
+     * Sets the {@code VisitStatus} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withVisitStatus(String validVisitStatus) {
+        descriptor.setVisitStatus(new VisitStatus(validVisitStatus));
+        return this;
     }
 }

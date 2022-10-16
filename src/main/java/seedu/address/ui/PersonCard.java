@@ -59,6 +59,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label visitStatus;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -70,12 +72,15 @@ public class PersonCard extends UiPart<Region> {
 
         if (person instanceof Nurse) {
             dateTimes.setText(NOT_APPLICABLE);
+            visitStatus.setText(NOT_APPLICABLE);
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
         } else if (person instanceof Patient) {
             dateTimes.setText(((Patient) person).getDatesTimesInString());
+            visitStatus.setText(((Patient) person).getVisitStatus().toString());
             category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
         } else {
             dateTimes.setText(NOT_APPLICABLE);
+            visitStatus.setText(NOT_APPLICABLE);
             category.getChildren().add(new Label(NAN_LABEL_TEXT));
         }
         name.setText(person.getName().fullName);

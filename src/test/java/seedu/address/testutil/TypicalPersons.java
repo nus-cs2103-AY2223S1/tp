@@ -38,7 +38,8 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withDatesTimes("2022-11-11T12:00")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withVisitStatus("false").build();
     public static final Person BENSON = new PersonBuilder()
             .withUid("2").withCategory("P")
             .withName("Benson Meier").withGender("M")
@@ -46,14 +47,16 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withDatesTimes("2022-10-23T10:00")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .withVisitStatus("true").build();
     public static final Person CARL = new PersonBuilder()
             .withUid("3").withCategory("P")
             .withName("Carl Kurz").withGender("M")
             .withPhone("95352563")
             .withDatesTimes("2022-11-10T15:00", "2022-12-10T14:00")
             .withEmail("heinz@example.com")
-            .withAddress("wall street").build();
+            .withAddress("wall street")
+            .withVisitStatus("false").build();
     public static final Person DANIEL = new PersonBuilder()
             .withUid("4").withCategory("P")
             .withName("Daniel Meier")
@@ -62,7 +65,8 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withDatesTimes("2022-11-10T15:00", "2022-09-10T14:00")
             .withAddress("10th street")
-            .withTags("friends").build();
+            .withTags("friends")
+            .withVisitStatus("true").build();
     public static final Person ELLE = new PersonBuilder()
             .withUid("5").withCategory("N")
             .withName("Elle Meyer").withGender("F")
@@ -77,7 +81,8 @@ public class TypicalPersons {
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withDatesTimes("2022-10-15T12:00")
-            .withAddress("little tokyo").build();
+            .withAddress("little tokyo")
+            .withVisitStatus("false").build();
     public static final Person GEORGE = new PersonBuilder()
             .withUid("7")
             .withCategory("P")
@@ -85,7 +90,8 @@ public class TypicalPersons {
             .withGender("M")
             .withPhone("9482442")
             .withEmail("anna@example.com")
-            .withAddress("4th street").build();
+            .withAddress("4th street")
+            .withVisitStatus("true").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder()
@@ -95,7 +101,8 @@ public class TypicalPersons {
             .withPhone("8482424")
             .withDatesTimes("2023-01-11T18:00")
             .withEmail("stefan@example.com")
-            .withAddress("little india").build();
+            .withAddress("little india")
+            .withVisitStatus("false").build();
     public static final Person IDA = new PersonBuilder()
             .withUid("9")
             .withCategory("P")
@@ -104,7 +111,8 @@ public class TypicalPersons {
             .withPhone("8482131")
             .withDatesTimes("2022-11-11T17:00")
             .withEmail("hans@example.com")
-            .withAddress("chicago ave").build();
+            .withAddress("chicago ave")
+            .withVisitStatus("false").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder()

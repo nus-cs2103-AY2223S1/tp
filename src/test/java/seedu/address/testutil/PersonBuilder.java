@@ -16,6 +16,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -31,6 +32,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATE_AND_TIME = "2022-06-14T13:00";
+    public static final String DEFAULT_VISIT_STATUS = "false";
 
     private Category category;
     private Uid uid;
@@ -41,6 +43,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<DateTime> dateTimeList;
+    private VisitStatus visitStatus;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -56,6 +59,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         dateTimeList = new ArrayList<>();
         dateTimeList.add(new DateTime(DEFAULT_DATE_AND_TIME));
+        visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
     }
 
     /**
@@ -72,6 +76,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         if (personToCopy.getCategory().categoryName.equals("P")) {
             dateTimeList = new ArrayList<>(((Patient) personToCopy).getDatesTimes());
+            visitStatus = ((Patient) personToCopy).getVisitStatus();
         }
     }
 
@@ -151,6 +156,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code VisitStatus} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withVisitStatus(String visitStatus) {
+        this.visitStatus = new VisitStatus(visitStatus);
+        return this;
+    }
+
+    /**
      * Sets the {@code Uid} of the {@code Person} that we are building to the
      * universal Uid.
      */
@@ -166,7 +179,7 @@ public class PersonBuilder {
         if (category.categoryName.equals("N")) {
             return new Nurse(uid, name, gender, phone, email, address, tags);
         } else if (this.category.categoryName.equals("P")) {
-            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList);
+            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList, visitStatus);
         }
         return new Person(uid, name, gender, phone, email, address, tags);
 

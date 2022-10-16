@@ -25,6 +25,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +44,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String visitStatus;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -53,7 +55,8 @@ class JsonAdaptedPerson {
             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("visit status") String visitStatus) {
         this.uid = uid;
         this.name = name;
         this.category = category;
@@ -69,6 +72,8 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
+        this.visitStatus = visitStatus;
     }
 
     /**
@@ -82,6 +87,9 @@ class JsonAdaptedPerson {
             dateTimes.addAll(((Patient) source).getDatesTimes().stream()
                     .map(JsonAdaptedDateTime::new)
                     .collect(Collectors.toList()));
+            visitStatus = ((Patient) source).getVisitStatus().getVisitStatusString();
+        } else {
+            visitStatus = null;
         }
 
         uid = source.getUid().uid;
@@ -171,8 +179,17 @@ class JsonAdaptedPerson {
         if (category.equals(NURSE_SYMBOL)) {
             return new Nurse(modelUid, modelName, modelGender, modelPhone, modelEmail, modelAddress, modelTags);
         } else if (category.equals(PATIENT_SYMBOL)) {
+            if (visitStatus == null) {
+                throw new IllegalValueException(
+                        String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                                VisitStatus.class.getSimpleName()));
+            }
+            if (!VisitStatus.isValidVisitStatus(visitStatus)) {
+                throw new IllegalValueException(VisitStatus.MESSAGE_CONSTRAINTS);
+            }
+            final VisitStatus modelVisitStatus = new VisitStatus(visitStatus);
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, modelDatesTimes);
+                    modelAddress, modelTags, modelDatesTimes, modelVisitStatus);
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
         }

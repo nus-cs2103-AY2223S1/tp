@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_STATUS;
 import static seedu.address.model.category.Category.NURSE_SYMBOL;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
@@ -29,6 +30,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,7 +45,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_NAME,
-                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME);
+                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME,
+                PREFIX_VISIT_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
                 PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL) || !argMultimap.getPreamble().isEmpty()) {
@@ -66,7 +69,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (categorySymbol.equals(NURSE_SYMBOL)) {
             person = new Nurse(id, name, gender, phone, email, address, tagList);
         } else if (categorySymbol.equals(PATIENT_SYMBOL)) {
-            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList);
+            VisitStatus visitStatus = ParserUtil.parseVisitStatus(argMultimap.getValue(PREFIX_VISIT_STATUS).get());
+            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList, visitStatus);
         } else {
             throw new ParseException("Illegal category detected!");
         }

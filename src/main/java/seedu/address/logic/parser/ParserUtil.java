@@ -19,6 +19,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -219,5 +220,20 @@ public class ParserUtil {
             throw new ParseException(Category.MESSAGE_CONSTRAINTS);
         }
         return new Category(trimmedCategory);
+    }
+
+    /**
+     * Parses a {@code String visitStatus} into a {@code VisitStatus}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code visitStatus} is invalid.
+     */
+    public static VisitStatus parseVisitStatus(String visitStatus) throws ParseException {
+        requireNonNull(visitStatus);
+        String trimmedVisitStatus = visitStatus.trim();
+        if (!VisitStatus.isValidVisitStatus(trimmedVisitStatus)) {
+            throw new ParseException(VisitStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new VisitStatus(visitStatus);
     }
 }
