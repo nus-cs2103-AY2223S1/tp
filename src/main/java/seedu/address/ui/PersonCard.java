@@ -61,7 +61,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         person.getSpecialTags().stream()
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> specialTags.getChildren().add(new SpecialTagLabel(tag.tagName)));
         income.setText(person.getIncome().value);
         monthly.setText(person.getMonthly().value);
         person.getTags().stream()

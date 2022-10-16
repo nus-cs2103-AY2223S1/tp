@@ -31,6 +31,7 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
       </HBox>
+        <FlowPane fx:id="specialTags" />
       <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
             <graphic>
