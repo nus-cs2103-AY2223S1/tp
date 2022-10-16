@@ -3,9 +3,12 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a storage for the input history of the user.
+ */
 public class InputHistory {
+    private static final int MAX_CAPACITY = 50;
     private List<String> inputList = new ArrayList<>();
-    private final int MAX_CAPACITY = 50;
     private int index = 0;
 
     /**
