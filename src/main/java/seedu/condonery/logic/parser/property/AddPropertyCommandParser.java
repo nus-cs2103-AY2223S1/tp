@@ -33,7 +33,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INTERESTEDCLIENTS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -43,8 +43,9 @@ public class AddPropertyCommandParser implements Parser<Command> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Client> interestedClientList = ParserUtil.parseInterestedClients(argMultimap.getAllValues(PREFIX_INTERESTEDCLIENTS));
 
-        Property property = new Property(name, address, tagList);
+        Property property = new Property(name, address, tagList, interestedClientList);
 
         return new AddPropertyCommand(property);
     }
