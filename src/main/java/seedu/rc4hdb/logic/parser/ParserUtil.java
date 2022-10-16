@@ -173,20 +173,4 @@ public class ParserUtil {
         return tagSet;
     }
 
-    /**
-     * Parses a {@code String house} into an {@code House}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code house} is invalid.
-     */
-    public static String parseFilterSpecifier(String specifier) throws ParseException {
-        requireNonNull(specifier);
-        String trimmedSpecifier = specifier.trim();
-        if (specifier != VALID_ANY_SPECIFIER && specifier != VALID_ALL_SPECIFIER) {
-            throw new ParseException(MESSAGE_INVALID_SPECIFIER);
-        }
-        return specifier;
-    }
-
-
 }

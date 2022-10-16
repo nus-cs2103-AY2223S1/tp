@@ -13,6 +13,7 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
@@ -42,12 +43,12 @@ public class FilterCommand extends ModelCommand {
 
     /** description to filter the resident with */
     private final ResidentDescriptor filterPersonDescriptor;
-    private final String specifier;
+    private final FilterSpecifier specifier;
 
     /**
      * @param filterPersonDescriptor description object to filter the resident with
      */
-    public FilterCommand(ResidentDescriptor filterPersonDescriptor, String specifier) {
+    public FilterCommand(ResidentDescriptor filterPersonDescriptor, FilterSpecifier specifier) {
         requireNonNull(filterPersonDescriptor);
         this.filterPersonDescriptor = new ResidentDescriptor(filterPersonDescriptor);
         this.specifier = specifier;
@@ -55,7 +56,6 @@ public class FilterCommand extends ModelCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //return new CommandResult("Command Still in progress");
         requireNonNull(model);
         AttributesMatchKeywordsPredicate predicate =
                 new AttributesMatchKeywordsPredicate(filterPersonDescriptor, specifier);

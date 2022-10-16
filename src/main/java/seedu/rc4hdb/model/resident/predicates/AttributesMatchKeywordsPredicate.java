@@ -2,6 +2,7 @@ package seedu.rc4hdb.model.resident.predicates;
 
 import java.util.function.Predicate;
 
+import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 
@@ -10,21 +11,24 @@ import seedu.rc4hdb.model.resident.ResidentDescriptor;
  */
 public class AttributesMatchKeywordsPredicate implements Predicate<Resident> {
     private final ResidentDescriptor descriptor;
-    private final String specifier;
+    private final FilterSpecifier specifier;
 
-    public AttributesMatchKeywordsPredicate(ResidentDescriptor keywords, String specifier) {
+    public AttributesMatchKeywordsPredicate(ResidentDescriptor keywords, FilterSpecifier specifier) {
         this.descriptor = keywords;
         this.specifier = specifier;
     }
 
     @Override
     public boolean test(Resident resident) {
-        if (specifier == "any") {
-            return filterAny(resident);
-        }
-        else {
+        switch(specifier.getSpecifier()) {
+        case "all":
             return filterAll(resident);
+        case "any":
+            return filterAny(resident);
+        default:
+            return false;
         }
+
     }
 
     public boolean filterAny(Resident resident) {

@@ -79,6 +79,9 @@ public class ModelCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_ANY_SPECIFIER_DESC = " " + "/any";
+    public static final String VALID_ALL_SPECIFIER_DESC = " " + "/all";
+
     public static final ResidentDescriptor DESC_AMY;
     public static final ResidentDescriptor DESC_BOB;
 
