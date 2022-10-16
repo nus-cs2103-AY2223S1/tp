@@ -48,44 +48,30 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case CreateCommand.COMMAND_WORD:
-            return new CreateCommandParser().parse(arguments);
-
         case CreateCommand.COMMAND_SHORTCUT:
             return new CreateCommandParser().parse(arguments);
 
         case UpdateCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case UpdateCommand.COMMAND_SHORTCUT:
-            return new EditCommandParser().parse(arguments);
+            return new UpdateCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
         case DeleteCommand.COMMAND_SHORTCUT:
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
         case ClearCommand.COMMAND_SHORTCUT:
             return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
         case FindCommand.COMMAND_SHORTCUT:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-
         case ListCommand.COMMAND_SHORTCUT:
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
         case ExitCommand.COMMAND_SHORTCUT:
             return new ExitCommand();
 
