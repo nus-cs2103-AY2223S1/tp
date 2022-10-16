@@ -2,12 +2,19 @@ package soconnect.logic.parser.tagcommandparsers;
 
 
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static soconnect.logic.parser.CliSyntax.*;
+import static soconnect.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static soconnect.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static soconnect.logic.parser.CliSyntax.PREFIX_NAME;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PHONE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
 import soconnect.logic.commands.tagcommands.TagEditCommand;
-import soconnect.logic.parser.*;
+import soconnect.logic.parser.ArgumentMultimap;
+import soconnect.logic.parser.ArgumentTokenizer;
+import soconnect.logic.parser.Parser;
+import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.tag.Tag;
 

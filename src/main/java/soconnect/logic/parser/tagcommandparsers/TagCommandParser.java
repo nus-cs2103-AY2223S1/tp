@@ -7,7 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import soconnect.logic.commands.Command;
-import soconnect.logic.commands.tagcommands.*;
+import soconnect.logic.commands.tagcommands.TagAddCommand;
+import soconnect.logic.commands.tagcommands.TagCreateCommand;
+import soconnect.logic.commands.tagcommands.TagDeleteCommand;
+import soconnect.logic.commands.tagcommands.TagEditCommand;
+import soconnect.logic.commands.tagcommands.TagRemoveCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**

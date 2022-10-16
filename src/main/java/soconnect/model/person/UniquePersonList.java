@@ -149,7 +149,7 @@ public class UniquePersonList implements Iterable<Person> {
                         oldPerson.getEmail(),
                         oldPerson.getAddress(),
                         updatedTags);
-                internalList.set(i,updatedPerson);
+                internalList.set(i, updatedPerson);
             }
         }
     }
