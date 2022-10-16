@@ -8,7 +8,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
@@ -49,8 +48,10 @@ public class FilterCommandTest {
         TagMatchesQueryPredicate secondTagPredicate =
                 new TagMatchesQueryPredicate(new Tag("neighbor"));
 
-        FilterCommandPredicate firstPredicate = new FilterCommandPredicate(firstNamePredicate, firstTagPredicate);
-        FilterCommandPredicate secondPredicate = new FilterCommandPredicate(secondNamePredicate, secondTagPredicate);
+        FilterCommandPredicate firstPredicate =
+                new FilterCommandPredicate(firstNamePredicate, firstTagPredicate);
+        FilterCommandPredicate secondPredicate =
+                new FilterCommandPredicate(secondNamePredicate, secondTagPredicate);
 
         FilterCommand findFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand findSecondCommand = new FilterCommand(secondPredicate);
@@ -84,22 +85,22 @@ public class FilterCommandTest {
         Set<NameContainsKeywordsPredicate> namePredicate = prepareNamePredicate("bbbxyz");
         FilterCommandPredicate predicate = new FilterCommandPredicate(namePredicate, null);
         FilterCommand command = new FilterCommand(predicate);
-        namePredicate.forEach(pred -> expectedModel.addNewFilterToFilteredPersonList(pred));
+        expectedModel.addNewFilterToFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        Set<NameContainsKeywordsPredicate> namePredicates = prepareNamePredicate("Kurz,Elle,Kunz");
+        Set<NameContainsKeywordsPredicate> namePredicates = prepareNamePredicate("Alice,Elle,Kunz");
         Set<TagMatchesQueryPredicate> tagPredicates = prepareTagPredicate("owesMoney, friends");
 
         FilterCommandPredicate predicate1 = new FilterCommandPredicate(namePredicates, null);
         FilterCommand command1 = new FilterCommand(predicate1);
         String expectedMessage1 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        namePredicates.forEach(pred -> expectedModel.addNewFilterToFilteredPersonList(pred));
+        expectedModel.addNewFilterToFilteredPersonList(predicate1);
         assertCommandSuccess(command1, model, expectedMessage1, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, ELLE, FIONA), model.getFilteredPersonList());
 
         expectedModel.clearFiltersInFilteredPersonList();
         model.clearFiltersInFilteredPersonList();
@@ -107,7 +108,7 @@ public class FilterCommandTest {
         FilterCommandPredicate predicate2 = new FilterCommandPredicate(null, tagPredicates);
         FilterCommand command2 = new FilterCommand(predicate2);
         String expectedMessage2 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        tagPredicates.forEach(pred -> expectedModel.addNewFilterToFilteredPersonList(pred));
+        expectedModel.addNewFilterToFilteredPersonList(predicate2);
         assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
 
@@ -116,11 +117,10 @@ public class FilterCommandTest {
 
         FilterCommandPredicate predicate3 = new FilterCommandPredicate(namePredicates, tagPredicates);
         FilterCommand command3 = new FilterCommand(predicate3);
-        String expectedMessage3 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 6);
-        namePredicates.forEach(pred -> expectedModel.addNewFilterToFilteredPersonList(pred));
-        tagPredicates.forEach(pred -> expectedModel.addNewFilterToFilteredPersonList(pred));
+        String expectedMessage3 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        expectedModel.addNewFilterToFilteredPersonList(predicate3);
         assertCommandSuccess(command3, model, expectedMessage3, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
     }
 
     /**

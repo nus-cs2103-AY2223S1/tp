@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -100,7 +101,7 @@ public interface Model {
      * Adds the filter given by {@code predicate} to the set of filters for the fitlered person list.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void addNewFilterToFilteredPersonList(Predicate<Person> predicate);
+    void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate);
 
     /**
      * Clears the set of filters in the fitlered person list.
@@ -110,7 +111,7 @@ public interface Model {
     /**
      * Removes the filter given by {@code predicate} from the set of filters for the fitlered person list.
      */
-    void removeFilterFromFilteredPersonList(Predicate<Person> predicate);
+    void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate);
 
     /** Returns an unmodifiable view of the list of target person */
     ObservableList<Person> getTargetPersonAsObservableList();

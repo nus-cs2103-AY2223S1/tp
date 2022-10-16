@@ -49,20 +49,13 @@ public class FilterCommand extends Command {
 
     private void applySpecifiedFilters(Model model) {
         assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
-        if (predicate.getNamePredicate() != null) {
-            predicate.getNamePredicate()
-                    .forEach((namePredicate) -> model.addNewFilterToFilteredPersonList(namePredicate));
-        }
-        if (predicate.getTagPredicate() != null) {
-            predicate.getTagPredicate()
-                    .forEach((tagPredicate) -> model.addNewFilterToFilteredPersonList(tagPredicate));
-        }
+        model.addNewFilterToFilteredPersonList(predicate);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterCommand // instanceof handles nulls
-                        && predicate.equals(((FilterCommand) other).predicate)); // state check
+                && predicate.equals(((FilterCommand) other).predicate)); // state check
     }
 }

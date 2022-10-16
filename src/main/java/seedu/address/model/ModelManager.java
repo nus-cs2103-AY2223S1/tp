@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
 import seedu.address.model.tag.Tag;
@@ -26,7 +28,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final Set<Predicate<Person>> personPredicates;
+    private final Set<Predicate<Person>> namePredicates;
+    private final Set<Predicate<Person>> tagPredicates;
     private final FilteredList<Person> filteredPersons;
     private final TargetPerson targetPerson;
 
@@ -40,7 +43,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        this.personPredicates = new HashSet<>();
+        this.namePredicates = new HashSet<>();
+        this.tagPredicates = new HashSet<>();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         targetPerson = new TargetPerson();
     }
@@ -161,30 +165,38 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addNewFilterToFilteredPersonList(Predicate<Person> predicate) {
+    public void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate) {
         requireNonNull(predicate);
-        personPredicates.add(predicate);
+        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
+        predicate.addNameFiltersToSet(namePredicates);
+        predicate.addTagFiltersToSet(tagPredicates);
         updateFilteredPersonList();
     }
 
     @Override
     public void clearFiltersInFilteredPersonList() {
-        personPredicates.clear();
+        namePredicates.clear();
+        tagPredicates.clear();
         updateFilteredPersonList();
     }
 
     @Override
-    public void removeFilterFromFilteredPersonList(Predicate<Person> predicate) {
+    public void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate) {
         requireNonNull(predicate);
-        personPredicates.remove(predicate);
+        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
+        predicate.removeNameFiltersFromSet(namePredicates);
+        predicate.removeTagFiltersFromSet(tagPredicates);
         updateFilteredPersonList();
     }
 
     private void updateFilteredPersonList() {
-        Predicate<Person> predicate = personPredicates.size() == 0 ? PREDICATE_SHOW_ALL_PERSONS
-                : personPredicates.stream()
+        Predicate<Person> namePredicate = namePredicates.size() == 0 ? PREDICATE_SHOW_ALL_PERSONS
+                : namePredicates.stream()
                         .reduce(notused -> false, (pred1, pred2) -> pred1.or(pred2));
-        filteredPersons.setPredicate(predicate);
+        Predicate<Person> tagPredicate = tagPredicates.size() == 0 ? PREDICATE_SHOW_ALL_PERSONS
+                : tagPredicates.stream()
+                        .reduce(notused -> false, (pred1, pred2) -> pred1.or(pred2));
+        filteredPersons.setPredicate(namePredicate.and(tagPredicate));
     }
 
     @Override

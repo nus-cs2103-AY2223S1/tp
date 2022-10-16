@@ -13,7 +13,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -130,7 +129,9 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.addNewFilterToFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
+        FilterCommandPredicate predicate =
+                new FilterCommandPredicate(new NameContainsKeywordsPredicate(splitName[0]), null);
+        model.addNewFilterToFilteredPersonList(predicate);
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -221,7 +222,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void addNewFilterToFilteredPersonList(Predicate<Person> predicate) {
+        public void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -231,7 +232,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void removeFilterFromFilteredPersonList(Predicate<Person> predicate) {
+        public void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

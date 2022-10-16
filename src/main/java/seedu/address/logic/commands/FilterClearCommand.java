@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -47,15 +46,7 @@ public class FilterClearCommand extends FilterCommand {
             model.clearFiltersInFilteredPersonList();
             return;
         }
-        assert isAnyNonNull(predicate.getNamePredicate(), predicate.getTagPredicate());
-        if (predicate.getNamePredicate() != null) {
-            predicate.getNamePredicate()
-                    .forEach((namePredicate) -> model.removeFilterFromFilteredPersonList(namePredicate));
-        }
-        if (predicate.getTagPredicate() != null) {
-            predicate.getTagPredicate()
-                    .forEach((tagPredicate) -> model.removeFilterFromFilteredPersonList(tagPredicate));
-        }
+        model.removeFilterFromFilteredPersonList(predicate);
     }
 
     @Override
