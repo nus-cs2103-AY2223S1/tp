@@ -10,6 +10,7 @@ import soconnect.logic.commands.Command;
 import soconnect.logic.commands.tagcommands.TagAddCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.logic.commands.tagcommands.TagEditCommand;
+import soconnect.logic.commands.tagcommands.TagRemoveCommand;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
@@ -48,6 +49,10 @@ public class TagCommandParser {
 
         case TagAddCommand.COMMAND_WORD:
             return new TagAddCommandParser().parse(arguments);
+
+        case TagRemoveCommand.COMMAND_WORD:
+            return new TagRemoveCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

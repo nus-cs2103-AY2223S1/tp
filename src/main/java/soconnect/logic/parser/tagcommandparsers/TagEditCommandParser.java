@@ -2,10 +2,9 @@ package soconnect.logic.parser.tagcommandparsers;
 
 
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static soconnect.logic.parser.CliSyntax.*;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import soconnect.logic.commands.tagcommands.TagEditCommand;
 import soconnect.logic.parser.*;
@@ -25,9 +24,9 @@ public class TagEditCommandParser implements Parser<TagEditCommand> {
      */
     public TagEditCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TAG)
+        if (!argMultimap.getValue(PREFIX_TAG).isPresent()
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagEditCommand.MESSAGE_USAGE));
         }
@@ -42,14 +41,6 @@ public class TagEditCommandParser implements Parser<TagEditCommand> {
         Tag newTagName = tagList.get(1);
 
         return new TagEditCommand(oldTagName, newTagName);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
