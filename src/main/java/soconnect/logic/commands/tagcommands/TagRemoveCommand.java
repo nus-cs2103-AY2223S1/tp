@@ -68,7 +68,7 @@ public class TagRemoveCommand extends TagCommand {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        assert model.hasTag(tag) : "The tag should exist in the list";
+        assert model.hasTag(tag) : "The tag should exist in the list.";
 
         if (!personToEdit.contains(tag)) {
             throw new CommandException(MESSAGE_NO_SUCH_TAG);

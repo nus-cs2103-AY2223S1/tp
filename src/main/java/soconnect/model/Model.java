@@ -224,23 +224,23 @@ public interface Model {
     /**
      * Changes the oldTag to the newTag.
      *
-     * @param oldTag The tag to be changed
-     * @param newTag The tag to be changed into
+     * @param oldTag The tag to be changed.
+     * @param newTag The tag to be changed into.
      */
     void editTag(Tag oldTag, Tag newTag);
 
     /**
      * Deletes the tag from the tagList.
      *
-     * @param tag The tag to be deleted
+     * @param tag The tag to be deleted.
      */
     void deleteTag(Tag tag);
 
     /**
      * Returns the right tag from the Tag list.
      *
-     * @param tag The reference tag
-     * @return the tag that has the same name as the reference tag
+     * @param tag The reference tag.
+     * @return the tag that has the same name as the reference tag.
      */
     Tag getTagFromList(Tag tag);
 

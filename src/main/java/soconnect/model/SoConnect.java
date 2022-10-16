@@ -134,10 +134,10 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Returns true if all the tags in the contact exist in the Tag list
+     * Returns true if all the tags in the contact exist in the tagList.
      *
-     * @param person The person to be added
-     * @return True if all the tags exists in the tagList. False if otherwise
+     * @param person The person to be added.
+     * @return True if all the tags exists in the tagList. False if otherwise.
      */
     public boolean areTagsAvailable(Person person) {
         List<Tag> personTags = new ArrayList<>(person.getTags());
@@ -192,7 +192,7 @@ public class SoConnect implements ReadOnlySoConnect {
     /**
      * Adds the tag to the tagList.
      *
-     * @param tag The tag to be added
+     * @param tag The tag to be added.
      */
     public void addTag(Tag tag) {
         tags.addTagToList(tag);
@@ -212,7 +212,7 @@ public class SoConnect implements ReadOnlySoConnect {
     /**
      * Deletes the tag from the tagList.
      *
-     * @param tag The tag top be deleted
+     * @param tag The tag top be deleted.
      */
     public void deleteTag(Tag tag) {
         tags.deleteTags(tag);
@@ -222,8 +222,8 @@ public class SoConnect implements ReadOnlySoConnect {
     /**
      * Gets the tag from the tagList.
      *
-     * @param tag The reference tag
-     * @return The tag that has the same name as the reference tag
+     * @param tag The reference tag.
+     * @return The tag that has the same name as the reference tag.
      */
     public Tag getTagFromList(Tag tag) {
         return tags.getTag(tag);

@@ -220,7 +220,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Sorts the SoConnect by a tag.
      * Contacts with the tag appear before those without the tag.
      *
-     * @param tag       The tag to sort with
+     * @param tag       The tag to sort with.
      * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByTag(Tag tag, Boolean isReverse) {

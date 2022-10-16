@@ -58,7 +58,7 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Deletes the tag from the tagList.
      *
-     * @param tag The tag to be deleted
+     * @param tag The tag to be deleted.
      */
     public void deleteTags(Tag tag) {
         requireNonNull(tag);
@@ -68,8 +68,8 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Gets the tag from the tagList.
      *
-     * @param tag The reference tag
-     * @return The tag that has the same name as the reference tag
+     * @param tag The reference tag.
+     * @return The tag that has the same name as the reference tag.
      */
     public Tag getTag(Tag tag) {
         int index = tagArrayList.indexOf(tag);
