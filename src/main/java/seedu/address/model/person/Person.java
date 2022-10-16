@@ -120,11 +120,11 @@ public class Person {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
         Email email = getEmail();
-        if (!(email == null)) {
+        if (email != null) {
             builder.append(("; Email: "));
         }
         Phone phone = getPhone();
-        if (!(phone == null)) {
+        if (phone != null) {
             builder.append(("; Phone: "));
         }
         Set<Tag> tags = getTags();
