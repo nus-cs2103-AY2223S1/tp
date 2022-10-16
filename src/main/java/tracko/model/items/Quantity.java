@@ -7,8 +7,8 @@ import static tracko.commons.util.CollectionUtil.requireAllNonNull;
  * Represents the quantity of an item.
  */
 public class Quantity {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should not be negative.";
+    public static final String MESSAGE_CONSTRAINTS = "Quantity should be valid. " +
+            "\nA valid Quantity value should not be negative, and should not exceed 2,147,483,647.";
 
     public final Integer quantity;
 
