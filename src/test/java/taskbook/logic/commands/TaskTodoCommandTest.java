@@ -1,21 +1,20 @@
 package taskbook.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taskbook.testutil.Assert.assertThrows;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.commands.modelstubs.ModelStub;
 import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
 import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
-import taskbook.model.ReadOnlyTaskBook;
-import taskbook.model.TaskBook;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
@@ -24,8 +23,7 @@ import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TaskBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class TaskTodoCommandTest {
 

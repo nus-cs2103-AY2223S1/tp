@@ -1,7 +1,8 @@
 package taskbook.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taskbook.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -14,11 +15,9 @@ import taskbook.logic.commands.modelstubs.ModelStub;
 import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
 import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
 import taskbook.logic.commands.tasks.TaskAddCommand;
-import taskbook.logic.commands.tasks.TaskDeadlineCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
-import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
 import taskbook.model.task.Event;
 import taskbook.model.task.enums.Assignment;
