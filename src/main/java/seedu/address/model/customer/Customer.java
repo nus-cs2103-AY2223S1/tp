@@ -65,7 +65,7 @@ public class Customer {
     }
 
     /**
-     * Get total revenue generated from the customer.
+     * Returns total revenue generated from the customer.
      */
     public double getRevenue() {
         double revenue = 0;
