@@ -32,8 +32,7 @@ class JsonAdaptedSupplier {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    //TODO JsonAdaptedPet
-    private final List<Pet> petsOnSale = new ArrayList<>();
+    private final List<JsonAdaptedPet> petsOnSale = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedSupplier} with the given Supplier details.
@@ -43,7 +42,7 @@ class JsonAdaptedSupplier {
                                @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                                @JsonProperty("address") String address,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("petsOnSale") List<Pet> petsOnSale) {
+                               @JsonProperty("petsOnSale") List<JsonAdaptedPet> petsOnSale) {
         this.personCategory = personCategory;
         this.name = name;
         this.phone = phone;
@@ -69,6 +68,9 @@ class JsonAdaptedSupplier {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        petsOnSale.addAll(source.getPetsOnSale().stream()
+                .map(JsonAdaptedPet::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -80,6 +82,11 @@ class JsonAdaptedSupplier {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final ArrayList<Pet> modelPets = new ArrayList<>();
+        for (JsonAdaptedPet pet : petsOnSale) {
+            modelPets.add(pet.toModelType());
         }
 
         if (personCategory == null) {
@@ -124,6 +131,6 @@ class JsonAdaptedSupplier {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, null);
+        return new Supplier(modelPersonCategory, modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPets);
     }
 }
