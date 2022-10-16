@@ -53,7 +53,7 @@ class AddProjectCommandParserTest {
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddProjectCommand.MESSAGE_ADD_PROJECT_USAGE);
+                AddProjectCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, AddProjectCommand.COMMAND_FLAG, VALID_NAME_BOB

@@ -2,9 +2,11 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 
 import java.util.ArrayList;
@@ -64,6 +66,14 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
     private AddProjectCommand parseAddProjectCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_ID,
@@ -72,7 +82,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddProjectCommand.MESSAGE_ADD_PROJECT_USAGE));
+                    AddProjectCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -106,9 +116,49 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         return new AddProjectCommand(project);
     }
 
-    //TODO: implement
-    private EditProjectCommand parseEditProjectCommand(String arguments) {
-        return null;
+    private EditProjectCommand parseEditProjectCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_PROJECT_ID, PREFIX_NAME, PREFIX_CLIENT_ID,
+                        PREFIX_REPOSITORY, PREFIX_DEADLINE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_ID) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditProjectCommand.MESSAGE_USAGE));
+        }
+
+        Name newName;
+        Client newClient;
+        Repository newRepository;
+        Deadline newDeadline;
+        ProjectId newProjectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        Project initialProject = UniqueProjectList.getProject(newProjectId.getIdInt());
+
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_ID, PREFIX_REPOSITORY, PREFIX_DEADLINE)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
+                    EditProjectCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            initialProject.setName(newName);
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            newClient = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            initialProject.setClient(newClient);
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_REPOSITORY)) {
+            newRepository = ParserUtil.parseRepository(argMultimap.getValue(PREFIX_REPOSITORY).get());
+            initialProject.setRepository(newRepository);
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            initialProject.setDeadline(newDeadline);
+        }
+
+        return new EditProjectCommand(initialProject);
     }
 
     private DeleteProjectCommand parseDeleteProjectCommand(String arguments) throws ParseException {

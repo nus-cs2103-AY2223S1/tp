@@ -259,12 +259,31 @@ public class ParserUtil {
     public static Project parseProjectStub(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
-        int trimmedIdInt = Integer.parseInt(trimmedId);
         if (!ProjectId.isValidProjectId(trimmedId)) {
             throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
         }
+        int trimmedIdInt = Integer.parseInt(trimmedId);
         return new Project(new Name("default"), new Repository("default/default"),
                 new Deadline("2022-03-05"), new Client(new Name("default")),
                 new ArrayList<>(), new ProjectId(trimmedIdInt));
+    }
+
+    /**
+     * Parses a {@code String projectId} into a {@code ProjectId}.
+     *
+     * @param projectId is the id of the project
+     * @return A projectId object
+     */
+    public static ProjectId parseProjectId(String projectId) throws ParseException {
+        requireNonNull(projectId);
+        String trimmedId = projectId.trim();
+        if (!ProjectId.isValidProjectId(trimmedId)) {
+            throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
+        }
+        int trimmedIdInt = Integer.parseInt(trimmedId);
+        if (UniqueProjectList.getProject(trimmedIdInt).equals(Project.EmptyProject.EMPTY_PROJECT)) {
+            throw new ParseException(ProjectId.MESSAGE_INVALID);
+        }
+        return new ProjectId(trimmedIdInt);
     }
 }

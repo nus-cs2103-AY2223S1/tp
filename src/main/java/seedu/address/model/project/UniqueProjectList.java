@@ -91,15 +91,6 @@ public class UniqueProjectList implements Iterable<Project> {
                 return p;
             }
         }
-        return null;
-    }
-
-    public static Project getProject(ProjectId id) {
-        for (Project p: internalList) {
-            if (p.getProjectId().equals(id)) {
-                return p;
-            }
-        }
         return Project.EmptyProject.EMPTY_PROJECT;
     }
 
