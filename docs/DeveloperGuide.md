@@ -163,10 +163,12 @@ The `ModCommandParser` implements the operation `ModCommandParser#parseMarkComma
 During execution, all modules specified by the student are marked in the `Person` class with the operation `Person#markMods(ObservableList<Mod> mods)`. This is because the list of modules is stored and associated with a `Person`, hence any updates on the module status in the current list of modules will be handled in `Person`. Each individual module is then marked in the `Mod` class with the operation `Mod#markMod()`.
 
 The following (partial) class diagram shows how the different classes involved in the mod mark operation interacts with one another:
+
 ![ModMarkClassDiagram](images/ModMarkClassDiagram.png)
 
 The following activity diagram summarises what happens when a student enters a `mod mark` command, assuming the command is valid and no error occurs:
-![ModMarkActivityDiagram](images/ModMarkActivityDiagram.png)
+
+![ModMarkWithLoopActivityDiagram](images/ModMarkWithLoopActivityDiagram.png)
 
 #### Design considerations:
 
