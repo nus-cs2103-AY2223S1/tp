@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.EditPersonCommand.MESSAGE_INVALID_PERSON_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.FullNamePredicate;
@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
  * Deletes a person identified using the displayed name from the address book.
  */
 public class DeletePersonCommand extends Command {
+
     public static final String COMMAND_WORD = "deleteperson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -23,6 +24,8 @@ public class DeletePersonCommand extends Command {
         + "Example: " + COMMAND_WORD + " UserName ";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+
+    public static final String MESSAGE_INVALID_PERSON_NAME = "The person to delete cannot be found!";
 
     private final FullNamePredicate predicate;
 
@@ -45,7 +48,7 @@ public class DeletePersonCommand extends Command {
             }
         }
         if (targetIndex == -1) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_PERSON_NAME));
+            throw new CommandException(MESSAGE_INVALID_PERSON_NAME);
         }
 
         Person personToDelete = lastShownList.get(targetIndex);

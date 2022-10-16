@@ -31,7 +31,7 @@ public class AssignTaskCommand extends Command {
     public static final String MESSAGE_ARGUMENTS = "Name: %1$s, Group: %2$s Task: %3$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
-    public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specifed group.";
+    public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specified group.";
     public static final String MESSAGE_INVALID_GROUP = "This group is not in the address book.";
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "New task added for the following person.";
 
@@ -89,10 +89,6 @@ public class AssignTaskCommand extends Command {
                 personToAssignTask.getName(), personToAssignTask.getPhone(), personToAssignTask.getEmail(),
                 personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
                 personToAssignTask.getPersonGroups());
-
-        if (!personToAssignTask.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
 
         model.setPerson(personToAssignTask, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
