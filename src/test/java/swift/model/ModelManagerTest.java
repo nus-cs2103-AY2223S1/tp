@@ -17,7 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import swift.commons.core.GuiSettings;
 import swift.model.bridge.PersonTaskBridge;
+import swift.model.person.Person;
 import swift.model.person.PersonNameContainsKeywordsPredicate;
+import swift.model.task.Task;
 import swift.testutil.AddressBookBuilder;
 import swift.testutil.TypicalBridges;
 
@@ -131,12 +133,26 @@ public class ModelManagerTest {
     @Test
     public void addBridge_nullBridge_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.addBridge(null));
+    }
+
+    @Test
+    public void addBridge_nullPersonAndTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.addBridge(null, null));
     }
 
     @Test
     public void deleteBridge_nullBridge_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.deleteBridge((PersonTaskBridge) null));
+    }
+
+    @Test
+    public void deleteBridge_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteBridge((Person) null));
+    }
+
+    @Test
+    public void deleteBridge_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteBridge((Task) null));
     }
 
     @Test
