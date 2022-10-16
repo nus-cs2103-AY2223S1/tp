@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
-
 import javafx.scene.control.Label;
 
+/**
+ * The UI component that is responsible for the styling of the SpecialTag labels.
+ */
 public class SpecialTagLabel extends Label {
 
     private static final String DEFAULT_COLOR = "#3e7b91";
@@ -16,6 +18,10 @@ public class SpecialTagLabel extends Label {
     private static final String BACKGROUND_RADIUS = "-fx-background-radius: 2;";
     private static final String FONT_SIZE = "-fx-font-size: 11;";
 
+    /**
+     * Creates a {@code Label} with the given {@code content} to
+     * be displayed.
+     */
     public SpecialTagLabel(String content) {
         super(content);
         switch (content) {
@@ -34,11 +40,8 @@ public class SpecialTagLabel extends Label {
     }
 
     private void setLabelStyle(String color) {
-        this.setStyle(TEXT_FILL_COLOR +
-                BACKGROUND_COLOR + color + ";" +
-                PADDING +
-                BORDER_RADIUS +
-                BACKGROUND_RADIUS +
-                FONT_SIZE);
+        this.setStyle(TEXT_FILL_COLOR
+                + BACKGROUND_COLOR + color + ";" + PADDING + BORDER_RADIUS
+                + BACKGROUND_RADIUS + FONT_SIZE);
     }
 }
