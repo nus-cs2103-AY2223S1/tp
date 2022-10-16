@@ -43,17 +43,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ProfNUS file path.
      */
     Path getAddressBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' ProfNUS file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces ProfNUS data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
@@ -61,7 +61,7 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the ProfNUS.
      */
     boolean hasPerson(Person person);
 
@@ -72,13 +72,13 @@ public interface Model {
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the ProfNUS.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the ProfNUS.
      */
     void addPerson(Person person);
 
@@ -94,31 +94,31 @@ public interface Model {
 
     /**
      * Deletes the given schedule.
-     * The schedule must exist in the address book.
+     * The schedule must exist in the ProfNUS.
      */
     void deleteSchedule(Schedule target);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the ProfNUS.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the ProfNUS.
      */
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the ProfNUS.
      */
     boolean hasModule(Module module);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the ProfNUS.
      */
     void deleteModule(Module target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the ProfNUS.
      */
     void addModule(Module module);
 
@@ -129,8 +129,8 @@ public interface Model {
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the ProfNUS.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the ProfNUS.
      */
     void setModule(Module target, Module editedModule);
 
