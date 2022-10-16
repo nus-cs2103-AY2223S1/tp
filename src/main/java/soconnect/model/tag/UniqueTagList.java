@@ -56,6 +56,17 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Gets the tag from the tagList.
+     *
+     * @param tag The reference tag.
+     * @return The tag that has the same name as the reference tag.
+     */
+    public Tag getTag(Tag tag) {
+        int index = tagArrayList.indexOf(tag);
+        return tagArrayList.get(index);
+    }
+
+    /**
      * Changes the old tags to a new list of tags.
      *
      * @param tags The new list of tags.

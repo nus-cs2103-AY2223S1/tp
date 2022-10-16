@@ -80,6 +80,14 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if all the tags in the contact exist in the Tag list
+     *
+     * @param person The person to be added
+     * @return True if all the tags exists in the tagList. False if otherwise
+     */
+    boolean areTagsAvailable(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in the SoConnect.
      */
@@ -220,5 +228,13 @@ public interface Model {
      * @param newTag The tag to be changed into
      */
     void editTag(Tag oldTag, Tag newTag);
+
+    /**
+     * Returns the right tag from the Tag list.
+     *
+     * @param tag The reference tag.
+     * @return the tag that has the same name as the reference tag.
+     */
+    Tag getTagFromList(Tag tag);
 
 }

@@ -2,6 +2,7 @@ package soconnect.model.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.AppUtil.checkArgument;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class Priority {
      * Maps the 3 priorities to their ranking in the TodoList.
      * {@code PRIORITY_HIGH} has the highest ranking and {@code PRIORITY_LOW} has the lowest ranking.
      */
-    public static final Map<String, Integer> ranking = new HashMap<>();
+    public static final Map<String, Integer> RANKING = new HashMap<>();
 
     public final String priority;
 
@@ -35,9 +36,9 @@ public class Priority {
         requireNonNull(priority);
         checkArgument(isValidPriority(priority), MESSAGE_CONSTRAINTS);
         this.priority = priority;
-        ranking.put(PRIORITY_LOW, 3);
-        ranking.put(PRIORITY_MEDIUM, 2);
-        ranking.put(PRIORITY_HIGH, 1);
+        RANKING.put(PRIORITY_LOW, 3);
+        RANKING.put(PRIORITY_MEDIUM, 2);
+        RANKING.put(PRIORITY_HIGH, 1);
     }
 
     /**
@@ -60,8 +61,8 @@ public class Priority {
      * @return      -1 if this object is lesser, 0 if they are equal, 1 otherwise
      */
     public int compareTo(Priority other) {
-        Integer thisRanking = ranking.get(this.priority);
-        Integer otherRanking = ranking.get(other.priority);
+        Integer thisRanking = RANKING.get(this.priority);
+        Integer otherRanking = RANKING.get(other.priority);
         return thisRanking.compareTo(otherRanking);
     }
 
