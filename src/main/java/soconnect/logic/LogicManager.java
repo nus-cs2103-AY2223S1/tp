@@ -16,7 +16,9 @@ import soconnect.logic.parser.SoConnectParser;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.person.Person;
+import soconnect.model.todo.Todo;
 import soconnect.storage.Storage;
 
 /**
@@ -51,6 +53,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveSoConnect(model.getSoConnect());
+            storage.saveTodoList(model.getTodoList());
             autocomplete.updateUniqueNames(model.getUniqueNames());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -72,6 +75,21 @@ public class LogicManager implements Logic {
     @Override
     public Path getSoConnectFilePath() {
         return model.getSoConnectFilePath();
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return model.getTodoList();
+    }
+
+    @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return model.getFilteredTodoList();
+    }
+
+    @Override
+    public Path getTodoListFilePath() {
+        return model.getTodoListFilePath();
     }
 
     @Override

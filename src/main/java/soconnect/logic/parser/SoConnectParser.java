@@ -17,7 +17,9 @@ import soconnect.logic.commands.ListCommand;
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.commands.SortCommand;
 import soconnect.logic.commands.TagCommand;
+import soconnect.logic.commands.todo.TodoCommand;
 import soconnect.logic.parser.exceptions.ParseException;
+import soconnect.logic.parser.todo.TodoParser;
 
 /**
  * Parses user input.
@@ -81,6 +83,9 @@ public class SoConnectParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case TodoCommand.COMMAND_WORD:
+            return new TodoParser().parseCommand(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

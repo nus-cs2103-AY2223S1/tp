@@ -10,7 +10,9 @@ import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
+import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.person.Person;
+import soconnect.model.todo.Todo;
 
 /**
  * API of the Logic component.
@@ -34,14 +36,31 @@ public interface Logic {
     ReadOnlySoConnect getSoConnect();
 
     /**
+     * Returns the TodoList.
+     *
+     * @see Model#getTodoList()
+     */
+    ReadOnlyTodoList getTodoList();
+
+    /**
      * Returns an unmodifiable view of the filtered list of persons.
      */
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of todos.
+     */
+    ObservableList<Todo> getFilteredTodoList();
+
+    /**
      * Returns the user prefs' SoConnect file path.
      */
     Path getSoConnectFilePath();
+
+    /**
+     * Returns the user prefs' TodoList file path.
+     */
+    Path getTodoListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
