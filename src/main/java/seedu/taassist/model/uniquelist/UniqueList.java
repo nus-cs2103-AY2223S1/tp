@@ -39,7 +39,7 @@ public class UniqueList<T extends Identity<T>> implements Iterable<T> {
     /**
      * Returns true if the list contains an element that matches the given {@code predicate}.
      */
-    public boolean contains(Predicate<T> predicate) {
+    public boolean containsMatch(Predicate<T> predicate) {
         requireNonNull(predicate);
         return internalList.stream().anyMatch(predicate);
     }

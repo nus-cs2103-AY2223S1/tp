@@ -75,7 +75,7 @@ public class Student implements Identity<Student> {
      * Returns true if the Student is assigned to the provided {@code moduleClass}.
      */
     public boolean isInModuleClass(ModuleClass moduleClass) {
-        return moduleDataList.contains(moduleData -> moduleData.getModuleClass().isSame(moduleClass));
+        return moduleDataList.containsMatch(moduleData -> moduleData.getModuleClass().isSame(moduleClass));
     }
 
     /**
