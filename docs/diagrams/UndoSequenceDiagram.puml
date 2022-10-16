@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedTaskBook" as VersionedTaskBook MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -30,15 +30,15 @@ deactivate TaskBookParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoTaskBook()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedTaskBook : undo()
+activate VersionedTaskBook
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedTaskBook -> VersionedTaskBook :resetData(ReadOnlyTaskBook)
+VersionedTaskBook --> Model :
+deactivate VersionedTaskBook
 
 Model --> UndoCommand
 deactivate Model
