@@ -131,6 +131,25 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    public void removeRelevantPersonTag(Tag tag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Person oldPerson = internalList.get(i);
+            List<Tag> personTags = new ArrayList<>(oldPerson.getTags());
+            if (!personTags.contains(tag)) {
+            } else {
+                personTags.remove(tag);
+                Set<Tag> updatedTags = new HashSet<>(personTags);
+                Person updatedPerson = new Person(oldPerson.getName(),
+                        oldPerson.getPhone(),
+                        oldPerson.getEmail(),
+                        oldPerson.getAddress(),
+                        updatedTags);
+                internalList.set(i,updatedPerson);
+            }
+        }
+    }
+
+
     /**
      * Sorts the list by name, alphabetically.
      * Sorts the SoConnect by name in alphabetical order.

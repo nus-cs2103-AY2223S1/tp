@@ -7,10 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import soconnect.logic.commands.Command;
-import soconnect.logic.commands.tagcommands.TagAddCommand;
-import soconnect.logic.commands.tagcommands.TagCreateCommand;
-import soconnect.logic.commands.tagcommands.TagEditCommand;
-import soconnect.logic.commands.tagcommands.TagRemoveCommand;
+import soconnect.logic.commands.tagcommands.*;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,6 +50,8 @@ public class TagCommandParser {
         case TagRemoveCommand.COMMAND_WORD:
             return new TagRemoveCommandParser().parse(arguments);
 
+        case TagDeleteCommand.COMMAND_WORD:
+            return new TagDeleteCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

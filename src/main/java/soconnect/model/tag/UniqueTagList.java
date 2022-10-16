@@ -55,6 +55,11 @@ public class UniqueTagList implements Iterable<Tag> {
         return false;
     }
 
+    public void removeTags(Tag tag) {
+        requireNonNull(tag);
+        tagArrayList.remove(tag);
+    }
+
     /**
      * Changes the old tags to a new list of tags.
      *

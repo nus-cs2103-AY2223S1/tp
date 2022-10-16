@@ -18,7 +18,7 @@ public class TagCreateCommand extends TagCommand {
     public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + ": Creates a tag to the SoConnect. "
             + "Parameters: "
-            + PREFIX_TAG + "TAG...\n"
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + TagCommand.COMMAND_WORD + " "
             + COMMAND_WORD + " "
             + PREFIX_TAG + "owesMoney";

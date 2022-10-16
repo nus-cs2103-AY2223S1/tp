@@ -192,6 +192,11 @@ public class SoConnect implements ReadOnlySoConnect {
         persons.changeRelevantPersonTag(oldTag, newTag);
     }
 
+    public void deleteTag(Tag tag) {
+        tags.removeTags(tag);
+        persons.removeRelevantPersonTag(tag);
+    }
+
     //// util methods
 
     @Override

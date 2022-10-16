@@ -132,6 +132,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTag(Tag tag) {
+        soConnect.deleteTag(tag);
+    }
+
+    @Override
     public void sortByName(Boolean isReverse) {
         soConnect.sortByName(isReverse);
     }

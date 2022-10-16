@@ -26,7 +26,7 @@ public class TagRemoveCommand extends TagCommand {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = TagCommand.COMMAND_WORD + " "
-            + COMMAND_WORD + ": Removes a tag to the contact "
+            + COMMAND_WORD + ": Removes a tag from the contact "
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "

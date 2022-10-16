@@ -159,4 +159,11 @@ public interface Model {
      */
     void editTag(Tag oldTag, Tag newTag);
 
+    /**
+     * Deletes the tag from the tagList.
+     *
+     * @param tag The tag to be deleted
+     */
+    void deleteTag(Tag tag);
+
 }
