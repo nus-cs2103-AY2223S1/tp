@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -24,7 +23,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPersons;
 
-    private boolean taskListFlag;
+    private Patient patientOfInterest;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,7 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        taskListFlag = false;
+        this.patientOfInterest = null;
     }
 
     public ModelManager() {
@@ -130,22 +129,20 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        taskListFlag = false;
-        filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredPersonListWithTasks(Predicate<Patient> predicate) {
-        requireNonNull(predicate);
-        taskListFlag = true;
         filteredPersons.setPredicate(predicate);
     }
 
     //=========== Other Accessors =============================================================
 
     @Override
-    public Supplier<Boolean> getTaskListFlagSupplier() {
-        return (() -> taskListFlag);
+    public void setPatientOfInterest(Patient patient) {
+        requireNonNull(patient);
+        this.patientOfInterest = patient;
+    }
+
+    @Override
+    public Patient getPatientOfInterest() {
+        return this.patientOfInterest;
     }
 
     @Override
@@ -166,5 +163,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

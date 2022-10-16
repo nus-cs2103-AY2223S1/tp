@@ -10,11 +10,12 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Patient;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * An UI component that displays information of a {@code Patient} without index.
+ * UpdatedPersonCard to be used for output panel when adding, editing, or deleting a patient.
  */
-public class PersonCard extends UiPart<Region> {
+public class UpdatedPersonCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "UpdatedPersonCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,14 +25,12 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Patient patient;
+    public final Patient person;
 
     @FXML
     private HBox cardPane;
     @FXML
     private Label name;
-    @FXML
-    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -44,25 +43,23 @@ public class PersonCard extends UiPart<Region> {
     private Label header;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Patient} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Patient}.
      */
-    public PersonCard(Patient patient, int displayedIndex) {
+    public UpdatedPersonCard(Patient person, String headerString) {
         super(FXML);
-        cardPane.setSpacing(1);
-        cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: solid inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
+        cardPane.setSpacing(2);
+        cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
+                + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
-        this.patient = patient;
-        id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
-        phone.setText(patient.getPhone().value);
-        address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
-        patient.getTags().stream()
+        this.person = person;
+        name.setText(person.getName().fullName);
+        phone.setText(person.getPhone().value);
+        address.setText(person.getAddress().value);
+        email.setText(person.getEmail().value);
+        person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-
+        header.setText(headerString);
 
     }
 
@@ -74,13 +71,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof UpdatedPersonCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && patient.equals(card.patient);
+        UpdatedPersonCard card = (UpdatedPersonCard) other;
+        return person.equals(card.person);
     }
 }

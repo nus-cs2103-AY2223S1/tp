@@ -23,9 +23,6 @@
          </opaqueInsets>
    </HBox>
    <FlowPane fx:id="tags" />
-   <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-   <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-   <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
       <padding>
          <Insets left="15.0" />
       </padding>
@@ -36,6 +33,6 @@
       <URL value="@Extensions.css" />
    </stylesheets>
    <opaqueInsets>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      <Insets />
    </opaqueInsets>
 </HBox>

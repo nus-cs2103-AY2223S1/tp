@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -87,12 +86,15 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Patient> predicate);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}
-     * with tasks list flag enabled.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Updates the patient of interest to be accessed by UI components.
+     * @param patient patient of interest.
      */
-    void updateFilteredPersonListWithTasks(Predicate<Patient> predicate);
+    void setPatientOfInterest(Patient patient);
 
-    /** Returns a supplier to get the flag to display tasks */
-    Supplier<Boolean> getTaskListFlagSupplier();
+    /**
+     * Gets the patient of interest.
+     * @return patient of interest.
+     */
+    Patient getPatientOfInterest();
+
 }

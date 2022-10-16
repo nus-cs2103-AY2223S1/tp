@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private OutputPanel outputPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +51,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Label patientHeader;
+
+    @FXML
+    private Label outputHeader;
+
+    @FXML
+    private StackPane outputPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getTaskListFlagSupplier());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -121,6 +132,12 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        patientHeader.setText("Patients");
+        outputHeader.setText("Output");
+
+        outputPanel = new OutputPanel();
+        outputPanelPlaceholder.getChildren().add(outputPanel.getRoot());
     }
 
     /**
@@ -175,6 +192,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            outputPanel.clear();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -185,6 +203,23 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            if (commandResult.isTaskRelated()) {
+                outputPanel.handleTask(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isAddPatient()) {
+                outputPanel.handleAddPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isEditPatient()) {
+                outputPanel.handleEditPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isDeletePatient()) {
+                outputPanel.handleDeletePatient(logic.getPatientOfInterest());
+            }
+
 
             return commandResult;
         } catch (CommandException | ParseException e) {
