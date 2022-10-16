@@ -8,9 +8,9 @@ import java.util.HashSet;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -59,7 +59,6 @@ public class AddEventToTripCommand extends Command {
 
         Event event = model.getEvent(new Event(eventToAdd));
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
-
         model.deleteEvent(event);
         toAddInto.addEvent(event);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));

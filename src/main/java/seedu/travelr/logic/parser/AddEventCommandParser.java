@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 import seedu.travelr.logic.commands.AddEventCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 
 /**
  * Represents the AddEventCommandParser.

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.travelr.logic.commands.AddEventToTripCommand;
 import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
-import seedu.travelr.model.trip.Title;
+import seedu.travelr.model.component.Title;
 
 /**
  * Represents the DeleteEventFromTripCommandParser.

@@ -15,10 +15,11 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.event.exceptions.DuplicateEventException;
 import seedu.travelr.model.event.exceptions.EventNotFoundException;
 
+
 /**
  * Represents the BucketList class.
  */
-public class BucketList extends EventList {
+public class UniqueEventList extends EventList {
 
     private final Set<Event> events = new HashSet<>();
     private final ObservableList<Event> internalList = FXCollections.observableArrayList();

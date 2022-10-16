@@ -9,12 +9,12 @@ import java.util.Set;
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.commons.util.StringUtil;
 import seedu.travelr.logic.parser.exceptions.ParseException;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Address;
-import seedu.travelr.model.trip.Description;
 import seedu.travelr.model.trip.Email;
 import seedu.travelr.model.trip.Phone;
-import seedu.travelr.model.trip.Title;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

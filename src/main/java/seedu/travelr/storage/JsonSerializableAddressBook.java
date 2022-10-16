@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.travelr.commons.exceptions.IllegalValueException;
 import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.ReadOnlyAddressBook;
+import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
@@ -22,14 +23,17 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_TRIP = "Trips list contains duplicate trip(s).";
 
     private final List<JsonAdaptedTrip> trips = new ArrayList<>();
+    private final List<JsonAdaptedEvent> bucketList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given trips.
      * TODO: Rename JsonProperty in local data file from persons to trips
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("trips") List<JsonAdaptedTrip> trips) {
+    public JsonSerializableAddressBook(@JsonProperty("bucketList") List<JsonAdaptedEvent> bucketList,
+                                       @JsonProperty("trips") List<JsonAdaptedTrip> trips) {
         this.trips.addAll(trips);
+        this.bucketList.addAll(bucketList);
     }
 
     /**
@@ -39,6 +43,7 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         trips.addAll(source.getTripList().stream().map(JsonAdaptedTrip::new).collect(Collectors.toList()));
+        bucketList.addAll(source.getEventList().stream().map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,6 +59,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
             }
             addressBook.addTrip(trip);
+        }
+        for (JsonAdaptedEvent jsonAdaptedEvent : bucketList) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (addressBook.hasEvent(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TRIP);
+            }
+            addressBook.addEvent(event);
         }
         return addressBook;
     }

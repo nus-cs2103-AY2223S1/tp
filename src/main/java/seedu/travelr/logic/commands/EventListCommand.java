@@ -1,9 +1,9 @@
 package seedu.travelr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.travelr.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import seedu.travelr.model.Model;
+import seedu.travelr.model.event.AllInBucketListPredicate;
 
 /**
  * Represents the EventListCommand
@@ -18,7 +18,8 @@ public class EventListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        AllInBucketListPredicate predicate = model.getBucketPredicate();
+        model.updateFilteredEventList(predicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

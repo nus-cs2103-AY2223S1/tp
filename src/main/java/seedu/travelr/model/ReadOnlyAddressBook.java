@@ -17,4 +17,6 @@ public interface ReadOnlyAddressBook {
 
     ObservableList<Event> getEventList();
 
+    ObservableList<Event> getAllEventList();
+
 }

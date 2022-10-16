@@ -8,9 +8,9 @@ import java.util.HashSet;
 
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
+import seedu.travelr.model.component.Description;
+import seedu.travelr.model.component.Title;
 import seedu.travelr.model.event.Event;
-import seedu.travelr.model.trip.Description;
-import seedu.travelr.model.trip.Title;
 import seedu.travelr.model.trip.Trip;
 
 
@@ -30,7 +30,8 @@ public class DeleteEventFromTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s";
+    public static final String MESSAGE_SUCCESS = "Event removed to trip: %1$s\nThe specified event has been returned"
+            + "to the bucket list. Current bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event doesn't exists in the specified trip";
 
     private Title eventToDelete;
@@ -52,7 +53,7 @@ public class DeleteEventFromTripCommand extends Command {
 
 
         if (!model.hasTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()))) {
-            throw new CommandException("Please enter a valid List");
+            throw new CommandException("Please enter a valid Trip");
         }
 
         Trip toDeleteFrom = model.getTrip(new Trip(tripToDeleteFrom, new Description("random"), new HashSet<>()));
@@ -65,7 +66,8 @@ public class DeleteEventFromTripCommand extends Command {
         Event event = toDeleteFrom.getEvent(new Event(eventToDelete));
 
         toDeleteFrom.removeEvent(event);
-        model.addEvent(event);
+        model.returnToBucketList(event);
+        model.updateFilteredEventList(model.getBucketPredicate());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
