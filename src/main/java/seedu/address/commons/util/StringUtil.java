@@ -54,7 +54,7 @@ public class StringUtil {
         requireNonNull(phone);
         requireNonNull(numbers);
 
-        return phone.contains(numbers);
+        return phone.startsWith(numbers);
     }
 
     /**
