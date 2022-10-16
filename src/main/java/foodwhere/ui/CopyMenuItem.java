@@ -96,6 +96,7 @@ public class CopyMenuItem<T> extends MenuItem {
             break;
         default:
             setError();
+            break;
         }
 
         if (content.hasString()) {
