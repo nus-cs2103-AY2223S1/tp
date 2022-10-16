@@ -6,7 +6,6 @@ import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
 
 import java.util.stream.Stream;
 
-import seedu.travelr.logic.commands.AddEventToTripCommand;
 import seedu.travelr.logic.commands.DeleteEventFromTripCommand;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.component.Title;
@@ -29,7 +28,7 @@ public class DeleteEventFromTripCommandParser {
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TRIP)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddEventToTripCommand.MESSAGE_USAGE));
+                    DeleteEventFromTripCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());

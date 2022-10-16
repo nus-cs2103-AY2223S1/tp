@@ -115,6 +115,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Removes an event from bucket list before adding it to trip.
+     */
+    public void removeFromBucketList(Event e) {
+        bucketList.remove(e);
+    }
+
+    /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -166,6 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeEvent(Event key) {
         bucketList.remove(key);
+        allEventsList.remove(key);
     }
 
     //// util methods
