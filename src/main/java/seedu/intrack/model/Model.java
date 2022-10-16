@@ -85,4 +85,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    /**
+     * Gets the size of the filtered internship list after applying a filter to it.
+     *
+     * @param predicate filter to be applied before getting size.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    int getFilteredStatusInternshipListSize(Predicate<Internship> predicate);
 }

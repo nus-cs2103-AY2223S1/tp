@@ -15,6 +15,7 @@ import seedu.intrack.logic.commands.ExitCommand;
 import seedu.intrack.logic.commands.FindCommand;
 import seedu.intrack.logic.commands.HelpCommand;
 import seedu.intrack.logic.commands.ListCommand;
+import seedu.intrack.logic.commands.StatsCommand;
 import seedu.intrack.logic.commands.StatusCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 
@@ -71,6 +72,9 @@ public class InTrackParser {
 
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
+
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

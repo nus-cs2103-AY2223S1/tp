@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.intrack.commons.core.GuiSettings;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
+import seedu.intrack.model.internship.StatusIsKeywordPredicate;
 import seedu.intrack.testutil.InTrackBuilder;
 
 public class ModelManagerTest {
@@ -91,6 +92,20 @@ public class ModelManagerTest {
     @Test
     public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredInternshipList().remove(0));
+    }
+
+    @Test
+    public void getFilteredStatusInternshipListSize_emptyList_returnsZero() {
+        modelManager = new ModelManager();
+        assertEquals(0, modelManager.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Offered")));
+    }
+
+    @Test
+    public void getFilteredStatusInternshipListSize_oneStatusFound() {
+        modelManager = new ModelManager();
+        modelManager.addInternship(ALICE);
+        assertEquals(1, modelManager.getFilteredStatusInternshipListSize(
+                new StatusIsKeywordPredicate(ALICE.getStatus().value)));
     }
 
     @Test
