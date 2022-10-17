@@ -116,7 +116,7 @@ Examples:
 * `find Betsy` followed by `tasks 1` shows the tasks assigned to the 1st person in the result of the `find` command.
 
 
-### Marking tasks of a person: `mark`
+### Marking tasks of a person: `task mark`
 
 Marks a task of a person as complete
 
@@ -126,7 +126,7 @@ Format: `task mark TASK_INDEX`
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
-### Unmarking tasks of a person: `unmark`
+### Unmarking tasks of a person: `task unmark`
 
 Marks a task of a person as incomplete
 
