@@ -31,7 +31,7 @@ public class Event {
     }
 
     /**
-     * Overloaded onstructor to create new Event object
+     * Overloaded constructor to create new Event object
      * @param eventToCopy event to copy
      * @param uids new uid list
      */
@@ -40,6 +40,16 @@ public class Event {
         this.date = eventToCopy.date;
         this.time = eventToCopy.time;
         this.purpose = eventToCopy.purpose;
+        this.uids = uids;
+    }
+    /**
+     * Overloaded constructor to create new Event object
+     */
+    public Event(String eventTitle, String date, String time, String purpose, UidList uids) {
+        this.eventTitle = eventTitle;
+        this.date = date;
+        this.time = time;
+        this.purpose = purpose;
         this.uids = uids;
     }
 
