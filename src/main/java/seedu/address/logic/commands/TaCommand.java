@@ -42,7 +42,7 @@ public class TaCommand extends Command {
         + PREFIX_TAG + "friends "
         + PREFIX_TAG + "owesMoney "
         + PREFIX_LOCATION + "COM1-0203 "
-        + PREFIX_GITHUBUSERNAME + "alicyD"
+        + PREFIX_GITHUBUSERNAME + "alicyD "
         + PREFIX_RATING + "5";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Teaching Assistant already exists in the address book";

@@ -197,18 +197,21 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String location} into an {@code Location}.
+     * Parses a {@code String rating} into an {@code Rating}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code location} is invalid.
+     * @throws ParseException if the given {@code Rating} is invalid.
      */
-    public static Rating parseRating(String rating) throws ParseException {
+    public static Rating parseRating(String rating, Boolean isPresent) throws ParseException {
         requireNonNull(rating);
         String trimmedRating = rating.trim();
-        if (!Rating.isValidRating(trimmedRating)) {
+        if (!isPresent) {
+            return new Rating(trimmedRating, false);
+        }
+        if (!Rating.isValidRating(rating)) {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
-        return new Rating(trimmedRating);
+        return new Rating(trimmedRating, true);
     }
 
     /**
