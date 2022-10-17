@@ -59,9 +59,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
 
-        // TODO Change userPref file path getters
-        UserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs.getAddressBookFilePath(),
-                model);
+        UserModuleListStorage userModuleListStorage = new JsonUserModuleListStorage(userPrefs
+                .getUserModuleListFilePath(), model);
+        // TODO: Update path to Module Model's path
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(moduleListStorage, userModuleListStorage, userPrefsStorage);
 

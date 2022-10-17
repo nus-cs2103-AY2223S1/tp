@@ -33,7 +33,7 @@ class JsonSerializableUserModuleList {
         this.model = model;
     }
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this user module list into the model's {@code UniqueUserModuleList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
