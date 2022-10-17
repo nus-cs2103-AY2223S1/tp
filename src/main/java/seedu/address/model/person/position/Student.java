@@ -144,7 +144,13 @@ public class Student extends Position {
     }
 
     public void setPreviousAssignments(String assignments) {
+
+
         String trimmedAssignments = trimAssignments(assignments);
+
+        if (trimmedAssignments.equals("")) {
+            return;
+        }
 
         String[] assignmentsArr = trimmedAssignments.split(", ");
         int assignmentArrLen = assignmentsArr.length;
