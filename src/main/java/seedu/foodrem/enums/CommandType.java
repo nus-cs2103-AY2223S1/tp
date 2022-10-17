@@ -193,7 +193,7 @@ public enum CommandType {
                     + PREFIX_NAME + "ORIGINAL_TAG_NAME "
                     + PREFIX_NAME + "NEW_TAG_NAME "
                     + "Example: " + getCommandWord() + " "
-                    + PREFIX_NAME + "Vegetables "
+                    + PREFIX_NAME + "vegetables "
                     + PREFIX_NAME + "fruits";
         }
     },
