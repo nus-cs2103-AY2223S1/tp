@@ -105,11 +105,28 @@ Edits the person at the specified `INDEX`. The index refers to the index number 
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Adding a remark : `remark`
+
+Adds or edits a remark of an existing person in TAB.
+
+Format: `remark INDEX r/REMARK`
+
+Modifies a remark of a person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* A person can have at most 1 remark.
+* When editing remark, the existing remark of the person will be removed i.e adding of remarks is not cumulative.
+* You can remove the person's remark field by typing `r/` without
+  specifying any message after it.
+
+Examples:
+* `remark 1 r/Interested to be a TA` edits the remark field of the 1st person to be `Interested to be a TA`.
+* `remark 2 r/remark_one r/remark_two` edits the remark field of the 2nd person to be `remark_two` and not `remark_one`.
+* `remark 3 r/` clears the remark field of the 3rd person.
 
 ### Editing the attendance of a student : `attendance`
 
