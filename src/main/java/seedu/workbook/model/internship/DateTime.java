@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; name is valid as declared in {@link #isValidDate(String)}
  */
 public class DateTime {
-
+    public static final DateTime EMPTY_DATETIME = new DateTime("");
     public static final String MESSAGE_CONSTRAINTS = "Date should be dd-mmm-yyyy hh:mm";
 
     private static final String datePattern = "d-MMM-yyyy HH:mm";
@@ -22,7 +22,7 @@ public class DateTime {
             .appendPattern(datePattern);
     private static final DateTimeFormatter dateFormatter = formatterBuilder.toFormatter();
 
-    public static final DateTime EMPTY_DATETIME = new DateTime("");
+
 
     public final String value;
 
