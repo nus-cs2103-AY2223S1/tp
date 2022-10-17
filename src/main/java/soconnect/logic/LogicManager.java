@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.commons.core.LogsCenter;
@@ -71,12 +70,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
-    }
-
-    // Stub - to be removed after Todo is implemented.
-    @Override
-    public ObservableList<Todo> getFilteredTodoList() {
-        return FXCollections.observableArrayList(new Todo("Description"));
     }
 
     @Override
