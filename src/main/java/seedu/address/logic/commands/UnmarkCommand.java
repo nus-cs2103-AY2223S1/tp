@@ -15,7 +15,7 @@ public class UnmarkCommand extends SelectAppointmentCommand {
             COMMAND_WORD + ": Unmarks an appointment in the appointment list as undone\n"
                     + "Parameters: INDEX_OF_APPOINTMENT (must be a valid appointment index and a positive integer)";
 
-    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Unmarked appointment %1$s for Person: %2$s";
+    public static final String MESSAGE_UNMARK_PERSON_SUCCESS = "Unmarked appointment %1$s for: %2$s";
     public static final String MESSAGE_ALREADY_UNMARKED = "This appointment is already unmarked.";
 
     /**
