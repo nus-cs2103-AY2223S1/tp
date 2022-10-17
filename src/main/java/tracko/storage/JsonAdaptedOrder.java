@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import tracko.commons.exceptions.IllegalValueException;
+import tracko.model.item.InventoryList;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.ItemQuantityPair;
@@ -61,12 +62,7 @@ public class JsonAdaptedOrder {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
-    public Order toModelType() throws IllegalValueException {
-
-        List<ItemQuantityPair> itemQuantityPairs = new ArrayList<>();
-        for (JsonAdaptedItemQuantityPair pair : itemList) {
-            itemQuantityPairs.add(pair.toModelType());
-        }
+    public Order toModelType(InventoryList inventoryList) throws IllegalValueException {
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -99,6 +95,11 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
+        List<ItemQuantityPair> itemQuantityPairs = new ArrayList<>();
+        for (JsonAdaptedItemQuantityPair pair : itemList) {
+            itemQuantityPairs.add(pair.toModelType(inventoryList));
+        }
 
         if (itemList == null || itemList.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Item List"));

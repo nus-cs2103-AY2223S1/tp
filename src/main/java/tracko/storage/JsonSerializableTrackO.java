@@ -58,7 +58,7 @@ public class JsonSerializableTrackO {
             trackO.addItem(item);
         }
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
-            Order order = jsonAdaptedOrder.toModelType();
+            Order order = jsonAdaptedOrder.toModelType(trackO.getInventoryReference());
             trackO.addOrder(order);
         }
         return trackO;

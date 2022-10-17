@@ -33,6 +33,8 @@ public class ItemQuantityPair extends Pair<Item, Quantity> {
         return this.getValue();
     }
 
+
+
     @Override
     public String toString() {
         return this.getQuantity() + " * " + this.getItemName();

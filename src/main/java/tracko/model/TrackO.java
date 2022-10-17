@@ -34,14 +34,6 @@ public class TrackO implements ReadOnlyTrackO {
         resetData(toBeCopied);
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders.setOrders(orders);
-    }
-
-    public void setItems(List<Item> items) {
-        this.items.setItems(items);
-    }
-
     /**
      * Resets the existing data of this {@code TrackO} with {@code newData}.
      */
@@ -52,6 +44,10 @@ public class TrackO implements ReadOnlyTrackO {
     }
 
     // ORDER METHODS =======================================================================
+
+    public void setOrders(List<Order> orders) {
+        this.orders.setOrders(orders);
+    }
 
     /**
      * Adds an order to be tracked.
@@ -75,6 +71,10 @@ public class TrackO implements ReadOnlyTrackO {
     }
 
     // ITEM METHODS =======================================================================
+
+    public void setItems(List<Item> items) {
+        this.items.setItems(items);
+    }
 
     /**
      * Adds an item to be tracked.
@@ -115,13 +115,20 @@ public class TrackO implements ReadOnlyTrackO {
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
-
         items.setItem(target, editedItem);
     }
 
     @Override
     public ObservableList<Item> getInventoryList() {
         return items.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns the inventory list object of the model.
+     * @return The inventory list object of the model.
+     */
+    public InventoryList getInventoryReference() {
+        return items;
     }
 
     @Override
