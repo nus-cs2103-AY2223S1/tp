@@ -3,6 +3,9 @@ package seedu.guest.model.guest;
 import static java.util.Objects.requireNonNull;
 import static seedu.guest.commons.util.AppUtil.checkArgument;
 
+/**
+ * The class Requests.
+ */
 public class Request {
     public static final String MESSAGE_CONSTRAINTS = "The request should not be null";
     public final String value;
