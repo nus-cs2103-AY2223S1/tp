@@ -227,9 +227,9 @@ The following is a more detailed explanation on how `AttendanceDeleteCommand` wo
 3. If the student index specified is invalid, a ```ParserExeception``` will be thrown and attendance list will not be delete.
 4. The method ```Model#setStudent(studentToEdit, editedStudent)``` and `Model#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` gets called and a new `CommandResult` will be returned with the success message.
 
-![attendance delete activity](image/AttendanceDeleteActivityDiagram.png)
+![attendance delete activity](images/AttendanceDeleteActivityDiagram.png)
 Figure No. Activity diagram for AttendanceDeleteCommand
-![attendance delete sequence](image/AttendanceDeleteSequenceDiagram.png)
+![attendance delete sequence](images/AttendanceDeleteSequenceDiagram.png)
 Figure No. Sequence diagram for AttendanceDeleteCommand
 #### Design considerations:
 
