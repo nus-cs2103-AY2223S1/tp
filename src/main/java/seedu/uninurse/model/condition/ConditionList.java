@@ -26,13 +26,19 @@ public class ConditionList implements GenericList<Condition> {
     }
 
     /**
-     * Constructs a {@code ConditionList} with a given list of conditions.
+     * Constructs a {@code ConditionList}.
+     * @param conditions The given list of conditions.
      */
     public ConditionList(ArrayList<Condition> conditions) {
         requireNonNull(conditions);
         internalConditionList = conditions;
     }
 
+    /**
+     * Checks if the list already contains a given condition.
+     * @param toCheck The condition to be checked.
+     * @return Returns true if the list contains an equivalent condition as the given argument.
+     */
     public boolean contains(Condition toCheck) {
         requireNonNull(toCheck);
         return internalConditionList.stream().anyMatch(toCheck::equals);
