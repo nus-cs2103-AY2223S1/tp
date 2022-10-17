@@ -2,10 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.Person.DEFAULT_ADDRESS;
-import static seedu.address.model.person.Person.DEFAULT_EMAIL;
-import static seedu.address.model.person.Person.DEFAULT_NAME;
-import static seedu.address.model.person.Person.DEFAULT_PHONE;
+import static seedu.address.model.person.Person.*;
 
 import java.nio.file.Path;
 import java.util.Collections;
@@ -18,15 +15,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Appointment;
-import seedu.address.model.person.DisplayedPerson;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
 import seedu.address.model.person.Record;
-import seedu.address.model.person.RecordList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -54,6 +44,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         Person placeholderPerson = new Person(new Name(DEFAULT_NAME),
+                new Age(DEFAULT_AGE),
                 new Phone(DEFAULT_PHONE),
                 new Email(DEFAULT_EMAIL),
                 new Address(DEFAULT_ADDRESS),

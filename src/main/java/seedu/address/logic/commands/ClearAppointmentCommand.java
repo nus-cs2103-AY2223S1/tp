@@ -32,7 +32,8 @@ public class ClearAppointmentCommand extends Command {
         List<Person> lastShownList = CommandUtil.prepareFilteredList(model, index);
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getAge(),
+                personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), personToEdit.getTags(),
                 personToEdit.getRecordList(), Appointment.of(Appointment.NO_APPOINTMENT_SCHEDULED));
 
