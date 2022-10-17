@@ -154,6 +154,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Review Components**
+* Added Classes into the model Component to encapsulate a Review
+
+#### **Implementation**
+<img src="images/ModelReviewClassDiagram.png" width="450" />
+
+A `Review`,
+- is stored in `uniqueReviewList` of the Model
+
+A `Review` contains the following attributes,
+1. a `Name`, which represent the name of the Stall associated with the Review
+2. a `Date`, which represent the day, month and year as specified in `DD-MM-YYYY` format
+3. a `Content`, which represent the review of the Stall by the user
+4. a `Rating`, which represent the rating of the Stall from 0 to 5 inclusive
+5. can be assigned to a single `Stall`
+6. can be assigned multiple `Tags`
+
+#### Design considerations:
+
+#### Aspect: How the components within Review are added or changed
+- **Current Choice**: Attributes within `Review` are immutable, meaning that if there is an attribute that has to be edited, a new `Review` object has to be created.
+    * Pros: Concept of Immutability is met, making the code less prone to bugs as all components of a `Review` object are fixed
+    * Cons: Less flexible, more steps needed in editing `Review` objects
+- Alternative 1: Allow certain components within `Review`, like `Date` and `Content`to be mutable
+    * Pros: Less overhead as fewer objects are created
+    * Cons: Prone to error as a Component might not be correctly changed
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

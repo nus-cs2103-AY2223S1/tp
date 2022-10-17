@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package ReviewModel <<Rectangle>>{
+Class Review
+Class Name
+Class Content
+Class Date
+Class Rating
+Class Tag
+Class UniqueReviewList
+}
+
+UniqueReviewList --> "~* all" Review
+AddressBook *--> "1" UniqueReviewList
+Review *--> Name
+Review *--> Content
+Review *--> Date
+Review *--> Rating
+Review *--> Tag
+
+ModelManager -->"~* filtered" Review
+Review *--> "1" Stall
+@enduml
