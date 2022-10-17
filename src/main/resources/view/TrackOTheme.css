@@ -459,6 +459,14 @@
     -fx-padding: 8 1 8 1;
 }
 
+.status-labels {
+    -fx-background-radius: 50;
+    -fx-font-family: Poppins;
+    -fx-font-weight: 900;
+    -fx-padding: 3 15 5 15;
+    -fx-background-insets: 2 3 4 3;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
