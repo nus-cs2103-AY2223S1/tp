@@ -21,9 +21,9 @@ public class Subject {
 
     public final String subjectName;
 
-    private HashMap<String, Integer> attendance;
+    private Attendance attendance;
 
-    private HashMap<String, Grade> grades;
+    private Grade grades;
 
     /**
      * Constructs a {@code Subject}.
@@ -35,8 +35,8 @@ public class Subject {
         checkArgument(isValidSubject(subjectName), MESSAGE_CONSTRAINTS);
 
         this.subjectName = subjectName;
-        this.attendance = new HashMap<>();
-        this.grades = new HashMap<>();
+        this.attendance = new Attendance();
+        this.grades = new Grade();
     }
 
     /**
@@ -48,6 +48,23 @@ public class Subject {
 
     public String getSubjectName() {
         return subjectName;
+    }
+
+    /**
+     * Gets the grade for the specified assessment
+     * @param assessmentName the assessment to get the grade for
+     * @return the grade for the assessment specified
+     */
+    public double getGradeForAssessment(String assessmentName) {
+        return grades.getGradeForAssessment(assessmentName);
+    }
+
+    /**
+     * Gets the attendance for this subject object
+     * @return the Attendance object for this subject
+     */
+    public Attendance getAttendance() {
+        return attendance;
     }
 
     @Override
