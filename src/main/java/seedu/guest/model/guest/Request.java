@@ -19,6 +19,8 @@ public class Request {
      * @param str the specific request
      */
     public Request(String str) {
+        requireNonNull(str);
+        checkArgument(isValidRequest(str), MESSAGE_CONSTRAINTS);
         value = str;
     }
 
