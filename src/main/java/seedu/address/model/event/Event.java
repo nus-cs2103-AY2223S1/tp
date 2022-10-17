@@ -55,7 +55,7 @@ public class Event {
     }
 
     /**
-     * Returns true if both events have the same title.
+     * Returns true if both events have the same title, start, and end times.
      * This defines a weaker notion of equality between two events.
      */
     public boolean isSameEvent(Event otherEvent) {
