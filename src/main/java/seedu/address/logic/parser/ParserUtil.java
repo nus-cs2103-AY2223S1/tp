@@ -11,6 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Phone;
@@ -124,6 +125,21 @@ public class ParserUtil {
             throw new ParseException(NetWorth.MESSAGE_CONSTRAINTS);
         }
         return new NetWorth(trimmedNetWorth);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code MeetingTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code NetWorth} is invalid.
+     */
+    public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
+        requireNonNull(meetingTime);
+        String trimmedMeetingTime = meetingTime.trim();
+        if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
+            throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingTime(trimmedMeetingTime);
     }
 
     /**
