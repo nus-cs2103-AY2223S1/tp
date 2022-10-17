@@ -1,6 +1,5 @@
 package seedu.nutrigoals.logic.commands;
 
-import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.nutrigoals.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.nutrigoals.testutil.TypicalFoods.getTypicalNutriGoals;
 
@@ -36,10 +35,5 @@ public class AddCommandIntegrationTest {
                 String.format(AddCommand.MESSAGE_SUCCESS, validFood), expectedModel);
     }
 
-    @Test
-    public void execute_duplicateFood_throwsCommandException() {
-        Food foodInList = model.getNutriGoals().getFoodList().get(0);
-        assertCommandFailure(new AddCommand(foodInList), model, AddCommand.MESSAGE_DUPLICATE_FOOD);
-    }
 
 }

@@ -9,13 +9,11 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 import static seedu.nutrigoals.testutil.TypicalFoods.APPLE;
 import static seedu.nutrigoals.testutil.TypicalFoods.PANCAKE;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.nutrigoals.model.meal.exceptions.DuplicateMealException;
 import seedu.nutrigoals.model.meal.exceptions.MealNotFoundException;
 import seedu.nutrigoals.testutil.FoodBuilder;
 
@@ -49,12 +47,6 @@ public class UniqueFoodListTest {
     @Test
     public void add_nullFood_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFoodList.add(null));
-    }
-
-    @Test
-    public void add_duplicateFood_throwsDuplicateFoodException() {
-        uniqueFoodList.add(APPLE);
-        assertThrows(DuplicateMealException.class, () -> uniqueFoodList.add(APPLE));
     }
 
     @Test
@@ -98,13 +90,6 @@ public class UniqueFoodListTest {
         UniqueFoodList expectedUniqueFoodList = new UniqueFoodList();
         expectedUniqueFoodList.add(PANCAKE);
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
-    }
-
-    @Test
-    public void setFood_editedFoodHasNonUniqueIdentity_throwsDuplicateFoodException() {
-        uniqueFoodList.add(APPLE);
-        uniqueFoodList.add(PANCAKE);
-        assertThrows(DuplicateMealException.class, () -> uniqueFoodList.setFood(APPLE, PANCAKE));
     }
 
     @Test
@@ -154,11 +139,6 @@ public class UniqueFoodListTest {
         assertEquals(expectedUniqueFoodList, uniqueFoodList);
     }
 
-    @Test
-    public void setFoods_listWithDuplicateFoods_throwsDuplicateFoodException() {
-        List<Food> listWithDuplicateFoods = Arrays.asList(APPLE, APPLE);
-        assertThrows(DuplicateMealException.class, () -> uniqueFoodList.setFood(listWithDuplicateFoods));
-    }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {

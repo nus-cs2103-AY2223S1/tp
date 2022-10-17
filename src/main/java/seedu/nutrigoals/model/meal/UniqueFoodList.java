@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.nutrigoals.model.meal.exceptions.DuplicateMealException;
 import seedu.nutrigoals.model.meal.exceptions.MealNotFoundException;
 
 /**
@@ -43,9 +42,6 @@ public class UniqueFoodList implements Iterable<Food> {
      */
     public void add(Food toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateMealException();
-        }
         internalList.add(toAdd);
     }
 
@@ -72,9 +68,6 @@ public class UniqueFoodList implements Iterable<Food> {
             throw new MealNotFoundException();
         }
 
-        if (!target.isSameFood(editedFood) && contains(editedFood)) {
-            throw new DuplicateMealException();
-        }
 
         internalList.set(index, editedFood);
     }
@@ -90,9 +83,6 @@ public class UniqueFoodList implements Iterable<Food> {
      */
     public void setFood(List<Food> foods) {
         requireAllNonNull(foods);
-        if (!foodsAreUnique(foods)) {
-            throw new DuplicateMealException();
-        }
 
         internalList.setAll(foods);
     }
