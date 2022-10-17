@@ -12,10 +12,10 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ViewAllCommand;
 import seedu.address.logic.commands.ViewClassCommand;
-import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,8 +57,8 @@ public class StudentRecordParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case ViewCommand.COMMAND_WORD:
-            return new ViewCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         case ViewAllCommand.COMMAND_WORD:
             return new ViewAllCommand();

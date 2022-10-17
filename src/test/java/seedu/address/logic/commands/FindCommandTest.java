@@ -22,9 +22,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code ViewCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class ViewCommandTest {
+public class FindCommandTest {
     private Model model = new ModelManager(getTypicalStudentRecord(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalStudentRecord(), new UserPrefs());
 
@@ -40,14 +40,14 @@ public class ViewCommandTest {
         NameContainsKeywordsPredicate secondPredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        ViewCommand findFirstCommand = new ViewCommand(firstPredicate);
-        ViewCommand findSecondCommand = new ViewCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommand(firstPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        ViewCommand findFirstCommandCopy = new ViewCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -64,7 +64,7 @@ public class ViewCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        ViewCommand command = new ViewCommand(predicate);
+        FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
@@ -74,7 +74,7 @@ public class ViewCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        ViewCommand command = new ViewCommand(predicate);
+        FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());

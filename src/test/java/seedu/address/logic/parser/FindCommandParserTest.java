@@ -8,38 +8,38 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.Id;
 import seedu.address.model.student.IdPredicate;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 
-public class ViewCommandParserTest {
+public class FindCommandParserTest {
 
-    private ViewCommandParser parser = new ViewCommandParser();
+    private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validNameArgs_returnsViewCommand() {
         // no leading and trailing whitespaces
-        ViewCommand expectedViewCommand =
-                new ViewCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, " nm/Alice Bob", expectedViewCommand);
+        FindCommand expectedFindCommand =
+                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " nm/Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " nm/\n Alice \n \t Bob  \t", expectedViewCommand);
+        assertParseSuccess(parser, " nm/\n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
     @Test
     public void parse_validIdArgs_returnsViewCommand() {
-        ViewCommand expectedViewCommand =
-                new ViewCommand(new IdPredicate(new Id("123A")));
-        assertParseSuccess(parser, " id/123a", expectedViewCommand);
+        FindCommand expectedFindCommand =
+                new FindCommand(new IdPredicate(new Id("123A")));
+        assertParseSuccess(parser, " id/123a", expectedFindCommand);
 
-        assertParseSuccess(parser, " id/ \t 123a \n", expectedViewCommand);
+        assertParseSuccess(parser, " id/ \t 123a \n", expectedFindCommand);
     }
 
 }
