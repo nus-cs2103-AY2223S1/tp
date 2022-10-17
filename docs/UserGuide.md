@@ -69,7 +69,7 @@ java -version
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
 you can try:
    * **`help`**: Opens the help window.
-   * **`addPatient`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
+   * **`add`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
      patient named `Jane Doe` to your contacts.
    * **`delete`**`3`: Deletes the 3rd contact shown in the current list.
    * **`list`**: Lists all contacts.
@@ -107,10 +107,10 @@ you can try:
 
 * There must be a space separating a flag and an option.
 
-* Items in square brackets are optional.<br>
+* Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…` after them can be used multiple times including zero times.<br>
+* Parameters with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
@@ -174,7 +174,7 @@ Format: `delete -p INDEX`
 
 Examples:
 * `list` followed by `delete -p 2` deletes the 2nd patient in the patient book.
-* `find Betsy` followed by `delete -p 1` deletes the 1st person in the results of the `find` command.
+* `find Betsy` followed by `delete -p 1` deletes the 1st patient in the results of the `find` command.
 
 ### Listing all patients: `list`
 
@@ -204,21 +204,21 @@ Examples:
 
 Adds a task associated with a patient.
 
-Format: `add -p PATIENT_INDEX [d/TASK_DESCRIPTION]`
+Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION`
 
 * Adds a task to a patient at the specified `PATIENT_INDEX`.
 * The patient index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st person in the patient list.
-* `find Betsy` followed by `add -p 2 d/Change dressing on left arm` adds a task to the 2nd person in results of the `find` command.
+* `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
+* `find Betsy` followed by `add -p 2 d/Change dressing on left arm` adds a task to the 2nd patient in results of the `find` command.
 
 ### Editing a task: `edit -p -t`
 
 Edits the specified task associated with a patient.
 
-Format: `edit -p PATIENT_INDEX -t TASK_INDEX [d/TASK_DESCRIPTION]`
+Format: `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION`
 
 * Edits the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
 * The task index refers to the index number shown in the task list of a patient.
@@ -226,8 +226,8 @@ Format: `edit -p PATIENT_INDEX -t TASK_INDEX [d/TASK_DESCRIPTION]`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st person in the patient list.
-* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd person in results of the `find` command.
+* `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`.
+* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm`.
 
 ### Deleting a task: `delete -p -t`
 
@@ -241,8 +241,8 @@ Format: `delete -p PATIENT_INDEX -t TASK_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by `delete -p 2 -t 3` deletes the 3rd task of the 2nd person in the patient list.
-* `find Betsy` followed by `delete -p 1 -t 2` deletes the 2nd task of the 1st person in results of the `find` command.
+* `list` followed by `delete -p 2 -t 3` deletes the 3rd task of the 2nd patient in the patient list.
+* `find Betsy` followed by `delete -p 1 -t 2` deletes the 2nd task of the 1st patient in results of the `find` command.
 
 ### Listing all tasks: `listTask`
 
@@ -333,8 +333,8 @@ the data of your previous UniNurse home folder.
 | **Delete patient**              | `delete -p INDEX`                                                            |
 | **List all patients**           | `list`                                                                       |
 | **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                               |
-| **Add task**                    | `add -p PATIENT_INDEX [d/TASK_DESCRIPTION]`                                  |
-| **Edit task**                   | `edit -p PATIENT_INDEX -t TASK_INDEX [d/TASK_DESCRIPTION]`                   |
+| **Add task**                    | `add -p PATIENT_INDEX d/TASK_DESCRIPTION`                                    |
+| **Edit task**                   | `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION`                     |
 | **Delete task**                 | `delete -p PATIENT_INDEX -t TASK_INDEX`                                      |
 | **List all tasks**              | `listTask`                                                                   |
 | **View all tasks of a patient** | `viewTask INDEX`                                                             |
