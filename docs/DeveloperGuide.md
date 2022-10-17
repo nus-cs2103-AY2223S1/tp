@@ -202,13 +202,17 @@ The following activity diagrams summarizes what happens when a user enters an `a
 Taking into consideration that in small hotels, the chances of getting two guests that have identical full names are
 incredibly unlikely, we decided to proceed with Alternative 1.
 
-**Aspect: Excluding rc/ (isRoomClean) in the `add` command**
+**Aspect: Excluding `isRoomClean` in the `add` command**
 * As adding the guest will be done during check in, the room should by default be cleaned for the guest to immediately
-be able to enter their room. Hence, we chose to remove rc/ as it makes the `add` command unnecessarily longer.
+be able to enter their room. Hence, we chose to remove `isRoomClean` as it makes the `add` command unnecessarily longer.
 
-**Aspect: Excluding b/ (Bill) in the `add` command**
+**Aspect: Excluding `Bill` in the `add` command**
 * As adding the guest will be done during check in, the guest should not have incurred any bill costs yet. Hence,
-we chose to remove b/ as it makes the `add` command unnecessarily longer.
+we chose to remove `Bill` as it makes the `add` command unnecessarily longer.
+
+**Aspect: Making `Request` in the `add` command**
+* As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
+we chose to make `Request` optional and default it as blank should it not be provided.
 
 ### Edit feature
 
