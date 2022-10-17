@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Path {
 
-    public static final String MESSAGE_CONSTRAINTS = "A path to a  should be in "
+    public static final String MESSAGE_CONSTRAINTS = "A path to a should be in "
             + "the format of group[/nested-group/...], where [...] refers to optional "
             + "arguments in the path. The path should adhere to the following "
             + "constraints:\n"

@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -102,6 +103,11 @@ public class AddressBookTest {
 
         @Override
         public ObservableList<Group> getTeamsList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getTasksList() {
             throw new AssertionError("This method should not be called.");
         }
     }
