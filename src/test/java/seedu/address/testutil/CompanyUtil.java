@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.model.company.Company;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * A utility class for Company.

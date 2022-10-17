@@ -18,8 +18,6 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {

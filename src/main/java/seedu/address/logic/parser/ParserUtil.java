@@ -15,8 +15,6 @@ import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
 import seedu.address.model.company.CompanyAddress;
 import seedu.address.model.company.CompanyName;
-import seedu.address.model.company.Email;
-import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;

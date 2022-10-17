@@ -3,7 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.company.*;
+import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyAddress;
+import seedu.address.model.company.CompanyName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 

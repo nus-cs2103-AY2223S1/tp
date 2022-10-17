@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
@@ -35,8 +37,8 @@ public class CreateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New Company created: %1$s\nLinked to Client: %2$s";
     public static final String MESSAGE_DUPLICATE_COMPANY = "This client already has %1$s as Company";
     public static final String MESSAGE_COMPANY_INVALID = "Company cannot be created. Enter a valid Company details:\n"
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_EMAIL + "EMAIL ";
+            + PREFIX_NAME + "NAME "
+            + PREFIX_ADDRESS + "ADDRESS ";
 
     private final Index index;
     private final Company company;
