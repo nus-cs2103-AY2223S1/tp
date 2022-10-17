@@ -138,11 +138,6 @@ public interface Model {
     void setMeeting(Meeting target, Meeting editedMeeting);
 
     /**
-     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
-     */
-    boolean hasMeeting(Meeting editedMeeting);
-
-    /**
      * Updates the filter of the filtered meeting list to filter by implementation.
      *
      * @throws NullPointerException if {@param predicate} is null.

@@ -220,12 +220,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasMeeting(Meeting meeting) {
-        requireNonNull(meeting);
-        return meetingList.hasMeeting(meeting);
-    }
-
-    @Override
     public void addMeeting(Meeting newMeeting) {
         meetingList.addMeeting(newMeeting);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
