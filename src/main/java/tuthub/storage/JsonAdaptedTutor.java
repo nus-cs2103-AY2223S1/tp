@@ -16,6 +16,7 @@ import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
 import tuthub.model.tutor.StudentId;
 import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Tutor;
@@ -36,6 +37,7 @@ class JsonAdaptedTutor {
     private final String studentId;
     private final String comment;
     private final String teachingNomination;
+    private final String rating;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -45,8 +47,9 @@ class JsonAdaptedTutor {
     public JsonAdaptedTutor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("module") String module,
             @JsonProperty("year") String year, @JsonProperty("studentId") String studentId,
-            @JsonProperty("teaching nominations") String teachingNomination,
             @JsonProperty("comment") String comment,
+            @JsonProperty("teaching nominations") String teachingNomination,
+            @JsonProperty("rating") String rating,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -54,6 +57,7 @@ class JsonAdaptedTutor {
         this.module = module;
         this.year = year;
         this.studentId = studentId;
+        this.rating = rating;
         this.comment = comment;
         this.teachingNomination = teachingNomination;
         if (tagged != null) {
@@ -73,6 +77,7 @@ class JsonAdaptedTutor {
         studentId = source.getStudentId().value;
         comment = source.getComment().value;
         teachingNomination = source.getTeachingNomination().value;
+        rating = source.getRating().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -152,10 +157,19 @@ class JsonAdaptedTutor {
         }
         final TeachingNomination modelTeachingNomination = new TeachingNomination(teachingNomination);
 
+        if (rating == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(rating)) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(rating);
+
         final Set<Tag> modelTags = new HashSet<>(tutorTags);
 
         return new Tutor(modelName, modelPhone, modelEmail, modelModule, modelYear,
-                modelStudentId, modelComment, modelTeachingNomination, modelTags);
+                modelStudentId, modelComment, modelTeachingNomination, modelRating, modelTags);
     }
 
 }

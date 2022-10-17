@@ -15,6 +15,11 @@ public class Rating {
     public static final Double MAX_RATING = 5.0;
     public static final Double MIN_RATING = 0.0;
 
+    /**
+     * Covers positive double values.
+     */
+    public static final String VALIDATION_REGEX = "(^A)\\d{7}[A-Z]$";
+
     public final String value;
 
     /**
