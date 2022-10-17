@@ -14,10 +14,10 @@ import tracko.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Item {
-    public final ItemName itemName;
-    public final Description description;
-    public final Quantity quantity;
-    public final Set<Tag> tags = new HashSet<>();
+    private final ItemName itemName;
+    private final Description description;
+    private final Quantity quantity;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Constructs an {@code item}.
