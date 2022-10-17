@@ -85,6 +85,17 @@ public class Buyer extends Person {
         // TODO: implement this method
     }
 
+    /**
+     * Compares a buyer with another buyer in default way in terms of the number of orders that they have.
+     * @param buyer The other buyer being compared.
+     * @return The method returns 0 if the buyer and the other buyer has the same number of orders.
+     * A value less than 0 is returned if the buyer has less order than the other buyer,
+     * and a value greater than 0 if the buyer has more order than the other buyer.
+     */
+    public int compareTo(Buyer buyer) {
+        return this.orders.size() - buyer.orders.size();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

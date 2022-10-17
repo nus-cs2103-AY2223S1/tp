@@ -69,6 +69,18 @@ public class Supplier extends Person {
         // TODO: implement this method
     }
 
+    /**
+     * Compares a supplier with another supplier in default way
+     * in terms of the number of pets that are on sale that they have.
+     * @param supplier The other buyer being compared.
+     * @return The method returns 0 if the supplier and the other supplier has the same number of pets that are on sale.
+     * A value less than 0 is returned if the supplier has lesser pets that are on sale than the other supplier,
+     * and a value greater than 0 if the supplier has more pets that are on sale than the other supplier.
+     */
+    public int compareTo(Supplier supplier) {
+        return this.petsOnSale.size() - supplier.petsOnSale.size();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
