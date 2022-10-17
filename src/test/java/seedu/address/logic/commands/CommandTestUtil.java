@@ -154,6 +154,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Deletes person at a specified index.
+     *
+     * @param model
+     * @param targetIndex
+     */
     public static void deletePersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
