@@ -117,4 +117,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Updates the reference to Persons from Events.
+     */
+    void updateEventPersonReference();
 }
