@@ -44,13 +44,32 @@ Format: `help`
 ### Adding the calorie content of a food item : `add`
 
 Adds a food item with its calorie content.
-Format: `add FOOD_ITEM CALORIES MEAL_TYPE`
+
+Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
+
+* Adds a food item into the food list, together with its calorie content and meal type.
+* Each field can only be specified once.
+* `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
+
+Example:
+
+* `add n/bread c/100 t/breakfast` adds bread into the food list, and tags it as a breakfast item with 100 calories.
+* `add n/bubble tea c/300 t/lunch` adds bubble tea into the food list, and tags it as a lunch item with 300 calories.
+* `add n/hotpot c/500 t/dinner` adds hotpot into the food list, and tags it as a dinner item with 500 calories.
 
 ### Deleting a food item : `delete`
 
-Removes a food item from the list of consumed food for the day.
+Removes a food item from the list of consumed food.
 
-Format: `delete FOOD_ITEM MEAL_TYPE`
+Format: `delete INDEX`
+
+* Deletes a food item at the specified index.
+* The index **must be a positive** number.
+
+Example:
+
+* `delete 1` deletes the first item in the food list.
+* `list 2022-10-10` followed by `delete 1` will delete the first food item recorded on 2022-10-10.
 
 ### Editing a food item : `edit`
 
@@ -58,14 +77,44 @@ Edits a food item from the list of consumed food for the day.
 
 Format: `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`
 
-* Edits a food item in the specified list (given by `MEAL_TYPE`) and index.
+* Edits a food item in the list displayed at the specified index.
 * The index refers to the index shown in the displayed food lists.
 * The index **must be a positive** number.
 * Either the `UPDATED_FOOD`, `CALORIES`, or `MEAL_TYPE` must be supplied.
 
 Example:
 
-* `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories. 
+* `edit 2 n/rice c/300 t/dinner` edits the 2nd food item for dinner to rice with 300 calories.
+* `edit 2 n/noodles` edits the name of 2nd food item to noodles.
+* `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
+* `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10
+to sushi.
+
+### Finding a food item: `find`
+
+Finds all the food items containing at least one of the keywords specified.
+
+Format: `find KEYWORD [KEYWORDS]`
+
+* Finds all the food items in the list displayed which contain at least one of the specified keywords.
+
+Example:
+
+* `find bread` finds all food containing bread.
+* `find bread water` finds all food containing bread or water.
+* `list 2022-10-10` followed by `find sushi` will return all foods recorded on 2022-10-10 that contains sushi.
+
+### Setting a target daily calorie intake: `target`
+
+Sets a target daily calorie intake.
+
+Format: `target CALORIE`
+
+* `CALORIE` can only take on integer values.
+
+Example:
+
+* `target 2000` targets a daily calorie intake of 2000 calories.
 
 ### Viewing a summary of the daily calorie intake: `review`
 
@@ -87,11 +136,62 @@ Example:
 * `list` shows a list of all food items and their calories for the current day. 
 * `list 2022-11-27` shows a list of all food items and their calories for 27 November 2022.
 
+### Setting up a user profile: `setup`
+
+Sets up a user profile.
+
+Format: `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE`
+
+* Sets up the user profile using the information provided by the user.
+* `GENDER` can only take 2 values: M or F (case-insensitive).
+* `WEIGHT` and `IDEAL_WEIGHT` can only take on integer values less than 200 (in kg).
+* `HEIGHT` can only take on integer values less than 220 (in cm).
+* `AGE` can only take on integer values (in years).
+
+Example:
+
+* `setup g/f w/50 h/165 i/48 a/20` sets up a user profile for a 20-year-old female who is 50kg and 165cm, 
+with an ideal weight of 48kg.
+* `setup g/m w/70 h/175 i/70 a/20` sets up a user profile for a 20-year-old male who is 70kg and 175cm,
+with an ideal weight of 70kg.
+
+### Viewing the user's profile: `profile`
+
+Displays the user's information stored during setup.
+
+Format: `profile`
+
+* A user can only view his/her profile after setup. 
+
+### Suggesting a daily calorie intake: `suggest`
+
+Suggests an estimated daily calorie intake to allow the user to attain his/her ideal weight.
+
+Format: `suggest`
+
+* A user can only get an estimated suggested daily calorie intake after setup.
+
+### Locating the nearest gym in NUS: `locate`
+
+Locates the nearest gym in NUS based on the input location. 
+
+Format: `locate LOCATION`
+
+### Clearing all entries: `clear`
+
+Clears all entries from NutriGoals.
+
+Format: `clear`
+
 ### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
+
+### Saving the data
+
+NutriGoals data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
 _Details coming soon ..._
@@ -107,11 +207,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action | Format | Example |
-| --- | --- | --- |
-| **Add** | `add FOOD_ITEM CALORIES MEAL_TYPE` | `add donut 1000 breakfast` |
-| **Delete** | `delete MEAL_TYPE FOOD_ITEM` | `delete lunch cake` |
-| **Edit** | `edit MEAL_TYPE INDEX UPDATED_FOOD_ITEM CALORIES` | `edit dinner 2 rice 300` |
-| **Review** | `review` | `review` |
-| **List** | `list` | `list` |
-| **Exit** | `exit` | `exit` |
+| Action      | Format                                                  | Example                          |
+|-------------|---------------------------------------------------------|----------------------------------|
+| **Help**    | `help`                                                  | `help`                           |
+| **Add**     | `add n/FOOD c/CALORIE t/MEAL_TYPE`                      | `add n/donut c/1000 t/breakfast` |
+| **Delete**  | `delete INDEX`                                          | `delete 1`                       |
+| **Edit**    | `edit INDEX n/UPDATED_FOOD c/CALORIES t/MEAL_TYPE`      | `edit 2 n/rice c/300 t/dinner`   |
+| **Find**    | `find KEYWORD [KEYWORDS]`                               | `find bread`                     |
+| **Target**  | `target`                                                | `target 2000`                    |
+| **Review**  | `review`                                                | `review`                         |
+| **List**    | `list [DATE]`                                           | `list`                           |
+| **Setup**   | `setup g/GENDER w/WEIGHT h/HEIGHT i/IDEAL_WEIGHT a/AGE` | `setup g/m w/70 h/175 i/70 a/20` |
+| **Profile** | `profile`                                               | `profile`                        |
+| **Suggest** | `suggest`                                               | `suggest`                        |
+| **Clear**   | `clear`                                                 | `clear`                          |
+| **Exit**    | `exit`                                                  | `exit`                           |
