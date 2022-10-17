@@ -164,7 +164,7 @@ A `Module` class is used to represent a module. A `Module` contains a `ModuleCod
 optional `ModuleTitle`. Here are the ways in which different classes in the Model component interact
 with `Module`:
 - A `UniqueModuleList` represents the list of `Module` objects.
-- The list of modules are stored in the `AddressBook` class.
+- The list of modules is stored in the `AddressBook` class.
 - The `ModelManager` class stores the `AddressBook` containing the list of unfiltered `Module` 
   objects, and a separate instance variable storing the list of filtered `Module` objects.
 
@@ -181,11 +181,14 @@ has been added to represent a `Module` object in JSON format.
 
 #### Alternatives Considered
 
-* **Alternative 1:** Reuse the same `AddressBook` to also store the list of unique `Module` objects.
+Aspect: The class-level design of how to integrate the `Module` class to the Model component.
+
+* **Alternative 1 (current choice):** Reuse the same `AddressBook` to also store the list of 
+  unique `Module` objects.
 
     * Pros: A duplicate class `AddressBook` for `Model` methods is not necessary.
 
-    * Cons: `AddressBook` and `ModelManager` and other classes would need to be updated to include 
+    * Cons: `AddressBook`, `ModelManager` and other classes would need to be updated to include 
 `Module`. Hence, the interfaces `ReadOnlyAddressBook` and `Model` also need to be updated to support
 the `Module`-related methods.
 
@@ -198,9 +201,7 @@ rather than doing operations regarding both `Person` and `Module`.
     * Cons: More classes to implement. In particular, `AddressBook` and `ReadOnlyAddressBook` 
 need to be duplicated into separate classes to support `Module`.
 
-We have decided to follow Alternative 1.
-
-Reasons: 
+Reasons behind current choice: 
 1. Duplicating `AddressBook` will result in duplicating dependent classes such as 
 `ReadOnlyAddressBook`, `JsonAddressBookStorage` and `JsonSerializableAddressBook`, hence complicating
 the implementation. For example, the storage component will now need to deal with two `AddressBook` 
