@@ -3,12 +3,16 @@ package soconnect.model.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.exceptions.DuplicateTodoException;
 import soconnect.model.todo.exceptions.TodoNotFoundException;
 
@@ -93,6 +97,48 @@ public class UniqueTodoList implements Iterable<Todo> {
 
         internalList.setAll(todos);
         sort();
+    }
+
+    /**
+     * Updates the tag in every todo.
+     *
+     * @param oldTag The old tag to be changed.
+     * @param newTag The new tag that is changed into.
+     */
+    public void changeRelevantTodoTag(Tag oldTag, Tag newTag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Todo oldTodo = internalList.get(i);
+            List<Tag> todoTags = new ArrayList<>(oldTodo.getTags());
+            if (todoTags.contains(oldTag)) {
+                int index = todoTags.indexOf(oldTag);
+                todoTags.set(index, newTag);
+                Set<Tag> newTags = new HashSet<>(todoTags);
+                Todo newTodo = new Todo(oldTodo.getDescription(),
+                    oldTodo.getPriority(),
+                    newTags);
+                internalList.set(i, newTodo);
+            }
+        }
+    }
+
+    /**
+     * Removes the tag in every todo.
+     *
+     * @param tag The tag to be removed.
+     */
+    public void removeRelevantTodoTag(Tag tag) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Todo oldTodo = internalList.get(i);
+            List<Tag> todoTags = new ArrayList<>(oldTodo.getTags());
+            if (todoTags.contains(tag)) {
+                todoTags.remove(tag);
+                Set<Tag> updatedTags = new HashSet<>(todoTags);
+                Todo updatedTodo = new Todo(oldTodo.getDescription(),
+                    oldTodo.getPriority(),
+                    updatedTags);
+                internalList.set(i, updatedTodo);
+            }
+        }
     }
 
     /**

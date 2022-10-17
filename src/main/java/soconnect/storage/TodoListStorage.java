@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import soconnect.commons.exceptions.DataConversionException;
+import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 
 /**
@@ -24,12 +25,13 @@ public interface TodoListStorage {
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException;
+    Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect soConnect) throws DataConversionException, IOException;
 
     /**
-     * @see #readTodoList()
+     * @see #readTodoList(ReadOnlySoConnect)
      */
-    Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect soConnect, Path filePath) throws DataConversionException,
+            IOException;
 
     /**
      * Saves the given {@link ReadOnlyTodoList} to the storage.

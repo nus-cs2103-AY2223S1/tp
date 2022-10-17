@@ -2,7 +2,9 @@ package soconnect.logic.parser.todo;
 
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import soconnect.commons.core.Messages;
@@ -13,6 +15,7 @@ import soconnect.logic.parser.Parser;
 import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.Prefix;
 import soconnect.logic.parser.exceptions.ParseException;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
@@ -30,7 +33,7 @@ public class TodoAddCommandParser implements Parser<TodoAddCommand> {
      */
     public TodoAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
+            ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_PRIORITY)
             || !argMultimap.getPreamble().isEmpty()) {
@@ -40,8 +43,9 @@ public class TodoAddCommandParser implements Parser<TodoAddCommand> {
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Todo todo = new Todo(description, priority);
+        Todo todo = new Todo(description, priority, tagList);
 
         return new TodoAddCommand(todo);
     }

@@ -3,6 +3,7 @@ package soconnect.logic.commands.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
@@ -19,12 +20,14 @@ public class TodoAddCommand extends TodoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD + ": Adds a todo to SoConnect. "
         + "Parameters: "
         + PREFIX_DESCRIPTION + "DESCRIPTION "
-        + PREFIX_PRIORITY + "PRIORITY \n"
+        + PREFIX_PRIORITY + "PRIORITY "
+        + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Watch latest math lecture " + PREFIX_PRIORITY + "LOW";
 
     public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in SoConnect";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag does not exist, consider creating the tag first";
 
     private final Todo toAdd;
 
@@ -42,6 +45,10 @@ public class TodoAddCommand extends TodoCommand {
 
         if (model.hasTodo(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TODO);
+        }
+
+        if (!model.areTagsAvailable(toAdd)) {
+            throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
         }
 
         model.addTodo(toAdd);

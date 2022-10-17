@@ -11,6 +11,7 @@ import soconnect.model.person.Person;
 import soconnect.model.person.UniquePersonList;
 import soconnect.model.tag.Tag;
 import soconnect.model.tag.UniqueTagList;
+import soconnect.model.todo.Todo;
 
 /**
  * Wraps all data at the SoConnect level.
@@ -143,6 +144,22 @@ public class SoConnect implements ReadOnlySoConnect {
         List<Tag> personTags = new ArrayList<>(person.getTags());
         for (int i = 0; i < personTags.size(); i++) {
             if (!tags.hasTag(personTags.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if all the tags in the todo exist in the tagList.
+     *
+     * @param todo The todo to be added.
+     * @return True if all the tags exists in the tagList. False if otherwise.
+     */
+    public boolean areTagsAvailable(Todo todo) {
+        List<Tag> todoTags = new ArrayList<>(todo.getTags());
+        for (int i = 0; i < todoTags.size(); i++) {
+            if (!tags.hasTag(todoTags.get(i))) {
                 return false;
             }
         }

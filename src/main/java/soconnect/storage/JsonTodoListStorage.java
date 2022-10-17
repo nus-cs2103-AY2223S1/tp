@@ -13,6 +13,7 @@ import soconnect.commons.exceptions.DataConversionException;
 import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.commons.util.FileUtil;
 import soconnect.commons.util.JsonUtil;
+import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 
 /**
@@ -33,18 +34,19 @@ public class JsonTodoListStorage implements TodoListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException {
-        return readTodoList(filePath);
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect soConnect) throws DataConversionException {
+        return readTodoList(soConnect, filePath);
     }
 
     /**
-     * Similar to {@link #readTodoList()}.
+     * Similar to {@link #readTodoList(ReadOnlySoConnect)}.
      *
      * @param filePath Location of the data. Cannot be null.
      * @throws DataConversionException If the file is not in the correct format.
      */
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect soConnect, Path filePath)
+            throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTodoList> jsonTodoList = JsonUtil.readJsonFile(
@@ -54,7 +56,7 @@ public class JsonTodoListStorage implements TodoListStorage {
         }
 
         try {
-            return Optional.of(jsonTodoList.get().toModelType());
+            return Optional.of(jsonTodoList.get().toModelType(soConnect));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

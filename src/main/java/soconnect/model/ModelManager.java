@@ -139,6 +139,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean areTagsAvailable(Todo todo) {
+        requireNonNull(todo);
+
+        return soConnect.areTagsAvailable(todo);
+    }
+
+    @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
         return soConnect.hasTag(tag);

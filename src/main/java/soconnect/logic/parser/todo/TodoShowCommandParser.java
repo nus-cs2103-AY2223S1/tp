@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
 import java.util.List;
@@ -15,8 +17,10 @@ import soconnect.logic.parser.Parser;
 import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.Prefix;
 import soconnect.logic.parser.exceptions.ParseException;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.TodoContainsPriorityPredicate;
+import soconnect.model.todo.TodoContainsTagPredicate;
 
 /**
  * Parses input arguments and creates a new TodoShowCommand object.
@@ -38,7 +42,8 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }
 
-        List<ArgumentTokenizer.PrefixArgument> argList = tokenizeToList(args, new Prefix("all"), PREFIX_PRIORITY);
+        List<ArgumentTokenizer.PrefixArgument> argList = tokenizeToList(args, new Prefix("all"), PREFIX_PRIORITY,
+            PREFIX_TAG);
         int expectedNumberOfArguments = 2;
         if (argList.size() != expectedNumberOfArguments) {
             throw new ParseException(
@@ -60,6 +65,10 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         case INDICATOR_PRIORITY:
             Priority priority = ParserUtil.parsePriority(arg);
             return new TodoShowCommand(new TodoContainsPriorityPredicate(priority));
+
+        case INDICATOR_TAG:
+            Tag tag = ParserUtil.parseTag(arg);
+            return new TodoShowCommand(new TodoContainsTagPredicate(tag));
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));

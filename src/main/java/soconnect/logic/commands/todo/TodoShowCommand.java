@@ -2,6 +2,7 @@ package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
@@ -21,7 +22,7 @@ public class TodoShowCommand extends TodoCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
         + ": Filters the shown todo list based on the condition set.\n"
-        + "Only one condition allowed: all, " + PREFIX_PRIORITY + "PRIORITY\n"
+        + "Only one condition allowed: all, " + PREFIX_PRIORITY + "PRIORITY, " + PREFIX_TAG + "TAG\n"
         + "Parameters: CONDITION\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + NO_CONDITION
         + ", " + COMMAND_WORD + " " + SUB_COMMAND_WORD + PREFIX_PRIORITY + "LOW";

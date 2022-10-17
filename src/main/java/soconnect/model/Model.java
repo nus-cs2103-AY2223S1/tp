@@ -88,6 +88,14 @@ public interface Model {
     boolean areTagsAvailable(Person person);
 
     /**
+     * Returns true if all the tags in the todo exist in the Tag list
+     *
+     * @param todo The todo to be added.
+     * @return True if all the tags exists in the tagList. False if otherwise.
+     */
+    boolean areTagsAvailable(Todo todo);
+
+    /**
      * Deletes the given person.
      * The person must exist in the SoConnect.
      */

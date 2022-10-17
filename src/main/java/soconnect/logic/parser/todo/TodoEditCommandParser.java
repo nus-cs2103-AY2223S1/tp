@@ -3,6 +3,7 @@ package soconnect.logic.parser.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
@@ -26,7 +27,8 @@ public class TodoEditCommandParser implements Parser<TodoEditCommand> {
      */
     public TodoEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
+            PREFIX_TAG);
 
         Index index;
 
@@ -46,6 +48,11 @@ public class TodoEditCommandParser implements Parser<TodoEditCommand> {
         if (argMultimap.getValue(PREFIX_PRIORITY).isPresent()) {
             editTodoDescriptor.setPriority(ParserUtil.parsePriority(
                 argMultimap.getValue(PREFIX_PRIORITY).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editTodoDescriptor.setTags(ParserUtil.parseTags(
+                argMultimap.getAllValues(PREFIX_TAG)));
         }
 
         if (!editTodoDescriptor.isAnyFieldEdited()) {

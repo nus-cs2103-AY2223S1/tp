@@ -148,6 +148,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean areTagsAvailable(Todo todo) {
+            return true;
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }

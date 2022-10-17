@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
@@ -15,6 +17,7 @@ import soconnect.commons.util.CollectionUtil;
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
@@ -32,13 +35,15 @@ public class TodoEditCommand extends TodoCommand {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
+        + "[" + PREFIX_PRIORITY + "PRIORITY]"
+        + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " 1 "
         + PREFIX_DESCRIPTION + "Watch math lecture recording ";
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
     public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in SoConnect";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag does not exist, consider creating the tag first";
 
     private final Index index;
     private final EditTodoDescriptor editTodoDescriptor;
@@ -86,8 +91,9 @@ public class TodoEditCommand extends TodoCommand {
 
         Description updatedDescription = editTodoDescriptor.getDescription().orElse(todoToEdit.getDescription());
         Priority updatedPriority = editTodoDescriptor.getPriority().orElse(todoToEdit.getPriority());
+        Set<Tag> updatedTags = editTodoDescriptor.getTags().orElse(todoToEdit.getTags());
 
-        return new Todo(updatedDescription, updatedPriority);
+        return new Todo(updatedDescription, updatedPriority, updatedTags);
     }
 
     @Override
@@ -115,6 +121,7 @@ public class TodoEditCommand extends TodoCommand {
     public static class EditTodoDescriptor {
         private Description description;
         private Priority priority;
+        private Set<Tag> tagSet;
 
         public EditTodoDescriptor() {}
 
@@ -124,13 +131,14 @@ public class TodoEditCommand extends TodoCommand {
         public EditTodoDescriptor(EditTodoDescriptor toCopy) {
             setDescription(toCopy.description);
             setPriority(toCopy.priority);
+            setTags(toCopy.tagSet);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, priority);
+            return CollectionUtil.isAnyNonNull(description, priority, tagSet);
         }
 
         public void setDescription(Description description) {
@@ -149,6 +157,14 @@ public class TodoEditCommand extends TodoCommand {
             return Optional.ofNullable(priority);
         }
 
+        public void setTags(Set<Tag> tagSet) {
+            this.tagSet = tagSet;
+        }
+
+        public Optional<Set<Tag>> getTags() {
+            return Optional.ofNullable(tagSet);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -164,7 +180,9 @@ public class TodoEditCommand extends TodoCommand {
             // state check
             EditTodoDescriptor e = (EditTodoDescriptor) other;
 
-            return getDescription().equals(e.getDescription()) && getPriority().equals(e.getPriority());
+            return getDescription().equals(e.getDescription())
+                    && getPriority().equals(e.getPriority())
+                    && getTags().equals(e.getTags());
         }
     }
 }

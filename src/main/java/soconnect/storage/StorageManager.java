@@ -87,14 +87,16 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList() throws DataConversionException, IOException {
-        return readTodoList(todoListStorage.getTodoListFilePath());
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect soConnect) throws DataConversionException,
+            IOException {
+        return readTodoList(soConnect, todoListStorage.getTodoListFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect soConnect, Path filePath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return todoListStorage.readTodoList(filePath);
+        return todoListStorage.readTodoList(soConnect, filePath);
     }
 
     @Override
