@@ -6,6 +6,7 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
@@ -36,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                    PREFIX_MODULE, PREFIX_YEAR, PREFIX_STUDENTID, PREFIX_TEACHINGNOMINATION, PREFIX_TAG);
+                    PREFIX_MODULE, PREFIX_YEAR, PREFIX_STUDENTID, PREFIX_TEACHINGNOMINATION, PREFIX_RATING, PREFIX_TAG);
 
         Index index;
 
@@ -68,6 +69,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_TEACHINGNOMINATION).isPresent()) {
             editTutorDescriptor.setTeachingNomination(ParserUtil.parseTeachingNomination(
                     argMultimap.getValue(PREFIX_TEACHINGNOMINATION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
+            editTutorDescriptor.setRating(ParserUtil.parseRating(
+                    argMultimap.getValue(PREFIX_RATING).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTutorDescriptor::setTags);
 
