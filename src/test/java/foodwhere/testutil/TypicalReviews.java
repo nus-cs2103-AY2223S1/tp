@@ -13,9 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import foodwhere.model.AddressBook;
 import foodwhere.model.review.Review;
-import foodwhere.model.stall.Stall;
 
 /**
  * A utility class containing a list of {@code Review} objects to be used in tests.
@@ -65,14 +63,4 @@ public class TypicalReviews {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
-        for (Stall stall : TypicalStalls.getTypicalStalls()) {
-            ab.addStall(stall);
-        }
-        for (Review review : TypicalReviews.getTypicalReviews()) {
-            ab.addReview(review);
-        }
-        return ab;
-    }
 }

@@ -16,13 +16,14 @@ import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
 import foodwhere.model.review.NameContainsStallPredicate;
 import foodwhere.testutil.TypicalReviews;
+import foodwhere.testutil.TypicalStalls;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code RFindCommand}.
  */
 public class RFindCommandTest {
-    private Model model = new ModelManager(TypicalReviews.getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(TypicalReviews.getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalStalls.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -49,6 +50,7 @@ public class RFindCommandTest {
 
         // different reviews -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+
     }
 
     @Test

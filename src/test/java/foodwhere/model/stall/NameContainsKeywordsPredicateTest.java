@@ -17,9 +17,11 @@ public class NameContainsKeywordsPredicateTest {
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
+        List<String> thirdPredicateKeywordList = Arrays.asList("second", "first");
 
         NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
         NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        NameContainsKeywordsPredicate thirdPredicate = new NameContainsKeywordsPredicate(thirdPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
@@ -27,6 +29,9 @@ public class NameContainsKeywordsPredicateTest {
         // same values -> returns true
         NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
+
+        //same keywords, different order -> returns true
+        assertTrue(secondPredicate.equals(thirdPredicate));
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
@@ -36,6 +41,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // different stall -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
     }
 
     @Test

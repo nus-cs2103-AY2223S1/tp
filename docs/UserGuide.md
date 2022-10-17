@@ -196,11 +196,11 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **Exit**  | `exit`                                                                                                  |
 | **Help**  | `help`                                                                                                  |
 | **Clear** | `clear`                                                                                                 |
-| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!`          |
+| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
 | **rDel**  | `rdel INDEX`                                                                                            |
 | **rList** | `rlist`                                                                                                 |
-| **rFind** | `rfind`                                                                                                 |
+| **rFind** | `rfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
 | **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice` |
 | **sDel**  | `sdel INDEX`                                                                                            |
 | **sList** | `slist`                                                                                                 |
-| **sFind** | `sFind`                                                                                                 |
+| **sFind** | `sFind KEYWORD [MORE_KEYWORDS]…`                                                                         |
