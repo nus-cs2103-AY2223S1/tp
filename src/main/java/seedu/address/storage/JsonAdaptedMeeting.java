@@ -91,7 +91,7 @@ class JsonAdaptedMeeting {
      */
     public Meeting toModelType(Client client) throws IllegalValueException {
         Description modelDescription = new Description(description);
-        MeetingDate modelMeetingDate = ParserUtil.parseDate(meetingDate);
+        MeetingDate modelMeetingDate = new MeetingDate(ParserUtil.parseDate(meetingDate));
         MeetingTime modelMeetingTime = ParserUtil.parseTime(meetingTime);
         return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingTime);
     }

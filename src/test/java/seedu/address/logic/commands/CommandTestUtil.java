@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyInsuRec;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.meeting.Meeting;
@@ -40,6 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final Birthday VALID_BIRTHDAY = new Birthday(LocalDate.of(1952, 12, 12));
 
     public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
     public static final String VALID_DESCRIPTION_MEETING2 = "meeting2";

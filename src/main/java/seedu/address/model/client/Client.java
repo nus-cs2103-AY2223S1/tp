@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.meeting.Meeting;
@@ -12,7 +13,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Client in MyInsuRec.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: all details except birthday are present and not null, field values are validated, immutable.
  */
 public class Client {
 
@@ -20,36 +21,43 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private Meeting meeting;
+    private final Birthday birthday; // may be null
+    private final Address address;
 
     // Data fields
-    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Meeting meeting;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present.
+     * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Client(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags.addAll(tags);
     }
 
     /**
      * Construct a client with meetings
+     * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
+    public Client(Name name, Phone phone, Email email, Address address,
+                  Birthday birthday, Set<Tag> tags, Meeting meeting) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         this.tags.addAll(tags);
         this.meeting = meeting;
     }
+
 
     public Name getName() {
         return name;
@@ -67,6 +75,12 @@ public class Client {
         return address;
     }
 
+    public Optional<Birthday> getBirthday() {
+        return (birthday == null)
+                ? Optional.empty()
+                : Optional.of(birthday);
+    }
+
     public boolean hasMeeting() {
         return meeting != null;
     }
@@ -78,6 +92,7 @@ public class Client {
     public void setMeeting(Meeting meeting) {
         this.meeting = meeting;
     }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -119,13 +134,14 @@ public class Client {
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getAddress().equals(getAddress())
+                && otherClient.getBirthday().equals(getBirthday())
                 && otherClient.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, birthday, tags);
     }
 
     @Override
@@ -138,6 +154,13 @@ public class Client {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress());
+
+        Optional<Birthday> birthday = getBirthday();
+        if (!birthday.isEmpty()) {
+            builder.append("; Birthday: ").append(birthday.get());
+        } else {
+            builder.append("; Birthday: ");
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

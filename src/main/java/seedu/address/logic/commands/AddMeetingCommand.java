@@ -59,9 +59,9 @@ public class AddMeetingCommand extends Command {
                 oldClient.getPhone(),
                 oldClient.getEmail(),
                 oldClient.getAddress(),
+                oldClient.getBirthday().orElse(null),
                 oldClient.getTags());
         Meeting meetingToAdd = new Meeting(newClient, description, meetingDate, meetingTime);
-
         if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }

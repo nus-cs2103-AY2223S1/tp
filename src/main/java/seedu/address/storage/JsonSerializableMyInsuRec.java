@@ -49,13 +49,13 @@ class JsonSerializableMyInsuRec {
     public MyInsuRec toModelType() throws IllegalValueException {
         MyInsuRec myInsuRec = new MyInsuRec();
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
-            Client person = jsonAdaptedClient.toModelType();
-            if (myInsuRec.hasClient(person)) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (myInsuRec.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            myInsuRec.addClient(person);
-            if (person.hasMeeting()) {
-                myInsuRec.addMeeting(person.getMeeting());
+            myInsuRec.addClient(client);
+            if (client.hasMeeting()) {
+                myInsuRec.addMeeting(client.getMeeting());
             }
         }
         return myInsuRec;

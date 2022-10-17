@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 
 /**
@@ -29,6 +31,9 @@ public class ClientDetailedView extends UiPart<Region> {
     private Label email;
 
     @FXML
+    private Label birthday;
+
+    @FXML
     private VBox meetings;
 
     /**
@@ -40,6 +45,14 @@ public class ClientDetailedView extends UiPart<Region> {
         clientName.setText(client.getName().toString());
         phoneNumber.setText(client.getPhone().toString());
         email.setText(client.getEmail().toString());
+
+        Optional<Birthday> clientBirthday = client.getBirthday();
+        if (clientBirthday.isEmpty()) {
+            birthday.setText("");
+        } else {
+            birthday.setText(clientBirthday.get().formattedDate());
+        }
+
         if (client.getMeeting() != null) {
             meetings.getChildren().add(new MeetingCondensedView(client.getMeeting()).getRoot());
         }

@@ -1,8 +1,12 @@
 {
-  "clients": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street"
+  "clients" : [ {
+    "@UUID" : "6498bd54-8de5-4d0e-8648-8977f5269814",
+    "name" : "Client with invalid name field: Ha!ns Mu@ster",
+    "phone" : "9482424",
+    "email" : "hans@example.com",
+    "address" : "4th street",
+    "birthday" : "",
+    "tagged" : [ ],
+    "meetings" : [ ]
   } ]
 }

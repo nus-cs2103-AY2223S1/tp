@@ -1,8 +1,10 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -34,6 +38,7 @@ class JsonAdaptedClient {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+    private final String birthday;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -41,6 +46,7 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("birthday") String birthday,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
         if (meetings != null) {
@@ -50,6 +56,7 @@ class JsonAdaptedClient {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -66,6 +73,14 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+
+        Optional<Birthday> sourceBirthday = source.getBirthday();
+        if (sourceBirthday.isEmpty()) {
+            birthday = "";
+        } else {
+            birthday = sourceBirthday.toString();
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -80,6 +95,14 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+
+        Optional<Birthday> sourceBirthday = source.getBirthday();
+        if (sourceBirthday.isEmpty()) {
+            birthday = "";
+        } else {
+            birthday = sourceBirthday.toString();
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -127,14 +150,24 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
+        final Birthday modelBirthday;
+        if (birthday.equals("")) {
+            modelBirthday = null;
+        } else {
+            LocalDate dateLocalDate = ParserUtil.parseDate(birthday);
+            modelBirthday = new Birthday(dateLocalDate);
+        }
+
         final Set<Tag> modelTags = new HashSet<>(clientTags);
+
         if (!meetings.isEmpty()) {
-            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
             final Meeting meeting = meetings.get(0).toModelType(client);
             client.setMeeting(meeting);
             return client;
         } else {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
         }
     }
 

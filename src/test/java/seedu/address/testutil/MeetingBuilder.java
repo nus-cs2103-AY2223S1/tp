@@ -42,7 +42,7 @@ public class MeetingBuilder {
         meetingDate = new MeetingDate(DEFAULT_MEETING_DATE);
         meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
         client = new Client(new Name(DEFAULT_NAME), new Phone(DEFAULT_PHONE),
-                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), DEFAULT_TAGS);
+                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), null, DEFAULT_TAGS);
     }
 
     /**
