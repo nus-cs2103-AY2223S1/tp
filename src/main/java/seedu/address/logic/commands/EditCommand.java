@@ -235,13 +235,15 @@ public class EditCommand extends Command {
             setLocation(toCopy.location);
             setGithubUsername(toCopy.githubUsername);
             setRating(toCopy.rating);
+            setYear(toCopy.year);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating,
+                    year);
         }
 
         public void setName(Name name) {
@@ -373,7 +375,8 @@ public class EditCommand extends Command {
                 && getTags().equals(e.getTags())
                 && getLocation().equals(e.getLocation())
                 && getGithubUsername().equals(e.getGithubUsername())
-                && getRating().equals(e.getRating());
+                && getRating().equals(e.getRating())
+                && getYear().equals(e.getYear());
         }
 
     }

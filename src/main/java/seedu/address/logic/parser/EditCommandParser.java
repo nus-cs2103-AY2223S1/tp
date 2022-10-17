@@ -84,11 +84,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
-            String usernameInput = argMultimap.getValue(PREFIX_YEAR).orElse(Year.EMPTY_YEAR);
-            if (usernameInput.equals(Year.EMPTY_YEAR)) {
-                editPersonDescriptor.setYear(ParserUtil.parseYear(usernameInput, false));
+            String yearInput = argMultimap.getValue(PREFIX_YEAR).orElse(Year.EMPTY_YEAR);
+
+            if (yearInput.equals(Year.EMPTY_YEAR)) {
+                editPersonDescriptor.setYear(ParserUtil.parseYear(yearInput, false));
             } else {
-                editPersonDescriptor.setYear(ParserUtil.parseYear(usernameInput, true));
+                editPersonDescriptor.setYear(ParserUtil.parseYear(yearInput, true));
             }
         }
 
