@@ -18,7 +18,7 @@ public class ItemQuantityPairBuilder {
      * Creates a {@code ItemQuantityPairBuilder} with the default details.
      */
     public ItemQuantityPairBuilder() {
-        item = DEFAULT_ITEM
+        item = DEFAULT_ITEM;
         quantity = new Quantity(DEFAULT_QUANTITY);
     }
 

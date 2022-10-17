@@ -3,6 +3,8 @@ package tracko.testutil;
 import java.util.ArrayList;
 import java.util.List;
 
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
 import tracko.model.order.Address;
 import tracko.model.order.Email;
 import tracko.model.order.ItemQuantityPair;
@@ -19,7 +21,7 @@ public class OrderBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ITEM = "Keychain";
+    public static final Item DEFAULT_ITEM = new ItemBuilder().build();
     public static final Integer DEFAULT_QUANTITY = 2;
 
     private Name name;
@@ -37,7 +39,7 @@ public class OrderBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         itemList = new ArrayList<>();
-        itemList.add(new ItemQuantityPair(DEFAULT_ITEM, DEFAULT_QUANTITY));
+        itemList.add(new ItemQuantityPair(DEFAULT_ITEM, new Quantity(DEFAULT_QUANTITY)));
     }
 
     /**
@@ -80,6 +82,14 @@ public class OrderBuilder {
      */
     public OrderBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the list of ordered items of the {@code Order} that we are building.
+     */
+    public OrderBuilder withItemList(List<ItemQuantityPair> itemList) {
+        this.itemList = itemList;
         return this;
     }
 
