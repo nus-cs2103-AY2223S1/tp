@@ -8,6 +8,7 @@ import seedu.address.model.module.ModuleCode;
 public class TypicalModuleCodes {
     public static final ModuleCode CODE_FIRST_MODULE = new ModuleCode("CS2100");
     public static final ModuleCode CODE_SECOND_MODULE = new ModuleCode("CS2101");
+    public static final ModuleCode CODE_THIRD_MODULE = new ModuleCode("CS2102");
 
     TypicalModuleCodes() {} //prevent instantiation
 }
