@@ -16,11 +16,11 @@ import seedu.address.commons.util.StringUtil;
 public class PersonMatchesPredicate implements Predicate<Person> {
 
     private List<String> namesList;
-    private Set<String> modulesList;
+    private Set<String> modulesSet;
     private List<String> phonesList;
     private List<String> emailsList;
     private List<String> gendersList;
-    private Set<String> tagsList;
+    private Set<String> tagsSet;
     private List<String> locationsList;
     private List<String> typesList;
 
@@ -41,11 +41,11 @@ public class PersonMatchesPredicate implements Predicate<Person> {
      */
     public PersonMatchesPredicate() {
         namesList = new ArrayList<>();
-        modulesList = new HashSet<>();
+        modulesSet = new HashSet<>();
         phonesList = new ArrayList<>();
         emailsList = new ArrayList<>();
         gendersList = new ArrayList<>();
-        tagsList = new HashSet<>();
+        tagsSet = new HashSet<>();
         locationsList = new ArrayList<>();
         typesList = new ArrayList<>();
 
@@ -96,7 +96,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         if (!hasModulesList) {
             return true;
         }
-        return person.doModulesMatch(modulesList, needsAllModules);
+        return person.doModulesMatch(modulesSet, needsAllModules);
     }
 
     public boolean phoneMatches(Person person) {
@@ -150,9 +150,9 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
         Set<String> personList = makeTagsList(person);
         if (needsAllTags) {
-            return personList.equals(tagsList);
+            return personList.equals(tagsSet);
         } else {
-            personList.retainAll(tagsList);
+            personList.retainAll(tagsSet);
             return !personList.isEmpty();
         }
     }
@@ -163,7 +163,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     }
 
     public void setModulesList(Set<String> otherList, boolean needsAllModules) {
-        this.modulesList = otherList;
+        this.modulesSet = otherList;
         hasModulesList = true;
         this.needsAllModules = needsAllModules;
     }
@@ -184,7 +184,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     }
 
     public void setTagsList(Set<String> tagsList, boolean needsAllTags) {
-        this.tagsList = tagsList;
+        this.tagsSet = tagsList;
         this.needsAllTags = needsAllTags;
         hasTagsList = true;
     }
@@ -199,6 +199,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         hasTypesList = true;
     }
 
+    //get methods are for tests. some have not been used yet
     public boolean getHasNamesList() {
         return hasNamesList;
     }
@@ -235,12 +236,12 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return namesList;
     }
 
-    public Set<String> getModulesList() {
-        return modulesList;
+    public Set<String> getModulesSet() {
+        return modulesSet;
     }
 
-    public Set<String> getTagsList() {
-        return tagsList;
+    public Set<String> getTagsSet() {
+        return tagsSet;
     }
 
     public List<String> getGendersList() {
@@ -268,11 +269,11 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return other == this // short circuit if same object
                 || (other instanceof PersonMatchesPredicate // instanceof handles nulls
                 && namesList.equals((((PersonMatchesPredicate) other).namesList))
-                && modulesList.equals(((PersonMatchesPredicate) other).modulesList)
+                && modulesSet.equals(((PersonMatchesPredicate) other).modulesSet)
                 && phonesList.equals(((PersonMatchesPredicate) other).phonesList)
                 && emailsList.equals(((PersonMatchesPredicate) other).emailsList)
                 && gendersList.equals(((PersonMatchesPredicate) other).gendersList)
-                && tagsList.equals(((PersonMatchesPredicate) other).tagsList)
+                && tagsSet.equals(((PersonMatchesPredicate) other).tagsSet)
                 && locationsList.equals(((PersonMatchesPredicate) other).locationsList)
                 && typesList.equals(((PersonMatchesPredicate) other).typesList)
                 && needsAllTags == ((PersonMatchesPredicate) other).needsAllTags

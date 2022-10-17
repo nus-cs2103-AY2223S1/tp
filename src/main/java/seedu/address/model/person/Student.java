@@ -76,17 +76,22 @@ public class Student extends Person {
     }
 
     @Override
-    public boolean doModulesMatch(Set<String> modulesList, boolean needsAllModules) {
+    public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
         Set<String> personModulesList = getModulesSetString();
         if (needsAllModules) {
-            return personModulesList.equals(modulesList);
+            return personModulesList.equals(modulesSet);
         } else {
-            personModulesList.retainAll(modulesList);
+            personModulesList.retainAll(modulesSet);
             return !personModulesList.isEmpty();
         }
     }
 
-    public Set<String> getModulesSetString() {
+    /**
+     * Creates Set of modules in their String form. Used to check if there is a match in
+     * modules provided by the user for a FindCommand.
+     * @return the Set of modules in their String form
+     */
+    private Set<String> getModulesSetString() {
         return getModuleCodes().stream()
                 .map(moduleCode -> moduleCode.value.toLowerCase()).collect(Collectors.toSet());
     }

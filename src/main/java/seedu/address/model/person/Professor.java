@@ -106,8 +106,8 @@ public class Professor extends Person {
     }
 
     @Override
-    public boolean doModulesMatch(Set<String> modulesList, boolean needsAllTags) {
-        return modulesList.stream()
+    public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
+        return modulesSet.stream()
                 .anyMatch(module -> StringUtil.containsWordIgnoreCase(this.moduleCode.value, module));
     }
 }

@@ -19,7 +19,7 @@ import seedu.address.model.person.PersonMatchesPredicate;
 public class FindCommandParser implements Parser<FindCommand> {
     private PersonMatchesPredicate predicate = new PersonMatchesPredicate();
     private ArgumentMultimap argMultimap;
-    private Pattern allArgumentsPattern = Pattern.compile("^all/.+");
+    private final Pattern ALL_ARGUMENTS_PATTERN = Pattern.compile("^all/.+");
     private boolean needsAllTags = false;
     private boolean needsAllModules = false;
 
@@ -76,7 +76,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * {@code ArgumentMultimap} and the modules and tag fields have the correct format.
      */
     private boolean areAllArgsValid(Prefix... prefixes) {
         Supplier<Stream<Prefix>> presentArgs = () ->
@@ -90,33 +90,51 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
+    /**
+     * Checks if the user's input for the tag field is valid.
+     * @return true if the input is valid, false otherwise.
+     */
     private boolean areTagsArgsValid() {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String input = argMultimap.getValue(PREFIX_TAG).get();
             if (input.contains("all/")) {
                 needsAllTags = true;
-                return allArgumentsPattern.matcher(input.trim()).matches();
+                return ALL_ARGUMENTS_PATTERN.matcher(input.trim()).matches();
             }
         }
         return true;
     }
 
+    /**
+     * Checks if the user's input for the module field is valid.
+     * @return true if the input is valid, false otherwise.
+     */
     private boolean areModulesArgsValid() {
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
             String input = argMultimap.getValue(PREFIX_MODULE_CODE).get();
             if (input.contains("all/")) {
                 needsAllModules = true;
-                return allArgumentsPattern.matcher(input.trim()).matches();
+                return ALL_ARGUMENTS_PATTERN.matcher(input.trim()).matches();
             }
         }
         return true;
     }
 
+    /**
+     * Create a List of Strings from the user's input to pass to the {@code PersonMatchesPredicate} object.
+     * @param prefix the specified arguments to extract from the {@code }ArgumentMultimap} object
+     * @return the List of Strings containing the user's input.
+     */
     private List<String> getKeywordList(Prefix prefix) {
         String[] keywordsString = argMultimap.getValue(prefix).get().split("\\s+");
         return Arrays.asList(keywordsString);
     }
 
+    /**
+     * Creates and sets the tag set for the {@code PersonMatchesPredicate} object.
+     * Checks if the user wants all the tag to match and passes the appropriate
+     * argument.
+     */
     private void setTagsList() {
         String tagsKeywords = argMultimap.getValue(PREFIX_TAG).get();
         Set<String> tagsKeywordsList;
@@ -131,6 +149,12 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     }
 
+
+    /**
+     * Creates and sets the module set for the {@code PersonMatchesPredicate} object.
+     * Checks if the user wants all the modules to match and passes the appropriate
+     * argument.
+     */
     private void setModulesList() {
         String modulesKeywords = argMultimap.getValue(PREFIX_MODULE_CODE).get();
         Set<String> modulesKeywordsList;

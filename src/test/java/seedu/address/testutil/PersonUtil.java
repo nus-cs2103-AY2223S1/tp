@@ -108,7 +108,7 @@ public class PersonUtil {
         }
 
         if (predicate.getHasModulesList()) {
-            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesList());
+            commandDetails += PREFIX_MODULE_CODE + String.join(" ", predicate.getModulesSet());
         }
 
         return commandDetails;
