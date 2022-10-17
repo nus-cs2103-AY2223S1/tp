@@ -154,13 +154,35 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Student Class Group Feature
+The class group feature allows a student to have a class group. The feature consists of the following command
+- ```ClassGroupCommand``` - Can add, delete and modify a student's class group field.
+
+The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
+This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
+
+**Class Group command**
+
+Implementation:
+
+The following is a more detailed explanation on how ```ClassCommand``` works.
+
+1. The ```AddressBookParser``` will select ```ClassGroupCommandParser``` and parse the user input.
+2. Following which, ```ClassGroupCommand#execute(Model model)``` method is called which
+updates the class group field of a student.
+3. If the student already has class field data, the input will overwrite existing data.
+4. If class field input is empty, ```ClassGroupCommand#execute(Model model)``` will delete the class group data.
+
+
+
 ### Student Attendance feature ###
-The student attendance feature keeps track of student's attendance. The feature comprises of commands namely,
+The student attendance feature keeps track of student's attendance. The feature consists of commands namely,
 - ```AttendanceAddCommand``` - Adds an attendance list to the student in the class list.
 - ```AttendanceDeleteCommand``` - Removes the attendance list to the student in the class list.
 - ```AttendanceMarkCommand``` - Marks or unmarks student's attendance in his attendance list.
 
-The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram. Tis is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
+The attendance commands all follow similar paths of execution which defers slightly from Logic sequence diagram.
+This is illustrated in the sequence diagram below, which shows the diagram for Student<INSERT>Command.
 
 The attendance commands when executed will use methods exposed by the ```Model``` interface and perform the related operations.
 
