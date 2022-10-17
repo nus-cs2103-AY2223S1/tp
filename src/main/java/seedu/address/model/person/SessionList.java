@@ -57,7 +57,8 @@ public class SessionList {
         sessionList.sort(Session::compareTo);
     }
     /**
-     * Returns a description of the next session in the session list.
+     * Returns a description of the session list. If session list size is greater than two,
+     * only the first two are shown.
      */
     public String shortDescription() {
         if (sessionList.isEmpty()) {
