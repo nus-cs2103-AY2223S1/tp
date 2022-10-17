@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -80,8 +81,9 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand(descriptor);
 
         assertThrows(CommandException.class,
-                AddTaskCommand.MESSAGE_MODULE_CODE_DOES_NOT_EXIST, () ->
-                addTaskCommand.execute(model));
+                String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                        nonExistentModule.getModuleCodeAsUpperCaseString()), () ->
+                        addTaskCommand.execute(model));
     }
 
     @Test

@@ -62,8 +62,10 @@ public class GoToCommandTest {
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(" ");
         GoToCommand command = new GoToCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
+        expectedModel.setHomeStatus(false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
+        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 
     @Test
@@ -74,8 +76,10 @@ public class GoToCommandTest {
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(MODULE_CODE_STR_CS2106);
         GoToCommand command = new GoToCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
+        expectedModel.setHomeStatus(false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2106), model.getFilteredModuleList());
+        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 
     @Test
@@ -86,7 +90,9 @@ public class GoToCommandTest {
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate("cS2106");
         GoToCommand command = new GoToCommand(predicate);
         expectedModel.updateFilteredModuleList(predicate);
+        expectedModel.setHomeStatus(false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2106), model.getFilteredModuleList());
+        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 }

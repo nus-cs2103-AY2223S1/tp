@@ -27,11 +27,12 @@ public class GoToCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredModuleList(predicate);
+        model.setHomeStatus(false);
 
         if (model.getFilteredModuleList().isEmpty()) {
             return new CommandResult(Messages.MESSAGE_NO_SUCH_MODULE);
         }
-        model.setHomeStatus(false);
+
         return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
     }
 
