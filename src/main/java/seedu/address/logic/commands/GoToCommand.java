@@ -10,6 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonIsInModulePredicate;
 
@@ -41,29 +42,26 @@ public class GoToCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Module moduleToGoTo = model.getModuleUsingModuleCode(moduleCode, false);
+        try {
+            Module moduleToGoTo = model.getModuleUsingModuleCode(moduleCode, false);
+            Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleToGoTo);
 
-        Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleToGoTo);
+            model.updateFilteredModuleList(predicate);
 
-        model.updateFilteredModuleList(predicate);
+            assert(model.getFilteredModuleList().size() == 1); // GoTo should display maximally one module.
+            model.updateFilteredPersonList(moduleContainsPersonPredicate);
 
-        if (model.getFilteredModuleList().isEmpty()) {
+            return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
+        } catch (ModuleNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
         }
-
-        assert(model.getFilteredModuleList().size() == 1); // GoTo should display maximally one module.
-
-        model.updateFilteredPersonList(moduleContainsPersonPredicate);
-
-
-
-        return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GoToCommand // instanceof handles nulls
-                && predicate.equals(((GoToCommand) other).predicate)); // state check
+                && predicate.equals(((GoToCommand) other).predicate)
+                && moduleCode.equals(((GoToCommand) other).moduleCode)); // state check
     }
 }
