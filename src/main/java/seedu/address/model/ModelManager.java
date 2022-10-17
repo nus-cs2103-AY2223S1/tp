@@ -98,6 +98,11 @@ public class ModelManager implements Model {
         return true;
     }
 
+    @Override
+    public Path getNextAddressBookPath() {
+        return userPrefs.getNextAddressBookPath();
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override

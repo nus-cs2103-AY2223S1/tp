@@ -58,4 +58,9 @@ public interface Logic {
      * Add and create a new address book
      */
     boolean addAddressBook() throws IOException;
+
+    /**
+     * Swaps between the address book
+     */
+    void swapAddressBook();
 }

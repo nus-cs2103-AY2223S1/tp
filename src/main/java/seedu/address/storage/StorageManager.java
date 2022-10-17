@@ -54,6 +54,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public void setAddressBook(AddressBookStorage addressBookStorage) {
+        this.addressBookStorage = addressBookStorage;
+    }
+
+    @Override
     public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
         return readAddressBook(addressBookStorage.getAddressBookFilePath());
     }

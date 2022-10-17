@@ -62,6 +62,9 @@ public interface Model {
      */
     void setAllAddressBookFilePath(Path[] updatedPaths);
 
+    /** Returns the next AddressBook */
+    Path getNextAddressBookPath();
+
     /**
      * Creates a new Address Book
      */

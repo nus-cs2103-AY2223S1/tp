@@ -22,6 +22,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private static final String DEFAULT_ADDRESS_BOOK_NAME = "addressbook";
+    private int addressBookIndex = 0;
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private static final int MAX_ADDRESS_BOOK_LIMIT = 5;
     private ArrayList<Path> allAddressBookFilePath = new ArrayList<Path>();
@@ -49,6 +50,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setAllAddressBookFilePath(newUserPrefs.getAllAddressBookFilePath());
+        setStoredIndex(newUserPrefs.getStoredIndex()%newUserPrefs.getAllAddressBookFilePath().length);
     }
 
     public GuiSettings getGuiSettings() {
@@ -94,6 +96,27 @@ public class UserPrefs implements ReadOnlyUserPrefs {
             System.out.println(allAddressBookFilePath);
             return true;
         }
+    }
+
+    public Path getNextAddressBookPath() {
+        incrementIndex();
+        Path nextAddressBook = allAddressBookFilePath.get(addressBookIndex);
+        System.out.println("next book:" + nextAddressBook.toString());
+        setAddressBookFilePath(nextAddressBook);
+        return nextAddressBook;
+    }
+
+    public int getStoredIndex() {
+        return addressBookIndex;
+    }
+
+    public void setStoredIndex(int index) {
+        addressBookIndex = index;
+    }
+
+    private void incrementIndex() {
+        addressBookIndex += 1;
+        addressBookIndex = addressBookIndex%allAddressBookFilePath.size();
     }
 
     @Override

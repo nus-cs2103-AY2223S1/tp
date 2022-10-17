@@ -18,6 +18,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
@@ -162,6 +164,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Swaps between the Books
+     */
+    @FXML
+    private void handleSwap() throws CommandException {
+        try {
+            logic.swapAddressBook();
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -193,6 +207,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isNewBook()) {
                 handleNewBook();
+            }
+
+            if (commandResult.isSwap()) {
+                handleSwap();
             }
 
             if (commandResult.isExit()) {
