@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -17,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.Meeting;
 //import seedu.address.model.person.Address;
 //import seedu.address.model.person.Email;
@@ -214,8 +214,15 @@ public class ModelManager implements Model {
 
     @Override
     public Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                                    String meetingDateAndTime, String meetingLocation) throws ParseException {
+                                    String meetingDateAndTime, String meetingLocation)
+            throws ParseException, java.text.ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetingList.hasMeeting(meeting);
     }
 
     @Override

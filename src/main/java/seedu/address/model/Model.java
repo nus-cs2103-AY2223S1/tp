@@ -113,7 +113,15 @@ public interface Model {
      * @return a new meeting
      */
     Meeting createNewMeeting(ArrayList<Person> peopleToMeet, String meetingTitle,
-                             String meetingDateAndTime, String meetingLocation) throws ParseException;
+                             String meetingDateAndTime, String meetingLocation)
+            throws ParseException, seedu.address.logic.parser.exceptions.ParseException;
+
+    /**
+     * Checks if a meeting exists in the address book.
+     *
+     * @param meeting the new meeting to check
+     */
+    boolean hasMeeting(Meeting meeting);
 
     /**
      * Adds a new meeting to the address book.

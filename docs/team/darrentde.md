@@ -9,7 +9,7 @@ AddressBook - Level 3 is a desktop address book application used for teaching So
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
 
 * **Code contributed**: [RepoSense link]()
 
@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Documentation**:
 
 * **Community**:
- 
+
 * **Tools**:
- 
+
 * _{you can add/remove categories in the list above}_
