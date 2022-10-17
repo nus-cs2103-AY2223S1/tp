@@ -40,8 +40,8 @@ contains some sample data.<br>
 | [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                | Delete module by module code                                                    |
 | [`find-module`](#213-find-module)                   | `find-module     KEYWORD`                                      | Find module that starts with specified keyword in home page                     |
 | [`list-module`](#214-list-module)                   | `list-module`                                                  | List all modules in home page after finding                                     |
-| [`add task`](#221-add-task)                         | `add    task     m/MODULE_CODE d/TASK_DESCRIPTION`             | Add task with specified module code and task description                        |
-| [`delete task`](#222-delete-task)                   | `delete task     m/MODULE_CODE n/TASK_NUMBER`                  | Delete task corresponding to specified task number of specified module code     |
+| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`            | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                 | Delete task corresponding to specified task number of specified module code     |
 | [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                             | Add link URL to a module by its displayed index                                 |
 | [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                             | Delete link URL from a module by its displayed index                            |
 | [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`          | Add contact with specified name, email, and phone number                        |
@@ -75,7 +75,7 @@ to be present.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
 the parameter will be taken.<br>
-  e.g. if you specify `p/81234123 p/999`, only `p/999` will be taken.
+  e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
   `home`, `list-module`, `goto` and `exit`) will be ignored.<br>
@@ -162,15 +162,15 @@ You may add a task using the `add-task` command.
 This command will require two flags:
 * `m/`: To be followed by the module code of the
   module which the task is associated with.
-* `d/`: To be followed by the task description.
+* `td/`: To be followed by the task description.
 
-Format: `add-task m/MODULE_CODE d/TASK_DESCRIPTION`
+Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task **must** belong to a specific module.
 * You should provide a module code of an existing module in Plannit.
 
 Example:
 ```
-add-task m/CS2103T d/Complete tP tasks for W07
+add-task m/CS2103T td/Complete tP tasks for W07
 ```
 In the above example, we are adding the task `Complete tP tasks for W07` to the 
 module with module code `CS2103T`.
@@ -182,16 +182,16 @@ You may delete a task belonging to a particular module using the
 This command will require two flags:
 * `m/`: To be followed by the module code of the module which assigned the 
   task.
-* `n/`: To be followed by the task number in the module.
+* `tn/`: To be followed by the task number in the module.
 
-Format: `delete-task m/MODULE_CODE n/TASK_NUMBER`
+Format: `delete-task m/MODULE_CODE tn/TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
 * You should provide a task number corresponding to that of an existing task in 
   the module.
 
 Example:
 ```
-delete-task m/CS2103T n/3
+delete-task m/CS2103T tn/3
 ```
 In the above example, we are deleting task number **3** from the module 
 with the module code `CS2103T`.

@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 
 /**
@@ -122,6 +124,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasModuleInFilteredList(Module module) {
+        requireNonNull(module);
+        return filteredModules.stream().anyMatch(module::isSameModule);
+    }
+
+    @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
         this.isHome = true;
@@ -140,6 +148,27 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedModule);
 
         addressBook.setModule(target, editedModule);
+    }
+
+    @Override
+    public Module getModuleUsingModuleCode(ModuleCode moduleCodeOfModuleToGet,
+                                           boolean isFiltered) {
+        requireAllNonNull(moduleCodeOfModuleToGet, isFiltered);
+        Module moduleToGet = new Module(moduleCodeOfModuleToGet);
+        if (isFiltered && hasModuleInFilteredList(moduleToGet)) {
+            ObservableList<Module> unmodifiableListOfModules =
+                    this.getFilteredModuleList();
+            // There should only be one module in the filtered module list with
+            // the same module code.
+            assert filteredModules.stream().filter(moduleToGet::isSameModule).count() == 1;
+            return filteredModules.stream()
+                                  .filter(moduleToGet::isSameModule)
+                                  .findFirst().get();
+        } else if (!isFiltered && hasModule(moduleToGet)) {
+            return addressBook.getModule(moduleToGet);
+        } else {
+            throw new ModuleNotFoundException();
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -207,5 +236,4 @@ public class ModelManager implements Model {
     public void setHomeStatus(boolean isHome) {
         this.isHome = isHome;
     }
-
 }

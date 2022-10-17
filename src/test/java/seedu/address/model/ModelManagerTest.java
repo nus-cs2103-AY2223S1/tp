@@ -3,8 +3,11 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2106;
+import static seedu.address.testutil.TypicalModules.MA2001;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -15,8 +18,13 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ModuleBuilder;
 
 public class ModelManagerTest {
 
@@ -89,13 +97,130 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
+    }
+
+    @Test
+    public void hasModule_moduleNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasModule(CS2106));
+    }
+
+    @Test
+    public void hasModule_moduleInAddressBook_returnsTrue() {
+        modelManager.addModule(CS2106);
+        assertTrue(modelManager.hasModule(CS2106));
+    }
+
+    @Test
+    public void hasModule_moduleInAddressBookButNotInFilteredList_returnsTrue() {
+        modelManager.addModule(CS2106);
+        String keywordToFilterBy = MA2001.getModuleCodeAsUpperCaseString();
+        modelManager.updateFilteredModuleList(new ModuleCodeMatchesKeywordPredicate(keywordToFilterBy));
+        assertTrue(modelManager.hasModule(CS2106));
+    }
+
+    @Test
+    public void hasModule_moduleWithSameModuleCodeButDifferentFieldsInAddressBook_returnsTrue() {
+        String moduleCodeToCheckFor = CS2106.getModuleCode().value;
+        Module moduleWithModuleSameCodeButDifferentFields =
+                new ModuleBuilder().withModuleCode(moduleCodeToCheckFor).build();
+        modelManager.addModule(CS2106);
+        assertTrue(modelManager.hasModule(moduleWithModuleSameCodeButDifferentFields));
+    }
+
+    @Test
+    public void hasModuleInFilteredList_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasModuleInFilteredList(null));
+    }
+
+    @Test
+    public void hasModuleInFilteredList_moduleNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasModuleInFilteredList(CS2106));
+    }
+
+    @Test
+    public void hasModuleInFilteredList_moduleInAddressBookAndFilteredList_returnsTrue() {
+        modelManager.addModule(CS2106);
+        assertTrue(modelManager.hasModuleInFilteredList(CS2106));
+    }
+
+    @Test
+    public void hasModuleInFilteredList_moduleInAddressBookButNotInFilteredList_returnsFalse() {
+        modelManager.addModule(CS2106);
+        String keywordToFilterBy = MA2001.getModuleCodeAsUpperCaseString();
+        modelManager.updateFilteredModuleList(new ModuleCodeMatchesKeywordPredicate(keywordToFilterBy));
+        assertFalse(modelManager.hasModuleInFilteredList(CS2106));
+    }
+
+    @Test
+    public void hasModuleInFilteredList_moduleWithSameModuleCodeButDifferentFieldsInFilteredList_returnsTrue() {
+        String moduleCodeToCheckFor = CS2106.getModuleCode().value;
+        Module moduleWithModuleSameCodeButDifferentFields =
+                new ModuleBuilder().withModuleCode(moduleCodeToCheckFor).build();
+        modelManager.addModule(CS2106);
+        assertTrue(modelManager.hasModule(moduleWithModuleSameCodeButDifferentFields));
+    }
+
+    @Test
+    public void getModuleUsingModuleCode_nullModuleCode_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                modelManager.getModuleUsingModuleCode(null, true));
+    }
+
+    @Test
+    public void getModuleUsingModuleCode_moduleNotInAddressBookOrFilteredModuleList_throwsModuleNotFoundException() {
+        ModuleCode moduleCodeToSearchFor = CS2106.getModuleCode();
+        // Get from filtered list.
+        assertThrows(ModuleNotFoundException.class, () ->
+                modelManager.getModuleUsingModuleCode(moduleCodeToSearchFor, true));
+        // Get from address book.
+        assertThrows(ModuleNotFoundException.class, () ->
+                modelManager.getModuleUsingModuleCode(moduleCodeToSearchFor, false));
+    }
+
+    @Test
+    public void getModuleUsingModuleCode_moduleInAddressBookAndFilteredList_returnsModule() {
+        ModuleCode moduleCodeToSearchFor = CS2106.getModuleCode();
+        modelManager.addModule(CS2106);
+        assertEquals(CS2106, modelManager.getModuleUsingModuleCode(moduleCodeToSearchFor, true));
+        assertEquals(CS2106, modelManager.getModuleUsingModuleCode(moduleCodeToSearchFor, false));
+    }
+
+    @Test
+    public void
+            getModuleUsingModuleCode_moduleInAddressBookButNotInFilteredListAndSearchInAddressBook_returnsModule() {
+        modelManager.addModule(CS2106);
+        String keywordToFilterBy = MA2001.getModuleCodeAsUpperCaseString();
+        modelManager.updateFilteredModuleList(new ModuleCodeMatchesKeywordPredicate(keywordToFilterBy));
+        assertEquals(CS2106, modelManager.getModuleUsingModuleCode(CS2106.getModuleCode(), false));
+    }
+
+    @Test
+    public void
+            getModuleUsingModuleCode_moduleInAddressBookButNotInFilteredListAndSearchInFilteredList_returnsModule() {
+        modelManager.addModule(CS2106);
+        String keywordToFilterBy = MA2001.getModuleCodeAsUpperCaseString();
+        modelManager.updateFilteredModuleList(new ModuleCodeMatchesKeywordPredicate(keywordToFilterBy));
+        assertThrows(ModuleNotFoundException.class, () ->
+                modelManager.getModuleUsingModuleCode(CS2106.getModuleCode(), true));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
     @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    }
+
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON)
+                                                          .withModule(CS2106).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -116,13 +241,21 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
+        // different filteredPersonList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // different filteredModuleList -> returns false
+        String keywordToFilterBy = MA2001.getModuleCodeAsUpperCaseString();
+        modelManager.updateFilteredModuleList(new ModuleCodeMatchesKeywordPredicate(keywordToFilterBy));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

@@ -80,8 +80,7 @@ public class AddTaskCommandTest {
                 new AddTaskToModuleDescriptorBuilder(nonExistentModule).build();
         AddTaskCommand addTaskCommand = new AddTaskCommand(descriptor);
 
-        assertThrows(CommandException.class,
-                String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+        assertThrows(CommandException.class, String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
                         nonExistentModule.getModuleCodeAsUpperCaseString()), () ->
                         addTaskCommand.execute(model));
     }

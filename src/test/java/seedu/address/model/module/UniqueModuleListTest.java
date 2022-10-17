@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA_MODULE_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2106;
@@ -161,6 +162,35 @@ public class UniqueModuleListTest {
     public void setModules_listWithDuplicateModules_throwsDuplicateModuleException() {
         List<Module> listWithDuplicateModules = Arrays.asList(CS2106, CS2106);
         assertThrows(DuplicateModuleException.class, () -> uniqueModuleList.setModules(listWithDuplicateModules));
+    }
+
+    @Test
+    public void getModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueModuleList.getModule(null));
+    }
+
+    @Test
+    public void getModule_moduleDoesNotExist_throwsModuleNotFoundException() {
+        assertThrows(ModuleNotFoundException.class, () -> uniqueModuleList.getModule(CS2106));
+    }
+
+    @Test
+    public void getModule_existingModuleWithSameExactFields_returnsModule() {
+        Module expectedModule = CS2106;
+        uniqueModuleList.add(expectedModule);
+        Module retrievedModule = uniqueModuleList.getModule(expectedModule);
+        assertEquals(expectedModule, retrievedModule);
+    }
+
+    @Test
+    public void getModule_existingModuleWithSameModuleCodeButDifferentFields_returnsModule() {
+        Module expectedModule = CS2106;
+        uniqueModuleList.add(CS2106);
+
+        Module moduleWithDifferentFields =
+                new ModuleBuilder().withModuleCode(VALID_CS_MODULE_CODE).build();
+        Module retrievedModule = uniqueModuleList.getModule(moduleWithDifferentFields);
+        assertEquals(expectedModule, retrievedModule);
     }
 
     @Test
