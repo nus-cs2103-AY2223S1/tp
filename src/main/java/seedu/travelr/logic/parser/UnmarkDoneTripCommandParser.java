@@ -1,13 +1,12 @@
 package seedu.travelr.logic.parser;
 
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.logic.commands.MarkTripDoneCommand;
-import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
-import seedu.travelr.logic.parser.exceptions.ParseException;
+import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.stream.Stream;
 
-import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.travelr.commons.core.index.Index;
+import seedu.travelr.logic.commands.UnmarkDoneTripCommand;
+import seedu.travelr.logic.parser.exceptions.ParseException;
 
 /**
  * Represents the AddEventToTripCommandParser.

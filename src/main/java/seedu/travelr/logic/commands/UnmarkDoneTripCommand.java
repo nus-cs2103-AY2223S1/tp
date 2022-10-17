@@ -1,15 +1,14 @@
 package seedu.travelr.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.travelr.commons.core.Messages;
 import seedu.travelr.commons.core.index.Index;
 import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.trip.Trip;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
 
 /**
  * Represents the AddEventToTripCommand. Extends the Command class.
