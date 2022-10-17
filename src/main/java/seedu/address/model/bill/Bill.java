@@ -4,31 +4,31 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.patient.Name;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Represents a bill of a patient in the HealthConnect
  */
 public class Bill {
 
-    private final Name name;
+    private final Appointment appointment;
     private final Amount amount;
     private final BillDate billDate;
-    private final Paid paid;
+    private final PaymentStatus paymentStatus;
 
     /**
      * Every field must be present and not null.
      */
-    public Bill(Name name, Amount amount, BillDate billDate, Paid paid) {
-        requireAllNonNull(name, amount, billDate, paid);
-        this.name = name;
+    public Bill(Appointment appointment, Amount amount, BillDate billDate, PaymentStatus paymentStatus) {
+        requireAllNonNull(amount, amount, billDate, paymentStatus);
+        this.appointment = appointment;
         this.amount = amount;
         this.billDate = billDate;
-        this.paid = paid;
+        this.paymentStatus = paymentStatus;
     }
 
-    public Name getName() {
-        return name;
+    public Appointment getAppointment() {
+        return appointment;
     }
 
     public Amount getAmount() {
@@ -39,13 +39,13 @@ public class Bill {
         return billDate;
     }
 
-    public Paid getIsPaid() {
-        return paid;
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
     }
 
     public boolean isSameBill(Bill bill) {
-        return false;
-    } //There could be two same bills.
+        return this.appointment.equals(bill.getAppointment());
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -56,8 +56,8 @@ public class Bill {
             Bill other = (Bill) o;
             return amount.equals(other.getAmount())
                     && billDate.equals(other.getBillDate())
-                    && paid.equals(other.getIsPaid())
-                    && name.equals(other.getName());
+                    && paymentStatus.equals(other.getPaymentStatus())
+                    && appointment.equals(other.getAppointment());
         }
         return false;
     }
@@ -65,20 +65,20 @@ public class Bill {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Name: ")
-                .append(getName())
-                .append("; Amount: ")
+        builder.append("Appointment: [")
+                .append(getAppointment().toString())
+                .append("]; Amount: ")
                 .append(getAmount())
                 .append("; Bill Date: ")
                 .append(getBillDate())
-                .append("; Is paid: ")
-                .append(getIsPaid());
+                .append("; Payment Status: ")
+                .append(getPaymentStatus());
 
         return builder.toString();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, amount, billDate, paid);
+        return Objects.hash(appointment, amount, billDate, paymentStatus);
     }
 }

@@ -41,6 +41,9 @@ public class UniqueBillList implements Iterable<Bill> {
      */
     public void add(Bill toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateBillException();
+        }
         internalList.add(toAdd);
     }
 
