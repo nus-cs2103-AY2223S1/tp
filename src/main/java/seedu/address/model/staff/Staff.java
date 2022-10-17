@@ -71,7 +71,7 @@ public class Staff {
      * Returns true if both staff members have the same name.
      * This defines a weaker notion of equality between two staff.
      */
-    public boolean isSameStaff(seedu.address.model.staff.Staff otherStaff) {
+    public boolean isSameStaff(Staff otherStaff) {
         if (otherStaff == this) {
             return true;
         }
@@ -90,11 +90,11 @@ public class Staff {
             return true;
         }
 
-        if (!(other instanceof seedu.address.model.staff.Staff)) {
+        if (!(other instanceof Staff)) {
             return false;
         }
 
-        seedu.address.model.staff.Staff otherStaff = (seedu.address.model.staff.Staff) other;
+        Staff otherStaff = (Staff) other;
         return otherStaff.getStaffName().equals(getStaffName())
                 && otherStaff.getStaffContact().equals(getStaffContact())
                 && otherStaff.getStaffTitle().equals(getStaffTitle())

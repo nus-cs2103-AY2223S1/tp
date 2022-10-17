@@ -19,6 +19,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.ProjectBuilder;
 
 public class AddressBookTest {
@@ -88,6 +89,8 @@ public class AddressBookTest {
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
 
+        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
+
         AddressBookStub(Collection<Project> projects) {
             this.projects.setAll(projects);
         }
@@ -95,6 +98,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Project> getProjectList() {
             return projects;
+        }
+
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return tasks;
         }
     }
 }
