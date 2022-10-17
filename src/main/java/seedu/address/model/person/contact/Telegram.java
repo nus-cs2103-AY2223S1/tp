@@ -31,11 +31,7 @@ public class Telegram extends Contact {
      * @param username A valid telegram's username.
      */
     public Telegram(String username) {
-        super(
-            CONTACT_TYPE, username,
-            // Exclude the @ from the link. Ex: t.me/username instead of t.me/@username
-            TELEGRAM_LINK_PREFIX + username.substring(1)
-        );
+        super(CONTACT_TYPE, username, TELEGRAM_LINK_PREFIX + username);
         requireNonNull(username);
         checkArgument(isValidTelegram(username), MESSAGE_CONSTRAINTS);
     }
@@ -45,5 +41,11 @@ public class Telegram extends Contact {
      */
     public static boolean isValidTelegram(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    @Override
+    public String getLink() {
+        // Exclude the @ from the link. Ex: t.me/username instead of t.me/@username
+        return TELEGRAM_LINK_PREFIX + getValue().substring(1);
     }
 }
