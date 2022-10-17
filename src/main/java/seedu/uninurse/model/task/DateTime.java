@@ -1,5 +1,7 @@
 package seedu.uninurse.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,7 +14,7 @@ public class DateTime {
     public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
             + DATE_TIME_PATTERN + " i.e 16-10-2022 10:15";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
     public final LocalDateTime dateTime;
 
@@ -28,6 +30,7 @@ public class DateTime {
      * Constructs a {@code DateTime} with the given {@code validDateTime}.
      */
     public DateTime(String validDateTime) {
+        requireNonNull(validDateTime);
         assert(isValidDateTime(validDateTime));
         dateTime = LocalDateTime.parse(validDateTime, FORMATTER);
     }
@@ -46,6 +49,7 @@ public class DateTime {
      * returns if the {@code test} is a valid date time string.
      */
     public static boolean isValidDateTime(String test) {
+        requireNonNull(test);
         try {
             FORMATTER.parse(test);
             return true;

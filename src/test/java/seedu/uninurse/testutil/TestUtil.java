@@ -1,9 +1,12 @@
 package seedu.uninurse.testutil;
 
+import static seedu.uninurse.model.task.DateTime.FORMATTER;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.model.Model;
@@ -51,5 +54,9 @@ public class TestUtil {
      */
     public static Patient getPerson(Model model, Index index) {
         return model.getFilteredPersonList().get(index.getZeroBased());
+    }
+
+    public static String getCurrentDate() {
+        return LocalDateTime.now().format(FORMATTER);
     }
 }
