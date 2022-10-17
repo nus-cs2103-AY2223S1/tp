@@ -7,8 +7,8 @@ import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 
 /**
- * Go to the exact module in address book whose module code is the argument keywords.
- * Keyword matching is case insensitive.
+ * Go to the exact module in Plannit whose module code is the argument keywords.
+ * Keyword matching is case-insensitive.
  */
 public class GoToCommand extends Command {
 
