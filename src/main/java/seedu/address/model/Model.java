@@ -75,6 +75,11 @@ public interface Model {
     void deleteProject(Project target);
 
     /**
+     * Sorts the project list.
+     */
+    void sortProjects();
+
+    /**
      * Adds the given project.
      * {@code project} must not already exist in the address book.
      */

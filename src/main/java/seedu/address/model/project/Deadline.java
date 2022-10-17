@@ -1,12 +1,14 @@
 package seedu.address.model.project;
 
+import java.time.LocalDate;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represent a project deadline in HR PRO Max++.
  */
-public class Deadline {
+public class Deadline implements Comparable<Deadline> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format YYYY-MM-DD and should not be blank";
@@ -56,5 +58,12 @@ public class Deadline {
     @Override
     public int hashCode() {
         return deadline.hashCode();
+    }
+    
+    @Override
+    public int compareTo(Deadline other) {
+        //will not throw error because format is ensured by regex.
+        return LocalDate.parse(this.deadline)
+                .compareTo(LocalDate.parse(other.deadline));
     }
 }
