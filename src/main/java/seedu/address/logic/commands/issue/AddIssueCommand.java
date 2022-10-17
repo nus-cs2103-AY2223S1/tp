@@ -79,10 +79,15 @@ public class AddIssueCommand extends IssueCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof AddIssueCommand
-//                && toAdd.equals(((AddIssueCommand) other).toAdd) TODO: revisit
-        );
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddIssueCommand)) {
+            return false;
+        }
+
+        return this.toAddWithoutModel.equals(((AddIssueCommand) other).toAddWithoutModel);
     }
 }
 

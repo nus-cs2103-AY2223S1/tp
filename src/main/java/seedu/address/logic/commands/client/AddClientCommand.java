@@ -78,8 +78,13 @@ public class AddClientCommand extends ClientCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddClientCommand // instanceof handles nulls
-        //        && toAddClientId.equals(((AddClientCommand) other).toAddClientId) TODO: review (ids are not used)
-        );
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddClientCommand)) {
+            return false;
+        }
+
+        return this.toAddClientWithoutModel.equals(((AddClientCommand) other).toAddClientWithoutModel);
     }}
