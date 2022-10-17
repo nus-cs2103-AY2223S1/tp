@@ -1,5 +1,54 @@
 {
-  "patients": [],
+  "patients": [{
+      "name" : "Alice Pauline",
+      "phone" : "94351253",
+      "email" : "alice@example.com",
+      "address" : "123, Jurong West Ave 6, #08-111",
+      "remark" : "She likes aardvarks.",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Benson Meier",
+      "phone" : "98765432",
+      "email" : "johnd@example.com",
+      "address" : "311, Clementi Ave 2, #02-25",
+      "remark" : "He can't take beer!",
+      "tagged" : [ "owesMoney", "friends" ]
+    }, {
+      "name" : "Carl Kurz",
+      "phone" : "95352563",
+      "email" : "heinz@example.com",
+      "address" : "wall street",
+      "remark" : "She likes aardvarks.",
+      "tagged" : [ ]
+    }, {
+      "name" : "Daniel Meier",
+      "phone" : "87652533",
+      "email" : "cornelia@example.com",
+      "address" : "10th street",
+      "remark" : "She likes aardvarks.",
+      "tagged" : [ "friends" ]
+    }, {
+      "name" : "Elle Meyer",
+      "phone" : "9482224",
+      "email" : "werner@example.com",
+      "address" : "michegan ave",
+      "remark" : "She likes aardvarks.",
+      "tagged" : [ ]
+    }, {
+      "name" : "Fiona Kunz",
+      "phone" : "9482427",
+      "email" : "lydia@example.com",
+      "address" : "little tokyo",
+      "remark" : "She likes aardvarks.",
+      "tagged" : [ ]
+    }, {
+        "name" : "George Best",
+        "phone" : "9482442",
+        "email" : "anna@example.com",
+        "address" : "4th street",
+        "remark" : "She likes aardvarks.",
+        "tagged" : [ ]
+    }],
   "appointments": [{
       "name" : "Alice Pauline",
       "medicalTest" : "gastric fluid analysis",
@@ -30,15 +79,6 @@
       "medicalTest" : "pap smear",
       "slot" : "2022-11-01 08:00",
       "doctor" : "Lucy Poole"
-  },{
-      "name" : "Amy Bee",
-      "medicalTest" : "glucose tolerance test",
-      "slot" : "2024-03-19 15:45",
-      "doctor" : "Kaitlyn Dorsey Caitie"
-  },{
-      "name" : "Bob Choo",
-      "medicalTest" : "cephalin-cholesterol flocculation",
-      "slot" : "2023-05-10 09:15",
-      "doctor" : "Amy Decker"
-  }]
+  }],
+  "bills" : []
 }

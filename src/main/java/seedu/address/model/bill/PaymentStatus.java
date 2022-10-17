@@ -5,11 +5,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents bill's payment state in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidIsPaid  (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPaymentStatus  (String)}
  */
-public class Paid {
+public class PaymentStatus {
     public static final String MESSAGE_CONSTRAINTS =
-            "Paid should be either true or false";
+            "PaymentStatus should be either true or false";
 
     public static final String VALIDATION_REGEX = "true|false";
 
@@ -20,16 +20,16 @@ public class Paid {
      *
      * @param isPaid A valid dateTime of a slot.
      */
-    public Paid(String isPaid) {
+    public PaymentStatus(String isPaid) {
         requireNonNull(isPaid);
-        checkArgument(isValidIsPaid(isPaid), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPaymentStatus(isPaid), MESSAGE_CONSTRAINTS);
         this.isPaid = isPaid.equals("true");
     }
 
     /**
      * Returns true if a given string is a valid date time.
      */
-    public static boolean isValidIsPaid(String test) {
+    public static boolean isValidPaymentStatus(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +41,8 @@ public class Paid {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Paid // instanceof handles nulls
-                && isPaid.equals(((Paid) other).isPaid)); // state check
+                || (other instanceof PaymentStatus // instanceof handles nulls
+                && isPaid.equals(((PaymentStatus) other).isPaid)); // state check
     }
 
     @Override

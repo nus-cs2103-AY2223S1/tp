@@ -1,12 +1,5 @@
 {
-  "patients": [{
-      "name": "Benson Meier",
-      "phone": "94351253",
-      "email": "alice@example.com",
-      "address": "123, Jurong West Ave 6, #08-111",
-      "remark" : "",
-      "tagged": [ "friends" ]
-    }],
+  "patients": [],
   "appointments": [{
       "name" : "Benson Meier",
       "medicalTest" : "gastric fluid analysis",

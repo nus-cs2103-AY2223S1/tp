@@ -25,18 +25,30 @@ public class UniquePatientListTest {
 
     @Test
     public void contains_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePatientList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.contains((Patient) null));
+        assertThrows(NullPointerException.class, () -> uniquePatientList.contains((Name) null));
     }
 
     @Test
-    public void contains_patientNotInList_returnsFalse() {
+    public void containsPatient_patientNotInList_returnsFalse() {
         assertFalse(uniquePatientList.contains(ALICE));
     }
 
     @Test
-    public void contains_patientInList_returnsTrue() {
+    public void containsName_patientNotInList_returnsFalse() {
+        assertFalse(uniquePatientList.contains(ALICE.getName()));
+    }
+
+    @Test
+    public void containsPatient_patientInList_returnsTrue() {
         uniquePatientList.add(ALICE);
         assertTrue(uniquePatientList.contains(ALICE));
+    }
+
+    @Test
+    public void containsName_patientInList_returnsTrue() {
+        uniquePatientList.add(ALICE);
+        assertTrue(uniquePatientList.contains(ALICE.getName()));
     }
 
     @Test
