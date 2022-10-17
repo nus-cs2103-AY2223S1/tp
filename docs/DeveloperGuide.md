@@ -216,7 +216,7 @@ significantly decrease.
 A person can take several modules. The relationship between `Person` and `Model` is displayed 
 in the Object Oriented Domain Model diagram below:
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![ModulePersonObjectOrientedDomainModel](images/ModulePersonObjectOrientedDomainModel.png)
 
 (More details coming soon...)
 
