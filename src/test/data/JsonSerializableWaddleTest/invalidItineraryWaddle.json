@@ -1,8 +1,10 @@
 {
-  "persons": [ {
-    "name": "Hans Muster",
-    "phone": "9482424",
-    "email": "invalid@email!3e",
-    "address": "4th street"
+  "itineraries" : [ {
+    "name" : "Summer Trip",
+    "country" : "Inv@lidCountry",
+    "startDate" : "2022-10-28",
+    "endDate" : "2022-11-03",
+    "people" : "4",
+    "items" : [ ]
   } ]
 }
