@@ -6,9 +6,11 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyTaskList" as ReadOnlyTaskList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class TaskList
 Class ModelManager
 Class UserPrefs
 
@@ -20,6 +22,13 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueTaskList
+Class Task
+Class TaskName
+Class Module
+Class Deadline
+Class Status
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -27,12 +36,17 @@ HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+TaskList .up.|> ReadOnlyTaskList
+
 UserPrefs .up.|> ReadOnlyUserPrefs
+
+ModelManager .up.|> Model
+Model .left.> ReadOnlyAddressBook
+Model ..> ReadOnlyTaskList
+Model .right.> ReadOnlyUserPrefs
+ModelManager -left-> "1" AddressBook
+ModelManager --> "1" TaskList
+ModelManager -right-> "1" UserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
@@ -47,4 +61,18 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Person
+
+TaskList *--> "1" UniqueTaskList
+UniqueTaskList --> "~* all" Task
+Task *--> TaskName
+Task *--> Module
+Task *--> Deadline
+Task *--> Status
+
+Name -[hidden]right-> Module
+Module -[hidden]right-> Deadline
+Deadline -[hidden]right-> Status
+
+ModelManager -->"~* filtered" Task
+
 @enduml
