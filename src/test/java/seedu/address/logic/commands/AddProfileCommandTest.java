@@ -21,6 +21,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.ProfileBuilder;
 
@@ -117,6 +118,11 @@ public class AddProfileCommandTest {
         }
 
         @Override
+        public void addEvent(Event profile) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -132,7 +138,17 @@ public class AddProfileCommandTest {
         }
 
         @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteProfile(Profile target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -142,12 +158,27 @@ public class AddProfileCommandTest {
         }
 
         @Override
+        public void setEvent(Event target, Event editedProfile) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Profile> getFilteredProfileList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredProfileList(Predicate<Profile> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
