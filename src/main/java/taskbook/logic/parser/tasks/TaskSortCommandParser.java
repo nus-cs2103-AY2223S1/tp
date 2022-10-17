@@ -8,7 +8,7 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.logic.parser.tasks.enums.SortTypes;
 
 /**
- * Parses input arguments and creates a new TaskSortCommand
+ * Parses input arguments and creates a new TaskSortCommand.
  */
 public class TaskSortCommandParser implements Parser<TaskSortCommand> {
     public final String unrecognisedArgs = "Unrecognised sorting flag.";
