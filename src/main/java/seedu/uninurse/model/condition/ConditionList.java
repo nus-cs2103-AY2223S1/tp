@@ -3,9 +3,9 @@ package seedu.uninurse.model.condition;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import seedu.uninurse.model.GenericList;
+import seedu.uninurse.model.condition.exceptions.ConditionNotFoundException;
 import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 
 /**
@@ -52,9 +52,13 @@ public class ConditionList implements GenericList<Condition> {
 
     @Override
     public ConditionList delete(int index) {
-        ArrayList<Condition> updatedConditions = new ArrayList<>(internalConditionList);
-        updatedConditions.remove(index);
-        return new ConditionList(updatedConditions);
+        try {
+            ArrayList<Condition> updatedConditions = new ArrayList<>(internalConditionList);
+            updatedConditions.remove(index);
+            return new ConditionList(updatedConditions);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConditionNotFoundException();
+        }
     }
 
     @Override
@@ -64,7 +68,11 @@ public class ConditionList implements GenericList<Condition> {
 
     @Override
     public Condition get(int index) {
-        return internalConditionList.get(index);
+        try {
+            return internalConditionList.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ConditionNotFoundException();
+        }
     }
 
     @Override
