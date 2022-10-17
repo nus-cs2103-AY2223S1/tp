@@ -48,6 +48,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_CS_MODULE_CODE = "CS2106";
+    public static final String VALID_CS_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK = "CS9999";
     public static final String VALID_CS_MODULE_TITLE = "Introduction to Operating Systems";
     public static final String VALID_MA_MODULE_CODE = "MA2001";
     public static final String VALID_MA_MODULE_TITLE = "Linear Algebra I";
