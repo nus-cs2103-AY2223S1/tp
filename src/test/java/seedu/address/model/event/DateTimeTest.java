@@ -20,7 +20,7 @@ public class DateTimeTest {
     }
 
     @Test
-    public void isValidEmail() {
+    public void isValidDateTime() {
         // null date
         assertThrows(NullPointerException.class, () -> DateTime.isValidDateTime(null));
 
@@ -41,7 +41,7 @@ public class DateTimeTest {
         // invalid time
         assertFalse(DateTime.isValidDateTime("24/02/2022 26:24")); // missing local part
         assertFalse(DateTime.isValidDateTime("31 Jan 2015 13:66")); // missing '@' symbol
-        assertFalse(DateTime.isValidDateTime("25-05-2018 aabb"));
+        assertFalse(DateTime.isValidDateTime("25-15-2018 aabb"));
 
         // valid date and time
         assertTrue(DateTime.isValidDateTime("24/02/2022 13:43")); // missing local part
