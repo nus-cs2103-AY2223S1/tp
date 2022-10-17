@@ -23,6 +23,7 @@ import seedu.address.logic.commands.FilterNameCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
@@ -33,7 +34,7 @@ import seedu.address.testutil.PatientUtil;
 public class AddressBookParserTest {
     private final AddressBookParser parser = new AddressBookParser();
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addPatient() throws Exception {
         Patient patient = new PatientBuilder().build();
         AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PatientUtil.getAddCommand(patient));
         assertEquals(new AddPatientCommand(patient), command);
@@ -44,13 +45,13 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deletePatient() throws Exception {
         DeletePatientCommand command = (DeletePatientCommand) parser.parseCommand(
                 DeletePatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
         assertEquals(new DeletePatientCommand(INDEX_FIRST_PATIENT), command);
     }
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_editPatient() throws Exception {
         Patient patient = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(patient).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " "
@@ -63,7 +64,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_filterName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FilterNameCommand command = (FilterNameCommand) parser.parseCommand(
                 FilterNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
@@ -78,6 +79,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD.toString()) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+    @Test
+    public void parseCommand_selectPatient() throws Exception {
+        SelectPatientCommand command = (SelectPatientCommand) parser.parseCommand(
+                SelectPatientCommand.COMMAND_WORD + " " + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new SelectPatientCommand(INDEX_FIRST_PATIENT), command);
     }
 
     @Test
