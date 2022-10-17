@@ -13,6 +13,7 @@ import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.RAddCommand;
 import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.logic.commands.REditCommand;
+import foodwhere.logic.commands.RFindCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.RSortCommand;
 import foodwhere.logic.commands.SAddCommand;
@@ -79,6 +80,9 @@ public class AddressBookParser {
 
         case REditCommand.COMMAND_WORD:
             return new REditCommandParser().parse(arguments);
+
+        case RFindCommand.COMMAND_WORD:
+            return new RFindCommandParser().parse(arguments);
 
         case SEditCommand.COMMAND_WORD:
             return new SEditCommandParser().parse(arguments);
