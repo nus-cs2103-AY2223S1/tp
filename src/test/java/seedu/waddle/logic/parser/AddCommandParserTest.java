@@ -54,14 +54,14 @@ public class AddCommandParserTest {
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple country - last phone accepted
+        // multiple country - last country accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_SUMMER + COUNTRY_DESC_WINTER
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple people - last people accepted
-        assertParseSuccess(parser, NAME_DESC_WINTER + PEOPLE_DESC_WINTER + START_DATE_DESC_SUMMER
-                + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+        assertParseSuccess(parser, NAME_DESC_WINTER + PEOPLE_DESC_WINTER + COUNTRY_DESC_WINTER
+                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple end date - last address accepted
