@@ -1,6 +1,7 @@
 package swift.model;
 
 import javafx.collections.ObservableList;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
@@ -21,4 +22,9 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Task> getTaskList();
 
+    /**
+     * Returns an unmodifiable view of the person-task bridge list.
+     * This list will not contain any duplicate bridges.
+     */
+    ObservableList<PersonTaskBridge> getBridgeList();
 }

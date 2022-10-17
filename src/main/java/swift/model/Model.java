@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
@@ -114,9 +115,32 @@ public interface Model {
     void addTask(Task task);
 
     /**
+     * Returns true if a bridge exists in the address book.
+     *
+     * @param bridge the bridge to check
+     * @return true if the bridge exists
+     */
+    boolean hasBridge(PersonTaskBridge bridge);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the address book.
      * The task name and owner of {@code editedTask} must not be the same as another existing task in the address book.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Adds a relationship between the given task and person.
+     *
+     * @param person The person to be added to the task.
+     * @param task The task to be added to the person.
+     */
+    void addBridge(Person person, Task task);
+
+    /**
+     * Adds a relationship between the given task and person.
+     *
+     * @param bridge The bridge to be added.
+     */
+    void addBridge(PersonTaskBridge bridge);
 }

@@ -1,6 +1,5 @@
 package swift.testutil;
 
-import swift.commons.core.index.Index;
 import swift.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import swift.model.task.Task;
 import swift.model.task.TaskName;
@@ -26,7 +25,6 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
         descriptor.setTaskName(task.getTaskName());
-        descriptor.setContactIndex(task.getContactIndex());
     }
 
     /**
@@ -34,14 +32,6 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder withName(String name) {
         descriptor.setTaskName(new TaskName(name));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Contact Index} of the {@code EditTaskDescriptor} that we are building.
-     */
-    public EditTaskDescriptorBuilder withContactIndex(int contactIndex) {
-        descriptor.setContactIndex(Index.fromZeroBased(contactIndex));
         return this;
     }
 

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import swift.commons.exceptions.IllegalValueException;
 import swift.model.AddressBook;
 import swift.model.ReadOnlyAddressBook;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
@@ -22,19 +23,23 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_BRIDGE = "Bridges list contains duplicate bridge(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedBridge> bridges = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons and
-     * tasks.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons,
+     * tasks and bridges.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+            @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+            @JsonProperty("bridges") List<JsonAdaptedBridge> bridges) {
         this.persons.addAll(persons);
         this.tasks.addAll(tasks);
+        this.bridges.addAll(bridges);
     }
 
     /**
@@ -46,6 +51,7 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        bridges.addAll(source.getBridgeList().stream().map(JsonAdaptedBridge::new).collect(Collectors.toList()));
     }
 
     /**
@@ -68,6 +74,13 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             addressBook.addTask(task);
+        }
+        for (JsonAdaptedBridge jsonAdaptedBridge : bridges) {
+            PersonTaskBridge bridge = jsonAdaptedBridge.toModelType();
+            if (addressBook.hasBridge(bridge)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_BRIDGE);
+            }
+            addressBook.addBridge(bridge);
         }
         return addressBook;
     }

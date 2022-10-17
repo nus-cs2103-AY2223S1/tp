@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.logic.commands.CommandTestUtil.DESC_TASK_1;
 import static swift.logic.commands.CommandTestUtil.DESC_TASK_2;
-import static swift.logic.commands.CommandTestUtil.VALID_CONTACT_INDEX;
 import static swift.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static swift.logic.commands.CommandTestUtil.VALID_TASK_NAME_3;
 import static swift.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -55,10 +54,9 @@ public class EditTaskCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withTaskName(VALID_TASK_NAME_3).withContactIndex(VALID_CONTACT_INDEX).build();
+        Task editedTask = taskInList.withTaskName(VALID_TASK_NAME_3).build();
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_3)
-                .withContactIndex(VALID_CONTACT_INDEX).build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_3).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);

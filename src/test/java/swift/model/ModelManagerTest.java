@@ -12,12 +12,17 @@ import static swift.testutil.TypicalTasks.BUY_MILK;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
 import swift.commons.core.GuiSettings;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.PersonNameContainsKeywordsPredicate;
 import swift.testutil.AddressBookBuilder;
+import swift.testutil.PersonBuilder;
+import swift.testutil.TaskBuilder;
+import swift.testutil.TypicalBridges;
 
 public class ModelManagerTest {
 
@@ -108,6 +113,41 @@ public class ModelManagerTest {
     public void hasTask_taskInAddressBook_returnsTrue() {
         modelManager.addTask(BUY_MILK);
         assertTrue(modelManager.hasTask(BUY_MILK));
+    }
+
+    @Test
+    public void hasBridge_nullBridge_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasBridge(null));
+    }
+
+    @Test
+    public void hasBridge_taskNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasBridge(TypicalBridges.DEFAULT_BRIDGE_1));
+    }
+
+    @Test
+    public void hasBridge_bridgeInAddressBookAddBridge_returnsTrue() {
+        modelManager.addBridge(TypicalBridges.DEFAULT_BRIDGE_1);
+        assertTrue(modelManager.hasBridge(TypicalBridges.DEFAULT_BRIDGE_1));
+    }
+
+    @Test
+    public void hasBridge_bridgeInAddressBookAddPersonTask_returnsTrue() {
+        modelManager.addBridge(
+                TypicalBridges.getTypicalAddressBook().getPersonList().get(0),
+                TypicalBridges.getTypicalAddressBook().getTaskList().get(0));
+        assertTrue(modelManager.hasBridge(new PersonTaskBridge(
+                UUID.fromString(PersonBuilder.DEFAULT_UUID), UUID.fromString(TaskBuilder.DEFAULT_ID))));
+    }
+
+    @Test
+    public void addBridge_nullBridge_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addBridge(null));
+    }
+
+    @Test
+    public void addBridge_nullPersonAndTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.addBridge(null, null));
     }
 
     @Test

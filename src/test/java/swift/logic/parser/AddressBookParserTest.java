@@ -8,6 +8,7 @@ import static swift.testutil.Assert.assertThrows;
 import static swift.testutil.TypicalPersonIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,7 +98,7 @@ public class AddressBookParserTest {
     public void parseCommand_add_task() throws Exception {
         Task task = new TaskBuilder().build();
         AddTaskCommand command = (AddTaskCommand) parser.parseCommand(TaskUtil.getAddTaskCommand(task));
-        assertEquals(new AddTaskCommand(task), command);
+        assertEquals(new AddTaskCommand(task, new HashSet<>()), command);
     }
 
     @Test

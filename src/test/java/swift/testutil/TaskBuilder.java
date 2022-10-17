@@ -1,6 +1,7 @@
 package swift.testutil;
 
-import swift.commons.core.index.Index;
+import java.util.UUID;
+
 import swift.model.task.Task;
 import swift.model.task.TaskName;
 
@@ -9,26 +10,34 @@ import swift.model.task.TaskName;
  */
 public class TaskBuilder {
 
+    public static final String DEFAULT_ID = "dccb909c-216d-42f8-b1e2-0e5779a1d501";
     public static final String DEFAULT_TASK_NAME = "Default Task";
-    public static final int DEFAULT_INDEX = 0;
 
+    private UUID id;
     private TaskName taskName;
-    private Index index;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
+        id = UUID.fromString(DEFAULT_ID);
         taskName = new TaskName(DEFAULT_TASK_NAME);
-        index = Index.fromZeroBased(DEFAULT_INDEX);
     }
 
     /**
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(Task taskToCopy) {
+        id = taskToCopy.getId();
         taskName = taskToCopy.taskName;
-        index = taskToCopy.contactIndex;
+    }
+
+    /**
+     * Sets the {@code UUID} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withId(String id) {
+        this.id = UUID.fromString(id);
+        return this;
     }
 
     /**
@@ -39,16 +48,8 @@ public class TaskBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Index} of the {@code Task} that we are building.
-     */
-    public TaskBuilder withContactIndex(int index) {
-        this.index = Index.fromZeroBased(index);
-        return this;
-    }
-
     public Task build() {
-        return new Task(taskName, index);
+        return new Task(id, taskName);
     }
 
 }

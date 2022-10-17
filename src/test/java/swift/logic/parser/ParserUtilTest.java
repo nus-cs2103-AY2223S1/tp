@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import swift.commons.core.index.Index;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.Address;
 import swift.model.person.Email;
@@ -28,6 +29,9 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
+    private static final String VALID_INDEX_1 = "1";
+    private static final String VALID_INDEX_2 = "2";
+    private static final String VALID_INDEX_3 = "3";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -55,6 +59,22 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndices_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIndices(null));
+    }
+
+    @Test
+    public void parseIndices_collectionWithValidIndices_returnsIndexSet() throws Exception {
+        Set<Index> actualIndexSet = ParserUtil.parseIndices(Arrays.asList(VALID_INDEX_1, VALID_INDEX_2, VALID_INDEX_3));
+        Set<Index> expectedIndexSet = new HashSet<Index>(Arrays.asList(
+                ParserUtil.parseIndex(VALID_INDEX_1),
+                ParserUtil.parseIndex(VALID_INDEX_2),
+                ParserUtil.parseIndex(VALID_INDEX_3)));
+
+        assertEquals(actualIndexSet, expectedIndexSet);
     }
 
     @Test

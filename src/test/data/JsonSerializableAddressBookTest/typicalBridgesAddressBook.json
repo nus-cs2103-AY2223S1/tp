@@ -65,9 +65,18 @@
     },
     {
       "id": "41478d11-dbba-441f-ab0f-99ddf097eac1",
-      "taskName": "Buy Milk",
+      "taskName": "CS2103T",
       "contactIndex": 0
     }
   ],
-  "bridges": []
+  "bridges": [
+    {
+      "personId": "c4c645da-27b3-454d-9428-5295a6ee1f33",
+      "taskId": "bfbf250c-fd58-49b4-be15-ca12095ca2ee"
+    },
+    {
+      "personId": "c4c645da-27b3-454d-9428-5295a6ee1f33",
+      "taskId": "41478d11-dbba-441f-ab0f-99ddf097eac1"
+    }
+  ]
 }

@@ -9,26 +9,31 @@ import static swift.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
+import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
 import swift.model.AddressBook;
 import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.ReadOnlyUserPrefs;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
+import swift.testutil.PersonBuilder;
 import swift.testutil.TaskBuilder;
 
 public class AddTaskCommandTest {
 
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTaskCommand(null, null));
     }
 
     @Test
@@ -36,16 +41,20 @@ public class AddTaskCommandTest {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
         Task validTask = new TaskBuilder().build();
 
-        CommandResult commandResult = new AddTaskCommand(validTask).execute(modelStub);
+        CommandResult commandResult = new AddTaskCommand(validTask, new HashSet<>(Arrays.asList(Index.fromOneBased(1))))
+                .execute(modelStub);
 
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+        assertEquals(Arrays.asList(new PersonTaskBridge(
+                UUID.fromString("47005f2b-9c40-4051-8c95-69ca601cb58d"),
+                modelStub.tasksAdded.get(0).getId())), modelStub.bridgesAdded);
     }
 
     @Test
     public void execute_duplicateTask_throwsCommandException() {
         Task validTask = new TaskBuilder().build();
-        AddTaskCommand addCommand = new AddTaskCommand(validTask);
+        AddTaskCommand addCommand = new AddTaskCommand(validTask, new HashSet<>());
         ModelStub modelStub = new ModelStubWithTask(validTask);
 
         assertThrows(CommandException.class,
@@ -56,14 +65,14 @@ public class AddTaskCommandTest {
     public void equals() {
         Task buyMilk = new TaskBuilder().withTaskName("Buy Milk").build();
         Task cs2103t = new TaskBuilder().withTaskName("CS2103T").build();
-        AddTaskCommand addBuyMilkCommand = new AddTaskCommand(buyMilk);
-        AddTaskCommand addCs2103tCommand = new AddTaskCommand(cs2103t);
+        AddTaskCommand addBuyMilkCommand = new AddTaskCommand(buyMilk, new HashSet<>());
+        AddTaskCommand addCs2103tCommand = new AddTaskCommand(cs2103t, new HashSet<>());
 
         // same object -> returns true
         assertTrue(addBuyMilkCommand.equals(addBuyMilkCommand));
 
         // same values -> returns true
-        AddTaskCommand addBuyMilkCommandCopy = new AddTaskCommand(buyMilk);
+        AddTaskCommand addBuyMilkCommandCopy = new AddTaskCommand(buyMilk, new HashSet<>());
         assertTrue(addBuyMilkCommand.equals(addBuyMilkCommandCopy));
 
         // different types -> returns false
@@ -179,8 +188,22 @@ public class AddTaskCommandTest {
         public void setTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
-    }
 
+        @Override
+        public boolean hasBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBridge(Person person, Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+    }
 
     /**
      * A Model stub that contains a single task.
@@ -205,6 +228,7 @@ public class AddTaskCommandTest {
      */
     private class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
+        final ArrayList<PersonTaskBridge> bridgesAdded = new ArrayList<>();
 
         @Override
         public boolean hasTask(Task task) {
@@ -219,8 +243,17 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void addBridge(Person person, Task task) {
+            requireNonNull(person);
+            requireNonNull(task);
+            bridgesAdded.add(new PersonTaskBridge(person.getId(), task.getId()));
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+            AddressBook ab = new AddressBook();
+            ab.addPerson(new PersonBuilder().build());
+            return ab;
         }
     }
 

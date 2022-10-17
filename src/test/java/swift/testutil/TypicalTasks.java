@@ -15,11 +15,9 @@ import swift.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task BUY_MILK = new TaskBuilder().withTaskName(VALID_TASK_NAME_1)
-            .withContactIndex(0).build();
+    public static final Task BUY_MILK = new TaskBuilder().withTaskName(VALID_TASK_NAME_1).build();
 
-    public static final Task CS2103T = new TaskBuilder().withTaskName(VALID_TASK_NAME_2)
-            .withContactIndex(0).build();
+    public static final Task CS2103T = new TaskBuilder().withTaskName(VALID_TASK_NAME_2).build();
 
     private TypicalTasks() {} // prevents instantiation
 

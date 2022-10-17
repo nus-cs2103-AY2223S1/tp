@@ -1,6 +1,5 @@
 package swift.testutil;
 
-import static swift.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 
 import swift.logic.commands.AddTaskCommand;
@@ -23,8 +22,7 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + task.taskName.fullName + " ");
-        sb.append(PREFIX_CONTACT.toString() + task.contactIndex.getOneBased());
+        sb.append(PREFIX_NAME + task.taskName.fullName);
         return sb.toString();
     }
 }
