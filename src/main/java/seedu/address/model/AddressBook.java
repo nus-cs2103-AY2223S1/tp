@@ -332,6 +332,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         return HasIntegerIdentifier.getElementById(clients, id);
     }
 
+    @Override
+    public int generateClientId() {
+        return HasIntegerIdentifier.generateNextID(clients);
+    }
+
+    @Override
+    public int generateIssueId() {
+        return HasIntegerIdentifier.generateNextID(issues);
+    }
+
+    @Override
+    public int generateProjectId() {
+        return HasIntegerIdentifier.generateNextID(projects);
+    }
+
 
     @Override
     public boolean equals(Object other) {

@@ -10,8 +10,11 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
@@ -41,15 +44,24 @@ public class AddClientCommand extends ClientCommand {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
     private static final String MESSAGE_EXISTING_CLIENT = "This project already has a client";
 
-    private final ClientId toAddClientId;
+    private final Name toAddClientName;
+    private final ClientPhone toAddClientPhone;
+    private final ClientEmail toAddClientEmail;
     private final ProjectId toModifyProjectId;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
      */
-    public AddClientCommand(ClientId clientId, ProjectId projectId) {
-        requireNonNull(clientId);
-        toAddClientId = clientId;
+    public AddClientCommand(Name clientName, ClientPhone clientPhone, ClientEmail clientEmail,
+                             ProjectId projectId) {
+        requireNonNull(clientName);
+        requireNonNull(clientPhone);
+        requireNonNull(clientEmail);
+        requireNonNull(projectId);
+
+        toAddClientName = clientName;
+        toAddClientPhone = clientPhone;
+        toAddClientEmail = clientEmail;
         toModifyProjectId = projectId;
     }
 
@@ -57,9 +69,8 @@ public class AddClientCommand extends ClientCommand {
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
 
-        Project toModifyProject =
-                HasIntegerIdentifier.getElementById(
-                        model.getAddressBook().getProjectList(), toModifyProjectId.getIdInt());
+        Project toModifyProject = model.getProjectById(toModifyProjectId.getIdInt());
+        ClientId toAddClientId = new ClientId(model.generateClientId());
 
         if (model.hasClientId(toAddClientId.getIdInt())) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
@@ -67,20 +78,23 @@ public class AddClientCommand extends ClientCommand {
         if (!toModifyProject.getClient().isEmpty()) {
             throw new CommandException(MESSAGE_EXISTING_CLIENT);
         }
-        toModifyProject.setClient(toAddClientId);
+
+        Client toAddClient = new Client(
+                toAddClientName, toAddClientPhone, toAddClientEmail, );
+        toModifyProject.setClient(toAddClient);
 //        model.setProject(toModifyProject, toModifyProject);
-        model.addClient(toAddClientId);
+        model.addClient(toAddClient);
 
         ui.showClients();
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddClientId));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddClient));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddClientCommand // instanceof handles nulls
-                && toAddClientId.equals(((AddClientCommand) other).toAddClientId));
-    }
-}
+        //        && toAddClientId.equals(((AddClientCommand) other).toAddClientId) TODO: review (ids are not used)
+        );
+    }}

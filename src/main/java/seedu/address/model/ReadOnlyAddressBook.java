@@ -55,4 +55,23 @@ public interface ReadOnlyAddressBook {
      * @return client object
      */
     Client getClientById(int id);
+
+
+    /**
+     * Generate the next client id
+     * @return id
+     */
+    int generateClientId();
+
+    /**
+     * Generate the next issue id
+     * @return id
+     */
+    int generateIssueId();
+
+    /**
+     * Generate the next project id
+     * @return id
+     */
+    int generateProjectId();
 }

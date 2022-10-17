@@ -223,6 +223,21 @@ public class ModelManager implements Model {
         addressBook.setClient(target, editedClient);
     }
 
+    @Override
+    public int generateClientId() {
+        return addressBook.generateClientId();
+    }
+
+    @Override
+    public int generateIssueId() {
+        return addressBook.generateIssueId();
+    }
+
+    @Override
+    public int generateProjectId() {
+        return addressBook.generateProjectId();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

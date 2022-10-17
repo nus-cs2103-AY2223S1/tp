@@ -121,6 +121,18 @@ public interface Model {
 
     void setClient(Client target, Client editedClient);
 
+
+    /**
+     * Generate the next entity ids
+     * @param id id to to generate
+     * @return id
+     */
+    int generateClientId();
+
+    int generateIssueId();
+
+    int generateProjectId();
+
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -141,6 +153,5 @@ public interface Model {
     void updateFilteredIssueList(Predicate<Issue> predicate);
 
     void updateFilteredClientList(Predicate<Client> predicate);
-
 
 }
