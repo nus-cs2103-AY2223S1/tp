@@ -48,10 +48,10 @@ MainWindow -left-|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 MainPanel --|> UiPart
-HelpPanel ..|> MainPanel
-PersonListPanel ..|> MainPanel
-DetailPanel ..|> MainPanel
-DetailHelpPanel ..|> MainPanel
+HelpPanel ..up|> MainPanel
+PersonListPanel ..up|> MainPanel
+DetailPanel ..up|> MainPanel
+DetailHelpPanel ..up|> MainPanel
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
