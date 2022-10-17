@@ -22,7 +22,7 @@ public class VersionedAddressBook extends AddressBook {
         super(addressBook);
 
         addressBookStateList = new ArrayList<>();
-        addressBookStateList.add(addressBook);
+        addressBookStateList.add(new AddressBook(addressBook));
         currentStatePointer = 0;
     }
 
@@ -31,7 +31,7 @@ public class VersionedAddressBook extends AddressBook {
      */
     public void commit() {
         removeUndoneStates();
-        addressBookStateList.add(new VersionedAddressBook(this));
+        addressBookStateList.add(new AddressBook(this));
         currentStatePointer++;
     }
 
@@ -56,13 +56,13 @@ public class VersionedAddressBook extends AddressBook {
             return true;
         }
 
-        if (other instanceof VersionedAddressBook) {
-            VersionedAddressBook otherVersionedAddressBook = (VersionedAddressBook) other;
-            return super.equals(otherVersionedAddressBook)
-                    && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
-                    && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+        if (!(other instanceof VersionedAddressBook)) {
+            return false;
         }
-        return false;
+        VersionedAddressBook otherVersionedAddressBook = (VersionedAddressBook) other;
+        return super.equals(otherVersionedAddressBook)
+                && addressBookStateList.equals(otherVersionedAddressBook.addressBookStateList)
+                && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
     }
 
     private void removeUndoneStates() {

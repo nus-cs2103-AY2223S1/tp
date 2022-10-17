@@ -56,7 +56,6 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.commitAddressBook();
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.isPresent()) {
@@ -73,6 +72,7 @@ public class DeleteCommand extends Command {
                 && x.getReligion().equals(religion.orElse(x.getReligion()))
                 && x.getSurvey().equals(survey.orElse(x.getSurvey()));
         String str = model.deletePersons(predicate);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, str));
     }
 

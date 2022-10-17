@@ -206,6 +206,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void commitAddressBook() {
+            // for the personAcceptedByModel test
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
