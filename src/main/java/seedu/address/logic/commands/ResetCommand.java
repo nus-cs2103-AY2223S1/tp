@@ -11,7 +11,7 @@ import seedu.address.ui.MainPanelName;
  */
 public class ResetCommand extends Command {
 
-    public static final String COMMAND_WORD = "Reset";
+    public static final String COMMAND_WORD = "reset";
 
     public static final String MESSAGE_SUCCESS = "Reset search condition";
 
