@@ -48,7 +48,6 @@ public class BillCard extends UiPart<Region> {
         name.setText(bill.getAppointment().getName().toString());
         billDate.setText(bill.getBillDate().toString());
         amount.setText(bill.getAmount().toString());
-//        paymentStatus.setText(bill.getPaymentStatus().toString());
         isPaid.setSelected(bill.getPaymentStatus().isPaid());
     }
 
