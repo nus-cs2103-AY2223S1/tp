@@ -225,17 +225,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action       | Format, Examples                                                                                                                                                      |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**    | `clear`                                                                                                                                                               |
-| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Get /n**   | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                 |
-| **Get /nok** | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`                                                                                                                 |
-| **Get /hw**  | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                     |
-| **Get /fn**  | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                         |
-| **Get /wn**  | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                        |
-| **Count**    | `count`                                                                                                                                                               |
-| **List**     | `list`                                                                                                                                                                |
-| **Help**     | `help`                                                                                                                                                                |
+| Action       | Format, Examples                                                                                                                                                              |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [m/MEDICATION]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**    | `clear`                                                                                                                                                                       |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Edit**     | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [nok/NEXT OF KIN] [pt/PATIENT TYPE] [hw/HOSPITAL WING] [fn/FLOOR NUMBER] [wn/WARD NUMBER] [m/MEDICATION]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Get /n**   | `get /n NAME`<br> e.g., `get /n John`                                                                                                                                         |
+| **Get /nok** | `get /nok NEXT-OF-KIN_DATA`<br> e.g., `get /nok John`                                                                                                                         |
+| **Get /hw**  | `get /hw HOSPITAL_WING`<br> e.g., `get /hw South`                                                                                                                             |
+| **Get /fn**  | `get /fn FLOOR_NUMBER` <br> e.g., `get /fn 2`                                                                                                                                 |
+| **Get /wn**  | `get /wn WARD_NUMBER` <br> e.g., `get /wn D12`                                                                                                                                |
+| **Count**    | `count`                                                                                                                                                                       |
+| **List**     | `list`                                                                                                                                                                        |
+| **Help**     | `help`                                                                                                                                                                        |
