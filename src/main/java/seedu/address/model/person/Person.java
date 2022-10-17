@@ -121,11 +121,11 @@ public class Person {
         builder.append(getName());
         Email email = getEmail();
         if (email != null) {
-            builder.append(("; Email: "));
+            builder.append(("; Email: ")).append(getEmail());
         }
         Phone phone = getPhone();
         if (phone != null) {
-            builder.append(("; Phone: "));
+            builder.append(("; Phone: ")).append(getPhone());
         }
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
