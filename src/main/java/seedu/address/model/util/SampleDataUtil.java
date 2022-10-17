@@ -15,6 +15,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
@@ -39,11 +40,11 @@ public class SampleDataUtil {
             new Professor(new Name("Wong Tin Lok"), new ModuleCode("CS1231S"),
                 new Phone("91031282"), new Email("wongtk@example.com"),
                 new Gender("M"),
-                getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("", false)),
+                getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("", false), new Rating("5")),
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Gender("M"),
-                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false)),
+                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false), new Rating("4")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Gender("M"), getTagSet("colleagues"), new Location("Research Lab"),
                     new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"))
