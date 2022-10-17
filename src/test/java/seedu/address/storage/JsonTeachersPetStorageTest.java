@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.TeachersPet;
 import seedu.address.model.ReadOnlyTeachersPet;
+import seedu.address.model.TeachersPet;
 
 public class JsonTeachersPetStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTeachersPetStorageTest");

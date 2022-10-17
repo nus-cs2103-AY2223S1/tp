@@ -9,8 +9,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.TeachersPet;
 import seedu.address.model.Model;
+import seedu.address.model.TeachersPet;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
 
