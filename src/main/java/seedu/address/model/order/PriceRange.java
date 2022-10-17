@@ -58,7 +58,7 @@ public class PriceRange {
 
     @Override
     public String toString() {
-        return " " + lowerBound + " - " + upperBound;
+        return "Price range: " + lowerBound.getPrice() + " - " + upperBound.getPrice();
     }
 
     @Override

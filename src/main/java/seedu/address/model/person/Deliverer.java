@@ -1,9 +1,12 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
@@ -57,6 +60,16 @@ public class Deliverer extends Person {
 
     public List<Order> getOrders() {
         return orders;
+    }
+
+    /**
+     * Converts the delverer's orders from a {@code List} to a {@code ObservableList} and returns the result.
+     *
+     * @return An {@code ObservableList} instance containing all the deliverer's orders.
+     */
+    public ObservableList<Order> getOrdersAsObservableList() {
+        // TODO: should be FXCollections.observableList(getOrders()) but it causes exception
+        return FXCollections.observableList(getOrders() == null ? new ArrayList<>() : getOrders());
     }
 
     @Override

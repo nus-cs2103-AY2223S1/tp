@@ -44,7 +44,7 @@ public class WeightTest {
     @Test
     public void toStringTest() {
         Weight weight = new Weight(5.5);
-        String expected = Double.valueOf(5.5) + " kg";
+        String expected = "Weight: " + Double.valueOf(5.5) + " kg";
         assertEquals(weight.toString(), expected);
     }
 }

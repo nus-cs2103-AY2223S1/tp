@@ -15,14 +15,14 @@ public class AgeTest {
     @Test
     public void getPetAge_pet() {
         int expected = Period.between(TypicalPets.PLUM.getDateOfBirth().getDate(), LocalDate.now()).getYears();
-        int result = new Age(0).getPetAge(TypicalPets.PLUM);
+        int result = Age.generateAge(TypicalPets.PLUM).getValue();
         assertEquals(result, expected);
     }
 
     @Test
     public void getAge_void() {
         Age age = new Age(10);
-        assertEquals(age.getAge(), 10);
+        assertEquals(age.getValue(), 10);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class AgeTest {
     @Test
     public void toStringTest() {
         Age age = new Age(8);
-        assertEquals(age.toString(), Integer.toString(8));
+        assertEquals(age.toString(), "Age: " + Integer.toString(8));
     }
 
 }

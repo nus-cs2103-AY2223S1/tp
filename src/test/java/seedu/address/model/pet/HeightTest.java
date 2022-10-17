@@ -44,7 +44,7 @@ public class HeightTest {
     @Test
     public void toStringTest() {
         Height height = new Height(5.5);
-        String expected = Double.valueOf(5.5) + " cm";
+        String expected = "Height: " + Double.valueOf(5.5) + " cm";
         assertEquals(height.toString(), expected);
     }
 }

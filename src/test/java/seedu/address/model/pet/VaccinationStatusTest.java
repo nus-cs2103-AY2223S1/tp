@@ -46,13 +46,13 @@ public class VaccinationStatusTest {
     @Test
     public void toString_vaccinated() {
         VaccinationStatus vsTrue = new VaccinationStatus(true);
-        assertEquals(vsTrue.toString(), "Vaccinated");
+        assertEquals(vsTrue.toString(), "Vaccination status: Vaccinated");
     }
 
     @Test
     public void toString_notVaccinated() {
         VaccinationStatus vsFalse = new VaccinationStatus(false);
-        assertEquals(vsFalse.toString(), "Not Vaccinated");
+        assertEquals(vsFalse.toString(), "Vaccination status: Not Vaccinated");
     }
 
     @Test

@@ -35,7 +35,7 @@ public class DelivererListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Deliverer} using a {@code DelivererCard}.
      */
-    class DelivererListViewCell extends ListCell<Deliverer> {
+    private static class DelivererListViewCell extends ListCell<Deliverer> {
         @Override
         protected void updateItem(Deliverer deliverer, boolean empty) {
             super.updateItem(deliverer, empty);

@@ -54,13 +54,13 @@ public class ColorTest {
     public void getColor() {
         String expected = "Red";
         Color red = new Color(expected);
-        assertEquals(red.getColor(), expected);
+        assertEquals(red.getValue(), expected);
     }
 
     @Test
     public void toStringTest() {
-        String expected = "Red";
-        Color red = new Color(expected);
+        String expected = "Color: Red";
+        Color red = new Color("Red");
         assertEquals(red.toString(), expected);
     }
 
