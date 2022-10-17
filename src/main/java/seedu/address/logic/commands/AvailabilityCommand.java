@@ -27,7 +27,7 @@ public class AvailabilityCommand extends Command {
             + "[AVAILABILITY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AVAILABILITY + "available.";
-    public static final String MESSAGE_PERSON_NOT_TA = "The person to edit is not a teaching assistant, there is no"
+    public static final String MESSAGE_PERSON_NOT_TA = "The person to edit is not a teaching assistant, there is no "
             + "availability to be edited.";
     public static final String MESSAGE_EDIT_AVAILABILITY_SUCCESS = "Edited availability to Teaching Assistant: %1$s";
 

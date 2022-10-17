@@ -75,6 +75,29 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path[] getAllAddressBookFilePath() {
+        return userPrefs.getAllAddressBookFilePath();
+    }
+
+    @Override
+    public void setAllAddressBookFilePath(Path[] updatedPaths) {
+        userPrefs.setAllAddressBookFilePath(updatedPaths);
+    }
+    @Override
+    public boolean addAddressBook() {
+        if (!userPrefs.addAddressBook()) {
+            logger.warning("Maximum amount of address book created");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public Path getNextAddressBookPath() {
+        return userPrefs.getNextAddressBookPath();
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
