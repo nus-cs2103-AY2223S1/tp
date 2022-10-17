@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
-
 import seedu.address.logic.commands.CreateMessageCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.message.Message;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new CreateMessageCommand object
@@ -16,6 +18,13 @@ public class CreateMessageCommandParser implements Parser<CreateMessageCommand> 
      * @throws ParseException if the user input does not conform to the specified format
      */
     public CreateMessageCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateMessageCommand.MESSAGE_USAGE));
+        }
+
         Message message = new Message(args.trim());
         return new CreateMessageCommand(message);
     }
