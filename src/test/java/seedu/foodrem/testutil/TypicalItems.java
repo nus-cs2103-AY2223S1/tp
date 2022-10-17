@@ -61,4 +61,8 @@ public class TypicalItems {
         // Failure to do so will break test cases.
         return new ArrayList<>(Arrays.asList(POTATOES, CUCUMBERS));
     }
+
+    public static List<Item> getTypicalItemsWithoutTags() {
+        return new ArrayList<>(Arrays.asList(POTATOES_WITHOUT_TAG, CUCUMBERS_WITHOUT_TAG));
+    }
 }
