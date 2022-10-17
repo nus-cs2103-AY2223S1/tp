@@ -1,19 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -53,35 +49,6 @@ public class CreateMeetingCommand extends Command {
         this.meetingInfo = meetingInfo;
     }
 
-    private ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) throws PersonNotFoundException {
-
-        if (Objects.equals(peopleToMeet[0], "")) {
-            throw new PersonNotFoundException();
-        }
-
-        ArrayList<Person> output = new ArrayList<>();
-        // Takes in the name of the address book contact, split by words in the name
-        for (String personName: peopleToMeet) {
-            String[] nameKeywords = personName.strip().split("\\s+");
-            NameContainsKeywordsPredicate personNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-
-            // updates the list of persons in address book based on predicate
-            model.updateFilteredPersonList(personNamePredicate);
-            ObservableList<Person> listOfPeople = model.getFilteredPersonList();
-
-            if (listOfPeople.isEmpty()) {
-                throw new PersonNotFoundException();
-            } else { // get the first person in the address book whose name matches
-                output.add(listOfPeople.get(0));
-            }
-
-            // resets the list of persons after every search
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        }
-        return output;
-    }
-
     /**
      * Converts an ArrayList of Persons to a string of the Persons' names and tags
      *
@@ -112,7 +79,7 @@ public class CreateMeetingCommand extends Command {
                 return new CommandResult(INCORRECT_NUMBER_OF_ARGUMENTS);
             }
 
-            ArrayList<Person> arrayOfPeopleToMeet = convertNameToPerson(model, peopleToMeet);
+            ArrayList<Person> arrayOfPeopleToMeet = Meeting.convertNameToPerson(model, peopleToMeet);
 
             Meeting newMeeting = model.createNewMeeting(arrayOfPeopleToMeet, meetingTitle,
                 meetingDateAndTime, meetingLocation);

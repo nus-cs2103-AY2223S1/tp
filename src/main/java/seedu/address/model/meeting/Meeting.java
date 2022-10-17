@@ -1,10 +1,13 @@
 package seedu.address.model.meeting;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
@@ -51,28 +54,37 @@ public class Meeting {
     }
 
     /**
-     * converts array of string to array of person
+     * converts string array of the names of people to meet to array of Person objects
      *
+     * @param model the model to implement
      * @param peopleToMeet the array of people names
      */
-    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet) {
+    public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet)
+            throws PersonNotFoundException {
+
+        if (Objects.equals(peopleToMeet[0], "")) {
+            throw new PersonNotFoundException();
+        }
+
         ArrayList<Person> output = new ArrayList<>();
         // Takes in the name of the address book contact, split by words in the name
         for (String personName: peopleToMeet) {
+            String[] nameKeywords = personName.strip().split("\\s+");
             NameContainsKeywordsPredicate personNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList(personName.strip()));
+                new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
 
             // updates the list of persons in address book based on predicate
             model.updateFilteredPersonList(personNamePredicate);
             ObservableList<Person> listOfPeople = model.getFilteredPersonList();
 
-            // Am thinking if there's a better way to check if the person exists
-            // Since model.hasPerson only takes in a person object as argument
             if (listOfPeople.isEmpty()) {
                 throw new PersonNotFoundException();
             } else { // get the first person in the address book whose name matches
                 output.add(listOfPeople.get(0));
             }
+
+            // resets the list of persons after every search
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         }
         return output;
     }
