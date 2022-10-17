@@ -1,20 +1,27 @@
 package seedu.address.logic;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.Storage;
 
 /**
@@ -77,5 +84,50 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void setAllAddressBookFilePath(Path[] updatedPaths) {
+        model.setAllAddressBookFilePath(updatedPaths);
+    }
+
+    @Override
+    public boolean addAddressBook() throws IOException {
+        boolean result = model.addAddressBook();
+        if (result) {
+            Path[] allBooks = model.getAllAddressBookFilePath();
+            Path latestBook = allBooks[allBooks.length - 1];
+            try {
+                FileWriter file = new FileWriter(latestBook.toFile());
+                file.close();
+            } catch (IOException e) {
+                logger.warning("Error creating file" + latestBook);
+                throw e;
+            }
+
+        }
+        return result;
+    }
+    @Override
+    public void swapAddressBook() {
+        Path nextAddressBook = model.getNextAddressBookPath();
+        Optional<ReadOnlyAddressBook> addressBookOptional;
+        ReadOnlyAddressBook initialData;
+        try {
+            addressBookOptional = storage.readAddressBook(nextAddressBook);
+            if (!addressBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            }
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            initialData = new AddressBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            initialData = new AddressBook();
+        }
+        AddressBookStorage newAddressBookStorage = new JsonAddressBookStorage(nextAddressBook);
+        storage.setAddressBook(newAddressBookStorage);
+        model.setAddressBook(initialData);
     }
 }

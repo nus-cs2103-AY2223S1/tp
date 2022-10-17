@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -147,6 +148,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Creates a new address book
+     */
+    @FXML
+    private void handleNewBook() {
+        try {
+            if (!logic.addAddressBook()) {
+                resultDisplay.setFeedbackToUser("Maximum amount of address book created");
+            }
+        } catch (IOException e) {
+            resultDisplay.setFeedbackToUser("Sorry! Error creating File");
+        }
+    }
+
+    /**
+     * Swaps between the Books
+     */
+    @FXML
+    private void handleSwap() throws CommandException {
+        logic.swapAddressBook();
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -174,6 +197,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isNewBook()) {
+                handleNewBook();
+            }
+
+            if (commandResult.isSwap()) {
+                handleSwap();
             }
 
             if (commandResult.isExit()) {

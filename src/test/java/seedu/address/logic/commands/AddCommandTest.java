@@ -119,6 +119,26 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path[] getAllAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAllAddressBookFilePath(Path[] updatedPaths) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getNextAddressBookPath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean addAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
