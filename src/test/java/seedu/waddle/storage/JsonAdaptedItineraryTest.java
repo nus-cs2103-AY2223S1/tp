@@ -25,7 +25,6 @@ public class JsonAdaptedItineraryTest {
     private static final String INVALID_START_DATE = "1-2-3";
     private static final String INVALID_END_DATE = "1-2-3";
     private static final String INVALID_PEOPLE = "three";
-    private static final Item INVALID_ITEM = new Item(null);
 
     private static final String VALID_NAME = SUMMER.getName().toString();
     private static final String VALID_COUNTRY = SUMMER.getCountry().toString();
@@ -119,26 +118,4 @@ public class JsonAdaptedItineraryTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, People.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, itinerary::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidItemList_throwsIllegalValueException() {
-        List<JsonAdaptedItem> invalidItemList = new ArrayList<>();
-        invalidItemList.add(new JsonAdaptedItem(INVALID_ITEM));
-        JsonAdaptedItinerary itinerary =
-                new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE, VALID_END_DATE, VALID_PEOPLE, invalidItemList);
-        assertThrows(IllegalValueException.class, itinerary::toModelType);
-    }
-
-    /*
-    TODO: Test for an invalid none-empty item list.
-    @Test
-    public void toModelType_invalidItemList_throwsIllegalValueException() {
-        List<JsonAdaptedItem> invalidItemList = new ArrayList<>();
-        invalidItemList.add(new JsonAdaptedItem(INVALID_ITEM));
-        JsonAdaptedItinerary itinerary =
-                new JsonAdaptedItinerary(VALID_NAME, VALID_COUNTRY, VALID_START_DATE, VALID_END_DATE, VALID_PEOPLE, invalidItemList);
-        assertThrows(IllegalValueException.class, itinerary::toModelType);
-    }
-     */
-
 }
