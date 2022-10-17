@@ -111,4 +111,9 @@ public class ExerciseHashMap {
                 && exerciseHashMap.equals(((ExerciseHashMap) other).exerciseHashMap));
     }
 
+    @Override
+    public int hashCode() {
+        return exerciseHashMap.hashCode();
+    }
+
 }
