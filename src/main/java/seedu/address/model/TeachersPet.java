@@ -33,7 +33,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     public TeachersPet() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an TeachersPet using the Persons in the {@code toBeCopied}
      */
     public TeachersPet(ReadOnlyTeachersPet toBeCopied) {
         this();
@@ -59,7 +59,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TeachersPet} with {@code newData}.
      */
     public void resetData(ReadOnlyTeachersPet newData) {
         requireNonNull(newData);
@@ -100,7 +100,7 @@ public class TeachersPet implements ReadOnlyTeachersPet {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code TeachersPet}.
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
