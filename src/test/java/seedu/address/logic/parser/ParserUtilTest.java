@@ -43,7 +43,7 @@ public class ParserUtilTest {
     private static final String VALID_PATIENT_TYPE = "i";
     private static final String VALID_HOSPITAL_WING = "South";
     private static final String VALID_FLOOR_NUMBER = "1";
-    private static final String VALID_WARD_NUMBER = "5";
+    private static final String VALID_WARD_NUMBER = "A123";
     private static final String VALID_MEDICATION_1 = "Ibuprofen";
     private static final String VALID_MEDICATION_2 = "Xanax";
 
@@ -242,14 +242,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseWardNumber_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        WardNumber expectedWardNumber = new WardNumber(Integer.valueOf(VALID_WARD_NUMBER));
+        WardNumber expectedWardNumber = new WardNumber(VALID_WARD_NUMBER);
         assertEquals(expectedWardNumber, ParserUtil.parseWardNumber(VALID_WARD_NUMBER));
     }
 
     @Test
     public void parseWardNumber_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String WardNumberWithWhitespace = WHITESPACE + VALID_WARD_NUMBER + WHITESPACE;
-        WardNumber expectedWardNumber = new WardNumber(Integer.valueOf(VALID_WARD_NUMBER));
+        WardNumber expectedWardNumber = new WardNumber(VALID_WARD_NUMBER);
         assertEquals(expectedWardNumber, ParserUtil.parseWardNumber(WardNumberWithWhitespace));
     }
 

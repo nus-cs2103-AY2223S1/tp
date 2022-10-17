@@ -34,8 +34,8 @@ public class PersonBuilder {
     public static final PatientTypes DEFAULT_PATIENT_TYPE = PatientTypes.INPATIENT;
     public static final String DEFAULT_HOSPITAL_WING = "south";
     public static final Integer DEFAULT_FLOOR_NUMBER = 3;
-    public static final Integer DEFAULT_WARD_NUMBER = 69;
-    public static final String DEFAULT_UPCOMING_APPOINTMENT = "120622";
+    public static final String DEFAULT_WARD_NUMBER = "D312";
+    public static final String DEFAULT_UPCOMING_APPOINTMENT = "12-06-2022";
 
     private Name name;
     private Phone phone;
@@ -160,7 +160,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code WardNumber} of the {@code Person} that we are building.
      */
-    public PersonBuilder withWardNumber(Integer wardNumber) {
+    public PersonBuilder withWardNumber(String wardNumber) {
         this.wardNumber = new WardNumber(wardNumber);
         return this;
     }
@@ -192,7 +192,7 @@ public class PersonBuilder {
             this.upcomingAppointment = new UpcomingAppointment((LocalDate) null);
         } else {
             this.upcomingAppointment =
-                    new UpcomingAppointment(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("ddMMyy")));
+                    new UpcomingAppointment(LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         }
         return this;
     }

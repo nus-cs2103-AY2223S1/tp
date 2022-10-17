@@ -18,7 +18,7 @@
     "patientType": "INPATIENT",
     "hospitalWing": "south",
     "floorNumber": "1",
-    "wardNumber": "26",
+    "wardNumber": "B690",
     "medications" : [ "Paracetamol", "Xanax" ]
   }, {
     "name" : "Carl Kurz",
@@ -38,7 +38,7 @@
     "patientType": "INPATIENT",
     "hospitalWing": "south",
     "floorNumber": "1",
-    "wardNumber": "25",
+    "wardNumber": "A123",
     "medications" : [  ]
   }, {
     "name" : "Elle Meyer",
@@ -54,11 +54,11 @@
     "name" : "Fiona Kunz",
     "phone" : "94824275",
     "email" : "lydia@example.com",
-    "nextOfKin" : "Violet Kunz, Daugther, 92725635",
+    "nextOfKin" : "Violet Kunz, Daughter, 92725635",
     "patientType": "INPATIENT",
     "hospitalWing": "north",
     "floorNumber": "2",
-    "wardNumber": "53",
+    "wardNumber": "F528",
     "medications" : [ ]
   }, {
     "name" : "George Best",
