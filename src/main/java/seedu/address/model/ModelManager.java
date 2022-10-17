@@ -145,8 +145,7 @@ public class ModelManager implements Model {
         return FXCollections.observableList(calendarEventList);
     }
 
-    @Override
-    public List<CalendarEvent> getCalendarEventList(List<Person> lastShownList) {
+    private List<CalendarEvent> getCalendarEventList(List<Person> lastShownList) {
         List<CalendarEvent> calendarEventList = new ArrayList<>();
         lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
         return calendarEventList;

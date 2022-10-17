@@ -161,7 +161,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
+
         public List<CalendarEvent> getCalendarEventList(List<Person> lastShownList) {
             throw new AssertionError("This method should not be called.");
         }

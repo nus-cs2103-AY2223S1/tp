@@ -20,6 +20,36 @@ import seedu.address.model.person.Time;
 public class CalendarEventTest {
     private static final Name AMY = new Name("AMY");
     private static final Name BOB = new Name("BOB");
+    private static final Appointment firstAppointment = new Appointment(new DateTime(
+            DateTimeParser.parseLocalDateTimeFromString("1-Apr-2023 01:00 PM")));
+    private static final CalendarEvent firstEvent = new CalendarEvent(AMY, new AppointmentStub());
+
+    @Test
+    public void method_getName_success() {
+        Assertions.assertEquals(AMY, firstEvent.getName());
+        Assertions.assertNotEquals(BOB, firstEvent.getName());
+    }
+
+    @Test
+    public void method_getDay_success() {
+        Assertions.assertEquals(1, firstEvent.getDay());
+        Assertions.assertNotEquals(2, firstEvent.getDay());
+    }
+
+    @Test
+    public void method_getMonth_success() {
+        Assertions.assertEquals(4, firstEvent.getMonth());
+        Assertions.assertNotEquals(1, firstEvent.getMonth());
+    }
+
+    @Test
+    public void method_getTime_success() {
+        Assertions.assertEquals("01:00 PM", firstEvent.getTime());
+        Assertions.assertNotEquals("01:00 AM", firstEvent.getTime());
+        Assertions.assertNotEquals("1-Apr-2023 01:00 PM", firstEvent.getTime());
+        Assertions.assertNotEquals("1/Apr/2023 01:00 PM", firstEvent.getTime());
+        Assertions.assertNotEquals("13:00 PM", firstEvent.getTime());
+    }
 
     private class InvalidAppointmentStub extends Appointment {
         InvalidAppointmentStub() {
@@ -128,4 +158,7 @@ public class CalendarEventTest {
         Assertions.assertNotEquals(firstCalendarEvent, thirdCalendarEvent);
 
     }
+
+
+
 }
