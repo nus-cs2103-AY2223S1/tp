@@ -31,10 +31,10 @@ public class TypicalItineraries {
             .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
             .withEndDate(VALID_END_DATE_WINTER).withPeople(VALID_PEOPLE_WINTER).build();
 
-    public static final Itinerary SPRING = new ItineraryBuilder().withName("Summer Trip")
+    public static final Itinerary SPRING = new ItineraryBuilder().withName("Spring Trip")
             .withCountry("Australia").withStartDate("2022-01-01")
             .withEndDate("2022-01-15").withPeople("1").build();
-    public static final Itinerary AUTUMN = new ItineraryBuilder().withName("Winter Trip")
+    public static final Itinerary AUTUMN = new ItineraryBuilder().withName("Autumn Trip")
             .withCountry("Canada").withStartDate("2022-02-02")
             .withEndDate("2022-02-23").withPeople("2").build();
     public static final Itinerary GRADUATION = new ItineraryBuilder().withName("Graduation Trip")

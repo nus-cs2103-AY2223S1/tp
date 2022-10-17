@@ -33,20 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.EditCommand;
-<<<<<<< HEAD
-import seedu.waddle.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.waddle.model.person.Address;
-import seedu.waddle.model.person.Email;
-import seedu.waddle.model.person.Name;
-import seedu.waddle.model.person.Phone;
-import seedu.waddle.model.tag.Tag;
-=======
 import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
->>>>>>> 5b35a0ee3d05f71ceea91bfe854e284e7aa72887
 import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -120,7 +111,7 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_ITINERARY;
         String userInput = targetIndex.getOneBased() + COUNTRY_DESC_WINTER + PEOPLE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + END_DATE_DESC_SUMMER + NAME_DESC_SUMMER + PEOPLE_DESC_WINTER;
+                + START_DATE_DESC_SUMMER + END_DATE_DESC_WINTER + NAME_DESC_SUMMER;
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_SUMMER)
                 .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_SUMMER)
                 .withEndDate(VALID_END_DATE_WINTER).withPeople(VALID_PEOPLE_SUMMER).build();
@@ -134,7 +125,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_ITINERARY;
         String userInput = targetIndex.getOneBased() + COUNTRY_DESC_WINTER + START_DATE_DESC_SUMMER;
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withCountry(VALID_COUNTRY_WINTER)
-                .withStartDate(START_DATE_DESC_SUMMER).build();
+                .withStartDate(VALID_START_DATE_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -178,9 +169,9 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ITINERARY;
         String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + END_DATE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + VALID_PEOPLE_SUMMER + COUNTRY_DESC_SUMMER + END_DATE_DESC_SUMMER
-                + START_DATE_DESC_SUMMER + VALID_PEOPLE_SUMMER + COUNTRY_DESC_WINTER + END_DATE_DESC_WINTER
-                + START_DATE_DESC_WINTER + VALID_PEOPLE_WINTER;
+                + START_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_SUMMER + END_DATE_DESC_SUMMER
+                + START_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_WINTER + END_DATE_DESC_WINTER
+                + START_DATE_DESC_WINTER + PEOPLE_DESC_WINTER;
 
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withCountry(VALID_COUNTRY_WINTER)
                 .withStartDate(VALID_START_DATE_WINTER).withEndDate(VALID_END_DATE_WINTER)
@@ -206,17 +197,6 @@ public class EditCommandParserTest {
         descriptor = new EditItineraryDescriptorBuilder().withCountry(VALID_COUNTRY_WINTER)
                 .withStartDate(VALID_START_DATE_WINTER).withEndDate(VALID_END_DATE_WINTER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_ITINERARY;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

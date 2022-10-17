@@ -46,11 +46,11 @@ public class EditCommandTest {
         Itinerary lastItinerary = model.getFilteredItineraryList().get(indexLastItinerary.getZeroBased());
 
         ItineraryBuilder itineraryInList = new ItineraryBuilder(lastItinerary);
-        Itinerary editedItinerary = itineraryInList.withName(VALID_NAME_WINTER).withCountry(VALID_COUNTRY_WINTER)
+        Itinerary editedItinerary = itineraryInList.withName(VALID_NAME_TEST).withCountry(VALID_COUNTRY_WINTER)
                 .withPeople(VALID_PEOPLE_SUMMER).build();
 
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER)
-                .withCountry(COUNTRY_DESC_WINTER).withPeople(VALID_PEOPLE_SUMMER).build();
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_NAME_TEST)
+                .withCountry(VALID_COUNTRY_WINTER).withPeople(VALID_PEOPLE_SUMMER).build();
         EditCommand editCommand = new EditCommand(indexLastItinerary, descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
@@ -77,9 +77,9 @@ public class EditCommandTest {
         showItineraryAtIndex(model, INDEX_FIRST_ITINERARY);
 
         Itinerary itineraryInFilteredList = model.getFilteredItineraryList().get(INDEX_FIRST_ITINERARY.getZeroBased());
-        Itinerary editedItinerary = new ItineraryBuilder(itineraryInFilteredList).withName(VALID_NAME_WINTER).build();
+        Itinerary editedItinerary = new ItineraryBuilder(itineraryInFilteredList).withName(VALID_NAME_TEST).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITINERARY,
-                new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER).build());
+                new EditItineraryDescriptorBuilder().withName(VALID_NAME_TEST).build());
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITINERARY_SUCCESS, editedItinerary);
 
         Model expectedModel = new ModelManager(new Waddle(model.getWaddle()), new UserPrefs());
