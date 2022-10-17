@@ -211,7 +211,7 @@ Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `list` followed by`add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
+* `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 d/Change dressing on left arm` adds a task to the 2nd patient in results of the `find` command.
 
 ### Editing a task: `edit -p -t`
