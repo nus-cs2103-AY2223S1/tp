@@ -20,7 +20,7 @@ import seedu.address.model.patient.Patient;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeletePatientCommand}.
+ * {@code SelectPatientCommand}.
  */
 public class SelectPatientCommandTest {
 
