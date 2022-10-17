@@ -12,6 +12,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.NuSchedulerParser;
@@ -70,6 +71,17 @@ public class HelpWindow extends UiPart<Stage> {
             profileAccordion.getPanes().add(new TitledPane(format, hBox));
         });
 
+        generalAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+            if (!root.isFullScreen()) {
+                root.sizeToScene();
+            }
+        });
+
+        profileAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+            if (!root.isFullScreen()) {
+                root.sizeToScene();
+            }
+        });
     }
 
     /**
