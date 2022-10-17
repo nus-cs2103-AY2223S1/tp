@@ -28,6 +28,7 @@ public class StallListPanel extends UiPart<Region> {
      */
     public StallListPanel(ObservableList<Stall> stallList) {
         super(FXML);
+        logger.info("Populating stalls from storage...");
         stallListView.setItems(stallList);
         stallListView.setCellFactory(listView -> new StallListViewCell());
     }

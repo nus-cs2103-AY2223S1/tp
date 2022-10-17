@@ -2,6 +2,9 @@ package foodwhere.ui;
 
 import static foodwhere.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.logging.Logger;
+
+import foodwhere.commons.core.LogsCenter;
 import foodwhere.model.review.Review;
 import foodwhere.model.stall.Stall;
 import javafx.event.ActionEvent;
@@ -13,6 +16,8 @@ import javafx.scene.input.ClipboardContent;
  * MenuItem that is used to copy content to clipboard.
  */
 public class CopyMenuItem<T> extends MenuItem {
+
+    private static final Logger logger = LogsCenter.getLogger(CopyMenuItem.class);
 
     /**
      * Enum to decide what content is copied.
@@ -98,6 +103,7 @@ public class CopyMenuItem<T> extends MenuItem {
     }
 
     private static void throwRunTimeError() {
+        logger.info("Invalid type of object passed in.");
         throw new RuntimeException("Invalid type!");
     }
 
