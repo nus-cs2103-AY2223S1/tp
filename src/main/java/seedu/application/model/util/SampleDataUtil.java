@@ -25,19 +25,19 @@ public class SampleDataUtil {
                     getTagSet("preferred")),
             new Application(new Company("Grab"), new Contact("67773777"), new Email("internships@grab.com.sg"),
                     new Position("Backend Engineer Intern"), new Date("2022-10-01"),
-                    getTagSet("senior referral")),
+                    getTagSet("seniorReferral")),
             new Application(new Company("ByteDance"), new Contact("63334333"), new Email("hr@bytedance.com.sg"),
                     new Position("Frontend Engineer Intern"), new Date("2021-08-08"),
                     getTagSet("BytePlus")),
             new Application(new Company("Shopee"), new Contact("67436743"), new Email("talent@shopee.com.sg"),
                     new Position("Quality Assurance Intern"), new Date("2021-09-30"),
-                    getTagSet("consumer tech")),
+                    getTagSet("consumerTech")),
             new Application(new Company("Wise"), new Contact("64164161"), new Email("humanresource@wise.org"),
                     new Position("Software Engineer Intern"), new Date("2022-09-10"),
-                    getTagSet("fintech company")),
+                    getTagSet("fintechCompany")),
             new Application(new Company("Stripe"), new Contact("66210987"), new Email("intern@stripe.org"),
                     new Position("System Analyst"), new Date("2022-10-08"),
-                    getTagSet("financial services", "tech"))
+                    getTagSet("financialServices", "tech"))
         };
     }
 

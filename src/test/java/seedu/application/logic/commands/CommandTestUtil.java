@@ -7,6 +7,7 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.application.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_FACEBOOK = "facebook@example.com";
     public static final String VALID_POSITION_GOOGLE = "Software Engineer";
     public static final String VALID_POSITION_FACEBOOK = "Backend Engineer";
+    public static final String VALID_TAG_PREFERRED = "preferred";
+    public static final String VALID_TAG_TECH_COMPANY = "techCompany";
 
     public static final String COMPANY_DESC_GOOGLE = " " + PREFIX_COMPANY + VALID_COMPANY_GOOGLE;
     public static final String COMPANY_DESC_FACEBOOK = " " + PREFIX_COMPANY + VALID_COMPANY_FACEBOOK;
@@ -48,12 +51,15 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_FACEBOOK = " " + PREFIX_EMAIL + VALID_EMAIL_FACEBOOK;
     public static final String POSITION_DESC_GOOGLE = " " + PREFIX_POSITION + VALID_POSITION_GOOGLE;
     public static final String POSITION_DESC_FACEBOOK = " " + PREFIX_POSITION + VALID_POSITION_FACEBOOK;
+    public static final String TAG_DESC_PREFERRED = " " + PREFIX_TAG + VALID_TAG_PREFERRED;
+    public static final String TAG_DESC_TECH_COMPANY = " " + PREFIX_TAG + VALID_TAG_TECH_COMPANY;
 
     public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "Google&"; // '&' not allowed in companies
     public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "911a"; // 'a' not allowed in contacts
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "01/09/2022"; // invalid date format
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "facebook!yahoo"; // missing '@' symbol
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed for positions
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "senior referral"; // space not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -64,10 +70,11 @@ public class CommandTestUtil {
     static {
         DESC_GOOGLE = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
                 .withContact(VALID_CONTACT_GOOGLE).withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE)
-                .withDate(VALID_DATE_GOOGLE).build();
+                .withDate(VALID_DATE_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
         DESC_FACEBOOK = new EditApplicationDescriptorBuilder().withCompany(VALID_COMPANY_FACEBOOK)
                 .withContact(VALID_CONTACT_FACEBOOK).withEmail(VALID_EMAIL_FACEBOOK)
-                .withPosition(VALID_POSITION_FACEBOOK).withDate(VALID_DATE_FACEBOOK).build();
+                .withPosition(VALID_POSITION_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
+                .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
     }
 
     /**
