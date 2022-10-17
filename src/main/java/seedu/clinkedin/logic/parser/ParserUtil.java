@@ -314,6 +314,9 @@ public class ParserUtil {
         return noteSet;
     }
 
+    /**
+     * Parses {@code Collection<String> ratings} into a {@code Set<Rating>}.
+     */
     public static Set<Rating> parseRatings(List<String> ratings) throws ParseException {
         requireNonNull(ratings);
         final Set<Rating> ratingSet = new HashSet<>();
