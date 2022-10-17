@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 

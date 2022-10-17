@@ -1,4 +1,4 @@
-package tracko.model.items;
+package tracko.model.item;
 
 import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import tracko.model.items.exceptions.DuplicateItemException;
-import tracko.model.items.exceptions.ItemNotFoundException;
+import tracko.model.item.exceptions.DuplicateItemException;
+import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**
  * Represents the list of items in the inventory.

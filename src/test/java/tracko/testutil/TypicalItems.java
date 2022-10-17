@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import tracko.model.TrackO;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * A utility class containing a list of {@code Item} objects to be used in tests.

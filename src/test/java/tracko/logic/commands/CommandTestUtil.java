@@ -16,8 +16,8 @@ import tracko.commons.core.index.Index;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
 import tracko.model.TrackO;
-import tracko.model.items.Item;
-import tracko.model.items.ItemContainsKeywordsPredicate;
+import tracko.model.item.Item;
+import tracko.model.item.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
 import tracko.model.order.OrderContainsKeywordsPredicate;
 

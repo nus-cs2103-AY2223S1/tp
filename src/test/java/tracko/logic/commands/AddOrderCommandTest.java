@@ -21,7 +21,7 @@ import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.ReadOnlyUserPrefs;
 import tracko.model.TrackO;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 // import tracko.model.person.Person;
 import tracko.testutil.OrderBuilder;

@@ -2,10 +2,10 @@ package tracko.testutil;
 
 import java.util.HashSet;
 
-import tracko.model.items.Description;
-import tracko.model.items.Item;
-import tracko.model.items.ItemName;
-import tracko.model.items.Quantity;
+import tracko.model.item.Description;
+import tracko.model.item.Item;
+import tracko.model.item.ItemName;
+import tracko.model.item.Quantity;
 
 /**
  * A utility class to help with building Order objects.

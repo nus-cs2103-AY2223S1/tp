@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import tracko.model.items.InventoryList;
-import tracko.model.items.Item;
+import tracko.model.item.InventoryList;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 import tracko.model.order.OrderList;
 

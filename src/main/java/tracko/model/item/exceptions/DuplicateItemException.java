@@ -1,4 +1,4 @@
-package tracko.model.items.exceptions;
+package tracko.model.item.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Items

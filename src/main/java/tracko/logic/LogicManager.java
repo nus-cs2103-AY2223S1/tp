@@ -15,7 +15,7 @@ import tracko.logic.parser.TrackOParser;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.Model;
 import tracko.model.ReadOnlyTrackO;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 import tracko.storage.Storage;
 

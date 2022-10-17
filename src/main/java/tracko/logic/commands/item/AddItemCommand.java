@@ -7,7 +7,7 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 
 /**
  * Adds an item to TrackO. The AddItemCommand is a single-level command in which the user initiates the item to be

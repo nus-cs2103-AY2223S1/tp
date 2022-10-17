@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import tracko.commons.exceptions.IllegalValueException;
 import tracko.model.ReadOnlyTrackO;
 import tracko.model.TrackO;
-import tracko.model.items.Item;
+import tracko.model.item.Item;
 import tracko.model.order.Order;
 
 
