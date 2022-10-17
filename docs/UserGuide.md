@@ -227,7 +227,7 @@ Format: `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION`
 
 Examples:
 * `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`.
-* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd patient in results of the `find` command.
+* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm`.
 
 ### Deleting a task: `delete -p -t`
 
