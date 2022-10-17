@@ -1,11 +1,13 @@
 package seedu.address.model.task;
 
-import seedu.address.model.person.Person;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Locale;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.person.Person;
+
+
 
 /**
  * Contact is a Person who is related to a task and is present in the address book.

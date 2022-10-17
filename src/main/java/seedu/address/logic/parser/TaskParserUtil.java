@@ -66,7 +66,7 @@ public class TaskParserUtil {
      * Parses index inputs in {@code Collection<String> inputs} (that can contain index and non-index inputs)
      * into a {@code Set<Index>}.
      */
-    public static Set<Index> parseIndexesMixed(Collection<String> inputs) throws ParseException{
+    public static Set<Index> parseIndexesMixed(Collection<String> inputs) throws ParseException {
         requireNonNull(inputs);
         final Set<Index> indexSet = new HashSet<>();
         for (String input : inputs) {

@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,7 +46,7 @@ public class AssignTaskCommand extends TaskCommand {
 
     public static final String MESSAGE_CONTACT_DOES_NOT_EXIT = "Delete: %1$s has not been previously assigned.";
 
-    public static final String MESSAGE_PARTIAL_SUCCESS  = "All other persons updated accordingly";
+    public static final String MESSAGE_PARTIAL_SUCCESS = "All other persons updated accordingly";
 
     private final Index taskIndex;
     private final Set<Index> personAddIndexes = new HashSet<>();
@@ -118,8 +117,8 @@ public class AssignTaskCommand extends TaskCommand {
         model.setTask(taskToModify, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-        if (!invalidIndexes.isEmpty() || !invalidNames.isEmpty() ||
-                !alreadyAddedContacts.isEmpty() || !notAddedContacts.isEmpty()) {
+        if (!invalidIndexes.isEmpty() || !invalidNames.isEmpty()
+                || !alreadyAddedContacts.isEmpty() || !notAddedContacts.isEmpty()) {
             throw new CommandException(buildErrorMessage() + MESSAGE_PARTIAL_SUCCESS);
         }
 
