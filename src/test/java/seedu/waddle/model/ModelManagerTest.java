@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.waddle.testutil.Assert.assertThrows;
+import static seedu.waddle.testutil.TypicalItineraries.AUTUMN;
+import static seedu.waddle.testutil.TypicalItineraries.SPRING;
 import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
@@ -79,13 +81,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasItinerary_itineraryNotInWaddle_returnsFalse() {
-        assertFalse(modelManager.hasItinerary(SUMMER));
+        assertFalse(modelManager.hasItinerary(SPRING));
     }
 
     @Test
     public void hasItinerary_itineraryInWaddle_returnsTrue() {
-        modelManager.addItinerary(SUMMER);
-        assertTrue(modelManager.hasItinerary(SUMMER));
+        modelManager.addItinerary(SPRING);
+        assertTrue(modelManager.hasItinerary(SPRING));
     }
 
     @Test
@@ -95,7 +97,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Waddle waddle = new WaddleBuilder().withItinerary(SUMMER).withItinerary(WINTER).build();
+        Waddle waddle = new WaddleBuilder().withItinerary(SPRING).withItinerary(AUTUMN).build();
         Waddle differentWaddle = new Waddle();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +119,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentWaddle, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = SUMMER.getName().fullName.split("\\s+");
+        String[] keywords = SPRING.getName().fullName.split("\\s+");
         modelManager.updateFilteredItineraryList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(waddle, userPrefs)));
 

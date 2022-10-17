@@ -70,14 +70,14 @@ public class JsonWaddleStorageTest {
         assertEquals(original, new Waddle(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addItinerary(GRADUATION);
-        original.removeItinerary(SUMMER);
+        original.addItinerary(SUMMER);
+        original.removeItinerary(SPRING);
         jsonWaddleStorage.saveWaddle(original, filePath);
         readBack = jsonWaddleStorage.readWaddle(filePath).get();
         assertEquals(original, new Waddle(readBack));
 
         // Save and read without specifying file path
-        original.addItinerary(AUTUMN);
+        original.addItinerary(WINTER);
         jsonWaddleStorage.saveWaddle(original); // file path not specified
         readBack = jsonWaddleStorage.readWaddle().get(); // file path not specified
         assertEquals(original, new Waddle(readBack));

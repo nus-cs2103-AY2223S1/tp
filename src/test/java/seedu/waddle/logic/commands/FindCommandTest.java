@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.commons.core.Messages.MESSAGE_ITINERARIES_LISTED_OVERVIEW;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.waddle.testutil.TypicalItineraries.AUTUMN;
 import static seedu.waddle.testutil.TypicalItineraries.SPRING;
 import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
@@ -67,11 +68,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleItinerariesFound() {
         String expectedMessage = String.format(MESSAGE_ITINERARIES_LISTED_OVERVIEW, 2);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Spring Summer");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Spring Autumn");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItineraryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(SUMMER, SPRING), model.getFilteredItineraryList());
+        assertEquals(Arrays.asList(SPRING, AUTUMN), model.getFilteredItineraryList());
     }
 
     /**

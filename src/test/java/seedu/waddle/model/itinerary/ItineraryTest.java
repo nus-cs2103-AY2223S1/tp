@@ -13,15 +13,10 @@ import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.waddle.model.item.Item;
 import seedu.waddle.testutil.ItineraryBuilder;
 
 public class ItineraryTest {
-
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Itinerary itinerary = new ItineraryBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> itinerary.getPeople().notify());
-    }
 
     @Test
     public void isSameItinerary() {
