@@ -37,6 +37,7 @@ public class JsonAdaptedInternshipTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final String VALID_REMARK = BENSON.getRemark().toString();
 
     @Test
     public void toModelType_validInternshipDetails_returnsInternship() throws Exception {
@@ -48,7 +49,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(INVALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL,
-                        VALID_STATUS, VALID_ADDRESS, VALID_TAGS);
+                        VALID_STATUS, VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -56,8 +57,8 @@ public class JsonAdaptedInternshipTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(null, VALID_POSITION, VALID_PHONE, VALID_EMAIL, VALID_STATUS, VALID_ADDRESS,
-                        VALID_TAGS);
+                new JsonAdaptedInternship(null, VALID_POSITION, VALID_PHONE, VALID_EMAIL, VALID_STATUS,
+                        VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -66,7 +67,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_invalidPosition_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, INVALID_POSITION,
-                        VALID_PHONE, VALID_EMAIL, VALID_STATUS, VALID_ADDRESS, VALID_TAGS);
+                        VALID_PHONE, VALID_EMAIL, VALID_STATUS, VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Position.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -75,7 +76,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullPosition_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, null,
-                        VALID_PHONE, VALID_EMAIL, VALID_STATUS, VALID_ADDRESS, VALID_TAGS);
+                        VALID_PHONE, VALID_EMAIL, VALID_STATUS, VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Position.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -84,7 +85,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, INVALID_PHONE, VALID_EMAIL, VALID_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                        VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -93,7 +94,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, null, VALID_EMAIL, VALID_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                        VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -102,7 +103,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, INVALID_EMAIL, VALID_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                        VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -111,7 +112,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, null, VALID_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                        VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -120,7 +121,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL, VALID_STATUS,
-                        INVALID_ADDRESS, VALID_TAGS);
+                        INVALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -129,7 +130,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL, VALID_STATUS, null,
-                        VALID_TAGS);
+                        VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -140,7 +141,7 @@ public class JsonAdaptedInternshipTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL,
-                        VALID_STATUS, VALID_ADDRESS, invalidTags);
+                        VALID_STATUS, VALID_ADDRESS, invalidTags, VALID_REMARK);
         assertThrows(IllegalValueException.class, internship::toModelType);
     }
 
@@ -148,7 +149,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullStatus_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL, null, VALID_ADDRESS,
-                        VALID_TAGS);
+                        VALID_TAGS, VALID_REMARK);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
@@ -157,7 +158,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_invalidStatus_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_NAME, VALID_POSITION, VALID_PHONE, VALID_EMAIL, INVALID_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                        VALID_ADDRESS, VALID_TAGS, VALID_REMARK);
         String expectedMessage = Status.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }

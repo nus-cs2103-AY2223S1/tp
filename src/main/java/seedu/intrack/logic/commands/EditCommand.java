@@ -6,6 +6,7 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
@@ -26,6 +27,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
@@ -107,9 +109,10 @@ public class EditCommand extends Command {
         Status updatedStatus = internshipToEdit.getStatus();
         Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
+        Remark updatedRemark = internshipToEdit.getRemark();
 
         return new Internship(updatedName, updatedPosition, updatedPhone, updatedEmail, updatedStatus,
-                updatedAddress, updatedTags);
+                updatedAddress, updatedTags, updatedRemark);
     }
 
     @Override

@@ -16,6 +16,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
@@ -33,6 +34,7 @@ class JsonAdaptedInternship {
     private final String status;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String remark;
 
     /**
      * Constructs a {@code JsonAdaptedInternship} with the given internship details.
@@ -41,7 +43,7 @@ class JsonAdaptedInternship {
     public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("status") String status, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
         this.name = name;
         this.position = position;
         this.phone = phone;
@@ -51,6 +53,7 @@ class JsonAdaptedInternship {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.remark = remark;
     }
 
     /**
@@ -66,6 +69,7 @@ class JsonAdaptedInternship {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remark = source.getRemark().value;
     }
 
     /**
@@ -126,11 +130,16 @@ class JsonAdaptedInternship {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+        final Remark modelRemark = new Remark(remark);
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
 
-        return new Internship(modelName, modelPosition, modelPhone, modelEmail, modelStatus, modelAddress, modelTags);
+        return new Internship(modelName, modelPosition, modelPhone, modelEmail, modelStatus, modelAddress,
+                modelTags, modelRemark);
     }
 
 }

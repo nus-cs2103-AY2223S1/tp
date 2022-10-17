@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.intrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 
@@ -22,10 +23,12 @@ import seedu.intrack.logic.commands.ExitCommand;
 import seedu.intrack.logic.commands.FindCommand;
 import seedu.intrack.logic.commands.HelpCommand;
 import seedu.intrack.logic.commands.ListCommand;
+import seedu.intrack.logic.commands.RemarkCommand;
 import seedu.intrack.logic.commands.StatusCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.testutil.EditInternshipDescriptorBuilder;
 import seedu.intrack.testutil.InternshipBuilder;
@@ -96,6 +99,14 @@ public class InTrackParserTest {
         StatusCommand command = (StatusCommand) parser.parseCommand(StatusCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_INTERNSHIP.getOneBased() + " o");
         assertEquals(new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Offered")), command);
+    }
+
+    @Test
+    public void parseCommand_remark() throws Exception {
+        final Remark remark = new Remark("New remark.");
+        RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_INTERNSHIP.getOneBased() + " " + PREFIX_REMARK + remark.value);
+        assertEquals(new RemarkCommand(INDEX_FIRST_INTERNSHIP, remark), command);
     }
 
     @Test

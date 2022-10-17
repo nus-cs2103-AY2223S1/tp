@@ -21,6 +21,7 @@ public class Internship {
     private final Phone phone;
     private final Email email;
     private final Status status;
+    private final Remark remark;
 
     // Data fields
     private final Address address;
@@ -31,8 +32,8 @@ public class Internship {
      */
 
     public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address,
-            Set<Tag> tags) {
-        requireAllNonNull(name, position, phone, email, status, address, tags);
+            Set<Tag> tags, Remark remark) {
+        requireAllNonNull(name, position, phone, email, status, address, tags, remark);
         this.name = name;
         this.position = position;
         this.phone = phone;
@@ -40,6 +41,7 @@ public class Internship {
         this.status = status;
         this.address = address;
         this.tags.addAll(tags);
+        this.remark = remark;
     }
 
     public Name getName() {
@@ -65,6 +67,8 @@ public class Internship {
     public Status getStatus() {
         return status;
     }
+
+    public Remark getRemark() { return remark; }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -139,6 +143,8 @@ public class Internship {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        builder.append(" Remark: ")
+                .append(getRemark());
         return builder.toString();
     }
 

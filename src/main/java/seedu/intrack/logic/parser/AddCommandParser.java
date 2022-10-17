@@ -19,6 +19,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
@@ -49,8 +50,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Status status = new Status("PROGRESS");
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Remark remark = new Remark("");
 
-        Internship internship = new Internship(name, position, phone, email, status, address, tagList);
+        Internship internship = new Internship(name, position, phone, email, status, address, tagList, remark);
 
         return new AddCommand(internship);
     }

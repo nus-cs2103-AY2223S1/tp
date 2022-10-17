@@ -10,6 +10,7 @@ import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 
 /**
@@ -59,7 +60,7 @@ public class StatusCommand extends Command {
         Internship editedInternship = new Internship(internshipToEdit.getName(),
                 internshipToEdit.getPosition(), internshipToEdit.getPhone(),
                 internshipToEdit.getEmail(), status, internshipToEdit.getAddress(),
-                internshipToEdit.getTags());
+                internshipToEdit.getTags(), internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
