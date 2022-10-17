@@ -251,7 +251,6 @@ public class ParserUtil {
         Path srcPath = Path.of(trimmedImagePath);
         if (Files.exists(srcPath)) {
             try {
-                System.out.println(Files.probeContentType(srcPath));
                 if (Files.probeContentType(srcPath).split("/")[0].equals("image")) {
                     return new ImagePath(trimmedImagePath);
                 }

@@ -1,10 +1,13 @@
 package seedu.address.logic.commands.iteration;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.LogicManager.FILE_OPS_CREATE_ERROR_MESSAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
+
+import java.io.IOException;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -66,20 +69,24 @@ public class AddIterationCommand extends Command {
                     activeCommission.getTitle().toString()));
         }
 
-        String src = toAdd.getImagePath().path;
-        String dst = storage[0].saveIterationImage(src);
+        try {
+            String src = toAdd.getImagePath().path;
+            String dst = storage[0].saveIterationImage(src);
 
-        Iteration toAdd2 = new Iteration(
-                toAdd.getDate(),
-                toAdd.getDescription(),
-                new ImagePath(dst),
-                toAdd.getFeedback()
-        );
+            Iteration toAdd2 = new Iteration(
+                    toAdd.getDate(),
+                    toAdd.getDescription(),
+                    new ImagePath(dst),
+                    toAdd.getFeedback()
+            );
 
-        activeCommission.addIteration(toAdd2);
-        model.selectTab(GuiTab.COMMISSION);
-        return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd2,
-                activeCommission.getTitle().toString()));
+            activeCommission.addIteration(toAdd2);
+            model.selectTab(GuiTab.COMMISSION);
+            return new CommandResult(String.format(MESSAGE_ADD_ITERATION_SUCCESS, toAdd2,
+                    activeCommission.getTitle().toString()));
+        } catch (IOException e) {
+            throw new CommandException(FILE_OPS_CREATE_ERROR_MESSAGE + e, e);
+        }
     }
 
     @Override
