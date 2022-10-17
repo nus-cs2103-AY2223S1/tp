@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.logic.commands.exceptions.CommandException;
 import hobbylist.model.HobbyList;
@@ -96,6 +97,16 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AliasSettings getAliasSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAliasSettings(AliasSettings AliasSettings) {
             throw new AssertionError("This method should not be called.");
         }
 

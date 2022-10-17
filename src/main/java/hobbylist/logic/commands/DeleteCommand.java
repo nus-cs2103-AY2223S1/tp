@@ -15,19 +15,35 @@ import hobbylist.model.activity.Activity;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_DELETE_ACTIVITY_SUCCESS = "Deleted Activity: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    private static String commandWord = "delete";
+
+    public static final String MESSAGE_USAGE = commandWord
             + ": Deletes the activity identified by the index number used in the displayed activity list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
-    public static final String MESSAGE_DELETE_ACTIVITY_SUCCESS = "Deleted Activity: %1$s";
+            + "Example: " + commandWord + " 1";
 
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    /**
+     * Sets the command word for the command.
+     * @param word Word to set command to.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
+    }
+
+    /**
+     * Gets the command word for the command.
+     * @return Command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
     }
 
     @Override

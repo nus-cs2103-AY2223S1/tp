@@ -9,11 +9,25 @@ import hobbylist.model.Model;
  * Lists all activities in the HobbyList to the user.
  */
 public class ListCommand extends Command {
-
-    public static final String COMMAND_WORD = "list";
-
     public static final String MESSAGE_SUCCESS = "Listed all activities";
 
+    private static String commandWord = "list";
+
+    /**
+     * Sets the command word for the command.
+     * @param word Word to set command to.
+     */
+    public static void setCommandWord(String word) {
+        commandWord = word;
+    }
+
+    /**
+     * Gets the command word for the command.
+     * @return Command word.
+     */
+    public static String getCommandWord() {
+        return commandWord;
+    }
 
     @Override
     public CommandResult execute(Model model) {

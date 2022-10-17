@@ -3,6 +3,7 @@ package hobbylist.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.GuiSettings;
 import hobbylist.model.activity.Activity;
 import javafx.collections.ObservableList;
@@ -33,6 +34,16 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' Alias settings.
+     */
+    AliasSettings getAliasSettings();
+
+    /**
+     * Sets the user prefs' Alias settings.
+     */
+    void setAliasSettings(AliasSettings aliasSettings);
 
     /**
      * Returns the user prefs' HobbyList file path.

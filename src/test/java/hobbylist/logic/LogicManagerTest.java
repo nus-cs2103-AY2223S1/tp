@@ -61,7 +61,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
+        String listCommand = ListCommand.getCommandWord();
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
@@ -76,7 +76,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_ANIME
+        String addCommand = AddCommand.getCommandWord() + CommandTestUtil.NAME_DESC_ANIME
                 + CommandTestUtil.DESCRIPTION_DESC_ANIME;
         Activity expectedActivity = new ActivityBuilder(TypicalActivities.ANIME).withTags().build();
         ModelManager expectedModel = new ModelManager();
