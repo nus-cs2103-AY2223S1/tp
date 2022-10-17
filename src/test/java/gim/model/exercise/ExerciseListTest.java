@@ -50,12 +50,6 @@ public class ExerciseListTest {
         assertThrows(NullPointerException.class, () -> exerciseList.add(null));
     }
 
-    //    @Test
-    //    public void add_duplicateExercise_throwsDuplicateExerciseException() {
-    //        uniqueExerciseList.add(ALICE);
-    //        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.add(ALICE));
-    //    }
-
     @Test
     public void setExercise_nullTargetExercise_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> exerciseList.setExercise(null, ALICE));
@@ -99,13 +93,6 @@ public class ExerciseListTest {
         expectedExerciseList.add(BENCH_PRESS);
         assertEquals(expectedExerciseList, exerciseList);
     }
-
-    //    @Test
-    //    public void setExercise_editedExerciseHasNonUniqueIdentity_throwsDuplicateExerciseException() {
-    //        uniqueExerciseList.add(ALICE);
-    //        uniqueExerciseList.add(BENCH_PRESS);
-    //        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.setExercise(ALICE, BENCH_PRESS));
-    //    }
 
     @Test
     public void remove_nullExercise_throwsNullPointerException() {
@@ -153,13 +140,6 @@ public class ExerciseListTest {
         expectedExerciseList.add(BENCH_PRESS);
         assertEquals(expectedExerciseList, this.exerciseList);
     }
-
-    //    @Test
-    //    public void setExercises_listWithDuplicateExercises_throwsDuplicateExerciseException() {
-    //        List<Exercise> listWithDuplicateExercises = Arrays.asList(ALICE, ALICE);
-    //        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList
-    //                .setExercises(listWithDuplicateExercises));
-    //    }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {

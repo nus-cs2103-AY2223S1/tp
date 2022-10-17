@@ -40,17 +40,6 @@ public class ExerciseTrackerTest {
         assertEquals(newData, exerciseTracker);
     }
 
-    //        @Test
-    //        public void resetData_withDuplicateExercises_throwsDuplicateExerciseException() {
-    //            // Two exercises with the same identity fields
-    //            Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS)
-    //                    .withTags(VALID_TAG_HUSBAND).build();
-    //            List<Exercise> newExercises = Arrays.asList(ALICE, editedAlice);
-    //            ExerciseTrackerStub newData = new ExerciseTrackerStub(newExercises);
-    //
-    //            assertThrows(DuplicateExerciseException.class, () -> exerciseTracker.resetData(newData));
-    //        }
-
     @Test
     public void hasExercise_nullExercise_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> exerciseTracker.hasExercise(null));

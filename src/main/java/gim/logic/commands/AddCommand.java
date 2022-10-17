@@ -31,7 +31,6 @@ public class AddCommand extends Command {
                     + "1 " + PREFIX_REPS + "5 " + PREFIX_DATE + "25/01/2022";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise tracker";
 
     private final Exercise toAdd;
 

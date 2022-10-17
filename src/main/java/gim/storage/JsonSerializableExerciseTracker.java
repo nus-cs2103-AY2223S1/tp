@@ -19,8 +19,6 @@ import gim.model.exercise.Exercise;
 @JsonRootName(value = "exercisetracker")
 class JsonSerializableExerciseTracker {
 
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "Exercises list contains duplicate exercise(s).";
-
     private final List<JsonAdaptedExercise> exercises = new ArrayList<>();
 
     /**
