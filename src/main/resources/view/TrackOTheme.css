@@ -565,6 +565,10 @@
     -fx-background-radius: 10px;
 }
 
+#resultDisplay .content .text {
+    -fx-text-alignment: justify;
+}
+
 #tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
