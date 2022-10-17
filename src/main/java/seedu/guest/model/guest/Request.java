@@ -7,23 +7,44 @@ public class Request {
     public static final String MESSAGE_CONSTRAINTS = "The request should not be null";
     public final String value;
 
+    /**
+     * The constructor with no specific request.
+     */
     public Request() {
         value = "Nothing";
     }
 
+    /**
+     * The constructor with specific request.
+     * @param str the specific request
+     */
     public Request(String str) {
         value = str;
     }
 
+    /**
+     * To check whether the request is valid.
+     * @param str
+     * @return boolean
+     */
     public static boolean isValidRequest(String str) {
-        return !(str.trim().equals(""));
+        return (!str.equals(""));
     }
 
+    /**
+     * return the String representation of request.
+     * @return
+     */
     @Override
     public String toString() {
         return value;
     }
 
+    /**
+     * to check whether this request is the same as another.
+     * @param other other object, might be requeest
+     * @return boolean
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -31,6 +52,10 @@ public class Request {
                 && value.equals(((Request) other).value)); // state check
     }
 
+    /**
+     * To override hashcode.
+     * @return integer
+     */
     @Override
     public int hashCode() {
         return value.hashCode();
