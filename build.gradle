@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'tracko.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
