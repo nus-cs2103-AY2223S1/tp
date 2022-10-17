@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+end box
+[-> LogicManager : execute("mark 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("mark 1")
+activate AddressBookParser
+
+AddressBookParser -> MarkCommandParser : parse("mark 1")
+activate MarkCommandParser
+
+create MarkCommand
+MarkCommandParser -> MarkCommand
+activate MarkCommand
+
+MarkCommand --> MarkCommandParser
+deactivate MarkCommand
+
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
+
+AddressBookParser --> LogicManager : MarkCommand
+deactivate AddressBookParser
+
+LogicManager -> MarkCommand : execute()
+activate MarkCommand
+
+UndoCommand -> Model : undoAddressBook()
+activate Model
+
+Model -> VersionedAddressBook : undo()
+activate VersionedAddressBook
+
+VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
+VersionedAddressBook --> Model :
+deactivate VersionedAddressBook
+
+Model --> UndoCommand
+deactivate Model
+
+UndoCommand --> LogicManager : result
+deactivate UndoCommand
+UndoCommand -[hidden]-> LogicManager : result
+destroy UndoCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
