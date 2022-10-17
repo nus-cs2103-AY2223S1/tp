@@ -6,7 +6,7 @@
     "email" : "alice@example.com",
     "handle" : "alice",
     "username" : "alifur",
-    "mods" : [ "CS2100" ],
+    "mods" : [ "CS2100", "CS1231S" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "email" : "johnd@example.com",
     "handle" : "bensonhaha",
     "username" : "benji",
-    "mods" : [ "CS2100" ],
+    "mods" : [ "CS2100", "CS1231S" ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -38,7 +38,7 @@
     "email" : "werner@example.com",
     "handle" : "ellie",
     "username" : "goldl8ol",
-    "mods" : [ "CS2100" ],
+    "mods" : [ "CS2100", "CS1231S" ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
