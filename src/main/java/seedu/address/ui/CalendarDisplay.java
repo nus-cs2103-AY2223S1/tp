@@ -94,7 +94,7 @@ public class CalendarDisplay extends UiPart<Region> {
 
 
     private String getDayName(int n) {
-        return dayNames[n + 1];
+        return dayNames[n - 1];
     }
 
     private String getMonthName(int n) {
