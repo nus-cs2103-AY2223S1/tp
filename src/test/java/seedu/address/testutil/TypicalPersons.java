@@ -32,8 +32,6 @@ import seedu.address.model.person.Professor;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 
-
-
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -140,9 +138,9 @@ public class TypicalPersons {
 
     /**
      * Returns an {@code AddressBook} with
-     * persons in sorted order lexicographically.
+     * persons in sorted order lexicographically ascending.
      */
-    public static AddressBook getSortedAddressBook() {
+    public static AddressBook getSortedAddressBookAscending() {
         AddressBook ab = new AddressBook();
         ab.addPerson(AARON);
         ab.addPerson(ALEX);
@@ -158,9 +156,27 @@ public class TypicalPersons {
     }
     /**
      * Returns an {@code AddressBook} with
-     * Professors in sorted order lexicographically.
+     * persons in sorted order lexicographically descending.
      */
-    public static AddressBook getSortedProfessors() {
+    public static AddressBook getSortedAddressBookDescending() {
+        AddressBook ab = new AddressBook();
+        ab.addPerson(HOON);
+        ab.addPerson(GEORGE);
+        ab.addPerson(FIONA);
+        ab.addPerson(DANIEL);
+        ab.addPerson(CABE);
+        ab.addPerson(BOB);
+        ab.addPerson(AMY);
+        ab.addPerson(ALICE);
+        ab.addPerson(ALEX);
+        ab.addPerson(AARON);
+        return ab;
+    }
+    /**
+     * Returns an {@code AddressBook} with
+     * Professors in sorted order lexicographically ascending.
+     */
+    public static AddressBook getSortedProfessorsAscending() {
         AddressBook ab = new AddressBook();
         ab.addPerson(ANDERSON);
         ab.addPerson(BEN);
@@ -183,9 +199,9 @@ public class TypicalPersons {
     }
     /**
      * Returns an {@code AddressBook} with
-     * Students in sorted order lexicographically.
+     * Students in sorted order lexicographically ascending.
      */
-    public static AddressBook getSortedStudents() {
+    public static AddressBook getSortedStudentsAscending() {
         AddressBook ab = new AddressBook();
         ab.addPerson(AARON);
         ab.addPerson(ALEX);
