@@ -1,4 +1,4 @@
-package seedu.address.model.Calendar;
+package seedu.address.model.calendar;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.DateTimeParser;
-import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.DateTime;
@@ -22,8 +21,8 @@ public class CalendarEventTest {
     private static final Name AMY = new Name("AMY");
     private static final Name BOB = new Name("BOB");
 
-    private class InValidAppointmentStub extends Appointment {
-        InValidAppointmentStub() {
+    private class InvalidAppointmentStub extends Appointment {
+        InvalidAppointmentStub() {
             super(new ValidDateTimeStub());
         }
         @Override
@@ -97,16 +96,16 @@ public class CalendarEventTest {
     }
 
     @Test
-    public void constructor_name_null_throwsNullPointerException() {
+    public void constructor_nameNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CalendarEvent(null, new ValidAppointmentStub()));
     }
     @Test
-    public void constructor_appointment_null_throwsNullPointerException() {
+    public void constructor_appointmentNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CalendarEvent(AMY, null));
     }
 
     @Test
-    public void constructor_name_appointment_null_throwsNullPointerException() {
+    public void constructor_nameAndAppointmentNull_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CalendarEvent(null, null));
     }
 

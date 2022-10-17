@@ -50,11 +50,11 @@ public class CalendarEvent {
 
     @Override
     public boolean equals(Object other) {
-        if (other == this) {// short circuit if same object
+        if (other == this) { // short circuit if same object
             return true;
         }
 
-        if (!(other instanceof CalendarEvent)) {// instanceof handles nulls
+        if (!(other instanceof CalendarEvent)) { // instanceof handles nulls
             return false;
         }
         CalendarEvent otherEvent = (CalendarEvent) other;
