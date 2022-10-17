@@ -52,18 +52,10 @@ public class ShowCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0);
-        DayIsKeywordPredicate predicate = preparePredicate(" ");
+        DayIsKeywordPredicate predicate = new DayIsKeywordPredicate(" ");
         ShowCommand command = new ShowCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
-
-
-    /**
-     * Parses {@code userInput} into a {@code DayisKeywordPredicate}.
-     */
-    private DayIsKeywordPredicate preparePredicate(String userInput) {
-        return new DayIsKeywordPredicate(userInput);
     }
 }
