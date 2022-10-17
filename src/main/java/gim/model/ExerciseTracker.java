@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
 import gim.model.exercise.ExerciseList;
 import javafx.collections.ObservableList;
 
@@ -15,10 +16,12 @@ import javafx.collections.ObservableList;
  */
 public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
-    private final ExerciseList exercises;
+    private final ExerciseList exerciseList;
+    private final ExerciseHashMap exerciseHashMap;
 
     {
-        exercises = new ExerciseList();
+        exerciseList = new ExerciseList();
+        exerciseHashMap = new ExerciseHashMap();
     }
 
     public ExerciseTracker() {}
@@ -38,7 +41,8 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      * {@code exercises} can contain duplicate Exercises.
      */
     public void setExercises(List<Exercise> exercises) {
-        this.exercises.setExercises(exercises);
+        this.exerciseList.setExercises(exercises);
+        this.exerciseHashMap.setExercises(exercises);
     }
 
     /**
@@ -57,7 +61,7 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
-        return exercises.contains(exercise);
+        return exerciseHashMap.contains(exercise);
     }
 
     /**
@@ -65,7 +69,8 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      * The Exercise can already exist in the exercise tracker.
      */
     public void addExercise(Exercise p) {
-        exercises.add(p);
+        Exercise toAdd = exerciseHashMap.add(p);
+        exerciseList.add(toAdd);
     }
 
     /**
@@ -77,7 +82,7 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
 
-        exercises.setExercise(target, editedExercise);
+        exerciseList.setExercise(target, editedExercise);
     }
 
     /**
@@ -85,31 +90,32 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      * {@code key} must exist in the exercise tracker.
      */
     public void removeExercise(Exercise key) {
-        exercises.remove(key);
+        exerciseHashMap.remove(key);
+        exerciseList.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return exercises.asUnmodifiableObservableList().size() + " exercises";
+        return exerciseList.asUnmodifiableObservableList().size() + " exercises";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Exercise> getExerciseList() {
-        return exercises.asUnmodifiableObservableList();
+        return exerciseList.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExerciseTracker // instanceof handles nulls
-                && exercises.equals(((ExerciseTracker) other).exercises));
+                && exerciseList.equals(((ExerciseTracker) other).exerciseList));
     }
 
     @Override
     public int hashCode() {
-        return exercises.hashCode();
+        return exerciseList.hashCode();
     }
 }
