@@ -10,29 +10,28 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_TA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.AddStuCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-
 /**
- * A utility class for Person.
+ * A utility class for Student.
  */
 public class StudentUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code student}.
      */
     public static String getAddStuCommand(Student student) {
         return AddStuCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code student}'s details.
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();

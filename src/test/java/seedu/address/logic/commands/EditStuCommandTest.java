@@ -54,7 +54,7 @@ public class EditStuCommandTest {
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastStudent = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastStudent =  model.getFilteredPersonList().get(indexLastStudent.getZeroBased());
+        Person lastStudent = model.getFilteredPersonList().get(indexLastStudent.getZeroBased());
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withTelegramHandle("@bobtheman")

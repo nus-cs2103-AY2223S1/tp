@@ -119,12 +119,12 @@ public class EditStuCommand extends Command {
         Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         StudentId updatedId = editStudentDescriptor.getId().orElse(studentToEdit.getId());
-        TelegramHandle updatedHandle = editStudentDescriptor.getTelegramHandle().
-                orElse(studentToEdit.getTelegramHandle());
-        Set<ModuleCode> updatedStudentModuleInformation = editStudentDescriptor.getStudentModuleInfo().
-                orElse(studentToEdit.getStudentModuleInfo());
-        Set<ModuleCode> updatedTeachingAssistantInfo = editStudentDescriptor.getTeachingAssistantInfo().
-                orElse(studentToEdit.getTeachingAssistantInfo());
+        TelegramHandle updatedHandle = editStudentDescriptor.getTelegramHandle()
+                .orElse(studentToEdit.getTelegramHandle());
+        Set<ModuleCode> updatedStudentModuleInformation = editStudentDescriptor.getStudentModuleInfo()
+                .orElse(studentToEdit.getStudentModuleInfo());
+        Set<ModuleCode> updatedTeachingAssistantInfo = editStudentDescriptor.getTeachingAssistantInfo()
+                .orElse(studentToEdit.getTeachingAssistantInfo());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updatedId, updatedHandle, updatedStudentModuleInformation, updatedTeachingAssistantInfo);
@@ -268,8 +268,8 @@ public class EditStuCommand extends Command {
          * Returns {@code Optional#empty()} if {@code studentModuleInfo} is null.
          */
         public Optional<Set<ModuleCode>> getStudentModuleInfo() {
-            return (studentModuleInfo != null) ?
-                    Optional.of(Collections.unmodifiableSet(studentModuleInfo)) : Optional.empty();
+            return (studentModuleInfo != null)
+                    ? Optional.of(Collections.unmodifiableSet(studentModuleInfo)) : Optional.empty();
         }
 
         /**
@@ -286,8 +286,8 @@ public class EditStuCommand extends Command {
          * Returns {@code Optional#empty()} if {@code studentModuleInfo} is null.
          */
         public Optional<Set<ModuleCode>> getTeachingAssistantInfo() {
-            return (teachingAssistantInfo != null) ?
-                    Optional.of(Collections.unmodifiableSet(teachingAssistantInfo)) : Optional.empty();
+            return (teachingAssistantInfo != null)
+                    ? Optional.of(Collections.unmodifiableSet(teachingAssistantInfo)) : Optional.empty();
         }
 
         @Override

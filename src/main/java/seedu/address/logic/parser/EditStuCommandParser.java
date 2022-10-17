@@ -18,8 +18,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditStuCommand.EditStudentDescriptor;
 import seedu.address.logic.commands.EditStuCommand;
+import seedu.address.logic.commands.EditStuCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
@@ -65,14 +65,14 @@ public class EditStuCommandParser implements Parser<EditStuCommand> {
             editStudentDescriptor.setId(ParserUtil.parseID(argMultimap.getValue(PREFIX_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_HANDLE).isPresent()) {
-            editStudentDescriptor.setTelegramHandle(ParserUtil.
-                    parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
+            editStudentDescriptor.setTelegramHandle(ParserUtil
+                    .parseTelegramHandle(argMultimap.getValue(PREFIX_HANDLE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
-        parseStudentModuleInfoForEdit(argMultimap.getAllValues(PREFIX_MODULE_CODE)).
-                ifPresent(editStudentDescriptor::setStudentModuleInfo);
-        parseTeachingAssistantInfoForEdit(argMultimap.getAllValues(PREFIX_STUDENT_TA)).
-                ifPresent(editStudentDescriptor::setTeachingAssistantInfo);
+        parseStudentModuleInfoForEdit(argMultimap.getAllValues(PREFIX_MODULE_CODE))
+                .ifPresent(editStudentDescriptor::setStudentModuleInfo);
+        parseTeachingAssistantInfoForEdit(argMultimap.getAllValues(PREFIX_STUDENT_TA))
+                .ifPresent(editStudentDescriptor::setTeachingAssistantInfo);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditStuCommand.MESSAGE_NOT_EDITED);
@@ -108,8 +108,8 @@ public class EditStuCommandParser implements Parser<EditStuCommand> {
         if (moduleInfo.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> moduleSet = moduleInfo.size() == 1 &&
-                moduleInfo.contains("") ? Collections.emptySet() : moduleInfo;
+        Collection<String> moduleSet = moduleInfo.size() == 1
+                && moduleInfo.contains("") ? Collections.emptySet() : moduleInfo;
         return Optional.of(ParserUtil.parseStudentInfo(moduleSet));
     }
 
@@ -125,8 +125,8 @@ public class EditStuCommandParser implements Parser<EditStuCommand> {
         if (teachingAssistantInfo.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> moduleSet = teachingAssistantInfo.size() == 1 &&
-                teachingAssistantInfo.contains("") ? Collections.emptySet() : teachingAssistantInfo;
+        Collection<String> moduleSet = teachingAssistantInfo.size() == 1
+                && teachingAssistantInfo.contains("") ? Collections.emptySet() : teachingAssistantInfo;
         return Optional.of(ParserUtil.parseTeachingAssistantInfo(moduleSet));
     }
 

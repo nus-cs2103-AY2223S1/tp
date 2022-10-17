@@ -68,6 +68,9 @@ public class StudentBuilder {
         teachingInfo = studentToCopy.getTeachingAssistantInfo();
     }
 
+    /**
+     * Initializes the StudentBuilder with the data of {@code personToCopy}.
+     */
     public StudentBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
