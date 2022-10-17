@@ -19,12 +19,15 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.module.EditModuleCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCodeContainsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -42,6 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_MODULE_CODE_CYBERSEC = "CS2107";
     public static final String VALID_MODULE_CODE_SWE = "CS2103T";
+    public static final String VALID_MODULE_CODE_PL = "CS2104";
     public static final String VALID_MODULE_DESCRIPTION_CYBERSEC = "Cryptography basics";
     public static final String VALID_MODULE_DESCRIPTION_SWE = "Module teaches about software engineering";
     public static final String VALID_MODULE_NAME_CYBERSEC = "Introduction to Cybersecurity";
@@ -92,6 +96,8 @@ public class CommandTestUtil {
 
     public static final EditStuCommand.EditStudentDescriptor DESC_AMY_STUDENT;
     public static final EditStuCommand.EditStudentDescriptor DESC_BOB_STUDENT;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_SWE;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CYBERSEC;
 
     static {
         DESC_AMY_STUDENT = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -102,6 +108,12 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withStudentId(VALID_ID_BOB)
                 .withTelegramHandle(VALID_TELEGRAM_BOB).withAddress(VALID_STUDENT_INFO).build();
+        DESC_SWE = new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_SWE)
+                .withCode(VALID_MODULE_CODE_SWE).withDescription(VALID_MODULE_DESCRIPTION_SWE)
+                .withTags(VALID_TAG_MODULE_COORDINATOR, VALID_TAG_IMPORTANT).build();
+        DESC_CYBERSEC = new EditModuleDescriptorBuilder().withName(VALID_MODULE_NAME_CYBERSEC)
+                .withCode(VALID_MODULE_CODE_CYBERSEC).withDescription(VALID_MODULE_DESCRIPTION_CYBERSEC)
+                .withTags(VALID_TAG_MODULE_COORDINATOR, VALID_TAG_IMPORTANT).build();
     }
 
     /**
@@ -168,8 +180,8 @@ public class CommandTestUtil {
      */
     public static void showModuleWithModuleCode(Model model, Index targetIndex) {
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
-        final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final ModuleCode moduleCode = module.getCode();
+        model.updateFilteredModuleList(new ModuleCodeContainsKeywordPredicate(moduleCode));
 
         assertEquals(1, model.getFilteredModuleList().size());
     }

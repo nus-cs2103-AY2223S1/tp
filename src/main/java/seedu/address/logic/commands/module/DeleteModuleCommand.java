@@ -31,8 +31,6 @@ public class DeleteModuleCommand extends Command {
 
     private final ModuleCode targetModuleCode;
 
-    private boolean isInModuleList = false;
-
     public DeleteModuleCommand(ModuleCode targetModuleCode) {
         this.targetModuleCode = targetModuleCode;
     }
@@ -43,6 +41,7 @@ public class DeleteModuleCommand extends Command {
         List<Module> moduleList = model.getFilteredModuleList();
         Module moduleToDelete;
         int positionInList = 0;
+        boolean isInModuleList = false;
 
         for (Module m : moduleList) {
             String targetCodeInUpperCase = targetModuleCode.toString().toUpperCase();
