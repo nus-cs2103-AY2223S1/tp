@@ -1,6 +1,6 @@
 package nus.climods.model;
 
-import java.util.Optional;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -19,6 +19,8 @@ public interface Model {
      */
     Predicate<UserModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
+    //=========== UserPrefs ==================================================================================
+
     /**
      * Returns the user prefs.
      */
@@ -29,6 +31,8 @@ public interface Model {
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
+    //=========== GuiSettings ==================================================================================
+
     /**
      * Returns the user prefs' GUI settings.
      */
@@ -38,9 +42,18 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    //=========== Module ==================================================================================
+
     ReadOnlyModuleList getModuleList();
 
-    /* USER MODULE */
+    ObservableList<Module> getFilteredModuleList();
+
+    void setFilteredModuleList(Predicate<Module> predicate);
+
+    void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator);
+
+    //=========== UserModule ==================================================================================
 
     /**
      * Returns true if a module with the same identity as {@code module} exists in the address book.
@@ -50,8 +63,7 @@ public interface Model {
     /**
      * Returns true if a module with the same identity as {@code module} exists in the filtered user module list
      */
-    boolean filteredListhasUserModule(UserModule module);
-
+    boolean filteredListHasUserModule(UserModule module);
 
     /**
      * Deletes the given module. The module must exist in the address book.
@@ -67,15 +79,11 @@ public interface Model {
      * Returns an unmodifiable view of the filtered module list
      */
     ObservableList<UserModule> getFilteredUserModuleList();
+
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredUserModuleList(Predicate<UserModule> predicate);
-    void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser);
-
-    ObservableList<Module> getFilteredModuleList();
-
-    void setFilteredModuleList(Predicate<Module> predicate);
 }
