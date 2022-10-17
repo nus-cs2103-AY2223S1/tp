@@ -12,19 +12,27 @@ public class Student {
 
     // Identity fields
     private final StudentName studentName;
+    private final MatricNum matricNum;
+
+    // Data fields
     private final MasteryCheckStatus mcStatus;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(StudentName studentName, MasteryCheckStatus mcStatus) {
-        requireAllNonNull(studentName);
+    public Student(StudentName studentName, MatricNum matricNum, MasteryCheckStatus mcStatus) {
+        requireAllNonNull(studentName, matricNum, mcStatus);
         this.studentName = studentName;
+        this.matricNum = matricNum;
         this.mcStatus = mcStatus;
     }
 
     public StudentName getName() {
         return studentName;
+    }
+
+    public MatricNum getMatricNum() {
+        return matricNum;
     }
 
     public MasteryCheckStatus getMcStatus() {
@@ -52,7 +60,7 @@ public class Student {
     }
 
     /**
-     * Returns true if both students have the same identity and data fields.
+     * Returns true if both students have the same identity fields.
      * This defines a stronger notion of equality between two students.
      */
     @Override
@@ -66,13 +74,14 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return otherStudent.getName().equals(getName());
+        return otherStudent.getName().equals(getName())
+                && otherStudent.getMatricNum().equals(getMatricNum());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(studentName);
+        return Objects.hash(matricNum);
     }
 
     @Override
