@@ -18,7 +18,7 @@ import java.util.function.Function;
 /**
  * Adds a client to the address book.
  */
-public class AddClientCommand<toAddClientWithoutModel> extends ClientCommand {
+public class AddClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-a";
 

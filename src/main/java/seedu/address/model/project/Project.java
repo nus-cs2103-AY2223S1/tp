@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.function.Function;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientId;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.*;
@@ -63,13 +65,15 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
      * @param name
      * @param repository
      * @param deadline
-     * @param client
+     * @param clientId
      * @param issueList
      * @return a function that provides an issue object when presented with an IssueId object.
      */
-    public static Function<ProjectId, Project> makeProjectWithoutID(Name name, Repository repository, Deadline deadline,
-                                                                Client client, List<Issue> issueList) {
-        return (id) -> new Project(name, repository, deadline, client, issueList, id);
+    public static Function<Model, Project> makeProjectWithoutModel(Name name, Repository repository, Deadline deadline,
+                                                                   ClientId clientId, List<Issue> issueList) {
+        return (model) ->
+                new Project(name, repository, deadline,
+                        model.getClientById(clientId.getIdInt()), issueList, new ProjectId(model.generateProjectId()));
     }
 
     /**

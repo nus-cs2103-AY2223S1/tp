@@ -277,24 +277,6 @@ public class ParserUtil {
                 new ArrayList<>(), new ProjectId(trimmedIdInt));
     }
 
-    /**
-     * Parses a {@code String projectId} into a {@code ProjectId}.
-     *
-     * @param projectId is the id of the project
-     * @return A projectId object
-     */
-    public static ProjectId parseProjectId(String projectId) throws ParseException {
-        requireNonNull(projectId);
-        String trimmedId = projectId.trim();
-        if (!ProjectId.isValidProjectId(trimmedId)) {
-            throw new ParseException(ProjectId.MESSAGE_CONSTRAINTS);
-        }
-        int trimmedIdInt = Integer.parseInt(trimmedId);
-        if (UniqueProjectList.getProject(trimmedIdInt).equals(Project.EmptyProject.EMPTY_PROJECT)) {
-            throw new ParseException(ProjectId.MESSAGE_INVALID);
-        }
-        return new ProjectId(trimmedIdInt);
-    }
 
     /**
      * Parses a {@code String issueId} into a {@code IssueId}.

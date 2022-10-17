@@ -14,6 +14,8 @@ import seedu.address.model.client.Client;
 import seedu.address.model.project.Project;
 import seedu.address.ui.Ui;
 
+import java.util.function.Function;
+
 /**
  * Adds a project to the address book.
  */
@@ -37,21 +39,23 @@ public class AddProjectCommand extends ProjectCommand {
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 
-    private final Project toAddProject;
-    private final Client projectClient;
+//    private final Project toAddProject;
+    private final Function<Model, Project> toAddProjectWithoutModel;
 
     /**
      * Creates an AddProjectCommand to add the specified {@code Project}
      */
-    public AddProjectCommand(Project project) {
-        requireNonNull(project);
-        toAddProject = project;
-        projectClient = project.getClient();
+    public AddProjectCommand(Function<Model, Project> projectWithoutModel) {
+        requireNonNull(projectWithoutModel);
+        toAddProjectWithoutModel = projectWithoutModel;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+
+        Project toAddProject = toAddProjectWithoutModel.apply(model);
+        Client projectClient = toAddProject.getClient();
 
         if (model.hasProject(toAddProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
@@ -72,6 +76,7 @@ public class AddProjectCommand extends ProjectCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddProjectCommand // instanceof handles nulls
-                && toAddProject.equals(((AddProjectCommand) other).toAddProject));
+//                && toAddProject.equals(((AddProjectCommand) other).toAddProject) TODO: review
+        );
     }
 }
