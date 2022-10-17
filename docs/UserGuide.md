@@ -72,7 +72,8 @@ title: User Guide
 Adds a new FYP of a student to the FYP manager.
 
 Format: `add id/STUDENT_ID n/STUDENT_NAME proj/FYP_NAME e/EMAIL [t/TAG]…​`
-* `STUDENT_ID` should be in the following format: "A" + (7 digits) + (1 letter), e.g. `A0123456G`
+* `STUDENT_ID` should be in the following format: **"A" + (7 digits) + (1 letter)**, e.g. `A0123456G`
+* `FYP_NAME` should only include alphanumeric characters and space but **cannot start with a space**, e.g. `Support vector machine: some improvements` is invalid
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
