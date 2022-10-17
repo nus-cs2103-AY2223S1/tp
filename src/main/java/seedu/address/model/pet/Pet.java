@@ -2,16 +2,13 @@ package seedu.address.model.pet;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.Year;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.Order;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -180,8 +177,8 @@ public class Pet {
      * Compares a pet with another pet in default way in terms of the age.
      * @param pet The other pet being compared.
      * @return The method returns 0 if the pet and the other pet has the same age.
-     * A value less than 0 is returned if the pet is younger than the other pet,
-     * and a value greater than 0 if the pet is older than the other pet.
+     *      A value less than 0 is returned if the pet is younger than the other pet,
+     *      and a value greater than 0 if the pet is older than the other pet.
      */
     public int compareTo(Pet pet) {
         return this.getAge() - pet.getAge();

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TypicalBuyers;
 
 /**
@@ -27,14 +26,14 @@ public class ListCommandTest {
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
-        @Test
-        public void execute_listIsNotFiltered_showsSameList() {
-            assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-        }
+    @Test
+    public void execute_listIsNotFiltered_showsSameList() {
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 
-        @Test
-        public void execute_listIsFiltered_showsEverything() {
-            showBuyerAtIndex(model, INDEX_FIRST_PERSON);
-            assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-        }
+    @Test
+    public void execute_listIsFiltered_showsEverything() {
+        showBuyerAtIndex(model, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 }
