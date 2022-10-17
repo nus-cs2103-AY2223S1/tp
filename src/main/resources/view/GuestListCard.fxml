@@ -39,7 +39,8 @@
                     fitHeight="12.0"
                     fitWidth="12.0"
                     smooth="false"
-                    HBox.hgrow="NEVER" >
+                    HBox.hgrow="NEVER"
+                    translateY="-1" >
               <image>
                 <Image url="@/images/phone.png" />
               </image>
@@ -53,7 +54,8 @@
                     fitHeight="12.0"
                     fitWidth="12.0"
                     smooth="false"
-                    HBox.hgrow="NEVER" >
+                    HBox.hgrow="NEVER"
+                    translateY="-1" >
               <image>
                 <Image url="@/images/email.png" />
               </image>
@@ -75,7 +77,8 @@
                       fitHeight="12.0"
                       fitWidth="12.0"
                       smooth="false"
-                      HBox.hgrow="NEVER" >
+                      HBox.hgrow="NEVER"
+                      translateY="-1" >
                 <image>
                   <Image url="@/images/dateRange.png" />
                 </image>
@@ -89,7 +92,8 @@
                       fitHeight="12.0"
                       fitWidth="12.0"
                       smooth="false"
-                      HBox.hgrow="NEVER" >
+                      HBox.hgrow="NEVER"
+                      translateY="-1" >
                 <image>
                   <Image url="@/images/group.png" />
                 </image>
@@ -112,7 +116,8 @@
                       fitHeight="12.0"
                       fitWidth="12.0"
                       smooth="false"
-                      HBox.hgrow="NEVER" >
+                      HBox.hgrow="NEVER"
+                      translateY="-1" >
                 <image>
                   <Image url="@/images/isRoomClean.png" />
                 </image>
@@ -121,12 +126,26 @@
               <Label fx:id="isRoomClean" styleClass="cell_small_label" text="\$isRoomClean" />
             </HBox>
 
+            <HBox fx:id="billBox" alignment="CENTER_LEFT">
+              <ImageView
+                      fitHeight="12.0"
+                      fitWidth="12.0"
+                      smooth="false"
+                      HBox.hgrow="NEVER"
+                      translateY="-1" >
+                <image>
+                  <Image url="@/images/bill.png" />
+                </image>
+              </ImageView>
+              <Region minWidth="5" HBox.hgrow="NEVER" />
+              <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
+            </HBox>
+
             <HBox alignment="CENTER_LEFT">
             </HBox>
           </VBox>
         </HBox>
       </HBox>
-      <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
     </VBox>
   </GridPane>
 </HBox>
