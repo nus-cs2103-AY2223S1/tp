@@ -3,7 +3,7 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_FRUITS;
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_NUMBERS;
+import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
@@ -41,7 +41,7 @@ public class RenameTagCommandTest {
     @Test
     public void execute_duplicatedTagName_failure() {
         Tag originalTag = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
-        Tag renamedTag = new TagBuilder().withTagName(VALID_TAG_NAME_NUMBERS).build();
+        Tag renamedTag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
         RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
 
         assertCommandFailure(renameTagCommand, model, EXPECTED_ERROR_DUPLICATE);

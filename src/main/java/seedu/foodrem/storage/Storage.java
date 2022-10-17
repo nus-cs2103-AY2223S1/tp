@@ -27,6 +27,6 @@ public interface Storage extends FoodRemStorage, UserPrefsStorage {
     Optional<ReadOnlyFoodRem> readFoodRem() throws DataConversionException, IOException;
 
     @Override
-    void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException;
+    void saveFoodRem(ReadOnlyFoodRem foodRem) throws IOException;
 
 }

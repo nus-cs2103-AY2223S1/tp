@@ -22,6 +22,12 @@ public class JsonSerializableFoodRemTest {
             .resolve("invalidItemFoodRem.json");
     private static final Path DUPLICATE_ITEM_FILE = TEST_DATA_FOLDER
             .resolve("duplicateItemFoodRem.json");
+    private static final Path DUPLICATE_TAG_FILE = TEST_DATA_FOLDER
+            .resolve("duplicateTagFoodRem.json");
+    private static final Path INVALID_TAG_FILE = TEST_DATA_FOLDER
+            .resolve("invalidTagFoodRem.json");
+    private static final Path TYPICAL_FOODREM_FILE = TEST_DATA_FOLDER
+            .resolve("typicalFoodRem.json");
 
     @Test
     public void toModelType_typicalItemsFile_success() throws Exception {
@@ -45,5 +51,29 @@ public class JsonSerializableFoodRemTest {
                 JsonSerializableFoodRem.class).get();
         assertThrows(IllegalArgumentException.class, JsonSerializableFoodRem.MESSAGE_DUPLICATE_ITEMS,
                 dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateTags_throwsIllegalValueException() throws Exception {
+        JsonSerializableFoodRem dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TAG_FILE,
+                JsonSerializableFoodRem.class).get();
+        assertThrows(IllegalArgumentException.class, JsonSerializableFoodRem.MESSAGE_DUPLICATE_TAGS,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTagFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableFoodRem dataFromFile = JsonUtil.readJsonFile(INVALID_TAG_FILE,
+                JsonSerializableFoodRem.class).get();
+        assertThrows(IllegalArgumentException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_typicalFoodRemFile_success() throws Exception {
+        JsonSerializableFoodRem dataFromFile = JsonUtil.readJsonFile(TYPICAL_FOODREM_FILE,
+                JsonSerializableFoodRem.class).get();
+        FoodRem foodRemFromFile = dataFromFile.toModelType();
+        FoodRem typicalFoodRem = TypicalFoodRem.getTypicalFoodRem();
+        assertEquals(foodRemFromFile, typicalFoodRem);
     }
 }
