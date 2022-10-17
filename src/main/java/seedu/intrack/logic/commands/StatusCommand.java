@@ -10,7 +10,6 @@ import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
-import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 
 /**

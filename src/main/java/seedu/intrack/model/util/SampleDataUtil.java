@@ -6,7 +6,14 @@ import java.util.stream.Collectors;
 
 import seedu.intrack.model.InTrack;
 import seedu.intrack.model.ReadOnlyInTrack;
-import seedu.intrack.model.internship.*;
+import seedu.intrack.model.internship.Address;
+import seedu.intrack.model.internship.Email;
+import seedu.intrack.model.internship.Internship;
+import seedu.intrack.model.internship.Name;
+import seedu.intrack.model.internship.Phone;
+import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Status;
+import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.tag.Tag;
 
 /**
