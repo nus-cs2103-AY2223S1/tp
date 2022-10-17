@@ -34,8 +34,6 @@ public class ShowCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Mon \n", expectedShowCommand);
 
-        // case-insensitivity check
-        assertParseSuccess(parser, "mon", expectedShowCommand);
     }
 
     @Test
