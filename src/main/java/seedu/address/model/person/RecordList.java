@@ -65,7 +65,7 @@ public class RecordList {
 
     @Override
     public String toString() {
-        return "Number of Records: " + recordList.size();
+        return Integer.toString(recordList.size());
     }
 
     @Override
