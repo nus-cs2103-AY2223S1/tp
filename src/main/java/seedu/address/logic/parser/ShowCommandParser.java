@@ -19,7 +19,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
      */
     public static boolean isValidArgument(String args) {
         String trimmedArgs = args.trim();
-        String[] validargs = new String[] {"Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"};
+        String[] validargs = new String[] {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
         for (int i = 0; i < validargs.length; i++) {
             if ((validargs[i].toLowerCase()).equals(trimmedArgs.toLowerCase())) {
                 return true;

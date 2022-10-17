@@ -16,7 +16,7 @@ public class ShowCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows all students whose sessions contain any of "
             + "the specified day (case-insensitive) and displays them as a list sorted according to the session "
             + "timings with earliest at the top.\n"
-            + "Parameters: Day (Mon, Tues, Wed, Thurs, Fri, Sat, Sun)\n"
+            + "Parameters: Day (Mon, Tue, Wed, Thu, Fri, Sat, Sun)\n"
             + "Example: " + COMMAND_WORD + " Mon";
 
 
