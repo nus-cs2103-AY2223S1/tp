@@ -12,7 +12,9 @@ import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.commons.exceptions.IllegalValueException;
 import nus.climods.commons.util.FileUtil;
 import nus.climods.commons.util.JsonUtil;
-import nus.climods.model.ReadOnlyAddressBook;
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.model.Model;
+import nus.climods.model.module.UniqueUserModuleList;
 
 /**
  * A class to access UserModuleList data stored as a json file on the hard disk.
@@ -23,8 +25,16 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
 
     private final Path filePath;
 
-    public JsonUserModuleListStorage(Path filePath) {
+    private final Model model;
+
+    /**
+     * Creates JsonUserModuleListStorage with
+     * @param filePath of the stored json
+     * @param model of all modules
+     */
+    public JsonUserModuleListStorage(Path filePath, Model model) {
         this.filePath = filePath;
+        this.model = model;
     }
 
     public Path getUserModuleListFilePath() {
@@ -32,7 +42,7 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readUserModuleList() throws DataConversionException {
+    public Optional<UniqueUserModuleList> readUserModuleList() throws DataConversionException {
         return readUserModuleList(filePath);
     }
 
@@ -42,7 +52,7 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readUserModuleList(Path filePath) throws DataConversionException {
+    public Optional<UniqueUserModuleList> readUserModuleList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableUserModuleList> jsonUserModuleList = JsonUtil.readJsonFile(
@@ -53,28 +63,28 @@ public class JsonUserModuleListStorage implements UserModuleListStorage {
 
         try {
             return Optional.of(jsonUserModuleList.get().toModelType());
-        } catch (IllegalValueException ive) {
+        } catch (IllegalValueException | CommandException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }
     }
 
     @Override
-    public void saveUserModuleList(ReadOnlyAddressBook userModuleList) throws IOException {
+    public void saveUserModuleList(UniqueUserModuleList userModuleList) throws IOException {
         saveUserModuleList(userModuleList, filePath);
     }
 
     /**
-     * Similar to {@link #saveUserModuleList(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveUserModuleList(UniqueUserModuleList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveUserModuleList(ReadOnlyAddressBook userModuleList, Path filePath) throws IOException {
+    public void saveUserModuleList(UniqueUserModuleList userModuleList, Path filePath) throws IOException {
         requireNonNull(userModuleList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableUserModuleList(userModuleList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableUserModuleList(userModuleList, model), filePath);
     }
 
 }

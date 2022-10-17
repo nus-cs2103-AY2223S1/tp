@@ -1,6 +1,5 @@
 package nus.climods.storage.module.user;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,53 +8,44 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import nus.climods.commons.exceptions.IllegalValueException;
-import nus.climods.model.AddressBook;
-import nus.climods.model.ReadOnlyAddressBook;
-import nus.climods.model.person.Person;
+import nus.climods.logic.commands.exceptions.CommandException;
+import nus.climods.model.Model;
+import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.model.module.UserModule;
 
 /**
  * An Immutable userModuleList that is serializable to JSON format.
  */
-@JsonRootName(value = "usermodulelist")
+@JsonRootName(value = "userModules")
 class JsonSerializableUserModuleList {
+    public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate module(s).";
 
-    // TODO: Change AddressBook model to UserModuleList after model has been created.
-    public static final String MESSAGE_DUPLICATE_MODULE = "Modules list contains duplicate person(s).";
-
-    private final List<JsonAdaptedUserModule> modules = new ArrayList<>();
-
+    private final List<JsonAdaptedUserModule> modules;
+    private final Model model;
     /**
-     * Constructs a {@code JsonSerializableUserModuleList} with the given modules.
+     * Constructs a {@code JsonSerializableUserModuleList} with the given modules and model
      */
     @JsonCreator
-    public JsonSerializableUserModuleList(@JsonProperty("persons") List<JsonAdaptedUserModule> modules) {
-        this.modules.addAll(modules);
+    public JsonSerializableUserModuleList(@JsonProperty("userModules") UniqueUserModuleList modules,
+                                          Model model) {
+        this.modules = modules.asUnmodifiableObservableList().stream().map(userModule ->
+                new JsonAdaptedUserModule(userModule)).collect(Collectors.toList());
+        this.model = model;
     }
-
-    /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
-     *
-     * @param source future changes to this will not affect the created {@code JsonSerializableUserModuleList}.
-     */
-    public JsonSerializableUserModuleList(ReadOnlyAddressBook source) {
-        modules.addAll(source.getPersonList().stream().map(JsonAdaptedUserModule::new).collect(Collectors.toList()));
-    }
-
     /**
      * Converts this address book into the model's {@code AddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public UniqueUserModuleList toModelType() throws IllegalValueException, CommandException {
+        UniqueUserModuleList userModuleList = new UniqueUserModuleList();
         for (JsonAdaptedUserModule jsonAdaptedModule : modules) {
-            Person person = jsonAdaptedModule.toModelType();
-            if (addressBook.hasPerson(person)) {
+            UserModule module = jsonAdaptedModule.toModelType(model);
+            if (userModuleList.contains(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            addressBook.addPerson(person);
+            userModuleList.add(module);
         }
-        return addressBook;
+        return userModuleList;
     }
-
 }

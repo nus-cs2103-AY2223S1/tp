@@ -17,9 +17,10 @@ public class UserModule {
     // Identity fields
     private final Module listModule;
 
-    //TODO: Remove when implement tutorial/lecture support
+    //TODO: Remove when implement tutorial/lecture/selectedSemester support
     private String tutorial = "Tutorial: Monday, 1400-1500";
     private String lecture = "Lecture: Friday, 1600-1800";
+    private String selectedSemester;
 
     /**
      * Creates a UserModule
@@ -34,6 +35,27 @@ public class UserModule {
         }
 
         listModule = optionalModule.get();
+    }
+
+    /**
+     * Creates a UserModule from json {@code JsonAdaptedUserModule} object
+     * @param moduleCode String for the module code
+     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     * @param lecture cached selected lectures slot
+     * @param tutorial cached selected tutorial slot
+     * @throws CommandException
+     */
+    public UserModule(String moduleCode, Model model, String lecture, String tutorial, String selectedSemesters) throws CommandException {
+        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
+
+        if (optionalModule.isEmpty()) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
+
+        listModule = optionalModule.get();
+        this.lecture = lecture;
+        this.tutorial = tutorial;
+        this.selectedSemester = selectedSemesters;
     }
 
     /**
