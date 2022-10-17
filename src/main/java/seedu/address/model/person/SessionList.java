@@ -61,10 +61,15 @@ public class SessionList {
         if (sessionList.isEmpty()) {
             return toString();
         }
-        sessionList.sort(Session::compareTo);
-        String shortDesc = "NEXT UP: "
-                + sessionList.get(0).toString() + ".";
-        return shortDesc;
+        if (sessionList.size() <= 2) {
+            return toString();
+        }
+        StringBuilder description = new StringBuilder();
+        for (int i = 0; i < 2; i++) {
+            description.append(i + 1).append(". ").append(sessionList.get(i)).append("\n");
+        }
+        description.append("...\n");
+        return description.toString();
     }
 
     /**
