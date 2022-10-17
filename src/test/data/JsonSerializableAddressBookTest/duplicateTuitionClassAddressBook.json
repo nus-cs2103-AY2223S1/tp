@@ -1,0 +1,23 @@
+{
+  "tuitionClasses" : [ {
+    "name" : "P2MATH",
+    "subject" : "MATHEMATICS",
+    "level" : "PRIMARY2",
+    "day" : "MONDAY",
+    "startTime" : "10:00",
+    "endTime" : "12:00",
+    "tagged" : [ "tough" ],
+    "students" : [ ],
+    "tutors" : [ ]
+  }, {
+    "name" : "P2MATH",
+    "subject" : "MATHEMATICS",
+    "level" : "PRIMARY2",
+    "day" : "MONDAY",
+    "startTime" : "10:00",
+    "endTime" : "12:00",
+    "tagged" : [ "tough" ],
+    "students" : [ ],
+    "tutors" : [ ]
+  } ]
+}

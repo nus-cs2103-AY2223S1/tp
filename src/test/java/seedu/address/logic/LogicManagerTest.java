@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -96,6 +97,43 @@ public class LogicManagerTest {
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         //assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void getAddressBook_compareAddressBookWithModel_equal() {
+        assertEquals(model.getAddressBook(), logic.getAddressBook());
+    }
+
+    @Test
+    public void getStudentAddressBookFilePath_compareAddressWithModel_equal() {
+        assertEquals(model.getStudentAddressBookFilePath(), logic.getStudentAddressBookFilePath());
+    }
+
+    @Test
+    public void getTutorAddressBookFilePath_compareAddressWithModel_equal() {
+        assertEquals(model.getTutorAddressBookFilePath(), logic.getTutorAddressBookFilePath());
+    }
+
+    @Test
+    public void getTuitionClassAddressBookFilePath_compareAddressWithModel_equal() {
+        assertEquals(model.getTuitionClassAddressBookFilePath(), logic.getTuitionClassAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_compareSettingWithModel_equal() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     @Test

@@ -19,7 +19,8 @@ import seedu.address.model.tuitionclass.TuitionClass;
 @JsonRootName(value = "tuitionclassaddressbook")
 class JsonSerializableTuitionClassAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_TUTOR = "TuitionClass list contains duplicate tuitionClasses(s).";
+    public static final String MESSAGE_DUPLICATE_TUITIONCLASS =
+            "TuitionClass list contains duplicate tuitionClasses(s).";
 
     private final List<JsonAdaptedTuitionClass> tuitionClasses = new ArrayList<>();
 
@@ -64,7 +65,7 @@ class JsonSerializableTuitionClassAddressBook {
         for (JsonAdaptedTuitionClass jsonAdaptedTuitionClass : tuitionClasses) {
             TuitionClass tuitionClass = jsonAdaptedTuitionClass.toModelType();
             if (addressBook.hasTuitionClass(tuitionClass)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TUTOR);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TUITIONCLASS);
             }
             addressBook.addTuitionClass(tuitionClass);
         }

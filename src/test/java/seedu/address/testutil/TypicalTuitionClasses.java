@@ -54,7 +54,6 @@ public class TypicalTuitionClasses {
 
     public static AddressBook getTypicalTuitionClassesAddressBook() {
         AddressBook ab = new AddressBook();
-
         List<TuitionClass> tuitionClassList = new ArrayList<>(Arrays.asList(TypicalTuitionClasses.TUITIONCLASS1,
                 TypicalTuitionClasses.TUITIONCLASS2));
         for (TuitionClass c : tuitionClassList) {
