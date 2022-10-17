@@ -17,6 +17,7 @@ import tuthub.logic.commands.FindByModuleCommand;
 import tuthub.logic.commands.FindCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
+import tuthub.logic.commands.ViewCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 
 /**

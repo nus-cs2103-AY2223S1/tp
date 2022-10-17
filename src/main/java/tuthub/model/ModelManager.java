@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final Tuthub tuthub;
     private final UserPrefs userPrefs;
     private final FilteredList<Tutor> filteredTutors;
+    private Tutor tutorToView;
 
     /**
      * Initializes a ModelManager with the given tuthub and userPrefs.
@@ -102,6 +103,17 @@ public class ModelManager implements Model {
     public void addTutor(Tutor tutor) {
         tuthub.addTutor(tutor);
         updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
+    }
+
+    @Override
+    public void setTutorToView(Tutor tutor) {
+        requireAllNonNull(tutor);
+        this.tutorToView = tutor;
+    }
+
+    @Override
+    public Tutor getTutorToView() {
+        return tutorToView;
     }
 
     @Override

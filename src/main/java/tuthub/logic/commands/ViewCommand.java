@@ -47,7 +47,7 @@ public class ViewCommand extends Command {
         Tutor tutorToView = tutorList.get(index.getZeroBased());
 
         model.setTutorToView(tutorToView);
-        return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView), true, false, false);
+        return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView), true);
     }
 
     @Override
