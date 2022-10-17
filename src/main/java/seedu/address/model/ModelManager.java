@@ -176,6 +176,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+    @Override
     public void updateEventPersonReference() {
         this.updateFilteredEventList(x -> x.getUids().setPersonNames(this));
     }

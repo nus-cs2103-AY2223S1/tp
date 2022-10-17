@@ -101,7 +101,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    void setEvent(seedu.address.model.event.Event target, seedu.address.model.event.Event editedEvent);
+    void setEvent(Event target, Event editedEvent);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
