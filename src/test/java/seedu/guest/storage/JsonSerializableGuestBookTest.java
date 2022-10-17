@@ -1,6 +1,5 @@
 package seedu.guest.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.guest.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;

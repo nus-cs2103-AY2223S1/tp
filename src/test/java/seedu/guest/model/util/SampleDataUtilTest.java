@@ -5,7 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import seedu.guest.model.GuestBook;
-import seedu.guest.model.guest.*;
+import seedu.guest.model.guest.Bill;
+import seedu.guest.model.guest.DateRange;
+import seedu.guest.model.guest.Email;
+import seedu.guest.model.guest.Guest;
+import seedu.guest.model.guest.IsRoomClean;
+import seedu.guest.model.guest.Name;
+import seedu.guest.model.guest.NumberOfGuests;
+import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 
 public class SampleDataUtilTest {
 
