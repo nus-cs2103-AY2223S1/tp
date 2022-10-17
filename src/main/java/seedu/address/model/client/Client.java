@@ -2,7 +2,6 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -73,11 +72,11 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
      * @param name name of clinet
      * @param phone phone number of client
-     * @param projectIdList
      * @param email email number of client
+     * @param projectIdList
      * @return a function that returns a client when given a ClientID object.
      */
-    public static Function<Model, Client> makeClientWithoutModel(Name name, ClientPhone phone, List<ProjectId> projectIdList, ClientEmail email) {
+    public static Function<Model, Client> makeClientWithoutModel(Name name, ClientPhone phone, ClientEmail email, List<ProjectId> projectIdList) {
         return (model) -> {
             ArrayList<Project> projectList = new ArrayList<>();
             for (ProjectId pid : projectIdList) {

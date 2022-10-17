@@ -87,7 +87,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(name, phone, new ArrayList<>(), email);
+        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(name, phone, email, new ArrayList<>());
 //        Project project = HasIntegerIdentifier.getElementById();
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 //        List<Project> projectList = new ArrayList<>();
