@@ -20,6 +20,11 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
+     * {@code Predicate} that always evaluate to false.
+     */
+    Predicate<Person> PREDICATE_SHOW_NO_PERSON = unused -> false;
+
+    /**
      * {@code Predicate} that always evaluate to true.
      */
     Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
@@ -43,6 +48,16 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' attribute order in GUI settings.
+     */
+    String getAttributeOrder();
+
+    /**
+     * Returns the user prefs' hidden attributes in GUI settings.
+     */
+    String getHiddenAttributes();
 
     /**
      * Returns the user prefs' SoConnect file path.
