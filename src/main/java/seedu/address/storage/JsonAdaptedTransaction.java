@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.BuyTransaction;
 import seedu.address.model.transaction.Goods;
@@ -9,6 +10,7 @@ import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
 import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.TransactionType;
 
 /**
  * Jackson-friendly version of {@link Transaction}.
@@ -72,22 +74,16 @@ public class JsonAdaptedTransaction {
         final Price modelPrice = new Price(price);
 
         if (quantity == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Quantity.class.getSimpleName()));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
         final Quantity modelQuantity = new Quantity(quantity);
 
-        assert type != null : "type should not be null";
-
         return type == TransactionType.BUY
                 ? new BuyTransaction(modelGoods, modelPrice, modelQuantity)
                 : new SellTransaction(modelGoods, modelPrice, modelQuantity);
-    }
-
-    enum TransactionType {
-        BUY,
-        SELL
     }
 }
