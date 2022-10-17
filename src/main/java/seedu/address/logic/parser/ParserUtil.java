@@ -10,7 +10,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Address;
@@ -18,7 +17,6 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.project.Project;
@@ -71,7 +69,7 @@ public class ParserUtil {
      * @return Client of the client id
      * @throws ParseException if the fiven {@code client} is invalid.
      */
-    public static Client parseClient(String clientId) throws ParseException, NumberFormatException {
+    public static ClientId parseClientId(String clientId) throws ParseException, NumberFormatException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
         try {
@@ -80,12 +78,13 @@ public class ParserUtil {
             throw new ParseException(ClientId.MESSAGE_INVALID);
         }
 
-        Client client = HasIntegerIdentifier.getElementById(
-                AddressBook.get().getClientList(), Integer.parseInt(trimmedClientId));
-        if (!Client.isValidClient(client)) {
-            throw new ParseException(Client.MESSAGE_INVALID);
-        }
-        return client;
+//        Client client = HasIntegerIdentifier.getElementById(
+//                AddressBook.get().getClientList(), Integer.parseInt(trimmedClientId));
+//        if (!Client.isValidClient(client)) {
+//            throw new ParseException(Client.MESSAGE_INVALID);
+//        }
+//        TODO: this check needs to go onto the respective command classes adding client
+        return new ClientId(Integer.parseInt(trimmedClientId));
     }
 
     /**

@@ -84,7 +84,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
             client = Client.EmptyClient.EMPTY_CLIENT;
         } else {
-            client = ParserUtil.parseClient(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+            client = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_REPOSITORY)) {
