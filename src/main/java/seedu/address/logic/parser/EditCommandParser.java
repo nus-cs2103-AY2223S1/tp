@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -37,7 +39,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_RATING);
+                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING);
 
         Index index;
 
@@ -66,6 +68,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editPersonDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent()) {
+            String usernameInput = argMultimap.getValue(PREFIX_GITHUBUSERNAME).orElse(GithubUsername.DEFAULT_USERNAME);
+            if (usernameInput.equals(GithubUsername.DEFAULT_USERNAME)) {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(usernameInput, false));
+            } else {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(usernameInput, true));
+            }
         }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
             editPersonDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));

@@ -30,6 +30,7 @@ abstract class JsonAdaptedPerson {
     private final String gender;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String location;
+    private final String username;
     private final String rating;
 
     /**
@@ -40,7 +41,7 @@ abstract class JsonAdaptedPerson {
                              @JsonProperty("moduleCode") String moduleCode, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("location") String location,
+                             @JsonProperty("location") String location, @JsonProperty("username") String username,
                              @JsonProperty("rating") String rating) {
         this.type = type;
         this.name = name;
@@ -52,6 +53,7 @@ abstract class JsonAdaptedPerson {
             this.tagged.addAll(tagged);
         }
         this.location = location;
+        this.username = username;
         this.rating = rating;
     }
 
@@ -86,6 +88,7 @@ abstract class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         location = source.getLocation().value;
+        username = source.getUsername().value;
     }
 
     public String getType() {
@@ -106,7 +109,6 @@ abstract class JsonAdaptedPerson {
     public String getModuleCode() {
         return this.moduleCode;
     }
-
     public List<JsonAdaptedTag> getTagged() {
         return this.tagged;
     }
@@ -114,10 +116,13 @@ abstract class JsonAdaptedPerson {
     public String getLocation() {
         return location;
     }
-
+    public String getUsername() {
+        return username;
+    }
     public String getRating() {
         return rating;
     }
+
     public abstract Person toModelType() throws IllegalValueException;
 
 }

@@ -13,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
@@ -124,6 +125,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> moduleCodes} into a {@code Set<moduleCodes>}.
+     */
+    public static Set<ModuleCode> parseModuleCodes(Collection<String> moduleCodes) throws ParseException {
+        requireNonNull(moduleCodes);
+        final Set<ModuleCode> moduleCodeSet = new HashSet<>();
+        for (String moduleCode : moduleCodes) {
+            moduleCodeSet.add(parseModuleCode(moduleCode));
+        }
+        return moduleCodeSet;
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -173,7 +186,7 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
-        if (location == DEFAULT_LOC_STRING) {
+        if (location.equals(DEFAULT_LOC_STRING)) {
             return new Location("NUS");
         }
         String trimmedLocation = location.trim();
@@ -196,6 +209,24 @@ public class ParserUtil {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(trimmedRating);
+    }
+
+    /**
+     * Parses a {@code String username} into an {@code GithubUsername}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code GithubUsername} is invalid.
+     */
+    public static GithubUsername parseGitHubUsername(String username, Boolean isPresent) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!isPresent) {
+            return new GithubUsername(trimmedUsername, false);
+        }
+        if (!GithubUsername.isValidUsername(username)) {
+            throw new ParseException(GithubUsername.MESSAGE_CONSTRAINTS);
+        }
+        return new GithubUsername(trimmedUsername, true);
     }
 
 }

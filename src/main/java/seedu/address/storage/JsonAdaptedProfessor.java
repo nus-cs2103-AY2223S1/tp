@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
@@ -34,8 +35,8 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                                 @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("location") String location,
-                                @JsonProperty("rating") String rating) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, rating);
+                                @JsonProperty("username") String username, @JsonProperty("rating") String rating) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating);
     }
 
     /**
@@ -110,6 +111,17 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final Location modelLocation = new Location(getLocation());
 
+        final GithubUsername modelUsername;
+
+        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
+            modelUsername = new GithubUsername(getUsername(), false);
+        } else {
+            if (!GithubUsername.isValidUsername(getUsername())) {
+                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+            }
+            modelUsername = new GithubUsername(getUsername(), true);
+        }
+        
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
@@ -120,7 +132,7 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
         final Rating modelRating = new Rating(getRating());
 
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
-            modelLocation, modelRating);
+            modelLocation, modelUsername, modelRating);
     }
 
 }

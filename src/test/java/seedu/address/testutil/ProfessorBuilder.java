@@ -32,14 +32,10 @@ public class ProfessorBuilder extends PersonBuilder {
         moduleCode = personToCopy.getModuleCode();
     }
 
-    /**
-     * Builds a Professor.
-     *
-     * @return the Professor that has been built.
-     */
+    @Override
     public Professor build() {
         return new Professor(getName(), moduleCode, getPhone(), getEmail(), getGender(), getTags(), getLocation(),
-                rating);
+                getGithubUsername(), rating);
     }
     /**
      * Sets the {@code ModuleCode} of the {@code Professor} that we are building.
