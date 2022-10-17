@@ -54,7 +54,7 @@ public class ModuleTest {
         assertTrue(CS2106.isSameModule(editedCs2106));
 
         // module code has leading spaces, all other attributes same -> returns true
-        String moduleWithLeadingSpaces =  " " + VALID_CS_MODULE_CODE;
+        String moduleWithLeadingSpaces = " " + VALID_CS_MODULE_CODE;
         editedCs2106 = new ModuleBuilder(CS2106).withModuleCode(moduleWithLeadingSpaces).build();
         assertTrue(CS2106.isSameModule(editedCs2106));
     }
