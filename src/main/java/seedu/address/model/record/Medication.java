@@ -64,8 +64,21 @@ public class Medication {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Medication // instanceof handles nulls
-                && medicationName.equals(((Medication) other).medicationName)// state check
+                && isMedicationNamesEqual(((Medication) other).medicationName)// state check
                 );
+    }
+
+    /**
+     * Determine if two medication names are equal, regardless of lettercase
+     *
+     * @param other Other medication name to check.
+     * @return True if both names are equal. False otherwise.
+     */
+    private boolean isMedicationNamesEqual(String other) {
+        String name = medicationName.toLowerCase();
+        String otherName = other.toLowerCase();
+
+        return name.equals(otherName);
     }
 
     @Override
