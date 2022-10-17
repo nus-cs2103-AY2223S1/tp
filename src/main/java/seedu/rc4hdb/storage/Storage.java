@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
@@ -22,6 +23,8 @@ public interface Storage extends ResidentBookStorage, UserPrefsStorage {
 
     @Override
     Path getResidentBookFilePath();
+
+    ObservableValue<Path> getObservableResidentBookFilePath();
 
     @Override
     void setResidentBookFilePath(Path filePath);

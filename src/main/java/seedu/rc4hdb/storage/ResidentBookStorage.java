@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 
@@ -21,6 +22,8 @@ public interface ResidentBookStorage {
      * Sets the file path to the {@code filePath}.
      */
     void setResidentBookFilePath(Path filePath);
+
+    ObservableValue<Path> getObservableResidentBookFilePath();
 
     /**
      * Returns ResidentBook data as a {@link ReadOnlyResidentBook}.

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
@@ -96,7 +97,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getResidentBookFilePath() {
+    public Path getUserPrefsResidentBookFilePath() {
         return model.getResidentBookFilePath();
     }
 
@@ -113,5 +114,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<String> getObservableFields() {
         return model.getObservableFields();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableResidentBookFilePath() {
+        return storage.getObservableResidentBookFilePath();
     }
 }

@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
@@ -52,6 +53,11 @@ public class StorageManager implements Storage {
     @Override
     public Path getResidentBookFilePath() {
         return residentBookStorage.getResidentBookFilePath();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableResidentBookFilePath() {
+        return residentBookStorage.getObservableResidentBookFilePath();
     }
 
     @Override

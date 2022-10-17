@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
@@ -52,6 +53,11 @@ public class StorageStub implements Storage {
 
     @Override
     public Path getResidentBookFilePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableResidentBookFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
