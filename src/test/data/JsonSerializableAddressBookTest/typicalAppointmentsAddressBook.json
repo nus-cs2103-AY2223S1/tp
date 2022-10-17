@@ -79,5 +79,6 @@
       "medicalTest" : "pap smear",
       "slot" : "2022-11-01 08:00",
       "doctor" : "Lucy Poole"
-  }]
+  }],
+  "bills" : []
 }
