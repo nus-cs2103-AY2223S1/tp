@@ -110,10 +110,11 @@ public class AddressBookParser {
 
         case RemoveUserFromTeamCommand.COMMAND_WORD:
             return new RemoveUserFromTeamCommandParser().parse(arguments);
-            
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
 }
+
