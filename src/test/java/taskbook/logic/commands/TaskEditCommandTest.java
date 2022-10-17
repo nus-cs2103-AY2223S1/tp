@@ -34,7 +34,7 @@ public class TaskEditCommandTest {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         Task task = TypicalTaskBook.SLEEPING;
         Todo editedTask = new TodoBuilder()
-            .withPerson(TypicalTaskBook.ALICE)
+            .withPersonName(TypicalTaskBook.ALICE)
             .withAssignment(Assignment.FROM)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())
@@ -55,7 +55,7 @@ public class TaskEditCommandTest {
         Task task = TypicalTaskBook.EATING;
         Person invalidPerson = new PersonBuilder().withName("notintaskbook").build();
         Todo editedTask = new TodoBuilder()
-            .withPerson(invalidPerson)
+            .withPersonName(invalidPerson)
             .withAssignment(Assignment.TO)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())
@@ -72,7 +72,7 @@ public class TaskEditCommandTest {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         Task task = TypicalTaskBook.EATING;
         Todo editedTask = new TodoBuilder()
-            .withPerson(TypicalTaskBook.BENSON)
+            .withPersonName(TypicalTaskBook.BENSON)
             .withAssignment(Assignment.TO)
             .withDescription(task.getDescription().description)
             .withIsDone(task.isDone())

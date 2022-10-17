@@ -1,5 +1,6 @@
 package taskbook.testutil;
 
+import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
 import taskbook.model.task.Todo;
@@ -11,8 +12,9 @@ import taskbook.model.task.enums.Assignment;
 public class TodoBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "This is the default Todo description.";
+    public static final String DEFAULT_NAME = "defaultName";
 
-    private Person person;
+    private Name name;
     private Assignment assignment;
     private Description description;
     private boolean isDone;
@@ -21,17 +23,25 @@ public class TodoBuilder {
      * Creates a {@code TodoBuilder} with the default details.
      */
     public TodoBuilder() {
-        person = new PersonBuilder().build();
+        name = new Name(DEFAULT_NAME);
         assignment = Assignment.FROM;
         description = new Description(DEFAULT_DESCRIPTION);
         isDone = true;
     }
 
     /**
-     * Sets the {@code Person} of the {@code Todo} that we are building.
+     * Sets the {@code Name} of the {@code Todo} that we are building.
      */
-    public TodoBuilder withPerson(Person person) {
-        this.person = person;
+    public TodoBuilder withName(Name name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Todo} that we are building.
+     */
+    public TodoBuilder withPersonName(Person person) {
+        this.name = person.getName();
         return this;
     }
 
@@ -63,6 +73,6 @@ public class TodoBuilder {
      * Builds a {@code Todo} based on the parameters stored in the {@code TodoBuilder}.
      */
     public Todo build() {
-        return new Todo(this.person, this.assignment, this.description, this.isDone);
-    };
+        return new Todo(this.name, this.assignment, this.description, this.isDone);
+    }
 }

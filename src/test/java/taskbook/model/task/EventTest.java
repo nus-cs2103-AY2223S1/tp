@@ -21,14 +21,14 @@ public class EventTest {
 
         // same person, same assignment, same description, same deadline, all other attributes different
         // -> returns true
-        Event editedEating = new EventBuilder().withPerson(TypicalTaskBook.CARL)
+        Event editedEating = new EventBuilder().withPersonName(TypicalTaskBook.CARL)
                 .withAssignment(Assignment.TO).withDescription("party at kevin's house").withIsDone(true)
                 .withEventDate(LocalDate.of(2022, 10, 11)).build();
         Assertions.assertTrue(TypicalTaskBook.PARTYING.isSameTask(editedEating));
 
         // different person, all other attributes same
         // -> returns false
-        editedEating = new EventBuilder().withPerson(TypicalTaskBook.GEORGE)
+        editedEating = new EventBuilder().withPersonName(TypicalTaskBook.GEORGE)
                 .withAssignment(Assignment.TO).withDescription("party at kevin's house").withIsDone(true)
                 .withEventDate(LocalDate.of(2022, 10, 11)).build();
         Assertions.assertFalse(TypicalTaskBook.PARTYING.isSameTask(editedEating));

@@ -2,6 +2,7 @@ package taskbook.testutil;
 
 import java.time.LocalDate;
 
+import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Deadline;
 import taskbook.model.task.Description;
@@ -13,8 +14,9 @@ import taskbook.model.task.enums.Assignment;
 public class DeadlineBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "This is the default Deadline description.";
+    public static final String DEFAULT_NAME = "defaultName";
 
-    private Person person;
+    private Name name;
     private Assignment assignment;
     private Description description;
     private boolean isDone;
@@ -24,17 +26,25 @@ public class DeadlineBuilder {
      * Creates a {@code DeadlineBuilder} with the default details.
      */
     public DeadlineBuilder() {
-        person = new PersonBuilder().build();
+        name = new Name(DEFAULT_NAME);
         assignment = Assignment.FROM;
         description = new Description(DEFAULT_DESCRIPTION);
         isDone = true;
     }
 
     /**
-     * Sets the {@code Person} of the {@code Deadline} that we are building.
+     * Sets the {@code Name} of the {@code Deadline} that we are building.
      */
-    public DeadlineBuilder withPerson(Person person) {
-        this.person = person;
+    public DeadlineBuilder withName(Name name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Deadline} that we are building.
+     */
+    public DeadlineBuilder withPersonName(Person person) {
+        this.name = person.getName();
         return this;
     }
 
@@ -74,6 +84,6 @@ public class DeadlineBuilder {
      * Builds a {@code Deadline} based on the parameters stored in the {@code DeadlineBuilder}.
      */
     public Deadline build() {
-        return new Deadline(this.person, this.assignment, this.description, this.isDone, this.deadlineDate);
-    };
+        return new Deadline(this.name, this.assignment, this.description, this.isDone, this.deadlineDate);
+    }
 }

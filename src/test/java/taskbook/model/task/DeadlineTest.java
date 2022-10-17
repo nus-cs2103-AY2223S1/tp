@@ -19,16 +19,16 @@ public class DeadlineTest {
         // null -> returns false
         Assertions.assertFalse(TypicalTaskBook.EATING.isSameTask(null));
 
-        // same person, same assignment, same description, same deadline, all other attributes different
+        // same name, same assignment, same description, same deadline, all other attributes different
         // -> returns true
-        Deadline editedEating = new DeadlineBuilder().withPerson(TypicalTaskBook.ALICE)
+        Deadline editedEating = new DeadlineBuilder().withPersonName(TypicalTaskBook.ALICE)
                 .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(false)
                 .withDeadlineDate(LocalDate.of(2022, 11, 9)).build();
         Assertions.assertTrue(TypicalTaskBook.EATING.isSameTask(editedEating));
 
-        // different person, all other attributes same
+        // different name, all other attributes same
         // -> returns false
-        editedEating = new DeadlineBuilder().withPerson(TypicalTaskBook.BOB)
+        editedEating = new DeadlineBuilder().withPersonName(TypicalTaskBook.BOB)
                 .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(false)
                 .withDeadlineDate(LocalDate.of(2022, 11, 9)).build();
         Assertions.assertFalse(TypicalTaskBook.EATING.isSameTask(editedEating));

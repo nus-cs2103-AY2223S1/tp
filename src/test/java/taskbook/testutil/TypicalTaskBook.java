@@ -77,15 +77,15 @@ public class TypicalTaskBook {
     public static final LocalDate OCT_ELEVEN = LocalDate.of(2022, 10, 11);
 
     // Typical Tasks
-    public static final Deadline EATING = new DeadlineBuilder().withPerson(ALICE)
+    public static final Deadline EATING = new DeadlineBuilder().withPersonName(ALICE)
             .withAssignment(Assignment.TO).withDescription("eat fruit").withIsDone(true)
             .withDeadlineDate(NOV_NINE).build();
 
-    public static final Todo SLEEPING = new TodoBuilder().withPerson(BENSON)
+    public static final Todo SLEEPING = new TodoBuilder().withPersonName(BENSON)
             .withAssignment(Assignment.FROM).withDescription("sleep early").withIsDone(false)
             .build();
 
-    public static final Event PARTYING = new EventBuilder().withPerson(CARL)
+    public static final Event PARTYING = new EventBuilder().withPersonName(CARL)
             .withAssignment(Assignment.TO).withDescription("party at kevin's house")
             .withEventDate(OCT_ELEVEN).withIsDone(true).build();
 
@@ -96,11 +96,16 @@ public class TypicalTaskBook {
      */
     public static TaskBook getTypicalTaskBook() {
         TaskBook tb = new TaskBook();
-        for (Person person : getTypicalPersons()) {
-            tb.addPerson(person);
-        }
-        for (Task task : getTypicalTasks()) {
-            tb.addTask(task);
+        try {
+            for (Person person : getTypicalPersons()) {
+                tb.addPerson(person);
+            }
+            for (Task task : getTypicalTasks()) {
+                tb.addTask(task);
+            }
+            return tb;
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
         return tb;
     }
