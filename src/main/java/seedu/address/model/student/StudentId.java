@@ -32,7 +32,7 @@ public class StudentId {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid studentId.
      */
     public static boolean isValidStudentId(String test) {
         return test.matches(VALIDATION_REGEX);

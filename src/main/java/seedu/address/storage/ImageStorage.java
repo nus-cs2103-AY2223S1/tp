@@ -19,7 +19,7 @@ import seedu.address.model.student.Student;
  * Encapsulate the Image Storage of application.
  */
 public class ImageStorage {
-    private static byte[] imageBytes = Base64.getDecoder().decode(
+    private static final byte[] imageBytes = Base64.getDecoder().decode(
             "/9j/4AAQSkZJRgABAQAAAQABAAD//gAtQ29udmVydGVkIGZyb20"
             + "gIFdlYlAgdG8gSlBHIHVzaW5nIGV6Z2lmLmNvbf/bAEMABQMEBAQDBQQEBAUFBQYHDAgHBwcHDwsLCQwRDxISEQ8RERMWHBcTFBoVER"
             + "EYIRgaHR0fHx8TFyIkIh4kHB4fHv/bAEMBBQUFBwYHDggIDh4UERQeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4e"

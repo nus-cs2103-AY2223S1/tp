@@ -20,7 +20,7 @@ public class UploadPictureCommand extends Command {
 
     public static final String COMMAND_WORD = "upload-pic";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Uploads a profile picture to the student indentified."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Uploads a profile picture to the student identified.\n"
             + "Parameters: index of student you would like to edit.";
 
     public static final String MESSAGE_SUCCESS = "Student's profile picture has been updated!";
