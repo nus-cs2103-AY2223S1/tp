@@ -1,5 +1,7 @@
 package seedu.address.model.event;
 
+import seedu.address.model.person.Person;
+
 /**
  * Event represents a marketing events in the application.
  */
@@ -103,6 +105,9 @@ public class Event {
                 .append(this.getPurpose());
 
         return builder.toString();
+    }
+    public boolean containsPerson(Person person) {
+        return uids.contains(person.getUid());
     }
 
 }

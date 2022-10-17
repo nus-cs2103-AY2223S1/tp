@@ -27,7 +27,7 @@ public class UidList implements Iterable<Uid> {
      * Returns true if the uid to be checked is already present in the uid list.
      * @param toCheck uid to be checked if a duplicate is present in the list.
      */
-    public boolean contains(seedu.address.model.person.Uid toCheck) {
+    public boolean contains(Uid toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameUid);
     }
@@ -36,7 +36,7 @@ public class UidList implements Iterable<Uid> {
      *
      * @param toAdd uid to be added to the list.
      */
-    public void add(seedu.address.model.person.Uid toAdd) {
+    public void add(Uid toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicatePersonException();
@@ -48,7 +48,7 @@ public class UidList implements Iterable<Uid> {
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public void remove(seedu.address.model.person.Uid toRemove) {
+    public void remove(Uid toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
@@ -80,18 +80,10 @@ public class UidList implements Iterable<Uid> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Update personNames corresponding to the UidList with new string of person names.
+     * This method is called after editPerson, tagEvent, untagEvent commands.
+     * @return dummy return value true.
      */
-    private boolean uidsAreUnique(List<seedu.address.model.person.Uid> uids) {
-        for (int i = 0; i < uids.size() - 1; i++) {
-            for (int j = i + 1; j < uids.size(); j++) {
-                if (uids.get(i).isSameUid(uids.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
     public boolean setPersonNames(Model model) {
         List<String> personNames = new ArrayList<>();
         ObservableList<Person> persons = model.getFilteredPersonList();
@@ -102,7 +94,11 @@ public class UidList implements Iterable<Uid> {
                 count += 1;
             }
         }
-        this.personNames = String.format("%d people: %s", count, String.join(", ", personNames));
+        if (count == 0) {
+            this.personNames = "0 people";
+        } else {
+            this.personNames = String.format("%d people: %s", count, String.join(", ", personNames));
+        }
         return true;
     }
     public String getPersonNames() {
