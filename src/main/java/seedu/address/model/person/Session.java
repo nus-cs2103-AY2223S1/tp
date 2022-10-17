@@ -35,6 +35,7 @@ public class Session implements Comparable<Session> {
     public Session(String session) {
         requireNonNull(session);
         checkArgument(isValidSession(session), MESSAGE_CONSTRAINTS);
+        session = session.substring(0, 1).toUpperCase() + session.substring(1).toLowerCase();
         this.session = session;
         this.time = LocalDateTime.parse(session, DTF);
     }

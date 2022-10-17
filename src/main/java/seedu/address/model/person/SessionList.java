@@ -32,6 +32,7 @@ public class SessionList {
      */
     public void addSession(Session session) {
         sessionList.add(session);
+        sessionList.sort(Session::compareTo);
     }
 
     /**
@@ -53,6 +54,7 @@ public class SessionList {
             throw new IllegalArgumentException(MESSAGE_INVALID_SESSION_INDEX);
         }
         sessionList.set(indexToEdit, session);
+        sessionList.sort(Session::compareTo);
     }
     /**
      * Returns a description of the next session in the session list.
