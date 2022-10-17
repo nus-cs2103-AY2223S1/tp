@@ -28,6 +28,7 @@ public class ListCommandTest {
 
     private Model model;
     private Model expectedModel;
+    private CommandHistory commandHistory = new CommandHistory();
 
     @BeforeEach
     public void setUp() {
@@ -37,20 +38,20 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsNotSortedAscending_showsEverything() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         ListCommand newCommand = new ListCommand(ComparableCategory.NULL, false);
-        assertCommandSuccess(newCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(newCommand, model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -58,7 +59,7 @@ public class ListCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         ListCommand newCommand = new ListCommand(ComparableCategory.NULL, true);
         expectedModel.reverseList();
-        assertCommandSuccess(newCommand, model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(newCommand, model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -73,7 +74,7 @@ public class ListCommandTest {
         expectedInternship.addInternship(GEORGE);
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
-        assertCommandSuccess(new ListCommand(ComparableCategory.NAME, false), model,
+        assertCommandSuccess(new ListCommand(ComparableCategory.NAME, false), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS + " sorted by " + ComparableCategory.NAME, expectedModel);
     }
 
@@ -89,7 +90,7 @@ public class ListCommandTest {
         expectedInternship.addInternship(ALICE);
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
-        assertCommandSuccess(new ListCommand(ComparableCategory.NAME, true), model,
+        assertCommandSuccess(new ListCommand(ComparableCategory.NAME, true), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS + " sorted by " + ComparableCategory.NAME, expectedModel);
     }
 
@@ -106,7 +107,7 @@ public class ListCommandTest {
 
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
-        assertCommandSuccess(new ListCommand(ComparableCategory.POSITION, false), model,
+        assertCommandSuccess(new ListCommand(ComparableCategory.POSITION, false), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS + " sorted by " + ComparableCategory.POSITION, expectedModel);
     }
 
@@ -123,7 +124,7 @@ public class ListCommandTest {
 
         expectedModel = new ModelManager(expectedInternship, new UserPrefs());
 
-        assertCommandSuccess(new ListCommand(ComparableCategory.DATE, false), model,
+        assertCommandSuccess(new ListCommand(ComparableCategory.DATE, false), model, commandHistory,
                 ListCommand.MESSAGE_SUCCESS + " sorted by " + ComparableCategory.DATE, expectedModel);
     }
 }

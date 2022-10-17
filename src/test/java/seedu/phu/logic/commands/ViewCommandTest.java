@@ -27,6 +27,7 @@ public class ViewCommandTest {
 
     private Model model;
     private Model expectedModel;
+    private CommandHistory commandHistory = new CommandHistory();
 
     @BeforeEach
     public void setUp() {
@@ -46,7 +47,7 @@ public class ViewCommandTest {
                 listOfInternshipsToView);
         expectedModel.viewInternship(internshipToView);
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(viewCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -54,7 +55,7 @@ public class ViewCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(new Indexes(Set.of(outOfBoundIndex)));
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(viewCommand, model, commandHistory, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class ViewCommandTest {
                 listOfInternshipsToView);
         expectedModel.viewInternship(internshipToView);
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(viewCommand, model, commandHistory, expectedMessage, expectedModel);
     }
 
     @Test
@@ -86,6 +87,7 @@ public class ViewCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(new Indexes(Set.of(outOfBoundIndex)));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, commandHistory,
+                Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 }

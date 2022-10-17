@@ -102,25 +102,34 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
+            CommandResult expectedCommandResult, Model expectedModel) {
+        actualCommandHistory.addCommand(command.toString());
+        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
+
+        if (command instanceof AddCommand || command instanceof ClearCommand || command instanceof DeleteCommand
+                || command instanceof EditCommand) {
+            expectedCommandHistory.setLastCommandAsModify();
+        }
+
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, actualCommandHistory);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
+            assertEquals(expectedCommandHistory, actualCommandHistory);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandHistory, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
+            String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, actualCommandHistory, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -129,15 +138,18 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the internship book, filtered internship list and selected internship in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
+            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         InternshipBook expectedInternshipBook = new InternshipBook(actualModel.getInternshipBook());
         List<Internship> expectedFilteredList = new ArrayList<>(actualModel.getFilteredInternshipList());
+        CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, actualCommandHistory));
         assertEquals(expectedInternshipBook, actualModel.getInternshipBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredInternshipList());
+        assertEquals(expectedCommandHistory, actualCommandHistory);
     }
     /**
      * Updates {@code model}'s filtered list to show only the internship at the given {@code targetIndex} in the
