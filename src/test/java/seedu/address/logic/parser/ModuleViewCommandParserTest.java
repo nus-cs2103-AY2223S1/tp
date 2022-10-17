@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalModuleCodes.CODE_THIRD_MODULE;
+import static seedu.address.testutil.TypicalModuleCodes.CODE_FIRST_MODULE;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class ModuleViewCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsModuleViewCommand() {
-        assertParseSuccess(parser, " c/CS2102", new ModuleViewCommand(CODE_THIRD_MODULE));
+        assertParseSuccess(parser, " c/CS2102", new ModuleViewCommand(CODE_FIRST_MODULE));
     }
 
     @Test
