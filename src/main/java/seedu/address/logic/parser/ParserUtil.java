@@ -9,7 +9,19 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+
+import seedu.address.model.person.Address;
+import seedu.address.model.person.DayTimeInWeek;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Keyword;
+import seedu.address.model.person.MinecraftName;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Platform;
+import seedu.address.model.person.PlatformConverter;
+import seedu.address.model.person.Social;
+import seedu.address.model.person.TimeZone;
+
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -109,16 +121,45 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String social} into an {@code Social}.
+     * Parses day times of week.
+     * @param dayTimesInWeek The collection of the days of week.
+     * @return The set of days of week.
+     * @throws ParseException if the given {@code daysOfWeek} is invalid.
+     */
+    public static Set<DayTimeInWeek> parseDayTimesInWeek(Collection<String> dayTimesInWeek) throws ParseException {
+        requireNonNull(dayTimesInWeek);
+        final Set<DayTimeInWeek> set = new HashSet<>();
+        for (String str : dayTimesInWeek) {
+            set.add(parseDayTimeInWeek(str));
+        }
+        return set;
+    }
+
+    /**
+     * Parses a {@code String dayTimeInWeek} into an {@code DayTimeInWeek}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @throws ParseException if the given {@code dayTimeInWeek} is invalid.
+     */
+    public static DayTimeInWeek parseDayTimeInWeek(String dayTimeInWeek) throws ParseException {
+        requireNonNull(dayTimeInWeek);
+        String trimmed = dayTimeInWeek.trim();
+        if (!DayTimeInWeek.isValidDayTimeInWeek(trimmed)) {
+            throw new ParseException(DayTimeInWeek.MESSAGE_CONSTRAINTS);
+        }
+        return new DayTimeInWeek(trimmed);
+    }
+
+    /**
+     * Parses a {@code String socialStrs} into a set of {@code Social}.
+     * @param socialStrs All the Strings for the socials.
+     * @return A set of social media handles
      * @throws ParseException if the given {@code socialStr} is invalid.
      */
-
-    public static Set<Social> parseSocials(Collection<String> socialStr) throws ParseException {
-        requireNonNull(socialStr);
+    public static Set<Social> parseSocials(Collection<String> socialStrs) throws ParseException {
+        requireNonNull(socialStrs);
         final Set<Social> socialSet = new HashSet<>();
-        for (String str : socialStr) {
+        for (String str : socialStrs) {
             socialSet.add(parseSocial(str));
         }
         return socialSet;
@@ -128,7 +169,7 @@ public class ParserUtil {
      * Parses a {@code String socialStr} into a {@code Social}.
      *
      * @param socialStr the social media platform to be parsed
-     * @return the social media platform
+     * @return The social media platform
      * @throws ParseException if the given {@code socialStr} is invalid.
      */
     public static Social parseSocial(String socialStr) throws ParseException {
@@ -143,6 +184,39 @@ public class ParserUtil {
         String handle = strArray[1];
 
         return new Social(handle, platform);
+
+    }
+
+    /**
+     * Parses a {@code String keywordStrs} into a set of {@code Keyword}.
+     * @param keywordStrs All the Strings for the keywords.
+     * @return A set of keywords.
+     * @throws ParseException if the given {@code keywordStrs} is invalid.
+     */
+    public static Set<Keyword> parseKeywords(Collection<String> keywordStrs) throws ParseException {
+        requireNonNull(keywordStrs);
+        final Set<Keyword> keywordSet = new HashSet<>();
+        for (String str : keywordStrs) {
+            keywordSet.add(parseKeyword(str));
+        }
+        return keywordSet;
+    }
+
+    /**
+     * Parses a {@code String keywordStr} into a {@code Keyword}.
+     *
+     * @param keywordStr the social media platform to be parsed
+     * @return The keyword
+     * @throws ParseException if the given {@code keywordStr} is invalid
+     */
+    public static Keyword parseKeyword(String keywordStr) throws ParseException {
+        requireNonNull(keywordStr);
+
+        if (!Keyword.isValidKeyword(keywordStr)) {
+            throw new ParseException(Keyword.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Keyword(keywordStr);
 
     }
 
