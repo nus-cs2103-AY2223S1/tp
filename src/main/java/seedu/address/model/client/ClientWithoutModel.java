@@ -2,6 +2,7 @@ package seedu.address.model.client;
 
 import seedu.address.model.Model;
 import seedu.address.model.Name;
+import seedu.address.model.client.exceptions.ClientNotFoundException;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 
@@ -37,7 +38,12 @@ public class ClientWithoutModel implements Function<Model, Client> {
             projectList.add(model.getProjectById(pid.getIdInt()));
         }
 
-        return new Client(name, phone, email, projectList, new ClientId(model.generateClientId()));
+        Client client = new Client(name, phone, email, projectList, new ClientId(model.generateClientId()));
+        if (client.isEmpty()) {
+            throw new ClientNotFoundException();
+        }
+
+        return client;
     }
 
     @Override

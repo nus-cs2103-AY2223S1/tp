@@ -75,19 +75,14 @@ public class ParserUtil {
     public static ClientId parseClientId(String clientId) throws ParseException, NumberFormatException {
         requireNonNull(clientId);
         String trimmedClientId = clientId.trim();
+        int clientIdInt;
         try {
-            Integer.parseInt(trimmedClientId);
+            clientIdInt = Integer.parseInt(trimmedClientId);
         } catch (NumberFormatException e) {
             throw new ParseException(ClientId.MESSAGE_INVALID);
         }
 
-//        Client client = HasIntegerIdentifier.getElementById(
-//                AddressBook.get().getClientList(), Integer.parseInt(trimmedClientId));
-//        if (!Client.isValidClient(client)) {
-//            throw new ParseException(Client.MESSAGE_INVALID);
-//        }
-//        TODO: this check needs to go onto the respective command classes adding client
-        return new ClientId(Integer.parseInt(trimmedClientId));
+        return new ClientId(clientIdInt);
     }
 
     /**
@@ -252,11 +247,6 @@ public class ParserUtil {
 
         // Function throws error when not found.
         return new ProjectId(trimmedIdInt);
-//      TODO: move this somewhere
-//        if (UniqueProjectList.getProject(trimmedIdInt) == null) {
-//            throw new ParseException("No project with this project Id");
-//        }
-//        return UniqueProjectList.getProject(trimmedIdInt);
     }
 
     /**
