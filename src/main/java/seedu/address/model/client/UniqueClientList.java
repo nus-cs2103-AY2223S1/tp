@@ -135,4 +135,18 @@ public class UniqueClientList implements Iterable<Client> {
         }
         return true;
     }
+
+    /**
+     * Returns the net amount transacted with all clients shown in the current list
+     * @return
+     */
+    public double calculateNetTransaction() {
+        Iterator<Client> itr = this.iterator();
+        double netTransactions = 0.00;
+        while (itr.hasNext()) {
+            Client currentClient = itr.next();
+            netTransactions += currentClient.getTotalTransacted();
+        }
+        return netTransactions;
+    }
 }

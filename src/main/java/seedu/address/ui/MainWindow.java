@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -64,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane transactionListPanelPlaceholder;
 
     @FXML
-    private StackPane landingArea;
+    private TextField netTransaction;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -144,6 +145,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        NetTransactionBox transactionBox = new NetTransactionBox(0.0);
+        netTransaction.setText("0.0");
     }
 
     /**
