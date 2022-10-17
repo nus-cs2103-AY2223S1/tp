@@ -5,11 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -17,6 +14,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.commands.reminder.DeleteReminderCommand;
+import seedu.address.logic.commands.student.AddCommand;
+import seedu.address.logic.commands.student.DeleteCommand;
+import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.logic.commands.ta.AddTeachingAssistantCommand;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
 import seedu.address.logic.commands.tutorial.DeleteTutorialCommand;
@@ -25,9 +25,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
 import seedu.address.logic.parser.reminder.AddReminderCommandParser;
 import seedu.address.logic.parser.reminder.DeleteReminderCommandParser;
+import seedu.address.logic.parser.student.AddCommandParser;
+import seedu.address.logic.parser.student.DeleteCommandParser;
+import seedu.address.logic.parser.student.EditCommandParser;
 import seedu.address.logic.parser.ta.AddTeachingAssistantCommandParser;
 import seedu.address.logic.parser.tutorial.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorial.DeleteTutorialCommandParser;
+
 
 /**
  * Parses user input.

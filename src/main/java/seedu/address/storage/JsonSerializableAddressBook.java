@@ -16,8 +16,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.consultation.Consultation;
-import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.student.Student;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.tutorial.Tutorial;
 
@@ -30,7 +30,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_REMINDER = "Reminders list contains duplicate reminder(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedStudent> persons = new ArrayList<>();
     private final List<JsonAdaptedTutorial> tutorials = new ArrayList<>();
     private final List<JsonAdaptedConsultation> consultations = new ArrayList<>();
     private final List<JsonAdaptedTeachingAssistant> teachingAssistants = new ArrayList<>();
@@ -40,7 +40,7 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedStudent> persons,
                                        @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
                                        @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials,
                                        @JsonProperty("consultations") List<JsonAdaptedConsultation> consultations,
@@ -59,7 +59,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         reminders.addAll(source.getReminderList().stream().map(JsonAdaptedReminder::new).collect(Collectors.toList()));
         tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
         consultations.addAll(source.getConsultationList().stream().map(JsonAdaptedConsultation::new)
@@ -75,12 +75,12 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+        for (JsonAdaptedStudent jsonAdaptedStudent : persons) {
+            Student student = jsonAdaptedStudent.toModelType();
+            if (addressBook.hasPerson(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            addressBook.addPerson(student);
         }
 
         for (JsonAdaptedReminder jsonAdaptedReminder : reminders) {
