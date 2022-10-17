@@ -34,7 +34,6 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
 
     private final Index index;
-
     private final Note note;
 
     /**
@@ -43,7 +42,6 @@ public class NoteCommand extends Command {
      */
     public NoteCommand(Index index, Note note) {
         requireAllNonNull(index, note);
-
         this.index = index;
         this.note = note;
     }

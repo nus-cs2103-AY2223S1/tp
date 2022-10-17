@@ -58,7 +58,7 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + STATUS_DESC_BOB + NOTE_DESC_BOB + RATING_DESC_BOB);
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + RATING_DESC_BOB, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + NOTE_DESC_BOB + RATING_DESC_BOB, new AddCommand(expectedPerson));
 
         // to be decided - allow multiple or not
         // multiple names - last name accepted
@@ -90,7 +90,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + STATUS_DESC_AMY + RATING_DESC_AMY,
+                        + STATUS_DESC_AMY + NOTE_DESC_AMY + RATING_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 

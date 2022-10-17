@@ -34,6 +34,7 @@ public class CreateTagTypeCommand extends Command {
      */
     public CreateTagTypeCommand(TagType toAdd, Prefix prefix) {
         requireNonNull(toAdd);
+        requireNonNull(prefix);
         this.toAdd = toAdd;
         this.prefix = prefix;
     }

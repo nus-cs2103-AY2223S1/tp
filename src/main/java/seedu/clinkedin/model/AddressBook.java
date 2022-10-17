@@ -9,7 +9,7 @@ import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniquePersonList;
 
 /**
- * Wraps all data at the clinkedin-book level
+ * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
