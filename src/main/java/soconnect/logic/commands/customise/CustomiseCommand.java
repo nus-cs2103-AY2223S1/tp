@@ -44,7 +44,9 @@ public abstract class CustomiseCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_ATTRIBUTE = "There should not be duplicate attributes";
 
-    public static final int NUMBER_OF_CUSTOMISABLE_ATTRIBUTES = 4;
+    public static final int NUMBER_OF_CUSTOMISABLE_ATTRIBUTES = 4; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
+
+    public static final String NONE = "NONE";
 
     /**
      * The attributes of the contacts excluding name.
@@ -66,8 +68,8 @@ public abstract class CustomiseCommand extends Command {
             throws CommandException {
         GuiSettings currSettings = model.getGuiSettings();
         String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
-        boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES]; //0: ADDRESS, 1: EMAIL, 2: PHONE, 3: TAGS
-        if (!currHiddenAttributes.equals("NONE")) {
+        boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
+        if (!currHiddenAttributes.equals(NONE)) {
             String[] currHiddenAttributesArr = currHiddenAttributes.split(",");
             try {
                 setCurrentHiddenState(currHiddenAttributesArr, isHidden);
@@ -144,7 +146,7 @@ public abstract class CustomiseCommand extends Command {
         }
 
         if (sb.length() == 0) {
-            return "NONE";
+            return NONE;
         }
 
         sb.deleteCharAt(sb.length() - 1);

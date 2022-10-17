@@ -1,5 +1,7 @@
 package soconnect.ui;
 
+import static soconnect.commons.core.GuiSettings.DEFAULT_ORDER;
+import static soconnect.logic.commands.customise.CustomiseCommand.NONE;
 import static soconnect.logic.commands.customise.CustomiseCommand.NUMBER_OF_CUSTOMISABLE_ATTRIBUTES;
 
 import java.util.Comparator;
@@ -107,8 +109,8 @@ public class PersonCard extends UiPart<Region> {
 
         if (orderArr.length != NUMBER_OF_CUSTOMISABLE_ATTRIBUTES) {
             //Returns default order when the orderStr is not in correct format.
-            order = new int[]{3, 2, 1, 0};
-            return order;
+            orderStr = DEFAULT_ORDER;
+            orderArr = orderStr.trim().split(">");
         }
 
         try {
@@ -116,7 +118,12 @@ public class PersonCard extends UiPart<Region> {
                 order[i] = convertToIndex(orderArr[i]);
             }
         } catch (IllegalArgumentException e) {
-            order = new int[]{3, 2, 1, 0};
+            //Returns default order when the orderStr is not in correct format.
+            orderStr = DEFAULT_ORDER;
+            orderArr = orderStr.trim().split(">");
+            for (int i = 0; i < NUMBER_OF_CUSTOMISABLE_ATTRIBUTES; i++) {
+                order[i] = convertToIndex(orderArr[i]);
+            }
         }
 
         return order;
@@ -133,7 +140,7 @@ public class PersonCard extends UiPart<Region> {
         boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
         String currHiddenAttributes = logic.getHiddenAttributes();
 
-        if (!currHiddenAttributes.equals("NONE")) {
+        if (!currHiddenAttributes.equals(NONE)) {
             String[] strArr = currHiddenAttributes.trim().split(",");
             try {
                 readHidden(strArr, isHidden);
