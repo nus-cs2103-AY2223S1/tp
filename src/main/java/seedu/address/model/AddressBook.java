@@ -45,7 +45,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //        issues = new UniqueEntityList<Issue>();
     //    }
 
-    private AddressBook() {
+    public AddressBook() {
         clients = new UniqueEntityList<Client>();
         projects = new UniqueEntityList<Project>();
         persons = new UniqueEntityList<Person>();
@@ -55,7 +55,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    private AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
     }
