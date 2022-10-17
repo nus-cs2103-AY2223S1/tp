@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.List;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
+import impl.org.controlsfx.skin.AutoCompletePopup;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -39,7 +41,10 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
 
         // autocomplete
-        TextFields.bindAutoCompletion(commandTextField, commands);
+        AutoCompletionBinding<String> autoComplete = TextFields.bindAutoCompletion(commandTextField, commands);
+        AutoCompletePopup<String> autoCompletePopup = autoComplete.getAutoCompletionPopup();
+        autoCompletePopup.setStyle("-fx-font-size: 12pt;-fx-font-family: \"Minecraft\";"
+                + "-fx-control-inner-background:WHITE;-fx-selection-bar-non-focused:red;");
     }
 
     /**

@@ -28,8 +28,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the friend identified "
             + "by the index number used in the displayed friend list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Existing values will be overwritten by the input values.\n\n"
+            + "Parameters: \nINDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_MINECRAFT_NAME + "MINECRAFT NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -42,9 +42,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TIMEZONE + "TIMEZONE]"
             + "[" + PREFIX_GAME_TYPE + "GAME TYPE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_MINECRAFT_NAME + "newMinecraftName "
-            + PREFIX_ADDRESS + " 34 Oxley Road "
+            + PREFIX_ADDRESS + " 38 Oxley Road "
             + PREFIX_EMAIL + " johndoe@example.com "
             + PREFIX_SOCIAL + " fb@John Doe ";
 
