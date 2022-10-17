@@ -31,7 +31,7 @@ public class DeleteDebtCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a specific debt of the person identified by the index number "
-            + "used in the displayed person list. The debt is specified by the index number "
+            + "used in the displayed person list.\nThe debt is specified by the index number "
             + "of the debt displayed in the person's debt field. Multiple debts may be specified.\n"
             + "Parameters: PERSON_INDEX (must be a positive integer) "
             + PREFIX_DEBT + "DEBT_INDEX (must be a positive integer)\n"
@@ -97,7 +97,7 @@ public class DeleteDebtCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code debtorToClear}
+     * Creates and returns a {@code Person} with the details of {@code debtorToReduce}
      * with no debts.
      *
      * @param debtorToReduce {@code Person} within addressbook to have the specified {@code Debt}s deleted.
