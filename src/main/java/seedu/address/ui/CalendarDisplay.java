@@ -76,13 +76,9 @@ public class CalendarDisplay extends UiPart<Region> {
             ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
                     .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1);
 
-            Text tDate = new Text(" " + String.valueOf(currentDay));
-            VBox vbox = new VBox();
-
-            vbox.getChildren().add(tDate);
-            calendarEventsInDayOfMonth.stream()
-                    .forEach(x -> vbox.getChildren().add(getAppointmentButton(x.toString())));
-            calendarDisplay.add(vbox, dayOfWeek - 1, row);
+            CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(calendarEventsInDayOfMonth);
+            VBox calendarEventList = calendarEventListPanel.getCalendarEventList(currentDay);
+            calendarDisplay.add(calendarEventList, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
         }
@@ -118,13 +114,6 @@ public class CalendarDisplay extends UiPart<Region> {
         return monthNames[n];
     }
 
-    public Button getAppointmentButton(String text) {
-        Button button = new Button(text);
-        button.setMaxSize(100, 30.00);
-        button.setStyle("-fx-font-size: 7pt; -fx-background-color: white; "
-                + "-fx-border-color: grey; -fx-border-radius: 5;");
-        return button;
-    }
     public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
