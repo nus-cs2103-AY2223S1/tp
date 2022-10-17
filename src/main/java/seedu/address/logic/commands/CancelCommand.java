@@ -43,12 +43,16 @@ public class CancelCommand extends SelectAppointmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
         Person patientToCancelAppt = getTargetPerson(model);
         Appointment toBeCancelledAppt = getTargetAppointment(model);
 
-        patientToCancelAppt.cancelAppointment(super.indexOfAppointment.getZeroBased());
+        Person patientAfterAppointmentCancelled = EditPatientCommand.createEditedPerson(
+                patientToCancelAppt, new EditPatientCommand.EditPersonDescriptor());
+        patientAfterAppointmentCancelled.cancelAppointment(toBeCancelledAppt);
+
+        model.setPerson(patientToCancelAppt, patientAfterAppointmentCancelled);
         model.deleteAppointment(toBeCancelledAppt);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_NON_EXISTENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
@@ -39,7 +40,7 @@ public class CancelCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personWithAppt, editedPerson);
         expectedModel.deleteAppointments(personWithAppt.getAppointments());
-        CancelCommand cancelCommand = new CancelCommand(INDEX_THIRD_APPOINTMENT);
+        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_APPOINTMENT);
         assertCommandSuccess(cancelCommand, model, expectedCancelMessage, expectedModel);
     }
 
@@ -53,12 +54,8 @@ public class CancelCommandTest {
 
     @Test
     public void execute_invalidAppointmentCancelling_throwsCommandException() {
-        Person personWithoutAppt = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personWithoutAppt).withAppointmentList(new ArrayList<>()).build();
+        CancelCommand cancelCommand = new CancelCommand(INDEX_NON_EXISTENT);
 
-        model.setPerson(personWithoutAppt, editedPerson);
-
-        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_APPOINTMENT);
         assertCommandFailure(cancelCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 

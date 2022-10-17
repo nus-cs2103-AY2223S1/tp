@@ -77,8 +77,8 @@ public class Person {
     }
 
 
-    public void cancelAppointment(int apptIndex) {
-        appointments.remove(apptIndex);
+    public void cancelAppointment(Appointment appointment) {
+        appointments.remove(appointment);
     }
 
     /**
