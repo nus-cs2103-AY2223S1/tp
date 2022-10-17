@@ -436,7 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to clear all patients from list
-2. Omnihealth deletes patient list
+2. OmniHealth deletes patient list
 
    Use case ends
 
@@ -453,7 +453,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User !!requests to list patients (UC05)!!
 2. User !!requests to display record list of specific patient (UC06)!!
 3. User requests to clear all records from a patient
-4. Omnihealth deletes all patient records
+4. OmniHealth deletes all patient records
 
    Use case ends
 
@@ -463,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 * 1b. Patient does not exist
-  * 1b1. Omnihealth displays error message
+  * 1b1. OmniHealth displays error message
 
   Use case ends
 
@@ -472,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view help
-2. Omnihealth shows list of commands
+2. OmniHealth shows list of commands
 
     Use case ends
 
@@ -490,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 * 1b. Patient does not exist
-    * 1b1. Omnihealth displays error message
+    * 1b1. OmniHealth displays error message
 
   Use case ends
 
@@ -509,14 +509,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends
 
 * 1b. Patient does not exist
-    * 1b1. Omnihealth displays error message
+    * 1b1. OmniHealth displays error message
 
   Use case ends
 
 * 3a. No keywords matching can be found
-    * 3a1. Omnihealth displays error message
+    * 3a1. OmniHealth displays error message
 
   Use case ends
+
+**Use case: UC12 - Add patient appointment**
+
+**MSS**
+1. User requests to add an appointment with a specified date.
+2. An appointment is created for the patient.
+
+**Extensions**
+* 1a. Patient list is empty
+    * 1a1. OmniHealth displays an error message
+  
+    Use case ends
+
+* 1b. Patient index does not exist
+    * 1b1. OmniHealth displays an error message
+
+    Use case ends
+
+* 1c. Date is specified in wrong formatting
+    * 1c1. OmniHealth displays an error message
+    
+    Use case ends
+
+* 1d. Appointment already exists for the patient
+    * 1d1. Old appointment is overriden by the new appointment
+
+    Use case ends
+
+**Use Case: UC13 - Clear patient appointment**
+
+**MSS**
+
+1. User requests to remove the existing appointment of the patient.
+2. The specified appointment is removed.
+
+**Extensions**
+* 1a. Patient list is empty
+    * 1a1. OmniHealth displays an error message
+    * 
+    Use case ends
+* 1b. Patient index does not exist
+    * 1b1. OmniHealth displays an error message.
+    
+    Use Case ends
 
 *{More to be added}*
 
