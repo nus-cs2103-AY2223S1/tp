@@ -70,16 +70,19 @@ public class TypicalPersons {
         AddressBook ab = new AddressBook();
         for (Person person : getTypicalPersons()) {
             if (person.getPersonCategory().toString().equals("Buyer")) {
+                @SuppressWarnings("unchecked")
                 Buyer buyer = (Buyer) person;
                 ab.addBuyer(buyer);
             }
 
             if (person.getPersonCategory().toString().equals("Deliverer")) {
+                @SuppressWarnings("unchecked")
                 Deliverer deliverer = (Deliverer) person;
                 ab.addDeliverer(deliverer);
             }
 
             if (person.getPersonCategory().toString().equals("Supplier")) {
+                @SuppressWarnings("unchecked")
                 Supplier supplier = (Supplier) person;
                 ab.addSupplier(supplier);
             }

@@ -1,16 +1,17 @@
 package seedu.address.logic.commands;
 
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showBuyerAtIndex;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showBuyerAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.util.SampleDataUtil;
+import seedu.address.testutil.TypicalBuyers;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,20 +23,18 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalBuyers.getTypicalBuyerAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
-    //TODO Uncomment this
-    //    @Test
-    //    public void execute_listIsNotFiltered_showsSameList() {
-    //        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    //    }
+        @Test
+        public void execute_listIsNotFiltered_showsSameList() {
+            assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        }
 
-    //TODO Uncomment this
-    //    @Test
-    //    public void execute_listIsFiltered_showsEverything() {
-    //        showBuyerAtIndex(model, INDEX_FIRST_PERSON);
-    //        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    //    }
+        @Test
+        public void execute_listIsFiltered_showsEverything() {
+            showBuyerAtIndex(model, INDEX_FIRST_PERSON);
+            assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        }
 }
