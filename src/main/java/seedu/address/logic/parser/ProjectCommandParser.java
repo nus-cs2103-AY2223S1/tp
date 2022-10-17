@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -22,11 +21,9 @@ import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
-import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
@@ -111,10 +108,10 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         }
 
         List<Issue> issueList = new ArrayList<>();
-//        ProjectId projectId = new ProjectId(HasIntegerIdentifier.generateNextID(AddressBook.get().getProjectList()));
-//
-//        Project project = new Project(name, repository, deadline, client, issueList, projectId);
-        ProjectWithoutModel projectWithoutModel = new ProjectWithoutModel(name, repository, deadline, clientId, issueList);
+
+        ProjectWithoutModel projectWithoutModel =
+                new ProjectWithoutModel(name, repository, deadline, clientId, issueList);
+
         return new AddProjectCommand(projectWithoutModel);
     }
 

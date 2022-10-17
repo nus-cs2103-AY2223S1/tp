@@ -18,10 +18,8 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.issue.Description;
-import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
-import seedu.address.model.issue.UniqueIssueList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -234,8 +232,8 @@ public class ParserUtil {
      * Parses a {@code String projectId} into a {@code Project}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @return project id.
      * @throws ParseException if the given {@code projectId} is invalid.
-     * @return
      */
     public static ProjectId parseProjectId(String projectId) throws ParseException {
         requireNonNull(projectId);

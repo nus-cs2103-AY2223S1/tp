@@ -4,14 +4,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
-import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectId;
 
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.

@@ -1,25 +1,33 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_EMPTY_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.PROJECT_DESC_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_ID;
 import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_ADD_CLIENT_USAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.ArrayList;
-import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.client.AddClientCommand;
 import seedu.address.logic.commands.project.AddProjectCommand;
-import seedu.address.model.Deadline;
-import seedu.address.model.Model;
 import seedu.address.model.Name;
-import seedu.address.model.client.*;
-import seedu.address.model.project.Project;
+import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.ProjectId;
-import seedu.address.model.project.Repository;
 
 
 public class AddClientCommandParserTest {
@@ -35,7 +43,7 @@ public class AddClientCommandParserTest {
         //compulsory and optional fields
         assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + PROJECT_DESC_PROJECT, new AddClientCommand(clientWithoutModel,
-                new ProjectId.EmptyProjectId()));
+                    new ProjectId.EmptyProjectId()));
     }
 
     @Test
@@ -75,7 +83,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel =
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
-                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
         // phone missing
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
@@ -92,7 +100,7 @@ public class AddClientCommandParserTest {
 
         ClientWithoutModel clientWithoutModel =
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
 
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
@@ -120,14 +128,14 @@ public class AddClientCommandParserTest {
         String expected = "No project with this project Id";
         ClientWithoutModel clientWithoutModel =
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
-                new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
+                        new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
-//        ProjectWithoutModel projectWithoutModel =
-//                new ProjectWithoutModel(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
-//                new Deadline(VALID_DEADLINE), new ClientId.EmptyClientId(), new ArrayList<>());
+        //        ProjectWithoutModel projectWithoutModel =
+        //                new ProjectWithoutModel(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
+        //                new Deadline(VALID_DEADLINE), new ClientId.EmptyClientId(), new ArrayList<>());
 
         assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + PROJECT_DESC_PROJECT,
+                        + PHONE_DESC_AMY + EMAIL_DESC_AMY + PROJECT_DESC_PROJECT,
                 new AddClientCommand(clientWithoutModel, new ProjectId(Integer.parseInt(VALID_PROJECT_ID))));
     }
 

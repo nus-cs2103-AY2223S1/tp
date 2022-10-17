@@ -1,10 +1,10 @@
 package seedu.address.model.issue;
 
+import java.util.function.Function;
+
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.project.ProjectId;
-
-import java.util.function.Function;
 
 /**
  * This class represents a partial initialisation of issue (without access to model).

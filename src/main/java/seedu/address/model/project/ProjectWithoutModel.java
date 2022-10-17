@@ -26,6 +26,14 @@ public class ProjectWithoutModel implements Function<Model, Project> {
     private final Deadline deadline;
     private final List<Issue> issueList;
 
+    /**
+     * Partially initialise a Project object without access to a Model class.
+     * @param name project name
+     * @param repository project repository
+     * @param deadline project deadline
+     * @param clientId client associated with project
+     * @param issueList list of issues in project
+     */
     public ProjectWithoutModel(Name name, Repository repository, Deadline deadline,
                                ClientId clientId, List<Issue> issueList) {
         this.name = name;

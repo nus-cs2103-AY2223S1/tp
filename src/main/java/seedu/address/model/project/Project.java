@@ -3,7 +3,6 @@ package seedu.address.model.project;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
-import java.util.function.Function;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;

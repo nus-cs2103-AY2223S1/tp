@@ -42,6 +42,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     //        issues = new UniqueEntityList<Issue>();
     //    }
 
+    /**
+     * Creates an empty addressbook
+     */
     public AddressBook() {
         clients = new UniqueEntityList<Client>();
         projects = new UniqueEntityList<Project>();
