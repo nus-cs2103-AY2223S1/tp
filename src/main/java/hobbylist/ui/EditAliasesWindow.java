@@ -6,6 +6,7 @@ import hobbylist.commons.core.AliasSettings;
 import hobbylist.commons.core.LogsCenter;
 import hobbylist.logic.Logic;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -54,16 +55,7 @@ public class EditAliasesWindow extends UiPart<Stage> {
     public EditAliasesWindow(Stage root, Logic logic) {
         super(FXML, root);
         this.logic = logic;
-        AliasSettings settings = logic.getAliasSettings();
-        add.setText(settings.getAdd());
-        clear.setText(settings.getClear());
-        delete.setText(settings.getDelete());
-        edit.setText(settings.getEdit());
-        exit.setText(settings.getExit());
-        filter.setText(settings.getFilter());
-        find.setText(settings.getFind());
-        list.setText(settings.getList());
-        help.setText(settings.getHelp());
+        setTextFields();
     }
 
     /**
@@ -122,9 +114,40 @@ public class EditAliasesWindow extends UiPart<Stage> {
      * Handles saving of the aliases
      */
     public void handleSave() {
+        if (!isValidAliases()) {
+            new Alert(Alert.AlertType.INFORMATION, "Duplicate aliases detected.").show();
+            setTextFields();
+            return;
+        }
         AliasSettings newSettings = new AliasSettings(add.getText(), clear.getText(), delete.getText(), edit.getText(),
                 exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText());
         logic.setAliasSettings(newSettings);
         this.hide();
+    }
+
+    private void setTextFields() {
+        AliasSettings settings = logic.getAliasSettings();
+        add.setText(settings.getAdd());
+        clear.setText(settings.getClear());
+        delete.setText(settings.getDelete());
+        edit.setText(settings.getEdit());
+        exit.setText(settings.getExit());
+        filter.setText(settings.getFilter());
+        find.setText(settings.getFind());
+        list.setText(settings.getList());
+        help.setText(settings.getHelp());
+    }
+
+    private boolean isValidAliases() {
+        String[] arr = {add.getText(), clear.getText(), delete.getText(), edit.getText(),
+                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText()};
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i].equals(arr[j])) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

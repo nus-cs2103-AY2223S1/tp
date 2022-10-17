@@ -43,6 +43,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem editAliasesItem;
+
+    @FXML
     private StackPane activityListPanelPlaceholder;
 
     @FXML
@@ -77,6 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(editAliasesItem, KeyCombination.valueOf("F2"));
     }
 
     /**
