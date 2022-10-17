@@ -33,19 +33,23 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    /*
     private Label phone;
     @FXML
     private Label remark;
     @FXML
     private Label email;
     @FXML
+     */
     private Label position;
     @FXML
     private Label applicationProcess;
     @FXML
     private Label date;
+    /*
     @FXML
     private Label website;
+     */
     @FXML
     private FlowPane tags;
 
@@ -57,13 +61,21 @@ public class InternshipCard extends UiPart<Region> {
         this.internship = internship;
         id.setText(displayedIndex + ". ");
         name.setText(internship.getName().fullName);
+        /*
         phone.setText("phone: " + internship.getPhone().value);
         remark.setText("remark: " + internship.getRemark().value);
         email.setText("email: " + internship.getEmail().value);
-        position.setText("position: " + internship.getPosition().positionName);
-        applicationProcess.setText("application process: " + internship.getApplicationProcess().toString());
-        date.setText("date: " + internship.getDate().toDisplayFormat());
+         */
+        position.setText(internship.getPosition().positionName);
+
+        String stateStyleClass = "application_process-" + internship.getApplicationProcess().toString();
+        applicationProcess.getStyleClass().add(stateStyleClass);
+        applicationProcess.setText(internship.getApplicationProcess().toString());
+
+        date.setText(internship.getDate().toDisplayFormat());
+        /*
         website.setText("website: " + internship.getWebsite().value);
+         */
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
