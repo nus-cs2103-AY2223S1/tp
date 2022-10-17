@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.intrack.model.internship.Internship;
+import seedu.intrack.model.internship.Task;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -44,6 +45,8 @@ public class InternshipCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane status;
+    @FXML
+    private FlowPane tasks;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
@@ -58,6 +61,10 @@ public class InternshipCard extends UiPart<Region> {
         address.setText(internship.getAddress().value);
         email.setText(internship.getEmail().value);
         status.getChildren().add(new Label(internship.getStatus().toString()));
+        internship.getTasks().stream()
+                .sorted(Comparator.comparing(task -> task.taskTime))
+                .forEach(task -> tasks.getChildren().add(new Label(task.taskName + " at "
+                        + task.taskTime.format(Task.FORMATTER))));
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

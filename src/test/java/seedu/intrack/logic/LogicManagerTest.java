@@ -82,7 +82,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_MSFT + POSITION_DESC_MSFT + PHONE_DESC_MSFT
                 + EMAIL_DESC_MSFT + ADDRESS_DESC_MSFT;
-        Internship expectedInternship = new InternshipBuilder(MSFT).withTags().build();
+        Internship expectedInternship = new InternshipBuilder(MSFT).withTasks().withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addInternship(expectedInternship);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

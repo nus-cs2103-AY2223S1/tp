@@ -1,6 +1,10 @@
 package seedu.intrack.testutil;
 
+import java.time.LocalDateTime;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.intrack.model.internship.Address;
@@ -10,6 +14,7 @@ import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Status;
+import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.tag.Tag;
 import seedu.intrack.model.util.SampleDataUtil;
 
@@ -23,6 +28,8 @@ public class InternshipBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STATUS = "Progress";
+    public static final Task DEFAULT_TASK = new Task("Application submitted",
+            LocalDateTime.now().format(Task.FORMATTER));
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
@@ -31,6 +38,7 @@ public class InternshipBuilder {
     private Email email;
     private Status status;
     private Address address;
+    private List<Task> tasks;
     private Set<Tag> tags;
 
     /**
@@ -43,6 +51,8 @@ public class InternshipBuilder {
         email = new Email(DEFAULT_EMAIL);
         status = new Status(DEFAULT_STATUS);
         address = new Address(DEFAULT_ADDRESS);
+        tasks = new ArrayList<>();
+        tasks.add(DEFAULT_TASK);
         tags = new HashSet<>();
     }
 
@@ -56,6 +66,7 @@ public class InternshipBuilder {
         email = internshipToCopy.getEmail();
         status = internshipToCopy.getStatus();
         address = internshipToCopy.getAddress();
+        tasks = new ArrayList<>(internshipToCopy.getTasks());
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -72,6 +83,14 @@ public class InternshipBuilder {
      */
     public InternshipBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tasks} into a {@code List<Task>} and set it to the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withTasks(String ... tasks) {
+        this.tasks = SampleDataUtil.getTaskList(tasks);
         return this;
     }
 
@@ -116,7 +135,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(name, position, phone, email, status, address, tags);
+        return new Internship(name, position, phone, email, status, address, tasks, tags);
     }
 
 }
