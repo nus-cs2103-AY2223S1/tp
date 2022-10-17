@@ -260,7 +260,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Programmers who love vim and want to hit the gym for some exercise but they are too occupied with work to recall their progressions and don’t know / remember what to do next
 * They may also find it hard to remember their statistics on each exercise
 
-**Value proposition**: 
+**Value proposition**:
 * Leverage on their blazing speed on vim to save, write and view gym data in a familiar fashion
 * Provides a fast platform for users to track their gym progress or workout routine
 * Has vim-like shortcuts to make things more efficient for vim lovers
@@ -315,7 +315,7 @@ Guarantees: Input exercise will be added to storage.
 
 * 1a. User enters the command wrongly.
 
-    * 1a1. Gim shows an error message. 
+    * 1a1. Gim shows an error message.
 <br>Use case ends.
 
 #### Use case 3: Delete an exercise
@@ -334,14 +334,14 @@ Guarantees: Selected exercise will be deleted from storage.
 **Extensions**
 
 * 1a. User enters the command wrongly.
-    * 1a1. Gim displays the error message. 
+    * 1a1. Gim displays the error message.
 <br>Use case ends.
 
 * 1b. User enters an exercise that does not exist in the app.
     * 1b1. Gim displays that the exercise does not exist.
 <br>Use case ends.
 
-#### Use case 4: List exercises 
+#### Use case 4: List exercises
 
 System: Gim <br>
 Use case: UC04 - List exercises <br>
