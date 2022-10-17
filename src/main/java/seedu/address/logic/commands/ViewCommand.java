@@ -48,7 +48,6 @@ public class ViewCommand extends Command {
             switch (graphType.getGraphType()) {
             case CATEGORY:
                 System.out.println("[ViewCommand] Show all expenditure by categories");
-                model.updateExpensePieChart();
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_CATEGORY), false,
                                          false, true);
             case MONTH:
@@ -62,7 +61,6 @@ public class ViewCommand extends Command {
             switch (graphType.getGraphType()) {
             case CATEGORY:
                 System.out.println("[ViewCommand] Show all expenditure by categories");
-                model.updateIncomePieChart();
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
                                          true);
             case MONTH:
