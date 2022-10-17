@@ -165,21 +165,21 @@ public class Pet {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Species: ")
-                .append(getSpecies())
-                .append("; Date Of Birth: ")
-                .append(getDateOfBirth().toString())
-                .append("; Weight: ")
-                .append(getWeight())
-                .append("; Height: ")
-                .append(getHeight())
-                .append("; Color: ")
-                .append(getColor())
-                .append("; Color pattern: ")
-                .append(getColorPattern())
+        builder.append(getName().toString())
                 .append("; ")
-                .append(getVaccinationStatus());
+                .append(getSpecies().toString())
+                .append("; ")
+                .append(getDateOfBirth().toString())
+                .append("; ")
+                .append(getWeight().toString())
+                .append("; ")
+                .append(getHeight().toString())
+                .append("; ")
+                .append(getColor().toString())
+                .append("; ")
+                .append(getColorPattern().toString())
+                .append("; ")
+                .append(getVaccinationStatus().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
