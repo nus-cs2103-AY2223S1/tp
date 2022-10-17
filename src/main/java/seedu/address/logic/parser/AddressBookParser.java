@@ -22,7 +22,6 @@ import seedu.address.logic.parser.profile.ProfileCommandParser;
  * Parses user input.
  */
 public class AddressBookParser {
-
     /**
      * Used for initial separation of command word and args.
      */
