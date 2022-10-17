@@ -160,6 +160,7 @@ public class ModelManager implements Model {
     public void markTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.markTask(teamIndex, taskIndex);
+        updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
@@ -167,6 +168,7 @@ public class ModelManager implements Model {
     public void unmarkTask(Index teamIndex, Index taskIndex) {
         requireAllNonNull(teamIndex, taskIndex);
         addressBook.unmarkTask(teamIndex, taskIndex);
+        updateFilteredTeamList(unused -> false);
         updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 

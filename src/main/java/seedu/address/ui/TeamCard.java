@@ -51,11 +51,10 @@ public class TeamCard extends UiPart<Region> {
         taskListPanel = new TaskListPanel(team.getTasksList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        taskProgressBar.setProgress(0.5);
-
-
-
-
+        int numberOfCompletedTasks = team.getNoOfCompletedTasK();
+        int totalNumberOfTasks = team.getTasks().getSize();
+        double progressFraction = (numberOfCompletedTasks * 1.0)/(totalNumberOfTasks * 1.0);
+        taskProgressBar.setProgress(progressFraction);
 
 
         this.team = team;
