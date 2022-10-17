@@ -14,8 +14,10 @@ import seedu.address.model.person.Person;
 public class MarkCommand extends SelectAppointmentCommand {
     public static final String COMMAND_WORD = "mark";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks an appointment in the appointment list as done\n"
-            + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and a positive integer)";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Marks an appointment in the appointment list as complete\n"
+                    + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and a positive integer)\n"
+                    + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_PERSON_SUCCESS = "Marked appointment %1$s for: %2$s";
     public static final String MESSAGE_ALREADY_MARKED = "This appointment is already marked.";
