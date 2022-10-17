@@ -14,8 +14,6 @@ import java.time.format.DateTimeParseException;
 public class StartTime {
 
     public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM or hh/mm/PM";
-    private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
-            "compareTo() of StartTime must take in argument of type LocalTime";
 
     //for checking if valid input date format and for changing to storage friendly format
     private static final DateTimeFormatter checkAndLogFormatter = DateTimeFormatter
@@ -24,17 +22,7 @@ public class StartTime {
     //for changing to user-readable format
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 
-    public final LocalTime startTime;
-
-    private boolean isEmpty;
-
-    /**
-     * Constructs an empty {@code StartTime}.
-     */
-    private StartTime() {
-        this.startTime = null;
-        this.isEmpty = true;
-    }
+    public final LocalTime time;
 
     /**
      * Constructs a {@code StartTime}.
@@ -44,97 +32,73 @@ public class StartTime {
     public StartTime(String startTime) {
         requireNonNull(startTime);
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
-        this.startTime = LocalTime.parse(startTime, checkAndLogFormatter);
-        this.isEmpty = false;
-    }
-
-    /**
-     * Constructs an empty {@code StartTime}.
-     */
-    public static StartTime getEmptyStartTime() {
-        return new StartTime();
+        this.time = LocalTime.parse(startTime, checkAndLogFormatter);
     }
 
     /**
      * Returns true if a given string is a valid StartTime input.
-     * "" empty string is used to represent an empty StartTime.
      * @return boolean
      */
-
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidStartTime(String test) {
-        if (test == null) {
-            return true;
-        }
         try {
             LocalTime.parse(test, checkAndLogFormatter);
         } catch (DateTimeParseException e) {
-            System.out.println("StartTime problem");
             return false;
         }
         return true;
     }
 
-    /**
-     * Returns 1 if the other object is a StartTime that is later,
-     * -1 if the other object is a StartTime that is earlier,
-     * and 0 if the other object is a StartTime that is of the same time.
-     * @param other The object to compare with
-     * @return int
-     */
-    public int compareTo(Object other) {
-        if (other == null) {
-            return -1;
-        }
-        if (!(other instanceof StartTime)) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-        }
-        if (this.isEmpty() & ((StartTime) other).isEmpty()) {
-            return 0;
-        }
-        return this.startTime.compareTo(((StartTime) other).startTime);
-    }
-
-    /**
-     * Returns true if StartTime is empty, false otherwise
-     * @return boolean
-     */
-    public boolean isEmpty() {
-        return this.isEmpty;
-    }
+    //TODO: To be re-implemented by Benjamin for Sort By Date
+    ///**
+    // * Returns 1 if the other object is a StartTime that is later,
+    // * -1 if the other object is a StartTime that is earlier,
+    // * and 0 if the other object is a StartTime that is of the same time.
+    // * @param other The object to compare with
+    // * @return int
+    // */
+    //public int compareTo(Object other) {
+    //    if (other == null) {
+    //        return -1;
+    //    }
+    //    if (!(other instanceof StartTime)) {
+    //        throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
+    //    }
+    //    if (this.isEmpty() & ((StartTime) other).isEmpty()) {
+    //        return 0;
+    //    }
+    //    return this.startTime.compareTo(((StartTime) other).startTime);
+    //}
 
     /**
      * Returns the String representation of the StartTime in format suitable for storage logging
      * @return String
      */
     public String toLogFormat() {
-        if (this.isEmpty()) {
-            return null;
-        }
-        return this.startTime.format(checkAndLogFormatter);
+        return this.time.format(checkAndLogFormatter);
     }
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof StartTime)) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-        }
-        if (this.isEmpty() & ((StartTime) other).isEmpty()) {
+        if (other == this) {
             return true;
         }
-        return this.startTime.equals(((StartTime) other).startTime);
+
+        if (!(other instanceof StartTime)) {
+            return false;
+        }
+
+        StartTime st = (StartTime) other;
+        return this.time.equals(st.time);
     }
 
     @Override
     public String toString() {
-        if (this.isEmpty()) {
-            return "";
-        }
-        return this.startTime.format(outputFormatter);
+        return this.time.format(outputFormatter);
     }
 
     @Override
     public int hashCode() {
-        return this.startTime.hashCode();
+        return this.time.hashCode();
     }
 }

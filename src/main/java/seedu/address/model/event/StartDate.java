@@ -14,8 +14,6 @@ import java.time.format.DateTimeParseException;
 public class StartDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Start date must be in format: dd/MM/yyyy";
-    private static final String MESSAGE_ARGUMENT_CONSTRAINTS =
-            "compareTo() of StartDate must take in argument of type LocalDate";
 
     //for checking if valid input date format
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
@@ -29,16 +27,6 @@ public class StartDate {
 
     public final LocalDate date;
 
-    private boolean isEmpty;
-
-    /**
-     * Constructs an empty {@code StartDate}.
-     */
-    private StartDate() {
-        this.date = null;
-        this.isEmpty = true;
-    }
-
     /**
      * Constructs a {@code StartDate}.
      *
@@ -48,91 +36,67 @@ public class StartDate {
         requireNonNull(date);
         checkArgument(isValidStartDate(date), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, logFormatter);
-        this.isEmpty = false;
-    }
-
-    /**
-     * Constructs an empty {@code StartDate}.
-     */
-    public static StartDate getEmptyStartDate() {
-        return new StartDate();
     }
 
     /**
      * Returns true if a given string is a valid StartDate input.
-     * "" empty string is used to represent an empty StartDate.
      * @return boolean
      */
-
     //found from https://mkyong.com/java/how-to-check-if-date-is-valid-in-java/
     public static boolean isValidStartDate(String test) {
-        if (test == null) {
-            return true;
-        }
         try {
             LocalDate.parse(test, checkFormatter);
         } catch (DateTimeParseException e) {
-            System.out.println("StartDate problem");
             return false;
         }
         return true;
     }
 
-    /**
-     * Returns 1 if the other object is a StartDate that is later,
-     * -1 if the other object is a StartDate that is earlier,
-     * and 0 if the other object is a StartDate that is of the same date.
-     * @param other The object to compare with
-     * @return int
-     */
-    public int compareTo(Object other) {
-        if (other == null) {
-            return -1;
-        }
-        if (!(other instanceof StartDate)) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-        }
-        if (this.isEmpty() & ((StartDate) other).isEmpty()) {
-            return 0;
-        }
-        return this.date.compareTo(((StartDate) other).date);
-    }
-
-    /**
-     * Returns true if StartDate is empty, false otherwise
-     * @return boolean
-     */
-    public boolean isEmpty() {
-        return this.isEmpty;
-    }
+    //TODO: To be re-implemented by Benjamin for Sort By Date
+    ///**
+    // * Returns 1 if the other object is a StartDate that is later,
+    // * -1 if the other object is a StartDate that is earlier,
+    // * and 0 if the other object is a StartDate that is of the same date.
+    // * @param other The object to compare with
+    // * @return int
+    // */
+    //public int compareTo(Object other) {
+    //    if (other == null) {
+    //        return -1;
+    //    }
+    //    if (!(other instanceof StartDate)) {
+    //        throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
+    //    }
+    //    if (this.isEmpty() & ((StartDate) other).isEmpty()) {
+    //        return 0;
+    //    }
+    //    return this.date.compareTo(((StartDate) other).date);
+    //}
 
     /**
      * Returns the String representation of the StartDate in format suitable for storage logging
      * @return String
      */
     public String toLogFormat() {
-        if (this.isEmpty()) {
-            return null;
-        }
         return this.date.format(logFormatter);
     }
 
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof StartDate)) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-        }
-        if (this.isEmpty() & ((StartDate) other).isEmpty()) {
+        if (other == this) {
             return true;
         }
-        return this.date.equals(((StartDate) other).date);
+
+        if (!(other instanceof StartDate)) {
+            return false;
+        }
+
+        StartDate sd = (StartDate) other;
+        return this.date.equals(sd.date);
     }
 
     @Override
     public String toString() {
-        if (this.isEmpty()) {
-            return "";
-        }
         return this.date.format(outputFormatter);
     }
 
