@@ -273,7 +273,7 @@ public class ModelManager implements Model {
             new PieChart.Data("Food", expensePieChartArr[0]), new PieChart.Data("Groceries", expensePieChartArr[1]),
             new PieChart.Data("Entertainment", expensePieChartArr[2]),
             new PieChart.Data("Education", expensePieChartArr[3]), new PieChart.Data("Housing", expensePieChartArr[4]),
-            new PieChart.Data("Groceries", expensePieChartArr[5]));
+            new PieChart.Data("Others", expensePieChartArr[5]));
 
         return expensePieChartData;
     }
