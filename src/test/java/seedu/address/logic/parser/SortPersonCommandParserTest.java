@@ -16,13 +16,13 @@ public class SortPersonCommandParserTest {
     private SortPersonCommandParser parser = new SortPersonCommandParser();
 
     @Test
-    public void parse_validArgsPersonName_returnsSortPersonCommand() throws Exception {
+    public void parse_validArgsPersonName_returnsSortPersonCommand() {
         Command expectedCommand = new SortPersonCommand(SortPersonCommand.Criteria.NAME);
         assertParseSuccess(parser, PREFIX_NAME.getPrefix(), expectedCommand);
     }
 
     @Test
-    public void parse_validArgsCompanyName_returnsSortPersonCommand() throws Exception {
+    public void parse_validArgsCompanyName_returnsSortPersonCommand() {
         Command expectedCommand = new SortPersonCommand(SortPersonCommand.Criteria.COMPANY_NAME);
         assertParseSuccess(parser, PREFIX_COMPANY_NAME.getPrefix(), expectedCommand);
     }
