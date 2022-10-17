@@ -2,29 +2,24 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
-import seedu.address.commons.core.Config;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.storage.JsonUserPrefsStorage;
 
 /**
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
-    private GuiSettings guiSettings = new GuiSettings();
+    private static final int MAX_ADDRESS_BOOK_LIMIT = 5;
     private static final String DEFAULT_ADDRESS_BOOK_NAME = "addressbook";
+    private GuiSettings guiSettings = new GuiSettings();
     private int addressBookIndex = 0;
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
-    private static final int MAX_ADDRESS_BOOK_LIMIT = 5;
     private ArrayList<Path> allAddressBookFilePath = new ArrayList<Path>();
 
     /**
@@ -50,7 +45,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
         setAllAddressBookFilePath(newUserPrefs.getAllAddressBookFilePath());
-        setStoredIndex(newUserPrefs.getStoredIndex()%newUserPrefs.getAllAddressBookFilePath().length);
+        setStoredIndex(newUserPrefs.getStoredIndex() % newUserPrefs.getAllAddressBookFilePath().length);
     }
 
     public GuiSettings getGuiSettings() {
@@ -80,6 +75,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.allAddressBookFilePath = new ArrayList<>(List.of(allAddressBookFilePath));
     }
 
+    /**
+     * Adds a brand new Address Book to the data directory
+     *
+     * @return boolean value indicating {@code true} = Success or {@code false} = Limit reached
+     */
     public boolean addAddressBook() {
         if (allAddressBookFilePath.size() == MAX_ADDRESS_BOOK_LIMIT) {
             return false;
@@ -87,13 +87,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
             String newBookName;
             if (allAddressBookFilePath.size() != 0) {
                 newBookName = DEFAULT_ADDRESS_BOOK_NAME + allAddressBookFilePath.size() + ".json";
-            } else  {
+            } else {
                 newBookName = DEFAULT_ADDRESS_BOOK_NAME + ".json";
             }
-
             Path newBook = Paths.get("data" , newBookName);
             allAddressBookFilePath.add(newBook);
-            System.out.println(allAddressBookFilePath);
             return true;
         }
     }
@@ -101,7 +99,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public Path getNextAddressBookPath() {
         incrementIndex();
         Path nextAddressBook = allAddressBookFilePath.get(addressBookIndex);
-        System.out.println("next book:" + nextAddressBook.toString());
         setAddressBookFilePath(nextAddressBook);
         return nextAddressBook;
     }
@@ -116,7 +113,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private void incrementIndex() {
         addressBookIndex += 1;
-        addressBookIndex = addressBookIndex%allAddressBookFilePath.size();
+        addressBookIndex = addressBookIndex % allAddressBookFilePath.size();
     }
 
     @Override

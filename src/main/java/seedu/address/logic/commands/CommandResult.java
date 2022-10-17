@@ -39,7 +39,8 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser,
+                false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -50,7 +51,9 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isNewBook() {return showNewBook; }
+    public boolean isNewBook() {
+        return showNewBook;
+    }
 
     public boolean isSwap() {
         return showSwap;

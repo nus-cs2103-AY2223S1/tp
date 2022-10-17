@@ -17,7 +17,6 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.util.SampleDataUtil;
@@ -109,9 +108,8 @@ public class LogicManager implements Logic {
         }
         return result;
     }
-
-    public void swapAddressBook(){
-        //storage.saveAddressBook(model.getAddressBook());
+    @Override
+    public void swapAddressBook() {
         Path nextAddressBook = model.getNextAddressBookPath();
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
