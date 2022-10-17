@@ -137,10 +137,4 @@ public class Person implements ComparableByName<Person>, HasIntegerIdentifier<Pe
         return 0;
     }
 
-    @Override
-    public Function<Iterable<Person>, Person> newSupplierWithoutID(Person person) {
-        return (Iterable<Person> it) -> {
-            return person;
-        };
-    }
 }

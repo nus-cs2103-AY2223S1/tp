@@ -23,9 +23,6 @@ import seedu.address.model.project.Project;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private static AddressBook instance;
-    private static AddressBook emptyInstance = new AddressBook();
-
     private final UniqueEntityList<Client> clients;
     private final UniqueEntityList<Project> projects;
     private final UniqueEntityList<Person> persons;
@@ -59,22 +56,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this();
         resetData(toBeCopied);
     }
-
-    public static AddressBook get() {
-        if (instance == null) {
-            instance = new AddressBook();
-        }
-        return AddressBook.instance;
-    }
-
-    public static AddressBook get(ReadOnlyAddressBook toBeCopied) {
-        if (instance == null) {
-            instance = new AddressBook(toBeCopied);
-        }
-        instance.resetData(toBeCopied);
-        return AddressBook.instance;
-    }
-
 
     //// list overwrite operations
 
