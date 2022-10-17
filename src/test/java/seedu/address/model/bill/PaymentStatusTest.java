@@ -32,30 +32,33 @@ public class PaymentStatusTest {
         assertFalse(PaymentStatus.isValidPaymentStatus("$"));
 
         // valid paid
-        assertTrue(PaymentStatus.isValidPaymentStatus("true"));
-        assertTrue(PaymentStatus.isValidPaymentStatus("false"));
+        assertTrue(PaymentStatus.isValidPaymentStatus("paid"));
+        assertTrue(PaymentStatus.isValidPaymentStatus("PAID"));
+        assertTrue(PaymentStatus.isValidPaymentStatus("PaiD"));
+        assertTrue(PaymentStatus.isValidPaymentStatus("unpaid"));
+        assertTrue(PaymentStatus.isValidPaymentStatus("UNPAID"));
     }
 
     @Test
     public void equals() {
-        PaymentStatus d1 = new PaymentStatus("true");
-        PaymentStatus d2 = new PaymentStatus("false");
-        PaymentStatus d3 = new PaymentStatus("true");
-        assertTrue(d1.equals(d1));
-        assertTrue(d1.equals(d3));
-        assertTrue(d3.equals(d1));
-        assertFalse(d2.equals(d1));
-        assertFalse(d3.equals(null));
-        assertFalse(d3.equals("true"));
+        PaymentStatus p1 = new PaymentStatus("paid");
+        PaymentStatus p2 = new PaymentStatus("unpaid");
+        PaymentStatus p3 = new PaymentStatus("PAID");
+        assertTrue(p1.equals(p1));
+        assertTrue(p1.equals(p3));
+        assertTrue(p3.equals(p1));
+        assertFalse(p2.equals(p1));
+        assertFalse(p3.equals(null));
+        assertFalse(p3.equals("PAID"));
     }
 
     @Test
     public void hashCodeTest() {
-        PaymentStatus d1 = new PaymentStatus("true");
-        PaymentStatus d2 = new PaymentStatus("false");
-        PaymentStatus d3 = new PaymentStatus("true");
-        assertTrue(d1.hashCode() == d1.hashCode());
-        assertFalse(d1.hashCode() == d2.hashCode());
-        assertTrue(d1.hashCode() == d3.hashCode());
+        PaymentStatus p1 = new PaymentStatus("paid");
+        PaymentStatus p2 = new PaymentStatus("unpaid");
+        PaymentStatus p3 = new PaymentStatus("PAID");
+        assertTrue(p1.hashCode() == p1.hashCode());
+        assertFalse(p1.hashCode() == p2.hashCode());
+        assertTrue(p1.hashCode() == p3.hashCode());
     }
 }

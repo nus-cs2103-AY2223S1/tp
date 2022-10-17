@@ -182,8 +182,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds an bill to the address book.
      * The bill must not already exist in the address book.
      */
-    public void addBill(Bill a) {
-        bills.add(a);
+    public void addBill(Bill bill) {
+        bills.add(bill);
     }
 
     /**
