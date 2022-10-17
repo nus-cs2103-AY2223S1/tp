@@ -99,7 +99,6 @@ public class ModelManager implements Model {
      * @return
      */
     public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
-        // TODO: Implement filtering for saved modules
         CodeContainsKeywordsPredicate predicate = new CodeContainsKeywordsPredicate(facultyCode);
         filteredModuleList.setPredicate(predicate);
     }

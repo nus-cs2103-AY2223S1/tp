@@ -61,7 +61,19 @@ public class ModuleCard extends UiPart<Region> {
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
     }
     private Pill createSemesterPill(int semesterNum) {
-        return new Pill(String.format("Semester %s", semesterNum), SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
+        String semesterText;
+        switch (semesterNum) {
+        case 3:
+            semesterText = "Special Term I";
+            break;
+        case 4:
+            semesterText = "Special Term II";
+            break;
+        default:
+            semesterText = String.format("Semester %s", semesterNum);
+        }
+
+        return new Pill(semesterText, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
             SEMESTER_FONT_SIZE);
     }
 
