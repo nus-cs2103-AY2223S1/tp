@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.ui.Ui;
 
 /**
@@ -37,19 +38,22 @@ public class AddIssueCommand extends IssueCommand {
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
 
-    private final Issue toAdd;
+    //    private final Issue toAdd;
+    private final IssueWithoutModel toAddWithoutModel;
 
     /**
      * Creates an AddCommand to add the specified {@code Issue}
      */
-    public AddIssueCommand(Issue issue) {
-        requireNonNull(issue);
-        toAdd = issue;
+    public AddIssueCommand(IssueWithoutModel issueWithoutModel) {
+        requireNonNull(issueWithoutModel);
+        toAddWithoutModel = issueWithoutModel;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+
+        Issue toAdd = toAddWithoutModel.apply(model);
 
         if (model.hasIssue(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
@@ -65,9 +69,15 @@ public class AddIssueCommand extends IssueCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this
-                || (other instanceof AddIssueCommand
-                && toAdd.equals(((AddIssueCommand) other).toAdd));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddIssueCommand)) {
+            return false;
+        }
+
+        return this.toAddWithoutModel.equals(((AddIssueCommand) other).toAddWithoutModel);
     }
 }
 

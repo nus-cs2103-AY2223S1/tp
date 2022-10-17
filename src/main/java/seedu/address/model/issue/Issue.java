@@ -3,13 +3,15 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.interfaces.ComparableByName;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
 
 /**
  * Represents an Issue.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Issue {
+public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issue> {
 
     // Components of an issue
     private Description description;
@@ -82,6 +84,15 @@ public class Issue {
 
     public Project getProject() {
         return this.project;
+    }
+
+    /**
+     * Returns true if both issues have the same description.
+     * This defines a weaker notion of equality between two issues.
+     */
+    @Override
+    public boolean hasSameName(Issue otherIssue) {
+        return otherIssue.description == this.description;
     }
 
     public Status getStatus() {
@@ -157,4 +168,10 @@ public class Issue {
                 && otherIssue.getPriority().equals(getPriority())
                 && otherIssue.getIssueId().equals(getIssueId());
     }
+
+    @Override
+    public int getID() {
+        return this.issueId.getIdInt();
+    }
+
 }

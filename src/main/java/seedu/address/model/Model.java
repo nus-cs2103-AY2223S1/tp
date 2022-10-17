@@ -68,6 +68,24 @@ public interface Model {
     boolean hasIssue(Issue issue);
     boolean hasClient(Client client);
 
+
+    /**
+     * Returns true if an entity with the given id is present in the address book.
+     */
+    boolean hasProjectId(int id);
+
+    boolean hasIssueId(int id);
+
+    boolean hasClientId(int id);
+
+    /**
+     * Get a entities by id
+     */
+    Project getProjectById(int id);
+    Issue getIssueById(int id);
+    Client getClientById(int id);
+
+
     /**
      * Deletes the given client.
      * The client must exist in the address book.
@@ -103,6 +121,17 @@ public interface Model {
 
     void setClient(Client target, Client editedClient);
 
+
+    /**
+     * Generate the next entity ids
+     * @return id
+     */
+    int generateClientId();
+
+    int generateIssueId();
+
+    int generateProjectId();
+
     /** Returns an unmodifiable view of the filtered client list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -123,6 +152,5 @@ public interface Model {
     void updateFilteredIssueList(Predicate<Issue> predicate);
 
     void updateFilteredClientList(Predicate<Client> predicate);
-
 
 }

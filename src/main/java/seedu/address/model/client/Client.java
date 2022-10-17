@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.Name;
+import seedu.address.model.interfaces.ComparableByName;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
 
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.
  */
-public class Client {
+public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Client> {
 
     public static final String MESSAGE_INVALID = "Client does not exist in the project.";
 
@@ -36,13 +38,14 @@ public class Client {
      * @param email String representing email address of the client
      */
     public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
-        requireAllNonNull(name, phone, email, projects, clientId);
+        requireAllNonNull(name, phone, email, clientId);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.projects = projects;
         this.clientId = clientId;
     }
+
 
     /**
      * Constructs a client with inputs given by the user.
@@ -73,6 +76,11 @@ public class Client {
         return this.projects.size();
     }
 
+    @Override
+    public int getID() {
+        return this.getClientId().getIdInt();
+    }
+
     /**
      * Represents an Empty Client.
      */
@@ -92,6 +100,8 @@ public class Client {
         }
 
     }
+
+
 
     /**
      * Returns the client name as is represented in the Name object.
@@ -150,7 +160,8 @@ public class Client {
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.
      */
-    public boolean isSameClient(Client otherClient) {
+    @Override
+    public boolean hasSameName(Client otherClient) {
         if (otherClient == this) {
             return true;
         }

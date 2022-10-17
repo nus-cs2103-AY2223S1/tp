@@ -20,12 +20,11 @@ import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
-import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
-import seedu.address.model.issue.UniqueIssueList;
-import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 
 /**
  * Parser to parse any commands related to issues
@@ -94,12 +93,11 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         Status status = Status.EmptyStatus.EMPTY_STATUS;
-        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
-        IssueId issueId = new IssueId(UniqueIssueList.generateId());
+        ProjectId projectid = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
-        Issue issue = new Issue(description, deadline, priority, status, project, issueId);
+        IssueWithoutModel issueWithoutModel = new IssueWithoutModel(description, deadline, priority, status, projectid);
 
-        return new AddIssueCommand(issue);
+        return new AddIssueCommand(issueWithoutModel);
     }
 
     private EditIssueCommand parseEditIssueCommand(String arguments) throws ParseException {
@@ -111,11 +109,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                     EditIssueCommand.MESSAGE_USAGE));
         }
 
-        Description newDescription;
-        Deadline newDeadline;
-        Priority newPriority;
+        Description newDescription = null;
+        Deadline newDeadline = null;
+        Priority newPriority = null;
         IssueId issueId = ParserUtil.parseIssueId(argMultimap.getValue(PREFIX_ISSUE_ID).get());
-        Issue initialIssue = UniqueIssueList.getIssue(issueId.getIdInt());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
@@ -124,20 +121,17 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             newDescription = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-            initialIssue.setDescription(newDescription);
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
             newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-            initialIssue.setDeadline(newDeadline);
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             newPriority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-            initialIssue.setPriority(newPriority);
         }
 
-        return new EditIssueCommand(initialIssue);
+        return new EditIssueCommand(newDescription, newDeadline, newPriority, issueId);
     }
 
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
