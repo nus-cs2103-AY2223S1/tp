@@ -84,4 +84,13 @@ public class TagCommand extends Command {
     public static String getUsage() {
         return TAG_COMMAND.getUsage();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                // instanceof handles nulls
+                || (other instanceof TagCommand
+                && index.equals(((TagCommand) other).index)
+                && tag.equals(((TagCommand) other).tag));
+    }
 }
