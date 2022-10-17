@@ -28,25 +28,27 @@ Class TaskName
 Class Module
 Class Deadline
 Class Status
-
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModelManager .left.|> Model
 
+Model .down.> ReadOnlyAddressBook
+Model .down.> ReadOnlyUserPrefs
+Model .down.> ReadOnlyTaskList
+
+ReadOnlyAddressBook -[hidden]right-> ReadOnlyUserPrefs
+ReadOnlyUserPrefs -[hidden]right-> ReadOnlyTaskList
+
+AddressBook .up.|> ReadOnlyAddressBook
+UserPrefs .up.|> ReadOnlyUserPrefs
 TaskList .up.|> ReadOnlyTaskList
 
-UserPrefs .up.|> ReadOnlyUserPrefs
-
-ModelManager .up.|> Model
-Model .left.> ReadOnlyAddressBook
-Model ..> ReadOnlyTaskList
-Model .right.> ReadOnlyUserPrefs
-ModelManager -left-> "1" AddressBook
+ModelManager --> "1" AddressBook
 ModelManager --> "1" TaskList
-ModelManager -right-> "1" UserPrefs
+ModelManager --> "1" UserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
@@ -69,7 +71,7 @@ Task *--> Module
 Task *--> Deadline
 Task *--> Status
 
-Name -[hidden]right-> Module
+TaskName -[hidden]right-> Module
 Module -[hidden]right-> Deadline
 Deadline -[hidden]right-> Status
 
