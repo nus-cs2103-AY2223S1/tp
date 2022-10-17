@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
@@ -41,7 +43,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING, PREFIX_YEAR);
+                        PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING, PREFIX_YEAR,
+                        PREFIX_SPECIALISATION);
 
         Index index;
 
@@ -90,6 +93,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 editPersonDescriptor.setYear(ParserUtil.parseYear(yearInput, false));
             } else {
                 editPersonDescriptor.setYear(ParserUtil.parseYear(yearInput, true));
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_SPECIALISATION).isPresent()) {
+            String specialisationInput = argMultimap.getValue(PREFIX_SPECIALISATION)
+                                                    .orElse(Specialisation.EMPTY_SPECIALISATION);
+            if (specialisationInput.equals(Specialisation.EMPTY_SPECIALISATION)) {
+                editPersonDescriptor.setSpecialisation(ParserUtil.parseSpecialisation(specialisationInput, false));
+            } else {
+                editPersonDescriptor.setSpecialisation(ParserUtil.parseSpecialisation(specialisationInput, true));
             }
         }
 

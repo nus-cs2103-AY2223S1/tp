@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIALISATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,6 +27,7 @@ public class ProfCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + "[" + PREFIX_SPECIALISATION + "SPECIALISATION] "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_GENDER + "GENDER "
@@ -35,6 +37,7 @@ public class ProfCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Wong Tin Lok "
             + PREFIX_MODULE_CODE + "CS1231S "
+            + PREFIX_SPECIALISATION + "Discrete Math "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "wongTK@example.com "
             + PREFIX_GENDER + "M "

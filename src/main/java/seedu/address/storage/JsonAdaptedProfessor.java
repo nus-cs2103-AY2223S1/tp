@@ -19,6 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,8 +37,8 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("location") String location,
                                 @JsonProperty("username") String username, @JsonProperty("rating") String rating,
-                                @JsonProperty("year") String year) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, year);
+                                @JsonProperty("specialisation") String specialisation) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, "", specialisation);
     }
 
     /**
@@ -114,6 +115,11 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
 
         final GithubUsername modelUsername;
 
+        if (getUsername() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GithubUsername.class.getSimpleName()));
+        }
+
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
             modelUsername = new GithubUsername(getUsername(), false);
         } else {
@@ -122,6 +128,7 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             }
             modelUsername = new GithubUsername(getUsername(), true);
         }
+
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
@@ -131,8 +138,24 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
         }
         final Rating modelRating = new Rating(getRating());
 
+        final Specialisation modelSpecialisation;
+
+        if (getSpecialisation() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Specialisation.class.getSimpleName()));
+        }
+
+        if (getSpecialisation().equals(Specialisation.EMPTY_SPECIALISATION)) {
+            modelSpecialisation = new Specialisation(getSpecialisation(), false);
+        } else {
+            if (!Specialisation.isValidSpecialisation(getSpecialisation())) {
+                throw new IllegalValueException(Specialisation.MESSAGE_CONSTRAINTS);
+            }
+            modelSpecialisation = new Specialisation(getSpecialisation(), true);
+        }
+
         return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
-            modelLocation, modelUsername, modelRating);
+            modelLocation, modelUsername, modelRating, modelSpecialisation);
     }
 
 }

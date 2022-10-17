@@ -43,14 +43,13 @@ public class TypicalPersons {
 
     public static final Person AARON = new StudentBuilder().withName("Aaron Tan")
             .withEmail("aaron@example.com").withGender("M")
-            .withPhone("85877235").withTags("friends").build();
-
+            .withPhone("85877235").withTags("friends").withGithubUsername("").build();
     public static final Person ALEX = new StudentBuilder().withName("Alex Jones")
             .withEmail("alex@example.com").withGender("M")
             .withPhone("85237238").withTags("friends").build();
     public static final Person ALICE = new StudentBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withGender("F")
-            .withPhone("94351253").withTags("friends").build();
+            .withPhone("94351253").withTags("friends").withGithubUsername("").build();
     public static final Person BENSON = new StudentBuilder().withName("Benson Meier")
             .withGender("M")
             .withEmail("Benm@example.com").withPhone("98765432")

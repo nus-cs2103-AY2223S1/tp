@@ -16,4 +16,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_GITHUBUSERNAME = new Prefix("git/");
     public static final Prefix PREFIX_RATING = new Prefix("r/");
     public static final Prefix PREFIX_YEAR = new Prefix("y/");
+    public static final Prefix PREFIX_SPECIALISATION = new Prefix("s/");
 }

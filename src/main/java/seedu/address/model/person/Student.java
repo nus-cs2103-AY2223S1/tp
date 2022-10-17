@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -32,6 +33,13 @@ public class Student extends Person {
 
     public Year getYear() {
         return this.year;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(getName(), getPhone(), getEmail(), getGender(), getTags(), getLocation(),
+                getUsername(), moduleCodes, year);
     }
 
     @Override
@@ -73,11 +81,33 @@ public class Student extends Person {
         }
         return builder.toString();
     }
+
     @Override
     public int compareModuleCode(Person person) {
         if (person instanceof Student) {
             return compareName(person);
         }
         return -1;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Student)) {
+            return false;
+        }
+        Student otherPerson = (Student) other;
+        return otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getLocation().equals(getLocation())
+                && otherPerson.getUsername().equals(getUsername())
+                && otherPerson.getModuleCodes().equals(getModuleCodes())
+                && otherPerson.getYear().equals(getYear());
     }
 }

@@ -19,6 +19,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
@@ -246,6 +247,24 @@ public class ParserUtil {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
         return new Year(trimmedYear, true);
+    }
+
+    /**
+     * Parses a {@code String field} into an {@code Specialisation}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Year} is invalid.
+     */
+    public static Specialisation parseSpecialisation(String field, Boolean isPresent) throws ParseException {
+        requireNonNull(field);
+        String trimmedField = field.trim();
+        if (!isPresent) {
+            return new Specialisation(trimmedField, false);
+        }
+        if (!Specialisation.isValidSpecialisation(field)) {
+            throw new ParseException(Specialisation.MESSAGE_CONSTRAINTS);
+        }
+        return new Specialisation(trimmedField, true);
     }
 
 }

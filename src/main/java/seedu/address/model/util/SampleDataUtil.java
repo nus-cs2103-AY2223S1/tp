@@ -6,7 +6,20 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Location;
+import seedu.address.model.person.ModuleCode;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
+import seedu.address.model.person.Specialisation;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,7 +45,7 @@ public class SampleDataUtil {
                 new Phone("91031282"), new Email("wongtk@example.com"),
                 new Gender("M"),
                 getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("", false),
-                new Rating("5")),
+                new Rating("5"), new Specialisation("Discrete")),
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Gender("M"),

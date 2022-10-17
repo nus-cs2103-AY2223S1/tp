@@ -40,9 +40,8 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("gender") String gender,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("location") String location,
-                              @JsonProperty("username") String username, @JsonProperty("rating") String rating,
-                              @JsonProperty("year") String year) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, year);
+                              @JsonProperty("username") String username, @JsonProperty("year") String year) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, "", year, "");
         if (moduleCodes != null) {
             this.moduleCodes.addAll(moduleCodes);
         }
