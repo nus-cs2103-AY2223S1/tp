@@ -20,7 +20,7 @@ public class MessageCommandGroupParser implements Parser<MessageCommandGroup> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * and returns a command in the TagCommandGroup for execution.
+     * and returns a command in the MessageCommandGroup for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public MessageCommandGroup parse(String args) throws ParseException {
