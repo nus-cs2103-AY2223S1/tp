@@ -1,11 +1,16 @@
 package seedu.address.model.person;
 
+/**
+ * Represents a Software Engineer's role in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
+ */
 public class Role {
-    public final String role;
     public static final String MESSAGE_CONSTRAINTS =
-            "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
+    "Roles should only contain alphanumeric characters and spaces, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    
+    public final String role;
 
     /**
      * Constructs an {@code Role}.
