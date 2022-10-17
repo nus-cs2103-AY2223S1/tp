@@ -30,11 +30,11 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE);
+        argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME);
 
         if (!(areAllArgsValid(PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE))) {
+                PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_TYPE, PREFIX_GITHUBUSERNAME))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
@@ -64,6 +64,10 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
             predicate.setTypesList(getKeywordList(PREFIX_TYPE));
+        }
+
+        if (argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent()) {
+            predicate.setUserNamesList(getKeywordList(PREFIX_GITHUBUSERNAME));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {

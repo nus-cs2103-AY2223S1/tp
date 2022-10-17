@@ -23,17 +23,23 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     private Set<String> tagsSet;
     private List<String> locationsList;
     private List<String> typesList;
+    private List<String> userNamesList;
 
     private boolean hasNamesList;
+
     private boolean hasModulesList;
     private boolean needsAllModules;
+
     private boolean hasPhonesList;
     private boolean hasEmailsList;
     private boolean hasGendersList;
+
     private boolean hasTagsList;
-    private boolean hasLocationsList;
     private boolean needsAllTags;
+
+    private boolean hasLocationsList;
     private boolean hasTypesList;
+    private boolean hasUserNamesList;
 
     /**
      * Creates a PersonMatchesPredicate object and initialises
@@ -48,16 +54,23 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         tagsSet = new HashSet<>();
         locationsList = new ArrayList<>();
         typesList = new ArrayList<>();
+        userNamesList = new ArrayList<>();
 
         hasNamesList = false;
+
         hasModulesList = false;
+        needsAllModules = false;
+
         hasPhonesList = false;
         hasEmailsList = false;
         hasGendersList = false;
+
         hasTagsList = false;
         needsAllTags = false;
+
         hasLocationsList = false;
         hasTypesList = false;
+        hasUserNamesList = false;
     }
 
     @Override
@@ -66,7 +79,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && moduleMatches(person) && phoneMatches(person)
                 && emailMatches(person) && genderMatches(person)
                 && tagMatches(person) && locationMatches(person)
-                && typeMatches(person);
+                && typeMatches(person) && userNameMatches(person);
     }
 
     /**
@@ -157,6 +170,15 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    public boolean userNameMatches(Person person) {
+        if (!hasUserNamesList) {
+            return true;
+        } else {
+            return userNamesList.stream()
+                    .anyMatch(username -> StringUtil.containsWordIgnoreCase(person.getUsername().toString(), username));
+        }
+    }
+
     public void setNamesList(List<String> otherList) {
         this.namesList = otherList;
         hasNamesList = true;
@@ -197,6 +219,11 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     public void setTypesList(List<String> typesList) {
         this.typesList = typesList;
         hasTypesList = true;
+    }
+
+    public void setUserNamesList(List<String> userNamesList) {
+        this.userNamesList = userNamesList;
+        hasUserNamesList = true;
     }
 
     //get methods are for tests. some have not been used yet
