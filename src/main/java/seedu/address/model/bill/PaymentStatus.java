@@ -33,6 +33,10 @@ public class PaymentStatus {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isPaid() {
+        return isPaid;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(isPaid);
