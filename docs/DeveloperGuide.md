@@ -194,6 +194,14 @@ Notice that there is only one instance of `UniquePersonList` (in purple) and
 (in orange), corresponding to the number of modules.
 </div>
 
+We have implemented the following `Command` classes:
+- `AddTaskCommand` allows the user to add a task to a specified `Module` in 
+  Plannit.
+- `DeleteTaskCommand` allows the user to delete a task from a specified 
+  `Module` in Plannit.
+- `SwapTaskCommand` allows the user to swap the order of `Task`s within a 
+  specified `Module` in Plannit.
+
 Given below is an example usage scenario and how the mechanism 
 behaves when a user adds a new `Task`. The behavior for the deleting and 
 swapping of tasks is highly similar.
