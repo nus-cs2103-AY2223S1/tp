@@ -53,6 +53,13 @@ public interface Logic {
     ObservableList<Todo> getFilteredTodoList();
 
     /**
+     * Stub - this depends on the search query,
+     * e.g if the user search todo by Tag, the header is the name of the tag,
+     * if the user search todo by date, the header will be the give date.
+     */
+    String getTodoHeader();
+
+    /**
      * Returns the user prefs' SoConnect file path.
      */
     Path getSoConnectFilePath();

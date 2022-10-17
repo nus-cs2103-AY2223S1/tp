@@ -97,5 +97,4 @@ public class Todo {
         }
         return builder.toString();
     }
-
 }
