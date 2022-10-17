@@ -13,6 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.ui.Ui;
 
+import java.util.function.Function;
+
 /**
  * Command to add issue
  */
@@ -38,18 +40,29 @@ public class AddIssueCommand extends IssueCommand {
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
 
     private final Issue toAdd;
+    private final Function<Model, Issue> toAddWithoutModel;
+
+//    /**
+//     * Creates an AddCommand to add the specified {@code Issue}
+//     */
+//    public AddIssueCommand(Issue issue) {
+//        requireNonNull(issue);
+//        toAdd = issue;
+//    }
 
     /**
      * Creates an AddCommand to add the specified {@code Issue}
      */
-    public AddIssueCommand(Issue issue) {
-        requireNonNull(issue);
-        toAdd = issue;
+    public AddIssueCommand(Function<Model, Issue> issueWithoutModel) {
+        requireNonNull(issueWithoutModel);
+        toAddWithoutModel = issueWithoutModel;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+
+        Issue toAdd = toAddWithoutModel.apply(model);
 
         if (model.hasIssue(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);

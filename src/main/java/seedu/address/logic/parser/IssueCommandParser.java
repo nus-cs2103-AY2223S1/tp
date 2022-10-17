@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 
+import java.util.function.Function;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -16,15 +17,13 @@ import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Deadline;
-import seedu.address.model.interfaces.HasIntegerIdentifier;
+import seedu.address.model.Model;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
-import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 
 /**
  * Parser to parse any commands related to issues
@@ -77,13 +76,11 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
 
         Status status = Status.EmptyStatus.EMPTY_STATUS;
-        Project project = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        ProjectId projectid = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
-        IssueId issueId = new IssueId(HasIntegerIdentifier.generateNextID(AddressBook.get().getIssueList()));
+        Function<Model, Issue> issueWithoutModel = Issue.makeIssueWithoutModel(description, deadline, priority, status, projectid);
 
-        Issue issue = new Issue(description, deadline, priority, status, project, issueId);
-
-        return new AddIssueCommand(issue);
+        return new AddIssueCommand(issueWithoutModel);
     }
 
     //TODO: implement

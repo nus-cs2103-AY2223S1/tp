@@ -3,14 +3,11 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
-import seedu.address.model.Name;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientEmail;
-import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.Model;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 
 import java.util.function.Function;
 
@@ -70,12 +67,20 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
      * @param deadline
      * @param priority
      * @param status
-     * @param project
+     * @param projectId
      * @return a function that provides an issue object when presented with an IssueId object.
      */
-    public static Function<IssueId, Issue> makeIssueWithoutID(Description description, Deadline deadline, Priority priority,
-                                                              Status status, Project project) {
-        return (id) -> new Issue(description, deadline, priority, status, project, id);
+    public static Function<Model, Issue> makeIssueWithoutModel(Description description, Deadline deadline,
+                                                               Priority priority, Status status, ProjectId projectId) {
+        return (model) ->
+                new Issue(
+                        description,
+                        deadline,
+                        priority,
+                        status,
+                        model.getProjectById(projectId.getIdInt()),
+                        new IssueId(model.generateIssueId())
+                );
     }
 
     /**
