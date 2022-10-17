@@ -37,7 +37,7 @@ public class CreateMessageCommand extends MessageCommandGroup {
         requireNonNull(model);
 
         if (model.hasMessage(toCreate)) {
-            return new CommandResult(MESSAGE_DUPLICATE_MESSAGE);
+            return new CommandResult(String.format(MESSAGE_DUPLICATE_MESSAGE, toCreate));
         }
 
         model.addMessage(toCreate);
