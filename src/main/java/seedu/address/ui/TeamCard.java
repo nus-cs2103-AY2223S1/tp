@@ -35,6 +35,9 @@ public class TeamCard extends UiPart<Region> {
     @FXML
     private ProgressBar taskProgressBar;
 
+    @FXML
+    private Label taskFraction;
+
 
     /**
      * Creates a {@code TeamCode} with the given {@code Team} and index to display.
@@ -55,6 +58,8 @@ public class TeamCard extends UiPart<Region> {
         int totalNumberOfTasks = team.getTasks().getSize();
         double progressFraction = (numberOfCompletedTasks * 1.0)/(totalNumberOfTasks * 1.0);
         taskProgressBar.setProgress(progressFraction);
+
+        taskFraction.setText(numberOfCompletedTasks + "/" + totalNumberOfTasks);
 
 
         this.team = team;

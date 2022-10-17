@@ -154,6 +154,7 @@ public class ModelManager implements Model {
     public void addTask(Index index, Task task) {
         requireAllNonNull(index, task);
         addressBook.addTask(index, task);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
