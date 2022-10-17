@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 
 /**
  * Filters and lists all patients in address book whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FilterNameCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final NameContainsKeywordsPredicatePatient predicate;
 
-    public FilterNameCommand(NameContainsKeywordsPredicate predicate) {
+    public FilterNameCommand(NameContainsKeywordsPredicatePatient predicate) {
         this.predicate = predicate;
     }
 
