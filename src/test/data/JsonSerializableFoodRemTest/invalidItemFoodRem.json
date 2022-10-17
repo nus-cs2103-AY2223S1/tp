@@ -8,5 +8,6 @@
       "expiryDate": "11-11-2022",
       "tags": []
     }
-  ]
+  ],
+  "tagList" : [ "fruits", "vegetables" ]
 }

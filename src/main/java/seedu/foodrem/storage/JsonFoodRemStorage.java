@@ -14,7 +14,7 @@ import seedu.foodrem.commons.util.JsonUtil;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access FoodRem data stored as a json file on the hard disk.
  */
 public class JsonFoodRemStorage implements FoodRemStorage {
 
@@ -44,14 +44,14 @@ public class JsonFoodRemStorage implements FoodRemStorage {
     public Optional<ReadOnlyFoodRem> readFoodRem(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableFoodRem> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableFoodRem> jsonFoodRem = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFoodRem.class);
-        if (jsonAddressBook.isEmpty()) {
+        if (jsonFoodRem.isEmpty()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonFoodRem.get().toModelType());
         } catch (IllegalArgumentException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -59,8 +59,8 @@ public class JsonFoodRemStorage implements FoodRemStorage {
     }
 
     @Override
-    public void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException {
-        saveFoodRem(addressBook, filePath);
+    public void saveFoodRem(ReadOnlyFoodRem foodRem) throws IOException {
+        saveFoodRem(foodRem, filePath);
     }
 
     /**

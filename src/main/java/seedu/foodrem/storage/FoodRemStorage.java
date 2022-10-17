@@ -19,7 +19,7 @@ public interface FoodRemStorage {
     Path getFoodRemFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyFoodRem}.
+     * Returns FoodRem data as a {@link ReadOnlyFoodRem}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
@@ -35,14 +35,14 @@ public interface FoodRemStorage {
     /**
      * Saves the given {@link ReadOnlyFoodRem} to the storage.
      *
-     * @param addressBook cannot be null.
+     * @param foodRem cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException;
+    void saveFoodRem(ReadOnlyFoodRem foodRem) throws IOException;
 
     /**
      * @see #saveFoodRem(ReadOnlyFoodRem)
      */
-    void saveFoodRem(ReadOnlyFoodRem addressBook, Path filePath) throws IOException;
+    void saveFoodRem(ReadOnlyFoodRem foodRem, Path filePath) throws IOException;
 
 }
