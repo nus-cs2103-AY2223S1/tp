@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.Logic;
@@ -31,6 +32,10 @@ public class TeamCard extends UiPart<Region> {
     @FXML
     private Label id;
 
+    @FXML
+    private ProgressBar taskProgressBar;
+
+
     /**
      * Creates a {@code TeamCode} with the given {@code Team} and index to display.
      */
@@ -45,6 +50,11 @@ public class TeamCard extends UiPart<Region> {
 
         taskListPanel = new TaskListPanel(team.getTasksList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        taskProgressBar.setProgress(0.5);
+
+
+
 
 
 

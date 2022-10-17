@@ -9,7 +9,7 @@
       xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <HBox spacing="15.0">
         <VBox.margin>
-            <Insets bottom="10.0" top="10.0"/>
+            <Insets bottom="10.0" top="10.0" right="10.0" left="10.0"/>
         </VBox.margin>
         <Label/>
         <Label fx:id="id" styleClass="cell_big_label">
@@ -23,8 +23,11 @@
                 <Font size="18.0"/>
             </font>
         </Label>
+        <Region prefHeight="0.0"  HBox.hgrow="ALWAYS" />
+        <Label>Task progress:</Label>
+        <ProgressBar styleClass="my-progress-bar" fx:id="taskProgressBar" />
     </HBox>
-    <HBox prefHeight="500" prefWidth="200.0">
+    <HBox prefWidth="200.0">
         <VBox styleClass="pane-with-border" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS"
               HBox.hgrow="ALWAYS">
             <padding>
