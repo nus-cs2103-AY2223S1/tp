@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": removes the specified person "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the specified person "
             + "Parameters: "
             + PREFIX_GLOBAL_PERSON_INDEX + "PERSON INDEX \n"
             + "Example: " + COMMAND_WORD + " "

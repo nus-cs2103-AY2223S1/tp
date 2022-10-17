@@ -109,7 +109,7 @@ public class Team {
 
     /**
      * Adds a task to this team.
-     * @param t
+     * @param t task to add
      */
     public void addTask(Task t) {
         tasks.add(t);
@@ -139,6 +139,14 @@ public class Team {
         tasks.delete(index);
     }
 
+    /**
+     * get number of tasks that is done.
+     *
+     * @return number of tasks that is done.
+     */
+    public int getNoOfCompletedTasK() {
+        return tasks.getNoOfCompletedTasks();
+    }
     /**
      * Returns true if both team have the same name.
      * This defines a weaker notion of equality between two team.

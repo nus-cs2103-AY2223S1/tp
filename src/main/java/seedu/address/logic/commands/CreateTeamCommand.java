@@ -14,7 +14,7 @@ public class CreateTeamCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Created a team. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a team  \n"
             + "Parameters: "
             + PREFIX_TEAM_NAME + "NAME ";
 
