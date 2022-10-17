@@ -24,8 +24,8 @@ import seedu.address.model.util.DateTimeProcessor;
  */
 public class Meeting {
 
-    private ArrayList<Person> peopleToMeetArray;
-    private UniquePersonList peopleToMeetList = new UniquePersonList();
+    private final ArrayList<Person> peopleToMeetArray;
+    private final UniquePersonList peopleToMeetList = new UniquePersonList();
     private String meetingDescription;
     private String meetingDateAndTime;
     private String meetingLocation;
@@ -126,6 +126,20 @@ public class Meeting {
         for (int i = 0; i < people.size(); i++) {
             this.peopleToMeetList.add(people.get(i));
         }
+    }
+
+    /**
+     * Deletes the array of persons from the unique persons list
+     * @param people
+     */
+    public void deletePersons(ArrayList<Person> people) {
+        for (int i = 0; i < people.size(); i++) {
+            this.peopleToMeetList.remove(people.get(i));
+        }
+    }
+
+    public int getNumPersons() {
+        return peopleToMeetList.getSize();
     }
 
     public ArrayList<Person> getArrayListPersonToMeet() {
