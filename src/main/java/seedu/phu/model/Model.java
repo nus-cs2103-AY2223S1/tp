@@ -97,4 +97,33 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void viewInternship(Internship internshipToView);
+
+    /**
+     * Check if user can undo the internship book of the model.
+     *
+     * @return true if user can undo the internship book of the model; false otherwise.
+     */
+    boolean canUndoInternshipBook();
+
+    /**
+     * Check if user can redo the internship book of the model.
+     *
+     * @return true if user can redo the internship book of the model; false otherwise.
+     */
+    boolean canRedoInternshipBook();
+
+    /**
+     * Undo the internship book of the model.
+     */
+    void undoInternshipBook();
+
+    /**
+     * Redo the internship book of the model.
+     */
+    void redoInternshipBook();
+
+    /**
+     * Save change in internship book of the model.
+     */
+    void commitInternshipBookChange();
 }
