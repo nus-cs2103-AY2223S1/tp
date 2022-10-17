@@ -31,7 +31,7 @@ activate CustomiseCommandParser
 CustomiseCommandParser --> SoConnectParser
 deactivate CustomiseCommandParser
 
-SoConnectParser -> CustomiseCommandParser : parse("order e/")
+SoConnectParser -> CustomiseCommandParser : parse(" order e/")
 activate CustomiseCommandParser
 
 create CustomiseOrderCommandParser

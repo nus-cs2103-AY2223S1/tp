@@ -405,18 +405,25 @@ Step 1. The user launches the application. Under each contacts' name, the curren
 
 Step 2. The user wants to have email right below each name instead. The user executes `customise order e/` to make the emails appear right below the name.
 
-1. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse the remaining inputs.
-2. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` for `Logic`.
-3. `Logic` executes the `CustomiseOrderCommand`.
-4. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to set the new ordering into `preferences.json`.
+1. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`
+2. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
+3. `CustomiseOrderCommandParser` processes the input and adds to a list of attributes with `EMAIL` and then fills in the rest of the attributes in the following default order `TAGS`, `PHONE` and lastly `ADDRESS`.
+4. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
+5. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
+6. `Logic` executes the `CustomiseOrderCommand`.
+7. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to set the new ordering into `preferences.json`.
 
-The following sequence diagram illustrates points 1-4:
+The following sequence diagram illustrates points 1-4 in step 2:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
-5`PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`
+**Note:** 
 
-_{uml diagram to be added here}_
+* The lifeline for `CustomiseOrderCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+Step 3. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
+
+
 
 #### Design consideration
 * **Alternative 1 (current choice):** Sets the order in 4 placeholder JavaFX `FlowPane`.
