@@ -92,7 +92,7 @@ Examples:
 
 Adds a new record to a given patient.
 
-Format: `addR d/DATE r/DATA [m/MEDICTION]…` 
+Format: `addR d/DATE r/DATA [m/MEDICATION]…` 
 
 * The command is only valid after using `listR PATIENT_INDEX`.
 * Adds a new record to the patient with given `DATE`, `DATA` and `MEDICATION` information.
@@ -103,7 +103,7 @@ Dates must be given in DD-MM-YYYY HHmm format!
 </div>
 
 Examples:
-* `addR d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetomol 500mg`
+* `addR d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetomol 500mg m/Dextromethorphan`
 * `addR d/28-02-2024 2030 r/Patient experienced vomitting`
 
 ### Deleting a patient: `delete`
