@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
@@ -38,6 +39,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
         descriptor.setStage(internship.getStage());
+        descriptor.setDate(internship.getDateTime());
         descriptor.setTags(internship.getTags());
     }
 
@@ -78,6 +80,13 @@ public class EditInternshipDescriptorBuilder {
      */
     public EditInternshipDescriptorBuilder withStage(String stage) {
         descriptor.setStage(new Stage(stage));
+        return this;
+    }
+    /**
+     * Sets the {@code DateTime} of the {@code EditInternshipDescriptor} that we are building.
+     */
+    public EditInternshipDescriptorBuilder withDateTime(String dateTime) {
+        descriptor.setDate(new DateTime(dateTime));
         return this;
     }
 

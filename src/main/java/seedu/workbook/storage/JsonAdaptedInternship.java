@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.workbook.commons.exceptions.IllegalValueException;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
@@ -30,6 +31,7 @@ class JsonAdaptedInternship {
     private final String phone;
     private final String email;
     private final String stage;
+    private final String dateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,12 +42,14 @@ class JsonAdaptedInternship {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("stage") String stage,
+            @JsonProperty("dateTime") String dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.role = role;
         this.phone = phone;
         this.email = email;
         this.stage = stage;
+        this.dateTime = dateTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +64,7 @@ class JsonAdaptedInternship {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         stage = source.getStage().value;
+        dateTime = source.getDateTime().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -118,10 +123,17 @@ class JsonAdaptedInternship {
         }
         final Stage modelStage = new Stage(stage);
 
-
+        if (dateTime == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
+        }
+        if (!DateTime.isValidDate(dateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        final DateTime modelDateTime = new DateTime(dateTime);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelStage, modelTags);
+        return new Internship(modelCompany, modelRole, modelPhone, modelEmail, modelStage, modelDateTime, modelTags);
     }
 
 }

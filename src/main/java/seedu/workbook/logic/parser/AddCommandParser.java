@@ -2,11 +2,13 @@ package seedu.workbook.logic.parser;
 
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.workbook.model.internship.DateTime.EMPTY_DATETIME;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -14,6 +16,7 @@ import java.util.stream.Stream;
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Phone;
@@ -34,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE,
-                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_TAG);
+                PREFIX_EMAIL, PREFIX_STAGE, PREFIX_DATETIME, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_ROLE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_STAGE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -46,9 +49,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Stage stage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
+        // todo extract method out to parse optional and parse mandatory
+        DateTime dateTime = argMultimap.getValue(PREFIX_DATETIME).isPresent()
+                ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get())
+                : EMPTY_DATETIME;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Internship internship = new Internship(company, role, phone, email, stage, tagList);
+        Internship internship = new Internship(company, role, phone, email, stage, dateTime, tagList);
 
         return new AddCommand(internship);
     }

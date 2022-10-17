@@ -10,6 +10,7 @@ import seedu.workbook.commons.core.index.Index;
 import seedu.workbook.commons.util.StringUtil;
 import seedu.workbook.logic.parser.exceptions.ParseException;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Phone;
 import seedu.workbook.model.internship.Role;
@@ -111,6 +112,21 @@ public class ParserUtil {
             throw new ParseException(Stage.MESSAGE_CONSTRAINTS);
         }
         return new Stage(trimmedStage);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static DateTime parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DateTime.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        return new DateTime(trimmedDate);
     }
 
     /**
