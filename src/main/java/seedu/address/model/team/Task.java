@@ -136,9 +136,13 @@ public class Task {
         this.deadline = date;
     }
 
-    public void mark(boolean completionStatus) { this.completionStatus = completionStatus; }
+    public void mark(boolean completionStatus) {
+        this.completionStatus = completionStatus;
+    }
 
-    public boolean isComplete() { return completionStatus; }
+    public boolean isComplete() {
+        return completionStatus;
+    }
 
     public String getCompletionStatus() {
         if (this.isComplete()) {
