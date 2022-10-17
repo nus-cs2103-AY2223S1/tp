@@ -2,7 +2,6 @@ package seedu.address.model.module;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +30,7 @@ public class Module {
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
     private final Set<Link> links = new HashSet<>();
-    private final List<Person> listOfPersons = new ArrayList<>();
+    private final Set<Person> persons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -129,12 +128,12 @@ public class Module {
     }
 
     /**
-     * Returns a copy of {@code Person} list.
+     * Returns an immutable person set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
      */
-    public List<Person> getListOfPersons() {
-        return new ArrayList<>(listOfPersons);
+    public Set<Person> getPersons() {
+        return Collections.unmodifiableSet(persons);
     }
-
 
     /**
      * Returns true if both modules have the same moduleCode.
@@ -168,13 +167,13 @@ public class Module {
                 && otherModule.getModuleTitle().equals(getModuleTitle())
                 && otherModule.getLinks().equals(getLinks())
                 && otherModule.getTasks().equals(getTasks())
-                && otherModule.getListOfPersons().equals(getListOfPersons());
+                && otherModule.getPersons().equals(getPersons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(moduleCode, links, tasks, listOfPersons);
+        return Objects.hash(moduleCode, links, tasks, persons);
     }
 
     @Override
