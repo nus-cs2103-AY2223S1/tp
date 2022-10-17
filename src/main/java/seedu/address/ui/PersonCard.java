@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.GithubUsername;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 
@@ -40,6 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label title;
+//    @FXML
+//    private HBox stars;
     @FXML
     private Label number;
     @FXML
@@ -74,12 +77,16 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (person instanceof Professor) {
+            Professor professor = (Professor) person;
             moduleCodes.getChildren().add(new Label(((Professor) person).getModuleCode().value));
             title.setText("Professor");
+            //fillStars(professor.getRating());
         }
         if (person instanceof TeachingAssistant) {
+            TeachingAssistant ta = (TeachingAssistant) person;
             moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
             title.setText("Teaching\nAssistant");
+            //fillStars(ta.getRating());
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -108,6 +115,21 @@ public class PersonCard extends UiPart<Region> {
             return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"));
         }
     }
+
+//    private void fillStars(Rating rating) {
+//        int numberOfStars = Integer.valueOf(rating.value);
+//        ImageView filledStarImage = new ImageView(
+//                new Image(this.getClass().getResourceAsStream("/images/FilledStar.png")));
+//        ImageView emptyStarImage = new ImageView(
+//                new Image(this.getClass().getResourceAsStream("/images/emptystar.png")));
+//
+//        for (int i = 0; i < numberOfStars; i++) {
+//            stars.getChildren().add(filledStarImage);
+//        }
+//        for (int j = 0; j < 5 - numberOfStars; j++) {
+//            stars.getChildren().add(emptyStarImage);
+//        }
+//    }
 
     @Override
     public boolean equals(Object other) {

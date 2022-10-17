@@ -18,7 +18,7 @@
          <VBox alignment="CENTER">
             <children>
                <Label fx:id="title" text="Label" />
-               <HBox prefHeight="30.0" prefWidth="100.0" />
+               <HBox id="stars" fx:id="stars" prefHeight="30.0" prefWidth="100.0" />
             </children>
             <padding>
                <Insets top="10.0" />
