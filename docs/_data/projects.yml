@@ -10,6 +10,9 @@
 - name: "AB-4"
   url: https://se-edu.github.io/addressbook-level4
 
+- name: "Teacher's Pet"
+  url: https://ay2223s1-cs2103t-t09-4.github.io/tp/
+
 - name: "Duke"
   url:  https://se-edu.github.io/duke
 
