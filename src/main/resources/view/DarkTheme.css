@@ -272,7 +272,7 @@
 }
 
 .dialog-pane > *.label.content {
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
@@ -345,7 +345,7 @@
 }
 
 #interests {
-    -fx-hgap: 7;
+    -fx-hgap: 10;
     -fx-vgap: 3;
 }
 
