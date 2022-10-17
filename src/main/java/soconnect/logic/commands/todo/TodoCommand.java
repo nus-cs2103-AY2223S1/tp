@@ -16,5 +16,5 @@ public abstract class TodoCommand extends Command {
         + TodoClearCommand.SUB_COMMAND_WORD + ", "
         + TodoShowCommand.SUB_COMMAND_WORD
         + "\n"
-        + "Example: " + COMMAND_WORD + " "+ TodoAddCommand.SUB_COMMAND_WORD;
+        + "Example: " + COMMAND_WORD + " " + TodoAddCommand.SUB_COMMAND_WORD;
 }

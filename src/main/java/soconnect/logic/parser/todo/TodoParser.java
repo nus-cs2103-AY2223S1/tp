@@ -2,9 +2,9 @@ package soconnect.logic.parser.todo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import soconnect.commons.core.Messages;
 import soconnect.logic.commands.Command;
-import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.todo.TodoAddCommand;
 import soconnect.logic.commands.todo.TodoClearCommand;
 import soconnect.logic.commands.todo.TodoCommand;
