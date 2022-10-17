@@ -30,7 +30,8 @@ public class ChangeGroupCommand extends Command {
     private final Path path;
 
     /**
-     * Creates a ChangeGroupCommand to change scope of group to the specified {@Code Group}
+     * Creates a ChangeGroupCommand to change scope of group to the specified
+     * {@Code Group}
      */
     public ChangeGroupCommand(Path path) {
         this.path = path;
@@ -40,15 +41,15 @@ public class ChangeGroupCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String newPath = path.getPath();
-        if (model.isInSamePath(newPath)) {
-            throw new CommandException(MESSAGE_IN_CURRENT_GROUP);
-        }
+        // if (model.isInSamePath(newPath)) {
+        // throw new CommandException(MESSAGE_IN_CURRENT_GROUP);
+        // }
 
-        if (!model.canChangeContext(newPath)) {
-            throw new CommandException(MESSAGE_NO_GROUP_FOUND);
-        }
+        // if (!model.canChangeContext(newPath)) {
+        // throw new CommandException(MESSAGE_NO_GROUP_FOUND);
+        // }
 
-        model.changeContext(newPath);
+        // model.changeContext(newPath);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newPath));
     }
 }

@@ -14,7 +14,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.group.Group;
+import seedu.address.model.item.AbstractContainerItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -29,7 +32,8 @@ public class LogicManager implements Logic {
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
@@ -77,5 +81,20 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Group> getFilteredGroupList() {
+        return model.getFilteredTeamList();
+    }
+
+    @Override
+    public AbstractContainerItem getContainer() {
+        return model.getContextContainer();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
     }
 }

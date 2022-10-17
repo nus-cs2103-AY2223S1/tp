@@ -28,19 +28,21 @@ public class Person implements DisplayItem {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final Fields fields = new Fields();
 
     private Set<AbstractContainerItem> parents = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Fields fields) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.fields.addAll(fields);
     }
 
     public Name getName() {
@@ -66,6 +68,33 @@ public class Person implements DisplayItem {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Retrieves the Fields instance of the Person.
+     *
+     * @return the Fields instance of the Person.
+     */
+    public Fields getFields() {
+        return fields;
+    }
+
+    /**
+     * Adds a Field to the Fields of the Person.
+     *
+     * @param fieldName the field name to be added.
+     */
+    public void addField(String fieldName) {
+        fields.addField(fieldName);
+    }
+
+    /**
+     * Removes a field from the Fields of the Person
+     *
+     * @param fieldName the field name to be removed.
+     */
+    public void removeField(String fieldName) {
+        fields.removeField(fieldName);
     }
 
     /**
@@ -125,6 +154,10 @@ public class Person implements DisplayItem {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+        //        if (!fields.isEmpty()) {
+        //            builder.append("; Fields: ")
+        //                   .append(fields.toString());
+        //        }
         return builder.toString();
     }
 
@@ -148,6 +181,9 @@ public class Person implements DisplayItem {
 
     @Override
     public void setParent(DisplayItem o) throws ItemCannotBeParentException {
+        if (o == null) {
+            return;
+        }
         if (!(o instanceof AbstractContainerItem) || parents.contains(o)) {
             throw new ItemCannotBeParentException(o);
         }
@@ -155,19 +191,20 @@ public class Person implements DisplayItem {
         parents.add((AbstractContainerItem) o);
     }
 
+    public void removeParent(AbstractContainerItem deletedParent) {
+        parents.removeIf(p -> (p.equals(deletedParent) || p.isPartOfContext(deletedParent)));
+    }
+
     @Override
     public boolean isPartOfContext(DisplayItem o) {
-
-        if (parents.contains(o)) {
+        if (o == null || parents.contains(o)) {
             return true;
         }
-
-        for (AbstractContainerItem item : parents) {
-            if (item.isPartOfContext(o)) {
+        for (AbstractContainerItem parent : parents) {
+            if (parent.isPartOfContext(o)) {
                 return true;
             }
         }
-
         return false;
     }
 }
