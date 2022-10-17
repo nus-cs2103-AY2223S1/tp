@@ -51,9 +51,13 @@ public class InternshipTest {
                 .withStatus(VALID_STATUS_MSFT).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT).build();
         assertTrue(ALICE.isSameInternship(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Internship editedMsft = new InternshipBuilder(MSFT).withName(VALID_NAME_MSFT.toLowerCase()).build();
-        assertFalse(MSFT.isSameInternship(editedMsft));
+        assertTrue(MSFT.isSameInternship(editedMsft));
+
+        // position differs in case, all other attributes same -> returns true
+        editedMsft = new InternshipBuilder(MSFT).withPosition(VALID_POSITION_MSFT.toLowerCase()).build();
+        assertTrue(MSFT.isSameInternship(editedMsft));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_MSFT + " ";
