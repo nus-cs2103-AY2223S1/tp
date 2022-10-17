@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.time.LocalDateTime;
-
 import java.util.Objects;
 
 import seedu.address.logic.parser.DateTimeParser;
