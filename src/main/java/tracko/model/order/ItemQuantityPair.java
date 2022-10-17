@@ -3,33 +3,35 @@ package tracko.model.order;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.util.Pair;
+import tracko.model.item.Item;
+import tracko.model.item.Quantity;
 
 /**
  * Represents an item and quantity pair to be added to an {@code Order's} item list.
  * */
-public class ItemQuantityPair extends Pair<String, Integer> {
+public class ItemQuantityPair extends Pair<Item, Quantity> {
 
     /**
-     * Constructs an ItemQuantityPair with the given item and quantity.
+     * Constructs an ItemQuantityPair with the given Item and Quantity.
      * @param item The given item
      * @param quantity The given quantity
      */
-    public ItemQuantityPair(String item, Integer quantity) {
+    public ItemQuantityPair(Item item, Quantity quantity) {
         super(item, quantity);
         requireAllNonNull(item, quantity);
     }
 
-    public String getItem() {
+    public Item getItem() {
         return this.getKey();
     }
 
-    public Integer getQuantity() {
+    public Quantity getQuantity() {
         return this.getValue();
     }
 
     @Override
     public String toString() {
-        return this.getQuantity() + " * " + this.getItem();
+        return this.getQuantity() + " * " + this.getItem().getItemName();
     }
 
     @Override
