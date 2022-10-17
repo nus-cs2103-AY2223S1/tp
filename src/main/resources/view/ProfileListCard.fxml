@@ -31,8 +31,6 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="name_label" />
       </HBox>
-<!--      <Label fx:id="phone" text="\$phone" />-->
-<!--      <Label fx:id="email" text="\$email" />-->
       <VBox spacing="6">
         <HBox fx:id="phone" alignment="CENTER_LEFT" spacing="10"/>
         <HBox fx:id="email" alignment="CENTER_LEFT" spacing="10"/>
