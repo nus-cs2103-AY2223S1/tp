@@ -161,6 +161,8 @@ The class group feature allows a student to have a class group. The feature cons
 The class group commands follow similar paths of execution which defers slightly from Logic sequence diagram.
 This is illustrated in the sequence diagram below, which shows the diagram for ClassGroupCommand.
 
+![Class Group sequence diagram](images/ClassGroupSequenceDiagram.png)
+
 **Class Group command**
 
 Implementation:
