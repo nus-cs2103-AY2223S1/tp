@@ -314,4 +314,12 @@ public class ParserUtil {
         return noteSet;
     }
 
+    public static Set<Rating> parseRatings(List<String> ratings) throws ParseException {
+        requireNonNull(ratings);
+        final Set<Rating> ratingSet = new HashSet<>();
+        for (String ratingName : ratings) {
+            ratingSet.add(parseRating(ratingName));
+        }
+        return ratingSet;
+    }
 }

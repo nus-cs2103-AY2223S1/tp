@@ -23,6 +23,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
     private final Set<Address> addressKeywords;
     private final Set<Status> statusKeywords;
     private final Set<Note> noteKeywords;
+    private final Set<Rating> ratingKeywords;
     private final Map<Prefix, List<String>> tagMap;
 
     /**
@@ -39,6 +40,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.statusKeywords = new HashSet<>();
         this.noteKeywords = new HashSet<>();
         this.tagMap = new HashMap<>();
+        this.ratingKeywords = new HashSet<>();
     }
 
     /**
@@ -52,7 +54,8 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
      */
     public DetailsContainKeywordsPredicate(Set<Name> nameKeywords, Set<Phone> phoneKeywords, Set<Email> emailKeywords,
                                            Set<Address> addressKeywords, Set<Status> statusKeywords,
-                                           Set<Note> noteKeywords, Map<Prefix, List<String>> prefToStrings) {
+                                           Set<Note> noteKeywords, Set<Rating> ratingKeywords,
+                                           Map<Prefix, List<String>> prefToStrings) {
         this.keywords = new ArrayList<>();
         this.nameKeywords = nameKeywords;
         this.phoneKeywords = phoneKeywords;
@@ -61,6 +64,7 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
         this.statusKeywords = statusKeywords;
         this.noteKeywords = noteKeywords;
         this.tagMap = prefToStrings;
+        this.ratingKeywords = ratingKeywords;
     }
 
     @Override
@@ -96,7 +100,10 @@ public class DetailsContainKeywordsPredicate implements Predicate<Person> {
                             keyword.toString()))
                     || noteKeywords.stream()
                     .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getNote().value,
-                            keyword.value));
+                            keyword.value))
+                    || ratingKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsSequenceIgnoreCase(person.getRating().toString(),
+                            keyword.toString()));
         }
     }
 
