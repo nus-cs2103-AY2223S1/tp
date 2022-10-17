@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.tutorialgroup;
 
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudents;

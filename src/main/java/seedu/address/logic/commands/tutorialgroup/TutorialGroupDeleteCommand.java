@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -22,7 +23,7 @@ public class TutorialGroupDeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial group to the address book. "
         + "Parameters: ";
 
-    public static final String MESSAGE_SUCCESS = "This tutorial group deleted: %1$s";
+    public static final String MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS = "This tutorial group deleted: %1$s";
 
     public static final String MESSAGE_GROUP_NOT_FOUND = "This tutorial group is not found in the records";
 
@@ -41,12 +42,12 @@ public class TutorialGroupDeleteCommand extends Command {
         List<TutorialGroup> lastShownList = model.getFilteredTutorialGroupList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_GROUP_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_GROUP_DISPLAYED_INDEX);
         }
 
         TutorialGroup toDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTutorialGroup(toDelete);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_GROUP_SUCCESS, toDelete));
     }
 
     @Override

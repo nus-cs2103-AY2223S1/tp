@@ -12,6 +12,7 @@ public class TutorialGroup {
     public static final String MESSAGE_CONSTRAINTS =
             "Tutorial group should follow the format Txx, where x is a numeric value, and it should not be blank";
 
+
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -67,7 +68,7 @@ public class TutorialGroup {
      * @param group the given tutorial group.
      * @return true if the two tutorial groups are the same, false otherwise.
      */
-    private boolean isSameTutorialGroup(TutorialGroup group) {
+    public boolean isSameTutorialGroup(TutorialGroup group) {
         if (this.tutorialGroup == null && group.tutorialGroup == null) {
             return true;
         } else if (this.tutorialGroup == null) {

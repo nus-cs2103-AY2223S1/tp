@@ -19,7 +19,7 @@ public class TutorialGroupAddCommand extends Command {
         + "Parameters: ";
 
     public static final String MESSAGE_SUCCESS = "New tutorial group added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This task already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL_GROUP = "This task already exists in the address book";
 
     private final TutorialGroup toAdd;
 
@@ -36,7 +36,7 @@ public class TutorialGroupAddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTutorialGroup(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL_GROUP);
         }
 
         model.addTutorialGroup(toAdd);

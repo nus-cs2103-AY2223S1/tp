@@ -21,6 +21,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
+import seedu.address.model.student.TutorialNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
@@ -154,6 +156,19 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTutorialGroupAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialGroupList().size());
+
+        TutorialGroup tutorialGroup = model.getFilteredTutorialGroupList().get(targetIndex.getZeroBased());
+        final String[] splitName = tutorialGroup.toString().split("\\s+");
+        model.updateFilteredTutorialGroupList(new TutorialNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredTutorialGroupList().size());
     }
 
 }

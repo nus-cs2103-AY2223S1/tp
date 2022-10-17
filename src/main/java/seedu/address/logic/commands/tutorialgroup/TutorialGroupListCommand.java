@@ -33,6 +33,6 @@ public class TutorialGroupListCommand extends Command {
             display += groups.get(i).toString() + "\n";
         }
 
-        return new CommandResult(display + MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
