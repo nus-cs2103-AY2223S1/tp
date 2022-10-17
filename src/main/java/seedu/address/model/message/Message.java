@@ -2,13 +2,24 @@ package seedu.address.model.message;
 
 import seedu.address.model.person.Person;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a message template in the address book.
  * Used to generate personalised messages.
  * Guarantees: immutable
  */
 public class Message {
+
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
     private static final String NAME_PLACEHOLDER = "{name}";
+
+    /*
+     * A message should not be an empty string.
+     */
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
+
     private String message;
 
     /**
@@ -16,7 +27,16 @@ public class Message {
      * @param message
      */
     public Message(String message) {
+        requireNonNull(message);
+        checkArgument(isValidMessage(message), MESSAGE_CONSTRAINTS);
         this.message = message;
+    }
+
+    /**
+     * Returns true if a given string is a valid message.
+     */
+    public static boolean isValidMessage(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**

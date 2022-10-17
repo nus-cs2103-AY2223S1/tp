@@ -10,7 +10,7 @@ import seedu.address.model.message.Message;
 
 
 /**
- *
+ * Lists all messages in the message list.
  */
 public class ListMessageCommand extends MessageCommandGroup {
 
