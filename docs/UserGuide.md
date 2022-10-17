@@ -78,7 +78,7 @@ the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
-  `home`, `list-module`, `goto` and `exit`) will be ignored.<br>
+  `home`, `list-module`, `list-contact`, `goto` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
 </div>
