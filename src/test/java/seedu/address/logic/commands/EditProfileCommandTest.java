@@ -18,7 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand.EditProfileDescriptor;
+import seedu.address.logic.commands.profile.EditProfileCommand;
+import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -30,7 +31,7 @@ import seedu.address.testutil.ProfileBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
-public class EditCommandTest {
+public class EditProfileCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -38,14 +39,14 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Profile editedProfile = new ProfileBuilder().build();
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(editedProfile).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PROFILE, descriptor);
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
+        String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setProfile(model.getFilteredProfileList().get(0), editedProfile);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -59,26 +60,27 @@ public class EditCommandTest {
 
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastProfile, descriptor);
+        EditProfileCommand editProfileCommand = new EditProfileCommand(indexLastProfile, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
+        String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setProfile(lastProfile, editedProfile);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PROFILE, new EditProfileDescriptor());
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
+                new EditProfileDescriptor());
         Profile editedProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
+        String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -87,24 +89,24 @@ public class EditCommandTest {
 
         Profile profileInFilteredList = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         Profile editedProfile = new ProfileBuilder(profileInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PROFILE,
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
+        String expectedMessage = String.format(EditProfileCommand.MESSAGE_EDIT_PROFILE_SUCCESS, editedProfile);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setProfile(model.getFilteredProfileList().get(0), editedProfile);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editProfileCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateProfileUnfilteredList_failure() {
         Profile firstProfile = model.getFilteredProfileList().get(INDEX_FIRST_PROFILE.getZeroBased());
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder(firstProfile).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PROFILE, descriptor);
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_SECOND_PROFILE, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PROFILE);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_PROFILE);
     }
 
     @Test
@@ -113,19 +115,19 @@ public class EditCommandTest {
 
         // edit profile in filtered list into a duplicate in address book
         Profile profileInList = model.getAddressBook().getProfileList().get(INDEX_SECOND_PROFILE.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PROFILE,
+        EditProfileCommand editProfileCommand = new EditProfileCommand(INDEX_FIRST_PROFILE,
                 new EditProfileDescriptorBuilder(profileInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PROFILE);
+        assertCommandFailure(editProfileCommand, model, EditProfileCommand.MESSAGE_DUPLICATE_PROFILE);
     }
 
     @Test
     public void execute_invalidProfileIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredProfileList().size() + 1);
         EditProfileDescriptor descriptor = new EditProfileDescriptorBuilder().withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditProfileCommand editProfileCommand = new EditProfileCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
+        assertCommandFailure(editProfileCommand, model, Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
     }
 
     /**
@@ -139,19 +141,19 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getProfileList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        EditProfileCommand editProfileCommand = new EditProfileCommand(outOfBoundIndex,
                 new EditProfileDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
+        assertCommandFailure(editProfileCommand, model, Messages.MESSAGE_INVALID_PROFILE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PROFILE, DESC_AMY);
+        final EditProfileCommand standardCommand = new EditProfileCommand(INDEX_FIRST_PROFILE, DESC_AMY);
 
         // same values -> returns true
         EditProfileDescriptor copyDescriptor = new EditProfileDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PROFILE, copyDescriptor);
+        EditProfileCommand commandWithSameValues = new EditProfileCommand(INDEX_FIRST_PROFILE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -164,10 +166,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PROFILE, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditProfileCommand(INDEX_SECOND_PROFILE, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PROFILE, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditProfileCommand(INDEX_FIRST_PROFILE, DESC_BOB)));
     }
 
 }

@@ -14,6 +14,7 @@ import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.profile.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +27,7 @@ class JsonAdaptedProfile {
     private final String name;
     private final String phone;
     private final String email;
+    private final String telegram;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -33,10 +35,12 @@ class JsonAdaptedProfile {
      */
     @JsonCreator
     public JsonAdaptedProfile(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("email") String email, @JsonProperty("telegram") String telegram,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.telegram = telegram;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -49,6 +53,7 @@ class JsonAdaptedProfile {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
+        telegram = source.getTelegram().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -88,8 +93,17 @@ class JsonAdaptedProfile {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
+
+        if (telegram == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Telegram.class.getSimpleName()));
+        }
+        if (!Telegram.isValidTelegram(telegram)) {
+            throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        final Telegram modelTelegram = new Telegram(telegram);
         final Set<Tag> modelTags = new HashSet<>(profileTags);
-        return new Profile(modelName, modelPhone, modelEmail, modelTags);
+        return new Profile(modelName, modelPhone, modelEmail, modelTelegram, modelTags);
     }
 
 }

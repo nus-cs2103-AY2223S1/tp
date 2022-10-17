@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.AMY;
@@ -17,9 +18,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -66,8 +67,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String viewProfilesCommand = ViewProfilesCommand.COMMAND_WORD + " "
+                + PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION;
+        assertCommandSuccess(viewProfilesCommand, ViewProfilesCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -83,7 +85,7 @@ public class LogicManagerTest {
         // Execute add command
         String addProfileCommand = AddProfileCommand.COMMAND_WORD + " " + PREFIX_OPTION
                 + AddProfileCommand.COMMAND_OPTION
-                + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY;
+                + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + TELEGRAM_DESC_AMY;
         Profile expectedProfile = new ProfileBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addProfile(expectedProfile);

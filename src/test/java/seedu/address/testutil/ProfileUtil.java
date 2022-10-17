@@ -5,11 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.EditCommand.EditProfileDescriptor;
 import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.tag.Tag;
 
@@ -34,6 +35,7 @@ public class ProfileUtil {
         sb.append(PREFIX_NAME + profile.getName().fullName + " ");
         sb.append(PREFIX_PHONE + profile.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + profile.getEmail().value + " ");
+        sb.append(PREFIX_TELEGRAM + profile.getTelegram().value + " ");
         profile.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
