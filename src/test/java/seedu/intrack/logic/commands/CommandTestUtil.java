@@ -2,7 +2,13 @@ package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.parser.CliSyntax.*;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

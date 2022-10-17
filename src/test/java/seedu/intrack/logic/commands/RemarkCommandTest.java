@@ -2,7 +2,6 @@ package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_REMARK_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_REMARK_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -38,9 +37,11 @@ public class RemarkCommandTest {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         Internship editedInternship = new InternshipBuilder(firstInternship).withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_INTERNSHIP, new Remark(editedInternship.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_INTERNSHIP,
+                new Remark(editedInternship.getRemark().value));
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedInternship);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
@@ -50,7 +51,8 @@ public class RemarkCommandTest {
 
     @Test
     public void execute_deleteRemarkUnfilteredList_success() {
-        Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP
+                .getZeroBased());
         Internship editedInternship = new InternshipBuilder(firstInternship).withRemark("").build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_INTERNSHIP,
@@ -68,13 +70,17 @@ public class RemarkCommandTest {
     public void execute_filteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
-        Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-        Internship editedInternship = new InternshipBuilder(model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
+        Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP
+                .getZeroBased());
+        Internship editedInternship = new InternshipBuilder(model.getFilteredInternshipList()
+                .get(INDEX_FIRST_INTERNSHIP.getZeroBased()))
                 .withRemark(REMARK_STUB).build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_INTERNSHIP, new Remark(editedInternship.getRemark().value));
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_INTERNSHIP,
+                new Remark(editedInternship.getRemark().value));
 
-        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS, editedInternship);
+        String expectedMessage = String.format(RemarkCommand.MESSAGE_ADD_REMARK_SUCCESS,
+                editedInternship);
 
         Model expectedModel = new ModelManager(new InTrack(model.getInTrack()), new UserPrefs());
         expectedModel.setInternship(firstInternship, editedInternship);
