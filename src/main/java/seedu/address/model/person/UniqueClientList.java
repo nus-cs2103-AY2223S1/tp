@@ -134,4 +134,14 @@ public class UniqueClientList implements Iterable<Client> {
         }
         return true;
     }
+
+    private Client findClient(Name name) throws ClientNotFoundException {
+        for (int i = 0; i < internalList.size(); i++) {
+            Client temp = internalList.get(i);
+            if (temp.getName() == name) {
+                return temp;
+            }
+        } throw new ClientNotFoundException();
+    }
 }
+
