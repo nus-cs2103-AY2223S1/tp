@@ -6,8 +6,8 @@ import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_RATING;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.clinkedin.logic.commands.exceptions.CommandException;

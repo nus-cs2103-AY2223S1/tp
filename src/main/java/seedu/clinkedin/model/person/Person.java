@@ -122,7 +122,9 @@ public class Person {
         return status;
     }
 
-    public Rating getRating() { return rating; }
+    public Rating getRating() {
+        return rating;
+    }
 
     /**
      * Returns true if both persons have the same name.
