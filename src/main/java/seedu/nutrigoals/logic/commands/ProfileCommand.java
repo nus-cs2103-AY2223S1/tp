@@ -11,7 +11,7 @@ import seedu.nutrigoals.model.Model;
 public class ProfileCommand extends Command {
 
     public static final String COMMAND_WORD = "profile";
-    public static final String MESSAGE_SUCCESS = "Profile created: \n %s";
+    public static final String MESSAGE_SUCCESS = "Here are your details: \n%s";
     public static final String MESSAGE_NO_PROFILE_CREATED = "No profile created.\nPlease create one before proceeding.";
 
     /**

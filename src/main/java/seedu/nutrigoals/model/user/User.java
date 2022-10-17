@@ -80,7 +80,7 @@ public class User {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("\nUser profile:\n");
+        StringBuilder stringBuilder = new StringBuilder("\n");
         stringBuilder.append("Gender: ")
                 .append(getGender())
                 .append("\nCurrent Height: ")
