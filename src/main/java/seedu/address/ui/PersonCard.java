@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label github;
     @FXML
-    private FlowPane tags;
+    private FlowPane interests;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -68,8 +68,8 @@ public class PersonCard extends UiPart<Region> {
             github.setManaged(false);
         }
         person.getInterests().stream()
-                .sorted(Comparator.comparing(tag -> tag.interestName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.interestName)));
+                .sorted(Comparator.comparing(interest -> interest.interestName))
+                .forEach(interest -> interests.getChildren().add(new Label(interest.interestName)));
     }
 
     @Override
