@@ -86,11 +86,11 @@ public class EditCommand extends Command {
     private static Trip createEditedTrip(Trip tripToEdit, EditTripDescriptor editTripDescriptor) {
         assert tripToEdit != null;
 
-        Title updatedTitle = editTripDescriptor.getName().orElse(tripToEdit.getTitle());
+        Title updatedTitle = editTripDescriptor.getTitle().orElse(tripToEdit.getTitle());
         Description updatedDescription = editTripDescriptor.getDescription().orElse(tripToEdit.getDescription());
-        Set<Event> updatedTags = editTripDescriptor.getTags().orElse(tripToEdit.getEvents());
+        Set<Event> updatedEvents = editTripDescriptor.getEvents().orElse(tripToEdit.getEvents());
 
-        return new Trip(updatedTitle, updatedDescription, updatedTags);
+        return new Trip(updatedTitle, updatedDescription, updatedEvents);
     }
 
     @Override
@@ -128,9 +128,9 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTripDescriptor(EditTripDescriptor toCopy) {
-            setName(toCopy.title);
+            setTitle(toCopy.title);
             setDescription(toCopy.description);
-            setTags(toCopy.events);
+            setEvents(toCopy.events);
         }
 
         /**
@@ -140,11 +140,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(title, description, events);
         }
 
-        public void setName(Title title) {
+        public void setTitle(Title title) {
             this.title = title;
         }
 
-        public Optional<Title> getName() {
+        public Optional<Title> getTitle() {
             return Optional.ofNullable(title);
         }
 
@@ -160,7 +160,7 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Event> tags) {
+        public void setEvents(Set<Event> tags) {
             this.events = (tags != null) ? new HashSet<>(tags) : null;
         }
 
@@ -169,7 +169,7 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Event>> getTags() {
+        public Optional<Set<Event>> getEvents() {
             return (events != null) ? Optional.of(Collections.unmodifiableSet(events)) : Optional.empty();
         }
 
@@ -188,9 +188,9 @@ public class EditCommand extends Command {
             // state check
             EditTripDescriptor e = (EditTripDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getTitle().equals(e.getTitle())
                     && getDescription().equals(e.getDescription())
-                    && getTags().equals(e.getTags());
+                    && getEvents().equals(e.getEvents());
         }
     }
 }

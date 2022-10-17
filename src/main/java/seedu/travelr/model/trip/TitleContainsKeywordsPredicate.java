@@ -6,12 +6,12 @@ import java.util.function.Predicate;
 import seedu.travelr.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Title} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Trip> {
+public class TitleContainsKeywordsPredicate implements Predicate<Trip> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public TitleContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,8 +24,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Trip> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TitleContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TitleContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
