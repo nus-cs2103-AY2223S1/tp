@@ -7,8 +7,6 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_ITINERARIES_LISTED_OVER
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.testutil.TypicalItineraries.AUTUMN;
 import static seedu.waddle.testutil.TypicalItineraries.SPRING;
-import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
-import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.util.Arrays;

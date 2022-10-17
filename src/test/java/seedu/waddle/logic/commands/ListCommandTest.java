@@ -4,7 +4,6 @@ import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.logic.commands.CommandTestUtil.showItineraryAtIndex;
 import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
-import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.ModelManager;
 import seedu.waddle.model.UserPrefs;
-import seedu.waddle.model.Waddle;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.

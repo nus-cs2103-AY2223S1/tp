@@ -3,11 +3,11 @@ package seedu.waddle.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
 import static seedu.waddle.testutil.Assert.assertThrows;
 import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 
@@ -28,8 +28,8 @@ import seedu.waddle.model.ModelManager;
 import seedu.waddle.model.ReadOnlyWaddle;
 import seedu.waddle.model.UserPrefs;
 import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.storage.JsonWaddleStorage;
 import seedu.waddle.storage.JsonUserPrefsStorage;
+import seedu.waddle.storage.JsonWaddleStorage;
 import seedu.waddle.storage.StorageManager;
 import seedu.waddle.testutil.ItineraryBuilder;
 

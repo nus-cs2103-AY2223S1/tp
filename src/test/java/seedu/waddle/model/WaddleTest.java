@@ -29,7 +29,8 @@ public class WaddleTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), waddle.getItineraryList());}
+        assertEquals(Collections.emptyList(), waddle.getItineraryList());
+    }
 
     @Test
     public void resetData_null_throwsNullPointerException() {

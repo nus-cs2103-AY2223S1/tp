@@ -164,29 +164,4 @@ public class ParserUtilTest {
         People expectedPeople = new People(VALID_PEOPLE);
         assertEquals(expectedPeople, ParserUtil.parsePeople(tagWithWhitespace));
     }
-
-    /* Tags different from People //TODO
-    @Test
-    public void parsePeoples_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePeople(null));
-    }
-
-    @Test
-    public void parsePeople_collectionWithInvalidPeoples_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePeople(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parsePeople_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parsePeople(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parsePeoples_collectionWithValidPeoples_returnsPeopleSet() throws Exception {
-        Set<People> actualPeopleSet = ParserUtil.parsePeoples(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<People> expectedPeopleSet = new HashSet<People>(Arrays.asList(new People(VALID_TAG_1), new People(VALID_TAG_2)));
-
-        assertEquals(expectedPeopleSet, actualPeopleSet);
-    }
-    */
 }

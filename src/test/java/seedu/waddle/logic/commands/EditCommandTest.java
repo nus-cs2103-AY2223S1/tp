@@ -2,7 +2,15 @@ package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.waddle.logic.commands.CommandTestUtil.*;
+import static seedu.waddle.logic.commands.CommandTestUtil.DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_TEST;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.waddle.logic.commands.CommandTestUtil.showItineraryAtIndex;
 import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
 import static seedu.waddle.testutil.TypicalIndexes.INDEX_SECOND_ITINERARY;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;

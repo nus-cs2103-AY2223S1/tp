@@ -27,7 +27,9 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTE
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.waddle.testutil.TypicalIndexes.*;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_SECOND_ITINERARY;
+import static seedu.waddle.testutil.TypicalIndexes.INDEX_THIRD_ITINERARY;
 
 import org.junit.jupiter.api.Test;
 
@@ -186,8 +188,8 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ITINERARY;
         String userInput = targetIndex.getOneBased() + INVALID_COUNTRY_DESC + COUNTRY_DESC_WINTER;
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().
-                withCountry(VALID_COUNTRY_WINTER).build();
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder()
+                .withCountry(VALID_COUNTRY_WINTER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

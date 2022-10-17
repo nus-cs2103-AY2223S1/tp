@@ -3,8 +3,10 @@ package seedu.waddle.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.waddle.testutil.Assert.assertThrows;
-import static seedu.waddle.testutil.TypicalItineraries.*;
-
+import static seedu.waddle.testutil.TypicalItineraries.SPRING;
+import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
+import static seedu.waddle.testutil.TypicalItineraries.WINTER;
+import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.io.IOException;
 import java.nio.file.Path;

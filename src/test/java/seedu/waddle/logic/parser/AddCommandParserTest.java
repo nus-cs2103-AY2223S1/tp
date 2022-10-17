@@ -16,7 +16,6 @@ import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_END_DATE_WINTER;
@@ -24,7 +23,6 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import org.junit.jupiter.api.Test;
@@ -46,17 +44,17 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_WINTER + COUNTRY_DESC_WINTER
-                + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_SUMMER + NAME_DESC_WINTER + COUNTRY_DESC_WINTER
-                + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple country - last country accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_SUMMER + COUNTRY_DESC_WINTER
-                + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple people - last people accepted
@@ -66,24 +64,15 @@ public class AddCommandParserTest {
 
         // multiple end date - last address accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + END_DATE_DESC_SUMMER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + END_DATE_DESC_SUMMER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple tags - all accepted
         Itinerary expectedItineraryMultipleTags = new ItineraryBuilder(WINTER).build();
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + END_DATE_DESC_WINTER + PEOPLE_DESC_SUMMER + PEOPLE_DESC_WINTER,
+                        + END_DATE_DESC_WINTER + PEOPLE_DESC_SUMMER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItineraryMultipleTags));
     }
-
-    //TODO: currently no optional fields
-//    @Test
-//    public void parse_optionalFieldsMissing_success() {
-//        // zero tags
-//        Itinerary expectedItinerary = new ItineraryBuilder(SUMMER).build();
-//        assertParseSuccess(parser, NAME_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
-//                + END_DATE_DESC_SUMMER, new AddCommand(expectedItinerary));
-//    }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {

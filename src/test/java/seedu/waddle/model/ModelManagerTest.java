@@ -3,12 +3,10 @@ package seedu.waddle.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.waddle.model.Model.PREDICATE_SHOW_ALL_ITINERARIES;
 import static seedu.waddle.testutil.Assert.assertThrows;
 import static seedu.waddle.testutil.TypicalItineraries.AUTUMN;
 import static seedu.waddle.testutil.TypicalItineraries.SPRING;
-import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
-import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -124,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(waddle, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-//        modelManager.updateFilteredItineraryList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredItineraryList(PREDICATE_SHOW_ALL_ITINERARIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

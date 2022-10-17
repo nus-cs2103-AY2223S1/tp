@@ -3,17 +3,15 @@ package seedu.waddle.model.itinerary;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_END_DATE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
-import static seedu.waddle.testutil.Assert.assertThrows;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.waddle.model.item.Item;
 import seedu.waddle.testutil.ItineraryBuilder;
 
 public class ItineraryTest {
@@ -27,7 +25,8 @@ public class ItineraryTest {
         assertFalse(SUMMER.isSameItinerary(null));
 
         // same name, all other attributes different -> returns true
-        Itinerary editedSummer = new ItineraryBuilder(SUMMER).withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
+        Itinerary editedSummer = new ItineraryBuilder(SUMMER)
+                .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
                 .withEndDate(VALID_END_DATE_WINTER).withPeople(VALID_PEOPLE_WINTER).build();
         assertTrue(SUMMER.isSameItinerary(editedSummer));
 

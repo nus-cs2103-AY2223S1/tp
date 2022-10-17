@@ -159,8 +159,8 @@ public class UniqueItineraryListTest {
     @Test
     public void setItinerary_listWithDuplicateItinerary_throwsDuplicateItineraryException() {
         List<Itinerary> listWithDuplicateItinerary = Arrays.asList(SUMMER, SUMMER);
-        assertThrows(DuplicateItineraryException.class,
-                () -> uniqueItineraryList.setItineraries(listWithDuplicateItinerary));
+        assertThrows(DuplicateItineraryException.class, ()
+            -> uniqueItineraryList.setItineraries(listWithDuplicateItinerary));
     }
 
     @Test

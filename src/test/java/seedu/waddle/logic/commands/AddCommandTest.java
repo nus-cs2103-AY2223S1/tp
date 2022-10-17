@@ -47,7 +47,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validItinerary);
         ModelStub modelStub = new ModelStubWithItinerary(validItinerary);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ITINERARY, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DUPLICATE_ITINERARY, () -> addCommand.execute(modelStub));
     }
 
     @Test
