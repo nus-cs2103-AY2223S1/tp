@@ -219,10 +219,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return  isHome == other.isHome
+                && addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModules.equals(other.filteredModules)
     }
 
     //// navigation-related methods
