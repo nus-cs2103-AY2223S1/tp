@@ -73,7 +73,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setStudentRecordFilePath(Paths.get("data/addressbook.json"));
+        userPrefs.setStudentRecordFilePath(Paths.get("data/classify.json"));
         // TODO: unsure why without the data folder test cases fail
         return userPrefs;
     }
