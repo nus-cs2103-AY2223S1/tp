@@ -16,7 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class EventCommandParser implements Parser<EventCommand> {
     private static final Pattern EVENT_COMMAND_FORMAT = Pattern.compile(
             "\\s+(-(?<eventOption>\\S*)(\\s+(?!-)\\S+)?)(\\s+(?!-)\\S*.)*");
-    
+
     /**
      * Parses the given {@code String} of arguments in the context of the EventCommand
      * and returns an EventCommand object for execution.

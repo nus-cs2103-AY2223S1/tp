@@ -24,5 +24,5 @@ public abstract class EventCommand extends Command {
 
     public static final String OPTION_WRONG_ORDER_NO_MULTIPLE =
             "Only one option flag should be specified in front.\n" + EVENT_FORMAT;
-    
+
 }
