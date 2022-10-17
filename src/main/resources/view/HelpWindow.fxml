@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minWidth="500" minHeight="300" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minWidth="650" maxWidth="650" minHeight="300" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -28,7 +28,7 @@
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS">
           <VBox styleClass="commands-panel">
             <Label styleClass="help-label" text="Basic Functions"/>
-            <TableView fx:id="basicTableView">
+            <TableView fx:id="basicTableView" >
               <VBox.margin>
                 <Insets top="10.0"/>
               </VBox.margin>
