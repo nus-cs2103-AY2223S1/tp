@@ -22,7 +22,7 @@ public class TagCommandParserTest {
 
     private final TagCommandParser parser = new TagCommandParser();
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.getUsage());
 
     @Test
     public void parse_tagThenIndex_success() {
