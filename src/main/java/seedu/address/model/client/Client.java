@@ -84,7 +84,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
                 projectList.add(model.getProjectById(pid.getIdInt()));
             }
 
-            new Client(name, phone, email, projectList, new ClientId(model.generateClientId()))
+            return new Client(name, phone, email, projectList, new ClientId(model.generateClientId()));
         };
     }
 
