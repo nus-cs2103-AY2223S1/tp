@@ -1,9 +1,9 @@
 package seedu.address.model.message;
 
-import seedu.address.model.person.Person;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a message template in the address book.
@@ -13,12 +13,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Message {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-    private static final String NAME_PLACEHOLDER = "{name}";
 
     /*
      * A message should not be an empty string.
      */
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
+    private static final String NAME_PLACEHOLDER = "{name}";
 
     private String message;
 

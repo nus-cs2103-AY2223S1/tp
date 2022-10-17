@@ -73,8 +73,9 @@ public class TypicalPersons {
         for (Tag tag : getTypicalTags()) {
             ab.createTag(tag);
         }
-        for (Message message: getTypicalMessage())
+        for (Message message: getTypicalMessage()) {
             ab.createMessage(message);
+        }
         return ab;
     }
 

@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalMessages.VALID_MESSAGE_HAPPY_BIRTHDA
 import static seedu.address.testutil.TypicalMessages.VALID_MESSAGE_RECOMMEND_PRODUCT;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 

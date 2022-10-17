@@ -1,9 +1,10 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ListMessageCommand;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ListMessageCommand;
 
 class ListMessageCommandParserTest {
     private ListMessageCommandParser parser = new ListMessageCommandParser();
