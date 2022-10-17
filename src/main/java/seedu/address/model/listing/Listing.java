@@ -145,7 +145,7 @@ public class Listing {
                 .append("; Address: ")
                 .append(this.address)
                 .append("; Owner: ")
-                .append(this.owner)
+                .append(getName())
                 .append("; Asking Price: ")
                 .append(this.askingPrice);
 
