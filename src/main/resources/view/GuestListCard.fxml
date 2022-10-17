@@ -32,6 +32,7 @@
       <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
       <Label fx:id="isRoomClean" styleClass="cell_small_label" text="\$isRoomClean" />
       <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
+      <Label fx:id="request" styleClass="cell_small_label" text="\$request" />
     </VBox>
   </GridPane>
 </HBox>

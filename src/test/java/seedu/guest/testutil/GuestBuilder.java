@@ -8,6 +8,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 
 /**
  * A utility class to help with building Guest objects.
@@ -20,6 +21,7 @@ public class GuestBuilder {
     public static final String DEFAULT_NUMBER_OF_GUESTS = "1";
     public static final String DEFAULT_IS_ROOM_CLEAN = "yes";
     public static final String DEFAULT_BILL = "0.00";
+    public static final String DEFAULT_REQUEST = "Nothing";
 
     private Name name;
     private Phone phone;
@@ -28,6 +30,7 @@ public class GuestBuilder {
     private NumberOfGuests numberOfGuests;
     private IsRoomClean isRoomClean;
     private Bill bill;
+    private Request request;
 
     /**
      * Creates a {@code GuestBuilder} with the default details.
@@ -40,6 +43,7 @@ public class GuestBuilder {
         numberOfGuests = new NumberOfGuests(DEFAULT_NUMBER_OF_GUESTS);
         isRoomClean = new IsRoomClean(DEFAULT_IS_ROOM_CLEAN);
         bill = new Bill(DEFAULT_BILL);
+        request = new Request(DEFAULT_REQUEST);
     }
 
     /**
@@ -53,6 +57,7 @@ public class GuestBuilder {
         numberOfGuests = guestToCopy.getNumberOfGuests();
         isRoomClean = guestToCopy.getIsRoomClean();
         bill = guestToCopy.getBill();
+        request = guestToCopy.getRequest();
     }
 
     /**
@@ -111,8 +116,16 @@ public class GuestBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Request} of the {@code Guest} that we are building.
+     */
+    public GuestBuilder withRequest(String request) {
+        this.request = new Request(request);
+        return this;
+    }
+
     public Guest build() {
-        return new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
+        return new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
     }
 
 }

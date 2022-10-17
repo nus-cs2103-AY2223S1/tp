@@ -20,6 +20,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -51,8 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         IsRoomClean isRoomClean = ParserUtil
                 .parseIsRoomClean(argMultimap.getValue(PREFIX_IS_ROOM_CLEAN).get());
         Bill bill = new Bill();
+        Request request = new Request();
 
-        Guest guest = new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill);
+        Guest guest = new Guest(name, phone, email, dateRange, numberOfGuests, isRoomClean, bill, request);
         return new AddCommand(guest);
     }
 

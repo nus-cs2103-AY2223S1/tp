@@ -25,6 +25,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 
 /**
  * Edits the details of an existing guest in the guest book.
@@ -102,8 +103,9 @@ public class EditCommand extends Command {
                 .orElse(guestToEdit.getNumberOfGuests());
         IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
         Bill updatedBill = guestToEdit.getBill();
+        Request updatedRequest = guestToEdit.getRequest();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange,
-                updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
+                updatedNumberOfGuests, updatedIsRoomClean, updatedBill, updatedRequest);
     }
 
     @Override

@@ -15,6 +15,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -24,6 +25,7 @@ public class ParserUtilTest {
     private static final String INVALID_NUMBER_OF_GUESTS = "5";
     private static final String INVALID_IS_ROOM_CLEAN = "false";
     private static final String INVALID_BILL = "-1.00";
+    private static final String INVALID_REQUEST = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -32,6 +34,7 @@ public class ParserUtilTest {
     private static final String VALID_NUMBER_OF_GUESTS = "4";
     private static final String VALID_IS_ROOM_CLEAN = "yes";
     private static final String VALID_BILL = "10.00";
+    private static final String VALID_REQUEST = "I wanna book for room service";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -214,5 +217,28 @@ public class ParserUtilTest {
         String billWithWhitespace = WHITESPACE + VALID_BILL + WHITESPACE;
         Bill expectedBill = new Bill(VALID_BILL);
         assertEquals(expectedBill, ParserUtil.parseBill(billWithWhitespace));
+    }
+
+    @Test
+    public void parseRequest_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRequest((String) null));
+    }
+
+    @Test
+    public void parseRequest_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRequest(INVALID_REQUEST));
+    }
+
+    @Test
+    public void parseRequest_validValueWithoutWhitespace_returnsBill() throws Exception {
+        Request expectedRequest = new Request(VALID_REQUEST);
+        assertEquals(expectedRequest, ParserUtil.parseRequest(VALID_REQUEST));
+    }
+
+    @Test
+    public void parseRequest_validValueWithWhitespace_returnsTrimmedRequest() throws Exception {
+        String requestWithWhitespace = WHITESPACE + VALID_REQUEST + WHITESPACE;
+        Request expectedRequest = new Request(VALID_REQUEST);
+        assertEquals(expectedRequest, ParserUtil.parseRequest(requestWithWhitespace));
     }
 }
