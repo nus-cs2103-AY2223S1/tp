@@ -70,7 +70,7 @@
           <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
             <Label fx:id="roomDetails" text="Room Details" />
 
-            <HBox fx:id="roomDetailsBox" alignment="CENTER_LEFT">
+            <HBox fx:id="dateRangeBox" alignment="CENTER_LEFT">
               <ImageView
                       fitHeight="12.0"
                       fitWidth="12.0"
@@ -107,7 +107,7 @@
           <VBox id="roomStatus" minWidth="280" HBox.hgrow="NEVER">
             <Label fx:id="roomStatus" text="Room Status" />
 
-            <HBox fx:id="roomStatusBox" alignment="CENTER_LEFT">
+            <HBox fx:id="isRoomCleanBox" alignment="CENTER_LEFT">
               <ImageView
                       fitHeight="12.0"
                       fitWidth="12.0"
@@ -123,10 +123,10 @@
 
             <HBox alignment="CENTER_LEFT">
             </HBox>
-
           </VBox>
         </HBox>
       </HBox>
+      <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
     </VBox>
   </GridPane>
 </HBox>
