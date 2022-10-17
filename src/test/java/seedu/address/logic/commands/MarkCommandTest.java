@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_NON_EXISTENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -46,7 +47,7 @@ class MarkCommandTest {
         Person markedPerson = new PersonBuilder().withAppointment(markedAppointment).build();
         markedAppointment.setPatient(markedPerson);
 
-        MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
+        MarkCommand markCommand = new MarkCommand(targetAppointmentIndex);
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
                 targetAppointmentIndex.getOneBased(),
                 markedPerson.getName());
@@ -81,7 +82,7 @@ class MarkCommandTest {
         markedAppointment.setPatient(markedPerson);
         recurringAppointment.setPatient(markedPerson);
 
-        MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
+        MarkCommand markCommand = new MarkCommand(targetAppointmentIndex);
         String recurringMessage = "\nA recurring appointment has been automatically added";
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_PERSON_SUCCESS,
                 targetAppointmentIndex.getOneBased(),
@@ -99,20 +100,18 @@ class MarkCommandTest {
 
     @Test
     public void execute_markAlreadyMarkedAppointment_throwsCommandException() {
-        Index targetPersonIndex = INDEX_THIRD_PERSON;
-        Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
+        Index targetAppointmentIndex = INDEX_THIRD_APPOINTMENT;
 
-        MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
+        MarkCommand markCommand = new MarkCommand(targetAppointmentIndex);
 
         assertCommandFailure(markCommand, typicalModel, MarkCommand.MESSAGE_ALREADY_MARKED);
     }
 
     @Test
     public void execute_markNonExistentAppointment_throwsCommandException() {
-        Index targetPersonIndex = INDEX_FIRST_PERSON;
-        Index targetAppointmentIndex = INDEX_THIRD_APPOINTMENT;
+        Index targetAppointmentIndex = INDEX_NON_EXISTENT;
 
-        MarkCommand markCommand = new MarkCommand(targetPersonIndex, targetAppointmentIndex);
+        MarkCommand markCommand = new MarkCommand(targetAppointmentIndex);
 
         assertCommandFailure(markCommand, typicalModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }

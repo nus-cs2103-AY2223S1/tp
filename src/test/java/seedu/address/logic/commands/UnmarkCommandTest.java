@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_NON_EXISTENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -44,7 +46,7 @@ class UnmarkCommandTest {
         Person unmarkedPerson = new PersonBuilder().withAppointment(unmarkedAppointment).build();
         unmarkedAppointment.setPatient(unmarkedPerson);
 
-        UnmarkCommand unmarkCommand = new UnmarkCommand(targetPersonIndex, targetAppointmentIndex);
+        UnmarkCommand unmarkCommand = new UnmarkCommand(targetAppointmentIndex);
         String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_PERSON_SUCCESS,
                 targetAppointmentIndex.getOneBased(),
                 unmarkedPerson.getName());
@@ -58,17 +60,18 @@ class UnmarkCommandTest {
 
     @Test
     void execute_unmarkAlreadyUnmarkedAppointment_throwsCommandException() {
-        Index targetPersonIndex = INDEX_SECOND_PERSON;
-        Index targetAppointmentIndex = INDEX_FIRST_APPOINTMENT;
+        Index targetAppointmentIndex = INDEX_SECOND_APPOINTMENT;
 
-        UnmarkCommand unmarkCommand = new UnmarkCommand(targetPersonIndex, targetAppointmentIndex);
+        UnmarkCommand unmarkCommand = new UnmarkCommand(targetAppointmentIndex);
 
         assertCommandFailure(unmarkCommand, typicalModel, UnmarkCommand.MESSAGE_ALREADY_UNMARKED);
     }
 
     @Test
     public void execute_unmarkNonExistentAppointment_throwsCommandException() {
-        UnmarkCommand unmarkCommand = new UnmarkCommand(INDEX_FIRST_PERSON, INDEX_THIRD_APPOINTMENT);
+        Index targetAppointmentIndex = INDEX_NON_EXISTENT;
+
+        UnmarkCommand unmarkCommand = new UnmarkCommand(targetAppointmentIndex);
 
         assertCommandFailure(unmarkCommand, typicalModel, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }

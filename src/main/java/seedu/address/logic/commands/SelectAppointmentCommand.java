@@ -34,7 +34,7 @@ public abstract class SelectAppointmentCommand extends Command {
         List<Appointment> lastShownAppointmentList = model.getFilteredAppointmentList();
 
         if (indexOfAppointment.getZeroBased() >= lastShownAppointmentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         Appointment targetAppointment = lastShownAppointmentList.get(indexOfAppointment.getZeroBased());

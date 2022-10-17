@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_APPOINTMENT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class CancelCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPerson(personWithAppt, editedPerson);
         expectedModel.deleteAppointments(personWithAppt.getAppointments());
-        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_PERSON, Index.fromOneBased(1));
+        CancelCommand cancelCommand = new CancelCommand(INDEX_THIRD_APPOINTMENT);
         assertCommandSuccess(cancelCommand, model, expectedCancelMessage, expectedModel);
     }
 
@@ -56,7 +58,7 @@ public class CancelCommandTest {
 
         model.setPerson(personWithoutAppt, editedPerson);
 
-        CancelCommand cancelCommand = new CancelCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1));
+        CancelCommand cancelCommand = new CancelCommand(INDEX_SECOND_APPOINTMENT);
         assertCommandFailure(cancelCommand, model, Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
     }
 

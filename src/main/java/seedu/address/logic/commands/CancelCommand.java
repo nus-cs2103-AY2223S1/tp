@@ -46,11 +46,7 @@ public class CancelCommand extends SelectAppointmentCommand {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person patientToCancelAppt = getTargetPerson(model);
         Appointment toBeCancelledAppt = getTargetAppointment(model);
-        Index apptIndex = super.indexOfAppointment;
 
-        if (patientToCancelAppt.getAppointments().size() < apptIndex.getOneBased()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-        }
         patientToCancelAppt.cancelAppointment(super.indexOfAppointment.getZeroBased());
         model.deleteAppointment(toBeCancelledAppt);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
