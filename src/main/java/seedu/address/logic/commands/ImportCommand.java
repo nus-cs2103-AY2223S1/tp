@@ -3,10 +3,16 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_IMPORT_ERROR;
 
+import java.io.FileReader;
 import java.nio.file.Path;
+import java.util.List;
 
+import com.opencsv.bean.CsvToBeanBuilder;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.storage.CsvAdaptedPerson;
 import seedu.address.storage.JsonAddressBookStorage;
 
 /**
@@ -38,13 +44,23 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (targetPath.toString().toLowerCase().endsWith(".json")) {
-            JsonAddressBookStorage tempStorage = new JsonAddressBookStorage(targetPath);
-            try {
-                tempStorage.readAddressBook().ifPresent(x -> x.getPersonList().forEach(y -> model.addPerson(y)));
-            } catch (Exception e) {
-                throw new CommandException(String.format(MESSAGE_IMPORT_ERROR, e.getMessage()));
+        try {
+            if (targetPath.toString().toLowerCase().endsWith(".json")) {
+                JsonAddressBookStorage tempStorage = new JsonAddressBookStorage(targetPath);
+                tempStorage.readAddressBook().ifPresent(x -> x.getPersonList().forEach(model::addPerson));
+            } else {
+                List<CsvAdaptedPerson> beans = new CsvToBeanBuilder(new FileReader(targetPath.toFile()))
+                        .withType(CsvAdaptedPerson.class).build().parse();
+                beans.forEach(x -> {
+                    try {
+                        model.addPerson(x.toModelType());
+                    } catch (IllegalValueException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
+        } catch (Exception e) {
+            throw new CommandException(String.format(MESSAGE_IMPORT_ERROR, e.getMessage()));
         }
         return new CommandResult(String.format(MESSAGE_IMPORT_DATA_SUCCESS, targetPath.getFileName()));
     }
