@@ -31,7 +31,11 @@ public class TypicalClients {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withClientPhone("12112121")
             .withClientEmail("ben@gmail.com")
-            .withTags("owesMoney", "friends").withAddedCompany(TypicalCompany.BENSON).build();
+            .withTags("owesMoney", "friends")
+            .withAddedCompany(TypicalCompany.BENSON)
+            .withTransaction(TypicalTransaction.BUY_BOOKS)
+            .withTransaction(TypicalTransaction.BUY_TOYS)
+            .build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withAddress("wall street")
             .withClientPhone("9818112")
             .withClientEmail("carl@gmail.com").build();
@@ -39,7 +43,8 @@ public class TypicalClients {
             .withAddress("10th street")
             .withClientPhone("12121212")
             .withClientEmail("dan@gmail.com")
-            .withTags("friends").withAddedCompany(TypicalCompany.DANIEL).build();
+            .withTags("friends")
+            .withAddedCompany(TypicalCompany.DANIEL).build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
             .withAddress("michegan ave")
             .withClientPhone("9228282")
