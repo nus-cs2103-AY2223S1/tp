@@ -279,8 +279,13 @@ public class ModelManager implements Model {
 
     @Override
     public void addConsultation(Consultation consultation) {
-        addressBook.addConsulation(consultation);
+        addressBook.addConsultation(consultation);
         updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);
+    }
+
+    @Override
+    public void deleteConsultation(Consultation target) {
+        addressBook.removeConsultation(target);
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================

@@ -148,7 +148,7 @@ public class SampleDataUtil {
         }
 
         for (Consultation sampleConsultation: getSampleConsultations()) {
-            sampleAb.addConsulation(sampleConsultation);
+            sampleAb.addConsultation(sampleConsultation);
         }
         return sampleAb;
     }
