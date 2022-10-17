@@ -46,12 +46,8 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        //        if (model.hasExercise(toAdd)) {
-        //            throw new CommandException(MESSAGE_DUPLICATE_EXERCISE);
-        //        }
-
         model.addExercise(toAdd);
+        // model need to return new 'toAdd' name
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -3,11 +3,11 @@ package gim.model.exercise;
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-//import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-//import gim.model.exercise.exceptions.DuplicateExerciseException;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,19 +28,18 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    //     private final HashMap<Name, Exercise> test;
+    private final HashMap<Name, ArrayList<Exercise>> hashMap;
 
-    //     public UniqueExerciseList() {
-    //         test = new HashMap<>();
-    //     }
+    public UniqueExerciseList() {
+        hashMap = new HashMap<>();
+    }
 
     /**
      * Returns true if the list contains an equivalent exercise as the given argument.
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
-        //        return test.containsKey(toCheck.getName());
-        return internalList.stream().anyMatch(toCheck::isSameExercise);
+        return hashMap.containsKey(toCheck.getName());
     }
 
     /**
@@ -48,13 +47,23 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      * The exercise must not already exist in the list.
      */
     public void add(Exercise toAdd) {
+        Name storedName = toAdd.getName();
         requireNonNull(toAdd);
-        //        if (!contains(toAdd)) {
-        //            test.put(toAdd.getName(), toAdd);
-        //        }
-        //        if (contains(toAdd)) {
-        //            throw new DuplicateExerciseException();
-        //        }
+        if (!contains(toAdd)) {
+            hashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
+        } else {
+            for (Name key : hashMap.keySet()) { // Store exercise with name of first exercise instance
+                System.out.println(key.toString());
+                if (storedName.equals(key)) {
+                    System.out.println("test");
+                    storedName = key;
+                    break;
+                }
+            }
+        }
+        toAdd = new Exercise(storedName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
+        hashMap.get(storedName).add(toAdd); // add Exercise to arraylist
+        System.out.println(toAdd.getName());
         internalList.add(toAdd);
     }
 
@@ -87,6 +96,10 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         if (!internalList.remove(toRemove)) {
             throw new ExerciseNotFoundException();
         }
+        hashMap.get(toRemove.getName()).remove(toRemove);
+        if (hashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
+            hashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
+        }
     }
 
     public void setExercises(UniqueExerciseList replacement) {
@@ -100,10 +113,6 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      */
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
-        //        if (!exercisesAreUnique(exercises)) {
-        //            throw new DuplicateExerciseException();
-        //        }
-
         internalList.setAll(exercises);
     }
 
@@ -131,17 +140,4 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return internalList.hashCode();
     }
 
-    /**
-     * Returns true if {@code exercises} contains only unique exercises.
-     */
-    private boolean exercisesAreUnique(List<Exercise> exercises) {
-        for (int i = 0; i < exercises.size() - 1; i++) {
-            for (int j = i + 1; j < exercises.size(); j++) {
-                if (exercises.get(i).isSameExercise(exercises.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }

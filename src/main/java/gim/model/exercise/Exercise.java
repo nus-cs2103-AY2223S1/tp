@@ -12,12 +12,9 @@ import gim.model.date.Date;
  */
 public class Exercise {
 
-    // Identity fields
     private final Name name;
     private final Weight weight;
     private final Sets sets;
-
-    // Data fields
     private final Reps reps;
     private final Date date;
 
