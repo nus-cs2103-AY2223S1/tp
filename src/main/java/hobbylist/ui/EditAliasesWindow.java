@@ -115,7 +115,7 @@ public class EditAliasesWindow extends UiPart<Stage> {
      */
     public void handleSave() {
         if (!isValidAliases()) {
-            new Alert(Alert.AlertType.INFORMATION, "Duplicate aliases detected.").show();
+            new Alert(Alert.AlertType.INFORMATION, "Invalid aliases detected.").show();
             setTextFields();
             return;
         }
@@ -141,6 +141,11 @@ public class EditAliasesWindow extends UiPart<Stage> {
     private boolean isValidAliases() {
         String[] arr = {add.getText(), clear.getText(), delete.getText(), edit.getText(),
                 exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText()};
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i].equals("")) {
+                return false;
+            }
+        }
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i].equals(arr[j])) {

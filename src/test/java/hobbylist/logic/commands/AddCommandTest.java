@@ -53,6 +53,12 @@ public class AddCommandTest {
     }
 
     @Test
+    public void setCommandWord_validWord_success() {
+        AddCommand.setCommandWord("test");
+        assertEquals(AddCommand.getCommandWord(), "test");
+    }
+
+    @Test
     public void equals() {
         Activity anime = new ActivityBuilder().withName("Anime").build();
         Activity boxing = new ActivityBuilder().withName("Boxing").build();

@@ -61,6 +61,12 @@ public class FindTagCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredActivityList());
     }
 
+    @Test
+    public void setCommandWord_validWord_success() {
+        FindTagCommand.setCommandWord("test");
+        assertEquals(FindTagCommand.getCommandWord(), "test");
+    }
+
     /**
      * Parses {@code userInput} into a {@code TagMatchesKeywordPredicate}.
      */
