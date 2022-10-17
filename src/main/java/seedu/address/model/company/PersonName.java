@@ -38,7 +38,6 @@ public class PersonName {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullName;
