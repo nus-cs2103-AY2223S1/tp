@@ -221,6 +221,11 @@ public class AddReminderCommandTest {
         }
 
         @Override
+        public void deleteConsultation(Consultation target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addConsultation(Consultation consultation) {
             throw new AssertionError("This method should not be called.");
         }
