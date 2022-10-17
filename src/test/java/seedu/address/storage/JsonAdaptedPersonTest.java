@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -168,15 +167,4 @@ public class JsonAdaptedPersonTest {
                         VALID_MONTHLY, VALID_RISKTAG, invalidTags, VALID_APPOINTMENTS);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidAppointments_throwsDateTimeParseException() {
-        List<JsonAdaptedAppointment> invalidAppointments = new ArrayList<>(VALID_APPOINTMENTS);
-        invalidAppointments.add(new JsonAdaptedAppointment(INVALID_DATETIME, INVALID_LOCATION));
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_INCOME,
-                        VALID_MONTHLY, VALID_RISKTAG, VALID_TAGS, invalidAppointments);
-        assertThrows(DateTimeParseException.class, person::toModelType);
-    }
-
 }

@@ -20,11 +20,13 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.EditAppointmentDescriptor;
 import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -99,6 +101,9 @@ public class CommandTestUtil {
     public static final EditPersonDescriptor DESC_AMY;
     public static final EditPersonDescriptor DESC_BOB;
 
+    public static final EditAppointmentDescriptor DESC_APPT_1;
+    public static final EditAppointmentDescriptor DESC_APPT_2;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -108,6 +113,10 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withIncome(VALID_INCOME_BOB).withMonthly(VALID_MONTHLY_AMY)
                 .withRiskTag(VALID_RISKTAG_HIGH).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_APPT_1 = new EditAppointmentDescriptorBuilder().withDateTime(VALID_DATETIME_21_JAN_2023)
+                    .withLocation(VALID_LOCATION_NUS).build();
+        DESC_APPT_2 = new EditAppointmentDescriptorBuilder().withDateTime(VALID_DATETIME_22_JAN_2023)
+                .withLocation(VALID_LOCATION_JURONGPOINT).build();
     }
 
     /**
