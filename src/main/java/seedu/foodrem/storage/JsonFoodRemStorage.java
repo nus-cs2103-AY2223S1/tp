@@ -14,7 +14,7 @@ import seedu.foodrem.commons.util.JsonUtil;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 
 /**
- * A class to access foodRem data stored as a json file on the hard disk.
+ * A class to access FoodRem data stored as a json file on the hard disk.
  */
 public class JsonFoodRemStorage implements FoodRemStorage {
 
