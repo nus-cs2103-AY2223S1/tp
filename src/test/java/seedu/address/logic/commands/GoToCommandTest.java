@@ -57,7 +57,7 @@ public class GoToCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noModuleFound() {
         String expectedMessage = MESSAGE_NO_SUCH_MODULE;
         ModuleCodeMatchesKeywordPredicate predicate = new ModuleCodeMatchesKeywordPredicate(" ");
         GoToCommand command = new GoToCommand(predicate);
@@ -65,7 +65,6 @@ public class GoToCommandTest {
         expectedModel.setHomeStatus(false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
-        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 
     @Test
@@ -79,7 +78,6 @@ public class GoToCommandTest {
         expectedModel.setHomeStatus(false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2106), model.getFilteredModuleList());
-        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 
     @Test
@@ -93,6 +91,5 @@ public class GoToCommandTest {
         expectedModel.setHomeStatus(false);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CS2106), model.getFilteredModuleList());
-        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 }

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_AT_HOMEPAGE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
 
@@ -70,6 +72,14 @@ public class FindModuleCommandTest {
         expectedModel.updateFilteredModuleList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalModules.CS2103T, TypicalModules.CS2106), model.getFilteredModuleList());
+    }
+
+    @Test
+    public void execute_notAtHomePage_throwsCommandException() {
+        ModuleCodeStartsWithKeywordPredicate predicate = preparePredicate("CS");
+        FindModuleCommand command = new FindModuleCommand(predicate);
+        model.setHomeStatus(false);
+        assertCommandFailure(command, model, MESSAGE_NOT_AT_HOMEPAGE);
     }
 
     /**
