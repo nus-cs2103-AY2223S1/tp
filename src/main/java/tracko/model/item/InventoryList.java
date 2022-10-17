@@ -37,7 +37,10 @@ public class InventoryList implements Iterable<Item> {
      */
     public Item get(String itemName) {
 
-        for (Item item : this) {
+        Iterator<Item> itemIterator = iterator();
+
+        while (itemIterator.hasNext()) {
+            Item item = itemIterator.next();
             if (item.nameMatches(itemName)) {
                 return item;
             }
@@ -80,7 +83,7 @@ public class InventoryList implements Iterable<Item> {
             throw new DuplicateItemException();
         }
 
-        internalList.set(index, editedItem);
+        target.updateData(editedItem);
     }
 
     public void setItems(InventoryList replacement) {

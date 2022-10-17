@@ -19,12 +19,12 @@ public class ItemQuantityPairTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(IllegalValueException.class, () -> new ItemQuantityPair(null, null));
+        assertThrows(NullPointerException.class, () -> new ItemQuantityPair(null, null));
         Integer validQuantity = 3;
-        assertThrows(IllegalValueException.class, () -> new ItemQuantityPair(null, new Quantity(validQuantity)));
+        assertThrows(NullPointerException.class, () -> new ItemQuantityPair(null, new Quantity(validQuantity)));
         Item validItem = new Item(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
                 new Quantity(10), new HashSet<>());
-        assertThrows(IllegalValueException.class, () -> new ItemQuantityPair(validItem, null));
+        assertThrows(NullPointerException.class, () -> new ItemQuantityPair(validItem, null));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class ItemQuantityPairTest {
         Quantity validQuantityTwo = new Quantity(2);
         ItemQuantityPair validPairOne = new ItemQuantityPair(validItemOne, validQuantityOne);
         ItemQuantityPair validPairTwo = new ItemQuantityPair(validItemTwo, validQuantityTwo);
-        ItemQuantityPair validPairThree = new ItemQuantityPair(validItemOne, validQuantityTwo);
+        ItemQuantityPair validPairThree = new ItemQuantityPair(validItemOne, validQuantityOne);
 
         assertTrue(validPairOne.equals(validPairOne));
         assertTrue(validPairOne.equals(validPairThree));

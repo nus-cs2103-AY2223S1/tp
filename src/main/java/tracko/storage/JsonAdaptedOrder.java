@@ -58,9 +58,9 @@ public class JsonAdaptedOrder {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's {@code Order} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
     public Order toModelType(InventoryList inventoryList) throws IllegalValueException {
 
@@ -96,13 +96,13 @@ public class JsonAdaptedOrder {
         }
         final Address modelAddress = new Address(address);
 
+        if (itemList == null || itemList.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Item List"));
+        }
+
         List<ItemQuantityPair> itemQuantityPairs = new ArrayList<>();
         for (JsonAdaptedItemQuantityPair pair : itemList) {
             itemQuantityPairs.add(pair.toModelType(inventoryList));
-        }
-
-        if (itemList == null || itemList.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Item List"));
         }
 
         return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs);

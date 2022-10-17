@@ -41,7 +41,7 @@ public class JsonAdaptedItemQuantityPair {
     /**
      * Converts this Jackson
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted pair.
      */
     public ItemQuantityPair toModelType(InventoryList inventoryList) throws IllegalValueException {
 

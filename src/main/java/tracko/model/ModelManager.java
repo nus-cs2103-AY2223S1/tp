@@ -151,7 +151,6 @@ public class ModelManager implements Model {
     @Override
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
-
         trackO.setItem(target, editedItem);
     }
 
