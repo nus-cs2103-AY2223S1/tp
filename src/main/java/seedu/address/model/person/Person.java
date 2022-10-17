@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -68,6 +69,10 @@ public class Person {
     }
     public SessionList getSessionList() {
         return sessionList;
+    }
+
+    public List<String> getSessionDays() {
+        return sessionList.getDays();
     }
 
     public GradeProgressList getGradeProgressList() {

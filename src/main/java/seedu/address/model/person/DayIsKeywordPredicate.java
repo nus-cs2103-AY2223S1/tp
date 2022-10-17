@@ -8,9 +8,10 @@ public class DayIsKeywordPredicate implements Predicate<Person> {
     public DayIsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
+
     @Override
     public boolean test(Person person) {
-        return keyword.equalsIgnoreCase(""); // person session day
+        return person.getSessionDays().stream().anyMatch(day -> day.equalsIgnoreCase(keyword));
     }
 
     @Override

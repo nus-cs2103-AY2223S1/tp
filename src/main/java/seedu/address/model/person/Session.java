@@ -25,6 +25,7 @@ public class Session implements Comparable<Session> {
             .parseDefaulting(ChronoField.ALIGNED_WEEK_OF_MONTH, 1) //defaulting week to workaround class issues.
             .toFormatter();
     public final String session;
+    public final String day;
     public final LocalDateTime time;
 
     /**
@@ -36,6 +37,7 @@ public class Session implements Comparable<Session> {
         requireNonNull(session);
         checkArgument(isValidSession(session), MESSAGE_CONSTRAINTS);
         this.session = session;
+        this.day = session.substring(0, 3);
         this.time = LocalDateTime.parse(session, DTF);
     }
 
