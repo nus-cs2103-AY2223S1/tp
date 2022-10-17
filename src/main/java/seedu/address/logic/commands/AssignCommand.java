@@ -65,6 +65,7 @@ public class AssignCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             Student studentToAssign = lastShownStudentList.get(index.getZeroBased());
+            /*
             try {
                 TuitionClass tuitionClassToBeAssigned = model.getTuitionClass(className);
                 if (tuitionClassToBeAssigned.containsStudentInClass(studentToAssign)) {
@@ -75,12 +76,15 @@ public class AssignCommand extends Command {
             } catch (TuitionClassNotFoundException e) {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             }
+
+            */
         case TUTOR_LIST:
             List<Tutor> lastShownTutorList = model.getFilteredTutorList();
             if (index.getZeroBased() >= lastShownTutorList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             Tutor tutorToAssign = lastShownTutorList.get(index.getZeroBased());
+            /*
             try {
                 TuitionClass tuitionClassToBeAssignedTo = model.getTuitionClass(className);
                 if (tuitionClassToBeAssignedTo.containsTutorInClass(tutorToAssign)) {
@@ -92,6 +96,7 @@ public class AssignCommand extends Command {
                 throw new CommandException(MESSAGE_INVALID_TUITION_CLASS);
             }
 
+            */
         default:
             throw new CommandException(MESSAGE_INVALID_CURRENT_LIST);
         }
