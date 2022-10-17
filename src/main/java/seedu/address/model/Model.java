@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -122,7 +123,7 @@ public interface Model {
 
     public Team getTeamUsingIndex(Index teamIndex);
 
-    public Team hasMember(Person p);
+    public List<Team> hasMember(Person p);
 
     void addTask(Index index, Task task);
 

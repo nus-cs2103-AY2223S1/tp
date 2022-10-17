@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -304,25 +305,26 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Return Team Object that the given person is a member in.
+     * Return list of all teams in which the given person is a member in.
      * @param p Person object.
-     * @return Team object.
+     * @return List of teams.
      */
     @Override
-    public Team hasMember(Person p) {
+    public List<Team> hasMember(Person p) {
         List<Team> teams = getFilteredTeamList();
         requireNonNull(p);
+        List<Team> teamsWithMember = new ArrayList<>();
         ObservableList<Person> memberList = null;
         for (int i = 0; i < teams.size(); i++) {
             Team team = teams.get(i);
             memberList = team.getMemberList();
             for (int j = 0; j < memberList.size(); j++) {
                 if (memberList.contains(p)) {
-                    return team;
+                    teamsWithMember.add(team);
                 }
             }
         }
-        return null;
+        return teamsWithMember;
     }
 
     // todo implementation of updateFilteredTeamList
