@@ -30,7 +30,7 @@ public class TagPersonsToEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PERSONS + "1 3 4";
     public static final String MESSAGE_TAG_EVENT_SUCCESS = "Tagged Persons: %s to Event: %s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the event";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person: %d. %s already exists in the event";
     private final Index eventIndex;
     private final List<Index> personIndexes;
 
@@ -63,7 +63,8 @@ public class TagPersonsToEventCommand extends Command {
             }
             Person person = lastShownPersonList.get(personIndex.getZeroBased());
             if (uids.contains(person.getUid())) { // person's uid already exists in the event to tag
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, personIndex.getOneBased(),
+                        person.getName()));
             }
             personNames += String.format("%s, ", person.getName());
             uids.add(person.getUid());
@@ -73,6 +74,7 @@ public class TagPersonsToEventCommand extends Command {
         model.setEvent(eventToTag, taggedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         personNames = personNames.substring(0, personNames.length() - 2);
+
         return new CommandResult(String.format(MESSAGE_TAG_EVENT_SUCCESS, personNames, taggedEvent.getEventTitle()));
     }
 }

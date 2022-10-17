@@ -91,6 +91,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredEventList(x -> x.getUids().setPersonNames(model));
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -108,9 +109,9 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
-        Uid uid = personToEdit.getUid();
+        Uid updatedUid = new Uid(personToEdit.getUid().getUid());
         return new Person(updatedName, updatedPhone, updatedEmail,
-             updatedDob, updatedAddress, updatedTags, updatedGender, uid);
+                updatedDob, updatedAddress, updatedTags, updatedGender, updatedUid);
     }
 
     @Override
