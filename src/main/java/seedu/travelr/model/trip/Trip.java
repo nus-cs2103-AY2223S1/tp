@@ -32,7 +32,6 @@ public class Trip {
         this.title = title;
         this.description = description;
         this.events.setInternalList(events);
-        //System.out.println(events);
     }
 
     public void addEvent(Event event) {
@@ -65,6 +64,13 @@ public class Trip {
      */
     public Set<Event> getEvents() {
         return Collections.unmodifiableSet(events.getList());
+    }
+
+    /**
+     * Returns the itinerary of this trip.
+     */
+    public Itineraries getItinerary() {
+        return this.events;
     }
 
     /**

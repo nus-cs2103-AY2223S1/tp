@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.list.BucketList;
+import seedu.travelr.model.list.UniqueEventList;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.model.trip.UniqueTripList;
 
@@ -17,7 +18,9 @@ import seedu.travelr.model.trip.UniqueTripList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final BucketList bucketList;
+    private final UniqueEventList allEventsList;
     private final UniqueTripList trips;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -28,6 +31,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         trips = new UniqueTripList();
         bucketList = new BucketList();
+        allEventsList = new UniqueEventList();
     }
 
     public AddressBook() {}
@@ -46,6 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
+
     public void setTrips(List<Trip> trips) {
         this.trips.setTrips(trips);
     }
@@ -58,13 +63,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.bucketList.setEvents(events);
     }
 
+    public void setAllEventsList(List<Event> events) {
+        this.allEventsList.setEvents(events);
+    }
+
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         assert !newData.getTripList().isEmpty();
-
+        setAllEventsList(newData.getAllEventList());
         setTrips(newData.getTripList());
         setEvents(newData.getEventList());
     }
@@ -98,8 +107,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Adds an event to Travelr.
      */
-    public void addEvent(Event e) {
+    public void addEventToBucketListAndAllEventsList(Event e) {
         bucketList.add(e);
+        addEventToAllEventsList(e);
+    }
+
+    public void addEventToAllEventsList(Event e) {
+        allEventsList.add(e);
+    }
+
+    /**
+     * Adds an event back into the bucket list after deleting it from a trip.
+     */
+    public void returnToBucketList(Event e) {
+        bucketList.add(e);
+    }
+
+    /**
+     * Removes an event from bucket list before adding it to trip.
+     */
+    public void removeFromBucketList(Event e) {
+        bucketList.remove(e);
     }
 
     /**
@@ -136,6 +164,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the bucketList.
      */
     public Event getEvent(Event key) {
+
         return bucketList.getEvent(key);
     }
 
@@ -150,10 +179,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in Travelr.
-     * @return
      */
     public void removeEvent(Event key) {
         bucketList.remove(key);
+        allEventsList.remove(key);
     }
 
     //// util methods
@@ -173,6 +202,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Event> getEventList() {
         return bucketList.asUnmodifiableObservableList();
     }
+
+    @Override
+    public ObservableList<Event> getAllEventList() {
+        return allEventsList.asUnmodifiableObservableList();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

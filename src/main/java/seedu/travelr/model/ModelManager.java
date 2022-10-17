@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.travelr.commons.core.GuiSettings;
 import seedu.travelr.commons.core.LogsCenter;
+import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
@@ -25,6 +26,8 @@ public class ModelManager implements Model {
     private final FilteredList<Trip> filteredTrips;
 
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> bucketList;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +40,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTrips = new FilteredList<>(this.addressBook.getTripList());
-        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
+        bucketList = new FilteredList<>(this.addressBook.getEventList());
+        System.out.println("One retrieval");
     }
 
     public ModelManager() {
@@ -111,6 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteEvent(Event e) {
         addressBook.removeEvent(e);
+        updateFilteredEventList(getBucketPredicate());
     }
 
     @Override
@@ -119,10 +125,25 @@ public class ModelManager implements Model {
         updateFilteredTripList(PREDICATE_SHOW_ALL_TRIPS);
     }
 
+    /**
+     * This is when we create a new event
+     *
+     * @param event
+     */
     @Override
     public void addEvent(Event event) {
-        addressBook.addEvent(event);
+        addressBook.addEventToBucketListAndAllEventsList(event);
         //update filtered trip list??
+    }
+
+    @Override
+    public void returnToBucketList(Event event) {
+        addressBook.returnToBucketList(event);
+    }
+
+    @Override
+    public void removeFromBucketList(Event event) {
+        addressBook.removeFromBucketList(event);
     }
 
     public Event getEvent(Event event) {
@@ -157,6 +178,11 @@ public class ModelManager implements Model {
         return filteredTrips;
     }
 
+
+    @Override
+    public AllInBucketListPredicate getBucketPredicate() {
+        return new AllInBucketListPredicate(bucketList);
+    }
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
