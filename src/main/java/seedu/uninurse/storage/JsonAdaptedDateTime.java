@@ -24,7 +24,7 @@ public class JsonAdaptedDateTime {
      * Converts a given {@code DateTime} into this class for Jackson use.
      */
     public JsonAdaptedDateTime(DateTime dateTime) {
-        this.dateTime = dateTime.dateTime.toString();
+        this.dateTime = dateTime.toString();
     }
 
     @JsonValue

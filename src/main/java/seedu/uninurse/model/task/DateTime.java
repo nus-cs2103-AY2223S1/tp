@@ -9,10 +9,13 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
 
+    public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
-            + "YYYY-MM-DDTHH:mm:ss i.e 2022-10-16T10:15:30";
+            + DATE_TIME_PATTERN + " i.e 16-10-2022 10:15";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
     public final LocalDateTime dateTime;
+
 
     /**
      * Constructs a default Date and Time, one day from the current time.
@@ -26,7 +29,7 @@ public class DateTime {
      */
     public DateTime(String validDateTime) {
         assert(isValidDateTime(validDateTime));
-        dateTime = LocalDateTime.parse(validDateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        dateTime = LocalDateTime.parse(validDateTime, FORMATTER);
     }
 
     /**
@@ -44,7 +47,7 @@ public class DateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse(test);
+            FORMATTER.parse(test);
             return true;
         } catch (DateTimeParseException dtpe) {
             return false;
@@ -53,6 +56,6 @@ public class DateTime {
 
     @Override
     public String toString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu hh mm a"));
+        return dateTime.format(FORMATTER);
     }
 }

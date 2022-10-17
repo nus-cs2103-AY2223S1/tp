@@ -32,12 +32,12 @@ public class TypicalPersons {
     public static final Patient BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTasks(new Task("Insert urinary catheter", new DateTime("2022-10-16T10:15:30")),
-                    new Task("Check vitals", new DateTime("2022-10-16T10:15:30")))
+            .withTasks(new Task("Insert urinary catheter", new DateTime("16-12-2022 12:45")),
+                    new Task("Check vitals", new DateTime("16-10-2022 10:15")))
             .withTags("owesMoney", "friends").build();
     public static final Patient CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
-            .withTasks(new Task("Update health records", new DateTime("2022-10-16T10:15:30")))
+            .withTasks(new Task("Update health records", new DateTime("28-10-2022 17:30")))
             .build();
     public static final Patient DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();

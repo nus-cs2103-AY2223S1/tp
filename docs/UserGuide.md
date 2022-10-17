@@ -143,8 +143,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE 
 * If not date and time is provided, then a default date and time of 24 hours from creation will be set
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 2022-10-16T10:15:30 [t/Severe]`
-* `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm [t/Low Risk]`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 2022-10-16T10:15:30 t/Severe`
+* `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm t/Low Risk`
 
 ### Editing a patient’s details : `edit -p`
 

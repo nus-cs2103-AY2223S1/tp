@@ -8,7 +8,7 @@ import seedu.uninurse.model.Model;
 /**
  * Lists all patients for today.
  */
-public class PatientsToday extends Command {
+public class PatientsTodayCommand extends Command {
 
     public static final String COMMAND_WORD = "patientsToday";
 
