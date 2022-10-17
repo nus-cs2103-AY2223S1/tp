@@ -1,6 +1,5 @@
 package seedu.address.model.offer;
 
-import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
 import seedu.address.model.person.Name;
 

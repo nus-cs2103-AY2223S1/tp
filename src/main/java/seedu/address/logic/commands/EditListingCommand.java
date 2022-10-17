@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LISTINGS;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
