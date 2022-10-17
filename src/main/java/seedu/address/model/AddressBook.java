@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamMetaData;
 import seedu.address.model.team.UniqueTeamList;
 
 /**
@@ -20,6 +21,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTeamList teams;
+
+    private final TeamMetaData teamData;
     private ObjectProperty<Team> currentTeam = new SimpleObjectProperty<>();
 
     /*
@@ -32,6 +35,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         teams = new UniqueTeamList();
+        teamData = new TeamMetaData();
     }
 
     public AddressBook() {
