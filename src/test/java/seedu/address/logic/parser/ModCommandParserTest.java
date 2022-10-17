@@ -14,6 +14,7 @@ import seedu.address.logic.commands.ModAddCommand;
 import seedu.address.logic.commands.ModCommand;
 import seedu.address.logic.commands.ModDeleteCommand;
 import seedu.address.logic.commands.ModMarkCommand;
+import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.model.person.Mod;
 
 public class ModCommandParserTest {
@@ -24,12 +25,18 @@ public class ModCommandParserTest {
     private static final String VALID_MOD_STRING_CS2100 = "CS2100";
     private final ModCommandParser parser = new ModCommandParser();
 
+    /**
+     * Tests the behaviour of mod commands when there is an empty command input by user.
+     */
     @Test
     public void parse_emptyArg_throwParseException() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ModCommand.MESSAGE_USAGE));
     }
 
+    /**
+     * Tests the behaviour of mod commands when there is an unknown command input by user.
+     */
     @Test
     public void parse_unknownCommand_throwParseException() {
         assertParseFailure(parser,
@@ -38,31 +45,48 @@ public class ModCommandParserTest {
                 ModCommand.MESSAGE_USAGE));
     }
 
+    /**
+     * Tests the behaviour of mod add when index is absent.
+     */
     @Test
     public void parse_noIndex_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " " + VALID_MOD_STRING_CS2103T,
                 ModCommand.MESSAGE_INDEX_EMPTY);
     }
 
+    /**
+     * Tests the behaviour of mod add when mod is absent.
+     */
     @Test
     public void parse_noMods_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
                 ModCommand.MESSAGE_MODS_EMPTY);
     }
 
+    /**
+     * Tests the behaviour of mod add when mod is invalid.
+     */
     @Test
     public void parse_invalidMod_throwParseException() {
         assertParseFailure(parser,
-                ModAddCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INVALID_MOD_STRING,
+                ModAddCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
 
+    /**
+     * Tests the behaviour of mod add when index is invalid.
+     */
     @Test
     public void parse_invalidIndex_throwParseException() {
         assertParseFailure(parser, ModAddCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE));
     }
 
+    /**
+     * Tests the behaviour of adding 1 mod.
+     */
     @Test
     public void parse_oneMod_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -75,6 +99,9 @@ public class ModCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    /**
+     * Tests the behaviour of adding multiple mods.
+     */
     @Test
     public void parse_manyMods_success() {
         Index targetIndex = INDEX_FIRST_PERSON;
@@ -116,7 +143,9 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidModModDelete_throwParseException() {
         assertParseFailure(parser,
-                ModDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INVALID_MOD_STRING,
+                ModDeleteCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
 
@@ -126,7 +155,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModDelete_throwParseException() {
         assertParseFailure(parser, ModDeleteCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModDeleteCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -188,7 +217,9 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidModModMark_throwParseException() {
         assertParseFailure(parser,
-                ModMarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " " + INVALID_MOD_STRING,
+                ModMarkCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INVALID_MOD_STRING,
                 Mod.MESSAGE_CONSTRAINTS);
     }
 
@@ -198,7 +229,7 @@ public class ModCommandParserTest {
     @Test
     public void parse_invalidIndexModMark_throwParseException() {
         assertParseFailure(parser, ModMarkCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModAddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModMarkCommand.MESSAGE_USAGE));
     }
 
     /**
@@ -232,6 +263,80 @@ public class ModCommandParserTest {
         mods.add(new Mod(VALID_MOD_STRING_CS2103T));
         mods.add(new Mod(VALID_MOD_STRING_CS2101));
         ModMarkCommand expectedCommand = new ModMarkCommand(targetIndex, mods);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    /**
+     * Tests the behaviour of mod unmark when index is absent.
+     */
+    @Test
+    public void parse_noIndexModUnmark_throwParseException() {
+        assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " " + VALID_MOD_STRING_CS2103T,
+                ModCommand.MESSAGE_INDEX_EMPTY);
+    }
+
+    /**
+     * Tests the behaviour of mod unmark when mod is absent.
+     */
+    @Test
+    public void parse_noModsModUnmark_throwParseException() {
+        assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
+                ModCommand.MESSAGE_MODS_EMPTY);
+    }
+
+    /**
+     * Tests the behaviour of mod unmark when mod is invalid.
+     */
+    @Test
+    public void parse_invalidModModUnmark_throwParseException() {
+        assertParseFailure(parser,
+                ModUnmarkCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + INVALID_MOD_STRING,
+                Mod.MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Tests the behaviour of mod unmark when index is invalid.
+     */
+    @Test
+    public void parse_invalidIndexModUnmark_throwParseException() {
+        assertParseFailure(parser, ModUnmarkCommand.COMMAND_WORD + " -1 " + VALID_MOD_STRING_CS2103T,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ModUnmarkCommand.MESSAGE_USAGE));
+    }
+
+    /**
+     * Tests the behaviour of unmarking 1 mod as not taken.
+     */
+    @Test
+    public void parse_unmarkOneMod_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = ModUnmarkCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
+                + " " + VALID_MOD_STRING_CS2103T;
+
+        ObservableList<Mod> mods = FXCollections.singletonObservableList(new Mod(VALID_MOD_STRING_CS2103T));
+        ModUnmarkCommand expectedCommand = new ModUnmarkCommand(targetIndex, mods);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    /**
+     * Tests the behaviour of unmarking multiple mods as not taken.
+     */
+    @Test
+    public void parse_unmarkMultipleMods_success() {
+        Index targetIndex = INDEX_FIRST_PERSON;
+        String userInput = ModUnmarkCommand.COMMAND_WORD + " " + targetIndex.getOneBased()
+                + " " + VALID_MOD_STRING_CS2103T
+                + " " + VALID_MOD_STRING_CS2101
+                + " " + VALID_MOD_STRING_CS2100;
+
+        ObservableList<Mod> mods = FXCollections.observableArrayList();
+        mods.add(new Mod(VALID_MOD_STRING_CS2100));
+        mods.add(new Mod(VALID_MOD_STRING_CS2103T));
+        mods.add(new Mod(VALID_MOD_STRING_CS2101));
+        ModUnmarkCommand expectedCommand = new ModUnmarkCommand(targetIndex, mods);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

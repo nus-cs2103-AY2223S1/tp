@@ -123,11 +123,32 @@ public class Person {
             for (int j = 0; j < this.mods.size(); j++) {
 
                 Mod currentMod = this.mods.get(j);
-                String currentModName = currentMod.modName;
-                String targetModName = mods.get(i).modName;
+                String currentModName = currentMod.getModName();
+                String targetModName = mods.get(i).getModName();
 
                 if (currentModName.equals(targetModName)) {
                     currentMod.markMod();
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * Unmarks all mods in {@code mods} in the current set of mods linked to this batchmate as not taken.
+     *
+     * @param mods The set of mods to be unmarked.
+     */
+    public void unmarkMods(ObservableList<Mod> mods) {
+        for (int i = 0; i < mods.size(); i++) {
+            for (int j = 0; j < this.mods.size(); j++) {
+
+                Mod currentMod = this.mods.get(j);
+                String currentModName = currentMod.getModName();
+                String targetModName = mods.get(i).getModName();
+
+                if (currentModName.equals(targetModName)) {
+                    currentMod.unmarkMod();
                     break;
                 }
             }
