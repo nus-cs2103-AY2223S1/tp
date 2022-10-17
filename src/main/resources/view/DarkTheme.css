@@ -133,14 +133,14 @@
 
 .cell_big_label {
     -fx-font-family: "Figtree";
-    -fx-font-weight: 800;
+    -fx-font-weight: 600;
     -fx-font-size: 20px;
     -fx-text-fill: white;
 }
 
 .cell_medium_label {
     -fx-font-family: "Figtree";
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-font-weight:400;
     -fx-text-fill:  white;
 }
@@ -363,14 +363,14 @@
 }
 
 #resultDisplay{
-    -fx-background-color: #7c7e82;
+    -fx-background-color: derive(#393d43, 20%);
     -fx-background-insets: 0, 0, 0, 0;
     -fx-padding: 5 5 5 5;
     -fx-background-radius: 15px;
 }
 
 #resultDisplay .content {
-    -fx-background-color: #7c7e82;
+    -fx-background-color: derive(#393d43, 20%);
     -fx-wrap-text: true;
 }
 

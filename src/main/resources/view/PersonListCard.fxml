@@ -18,24 +18,26 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+      <VBox spacing="5" alignment="CENTER_LEFT">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+          <Label fx:id="id" styleClass="cell_big_label">
+            <minWidth>
+              <!-- Ensures that the label text is never truncated -->
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+          </Label>
+          <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+        </HBox>
         <Label fx:id="phone" styleClass="cell_medium_label" text="\$phone" />
-      </HBox>
+      </VBox>
       <FlowPane fx:id="tags" />
       <VBox spacing="5" style="-fx-background-color: #9dc28e; -fx-background-radius:20;" styleClass="field-pane-with-border">
         <Label fx:id="LessonPlanHeader" styleClass="cell_medium_label" text="Lesson Plan:"/>
-        <Label fx:id="lessonPlan" styleClass="cell_small_label" text="\$lessonPlan" />
+        <Label fx:id="lessonPlan" styleClass="cell_small_label" text="\$lessonPlan" wrapText="true"/>
       </VBox>
       <VBox spacing="5" style="-fx-background-color: #c2a78e; -fx-background-radius:20;" styleClass="field-pane-with-border">
         <Label fx:id="homeworkHeader" styleClass="cell_medium_label" text="Homework:"/>
-        <Label fx:id="homework" styleClass="cell_small_label" text="\$homework" />
+        <Label fx:id="homework" styleClass="cell_small_label" text="\$homework" wrapText="true"/>
       </VBox>
     </VBox>
     <columnConstraints>
@@ -47,15 +49,15 @@
       </padding>
       <VBox spacing="5" style="-fx-background-color: #8eb1c2; -fx-background-radius:20;" styleClass="field-pane-with-border">
         <Label fx:id="attendanceHeader" styleClass="cell_medium_label" text="Attendance:"/>
-        <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
+        <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" wrapText="true"/>
       </VBox>
       <VBox spacing="5" style="-fx-background-color: #938ec2; -fx-background-radius:20;" styleClass="field-pane-with-border">
         <Label fx:id="gradeProgressHeader" styleClass="cell_medium_label" text="Grade Progress:"/>
-        <Label fx:id="gradeProgress" styleClass="cell_small_label" text="\$gradeProgress" />
+        <Label fx:id="gradeProgress" styleClass="cell_small_label" text="\$gradeProgress" wrapText="true"/>
       </VBox>
       <VBox spacing="5" style="-fx-background-color: #c28e92; -fx-background-radius:20;" styleClass="field-pane-with-border">
         <Label fx:id="sessionHeader" styleClass="cell_medium_label" text="Session:"/>
-        <Label fx:id="session" styleClass="cell_small_label" text="\$session"/>
+        <Label fx:id="session" styleClass="cell_small_label" text="\$session" wrapText="true"/>
       </VBox>
 
     </VBox>
