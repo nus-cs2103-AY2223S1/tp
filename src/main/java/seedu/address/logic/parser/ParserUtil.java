@@ -83,6 +83,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String username} into a {@code Telegram}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code username} is invalid.
+     */
+    public static Telegram parseTelegram(String username) throws ParseException {
+        requireNonNull(username);
+        String trimmedUsername = username.trim();
+        if (!Telegram.isValidTelegram(trimmedUsername)) {
+            throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
+        }
+        return new Telegram(trimmedUsername);
+    }
+
+    /**
      * Parses a {@code String title} into an {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
