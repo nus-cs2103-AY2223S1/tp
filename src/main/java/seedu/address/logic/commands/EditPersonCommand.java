@@ -22,9 +22,9 @@ import seedu.address.model.person.Phone;
 /**
  * Edits the details of an existing person in Plannit.
  */
-public class EditContactCommand extends Command {
+public class EditPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit-contact";
+    public static final String COMMAND_WORD = "edit-person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "
@@ -48,7 +48,7 @@ public class EditContactCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditContactCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditPersonCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
@@ -99,12 +99,12 @@ public class EditContactCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditContactCommand)) {
+        if (!(other instanceof EditPersonCommand)) {
             return false;
         }
 
         // state check
-        EditContactCommand e = (EditContactCommand) other;
+        EditPersonCommand e = (EditPersonCommand) other;
         return index.equals(e.index)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

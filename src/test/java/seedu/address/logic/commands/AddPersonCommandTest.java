@@ -18,11 +18,11 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.PersonBuilder;
 
-public class AddContactCommandTest {
+public class AddPersonCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
     }
 
     @Test
@@ -30,45 +30,45 @@ public class AddContactCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddContactCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddContactCommand addContactCommand = new AddContactCommand(validPerson);
+        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class,
-                AddContactCommand.MESSAGE_DUPLICATE_PERSON, ()
-                        -> addContactCommand.execute(modelStub));
+                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, ()
+                        -> addPersonCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").withEmail("alice@gmail.com").withPhone("91234567").build();
         Person bob = new PersonBuilder().withName("Bob").withEmail("bob@gmail.com").withPhone("92345678").build();
-        AddContactCommand addAliceContactCommand = new AddContactCommand(alice);
-        AddContactCommand addBobContactCommand = new AddContactCommand(bob);
+        AddPersonCommand addAlicePersonCommand = new AddPersonCommand(alice);
+        AddPersonCommand addBobPersonCommand = new AddPersonCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceContactCommand.equals(addAliceContactCommand));
+        assertTrue(addAlicePersonCommand.equals(addAlicePersonCommand));
 
         // same values -> returns true
-        AddContactCommand addAliceContactCommandCopy = new AddContactCommand(alice);
-        assertTrue(addAliceContactCommand.equals(addAliceContactCommandCopy));
+        AddPersonCommand addAlicePersonCommandCopy = new AddPersonCommand(alice);
+        assertTrue(addAlicePersonCommand.equals(addAlicePersonCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceContactCommand.equals(1));
+        assertFalse(addAlicePersonCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceContactCommand.equals(null));
+        assertFalse(addAlicePersonCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceContactCommand.equals(addBobContactCommand));
+        assertFalse(addAlicePersonCommand.equals(addBobPersonCommand));
     }
 
     /**
