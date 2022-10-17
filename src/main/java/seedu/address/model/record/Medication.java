@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model.record;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -66,6 +66,11 @@ public class Medication {
                 || (other instanceof Medication // instanceof handles nulls
                 && medicationName.equals(((Medication) other).medicationName)// state check
                 );
+    }
+
+    @Override
+    public int hashCode() {
+        return medicationName.hashCode();
     }
 
 }

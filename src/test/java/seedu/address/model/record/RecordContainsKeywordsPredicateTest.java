@@ -1,15 +1,16 @@
-package seedu.address.model.person;
+package seedu.address.model.record;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.RecordContainsKeywordsPredicate;
 
 public class RecordContainsKeywordsPredicateTest {
 

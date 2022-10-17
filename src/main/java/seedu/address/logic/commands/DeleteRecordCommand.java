@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Record;
 
 /**
  * Deletes a record identified using it's displayed index from the displayed record list.

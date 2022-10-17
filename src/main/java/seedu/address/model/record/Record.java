@@ -1,13 +1,10 @@
-package seedu.address.model.person;
+package seedu.address.model.record;
 
 
-import seedu.address.model.tag.Tag;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.person.Medication.MESSAGE_NO_MEDICATION_GIVEN;
+import static seedu.address.model.record.Medication.MESSAGE_NO_MEDICATION_GIVEN;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -88,6 +85,15 @@ public class Record implements Comparable<Record> {
     }
 
     /**
+     * Record data getter.
+     *
+     * @return The record data.
+     */
+    public String getRecordData() {
+        return this.record;
+    }
+
+    /**
      * Medication Set getter.
      *
      * @return Unmodifiable set of medications.
@@ -122,8 +128,10 @@ public class Record implements Comparable<Record> {
         return other == this // short circuit if same object
                 || (other instanceof Record // instanceof handles nulls
                 && recordDate.equals(((Record) other).recordDate)
-                && record.equals((((Record) other).record))); // state check
+                && record.equals((((Record) other).record))
+                && medications.equals(((Record) other).medications)); // state check
     }
+
 
     /* todo figure out what this should be */
     @Override

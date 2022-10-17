@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Record;
 
 /**
  * Adds a new record into the record list of the current person whose record list is being displayed.

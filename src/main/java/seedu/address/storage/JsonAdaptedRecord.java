@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Medication;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Medication;
+import seedu.address.model.record.Record;
 import seedu.address.model.tag.Tag;
 
 import java.time.LocalDateTime;

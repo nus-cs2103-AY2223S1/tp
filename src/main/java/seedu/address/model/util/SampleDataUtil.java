@@ -13,8 +13,9 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Record;
-import seedu.address.model.person.RecordList;
+import seedu.address.model.record.Medication;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.RecordList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -65,6 +66,15 @@ public class SampleDataUtil {
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
                 .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a medication set containing the list of strings given.
+     */
+    public static Set<Medication> getMedicationSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Medication :: of)
                 .collect(Collectors.toSet());
     }
 

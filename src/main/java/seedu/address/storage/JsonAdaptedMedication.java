@@ -3,8 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Medication;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.record.Medication;
 
 /**
  * Jackson-friendly version of {@link Medication}.

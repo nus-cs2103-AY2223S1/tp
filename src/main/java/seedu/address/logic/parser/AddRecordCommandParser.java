@@ -11,8 +11,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddRecordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Medication;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Medication;
+import seedu.address.model.record.Record;
 
 /**
  * Parses input arguments and creates a new FindCommand object

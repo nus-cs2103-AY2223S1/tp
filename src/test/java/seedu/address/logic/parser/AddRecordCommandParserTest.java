@@ -15,7 +15,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddRecordCommand;
-import seedu.address.model.person.Record;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.record.Record;
 
 import java.time.LocalDateTime;
 
