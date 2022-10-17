@@ -16,6 +16,7 @@ import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
 import tuthub.model.tutor.StudentId;
 import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Year;
@@ -192,7 +193,7 @@ public class JsonAdaptedTutorTest {
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE, VALID_YEAR,
                         VALID_STUDENTID, VALID_COMMENT, VALID_TEACHINGNOMINATION,
                         INVALID_RATING, VALID_TAGS);
-        String expectedMessage = TeachingNomination.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Rating.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
 
@@ -202,7 +203,7 @@ public class JsonAdaptedTutorTest {
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_MODULE, VALID_YEAR,
                         VALID_STUDENTID, VALID_COMMENT, VALID_TEACHINGNOMINATION,
                         null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TeachingNomination.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Rating.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
 

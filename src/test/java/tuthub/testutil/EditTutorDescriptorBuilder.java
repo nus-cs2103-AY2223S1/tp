@@ -10,6 +10,7 @@ import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
 import tuthub.model.tutor.Phone;
+import tuthub.model.tutor.Rating;
 import tuthub.model.tutor.StudentId;
 import tuthub.model.tutor.TeachingNomination;
 import tuthub.model.tutor.Tutor;
@@ -42,6 +43,7 @@ public class EditTutorDescriptorBuilder {
         descriptor.setYear(tutor.getYear());
         descriptor.setStudentId(tutor.getStudentId());
         descriptor.setTeachingNomination(tutor.getTeachingNomination());
+        descriptor.setRating(tutor.getRating());
         descriptor.setTags(tutor.getTags());
     }
 
@@ -94,10 +96,18 @@ public class EditTutorDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code TeachingNomination} of the {@code EditTutotDescriptor} that we are building.
+     * Sets the {@code TeachingNomination} of the {@code EditTutorDescriptor} that we are building.
      */
     public EditTutorDescriptorBuilder withTeachingNomination(String teachingNomination) {
         descriptor.setTeachingNomination(new TeachingNomination(teachingNomination));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Rating} of the {@code EditTutorDescriptor} that we are building.
+     */
+    public EditTutorDescriptorBuilder withRating(String rating) {
+        descriptor.setRating(new Rating(rating));
         return this;
     }
 
