@@ -63,7 +63,7 @@ public class GuestCard extends UiPart<Region> {
         isRoomClean.setText("Room Cleaned: ");
 
         // Set graphic based on status of isRoomClean
-        if (guest.getIsRoomClean().value == "yes") {
+        if (guest.getIsRoomClean().value.equals("yes")) {
             Image image = new Image(getClass().getResourceAsStream("/images/roomClean.png"));
             ImageView setImage = new ImageView(image);
             setImage.setFitWidth(18);
