@@ -1,4 +1,4 @@
-package tuthub.model.person;
+package tuthub.model.tutor;
 
 public class TeachingNominationTest {
 }
