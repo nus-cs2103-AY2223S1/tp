@@ -61,4 +61,14 @@ public class Priority {
         return priority;
     }
 
+    /**
+     * Returns true if priority name is valid.
+     *
+     * @param test String to test.
+     * @return Whether the String is a valid priority name.
+     */
+    public static boolean isValidTaskPriority(String test) {
+        return PriorityEnum.getFromString(test).isPresent();
+    }
+
 }

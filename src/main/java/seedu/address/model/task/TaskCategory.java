@@ -8,17 +8,20 @@ import seedu.address.model.task.exceptions.LevelOutOfRangeException;
  * Represents the category of a task.
  */
 public class TaskCategory {
+    public static final Integer TASK_CATEGORY_LEVEL_LOWER_BOUND = 0;
+    public static final Integer TASK_CATEGORY_LEVEL_UPPER_BOUND = 5;
     public static final String MESSAGE_CONSTRAINTS =
-            "Category must be one of the following: " + TaskCategoryType.getValidTaskCategories();
-
-    private final int level;
+            "Category name must be one of the following: " + TaskCategoryType.getValidTaskCategories()
+            + " and category level must be >= " + TASK_CATEGORY_LEVEL_LOWER_BOUND.toString()
+            + " and <= " + TASK_CATEGORY_LEVEL_UPPER_BOUND.toString();
+    private final Integer level;
     private final TaskCategoryType taskCategoryType;
 
     /**
      * Constructor for TaskCategory
      */
-    public TaskCategory(int level, TaskCategoryType taskCategoryType) throws LevelOutOfRangeException {
-        if (level < 0 || level > 5) {
+    public TaskCategory(Integer level, TaskCategoryType taskCategoryType) throws LevelOutOfRangeException {
+        if (level < TASK_CATEGORY_LEVEL_LOWER_BOUND || level > TASK_CATEGORY_LEVEL_UPPER_BOUND) {
             throw new LevelOutOfRangeException();
         }
         requireNonNull(taskCategoryType);
@@ -78,6 +81,36 @@ public class TaskCategory {
                 || (other instanceof TaskCategory // instanceof handles nulls
                 && ((TaskCategory) other).level == this.level
                 && ((TaskCategory) other).taskCategoryType.equals(this.taskCategoryType));
+    }
+
+    /**
+     * Returns true if task category level is valid.
+     *
+     * @param test int to test.
+     * @return Whether the int is a valid task category level.
+     */
+    public static boolean isValidTaskCategoryLevel(String test) {
+        Integer value = Integer.parseInt(test);
+        return value >= TASK_CATEGORY_LEVEL_LOWER_BOUND && value <= TASK_CATEGORY_LEVEL_UPPER_BOUND ;
+    }
+
+    /**
+     * Returns true if task category name is valid.
+     *
+     * @param test String to test.
+     * @return Whether the String is a valid task category name.
+     */
+    public static boolean isValidTaskCategoryName(String test) {
+        return TaskCategoryType.getFromString(test).isPresent();
+    }
+
+    /**
+     * Returns the String form of a taskCategoryType.
+     *
+     * @return The taskCategoryType in String form.
+     */
+    public String getCategoryName() {
+        return this.taskCategoryType.toString();
     }
 
 }

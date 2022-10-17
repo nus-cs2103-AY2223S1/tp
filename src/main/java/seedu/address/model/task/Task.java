@@ -14,6 +14,9 @@ import seedu.address.model.person.Person;
  */
 public class Task {
     private static final String NO_PERSON_ASSIGNED = "NONE";
+    private static final String IS_DONE_TRUE_STRING = "true";
+    private static final String IS_DONE_FALSE_STRING = "false";
+    public static final String IS_DONE_MESSAGE_CONSTRAINT = "IsDone can only be true or false in String form";
 
     // Identity fields
     private TaskName name;
@@ -271,4 +274,37 @@ public class Task {
         return builder.toString();
     }
 
+    /**
+     * Returns the String representation of isDOne.
+     *
+     * @param isDone in Boolean form.
+     * @return isDone in String form.
+     */
+    public static String covertIsDoneFromBooleanToString(boolean isDone) {
+        return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
+    }
+
+    /**
+     * Returns the Boolean representation of isDOne.
+     *
+     * @param isDone in String form.
+     * @return isDone in Boolean form.
+     */
+    public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
+        if (isDone == IS_DONE_TRUE_STRING) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if test String is a valid isDone.
+     *
+     * @param test String to test.
+     * @return Whether the String is a valid isDone value.
+     */
+    public static boolean isValidIsDone(String test) {
+        return test == IS_DONE_TRUE_STRING || test == IS_DONE_FALSE_STRING;
+    }
 }
