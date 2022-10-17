@@ -3,10 +3,7 @@ package seedu.address.model.company;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCompany.ALICE;
 import static seedu.address.testutil.TypicalCompany.BOB;
@@ -32,7 +29,7 @@ public class CompanyTest {
         assertFalse(ALICE.isSameCompany(null));
 
         // same name, all other attributes different -> returns true
-        Company editedAlice = new CompanyBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Company editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameCompany(editedAlice));
 
@@ -72,12 +69,8 @@ public class CompanyTest {
         Company editedAlice = new CompanyBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new CompanyBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different email -> returns false
-        editedAlice = new CompanyBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        // different address -> returns false
+        editedAlice = new CompanyBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
@@ -88,9 +81,8 @@ public class CompanyTest {
     @Test
     public void toString_company_returnsValueInCompany() {
         Company company = new CompanyBuilder().withName("Alice Pauline")
-                .withEmail("alice@example.com")
-                .withPhone("94351253")
+                .withAddress("WCP Macs")
                 .withTags("friends").build();
-        assertEquals(company.toString(), "Alice Pauline; Phone: 94351253; Email: alice@example.com; Tags: [friends]");
+        assertEquals(company.toString(), "Alice Pauline; Address: WCP Macs; Tags: [friends]");
     }
 }

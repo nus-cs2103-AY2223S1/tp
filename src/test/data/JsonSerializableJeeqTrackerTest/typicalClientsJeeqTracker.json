@@ -15,8 +15,7 @@
     "tagged" : [ "owesMoney", "friends" ],
     "companies" : [ {
       "name" : "Benson Meier",
-      "phone" : "98765432",
-      "email" : "johnd@example.com",
+      "address" : "Bedok Mall",
       "tagged" : [ "owesMoney", "friends" ]
     } ]
   }, {
