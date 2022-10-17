@@ -75,15 +75,15 @@ Format: `help`
 
 Adds a tutor to the Tuthub.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENTID tn/TEACHING NOMINATIONS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3`
-* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com m/CS1101S y/3 p/1234567`
+* `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1`
+* `add n/Betsy Crowe t/senior ta e/betsycrowe@example.com m/CS1101S y/3 p/1234567 s/A0123456X tn/2`
 
 ### Listing all tutors : `list`
 
@@ -110,7 +110,7 @@ Examples:
 
 Edits an existing tutor in Tuthub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS] [t/TAG]…​`
 
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed tutor list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -122,6 +122,7 @@ Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st tutor to be 91234567 and johndoe@example.com respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
+* `edit 3 tn/2` Edits the number of teaching nominations of the 3rd tutor to be 2.
 
 ### Locating tutor by name: `find`
 
@@ -198,14 +199,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                            |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**           | `help`                                                                                                                                                      |
-| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S y/3 t/senior` |
-| **Comment**        | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                       |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                          |
-| **Find**           | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Alex`                                                                                                       |
-| **Find by Module** | `findbymodule KEYWORD [MORE_KEYWORDS]` <br> e.g., `findbymodule CS2100`                                                                                     |
-| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                         |
-| **List**           | `list`                                                                                                                                                      |
-| **Exit**           | `exit`                                                                                                                                                      |
+| Action             | Format, Examples                                                                                                                                                                                                 |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**           | `help`                                                                                                                                                                                                           |
+| **Add**            | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENTID tn/TEACHING NOMINATIONS [t/TAG]…​` <br> e.g., `add n/Betsy Crowe t/  e/betsycrowe@example.com  p/1234567 m/CS1101S s/A0123456X tn/1 y/3 t/senior` |
+| **Comment**        | `comment INDEX c/COMMENT` <br> e.g., `comment 1 c/Tasks not Finished`                                                                                                                                            |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENTID] [tn/TEACHING NOMINATIONS [t/TAG]…​` <br> e.g., `edit 3 m/CS2100 y/3 s/A0654729L`                                                      |
+| **Find**           | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find Alex`                                                                                                                                                            |
+| **Find by Module** | `findbymodule KEYWORD [MORE_KEYWORDS]` <br> e.g., `findbymodule CS2100`                                                                                                                                          |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                              |
+| **List**           | `list`                                                                                                                                                                                                           |
+| **Exit**           | `exit`                                                                                                                                                                                                           |
