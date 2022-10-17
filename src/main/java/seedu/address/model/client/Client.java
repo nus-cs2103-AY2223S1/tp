@@ -1,6 +1,5 @@
 package seedu.address.model.client;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -196,13 +195,16 @@ public class Client implements ReadOnlyClient {
         }
 
         TransactionLog transactions = getTransactions();
+        builder.append("; Total transactions: ");
 
-        builder.append("; Total transactions: $");
-        if (!isNull(transactions) && !transactions.isEmpty()) {
-            builder.append(transactions.calculateNetTransacted());
-        } else {
-            builder.append("0");
+        if (transactions == null || transactions.isEmpty()) {
+            builder.append("$0");
+            return builder.toString();
         }
+
+        double netTransaction = transactions.calculateNetTransacted();
+        builder.append(netTransaction < 0 ? "-$" : "$").append(Math.abs(netTransaction));
+
         return builder.toString();
     }
 
