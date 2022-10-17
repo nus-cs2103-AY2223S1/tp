@@ -68,9 +68,10 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
      * Adds an Exercise to the exercise tracker.
      * The Exercise can already exist in the exercise tracker.
      */
-    public void addExercise(Exercise p) {
+    public Exercise addExercise(Exercise p) {
         Exercise toAdd = exerciseHashMap.add(p);
         exerciseList.add(toAdd);
+        return toAdd;
     }
 
     /**

@@ -67,7 +67,7 @@ public interface Model {
      * Adds the given exercise.
      * {@code exercise} can already exist in the exercise tracker.
      */
-    void addExercise(Exercise exercise);
+    Exercise addExercise(Exercise exercise);
 
     /**
      * Replaces the given exercise {@code target} with {@code editedExercise}.

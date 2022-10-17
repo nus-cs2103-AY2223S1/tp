@@ -99,9 +99,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addExercise(Exercise exercise) {
-        exerciseTracker.addExercise(exercise);
+    public Exercise addExercise(Exercise exercise) {
+        Exercise added = exerciseTracker.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISES);
+        return added;
     }
 
     @Override

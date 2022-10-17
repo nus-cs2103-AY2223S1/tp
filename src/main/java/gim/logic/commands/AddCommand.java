@@ -30,7 +30,7 @@ public class AddCommand extends Command {
                     + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Squat " + PREFIX_WEIGHT + "60 " + PREFIX_SETS
                     + "1 " + PREFIX_REPS + "5 " + PREFIX_DATE + "25/01/2022";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New exercise '%s' added as: %s";
 
     private final Exercise toAdd;
 
@@ -45,9 +45,8 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.addExercise(toAdd);
-        // model need to return new 'toAdd' name
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        Exercise added = model.addExercise(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName().toString(), added));
     }
 
     @Override

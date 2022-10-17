@@ -36,7 +36,8 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validExercise).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExercise), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExercise.getName().toString(), validExercise),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validExercise), modelStub.exercisesAdded);
     }
 
@@ -99,7 +100,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addExercise(Exercise exercise) {
+        public Exercise addExercise(Exercise exercise) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -170,9 +171,10 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addExercise(Exercise exercise) {
+        public Exercise addExercise(Exercise exercise) {
             requireNonNull(exercise);
             exercisesAdded.add(exercise);
+            return exercise;
         }
 
         @Override

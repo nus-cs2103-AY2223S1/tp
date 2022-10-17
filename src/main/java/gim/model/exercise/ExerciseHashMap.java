@@ -52,11 +52,11 @@ public class ExerciseHashMap {
         }
         toAdd = new Exercise(storedName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
         exerciseHashMap.get(storedName).add(toAdd); // add Exercise to arraylist
-    //        for (Name name: exerciseHashMap.keySet()) {
-    //            String key = name.toString();
-    //            String value = exerciseHashMap.get(name).toString();
-    //            System.out.println(key + " " + value);
-    //        }
+        //        for (Name name: exerciseHashMap.keySet()) {
+        //            String key = name.toString();
+        //            String value = exerciseHashMap.get(name).toString();
+        //            System.out.println(key + " " + value);
+        //        }
         return toAdd;
     }
 

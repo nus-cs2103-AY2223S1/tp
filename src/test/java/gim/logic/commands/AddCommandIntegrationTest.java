@@ -29,10 +29,10 @@ public class AddCommandIntegrationTest {
         Exercise validExercise = new ExerciseBuilder().build();
 
         Model expectedModel = new ModelManager(model.getExerciseTracker(), new UserPrefs());
-        expectedModel.addExercise(validExercise);
+        Exercise added = expectedModel.addExercise(validExercise);
 
         assertCommandSuccess(new AddCommand(validExercise), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validExercise), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, validExercise.getName().toString(), added), expectedModel);
     }
 
 }
