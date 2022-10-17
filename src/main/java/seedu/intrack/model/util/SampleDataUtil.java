@@ -12,8 +12,8 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
-import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Remark;
+import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.tag.Tag;
 
 /**
