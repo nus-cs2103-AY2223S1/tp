@@ -11,6 +11,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ShowCommand;
+import seedu.address.model.person.DayIsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 
@@ -28,7 +29,7 @@ public class ShowCommandParserTest {
     public void parse_validArgs_returnsShowCommand() {
         // no leading and trailing whitespaces
         ShowCommand expectedShowCommand =
-                new ShowCommand(new NameContainsKeywordsPredicate(Arrays.asList("Mon")));
+                new ShowCommand(new DayIsKeywordPredicate("Mon"));
         assertParseSuccess(parser, "Mon", expectedShowCommand);
 
         // multiple whitespaces between keywords
