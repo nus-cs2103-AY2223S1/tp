@@ -20,22 +20,32 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     private Calorie calorieTarget = new Calorie(); // defaults calorie to 2000 on the first edit to the book
 
     private final List<Location> nusGymsLocations;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-    */
+     */
     {
         foods = new UniqueFoodList();
         nusGymsLocations = new ArrayList<>(List.of(
             new Location("MPSH", "1.3007599674153045, 103.77578206094384"),
             new Location("STEPHEN RIADY CENTRE", "1.304511666901411, 103.77205745840185"),
-            new Location("USC", "1.2998680145010344, 103.77528575803385")));
+            new Location("USC", "1.2998680145010344, 103.77528575803385"),
+            // https://goo.gl/maps/yHdjhHzPWx6eoRAAA
+            new Location("EUSOFF HALL", "1.2937696692719094, 103.77043696074193"),
+            // https://goo.gl/maps/5xx4jyh87QDcd83M8
+            new Location("TEMASEK HALL", "1.2930639982706684, 103.77084097639103"),
+            // https://goo.gl/maps/h4oQXbtMLyQeuPwM7
+            new Location("KENT RIDGE HALL", "1.2918512226940035, 103.77477995285786")
+        )
+        );
     }
 
-    public NutriGoals() {}
+    public NutriGoals() {
+    }
 
     /**
      * Creates NutriGoals using the Foods in the {@code toBeCopied}
@@ -118,6 +128,7 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         this.nusGymsLocations.clear();
         this.nusGymsLocations.addAll(nusGymsLocations);
     }
+
     @Override
     public List<Location> getGymLocations() {
         return new ArrayList<>(this.nusGymsLocations); // #defensive-programming
@@ -130,7 +141,6 @@ public class NutriGoals implements ReadOnlyNutriGoals {
     public Calorie getCalorieTarget() {
         return this.calorieTarget;
     }
-
 
 
     //// util methods

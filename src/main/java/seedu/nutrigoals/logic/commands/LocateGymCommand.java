@@ -15,7 +15,7 @@ public class LocateGymCommand extends Command {
     public static final String COMMAND_WORD = "locate";
     public static final String MESSAGE_USSAGE = COMMAND_WORD
         + ": Finds the nearest gym to your stated location\n"
-        + "Parameters: [COM2 | S17 | CLB | ]\n"
+        + "Parameters: [COM2 | S13 | S17 | CLB | USC | LT1 | AS6]\n"
         + "Example: " + COMMAND_WORD + " CLB";
     public static final String MESSAGE_LOCATE_SUCCESS = "Gyms (closest to furthest): \n%s";
     public final Location currentLocation;
@@ -36,7 +36,7 @@ public class LocateGymCommand extends Command {
         List<Location> nusGymLocations = model.getNusGymLocations();
         nusGymLocations.sort((l1, l2) -> l1.distTo(currentLocation).compareTo(l2.distTo(currentLocation)));
         StringBuilder sortedGyms = new StringBuilder();
-        for (int i = 0; i < nusGymLocations.size(); i++) {
+        for (int i = 0; i < Math.min(nusGymLocations.size(), 3); i++) {
             sortedGyms.append(i + 1).append(": ").append(nusGymLocations.get(i).toString()).append("\n");
         }
         return new CommandResult(String.format(MESSAGE_LOCATE_SUCCESS, sortedGyms));

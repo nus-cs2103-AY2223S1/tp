@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Food values as in TypicalFoods#getTypicalNutriGoals()",
+  "_comment": "NutriGoals save file which contains the same Food values as in TypicalFoods#getTypicalNutriGoals()",
   "foods" : [ {
     "calorie" : "2000",
     "tagged" : "breakfast",
