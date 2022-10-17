@@ -42,6 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_AMY = "Application Received";
     public static final String VALID_STATUS_BOB = "Rejected";
     public static final String VALID_NOTE_AMY = "She is strong at Python.";
+    public static final String VALID_NOTE_BOB = "He is not strong at Python.";
     public static final String VALID_RATING_AMY = "6";
     public static final String VALID_RATING_BOB = "4";
 
@@ -58,6 +59,7 @@ public class CommandTestUtil {
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
     public static final String NOTE_DESC_AMY = " " + PREFIX_NOTE + VALID_NOTE_AMY;
+    public static final String NOTE_DESC_BOB = " " + PREFIX_NOTE + VALID_NOTE_BOB;
     public static final String RATING_DESC_AMY = " " + PREFIX_RATING + VALID_RATING_AMY;
     public static final String RATING_DESC_BOB = " " + PREFIX_RATING + VALID_RATING_BOB;
 
@@ -66,6 +68,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_SKILLTAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + ""; // '@' not allowed in status
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "4.9";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

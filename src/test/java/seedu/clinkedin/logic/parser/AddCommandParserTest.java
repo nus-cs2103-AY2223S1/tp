@@ -13,6 +13,7 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.NOTE_DESC_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -54,7 +55,7 @@ public class AddCommandParserTest {
         AddCommand expectedCommand = new AddCommand(expectedPerson);
 
         AddCommand actualCommand = new AddCommandParser().parse(PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + RATING_DESC_BOB);
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + NOTE_DESC_BOB + RATING_DESC_BOB);
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + STATUS_DESC_BOB + RATING_DESC_BOB, new AddCommand(expectedPerson));
