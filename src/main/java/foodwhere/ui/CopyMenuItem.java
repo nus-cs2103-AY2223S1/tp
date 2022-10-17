@@ -42,8 +42,12 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_RATING:
                 // fallthrough
             default:
-                throw new RuntimeException("Invalid type!");
+                CopyMenuItem.throwRunTimeError();
+                break;
             }
+
+            // should not reach here.
+            return null;
         }
 
         /**
@@ -68,8 +72,12 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_ADDRESS:
                 // fallthrough
             default:
-                throw new RuntimeException("Invalid type!");
+                CopyMenuItem.throwRunTimeError();
+                break;
             }
+
+            // should not reach here.
+            return null;
         }
     }
 
@@ -89,7 +97,7 @@ public class CopyMenuItem<T> extends MenuItem {
         this.setOnAction();
     }
 
-    private void setError() {
+    private static void throwRunTimeError() {
         throw new RuntimeException("Invalid type!");
     }
 
@@ -105,14 +113,14 @@ public class CopyMenuItem<T> extends MenuItem {
         } else if (this.item instanceof Review) {
             result = this.action.describeReview((Review) this.item, this.action);
         } else {
-            setError();
+            CopyMenuItem.throwRunTimeError();
         }
 
-        content.putString(result);
-
-        if (content.hasString()) {
+        if (result != null && !result.isEmpty()) {
+            content.putString(result);
             super.setOnAction((ActionEvent actionEvent) -> this.clipboard.setContent(content));
         }
     }
 
 }
+
