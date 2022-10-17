@@ -168,11 +168,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleSwap() throws CommandException {
-        try {
-            logic.swapAddressBook();
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
+        logic.swapAddressBook();
     }
 
     /**
