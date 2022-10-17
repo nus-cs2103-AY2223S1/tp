@@ -37,6 +37,8 @@ import seedu.address.model.tutorial.TutorialVenue;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String WEEKLY_TIMESLOT_CONSTRAINTS_TIMES =
+            "Times should be in HH:mm-HH:mm format, e.g. 08:00-09:00";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -337,6 +339,9 @@ public class ParserUtil {
     public static DatetimeRange parseDatetimeRange(String datetimeRangeString) throws ParseException {
         requireNonNull(datetimeRangeString);
         String[] times = datetimeRangeString.trim().split("-");
+        if (times.length != 2) {
+            throw new ParseException(WEEKLY_TIMESLOT_CONSTRAINTS_TIMES);
+        }
         String startTime = times[0];
         String endTime = times[1];
         if (!DatetimeRange.isValidDatetimeRange(startTime.trim(), endTime.trim())) {
@@ -344,6 +349,7 @@ public class ParserUtil {
         }
         return new DatetimeRange(startTime, endTime);
     }
+
 
     /**
      * Parses a {@code String timeslot} into a {@code TutorialTimeslot}.
@@ -356,7 +362,7 @@ public class ParserUtil {
         requireNonNull(timeslot);
         String[] times = timeslot.trim().split("-");
         if (times.length != 2) {
-            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
+            throw new ParseException(WEEKLY_TIMESLOT_CONSTRAINTS_TIMES);
         }
         String startTime = times[0];
         String endTime = times[1];
@@ -364,7 +370,7 @@ public class ParserUtil {
             throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_DAY);
         }
         if (!WeeklyTimeslot.isValidTimeRange(startTime, endTime)) {
-            throw new ParseException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
+            throw new ParseException(WEEKLY_TIMESLOT_CONSTRAINTS_TIMES);
         }
         return new WeeklyTimeslot(day, startTime, endTime);
     }
