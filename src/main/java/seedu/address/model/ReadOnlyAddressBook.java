@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -20,5 +21,10 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate appointments.
      */
     ObservableList<Appointment> getAppointmentList();
+
+    /**
+     * Returns an unmodifiable view of the bills list.
+     */
+    ObservableList<Bill> getBillList();
 
 }

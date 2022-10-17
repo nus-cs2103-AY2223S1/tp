@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
@@ -199,7 +200,42 @@ public class AddPatientCommandTest {
 
         @Override
         public void deleteRelativeAppointments(Patient patient) {
-            //TODO
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasBill(Bill bill) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteBill(Bill target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBill(Bill bill) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBill(Bill target, Bill editedBill) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Bill> getFilteredBillList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBillList(Predicate<Bill> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRelativeBills(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
