@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalStudents.STUDENT2;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
 
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +67,10 @@ public class StudentTest {
         // different next of kin -> returns false
         editedStudent1 = new StudentBuilder(STUDENT1).withNextOfKin("Jean Zin").build();
         assertFalse(STUDENT1.equals(editedStudent1));
+
+        // different tuition classes -> returns false
+        editedStudent1 = new StudentBuilder(STUDENT1).withTuitionClasses(TUITIONCLASS1).build();
+        assertFalse(STUDENT1.equals(editedStudent1));
     }
 
     @Test
@@ -75,7 +80,8 @@ public class StudentTest {
                 + "; Tags: " + "[friends]"
                 + "; School: " + "Keming Primary School"
                 + "; Level: " + "Primary 3"
-                + "; Next of kin: " + "Teresa Lim";
+                + "; Next of kin: " + "Teresa Lim"
+                + "; Tags: " + "[friends]";
         assertEquals(str, STUDENT1.toString());
     }
 }

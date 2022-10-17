@@ -13,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUALIFICATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUALIFICATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +34,7 @@ public class TypicalTutors {
             .withTags("friends")
             .withQualification("Bachelor of Computing")
             .withInstitution("National University of Singapore")
+            .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
             .build();
 
     public static final Tutor TUTOR2 = new TutorBuilder().withName("Benson Meier")
@@ -40,6 +43,7 @@ public class TypicalTutors {
             .withTags("owesMoney", "friends")
             .withQualification("Bachelor of Engineering")
             .withInstitution("Nanyang Technological University")
+            .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
             .build();
 
     public static final Tutor AMY_TUTOR = new TutorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
