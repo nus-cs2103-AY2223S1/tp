@@ -66,6 +66,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the bill list with {@code bills}.
+     * {@code patients} must not contain duplicate patients.
+     */
+    public void setBills(List<Bill> bills) {
+        this.bills.setBills(bills);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -73,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPatients(newData.getPatientList());
         setAppointments(newData.getAppointmentList());
+        setBills(newData.getBillList());
     }
 
     //// patient-level operations
