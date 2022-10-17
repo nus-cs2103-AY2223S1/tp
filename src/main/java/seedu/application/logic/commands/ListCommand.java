@@ -1,7 +1,6 @@
 package seedu.application.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import seedu.application.model.HideArchiveFromListPredicate;
 import seedu.application.model.Model;

@@ -12,6 +12,7 @@ import seedu.application.model.application.Application;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
+    //deprecated
     Predicate<Application> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 
     /**

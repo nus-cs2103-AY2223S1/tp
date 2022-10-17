@@ -33,12 +33,20 @@ public class ModelManager implements Model {
 
         this.applicationBook = new ApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
+        filteredApplications = initialiseFilterList(this.applicationBook);
         filteredArchives = new FilteredList<>(this.applicationBook.getArchiveList());
     }
 
     public ModelManager() {
         this(new ApplicationBook(), new UserPrefs());
+    }
+
+    private static FilteredList<Application> initialiseFilterList(ApplicationBook applicationBook) {
+        HideArchiveFromListPredicate hideArchiveFromListPredicate =
+                new HideArchiveFromListPredicate(applicationBook.getArchiveList());
+        FilteredList<Application> initialList = new FilteredList<>(applicationBook.getApplicationList());
+        initialList.setPredicate(hideArchiveFromListPredicate);
+        return initialList;
     }
 
     //=========== UserPrefs ==================================================================================

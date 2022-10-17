@@ -6,7 +6,6 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +14,7 @@ import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.commons.util.CollectionUtil;
 import seedu.application.logic.commands.exceptions.CommandException;
+import seedu.application.model.HideArchiveFromListPredicate;
 import seedu.application.model.Model;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
@@ -81,7 +81,9 @@ public class EditCommand extends Command {
         }
 
         model.setApplication(applicationToEdit, editedApplication);
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        HideArchiveFromListPredicate hideArchiveFromListPredicate =
+                new HideArchiveFromListPredicate(model.getArchiveList());
+        model.updateFilteredApplicationList(hideArchiveFromListPredicate);
         return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
     }
 
