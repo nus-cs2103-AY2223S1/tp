@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateItinerary_throwsCommandException() {
         Itinerary itineraryInList = model.getWaddle().getItineraryList().get(0);
         assertCommandFailure(new AddCommand(itineraryInList), model, AddCommand.MESSAGE_DUPLICATE_ITINERARY);
     }

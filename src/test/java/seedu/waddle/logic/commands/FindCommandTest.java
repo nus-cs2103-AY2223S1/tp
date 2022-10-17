@@ -65,13 +65,13 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_ITINERARIES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Spring Summer Winter");
+    public void execute_multipleKeywords_multipleItinerariesFound() {
+        String expectedMessage = String.format(MESSAGE_ITINERARIES_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicate = preparePredicate("Spring Summer");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredItineraryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(SPRING, SUMMER, WINTER), model.getFilteredItineraryList());
+        assertEquals(Arrays.asList(SUMMER, SPRING), model.getFilteredItineraryList());
     }
 
     /**

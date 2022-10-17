@@ -25,10 +25,7 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalWaddle(), new UserPrefs());
-        // should the expected waddle only contain the first typical itinerary?
-        Waddle expectedWaddle = new Waddle();
-        expectedWaddle.addItinerary(SUMMER);
-        expectedModel = new ModelManager(expectedWaddle, new UserPrefs());
+        expectedModel = new ModelManager(model.getWaddle(), new UserPrefs());
     }
 
     @Test

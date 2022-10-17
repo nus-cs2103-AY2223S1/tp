@@ -12,7 +12,7 @@ public class People {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Number of people should only contain numbers";
-    public static final String VALIDATION_REGEX = "\\d";
+    public static final String VALIDATION_REGEX = "\\d*";
 
     public final String numOfPeople;
 

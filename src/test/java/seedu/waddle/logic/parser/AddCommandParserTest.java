@@ -54,35 +54,36 @@ public class AddCommandParserTest {
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple phones - last phone accepted
+        // multiple country - last phone accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_SUMMER + COUNTRY_DESC_WINTER
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple emails - last email accepted
+        // multiple people - last people accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + PEOPLE_DESC_WINTER + START_DATE_DESC_SUMMER
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple addresses - last address accepted
+        // multiple end date - last address accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
                 + END_DATE_DESC_SUMMER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple tags - all accepted
-        Itinerary expectedPersonMultipleTags = new ItineraryBuilder(WINTER).build();
+        Itinerary expectedItineraryMultipleTags = new ItineraryBuilder(WINTER).build();
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
                 + END_DATE_DESC_WINTER + PEOPLE_DESC_SUMMER + PEOPLE_DESC_WINTER,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedItineraryMultipleTags));
     }
 
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
-        Itinerary expectedItinerary = new ItineraryBuilder(SUMMER).build();
-        assertParseSuccess(parser, NAME_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
-                + END_DATE_DESC_SUMMER, new AddCommand(expectedItinerary));
-    }
+    //TODO: currently no optional fields
+//    @Test
+//    public void parse_optionalFieldsMissing_success() {
+//        // zero tags
+//        Itinerary expectedItinerary = new ItineraryBuilder(SUMMER).build();
+//        assertParseSuccess(parser, NAME_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
+//                + END_DATE_DESC_SUMMER, new AddCommand(expectedItinerary));
+//    }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {

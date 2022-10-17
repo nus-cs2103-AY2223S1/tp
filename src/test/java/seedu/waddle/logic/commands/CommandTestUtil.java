@@ -27,24 +27,34 @@ import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 public class CommandTestUtil {
     public static final String VALID_NAME_SUMMER = "Summer Trip";
     public static final String VALID_NAME_WINTER = "Winter Trip";
+    public static final String VALID_NAME_TEST = "Test Name";
     public static final String VALID_COUNTRY_SUMMER = "Sweden";
     public static final String VALID_COUNTRY_WINTER = "Japan";
+    public static final String VALID_COUNTRY_TEST = "Test Country";
     public static final String VALID_START_DATE_SUMMER = "2022-08-01";
     public static final String VALID_START_DATE_WINTER = "2023-01-01";
+    public static final String VALID_START_DATE_TEST = "2011-11-11";
     public static final String VALID_END_DATE_SUMMER = "2022-08-26";
     public static final String VALID_END_DATE_WINTER = "2023-01-31";
+    public static final String VALID_END_DATE_TEST = "2012-12-12";
     public static final String VALID_PEOPLE_SUMMER = "5";
     public static final String VALID_PEOPLE_WINTER = "10";
+    public static final String VALID_PEOPLE_TEST = "69";
     public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
     public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;
+    public static final String NAME_DESC_TEST = " " + PREFIX_NAME + VALID_NAME_TEST;
     public static final String COUNTRY_DESC_SUMMER = " " + PREFIX_COUNTRY + VALID_COUNTRY_SUMMER;
     public static final String COUNTRY_DESC_WINTER = " " + PREFIX_COUNTRY + VALID_COUNTRY_WINTER;
+    public static final String COUNTRY_DESC_TEST = " " + PREFIX_COUNTRY + VALID_COUNTRY_TEST;
     public static final String START_DATE_DESC_SUMMER = " " + PREFIX_START_DATE + VALID_START_DATE_SUMMER;
     public static final String START_DATE_DESC_WINTER = " " + PREFIX_START_DATE + VALID_START_DATE_WINTER;
+    public static final String START_DATE_DESC_TEST = " " + PREFIX_START_DATE + VALID_START_DATE_TEST;
     public static final String END_DATE_DESC_SUMMER = " " + PREFIX_END_DATE + VALID_END_DATE_SUMMER;
     public static final String END_DATE_DESC_WINTER = " " + PREFIX_END_DATE + VALID_END_DATE_WINTER;
+    public static final String END_DATE_DESC_TEST = " " + PREFIX_END_DATE + VALID_END_DATE_TEST;
     public static final String PEOPLE_DESC_SUMMER = " " + PREFIX_PEOPLE + VALID_PEOPLE_SUMMER;
     public static final String PEOPLE_DESC_WINTER = " " + PREFIX_PEOPLE + VALID_PEOPLE_WINTER;
+    public static final String PEOPLE_DESC_TEST = " " + PREFIX_PEOPLE + VALID_PEOPLE_TEST;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Family Trip&"; // '&' not allowed in names
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
