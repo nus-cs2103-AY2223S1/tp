@@ -46,8 +46,7 @@ public class SelectPatientCommand extends Command {
 
         Patient patientToSelect = lastShownList.get(index.getZeroBased());
 
-        model.updateFilteredAppointmentList(
-                appointment -> appointment.getName().equals(patientToSelect.getName()));
+        model.selectPatient(patientToSelect);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToSelect));
     }
 

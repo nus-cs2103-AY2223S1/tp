@@ -86,6 +86,12 @@ public interface Model {
      */
     void setPatient(Patient target, Patient editedPatient);
 
+    /**
+     * Updates the FilteredAppointmentList so that it includes the given patient's appointments only.
+     * @param patient The given patient.
+     */
+    void selectPatient(Patient patient);
+
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
 

@@ -22,6 +22,8 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s).";
+    public static final String MESSAGE_APPOINTING_PATIENT_NOT_EXIST =
+            "Appointing patient does not exist in the patients list.";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
@@ -65,6 +67,9 @@ class JsonSerializableAddressBook {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
             if (addressBook.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
+            if (!addressBook.hasPatient(appointment.getName())) {
+                throw new IllegalValueException(MESSAGE_APPOINTING_PATIENT_NOT_EXIST);
             }
             addressBook.addAppointment(appointment);
         }

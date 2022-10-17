@@ -118,6 +118,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void selectPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }

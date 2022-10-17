@@ -137,6 +137,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void selectPatient(Patient patient) {
+        updateFilteredAppointmentList(appointment -> appointment.getName().equals(patient.getName()));
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         addressBook.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);

@@ -39,6 +39,14 @@ public class UniquePatientList implements Iterable<Patient> {
     }
 
     /**
+     * Returns true if the list contains an equivalent patient as the given argument.
+     */
+    public boolean contains(Name name) {
+        requireNonNull(name);
+        return internalList.stream().anyMatch(patient -> patient.getName().equals(name));
+    }
+
+    /**
      * Adds a patient to the list.
      * The patient must not already exist in the list.
      */

@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.exceptions.DuplicateAppointmentException;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.AppointmentBuilder;
@@ -75,7 +76,8 @@ public class AddressBookTest {
 
     @Test
     public void hasPatient_nullPatient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPatient(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPatient((Patient) null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPatient((Name) null));
     }
 
     @Test
@@ -84,8 +86,13 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPatient_patientNotInAddressBook_returnsFalse() {
+    public void hasPatientPatient_patientNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPatient(ALICE));
+    }
+
+    @Test
+    public void hasPatientName_patientNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPatient(ALICE.getName()));
     }
 
     @Test
@@ -94,9 +101,15 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPatient_patientInAddressBook_returnsTrue() {
+    public void hasPatientPatient_patientInAddressBook_returnsTrue() {
         addressBook.addPatient(ALICE);
         assertTrue(addressBook.hasPatient(ALICE));
+    }
+
+    @Test
+    public void hasPatientName_patientInAddressBook_returnsTrue() {
+        addressBook.addPatient(ALICE);
+        assertTrue(addressBook.hasPatient(ALICE.getName()));
     }
 
     @Test
