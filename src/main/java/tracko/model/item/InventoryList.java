@@ -30,6 +30,23 @@ public class InventoryList implements Iterable<Item> {
     }
 
     /**
+     * Returns an item with the given item name.
+     * @param itemName The given item name
+     * @returns An item with the given item name.
+     * @throws ItemNotFoundException if item is not found
+     */
+    public Item get(String itemName) {
+
+        for (Item item : this) {
+            if (item.nameMatches(itemName)) {
+                return item;
+            }
+        }
+
+        throw new ItemNotFoundException();
+    }
+
+    /**
      * Deletes an item from the inventory list.
      * @param toDelete Item to be deleted from the list
      */

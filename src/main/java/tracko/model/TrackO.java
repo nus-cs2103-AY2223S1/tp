@@ -51,6 +51,8 @@ public class TrackO implements ReadOnlyTrackO {
         setOrders(newData.getOrderList());
     }
 
+    // ORDER METHODS =======================================================================
+
     /**
      * Adds an order to be tracked.
      * @param order The order to be added
@@ -67,12 +69,27 @@ public class TrackO implements ReadOnlyTrackO {
         orders.delete(order);
     }
 
+    @Override
+    public ObservableList<Order> getOrderList() {
+        return orders.asUnmodifiableObservableList();
+    }
+
+    // ITEM METHODS =======================================================================
+
     /**
      * Adds an item to be tracked.
      * @param item The item to be added
      */
     public void addItem(Item item) {
         items.add(item);
+    }
+
+    /**
+     * Returns an item that has the given item name.
+     * @param itemName The given item name
+     */
+    public Item getItem(String itemName) {
+        return items.get(itemName);
     }
 
     /**
@@ -100,11 +117,6 @@ public class TrackO implements ReadOnlyTrackO {
         requireNonNull(editedItem);
 
         items.setItem(target, editedItem);
-    }
-
-    @Override
-    public ObservableList<Order> getOrderList() {
-        return orders.asUnmodifiableObservableList();
     }
 
     @Override

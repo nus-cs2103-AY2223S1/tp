@@ -52,6 +52,13 @@ public class Item {
     }
 
     /**
+     * Returns true if given item name is the same name.
+     */
+    public boolean nameMatches(String itemName) {
+        return itemName.equals(this.itemName.toString());
+    }
+
+    /**
      * Returns true if both items have the same name.
      * This defines a weaker notion of equality between two items.
      */

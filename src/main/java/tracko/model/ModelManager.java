@@ -81,8 +81,6 @@ public class ModelManager implements Model {
 
     //=========== TrackO ==============================================================================
 
-    // TODO: add items related methods
-
     @Override
     public void setTrackO(ReadOnlyTrackO trackO) {
         this.trackO.resetData(trackO);
@@ -92,6 +90,8 @@ public class ModelManager implements Model {
     public ReadOnlyTrackO getTrackO() {
         return trackO;
     }
+
+    // ORDER METHODS ========================================================================================
 
     @Override
     public void addOrder(Order order) {
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
         return trackO.getOrderList();
     }
 
-    //=========== Filtered Order List Accessors =============================================================
+    // FILTERED ORDER LIST ACCESSORS ========================================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
@@ -125,9 +125,16 @@ public class ModelManager implements Model {
         filteredOrders.setPredicate(predicate);
     }
 
+    // ITEM METHODS ==========================================================================================
+
     @Override
     public void addItem(Item item) {
         trackO.addItem(item);
+    }
+
+    @Override
+    public Item getItem(String itemName) {
+        return trackO.getItem(itemName);
     }
 
     @Override
@@ -147,6 +154,8 @@ public class ModelManager implements Model {
 
         trackO.setItem(target, editedItem);
     }
+
+    // FILTERED ITEM LIST ACCESSORS ======================================================================
 
     @Override
     public ObservableList<Item> getFilteredItemList() {

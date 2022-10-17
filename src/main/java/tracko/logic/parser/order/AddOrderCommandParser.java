@@ -81,9 +81,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOrderCommand.MESSAGE_USAGE_2));
         }
 
-        String item = argMultimap.getValue(PREFIX_ITEM).get();
+        String itemName = argMultimap.getValue(PREFIX_ITEM).get();
         Integer quantity = Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get());
-        command.addToItemList(new ItemQuantityPair(item, quantity));
+        command.stageForValidation(itemName, quantity);
 
         return command;
     }
