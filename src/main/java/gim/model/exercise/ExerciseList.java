@@ -13,50 +13,52 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A list of exercises that enforces uniqueness between its elements and does not allow nulls.
- * A exercise is considered unique by comparing using {@code Exercise#isSameExercise(Exercise)}. As such,
- * adding and updating of exercises uses Exercise#isSameExercise(Exercise) for equality so as to ensure that the
- * exercise being added or updated is unique in terms of identity in the UniqueExerciseList. However, the removal of an
- * exercise uses Exercise#equals(Object) so as to ensure that the exercise with exactly the same fields will be removed.
+ * A list of exercises that does not allow nulls.
  *
  * Supports a minimal set of list operations.
  *
- * @see Exercise#isSameExercise(Exercise)
  */
-public class UniqueExerciseList implements Iterable<Exercise> {
+public class ExerciseList implements Iterable<Exercise> {
 
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private HashMap<Name, ArrayList<Exercise>> hashMap;
+    /**
+     * An Exercise HashMap to categorise Exercises, with the same Name, together. For instance, if a user adds an
+     * Exercise with Name.toString() == 'Squat' and another Exercise with Name.toString() == 'squat', they will be put
+     * into the exerciseHashMap under the same key 'Squat', where 'Squat' is a Name object.
+     *
+     * Two Names are equal if, after removal of whitespaces and being set to lowercase, their String values are equal.
+     */
+    private HashMap<Name, ArrayList<Exercise>> exerciseHashMap;
 
-    public UniqueExerciseList() {
-        hashMap = new HashMap<>();
+    public ExerciseList() {
+        exerciseHashMap = new HashMap<>();
     }
 
     public HashMap<Name, ArrayList<Exercise>> getHashMap() {
-        return hashMap;
+        return exerciseHashMap;
     }
 
     /**
-     * Returns true if the list contains an equivalent exercise as the given argument.
+     * Returns true if the Exercise in the given argument has a Name equal to a Name in the exerciseHashMap key-set.
      */
     public boolean contains(Exercise toCheck) {
         requireNonNull(toCheck);
-        return hashMap.containsKey(toCheck.getName());
+        return exerciseHashMap.containsKey(toCheck.getName());
     }
 
     /**
-     * Adds an exercise to the list.
-     * The exercise must not already exist in the list.
+     * Adds an Exercise to the List and exerciseHashMap.
+     * If the Exercise already exists, i.e. two Exercises with the same Name, categorise them together.
      */
     public void add(Exercise toAdd) {
         Name storedName = toAdd.getName();
         requireNonNull(toAdd);
         if (!contains(toAdd)) {
-            hashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
+            exerciseHashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
         } else {
-            for (Name key : hashMap.keySet()) { // Store exercise with name of first exercise instance
+            for (Name key : exerciseHashMap.keySet()) { // Store exercise with name of first exercise instance
                 if (storedName.equals(key)) {
                     storedName = key;
                     break;
@@ -64,16 +66,16 @@ public class UniqueExerciseList implements Iterable<Exercise> {
             }
         }
         toAdd = new Exercise(storedName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
-        hashMap.get(storedName).add(toAdd); // add Exercise to arraylist
+        exerciseHashMap.get(storedName).add(toAdd); // add Exercise to arraylist
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the exercise {@code target} in the list with {@code editedExercise}.
+     * Replaces the Exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the list.
-     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the list.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
+        // Might be removing this?
         requireAllNonNull(target, editedExercise);
 
         int index = internalList.indexOf(target);
@@ -85,38 +87,37 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     /**
-     * Removes the equivalent exercise from the list.
-     * The exercise must exist in the list.
+     * Removes the equivalent Exercise from the List and exerciseHashMap.
+     * The Exercise must exist in both the List and the exerciseHashMap.
      */
     public void remove(Exercise toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        if (!internalList.remove(toRemove) || !exerciseHashMap.get(toRemove.getName()).remove(toRemove)) {
             throw new ExerciseNotFoundException();
         }
-        hashMap.get(toRemove.getName()).remove(toRemove);
-        if (hashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
-            hashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
+        if (exerciseHashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
+            exerciseHashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
         }
     }
 
-    public void setExercises(UniqueExerciseList replacement) {
+    public void setExercises(ExerciseList replacement) {
         requireNonNull(replacement);
-        hashMap = replacement.getHashMap();
+        exerciseHashMap = replacement.getHashMap();
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code exercises}.
-     * {@code exercises} must not contain duplicate exercises.
+     * Replaces the contents of this List and exerciseHashMap with {@code exercises}.
      */
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
+        //        exerciseHashMap = new HashMap<>();
         for (Exercise e : exercises) {
             Name storedName = e.getName();
             if (!contains(e)) {
-                hashMap.put(e.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
+                exerciseHashMap.put(e.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
             } else {
-                for (Name key : hashMap.keySet()) { // Store exercise with name of first exercise instance
+                for (Name key : exerciseHashMap.keySet()) { // Store exercise with name of first exercise instance
                     if (storedName.equals(key)) {
                         storedName = key;
                         break;
@@ -124,7 +125,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
                 }
             }
             e = new Exercise(storedName, e.getWeight(), e.getSets(), e.getReps(), e.getDate());
-            hashMap.get(storedName).add(e); // add Exercise to arraylist
+            exerciseHashMap.get(storedName).add(e); // add Exercise to arraylist
         }
         internalList.setAll(exercises);
     }
@@ -144,8 +145,8 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueExerciseList // instanceof handles nulls
-                        && internalList.equals(((UniqueExerciseList) other).internalList));
+                || (other instanceof ExerciseList // instanceof handles nulls
+                        && internalList.equals(((ExerciseList) other).internalList));
     }
 
     @Override
