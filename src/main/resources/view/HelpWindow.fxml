@@ -22,7 +22,7 @@
       </stylesheets>
       <VBox fx:id="helpMessageContainer" minWidth="100.0" prefHeight="500.0" prefWidth="600.0">
         <children>
-        <HBox alignment="CENTER">
+        <HBox fx:id="helpHeaderContainer" alignment="CENTER">
           <children>
             <Label fx:id="helpMessage" text="Label">
                 <HBox.margin>
@@ -43,9 +43,9 @@
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
           </HBox>
-          <Label styleClass="help-label" text="General" style="-fx-padding: 0 12 2 12;" />
+          <Label styleClass="help-label" text="General" />
           <Accordion fx:id="generalAccordion" maxHeight="-Infinity" prefWidth="288.0" />
-          <Label styleClass="help-label" text="Profiles" style="-fx-padding: 6 12 2 12;" />
+          <Label styleClass="help-label" text="Profiles" />
           <Accordion fx:id="profileAccordion" maxHeight="-Infinity" prefWidth="288.0" />
         </children>
       </VBox>

@@ -18,15 +18,16 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-#profileAccordion {
-    -fx-background-color: transparent;
+#helpHeaderContainer {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: derive(#1d1d1d, 10%);
 }
 
 .help-label {
     -fx-text-fill: white;
     -fx-font-size: 14;
+    -fx-padding: 6 12 2 12;
 }
-
 
 /* Adapted from https://stackoverflow.com/questions/21451386/titled-pane-css-settings */
 .titled-pane {
@@ -62,7 +63,7 @@
 }
 
 .titled-pane > *.content {
-    -fx-background-color: #222;
+    -fx-background-color: derive(#1d1d1d, 10%);
     -fx-border-color: transparent;
     -fx-background-insets: 0, 0 1 1 1;
     -fx-padding: 4.0;
