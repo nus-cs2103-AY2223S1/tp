@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.DayIsKeywordPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
@@ -19,9 +20,9 @@ public class ShowCommandParser implements Parser<ShowCommand> {
      */
     public static boolean isValidArgument(String args) {
         String trimmedArgs = args.trim();
-        String[] validargs = new String[] {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
-        for (int i = 0; i < validargs.length; i++) {
-            if ((validargs[i].toLowerCase()).equals(trimmedArgs.toLowerCase())) {
+        String[] validArgs = new String[] {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+        for (int i = 0; i < validArgs.length; i++) {
+            if (validArgs[i].equalsIgnoreCase(trimmedArgs)) {
                 return true;
             }
         }
@@ -40,9 +41,8 @@ public class ShowCommandParser implements Parser<ShowCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE));
         }
 
-        String dayKeywords = trimmedArgs;
+        String dayKeyword = trimmedArgs;
 
-        //NameContainsKeywordsPredicate to be changed to DayContainsKeywordsPredicate
-        return new ShowCommand(new NameContainsKeywordsPredicate(Arrays.asList(dayKeywords)));
+        return new ShowCommand(new DayIsKeywordPredicate(dayKeyword));
     }
 }

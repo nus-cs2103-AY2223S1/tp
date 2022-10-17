@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.DayIsKeywordPredicate;
 
 
 /**
@@ -27,11 +27,10 @@ public class ShowCommandTest {
 
     @Test
     public void equals() {
-        // NameContainsKeywordsPredicate to be changed to DayContainsKeywordsPredicate
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        DayIsKeywordPredicate firstPredicate =
+                new DayIsKeywordPredicate("first");
+        DayIsKeywordPredicate secondPredicate =
+                new DayIsKeywordPredicate("second");
 
         ShowCommand showFirstCommand = new ShowCommand(firstPredicate);
         ShowCommand showSecondCommand = new ShowCommand(secondPredicate);
@@ -56,7 +55,7 @@ public class ShowCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        DayIsKeywordPredicate predicate = preparePredicate(" ");
         ShowCommand command = new ShowCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,9 +64,9 @@ public class ShowCommandTest {
 
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code DayisKeywordPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private DayIsKeywordPredicate preparePredicate(String userInput) {
+        return new DayIsKeywordPredicate(userInput);
     }
 }
