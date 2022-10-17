@@ -33,7 +33,8 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory)
+            throws CommandException {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
         UniqueInternshipList internshipsToRemove;
@@ -47,6 +48,9 @@ public class DeleteCommand extends Command {
         for (Internship internshipToDelete : internshipsToRemove) {
             model.deleteInternship(internshipToDelete);
         }
+
+        model.commitInternshipBookChange();
+        commandHistory.setLastCommandAsModify();
 
         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipsToRemove));
     }

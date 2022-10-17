@@ -36,7 +36,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Internship> lastShownList = model.getFilteredInternshipList();
         UniqueInternshipList targetInternships;
