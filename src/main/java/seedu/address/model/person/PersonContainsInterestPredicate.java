@@ -6,12 +6,12 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches all the tags (case-insensitive) specified by Student.
+ * Tests that a {@code Person}'s {@code Interest} matches all the interests (case-insensitive) specified by Student.
  */
-public class PersonContainsTagPredicate implements Predicate<Person> {
+public class PersonContainsInterestPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
-    public PersonContainsTagPredicate(List<String> keywords) {
+    public PersonContainsInterestPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -22,10 +22,10 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
             return false;
         }
 
-        Set<String> personTagNameSet = person
-                .getTags()
+        Set<String> personInterestSet = person
+                .getInterests()
                 .stream()
-                .map(tag -> tag.tagName)
+                .map(interest -> interest.interestName)
                 .map(String::toLowerCase)
                 .collect(Collectors.toSet());
 
@@ -34,14 +34,14 @@ public class PersonContainsTagPredicate implements Predicate<Person> {
                 .map(String::toLowerCase)
                 .collect(Collectors.toSet());
 
-        return personTagNameSet.containsAll(lowerCaseKeywords);
+        return personInterestSet.containsAll(lowerCaseKeywords);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PersonContainsTagPredicate // instanceof handles nulls
-                && keywords.equals(((PersonContainsTagPredicate) other).keywords)); // state check
+                || (other instanceof PersonContainsInterestPredicate // instanceof handles nulls
+                && keywords.equals(((PersonContainsInterestPredicate) other).keywords)); // state check
     }
 
 }
