@@ -1,78 +1,62 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_CAITIE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DOCTOR_DECKER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_TEST_7;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICAL_TEST_8;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_7;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SLOT_8;
-import static seedu.address.testutil.TypicalPatients.ALICE;
-import static seedu.address.testutil.TypicalPatients.BENSON;
-import static seedu.address.testutil.TypicalPatients.CARL;
-import static seedu.address.testutil.TypicalPatients.DANIEL;
-import static seedu.address.testutil.TypicalPatients.ELLE;
-import static seedu.address.testutil.TypicalPatients.FIONA;
-import static seedu.address.testutil.TypicalPatients.getTypicalPatientsAddressBook;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_2;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_3;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_4;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_5;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_6;
+import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentsAddressBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.appointment.Appointment;
+import seedu.address.model.bill.Bill;
 
 /**
- * A utility class containing a list of {@code Appointment} objects to be used in tests.
+ * A utility class containing a list of {@code Bill} objects to be used in tests.
  */
-public class TypicalAppointments {
+public class TypicalBills {
 
-    public static final Appointment APPOINTMENT_1 = new AppointmentBuilder().withName(ALICE.getName().toString())
-            .withMedicalTest("gastric fluid analysis").withSlot("2022-11-01 08:00")
-            .withDoctor("Edith Hilton").build();
-    public static final Appointment APPOINTMENT_2 = new AppointmentBuilder().withName(BENSON.getName().toString())
-            .withMedicalTest("kidney function test").withSlot("2023-01-21 08:30")
-            .withDoctor("Milly Everett").build();
-    public static final Appointment APPOINTMENT_3 = new AppointmentBuilder().withName(CARL.getName().toString())
-            .withMedicalTest("liver function test").withSlot("2022-11-01 08:00")
-            .withDoctor("Fannie Lambert").build();
-    public static final Appointment APPOINTMENT_4 = new AppointmentBuilder().withName(DANIEL.getName().toString())
-            .withMedicalTest("lumbar puncture").withSlot("2022-11-01 08:00")
-            .withDoctor("Zainab Gibbons").build();
-    public static final Appointment APPOINTMENT_5 = new AppointmentBuilder().withName(ELLE.getName().toString())
-            .withMedicalTest("malabsorption test").withSlot("2022-11-01 08:00")
-            .withDoctor("Nadia Guzman").build();
-    public static final Appointment APPOINTMENT_6 = new AppointmentBuilder().withName(FIONA.getName().toString())
-            .withMedicalTest("pap smear").withSlot("2022-11-01 08:00")
-            .withDoctor("Lucy Poole").build();
+    public static final Bill BILL_1 = new BillBuilder().withAppointment(APPOINTMENT_1).withBillDate("2019-01-23")
+            .withAmount("1000.23").withPayment("paid").build();
+    public static final Bill BILL_2 = new BillBuilder().withAppointment(APPOINTMENT_2).withBillDate("2020-12-22")
+            .withAmount("1001.23").withPayment("unpaid").build();
+    public static final Bill BILL_3 = new BillBuilder().withAppointment(APPOINTMENT_3).withBillDate("2021-11-24")
+            .withAmount("1010.23").withPayment("paid").build();
+    public static final Bill BILL_4 = new BillBuilder().withAppointment(APPOINTMENT_4).withBillDate("2022-10-21")
+            .withAmount("1011.23").withPayment("unpaid").build();
+    public static final Bill BILL_5 = new BillBuilder().withAppointment(APPOINTMENT_5).withBillDate("2023-09-25")
+            .withAmount("1100.23").withPayment("paid").build();
+    public static final Bill BILL_6 = new BillBuilder().withAppointment(APPOINTMENT_6).withBillDate("2023-08-20")
+            .withAmount("1101.23").withPayment("unpaid").build();
 
-    // Manually added - Appointment's details found in {@code CommandTestUtil}
-    public static final Appointment APPOINTMENT_7 = new AppointmentBuilder().withName(VALID_NAME_AMY)
-            .withMedicalTest(VALID_MEDICAL_TEST_7).withSlot(VALID_SLOT_7)
-            .withDoctor(VALID_DOCTOR_CAITIE).build();
-    public static final Appointment APPOINTMENT_8 = new AppointmentBuilder().withName(VALID_NAME_BOB)
-            .withMedicalTest(VALID_MEDICAL_TEST_8).withSlot(VALID_SLOT_8)
-            .withDoctor(VALID_DOCTOR_DECKER).build();
+    //    // Manually added - Appointment's details found in {@code CommandTestUtil}
+    //    public static final Appointment APPOINTMENT_7 = new AppointmentBuilder().withName(VALID_NAME_AMY)
+    //            .withMedicalTest(VALID_MEDICAL_TEST_7).withSlot(VALID_SLOT_7)
+    //            .withDoctor(VALID_DOCTOR_CAITIE).build();
+    //    public static final Appointment APPOINTMENT_8 = new AppointmentBuilder().withName(VALID_NAME_BOB)
+    //            .withMedicalTest(VALID_MEDICAL_TEST_8).withSlot(VALID_SLOT_8)
+    //            .withDoctor(VALID_DOCTOR_DECKER).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
-    private TypicalAppointments() {} // prevents instantiation
+    private TypicalBills() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical patients.
      */
-    public static AddressBook getTypicalAppointmentsAddressBook() {
-        AddressBook ab = getTypicalPatientsAddressBook();
+    public static AddressBook getTypicalBillsAddressBook() {
+        AddressBook ab = getTypicalAppointmentsAddressBook();
 
-        for (Appointment appointment : getTypicalAppointments()) {
-            ab.addAppointment(appointment);
+        for (Bill bill : getTypicalBills()) {
+            ab.addBill(bill);
         }
         return ab;
     }
 
-    public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(APPOINTMENT_1, APPOINTMENT_2, APPOINTMENT_3,
-                APPOINTMENT_4, APPOINTMENT_5, APPOINTMENT_6));
+    public static List<Bill> getTypicalBills() {
+        return new ArrayList<>(Arrays.asList(BILL_1, BILL_2, BILL_3,
+                BILL_4, BILL_5, BILL_6));
     }
 }

@@ -1,82 +1,97 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_1;
+
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.MedicalTest;
 import seedu.address.model.appointment.Slot;
+import seedu.address.model.bill.Amount;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.bill.BillDate;
+import seedu.address.model.bill.PaymentStatus;
 import seedu.address.model.patient.Name;
 
 /**
- * A utility class to help with building Appointment objects.
+ * A utility class to help with building Bill objects.
  */
-public class AppointmentBuilder {
+public class BillBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_MEDICAL_TEST = "Computed Tomography";
-    public static final String DEFAULT_SLOT = "2022-10-10 16:08";
-    public static final String DEFAULT_DOCTOR = "Shashank S Joshi";
+    public static final Appointment DEFAULT_APPOINTMENT = APPOINTMENT_1;
+    public static final String DEFAULT_BILL_DATE = "2022-10-17";
+    public static final String DEFAULT_AMOUNT = "1234.00";
+    public static final String DEFAULT_PAYMENT_STATUS = "true";
 
-    private Name name;
-    private MedicalTest medicalTest;
-    private Slot slot;
-    private Doctor doctor;
+    private Appointment appointment;
+    private BillDate billDate;
+    private Amount amount;
+    private PaymentStatus paymentStatus;
 
     /**
-     * Creates a {@code AppointmentBuilder} with the default details.
+     * Creates a {@code BillBuilder} with the default details.
      */
-    public AppointmentBuilder() {
-        name = new Name(DEFAULT_NAME);
-        medicalTest = new MedicalTest(DEFAULT_MEDICAL_TEST);
-        slot = new Slot(DEFAULT_SLOT);
-        doctor = new Doctor(DEFAULT_DOCTOR);
+    public BillBuilder() {
+        appointment = DEFAULT_APPOINTMENT;
+        billDate = new BillDate(DEFAULT_BILL_DATE);
+        amount = new Amount(DEFAULT_AMOUNT);
+        paymentStatus = new PaymentStatus(DEFAULT_PAYMENT_STATUS);
     }
 
     /**
-     * Initializes the AppointmentBuilder with the data of {@code appointmentToCopy}.
+     * Initializes the BillBuilder with the data of {@code billToCopy}.
      */
-    public AppointmentBuilder(Appointment appointmentToCopy) {
-        name = appointmentToCopy.getName();
-        medicalTest = appointmentToCopy.getMedicalTest();
-        slot = appointmentToCopy.getSlot();
-        doctor = appointmentToCopy.getDoctor();
+    public BillBuilder(Bill billToCopy) {
+        appointment = billToCopy.getAppointment();
+        billDate = billToCopy.getBillDate();
+        amount = billToCopy.getAmount();
+        paymentStatus = billToCopy.getPaymentStatus();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Appointment} that we are building.
+     * Sets the {@code Appointment} of the {@code Bill} that we are building.
      */
-    public AppointmentBuilder withName(String name) {
-        this.name = new Name(name);
+    public BillBuilder withAppointment(String name, String medicalTest, String slot, String doctor) {
+        this.appointment = new Appointment(new Name(name), new MedicalTest(medicalTest),
+                new Slot(slot), new Doctor(doctor));
         return this;
     }
 
     /**
-     * Parses the {@code slot} into a {@code Slot} and set it to the {@code Appointment} that we are building.
+     * Sets the {@code Appointment} of the {@code Bill} that we are building.
      */
-    public AppointmentBuilder withSlot(String slot) {
-        this.slot = new Slot(slot);
+    public BillBuilder withAppointment(Appointment appointment) {
+        this.appointment = appointment;
         return this;
     }
 
     /**
-     * Parses the {@code medicalTest} into a {@code MedicalTest}
+     * Parses the {@code billDate} into a {@code BillDate} and set it to the {@code Bill} that we are building.
+     */
+    public BillBuilder withBillDate(String billDate) {
+        this.billDate = new BillDate(billDate);
+        return this;
+    }
+
+    /**
+     * Parses the {@code amount} into a {@code Amount}
+     * and set it to the {@code Bill} that we are building.
+     */
+    public BillBuilder withAmount(String amount) {
+        this.amount = new Amount(amount);
+        return this;
+    }
+
+    /**
+     * Parses the {@code paymentStatus} into a {@code PaymentStatus}
      * and set it to the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withMedicalTest(String medicalTest) {
-        this.medicalTest = new MedicalTest(medicalTest);
+    public BillBuilder withPayment(String paymentStatus) {
+        this.paymentStatus = new PaymentStatus(paymentStatus);
         return this;
     }
 
-    /**
-     * Parses the {@code doctor} into a {@code Doctor}
-     * and set it to the {@code Appointment} that we are building.
-     */
-    public AppointmentBuilder withDoctor(String doctor) {
-        this.doctor = new Doctor(doctor);
-        return this;
-    }
-
-    public Appointment build() {
-        return new Appointment(name, medicalTest, slot, doctor);
+    public Bill build() {
+        return new Bill(appointment, amount, billDate, paymentStatus);
     }
 
 }
