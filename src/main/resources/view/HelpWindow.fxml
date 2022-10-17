@@ -43,9 +43,9 @@
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
           </HBox>
-          <Label text="General" textFill="WHITE" />
+          <Label styleClass="help-label" text="General" style="-fx-padding: 0 12 2 12;" />
           <Accordion fx:id="generalAccordion" maxHeight="-Infinity" prefWidth="288.0" />
-          <Label text="Profiles" textFill="WHITE" />
+          <Label styleClass="help-label" text="Profiles" style="-fx-padding: 6 12 2 12;" />
           <Accordion fx:id="profileAccordion" maxHeight="-Infinity" prefWidth="288.0" />
         </children>
       </VBox>
