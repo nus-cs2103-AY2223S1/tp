@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddListingCommand;
 import seedu.address.logic.commands.ViewListingOffersCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.listing.ListingID;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -28,7 +29,7 @@ public class ViewListingOffersCommandParser implements Parser<ViewListingOffersC
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddListingCommand.MESSAGE_USAGE));
         }
 
-        String id = argMultimap.getValue(PREFIX_ID).get();
+        ListingID id = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_ID).get());
 
         return new ViewListingOffersCommand(id);
     }

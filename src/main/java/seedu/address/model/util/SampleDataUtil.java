@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
@@ -44,17 +45,17 @@ public class SampleDataUtil {
 
     public static Offer[] getSampleOffers() {
         return new Offer[] {
-            new Offer(new Name("Alex Yeoh"), new Address("Blk 30 Geylang Street 29, #06-40"),
+            new Offer(new Name("Alex Yeoh"), new ListingID("30_GL_ST29_0640"),
                 new Price("1000000")),
-            new Offer(new Name("Bernice Yu"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+            new Offer(new Name("Bernice Yu"), new ListingID("30_SERGARDENS_LOR23_0718"),
                 new Price("900000")),
-            new Offer(new Name("Charlotte Oliveiro"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+            new Offer(new Name("Charlotte Oliveiro"), new ListingID("11_AMK_ST74_1104"),
                 new Price("900000")),
-            new Offer(new Name("David Li"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            new Offer(new Name("David Li"), new ListingID("436_SERGARDENS_ST26_16-43"),
                 new Price("950000")),
-            new Offer(new Name("Irfan Ibrahim"), new Address("Blk 47 Tampines Street 20, #17-35"),
+            new Offer(new Name("Irfan Ibrahim"), new ListingID("47_TAMP_ST20_1735"),
                 new Price("960000")),
-            new Offer(new Name("Roy Balakrishnan"), new Address("Blk 45 Aljunied Street 85, #11-31"),
+            new Offer(new Name("Roy Balakrishnan"), new ListingID("45_ALJU_ST85_1135"),
                 new Price("965000"))
         };
     }

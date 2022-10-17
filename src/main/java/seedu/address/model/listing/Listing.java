@@ -19,7 +19,7 @@ import seedu.address.model.tag.Tag;
 public class Listing implements Comparable<Listing> {
 
     // Identity fields
-    private final String id;
+    private final ListingID id;
     private final Address address;
     private final Person owner;
     private final Price askingPrice;
@@ -36,7 +36,7 @@ public class Listing implements Comparable<Listing> {
      * @param owner Person
      * @param askingPrice int
      */
-    public Listing(String id, Address address, Person owner, Price askingPrice) {
+    public Listing(ListingID id, Address address, Person owner, Price askingPrice) {
         this.id = id;
         this.address = address;
         this.owner = owner;
@@ -50,7 +50,7 @@ public class Listing implements Comparable<Listing> {
      * Gets the id of this listing.
      * @return id of listing
      */
-    public String getId() {
+    public ListingID getId() {
         return this.id;
     }
 
@@ -161,11 +161,11 @@ public class Listing implements Comparable<Listing> {
     }
 
     /**
-     * Compare current listing to l
+     * Compares current listing to l
      */
     @Override
     public int compareTo(Listing l) {
-        return this.id.compareTo(l.id);
+        return this.id.value.compareTo(l.id.value);
     }
 
     /**

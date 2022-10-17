@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
@@ -37,7 +38,7 @@ public class AddListingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New listing added: %1$s";
     public static final String MESSAGE_DUPLICATE_LISTING = "This listing already exists in the address book";
 
-    private final String id;
+    private final ListingID id;
     private final Address address;
     private final Name name;
     private final Price askingPrice;
@@ -46,7 +47,7 @@ public class AddListingCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddListingCommand(String id, Address address, Name name, Price askingPrice) {
+    public AddListingCommand(ListingID id, Address address, Name name, Price askingPrice) {
         requireAllNonNull(address, name);
         this.id = id;
         this.address = address;

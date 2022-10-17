@@ -14,7 +14,7 @@ import seedu.address.model.tag.Tag;
  * except meetinglist, listinglist and offerlist.
  */
 
-public class Client extends Person {
+public class Client extends Person implements Comparable<Client> {
 
     private ArrayList<Meeting> meetinglist;
     private ArrayList<Listing> listinglist;
@@ -64,6 +64,11 @@ public class Client extends Person {
     }
 
     @Override
+    public int compareTo(Client o) {
+        return this.getName().fullName.compareTo(o.getName().fullName);
+    }
+
+    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
@@ -87,6 +92,5 @@ public class Client extends Person {
         }
         return builder.toString();
     }
-
 }
 

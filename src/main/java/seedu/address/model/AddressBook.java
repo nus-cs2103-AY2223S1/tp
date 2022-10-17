@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.listing.UniqueListingList;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.UniqueOfferList;
@@ -152,7 +153,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param id id of the listing
      * @return listing with given id
      */
-    public Listing getListing(String id) {
+    public Listing getListing(ListingID id) {
         return listings.getListing(id);
     }
 

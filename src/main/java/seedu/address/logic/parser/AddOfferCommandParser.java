@@ -1,14 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFER;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddOfferCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.listing.Listing;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
@@ -34,11 +34,11 @@ public class AddOfferCommandParser implements Parser<AddOfferCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOfferCommand.MESSAGE_USAGE));
         }
 
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        ListingID listing = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_ID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Price offerPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_OFFER).get());
 
-        Offer offer = new Offer(name, address, offerPrice);
+        Offer offer = new Offer(name, listing, offerPrice);
 
         return new AddOfferCommand(offer);
     }
