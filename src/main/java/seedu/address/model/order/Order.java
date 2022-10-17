@@ -6,14 +6,12 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.model.person.Buyer;
-import seedu.address.model.pet.Pet;
 
 /**
  * Abstracts an order.
  */
 public class Order {
 
-    private Pet pet;
     private Buyer buyer;
     private final PriceRange requestedPriceRange;
     private final Request request;
@@ -25,7 +23,6 @@ public class Order {
     /**
      * Constructs an order object.
      *
-     * @param pet The pet assigned to this order, optional.
      * @param buyer The buyer who initiates the request.
      * @param requestedPriceRange The acceptable price range during negotiation.
      * @param request The description of the request, that is, what kind of pet the buyer wants.
@@ -34,34 +31,13 @@ public class Order {
      * @param settledPrice The settled final price.
      * @param status Whether this order is under negotiation, or finished, or is being delivered, etc.
      */
-    public Order(Pet pet, Buyer buyer, PriceRange requestedPriceRange,
-                 Request request, AdditionalRequests additionalRequests,
-                 LocalDate byDate, Price settledPrice, OrderStatus status) {
-        requireAllNonNull(status);
-        this.pet = pet;
-        this.buyer = buyer;
-        this.requestedPriceRange = requestedPriceRange;
-        this.request = request;
-        this.additionalRequests = additionalRequests;
-        this.byDate = byDate;
-        this.settledPrice = settledPrice;
-        this.status = status;
-    }
-
-    /**
-     * Constructs an order object.
-     *
-     * @param buyer The buyer who initiates the request.
-     * @param requestedPriceRange The acceptable price range during negotiation.
-     * @param request The description of the request, that is, what kind of pet the buyer wants.
-     * @param additionalRequests Some other requests in string.
-     * @param byDate The date before which the order should be dealt.
-     * @param settledPrice The settled final price.
-     * @param status Whether this order is under negotiation, or finished, or is being delivered, etc.
-     */
-    public Order(Buyer buyer, PriceRange requestedPriceRange,
-                 Request request, AdditionalRequests additionalRequests,
-                 LocalDate byDate, Price settledPrice, OrderStatus status) {
+    public Order(Buyer buyer,
+                 PriceRange requestedPriceRange,
+                 Request request,
+                 AdditionalRequests additionalRequests,
+                 LocalDate byDate,
+                 Price settledPrice,
+                 OrderStatus status) {
         requireAllNonNull(status);
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
@@ -83,9 +59,12 @@ public class Order {
      * @param byDate The date before which the order should be dealt.
      * @param settledPrice The settled final price.
      */
-    public Order(Buyer buyer, PriceRange requestedPriceRange,
-                 Request request, AdditionalRequests additionalRequests,
-                 LocalDate byDate, Price settledPrice) {
+    public Order(Buyer buyer,
+                 PriceRange requestedPriceRange,
+                 Request request,
+                 AdditionalRequests additionalRequests,
+                 LocalDate byDate,
+                 Price settledPrice) {
         this.buyer = buyer;
         this.requestedPriceRange = requestedPriceRange;
         this.request = request;
@@ -165,15 +144,6 @@ public class Order {
      */
     public OrderStatus getOrderStatus() {
         return status;
-    }
-
-    /**
-     * Gets the pet of the order.
-     *
-     * @return The pet.
-     */
-    public Pet getPet() {
-        return pet;
     }
 
     /**

@@ -173,7 +173,6 @@ public class ParserUtil {
         String trimmedOrderString = orderString.trim();
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(trimmedOrderString,
-                        PREFIX_ORDER_PET,
                         PREFIX_ORDER_STATUS,
                         PREFIX_ORDER_REQUESTS,
                         PREFIX_ORDER_PRICE,
@@ -197,12 +196,7 @@ public class ParserUtil {
         Price price = parsePrice(argMultimap.getValue(PREFIX_ORDER_PRICE).orElse(""));
         OrderStatus orderStatus = parseOrderStatus(argMultimap.getValue(PREFIX_ORDER_STATUS).orElse(""));
 
-        Pet pet = null;
-        if (argMultimap.getValue(PREFIX_ORDER_PET).isPresent()) {
-            pet = parsePet(argMultimap.getValue(PREFIX_ORDER_PET).orElse(""));
-        }
-
-        return new Order(pet, buyer, priceRange, request, additionalRequests, byDate, price, orderStatus);
+        return new Order(buyer, priceRange, request, additionalRequests, byDate, price, orderStatus);
     }
 
     /**
