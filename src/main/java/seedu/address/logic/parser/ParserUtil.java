@@ -185,7 +185,7 @@ public class ParserUtil {
         requireNonNull(location);
         String trimmedLocation = location.trim();
         if (!Location.isValidLocation(trimmedLocation)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
     }
