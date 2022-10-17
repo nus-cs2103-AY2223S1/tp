@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // Refresh the list to show everyone before each delete
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         int index;
         try {
             if (deletePersonDescriptor.isPhoneEmpty) {
