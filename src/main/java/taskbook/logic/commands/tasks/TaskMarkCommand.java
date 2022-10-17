@@ -2,6 +2,9 @@ package taskbook.logic.commands.tasks;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
+import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
@@ -9,9 +12,11 @@ import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.Model;
+import taskbook.model.task.EditTaskDescriptor;
+import taskbook.model.task.Task;
 
 /**
- * Marks the status of an existing task in the task book as done.
+ * Marks the completion status of an existing task in the task book.
  */
 public class TaskMarkCommand extends Command {
 
@@ -40,7 +45,20 @@ public class TaskMarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return null;
+
+        List<Task> lastShownList = model.getSortedTaskList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+        editTaskDescriptor.setIsDone(true);
+        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        Task markedTask = taskToMark.createEditedCopy(editTaskDescriptor);
+        model.setTask(taskToMark, markedTask);
+        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }
 
     @Override

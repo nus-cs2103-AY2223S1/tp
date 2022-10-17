@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
-import taskbook.logic.commands.tasks.TaskMarkCommand;
+import taskbook.logic.commands.tasks.TaskUnmarkCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
 import taskbook.logic.parser.CliSyntax;
@@ -14,29 +14,29 @@ import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new TaskMarkCommand object.
+ * Parses input arguments and creates a new TaskUnmarkCommand object.
  */
-public class TaskMarkCommandParser implements Parser<TaskMarkCommand> {
+public class TaskUnmarkCommandParser implements Parser<TaskUnmarkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskMarkCommand
-     * and returns a TaskMarkCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the TaskUnmarkCommand
+     * and returns a TaskUnmarkCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public TaskMarkCommand parse(String args) throws ParseException {
+    public TaskUnmarkCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_INDEX);
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    TaskMarkCommand.MESSAGE_USAGE));
+                    TaskUnmarkCommand.MESSAGE_USAGE));
         }
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_INDEX).get());
-        return new TaskMarkCommand(index);
+        return new TaskUnmarkCommand(index);
     }
 
     /**

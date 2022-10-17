@@ -7,8 +7,10 @@ import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
+import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
+import taskbook.logic.commands.tasks.TaskUnmarkCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,6 +37,10 @@ public class TaskCategoryParser {
             return new TaskEventCommandParser().parse(arguments);
         case TaskEditCommand.COMMAND_WORD:
             return new TaskEditCommandParser().parse(arguments);
+        case TaskMarkCommand.COMMAND_WORD:
+            return new TaskMarkCommandParser().parse(arguments);
+        case TaskUnmarkCommand.COMMAND_WORD:
+            return new TaskUnmarkCommandParser().parse(arguments);
         case TaskDeleteCommand.COMMAND_WORD:
             return new TaskDeleteCommandParser().parse(arguments);
         case TaskListCommand.COMMAND_WORD:
