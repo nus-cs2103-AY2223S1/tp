@@ -72,7 +72,7 @@ public class MarkCommand extends Command {
         // reference to EditCommand.java
         Name currentName = personToMark.getName();
         Phone currentPhone = personToMark.getPhone();
-        NokPhone currentNokPhone = personToMark.getNokPhone();
+        Phone currentNokPhone = personToMark.getNokPhone();
         Email currentEmail = personToMark.getEmail();
         Address currentAddress = personToMark.getAddress();
         Class currentClassDateTime = personToMark.getAClass();
