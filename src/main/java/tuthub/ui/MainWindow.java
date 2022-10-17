@@ -160,22 +160,22 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-//    /**
-//     * Displays a panel containing tutor details
-//     */
-//    private void handleView(Tutor tutor) {
-//        tutorDetailsPanelPlaceholder.getChildren().clear();
-//        tutorDetailsPanelPlaceholder.getChildren().add(new TutorDetailsPanel(tutor).getRoot());
-//        tutorDetailsPanelPlaceholder.setVisible(true);
-//    }
+    // /**
+    // * Displays a panel containing tutor details
+    // */
+    // private void handleView(Tutor tutor) {
+    //    tutorDetailsPanelPlaceholder.getChildren().clear();
+    //    tutorDetailsPanelPlaceholder.getChildren().add(new TutorDetailsPanel(tutor).getRoot());
+    //    tutorDetailsPanelPlaceholder.setVisible(true);
+    // }
 
-    /**
-     * Hides the panel containing tutor details
-     */
-    private void handleHide(Tutor tutor) {
-        tutorDetailsPanelPlaceholder.getChildren().clear();
-        tutorDetailsPanelPlaceholder.setVisible(false);
-    }
+    // /**
+    // * Hides the panel containing tutor details
+    // */
+    // private void handleHide(Tutor tutor) {
+    //    tutorDetailsPanelPlaceholder.getChildren().clear();
+    //    tutorDetailsPanelPlaceholder.setVisible(false);
+    // }
 
     void show() {
         primaryStage.show();
