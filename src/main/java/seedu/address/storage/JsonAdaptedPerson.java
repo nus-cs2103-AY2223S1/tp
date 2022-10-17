@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,13 +12,18 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -29,6 +36,9 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String riskTag;
+    private final String income;
+    private final String monthly;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
@@ -38,12 +48,17 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("income") String income,
+            @JsonProperty("monthly") String monthly,
+            @JsonProperty("riskTag") String riskTag, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.riskTag = riskTag;
+        this.income = income;
+        this.monthly = monthly;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +75,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        riskTag = source.getRiskTag().tagName;
+        income = source.getIncome().value;
+        monthly = source.getMonthly().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -79,10 +97,12 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-        final List<Appointment> personAppointments = new ArrayList<>();
+        final MaximumSortedList<Appointment> modelAppointments = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
-            personAppointments.add(jsonAdaptedAppointment.toModelType());
+            modelAppointments.add(jsonAdaptedAppointment.toModelType());
         }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -115,10 +135,29 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!IncomeLevel.isValidIncome(income)) {
+            throw new IllegalValueException(IncomeLevel.MESSAGE_CONSTRAINTS);
+        }
+        final IncomeLevel modelIncome = new IncomeLevel(income);
+
+        if (!Monthly.isValidMonthly(monthly)) {
+            throw new IllegalValueException(Monthly.MESSAGE_CONSTRAINTS);
+        }
+        final Monthly modelMonthly = new Monthly(monthly);
+
+        if (riskTag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, RiskTag.class.getSimpleName()));
+        }
+        if (!RiskTag.isValidRiskTagName(riskTag)) {
+            throw new IllegalValueException(RiskTag.MESSAGE_CONSTRAINTS);
+        }
+        final RiskTag modelRiskTag = new RiskTag(riskTag);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Set<Appointment> modelAppointments = new HashSet<>(personAppointments);
-        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        Person newPerson = new Person(modelName, modelPhone, modelEmail, modelAddress, modelIncome,
+                modelMonthly, modelRiskTag, modelTags);
         newPerson.setAppointments(modelAppointments);
+
         return newPerson;
     }
 

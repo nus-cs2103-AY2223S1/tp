@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -10,12 +11,16 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -112,9 +117,10 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> datesAndTimes} into a {@code Set<Appointment>}.
      */
-    public static Set<Appointment> parseAppointments(Collection<String> datesAndTimes) throws ParseException {
+    public static MaximumSortedList<Appointment> parseAppointments(Collection<String> datesAndTimes) {
         requireNonNull(datesAndTimes);
-        final Set<Appointment> appointmentSet = new HashSet<>();
+        final MaximumSortedList<Appointment> appointmentSet =
+                new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
         for (String dateAndTime : datesAndTimes) {
             appointmentSet.add(parseAppointment(dateAndTime));
         }
@@ -131,6 +137,45 @@ public class ParserUtil {
         LocalDateTime localDateTime = DateTimeParser.parseLocalDateTimeFromString(trimmedDateAndTime);
         return new DateTime(localDateTime);
     }
+    /**
+     * Parses a {@code String income} into an {@code IncomeLevel}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static IncomeLevel parseIncomeLevel(String income) throws ParseException {
+        requireNonNull(income);
+        String trimmedIncome = income.trim();
+        if (!IncomeLevel.isValidIncome(income)) {
+            throw new ParseException(IncomeLevel.MESSAGE_CONSTRAINTS);
+        }
+        return new IncomeLevel(trimmedIncome);
+    }
+
+    /**
+     * Parses a {@code String monthly} into an {@code Monthly}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Monthly parseMonthly(String monthly) throws ParseException {
+        requireNonNull(monthly);
+        String trimmedMonthly = monthly.trim();
+        if (!Monthly.isValidMonthly(monthly)) {
+            throw new ParseException(Monthly.MESSAGE_CONSTRAINTS);
+        }
+        return new Monthly(trimmedMonthly);
+    }
+
+    /**
+     * Parses a {@code String dateAndTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static RiskTag parseRiskTag(String riskTag) throws ParseException {
+        requireNonNull(riskTag);
+        String trimmedRiskTag = riskTag.trim();
+        if (!RiskTag.isValidRiskTagName(trimmedRiskTag)) {
+            throw new ParseException(RiskTag.MESSAGE_CONSTRAINTS);
+        }
+        return new RiskTag(trimmedRiskTag);
+    }
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.

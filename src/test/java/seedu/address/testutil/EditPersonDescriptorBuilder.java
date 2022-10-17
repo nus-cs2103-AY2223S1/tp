@@ -1,18 +1,24 @@
 package seedu.address.testutil;
 
+import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.logic.parser.EditPersonDescriptor;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -76,6 +82,30 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code RiskTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRiskTag(String riskTag) {
+        descriptor.setRiskTag(new RiskTag(riskTag));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withIncome(String income) {
+        descriptor.setIncome(new IncomeLevel(income));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Monthly} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMonthly(String monthly) {
+        descriptor.setMonthly(new Monthly(monthly));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
@@ -90,9 +120,10 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withAppointments(String... appointments) {
-        Set<Appointment> appointmentSet = Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
-                .map(DateTime::new).map(Appointment::new).collect(Collectors.toSet());
-        descriptor.setAppointments(appointmentSet);
+        MaximumSortedList<Appointment> appointmentList = new MaximumSortedList<>(MAXIMUM_APPOINTMENTS);
+        Stream.of(appointments).map(DateTimeParser::parseLocalDateTimeFromString)
+                .map(DateTime::new).map(Appointment::new).forEach(appointmentList::add);
+        descriptor.setAppointments(appointmentList);
         return this;
     }
 
