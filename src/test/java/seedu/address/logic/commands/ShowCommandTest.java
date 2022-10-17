@@ -26,10 +26,8 @@ public class ShowCommandTest {
 
     @Test
     public void equals() {
-        DayIsKeywordPredicate firstPredicate =
-                new DayIsKeywordPredicate("first");
-        DayIsKeywordPredicate secondPredicate =
-                new DayIsKeywordPredicate("second");
+        DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
+        DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
 
         ShowCommand showFirstCommand = new ShowCommand(firstPredicate);
         ShowCommand showSecondCommand = new ShowCommand(secondPredicate);
