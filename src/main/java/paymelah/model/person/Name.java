@@ -1,7 +1,5 @@
 package paymelah.model.person;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.AppUtil.checkArgument;
 
