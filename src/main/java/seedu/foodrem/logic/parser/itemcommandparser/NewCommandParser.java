@@ -39,7 +39,7 @@ public class NewCommandParser implements Parser<NewCommand> {
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
         }
 
         ItemName name = ParserUtil.parseItemName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());

@@ -1,9 +1,9 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.foodrem.enums.CommandType.FIND_COMMAND;
 
 import seedu.foodrem.commons.core.Messages;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
@@ -14,14 +14,6 @@ import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
-
-    public static final String COMMAND_WORD = CommandWord.FIND_COMMAND.getValue();
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Potatoes Carrots Cucumbers";
-
     private final NameContainsKeywordsPredicate predicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
@@ -34,6 +26,10 @@ public class FindCommand extends Command {
         model.updateFilteredItemList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, model.getFilteredItemList().size()));
+    }
+
+    public static String getUsage() {
+        return FIND_COMMAND.getUsage();
     }
 
     @Override

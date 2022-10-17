@@ -28,7 +28,7 @@ public class NewTagCommandParser implements Parser<NewTagCommand> {
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewTagCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewTagCommand.getUsage()));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get().trim();

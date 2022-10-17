@@ -23,6 +23,7 @@ import seedu.foodrem.model.item.Item;
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
+    private static final String EXPECTED_FORMAT_SUCCESS = "Deleted Item:\n%1$s";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
@@ -31,7 +32,7 @@ public class DeleteCommandTest {
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
@@ -54,7 +55,7 @@ public class DeleteCommandTest {
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, itemToDelete);
+        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
 
         Model expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);

@@ -37,7 +37,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
         }
         List<ItemComparator> comparators = new ArrayList<>();
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
@@ -63,7 +63,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             comparators.add(new ItemUnitComparator());
         }
         if (comparators.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
         }
 
         return new SortCommand(new ChainComparator<Item>(comparators));

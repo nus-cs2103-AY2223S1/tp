@@ -2,12 +2,11 @@ package seedu.foodrem.logic.parser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.foodrem.enums.CommandWord.getCommandWordFromCommandWordString;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.foodrem.enums.CommandWord;
+import seedu.foodrem.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
@@ -34,7 +33,6 @@ import seedu.foodrem.logic.parser.tagcommandparser.UntagCommandParser;
  * Parses user input.
  */
 public class FoodRemParser {
-
     /**
      * Used for initial separation of command word and args.
      */
@@ -51,72 +49,52 @@ public class FoodRemParser {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
 
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.getUsage()));
         }
 
         final String commandWordString = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        CommandWord commandWord = getCommandWordFromCommandWordString(commandWordString);
+        CommandType commandType = CommandType.parseWord(commandWordString);
 
-        switch (commandWord) {
-
+        switch (commandType) {
         case NEW_COMMAND:
             return new NewCommandParser().parse(arguments);
-
         case EDIT_COMMAND:
             return new EditCommandParser().parse(arguments);
-
         case VIEW_COMMAND:
             return new ViewCommandParser().parse(arguments);
-
         case INCREMENT_COMMAND:
             return new IncrementCommandParser().parse(arguments);
-
         case DECREMENT_COMMAND:
             return new DecrementCommandParser().parse(arguments);
-
         case DELETE_COMMAND:
             return new DeleteCommandParser().parse(arguments);
-
         case NEW_TAG_COMMAND:
             return new NewTagCommandParser().parse(arguments);
-
         case RENAME_TAG_COMMAND:
             return new RenameTagCommandParser().parse(arguments);
-
         case DELETE_TAG_COMMAND:
             return new DeleteTagCommandParser().parse(arguments);
-
         case RESET_COMMAND:
             return new ResetCommand();
-
         case FIND_COMMAND:
             return new FindCommandParser().parse(arguments);
-
         case LIST_COMMAND:
             return new ListCommand();
-
         case SORT_COMMAND:
             return new SortCommandParser().parse(arguments);
-
         case EXIT_COMMAND:
             return new ExitCommand();
-
         case HELP_COMMAND:
             return new HelpCommandParser().parse(arguments);
-
         case TAG_COMMAND:
             return new TagCommandParser().parse(arguments);
-
         case UNTAG_COMMAND:
             return new UntagCommandParser().parse(arguments);
-
         case LIST_TAG_COMMAND:
             return new ListTagCommand();
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
