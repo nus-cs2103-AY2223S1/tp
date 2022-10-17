@@ -44,7 +44,7 @@ public class SampleDataUtil {
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Gender("M"),
-                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false), new Rating("4")),
+                getTagSet("testing"), new Location("COM2-0210"), new GithubUsername("", false), new Rating("3")),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Gender("M"), getTagSet("colleagues"), new Location("Research Lab"),
                     new GithubUsername("", false), getModuleCodeSet("CS4534", "CS5234"))

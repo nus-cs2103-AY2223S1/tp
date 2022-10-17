@@ -41,8 +41,8 @@ public class PersonCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label title;
-//    @FXML
-//    private HBox stars;
+    @FXML
+    private HBox stars;
     @FXML
     private Label number;
     @FXML
@@ -80,13 +80,13 @@ public class PersonCard extends UiPart<Region> {
             Professor professor = (Professor) person;
             moduleCodes.getChildren().add(new Label(((Professor) person).getModuleCode().value));
             title.setText("Professor");
-            //fillStars(professor.getRating());
+            fillStars(professor.getRating());
         }
         if (person instanceof TeachingAssistant) {
             TeachingAssistant ta = (TeachingAssistant) person;
             moduleCodes.getChildren().add(new Label(((TeachingAssistant) person).getModuleCode().value));
             title.setText("Teaching\nAssistant");
-            //fillStars(ta.getRating());
+            fillStars(ta.getRating());
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -110,26 +110,29 @@ public class PersonCard extends UiPart<Region> {
     private Image getGenderImage(Person person) {
         String gender = person.getGender().value;
         if (gender.equals("M")) {
-            return new Image(this.getClass().getResourceAsStream("/images/maleicon.png"));
+            return new Image(this.getClass().getResourceAsStream("/images/maleicon.png"),
+                    24, 24, true, true);
         } else {
-            return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"));
+            return new Image(this.getClass().getResourceAsStream("/images/femaleicon.png"),
+                    24, 24, true, true);
         }
     }
 
-//    private void fillStars(Rating rating) {
-//        int numberOfStars = Integer.valueOf(rating.value);
-//        ImageView filledStarImage = new ImageView(
-//                new Image(this.getClass().getResourceAsStream("/images/FilledStar.png")));
-//        ImageView emptyStarImage = new ImageView(
-//                new Image(this.getClass().getResourceAsStream("/images/emptystar.png")));
-//
-//        for (int i = 0; i < numberOfStars; i++) {
-//            stars.getChildren().add(filledStarImage);
-//        }
-//        for (int j = 0; j < 5 - numberOfStars; j++) {
-//            stars.getChildren().add(emptyStarImage);
-//        }
-//    }
+    private void fillStars(Rating rating) {
+        int numberOfStars = Integer.valueOf(rating.value);
+        for (int i = 0; i < numberOfStars; i++) {
+            ImageView filledStarImage = new ImageView(
+                    new Image(this.getClass().getResourceAsStream("/images/FilledStar.png"),
+                            20, 20, true, true));
+            stars.getChildren().add(filledStarImage);
+        }
+        for (int j = 0; j < 5 - numberOfStars; j++) {
+            ImageView emptyStarImage = new ImageView(
+                    new Image(this.getClass().getResourceAsStream("/images/emptystar.png"),
+                            20, 20 , true, true));
+            stars.getChildren().add(emptyStarImage);
+        }
+    }
 
     @Override
     public boolean equals(Object other) {
