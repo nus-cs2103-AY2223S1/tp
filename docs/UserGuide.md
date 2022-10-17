@@ -24,6 +24,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
     * [Format for resident fields](#format-for-resident-fields)
+    * [File commands](FileCommand.html)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
 
@@ -201,7 +202,7 @@ If your changes to the data file makes its format invalid, RC4HDB will discard a
 
 RC4HDB has the ability to import data through .csv files. In order for RC4HDB to find your files, place them in the data directory, `[JAR file location]/data`.
 
-Format: `import FILENAME`
+Format: `import FILE_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
@@ -213,7 +214,7 @@ Examples:
 
 RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
 
-Format: `export FILENAME`
+Format: `export FILE_NAME`
 
 :information_source: The csv file will be exported in this [format](#csv-file-format).<br>
 
