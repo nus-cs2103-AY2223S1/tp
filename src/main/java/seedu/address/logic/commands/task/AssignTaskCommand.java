@@ -65,7 +65,10 @@ public class AssignTaskCommand extends TaskCommand {
      * Creates an AssignTaskCommand to assign persons to the given task.
      *
      * @param taskIndex of the task to be updated
-     * @param personAddIndexes of all persons to be assigned to task
+     * @param personAddIndexes Indexes of all persons to be assigned to task
+     * @param personAddNames Names of all persons to be assigned to task
+     * @param personDeleteIndexes Indexes of all persons to be removed from task
+     * @param personDeleteNames Names of all persons to be removed from task
      */
     public AssignTaskCommand(Index taskIndex, Set<Index> personAddIndexes, Set<String> personAddNames,
                              Set<Index> personDeleteIndexes, Set<String> personDeleteNames) {

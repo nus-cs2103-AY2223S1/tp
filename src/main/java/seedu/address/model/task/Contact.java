@@ -37,7 +37,8 @@ public class Contact {
     }
 
     /**
-     * Returns true if a given string is a name that belongs to one of the persons in the list of persons.
+     * Returns person's name (with proper capitalisation) if a given string is a name that belongs to one of the persons
+     * in the list of persons. Otherwise returns an empty string.
      */
     public static String isInPersonsList(List<Person> personList, String test) {
         for (Person person : personList) {
