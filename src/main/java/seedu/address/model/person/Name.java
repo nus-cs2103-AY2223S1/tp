@@ -38,6 +38,13 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Compares two name instances.
+     * @param name The name being compared.
+     */
+    public int compareTo(Name name) {
+        return this.fullName.compareTo(name.fullName);
+    }
 
     @Override
     public String toString() {

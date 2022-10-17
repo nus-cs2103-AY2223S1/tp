@@ -37,6 +37,14 @@ public class Address {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Compares an address with another address.
+     * @param address The other address being compared.
+     */
+    public int compareTo(Address address) {
+        return this.value.compareTo(address.value);
+    }
+
     @Override
     public String toString() {
         return value;
