@@ -397,8 +397,9 @@ Use Case ends.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to load the contact list within 2 seconds.
-5. Should be able to save updated contact details without noticeable delay.
-6. Should be able to add, update and delete contact information within 2 seconds of inputting the command. 
+5. Without noticeable delay, should be able to add and update contact information.
+6. Without noticeable delay, should be able to delete contact information. 
+7. Must be able to cache github repository list for future use. 
 
 *{More to be added}*
 
