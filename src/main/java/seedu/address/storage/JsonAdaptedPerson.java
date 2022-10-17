@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("contacts") List<JsonAdaptedContact> contacts, 
+                             @JsonProperty("contacts") List<JsonAdaptedContact> contacts,
                              @JsonProperty("role") String role) {
         this.name = name;
         this.address = address;
@@ -59,7 +59,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
-        role = source.getRole().getRole(); //TODO: Check for null using an Optional
+        role = source.getRole().role; //TODO: Check for null using an Optional
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
