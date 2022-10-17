@@ -70,6 +70,6 @@ public class InternshipId implements Comparable<InternshipId> {
 
     @Override
     public int compareTo(InternshipId other) {
-        return other.id.toString().compareToIgnoreCase(this.id.toString());
+        return -other.id.toString().compareToIgnoreCase(this.id.toString());
     }
 }
