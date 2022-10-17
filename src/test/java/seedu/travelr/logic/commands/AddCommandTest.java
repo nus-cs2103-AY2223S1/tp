@@ -21,6 +21,7 @@ import seedu.travelr.model.AddressBook;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ReadOnlyAddressBook;
 import seedu.travelr.model.ReadOnlyUserPrefs;
+import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
@@ -188,6 +189,22 @@ public class AddCommandTest {
         public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public AllInBucketListPredicate getBucketPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeFromBucketList(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void returnToBucketList(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
