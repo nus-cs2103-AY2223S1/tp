@@ -9,6 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.image.ImageView?>
+
+<?import javafx.scene.layout.VBox?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
@@ -18,19 +21,25 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <VBox alignment="CENTER" fx:id="helpMessageContainer" >
         <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
+          <ImageView fx:id="cmdSummaryView" fitHeight="1000.0" fitWidth="1000.0" preserveRatio="true" layoutX="61.0" layoutY="83.0">
+            <image>
+              <Image url="/images/cmd_summary.png"/>
+            </image>
+          </ImageView>
+          <HBox alignment="CENTER">
+            <Label fx:id="helpMessage" text="Label">
+              <HBox.margin>
+                <Insets right="5.0" top="10.0" />
+              </HBox.margin>
+            </Label>
+            <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
+              <HBox.margin>
+                <Insets left="5.0" top="10.0" />
+              </HBox.margin>
+            </Button>
+          </HBox>
         </children>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
@@ -38,7 +47,7 @@
         <padding>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </padding>
-      </HBox>
+      </VBox>
     </Scene>
   </scene>
 </fx:root>

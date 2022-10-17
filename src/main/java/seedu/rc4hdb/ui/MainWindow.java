@@ -36,12 +36,16 @@ public class MainWindow extends UiPart<Stage> {
     private ResidentTableView residentTableView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBoxRegion;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem commandBoxRedirect;
 
     @FXML
     private StackPane residentTableViewPlaceholder;
@@ -77,6 +81,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(commandBoxRedirect, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -123,6 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxRegion = commandBox;
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -148,6 +154,13 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Redirects the focus onto the text field of the command box.
+     */
+    public void handleRedirect() {
+        commandBoxRegion.focus();
     }
 
     void show() {

@@ -17,6 +17,6 @@ public interface StorageCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Storage storage) throws CommandException;
+    CommandResult execute(Storage storage) throws CommandException;
 
 }
