@@ -37,6 +37,7 @@ public class AddIterationCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ITERATION_DATE + "2022-10-10 "
             + PREFIX_ITERATION_DESCRIPTION + "Changed the colour scheme. "
+            + PREFIX_ITERATION_IMAGEPATH + "/Users/john/Downloads/Draft 1.png "
             + PREFIX_ITERATION_FEEDBACK + "Updated colour scheme is much better.";
 
     public static final String MESSAGE_ADD_ITERATION_SUCCESS = "New iteration with attributes\n%1$s\n"
