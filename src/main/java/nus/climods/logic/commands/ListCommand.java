@@ -8,7 +8,7 @@ import java.util.Optional;
 import nus.climods.logic.parser.parameters.FacultyCodeParameter;
 import nus.climods.logic.parser.parameters.UserFlagParameter;
 import nus.climods.model.Model;
-import nus.climods.model.module.CodeContainsKeywordsPredicate;
+import nus.climods.model.module.predicate.CodeContainsKeywordsPredicate;
 
 /**
  * Lists all modules in NUS to the user.
