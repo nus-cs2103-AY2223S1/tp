@@ -70,6 +70,9 @@ public class TuthubParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
