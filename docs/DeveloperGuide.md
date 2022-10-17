@@ -409,11 +409,12 @@ Step 2. The user wants to have email right below each name instead. The user exe
 2. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` for `Logic`.
 3. `Logic` executes the `CustomiseOrderCommand`.
 4. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to set the new ordering into `preferences.json`.
-5. `CustomiseOrderCommand#execute()` calls `CustomiseCommand#refreshList()` to refresh the UI.
 
-_{sequence diagram to be added here}_
+The following sequence diagram illustrates points 1-4:
 
-6. `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`
+![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
+
+5`PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`
 
 _{uml diagram to be added here}_
 
