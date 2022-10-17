@@ -159,6 +159,7 @@ public class ModelManager implements Model {
     @Override
     public void editTag(Tag oldTag, Tag newTag) {
         soConnect.editTag(oldTag, newTag);
+        todoList.editTag(oldTag, newTag);
     }
 
     @Override

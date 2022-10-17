@@ -6,6 +6,8 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.logic.commands.CommandResult;
+import soconnect.logic.commands.TagCommand;
+import soconnect.logic.commands.TagCreateCommand;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.todo.Todo;
@@ -17,17 +19,20 @@ public class TodoAddCommand extends TodoCommand {
 
     public static final String SUB_COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD + ": Adds a todo to SoConnect. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD + ": Adds a Todo to SoConnect. \n"
         + "Parameters: "
         + PREFIX_DESCRIPTION + "DESCRIPTION "
         + PREFIX_PRIORITY + "PRIORITY "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
-        + PREFIX_DESCRIPTION + "Watch latest math lecture " + PREFIX_PRIORITY + "LOW";
+        + PREFIX_DESCRIPTION + "Watch latest math lecture " + PREFIX_PRIORITY + "low\n"
+        + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_DESCRIPTION
+        + "Submit project deliverables for week 10 " + PREFIX_PRIORITY + "high " + PREFIX_TAG + "CS2103T";
 
-    public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in SoConnect";
-    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag does not exist, consider creating the tag first";
+    public static final String MESSAGE_SUCCESS = "New Todo added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TODO = "This Todo already exists in SoConnect!";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag(s) do not exist, please create them first using `"
+        + TagCommand.COMMAND_WORD + " " + TagCreateCommand.COMMAND_WORD + "`.";
 
     private final Todo toAdd;
 

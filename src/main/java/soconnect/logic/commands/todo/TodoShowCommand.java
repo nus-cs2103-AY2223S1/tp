@@ -21,11 +21,11 @@ public class TodoShowCommand extends TodoCommand {
     public static final String PREFIX_CONDITION = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
-        + ": Filters the shown todo list based on the condition set.\n"
-        + "Only one condition allowed: all, " + PREFIX_PRIORITY + "PRIORITY, " + PREFIX_TAG + "TAG\n"
+        + ": Filters the shown Todo List based on the condition set.\n"
+        + "Conditions (only able to use one at a time): all, " + PREFIX_PRIORITY + "PRIORITY, " + PREFIX_TAG + "TAG\n"
         + "Parameters: CONDITION\n"
-        + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + NO_CONDITION
-        + ", " + COMMAND_WORD + " " + SUB_COMMAND_WORD + PREFIX_PRIORITY + "LOW";
+        + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + NO_CONDITION
+        + "\n" + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_PRIORITY + "low";
 
     private final Predicate<Todo> predicate;
 

@@ -2,12 +2,12 @@ package soconnect.logic.parser.todo;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import soconnect.commons.core.Messages;
 import soconnect.logic.commands.Command;
 import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.todo.TodoAddCommand;
 import soconnect.logic.commands.todo.TodoClearCommand;
+import soconnect.logic.commands.todo.TodoCommand;
 import soconnect.logic.commands.todo.TodoDeleteCommand;
 import soconnect.logic.commands.todo.TodoEditCommand;
 import soconnect.logic.commands.todo.TodoShowCommand;
@@ -33,7 +33,7 @@ public class TodoParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TodoCommand.MESSAGE_USAGE));
         }
 
         final String subCommandWord = matcher.group("subCommandWord");

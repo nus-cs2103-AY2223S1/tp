@@ -6,6 +6,7 @@ import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.Todo;
 import soconnect.model.todo.UniqueTodoList;
 
@@ -92,6 +93,25 @@ public class TodoList implements ReadOnlyTodoList {
      */
     public void removeTodo(Todo key) {
         todos.remove(key);
+    }
+
+    /**
+     * Changes the original tag to the new tag.
+     *
+     * @param oldTag The original tag.
+     * @param newTag The new tag to replace the original tag.
+     */
+    public void editTag(Tag oldTag, Tag newTag) {
+        todos.changeRelevantTodoTag(oldTag, newTag);
+    }
+
+    /**
+     * Deletes a {@code Tag} from the TodoList.
+     *
+     * @param tag The tag to be deleted.
+     */
+    public void deleteTag(Tag tag) {
+        todos.removeRelevantTodoTag(tag);
     }
 
     //// util methods

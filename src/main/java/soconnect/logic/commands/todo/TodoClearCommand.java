@@ -12,7 +12,7 @@ import soconnect.model.TodoList;
 public class TodoClearCommand extends TodoCommand {
 
     public static final String SUB_COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "TodoList has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Todo List has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {

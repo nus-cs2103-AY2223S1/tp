@@ -9,7 +9,7 @@ import static soconnect.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, but it should not be blank.";
 
     /*
      * The first character of the Description must not be a whitespace,

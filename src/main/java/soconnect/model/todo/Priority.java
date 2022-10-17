@@ -13,11 +13,11 @@ import java.util.Map;
 public class Priority {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Priority can only be LOW, MEDIUM, or HIGH";
+        "Priority can only be `low`, `medium`, or `high`.";
 
-    public static final String PRIORITY_LOW = "LOW";
-    public static final String PRIORITY_MEDIUM = "MEDIUM";
-    public static final String PRIORITY_HIGH = "HIGH";
+    public static final String PRIORITY_LOW = "low";
+    public static final String PRIORITY_MEDIUM = "medium";
+    public static final String PRIORITY_HIGH = "high";
 
     /**
      * Maps the 3 priorities to their ranking in the TodoList.

@@ -15,6 +15,8 @@ import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.commons.util.CollectionUtil;
 import soconnect.logic.commands.CommandResult;
+import soconnect.logic.commands.TagCommand;
+import soconnect.logic.commands.TagCreateCommand;
 import soconnect.logic.commands.exceptions.CommandException;
 import soconnect.model.Model;
 import soconnect.model.tag.Tag;
@@ -30,20 +32,22 @@ public class TodoEditCommand extends TodoCommand {
     public static final String SUB_COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
-        + ": Edits the details of the todo identified "
-        + "by the index number used in the displayed todo list. "
-        + "Existing values will be overwritten by the input values.\n"
+        + ": Edits the details of the Todo identified by the index number used in the displayed Todo List. \n"
+        + "Existing values will be overwritten by the input values. Tags are overwritten as a group.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_PRIORITY + "PRIORITY]"
+        + "[" + PREFIX_PRIORITY + "PRIORITY] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " 1 "
-        + PREFIX_DESCRIPTION + "Watch math lecture recording ";
+        + PREFIX_DESCRIPTION + "Watch math lecture recording \n"
+        + COMMAND_WORD + " " + SUB_COMMAND_WORD + " 3 "
+        + PREFIX_TAG + "CS2100 \n";
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
-    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in SoConnect";
-    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag does not exist, consider creating the tag first";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_TODO = "This Todo already exists in SoConnect!";
+    public static final String MESSAGE_TAG_DOES_NOT_EXIST = "The tag(s) do not exist, please create them first using `"
+        + TagCommand.COMMAND_WORD + " " + TagCreateCommand.COMMAND_WORD + "`.";
 
     private final Index index;
     private final EditTodoDescriptor editTodoDescriptor;
@@ -75,6 +79,10 @@ public class TodoEditCommand extends TodoCommand {
 
         if (!todoToEdit.equals(editedTodo) && model.hasTodo(editedTodo)) {
             throw new CommandException(MESSAGE_DUPLICATE_TODO);
+        }
+
+        if (!model.areTagsAvailable(editedTodo)) {
+            throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
         }
 
         model.setTodo(todoToEdit, editedTodo);
