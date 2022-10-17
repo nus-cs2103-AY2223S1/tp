@@ -1,13 +1,20 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.tag.Tag;
+
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.Medication.MESSAGE_NO_MEDICATION_GIVEN;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -18,6 +25,7 @@ public class Record implements Comparable<Record> {
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;
+    private final Set<Medication> medications; // optional field
 
     /**
      * Constructs a record.
@@ -25,13 +33,27 @@ public class Record implements Comparable<Record> {
      * @param recordDate Date that the record was made.
      * @param record     Contents of the record.
      */
-    public Record(String recordDate, String record) {
-        requireNonNull(recordDate);
-        requireNonNull(record);
-        checkArgument(isValidDate(recordDate), MESSAGE_INVALID_DATE_FORMAT);
+    public Record(LocalDateTime recordDate, String record, Set<Medication> meds) {
+        requireAllNonNull(recordDate, record, meds);
         checkArgument(isValidRecordData(record), MESSAGE_INVALID_RECORD_DATA_FORMAT);
-        this.recordDate = LocalDateTime.parse(recordDate, DATE_FORMAT);
+        this.recordDate = recordDate;
         this.record = record;
+        this.medications = meds;
+    }
+
+    /**
+     * Constructs a record, with no medication.
+     *
+     * @param recordDate Date that the record was made.
+     * @param record     Contents of the record.
+     */
+    public Record(LocalDateTime recordDate, String record) {
+        requireAllNonNull(recordDate, record);
+        checkArgument(isValidRecordData(record), MESSAGE_INVALID_RECORD_DATA_FORMAT);
+        this.recordDate = recordDate;
+        this.record = record;
+        this.medications = new HashSet<Medication>();
+        this.medications.add(Medication.of(MESSAGE_NO_MEDICATION_GIVEN));
     }
 
     /**
@@ -61,8 +83,17 @@ public class Record implements Comparable<Record> {
      *
      * @return The record date.
      */
-    public String getRecordDate() {
-        return recordDate.format(DATE_FORMAT);
+    public LocalDateTime getRecordDate() {
+        return this.recordDate;
+    }
+
+    /**
+     * Medication Set getter.
+     *
+     * @return Unmodifiable set of medications.
+     */
+    public Set<Medication> getMedications() {
+        return Collections.unmodifiableSet(medications);
     }
 
     @Override
@@ -72,7 +103,18 @@ public class Record implements Comparable<Record> {
 
     @Override
     public String toString() {
-        return recordDate.format(DATE_FORMAT) + ": " + record;
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getRecordDate().format(DATE_FORMAT))
+                .append("; Record: ")
+                .append(record);
+
+        Set<Medication> meds = getMedications();
+        if (!meds.isEmpty()) {
+            builder.append("; Medications: ");
+            meds.forEach(med -> builder.append(med + " "));
+        }
+
+        return builder.toString();
     }
 
     @Override

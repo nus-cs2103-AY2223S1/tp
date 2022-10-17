@@ -17,6 +17,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddRecordCommand;
 import seedu.address.model.person.Record;
 
+import java.time.LocalDateTime;
+
 public class AddRecordCommandParserTest {
 
     private AddRecordCommandParser parser = new AddRecordCommandParser();
@@ -29,7 +31,7 @@ public class AddRecordCommandParserTest {
 
     @Test
     public void parse_validArgs_success() {
-        Record expectedRecord = new Record(VALID_RECORD_DATE, VALID_RECORD_DATA);
+        Record expectedRecord = new Record(LocalDateTime.parse(VALID_RECORD_DATE, Record.DATE_FORMAT), VALID_RECORD_DATA);
 
         assertParseSuccess(parser, RECORD_DATE_DESC + RECORD_DATA_DESC, new AddRecordCommand(expectedRecord));
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,9 +21,12 @@ public class AddRecordCommand extends Command {
             + "Parameters: "
             + PREFIX_DATE + "Record Date "
             + PREFIX_RECORD + "Record Content\n"
+            + "[" + PREFIX_MEDICATION + "Medication]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DATE + "31-10-2022 1430 (must be formatted in dd-MM-yyyy HHmm) "
-            + PREFIX_RECORD + "suffers from common cold";
+            + PREFIX_RECORD + "suffers from common cold"
+            + PREFIX_MEDICATION + "Paracetamol 500mg"
+            + PREFIX_MEDICATION + "Phenylephrine oral 10mg";
 
     public static final String MESSAGE_SUCCESS = "New record added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the record list";

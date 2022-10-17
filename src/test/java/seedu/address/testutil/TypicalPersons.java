@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,9 +25,9 @@ import seedu.address.model.person.Record;
  */
 public class TypicalPersons {
 
-    public static final Record RECORD1 = new Record("10-10-2011 1400", "Covid-19");
-    public static final Record RECORD2 = new Record("10-10-2010 1400", "Cold");
-    public static final Record RECORD3 = new Record("10-10-2020 1400", "SARS");
+    public static final Record RECORD1 = new Record(LocalDateTime.parse("10-10-2011 1400", Record.DATE_FORMAT), "Covid-19");
+    public static final Record RECORD2 = new Record(LocalDateTime.parse("10-10-2010 1400", Record.DATE_FORMAT), "Cold");
+    public static final Record RECORD3 = new Record(LocalDateTime.parse("10-10-2020 1400", Record.DATE_FORMAT), "SARS");
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")

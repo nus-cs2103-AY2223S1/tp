@@ -2,9 +2,13 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.person.Record;
+
+import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Record}.
@@ -31,6 +35,8 @@ public class RecordCard extends UiPart<Region> {
     private Label recordText;
     @FXML
     private Label date;
+    @FXML
+    private FlowPane medications;
 
     /**
      * Creates a {@code RecordCode} with the given {@code Record} and index to display.
@@ -40,7 +46,10 @@ public class RecordCard extends UiPart<Region> {
         this.record = record;
         id.setText(displayedIndex + ". ");
         recordText.setText(record.record);
-        date.setText(record.getRecordDate());
+        date.setText(record.getRecordDate().format(Record.DATE_FORMAT));
+        record.getMedications().stream()
+                .sorted(Comparator.comparing(med -> med.medicationName))
+                .forEach(med -> medications.getChildren().add(new Label(med.medicationName)));
     }
 
     @Override
@@ -58,6 +67,7 @@ public class RecordCard extends UiPart<Region> {
         // state check
         RecordCard card = (RecordCard) other;
         return id.getText().equals(card.id.getText())
-                && record.equals(card.record);
+                && record.equals(card.record)
+                && medications.equals(card.medications);
     }
 }

@@ -199,6 +199,8 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    /*
+
     @Test
     public void parseRecord_nullRecordDate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRecord((String) null, VALID_RECORD_DATA));
@@ -232,4 +234,6 @@ public class ParserUtilTest {
         Record expectedRecord = new Record(VALID_RECORD_DATE, VALID_RECORD_DATA);
         assertEquals(expectedRecord, ParserUtil.parseRecord(recordDateWithWhitespace, recordDataWithWhitespace));
     }
+
+    */
 }
