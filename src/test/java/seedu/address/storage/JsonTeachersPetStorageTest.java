@@ -94,10 +94,10 @@ public class JsonTeachersPetStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveTeachersPet(ReadOnlyTeachersPet addressBook, String filePath) {
+    private void saveTeachersPet(ReadOnlyTeachersPet teachersPet, String filePath) {
         try {
             new JsonTeachersPetStorage(Paths.get(filePath))
-                    .saveTeachersPet(addressBook, addToTestDataPathIfNotNull(filePath));
+                    .saveTeachersPet(teachersPet, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

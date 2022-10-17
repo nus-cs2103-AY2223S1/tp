@@ -4,7 +4,7 @@ import seedu.address.model.TeachersPet;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building TeachersPet objects.
  * Example usage: <br>
  *     {@code TeachersPet ab = new TeachersPetBuilder().withPerson("John", "Doe").build();}
  */

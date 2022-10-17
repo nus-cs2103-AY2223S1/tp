@@ -19,8 +19,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ReadOnlyTeachersPet addressBook = new TeachersPet();
-        model.setTeachersPet(addressBook);
+        ReadOnlyTeachersPet teachersPet = new TeachersPet();
+        model.setTeachersPet(teachersPet);
         ClassStorage classStorage = new ClassStorage(model);
         return new CommandResult(MESSAGE_SUCCESS);
     }

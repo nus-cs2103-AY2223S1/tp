@@ -45,7 +45,7 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-    // ================ AddressBook methods ==============================
+    // ================ TeachersPet methods ==============================
 
     @Override
     public Path getTeachersPetFilePath() {

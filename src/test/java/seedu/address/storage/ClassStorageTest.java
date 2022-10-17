@@ -49,8 +49,8 @@ public class ClassStorageTest {
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
-        TeachersPet addressBookFromFile = dataFromFile.toModelType();
-        ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
         // Throws an exception because Alex Yeoh in personsTeachersPet has class timing conflict with Daniel Tan.
         assertThrows(CommandException.class, () -> classStorage.saveClass(person, 3));
@@ -62,8 +62,8 @@ public class ClassStorageTest {
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
-        TeachersPet addressBookFromFile = dataFromFile.toModelType();
-        ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
         assertEquals(1, ClassStorage.getIndex(person));
     }
@@ -75,8 +75,8 @@ public class ClassStorageTest {
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
-        TeachersPet addressBookFromFile = dataFromFile.toModelType();
-        ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
         // returns 0 since there is no same person found
         assertEquals(0, ClassStorage.getIndex(person));
