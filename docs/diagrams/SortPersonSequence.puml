@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortPersonCommandParser" as SortPersonCommandParser LOGIC_COLOR
+participant "d:SortPersonCommand" as SortPersonCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sortp n/")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sortp n/")
+activate AddressBookParser
+
+create SortPersonCommandParser
+AddressBookParser -> SortPersonCommandParser
+activate SortPersonCommandParser
+
+SortPersonCommandParser --> AddressBookParser
+deactivate SortPersonCommandParser
+
+AddressBookParser -> SortPersonCommandParser : parse("n/")
+activate SortPersonCommandParser
+
+create SortPersonCommand
+SortPersonCommandParser -> SortPersonCommand : SortPersonCommand(Criteria.NAME)
+activate SortPersonCommand
+
+SortPersonCommand --> SortPersonCommandParser : command
+deactivate SortPersonCommand
+
+SortPersonCommandParser --> AddressBookParser : command
+deactivate SortPersonCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortPersonCommandParser -[hidden]-> AddressBookParser
+destroy SortPersonCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> SortPersonCommand : execute()
+activate SortPersonCommand
+
+SortPersonCommand -> Model : sortPersonList(Comparator.comparing(Person::getName))
+activate Model
+
+Model --> FilteredList : setComparator(comparator)
+activate FilteredList
+
+FilteredList --> Model
+deactivate FilteredList
+
+Model --> SortPersonCommand
+deactivate Model
+
+create CommandResult
+SortPersonCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortPersonCommand
+deactivate CommandResult
+
+SortPersonCommand --> LogicManager : result
+deactivate SortPersonCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
