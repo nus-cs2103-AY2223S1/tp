@@ -48,6 +48,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setNewTagTypeMap(tagTypeMap);
         descriptor.setStatus(person.getStatus());
         descriptor.setNote(person.getNote());
+        descriptor.setRating(person.getRating());
     }
 
     /**

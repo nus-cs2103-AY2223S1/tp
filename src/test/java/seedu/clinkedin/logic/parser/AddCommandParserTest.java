@@ -54,7 +54,8 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB).build();
         AddCommand expectedCommand = new AddCommand(expectedPerson);
 
-        AddCommand actualCommand = new AddCommandParser().parse(PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        AddCommand actualCommand = new AddCommandParser().parse(PREAMBLE_WHITESPACE + NAME_DESC_BOB
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + STATUS_DESC_BOB + NOTE_DESC_BOB + RATING_DESC_BOB);
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

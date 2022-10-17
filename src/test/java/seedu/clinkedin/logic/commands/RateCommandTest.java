@@ -1,6 +1,11 @@
 package seedu.clinkedin.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
@@ -9,9 +14,7 @@ import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.testutil.PersonBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.clinkedin.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.clinkedin.testutil.TypicalPersons.getTypicalAddressBook;
+
 
 public class RateCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

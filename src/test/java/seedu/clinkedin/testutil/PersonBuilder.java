@@ -43,8 +43,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new UniqueTagTypeMap();
         status = new Status(DEFAULT_STATUS);
-        rating = new Rating(DEFAULT_RATING);
         note = new Note(DEFAULT_NOTE);
+        rating = new Rating(DEFAULT_RATING);
     }
 
     /**
