@@ -26,6 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final User gitHubUser;
+    private final Role role;
     private final Set<Tag> tags = new HashSet<>();
     private final Map<ContactType, Contact> contacts = new HashMap<>();
 
@@ -41,6 +42,7 @@ public class Person {
         // mock user
         // Todo: Add githubUser to constructor
         this.gitHubUser = new User("");
+        this.role = new Role("");
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
     }
@@ -55,6 +57,10 @@ public class Person {
 
     public User getGitHubUser() {
         return gitHubUser;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     /**
