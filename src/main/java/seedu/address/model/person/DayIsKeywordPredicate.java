@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code Session} matches the day keyword given.
+ */
 public class DayIsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
