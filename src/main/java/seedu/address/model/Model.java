@@ -124,7 +124,6 @@ public interface Model {
 
     /**
      * Generate the next entity ids
-     * @param id id to to generate
      * @return id
      */
     int generateClientId();
