@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&display=swap');
+
 .background {
     -fx-background-color: derive(#010101, 20%);
     background-color: #383838; /* Used in the default.html file */
@@ -107,7 +109,7 @@
     -fx-border-color: derive(#010101, 20%);
     -fx-border-width: 10 10 10 10;
     -fx-border-radius: 15;
-    -fx-background-color: derive(#393d43, 20%);
+    -fx-background-color: #535d6d;
     -fx-background-insets: 10 10 10 10;
 }
 
@@ -115,7 +117,7 @@
     -fx-border-color: derive(#010101, 20%);
     -fx-border-width: 10 10 10 10;
     -fx-border-radius: 15;
-    -fx-background-color: derive(#393d43, 20%);
+    -fx-background-color: #535d6d;
     -fx-background-insets: 10 10 10 10;
 }
 
@@ -130,25 +132,28 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-family: "Figtree";
+    -fx-font-weight: 800;
+    -fx-font-size: 20px;
     -fx-text-fill: white;
 }
 
 .cell_medium_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Figtree";
     -fx-font-size: 14px;
+    -fx-font-weight:400;
     -fx-text-fill:  white;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Figtree";
     -fx-font-size: 13px;
+    -fx-font-weight:400;
     -fx-text-fill: white;
 }
 
 .stack-pane {
-    -fx-background-color: #393d43;
+    -fx-background-color: #535d6d;;
     -fx-background-radius: 15;
 }
 
@@ -158,6 +163,13 @@
      -fx-border-top-width: 1px;
 }
 
+.field-pane-with-border {
+    -fx-border-radius:15;
+    -fx-border-width: 6;
+    -fx-border-color: #535d6d;
+    -fx-padding: 10 10 10 10;
+    -fx-background-color: transparent;
+}
 .status-bar {
     -fx-background-color: derive(#010101, 20%);
 }
@@ -303,7 +315,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #7A7A7A;
+    -fx-background-color: derive(#7A7A7A, 20%);
     -fx-background-insets: 6;
 }
 
@@ -351,14 +363,14 @@
 }
 
 #resultDisplay{
-    -fx-background-color: #616161;
+    -fx-background-color: #7c7e82;
     -fx-background-insets: 0, 0, 0, 0;
     -fx-padding: 5 5 5 5;
     -fx-background-radius: 15px;
 }
 
 #resultDisplay .content {
-    -fx-background-color: #616161;
+    -fx-background-color: #7c7e82;
     -fx-wrap-text: true;
 }
 
@@ -368,8 +380,8 @@
 }
 
 #tags .label {
-    -fx-text-fill: black;
-    -fx-background-color: #b1f690;
+    -fx-text-fill: white;
+    -fx-background-color: #b28ec2;
     -fx-padding: 5 10 5 10;
     -fx-border-radius: 2;
     -fx-background-radius: 200;

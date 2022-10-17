@@ -12,7 +12,7 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="50" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
@@ -26,19 +26,38 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="phone" styleClass="cell_medium_label" text="\$phone" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="gradeProgressHeader" styleClass="cell_small_label" text="Grade Progress:"/>
-      <Label fx:id="gradeProgress" styleClass="cell_small_label" text="\$gradeProgress" />
-      <Label fx:id="LessonPlanHeader" styleClass="cell_small_label" text="Lesson Plan:"/>
-      <Label fx:id="lessonPlan" styleClass="cell_small_label" text="\$lessonPlan" />
-      <Label fx:id="homeworkHeader" styleClass="cell_small_label" text="Homework:"/>
-      <Label fx:id="homework" styleClass="cell_small_label" text="\$homework" />
-      <Label fx:id="attendanceHeader" styleClass="cell_small_label" text="Attendance:"/>
-      <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
-      <Label fx:id="sessionHeader" styleClass="cell_medium_label" text="Session:"/>
-      <Label fx:id="session" styleClass="cell_medium_label" text="\$session"/>
+      <VBox spacing="5" style="-fx-background-color: #9dc28e; -fx-background-radius:20;" styleClass="field-pane-with-border">
+        <Label fx:id="LessonPlanHeader" styleClass="cell_medium_label" text="Lesson Plan:"/>
+        <Label fx:id="lessonPlan" styleClass="cell_small_label" text="\$lessonPlan" />
+      </VBox>
+      <VBox spacing="5" style="-fx-background-color: #c2a78e; -fx-background-radius:20;" styleClass="field-pane-with-border">
+        <Label fx:id="homeworkHeader" styleClass="cell_medium_label" text="Homework:"/>
+        <Label fx:id="homework" styleClass="cell_small_label" text="\$homework" />
+      </VBox>
+    </VBox>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="50" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
+      <padding>
+        <Insets top="5" right="5" bottom="5" left="15" />
+      </padding>
+      <VBox spacing="5" style="-fx-background-color: #8eb1c2; -fx-background-radius:20;" styleClass="field-pane-with-border">
+        <Label fx:id="attendanceHeader" styleClass="cell_medium_label" text="Attendance:"/>
+        <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" />
+      </VBox>
+      <VBox spacing="5" style="-fx-background-color: #938ec2; -fx-background-radius:20;" styleClass="field-pane-with-border">
+        <Label fx:id="gradeProgressHeader" styleClass="cell_medium_label" text="Grade Progress:"/>
+        <Label fx:id="gradeProgress" styleClass="cell_small_label" text="\$gradeProgress" />
+      </VBox>
+      <VBox spacing="5" style="-fx-background-color: #c28e92; -fx-background-radius:20;" styleClass="field-pane-with-border">
+        <Label fx:id="sessionHeader" styleClass="cell_medium_label" text="Session:"/>
+        <Label fx:id="session" styleClass="cell_small_label" text="\$session"/>
+      </VBox>
+
     </VBox>
   </GridPane>
 </HBox>
