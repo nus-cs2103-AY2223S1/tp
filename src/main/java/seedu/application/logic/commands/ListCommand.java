@@ -3,6 +3,7 @@ package seedu.application.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
+import seedu.application.model.HideArchiveFromListPredicate;
 import seedu.application.model.Model;
 
 /**
@@ -18,7 +19,9 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        HideArchiveFromListPredicate hideArchiveFromListPredicate =
+                new HideArchiveFromListPredicate(model.getArchiveList());
+        model.updateFilteredApplicationList(hideArchiveFromListPredicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

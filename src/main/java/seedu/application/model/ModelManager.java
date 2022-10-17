@@ -18,10 +18,10 @@ import seedu.application.model.application.Application;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final ApplicationBook applicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
+    private final FilteredList<Application> filteredArchives;
 
     /**
      * Initializes a ModelManager with the given applicationBook and userPrefs.
@@ -34,6 +34,7 @@ public class ModelManager implements Model {
         this.applicationBook = new ApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
+        filteredArchives = new FilteredList<>(this.applicationBook.getArchiveList());
     }
 
     public ModelManager() {
@@ -101,7 +102,25 @@ public class ModelManager implements Model {
     @Override
     public void addApplication(Application application) {
         applicationBook.addApplication(application);
-        updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        HideArchiveFromListPredicate hideArchiveFromListPredicate =
+                new HideArchiveFromListPredicate(getArchiveList());
+        updateFilteredApplicationList(hideArchiveFromListPredicate);
+    }
+
+    @Override
+    public void archiveApplication(Application target) {
+        applicationBook.addArchive(target);
+        HideArchiveFromListPredicate hideArchiveFromListPredicate =
+                new HideArchiveFromListPredicate(getArchiveList());
+        updateFilteredApplicationList(hideArchiveFromListPredicate);
+    }
+
+    @Override
+    public void retrieveApplication(Application target) {
+        applicationBook.retrieveApplication(target);
+        HideArchiveFromListPredicate hideArchiveFromListPredicate =
+                new HideArchiveFromListPredicate(getArchiveList());
+        updateFilteredApplicationList(hideArchiveFromListPredicate);
     }
 
     @Override
@@ -120,6 +139,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
         return filteredApplications;
+    }
+
+    @Override
+    public ObservableList<Application> getArchiveList() {
+        return filteredArchives;
     }
 
     @Override

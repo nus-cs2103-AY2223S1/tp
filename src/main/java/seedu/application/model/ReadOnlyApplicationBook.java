@@ -14,4 +14,6 @@ public interface ReadOnlyApplicationBook {
      */
     ObservableList<Application> getApplicationList();
 
+    ObservableList<Application> getArchiveList();
+
 }

@@ -15,6 +15,7 @@ import seedu.application.model.application.UniqueApplicationList;
 public class ApplicationBook implements ReadOnlyApplicationBook {
 
     private final UniqueApplicationList applications;
+    private final UniqueArchiveList archives;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +26,7 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
      */
     {
         applications = new UniqueApplicationList();
+        archives = new UniqueArchiveList();
     }
 
     public ApplicationBook() {}
@@ -48,11 +50,20 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
+     * Replaces the contents of the archives list with {@code archives}.
+     * {@code applications} must not contain duplicate applications.
+     */
+    public void setArchives(List<Application> archives) {
+        this.archives.setArchives(archives);
+    }
+
+    /**
      * Resets the existing data of this {@code ApplicationBook} with {@code newData}.
      */
     public void resetData(ReadOnlyApplicationBook newData) {
         requireNonNull(newData);
 
+        setArchives(newData.getArchiveList());
         setApplications(newData.getApplicationList());
     }
 
@@ -67,11 +78,31 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
+     * Returns true if an application with the same identity as {@code application} exists in the archive list.
+     */
+    public boolean hasArchive(Application application) {
+        requireNonNull(application);
+        return archives.contains(application);
+    }
+
+    /**
      * Adds an application to the application book.
      * The application must not already exist in the application book.
      */
     public void addApplication(Application p) {
         applications.add(p);
+    }
+
+    /**
+     * Adds an application to the archive list.
+     * The application must not already exist in the archive list.
+     */
+    public void addArchive(Application p) {
+        archives.addArchive(p);
+    }
+
+    public void retrieveApplication(Application a) {
+        archives.removeArchive(a);
     }
 
     /**
@@ -105,6 +136,11 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     @Override
     public ObservableList<Application> getApplicationList() {
         return applications.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Application> getArchiveList() {
+        return archives.asUnmodifiableObservableList();
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.application.logic.commands.AddCommand;
+import seedu.application.logic.commands.ArchiveCommand;
 import seedu.application.logic.commands.ClearCommand;
 import seedu.application.logic.commands.Command;
 import seedu.application.logic.commands.DeleteCommand;
@@ -14,7 +15,9 @@ import seedu.application.logic.commands.EditCommand;
 import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
+import seedu.application.logic.commands.ListArchiveCommand;
 import seedu.application.logic.commands.ListCommand;
+import seedu.application.logic.commands.RetrieveCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 
 /**
@@ -66,6 +69,15 @@ public class ApplicationBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case ListArchiveCommand.COMMAND_WORD:
+            return new ListArchiveCommand();
+
+        case RetrieveCommand.COMMAND_WORD:
+            return new RetrieveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

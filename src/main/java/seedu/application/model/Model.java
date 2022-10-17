@@ -70,6 +70,18 @@ public interface Model {
     void addApplication(Application application);
 
     /**
+     * Archives the given application to the UniqueApplicationList.
+     * {@code application} must not already exist in the archiveList.
+     */
+    void archiveApplication(Application target);
+
+    /**
+     * Retrieves the given application from the UniqueAchieveList.
+     * {@code application} must not already exist in the UniqueApplicationList.
+     */
+    void retrieveApplication(Application target);
+
+    /**
      * Replaces the given application {@code target} with {@code editedApplication}.
      * {@code target} must exist in the application book.
      * The application identity of {@code editedApplication} must not be the same as
@@ -79,6 +91,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
+
+    /** Returns an unmodifiable view of the archive list */
+    ObservableList<Application> getArchiveList();
 
     /**
      * Updates the filter of the filtered application list to filter by the given {@code predicate}.
