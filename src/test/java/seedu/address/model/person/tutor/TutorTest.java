@@ -70,7 +70,8 @@ public class TutorTest {
                 + "; Address: " + "123, Jurong West Ave 6, #08-111"
                 + "; Tags: " + "[friends]"
                 + "; Highest Qualification: " + "Bachelor of Computing"
-                + "; Institution: " + "National University of Singapore";
+                + "; Institution: " + "National University of Singapore"
+                + "; Tags: " + "[friends]";
 
         assertEquals(str, TUTOR1.toString());
     }

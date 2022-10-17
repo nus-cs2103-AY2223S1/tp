@@ -1,8 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.person.tutor.Institution;
 import seedu.address.model.person.tutor.Qualification;
 import seedu.address.model.person.tutor.Tutor;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A utility class to help with building Tutor objects.
@@ -14,6 +19,7 @@ public class TutorBuilder extends PersonBuilder {
 
     private Qualification qualification;
     private Institution institution;
+    private List<TuitionClass> tuitionClasses = new ArrayList<>();
 
     /**
      * Creates a {@code TutorBuilder} with the default details.
@@ -31,6 +37,7 @@ public class TutorBuilder extends PersonBuilder {
         super(tutorToCopy);
         qualification = tutorToCopy.getQualification();
         institution = tutorToCopy.getInstitution();
+        tuitionClasses = tutorToCopy.getTuitionClasses();
     }
 
     /**
@@ -91,6 +98,22 @@ public class TutorBuilder extends PersonBuilder {
     }
 
     /**
+     * Sets the {@code TuitionClass} of the {@code Tutor} that we are building.
+     */
+    public TutorBuilder withTuitionClasses(TuitionClass... tuitionClass) {
+        this.tuitionClasses = new ArrayList<>(Arrays.asList(tuitionClass));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TuitionClass} of the {@code Tutor} that we are building.
+     */
+    public TutorBuilder withTuitionClasses(List<TuitionClass> tuitionClasses) {
+        this.tuitionClasses = tuitionClasses;
+        return this;
+    }
+
+    /**
      * Builds {@code Tutor} object.
      *
      * @return A Tutor object.
@@ -98,6 +121,6 @@ public class TutorBuilder extends PersonBuilder {
     @Override
     public Tutor build() {
         return new Tutor(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                this.getTags(), qualification, institution);
+                this.getTags(), qualification, institution, tuitionClasses);
     }
 }

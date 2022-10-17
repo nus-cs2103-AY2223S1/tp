@@ -2,6 +2,8 @@ package seedu.address.model.person.tutor;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * Represents a Tutor in the address book.
@@ -19,6 +22,8 @@ public class Tutor extends Person {
 
     private final Qualification qualification;
     private final Institution institution;
+    private final List<TuitionClass> tuitionClasses = new ArrayList<>();
+
 
     /**
      * Every field must be present and not null.
@@ -31,6 +36,20 @@ public class Tutor extends Person {
         this.institution = institution;
     }
 
+    /**
+     * Every field must be present and not null.
+     * Should not be used in AddCommand as tuition classes
+     * are not added in AddCommand.
+     */
+    public Tutor(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+                 Qualification qualification, Institution institution, List<TuitionClass> tuitionClasses) {
+        super(name, phone, email, address, tags);
+        requireAllNonNull(qualification, institution);
+        this.qualification = qualification;
+        this.institution = institution;
+        this.tuitionClasses.addAll(tuitionClasses);
+    }
+
     public Qualification getQualification() {
         return qualification;
     }
@@ -38,6 +57,11 @@ public class Tutor extends Person {
     public Institution getInstitution() {
         return institution;
     }
+
+    public List<TuitionClass> getTuitionClasses() {
+        return tuitionClasses;
+    }
+
 
     /**
      * Returns true if both tutors have the same identity and data fields.
@@ -60,14 +84,15 @@ public class Tutor extends Person {
                 && otherTutor.getAddress().equals(getAddress())
                 && otherTutor.getTags().equals(getTags())
                 && otherTutor.getQualification().equals(getQualification())
-                && otherTutor.getInstitution().equals(getInstitution());
+                && otherTutor.getInstitution().equals(getInstitution())
+                && otherTutor.getTuitionClasses().equals(getTuitionClasses());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getTags(),
-                qualification, institution);
+                qualification, institution, tuitionClasses);
     }
 
     @Override
@@ -79,6 +104,12 @@ public class Tutor extends Person {
                 .append(getQualification())
                 .append("; Institution: ")
                 .append(getInstitution());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
 
         return builder.toString();
     }
