@@ -13,18 +13,25 @@ import seedu.address.model.tag.Tag;
 public class Student extends Person {
     private final Set<ModuleCode> moduleCodes = new HashSet<>();
 
+    private final Year year;
+
     /**
      * Every field must be present and not null.
      */
 
     public Student(Name name, Phone phone, Email email, Gender gender, Set<Tag> tags,
-                   Location location, GithubUsername username, Set<ModuleCode> moduleCodes) {
+                   Location location, GithubUsername username, Set<ModuleCode> moduleCodes, Year year) {
         super(name, phone, email, gender, tags, location, username);
         this.moduleCodes.addAll(moduleCodes);
+        this.year = year;
     }
 
     public Set<ModuleCode> getModuleCodes() {
         return Collections.unmodifiableSet(this.moduleCodes);
+    }
+
+    public Year getYear() {
+        return this.year;
     }
 
     @Override
@@ -37,6 +44,11 @@ public class Student extends Person {
         if (!this.moduleCodes.isEmpty()) {
             builder.append("; Module Code: ");
             this.moduleCodes.forEach(builder:: append);
+        }
+
+        if (!year.value.equals(Year.EMPTY_YEAR)) {
+            builder.append("; Year: ")
+                    .append(year.value);
         }
 
         builder.append("; Phone: ")

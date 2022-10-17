@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 
@@ -39,8 +40,9 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("gender") String gender,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("location") String location,
-                              @JsonProperty("username") String username, @JsonProperty("rating") String rating) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating);
+                              @JsonProperty("username") String username, @JsonProperty("rating") String rating,
+                              @JsonProperty("year") String year) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating, year);
         if (moduleCodes != null) {
             this.moduleCodes.addAll(moduleCodes);
         }
@@ -133,8 +135,19 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             modelUsername = new GithubUsername(getUsername(), true);
         }
 
+        final Year modelYear;
+
+        if (getYear().equals(Year.EMPTY_YEAR)) {
+            modelYear = new Year(Year.EMPTY_YEAR);
+        } else {
+            if (!Year.isValidYear(getYear())) {
+                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+            }
+            modelYear = new Year(getYear(), true);
+        }
+
         return new Student(modelName, modelPhone, modelEmail, modelGender, modelTags, modelLocation, modelUsername,
-                modelModuleCodes);
+                modelModuleCodes, modelYear);
     }
 
 }

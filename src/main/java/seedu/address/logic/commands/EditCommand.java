@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -35,6 +36,7 @@ import seedu.address.model.person.Professor;
 import seedu.address.model.person.Rating;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
+import seedu.address.model.person.Year;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,6 +51,7 @@ public class EditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
+        + "[" + PREFIX_YEAR + "YEAR] "
         + "[" + PREFIX_MODULE_CODE + "MODULE_CODE] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_GENDER + "GENDER] "
@@ -130,8 +133,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Year updatedYear = editPersonDescriptor.getYear().orElse(personToEdit.getYear());
         return new Student(updatedName, updatedPhone, updatedEmail, updatedGender, updatedTags, updatedLocation,
-                updatedUsername, updatedModuleCodes);
+                updatedUsername, updatedModuleCodes,updatedYear);
     }
 
     /**
@@ -211,6 +215,7 @@ public class EditCommand extends Command {
         private Location location;
         private GithubUsername githubUsername;
         private Rating rating;
+        private Year year;
 
         public EditPersonDescriptor() {
         }
@@ -310,6 +315,14 @@ public class EditCommand extends Command {
 
         public void setGithubUsername(GithubUsername username) {
             this.githubUsername = username;
+        }
+
+        public Optional<Year> getYear() {
+            return Optional.ofNullable(year);
+        }
+
+        public void setYear(Year year) {
+            this.year = year;
         }
 
         public Optional<Rating> getRating() {

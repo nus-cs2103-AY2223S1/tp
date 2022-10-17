@@ -32,6 +32,7 @@ abstract class JsonAdaptedPerson {
     private final String location;
     private final String username;
     private final String rating;
+    private final String year;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -42,7 +43,7 @@ abstract class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("location") String location, @JsonProperty("username") String username,
-                             @JsonProperty("rating") String rating) {
+                             @JsonProperty("rating") String rating, @JsonProperty("year") String year) {
         this.type = type;
         this.name = name;
         this.moduleCode = moduleCode;
@@ -55,6 +56,7 @@ abstract class JsonAdaptedPerson {
         this.location = location;
         this.username = username;
         this.rating = rating;
+        this.year = year;
     }
 
     /**
@@ -62,23 +64,28 @@ abstract class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         if (source instanceof Student) {
+            Student student = (Student) source;
             type = "s";
             moduleCode = "";
             rating = "";
+            year = student.getYear().value;
         } else if (source instanceof Professor) {
             type = "p";
             Professor prof = (Professor) source;
             moduleCode = prof.getModuleCode().value;
             rating = prof.getRating().value;
+            year = "";
         } else if (source instanceof TeachingAssistant) {
             type = "t";
             TeachingAssistant ta = (TeachingAssistant) source;
             moduleCode = ta.getModuleCode().value;
             rating = ta.getRating().value;
+            year = "";
         } else {
             type = "invalid";
             moduleCode = "invalid";
             rating = "invalid";
+            year = "invalid";
         }
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -121,6 +128,9 @@ abstract class JsonAdaptedPerson {
     }
     public String getRating() {
         return rating;
+    }
+    public String getYear() {
+        return year;
     }
 
     public abstract Person toModelType() throws IllegalValueException;
