@@ -9,12 +9,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.record.Record;
-import seedu.address.model.record.RecordContainsKeywordsPredicate;
 
 public class RecordContainsKeywordsPredicateTest {
 
-    private Record recordWithKeywords = new Record(LocalDateTime.parse("10-10-2000 1400", Record.DATE_FORMAT), "Covid-19 Flu SARS");
+    private Record recordWithKeywords = new Record(LocalDateTime.parse("10-10-2000 1400",
+            Record.DATE_FORMAT), "Covid-19 Flu SARS");
 
     @Test
     public void equals() {

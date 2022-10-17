@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -12,7 +11,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.record.Medication;
 import seedu.address.model.record.Record;
 import seedu.address.model.tag.Tag;
@@ -123,33 +125,6 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
-
-    /**
-     * Parses a {@code String recordDate} and {@code String recordData} into a {@code Record}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given inputs is invalid.
-     */
-
-    /*
-    public static Record parseRecord(String recordDate, String recordData) throws ParseException {
-        requireAllNonNull(recordDate, recordData);
-        String trimmedDate = recordDate.trim();
-        String trimmedData = recordData.trim();
-
-        if (!Record.isValidDate(trimmedDate)) {
-            throw new ParseException(Messages.MESSAGE_INVALID_DATE_FORMAT);
-        }
-
-        if (!Record.isValidRecordData(trimmedData)) {
-            throw new ParseException(Messages.MESSAGE_INVALID_RECORD_DATA_FORMAT);
-        }
-
-        return new Record(trimmedDate, trimmedData, );
-    }
-
-    */
 
     /**
      * Parses a {@code String recordData} into a {@String recordData}.

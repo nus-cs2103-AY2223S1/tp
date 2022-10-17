@@ -51,7 +51,7 @@ public class Medication {
      * @param in String to be tested.
      * @return True if input string is valid. False otherwise.
      */
-    public static boolean isValidMedication(String in){
+    public static boolean isValidMedication(String in) {
         return !in.isEmpty();
     }
 

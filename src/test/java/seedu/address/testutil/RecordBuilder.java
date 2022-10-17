@@ -1,13 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.model.record.Medication;
-import seedu.address.model.record.Record;
-import seedu.address.model.util.SampleDataUtil;
-
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+
+import seedu.address.model.record.Medication;
+import seedu.address.model.record.Record;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Record objects.

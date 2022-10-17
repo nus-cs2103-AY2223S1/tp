@@ -80,9 +80,13 @@ public class SampleDataUtil {
 
     public static RecordList getSampleRecordList() {
         RecordList sampleRecordList = new RecordList();
-        sampleRecordList.add(new Record(LocalDateTime.parse("05-06-2022 1200", Record.DATE_FORMAT), "tested positive for covid-19"));
-        sampleRecordList.add(new Record(LocalDateTime.parse("06-06-2010 1600", Record.DATE_FORMAT), "tested positive for H1N1"));
-        sampleRecordList.add(new Record(LocalDateTime.parse("20-02-2002 0200", Record.DATE_FORMAT), "tested positive for SARS"));
+        sampleRecordList.add(new Record(LocalDateTime.parse("05-06-2022 1200", Record.DATE_FORMAT),
+                "tested positive for covid-19"));
+        sampleRecordList.add(new Record(LocalDateTime.parse("06-06-2010 1600", Record.DATE_FORMAT),
+                "tested positive for H1N1"));
+        sampleRecordList.add(new Record(LocalDateTime.parse("20-02-2002 0200", Record.DATE_FORMAT),
+                "tested positive for SARS"));
+
         return sampleRecordList;
     }
 }

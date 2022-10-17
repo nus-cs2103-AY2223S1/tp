@@ -1,8 +1,5 @@
 package seedu.address.model.record;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.RecordBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_DATA;
@@ -10,6 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECORD_MEDICATION;
 import static seedu.address.testutil.TypicalPersons.RECORD1;
 import static seedu.address.testutil.TypicalPersons.RECORD2;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.RecordBuilder;
+
+
 
 public class RecordTest {
 
