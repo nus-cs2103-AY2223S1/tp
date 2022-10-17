@@ -6,10 +6,10 @@ title: User Guide
 Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). Gim builds on the commands of Vim so if you can type fast and are an avid Vim user, Gim can optimize your exercise routines to a much greater capacity than traditional GUI apps.
 
 ### Table of Contents
-#### Getting Started 
+#### Getting Started
 #### Features
 * Adding an exercise **:a**
-* Deleting an exercise **:d**	
+* Deleting an exercise **:d**
 * Listing all exercises **:ls**
 * Viewing help **:help**
 * Exiting the program **:wq**
@@ -54,7 +54,7 @@ Format: `:a n/<exercise name> w/<weight(kg)> s/<sets> r/<reps>`
 
 ##### Parameter constraints:
 * The weight **must be a positive decimal number**
-  * Examples: 1, 1.5, 2, ... 
+  * Examples: 1, 1.5, 2, ...
 * The sets **must be a positive integer, up to 3 digits, with no leading zeros**
   * Examples: 1, 2, 3, 10, 100...
 * The reps **must be a positive integer, up to 3 digits, with no leading zeros**
@@ -95,9 +95,9 @@ Format: `:wq`
 
 ## FAQ
 
-**Q**: Coming soon... 
-<br> 
-**A**: 
+**Q**: Coming soon...
+<br>
+**A**:
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -113,8 +113,8 @@ Format: `:wq`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary of Terminologies 
-* **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving 
+## Glossary of Terminologies
+* **Exercise** : Physical activity done in a regular gym that is structured and repetitive, usually involving
 some weights.
-* **Reps** : Number of times you perform a specific exercise 
-* **Sets** : Number of cycles of reps that you complete 
+* **Reps** : Number of times you perform a specific exercise
+* **Sets** : Number of cycles of reps that you complete
