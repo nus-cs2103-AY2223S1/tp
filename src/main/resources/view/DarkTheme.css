@@ -138,8 +138,7 @@
 .cell_medium_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 14px;
-    -fx-text-fill:  #010504;
-    -fx-background-color:  #C4978D;
+    -fx-text-fill:  white;
 }
 
 .cell_small_label {
@@ -336,7 +335,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #a3ddfe transparent #a3ddfe;
+    -fx-background-color: transparent derive(#010101, 20%) transparent derive(#010101, 20%);
     -fx-background-insets: 0;
     -fx-border-color: #393d43 #393d43 #393d43 #393d43;
     -fx-border-insets: 0;
