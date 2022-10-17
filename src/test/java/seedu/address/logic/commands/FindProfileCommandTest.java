@@ -10,7 +10,6 @@ import static seedu.address.logic.commands.profile.FindProfileCommand.MESSAGE_PR
 import static seedu.address.testutil.TypicalProfiles.CARL;
 import static seedu.address.testutil.TypicalProfiles.ELLE;
 import static seedu.address.testutil.TypicalProfiles.FIONA;
-import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,13 +21,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
+import seedu.address.testutil.TypicalAddressBook;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindProfileCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -101,4 +101,5 @@ public class FindProfileCommandTest {
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
 }
