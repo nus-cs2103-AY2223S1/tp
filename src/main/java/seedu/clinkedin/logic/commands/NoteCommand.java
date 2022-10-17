@@ -22,19 +22,18 @@ public class NoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an optional note to the person identified"
-            + "by the index number in the clinkedin book. "
+            + "by the index number in the address book. "
             + "Existing notes will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positve integer) "
             + "note INDEX note/NOTE\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "note/Strong in Java\n\n"
-            + " will add a note 'Strong in Java' to the first person in the clinkedin book.";
+            + " will add a note 'Strong in Java' to the first person in the address book.";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Person: %1$s";
     public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Removed note from Person: %1$s";
 
     private final Index index;
-
     private final Note note;
 
     /**
@@ -43,7 +42,6 @@ public class NoteCommand extends Command {
      */
     public NoteCommand(Index index, Note note) {
         requireAllNonNull(index, note);
-
         this.index = index;
         this.note = note;
     }

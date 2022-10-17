@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.clinkedin.model.person.Person;
 
 /**
- * Unmodifiable view of an clinkedin book
+ * Unmodifiable view of an address book
  */
 public interface ReadOnlyAddressBook {
 
