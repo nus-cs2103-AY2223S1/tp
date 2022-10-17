@@ -193,15 +193,12 @@ public class MainWindow extends UiPart<Stage> {
         switch (type) {
         case STUDENT_LIST:
             switchToStudentList();
-            //entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
             switchToTutorList();
-            //entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
             switchToTuitionClassList();
-            //entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
         case PERSON_LIST:
             entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -213,6 +210,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void switchToStudentList() {
+        logic.updateCurrentListType(Model.ListType.STUDENT_LIST);
         entityListPanelPlaceholder.getChildren().clear();
         entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -221,6 +219,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void switchToTutorList() {
+        logic.updateCurrentListType(Model.ListType.TUTOR_LIST);
         entityListPanelPlaceholder.getChildren().clear();
         entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
@@ -229,6 +228,7 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void switchToTuitionClassList() {
+        logic.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
         entityListPanelPlaceholder.getChildren().clear();
         entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
 
