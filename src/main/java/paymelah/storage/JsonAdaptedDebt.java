@@ -1,6 +1,7 @@
 package paymelah.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import paymelah.commons.exceptions.IllegalValueException;
@@ -11,18 +12,21 @@ import paymelah.model.debt.Money;
 /**
  * Jackson-friendly version of {@link Debt}.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 class JsonAdaptedDebt {
 
     private final String description;
     private final String money;
+    private final boolean isPaid;
 
     /**
      * Constructs a {@code JsonAdaptedDebt} with the given debt details.
      */
     @JsonCreator
-    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money) {
+    public JsonAdaptedDebt(@JsonProperty("description") String description, @JsonProperty("money") String money, @JsonProperty("isPaid") boolean isPaid) {
         this.description = description;
         this.money = money;
+        this.isPaid = isPaid;
     }
 
     /**
@@ -31,6 +35,7 @@ class JsonAdaptedDebt {
     public JsonAdaptedDebt(Debt source) {
         description = source.getDescription().toString();
         money = source.getMoney().toString();
+        isPaid = source.isPaid();
     }
 
     public String getDebtDescription() {
@@ -39,6 +44,10 @@ class JsonAdaptedDebt {
 
     public String getDebtMoney() {
         return money;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
     }
 
     /**
@@ -53,7 +62,7 @@ class JsonAdaptedDebt {
         if (!Money.isValidMoney(money)) {
             throw new IllegalValueException(Money.MESSAGE_CONSTRAINTS);
         }
-        return new Debt(new Description(description), new Money(money));
+        return new Debt(new Description(description), new Money(money), isPaid);
     }
 
 }

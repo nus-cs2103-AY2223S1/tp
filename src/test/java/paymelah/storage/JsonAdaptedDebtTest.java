@@ -16,22 +16,23 @@ public class JsonAdaptedDebtTest {
 
     private static final String VALID_DESCRIPTION = CHICKEN_RICE.getDescription().toString();
     private static final String VALID_MONEY = CHICKEN_RICE.getMoney().toString();
+    private static final boolean VALID_IS_PAID = CHICKEN_RICE.isPaid();
 
     @Test
     public void toModelType_validDetails_returnsDebt() throws IllegalValueException {
-        JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, VALID_MONEY);
+        JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, VALID_MONEY, VALID_IS_PAID);
         assertEquals(CHICKEN_RICE, debt.toModelType());
     }
 
     @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedDebt debt = new JsonAdaptedDebt(INVALID_DESCRIPTION, VALID_MONEY);
+        JsonAdaptedDebt debt = new JsonAdaptedDebt(INVALID_DESCRIPTION, VALID_MONEY, VALID_IS_PAID);
         assertThrows(IllegalValueException.class, Description.MESSAGE_CONSTRAINTS, debt::toModelType);
     }
 
     @Test
     public void toModelType_invalidMoney_throwsIllegalValueException() {
-        JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, INVALID_MONEY);
+        JsonAdaptedDebt debt = new JsonAdaptedDebt(VALID_DESCRIPTION, INVALID_MONEY, VALID_IS_PAID);
         assertThrows(IllegalValueException.class, Money.MESSAGE_CONSTRAINTS, debt::toModelType);
     }
 }

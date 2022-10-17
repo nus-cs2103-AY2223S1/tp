@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Debt {
     private final Description description;
     private final Money money;
+    private boolean isPaid;
 
     /**
      * Every field must be present and not null.
@@ -22,6 +23,21 @@ public class Debt {
         requireAllNonNull(description, money);
         this.description = description;
         this.money = money;
+        this.isPaid = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     *
+     * @param description The description of the debt.
+     * @param money The money amount of the debt.
+     * @param isPaid Whether the debt has been paid.
+     */
+    public Debt(Description description, Money money, boolean isPaid) {
+        requireAllNonNull(description, money, isPaid);
+        this.description = description;
+        this.money = money;
+        this.isPaid = isPaid;
     }
 
     public Description getDescription() {
@@ -30,6 +46,14 @@ public class Debt {
 
     public Money getMoney() {
         return money;
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
     /**
@@ -69,7 +93,7 @@ public class Debt {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append("; Money: $")
+                .append(": $")
                 .append(getMoney());
 
         return builder.toString();
