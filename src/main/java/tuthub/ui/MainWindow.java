@@ -1,11 +1,14 @@
 package tuthub.ui;
 
+import static tuthub.commons.util.AppUtil.getImage;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -24,6 +27,7 @@ import tuthub.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String TUTHUB_LOGO = "/images/tuthub.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -32,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private TutorListPanel tutorListPanel;
+    // private TutorDetailsPanel tutorDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +47,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private ImageView tuthubLogo;
+
+    @FXML
     private StackPane tutorListPanelPlaceholder;
+
+    // @FXML
+    // private StackPane tutorDetailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,6 +121,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        tuthubLogo.setImage(getImage(TUTHUB_LOGO));
+
         tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
         tutorListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
@@ -146,6 +159,23 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    // /**
+    // * Displays a panel containing tutor details
+    // */
+    // private void handleView(Tutor tutor) {
+    //    tutorDetailsPanelPlaceholder.getChildren().clear();
+    //    tutorDetailsPanelPlaceholder.getChildren().add(new TutorDetailsPanel(tutor).getRoot());
+    //    tutorDetailsPanelPlaceholder.setVisible(true);
+    // }
+
+    // /**
+    // * Hides the panel containing tutor details
+    // */
+    // private void handleHide(Tutor tutor) {
+    //    tutorDetailsPanelPlaceholder.getChildren().clear();
+    //    tutorDetailsPanelPlaceholder.setVisible(false);
+    // }
 
     void show() {
         primaryStage.show();
