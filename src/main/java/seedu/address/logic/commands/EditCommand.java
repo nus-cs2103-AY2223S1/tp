@@ -24,6 +24,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -82,6 +83,11 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+
+        if (model instanceof Student && ((Student) model).isTeachingAssistant()) {
+            model.setTutor((Student) personToEdit, (Student) editedPerson);
+        }
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
                 false, false, false,

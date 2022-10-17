@@ -9,7 +9,9 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.UniqueTutorList;
 
 /**
  * Wraps all data at the address-book level
@@ -19,6 +21,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueModuleList modules;
+    private final UniqueTutorList tutors;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -33,6 +36,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     {
         modules = new UniqueModuleList();
+    }
+
+    {
+        tutors = new UniqueTutorList();
     }
 
     public AddressBook() {}
@@ -64,6 +71,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the tutor list with {@code tutors}.
+     * {@code tutors} must not contain duplicate tutors.
+     */
+    public void setTutors(List<Student> tutors) {
+        this.tutors.setTutors(tutors);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -71,12 +86,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setModules(newData.getModuleList());
+        setTutors(newData.getTutorList());
     }
 
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the ProfNUS.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -84,7 +100,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a tutor with the same identity as {@code tutor} exists in the ProfNUS.
+     */
+    public boolean hasTutor(Student tutor) {
+        requireNonNull(tutor);
+        return tutors.contains(tutor);
+    }
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the ProfNUS.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -107,16 +131,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to profNUS.
+     * The person must not already exist in profNUS.
      */
     public void addPerson(Person p) {
         persons.add(p);
     }
 
     /**
+     * Adds a tutor to profNUS.
+     * The tutor must not already exist in profNUS.
+     */
+    public void addTutor(Student p) {
+        tutors.add(p);
+    }
+
+    /**
      * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * The module must not already exist in profNUS.
      */
     public void addModule(Module m) {
         modules.add(m);
@@ -161,7 +193,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in ProfNUS.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -170,9 +202,20 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the given tutor {@code target} in the list with {@code editedTutor}.
+     * {@code target} must exist in the address book.
+     * The person identity of {@code editedTutor} must not be the same as another existing tutor in ProfNUS.
+     */
+    public void setTutor(Student target, Student editedTutor) {
+        requireNonNull(editedTutor);
+
+        tutors.setTutor(target, editedTutor);
+    }
+
+    /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the address book.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the address book.
+     * The module identity of {@code editedModule} must not be the same as another existing module in ProfNUS.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -186,6 +229,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTutor(Student key) {
+        tutors.remove(key);
     }
 
     /**
@@ -212,6 +263,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Module> getModuleList() {
         return modules.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Student> getTutorList() {
+        return tutors.asUnmodifiableObservableList();
     }
 
     @Override
