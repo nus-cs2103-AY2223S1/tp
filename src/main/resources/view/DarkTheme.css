@@ -357,3 +357,7 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#modCategory {
+    -fx-background-radius: 16, 16, 0, 0;
+}

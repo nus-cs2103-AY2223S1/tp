@@ -63,13 +63,21 @@
           <!--Mods right panel-->
           <StackPane minWidth="300" prefWidth="NaN" styleClass="pane-with-border"
                      HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-            <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-              <Label styleClass="label-header" text="Mods Taken" textAlignment="CENTER" textFill="WHITE" />
-              <Label fx:id="noSelectedText" styleClass="label-subheader"
-                     text="Select a student to view their module details." textAlignment="CENTER" />
-              <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-              </padding>
+
+          <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <Label styleClass="label-header" text="Mods Taken" textAlignment="CENTER" textFill="WHITE" />
+
+                <Label fx:id="noSelectedText" styleClass="label-subheader"
+                       text="Select a student to view their module details." textAlignment="CENTER" />
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+
+                        <HBox>
+          <padding>
+                  <Insets bottom="5"  />
+                </padding>
+              </HBox>
               <StackPane fx:id="modListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
           </StackPane>

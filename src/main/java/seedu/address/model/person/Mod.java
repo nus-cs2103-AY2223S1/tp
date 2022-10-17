@@ -10,7 +10,25 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Mod {
     public static final String MESSAGE_CONSTRAINTS = "Mod names should be numbers prefixed with letters.";
     /** Categories for mods */
-    public enum ModCategory { COMP, MATH, SCI, COMMS, GE, UE };
+    public enum ModCategory {
+        COMP("Computer Science"), MATH("Mathematics"), SCI("Sciences"), COMMS("Communication"),
+        GE("General Education"), UE("Unrestricted Elective");
+        private String value;
+
+        ModCategory(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.getValue();
+        }
+    }
+
     public static final String VALIDATION_REGEX = "[A-Z]+\\d+[A-Z]?";
     private final String modName;
     private boolean hasTaken;
