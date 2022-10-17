@@ -191,6 +191,7 @@ Imports data from a `JSON` or `CSV` file
         * `meeting date`
         * `tags`
     * The data in each corresponding column must be valid
+        * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
 
 Format: `import PATH`
 
