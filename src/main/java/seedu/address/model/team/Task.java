@@ -40,6 +40,11 @@ public class Task {
     private LocalDateTime deadline;
 
     /**
+     * Completion status of the task.
+     */
+    private boolean completionStatus;
+
+    /**
      * Constructs a {@code Task}.
      *
      * @param name A valid task name.
@@ -65,7 +70,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return name + getAssignees() + getDeadline();
+        return getCompletionStatus() + name + getAssignees() + getDeadline();
     }
 
     public String getName() {
@@ -129,5 +134,17 @@ public class Task {
 
     public void setDeadline(LocalDateTime date) {
         this.deadline = date;
+    }
+
+    public void mark(boolean completionStatus) { this.completionStatus = completionStatus; }
+
+    public boolean isComplete() { return completionStatus; }
+
+    public String getCompletionStatus() {
+        if (this.isComplete()) {
+            return "[X] ";
+        } else {
+            return "[ ] ";
+        }
     }
 }
