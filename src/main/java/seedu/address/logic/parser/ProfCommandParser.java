@@ -42,7 +42,6 @@ public class ProfCommandParser implements Parser<ProfCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_GENDER, PREFIX_TAG, PREFIX_LOCATION, PREFIX_GITHUBUSERNAME, PREFIX_RATING);
-                        
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_GENDER)
                 || !argMultimap.getPreamble().isEmpty()) {

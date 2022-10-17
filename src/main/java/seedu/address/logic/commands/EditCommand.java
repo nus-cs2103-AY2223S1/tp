@@ -173,7 +173,7 @@ public class EditCommand extends Command {
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
         Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername. updatedRating);
+            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername, updatedRating);
     }
 
 
@@ -310,11 +310,11 @@ public class EditCommand extends Command {
 
         public void setGithubUsername(GithubUsername username) {
             this.githubUsername = username;
-            
+        }
+
         public Optional<Rating> getRating() {
             return Optional.ofNullable(rating);
         }
-        
         public void setRating(Rating rating) {
             this.rating = rating;
         }
@@ -359,7 +359,7 @@ public class EditCommand extends Command {
                 && getGender().equals(e.getGender())
                 && getTags().equals(e.getTags())
                 && getLocation().equals(e.getLocation())
-                && getGithubUsername().equals(e.getGithubUsername());
+                && getGithubUsername().equals(e.getGithubUsername())
                 && getRating().equals(e.getRating());
         }
 

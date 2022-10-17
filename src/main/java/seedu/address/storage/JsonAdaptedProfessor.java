@@ -121,7 +121,6 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             }
             modelUsername = new GithubUsername(getUsername(), true);
         }
-        
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));

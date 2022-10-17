@@ -59,7 +59,6 @@ public class TaCommandParser implements Parser<TaCommand> {
                 .getValue(PREFIX_GITHUBUSERNAME)
                 .orElse(GithubUsername.DEFAULT_USERNAME), argMultimap.getValue(PREFIX_GITHUBUSERNAME).isPresent());
         Rating rating = Rating.getRatingFromMultimap(argMultimap);
-        
         TeachingAssistant person = new TeachingAssistant(name, moduleCode, phone, email, gender, tagList,
                 location, username, rating);
 

@@ -37,7 +37,8 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
                                         @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                         @JsonProperty("location") String location,
-                                        @JsonProperty("username") String username, @JsonProperty("rating") String rating) {
+                                        @JsonProperty("username") String username,
+                                        @JsonProperty("rating") String rating) {
         super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating);
     }
 
@@ -112,7 +113,6 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
         }
 
         final Location modelLocation = new Location(getLocation());
-        
         final GithubUsername modelUsername;
 
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
@@ -123,7 +123,6 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
             }
             modelUsername = new GithubUsername(getUsername(), true);
         }
-        
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
