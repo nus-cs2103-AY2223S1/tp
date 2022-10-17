@@ -50,7 +50,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
-        Order order = new Order(name, phone, email, address, new ArrayList<>());
+        Order order = new Order(name, phone, email, address, new ArrayList<>(), false, false);
 
         return new AddOrderCommand(order);
     }

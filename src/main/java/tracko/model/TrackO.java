@@ -27,7 +27,7 @@ public class TrackO implements ReadOnlyTrackO {
     public TrackO() {}
 
     /**
-     * Creates an AddressBook using the data in the {@code toBeCopied}
+     * Creates a TrackO using the data in the {@code toBeCopied}
      */
     public TrackO(ReadOnlyTrackO toBeCopied) {
         this();
@@ -43,7 +43,7 @@ public class TrackO implements ReadOnlyTrackO {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TrackO} with {@code newData}.
      */
     public void resetData(ReadOnlyTrackO newData) {
         requireNonNull(newData);
