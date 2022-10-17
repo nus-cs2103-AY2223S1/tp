@@ -19,7 +19,9 @@ import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 import seedu.nutrigoals.model.meal.NameContainsKeywordsPredicate;
+import seedu.nutrigoals.model.user.User;
 import seedu.nutrigoals.testutil.NutriGoalsBuilder;
+import seedu.nutrigoals.testutil.UserBuilder;
 
 public class ModelManagerTest {
 
@@ -118,6 +120,23 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isUserCreated_userNotCreated_returnsFalse() {
+        assertFalse(modelManager.isUserCreated());
+    }
+
+    @Test
+    public void isUserCreated_userCreated_returnsTrue() {
+        User validUser = new UserBuilder().build();
+        modelManager.setUserDetails(validUser);
+        assertTrue(modelManager.isUserCreated());
+    }
+
+    @Test
+    public void setUserDetails_nullUser_throwsException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setUserDetails(null));
+    }
+
+    @Test
     public void equals() {
         NutriGoals nutriGoals = new NutriGoalsBuilder().withFood(APPLE).withFood(BREAD).build();
         NutriGoals differentNutriGoals = new NutriGoals();
@@ -158,4 +177,5 @@ public class ModelManagerTest {
         modelManager.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(dateTime));
         assertFalse(modelManager.equals(new ModelManager(nutriGoals, userPrefs)));
     }
+
 }

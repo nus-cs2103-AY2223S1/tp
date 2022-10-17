@@ -182,7 +182,16 @@ public class ModelManager implements Model {
 
     @Override
     public User getUserDetails() {
-        return user;
+        return nutriGoals.getUser();
+    }
+
+    /**
+     * Checks if a profile has been created
+     * @return True if a profile has been created, false otherwise
+     */
+    @Override
+    public boolean isUserCreated() {
+        return getUserDetails().isUserCreated();
     }
 
     @Override
