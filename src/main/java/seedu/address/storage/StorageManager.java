@@ -94,6 +94,7 @@ public class StorageManager implements Storage, ImageStorage {
         String dst = ImageStorage.IMAGE_STORAGE_PATH + randomName + ".png";
 
         try {
+            Files.createDirectories(Path.of(System.getProperty("user.dir") + ImageStorage.IMAGE_STORAGE_PATH));
             Files.copy(Paths.get(src), Paths.get(System.getProperty("user.dir") + dst));
         } catch (Exception e) {
             e.printStackTrace();
