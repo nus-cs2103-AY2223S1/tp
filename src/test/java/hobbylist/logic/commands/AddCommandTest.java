@@ -56,6 +56,7 @@ public class AddCommandTest {
     public void setCommandWord_validWord_success() {
         AddCommand.setCommandWord("test");
         assertEquals(AddCommand.getCommandWord(), "test");
+        AddCommand.setCommandWord("add");
     }
 
     @Test

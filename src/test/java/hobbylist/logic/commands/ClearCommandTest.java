@@ -34,5 +34,6 @@ public class ClearCommandTest {
     public void setCommandWord_validWord_success() {
         ClearCommand.setCommandWord("test");
         assertEquals(ClearCommand.getCommandWord(), "test");
+        ClearCommand.setCommandWord("clear");
     }
 }

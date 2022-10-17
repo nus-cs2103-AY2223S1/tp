@@ -150,6 +150,7 @@ public class EditCommandTest {
     public void setCommandWord_validWord_success() {
         EditCommand.setCommandWord("test");
         assertEquals(EditCommand.getCommandWord(), "test");
+        EditCommand.setCommandWord("edit");
     }
 
     @Test

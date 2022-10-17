@@ -76,6 +76,7 @@ public class FindCommandTest {
     public void setCommandWord_validWord_success() {
         FindCommand.setCommandWord("test");
         assertEquals(FindCommand.getCommandWord(), "test");
+        FindCommand.setCommandWord("find");
     }
 
     /**

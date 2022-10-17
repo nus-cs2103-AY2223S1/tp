@@ -23,5 +23,6 @@ public class ExitCommandTest {
     public void setCommandWord_validWord_success() {
         ExitCommand.setCommandWord("test");
         assertEquals(ExitCommand.getCommandWord(), "test");
+        ExitCommand.setCommandWord("exit");
     }
 }

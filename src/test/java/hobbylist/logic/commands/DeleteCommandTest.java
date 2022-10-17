@@ -82,6 +82,7 @@ public class DeleteCommandTest {
     public void setCommandWord_validWord_success() {
         DeleteCommand.setCommandWord("test");
         assertEquals(DeleteCommand.getCommandWord(), "test");
+        DeleteCommand.setCommandWord("delete");
     }
 
     @Test

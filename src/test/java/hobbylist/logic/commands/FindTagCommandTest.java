@@ -65,6 +65,7 @@ public class FindTagCommandTest {
     public void setCommandWord_validWord_success() {
         FindTagCommand.setCommandWord("test");
         assertEquals(FindTagCommand.getCommandWord(), "test");
+        FindTagCommand.setCommandWord("filter");
     }
 
     /**

@@ -41,5 +41,6 @@ public class ListCommandTest {
     public void setCommandWord_validWord_success() {
         ListCommand.setCommandWord("test");
         assertEquals(ListCommand.getCommandWord(), "test");
+        ListCommand.setCommandWord("list");
     }
 }

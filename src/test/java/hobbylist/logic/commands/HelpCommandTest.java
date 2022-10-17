@@ -23,5 +23,6 @@ public class HelpCommandTest {
     public void setCommandWord_validWord_success() {
         HelpCommand.setCommandWord("test");
         assertEquals(HelpCommand.getCommandWord(), "test");
+        HelpCommand.setCommandWord("help");
     }
 }
