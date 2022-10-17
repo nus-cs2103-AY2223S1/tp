@@ -15,6 +15,8 @@ Class Person
 'Module class attributes
 Class ModuleCode
 Class ModuleTitle
+Class Link
+Class Task
 
 'Person class attributes
 Class Name
@@ -26,6 +28,8 @@ Module "*" -left- "*" Person :< takes
 
 Module *-- "1" ModuleCode
 Module *-- "0..1" ModuleTitle
+Module *-- "*" Link
+Module *-- "*" Task
 
 Person *-- "1" Name
 Person *-- "1" Phone
@@ -35,5 +39,7 @@ Name -[hidden]right- Phone
 Phone -[hidden]right- Email
 
 ModuleCode -[hidden]right- ModuleTitle
+ModuleTitle -[hidden]right- Link
+Link -[hidden]right- Task
 @enduml
 '@@author

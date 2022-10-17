@@ -16,6 +16,8 @@ Class UniqueModuleList
 Class Module
 Class ModuleCode
 Class ModuleTitle
+Class Link
+Class Task
 }
 
 ModelManager -left-> "1" AddressBook
@@ -24,8 +26,12 @@ AddressBook *-down-> "1" UniqueModuleList
 UniqueModuleList -right-> "all ~*" Module
 Module *--> "1" ModuleCode
 Module *--> "0..1" ModuleTitle
+Module *--> "*" Link
+Module *--> "*" Task
 
 ModuleCode -[hidden]right-> ModuleTitle
+ModuleTitle -[hidden]right-> Link
+Link -[hidden]right-> Task
 
 ModelManager --> "filtered ~*" Module
 @enduml
