@@ -122,8 +122,8 @@ public class AddClientCommandParserTest {
                 new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
                 new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
-//        Function<Model, Project> projectWithoutModel =
-//                Project.makeProjectWithoutModel(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
+//        ProjectWithoutModel projectWithoutModel =
+//                new ProjectWithoutModel(new Name(VALID_NAME_BOB), new Repository(VALID_REPOSITORY),
 //                new Deadline(VALID_DEADLINE), new ClientId.EmptyClientId(), new ArrayList<>());
 
         assertParseSuccess(parser, AddClientCommand.COMMAND_FLAG, NAME_DESC_AMY

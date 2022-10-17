@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.ui.Ui;
 
 import java.util.function.Function;
@@ -40,12 +41,12 @@ public class AddProjectCommand extends ProjectCommand {
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 
 //    private final Project toAddProject;
-    private final Function<Model, Project> toAddProjectWithoutModel;
+    private final ProjectWithoutModel toAddProjectWithoutModel;
 
     /**
      * Creates an AddProjectCommand to add the specified {@code Project}
      */
-    public AddProjectCommand(Function<Model, Project> projectWithoutModel) {
+    public AddProjectCommand(ProjectWithoutModel projectWithoutModel) {
         requireNonNull(projectWithoutModel);
         toAddProjectWithoutModel = projectWithoutModel;
     }

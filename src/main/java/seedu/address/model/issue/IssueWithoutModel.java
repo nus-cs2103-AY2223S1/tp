@@ -2,13 +2,12 @@ package seedu.address.model.issue;
 
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
-import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.ProjectId;
 
 import java.util.function.Function;
 
 /**
- * This class represents a partial initialisation of client (without access to model).
+ * This class represents a partial initialisation of issue (without access to model).
  * The reason why this exists is to separate Parser classes, and to ensure they are not dependent on
  * Addressbook/Model classes.
  * <p>

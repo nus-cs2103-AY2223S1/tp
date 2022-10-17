@@ -61,30 +61,6 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     }
 
     /**
-     * Make a project without ID.
-     * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
-     * @param name
-     * @param repository
-     * @param deadline
-     * @param clientId
-     * @param issueList
-     * @return a function that provides an issue object when presented with an IssueId object.
-     */
-    public static Function<Model, Project> makeProjectWithoutModel(Name name, Repository repository, Deadline deadline,
-                                                                   ClientId clientId, List<Issue> issueList) {
-        return (model) -> {
-            Client client;
-            try {
-                client = model.getClientById(clientId.getIdInt());
-            } catch (NotFoundException e) {
-                client = Client.EmptyClient.EMPTY_CLIENT;
-            }
-            return new Project(name, repository, deadline,
-                    client , issueList, new ProjectId(model.generateProjectId()));
-        };
-    }
-
-    /**
      * Represents an Empty Project.
      */
     public static class EmptyProject extends Project {
