@@ -11,6 +11,7 @@ import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.Model;
 import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.person.Person;
+import soconnect.model.todo.Todo;
 
 /**
  * API of the Logic component.
@@ -39,6 +40,18 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of todos.
+     */
+    ObservableList<Todo> getFilteredTodoList();
+
+    /**
+     * Stub - this depends on the search query,
+     * e.g if the user search todo by Tag, the header is the name of the tag,
+     * if the user search todo by date, the header will be the give date.
+     */
+    String getTodoHeader();
+
+    /**
      * Returns the user prefs' SoConnect file path.
      */
     Path getSoConnectFilePath();
@@ -52,6 +65,16 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the user prefs' attribute order in GUI settings.
+     */
+    String getAttributeOrder();
+
+    /**
+     * Returns the user prefs' hidden attributes in GUI settings.
+     */
+    String getHiddenAttributes();
 
     /**
      * Returns the AutocompleteManager.

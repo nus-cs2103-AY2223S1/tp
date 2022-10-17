@@ -1,5 +1,9 @@
 package soconnect.ui;
 
+import static soconnect.commons.core.GuiSettings.DEFAULT_ORDER;
+import static soconnect.logic.commands.customise.CustomiseCommand.NONE;
+import static soconnect.logic.commands.customise.CustomiseCommand.NUMBER_OF_CUSTOMISABLE_ATTRIBUTES;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import soconnect.commons.core.GuiSettings;
 import soconnect.logic.Logic;
 import soconnect.model.person.Person;
 
@@ -47,7 +50,7 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane attributeD;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex, Logic logic) {
         super(FXML);
@@ -58,30 +61,12 @@ public class PersonCard extends UiPart<Region> {
         setAttributes();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
-            return false;
-        }
-
-        // state check
-        PersonCard card = (PersonCard) other;
-        return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
-    }
-
     /**
      * Sets the attributes in the order required.
      */
     private void setAttributes() {
         int[] order = filterAttributes(orderAttributes());
-        FlowPane[] flowpanes = new FlowPane[5];
+        FlowPane[] flowpanes = new FlowPane[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES + 1];
         flowpanes[order[0]] = attributeA;
         flowpanes[order[1]] = attributeB;
         flowpanes[order[2]] = attributeC;
@@ -89,42 +74,84 @@ public class PersonCard extends UiPart<Region> {
 
         if (flowpanes[0] != null) {
             flowpanes[0].getChildren().add(new Label(person.getAddress().value));
+            flowpanes[0].getChildren().forEach(label -> label.setStyle(
+                    "-fx-font-size: 12;-fx-font-family: \"Segoe UI Semibold\";"));
         }
         if (flowpanes[1] != null) {
             flowpanes[1].getChildren().add(new Label(person.getEmail().value));
+            flowpanes[1].getChildren().forEach(label -> label.setStyle(
+                    "-fx-font-size: 12;-fx-font-family: \"Segoe UI Semibold\";"));
         }
         if (flowpanes[2] != null) {
             flowpanes[2].getChildren().add(new Label(person.getPhone().value));
+            flowpanes[2].getChildren().forEach(label -> label.setStyle(
+                    "-fx-font-size: 12;-fx-font-family: \"Segoe UI Semibold\";"));
         }
         if (flowpanes[3] != null) {
             person.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
-                    .forEach(tag -> flowpanes[3].getChildren().add(new Label(tag.tagName)));
+                    .forEach(tag -> flowpanes[3].getChildren().add((new Label(tag.tagName))));
+            flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3e7b91;"
+                    + "-fx-font-size: 11;-fx-background-radius: 2;"
+                    + "-fx-border-radius: 2;-fx-padding: 1 3 1 3;"));
         }
     }
 
     /**
-     * Filters the attributes based on what attributes were chosen to be hidden.
+     * Generates the order of the attributes based on the order set by the user.
      *
-     * @param order The order that is unfiltered.
-     * @return The order with attributes filtered where 4 represents a filtered attribute.
+     * @return The required order.
      */
-    private int[] filterAttributes(int[] order) {
-        boolean[] isHidden = new boolean[4];
-        GuiSettings currSettings = logic.getGuiSettings();
-        String currHiddenAttributes = currSettings.getHiddenAttributes().trim();
+    private int[] orderAttributes() {
+        int[] order = new int[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
+        String orderStr = logic.getAttributeOrder();
+        String[] orderArr = orderStr.trim().split(">");
 
-        if (!currHiddenAttributes.equals("NONE")) {
-            String[] strArr = currHiddenAttributes.split(",");
-            try {
-                readHidden(strArr, isHidden);
-            } catch (IllegalArgumentException e) {
-                isHidden = new boolean[4];
+        if (orderArr.length != NUMBER_OF_CUSTOMISABLE_ATTRIBUTES) {
+            //Returns default order when the orderStr is not in correct format.
+            orderStr = DEFAULT_ORDER;
+            orderArr = orderStr.trim().split(">");
+        }
+
+        try {
+            for (int i = 0; i < NUMBER_OF_CUSTOMISABLE_ATTRIBUTES; i++) {
+                order[i] = convertToIndex(orderArr[i]);
+            }
+        } catch (IllegalArgumentException e) {
+            //Returns default order when the orderStr is not in correct format.
+            orderStr = DEFAULT_ORDER;
+            orderArr = orderStr.trim().split(">");
+            for (int i = 0; i < NUMBER_OF_CUSTOMISABLE_ATTRIBUTES; i++) {
+                order[i] = convertToIndex(orderArr[i]);
             }
         }
 
-        for (int i = 0; i < 4; i++) {
-            order[i] = isHidden[order[i]] ? 4 : order[i];
+        return order;
+    }
+
+    /**
+     * Filters the attributes based on what attributes were chosen to be hidden by setting the hidden attributes'
+     * associated index to the index of the empty last FlowPane element.
+     *
+     * @param order The order that is unfiltered.
+     * @return The order with attributes filtered.
+     */
+    private int[] filterAttributes(int[] order) {
+        boolean[] isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
+        String currHiddenAttributes = logic.getHiddenAttributes();
+
+        if (!currHiddenAttributes.equals(NONE)) {
+            String[] strArr = currHiddenAttributes.trim().split(",");
+            try {
+                readHidden(strArr, isHidden);
+            } catch (IllegalArgumentException e) {
+                isHidden = new boolean[NUMBER_OF_CUSTOMISABLE_ATTRIBUTES];
+            }
+        }
+
+        for (int i = 0; i < NUMBER_OF_CUSTOMISABLE_ATTRIBUTES; i++) {
+            //Sets the element in the array to the index of the empty last FlowPane element.
+            order[i] = isHidden[order[i]] ? NUMBER_OF_CUSTOMISABLE_ATTRIBUTES : order[i];
         }
 
         return order;
@@ -141,29 +168,6 @@ public class PersonCard extends UiPart<Region> {
         for (String s : strArr) {
             isHidden[convertToIndex(s)] = true;
         }
-    }
-
-    /**
-     * Generates the order of the attributes based on the order set by the user.
-     *
-     * @return The required order.
-     */
-    private int[] orderAttributes() {
-        int[] order = new int[4];
-        String orderStr = logic.getGuiSettings().getAttributeOrder();
-        String[] orderArr = orderStr.trim().split(">");
-
-        if (orderArr.length != 4) {
-            //Returns default order when the orderStr is not in correct format.
-            order = new int[]{3, 2, 1, 0};
-            return order;
-        }
-
-        for (int i = 0; i < 4; i++) {
-            order[i] = convertToIndex(orderArr[i]);
-        }
-
-        return order;
     }
 
     /**
@@ -185,5 +189,23 @@ public class PersonCard extends UiPart<Region> {
         default:
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PersonCard)) {
+            return false;
+        }
+
+        // state check
+        PersonCard card = (PersonCard) other;
+        return id.getText().equals(card.id.getText())
+                && person.equals(card.person);
     }
 }
