@@ -15,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.tag.Tag;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String address;
+    private final String role;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedContact> contacts = new ArrayList<>();
 
@@ -37,9 +39,11 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("contacts") List<JsonAdaptedContact> contacts) {
+                             @JsonProperty("contacts") List<JsonAdaptedContact> contacts, 
+                             @JsonProperty("role") String role) {
         this.name = name;
         this.address = address;
+        this.role = role;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -55,6 +59,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
+        role = source.getRole().getRole(); //TODO: Check for null using an Optional
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -96,6 +101,10 @@ class JsonAdaptedPerson {
         for (JsonAdaptedContact contact: contacts) {
             Contact contactModel = contact.toModelType();
             modelContacts.put(contactModel.getContactType(), contactModel);
+        }
+
+        if (!Role.isValidRole(role)) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
 
         return new Person(modelName, modelAddress, modelTags, modelContacts);
