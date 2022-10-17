@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide [_here_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,20 +69,91 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/ui/Ui.java)
+
+Section by : [Marciano](https://github.com/midnightfeverrr)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between 
+classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. 
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
+* Executes user commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* Depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
+
+#### MainWindow
+
+The `MainWindow` class is the hub for all UI components which are listed below:
+* `CommandBox` - Command box to get user input.
+* `ResultDisplay` - Displays the message returned by the command entered. (Soon to contain avatar image)
+* `ModuleListPanel` - Panel displaying the modules input to the system.
+* `TaskListPanel` - Panel displaying the task input to the system (According to the respective module).
+* `ProfileSidePanel` - Panel displaying the user's profile and fundamental details.
+
+The `MainWindow` coordinates the backend of the system to the frontend of the system to make visible changes to the interface.
+
+This is done through the `executeCommand(String commandText)` method. Upon user input, the logic class executes the 
+respective command and the model is updated to reflect the changes. 
+Subsequently, after the model has been updated, the following UI classes `ResultDisplay` is refreshed as a result.
+
+#### CommandBox
+
+The `CommandBox` class contains an editable JavaFX Component `TextArea`, which allows user to input user commands.
+
+#### ResultDisplay
+
+The `ResultDisplay` class shows the message returned from the user's input.
+
+![Structure of the UI Component](images/ResultDisplayHandleCommand.png)
+
+1. Command is executed on `MainWindow`.
+2. `MainWindow` calls the method `executeCommand`, which refreshes the resultant message displayed in `ResultDisplay`. 
+3. `ResultDisplay` updates its JavaFX `TextArea` according to the `CommandResult` of the command given. 
+In this case, the `TextArea` will display the message returned as a result of the command.
+4. ResultDisplay displays visible change on the interface.
+5. `executeCommand` ends execution.
+
+#### ModuleListPanel
+
+The `ModuleListPanel` class contains `ListView<Module>` JavaFX component displaying a list view of the component inside.
+In this case, the list inside is a list of `ModuleCard` class.
+
+The contents of the list are dependent on the `modules` that the user's data. Each module input by the user will be displayed
+as a `ModuleCard` object, presented in the form of `ListView`.
+
+#### TaskListPanel
+
+The `TaskListPanel` class contains `ListView<Task>` JavaFX component displaying a list view of the component inside.
+In this case, the list inside is a list of `TaskCard` class.
+
+The contents of the list are dependent on the `tasks` that the user's data. Each module input by the user will be displayed
+as a `TaskCard` object, presented in the form of `ListView`.
+
+#### ProfileSidePanel
+
+The `ProfileSidePanel` class contains the user's profile and (proposed) CAP. The following information is displayed in on the object:
+* `Course` name
+* Inspiring quote
+* (Proposed) Modular Credit completed by user
+* (Proposed) Current Cumulative Average Point (CAP)
+
+#### Other Components
+In addition to the main UI components in the `MainWindow` class, these are other UI Components:
+* `ModuleCard` - Individual card containing the relevant information of the module. 
+List of ModuleCard contained in the ModuleListPanel.
+* `TaskCard` - Individual card containing the relevant information of the task. 
+List of TaskCards contained in the TaskListPanel.
+* `HelpWindow` - Pop-up window containing the link the User Guide, as well as a (proposed) list of all the commands in the application.
 
 ### Logic component
 
