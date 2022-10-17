@@ -6,7 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-<<<<<<< HEAD
+import seedu.address.model.consultation.Consultation;
+import seedu.address.model.consultation.ConsultationDescription;
+import seedu.address.model.consultation.ConsultationModule;
+import seedu.address.model.consultation.ConsultationName;
+import seedu.address.model.consultation.ConsultationTimeslot;
+import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
@@ -23,19 +28,6 @@ import seedu.address.model.student.Telegram;
 import seedu.address.model.ta.TeachingAssistant;
 import seedu.address.model.ta.TeachingAssistantId;
 import seedu.address.model.ta.TeachingAssistantName;
-=======
-import seedu.address.model.consultation.Consultation;
-import seedu.address.model.consultation.ConsultationDescription;
-import seedu.address.model.consultation.ConsultationModule;
-import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
-import seedu.address.model.consultation.ConsultationVenue;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
->>>>>>> fb771cbff26a4ccce36a3d50976e95830c7375e7
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialDay;
@@ -150,14 +142,13 @@ public class SampleDataUtil {
         for (Tutorial sampleTutorial: getSampleTutorials()) {
             sampleAb.addTutorial(sampleTutorial);
         }
-<<<<<<< HEAD
+
         for (TeachingAssistant sampleTeachingAssistant: getSampleTeachingAssistants()) {
             sampleAb.addTeachingAssistant(sampleTeachingAssistant);
-=======
+        }
 
         for (Consultation sampleConsultation: getSampleConsultations()) {
             sampleAb.addConsulation(sampleConsultation);
->>>>>>> fb771cbff26a4ccce36a3d50976e95830c7375e7
         }
         return sampleAb;
     }
