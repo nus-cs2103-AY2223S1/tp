@@ -11,12 +11,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.transaction.BuyTransaction;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
-import seedu.address.model.transaction.Quantity;
 import seedu.address.model.transaction.Price;
+import seedu.address.model.transaction.Quantity;
 import seedu.address.model.transaction.Transaction;
-import seedu.address.model.transaction.BuyTransaction;
 
 /**
  * Parses input arguments and creates a new {@code BuyCommand} object
@@ -29,7 +29,8 @@ public class BuyCommandParser implements Parser<BuyCommand> {
      */
     public BuyCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
+                PREFIX_DATE);
 
         Index index;
         try {

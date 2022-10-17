@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.List;
 
@@ -33,8 +33,8 @@ public class BuyCommand extends Command {
             + PREFIX_PRICE + "1.50 "
             + PREFIX_DATE + "07/11/2000";
 
-    public static final String MESSAGE_SUCCESS = "New transaction created: \nBought %2$s %3$s from %1$s for %4$s each " +
-            "on %5$s";
+    public static final String MESSAGE_SUCCESS = "New transaction created: \nBought %2$s %3$s from %1$s for %4$s each "
+            + "on %5$s";
     public static final String MESSAGE_TRANSACTION_INVALID = "Transaction cannot be created. "
             + "Enter a valid transaction:\n"
             + "index "

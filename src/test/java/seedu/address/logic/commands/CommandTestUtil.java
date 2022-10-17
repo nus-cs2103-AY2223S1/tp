@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -29,6 +30,9 @@ import seedu.address.testutil.EditClientDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+
+    public static final String VALID_DATE_WITH_PREFIX = " " + PREFIX_DATE + "17/05/2000";
+    public static final String VALID_DATE = "17/05/2000";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -75,6 +79,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_GOODS_EMPTY = " " + PREFIX_GOODS; // empty string not allowed for goods.
 
+    public static final String INVALID_DATE = "00/09/20000";
+    public static final String INVALID_DATE_WITH_PREFIX = " " + PREFIX_DATE + "00/09/20000";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 

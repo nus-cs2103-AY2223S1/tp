@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SellTransactionTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SellTransaction(null, null, null));
+        assertThrows(NullPointerException.class, () -> new SellTransaction(null, null, null, null));
     }
 
     @Test
@@ -18,8 +18,9 @@ class SellTransactionTest {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
 
-        Transaction transaction = new SellTransaction(goods, price, quantity);
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
         assertEquals(transaction.totalCost(), 8);
         assertFalse(transaction.totalCost() == -8);
     }
@@ -29,9 +30,10 @@ class SellTransactionTest {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
 
-        Transaction transaction = new SellTransaction(goods, price, quantity);
-        assertTrue(transaction.toString().equals("You sold 10 quantity of Apple at $0.8 each"));
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
+        assertTrue(transaction.toString().equals("You sold 10 quantity of Apple at $0.8 each on 2000-05-17"));
     }
 
     @Test
@@ -39,9 +41,10 @@ class SellTransactionTest {
         Goods goods = new Goods("Apple");
         Price price = new Price("0.8");
         Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
 
-        Transaction transaction = new SellTransaction(goods, price, quantity);
-        assertEquals(transaction, new SellTransaction(goods, price, quantity));
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
+        assertEquals(transaction, new SellTransaction(goods, price, quantity, date));
         assertFalse(transaction.equals(new Object()));
     }
 }

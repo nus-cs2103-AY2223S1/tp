@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GOODS_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRICE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_WITH_PREFIX;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_SELL_PAPAYA;
@@ -50,8 +52,8 @@ public class SellCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_QUANTITY + VALID_GOODS_SELL_PAPAYA + VALID_PRICE_SELL_PAPAYA,
                 MESSAGE_INVALID_FORMAT);
         // invalid goods
-        assertParseFailure(parser, "1" + VALID_QUANTITY + INVALID_GOODS_EMPTY + VALID_PRICE ,
-                Goods.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VALID_QUANTITY + INVALID_GOODS_EMPTY + VALID_PRICE
+                        + VALID_DATE_WITH_PREFIX, Goods.MESSAGE_CONSTRAINTS);
         // only price
         assertParseFailure(parser, "1" + VALID_PRICE_SELL_PAPAYA, MESSAGE_INVALID_FORMAT);
         // only quantity
@@ -62,6 +64,12 @@ public class SellCommandParserTest {
         // goods and price but no quantity
         assertParseFailure(parser, "1" + VALID_GOODS_SELL_PAPAYA + VALID_PRICE_SELL_PAPAYA,
                MESSAGE_INVALID_FORMAT);
+        // only date
+        assertParseFailure(parser, "1" + VALID_DATE_WITH_PREFIX,
+                MESSAGE_INVALID_FORMAT);
+        //invalid date
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -86,6 +94,8 @@ public class SellCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_GOODS + VALID_GOODS_SELL_PAPAYA + VALID_QUANTITY_SELL_PAPAYA,
                 MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_GOODS + VALID_GOODS_BUY_ORANGE + VALID_QUANTITY_BUY_ORANGE
+                + INVALID_DATE, MESSAGE_INVALID_FORMAT);
     }
 
 

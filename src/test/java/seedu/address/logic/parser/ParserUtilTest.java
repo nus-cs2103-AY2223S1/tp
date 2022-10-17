@@ -23,6 +23,8 @@ import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+
+    private static final String INVALID_DATE = "00/09/2000";
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -274,5 +276,10 @@ public class ParserUtilTest {
     @Test
     public void parsePrice_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parsePrice(INVALID_PRICE));
+    }
+
+    @Test
+    public void parseDate_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
 }

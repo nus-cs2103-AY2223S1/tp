@@ -6,7 +6,7 @@ package seedu.address.model.transaction;
 public class SellTransaction extends Transaction {
 
     public SellTransaction(Goods goods, Price price, Quantity quantity, Date date) {
-        super(goods, price, quantity,date );
+        super(goods, price, quantity, date);
     }
 
     /**

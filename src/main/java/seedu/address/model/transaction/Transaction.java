@@ -13,7 +13,7 @@ public abstract class Transaction {
     protected final Date date;
 
     Transaction(Goods goods, Price price, Quantity quantity, Date date) {
-        requireAllNonNull(goods, price, quantity);
+        requireAllNonNull(goods, price, quantity, date);
         this.goods = goods;
         this.price = price;
         this.quantity = quantity;

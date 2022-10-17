@@ -1,11 +1,10 @@
 package seedu.address.model.transaction;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Class to store the date of transaction.
@@ -33,7 +32,15 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
 
-        String testArr[] = test.split("/");
+        String[] testArr = test.split("/");
+
+        try {
+            Integer.parseInt(testArr[0]);
+            Integer.parseInt(testArr[1]);
+            Integer.parseInt(testArr[2]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
         if (testArr.length < 3) {
             return false;
         }
@@ -42,8 +49,8 @@ public class Date {
             return false;
         }
 
-        if (Integer.parseInt(testArr[0]) == 0 || Integer.parseInt(testArr[1]) == 0
-                || Integer.parseInt(testArr[2]) == 0 ) {
+        if (Integer.parseInt(testArr[0]) <= 0 || Integer.parseInt(testArr[1]) <= 0
+                || Integer.parseInt(testArr[2]) <= 0) {
             return false;
         }
 
@@ -62,7 +69,7 @@ public class Date {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Goods // instanceof handles nulls
+                || (other instanceof Date // instanceof handles nulls
                 && date.equals(((Date) other).date)); // state check
     }
 }
