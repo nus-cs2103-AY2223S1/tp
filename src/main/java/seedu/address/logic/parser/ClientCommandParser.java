@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
+import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -86,7 +87,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(name, phone, email);
+        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(name, phone, new ArrayList<>(), email);
 //        Project project = HasIntegerIdentifier.getElementById();
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 //        List<Project> projectList = new ArrayList<>();

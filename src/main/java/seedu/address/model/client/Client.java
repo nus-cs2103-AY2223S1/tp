@@ -2,6 +2,7 @@ package seedu.address.model.client;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -11,6 +12,7 @@ import seedu.address.model.Name;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 
 /**
  * Represents a Client associated with a project. This is modelled after the AB3 Person.
@@ -39,12 +41,12 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, ClientPhone phone, ClientEmail email, ClientId clientId) {
+    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
         requireAllNonNull(name, phone, email, clientId);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        projects = new ArrayList<>();
+        this.projects = projects;
         this.clientId = clientId;
     }
 
@@ -71,11 +73,19 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
      * @param name name of clinet
      * @param phone phone number of client
+     * @param projectIdList
      * @param email email number of client
      * @return a function that returns a client when given a ClientID object.
      */
-    public static Function<Model, Client> makeClientWithoutModel(Name name, ClientPhone phone, ClientEmail email) {
-        return (model) -> new Client(name, phone, email, new ClientId(model.generateClientId()));
+    public static Function<Model, Client> makeClientWithoutModel(Name name, ClientPhone phone, List<ProjectId> projectIdList, ClientEmail email) {
+        return (model) -> {
+            ArrayList<Project> projectList = new ArrayList<>();
+            for (ProjectId pid : projectIdList) {
+                projectList.add(model.getProjectById(pid.getIdInt()));
+            }
+
+            new Client(name, phone, email, projectList, new ClientId(model.generateClientId()))
+        };
     }
 
     /**
