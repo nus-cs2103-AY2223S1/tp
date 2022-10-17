@@ -1,13 +1,34 @@
 package longtimenosee.model.person;
+
+import java.util.Comparator;
+
 /**
  *  Encapsulation for a client's RiskAppetite
  */
 public class RiskAppetite {
 
-
+    public static final Comparator<Person> RISK_APPETITE_COMPARATOR = new Comparator<Person>() {
+        @Override
+        public int compare(Person p1, Person p2) {
+            RiskLevel ra1 = p1.getRiskAppetite().getRiskLevel();
+            RiskLevel ra2 = p2.getRiskAppetite().getRiskLevel();
+            if (ra1 == ra2) {
+                return 0;
+            } else if (ra1 == RiskLevel.HIGH && (ra2 == RiskLevel.LOW || ra2 == RiskLevel.MEDIUM)) {
+                return 1;
+            } else if (ra1 == RiskLevel.MEDIUM && ra2 == RiskLevel.LOW) {
+                return 1;
+            } else if (ra2 == RiskLevel.HIGH && (ra1 == RiskLevel.LOW || ra1 == RiskLevel.MEDIUM)) {
+                return -1;
+            } else {
+                return -1;
+            }
+        }
+    };
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Error: RiskAppetite must be one "
             + "of the following indicators: "
             + "{H, M, L}";
+    public static final String SORT_RISK_APPETITE = "risk appetite";
 
     public final String value;
 
