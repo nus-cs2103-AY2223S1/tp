@@ -38,7 +38,6 @@ public class AddProjectCommand extends ProjectCommand {
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 
-//    private final Project toAddProject;
     private final ProjectWithoutModel toAddProjectWithoutModel;
 
     /**

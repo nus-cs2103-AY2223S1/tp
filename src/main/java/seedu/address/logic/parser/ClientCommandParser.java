@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
 import java.util.ArrayList;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -18,9 +17,7 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.Name;
-import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.ClientWithoutModel;

@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -20,8 +19,12 @@ import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
-import seedu.address.model.Model;
-import seedu.address.model.issue.*;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.IssueWithoutModel;
+import seedu.address.model.issue.Description;
+import seedu.address.model.issue.Priority;
+import seedu.address.model.issue.Status;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -107,11 +110,10 @@ public class IssueCommandParser implements Parser<IssueCommand> {
                     EditIssueCommand.MESSAGE_USAGE));
         }
 
-        Description newDescription;
-        Deadline newDeadline;
-        Priority newPriority;
+        Description newDescription = null;
+        Deadline newDeadline = null;
+        Priority newPriority = null;
         IssueId issueId = ParserUtil.parseIssueId(argMultimap.getValue(PREFIX_ISSUE_ID).get());
-        Issue initialIssue = UniqueIssueList.getIssue(issueId.getIdInt());
 
         if (!anyPrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_PRIORITY)) {
             throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
@@ -120,20 +122,17 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             newDescription = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-            initialIssue.setDescription(newDescription);
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
             newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-            initialIssue.setDeadline(newDeadline);
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             newPriority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-            initialIssue.setPriority(newPriority);
         }
 
-        return new EditIssueCommand(initialIssue);
+        return new EditIssueCommand(newDescription, newDeadline, newPriority, issueId);
     }
 
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {

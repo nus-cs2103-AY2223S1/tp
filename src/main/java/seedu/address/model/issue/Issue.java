@@ -3,13 +3,9 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
-import seedu.address.model.Model;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectId;
-
-import java.util.function.Function;
 
 /**
  * Represents an Issue.

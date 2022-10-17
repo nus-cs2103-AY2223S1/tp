@@ -1,5 +1,8 @@
 package seedu.address.model.project;
 
+import java.util.List;
+import java.util.function.Function;
+
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.Name;
@@ -7,9 +10,6 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.list.NotFoundException;
-
-import java.util.List;
-import java.util.function.Function;
 
 /**
  * This class represents a partial initialisation of project (without access to model).
@@ -44,7 +44,7 @@ public class ProjectWithoutModel implements Function<Model, Project> {
             client = Client.EmptyClient.EMPTY_CLIENT;
         }
         return new Project(name, repository, deadline,
-                client , issueList, new ProjectId(model.generateProjectId()));
+                client, issueList, new ProjectId(model.generateProjectId()));
     }
 
     @Override
@@ -54,11 +54,11 @@ public class ProjectWithoutModel implements Function<Model, Project> {
         }
         ProjectWithoutModel p = (ProjectWithoutModel) o;
         return p == this || (
-                this.name.equals(p.name) &&
-                        this.repository.equals(p.repository) &&
-                        this.deadline.equals(p.deadline) &&
-                        this.clientId.equals(p.clientId) &&
-                        this.issueList.equals(p.issueList));
+                this.name.equals(p.name)
+                        && this.repository.equals(p.repository)
+                        && this.deadline.equals(p.deadline)
+                        && this.clientId.equals(p.clientId)
+                        && this.issueList.equals(p.issueList));
     }
 
 }

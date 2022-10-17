@@ -7,14 +7,12 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
 
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.ui.Ui;
-
-import java.util.function.Function;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Command to add issue
@@ -42,14 +40,6 @@ public class AddIssueCommand extends IssueCommand {
 
     //    private final Issue toAdd;
     private final IssueWithoutModel toAddWithoutModel;
-
-//    /**
-//     * Creates an AddCommand to add the specified {@code Issue}
-//     */
-//    public AddIssueCommand(Issue issue) {
-//        requireNonNull(issue);
-//        toAdd = issue;
-//    }
 
     /**
      * Creates an AddCommand to add the specified {@code Issue}

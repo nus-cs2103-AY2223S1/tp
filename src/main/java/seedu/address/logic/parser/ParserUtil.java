@@ -281,9 +281,7 @@ public class ParserUtil {
             throw new ParseException(IssueId.MESSAGE_CONSTRAINTS);
         }
         int trimmedIdInt = Integer.parseInt(trimmedId);
-        if (UniqueIssueList.getIssue(trimmedIdInt).equals(Issue.EmptyIssue.EMPTY_ISSUE)) {
-            throw new ParseException(IssueId.MESSAGE_INVALID);
-        }
+
         return new IssueId(trimmedIdInt);
     }
 

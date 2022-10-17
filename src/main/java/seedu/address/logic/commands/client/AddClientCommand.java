@@ -2,19 +2,20 @@ package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.ClientCliSyntax.*;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 
+import seedu.address.model.Model;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
 
-import java.util.function.Function;
-;
 
 /**
  * Adds a client to the address book.
@@ -88,4 +89,5 @@ public class AddClientCommand extends ClientCommand {
         }
 
         return this.toAddClientWithoutModel.equals(((AddClientCommand) other).toAddClientWithoutModel);
-    }}
+    }
+}
