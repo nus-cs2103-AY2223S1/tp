@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -19,14 +17,11 @@ import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Name;
-import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
-import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
-import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 
 /**
  * Parser to parse any commands related to Client
@@ -91,15 +86,12 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
 //        Project project = HasIntegerIdentifier.getElementById();
-//        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
+        ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 //        List<Project> projectList = new ArrayList<>();
 //        projectList.add(project);
-        ClientId clientId = new ClientId(HasIntegerIdentifier.generateNextID(
-                AddressBook.get().getClientList()));
 
-        Client client = new Client(name, phone, email, clientId);
 
-        return new AddClientCommand(client, project);
+        return new AddClientCommand(name, phone, email, projectId);
     }
 
     // TODO: revise syntax

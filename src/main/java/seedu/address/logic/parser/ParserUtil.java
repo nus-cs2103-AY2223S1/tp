@@ -238,8 +238,9 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code projectId} is invalid.
+     * @return
      */
-    public static Project parseProject(String projectId) throws ParseException {
+    public static ProjectId parseProjectId(String projectId) throws ParseException {
         requireNonNull(projectId);
         String trimmedId = projectId.trim();
         int trimmedIdInt = Integer.parseInt(trimmedId);
@@ -248,7 +249,7 @@ public class ParserUtil {
         }
 
         // Function throws error when not found.
-        return HasIntegerIdentifier.getElementById(AddressBook.get().getProjectList(), trimmedIdInt);
+        return new ProjectId(trimmedIdInt);
     }
 
     /**

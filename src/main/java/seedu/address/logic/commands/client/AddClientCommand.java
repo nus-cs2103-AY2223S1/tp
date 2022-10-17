@@ -82,7 +82,7 @@ public class AddClientCommand extends ClientCommand {
         Client toAddClient = new Client(
                 toAddClientName, toAddClientPhone, toAddClientEmail, );
         toModifyProject.setClient(toAddClient);
-//        model.setProject(toModifyProject, toModifyProject);
+
         model.addClient(toAddClient);
 
         ui.showClients();
