@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path trackAScholarFilePath = Paths.get("data" , "trackAScholar.json");
+    private Path trackAScholarFilePath = Paths.get("data", "trackAScholar.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
