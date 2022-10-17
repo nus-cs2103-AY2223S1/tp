@@ -75,6 +75,18 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     /**
+     * Make a client without ID.
+     * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
+     * @param name name of clinet
+     * @param phone phone number of client
+     * @param email email number of client
+     * @return a function that returns a client when given a ClientID object.
+     */
+    public static Function<ClientId, Client> makeClientWithoutID(Name name, ClientPhone phone, ClientEmail email) {
+        return (id) -> new Client(name, phone, email, id);
+    }
+
+    /**
      * Checks if this Client is empty.
      * @return true if the Client is empty.
      */
@@ -89,22 +101,6 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     @Override
     public int getID() {
         return this.getClientId().getIdInt();
-    }
-
-    /**
-     * This method creates a function that generates an ID for a client object based on the relevant list.
-     *
-     * @param client client object whose ID needs to be generated
-     * @return a client object with a ID
-     */
-    @Override
-    public Function<Iterable<Client>, Client> newSupplierWithoutID(Client client) {
-        return (Iterable<Client> it) -> {
-            client.clientId = new ClientId(
-                    HasIntegerIdentifier.generateNextID(it)
-            );
-            return client;
-        };
     }
 
     /**
@@ -126,6 +122,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         }
 
     }
+
+
 
     /**
      * Returns the client name as is represented in the Name object.

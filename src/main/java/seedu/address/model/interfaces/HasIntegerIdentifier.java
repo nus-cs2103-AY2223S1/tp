@@ -56,10 +56,4 @@ public interface HasIntegerIdentifier<T> {
         throw new NotFoundException();
     }
 
-    /**
-     * A method to construct most of the object, without the ID (when you need a list to generate said ID)
-     * @return a function that returns a new object.
-     */
-    Function<Iterable<T>, T> newSupplierWithoutID(T object);
-
 }

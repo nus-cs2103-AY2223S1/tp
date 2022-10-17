@@ -10,8 +10,7 @@ import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
-import seedu.address.model.issue.Issue;
-import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.*;
 
 /**
  * Represents a Project.
@@ -58,14 +57,19 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return this.projectId.getIdInt();
     }
 
-    @Override
-    public Function<Iterable<Project>, Project> newSupplierWithoutID(Project project) {
-        return (Iterable<Project> it) -> {
-            project.projectId = new ProjectId(
-                    HasIntegerIdentifier.generateNextID(it)
-            );
-            return project;
-        };
+    /**
+     * Make a project without ID.
+     * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
+     * @param name
+     * @param repository
+     * @param deadline
+     * @param client
+     * @param issueList
+     * @return a function that provides an issue object when presented with an IssueId object.
+     */
+    public static Function<ProjectId, Project> makeProjectWithoutID(Name name, Repository repository, Deadline deadline,
+                                                                Client client, List<Issue> issueList) {
+        return (id) -> new Project(name, repository, deadline, client, issueList, id);
     }
 
     /**

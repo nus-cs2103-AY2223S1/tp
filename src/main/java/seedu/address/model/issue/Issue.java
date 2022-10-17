@@ -64,6 +64,21 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
+     * Make a client without ID.
+     * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
+     * @param description
+     * @param deadline
+     * @param priority
+     * @param status
+     * @param project
+     * @return a function that provides an issue object when presented with an IssueId object.
+     */
+    public static Function<IssueId, Issue> makeIssueWithoutID(Description description, Deadline deadline, Priority priority,
+                                                              Status status, Project project) {
+        return (id) -> new Issue(description, deadline, priority, status, project, id);
+    }
+
+    /**
      * Returns true if both issues have the same description.
      * This defines a weaker notion of equality between two issues.
      */
@@ -119,14 +134,4 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.issueId.getIdInt();
     }
 
-
-    /**
-     * Create a function that creates a Client when given a ClientId object
-     * @param name String representing name of the client
-     * @param phone String representing phone number of the client
-     * @param email String representing email address of the client
-     */
-    public static Function<IssueId, Issue> issueWithoutIdSupplier(Name name, ClientPhone phone, ClientEmail email) {
-        return (id) -> new Client(name, phone, email, id);
-    }
 }
