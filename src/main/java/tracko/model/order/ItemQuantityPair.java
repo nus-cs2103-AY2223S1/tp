@@ -25,13 +25,17 @@ public class ItemQuantityPair extends Pair<Item, Quantity> {
         return this.getKey();
     }
 
+    public String getItemName() {
+        return getItem().getItemName().toString();
+    }
+
     public Quantity getQuantity() {
         return this.getValue();
     }
 
     @Override
     public String toString() {
-        return this.getQuantity() + " * " + this.getItem().getItemName();
+        return this.getQuantity() + " * " + this.getItemName();
     }
 
     @Override

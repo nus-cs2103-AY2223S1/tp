@@ -119,7 +119,7 @@ public class CommandTestUtil {
 
         Order order = model.getOrderList().get(targetIndex.getZeroBased());
         // Index is at 1 because at 0, every person is initialized to have a keychain.
-        final String[] splitName = order.getItemList().get(1).getItem().split("\\s+");
+        final String[] splitName = order.getItemList().get(1).getItemName().split("\\s+");
         model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());

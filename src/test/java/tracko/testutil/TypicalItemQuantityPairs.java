@@ -4,6 +4,7 @@ import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_BOB;
+import static tracko.testutil.TypicalItems.*;
 
 import tracko.model.order.ItemQuantityPair;
 
@@ -13,28 +14,26 @@ import tracko.model.order.ItemQuantityPair;
 public class TypicalItemQuantityPairs {
 
     public static final ItemQuantityPair PAIR_1 = new ItemQuantityPairBuilder()
-        .withItemName("Mattress").withQuantity(1).build();
+        .withItem(ITEM_1).withQuantity(1).build();
     public static final ItemQuantityPair PAIR_2 = new ItemQuantityPairBuilder()
-        .withItemName("Bolster").withQuantity(2).build();
+        .withItem(ITEM_2).withQuantity(2).build();
     public static final ItemQuantityPair PAIR_3 = new ItemQuantityPairBuilder()
-        .withItemName("Pillow").withQuantity(3).build();
+        .withItem(ITEM_3).withQuantity(3).build();
     public static final ItemQuantityPair PAIR_4 = new ItemQuantityPairBuilder()
-        .withItemName("Chair").withQuantity(4).build();
+        .withItem(ITEM_4).withQuantity(4).build();
     public static final ItemQuantityPair PAIR_5 = new ItemQuantityPairBuilder()
-        .withItemName("Table").withQuantity(5).build();
+        .withItem(ITEM_5).withQuantity(5).build();
     public static final ItemQuantityPair PAIR_6 = new ItemQuantityPairBuilder()
-        .withItemName("Cushion").withQuantity(6).build();
+        .withItem(ITEM_6).withQuantity(6).build();
     public static final ItemQuantityPair PAIR_7 = new ItemQuantityPairBuilder()
-        .withItemName("Towel").withQuantity(7).build();
-
+        .withItem(ITEM_7).withQuantity(7).build();
     public static final ItemQuantityPair PAIR_8 = new ItemQuantityPairBuilder()
-        .withItemName("Apple").withQuantity(8).build();
+        .withItem(ITEM_8).withQuantity(8).build();
     public static final ItemQuantityPair PAIR_9 = new ItemQuantityPairBuilder()
-        .withItemName("Pineapple").withQuantity(9).build();
-
+        .withItem(ITEM_9).withQuantity(9).build();
     public static final ItemQuantityPair PAIR_10 = new ItemQuantityPairBuilder()
-        .withItemName(VALID_ITEM_NAME_AMY).withQuantity(VALID_ITEM_QUANTITY_AMY).build();
+        .withItem(ITEM_10).withQuantity(VALID_ITEM_QUANTITY_AMY).build();
     public static final ItemQuantityPair PAIR_11 = new ItemQuantityPairBuilder()
-        .withItemName(VALID_ITEM_NAME_BOB).withQuantity(VALID_ITEM_QUANTITY_BOB).build();
+        .withItem(ITEM_11).withQuantity(VALID_ITEM_QUANTITY_BOB).build();
 
 }

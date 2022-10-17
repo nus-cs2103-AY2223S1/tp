@@ -26,6 +26,14 @@ public class TypicalItems {
             .withQuantity(50).withDescription("Comes with linen").build();
     public static final Item ITEM_7 = new ItemBuilder().withItemName("Slippers")
             .withQuantity(48).withDescription("Cute shark slippers").build();
+    public static final Item ITEM_8 = new ItemBuilder().withItemName("Keychain")
+            .withQuantity(95).withDescription("Small copper keychain").build();
+    public static final Item ITEM_9 = new ItemBuilder().withItemName("Mechanical Pencil")
+            .withQuantity(278).withDescription("Mechanical pencil with rubber grip").build();
+    public static final Item ITEM_10 = new ItemBuilder().withItemName("Eraser")
+            .withQuantity(209).withDescription("Plastic eraser").build();
+    public static final Item ITEM_11 = new ItemBuilder().withItemName("Stapler")
+            .withQuantity(76).withDescription("Portable handheld stapler").build();
 
     /**
      * Returns an {@code TrackO} with all the typical {@code Item}.
