@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NOT_AT_HOMEPAGE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -16,8 +18,11 @@ public class ListModuleCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.getHomeStatus() != true) {
+            throw new CommandException(MESSAGE_NOT_AT_HOMEPAGE);
+        }
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(MESSAGE_SUCCESS);
     }

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;

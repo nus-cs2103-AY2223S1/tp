@@ -12,8 +12,10 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_MODULES_LISTED_OVERVIEW = "%1$d modules listed!";
     public static final String MESSAGE_MODULE_LISTED = "Here's the module you requested!";
-    public static final String MESSAGE_NO_SUCH_MODULE = "No such module!";
+    public static final String MESSAGE_NO_SUCH_MODULE = "No such module in list!";
     public static final String MESSAGE_NO_MODULE_IN_FILTERED_LIST =
             "Please create or navigate to `%s` to perform the operation!";
+    public static final String MESSAGE_NOT_AT_HOMEPAGE =
+            "Hey! You are not at home page!";
 
 }

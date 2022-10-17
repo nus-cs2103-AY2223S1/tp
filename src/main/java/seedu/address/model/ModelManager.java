@@ -124,11 +124,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
+        this.isHome = true;
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+        this.isHome = true;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
