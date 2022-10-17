@@ -1,9 +1,7 @@
 ---
 layout: page
-title: File Command
+title: File Commands
 ---
-
-# File commands
 
 All file commands have a `FILE_NAME` field that requires you to input a name for the file you are targeting.
 

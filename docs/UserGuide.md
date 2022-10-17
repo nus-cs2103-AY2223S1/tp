@@ -24,7 +24,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
     * [Format for resident fields](#format-for-resident-fields)
-    * [File commands](FileCommand.html)
+    * [File commands](FileCommands.html)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
 
@@ -294,11 +294,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
 **Exit** | `exit`
-**Import** | `import FILENAME` <br> e.g., `import students.csv`
-**Export** | `export FILENAME` <br> e.g., `export students.csv`
-
+**Create file** | `file create FILE_NAME` <br> e.g., `file create rc4_data_2022`
+**Delete file** | `file delete FILE_NAME` <br> e.g., `file delete rc4_data_2022`
+**Switch file** | `file switch FILE_NAME` <br> e.g., `file switch rc4_data_2022`
+**Import** | `import FILE_NAME` <br> e.g., `import students.csv`
+**Export** | `export FILE_NAME` <br> e.g., `export students.csv`
 
 ---
-
-
-
