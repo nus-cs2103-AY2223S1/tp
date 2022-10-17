@@ -21,8 +21,6 @@ import seedu.nutrigoals.model.user.User;
 @JsonRootName(value = "nutrigoals")
 class JsonSerializableNutriGoals {
 
-    public static final String MESSAGE_DUPLICATE_FOOD = "foods list contains duplicate food(s).";
-
     private final List<JsonAdaptedFood> foods = new ArrayList<>();
     private final Calorie calorieTarget;
     private final User user;
@@ -58,9 +56,6 @@ class JsonSerializableNutriGoals {
         NutriGoals nutriGoals = new NutriGoals();
         for (JsonAdaptedFood jsonAdaptedFood : foods) {
             Food food = jsonAdaptedFood.toModelType();
-            if (nutriGoals.hasFood(food)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_FOOD);
-            }
             nutriGoals.addFood(food);
         }
         nutriGoals.setCalorieTarget(this.calorieTarget);

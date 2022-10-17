@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
-import seedu.nutrigoals.logic.commands.exceptions.CommandException;
 import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.NutriGoals;
@@ -44,14 +43,6 @@ public class AddCommandTest {
         assertEquals(Arrays.asList(validFood), modelStub.foodsAdded);
     }
 
-    @Test
-    public void execute_duplicateFood_throwsCommandException() {
-        Food validFood = new FoodBuilder().build();
-        AddCommand addCommand = new AddCommand(validFood);
-        ModelStub modelStub = new ModelStubWithFood(validFood);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_FOOD, () -> addCommand.execute(modelStub));
-    }
 
     @Test
     public void equals() {

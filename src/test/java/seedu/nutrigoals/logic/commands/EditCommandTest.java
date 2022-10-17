@@ -99,27 +99,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicateFoodUnfilteredList_failure() {
-        Food firstFood = model.getFilteredFoodList().get(INDEX_FIRST_MEAL.getZeroBased());
-        EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder(firstFood).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_MEAL, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
-    }
-
-    @Test
-    public void execute_duplicateFoodFilteredList_failure() {
-        showFoodAtIndex(model, INDEX_FIRST_MEAL);
-
-        // edit food in filtered list into a duplicate in nutriGoals
-        Food foodInList = model.getNutriGoals().getFoodList().get(INDEX_SECOND_MEAL.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_MEAL,
-                new EditFoodDescriptorBuilder(foodInList).build());
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FOOD);
-    }
-
-    @Test
     public void execute_invalidFoodIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFoodList().size() + 1);
         EditFoodDescriptor descriptor = new EditFoodDescriptorBuilder().withName(VALID_BISCUIT_NAME).build();
