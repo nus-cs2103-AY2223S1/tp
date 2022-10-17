@@ -116,7 +116,7 @@ Examples:
 * `find Betsy` followed by `tasks 1` shows the tasks assigned to the 1st person in the result of the `find` command.
 
 
-### Marking tasks of a person: `mark`
+### Marking tasks of a person: `task mark`
 
 Marks a task of a person as complete
 
@@ -126,6 +126,15 @@ Format: `task mark TASK_INDEX`
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
+### Unmarking tasks of a person: `task unmark`
+
+Marks a task of a person as incomplete
+
+Format: `task unmark TASK_INDEX`
+* Unmarks the task at the specified TASK_INDEX in `task list`.
+
+Examples:
+* `task list` followed by `task unmark 1` marks the 1st task in the task list as incomplete.
 
 ### Deleting tasks from Task Panel: `task delete`
 
@@ -271,7 +280,8 @@ _Details coming soon ..._
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Task add**    | `task add DESC`<br> e.g., `task add Title of task`                                                                                                                    |
 | **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
-| **Mark**        | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
+| **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
+| **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
 | **Task assign** | `task assign TASK_INDEX [c/PERSON_INDEX]…​`<br> e.g., `task assign 3 c/1 c/2`                                                                                         |
 | **Clear**       | `clear`                                                                                                                                                               |
