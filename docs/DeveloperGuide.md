@@ -156,6 +156,63 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add/Delete Module
+
+#### Implementation
+
+A `Module` class is used to represent a module. A `Module` contains a `ModuleCode` and an 
+optional `ModuleTitle`. Here are the ways in which different classes in the Model component interact
+with `Module`:
+- A `UniqueModuleList` represents the list of `Module` objects.
+- The list of modules are stored in the `AddressBook` class.
+- The `ModelManager` class stores the `AddressBook` containing the list of unfiltered `Module` 
+  objects, and a separate instance variable storing the list of filtered `Module` objects.
+
+The UML class diagram of the `Module`-related parts of Model component is shown below:
+
+
+
+We have implemented the following `Command` classes:
+- `AddModuleCommand` allows the user to add a module to Plannit.
+- `DeleteModuleCommand` allows the user to delete a module from Plannit.
+
+The Storage component has been updated for persistent storage of modules. `JsonAdaptedModule` 
+has been added to represent a `Module` object in JSON format.
+
+When adding a module, the 
+
+#### Alternatives Considered
+
+Alternative 1: Reuse the same `AddressBook` to also store the list of unique `Module` objects.
+
+Pros: A duplicate class `AddressBook` for `Model` methods is not necessary.
+
+Cons: `AddressBook` and `ModelManager` and other classes would need to be updated to include 
+`Module`. Hence, the interfaces `ReadOnlyAddressBook` and `Model` also need to be updated to support
+the `Module`-related methods.
+
+Alternative 2: Create another `AddressBook`-like class to store the list of `Module` objects.
+
+Pros: Functionality for `Person` and `Module` are now separate. This better adheres to the 
+Single Responsibility Principle because `AddressBook` only does operations regarding `Person` 
+rather than doing operations regarding both `Person` and `Module`.
+
+Cons: More classes to implement. In particular, `AddressBook` and `ReadOnlyAddressBook` need to 
+be duplicated into separate classes to support `Module`.
+
+We have decided to follow Alternative 1.
+
+Reasons: 
+1. Duplicating `AddressBook` will result in duplicating dependent classes such as 
+`ReadOnlyAddressBook`, `JsonAddressBookStorage` and `JsonSerializableAddressBook`, hence complicating
+the implementation. For example, the storage will now need to deal with two `AddressBook` 
+instances, hence requiring either two separate files of storage, or changing the implementation 
+to combine into one file. Combining `Person` and `Module` into one `AddressBook` would avoid this 
+issue.
+2. While dealing with lists of `Person` and `Module` objects are two different functionalities, 
+both functionalities deal with a list of user-provided objects. Therefore, the cohesion should not 
+significantly decrease.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
