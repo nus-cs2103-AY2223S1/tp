@@ -24,6 +24,19 @@ public class CommandHistory {
     }
 
     /**
+     * Creates a copy of CommandHistory.
+     *
+     * @param commandHistory an instance to be copied.
+     */
+    public CommandHistory(CommandHistory commandHistory) {
+        history = new ArrayList<>();
+        history.addAll(commandHistory.history);
+        modifyCommandIndexes = new ArrayList<>();
+        modifyCommandIndexes.addAll(commandHistory.modifyCommandIndexes);
+        currentStatePointer = commandHistory.currentStatePointer;
+    }
+
+    /**
      * Add a command text to CommandHistory.
      *
      * @param commandText a command text to be inserted.
@@ -79,5 +92,24 @@ public class CommandHistory {
         for (int i = 0; i < numberOfModifyCommandsToBeRemoved; i++) {
             modifyCommandIndexes.remove(currentStatePointer + 1);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof CommandHistory)) {
+            return false;
+        }
+
+        // state check
+        CommandHistory otherCommandHistory = (CommandHistory) other;
+        return history.equals(otherCommandHistory.history)
+                && modifyCommandIndexes.equals(otherCommandHistory.modifyCommandIndexes)
+                && currentStatePointer == otherCommandHistory.currentStatePointer;
     }
 }
