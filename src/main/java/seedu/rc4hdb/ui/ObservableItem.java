@@ -23,4 +23,11 @@ public class ObservableItem<T> extends ObservableValueBase<T> {
         fireValueChangedEvent();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ObservableItem // instanceof handles nulls
+                && item.equals(((ObservableItem<?>) other).getValue()));
+    }
+
 }
