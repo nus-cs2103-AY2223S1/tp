@@ -90,14 +90,14 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        Project project = HasIntegerIdentifier.getElementById()
+//        Project project = HasIntegerIdentifier.getElementById();
 //        Project project = ParserUtil.parseProject(argMultimap.getValue(PREFIX_PROJECT_ID).get());
-        List<Project> projectList = new ArrayList<>();
-        projectList.add(project);
+//        List<Project> projectList = new ArrayList<>();
+//        projectList.add(project);
         ClientId clientId = new ClientId(HasIntegerIdentifier.generateNextID(
                 AddressBook.get().getClientList()));
 
-        Client client = new Client(name, phone, email, projectList, clientId);
+        Client client = new Client(name, phone, email, clientId);
 
         return new AddClientCommand(client, project);
     }

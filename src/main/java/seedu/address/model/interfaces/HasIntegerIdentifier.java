@@ -28,6 +28,19 @@ public interface HasIntegerIdentifier<T> {
     }
 
     /**
+     * Check if a list contains an object with the given id
+     * @return true if list contains object.
+     */
+    public static <T extends HasIntegerIdentifier> boolean containsID(Iterable<T> i, int id) {
+        for (T t: i) {
+            if (t.getID() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Get an element from a list of objects by ID
      * @param iterable iterable to queyr
      * @param id id of item to retrieve

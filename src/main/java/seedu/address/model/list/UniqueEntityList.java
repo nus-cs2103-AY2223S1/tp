@@ -25,9 +25,16 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
     /**
      * Returns true if the list contains an equivalent object (by comparing name) as the given argument.
      */
-    public boolean contains(T toCheck) {
+    public boolean containsByName(T toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::hasSameName);
+    }
+
+    /**
+     * Returns true if the list contains the given ID.
+     */
+    public boolean containsId(int id) {
+        return internalList.stream().anyMatch((item) -> id == item.getID());
     }
 
     /**
@@ -36,7 +43,7 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
      */
     public void add(T toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containsByName(toAdd)) {
             throw new DuplicateException();
         }
         internalList.add(toAdd);
@@ -55,7 +62,7 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
             throw new NotFoundException();
         }
 
-        if (!t.hasSameName(editedT) && contains(editedT)) {
+        if (!t.hasSameName(editedT) && containsByName(editedT)) {
             throw new DuplicateException();
         }
 

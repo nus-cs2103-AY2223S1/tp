@@ -122,6 +122,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProjectId(int id) {
+        return addressBook.hasProjectId(id);
+    }
+
+    @Override
+    public boolean hasIssueId(int id) {
+        return addressBook.hasIssueId(id);
+    }
+
+    @Override
+    public boolean hasClientId(int id) {
+        return addressBook.hasClientId(id);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

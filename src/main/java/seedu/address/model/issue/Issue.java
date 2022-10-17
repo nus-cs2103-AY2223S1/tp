@@ -3,8 +3,11 @@ package seedu.address.model.issue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.Deadline;
+import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
+import seedu.address.model.client.ClientPhone;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.project.Project;
@@ -116,13 +119,14 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.issueId.getIdInt();
     }
 
-    @Override
-    public Function<Iterable<Issue>, Issue> newSupplierWithoutID(Issue issue) {
-        return (Iterable<Issue> it) -> {
-            issue.issueId = new IssueId(
-                    HasIntegerIdentifier.generateNextID(it)
-            );
-            return issue;
-        };
+
+    /**
+     * Create a function that creates a Client when given a ClientId object
+     * @param name String representing name of the client
+     * @param phone String representing phone number of the client
+     * @param email String representing email address of the client
+     */
+    public static Function<IssueId, Issue> issueWithoutIdSupplier(Name name, ClientPhone phone, ClientEmail email) {
+        return (id) -> new Client(name, phone, email, id);
     }
 }

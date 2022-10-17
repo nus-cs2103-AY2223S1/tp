@@ -38,13 +38,23 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @param phone String representing phone number of the client
      * @param email String representing email address of the client
      */
-    public Client(Name name, ClientPhone phone, ClientEmail email, List<Project> projects, ClientId clientId) {
-        requireAllNonNull(name, phone, email, projects, clientId);
+    public Client(Name name, ClientPhone phone, ClientEmail email, ClientId clientId) {
+        requireAllNonNull(name, phone, email, clientId);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.projects = projects;
+        projects = new ArrayList<>();
         this.clientId = clientId;
+    }
+
+    /**
+     * Create a function that creates a Client when given a ClientId object
+     * @param name String representing name of the client
+     * @param phone String representing phone number of the client
+     * @param email String representing email address of the client
+     */
+    public static Function<ClientId, Client> clientWithoutIdSupplier(Name name, ClientPhone phone, ClientEmail email) {
+        return (id) -> new Client(name, phone, email, id);
     }
 
     /**

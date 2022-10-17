@@ -128,7 +128,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return persons.contains(person);
+        return persons.containsByName(person);
     }
 
     /**
@@ -136,7 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasProject(Project project) {
         requireNonNull(project);
-        return projects.contains(project);
+        return projects.containsByName(project);
     }
 
     /**
@@ -144,7 +144,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasIssue(Issue issue) {
         requireNonNull(issue);
-        return issues.contains(issue);
+        return issues.containsByName(issue);
     }
 
     /**
@@ -152,9 +152,29 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasClient(Client client) {
         requireNonNull(client);
-        return clients.contains(client);
+        return clients.containsByName(client);
     }
 
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the address book.
+     */
+    public boolean hasProjectId(int id) {
+        return projects.containsId(id);
+    }
+
+    /**
+     * Returns true if an issue with the same identity as {@code issue} exists in the address book.
+     */
+    public boolean hasIssueId(int id) {
+        return issues.containsId(id);
+    }
+
+    /**
+     * Returns true if a client with the same identity as {@code client} exists in the address book.
+     */
+    public boolean hasClientId(int id) {
+        return clients.containsId(id);
+    }
     /**
      * Adds a client to the address book.
      * The client must not already exist in the address book.

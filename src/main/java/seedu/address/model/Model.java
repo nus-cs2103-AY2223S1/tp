@@ -68,6 +68,15 @@ public interface Model {
     boolean hasIssue(Issue issue);
     boolean hasClient(Client client);
 
+
+    boolean hasPersonId(Person person);
+
+    boolean hasProjectId(int id);
+
+    boolean hasIssueId(int id);
+
+    boolean hasClientId(int id);
+
     /**
      * Deletes the given client.
      * The client must exist in the address book.
