@@ -3,6 +3,8 @@
     "name": "Client with invalid name field: Ha!ns Mu@ster",
     "address": "4th street",
     "phone": "919191",
-    "email": "hbhhb@gmail.com"
+    "email": "hbhhb@gmail.com",
+    "companies": [ ],
+    "transactions": [ ]
   } ]
 }
