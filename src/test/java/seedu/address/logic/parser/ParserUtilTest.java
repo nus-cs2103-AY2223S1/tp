@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Homework;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -21,10 +22,14 @@ import seedu.address.model.tag.Tag;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
+    private static final String INVALID_ATTENDANCE = "year 2021";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
+    private static final String VALID_HOMEWORK = "English compo";
+    private static final String VALID_GRADE_PROGRESS = "B+";
+    private static final String VALID_ATTENDANCE = "2021-09-10";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -94,6 +99,24 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parseHomework_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseHomework((String) null));
+    }
+
+    @Test
+    public void parseHomework_validValueWithoutWhitespace_returnsHomework() throws Exception {
+        Homework expectedHomework = new Homework(VALID_HOMEWORK);
+        assertEquals(expectedHomework, ParserUtil.parseHomework(VALID_HOMEWORK));
+    }
+
+    @Test
+    public void parseHomework_validValueWithWhitespace_returnsTrimmedHomework() throws Exception {
+        String homeworkWithWhitespace = WHITESPACE + VALID_HOMEWORK + WHITESPACE;
+        Homework expectedHomework = new Homework(VALID_HOMEWORK);
+        assertEquals(expectedHomework, ParserUtil.parseHomework(homeworkWithWhitespace));
     }
 
     @Test
