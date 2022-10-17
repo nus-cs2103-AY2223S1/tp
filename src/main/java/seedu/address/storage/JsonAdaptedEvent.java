@@ -1,10 +1,16 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.UidList;
+import seedu.address.model.person.Uid;
 
 /**
  * Jackson-friendly version of Event
@@ -19,6 +25,7 @@ public class JsonAdaptedEvent {
     private final String time;
 
     private final String purpose;
+    private final List<JsonAdaptedUid> uids = new ArrayList<>();
 
     /**
      * Constructs a JsonAdaptedEvent with the given Event information
@@ -29,11 +36,15 @@ public class JsonAdaptedEvent {
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("eventTitle") String eventTitle, @JsonProperty("date") String date,
-                            @JsonProperty("time") String time, @JsonProperty("purpose") String purpose) {
+                            @JsonProperty("time") String time, @JsonProperty("purpose") String purpose,
+                            @JsonProperty("uids") List<JsonAdaptedUid> uids) {
         this.eventTitle = eventTitle;
         this.date = date;
         this.time = time;
         this.purpose = purpose;
+        if (uids != null) {
+            this.uids.addAll(uids);
+        }
     }
 
     /**
@@ -44,6 +55,10 @@ public class JsonAdaptedEvent {
         this.date = event.getDate();
         this.time = event.getTime();
         this.purpose = event.getPurpose();
+        Iterator<Uid> iter = event.getUids().iterator();
+        while (iter.hasNext()) {
+            uids.add(new JsonAdaptedUid(iter.next()));
+        }
     }
 
     /**
@@ -64,7 +79,11 @@ public class JsonAdaptedEvent {
         if (this.purpose == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Purpose"));
         }
-        return new Event(this.eventTitle, this.date, this.time, this.purpose);
+        final UidList eventUids = new UidList();
+        for (JsonAdaptedUid uid : uids) {
+            eventUids.add(uid.toModelType());
+        }
+        return new Event(this.eventTitle, this.date, this.time, this.purpose, eventUids);
     }
 
 }
