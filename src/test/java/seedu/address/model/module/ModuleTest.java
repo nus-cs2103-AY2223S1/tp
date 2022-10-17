@@ -38,15 +38,25 @@ public class ModuleTest {
                 new ModuleBuilder(CS2106).withModuleTitle(VALID_MA_MODULE_TITLE).build();
         assertTrue(CS2106.isSameModule(editedCs2106));
 
-        // module code differs in case, all other attributes same -> returns false
+        // module code differs in case, all other attributes same -> returns true because module
+        // code is not case-sensitive
         Module editedMa2001 =
                 new ModuleBuilder(MA2001).withModuleCode(VALID_CS_MODULE_CODE.toLowerCase()).build();
-        assertFalse(CS2106.isSameModule(editedMa2001));
+        assertTrue(CS2106.isSameModule(editedMa2001));
 
-        // module code has trailing spaces, all other attributes same -> returns false
+        // Module code should have neither leading nor trailing spaces.
+        // When a module code with leading or trailing spaces is input by the user, then Plannit
+        // should remove those spaces in the user input before processing.
+
+        // module code has trailing spaces, all other attributes same -> returns true
         String moduleWithTrailingSpaces = VALID_CS_MODULE_CODE + " ";
         editedCs2106 = new ModuleBuilder(CS2106).withModuleCode(moduleWithTrailingSpaces).build();
-        assertFalse(CS2106.isSameModule(editedCs2106));
+        assertTrue(CS2106.isSameModule(editedCs2106));
+
+        // module code has leading spaces, all other attributes same -> returns true
+        String moduleWithLeadingSpaces =  " " + VALID_CS_MODULE_CODE;
+        editedCs2106 = new ModuleBuilder(CS2106).withModuleCode(moduleWithLeadingSpaces).build();
+        assertTrue(CS2106.isSameModule(editedCs2106));
     }
 
     @Test
@@ -71,6 +81,11 @@ public class ModuleTest {
         Module editedCs2106 =
                 new ModuleBuilder(CS2106).withModuleCode(VALID_MA_MODULE_CODE).build();
         assertFalse(CS2106.equals(editedCs2106));
+
+        // same module code but different casing -> returns true
+        editedCs2106 =
+                new ModuleBuilder(CS2106).withModuleCode(VALID_CS_MODULE_CODE.toLowerCase()).build();
+        assertTrue(CS2106.equals(editedCs2106));
 
         // different module title -> returns false
         editedCs2106 = new ModuleBuilder(CS2106).withModuleTitle(VALID_MA_MODULE_TITLE).build();
