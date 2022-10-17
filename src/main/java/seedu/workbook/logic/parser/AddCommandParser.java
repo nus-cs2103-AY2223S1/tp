@@ -8,6 +8,7 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.workbook.model.internship.DateTime.EMPTY_DATETIME;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -51,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         // todo extract method out to parse optional and parse mandatory
         DateTime dateTime = argMultimap.getValue(PREFIX_DATETIME).isPresent()
                 ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get())
-                : new DateTime("");
+                : EMPTY_DATETIME;
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Internship internship = new Internship(company, role, phone, email, stage, dateTime, tagList);

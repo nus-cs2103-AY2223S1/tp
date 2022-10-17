@@ -22,6 +22,8 @@ public class DateTime {
             .appendPattern(datePattern);
     private static final DateTimeFormatter dateFormatter = formatterBuilder.toFormatter();
 
+    public static final DateTime EMPTY_DATETIME = new DateTime("");
+
     public final String value;
 
     /**
