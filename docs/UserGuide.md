@@ -92,15 +92,19 @@ Examples:
 
 Adds a new record to a given patient.
 
-Format: `addR INDEX d/DATE r/DESCRIPTION`
+Format: `addR d/DATE r/DATA [m/MEDICTION]…` 
 
-* Adds a new record to the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient records list.
-* The index must be a positive integer 1, 2, 3, …​
-* The record is created with given `DATE` and `DESCRIPTION` information.
+* The command is only valid after using `listR PATIENT_INDEX`.
+* Adds a new record to the patient with given `DATE`, `DATA` and `MEDICATION` information.
+
+* 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Dates must be given in DD-MM-YYYY HHmm format!
+</div>
 
 Examples:
-* `addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`
+* `addR d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetomol 500mg`
+* `addR d/28-02-2024 2030 r/Patient experienced vomitting`
 
 ### Deleting a patient: `delete`
 
