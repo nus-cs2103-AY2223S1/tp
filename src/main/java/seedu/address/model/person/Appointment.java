@@ -91,7 +91,6 @@ public class Appointment {
     }
 
     private LocalDateTime incrementDateTime(LocalDateTime dateTime, List<Integer> timePeriod) {
-
         LocalDateTime nextDateTime;
         nextDateTime = dateTime.plusYears(timePeriod.get(0));
         nextDateTime = nextDateTime.plusMonths(timePeriod.get(1));
