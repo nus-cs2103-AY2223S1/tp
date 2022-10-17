@@ -55,6 +55,10 @@ public class Trip {
         this.done = true;
     }
 
+    public void markNotDone() {
+        this.done = false;
+    }
+
     public boolean isDone() {
         return done;
     }
