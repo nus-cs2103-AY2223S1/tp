@@ -47,8 +47,8 @@ public class ClassStorageTest {
     public void execute_saveClassFailure() throws Exception {
         Person person = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1200-1400").build();
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableTeachersPet.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
@@ -60,8 +60,8 @@ public class ClassStorageTest {
     public void execute_getIndexSuccess() throws Exception {
         Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438807")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableTeachersPet.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
@@ -73,8 +73,8 @@ public class ClassStorageTest {
         // phone number here intentionally be wrong
         Person person = new PersonBuilder().withName("Alex Yeoh").withPhone("87438811")
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableTeachersPet.class).get();
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);

@@ -13,7 +13,7 @@ import seedu.address.model.person.UniqueScheduleList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class TeachersPet implements ReadOnlyTeachersPet {
 
     private final UniquePersonList persons;
     private final UniqueScheduleList schedule;
@@ -30,12 +30,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         schedule = new UniqueScheduleList();
     }
 
-    public AddressBook() {}
+    public TeachersPet() {}
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public TeachersPet(ReadOnlyTeachersPet toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -61,7 +61,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTeachersPet newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -133,8 +133,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof TeachersPet // instanceof handles nulls
+                && persons.equals(((TeachersPet) other).persons));
     }
 
     @Override
