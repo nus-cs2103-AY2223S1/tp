@@ -91,29 +91,6 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
-     * Make a client without ID.
-     * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
-     * @param description
-     * @param deadline
-     * @param priority
-     * @param status
-     * @param projectId
-     * @return a function that provides an issue object when presented with an IssueId object.
-     */
-    public static Function<Model, Issue> makeIssueWithoutModel(Description description, Deadline deadline,
-                                                               Priority priority, Status status, ProjectId projectId) {
-        return (model) ->
-                new Issue(
-                        description,
-                        deadline,
-                        priority,
-                        status,
-                        model.getProjectById(projectId.getIdInt()),
-                        new IssueId(model.generateIssueId())
-                );
-    }
-
-    /**
      * Returns true if both issues have the same description.
      * This defines a weaker notion of equality between two issues.
      */

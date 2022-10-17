@@ -93,7 +93,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         Status status = Status.EmptyStatus.EMPTY_STATUS;
         ProjectId projectid = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 
-        Function<Model, Issue> issueWithoutModel = Issue.makeIssueWithoutModel(description, deadline, priority, status, projectid);
+        IssueWithoutModel issueWithoutModel = new IssueWithoutModel(description, deadline, priority, status, projectid);
 
         return new AddIssueCommand(issueWithoutModel);
     }

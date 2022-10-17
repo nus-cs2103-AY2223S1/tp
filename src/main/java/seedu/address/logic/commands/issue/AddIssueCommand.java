@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.ui.Ui;
 
 import java.util.function.Function;
@@ -40,7 +41,7 @@ public class AddIssueCommand extends IssueCommand {
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
 
     //    private final Issue toAdd;
-    private final Function<Model, Issue> toAddWithoutModel;
+    private final IssueWithoutModel toAddWithoutModel;
 
 //    /**
 //     * Creates an AddCommand to add the specified {@code Issue}
@@ -53,7 +54,7 @@ public class AddIssueCommand extends IssueCommand {
     /**
      * Creates an AddCommand to add the specified {@code Issue}
      */
-    public AddIssueCommand(Function<Model, Issue> issueWithoutModel) {
+    public AddIssueCommand(IssueWithoutModel issueWithoutModel) {
         requireNonNull(issueWithoutModel);
         toAddWithoutModel = issueWithoutModel;
     }

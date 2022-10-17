@@ -10,7 +10,10 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * This class represents a partial initialisation of client (without model).
+ * This class represents a partial initialisation of client (without access to model).
+ * The reason why this exists is to separate Parser classes, and to ensure they are not dependent on
+ * Addressbook/Model classes.
+ *
  * This is inspired from a functional programming appraoch, where we store intermediate data by nesting functions.
  */
 public class ClientWithoutModel implements Function<Model, Client> {
