@@ -35,6 +35,14 @@ public class Gender {
         return (gender.matches(VALIDATION_REGEX));
     }
 
+    /**
+     * Checks if the specified gender corresponds to male
+     * @return True if it's male, false otherwise
+     */
+    public boolean isMale() {
+        return value.equals("M");
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

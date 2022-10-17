@@ -2,10 +2,22 @@ package seedu.nutrigoals.model.user;
 
 import static seedu.nutrigoals.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.nutrigoals.model.Calorie;
+
 /**
  * Represents a user object
  */
 public class User {
+
+    private static final double MALE_CONSTANT = 66.47;
+    private static final double FEMALE_CONSTANT = 655.1;
+    private static final double MALE_WEIGHT_COEFFICIENT = 13.75;
+    private static final double FEMALE_WEIGHT_COEFFICIENT = 9.563;
+    private static final double MALE_HEIGHT_COEFFICIENT = 5.003;
+    private static final double FEMALE_HEIGHT_COEFFICIENT = 1.850;
+    private static final double MALE_AGE_COEFFICIENT = 6.755;
+    private static final double FEMALE_AGE_COEFFICIENT = 4.676;
+    private static final double SEDENTARY = 1.2;
     private final Height height;
     private final Weight weight;
     private final Weight idealWeight;
@@ -62,6 +74,17 @@ public class User {
         return age;
     }
 
+    /**
+     * Calculates the suggested calorie intake based on the user's height, weight and age
+     * @return Suggested daily calorie intake
+     */
+    public Calorie calculateSuggestedCalorieIntake() {
+        double bmr = calculateBmr();
+        int suggestedCalorie = (int) (bmr * SEDENTARY);
+        String calorie = Integer.toString(suggestedCalorie);
+        return new Calorie(calorie);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -75,5 +98,21 @@ public class User {
         return (this.weight.equals(u.weight) && this.height.equals(u.height)
                 && this.idealWeight.equals(u.idealWeight) && this.gender.equals(u.gender))
                 && this.age.equals(u.age);
+    }
+
+    private double calculateBmr() {
+        // formula used: https://www.verywellfit.com/how-many-calories-do-i-need-each-day-2506873
+        double h = height.getHeight() * 100; // height in cm
+        int w = idealWeight.getWeight(); // weight in kg
+        int a = age.getAge(); // age in years
+        if (gender.isMale()) {
+            return MALE_CONSTANT + (MALE_WEIGHT_COEFFICIENT * w)
+                    + (MALE_HEIGHT_COEFFICIENT * h)
+                    - (MALE_AGE_COEFFICIENT * a);
+        } else { // female
+            return FEMALE_CONSTANT + (FEMALE_WEIGHT_COEFFICIENT * w)
+                    + (FEMALE_HEIGHT_COEFFICIENT * h)
+                    - (FEMALE_AGE_COEFFICIENT * a);
+        }
     }
 }

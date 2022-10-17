@@ -30,6 +30,10 @@ public class Age {
         return age.matches(VALIDATION_REGEX);
     }
 
+    public int getAge() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

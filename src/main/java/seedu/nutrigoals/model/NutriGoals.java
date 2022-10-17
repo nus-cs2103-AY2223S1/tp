@@ -107,6 +107,10 @@ public class NutriGoals implements ReadOnlyNutriGoals {
         return user;
     }
 
+    public Calorie calculateSuggestedCalorie() {
+        return user.calculateSuggestedCalorieIntake();
+    }
+
     /**
      * @return Calorie
      */

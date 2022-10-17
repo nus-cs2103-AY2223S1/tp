@@ -45,6 +45,14 @@ public class Height {
         return false;
     }
 
+    /**
+     * Returns the height recorded as an integer
+     * @return User's height in meters
+     */
+    public double getHeight() {
+        return Integer.parseInt(value) / 100.0;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

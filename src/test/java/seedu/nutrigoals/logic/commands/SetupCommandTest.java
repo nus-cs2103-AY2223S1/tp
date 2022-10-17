@@ -167,6 +167,11 @@ public class SetupCommandTest {
             throw new AssertionError("This method should not be called");
         }
 
+        @Override
+        public Calorie calculateSuggestedCalorie() {
+            throw new AssertionError("This method should not be called");
+        }
+
 
     }
 

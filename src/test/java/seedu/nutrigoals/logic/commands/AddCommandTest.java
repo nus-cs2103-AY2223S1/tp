@@ -185,6 +185,11 @@ public class AddCommandTest {
         public boolean isFilteredFoodListEmpty() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Calorie calculateSuggestedCalorie() {
+            throw new AssertionError("This method should not be called");
+        }
     }
 
     /**

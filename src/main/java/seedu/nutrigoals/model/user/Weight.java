@@ -45,6 +45,14 @@ public class Weight {
         return false;
     }
 
+    /**
+     * Returns the weight recorded as an integer
+     * @return The user's weight in kilogram
+     */
+    public int getWeight() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
