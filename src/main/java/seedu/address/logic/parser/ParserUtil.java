@@ -18,6 +18,7 @@ import seedu.address.model.person.Location;
 import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -196,6 +197,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String location} into an {@code Location}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code location} is invalid.
+     */
+    public static Rating parseRating(String rating) throws ParseException {
+        requireNonNull(rating);
+        String trimmedRating = rating.trim();
+        if (!Rating.isValidRating(trimmedRating)) {
+            throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        return new Rating(trimmedRating);
+    }
+
+    /**
      * Parses a {@code String username} into an {@code GithubUsername}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -212,6 +228,5 @@ public class ParserUtil {
         }
         return new GithubUsername(trimmedUsername, true);
     }
-
 
 }

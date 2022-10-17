@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -31,6 +32,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Professor;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
@@ -51,9 +53,10 @@ public class EditCommand extends Command {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_GENDER + "GENDER] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_TAG + "TAG]... "
+        + "[" + PREFIX_TAG + "TAG]..."
         + "[" + PREFIX_LOCATION + "LOCATION] "
-        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME]\n"
+        + "[" + PREFIX_GITHUBUSERNAME + "GITHUB USERNAME]"
+        + "[" + PREFIX_RATING + "RATING]\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
@@ -146,9 +149,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
 
         return new Professor(updatedName, updatedModuleCode, updatedPhone, updatedEmail, updatedGender, updatedTags,
-            updatedLocation, updatedUsername);
+            updatedLocation, updatedUsername, updatedRating);
     }
 
     /**
@@ -167,8 +171,9 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Location updatedLocation = editPersonDescriptor.getLocation().orElse(personToEdit.getLocation());
         GithubUsername updatedUsername = editPersonDescriptor.getGithubUsername().orElse(personToEdit.getUsername());
+        Rating updatedRating = editPersonDescriptor.getRating().orElse(personToEdit.getRating());
         return new TeachingAssistant(updatedName, updatedModuleCode, updatedPhone,
-            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername);
+            updatedEmail, updatedGender, updatedTags, updatedLocation, updatedUsername, updatedRating);
     }
 
 
@@ -205,6 +210,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private Location location;
         private GithubUsername githubUsername;
+        private Rating rating;
 
         public EditPersonDescriptor() {
         }
@@ -223,13 +229,14 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setLocation(toCopy.location);
             setGithubUsername(toCopy.githubUsername);
+            setRating(toCopy.rating);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername);
+            return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating);
         }
 
         public void setName(Name name) {
@@ -305,6 +312,13 @@ public class EditCommand extends Command {
             this.githubUsername = username;
         }
 
+        public Optional<Rating> getRating() {
+            return Optional.ofNullable(rating);
+        }
+        public void setRating(Rating rating) {
+            this.rating = rating;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -345,7 +359,8 @@ public class EditCommand extends Command {
                 && getGender().equals(e.getGender())
                 && getTags().equals(e.getTags())
                 && getLocation().equals(e.getLocation())
-                && getGithubUsername().equals(e.getGithubUsername());
+                && getGithubUsername().equals(e.getGithubUsername())
+                && getRating().equals(e.getRating());
         }
 
     }
