@@ -59,8 +59,10 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        if (source.getMeeting() != null) {
-            meetings.add(new JsonAdaptedMeeting(source.getMeeting(), this));
+        if (!source.isMeetingListEmpty()) {
+            meetings.addAll(source.getMeetings().stream()
+                    .map(meeting -> new JsonAdaptedMeeting(meeting, this))
+                    .collect(Collectors.toList()));
         }
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -86,7 +88,7 @@ class JsonAdaptedClient {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Client} object.
+     * Converts this Jackson-friendly adapted client object into the model's {@code Client} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
@@ -130,8 +132,10 @@ class JsonAdaptedClient {
         final Set<Tag> modelTags = new HashSet<>(clientTags);
         if (!meetings.isEmpty()) {
             Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-            final Meeting meeting = meetings.get(0).toModelType(client);
-            client.setMeeting(meeting);
+            for (JsonAdaptedMeeting meeting : meetings) {
+                final Meeting meetingToAdd = meeting.toModelType(client);
+                client.addNewMeeting(meetingToAdd);
+            }
             return client;
         } else {
             return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);

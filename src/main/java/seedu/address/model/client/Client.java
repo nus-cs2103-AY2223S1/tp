@@ -7,7 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NoConflictMeetingList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,11 +22,13 @@ public class Client {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private Meeting meeting;
 
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private Meeting meeting;
+    private final NoConflictMeetingList meetings;
+
 
     /**
      * Every field must be present and not null.
@@ -36,6 +40,7 @@ public class Client {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.meetings = new NoConflictMeetingList();
     }
 
     /**
@@ -49,6 +54,7 @@ public class Client {
         this.address = address;
         this.tags.addAll(tags);
         this.meeting = meeting;
+        this.meetings = new NoConflictMeetingList();
     }
 
     public Name getName() {
@@ -68,7 +74,7 @@ public class Client {
     }
 
     public boolean hasMeeting() {
-        return meeting != null;
+        return !isMeetingListEmpty();
     }
 
     public Meeting getMeeting() {
@@ -77,6 +83,22 @@ public class Client {
 
     public void setMeeting(Meeting meeting) {
         this.meeting = meeting;
+    }
+
+    public ObservableList<Meeting> getMeetings() {
+        return meetings.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Adds a meeting to the client's meeting list.
+     * @param newMeeting
+     */
+    public void addNewMeeting(Meeting newMeeting) {
+        meetings.add(newMeeting);
+    }
+
+    public boolean isMeetingListEmpty() {
+        return meetings.isEmpty();
     }
 
     /**

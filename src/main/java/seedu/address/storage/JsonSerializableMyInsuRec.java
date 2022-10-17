@@ -8,10 +8,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MyInsuRec;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.NoConflictMeetingList;
 
 /**
  * An Immutable MyInsuRec that is serializable to JSON format.
@@ -49,13 +52,15 @@ class JsonSerializableMyInsuRec {
     public MyInsuRec toModelType() throws IllegalValueException {
         MyInsuRec myInsuRec = new MyInsuRec();
         for (JsonAdaptedClient jsonAdaptedClient : clients) {
-            Client person = jsonAdaptedClient.toModelType();
-            if (myInsuRec.hasClient(person)) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (myInsuRec.hasClient(client)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            myInsuRec.addClient(person);
-            if (person.hasMeeting()) {
-                myInsuRec.addMeeting(person.getMeeting());
+            myInsuRec.addClient(client);
+            if (client.hasMeeting()) {
+                for (Meeting meeting : client.getMeetings()) {
+                    myInsuRec.addMeeting(meeting);
+                }
             }
         }
         return myInsuRec;
