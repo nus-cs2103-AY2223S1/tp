@@ -110,18 +110,4 @@ public class UniqueFoodList implements Iterable<Food> {
     public int hashCode() {
         return sortedList.hashCode();
     }
-
-    /**
-     * Returns true if {@code food} contains only unique food.
-     */
-    private boolean foodsAreUnique(List<Food> foods) {
-        for (int i = 0; i < foods.size() - 1; i++) {
-            for (int j = i + 1; j < foods.size(); j++) {
-                if (foods.get(i).isSameFood(foods.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
