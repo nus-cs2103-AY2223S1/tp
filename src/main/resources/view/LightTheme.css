@@ -248,9 +248,14 @@
 
 .list-cell {
     -fx-padding: 0;
-    -fx-label-padding: 0 0 0 0;
+    -fx-label-padding: 0;
+    -fx-background-color: white;
     -fx-graphic-text-gap : 0;
     -fx-border-width: 1;
+    -fx-border-color: transparent;
+}
+
+.list-cell:filled {
     -fx-border-color: transparent transparent #E2E8F0 transparent;
 }
 
