@@ -56,7 +56,7 @@ public class TeamCard extends UiPart<Region> {
 
         int numberOfCompletedTasks = team.getNoOfCompletedTasK();
         int totalNumberOfTasks = team.getTasks().getSize();
-        double progressFraction = (numberOfCompletedTasks * 1.0)/(totalNumberOfTasks * 1.0);
+        double progressFraction = (numberOfCompletedTasks * 1.0) / (totalNumberOfTasks * 1.0);
         taskProgressBar.setProgress(progressFraction);
 
         taskFraction.setText(numberOfCompletedTasks + "/" + totalNumberOfTasks);
