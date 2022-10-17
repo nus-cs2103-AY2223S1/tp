@@ -7,8 +7,8 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
