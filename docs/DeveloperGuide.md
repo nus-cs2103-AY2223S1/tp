@@ -92,13 +92,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W16-1/tp/blob/master/src/main/java/seedu/guest/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestBookPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `GuestListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W16-1/tp/blob/master/src/main/java/seedu/guest/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W16-1/tp/blob/master/src/main/resources/view/GuestListPanel.fxml)
 
 The `UI` component,
 
@@ -176,6 +176,56 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Add feature
+
+#### Implementation:
+
+* The `add` command takes in 6 compulsory fields (`Name`, `Phone`, `Email`, `Room Number`, `Date Range` and `Number of Guests`) and 1 optional field (`Request`) and is supported by the `AddCommandParser` that extracts out each of the fields from their respective prefixes.
+
+The following activity diagrams summarizes what happens when a user enters an `add` command.
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: How to deal with duplicate entries**
+
+* **Alternative 1 (current choice):** Reject any entry with a duplicate name that is case-insensitive.
+    * Pros: Easy to implement.
+    * Cons: Will have issues with adding people of the same name to GuestBook.
+
+* **Alternative 2:** Allow duplicate entries to be added with no consequences.
+    * Pros: Allows for multiple guests of the same full name to be added.
+    * Cons: Easy to abuse the command intentionally (to break the program) or unintentionally (accidentally).
+
+Taking into consideration that in small hotels, the chances of getting two guests that have identical full names are
+incredibly unlikely, we decided to proceed with Alternative 1.
+
+**Aspect: Excluding rc/ (isRoomClean) in the `add` command**
+* As adding the guest will be done during check in, the room should by default be cleaned for the guest to immediately
+be able to enter their room. Hence, we chose to remove rc/ as it makes the `add` command unnecessarily longer.
+
+**Aspect: Excluding b/ (Bill) in the `add` command**
+* As adding the guest will be done during check in, the guest should not have incurred any bill costs yet. Hence,
+we chose to remove b/ as it makes the `add` command unnecessarily longer.
+
+### Edit feature
+
+#### Implementation:
+* The `edit` command takes in an INDEX indicating the index of the guests to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room Number`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
+
+The following activity diagrams summarizes what happens when a user enters an `edit` command.
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: Allowing only specific fields provided to be edited**
+* As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
+
+**Aspect: Excluding b/ (Bill) in the `edit` command**
+* As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
 
 ### \[Proposed\] Undo/redo feature
 
