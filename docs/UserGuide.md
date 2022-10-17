@@ -76,7 +76,7 @@ Format: `help`
 
 Adds a stall.
 
-Format: `sadd n/NAME a/ADDRESS [t/TAGS]...`
+Format: `sadd n/NAME a/ADDRESS [t/TAGS]…`
 
 Examples:
 * `sadd n/John Doe Eatery a/Blk 123 Bedok South t/VeryNice`
@@ -87,7 +87,7 @@ Examples:
 
 Adds a review.
 
-Format: `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]...`
+Format: `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]…`
 Examples:
 * `radd s/3 d/2022-09-20 c/The food was good, the chicken rice was fresh.`
 
@@ -130,7 +130,7 @@ Example:
 
 Finds stalls whose names contain any of the given keywords.
 
-Format: `sfind KEYWORD [MORE_KEYWORDS]`
+Format: `sfind KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
@@ -140,6 +140,21 @@ Format: `sfind KEYWORD [MORE_KEYWORDS]`
 
 Example:
 * `sfind eatery` returns `John's eatery` and `Doe eatery`
+
+### Finding a review: `rfind`
+
+Finds reviews whose names contain any of the given keywords.
+
+Format: `rfind KEYWORD [MORE_KEYWORDS]…`
+
+* The search is case-insensitive. e.g. `eatery` will match `Eatery`
+* The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
+* Only the name is searched
+* Only full words will be matched e.g. `Joh` will not match `John`
+* Reviews matching at least one keyword will be returned (i.e. OR search) e.g. `John Doe` will return `John Eatery`, `Doe Restaurant`
+
+Example:
+* `rfind eatery` returns `John's eatery` and `Doe eatery`
 
 ### Clearing all entries : `clear`
 
@@ -181,9 +196,12 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **Exit**  | `exit`                                                                                                  |
 | **Help**  | `help`                                                                                                  |
 | **Clear** | `clear`                                                                                                 |
-| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!`          |
+| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
 | **rDel**  | `rdel INDEX`                                                                                            |
 | **rList** | `rlist`                                                                                                 |
+| **rFind** | `rfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
 | **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice` |
 | **sDel**  | `sdel INDEX`                                                                                            |
 | **sList** | `slist`                                                                                                 |
+| **sFind** | `sFind KEYWORD [MORE_KEYWORDS]…` |
+
