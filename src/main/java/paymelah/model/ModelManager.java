@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -109,6 +112,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void sortAddressBookPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        List<Person> sortedList = new ArrayList<>(addressBook.getPersonList());
+        sortedList.sort(comparator);
+        addressBook.setPersons(sortedList);
     }
 
     //=========== Filtered Person List Accessors =============================================================
