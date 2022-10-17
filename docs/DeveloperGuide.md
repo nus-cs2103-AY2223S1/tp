@@ -290,6 +290,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+###
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -324,19 +325,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (unlikely to have) - `LOW`
 
-| Priority | As a …​        | I want to …​                                                                             | So that I can…​                                                                                                    |
+| Priority | As a …​        | I want to …​                                                                             | So that I can…​                                                                                           |
 |----------|----------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-| `HIGH`   | user           | input spending/income <br/> delete spending/income <br/> input spending/income with date | record my spending/income <br/> remove any wrong spending/income records <br/> keep track of when I spend my money |
-| `HIGH`   | user           | view all my spending/income                                                              | get an overview of all my spending/income                                                                          |
-| `HIGH`   | user           | summarize my spending/income                                                             | be aware of the amount of money I can spend                                                                        |
-| `MEDIUM` | user           | edit any mistaken in my spending/income entries                                          | correctly log my budgeting                                                                                         |
-| `MEDIUM` | organised user | tag my spending/income based on specific categories                                      | keep track of which components I am spending more on                                        |
-| `MEDIUM` | organised user | define my own tags for the spending                                                      | categorize my spending                                        |
-| `MEDIUM` | organised user | filter my spendings by tags                                                              | have an overview of the areas where I spent                                                                        |
-| `MEDIUM` | organised user | filter my spendings by date range                                                        |have an overview of the amount I spent in a given period                                                                                                                             |
-| `LOW`    | visual learner | have pie charts that reflects my spending                                                |better understand my spending patterns                                                                                                 |
-| `LOW`    | user           | view expenses/ incomes in a sorted manner                                                |see all expenses in ascending/descending order                                                                                                      |
-| `LOW`    | user           | view a list of commands and how to use them                                              |                                                                                                      refer to it when i forgot the commands           |
+| `HIGH`   | user           | input expenses/income <br/> delete expenses/income <br/> input expenses/income with date | record my expenses/income <br/> remove any wrong expenses/income records <br/> keep track of when I spend my money |
+| `HIGH`   | user           | view all my expenses/income                                                              | get an overview of all my expenses/income                                                                          |
+| `HIGH`   | user           | summarize my expenses/income                                                             | be aware of the amount of money I can spend                                                                        |
+| `MEDIUM` | user           | edit any mistakes in my expenses/income entries                                          | correctly log my budgeting                                                                                         |
+| `MEDIUM` | organised user | tag my expenses/income based on specific categories                                      | keep track of which components I am spending more on                                                               |
+| `MEDIUM` | organised user | filter my expenses by tags                                                               | have an overview of the areas where I spent                                                                        |
+| `MEDIUM` | organised user | filter my expenses by date range                                                         | have an overview of the amount I spent in a given period                                                           |
+| `LOW`    | visual learner | have graphs that reflects my expenses/income                                             | better understand my spending/income patterns                                                                      |
+| `LOW`    | user           | view a list of commands and how to use them                                              | refer to it when i forgot the commands                                                                             |
 
 *{More to be added}*
 
