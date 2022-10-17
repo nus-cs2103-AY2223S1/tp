@@ -166,29 +166,27 @@ Examples:
 
 ### Mark an appointment as completed:  `mark`
 
-Marks a specified appointment `APPOINTMENT_INDEX` for a specified patient at `PATIENT_INDEX` as completed.
+Marks a specified appointment in the appointment list as complete.
 
-Format: `mark PATIENT_INDEX APPOINTMENT_INDEX`
+Format: `mark APPOINTMENT_INDEX`
 
-* `PATIENT_INDEX` refers to the index number of the patient shown in the displayed patient list.
-* `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked for the desired patient.
-* Values of `PATIENT_INDEX` and `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be marked, as shown in the appointment list.
+* Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `mark 3 1`
+* `mark 3`
 
 ### Unmark an appointment as incomplete:  `unmark`
 
-Unmarks a specified appointment `APPOINTMENT_INDEX` for a specified patient at `PATIENT_INDEX` as incomplete.
+Unmarks a specified appointment in the appointment list as incomplete.
 
-Format: `unmark PATIENT_INDEX APPOINTMENT_INDEX`
+Format: `unmark APPOINTMENT_INDEX`
 
-* `PATIENT_INDEX` refers to the index number of the patient shown in the displayed patient list.
-* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked for the desired patient.
-* Values of `PATIENT_INDEX` and `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `APPOINTMENT_INDEX` refers to the index number of the appointment to be unmarked, as shown in the appointment list.
+* Value of `APPOINTMENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `unmark 4 2`
+* `unmark 1`
 
 ### Clearing all entries : `clear`
 
@@ -203,11 +201,11 @@ Exits the program.
 Format: `exit`
 
 ### Cancel
-Cancels a specified appointment from the specified patient’s appointment list. <br>
-Format: ```cancel PATIENT_INDEX APPOINTMENT_INDEX```
-- Deletes the appointment with `APPOINTMENT_INDEX` for the patient at the specified `PATIENT_INDEX`.
+Cancels a specified appointment in the appointment list. <br>
+Format: ```cancel APPOINTMENT_INDEX```
+- Deletes the appointment with `APPOINTMENT_INDEX` in the appointment list.
 - The index refers to the index number shown in the displayed appointment list.
-- The indexes must be a positive integer 1, 2, 3, …​
+- The index must be a positive integer 1, 2, 3, …​
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -231,7 +229,9 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END]`<br> e.g., `find n/Joshua e/Josh@example.com r/Tinnitus`
 **Book** | `book INDEX r/REASON d/DATE`<br> e.g., `book 2 r/Ear Infection d/2022-12-31 18:00`
-**Cancel** | `cancel PATIENT_INDEX APPOINTMENT_INDEX` <br> e.g., `cancel 3 2`
+**Mark** | `mark APPOINTMENT_INDEX` <br> e.g. `mark 3`
+**Unmark** | `unmark APPOINTMENT_INDEX` <br> e.g. `unmark 1`
+**Cancel** | `cancel APPOINTMENT_INDEX` <br> e.g., `cancel 2`
 **Edit Patient** | `edit patients INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br> e.g., `edit patients 1 n/Bernice Yu`
 **Edit Appointment** | `edit appts PATIENT_INDEX APPOINTMENT_INDEX [r/REASON] [d/DATE]` <br> e.g., `edit appts 1 1 r/Cough` 
 **List** | `list patients` <br> `list appointments`
