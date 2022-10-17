@@ -17,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.foodrem.commons.exceptions.DataConversionException;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
+import seedu.foodrem.testutil.TypicalTags;
 
 public class JsonFoodRemStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonFoodRemStorageTest");
@@ -79,6 +80,19 @@ public class JsonFoodRemStorageTest {
 
         // Save and read without specifying file path
         original.addItem(POTATOES);
+        jsonFoodRemStorage.saveFoodRem(original); // file path not specified
+        readBack = jsonFoodRemStorage.readFoodRem().get(); // file path not specified
+        assertEquals(original, new FoodRem(readBack));
+
+        // Modify tags, overwrite exiting file, and read back
+        original.addTag(TypicalTags.NUMBERS);
+        jsonFoodRemStorage.saveFoodRem(original);
+        readBack = jsonFoodRemStorage.readFoodRem(filePath).get();
+        assertEquals(original, new FoodRem(readBack));
+
+        // Save and read without specifying file path
+        original.removeTag(TypicalTags.NUMBERS);
+        original.addTag(TypicalTags.FRUITS);
         jsonFoodRemStorage.saveFoodRem(original); // file path not specified
         readBack = jsonFoodRemStorage.readFoodRem().get(); // file path not specified
         assertEquals(original, new FoodRem(readBack));

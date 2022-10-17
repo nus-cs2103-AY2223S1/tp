@@ -12,7 +12,7 @@ import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of FoodRem data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private final UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code FoodRemStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(FoodRemStorage foodRemStorage, UserPrefsStorage userPrefsStorage) {
         this.foodRemStorage = foodRemStorage;
@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ FoodRem methods ==============================
 
     @Override
     public Path getFoodRemFilePath() {
@@ -65,14 +65,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveFoodRem(ReadOnlyFoodRem addressBook) throws IOException {
-        saveFoodRem(addressBook, foodRemStorage.getFoodRemFilePath());
+    public void saveFoodRem(ReadOnlyFoodRem foodRem) throws IOException {
+        saveFoodRem(foodRem, foodRemStorage.getFoodRemFilePath());
     }
 
     @Override
-    public void saveFoodRem(ReadOnlyFoodRem addressBook, Path filePath) throws IOException {
+    public void saveFoodRem(ReadOnlyFoodRem foodRem, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        foodRemStorage.saveFoodRem(addressBook, filePath);
+        foodRemStorage.saveFoodRem(foodRem, filePath);
     }
 
 }

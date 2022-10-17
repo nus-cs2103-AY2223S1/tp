@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * An Immutable FoodRem that is serializable to JSON format.
@@ -19,28 +20,33 @@ import seedu.foodrem.model.item.Item;
 class JsonSerializableFoodRem {
 
     public static final String MESSAGE_DUPLICATE_ITEMS = "Items list contains duplicate item(s).";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Tag list contains duplicate tag(s).";
 
     private final List<JsonAdaptedItem> items = new ArrayList<>();
+    private final List<JsonAdaptedTag> tagList = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given items.
+     * Constructs a {@code JsonSerializableFoodRem} with the given items.
      */
     @JsonCreator
-    public JsonSerializableFoodRem(@JsonProperty("items") List<JsonAdaptedItem> items) {
+    public JsonSerializableFoodRem(@JsonProperty("items") List<JsonAdaptedItem> items,
+                                   @JsonProperty("tagList") List<JsonAdaptedTag> tagList) {
         this.items.addAll(items);
+        this.tagList.addAll(tagList);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFoodRem} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableFoodRem}.
      */
     public JsonSerializableFoodRem(ReadOnlyFoodRem source) {
         items.addAll(source.getItemList().stream().map(JsonAdaptedItem::new).collect(Collectors.toList()));
+        tagList.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this FoodRem into the model's {@code FoodRem} object.
      *
      * @throws IllegalArgumentException if there were any data constraints violated.
      */
@@ -52,6 +58,14 @@ class JsonSerializableFoodRem {
                 throw new IllegalArgumentException(MESSAGE_DUPLICATE_ITEMS);
             }
             foodRem.addItem(item);
+        }
+
+        for (JsonAdaptedTag jsonAdaptedTag : tagList) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            if (foodRem.hasTag(tag)) {
+                throw new IllegalArgumentException(MESSAGE_DUPLICATE_TAGS);
+            }
+            foodRem.addTag(tag);
         }
         return foodRem;
     }
