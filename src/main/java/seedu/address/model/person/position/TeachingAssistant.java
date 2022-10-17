@@ -50,6 +50,11 @@ public class TeachingAssistant extends Position {
     }
 
     @Override
+    public String toShow() {
+        return "Availability: " + availability;
+    }
+
+    @Override
     public String toString() {
         return "Teaching Assistant: " + availability;
     }

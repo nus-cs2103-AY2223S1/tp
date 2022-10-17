@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
@@ -31,7 +34,13 @@ public class InfoDisplay extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private FlowPane tags;
+    @FXML
+    private Label misc;
+    @FXML
     private Label address;
+    @FXML
+    private Label remark;
 
     public InfoDisplay() {
         super(FXML);
@@ -43,10 +52,14 @@ public class InfoDisplay extends UiPart<Region> {
     public void setInfo(Person person) {
         this.person = person;
         name.setText(person.getName().fullName);
-        position.setText(person.getPosition().toString());
+        position.setText(person.getPosition().value);
         phone.setText("Phone: " + person.getPhone().value);
         email.setText("Email: " + person.getEmail().value);
+        person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
+                        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        misc.setText(person.getPosition().toShow());
         address.setText("Address: " + person.getAddress().value);
+        remark.setText("Remarks: " + person.getRemark().value);
     }
 
     /**
@@ -57,7 +70,10 @@ public class InfoDisplay extends UiPart<Region> {
         position.setText(null);
         phone.setText(null);
         email.setText(null);
+        tags.getChildren().clear();
+        misc.setText(null);
         address.setText(null);
+        remark.setText(null);
     }
 
     @Override

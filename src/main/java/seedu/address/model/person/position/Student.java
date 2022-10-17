@@ -90,6 +90,12 @@ public class Student extends Position {
     }
 
     @Override
+    public String toShow() {
+        return "Attendance: " + attendance + "\n"
+                + "Grade: " + grade;
+    }
+
+    @Override
     public String toString() {
         return "Student: attendance - " + attendance + ", grade - " + grade;
     }
