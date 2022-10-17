@@ -23,7 +23,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STAGE = "HR Interview";
-    public static final String DEFAULT_DATETIME = "20-Oct-2022 10:00";
+    public static final String DEFAULT_DATETIME = "";
 
 
     private Company company;
