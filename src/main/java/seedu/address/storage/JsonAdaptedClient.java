@@ -64,7 +64,8 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
-        transactions.addAll(source.getTransactionList().stream().map(JsonAdaptedTransaction::new).collect(Collectors.toList()));
+        transactions.addAll(source.getTransactionList().stream()
+                .map(JsonAdaptedTransaction::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
