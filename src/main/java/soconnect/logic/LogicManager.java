@@ -74,7 +74,7 @@ public class LogicManager implements Logic {
     // Stub - to be removed after Todo is implemented.
     @Override
     public ObservableList<Todo> getFilteredTodoList() {
-        return FXCollections.observableArrayList(new Todo());
+        return FXCollections.observableArrayList(new Todo("Description"));
     }
 
     @Override
