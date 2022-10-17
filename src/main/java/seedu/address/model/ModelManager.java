@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 
 /**
@@ -25,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Link> filteredLinks;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -36,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredLinks = new FilteredList<>(this.addressBook.getLinkList());
     }
 
     public ModelManager() {
@@ -141,6 +145,27 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Team> getTeamList() {
         return addressBook.getTeamList();
+    }
+    //=========== Link Accessors =============================================================================
+
+    @Override
+    public boolean hasLink(Link link) {
+        return addressBook.hasLink(link);
+    }
+
+    @Override
+    public void addLink(Link link) {
+        addressBook.addLink(link);
+    }
+
+    @Override
+    public void deleteLink(Link link) {
+        addressBook.deleteLink(link);
+    }
+
+    @Override
+    public ObservableList<Link> getFilteredLinkList() {
+        return filteredLinks;
     }
 
     //=========== Filtered Person List Accessors =============================================================

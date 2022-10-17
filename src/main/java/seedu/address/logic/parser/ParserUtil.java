@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.team.Link;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -120,5 +124,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String url} into a {@code URL}
+     */
+
+    public static URL parseUrl(String url)  throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+        URL urlObject;
+        try {
+            urlObject = new URL(trimmedUrl);
+            urlObject.toURI();
+        } catch (MalformedURLException | URISyntaxException e) {
+            throw new ParseException(Link.URL_CONSTRAINTS);
+        }
+        return urlObject;
     }
 }

@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.TeamMetaData;
 import seedu.address.model.team.UniqueTeamList;
@@ -134,6 +135,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setTeams(List<Team> teams) {
         this.teams.setTeams(teams);
     }
+    //// link related operations
+    public boolean hasLink(Link link) {
+        return teamData.hasLink(link);
+    }
+
+    public void addLink(Link link) {
+        teamData.addLink(link);
+    }
+
+    public void deleteLink(Link link) {
+        teamData.deleteLink(link);
+    }
+
 
     //// util methods
 
@@ -152,6 +166,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Team> getTeamList() {
         return teams.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Link> getLinkList() {
+        return teamData.getLinkListAsUnmodifiedObservableList();
     }
 
     @Override

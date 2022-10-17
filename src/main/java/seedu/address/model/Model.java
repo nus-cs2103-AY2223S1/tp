@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 
 /**
@@ -103,4 +105,12 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     ObjectProperty<Team> getTeamAsProperty();
+
+    boolean hasLink(Link link);
+
+    void addLink(Link link);
+
+    void deleteLink(Link link);
+
+    ObservableList<Link> getFilteredLinkList();
 }

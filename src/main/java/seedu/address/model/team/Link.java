@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.net.URL;
 
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,10 +15,13 @@ public class Link {
     public static final String MESSAGE_CONSTRAINTS =
             "Link names should not be blank and cannot begin with a whitespace";
 
+    public static final String URL_CONSTRAINTS =
+            "Link URLs must be a valid url name";
+
     /**
      * Name of the link
      */
-    private String displayedName;
+    private Name displayedName;
 
     private URL url;
 
@@ -26,14 +30,14 @@ public class Link {
      * @param displayedName A valid name to display.
      * @param url A valid URL object.
      */
-    public Link(String displayedName, URL url) {
+    public Link(Name displayedName, URL url) {
         requireNonNull(displayedName);
         requireNonNull(url);
         this.displayedName = displayedName;
         this.url = url;
     }
 
-    public String getDisplayedName() {
+    public Name getDisplayedName() {
         return this.displayedName;
     }
 

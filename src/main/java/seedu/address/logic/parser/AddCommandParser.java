@@ -38,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private final Options options;
 
     /**
-     * Creates an AddCommandParser with default options
+     * Creates an AddCommandParser with default options.
      */
     public AddCommandParser() {
         Options options = new Options();
