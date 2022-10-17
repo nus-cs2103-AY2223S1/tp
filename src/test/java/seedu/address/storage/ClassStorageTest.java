@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TeachersPet;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
@@ -21,8 +21,8 @@ import seedu.address.testutil.PersonBuilder;
 
 public class ClassStorageTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("personsAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTeachersPetTest");
+    private static final Path PERSONS_FILE = TEST_DATA_FOLDER.resolve("personsTeachersPet.json");
 
     @Test
     public void execute_hasConflictSuccess() {
@@ -49,10 +49,10 @@ public class ClassStorageTest {
                 .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        TeachersPet addressBookFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
-        // Throws an exception because Alex Yeoh in personsAddressBook has class timing conflict with Daniel Tan.
+        // Throws an exception because Alex Yeoh in personsTeachersPet has class timing conflict with Daniel Tan.
         assertThrows(CommandException.class, () -> classStorage.saveClass(person, 3));
     }
 
@@ -62,7 +62,7 @@ public class ClassStorageTest {
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        TeachersPet addressBookFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
         assertEquals(1, ClassStorage.getIndex(person));
@@ -75,7 +75,7 @@ public class ClassStorageTest {
                 .withEmail("alexyeoh@example.com").withAddress("Blk 16").withClass("2022-05-05 1200-1400").build();
         JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
                 JsonSerializableTeachersPet.class).get();
-        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        TeachersPet addressBookFromFile = dataFromFile.toModelType();
         ModelManager modelManager = new ModelManager(addressBookFromFile, new UserPrefs());
         ClassStorage classStorage = new ClassStorage(modelManager);
         // returns 0 since there is no same person found

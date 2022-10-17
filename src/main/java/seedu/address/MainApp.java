@@ -58,7 +58,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TeachersPetStorage teachersPetStorage = new JsonTeachersPetStorageStorage(userPrefs.getTeachersPetFilePath());
+        TeachersPetStorage teachersPetStorage = new JsonTeachersPetStorage(userPrefs.getTeachersPetFilePath());
         storage = new StorageManager(teachersPetStorage, userPrefsStorage);
 
         initLogging(config);

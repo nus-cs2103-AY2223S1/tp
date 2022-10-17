@@ -19,46 +19,46 @@ import seedu.address.testutil.PersonBuilder;
 
 public class StatisticsCalculatorTest {
 
-    private final AddressBookStub addressBookStub = new AddressBookStub();
-    private final StatisticsCalculator statisticsCalculator = new StatisticsCalculator(addressBookStub);
+    private final TeachersPetStub teachersPetStub = new TeachersPetStub();
+    private final StatisticsCalculator statisticsCalculator = new StatisticsCalculator(teachersPetStub);
 
     @Test
-    public void calculates_emptyAddressBook_size() {
+    public void calculates_emptyTeachersPet_size() {
         assertEquals(0, statisticsCalculator.getSize());
     }
 
     @Test
-    public void calculates_emptyAddressBook_moneyOwed() {
+    public void calculates_emptyTeachersPet_moneyOwed() {
         assertEquals("$0", statisticsCalculator.getAmountOwed());
     }
 
     @Test
-    public void calculates_emptyAddressBook_moneyPaid() {
+    public void calculates_emptyTeachersPet_moneyPaid() {
         assertEquals("$0", statisticsCalculator.getAmountPaid());
     }
 
     @Test
-    public void calculates_filledAddressBook_size() {
+    public void calculates_filledTeachersPet_size() {
         List<Person> newPersons = Arrays.asList(AVA, BEN);
-        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals(2, newCalculator.getSize());
     }
 
     @Test
-    public void calculates_filledAddressBook_moneyOwed() {
+    public void calculates_filledTeachersPet_moneyOwed() {
         List<Person> newPersons = Arrays.asList(AVA, BEN);
-        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("$80", newCalculator.getAmountOwed());
     }
 
     @Test
-    public void calculates_filledAddressBook_moneyPaid() {
+    public void calculates_filledTeachersPet_moneyPaid() {
         List<Person> newPersons = Arrays.asList(AVA, BEN);
-        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("$700", newCalculator.getAmountPaid());
@@ -70,7 +70,7 @@ public class StatisticsCalculatorTest {
         Person editedAva = new PersonBuilder(AVA).withMoneyOwed(Integer.MAX_VALUE).build();
         Person editedBen = new PersonBuilder(BEN).withMoneyOwed(1).build();
         List<Person> newPersons = Arrays.asList(editedAva, editedBen);
-        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("Owed amount too large to calculate.", newCalculator.getAmountOwed());
@@ -83,7 +83,7 @@ public class StatisticsCalculatorTest {
         Person editedAva = new PersonBuilder(AVA).withMoneyPaid(Integer.MAX_VALUE).build();
         Person editedBen = new PersonBuilder(BEN).withMoneyPaid(1).build();
         List<Person> newPersons = Arrays.asList(editedAva, editedBen);
-        StatisticsCalculatorTest.AddressBookStub newData = new StatisticsCalculatorTest.AddressBookStub(newPersons);
+        StatisticsCalculatorTest.TeachersPetStub newData = new StatisticsCalculatorTest.TeachersPetStub(newPersons);
         StatisticsCalculator newCalculator = new StatisticsCalculator(newData);
 
         assertEquals("Paid amount too large to calculate.", newCalculator.getAmountPaid());
@@ -91,17 +91,17 @@ public class StatisticsCalculatorTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook that contains a persons list.
+     * A stub ReadOnlyTeachersPet that contains a persons list.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class TeachersPetStub implements ReadOnlyTeachersPet {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Person> schedule = FXCollections.observableArrayList();
-        AddressBookStub(Collection<Person> persons) {
+        TeachersPetStub(Collection<Person> persons) {
             this.persons.setAll(persons);
             this.schedule.setAll(persons);
         }
 
-        AddressBookStub() {
+        TeachersPetStub() {
             this(Collections.emptyList());
         }
         @Override
