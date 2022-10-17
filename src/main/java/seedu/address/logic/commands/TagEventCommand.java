@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 /**
  * Tags customers in Person List to a event.
  */
-public class TagPersonsToEventCommand extends Command {
+public class TagEventCommand extends Command {
     public static final String COMMAND_WORD = "tagEvent";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book "
             + "by the index number used in the displayed person and event lists. "
@@ -38,7 +38,7 @@ public class TagPersonsToEventCommand extends Command {
      * @param eventIndex index of the event to be tagged with persons.
      * @param personIndexes index of persons to be tagged to the event.
      */
-    public TagPersonsToEventCommand(Index eventIndex, List<Index> personIndexes) {
+    public TagEventCommand(Index eventIndex, List<Index> personIndexes) {
         requireNonNull(eventIndex);
         requireNonNull(personIndexes);
 

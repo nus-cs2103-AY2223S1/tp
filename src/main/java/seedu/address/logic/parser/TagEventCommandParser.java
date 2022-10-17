@@ -6,19 +6,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.TagPersonsToEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new TagCustomerToEvent object
  */
-public class TagPersonsToEventCommandParser implements Parser<seedu.address.logic.commands.TagPersonsToEventCommand> {
+public class TagEventCommandParser implements Parser<seedu.address.logic.commands.TagEventCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TagPersonsToEventCommand
      * and returns an TagPersonsToEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public seedu.address.logic.commands.TagPersonsToEventCommand parse(String args) throws ParseException {
+    public seedu.address.logic.commands.TagEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PERSONS);
 
         Index eventIndex;
@@ -26,15 +25,15 @@ public class TagPersonsToEventCommandParser implements Parser<seedu.address.logi
             eventIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    TagPersonsToEventCommand.MESSAGE_USAGE), pe);
+                    seedu.address.logic.commands.TagEventCommand.MESSAGE_USAGE), pe);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSONS)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    TagPersonsToEventCommand.MESSAGE_USAGE));
+                    seedu.address.logic.commands.TagEventCommand.MESSAGE_USAGE));
         }
         List<Index> personIndexes = ParserUtil.parseIndexes(argMultimap.getValue(PREFIX_PERSONS).get());
-        return new TagPersonsToEventCommand(eventIndex, personIndexes);
+        return new seedu.address.logic.commands.TagEventCommand(eventIndex, personIndexes);
     }
 
     /**
