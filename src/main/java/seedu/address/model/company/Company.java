@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Company {
 
     // Identity fields
-    private final PersonName name;
+    private final CompanyName name;
     private final Phone phone;
     private final Email email;
 
@@ -26,7 +26,7 @@ public class Company {
     /**
      * Every field must be present and not null.
      */
-    public Company(PersonName name, Phone phone, Email email, Set<Tag> tags) {
+    public Company(CompanyName name, Phone phone, Email email, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
@@ -35,7 +35,7 @@ public class Company {
         this.tags.addAll(tags);
     }
 
-    public PersonName getName() {
+    public CompanyName getName() {
         return name;
     }
 
@@ -82,11 +82,11 @@ public class Company {
             return false;
         }
 
-        Company otherPerson = (Company) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTags().equals(getTags());
+        Company otherCompany = (Company) other;
+        return otherCompany.getName().equals(getName())
+                && otherCompany.getPhone().equals(getPhone())
+                && otherCompany.getEmail().equals(getEmail())
+                && otherCompany.getTags().equals(getTags());
     }
 
     @Override

@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.Email;
-import seedu.address.model.company.PersonName;
 import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,7 +18,7 @@ public class CompanyBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    private PersonName name;
+    private CompanyName name;
     private Phone phone;
     private Email email;
     private Set<Tag> tags;
@@ -27,7 +27,7 @@ public class CompanyBuilder {
      * Creates a {@code CompanyBuilder} with the default details.
      */
     public CompanyBuilder() {
-        name = new PersonName(DEFAULT_NAME);
+        name = new CompanyName(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
@@ -47,7 +47,7 @@ public class CompanyBuilder {
      * Sets the {@code Name} of the {@code Company} that we are building.
      */
     public CompanyBuilder withName(String name) {
-        this.name = new PersonName(name);
+        this.name = new CompanyName(name);
         return this;
     }
 

@@ -19,8 +19,8 @@ public class CompanyTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Company person = new CompanyBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
+        Company company = new CompanyBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> company.getTags().remove(0));
     }
 
     @Test
@@ -87,10 +87,10 @@ public class CompanyTest {
 
     @Test
     public void toString_company_returnsValueInCompany() {
-        Company person = new CompanyBuilder().withName("Alice Pauline")
+        Company company = new CompanyBuilder().withName("Alice Pauline")
                 .withEmail("alice@example.com")
                 .withPhone("94351253")
                 .withTags("friends").build();
-        assertEquals(person.toString(), "Alice Pauline; Phone: 94351253; Email: alice@example.com; Tags: [friends]");
+        assertEquals(company.toString(), "Alice Pauline; Phone: 94351253; Email: alice@example.com; Tags: [friends]");
     }
 }

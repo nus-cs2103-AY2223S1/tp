@@ -13,8 +13,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.company.Company;
+import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.Email;
-import seedu.address.model.company.PersonName;
 import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -46,7 +46,7 @@ public class CreateCommandParser implements Parser<CreateCommand> {
             throw new ParseException(CreateCommand.MESSAGE_COMPANY_INVALID);
         }
 
-        PersonName name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
+        CompanyName name = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

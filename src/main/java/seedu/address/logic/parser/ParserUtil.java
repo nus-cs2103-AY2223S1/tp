@@ -13,8 +13,8 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
+import seedu.address.model.company.CompanyName;
 import seedu.address.model.company.Email;
-import seedu.address.model.company.PersonName;
 import seedu.address.model.company.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Goods;
@@ -62,13 +62,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static PersonName parsePersonName(String name) throws ParseException {
+    public static CompanyName parseCompanyName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new PersonName(trimmedName);
+        return new CompanyName(trimmedName);
     }
 
     /**

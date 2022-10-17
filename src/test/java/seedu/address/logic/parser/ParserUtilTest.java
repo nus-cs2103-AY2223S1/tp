@@ -64,7 +64,7 @@ public class ParserUtilTest {
     @Test
     public void parseInvalidName_throwsParseException() {
         assertThrows(ParseException.class, Name.MESSAGE_CONSTRAINTS, ()
-                -> ParserUtil.parsePersonName("%$&^"));
+                -> ParserUtil.parseCompanyName("%$&^"));
     }
 
     @Test
