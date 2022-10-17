@@ -1,12 +1,31 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_END;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_START;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
+import seedu.address.model.person.predicates.CombinedPersonPredicate;
+import seedu.address.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -19,15 +38,85 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                PREFIX_REASON, PREFIX_DATE_TIME_START, PREFIX_DATE_TIME_END);
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String name = argMultimap.getValue(PREFIX_NAME).orElse("");
+        String phone = argMultimap.getValue(PREFIX_PHONE).orElse("");
+        String email = argMultimap.getValue(PREFIX_EMAIL).orElse("");
+        String address = argMultimap.getValue(PREFIX_ADDRESS).orElse("");
+        List<String> tagList = argMultimap.getAllValues(PREFIX_TAG);
+        String reason = argMultimap.getValue(PREFIX_REASON).orElse("");
+        String startDateTime =
+                StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_START).orElse(""));
+        String endDateTime =
+                StringUtil.removeRedundantSpaces(argMultimap.getValue(PREFIX_DATE_TIME_END).orElse(""));
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        checkIfAtLeastOneInputPresent(tagList, name, phone, email, address, reason, startDateTime, endDateTime);
+        checkIfInputsValid(name, phone, tagList, startDateTime, endDateTime);
+
+        LocalDateTime parsedStartDateTime = startDateTime.isEmpty()
+                ? LocalDateTime.MIN
+                : LocalDateTime.parse(startDateTime, Appointment.DATE_FORMATTER);
+        LocalDateTime parsedEndDateTime = endDateTime.isEmpty()
+                ? LocalDateTime.MAX
+                : LocalDateTime.parse(endDateTime, Appointment.DATE_FORMATTER);
+
+        checkIfStartDateIsBeforeEndDate(parsedStartDateTime, parsedEndDateTime);
+
+        CombinedPersonPredicate combinedPersonPredicate =
+                new CombinedPersonPredicate(name, phone, email, address, tagList);
+        CombinedAppointmentPredicate combinedAppointmentPredicate =
+                new CombinedAppointmentPredicate(reason, parsedStartDateTime, parsedEndDateTime);
+
+        boolean isAnyAppointmentFieldSpecified =
+                !reason.isEmpty() || !startDateTime.isEmpty() || !endDateTime.isEmpty();
+
+        return new FindCommand(combinedPersonPredicate, combinedAppointmentPredicate, isAnyAppointmentFieldSpecified);
     }
 
+    private void checkIfAtLeastOneInputPresent(List<String> tagList, String... otherFields) throws ParseException {
+        List<String> allFields = new ArrayList<>(Arrays.asList(otherFields));
+        allFields.addAll(tagList);
+
+        boolean areAllFieldsEmpty = allFields.stream().allMatch(String::isEmpty);
+
+        if (areAllFieldsEmpty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private void checkIfInputsValid(String name, String phone, List<String> tagList,
+                                    String startDateTime, String endDateTime) throws ParseException {
+        // Address, emails and reasons are excluded from validity checks since they don't need to be
+        // proper emails/addresses/reasons (E.g finding google in john@google.com is fine).
+        if (!name.isEmpty() && !Name.isValidName(name)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        String containsOnlyNumbersRegex = "\\d+";
+        if (!phone.isEmpty() && !phone.matches(containsOnlyNumbersRegex)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+
+        for (String tag : tagList) {
+            if (!Tag.isValidTagName(tag)) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+        }
+
+        boolean areBothDatesValid = (startDateTime.isEmpty() || Appointment.isValidDateTime(startDateTime))
+                && (endDateTime.isEmpty() || Appointment.isValidDateTime(endDateTime));
+        if (!areBothDatesValid) {
+            throw new ParseException(Appointment.DATE_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    private void checkIfStartDateIsBeforeEndDate(LocalDateTime parsedStartDateTime,
+                                                 LocalDateTime parsedEndDateTime) throws ParseException {
+        if (parsedStartDateTime.isAfter(parsedEndDateTime)) {
+            throw new ParseException(Messages.START_DATE_AFTER_END_DATE);
+        }
+    }
 }
