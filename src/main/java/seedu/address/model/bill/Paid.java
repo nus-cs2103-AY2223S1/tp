@@ -11,7 +11,7 @@ public class Paid {
     public static final String MESSAGE_CONSTRAINTS =
             "Paid should be either true or false";
 
-    public static final String VALIDATION_REGEX = "/^(true|false)$/";
+    public static final String VALIDATION_REGEX = "true|false";
 
     public final Boolean isPaid;
 

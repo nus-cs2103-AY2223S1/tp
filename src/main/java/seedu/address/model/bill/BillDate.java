@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents Bill's date in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateTime  (String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate  (String)}
  */
 public class BillDate {
     public static final String MESSAGE_CONSTRAINTS =
@@ -25,16 +25,16 @@ public class BillDate {
      */
     public BillDate(String date) {
         requireNonNull(date);
-        checkArgument(isValidDateTime(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     /**
      * Returns true if a given string is a valid date time.
      */
-    public static boolean isValidDateTime(String test) {
+    public static boolean isValidDate(String test) {
         try {
-            LocalDateTime.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            LocalDate.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             return true;
         } catch (DateTimeParseException e) {
             return false;

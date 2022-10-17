@@ -33,7 +33,7 @@ public class Amount {
      * Returns true if a given string is a valid doctor name.
      */
     public static boolean isValidAmount(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) > 0;
     }
 
     @Override
