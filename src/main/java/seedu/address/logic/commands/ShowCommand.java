@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.DayIsKeywordPredicate;
 
 /**
  * Finds and lists all persons in address book whose session contains any of the argument keywords.
@@ -19,12 +19,9 @@ public class ShowCommand extends Command {
             + "Parameters: Day (Mon, Tue, Wed, Thu, Fri, Sat, Sun)\n"
             + "Example: " + COMMAND_WORD + " Mon";
 
+    private final DayIsKeywordPredicate predicate;
 
-    // NameContainsKeywordsPredicate to be changed to DayContainsKeywordsPredicate
-    private final NameContainsKeywordsPredicate predicate;
-
-    // NameContainsKeywordsPredicate to be changed to DayContainsKeywordsPredicate
-    public ShowCommand(NameContainsKeywordsPredicate predicate) {
+    public ShowCommand(DayIsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 

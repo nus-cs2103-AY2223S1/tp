@@ -59,8 +59,7 @@ public class SessionCommand extends Command {
         sessionList.addSession(session);
         Person editedPerson = new Person(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getLessonPlan(),
-                personToEdit.getHomeworkList(), personToEdit.getAttendanceList(),
-                sessionList,
+                personToEdit.getHomeworkList(), personToEdit.getAttendanceList(), sessionList,
                 personToEdit.getGradeProgressList(), personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);

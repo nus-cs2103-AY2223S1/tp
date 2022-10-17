@@ -6,13 +6,10 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ShowCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-
+import seedu.address.model.person.DayIsKeywordPredicate;
 
 public class ShowCommandParserTest {
 
@@ -28,7 +25,7 @@ public class ShowCommandParserTest {
     public void parse_validArgs_returnsShowCommand() {
         // no leading and trailing whitespaces
         ShowCommand expectedShowCommand =
-                new ShowCommand(new NameContainsKeywordsPredicate(Arrays.asList("Mon")));
+                new ShowCommand(new DayIsKeywordPredicate("Mon"));
         assertParseSuccess(parser, "Mon", expectedShowCommand);
 
         // multiple whitespaces between keywords

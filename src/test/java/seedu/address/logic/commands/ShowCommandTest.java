@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_ACCORDI
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.DayIsKeywordPredicate;
 
 
 /**
@@ -27,11 +26,8 @@ public class ShowCommandTest {
 
     @Test
     public void equals() {
-        // NameContainsKeywordsPredicate to be changed to DayContainsKeywordsPredicate
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        DayIsKeywordPredicate firstPredicate = new DayIsKeywordPredicate("first");
+        DayIsKeywordPredicate secondPredicate = new DayIsKeywordPredicate("second");
 
         ShowCommand showFirstCommand = new ShowCommand(firstPredicate);
         ShowCommand showSecondCommand = new ShowCommand(secondPredicate);
@@ -56,18 +52,10 @@ public class ShowCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        DayIsKeywordPredicate predicate = new DayIsKeywordPredicate(" ");
         ShowCommand command = new ShowCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
-
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
