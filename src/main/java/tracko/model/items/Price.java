@@ -11,7 +11,7 @@ import java.math.RoundingMode;
  */
 public class Price {
     public static final String MESSAGE_CONSTRAINTS =
-            "Price should be non-negative.";
+            "Price should be non-negative and rounded to the nearest cent.";
 
     public final BigDecimal price;
 
@@ -22,19 +22,22 @@ public class Price {
     public Price(BigDecimal price) {
         requireAllNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = roundToNearestCent(price);
+        this.price = price;
     }
 
+    /**
+     * Checks if {@code test} is a valid Price.
+     * @param test The price to validate.
+     * @boolean Representing if the input is a valid price.
+     */
     public static boolean isValidPrice(BigDecimal test) {
-        return !(test.compareTo(BigDecimal.ZERO) < 0);
+        boolean isPositive = !(test.compareTo(BigDecimal.ZERO) < 0);
+        boolean isRoundedTo2dp = test.scale() == 2;
+        return (isPositive && isRoundedTo2dp);
     }
 
     public BigDecimal getPrice() {
         return this.price;
-    }
-
-    public BigDecimal roundToNearestCent(BigDecimal price) {
-        return price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override
