@@ -6,20 +6,32 @@
     "email" : "alice@example.com",
     "handle" : "alice",
     "username" : "alifur",
-    "tagged" : [ "friends" ]
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "tagged" : [ "tennis" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "handle" : "bensonhaha",
     "username" : "benji",
-    "tagged" : [ "owesMoney", "friends" ]
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "tagged" : [ "netflix", "tennis" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "handle" : "magcarlsen",
     "username" : "carl69",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,13 +39,21 @@
     "email" : "cornelia@example.com",
     "handle" : "dannylim",
     "username" : "dashi",
-    "tagged" : [ "friends" ]
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
+    "tagged" : [ "tennis" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "handle" : "ellie",
     "username" : "goldl8ol",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +61,10 @@
     "email" : "lydia@example.com",
     "handle" : "fionalim",
     "username" : "EDXs",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +72,10 @@
     "email" : "anna@example.com",
     "handle" : "georgesim",
     "username" : "pizzac0der",
+    "mods" : [ {
+      "modName" : "CS2100",
+      "hasTaken" : false
+    } ],
     "tagged" : [ ]
   } ]
 }
