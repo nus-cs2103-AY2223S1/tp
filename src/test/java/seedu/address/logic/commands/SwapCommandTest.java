@@ -14,7 +14,7 @@ public class SwapCommandTest {
 
     @Test
     public void execute_help_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWAP_ACKNOWLEDGEMENT,
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SWAP_ACKNOWLEDGEMENT, null,
                 false, false, true, false);
         assertCommandSuccess(new SwapCommand(), model, expectedCommandResult, expectedModel);
     }

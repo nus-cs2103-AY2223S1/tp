@@ -25,7 +25,6 @@ import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RolesCommand;
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.SwapCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

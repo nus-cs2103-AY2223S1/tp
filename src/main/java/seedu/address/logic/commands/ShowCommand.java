@@ -43,7 +43,7 @@ public class ShowCommand extends Command {
 
         Person personToShow = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(MESSAGE_SHOW_PERSON_SUCCESS, personToShow, false, false);
+        return new CommandResult(MESSAGE_SHOW_PERSON_SUCCESS, personToShow, false, false, false, false);
     }
 
     @Override
