@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
+import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
 import seedu.guest.model.guest.Guest;
@@ -13,7 +14,6 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
-
 
 
 /**
@@ -58,8 +58,9 @@ public class ResetRoomCleanCommand extends Command {
         DateRange updatedDateRange = guestToEdit.getDateRange();
         NumberOfGuests updatedNumberOfGuests = guestToEdit.getNumberOfGuests();
         IsRoomClean updatedIsRoomClean = new IsRoomClean("no");
+        Bill updatedBill = guestToEdit.getBill();
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedDateRange,
-                updatedNumberOfGuests, updatedIsRoomClean);
+                updatedNumberOfGuests, updatedIsRoomClean, updatedBill);
     }
 
 }
