@@ -1,7 +1,10 @@
 package seedu.phu.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+
+import seedu.phu.model.internship.Internship;
 
 /**
  * {@code InternshipBook} that keeps track of its own history.
@@ -81,6 +84,18 @@ public class VersionedInternshipBook extends InternshipBook {
     }
 
     @Override
+    public void sortInternshipList(Comparator<Internship> comparator) {
+        super.sortInternshipList(comparator);
+        internshipBookStateList.get(currentStatePointer).sortInternshipList(comparator);
+    }
+
+    @Override
+    public void reverseList() {
+        super.reverseList();
+        internshipBookStateList.get(currentStatePointer).reverseList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         // short circuit if same object
         if (other == this) {
@@ -96,7 +111,7 @@ public class VersionedInternshipBook extends InternshipBook {
 
         // state check
         return super.equals(otherVersionedInternshipBook)
-                && internshipBookStateList.equals(otherVersionedInternshipBook.internshipBookStateList)
+                // && internshipBookStateList.equals(otherVersionedInternshipBook.internshipBookStateList)
                 && currentStatePointer == otherVersionedInternshipBook.currentStatePointer;
     }
 
