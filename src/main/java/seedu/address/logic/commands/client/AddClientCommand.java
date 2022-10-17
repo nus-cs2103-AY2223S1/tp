@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
@@ -39,14 +40,14 @@ public class AddClientCommand extends ClientCommand {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
     private static final String MESSAGE_EXISTING_CLIENT = "This project already has a client";
 
-    private final Function<Model, Client> toAddClientWithoutModel;
+    private final ClientWithoutModel toAddClientWithoutModel;
     private final ProjectId toModifyProjectId;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
      * @param clientWithoutModel
      */
-    public AddClientCommand(Function<Model, Client> clientWithoutModel, ProjectId projectID) {
+    public AddClientCommand(ClientWithoutModel clientWithoutModel, ProjectId projectID) {
         requireAllNonNull(clientWithoutModel);
 
         toAddClientWithoutModel = clientWithoutModel;

@@ -16,10 +16,7 @@ import seedu.address.logic.commands.project.AddProjectCommand;
 import seedu.address.model.Deadline;
 import seedu.address.model.Model;
 import seedu.address.model.Name;
-import seedu.address.model.client.Client;
-import seedu.address.model.client.ClientEmail;
-import seedu.address.model.client.ClientId;
-import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.*;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
@@ -31,7 +28,7 @@ public class AddClientCommandParserTest {
     @Test
     public void parse_compulsoryAndOptionalFieldsPresent_success() {
 
-        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
                 new ClientEmail(VALID_EMAIL_AMY), new ArrayList());
 
@@ -44,7 +41,7 @@ public class AddClientCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
 
-        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
                 ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>());
 
@@ -59,7 +56,7 @@ public class AddClientCommandParserTest {
     @Test
     public void parse_optionalEmailMissing_success() {
 
-        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(
                 new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
                 ClientEmail.EmptyEmail.EMPTY_EMAIL, new ArrayList<>());
 
@@ -76,8 +73,8 @@ public class AddClientCommandParserTest {
     @Test
     public void parse_optionalPhoneMissing_success() {
 
-        Function<Model, Client> clientWithoutModel =
-                Client.makeClientWithoutModel(new Name(VALID_NAME_AMY), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
+        ClientWithoutModel clientWithoutModel =
+                new ClientWithoutModel(new Name(VALID_NAME_AMY), ClientPhone.EmptyClientPhone.EMPTY_PHONE,
                 new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
         // phone missing
@@ -93,8 +90,8 @@ public class AddClientCommandParserTest {
     @Test
     public void parse_fieldsInAnyOrder_success() {
 
-        Function<Model, Client> clientWithoutModel =
-                Client.makeClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
+        ClientWithoutModel clientWithoutModel =
+                new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
                 new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
 
@@ -121,8 +118,8 @@ public class AddClientCommandParserTest {
     public void parse_clientAdded_success() {
         // all valid fields
         String expected = "No project with this project Id";
-        Function<Model, Client> clientWithoutModel =
-                Client.makeClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
+        ClientWithoutModel clientWithoutModel =
+                new ClientWithoutModel(new Name(VALID_NAME_AMY), new ClientPhone(VALID_PHONE_AMY),
                 new ClientEmail(VALID_EMAIL_AMY), new ArrayList<>());
 
 //        Function<Model, Project> projectWithoutModel =

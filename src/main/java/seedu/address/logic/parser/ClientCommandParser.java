@@ -23,6 +23,7 @@ import seedu.address.model.Name;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
+import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.ProjectId;
 
 /**
@@ -87,7 +88,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
-        Function<Model, Client> clientWithoutModel = Client.makeClientWithoutModel(name, phone, email, new ArrayList<>());
+        ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email, new ArrayList<>());
 //        Project project = HasIntegerIdentifier.getElementById();
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
 //        List<Project> projectList = new ArrayList<>();

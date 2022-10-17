@@ -68,26 +68,6 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     }
 
     /**
-     * Make a client without ID.
-     * Uses a functional programming appraoch to ensure you won't accidentally use it as a normal client.
-     * @param name name of clinet
-     * @param phone phone number of client
-     * @param email email number of client
-     * @param projectIdList
-     * @return a function that returns a client when given a ClientID object.
-     */
-    public static Function<Model, Client> makeClientWithoutModel(Name name, ClientPhone phone, ClientEmail email, List<ProjectId> projectIdList) {
-        return (model) -> {
-            ArrayList<Project> projectList = new ArrayList<>();
-            for (ProjectId pid : projectIdList) {
-                projectList.add(model.getProjectById(pid.getIdInt()));
-            }
-
-            return new Client(name, phone, email, projectList, new ClientId(model.generateClientId()));
-        };
-    }
-
-    /**
      * Checks if this Client is empty.
      * @return true if the Client is empty.
      */
