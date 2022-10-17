@@ -6,16 +6,23 @@ import java.util.UUID;
  * Uid is an unmodifiable field that is created every time with the creation of a new Person.
  */
 public class Uid {
-    private final String uid;
+    public static final String MESSAGE_CONSTRAINTS = "Uid should be a string parsed from java UUID object";
+    public final String value;
 
+    /**
+     * constructor that creates an Uid Object.
+     */
     public Uid() {
-        this.uid = String.valueOf(UUID.randomUUID());
+        this.value = String.valueOf(UUID.randomUUID());
     }
-    public Uid(String uid) {
-        this.uid = uid;
+    /**
+     * Overloaded constructor that creates an Uid Object.
+     */
+    public Uid(String value) {
+        this.value = value;
     }
     public String getUid() {
-        return uid;
+        return value;
     }
     /**
      * Returns true if both uids have the same name. This method should always return false value.
@@ -25,5 +32,17 @@ public class Uid {
             return true;
         }
         return otherUid != null && otherUid.getUid().equals(getUid());
+    }
+
+    /**
+     * Returns true if a given string is a valid Uid.
+     */
+    public static boolean isValidUid(String test) {
+        try {
+            UUID uuid = UUID.fromString(test);
+        } catch (IllegalArgumentException exception) {
+            return false;
+        }
+        return true;
     }
 }
