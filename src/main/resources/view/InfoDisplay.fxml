@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="placeholder" styleClass="pane-without-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <VBox alignment="TOP_LEFT" minHeight="105">
+    <padding>
+      <Insets bottom="5" left="10" right="5" top="5" />
+    </padding>
+      <HBox alignment="TOP_LEFT" spacing="5">
+        <Label fx:id="name" styleClass="label-header">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="10" />
+          </padding>
+        </Label>
+      </HBox>
+        <Label fx:id="position" styleClass="label-bright">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="0" />
+          </padding>
+        </Label>
+        <Label fx:id="phone" styleClass="label-bright">
+          <padding>
+            <Insets bottom="0" left="10" right="10" top="15" />
+          </padding>
+        </Label>
+        <Label fx:id="email" styleClass="label-bright">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="0" />
+          </padding>
+        </Label>
+        <Label fx:id="address" styleClass="label-bright">
+          <padding>
+            <Insets bottom="0" left="10" right="10" top="15" />
+          </padding>
+        </Label>
+  </VBox>
+</StackPane>
