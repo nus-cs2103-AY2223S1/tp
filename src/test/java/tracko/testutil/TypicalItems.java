@@ -19,15 +19,15 @@ public class TypicalItems {
             .withCostPrice(new BigDecimal("50")).build();
     public static final Item ITEM_2 = new ItemBuilder().withItemName("Bed")
             .withQuantity(50).withDescription("Comes with linen")
-            .withSellPrice(new BigDecimal("200.20"))
-            .withCostPrice(new BigDecimal("50.28")).build();
+            .withSellPrice(new BigDecimal("200"))
+            .withCostPrice(new BigDecimal("50")).build();
     public static final Item ITEM_3 = new ItemBuilder().withItemName("School Bag")
             .withQuantity(3).withDescription("Suitable for secondary kids")
-            .withSellPrice(new BigDecimal("34.99"))
+            .withSellPrice(new BigDecimal("34"))
             .withCostPrice(new BigDecimal("5")).build();
     public static final Item ITEM_4 = new ItemBuilder().withItemName("Dining Table")
             .withQuantity(25).withDescription("Comes with table cloth")
-            .withSellPrice(new BigDecimal("199.99"))
+            .withSellPrice(new BigDecimal("199"))
             .withCostPrice(new BigDecimal("50")).build();
     public static final Item ITEM_5 = new ItemBuilder().withItemName("Pants")
             .withQuantity(52).withDescription("Made with denim")

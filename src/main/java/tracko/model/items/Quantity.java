@@ -8,7 +8,7 @@ import static tracko.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity should not be negative.";
+            "Quantity should be a non-negative integer.";
 
     public final Integer quantity;
 

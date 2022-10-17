@@ -22,7 +22,7 @@ public class Price {
     public Price(BigDecimal price) {
         requireAllNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = price;
+        this.price = roundToNearestCent(price);
     }
 
     /**
@@ -32,12 +32,16 @@ public class Price {
      */
     public static boolean isValidPrice(BigDecimal test) {
         boolean isPositive = !(test.compareTo(BigDecimal.ZERO) < 0);
-        boolean isRoundedTo2dp = test.scale() == 2;
+        boolean isRoundedTo2dp = (test.scale() <= 2);
         return (isPositive && isRoundedTo2dp);
     }
 
     public BigDecimal getPrice() {
         return this.price;
+    }
+
+    public BigDecimal roundToNearestCent(BigDecimal price) {
+        return price.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     @Override
