@@ -164,7 +164,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code internshipId} is invalid.
      */
     public static InternshipId parseInternshipId(String internshipId) throws ParseException {
-        if (internshipId == null) {
+        if (internshipId.isBlank()) {
             return null;
         }
         String trimmedInternshipId = internshipId.trim();
@@ -226,7 +226,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
-        requireNonNull(interviewDate);
+        if (interviewDate.isBlank()) {
+            return null;
+        }
         String trimmedInterviewDate = interviewDate.trim();
         if (!InterviewDate.isValidDatetimeStr(trimmedInterviewDate)) {
             throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
