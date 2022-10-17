@@ -34,8 +34,8 @@ class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
-                           @JsonProperty("taskDescription") String taskDeadline,
-                           @JsonProperty("taskDeadline") String taskDescription,
+                           @JsonProperty("taskDescription") String taskDescription,
+                           @JsonProperty("taskDeadline") String taskDeadline,
                            @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
