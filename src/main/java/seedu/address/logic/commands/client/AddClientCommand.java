@@ -67,6 +67,7 @@ public class AddClientCommand extends ClientCommand {
         }
 
         toModifyProject.setClient(toAddClient);
+        toAddClient.addProjects(toModifyProject);
 
         model.addClient(toAddClient);
 

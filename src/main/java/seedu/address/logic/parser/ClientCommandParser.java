@@ -89,12 +89,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email, new ArrayList<>());
-//        Project project = HasIntegerIdentifier.getElementById();
         ProjectId projectId = ParserUtil.parseProjectId(argMultimap.getValue(PREFIX_PROJECT_ID).get());
-//        List<Project> projectList = new ArrayList<>();
-//        projectList.add(project);
-//        TODO: check this out
-
 
         return new AddClientCommand(clientWithoutModel, projectId);
     }

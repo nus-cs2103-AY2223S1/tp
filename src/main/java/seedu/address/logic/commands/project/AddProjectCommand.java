@@ -15,8 +15,6 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.ui.Ui;
 
-import java.util.function.Function;
-
 /**
  * Adds a project to the address book.
  */
@@ -75,9 +73,14 @@ public class AddProjectCommand extends ProjectCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddProjectCommand // instanceof handles nulls
-//                && toAddProject.equals(((AddProjectCommand) other).toAddProject) TODO: review
-        );
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof AddProjectCommand)) {
+            return false;
+        }
+
+        return this.toAddProjectWithoutModel.equals(((AddProjectCommand) other).toAddProjectWithoutModel);
     }
 }
