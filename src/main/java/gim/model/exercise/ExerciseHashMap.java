@@ -66,11 +66,13 @@ public class ExerciseHashMap {
      */
     public void remove(Exercise toRemove) {
         requireNonNull(toRemove);
-        if (!exerciseHashMap.get(toRemove.getName()).remove(toRemove)) {
+        if (!contains(toRemove)) {
             throw new ExerciseNotFoundException();
-        }
-        if (exerciseHashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
-            exerciseHashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
+        } else {
+            exerciseHashMap.get(toRemove.getName()).remove(toRemove);
+            if (exerciseHashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
+                exerciseHashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
+            }
         }
     }
 
@@ -100,6 +102,13 @@ public class ExerciseHashMap {
             e = new Exercise(storedName, e.getWeight(), e.getSets(), e.getReps(), e.getDate());
             exerciseHashMap.get(storedName).add(e); // add Exercise to arraylist
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ExerciseHashMap // instanceof handles nulls
+                && exerciseHashMap.equals(((ExerciseHashMap) other).exerciseHashMap));
     }
 
 }
