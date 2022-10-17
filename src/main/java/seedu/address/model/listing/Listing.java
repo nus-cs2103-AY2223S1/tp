@@ -127,6 +127,20 @@ public class Listing {
     }
 
     /**
+     * Checks if the tag already exists for this listing.
+     * @param toCheck the tags to be checked
+     * @return true if the tag exists, false otherwise
+     */
+    public boolean hasTag(Set<Tag> toCheck) {
+        for (Tag tag : toCheck) {
+            if (tags.contains(tag)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Adds a new offer to the currentOffers list.
      * @param offer the new offer made
      */
