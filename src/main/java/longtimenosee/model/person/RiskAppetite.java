@@ -63,9 +63,8 @@ public class RiskAppetite {
             return RiskLevel.MEDIUM;
         case "L":
             return RiskLevel.LOW;
-
         default:
-            return RiskLevel.MEDIUM;
+            return RiskLevel.HIGH;
         }
     }
 
