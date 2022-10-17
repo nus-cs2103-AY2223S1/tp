@@ -2,7 +2,15 @@ package tuthub.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tuthub.logic.parser.CliSyntax.*;
+import static tuthub.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
+import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
+import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
+import static tuthub.logic.parser.CliSyntax.PREFIX_YEAR;
 import static tuthub.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;

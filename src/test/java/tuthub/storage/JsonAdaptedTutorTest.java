@@ -82,7 +82,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(VALID_NAME, null, VALID_EMAIL,
-            VALID_MODULE, VALID_YEAR, VALID_STUDENTID, VALID_COMMENT,VALID_TEACHINGNOMINATION,
+            VALID_MODULE, VALID_YEAR, VALID_STUDENTID, VALID_COMMENT, VALID_TEACHINGNOMINATION,
             VALID_RATING, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
