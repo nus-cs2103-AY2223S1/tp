@@ -93,4 +93,6 @@ public interface Model {
     void sortPerson(Comparator<Person> comparator);
 
     ObservableList<CalendarEvent> getFilteredCalendarEventList();
+
+    List<CalendarEvent> getCalendarEventList(List<Person> lastShownList);
 }

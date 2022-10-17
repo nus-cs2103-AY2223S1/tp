@@ -1,25 +1,23 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
-import seedu.address.logic.Logic;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * An UI component that displays information of a Calendar.
  */
 public class CalendarDisplay extends UiPart<Region> {
 
@@ -33,8 +31,9 @@ public class CalendarDisplay extends UiPart<Region> {
     @FXML
     private HBox topCalendar;
 
-
-
+    /**
+     * Creates a Calendar with the given list of CalendarEvents.
+     */
     public CalendarDisplay(ObservableList<CalendarEvent> calendarEventObservableList) {
         super(FXML);
         this.calendarMonth = new CalendarMonth(calendarEventObservableList);
@@ -81,7 +80,8 @@ public class CalendarDisplay extends UiPart<Region> {
             VBox vbox = new VBox();
 
             vbox.getChildren().add(tDate);
-            calendarEventsInDayOfMonth.stream().forEach(x -> vbox.getChildren().add(getAppointmentButton(x.toString())));
+            calendarEventsInDayOfMonth.stream()
+                    .forEach(x -> vbox.getChildren().add(getAppointmentButton(x.toString())));
             calendarDisplay.add(vbox, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
@@ -105,27 +105,31 @@ public class CalendarDisplay extends UiPart<Region> {
             return "Friday";
         case 7:
             return "Saturday";
+        default:
+            return "Invalid Input";
         }
-        return "Invalid Input";
     }
 
     private String getMonthName(int n) {
-        String[] monthNames = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
-                "October", "November", "December" };
+        String[] monthNames = {
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        };
         return monthNames[n];
     }
 
     public Button getAppointmentButton(String text) {
         Button button = new Button(text);
         button.setMaxSize(100, 30.00);
-        button.setStyle("-fx-font-size: 7pt; -fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 5;" );
+        button.setStyle("-fx-font-size: 7pt; -fx-background-color: white; "
+                + "-fx-border-color: grey; -fx-border-radius: 5;");
         return button;
     }
     public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
         Text header = new Text(monthString + ", " + yearString);
-        header.setStyle("-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff" );
+        header.setStyle("-fx-font-size: 15pt; -fx-text-fill: white; -fx-background-color: #fff");
         header.setFill(Color.WHITE);
         return header;
     }
@@ -162,7 +166,7 @@ public class CalendarDisplay extends UiPart<Region> {
         int prevYear;
         int currentMonth = cal.get(Calendar.MONTH);
         //If December, reset back to January, Add a year
-        if(currentMonth == 0) {
+        if (currentMonth == 0) {
             prevMonth = 11;
             prevYear = cal.get(Calendar.YEAR) - 1;
         } else { //else add a month, retain the year
@@ -177,7 +181,7 @@ public class CalendarDisplay extends UiPart<Region> {
         int futureYear;
         int currentMonth = cal.get(Calendar.MONTH);
         //If January, reset back to December, decrement a year
-        if(currentMonth == 11) {
+        if (currentMonth == 11) {
             futureMonth = 0;
             futureYear = cal.get(Calendar.YEAR) + 1;
         } else { //else decrement a month, retain the year
