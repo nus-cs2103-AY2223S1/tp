@@ -69,13 +69,22 @@ public interface Model {
     boolean hasClient(Client client);
 
 
-    boolean hasPersonId(Person person);
-
+    /**
+     * Returns true if an entity with the given id is present in the address book.
+     */
     boolean hasProjectId(int id);
 
     boolean hasIssueId(int id);
 
     boolean hasClientId(int id);
+
+    /**
+     * Get a entities by id
+     */
+    Project getProjectById(int id);
+    Issue getIssueById(int id);
+    Client getClientById(int id);
+
 
     /**
      * Deletes the given client.

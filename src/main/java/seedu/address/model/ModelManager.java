@@ -137,6 +137,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Project getProjectById(int id) {
+        return addressBook.getProjectById(id);
+    }
+
+    @Override
+    public Issue getIssueById(int id) {
+        return addressBook.getIssueById(id);
+    }
+
+    @Override
+    public Client getClientById(int id) {
+        return addressBook.getClientById(id);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }

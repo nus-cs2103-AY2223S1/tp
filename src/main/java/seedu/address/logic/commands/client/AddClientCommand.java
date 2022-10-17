@@ -61,9 +61,7 @@ public class AddClientCommand extends ClientCommand {
                 HasIntegerIdentifier.getElementById(
                         model.getAddressBook().getProjectList(), toModifyProjectId.getIdInt());
 
-        ObservableList<Client> clientList = model.getAddressBook().getClientList();
-
-        if (model.hasClient(toAddClientId)) {
+        if (model.hasClientId(toAddClientId.getIdInt())) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
         if (!toModifyProject.getClient().isEmpty()) {

@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Person;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.list.UniqueEntityList;
 import seedu.address.model.project.Project;
@@ -314,6 +315,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Client> getClientList() {
         return clients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public Project getProjectById(int id) {
+        return HasIntegerIdentifier.getElementById(projects, id);
+    }
+
+    @Override
+    public Issue getIssueById(int id) {
+        return HasIntegerIdentifier.getElementById(issues, id);
+    }
+
+    @Override
+    public Client getClientById(int id) {
+        return HasIntegerIdentifier.getElementById(clients, id);
     }
 
 
