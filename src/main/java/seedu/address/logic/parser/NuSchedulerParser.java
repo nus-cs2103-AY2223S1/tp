@@ -65,9 +65,9 @@ public class NuSchedulerParser {
     public static Map<String, String> getGeneralCommands() {
         return new LinkedHashMap<>() {
             {
-                put(ClearCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD);
-                put(ExitCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD);
-                put(HelpCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD);
+                put(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_HELP);
+                put(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_HELP);
+                put(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_HELP);
             }
         };
     }

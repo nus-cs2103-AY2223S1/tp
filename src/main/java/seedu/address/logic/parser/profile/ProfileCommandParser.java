@@ -75,15 +75,15 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         return new LinkedHashMap<>() {
             {
                 put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION,
-                        AddProfileCommand.MESSAGE_USAGE);
+                        AddProfileCommand.MESSAGE_HELP);
                 put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION,
-                        DeleteProfileCommand.MESSAGE_USAGE);
+                        DeleteProfileCommand.MESSAGE_HELP);
                 put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION,
-                        EditProfileCommand.MESSAGE_USAGE);
+                        EditProfileCommand.MESSAGE_HELP);
                 put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION,
-                        FindProfileCommand.MESSAGE_USAGE);
+                        FindProfileCommand.MESSAGE_HELP);
                 put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION,
-                        "List Commands");
+                        ViewProfilesCommand.MESSAGE_HELP);
             }
         };
     }
