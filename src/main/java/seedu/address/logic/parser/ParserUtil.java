@@ -31,6 +31,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    // "" is intentionally added in front such that the index matches with the string content.
     public static final String[] DAYS_OF_WEEK = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static int targetDayOfWeek;
@@ -139,6 +140,8 @@ public class ParserUtil {
         requireNonNull(classDatetime);
         String trimmedClassDatetime = classDatetime.trim();
 
+        // todo: invalid date will result the else block in following code -- leading to wrong error message displayed.
+        // todo: to be fixed in future PR
         if (Class.isValidClassString(trimmedClassDatetime)) {
             // the format has been validated in isValidClassString method
             // ie yyyy-MM-dd 0000-2359
@@ -152,16 +155,18 @@ public class ParserUtil {
         } else if (Class.isValidFlexibleClassString(trimmedClassDatetime)) {
             // the format has been validated in isValidFlexibleClassString method
             // ie Mon 0000-2359
+            String dateStr = trimmedClassDatetime.substring(0, 3);
             LocalTime startTime = parseTime(trimmedClassDatetime.substring(4, 8));
             LocalTime endTime = parseTime(trimmedClassDatetime.substring(9));
             if (!Class.isValidDuration(startTime, endTime)) {
                 throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
             }
-            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedClassDatetime.substring(0, 3).toUpperCase());
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(dateStr.toUpperCase());
             LocalDate targetDate = getTargetClassDate(LocalDateTime.now(), startTime);
             return new Class(targetDate, startTime, endTime,
                     targetDate.toString() + trimmedClassDatetime.substring(3));
         } else {
+            // unrecognized format has been input
             throw new ParseException(Class.MESSAGE_CONSTRAINTS);
         }
     }
@@ -176,11 +181,12 @@ public class ParserUtil {
     public static LocalDate getTargetClassDate(LocalDateTime currentDateTime, LocalTime startTime) {
         LocalDate currentDate = currentDateTime.toLocalDate();
         if (currentDate.getDayOfWeek().getValue() == targetDayOfWeek) {
+            // target day is of the same day in the week as today
             if (startTime.isAfter(currentDateTime.toLocalTime())) {
-                // return today
+                // if specified time is after current time, return today
                 return currentDate;
             } else {
-                // return the date after next 7 days
+                // else return the date after next 7 days
                 return currentDate.plusDays(7);
             }
         } else {

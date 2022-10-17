@@ -23,10 +23,10 @@ public class Class {
     public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";
-    public static final String VALIDATION_CLASS_REGEX = VALIDATION_DATETIME_REGEX
+    public static final String VALIDATION_STANDARD_CLASS_REGEX = VALIDATION_DATETIME_REGEX
             + " " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
-    public static final String FLEXIBLE_CLASS_REGEX =
-            "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun)[ ][0-9]{4}[-][0-9]{4}";
+    public static final String VALIDATION_FLEXIBLE_CLASS_REGEX =
+            "(?i)(Mon|Tue|Wed|Thu|Fri|Sat|Sun) " + VALIDATION_TIME_REGEX + "-" + VALIDATION_TIME_REGEX;
 
     public final LocalDate date;
     public final LocalTime startTime;
@@ -124,23 +124,25 @@ public class Class {
                 hour -= 12;
             }
             if (min == 0) {
-                time += hour + "PM";
+                time += hour;
             } else if (min < 10) {
-                time += hour + ".0" + min + "PM";
+                time += hour + ".0" + min;
             } else {
-                time += hour + "." + min + "PM";
+                time += hour + "." + min;
             }
+            time += "PM";
         } else {
             if (hour == 0) {
                 hour = 12;
             }
             if (min == 0) {
-                time += hour + "AM";
+                time += hour;
             } else if (min < 10) {
-                time += hour + ".0" + min + "AM";
+                time += hour + ".0" + min;
             } else {
-                time += hour + "." + min + "AM";
+                time += hour + "." + min;
             }
+            time += "AM";
         }
         return time;
     }
@@ -152,13 +154,13 @@ public class Class {
      * @return True if a given string fits the format of 'yyyy-MM-dd 0000-2359'.
      */
     public static boolean isValidClassString(String classDateTime) {
-        if (!classDateTime.matches(VALIDATION_CLASS_REGEX)) {
+        if (!classDateTime.matches(VALIDATION_STANDARD_CLASS_REGEX)) {
             return false;
         }
-        String datetimeStr = classDateTime.substring(0, 10);
+        String dateStr = classDateTime.substring(0, 10);
         String startTimeStr = classDateTime.substring(11, 15);
         String endTimeStr = classDateTime.substring(16);
-        return isValidDateTimeString(datetimeStr) && isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
+        return isValidDateString(dateStr) && isValidTimeString(startTimeStr) && isValidTimeString(endTimeStr);
     }
 
     /**
@@ -168,7 +170,7 @@ public class Class {
      * @return True if a given string fits the format of 'Day-of-Week 0000-2359'.
      */
     public static boolean isValidFlexibleClassString(String classDateTime) {
-        if (!classDateTime.matches(FLEXIBLE_CLASS_REGEX)) {
+        if (!classDateTime.matches(VALIDATION_FLEXIBLE_CLASS_REGEX)) {
             return false;
         }
         String startTimeStr = classDateTime.substring(4, 8);
@@ -182,7 +184,7 @@ public class Class {
      * @param date String object.
      * @return True if is valid.
      */
-    private static boolean isValidDateTimeString(String date) {
+    private static boolean isValidDateString(String date) {
         try {
             LocalDate.parse(date);
         } catch (DateTimeException dateTimeException) {
