@@ -24,6 +24,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
     * [Format for resident fields](#format-for-resident-fields)
+    * [File commands](FileCommands.html)
 * [Keyboard Shortcuts](#keyboard-shortcuts)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
@@ -202,7 +203,7 @@ If your changes to the data file makes its format invalid, RC4HDB will discard a
 
 RC4HDB has the ability to import data through .csv files. In order for RC4HDB to find your files, place them in the data directory, `[JAR file location]/data`.
 
-Format: `import FILENAME`
+Format: `import FILE_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
@@ -214,7 +215,7 @@ Examples:
 
 RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
 
-Format: `export FILENAME`
+Format: `export FILE_NAME`
 
 :information_source: The csv file will be exported in this [format](#csv-file-format).<br>
 
@@ -308,11 +309,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
 **Exit** | `exit`
-**Import** | `import FILENAME` <br> e.g., `import students.csv`
-**Export** | `export FILENAME` <br> e.g., `export students.csv`
-
+**Create file** | `file create FILE_NAME` <br> e.g., `file create rc4_data_2022`
+**Delete file** | `file delete FILE_NAME` <br> e.g., `file delete rc4_data_2022`
+**Switch file** | `file switch FILE_NAME` <br> e.g., `file switch rc4_data_2022`
+**Import** | `import FILE_NAME` <br> e.g., `import students.csv`
+**Export** | `export FILE_NAME` <br> e.g., `export students.csv`
 
 ---
-
-
-
