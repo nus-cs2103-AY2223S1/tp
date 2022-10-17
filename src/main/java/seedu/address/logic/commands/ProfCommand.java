@@ -41,7 +41,7 @@ public class ProfCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
             + PREFIX_LOCATION + "COM2 LT4 "
-            + PREFIX_GITHUBUSERNAME + "WongWong"
+            + PREFIX_GITHUBUSERNAME + "WongWong "
             + PREFIX_RATING + "5";
 
     public static final String MESSAGE_DUPLICATE_PERSON = "This Professor already exists in the address book";

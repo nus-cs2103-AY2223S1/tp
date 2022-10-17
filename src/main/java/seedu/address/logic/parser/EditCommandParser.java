@@ -22,6 +22,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Rating;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -78,7 +79,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
         }
         if (argMultimap.getValue(PREFIX_RATING).isPresent()) {
-            editPersonDescriptor.setRating(ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get()));
+            String ratingInput = argMultimap.getValue(PREFIX_RATING).orElse(Rating.EMPTY_RATING);
+            if (ratingInput.equals(Rating.EMPTY_RATING)) {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(ratingInput, false));
+            } else {
+                editPersonDescriptor.setGithubUsername(ParserUtil.parseGitHubUsername(ratingInput, true));
+            }
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);

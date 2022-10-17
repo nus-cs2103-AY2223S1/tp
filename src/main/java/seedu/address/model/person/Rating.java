@@ -59,19 +59,6 @@ public class Rating {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * @return Rating based on the given {@code ArgumentMultimap}.
-     */
-    public static Rating getRatingFromMultimap(ArgumentMultimap argMultimap) throws ParseException {
-        Rating rating;
-        if (argMultimap.getValue(PREFIX_RATING).isEmpty()) {
-            rating = new Rating("", false);
-        } else {
-            rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
-        }
-        return rating;
-    }
-
     @Override
     public String toString() {
         return value;
