@@ -41,13 +41,13 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
                     DeleteTaskCommand.MESSAGE_USAGE));
         }
 
-        DeleteTaskFromModuleDescriptor deleteTaskFromPersonDescriptor =
+        DeleteTaskFromModuleDescriptor deleteTaskFromModuleDescriptor =
                 new DeleteTaskFromModuleDescriptor();
         String moduleCodeOfModuleToDeleteTaskFromAsString =
                 argMultimap.getValue(PREFIX_MODULE_CODE).get();
         ModuleCode moduleCodeOfModuleToDeleteTaskFrom =
                 ParserUtil.parseModuleCode(moduleCodeOfModuleToDeleteTaskFromAsString);
-        deleteTaskFromPersonDescriptor.setModuleCodeOfModuleWithTaskToDelete(moduleCodeOfModuleToDeleteTaskFrom);
+        deleteTaskFromModuleDescriptor.setModuleCodeOfModuleWithTaskToDelete(moduleCodeOfModuleToDeleteTaskFrom);
         String taskNumberGivenByUser =
                 argMultimap.getValue(PREFIX_TASK_NUMBER).get();
         if (!StringUtil.isNonZeroUnsignedInteger(taskNumberGivenByUser)) {
@@ -55,7 +55,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
         }
         Index taskIndexToRemove =
                 ParserUtil.parseTaskNumberToDelete(taskNumberGivenByUser);
-        deleteTaskFromPersonDescriptor.setIndexOfTaskToDelete(taskIndexToRemove);
-        return new DeleteTaskCommand(deleteTaskFromPersonDescriptor);
+        deleteTaskFromModuleDescriptor.setIndexOfTaskToDelete(taskIndexToRemove);
+        return new DeleteTaskCommand(deleteTaskFromModuleDescriptor);
     }
 }
