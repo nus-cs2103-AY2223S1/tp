@@ -75,13 +75,13 @@ Section by : [Marciano](https://github.com/midnightfeverrr)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. 
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between 
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. 
-The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. 
-For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/ui/MainWindow.java) 
+The `UI` component uses the JavaFx UI framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/ui/MainWindow.java)
 is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -102,8 +102,8 @@ The `MainWindow` class is the hub for all UI components which are listed below:
 
 The `MainWindow` coordinates the backend of the system to the frontend of the system to make visible changes to the interface.
 
-This is done through the `executeCommand(String commandText)` method. Upon user input, the logic class executes the 
-respective command and the model is updated to reflect the changes. 
+This is done through the `executeCommand(String commandText)` method. Upon user input, the logic class executes the
+respective command and the model is updated to reflect the changes.
 Subsequently, after the model has been updated, the following UI classes `ResultDisplay` is refreshed as a result.
 
 #### CommandBox
@@ -117,8 +117,8 @@ The `ResultDisplay` class shows the message returned from the user's input.
 ![Structure of the UI Component](images/ResultDisplayHandleCommand.png)
 
 1. Command is executed on `MainWindow`.
-2. `MainWindow` calls the method `executeCommand`, which refreshes the resultant message displayed in `ResultDisplay`. 
-3. `ResultDisplay` updates its JavaFX `TextArea` according to the `CommandResult` of the command given. 
+2. `MainWindow` calls the method `executeCommand`, which refreshes the resultant message displayed in `ResultDisplay`.
+3. `ResultDisplay` updates its JavaFX `TextArea` according to the `CommandResult` of the command given.
 In this case, the `TextArea` will display the message returned as a result of the command.
 4. ResultDisplay displays visible change on the interface.
 5. `executeCommand` ends execution.
@@ -149,9 +149,9 @@ The `ProfileSidePanel` class contains the user's profile and (proposed) CAP. The
 
 #### Other Components
 In addition to the main UI components in the `MainWindow` class, these are other UI Components:
-* `ModuleCard` - Individual card containing the relevant information of the module. 
+* `ModuleCard` - Individual card containing the relevant information of the module.
 List of ModuleCard contained in the ModuleListPanel.
-* `TaskCard` - Individual card containing the relevant information of the task. 
+* `TaskCard` - Individual card containing the relevant information of the task.
 List of TaskCards contained in the TaskListPanel.
 * `HelpWindow` - Pop-up window containing the link the User Guide, as well as a (proposed) list of all the commands in the application.
 
