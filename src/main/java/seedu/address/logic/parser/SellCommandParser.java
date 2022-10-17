@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -10,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
 import seedu.address.model.transaction.Price;
 import seedu.address.model.transaction.Quantity;
@@ -27,7 +29,8 @@ public class SellCommandParser implements Parser<SellCommand> {
      */
     public SellCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_GOODS, PREFIX_PRICE,
+                PREFIX_DATE);
 
         Index index;
         try {
@@ -37,16 +40,16 @@ public class SellCommandParser implements Parser<SellCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_GOODS).isEmpty() || argMultimap.getValue(PREFIX_PRICE).isEmpty()
-                || argMultimap.getValue(PREFIX_QUANTITY).isEmpty()) {
+                || argMultimap.getValue(PREFIX_QUANTITY).isEmpty() || argMultimap.getValue(PREFIX_DATE).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SellCommand.MESSAGE_USAGE));
         }
 
         Goods goods = ParserUtil.parseGoods(argMultimap.getValue(PREFIX_GOODS).orElse(""));
         Price price = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).orElse(""));
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).orElse(""));
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(""));
 
-
-        Transaction transaction = new SellTransaction(goods, price, quantity);
+        Transaction transaction = new SellTransaction(goods, price, quantity, date);
 
         return new SellCommand(index, transaction);
     }

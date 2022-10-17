@@ -28,6 +28,7 @@
             <FlowPane fx:id="transactionType" />
             <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
             <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" />
+            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
             <padding>
                 <Insets left="25.0" />
         </padding>

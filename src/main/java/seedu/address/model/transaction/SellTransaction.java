@@ -5,8 +5,8 @@ package seedu.address.model.transaction;
  */
 public class SellTransaction extends Transaction {
 
-    public SellTransaction(Goods goods, Price price, Quantity quantity) {
-        super(goods, price, quantity);
+    public SellTransaction(Goods goods, Price price, Quantity quantity, Date date) {
+        super(goods, price, quantity,date );
     }
 
     /**
@@ -22,7 +22,7 @@ public class SellTransaction extends Transaction {
     @Override
     public String toString() {
         return "You sold " + quantity + " quantity of "
-                + goods + " at " + price + " each";
+                + goods + " at " + price + " each " + "on " + date;
     }
 
     /**
@@ -42,6 +42,7 @@ public class SellTransaction extends Transaction {
         SellTransaction otherTransaction = (SellTransaction) other;
         return otherTransaction.getGoods().equals(getGoods())
                 && otherTransaction.getQuantity().equals(getQuantity())
-                && otherTransaction.getPrice().equals(getPrice());
+                && otherTransaction.getPrice().equals(getPrice())
+                && otherTransaction.getDate().equals(getDate());
     }
 }

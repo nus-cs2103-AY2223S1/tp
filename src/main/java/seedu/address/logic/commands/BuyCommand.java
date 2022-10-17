@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GOODS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.List;
 
@@ -29,15 +30,19 @@ public class BuyCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_QUANTITY + "1000 "
             + PREFIX_GOODS + "Apples "
-            + PREFIX_PRICE + "1.50 ";
+            + PREFIX_PRICE + "1.50 "
+            + PREFIX_DATE + "07/11/2000";
 
-    public static final String MESSAGE_SUCCESS = "New transaction created: \nBought %2$s %3$s from %1$s for %4$s each";
+    public static final String MESSAGE_SUCCESS = "New transaction created: \nBought %2$s %3$s from %1$s for %4$s each " +
+            "on %5$s";
     public static final String MESSAGE_TRANSACTION_INVALID = "Transaction cannot be created. "
             + "Enter a valid transaction:\n"
             + "index "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
-            + PREFIX_PRICE + "PRICE ";
+            + PREFIX_PRICE + "PRICE "
+            + PREFIX_DATE + "DATE ";
+
 
     private final Index index;
     private final Transaction transaction;
@@ -70,7 +75,7 @@ public class BuyCommand extends Command {
         model.setClient(clientToEdit, editedClient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedClient.getName(), transaction.getQuantity(),
-                transaction.getGoods(), transaction.getPrice()));
+                transaction.getGoods(), transaction.getPrice(), transaction.getDate()));
     }
 
     @Override
