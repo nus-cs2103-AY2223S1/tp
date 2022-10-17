@@ -28,10 +28,14 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final HashMap<Name, ArrayList<Exercise>> hashMap;
+    private HashMap<Name, ArrayList<Exercise>> hashMap;
 
     public UniqueExerciseList() {
         hashMap = new HashMap<>();
+    }
+
+    public HashMap<Name, ArrayList<Exercise>> getHashMap() {
+        return hashMap;
     }
 
     /**
@@ -53,9 +57,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
             hashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
         } else {
             for (Name key : hashMap.keySet()) { // Store exercise with name of first exercise instance
-                System.out.println(key.toString());
                 if (storedName.equals(key)) {
-                    System.out.println("test");
                     storedName = key;
                     break;
                 }
@@ -63,7 +65,6 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         }
         toAdd = new Exercise(storedName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
         hashMap.get(storedName).add(toAdd); // add Exercise to arraylist
-        System.out.println(toAdd.getName());
         internalList.add(toAdd);
     }
 
@@ -79,10 +80,6 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         if (index == -1) {
             throw new ExerciseNotFoundException();
         }
-
-        //        if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
-        //            throw new DuplicateExerciseException();
-        //        }
 
         internalList.set(index, editedExercise);
     }
@@ -104,6 +101,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
 
     public void setExercises(UniqueExerciseList replacement) {
         requireNonNull(replacement);
+        hashMap = replacement.getHashMap();
         internalList.setAll(replacement.internalList);
     }
 
@@ -113,6 +111,21 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      */
     public void setExercises(List<Exercise> exercises) {
         requireAllNonNull(exercises);
+        for (Exercise e : exercises) {
+            Name storedName = e.getName();
+            if (!contains(e)) {
+                hashMap.put(e.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
+            } else {
+                for (Name key : hashMap.keySet()) { // Store exercise with name of first exercise instance
+                    if (storedName.equals(key)) {
+                        storedName = key;
+                        break;
+                    }
+                }
+            }
+            e = new Exercise(storedName, e.getWeight(), e.getSets(), e.getReps(), e.getDate());
+            hashMap.get(storedName).add(e); // add Exercise to arraylist
+        }
         internalList.setAll(exercises);
     }
 
