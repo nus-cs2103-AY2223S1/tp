@@ -1,0 +1,10 @@
+{
+  "itineraries" : [ {
+    "name" : "Spring Trip",
+    "country" : "Australia",
+    "startDate" : "10",
+    "endDate" : "20",
+    "people" : "1",
+    "items" : [ ]
+  } ]
+}
