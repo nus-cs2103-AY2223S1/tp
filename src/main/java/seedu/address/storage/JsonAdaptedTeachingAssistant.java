@@ -17,6 +17,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.TeachingAssistant;
 import seedu.address.model.tag.Tag;
 
@@ -36,8 +37,9 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
                                         @JsonProperty("email") String email, @JsonProperty("gender") String gender,
                                         @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                         @JsonProperty("location") String location,
-                                        @JsonProperty("username") String username) {
-        super(type, name, moduleCode, phone, email, gender, tagged, location, username);
+                                        @JsonProperty("username") String username,
+                                        @JsonProperty("rating") String rating) {
+        super(type, name, moduleCode, phone, email, gender, tagged, location, username, rating);
     }
 
     /**
@@ -111,7 +113,6 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
         }
 
         final Location modelLocation = new Location(getLocation());
-
         final GithubUsername modelUsername;
 
         if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
@@ -122,9 +123,17 @@ class JsonAdaptedTeachingAssistant extends JsonAdaptedPerson {
             }
             modelUsername = new GithubUsername(getUsername(), true);
         }
+        if (getRating() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Rating.class.getSimpleName()));
+        }
+        if (!Rating.isValidRating(getRating())) {
+            throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
+        }
+        final Rating modelRating = new Rating(getRating());
 
         return new TeachingAssistant(modelName, modelModuleCode, modelPhone, modelEmail, modelGender,
-            modelTags, modelLocation, modelUsername);
+            modelTags, modelLocation, modelUsername, modelRating);
     }
 
 }
