@@ -50,6 +50,8 @@ public class PersonCard extends UiPart<Region> {
     private Label note;
     @FXML
     private Label status;
+    @FXML
+    private Label rating;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -80,6 +82,7 @@ public class PersonCard extends UiPart<Region> {
 
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
+        rating.setText(person.getRating().toString().length() > 0 ? person.getRating().toString() : "");
     }
 
     @Override

@@ -13,6 +13,7 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.RATING_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -21,6 +22,7 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_NOTE_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.VALID_RATING_AMY;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.clinkedin.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.clinkedin.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -33,6 +35,7 @@ import org.junit.jupiter.api.Test;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.EditCommand;
 import seedu.clinkedin.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -104,16 +107,17 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsSpecified_success() {
+    public void parse_allFieldsSpecified_success() throws ParseException {
         // test for tags to be added.
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + NOTE_DESC_AMY;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + NOTE_DESC_AMY + RATING_DESC_AMY;
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNote(VALID_NOTE_AMY).build();
+                .withNote(VALID_NOTE_AMY).withRating(VALID_RATING_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand actualCommand = new EditCommandParser().parse(userInput);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

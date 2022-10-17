@@ -30,7 +30,7 @@ public class NoteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Note note = new Note("This is a note");
+        Note note = new Note("She is strong at Java.");
         NoteCommand noteCommand = new NoteCommand(Index.fromOneBased(1), note);
 
         Person personToEdit = model.getFilteredPersonList().get(0);

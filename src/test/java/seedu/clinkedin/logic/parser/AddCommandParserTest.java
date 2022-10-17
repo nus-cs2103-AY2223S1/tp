@@ -12,10 +12,13 @@ import static seedu.clinkedin.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.NOTE_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.RATING_DESC_AMY;
+import static seedu.clinkedin.logic.commands.CommandTestUtil.RATING_DESC_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.STATUS_DESC_BOB;
 import static seedu.clinkedin.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -33,6 +36,7 @@ import static seedu.clinkedin.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.logic.commands.AddCommand;
+import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -45,12 +49,15 @@ public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
-    public void parse_allFieldsPresent_success() {
+    public void parse_allFieldsPresent_success() throws ParseException {
         Person expectedPerson = new PersonBuilder(BOB).build();
+        AddCommand expectedCommand = new AddCommand(expectedPerson);
 
+        AddCommand actualCommand = new AddCommandParser().parse(PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + RATING_DESC_BOB);
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + RATING_DESC_BOB, new AddCommand(expectedPerson));
 
         // to be decided - allow multiple or not
         // multiple names - last name accepted
@@ -67,7 +74,7 @@ public class AddCommandParserTest {
         //        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
         //                + ADDRESS_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPerson));
         //
-        //        // multiple addresses - last clinkedin accepted
+        //        // multiple addresses - last address accepted
         //        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
         //                + ADDRESS_DESC_BOB + STATUS_DESC_BOB, new AddCommand(expectedPerson));
 
@@ -82,7 +89,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + STATUS_DESC_AMY,
+                        + STATUS_DESC_AMY + RATING_DESC_AMY,
                 new AddCommand(expectedPerson));
     }
 

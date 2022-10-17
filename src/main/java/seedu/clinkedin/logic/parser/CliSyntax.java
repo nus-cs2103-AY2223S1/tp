@@ -24,10 +24,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_SKILLTAG = new Prefix(("st/"));
     public static final Prefix PREFIX_DEGREETAG = new Prefix(("dt/"));
     public static final Prefix PREFIX_JOBTYPETAG = new Prefix(("jtt/"));
+    public static final Prefix PREFIX_RATING = new Prefix("rate/");
     private static ArrayList<Prefix> prefixTags = new ArrayList<>(Arrays.asList(PREFIX_SKILLTAG, PREFIX_DEGREETAG,
             PREFIX_JOBTYPETAG));
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-            PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE));
+            PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE,
+            PREFIX_RATING));
     private static ArrayList<Prefix> uniquePrefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE,
             PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS));
 
@@ -56,16 +58,19 @@ public class CliSyntax {
         prefixTags.remove(pref);
         prefixes.remove(pref);
     }
+
     public static Prefix[] getPrefixes() {
         requireNonNull(prefixes);
         Prefix[] pref = new Prefix[prefixes.size()];
         pref = prefixes.toArray(pref);
         return pref;
     }
+
     public static ArrayList<Prefix> getPrefixTags() {
         requireNonNull(prefixTags);
         return prefixTags;
     }
+
     public static ArrayList<Prefix> getUniquePrefixes() {
         requireNonNull(uniquePrefixes);
         return uniquePrefixes;

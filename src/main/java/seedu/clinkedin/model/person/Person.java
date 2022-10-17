@@ -26,6 +26,7 @@ public class Person {
     private UniqueTagTypeMap tagTypeMap;
     private final Status status;
     private final Note note;
+    private final Rating rating;
 
     /**
      * Every field must be present and not null.
@@ -39,6 +40,7 @@ public class Person {
         this.tagTypeMap = tagTypeMap;
         this.status = status;
         this.note = new Note("");
+        this.rating = new Rating("0");
     }
 
     /**
@@ -54,8 +56,40 @@ public class Person {
         this.tagTypeMap = tagTypeMap;
         this.status = status;
         this.note = note;
+        this.rating = null;
     }
 
+    /**
+     * Overloaded constructor for Person when rating is provided.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
+                  Status status, Rating rating) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tagTypeMap = tagTypeMap;
+        this.status = status;
+        this.note = new Note("");
+        this.rating = rating;
+    }
+
+    /**
+     * Overloaded constructor for Person when note and rating is provided.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, UniqueTagTypeMap tagTypeMap,
+                  Status status, Note note, Rating rating) {
+        requireAllNonNull(name, phone, email, address, tagTypeMap, status);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.tagTypeMap = tagTypeMap;
+        this.status = status;
+        this.note = note;
+        this.rating = rating;
+    }
     public Name getName() {
         return name;
     }
@@ -71,6 +105,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
+
     public Note getNote() {
         return note;
     }
@@ -86,6 +121,8 @@ public class Person {
     public Status getStatus() {
         return status;
     }
+
+    public Rating getRating() { return rating; }
 
     /**
      * Returns true if both persons have the same name.
@@ -121,18 +158,19 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getNote().equals(getNote())
-                && otherPerson.getStatus().equals(getStatus());
+                && otherPerson.getStatus().equals(getStatus())
+                && otherPerson.getRating().equals(getRating());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tagTypeMap, status, note);
+        return Objects.hash(name, phone, email, address, tagTypeMap, status, note, rating);
     }
 
     public String getDetailsAsString() {
-        return String.format("%s %s %s %s %s %s %s", name, phone, email, address, status,
-                tagTypeMap, note);
+        return String.format("%s %s %s %s %s %s %s %s", name, phone, email, address, status,
+                tagTypeMap, note, rating);
     }
 
     @Override
@@ -158,6 +196,9 @@ public class Person {
 
         builder.append("; Note: ")
                 .append(getNote());
+
+        builder.append("; Rating: ")
+                .append(getRating());
 
         return builder.toString();
     }

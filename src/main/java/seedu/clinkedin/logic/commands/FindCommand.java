@@ -7,7 +7,7 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.DetailsContainKeywordsPredicate;
 
 /**
- * Finds and lists all persons in clinkedin book whose details contain any of the argument or tagged keywords.
+ * Finds and lists all persons in address book whose details contain any of the argument or tagged keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {

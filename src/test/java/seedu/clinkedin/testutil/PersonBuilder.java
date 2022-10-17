@@ -6,6 +6,7 @@ import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.Phone;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.util.SampleDataUtil;
@@ -20,6 +21,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "Application Received";
+    public static final String DEFAULT_RATING = "6";
 
     private Name name;
     private Phone phone;
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private UniqueTagTypeMap tags;
     private Status status;
     private Note note;
+    private Rating rating;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +43,7 @@ public class PersonBuilder {
         tags = new UniqueTagTypeMap();
         status = new Status(DEFAULT_STATUS);
         note = new Note("");
+        rating = new Rating(DEFAULT_RATING);
     }
 
     /**
@@ -55,6 +59,7 @@ public class PersonBuilder {
         tags = tagTypeMap;
         status = personToCopy.getStatus();
         note = personToCopy.getNote();
+        rating = personToCopy.getRating();
     }
 
     /**
@@ -128,8 +133,19 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags, status, note);
+    /**
+     * Setts the {@code Rating} of the {@code Person} that we are building.
+     * @param rating
+     * @return
+     */
+    public PersonBuilder withRating(String rating) {
+        this.rating = new Rating(rating);
+        return this;
     }
+
+    public Person build() {
+        return new Person(name, phone, email, address, tags, status, note, rating);
+    }
+
 
 }
