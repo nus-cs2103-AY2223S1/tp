@@ -24,6 +24,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
+import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
 
@@ -34,6 +36,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.commands.EditCommand.EditTuitionClassDescriptor;
 import seedu.address.logic.commands.EditCommand.EditTutorDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -58,7 +61,7 @@ public class EditCommandTest {
         Model model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.STUDENT_LIST);
 
-        Student editedStudent = new StudentBuilder().build();
+        Student editedStudent = new StudentBuilder().withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2).build();
         EditStudentDescriptor studentDescriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, studentDescriptor);
 
@@ -177,7 +180,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_success() throws CommandException {
         // student
         Model model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.STUDENT_LIST);

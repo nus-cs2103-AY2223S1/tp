@@ -54,6 +54,7 @@ public class JsonSerializableStudentAddressBookTest {
         JsonSerializableStudentAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_STUDENTS_FILE,
                 JsonSerializableStudentAddressBook.class).get();
         List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
+        List<Student> list = dataFromFile.getStudentsList();
         assertEquals(studentList, dataFromFile.getStudentsList());
     }
 

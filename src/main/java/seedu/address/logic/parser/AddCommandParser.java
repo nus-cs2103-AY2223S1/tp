@@ -130,7 +130,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Student> students = new ArrayList<>();
         List<Tutor> tutors = new ArrayList<>();
 
-        return new TuitionClass(name, subject, level, day, time, tagList, students, tutors);
+        return new TuitionClass(name, subject, level, day, time, tagList);
     }
 
     /**

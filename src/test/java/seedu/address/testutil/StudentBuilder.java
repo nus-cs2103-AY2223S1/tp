@@ -1,9 +1,14 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.level.Level;
 import seedu.address.model.person.student.NextOfKin;
 import seedu.address.model.person.student.School;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.tuitionclass.TuitionClass;
 
 /**
  * A utility class to help with building Student objects.
@@ -18,6 +23,7 @@ public class StudentBuilder extends PersonBuilder {
     private Level level;
     private NextOfKin nextOfKin;
 
+    private List<TuitionClass> tuitionClasses = new ArrayList<>();
     /**
      * Creates a {@code StudentBuilder} with the default details.
      */
@@ -36,6 +42,7 @@ public class StudentBuilder extends PersonBuilder {
         school = studentToCopy.getSchool();
         level = studentToCopy.getLevel();
         nextOfKin = studentToCopy.getNextOfKin();
+        tuitionClasses = studentToCopy.getTuitionClasses();
     }
 
     /**
@@ -60,7 +67,6 @@ public class StudentBuilder extends PersonBuilder {
     @Override
     public StudentBuilder withAddress(String address) {
         return (StudentBuilder) super.withAddress(address);
-
     }
 
     /**
@@ -103,9 +109,17 @@ public class StudentBuilder extends PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code TuitionClass} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTuitionClasses(TuitionClass ... tuitionClass) {
+        this.tuitionClasses = new ArrayList<>(Arrays.asList(tuitionClass));
+        return this;
+    }
+
     @Override
     public Student build() {
         return new Student(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(),
-                this.getTags(), school, level, nextOfKin);
+                this.getTags(), school, level, nextOfKin, tuitionClasses);
     }
 }

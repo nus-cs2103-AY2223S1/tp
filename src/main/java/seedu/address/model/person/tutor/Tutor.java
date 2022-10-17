@@ -80,6 +80,12 @@ public class Tutor extends Person {
                 .append("; Institution: ")
                 .append(getInstitution());
 
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 }

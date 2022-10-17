@@ -212,9 +212,9 @@ public class EditCommand extends Command {
             School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
             Level updatedLevel = editStudentDescriptor.getLevel().orElse(studentToEdit.getLevel());
             NextOfKin updatedNextOfKin = editStudentDescriptor.getNextOfKin().orElse(studentToEdit.getNextOfKin());
-
+            List<TuitionClass> tuitionClasses = studentToEdit.getTuitionClasses();
             return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedSchool,
-                    updatedLevel, updatedNextOfKin);
+                    updatedLevel, updatedNextOfKin, tuitionClasses);
 
         } else if (editPersonDescriptor instanceof EditTutorDescriptor && personToEdit instanceof Tutor) {
             EditTutorDescriptor editTutorDescriptor = (EditTutorDescriptor) editDescriptor;
@@ -244,11 +244,8 @@ public class EditCommand extends Command {
         Day updatedDay = editTuitionClassDescriptor.getDay().orElse(classToEdit.getDay());
         Time updatedTime = editTuitionClassDescriptor.getTime().orElse(classToEdit.getTime());
         Set<Tag> updatedTags = editTuitionClassDescriptor.getTags().orElse(classToEdit.getTags());
-        List<Student> updatedStudents = classToEdit.getStudents();
-        List<Tutor> updatedTutors = classToEdit.getTutors();
 
-        return new TuitionClass(updatedName, updatedSubject, updatedLevel, updatedDay, updatedTime, updatedTags,
-                updatedStudents, updatedTutors);
+        return new TuitionClass(updatedName, updatedSubject, updatedLevel, updatedDay, updatedTime, updatedTags);
     }
 
     @Override
