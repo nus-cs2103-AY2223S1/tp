@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -27,7 +28,8 @@ import nus.climods.ui.UiPart;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html";
+    public static final String CLIMODS_BASE_URL = "https://ay2223s1-cs2103-f14-1.github.io/tp/";
+    public static final String USERGUIDE_URL = CLIMODS_BASE_URL + "UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -41,8 +43,6 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private WebView webView;
-
-    private WebEngine webEngine;
 
     /**
      * Creates a new HelpWindow.
@@ -103,21 +103,57 @@ public class HelpWindow extends UiPart<Stage> {
     private void displayUserManual() {
         WebEngine webEngine = webView.getEngine();
 
+        if (isClimodsWebsiteUp()) {
+            preventRedirection(webEngine);
+            webEngine.load(USERGUIDE_URL);
+        } else {
+            loadLocalUserManual(webEngine);
+        }
+    }
+
+    private void loadLocalUserManual(WebEngine webEngine) {
+        try {
+            Stream<String> lines = Files.lines(
+                Paths.get(ClassLoader.getSystemResource("html/UserManual.html").toURI())
+            );
+            webEngine.loadContent(lines.collect(Collectors.joining("\n")));
+        } catch (URISyntaxException | IOException e) {
+            logger.warning("User Manual not found!");
+        }
+    }
+
+    private boolean isClimodsWebsiteUp() {
         try {
             URL url = new URL(USERGUIDE_URL);
             URLConnection urlConnection = url.openConnection();
             urlConnection.connect();
-            webEngine.load(USERGUIDE_URL);
+            return true;
         } catch (IOException ioException) {
-            try {
-                Stream<String> lines = Files.lines(
-                    Paths.get(ClassLoader.getSystemResource("html/UserManual.html").toURI())
-                );
-                webEngine.loadContent(lines.collect(Collectors.joining("\n")));
-            } catch (URISyntaxException | IOException e) {
-                logger.warning("User Manual not found!");
-            }
+            return false;
         }
+    }
+
+    private void preventRedirection(WebEngine webEngine) {
+        webEngine.locationProperty().addListener((obs, oldLocation, newLocation) -> {
+            if (newLocation != null && !newLocation.startsWith(CLIMODS_BASE_URL)) {
+                showWarningMessage("You are assessing a website outside of CLIMods.  "
+                    + "You will be redirected to our website.");
+                if (oldLocation.contains("#")) {
+                    webEngine.load(oldLocation.substring(0, oldLocation.indexOf("#")));
+                } else {
+                    webEngine.load(oldLocation);
+                }
+            }
+        });
+    }
+
+    private void showWarningMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        Label warningMessage = new Label(message);
+        warningMessage.setWrapText(true);
+        alert.getDialogPane().setContent(warningMessage);
+        alert.showAndWait();
     }
 
     /**
