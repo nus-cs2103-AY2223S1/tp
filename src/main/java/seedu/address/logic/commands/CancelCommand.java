@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -20,7 +17,7 @@ import seedu.address.model.person.Person;
 public class CancelCommand extends SelectAppointmentCommand {
     public static final String COMMAND_WORD = "cancel";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Cancels an appointment in the appointment list."
-            + "Parameters: apptIndex (must be a valid appointment index and positive integer)\n"
+            + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment for: ";
