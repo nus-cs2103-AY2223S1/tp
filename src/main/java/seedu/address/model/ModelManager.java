@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
@@ -82,6 +83,16 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public DefaultView getDefaultView() {
+        return userPrefs.getDefaultView();
+    }
+
+    @Override
+    public void setDefaultView(DefaultView defaultView) {
+        userPrefs.setDefaultView(defaultView);
     }
 
     //=========== AddressBook ================================================================================

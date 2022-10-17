@@ -12,11 +12,7 @@ import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.issue.AddIssueCommand;
-import seedu.address.logic.commands.issue.DeleteIssueCommand;
-import seedu.address.logic.commands.issue.EditIssueCommand;
-import seedu.address.logic.commands.issue.IssueCommand;
-import seedu.address.logic.commands.issue.ListIssueCommand;
+import seedu.address.logic.commands.issue.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
@@ -49,10 +45,14 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseDeleteIssueCommand(arguments);
         case ListIssueCommand.COMMAND_FLAG:
             return parseListIssueCommand(arguments);
+        case SetIssueDefaultViewCommand.COMMAND_FLAG:
+            return parseSetIssueDefaultViewCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
+
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -144,9 +144,12 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         }
     }
 
-    //TODO: implement
     private ListIssueCommand parseListIssueCommand(String arguments) {
         return new ListIssueCommand();
+    }
+
+    private IssueCommand parseSetIssueDefaultViewCommand(String arguments) {
+        return new SetIssueDefaultViewCommand();
     }
 
 

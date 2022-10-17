@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.DefaultView;
+
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -17,13 +20,16 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final DefaultView defaultView;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DefaultView defaultView) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.defaultView = defaultView;
     }
 
     /**
@@ -31,7 +37,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, null);
     }
 
     public String getFeedbackToUser() {
@@ -68,4 +74,11 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
+    public boolean isSetDefaultView() {
+        return !isNull(this.defaultView);
+    }
+
+    public DefaultView getDefaultView() {
+        return this.defaultView;
+    }
 }
