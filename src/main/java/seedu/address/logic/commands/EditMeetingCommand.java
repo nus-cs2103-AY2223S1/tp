@@ -67,7 +67,7 @@ public class EditMeetingCommand extends Command {
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
-        if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) { //
+        if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
