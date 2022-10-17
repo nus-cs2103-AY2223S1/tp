@@ -13,7 +13,7 @@ import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.UserPrefs;
 
 /**
- * Manages storage of SoConnect contact data in local storage, including data of the todo list.
+ * Manages storage of SoConnect contact data and todo data in local storage.
  */
 public class StorageManager implements Storage {
 

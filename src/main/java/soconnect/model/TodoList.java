@@ -11,8 +11,8 @@ import soconnect.model.todo.Todo;
 import soconnect.model.todo.UniqueTodoList;
 
 /**
- * Wraps all data at the TodoList level.
- * Duplicate todo is not allowed (using .equals comparison).
+ * Wraps all data at the {@code TodoList} level.
+ * Duplicate {@code Todo} is not allowed (using .equals comparison).
  */
 public class TodoList implements ReadOnlyTodoList {
 
@@ -32,7 +32,7 @@ public class TodoList implements ReadOnlyTodoList {
     public TodoList() {}
 
     /**
-     * Creates an TodoList using the Todos in the {@code toBeCopied}.
+     * Creates a {@code TodoList} using the {@code Todo}s in the {@code toBeCopied}.
      */
     public TodoList(ReadOnlyTodoList toBeCopied) {
         this();
@@ -42,8 +42,8 @@ public class TodoList implements ReadOnlyTodoList {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the todo list with {@code todos}.
-     * {@code todos} must not contain duplicate todos.
+     * Replaces the contents of the {@code TodoList} with {@code todos}.
+     * {@code todos} must not contain duplicate {@code Todo}s.
      */
     public void setTodos(List<Todo> todos) {
         this.todos.setTodos(todos);
@@ -61,7 +61,7 @@ public class TodoList implements ReadOnlyTodoList {
     //// todo-level operations
 
     /**
-     * Returns true if a todo identical to {@code todo} exists in the TodoList.
+     * Returns true if a {@code Todo} identical to {@code todo} exists in the {@code TodoList}.
      */
     public boolean hasTodo(Todo todo) {
         requireNonNull(todo);
@@ -69,17 +69,17 @@ public class TodoList implements ReadOnlyTodoList {
     }
 
     /**
-     * Adds a todo to the TodoList.
-     * The todo must not already exist in the TodoList.
+     * Adds a {@code Todo} to the {@code TodoList}.
+     * The {@code Todo} must not already exist in the {@code TodoList}.
      */
     public void addTodo(Todo todo) {
         todos.add(todo);
     }
 
     /**
-     * Replaces the given todo {@code target} in the list with {@code editedTodo}.
-     * {@code target} must exist in the TodoList.
-     * {@code editedTodo} must not already exist in the TodoList.
+     * Replaces the given {@code Todo} in the {@code TodoList} with {@code editedTodo}.
+     * {@code target} must exist in the {@code TodoList}.
+     * {@code editedTodo} must not already exist in the {@code TodoList}.
      */
     public void setTodo(Todo target, Todo editedTodo) {
         requireAllNonNull(target, editedTodo);
@@ -88,27 +88,27 @@ public class TodoList implements ReadOnlyTodoList {
     }
 
     /**
-     * Removes {@code key} from this {@code TodoList}.
-     * {@code key} must exist in the TodoList.
+     * Removes a {@code Todo} from this {@code TodoList}.
+     * The {@code Todo} must exist in the {@code TodoList}.
      */
     public void removeTodo(Todo key) {
         todos.remove(key);
     }
 
     /**
-     * Changes the original tag to the new tag.
+     * Changes {@code oldTag} to {@code newTag}.
      *
-     * @param oldTag The original tag.
-     * @param newTag The new tag to replace the original tag.
+     * @param oldTag The original {@code Tag}.
+     * @param newTag The new {@code Tag}.
      */
     public void editTag(Tag oldTag, Tag newTag) {
         todos.changeRelevantTodoTag(oldTag, newTag);
     }
 
     /**
-     * Deletes a {@code Tag} from the TodoList.
+     * Deletes a {@code Tag} from the {@code TodoList}.
      *
-     * @param tag The tag to be deleted.
+     * @param tag The {@code Tag} to be deleted.
      */
     public void deleteTag(Tag tag) {
         todos.removeRelevantTodoTag(tag);

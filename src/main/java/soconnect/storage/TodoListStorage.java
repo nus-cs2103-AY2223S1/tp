@@ -19,7 +19,7 @@ public interface TodoListStorage {
     Path getTodoListFilePath();
 
     /**
-     * Returns TodoList data as a {@link ReadOnlyTodoList}.
+     * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException If the data in storage is not in the expected format.

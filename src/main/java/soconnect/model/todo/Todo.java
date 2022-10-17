@@ -10,8 +10,7 @@ import java.util.Set;
 import soconnect.model.tag.Tag;
 
 /**
- * Represents a Todo in the SoConnect.
- * Guarantees: description is not null and not an empty string.
+ * Represents a {@code Todo} in the SoConnect.
  */
 public class Todo {
     private final Description description;
@@ -19,7 +18,7 @@ public class Todo {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Constructs a Todo. All parameters must be present and not null.
+     * Constructs a {@code Todo}. All parameters must be present and not null.
      */
     public Todo(Description description, Priority priority, Set<Tag> tags) {
         requireAllNonNull(description, priority, tags);
@@ -41,7 +40,7 @@ public class Todo {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable {@code Tag} set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -49,18 +48,15 @@ public class Todo {
     }
 
     /**
-     * Checks if the todo has the tag.
+     * Checks if the {@code Todo} has the {@code tag}.
      *
-     * @param tag The tag to be added.
-     * @return True if tag already exists. False if otherwise.
+     * @param tag The {@code Tag} to be added.
+     * @return True if {@code tag} already exists. False if otherwise.
      */
     public boolean contains(Tag tag) {
         return this.getTags().contains(tag);
     }
 
-    /**
-     * Returns true if both todos have the same description and priority.
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {

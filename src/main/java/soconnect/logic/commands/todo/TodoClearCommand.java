@@ -7,7 +7,7 @@ import soconnect.model.Model;
 import soconnect.model.TodoList;
 
 /**
- * Clears the TodoList.
+ * Clears the {@code TodoList}.
  */
 public class TodoClearCommand extends TodoCommand {
 

@@ -17,7 +17,7 @@ import soconnect.model.todo.exceptions.DuplicateTodoException;
 import soconnect.model.todo.exceptions.TodoNotFoundException;
 
 /**
- * A list of todos that enforces uniqueness between its elements and does not allow nulls.
+ * A list of {@code Todo}s that enforces uniqueness between its elements and does not allow nulls.
  * Supports a minimal set of list operations.
  */
 public class UniqueTodoList implements Iterable<Todo> {
@@ -27,7 +27,7 @@ public class UniqueTodoList implements Iterable<Todo> {
         FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent todo as the given argument.
+     * Returns true if the list contains an equivalent {@code Todo} as the given argument.
      */
     public boolean contains(Todo toCheck) {
         requireNonNull(toCheck);
@@ -35,8 +35,8 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Adds a todo to the list.
-     * The todo must not already exist in the list.
+     * Adds a {@code Todo} to the list.
+     * The {@code Todo} must not already exist in the list.
      */
     public void add(Todo toAdd) {
         requireNonNull(toAdd);
@@ -48,9 +48,9 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Replaces the todo {@code target} in the list with {@code editedTodo}.
+     * Replaces a {@code Todo} in the list with {@code editedTodo}.
      * {@code target} must exist in the list.
-     * The new todo must not be the same as an existing todo in the list.
+     * {@code editedTodo} must not be the same as an existing {@code Todo} in the list.
      */
     public void setTodo(Todo target, Todo editedTodo) {
         requireAllNonNull(target, editedTodo);
@@ -69,8 +69,8 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Removes the equivalent todo from the list.
-     * The todo must exist in the list.
+     * Removes the equivalent {@code Todo} from the list.
+     * The {@code Todo} must exist in the list.
      */
     public void remove(Todo toRemove) {
         requireNonNull(toRemove);
@@ -87,7 +87,7 @@ public class UniqueTodoList implements Iterable<Todo> {
 
     /**
      * Replaces the contents of this list with {@code todos}.
-     * {@code todos} must not contain duplicate todos.
+     * {@code todos} must not contain duplicate {@code Todo}s.
      */
     public void setTodos(List<Todo> todos) {
         requireAllNonNull(todos);
@@ -100,10 +100,10 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Updates the tag in every todo.
+     * Updates {@code oldTag} in every {@code Todo} that contains it.
      *
-     * @param oldTag The old tag to be changed.
-     * @param newTag The new tag that is changed into.
+     * @param oldTag The old {@code Tag} to be changed.
+     * @param newTag The new {@code Tag}.
      */
     public void changeRelevantTodoTag(Tag oldTag, Tag newTag) {
         for (int i = 0; i < internalList.size(); i++) {
@@ -122,9 +122,9 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Removes the tag in every todo.
+     * Removes {@code tag} from every {@code Todo} that contains it.
      *
-     * @param tag The tag to be removed.
+     * @param tag The {@code Tag} to be removed.
      */
     public void removeRelevantTodoTag(Tag tag) {
         for (int i = 0; i < internalList.size(); i++) {
@@ -142,7 +142,7 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Sort the TodoList in order of decreasing priority.
+     * Sort the {@code TodoList} in order of decreasing {@code Priority}.
      */
     private void sort() {
         SortedList<Todo> sorted = internalList.sorted((curr, next) -> curr.getPriority().compareTo(next.getPriority()));
@@ -174,7 +174,7 @@ public class UniqueTodoList implements Iterable<Todo> {
     }
 
     /**
-     * Returns true if {@code todos} contains only unique todos.
+     * Returns true if {@code todos} contains only unique {@code Todo}s.
      */
     private boolean todosAreUnique(List<Todo> todos) {
         for (int i = 0; i < todos.size() - 1; i++) {

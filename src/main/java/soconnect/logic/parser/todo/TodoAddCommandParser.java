@@ -21,13 +21,13 @@ import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
 
 /**
- * Parses input arguments and creates a new TodoAddCommand object.
+ * Parses input arguments and creates a new {@code TodoAddCommand} object.
  */
 public class TodoAddCommandParser implements Parser<TodoAddCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TodoAddCommand
-     * and returns an TodoAddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code TodoAddCommand}
+     * and returns a {@code TodoAddCommand} object for execution.
      *
      * @throws ParseException If the user input does not conform with the expected format.
      */

@@ -18,7 +18,7 @@ import soconnect.model.tag.Tag;
 import soconnect.model.todo.Todo;
 
 /**
- * An Immutable TodoList that is serializable to JSON format.
+ * An Immutable {@code TodoList} that is serializable to JSON format.
  */
 @JsonRootName(value = "todolist")
 class JsonSerializableTodoList {
@@ -29,7 +29,7 @@ class JsonSerializableTodoList {
     private final List<JsonAdaptedTodo> todos = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableTodoList} with the given todos.
+     * Constructs a {@code JsonSerializableTodoList} with the given {@code todos}.
      */
     @JsonCreator
     public JsonSerializableTodoList(@JsonProperty("todos") List<JsonAdaptedTodo> todos) {

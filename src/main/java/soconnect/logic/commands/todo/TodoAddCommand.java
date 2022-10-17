@@ -13,7 +13,7 @@ import soconnect.model.Model;
 import soconnect.model.todo.Todo;
 
 /**
- * Adds a {@code Todo} to the TodoList.
+ * Adds a {@code Todo} to the {@code TodoList}.
  */
 public class TodoAddCommand extends TodoCommand {
 
@@ -37,7 +37,7 @@ public class TodoAddCommand extends TodoCommand {
     private final Todo toAdd;
 
     /**
-     * Constructs a TodoAddCommand with the {@code todo} to be added to the TodoList.
+     * Constructs a {@code TodoAddCommand} with the {@code todo} to be added to the {@code TodoList}.
      */
     public TodoAddCommand(Todo todo) {
         requireNonNull(todo);

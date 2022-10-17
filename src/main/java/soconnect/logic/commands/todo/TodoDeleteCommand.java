@@ -12,7 +12,7 @@ import soconnect.model.Model;
 import soconnect.model.todo.Todo;
 
 /**
- * Deletes a {@code Todo} identified using it's displayed index from the TodoList.
+ * Deletes a {@code Todo} identified using it's displayed index from the {@code TodoList}.
  */
 public class TodoDeleteCommand extends TodoCommand {
 
@@ -27,6 +27,11 @@ public class TodoDeleteCommand extends TodoCommand {
 
     private final Index targetIndex;
 
+    /**
+     * Constructs an {@code TodoDeleteCommand} to delete an existing {@code Todo}.
+     *
+     * @param targetIndex The index of the {@code Todo} to delete.
+     */
     public TodoDeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

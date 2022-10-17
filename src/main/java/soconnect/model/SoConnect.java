@@ -151,15 +151,15 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Returns true if all the tags in the todo exist in the tagList.
+     * Returns true if all the {@code tag}s in the {@code todo} exist in the {@code tagList}.
      *
-     * @param todo The todo to be added.
-     * @return True if all the tags exists in the tagList. False if otherwise.
+     * @param todo The {@code Todo} to be added.
+     * @return True if all the {@code tag}s exists in the {@code tagList}. False if otherwise.
      */
     public boolean areTagsAvailable(Todo todo) {
         List<Tag> todoTags = new ArrayList<>(todo.getTags());
-        for (int i = 0; i < todoTags.size(); i++) {
-            if (!tags.hasTag(todoTags.get(i))) {
+        for (Tag todoTag : todoTags) {
+            if (!tags.hasTag(todoTag)) {
                 return false;
             }
         }

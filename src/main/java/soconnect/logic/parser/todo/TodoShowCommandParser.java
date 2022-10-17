@@ -3,8 +3,10 @@ package soconnect.logic.parser.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
+import static soconnect.logic.parser.CliSyntax.INDICATOR_ALL;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_PRIORITY;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
+import static soconnect.logic.parser.CliSyntax.PREFIX_ALL;
 import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
@@ -23,13 +25,13 @@ import soconnect.model.todo.TodoContainsPriorityPredicate;
 import soconnect.model.todo.TodoContainsTagPredicate;
 
 /**
- * Parses input arguments and creates a new TodoShowCommand object.
+ * Parses input arguments and creates a new {@code TodoShowCommand} object.
  */
 public class TodoShowCommandParser implements Parser<TodoShowCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the {@code SearchCommand}
-     * and returns a {@code SearchCommand} object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code TodoShowCommand}
+     * and returns a {@code TodoShowCommand} object for execution.
      *
      * @throws ParseException If the user input does not conform with the expected format.
      */
@@ -42,7 +44,7 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }
 
-        List<ArgumentTokenizer.PrefixArgument> argList = tokenizeToList(args, new Prefix("all"), PREFIX_PRIORITY,
+        List<ArgumentTokenizer.PrefixArgument> argList = tokenizeToList(args, PREFIX_ALL, PREFIX_PRIORITY,
             PREFIX_TAG);
         int expectedNumberOfArguments = 2;
         if (argList.size() != expectedNumberOfArguments) {
@@ -50,25 +52,31 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }
 
-        return parseShowCondition(argList.get(1));
+        ArgumentTokenizer.PrefixArgument condition = argList.get(1);
+        return parseShowCondition(condition);
     }
 
+    /**
+     * Parses the filter condition in {@code prefixArg} into a {@code TodoShowCommand}.
+     */
     private TodoShowCommand parseShowCondition(ArgumentTokenizer.PrefixArgument prefixArg) throws ParseException {
         Prefix prefix = prefixArg.getPrefix();
         String arg = prefixArg.getArgument();
 
         switch (prefix.getPrefix()) {
 
-        case "all":
+        case INDICATOR_ALL:
             return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS);
 
         case INDICATOR_PRIORITY:
             Priority priority = ParserUtil.parsePriority(arg);
-            return new TodoShowCommand(new TodoContainsPriorityPredicate(priority));
+            TodoContainsPriorityPredicate priorityPredicate = new TodoContainsPriorityPredicate(priority);
+            return new TodoShowCommand(priorityPredicate);
 
         case INDICATOR_TAG:
             Tag tag = ParserUtil.parseTag(arg);
-            return new TodoShowCommand(new TodoContainsTagPredicate(tag));
+            TodoContainsTagPredicate tagPredicate = new TodoContainsTagPredicate(tag);
+            return new TodoShowCommand(tagPredicate);
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));

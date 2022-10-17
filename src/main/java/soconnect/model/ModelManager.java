@@ -30,12 +30,12 @@ public class ModelManager implements Model {
     private final ObservableList<Tag> tags;
 
     /**
-     * Initializes a ModelManager with the given soConnect, todoList, and userPrefs.
+     * Initializes a ModelManager with the given {@code soConnect}, {@code todoList}, and {@code userPrefs}.
      */
     public ModelManager(ReadOnlySoConnect soConnect, ReadOnlyTodoList todoList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(soConnect, todoList, userPrefs);
 
-        logger.fine("Initializing with SoConnect: " + soConnect + ", TodoList: " + " and user prefs " + userPrefs);
+        logger.fine("Initializing with SoConnect: " + soConnect + ", TodoList: " + ", and user prefs " + userPrefs);
 
         this.soConnect = new SoConnect(soConnect);
         this.todoList = new TodoList(todoList);
@@ -253,8 +253,7 @@ public class ModelManager implements Model {
     //=========== Filtered TodoList Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedTodoList}.
+     * Returns an unmodifiable view of the {@code TodoList}.
      */
     @Override
     public ObservableList<Todo> getFilteredTodoList() {

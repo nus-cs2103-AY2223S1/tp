@@ -14,6 +14,9 @@ import soconnect.model.person.Name;
 import soconnect.model.person.Person;
 import soconnect.model.person.Phone;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Description;
+import soconnect.model.todo.Priority;
+import soconnect.model.todo.Todo;
 
 /**
  * Contains utility methods for populating {@code SoConnect} with sample data.
@@ -42,6 +45,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Todo[] getSampleTodos() {
+        return new Todo[] {
+            new Todo(new Description("Watch recorded lecture videos"), new Priority("high"),
+                getTagSet("friends")),
+            new Todo(new Description("Revise content"), new Priority("medium"),
+                getTagSet("family")),
+            new Todo(new Description("Prepare for tutorials"), new Priority("low"),
+                getTagSet("friends", "family"))
+        };
+    }
+
     public static ReadOnlySoConnect getSampleSoConnect() {
         SoConnect sampleSC = new SoConnect();
         for (Person samplePerson : getSamplePersons()) {
@@ -52,11 +66,9 @@ public class SampleDataUtil {
 
     public static ReadOnlyTodoList getSampleTodoList() {
         TodoList sampleTodoList = new TodoList();
-        /*
-        for (Person samplePerson : getSamplePersons()) {
-            sampleSC.addPerson(samplePerson);
+        for (Todo sampleTodo : getSampleTodos()) {
+            sampleTodoList.addTodo(sampleTodo);
         }
-         */
         return sampleTodoList;
     }
 

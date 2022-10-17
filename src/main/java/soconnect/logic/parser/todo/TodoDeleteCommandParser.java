@@ -8,15 +8,15 @@ import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new TodoDeleteCommand object.
+ * Parses input arguments and creates a new {@code TodoDeleteCommand} object.
  */
 public class TodoDeleteCommandParser implements Parser<TodoDeleteCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TodoDeleteCommand
-     * and returns a TodoDeleteCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code TodoDeleteCommand}
+     * and returns a {@code TodoDeleteCommand} object for execution.
      *
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform with the expected format.
      */
     public TodoDeleteCommand parse(String args) throws ParseException {
         try {

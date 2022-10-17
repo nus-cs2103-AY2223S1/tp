@@ -15,15 +15,15 @@ import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new TodoEditCommand object.
+ * Parses input arguments and creates a new {@code TodoEditCommand} object.
  */
 public class TodoEditCommandParser implements Parser<TodoEditCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the TodoEditCommand
-     * and returns an TodoEditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code TodoEditCommand}
+     * and returns an {@code TodoEditCommand} object for execution.
      *
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform with the expected format.
      */
     public TodoEditCommand parse(String args) throws ParseException {
         requireNonNull(args);

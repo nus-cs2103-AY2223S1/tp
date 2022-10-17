@@ -17,7 +17,7 @@ import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 
 /**
- * A class to access TodoList data stored as a json file on the hard disk.
+ * A class to access {@code TodoList} data stored as a json file on the hard disk.
  */
 public class JsonTodoListStorage implements TodoListStorage {
 
@@ -51,7 +51,7 @@ public class JsonTodoListStorage implements TodoListStorage {
 
         Optional<JsonSerializableTodoList> jsonTodoList = JsonUtil.readJsonFile(
             filePath, JsonSerializableTodoList.class);
-        if (!jsonTodoList.isPresent()) {
+        if (jsonTodoList.isEmpty()) {
             return Optional.empty();
         }
 

@@ -36,7 +36,7 @@ public interface Logic {
     ReadOnlySoConnect getSoConnect();
 
     /**
-     * Returns the TodoList.
+     * Returns the {@code TodoList}.
      *
      * @see Model#getTodoList()
      */
@@ -65,7 +65,7 @@ public interface Logic {
     Path getSoConnectFilePath();
 
     /**
-     * Returns the user prefs' TodoList file path.
+     * Returns the user prefs' {@code TodoList} file path.
      */
     Path getTodoListFilePath();
 

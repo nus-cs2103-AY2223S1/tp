@@ -140,7 +140,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String description} into an {@code Description}.
+     * Parses a {@code String} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException If the given {@code description} is invalid.
@@ -155,7 +155,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String priority} into an {@code Priority}.
+     * Parses a {@code String} into an {@code Priority}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException If the given {@code priority} is invalid.

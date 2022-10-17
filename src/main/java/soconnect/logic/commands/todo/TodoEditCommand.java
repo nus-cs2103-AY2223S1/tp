@@ -25,7 +25,7 @@ import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
 
 /**
- * Edits the details of an existing {@code Todo} in the TodoList.
+ * Edits the details of an existing {@code Todo} in the {@code TodoList}.
  */
 public class TodoEditCommand extends TodoCommand {
 
@@ -55,7 +55,7 @@ public class TodoEditCommand extends TodoCommand {
     /**
      * Constructs an {@code TodoEditCommand} to edit the details of an existing {@code Todo} in SoConnect.
      *
-     * @param index Index of the {@code Todo} in the filtered todo list to edit.
+     * @param index Index of the {@code Todo} in the {@code TodoList}.
      * @param editTodoDescriptor Details to edit the {@code Todo} with.
      */
     public TodoEditCommand(Index index, EditTodoDescriptor editTodoDescriptor) {
@@ -123,18 +123,21 @@ public class TodoEditCommand extends TodoCommand {
     }
 
     /**
-     * Stores the details to edit the todo with. Each non-empty field value will replace the
-     * corresponding field value of the todo.
+     * Stores the details to edit the {@code Todo} with. Each non-empty field value will replace the
+     * corresponding field value of the {@code Todo}.
      */
     public static class EditTodoDescriptor {
         private Description description;
         private Priority priority;
         private Set<Tag> tagSet;
 
+        /**
+         * Constructs a {@code EditTodoDescriptor}.
+         */
         public EditTodoDescriptor() {}
 
         /**
-         * Copy constructor.
+         * Constructs a {@code EditTodoDescriptor} with fields copied from {@code toCopy}.
          */
         public EditTodoDescriptor(EditTodoDescriptor toCopy) {
             setDescription(toCopy.description);

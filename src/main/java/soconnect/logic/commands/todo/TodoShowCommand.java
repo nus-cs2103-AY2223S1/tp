@@ -12,13 +12,12 @@ import soconnect.model.Model;
 import soconnect.model.todo.Todo;
 
 /**
- * Filters the shown todo list.
+ * Filters the shown {@code TodoList}.
  */
 public class TodoShowCommand extends TodoCommand {
 
     public static final String SUB_COMMAND_WORD = "show";
     public static final String NO_CONDITION = "all";
-    public static final String PREFIX_CONDITION = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
         + ": Filters the shown Todo List based on the condition set.\n"
@@ -30,7 +29,7 @@ public class TodoShowCommand extends TodoCommand {
     private final Predicate<Todo> predicate;
 
     /**
-     * Constructs a {@code TodoShowCommand} to filter todos in the TodoList.
+     * Constructs a {@code TodoShowCommand} to filter {@code Todo}s in the {@code TodoList}.
      */
     public TodoShowCommand(Predicate<Todo> predicate) {
         requireNonNull(predicate);
