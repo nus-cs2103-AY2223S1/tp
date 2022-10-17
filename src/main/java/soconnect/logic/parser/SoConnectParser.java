@@ -7,7 +7,6 @@ import soconnect.commons.core.Messages;
 import soconnect.logic.commands.AddCommand;
 import soconnect.logic.commands.ClearCommand;
 import soconnect.logic.commands.Command;
-import soconnect.logic.commands.CustomiseCommand;
 import soconnect.logic.commands.DeleteCommand;
 import soconnect.logic.commands.EditCommand;
 import soconnect.logic.commands.ExitCommand;
@@ -16,7 +15,9 @@ import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.ListCommand;
 import soconnect.logic.commands.SearchCommand;
 import soconnect.logic.commands.SortCommand;
+import soconnect.logic.commands.customise.CustomiseCommand;
 import soconnect.logic.commands.tagcommands.TagCommand;
+import soconnect.logic.parser.customise.CustomiseCommandParser;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.logic.parser.tagcommandparsers.TagCommandParser;
 
