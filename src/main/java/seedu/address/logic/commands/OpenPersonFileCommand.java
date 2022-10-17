@@ -21,10 +21,9 @@ public class OpenPersonFileCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_OPEN_PERSON_FILE_SUCCESS = "Opened Person: %1$s File";
+    public static final String MESSAGE_OPEN_PERSON_FILE_SUCCESS = "Opened File of Person: %1$s ";
 
     private final Index targetIndex;
-    private Person personToOpenFile;
 
     public OpenPersonFileCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -39,11 +38,11 @@ public class OpenPersonFileCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        personToOpenFile = lastShownList.get(targetIndex.getZeroBased());
+        Person personToOpenFile = lastShownList.get(targetIndex.getZeroBased());
         try {
-            FileUtil.openPDFFile(personToOpenFile.getFilePath().toString());
+            FileUtil.openPdfFile(personToOpenFile.getFilePath().toString());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new CommandException(e.getMessage(), e);
         }
         return new CommandResult(String.format(MESSAGE_OPEN_PERSON_FILE_SUCCESS, personToOpenFile));
     }

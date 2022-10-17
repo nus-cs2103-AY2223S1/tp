@@ -33,7 +33,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
                   NetWorth netWorth, FilePath filePath, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, filePath,  tags);
+        requireAllNonNull(name, phone, email, address, netWorth, filePath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -149,13 +149,13 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append(" Address: ")
                 .append(getAddress())
                 .append(" Remark: ")
                 .append(getRemark())
                 .append(" Net Worth: ")
                 .append(getNetWorth())
-                .append(" File Path ")
+                .append(" File Path: ")
                 .append(getFilePath())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

@@ -15,6 +15,10 @@ public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
 
+    private static final String PDF_OPEN_ERROR_MESSAGE = "File Path to PDF of client does not exist or is incorrect";
+
+    private static final String PDF_DESKTOP_INCOMPATIBLE = "Awt Desktop is not supported on your device";
+
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
     }
@@ -82,18 +86,22 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
-    public static void openPDFFile(String filePath) throws IOException {
+    public static void openPdfFile(String filePath) throws IOException {
         File pdfFile = new File(filePath);
         if (pdfFile.exists()) {
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(pdfFile);
             } else {
-                System.out.println("Awt Desktop is not supported!");
+                throw new IOException(PDF_DESKTOP_INCOMPATIBLE);
             }
-
         } else {
-            System.out.println("File is not exists!");
+            throw new IOException(PDF_OPEN_ERROR_MESSAGE);
         }
+    }
+
+    public static boolean checkPdfFilePath(String filePath) {
+        File pdfFile = new File(filePath);
+        return pdfFile.exists();
     }
 
 }

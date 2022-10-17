@@ -38,9 +38,10 @@ public class CreateCommandParser implements Parser<CreateCommand> {
     public CreateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_REMARK, PREFIX_NETWORTH, PREFIX_FILEPATH, PREFIX_TAG);
+                        PREFIX_NETWORTH, PREFIX_FILEPATH, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_NETWORTH, PREFIX_EMAIL)
+        if (!arePrefixesPresent(
+                argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NETWORTH, PREFIX_FILEPATH)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
         }

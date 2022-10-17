@@ -131,7 +131,7 @@ public class ParserUtil {
     public static FilePath parseFilePath(String filePath) throws ParseException {
         requireNonNull(filePath);
         String trimmedFilePath = filePath.trim();
-        if (!FilePath.isValidFilePath(trimmedFilePath)) {
+        if (!FilePath.isValidPdfFilePath(trimmedFilePath)) {
             throw new ParseException(FilePath.MESSAGE_CONSTRAINTS);
         }
         return new FilePath(trimmedFilePath);

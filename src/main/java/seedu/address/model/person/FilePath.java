@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.util.FileUtil;
+
 /**
  * Represents a Person's pdf file in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidFilePath(String)}
@@ -11,12 +13,6 @@ public class FilePath {
 
     public static final String MESSAGE_CONSTRAINTS =
             "FilePath should be a valid file path in your directory";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "([a-zA-Z]:)?(\\\\[a-zA-Z0-9._-]+)+\\\\?";
 
     public final String value;
 
@@ -27,16 +23,15 @@ public class FilePath {
      */
     public FilePath(String filePath) {
         requireNonNull(filePath);
-        checkArgument(isValidFilePath(filePath), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidPdfFilePath(filePath), MESSAGE_CONSTRAINTS);
         this.value = filePath;
     }
 
     /**
-     * Returns true if a given string is a valid filePath.
+     * Returns true if a given string is a valid PDF file Path.
      */
-    public static boolean isValidFilePath(String test) {
-        return true;
-        //return test.matches(VALIDATION_REGEX);
+    public static boolean isValidPdfFilePath(String test) {
+        return  FileUtil.isValidPath(test) && test.contains(".pdf") && FileUtil.checkPdfFilePath(test);
     }
 
 
