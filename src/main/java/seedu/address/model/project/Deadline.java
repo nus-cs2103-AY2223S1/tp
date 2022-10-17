@@ -1,9 +1,9 @@
 package seedu.address.model.project;
 
-import java.time.LocalDate;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.time.LocalDate;
 
 /**
  * Represent a project deadline in HR PRO Max++.
@@ -59,7 +59,7 @@ public class Deadline implements Comparable<Deadline> {
     public int hashCode() {
         return deadline.hashCode();
     }
-    
+
     @Override
     public int compareTo(Deadline other) {
         //will not throw error because format is ensured by regex.

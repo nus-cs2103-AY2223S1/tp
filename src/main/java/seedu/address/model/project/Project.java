@@ -128,7 +128,6 @@ public class Project implements Comparable<Project> {
 
     /**
      * Compares projects by deadline.
-     * @param other 
      */
     @Override
     public int compareTo(Project other) {

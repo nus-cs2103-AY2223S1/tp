@@ -3,7 +3,6 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -87,7 +86,6 @@ public class UniqueProjectList implements Iterable<Project> {
     public void sortProjects() {
         internalList.sort((a, b) -> a.compareTo(b));
     }
-    
 
     public void setProjects(UniqueProjectList replacement) {
         requireNonNull(replacement);

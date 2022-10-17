@@ -99,7 +99,7 @@ public class ModelManager implements Model {
     public void deleteProject(Project target) {
         addressBook.removeProject(target);
     }
-    
+
     @Override
     public void sortProjects() {
         addressBook.sortProjects();
