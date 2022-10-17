@@ -17,7 +17,6 @@ import tracko.testutil.OrderBuilder;
 import tracko.testutil.OrderUtil;
 
 public class TrackOParserTest {
-    // TODO: Update test cases according to new implementations
 
     private final TrackOParser parser = new TrackOParser();
 

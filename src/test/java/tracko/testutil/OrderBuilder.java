@@ -12,6 +12,8 @@ import tracko.model.order.Name;
 import tracko.model.order.Order;
 import tracko.model.order.Phone;
 
+import static tracko.testutil.TypicalItems.ITEM_1;
+
 /**
  * A utility class to help with building Order objects.
  */
@@ -21,7 +23,7 @@ public class OrderBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Item DEFAULT_ITEM = new ItemBuilder().build();
+    public static final Item DEFAULT_ITEM = ITEM_1;
     public static final Integer DEFAULT_QUANTITY = 2;
 
     private Name name;

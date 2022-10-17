@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import tracko.model.TrackO;
+import tracko.model.item.InventoryList;
 import tracko.model.item.Item;
 
 /**
@@ -12,6 +13,7 @@ import tracko.model.item.Item;
  */
 public class TypicalItems {
 
+    // Following items to be instantiated as a test InventoryList
     public static final Item ITEM_1 = new ItemBuilder().withItemName("Sofa")
             .withQuantity(200).withDescription("Made of leather").build();
     public static final Item ITEM_2 = new ItemBuilder().withItemName("Bed")
@@ -26,14 +28,20 @@ public class TypicalItems {
             .withQuantity(50).withDescription("Comes with linen").build();
     public static final Item ITEM_7 = new ItemBuilder().withItemName("Slippers")
             .withQuantity(48).withDescription("Cute shark slippers").build();
+
+    // Manually added
     public static final Item ITEM_8 = new ItemBuilder().withItemName("Keychain")
             .withQuantity(95).withDescription("Small copper keychain").build();
     public static final Item ITEM_9 = new ItemBuilder().withItemName("Mechanical Pencil")
             .withQuantity(278).withDescription("Mechanical pencil with rubber grip").build();
+
+    // Manually added
     public static final Item ITEM_10 = new ItemBuilder().withItemName("Eraser")
             .withQuantity(209).withDescription("Plastic eraser").build();
     public static final Item ITEM_11 = new ItemBuilder().withItemName("Stapler")
             .withQuantity(76).withDescription("Portable handheld stapler").build();
+
+    public static final InventoryList INVENTORY_LIST = getTypicalInventoryList();
 
     /**
      * Returns an {@code TrackO} with all the typical {@code Item}.
@@ -48,5 +56,14 @@ public class TypicalItems {
 
     public static List<Item> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(ITEM_1, ITEM_2, ITEM_3, ITEM_4, ITEM_5, ITEM_6, ITEM_7));
+    }
+
+    /**
+     * Returns an {@code InventoryList} with all the typical {@code Item}s;
+     */
+    private static InventoryList getTypicalInventoryList() {
+        InventoryList inventoryList = new InventoryList();
+        inventoryList.setItems(getTypicalItems());
+        return inventoryList;
     }
 }

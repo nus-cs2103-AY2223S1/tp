@@ -70,7 +70,7 @@ public class DeleteOrderCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND;
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of order list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);

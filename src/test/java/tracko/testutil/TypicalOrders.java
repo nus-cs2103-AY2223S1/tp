@@ -8,29 +8,57 @@ import static tracko.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_1;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_10;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_11;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_2;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_3;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_4;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_5;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_6;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_7;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_8;
-import static tracko.testutil.TypicalItemQuantityPairs.PAIR_9;
+import static tracko.testutil.TypicalItems.ITEM_1;
+import static tracko.testutil.TypicalItems.ITEM_2;
+import static tracko.testutil.TypicalItems.ITEM_3;
+import static tracko.testutil.TypicalItems.ITEM_4;
+import static tracko.testutil.TypicalItems.ITEM_5;
+import static tracko.testutil.TypicalItems.ITEM_6;
+import static tracko.testutil.TypicalItems.ITEM_7;
+import static tracko.testutil.TypicalItems.ITEM_8;
+import static tracko.testutil.TypicalItems.ITEM_9;
+import static tracko.testutil.TypicalItems.ITEM_10;
+import static tracko.testutil.TypicalItems.ITEM_11;
+import static tracko.testutil.TypicalItems.getTypicalItems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import tracko.model.TrackO;
+import tracko.model.item.Item;
+import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 
 /**
  * A utility class containing a list of {@code Order} objects to be used in tests.
  */
 public class TypicalOrders {
+
+    public static final ItemQuantityPair PAIR_1 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_1).withQuantity(1).build();
+    public static final ItemQuantityPair PAIR_2 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_2).withQuantity(2).build();
+    public static final ItemQuantityPair PAIR_3 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_3).withQuantity(3).build();
+    public static final ItemQuantityPair PAIR_4 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_4).withQuantity(4).build();
+    public static final ItemQuantityPair PAIR_5 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_5).withQuantity(5).build();
+    public static final ItemQuantityPair PAIR_6 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_6).withQuantity(6).build();
+    public static final ItemQuantityPair PAIR_7 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_7).withQuantity(7).build();
+
+
+    public static final ItemQuantityPair PAIR_8 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_8).withQuantity(8).build();
+    public static final ItemQuantityPair PAIR_9 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_9).withQuantity(9).build();
+    public static final ItemQuantityPair PAIR_10 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_10).withQuantity(10).build();
+    public static final ItemQuantityPair PAIR_11 = new ItemQuantityPairBuilder()
+        .withItem(ITEM_11).withQuantity(11).build();
 
     public static final Order ORDER_1 = new OrderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -77,6 +105,9 @@ public class TypicalOrders {
      */
     public static TrackO getTrackOWithTypicalOrders() {
         TrackO trackO = new TrackO();
+        for (Item item : getTypicalItems()) {
+            trackO.addItem(item);
+        }
         for (Order order : getTypicalOrders()) {
             trackO.addOrder(order);
         }
