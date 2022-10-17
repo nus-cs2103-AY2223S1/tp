@@ -23,7 +23,7 @@ import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 public class EditCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getUsage());
 
     private final EditCommandParser parser = new EditCommandParser();
 

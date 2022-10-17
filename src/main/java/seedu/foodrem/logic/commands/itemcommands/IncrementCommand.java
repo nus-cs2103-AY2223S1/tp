@@ -1,14 +1,13 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.foodrem.enums.CommandType.INCREMENT_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
-import seedu.foodrem.enums.CommandWord;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -20,18 +19,8 @@ import seedu.foodrem.model.item.ItemQuantity;
  * Increments the quantity of an item by a specified amount.
  */
 public class IncrementCommand extends Command {
-    public static final String COMMAND_WORD = CommandWord.INCREMENT_COMMAND.getValue();
+    public static final String MESSAGE_SUCCESS = "Incremented Item: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Increments the quantity of the item identified by the index number used in the displayed item list.\n"
-            + "If a quantity is not provided, the item quantity will be incremented by 1. \n"
-            + "Parameters:\n"
-            + "INDEX (must be a positive integer) [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n"
-            + "Example:\n"
-            + COMMAND_WORD + " 10\n"
-            + COMMAND_WORD + " 10 " + PREFIX_ITEM_QUANTITY + "100";
-
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Incremented Item: %1$s";
     private final Index index;
     private final ItemQuantity quantity;
 
@@ -49,7 +38,7 @@ public class IncrementCommand extends Command {
 
     /**
      * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
-     * incremented by  {@code editItemDescriptor}.
+     * incremented by {@code editItemDescriptor}.
      */
     private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) {
         assert itemToIncrement != null;
@@ -69,7 +58,6 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getExpiryDate());
     }
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -84,6 +72,10 @@ public class IncrementCommand extends Command {
 
         model.setItem(itemToIncrement, incrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, incrementedItem));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, incrementedItem));
+    }
+
+    public static String getUsage() {
+        return INCREMENT_COMMAND.getUsage();
     }
 }

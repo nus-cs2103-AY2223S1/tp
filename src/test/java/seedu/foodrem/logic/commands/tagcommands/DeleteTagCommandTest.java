@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand.MESSAGE_TAG_NOT_FOUND;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
@@ -23,6 +22,8 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 
 public class DeleteTagCommandTest {
+    private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem";
+    private static final String EXPECTED_FORMAT_SUCCESS = "Tag deleted: %1$s";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
@@ -31,7 +32,7 @@ public class DeleteTagCommandTest {
         Tag tagToDelete = model.getFilteredTagList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tagToDelete);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, tagToDelete);
+        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, tagToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteTag(tagToDelete);
@@ -53,7 +54,7 @@ public class DeleteTagCommandTest {
             assertTrue(item.containsTag(tagToDelete));
         }
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, tagToDelete);
+        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, tagToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteTag(tagToDelete);
@@ -71,7 +72,7 @@ public class DeleteTagCommandTest {
         Tag tagToDelete = new TagBuilder().withTagName("NOT_FOUND").build();
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tagToDelete);
 
-        assertCommandFailure(deleteTagCommand, model, MESSAGE_TAG_NOT_FOUND);
+        assertCommandFailure(deleteTagCommand, model, EXPECTED_ERROR_NOT_FOUND);
     }
 
     @Test
