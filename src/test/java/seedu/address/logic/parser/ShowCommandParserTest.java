@@ -38,7 +38,7 @@ public class ShowCommandParserTest {
 
     @Test
     public void test_isValidArgument() {
-        boolean actualOutput1 = ShowCommandParser.isValidArgument("tUes");
+        boolean actualOutput1 = ShowCommandParser.isValidArgument("tUe");
         assertTrue(actualOutput1 == (true));
 
         boolean actualOutput2 = ShowCommandParser.isValidArgument("random");
