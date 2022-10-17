@@ -50,16 +50,19 @@ public class DeleteCommandParserTest {
     public void parse_invalidArgsRace_throwsParseException() {
         assertParseFailure(parser, " ra/123", Race.MESSAGE_CONSTRAINTS);
     }
+
     @Test
     public void parse_validArgsReligion_returnsDeleteCommand() {
         Religion religion = new Religion(VALID_RELIGION_BOB);
         assertParseSuccess(parser, " re/Muslim",
                 new DeleteCommand(Optional.empty(), Optional.empty(), Optional.of(religion), Optional.empty()));
     }
+
     @Test
     public void parse_invalidArgsReligion_throwsParseException() {
         assertParseFailure(parser, " re/75575", Religion.MESSAGE_CONSTRAINTS);
     }
+
     @Test
     public void parse_validArgsSurvey_returnsDeleteCommand() {
         Survey survey = new Survey(VALID_SURVEY_AMY);
