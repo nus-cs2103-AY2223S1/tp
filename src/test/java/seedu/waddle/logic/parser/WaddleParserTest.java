@@ -55,8 +55,8 @@ public class WaddleParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Itinerary person = new ItineraryBuilder().build();
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(person).build();
+        Itinerary itinerary = new ItineraryBuilder().build();
+        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder(itinerary).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_ITINERARY.getOneBased() + " " + ItineraryUtil.getEditItineraryDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_ITINERARY, descriptor), command);

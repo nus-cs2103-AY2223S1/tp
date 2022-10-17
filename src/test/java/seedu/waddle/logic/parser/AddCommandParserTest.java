@@ -54,14 +54,14 @@ public class AddCommandParserTest {
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple country - last phone accepted
+        // multiple country - last country accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_SUMMER + COUNTRY_DESC_WINTER
                 + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple people - last people accepted
-        assertParseSuccess(parser, NAME_DESC_WINTER + PEOPLE_DESC_SUMMER + COUNTRY_DESC_WINTER
-                + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+        assertParseSuccess(parser, NAME_DESC_WINTER + PEOPLE_DESC_WINTER + COUNTRY_DESC_WINTER
+                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple end date - last address accepted
@@ -134,7 +134,7 @@ public class AddCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + INVALID_END_DATE_DESC, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_END_DATE_DESC + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_WINTER + COUNTRY_DESC_WINTER

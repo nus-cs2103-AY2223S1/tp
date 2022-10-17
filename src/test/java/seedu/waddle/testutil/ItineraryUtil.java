@@ -28,10 +28,10 @@ public class ItineraryUtil {
     public static String getItineraryDetails(Itinerary itinerary) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + itinerary.getName().fullName + " ");
-        sb.append(PREFIX_COUNTRY + itinerary.getCountry().toString() + " ");
-        sb.append(PREFIX_START_DATE + itinerary.getStartDate().toString() + " ");
-        sb.append(PREFIX_START_DATE + itinerary.getEndDate().toString() + " ");
-        sb.append(PREFIX_PEOPLE + itinerary.getPeople().toString() + " ");
+        sb.append(PREFIX_COUNTRY + itinerary.getCountry().country + " ");
+        sb.append(PREFIX_START_DATE + itinerary.getStartDate().date + " ");
+        sb.append(PREFIX_END_DATE + itinerary.getEndDate().date + " ");
+        sb.append(PREFIX_PEOPLE + itinerary.getPeople().numOfPeople);
         return sb.toString();
     }
 
