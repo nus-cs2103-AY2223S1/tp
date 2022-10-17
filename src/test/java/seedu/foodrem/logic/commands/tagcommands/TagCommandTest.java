@@ -8,44 +8,40 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand.MESSAGE_TAG_NOT_FOUND;
 import static seedu.foodrem.testutil.TypicalFoodRem.getFoodRemWithTypicalItemsWithoutTags;
 import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
 import org.junit.jupiter.api.Test;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.function.Predicate;
-import javafx.collections.ObservableList;
-import javax.sound.midi.Soundbank;
-import seedu.foodrem.commons.core.GuiSettings;
+
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
-import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
-import seedu.foodrem.model.ReadOnlyFoodRem;
-import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
-import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 
 public class TagCommandTest {
-    private final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
+    private static final String MESSAGE_SUCCESS = "Item tagged successfully";
+    private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
+    private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
+    private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
+
+
 
     @Test
     public void execute_tagItem_success() throws CommandException {
+
+        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
         // Creating a copy of first item of model and adding a vegetable tag
         Item editedItem = new ItemBuilder(model.getFilteredItemList().get(0))
@@ -53,7 +49,7 @@ public class TagCommandTest {
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        String expectedMessage = String.format(TagCommand.MESSAGE_SUCCESS);
+        String expectedMessage = String.format(MESSAGE_SUCCESS);
 
         //Creating an expected model to compare to
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
@@ -72,35 +68,46 @@ public class TagCommandTest {
     }
 
     @Test
-    public void execute_tagDeletedFromItems_success() {
-        Tag tagToDelete = TypicalTags.VEGETABLES;
-        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tagToDelete);
+    public void execute_tagItemWithoutExistingTag_throwsCommandException() {
 
-        // True before deletion
-        for (Item item : model.getFilteredItemList()) {
-            assertTrue(item.containsTag(tagToDelete));
-        }
+        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, tagToDelete);
+        Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
-        expectedModel.deleteTag(tagToDelete);
+        TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
+        assertCommandFailure(tagItemCommand, model, ERROR_NOT_FOUND_TAG);
 
-        assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
-
-        // Tag should be deleted from all items
-        for (Item item : model.getFilteredItemList()) {
-            assertFalse(item.containsTag(tagToDelete));
-        }
     }
 
     @Test
-    public void execute_tagNotFound_throwsCommandException() {
-        Tag tagToDelete = new TagBuilder().withTagName("NOT_FOUND").build();
-        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tagToDelete);
+    public void execute_itemIndexNotFound_throwsCommandException() {
+        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
-        assertCommandFailure(deleteTagCommand, model, MESSAGE_TAG_NOT_FOUND);
+        Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
+
+        model.addTag(tag);
+
+        TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_THIRD_ITEM);
+
+        assertCommandFailure(tagItemCommand, model, ERROR_NOT_FOUND_ITEM);
+
+    }
+
+    @Test
+    public void execute_duplicateTagInItem_throwsCommandException() {
+        final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
+
+        Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
+
+        model.addTag(tag);
+
+        model.getFilteredItemList().get(0).addItemTag(tag);
+
+        TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
+
+        assertCommandFailure(tagItemCommand, model, ERROR_DUPLICATE);
+
     }
 
     @Test
