@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
  */
 public class HomeworkCommand extends Command {
 
-    public static final String COMMAND_WORD = "homework";
+    public static final String COMMAND_WORD = "hw";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds homework to the person identified "
