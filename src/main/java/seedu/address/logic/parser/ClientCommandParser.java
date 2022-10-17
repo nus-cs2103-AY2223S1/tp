@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -83,7 +82,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
-        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
             email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 

@@ -107,7 +107,7 @@ class JsonAdaptedIssue {
         //        }
         //
         final Project modelProject = HasIntegerIdentifier.getElementById(
-                AddressBook.get().getProjectList(), Integer.parseInt(project));
+                AddressBook.getProjectList(), Integer.parseInt(project));
 
 
         if (issueId == null) {

@@ -118,6 +118,18 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return issueList;
     }
 
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public void setRepository(Repository repository) {
+        this.repository = repository;
+    }
+
+    public void setDeadline(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
     public void removeClient() {
         this.client = Client.EmptyClient.EMPTY_CLIENT;
     }
@@ -129,10 +141,6 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
      */
     public boolean isEmpty() {
         return false;
-    }
-
-    public boolean hasValidClientId() {
-        return !this.getClient().getClientId().isEmpty();
     }
 
     /**

@@ -26,7 +26,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     private IssueId issueId;
 
     /**
-     * Description field must be present and not null, but all other fields are optional.
+     * Description field and project field must be present and not null, but all other fields are optional.
      */
     public Issue(Description description, Deadline deadline, Priority priority,
                  Status status, Project project, IssueId issueId) {
@@ -38,6 +38,36 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         this.project = project;
         this.issueId = issueId;
         this.project.getIssueList().add(this);
+    }
+
+    /**
+     * Description field and project field must be present and not null.
+     */
+    public Issue(Description description, Project project) {
+        requireAllNonNull(description, project);
+        this.description = description;
+        this.project = project;
+        //todo: set other fields to emptyOptionals post-merge
+    }
+
+    /**
+     * Represents an Empty Issue.
+     */
+    public static class EmptyIssue extends Issue {
+        public static final Issue EMPTY_ISSUE = new EmptyIssue();
+        private EmptyIssue() {
+            super(Description.EmptyDescription.EMPTY_DESCRIPTION, Project.EmptyProject.EMPTY_PROJECT);
+        }
+
+        /**
+         * Checks if this Project is empty.
+         * @return true if the Project is empty.
+         */
+        @Override
+        public boolean isEmpty() {
+            return true;
+        }
+
     }
 
     public IssueId getIssueId() {
@@ -89,16 +119,35 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
      */
     @Override
     public boolean hasSameName(Issue otherIssue) {
-        if (otherIssue == this) {
-            return true;
-        }
-
-        return otherIssue != null
-                && otherIssue.getDescription().equals(getDescription());
+        return otherIssue.description == this.description;
     }
 
     public Status getStatus() {
         return this.status;
+    }
+
+    public void setDescription(Description description) {
+        this.description = description;
+    }
+
+    public void setDeadline(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    /**
+     * Checks if this Issue is empty.
+     * @return true if the Issue is empty.
+     */
+    public boolean isEmpty() {
+        return false;
     }
 
     public String uiRepresentation() {
@@ -109,6 +158,19 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     @Override
     public String toString() {
         return this.description.toString();
+    }
+
+    /**
+     * Returns true if both issues have the same description.
+     * This defines a weaker notion of equality between two issues.
+     */
+    public boolean isSameIssue(Issue otherIssue) {
+        if (otherIssue == this) {
+            return true;
+        }
+
+        return otherIssue != null
+                && otherIssue.getDescription().equals(getDescription());
     }
 
     /**
