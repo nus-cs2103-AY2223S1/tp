@@ -19,10 +19,10 @@ import seedu.address.model.pet.Pet;
  * An UI component that displays information of a {@code Pet}.
  */
 public class PetCard extends UiPart<Region> {
-    private static final String FXML = "PetListCard.fxml";
+
     public static final boolean SHOULD_DISPLAY_SUPPLIER_NAME = true;
     public static final boolean SHOULD_NOT_DISPLAY_SUPPLIER_NAME = false;
-
+    private static final String FXML = "PetListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

@@ -10,6 +10,8 @@ import seedu.address.model.order.Order;
  */
 public class OrderCard extends UiPart<Region> {
 
+    public static final boolean SHOULD_DISPLAY_BUYER_NAME = true;
+    public static final boolean SHOULD_NOT_DISPLAY_BUYER_NAME = false;
     private static final String FXML = "OrderListCard.fxml";
 
     /**
@@ -20,8 +22,6 @@ public class OrderCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public static final boolean SHOULD_DISPLAY_BUYER_NAME = true;
-    public static final boolean SHOULD_NOT_DISPLAY_BUYER_NAME = false;
     private final Order order;
     private final int displayedIndex;
 
