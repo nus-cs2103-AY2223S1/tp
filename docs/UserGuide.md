@@ -183,6 +183,18 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+### Editing a task: `task edit`
+
+Edits an existing task in the task list.
+
+Format: `task edit INDEX [ti/TITLE]`
+
+* Edits the task at the specified `INDEX`.  The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* Replacement for previous title should be inputted.
+
+Examples:
+* `task edit 1 ti/go back home` Edits the title to `go back home`
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
