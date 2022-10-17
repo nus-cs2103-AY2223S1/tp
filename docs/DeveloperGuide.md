@@ -173,7 +173,7 @@ The sequence diagram is given below.
 
 #### Design considerations
 
-The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list.
+The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
 
 ### \[Proposed\] Undo/redo feature
 
