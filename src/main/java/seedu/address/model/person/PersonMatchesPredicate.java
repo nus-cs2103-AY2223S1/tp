@@ -99,7 +99,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     }
 
     /**
-     * Checks if a person's module matches any of the provided modules.
+     * Checks if all or some of the person's module matches any of the provided modules.
      * Returns true if no modules have been provided by the user to filter by.
      *
      * @param person the person to check against the specified modules
@@ -112,6 +112,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         return person.doModulesMatch(modulesSet, needsAllModules);
     }
 
+    /**
+     * Checks if the person's phone number matches any of the provided numbers.
+     * Returns true if no phone numbers have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified numbers.
+     * @return true if a match is found or if no numbers were provided
+     */
     public boolean phoneMatches(Person person) {
         if (!hasPhonesList) {
             return true;
@@ -121,6 +128,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's email matches any of the provided emails.
+     * Returns true if no emails have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified emails.
+     * @return true if a match is found or if no emails were provided
+     */
     public boolean emailMatches(Person person) {
         if (!hasEmailsList) {
             return true;
@@ -130,6 +144,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's gender matches any of the provided genders.
+     * Returns true if no genders have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified genders.
+     * @return true if a match is found or if no genders were provided
+     */
     public boolean genderMatches(Person person) {
         if (!hasGendersList) {
             return true;
@@ -139,6 +160,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's location matches any of the provided location.
+     * Returns true if no locations have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified locations.
+     * @return true if a match is found or if no locations were provided.
+     */
     public boolean locationMatches(Person person) {
         if (!hasLocationsList) {
             return true;
@@ -148,6 +176,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's type matches any of the provided types.
+     * Returns true if no types have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified types.
+     * @return true if a match is found or if no types were provided
+     */
     public boolean typeMatches(Person person) {
         if (!hasTypesList) {
             return true;
@@ -157,6 +192,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if all or some of the person's tags matches any of the provided tags.
+     * Returns true if no tags have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified tags.
+     * @return true if a match is found or if no tags were provided.
+     */
     public boolean tagMatches(Person person) {
         if (!hasTagsList) {
             return true;
@@ -170,6 +212,13 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's username matches any of the provided username.
+     * Returns true if no usernames have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified usernames.
+     * @return true if a match is found or if no usernames were provided.
+     */
     public boolean userNameMatches(Person person) {
         if (!hasUserNamesList) {
             return true;

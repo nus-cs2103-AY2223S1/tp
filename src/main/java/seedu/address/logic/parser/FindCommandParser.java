@@ -2,9 +2,20 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUBUSERNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -19,7 +30,7 @@ import seedu.address.model.person.PersonMatchesPredicate;
 public class FindCommandParser implements Parser<FindCommand> {
     private PersonMatchesPredicate predicate = new PersonMatchesPredicate();
     private ArgumentMultimap argMultimap;
-    private final Pattern ALL_ARGUMENTS_PATTERN = Pattern.compile("^all/.+");
+    private Pattern allArgumentsPattern = Pattern.compile("^all/.+");
     private boolean needsAllTags = false;
     private boolean needsAllModules = false;
 
@@ -103,7 +114,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String input = argMultimap.getValue(PREFIX_TAG).get();
             if (input.contains("all/")) {
                 needsAllTags = true;
-                return ALL_ARGUMENTS_PATTERN.matcher(input.trim()).matches();
+                return allArgumentsPattern.matcher(input.trim()).matches();
             }
         }
         return true;
@@ -118,7 +129,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String input = argMultimap.getValue(PREFIX_MODULE_CODE).get();
             if (input.contains("all/")) {
                 needsAllModules = true;
-                return ALL_ARGUMENTS_PATTERN.matcher(input.trim()).matches();
+                return allArgumentsPattern.matcher(input.trim()).matches();
             }
         }
         return true;
