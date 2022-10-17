@@ -17,13 +17,13 @@ import seedu.address.testutil.PersonBuilder;
 
 public class MeetingTest {
 
-    private Meeting meetingOne = new MeetingBuilder().build();
-    private Meeting meetingTwo = new MeetingBuilder().build();
-    private Person johann = new PersonBuilder().withName("Johann").build();
-    private Meeting meetingOneDifferentPerson = new MeetingBuilder(johann).build();
-    private Meeting meetingOneDifferentTitle = new MeetingBuilder().withDescription("Play chess").build();
-    private Meeting meetingOneDifferentDateTime = new MeetingBuilder().withDateAndTime("10-10-2022").build();
-    private Meeting meetingOneDifferentLocation = new MeetingBuilder().withLocation("in lounge").build();
+    private final Meeting meetingOne = new MeetingBuilder().build();
+    private final Meeting meetingTwo = new MeetingBuilder().build();
+    private final Person johann = new PersonBuilder().withName("Johann").build();
+    private final Meeting meetingOneDifferentPerson = new MeetingBuilder(johann).build();
+    private final Meeting meetingOneDifferentTitle = new MeetingBuilder().withDescription("Play chess").build();
+    private final Meeting meetingOneDifferentDateTime = new MeetingBuilder().withDateAndTime("10-10-2022").build();
+    private final Meeting meetingOneDifferentLocation = new MeetingBuilder().withLocation("in lounge").build();
 
     /**
      * A simplified dummy function to substitute the convertNameToPerson(Model, String[]) in CreateMeetingCommand
