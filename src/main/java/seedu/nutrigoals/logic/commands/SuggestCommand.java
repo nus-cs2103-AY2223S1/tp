@@ -1,2 +1,22 @@
-package seedu.nutrigoals.logic.commands;public class SuggestCommand {
+package seedu.nutrigoals.logic.commands;
+
+import seedu.nutrigoals.logic.commands.exceptions.CommandException;
+import seedu.nutrigoals.model.Calorie;
+import seedu.nutrigoals.model.Model;
+
+/**
+ * Suggests a recommended daily calorie intake based on the user's profile
+ */
+public class SuggestCommand extends Command {
+
+    public static final String COMMAND_WORD = "suggest";
+    public static final String MESSAGE_SUGGEST_DETAILS = "Your suggested daily calorie intake to achieve "
+            + "your ideal weight is: %1$s";
+
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        Calorie suggestedCalorieIntake = model.calculateSuggestedCalorie();
+        return new CommandResult(String.format(MESSAGE_SUGGEST_DETAILS, suggestedCalorieIntake));
+    }
 }

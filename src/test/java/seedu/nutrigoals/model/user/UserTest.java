@@ -7,6 +7,7 @@ import static seedu.nutrigoals.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.testutil.UserBuilder;
 
 public class UserTest {
@@ -55,5 +56,36 @@ public class UserTest {
     public void testGetAge() {
         User userA = new UserBuilder().withAge("20").build();
         assertEquals(userA.getAge(), new Age(UserBuilder.DEFAULT_AGE));
+    }
+
+    @Test
+    public void validUser_calculateSuggestedCalories_success() {
+        User user = new UserBuilder().withIdeal("55").withHeight("170")
+                .withGender("F").withWeight("60").withAge("30").build();
+        Calorie expectedSuggestedCalorie = new CalorieStub("1626");
+        assertEquals(expectedSuggestedCalorie, user.calculateSuggestedCalorieIntake());
+
+    }
+
+    private static class CalorieStub extends Calorie {
+        private String value;
+
+        public CalorieStub(String calorie) {
+            value = calorie;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+
+            if (!(obj instanceof Calorie)) {
+                return false;
+            }
+
+            Calorie c = (Calorie) obj;
+            return value.equals(c.value);
+        }
     }
 }

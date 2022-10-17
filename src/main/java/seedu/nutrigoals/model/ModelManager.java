@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
-    private User user;
 
     private IsFoodAddedOnThisDatePredicate currentDatePredicate;
 
