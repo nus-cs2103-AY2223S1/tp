@@ -1,12 +1,7 @@
 package seedu.travelr.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.travelr.testutil.Assert.assertThrows;
-import static seedu.travelr.testutil.TypicalTrips.EUROPE;
-import static seedu.travelr.testutil.TypicalTrips.MARS;
-import static seedu.travelr.testutil.TypicalTrips.MOON;
-import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;

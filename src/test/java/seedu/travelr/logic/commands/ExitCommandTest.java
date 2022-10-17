@@ -1,10 +1,5 @@
 package seedu.travelr.logic.commands;
 
-import static seedu.travelr.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.travelr.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
-
-import org.junit.jupiter.api.Test;
-
 import seedu.travelr.model.Model;
 import seedu.travelr.model.ModelManager;
 

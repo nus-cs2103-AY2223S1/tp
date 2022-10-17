@@ -1,17 +1,7 @@
 package seedu.travelr.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.travelr.testutil.Assert.assertThrows;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import org.junit.jupiter.api.Test;
-
-import seedu.travelr.commons.exceptions.IllegalValueException;
-import seedu.travelr.commons.util.JsonUtil;
-import seedu.travelr.model.AddressBook;
-import seedu.travelr.testutil.TypicalTrips;
 
 public class JsonSerializableAddressBookTest {
 

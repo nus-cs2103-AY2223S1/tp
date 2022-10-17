@@ -9,10 +9,8 @@ import static seedu.travelr.testutil.Assert.assertThrows;
 import static seedu.travelr.testutil.TypicalTrips.SUN;
 import static seedu.travelr.testutil.TypicalTrips.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +18,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
-import seedu.travelr.model.trip.exceptions.DuplicateTripException;
 import seedu.travelr.testutil.TripBuilder;
 
 public class AddressBookTest {
