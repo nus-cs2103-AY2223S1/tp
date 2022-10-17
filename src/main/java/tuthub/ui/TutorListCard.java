@@ -35,14 +35,6 @@ public class TutorListCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label module;
-//    @FXML
-//    private Label year;
-//    @FXML
-//    private Label phone;
-//    @FXML
-//    private Label email;
-//    @FXML
-//    private Label comment;
     @FXML
     private FlowPane tags;
 
@@ -58,10 +50,6 @@ public class TutorListCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(tutor.getName().fullName);
         module.setText(tutor.getModule().value);
-//        year.setText("year " + tutor.getYear().value);
-//        phone.setText(tutor.getPhone().value);
-//        email.setText(tutor.getEmail().value);
-//        comment.setText(tutor.getComment().value);
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

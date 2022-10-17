@@ -5,7 +5,6 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import tuthub.model.tutor.Tutor;
 
@@ -39,6 +38,8 @@ public class TutorDetailsPanel extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label teachingNomination;
+    @FXML
     private Label comment;
     @FXML
     private FlowPane tags;
@@ -50,13 +51,13 @@ public class TutorDetailsPanel extends UiPart<Region> {
     public TutorDetailsPanel(Tutor tutor) {
         super(FXML);
         this.tutor = tutor;
-        
         studentId.setText(tutor.getStudentId().value);
         name.setText(tutor.getName().fullName);
         module.setText(tutor.getModule().value);
         year.setText("year " + tutor.getYear().value);
         phone.setText(tutor.getPhone().value);
         email.setText(tutor.getEmail().value);
+        teachingNomination.setText(tutor.getTeachingNomination().value);
         comment.setText(tutor.getComment().value);
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
