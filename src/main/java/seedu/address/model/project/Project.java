@@ -13,6 +13,7 @@ import seedu.address.model.client.ClientId;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.*;
+import seedu.address.model.list.NotFoundException;
 
 /**
  * Represents a Project.
@@ -71,9 +72,16 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
      */
     public static Function<Model, Project> makeProjectWithoutModel(Name name, Repository repository, Deadline deadline,
                                                                    ClientId clientId, List<Issue> issueList) {
-        return (model) ->
-                new Project(name, repository, deadline,
-                        model.getClientById(clientId.getIdInt()), issueList, new ProjectId(model.generateProjectId()));
+        return (model) -> {
+            Client client;
+            try {
+                client = model.getClientById(clientId.getIdInt());
+            } catch (NotFoundException e) {
+                client = Client.EmptyClient.EMPTY_CLIENT;
+            }
+            return new Project(name, repository, deadline,
+                    client , issueList, new ProjectId(model.generateProjectId()));
+        };
     }
 
     /**
