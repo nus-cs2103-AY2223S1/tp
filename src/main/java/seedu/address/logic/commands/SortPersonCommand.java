@@ -43,4 +43,11 @@ public class SortPersonCommand extends Command {
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortPersonCommand // instanceof handles nulls
+                && criteria.equals(((SortPersonCommand) other).criteria)); // state check
+    }
 }

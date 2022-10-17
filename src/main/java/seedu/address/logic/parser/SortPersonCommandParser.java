@@ -23,14 +23,10 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortPersonCommand.MESSAGE_USAGE));
         }
-
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COMPANY_NAME);
-
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
             return new SortPersonCommand(SortPersonCommand.Criteria.NAME);
         }
-        if (argMultimap.getValue(PREFIX_COMPANY_NAME).isPresent()) {
+        if (trimmedArgs.startsWith(PREFIX_COMPANY_NAME.getPrefix())) {
             return new SortPersonCommand(SortPersonCommand.Criteria.COMPANY_NAME);
         }
 
