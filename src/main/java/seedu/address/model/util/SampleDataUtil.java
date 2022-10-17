@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -8,6 +7,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingList;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -62,7 +62,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static Meeting[] getSampleMeetings() throws ParseException {
+    public static Meeting[] getSampleMeetings() throws ParseException, java.text.ParseException {
         ArrayList<Person> p = new ArrayList<>();
         p.add(alex);
 
@@ -86,7 +86,7 @@ public class SampleDataUtil {
             for (Meeting sampleMeeting :m) {
                 sampleML.addMeeting(sampleMeeting);
             }
-        } catch (ParseException e) {
+        } catch (ParseException | java.text.ParseException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
         }
 
