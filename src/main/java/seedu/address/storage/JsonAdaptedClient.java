@@ -59,17 +59,15 @@ class JsonAdaptedClient {
      * Converts a given {@code Client} into this class for Jackson use.
      */
     public JsonAdaptedClient(Client source) {
-        if (!source.isMeetingListEmpty()) {
-            meetings.addAll(source.getMeetings().stream()
-                    .map(meeting -> new JsonAdaptedMeeting(meeting, this))
-                    .collect(Collectors.toList()));
-        }
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        meetings.addAll(source.getMeetings().stream()
+                .map(meeting -> new JsonAdaptedMeeting(meeting, this))
                 .collect(Collectors.toList()));
     }
 
@@ -97,6 +95,7 @@ class JsonAdaptedClient {
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
         }
+        final Set<Tag> modelTags = new HashSet<>(clientTags);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -129,17 +128,16 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        final Set<Tag> modelTags = new HashSet<>(clientTags);
-        if (!meetings.isEmpty()) {
-            Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-            for (JsonAdaptedMeeting meeting : meetings) {
-                final Meeting meetingToAdd = meeting.toModelType(client);
-                client.addNewMeeting(meetingToAdd);
-            }
-            return client;
-        } else {
-            return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
-        }
-    }
 
+        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+
+        if (meetings.isEmpty()) {
+            return client;
+        }
+        for (JsonAdaptedMeeting meeting : meetings) {
+            final Meeting meetingToAdd = meeting.toModelType(client);
+            client.addMeeting(meetingToAdd);
+        }
+        return client;
+    }
 }

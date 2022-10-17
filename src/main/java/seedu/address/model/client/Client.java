@@ -26,7 +26,6 @@ public class Client {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private Meeting meeting;
     private final NoConflictMeetingList meetings;
 
 
@@ -46,15 +45,14 @@ public class Client {
     /**
      * Construct a client with meetings
      */
-    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Meeting meeting) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Client(Name name, Phone phone, Email email, Address address, Set<Tag> tags, NoConflictMeetingList meetings) {
+        requireAllNonNull(name, phone, email, address, tags, meetings);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.meeting = meeting;
-        this.meetings = new NoConflictMeetingList();
+        this.meetings = meetings;
     }
 
     public Name getName() {
@@ -74,15 +72,7 @@ public class Client {
     }
 
     public boolean hasMeeting() {
-        return !isMeetingListEmpty();
-    }
-
-    public Meeting getMeeting() {
-        return meeting;
-    }
-
-    public void setMeeting(Meeting meeting) {
-        this.meeting = meeting;
+        return !meetings.isEmpty();
     }
 
     public ObservableList<Meeting> getMeetings() {
@@ -91,14 +81,18 @@ public class Client {
 
     /**
      * Adds a meeting to the client's meeting list.
-     * @param newMeeting
+     * @param meeting
      */
-    public void addNewMeeting(Meeting newMeeting) {
-        meetings.add(newMeeting);
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
     }
 
-    public boolean isMeetingListEmpty() {
-        return meetings.isEmpty();
+    /**
+     * Removes a meeting from client's meeting list.
+     * @param meeting
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
     }
 
     /**

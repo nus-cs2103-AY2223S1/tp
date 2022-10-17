@@ -45,17 +45,12 @@ public class DeleteMeetingCommand extends Command {
         }
 
         Meeting meeting = lastShownMeetingList.get(index.getZeroBased());
+        Client clientToUpdate = meeting.getClient();
 
-        Client clientToEdit = meeting.getClient();
-        Client editedClient = new Client(
-                clientToEdit.getName(), clientToEdit.getPhone(), clientToEdit.getEmail(),
-                clientToEdit.getAddress(), clientToEdit.getTags()
-        );
-
+        clientToUpdate.removeMeeting(meeting);
         model.deleteMeeting(meeting);
-        model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(generateSuccessMessage(editedClient), CommandSpecific.MEETING);
+        return new CommandResult(generateSuccessMessage(clientToUpdate), CommandSpecific.MEETING);
     }
 
     /**

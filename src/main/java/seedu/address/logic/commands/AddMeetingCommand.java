@@ -60,7 +60,7 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        clientToUpdate.addNewMeeting(meetingToAdd);
+        clientToUpdate.addMeeting(meetingToAdd);
         model.addMeeting(meetingToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, meetingToAdd), CommandSpecific.MEETING);
     }
