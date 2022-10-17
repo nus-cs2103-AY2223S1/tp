@@ -23,6 +23,11 @@ public class ResultDisplay extends UiPart<Region> {
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
+        resultDisplay.setStyle(
+                "-fx-font-family: \"Segoe UI Light\"; "
+                        + "-fx-font-size: 11pt; "
+                        + "-fx-text-fill: black;"
+        );
     }
 
 }

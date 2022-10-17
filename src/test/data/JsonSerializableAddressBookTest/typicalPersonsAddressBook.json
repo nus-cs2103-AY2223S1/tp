@@ -4,9 +4,10 @@
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "lessonPlan" : "Algorithms",
-    "homework": [ ],
-    "attendance": [ ],
-    "gradeProgress": [ ],
+    "homework": [ "Science worksheet" ],
+    "attendance": [ "2019-01-01" ],
+    "session": ["Tue 09:00"],
+    "gradeProgress": [ "English: A+" ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -14,6 +15,7 @@
     "lessonPlan" : "Trigonometry",
     "homework": [ "Science worksheet", "math asst" ],
     "attendance": [ "2022-07-12", "2022-07-17" ],
+    "session": ["Mon 08:30"],
     "gradeProgress": ["Math: A"],
     "tagged" : [ "owesMoney", "friends" ]
   }, {

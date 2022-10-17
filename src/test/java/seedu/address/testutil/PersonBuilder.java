@@ -11,6 +11,7 @@ import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -28,6 +29,7 @@ public class PersonBuilder {
     private LessonPlan lessonPlan;
     private HomeworkList homeworkList;
     private AttendanceList attendanceList;
+    private SessionList sessionList;
     private GradeProgressList gradeProgressList;
     private Set<Tag> tags;
 
@@ -40,6 +42,7 @@ public class PersonBuilder {
         lessonPlan = new LessonPlan(DEFAULT_LESSON_PLAN);
         homeworkList = new HomeworkList();
         attendanceList = new AttendanceList();
+        sessionList = new SessionList();
         gradeProgressList = new GradeProgressList();
         tags = new HashSet<>();
     }
@@ -53,6 +56,7 @@ public class PersonBuilder {
         lessonPlan = personToCopy.getLessonPlan();
         homeworkList = new HomeworkList(new ArrayList<>(personToCopy.getHomeworkList().homeworkList));
         attendanceList = new AttendanceList(new ArrayList<>(personToCopy.getAttendanceList().attendanceList));
+        sessionList = new SessionList(new ArrayList<>(personToCopy.getSessionList().sessionList));
         gradeProgressList = new GradeProgressList(new ArrayList<>(personToCopy.getGradeProgressList()
                 .gradeProgressList));
         tags = new HashSet<>(personToCopy.getTags());
@@ -88,7 +92,16 @@ public class PersonBuilder {
      * that we are building.
      */
     public PersonBuilder withAttendance(String... attendanceList) {
-        this.attendanceList.attendanceList.addAll(SampleDataUtil.getAttendanceList(attendanceList));
+        this.attendanceList = new AttendanceList(SampleDataUtil.getAttendanceList(attendanceList));
+        return this;
+    }
+
+    /**
+     * Parses the {@code SessionList} into a {@code List<Session>} and set it to the {@code Person}
+     * that we are building.
+     */
+    public PersonBuilder withSession(String... sessionList) {
+        this.sessionList = new SessionList(SampleDataUtil.getSessionList(sessionList));
         return this;
     }
 
@@ -118,7 +131,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, gradeProgressList, tags);
+        return new Person(name, phone, lessonPlan, homeworkList, attendanceList, sessionList, gradeProgressList, tags);
     }
 
 }

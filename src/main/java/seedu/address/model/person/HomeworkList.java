@@ -5,12 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+
 /**
  * Represents a Person's homework list in the address book.
  * Guarantees: list is present, and list and objects list are not null.
  */
 
 public class HomeworkList {
+    public static final String MESSAGE_INVALID_HOMEWORK_INDEX = "The homework index provided is invalid!";
+
     public final List<Homework> homeworkList;
 
     /**
@@ -39,6 +43,34 @@ public class HomeworkList {
     }
 
     /**
+     * Clears the homework list.
+     */
+    public void clearList() {
+        homeworkList.clear();
+    }
+
+    /**
+     * Edits the homework at the given index with the new given homework.
+     *
+     * @param index of homework to be edited
+     * @param homework that replaces the old homework
+     */
+    public void editAtIndex(Index index, Homework homework) {
+        int indexToEdit = index.getZeroBased();
+        if (indexToEdit >= homeworkList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        homeworkList.set(indexToEdit, homework);
+    }
+
+    /**
+     * Returns true if a given {@code Index} is a valid index in the list.
+     */
+    public boolean isValidIndex(Index index) {
+        return index.getZeroBased() < homeworkList.size();
+    }
+
+    /**
      * Returns a String description of the homework list. If homework list size is greater than two,
      * only the first two are shown.
      *
@@ -49,7 +81,7 @@ public class HomeworkList {
             return toString();
         }
 
-        StringBuilder description = new StringBuilder("Homework:\n");
+        StringBuilder description = new StringBuilder();
         for (int i = 0; i < 2; i++) {
             description.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
         }
@@ -57,16 +89,9 @@ public class HomeworkList {
         return description.toString();
     }
 
-    /**
-     * Clears the homework list.
-     */
-    public void clearList() {
-        homeworkList.clear();
-    }
-
     @Override
     public String toString() {
-        StringBuilder description = new StringBuilder("Homework:\n");
+        StringBuilder description = new StringBuilder();
         if (homeworkList.isEmpty()) {
             description.append("No homework found!\n");
         }
