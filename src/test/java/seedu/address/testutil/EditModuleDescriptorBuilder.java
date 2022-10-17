@@ -12,7 +12,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditModuleDescriptor objects.
  */
 public class EditModuleDescriptorBuilder {
 
