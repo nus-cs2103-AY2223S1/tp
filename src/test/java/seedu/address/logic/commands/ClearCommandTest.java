@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -29,4 +30,31 @@ public class ClearCommandTest {
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
+    @Test
+    public void undo_commandExecuted_undoSuccessful() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+        ClearCommand clearCommand = new ClearCommand();
+        clearCommand.execute(model);
+        CommandResult commandResult = clearCommand.undo(model);
+
+        assertEquals(ClearCommand.MESSAGE_UNDO, commandResult.getFeedbackToUser());
+        assertEquals(expectedModel, model);
+    }
+
+    @Test
+    public void redo_commandUndone_redoSuccessful() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.setAddressBook(new AddressBook());
+
+        ClearCommand clearCommand = new ClearCommand();
+        clearCommand.execute(model);
+        clearCommand.undo(model);
+        CommandResult commandResult = clearCommand.redo(model);
+
+        assertEquals(ClearCommand.MESSAGE_REDO, commandResult.getFeedbackToUser());
+        assertEquals(expectedModel, model);
+    }
 }

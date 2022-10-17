@@ -51,6 +51,33 @@ public class CreateCommandTest {
     }
 
     @Test
+    public void undo_commandExecuted_undoSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person toAdd = new PersonBuilder().build();
+        CreateCommand createCommand = new CreateCommand(toAdd);
+
+        createCommand.execute(modelStub);
+        CommandResult undoCommandResult = createCommand.undo(modelStub);
+
+        assertEquals(String.format(CreateCommand.MESSAGE_UNDO, toAdd), undoCommandResult.getFeedbackToUser());
+        assertEquals(new ArrayList<Person>(), modelStub.personsAdded);
+    }
+
+    @Test
+    public void redo_commandUndone_redoSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person personToAdd = new PersonBuilder().build();
+        CreateCommand createCommand = new CreateCommand(personToAdd);
+
+        createCommand.execute(modelStub);
+        createCommand.undo(modelStub);
+        CommandResult redoCommandResult = createCommand.redo(modelStub);
+
+        assertEquals(String.format(CreateCommand.MESSAGE_REDO, personToAdd), redoCommandResult.getFeedbackToUser());
+        assertEquals(Collections.singletonList(personToAdd), modelStub.personsAdded);
+    }
+
+    @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
@@ -183,6 +210,12 @@ public class CreateCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void deletePerson(Person target) {
+            requireNonNull(target);
+            personsAdded.remove(target);
         }
 
         @Override

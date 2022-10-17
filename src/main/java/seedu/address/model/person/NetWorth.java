@@ -11,7 +11,7 @@ public class NetWorth {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Net worth should only contain numbers and net worth should be at least 4 digits";
-    public static final String VALIDATION_REGEX = "[$]\\d{4,}";
+    public static final String VALIDATION_REGEX = "[$][1-9]\\d{3,}";
     public final String value;
 
     /**
