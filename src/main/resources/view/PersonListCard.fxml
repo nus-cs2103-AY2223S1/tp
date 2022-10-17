@@ -27,7 +27,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
 
       <HBox>
@@ -48,7 +48,7 @@
             <padding>
               <Insets top="1" right="1" bottom="1" left="4" />
             </padding>
-            <Label fx:id="telegram" styleClass="cell_small_label" />
+            <Label fx:id="telegram" styleClass="cell_small_label" wrapText="true" />
           </HBox>
         </children>
       </HBox>
@@ -64,7 +64,7 @@
             <padding>
               <Insets top="1" right="1" bottom="1" left="4" />
             </padding>
-            <Label fx:id="phone" styleClass="cell_small_label" />
+            <Label fx:id="phone" styleClass="cell_small_label" wrapText="true" />
           </HBox>
         </children>
       </HBox>
@@ -80,7 +80,7 @@
             <padding>
               <Insets top="1" right="1" bottom="1" left="4" />
             </padding>
-            <Label fx:id="email" styleClass="cell_small_label" />
+            <Label fx:id="email" styleClass="cell_small_label" wrapText="true" />
           </HBox>
         </children>
       </HBox>
@@ -96,7 +96,7 @@
             <padding>
               <Insets top="1" right="1" bottom="1" left="4" />
             </padding>
-            <Label fx:id="github" styleClass="cell_small_label" />
+            <Label fx:id="github" styleClass="cell_small_label" wrapText="true" />
           </HBox>
         </children>
       </HBox>
