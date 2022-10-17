@@ -27,7 +27,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
-    private final AddressBook addressBook = AddressBook.getNew();
+    private final AddressBook addressBook = new AddressBook();
 
     @Test
     public void constructor() {
@@ -122,6 +122,36 @@ public class AddressBookTest {
         @Override
         public ObservableList<Client> getClientList() {
             return clients;
+        }
+
+        @Override
+        public Project getProjectById(int id) {
+            return null;
+        }
+
+        @Override
+        public Issue getIssueById(int id) {
+            return null;
+        }
+
+        @Override
+        public Client getClientById(int id) {
+            return null;
+        }
+
+        @Override
+        public int generateClientId() {
+            return 0;
+        }
+
+        @Override
+        public int generateIssueId() {
+            return 0;
+        }
+
+        @Override
+        public int generateProjectId() {
+            return 0;
         }
     }
 
