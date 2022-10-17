@@ -26,13 +26,13 @@ public class EditTagTypeCommandTest {
 
     @Test
     public void constructor_nullTagType_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new EditTagTypeCommand(new Prefix(""),null,
+        assertThrows(NullPointerException.class, () -> new EditTagTypeCommand(new Prefix(""), null,
                 new Prefix(""), null));
     }
 
     @Test
     public void constructor_nullToEdit_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new EditTagTypeCommand(null,null,
+        assertThrows(NullPointerException.class, () -> new EditTagTypeCommand(null, null,
                 new Prefix(""), new TagType("abc", new Prefix(""))));
     }
 
@@ -78,5 +78,4 @@ public class EditTagTypeCommandTest {
         assertFalse(editFirstTagCommand.equals(editSecondTagCommand));
     }
 
-    
 }

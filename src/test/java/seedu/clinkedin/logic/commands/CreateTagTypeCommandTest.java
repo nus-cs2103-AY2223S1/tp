@@ -25,7 +25,7 @@ public class CreateTagTypeCommandTest {
 
     @Test
     public void constructor_nullTagType_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateTagTypeCommand(null,new Prefix("")));
+        assertThrows(NullPointerException.class, () -> new CreateTagTypeCommand(null, new Prefix("")));
     }
 
 

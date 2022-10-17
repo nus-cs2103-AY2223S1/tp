@@ -1,26 +1,13 @@
 package seedu.clinkedin.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.clinkedin.commons.core.GuiSettings;
 import seedu.clinkedin.commons.core.index.Index;
-import seedu.clinkedin.model.AddressBook;
-import seedu.clinkedin.model.Model;
-import seedu.clinkedin.model.ReadOnlyAddressBook;
-import seedu.clinkedin.model.ReadOnlyUserPrefs;
-import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.TagType;
 
 public class DeleteTagCommandTest {
 
