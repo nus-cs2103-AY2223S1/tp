@@ -9,7 +9,7 @@ import seedu.address.model.module.ModuleCodeStartsWithKeywordPredicate;
 /**
  * Parses input arguments and creates a new FindModuleCommand object
  */
-public class FindModuleCommandParser {
+public class FindModuleCommandParser implements Parser<FindModuleCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindModuleCommand
      * and returns a FindModuleCommand object for execution.

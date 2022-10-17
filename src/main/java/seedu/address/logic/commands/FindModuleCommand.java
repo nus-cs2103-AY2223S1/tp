@@ -32,4 +32,10 @@ public class FindModuleCommand extends Command {
                 String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FindModuleCommand // instanceof handles nulls
+                && predicate.equals(((FindModuleCommand) other).predicate)); // state check
+    }
 }
