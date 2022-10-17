@@ -17,11 +17,14 @@ public class Order {
     private final Address address;
     private final LocalDateTime timeCreated;
     private final List<ItemQuantityPair> itemList;
+    private boolean isPaid;
+    private boolean isDelivered;
 
     /**
      * Every field must be present and not null.
      */
-    public Order(Name name, Phone phone, Email email, Address address, List<ItemQuantityPair> itemList) {
+    public Order(Name name, Phone phone, Email email, Address address, List<ItemQuantityPair> itemList,
+                 boolean isPaid, boolean isDelivered) {
         requireAllNonNull(name, phone, email, address, itemList);
         this.name = name;
         this.phone = phone;
@@ -29,6 +32,8 @@ public class Order {
         this.address = address;
         this.itemList = itemList;
         this.timeCreated = LocalDateTime.now();
+        this.isPaid = isPaid;
+        this.isDelivered = isDelivered;
     }
 
     public Name getName() {
@@ -51,6 +56,14 @@ public class Order {
         return itemList;
     }
 
+    public boolean getPaidStatus() {
+        return isPaid;
+    }
+
+    public boolean getDeliveryStatus() {
+        return isDelivered;
+    }
+
     public void addToItemList(ItemQuantityPair itemQuantityPair) {
         this.itemList.add(itemQuantityPair);
     }
@@ -59,9 +72,21 @@ public class Order {
         return timeCreated;
     }
 
+    public boolean isCompleted() {
+        return isPaid && isDelivered;
+    }
+
+    public void setPaid() {
+        this.isPaid = true;
+    }
+
+    public void setDelivered() {
+        this.isDelivered = true;
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, email, address, timeCreated, itemList);
+        return Objects.hash(name, phone, email, address, timeCreated, itemList, isPaid, isDelivered);
     }
 
     @Override
@@ -79,7 +104,9 @@ public class Order {
             && otherOrder.getPhone().equals(getPhone())
             && otherOrder.getEmail().equals(getEmail())
             && otherOrder.getAddress().equals(getAddress())
-            && otherOrder.getItemList().equals(getItemList());
+            && otherOrder.getItemList().equals(getItemList())
+            && otherOrder.getPaidStatus() == getPaidStatus()
+            && otherOrder.getDeliveryStatus() == getDeliveryStatus();
     }
 
     @Override
@@ -93,6 +120,8 @@ public class Order {
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
         }
+        sb.append("Paid status: " + getPaidStatus() + "\n");
+        sb.append("Delivery status: " + getDeliveryStatus() + "\n");
         return sb.toString();
     }
 }
