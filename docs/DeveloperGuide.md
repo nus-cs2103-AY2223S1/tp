@@ -156,6 +156,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Developed\] Mark/un-mark feature
+
+**Implementation**
+
+This feature allows tasks to be marked as completed or not completed, using the `mark` or `unmark` command. This is facilitated
+via the `MarkTaskCommand` and `MarkTaskCommandParser` classes.
+
+The `MarkTaskCommandParser` parses the input given by the user and ensures the validity of the index. Tasks at the target index
+will then be marked as completed with the help of the following methods:
+
+* `Model#setTask(markedTask, targetIndex)` which sets the `status` class variable of the `markedTask` to `true`.
+* `MarkTaskCommand#createMarkedTask(taskToMark, configureMarkedTask)` will create a marked task based on the configuration of `configureMarkedTask`.
+
+Given below is an example of how `MarkTaskCommand` is being executed.
+
+**Steps**
+Step 1. The user enters the `markTask 1` command.
+Step 2. The `MarkTaskCommandParser` parses the index and ensures that the index given is valid. In this process, a `MarkTaskCommand` object with the argument containing the target index is created.
+Step 3. The `MarkTaskCommand` is executed.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
