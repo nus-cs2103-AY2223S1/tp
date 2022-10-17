@@ -37,7 +37,7 @@ public class TaskEventCommand extends TaskAddCommand {
     /**
      * Creates a TaskEventCommand to add a task with the specified
      * {@code Name name}, {@code Description description},
-     * {@code Task.Assignment assignment} and {@code LocalDate date}
+     * {@code Task.Assignment assignment} and {@code LocalDate date}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new event.
