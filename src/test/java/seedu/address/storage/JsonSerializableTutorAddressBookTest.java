@@ -53,6 +53,7 @@ public class JsonSerializableTutorAddressBookTest {
         JsonSerializableTutorAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TUTORS_FILE,
                 JsonSerializableTutorAddressBook.class).get();
         List<Tutor> tutorList = new ArrayList<>(Arrays.asList(TypicalTutors.TUTOR1, TypicalTutors.TUTOR2));
+        List<Tutor> list = dataFromFile.getTutorsList();
         assertEquals(tutorList, dataFromFile.getTutorsList());
     }
 

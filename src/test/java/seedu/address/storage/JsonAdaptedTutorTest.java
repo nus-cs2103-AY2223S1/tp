@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedTutor.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalStudents.STUDENT1;
 import static seedu.address.testutil.TypicalTutors.TUTOR1;
 
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class JsonAdaptedTutorTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = TUTOR1.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
+    private static final List<JsonAdaptedTuitionClass> VALID_TUITIONCLASSES = STUDENT1.getTuitionClasses().stream()
+            .map(JsonAdaptedTuitionClass::new)
+            .collect(Collectors.toList());
 
     @Test
     public void toModelType_validTutorDetails_returnsTutor() throws Exception {
@@ -47,7 +51,7 @@ public class JsonAdaptedTutorTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_QUALIFICATION,
-                        VALID_INSTITUTION, VALID_TAGS);
+                        VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -55,7 +59,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS);
+               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -64,7 +68,7 @@ public class JsonAdaptedTutorTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_QUALIFICATION,
-                        VALID_INSTITUTION, VALID_TAGS);
+                        VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -72,7 +76,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS,
-               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS);
+               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -81,7 +85,7 @@ public class JsonAdaptedTutorTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_QUALIFICATION,
-                        VALID_INSTITUTION, VALID_TAGS);
+                        VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -89,7 +93,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS,
-               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS);
+               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -98,7 +102,7 @@ public class JsonAdaptedTutorTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_QUALIFICATION,
-                        VALID_INSTITUTION, VALID_TAGS);
+                        VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -106,7 +110,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
-               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS);
+               VALID_QUALIFICATION, VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -115,7 +119,7 @@ public class JsonAdaptedTutorTest {
     public void toModelType_invalidQualification_throwsIllegalValueException() {
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, INVALID_QUALIFICATION,
-                        VALID_INSTITUTION, VALID_TAGS);
+                        VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = Qualification.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -123,7 +127,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullSchool_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                null, VALID_INSTITUTION, VALID_TAGS);
+                null, VALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Qualification.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -132,7 +136,7 @@ public class JsonAdaptedTutorTest {
     public void toModelType_invalidInstitution_throwsIllegalValueException() {
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_QUALIFICATION,
-                        INVALID_INSTITUTION, VALID_TAGS);
+                        INVALID_INSTITUTION, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = Institution.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -140,7 +144,7 @@ public class JsonAdaptedTutorTest {
     @Test
     public void toModelType_nullInstitution_throwsIllegalValueException() {
         JsonAdaptedTutor tutor = new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_QUALIFICATION, null, VALID_TAGS);
+                VALID_QUALIFICATION, null, VALID_TAGS, VALID_TUITIONCLASSES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Institution.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutor::toModelType);
     }
@@ -151,7 +155,7 @@ public class JsonAdaptedTutorTest {
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedTutor tutor =
                 new JsonAdaptedTutor(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_QUALIFICATION,
-                        VALID_INSTITUTION, invalidTags);
+                        VALID_INSTITUTION, invalidTags, VALID_TUITIONCLASSES);
         assertThrows(IllegalValueException.class, tutor::toModelType);
     }
 

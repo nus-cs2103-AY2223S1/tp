@@ -24,8 +24,6 @@ import static seedu.address.logic.commands.CommandTestUtil.showTutorAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentsAddressBook;
-import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS1;
-import static seedu.address.testutil.TypicalTuitionClasses.TUITIONCLASS2;
 import static seedu.address.testutil.TypicalTuitionClasses.getTypicalTuitionClassesAddressBook;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorsAddressBook;
 
@@ -61,7 +59,9 @@ public class EditCommandTest {
         Model model = new ModelManager(getTypicalStudentsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.STUDENT_LIST);
 
-        Student editedStudent = new StudentBuilder().withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2).build();
+        Student editedStudent = new StudentBuilder()
+                .withTuitionClasses(model.getFilteredStudentList().get(0).getTuitionClasses())
+                .build();
         EditStudentDescriptor studentDescriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, studentDescriptor);
 
@@ -76,7 +76,9 @@ public class EditCommandTest {
         model = new ModelManager(getTypicalTutorsAddressBook(), new UserPrefs());
         model.updateCurrentListType(Model.ListType.TUTOR_LIST);
 
-        Tutor editedTutor = new TutorBuilder().build();
+        Tutor editedTutor = new TutorBuilder()
+                .withTuitionClasses(model.getFilteredTutorList().get(0).getTuitionClasses())
+                .build();
         EditTutorDescriptor tutorDescriptor = new EditTutorDescriptorBuilder(editedTutor).build();
         editCommand = new EditCommand(INDEX_FIRST_PERSON, tutorDescriptor);
 
@@ -88,22 +90,20 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
 
-        //cant test this now coz edit does not account for list of students and tutors fields of class
-        //
-        //model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
-        //model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        //
-        //TuitionClass editedClass = new TuitionClassBuilder().build();
-        //EditTuitionClassDescriptor classDescriptor = new EditTuitionClassDescriptorBuilder(editedClass).build();
-        //editCommand = new EditCommand(INDEX_FIRST_PERSON, classDescriptor);
-        //
-        //expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
-        //
-        //expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        //expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        //expectedModel.setTuitionClass(model.getFilteredTuitionClassList().get(0), editedClass);
-        //
-        //assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        model = new ModelManager(getTypicalTuitionClassesAddressBook(), new UserPrefs());
+        model.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+
+        TuitionClass editedClass = new TuitionClassBuilder().build();
+        EditTuitionClassDescriptor classDescriptor = new EditTuitionClassDescriptorBuilder(editedClass).build();
+        editCommand = new EditCommand(INDEX_FIRST_PERSON, classDescriptor);
+
+        expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLASS_SUCCESS, editedClass);
+
+        expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
+        expectedModel.setTuitionClass(model.getFilteredTuitionClassList().get(0), editedClass);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

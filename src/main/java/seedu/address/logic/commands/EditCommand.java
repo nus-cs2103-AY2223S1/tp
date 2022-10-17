@@ -223,9 +223,9 @@ public class EditCommand extends Command {
             Institution updatedInstitution = editTutorDescriptor.getInstitution().orElse(tutorToEdit.getInstitution());
             Qualification updatedQualification =
                     editTutorDescriptor.getQualification().orElse(tutorToEdit.getQualification());
-
+            List<TuitionClass> tuitionClasses = tutorToEdit.getTuitionClasses();
             return new Tutor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedQualification,
-                    updatedInstitution);
+                    updatedInstitution, tuitionClasses);
         }
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);

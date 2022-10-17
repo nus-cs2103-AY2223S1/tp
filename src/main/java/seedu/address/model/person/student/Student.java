@@ -41,6 +41,8 @@ public class Student extends Person {
 
     /**
      * Every field must be present and not null.
+     * Should not be used in AddCommand as tuition classes
+     * are not added in AddCommand.
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, School school, Level level,
                    NextOfKin nextOfKin, List<TuitionClass> tuitionClasses) {

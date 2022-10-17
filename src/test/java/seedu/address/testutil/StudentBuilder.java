@@ -24,6 +24,7 @@ public class StudentBuilder extends PersonBuilder {
     private NextOfKin nextOfKin;
 
     private List<TuitionClass> tuitionClasses = new ArrayList<>();
+
     /**
      * Creates a {@code StudentBuilder} with the default details.
      */
@@ -114,6 +115,14 @@ public class StudentBuilder extends PersonBuilder {
      */
     public StudentBuilder withTuitionClasses(TuitionClass ... tuitionClass) {
         this.tuitionClasses = new ArrayList<>(Arrays.asList(tuitionClass));
+        return this;
+    }
+
+    /**
+     * Sets the {@code TuitionClass} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withTuitionClasses(List<TuitionClass>tuitionClasses) {
+        this.tuitionClasses = tuitionClasses;
         return this;
     }
 
