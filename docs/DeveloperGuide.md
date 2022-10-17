@@ -290,7 +290,23 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-###
+### Pie Chart View feature
+
+#### Implementation
+The pie chart view feature extends `PennyWise` with a pie chart view by categories of spending/income, and can be accessed via the view command. Additionally, it implements the following operation
+* `getExpensePieChartData()`
+* `getIncomePieChartData()`
+
+These operations are exposed in the `Model` interface as Model#getExpensePieChartData(), Model#getIncomePieChartData() respectively. 
+
+Given below is an example usage scenario and how the pie chart view mechanism behaves at each step. 
+
+Step 1: The user launches the application for the first time. PennyWise will be initialised with the initial expenses or income entries. By default, the app opens to the expenses tab and the pie chart of the expenses will be shown 
+
+Step 2: The user executes the `view t/i g/c` command to view their income entries as a pie chart. The view command calls 
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
