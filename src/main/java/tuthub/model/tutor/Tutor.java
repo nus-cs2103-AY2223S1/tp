@@ -25,13 +25,14 @@ public class Tutor {
     private final Module module;
     private final Year year;
     private final Comment comment;
+    private final TeachingNomination teachingNomination;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Tutor(Name name, Phone phone, Email email, Module module, Year year,
-                  StudentId studentId, Comment comment, Set<Tag> tags) {
+                  StudentId studentId, Comment comment, TeachingNomination teachingNomination, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, module, year, comment, tags);
         this.name = name;
         this.phone = phone;
@@ -40,6 +41,7 @@ public class Tutor {
         this.year = year;
         this.studentId = studentId;
         this.comment = comment;
+        this.teachingNomination = teachingNomination;
         this.tags.addAll(tags);
     }
 
@@ -69,6 +71,10 @@ public class Tutor {
 
     public StudentId getStudentId() {
         return studentId;
+    }
+
+    public TeachingNomination getTeachingNomination() {
+        return teachingNomination;
     }
 
     /**
@@ -114,13 +120,14 @@ public class Tutor {
                 && otherTutor.getYear().equals(getYear())
                 && otherTutor.getStudentId().equals(getStudentId())
                 && otherTutor.getComment().equals(getComment())
+                && otherTutor.getTeachingNomination().equals(getTeachingNomination())
                 && otherTutor.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, module, year, comment, tags);
+        return Objects.hash(name, phone, email, module, year, comment, teachingNomination, tags);
     }
 
     @Override
@@ -137,6 +144,8 @@ public class Tutor {
                 .append(getYear())
                 .append("; Student ID: ")
                 .append(getStudentId())
+                .append(" Teaching nominations: ")
+                .append(getTeachingNomination())
                 .append(" Comment: ")
                 .append(getComment())
                 .append(" Tags: ");

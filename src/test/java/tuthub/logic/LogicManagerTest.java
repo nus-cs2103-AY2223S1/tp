@@ -8,6 +8,7 @@ import static tuthub.logic.commands.CommandTestUtil.MODULE_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.STUDENTID_DESC_AMY;
+import static tuthub.logic.commands.CommandTestUtil.TEACHINGNOMINATION_DESC_AMY;
 import static tuthub.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static tuthub.testutil.Assert.assertThrows;
 import static tuthub.testutil.TypicalTutors.AMY;
@@ -82,7 +83,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + MODULE_DESC_AMY + YEAR_DESC_AMY + STUDENTID_DESC_AMY;
+                + MODULE_DESC_AMY + YEAR_DESC_AMY + STUDENTID_DESC_AMY + TEACHINGNOMINATION_DESC_AMY;
         Tutor expectedTutor = new TutorBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTutor(expectedTutor);

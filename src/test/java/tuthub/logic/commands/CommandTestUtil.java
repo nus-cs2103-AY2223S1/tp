@@ -8,6 +8,7 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
 import static tuthub.logic.parser.CliSyntax.PREFIX_YEAR;
 import static tuthub.testutil.Assert.assertThrows;
 
@@ -40,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_YEAR_BOB = "4";
     public static final String VALID_STUDENTID_AMY = "A1234567X";
     public static final String VALID_STUDENTID_BOB = "A9876543Y";
+    public static final String VALID_TEACHINGNOMINATION_AMY = "1";
+    public static final String VALID_TEACHINGNOMINATION_BOB = "2";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -55,6 +58,10 @@ public class CommandTestUtil {
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
     public static final String STUDENTID_DESC_AMY = " " + PREFIX_STUDENTID + VALID_STUDENTID_AMY;
     public static final String STUDENTID_DESC_BOB = " " + PREFIX_STUDENTID + VALID_STUDENTID_BOB;
+    public static final String TEACHINGNOMINATION_DESC_AMY =
+            " " + PREFIX_TEACHINGNOMINATION + VALID_TEACHINGNOMINATION_AMY;
+    public static final String TEACHINGNOMINATION_DESC_BOB =
+            " " + PREFIX_TEACHINGNOMINATION + VALID_TEACHINGNOMINATION_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -64,6 +71,8 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "C^1000"; // '^' not allowed in module
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "-1"; // negative numbers not allowed in year
     public static final String INVALID_STUDENTID_DESC = " " + PREFIX_STUDENTID + "B1234567X"; // should start with A
+    public static final String INVALID_TEACHINGNOMINATION_DESC =
+            " " + PREFIX_TEACHINGNOMINATION + "A"; // should be a positive integer including 0
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -77,11 +86,13 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withModule(VALID_MODULE_AMY).withYear(VALID_YEAR_AMY)
                 .withStudentId(VALID_STUDENTID_AMY)
+                .withTeachingNomination(VALID_TEACHINGNOMINATION_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withModule(VALID_MODULE_BOB).withYear(VALID_YEAR_BOB)
                 .withStudentId(VALID_STUDENTID_BOB)
+                .withTeachingNomination(VALID_TEACHINGNOMINATION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

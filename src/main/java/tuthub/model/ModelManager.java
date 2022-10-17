@@ -14,7 +14,7 @@ import tuthub.commons.core.LogsCenter;
 import tuthub.model.tutor.Tutor;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tuthub data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTuthub tuthub, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(tuthub, userPrefs);
 
-        logger.fine("Initializing with address book: " + tuthub + " and user prefs " + userPrefs);
+        logger.fine("Initializing with tuthub: " + tuthub + " and user prefs " + userPrefs);
 
         this.tuthub = new Tuthub(tuthub);
         this.userPrefs = new UserPrefs(userPrefs);
