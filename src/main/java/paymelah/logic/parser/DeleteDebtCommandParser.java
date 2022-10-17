@@ -5,7 +5,6 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
