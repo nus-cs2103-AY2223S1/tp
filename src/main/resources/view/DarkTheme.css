@@ -176,7 +176,7 @@
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #7f7f7f;
+    -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -353,8 +353,9 @@
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-border-radius: 15;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 11pt;
+    -fx-font-family: "Figtree";
+    -fx-font-weight: 400;
+    -fx-font-size: 12pt;
     -fx-text-fill: #D4D4D4;
 }
 
