@@ -18,7 +18,7 @@ public class Sets {
     /**
      * Constructs {@code Sets}.
      *
-     * @param sets A valid number of sets.
+     * @param sets A valid number of Sets.
      */
     public Sets(String sets) {
         requireNonNull(sets);
@@ -27,7 +27,7 @@ public class Sets {
     }
 
     /**
-     * Returns if a given string is a valid number of sets.
+     * Returns if a given String is a valid number of Sets.
      */
     public static boolean isValidSets(String test) {
         return test.matches(VALIDATION_REGEX);

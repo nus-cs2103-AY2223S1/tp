@@ -17,37 +17,37 @@ import org.junit.jupiter.api.Test;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import gim.testutil.ExerciseBuilder;
 
-public class UniqueExerciseListTest {
+public class ExerciseListTest {
 
-    private final UniqueExerciseList uniqueExerciseList = new UniqueExerciseList();
+    private final ExerciseList exerciseList = new ExerciseList();
 
     @Test
     public void contains_nullExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.contains(null));
+        assertThrows(NullPointerException.class, () -> exerciseList.contains(null));
     }
 
     @Test
     public void contains_exerciseNotInList_returnsFalse() {
-        assertFalse(uniqueExerciseList.contains(ALICE));
+        assertFalse(exerciseList.contains(ALICE));
     }
 
     @Test
     public void contains_exerciseInList_returnsTrue() {
-        uniqueExerciseList.add(ALICE);
-        assertTrue(uniqueExerciseList.contains(ALICE));
+        exerciseList.add(ALICE);
+        assertTrue(exerciseList.contains(ALICE));
     }
 
     @Test
     public void contains_exerciseWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueExerciseList.add(ALICE);
+        exerciseList.add(ALICE);
         Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
-        assertTrue(uniqueExerciseList.contains(editedAlice));
+        assertTrue(exerciseList.contains(editedAlice));
     }
 
     @Test
     public void add_nullExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.add(null));
+        assertThrows(NullPointerException.class, () -> exerciseList.add(null));
     }
 
     //    @Test
@@ -58,46 +58,46 @@ public class UniqueExerciseListTest {
 
     @Test
     public void setExercise_nullTargetExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercise(null, ALICE));
+        assertThrows(NullPointerException.class, () -> exerciseList.setExercise(null, ALICE));
     }
 
     @Test
     public void setExercise_nullEditedExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercise(ALICE, null));
+        assertThrows(NullPointerException.class, () -> exerciseList.setExercise(ALICE, null));
     }
 
     @Test
     public void setExercise_targetExerciseNotInList_throwsExerciseNotFoundException() {
-        assertThrows(ExerciseNotFoundException.class, () -> uniqueExerciseList.setExercise(ALICE, ALICE));
+        assertThrows(ExerciseNotFoundException.class, () -> exerciseList.setExercise(ALICE, ALICE));
     }
 
     @Test
     public void setExercise_editedExerciseIsSameExercise_success() {
-        uniqueExerciseList.add(ALICE);
-        uniqueExerciseList.setExercise(ALICE, ALICE);
-        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(ALICE);
-        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
+        exerciseList.add(ALICE);
+        exerciseList.setExercise(ALICE, ALICE);
+        ExerciseList expectedExerciseList = new ExerciseList();
+        expectedExerciseList.add(ALICE);
+        assertEquals(expectedExerciseList, exerciseList);
     }
 
     @Test
     public void setExercise_editedExerciseHasSameIdentity_success() {
-        uniqueExerciseList.add(ALICE);
+        exerciseList.add(ALICE);
         Exercise editedAlice = new ExerciseBuilder(ALICE).withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
                 .build();
-        uniqueExerciseList.setExercise(ALICE, editedAlice);
-        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(editedAlice);
-        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
+        exerciseList.setExercise(ALICE, editedAlice);
+        ExerciseList expectedExerciseList = new ExerciseList();
+        expectedExerciseList.add(editedAlice);
+        assertEquals(expectedExerciseList, exerciseList);
     }
 
     @Test
     public void setExercise_editedExerciseHasDifferentIdentity_success() {
-        uniqueExerciseList.add(ALICE);
-        uniqueExerciseList.setExercise(ALICE, BENCH_PRESS);
-        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(BENCH_PRESS);
-        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
+        exerciseList.add(ALICE);
+        exerciseList.setExercise(ALICE, BENCH_PRESS);
+        ExerciseList expectedExerciseList = new ExerciseList();
+        expectedExerciseList.add(BENCH_PRESS);
+        assertEquals(expectedExerciseList, exerciseList);
     }
 
     //    @Test
@@ -109,49 +109,49 @@ public class UniqueExerciseListTest {
 
     @Test
     public void remove_nullExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.remove(null));
+        assertThrows(NullPointerException.class, () -> exerciseList.remove(null));
     }
 
     @Test
     public void remove_exerciseDoesNotExist_throwsExerciseNotFoundException() {
-        assertThrows(ExerciseNotFoundException.class, () -> uniqueExerciseList.remove(ALICE));
+        assertThrows(ExerciseNotFoundException.class, () -> exerciseList.remove(ALICE));
     }
 
     @Test
     public void remove_existingExercise_removesExercise() {
-        uniqueExerciseList.add(ALICE);
-        uniqueExerciseList.remove(ALICE);
-        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
+        exerciseList.add(ALICE);
+        exerciseList.remove(ALICE);
+        ExerciseList expectedExerciseList = new ExerciseList();
+        assertEquals(expectedExerciseList, exerciseList);
     }
 
     @Test
     public void setExercises_nullUniqueExerciseList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercises((UniqueExerciseList) null));
+        assertThrows(NullPointerException.class, () -> exerciseList.setExercises((ExerciseList) null));
     }
 
     @Test
     public void setExercises_uniqueExerciseList_replacesOwnListWithProvidedUniqueExerciseList() {
-        uniqueExerciseList.add(ALICE);
-        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(BENCH_PRESS);
-        uniqueExerciseList.setExercises(expectedUniqueExerciseList);
-        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
+        exerciseList.add(ALICE);
+        ExerciseList expectedExerciseList = new ExerciseList();
+        expectedExerciseList.add(BENCH_PRESS);
+        exerciseList.setExercises(expectedExerciseList);
+        assertEquals(expectedExerciseList, exerciseList);
     }
 
     @Test
     public void setExercises_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercises((List<Exercise>) null));
+        assertThrows(NullPointerException.class, () -> exerciseList.setExercises((List<Exercise>) null));
     }
 
     @Test
     public void setExercises_list_replacesOwnListWithProvidedList() {
-        uniqueExerciseList.add(ALICE);
+        exerciseList.add(ALICE);
         List<Exercise> exerciseList = Collections.singletonList(BENCH_PRESS);
-        uniqueExerciseList.setExercises(exerciseList);
-        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
-        expectedUniqueExerciseList.add(BENCH_PRESS);
-        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
+        this.exerciseList.setExercises(exerciseList);
+        ExerciseList expectedExerciseList = new ExerciseList();
+        expectedExerciseList.add(BENCH_PRESS);
+        assertEquals(expectedExerciseList, this.exerciseList);
     }
 
     //    @Test
@@ -163,7 +163,7 @@ public class UniqueExerciseListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> uniqueExerciseList.asUnmodifiableObservableList()
+        assertThrows(UnsupportedOperationException.class, () -> exerciseList.asUnmodifiableObservableList()
                 .remove(0));
     }
 }

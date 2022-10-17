@@ -10,7 +10,7 @@ public interface ReadOnlyExerciseTracker {
 
     /**
      * Returns an unmodifiable view of the exercises list.
-     * This list will not contain any duplicate exercises.
+     * This list may contain duplicate exercises.
      */
     ObservableList<Exercise> getExerciseList();
 

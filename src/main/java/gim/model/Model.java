@@ -65,14 +65,14 @@ public interface Model {
 
     /**
      * Adds the given exercise.
-     * {@code exercise} must not already exist in the exercise tracker.
+     * {@code exercise} can already exist in the exercise tracker.
      */
     void addExercise(Exercise exercise);
 
     /**
      * Replaces the given exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the exercise tracker.
-     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise
+     * The exercise identity of {@code editedExercise} can be the same as another existing exercise
      * in the exercise tracker.
      */
     void setExercise(Exercise target, Exercise editedExercise);

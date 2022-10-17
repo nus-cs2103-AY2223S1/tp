@@ -49,7 +49,7 @@ public class Name {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
                 && fullName.toLowerCase().replaceAll("\\s", "").equals(((Name) other).fullName
-                .toLowerCase().replaceAll("\\s", ""))); // compare after spaces removed, set lowercase
+                .toLowerCase().replaceAll("\\s", ""))); // equals after spaces removed & lowercase set
     }
 
     @Override

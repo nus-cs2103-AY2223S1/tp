@@ -5,26 +5,20 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import gim.model.exercise.Exercise;
-import gim.model.exercise.UniqueExerciseList;
+import gim.model.exercise.ExerciseList;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameExercise comparison)
+ * Wraps all data at the exercise-tracker level.
+ *
+ * Duplicates are allowed.
  */
 public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
-    private final UniqueExerciseList exercises;
+    private final ExerciseList exercises;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
     {
-        exercises = new UniqueExerciseList();
+        exercises = new ExerciseList();
     }
 
     public ExerciseTracker() {}
@@ -40,8 +34,8 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the exercise list with {@code exercises}.
-     * {@code exercises} must not contain duplicate exercises.
+     * Replaces the contents of the ExerciseList with {@code exercises}.
+     * {@code exercises} can contain duplicate Exercises.
      */
     public void setExercises(List<Exercise> exercises) {
         this.exercises.setExercises(exercises);
@@ -59,7 +53,7 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     //// exercise-level operations
 
     /**
-     * Returns true if an exercise with the same identity as {@code exercise} exists in the exercise tracker.
+     * Returns true if an Exercise with the same identity as {@code exercise} exists in the exercise tracker.
      */
     public boolean hasExercise(Exercise exercise) {
         requireNonNull(exercise);
@@ -67,17 +61,17 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     }
 
     /**
-     * Adds an exercise to the exercise tracker.
-     * The exercise must not already exist in the exercise tracker.
+     * Adds an Exercise to the exercise tracker.
+     * The Exercise can already exist in the exercise tracker.
      */
     public void addExercise(Exercise p) {
         exercises.add(p);
     }
 
     /**
-     * Replaces the given exercise {@code target} in the list with {@code editedExercise}.
+     * Replaces the given Exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the exercise tracker.
-     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise
+     * The Exercise identity of {@code editedExercise} can be the same as another existing Exercise
      * in the exercise tracker.
      */
     public void setExercise(Exercise target, Exercise editedExercise) {

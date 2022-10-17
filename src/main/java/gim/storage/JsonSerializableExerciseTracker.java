@@ -49,9 +49,6 @@ class JsonSerializableExerciseTracker {
         ExerciseTracker exerciseTracker = new ExerciseTracker();
         for (JsonAdaptedExercise jsonAdaptedExercise : exercises) {
             Exercise exercise = jsonAdaptedExercise.toModelType();
-            //            if (exerciseTracker.hasExercise(exercise)) {
-            //                throw new IllegalValueException(MESSAGE_DUPLICATE_EXERCISE);
-            //            }
             exerciseTracker.addExercise(exercise);
         }
         return exerciseTracker;

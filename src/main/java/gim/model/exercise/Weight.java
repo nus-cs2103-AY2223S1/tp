@@ -18,7 +18,7 @@ public class Weight {
     /**
      * Constructs a {@code Weight}.
      *
-     * @param weight A valid weight number.
+     * @param weight A valid Weight.
      */
     public Weight(String weight) {
         requireNonNull(weight);
@@ -27,7 +27,7 @@ public class Weight {
     }
 
     /**
-     * Returns true if a given string is a valid weight number.
+     * Returns true if a given String is a valid Weight.
      */
     public static boolean isValidWeight(String test) {
         return test.matches(VALIDATION_REGEX);
