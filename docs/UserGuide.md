@@ -76,7 +76,7 @@ Format: `help`
 
 Adds a stall.
 
-Format: `sadd n/NAME a/ADDRESS [t/TAGS]...`
+Format: `sadd n/NAME a/ADDRESS [t/TAGS]…`
 
 Examples:
 * `sadd n/John Doe Eatery a/Blk 123 Bedok South t/VeryNice`
@@ -87,7 +87,7 @@ Examples:
 
 Adds a review.
 
-Format: `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]...`
+Format: `radd s/STALL_INDEX d/DATE c/CONTENT [t/TAGS]…`
 Examples:
 * `radd s/3 d/2022-09-20 c/The food was good, the chicken rice was fresh.`
 
@@ -130,7 +130,7 @@ Example:
 
 Finds stalls whose names contain any of the given keywords.
 
-Format: `sfind KEYWORD [MORE_KEYWORDS]`
+Format: `sfind KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
@@ -145,7 +145,7 @@ Example:
 
 Finds reviews whose names contain any of the given keywords.
 
-Format: `rfind KEYWORD [MORE_KEYWORDS]`
+Format: `rfind KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
@@ -196,7 +196,7 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 | **Exit**  | `exit`                                                                                                  |
 | **Help**  | `help`                                                                                                  |
 | **Clear** | `clear`                                                                                                 |
-| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
+| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
 | **rDel**  | `rdel INDEX`                                                                                            |
 | **rList** | `rlist`                                                                                                 |
 | **rFind** | `rfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
