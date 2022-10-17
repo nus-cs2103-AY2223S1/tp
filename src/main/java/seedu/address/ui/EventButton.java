@@ -7,7 +7,8 @@ import javafx.scene.control.Button;
  * Button that contains a CalendarEvent.
  */
 public class EventButton extends Button {
-
+    private static final int maxWidth = 100;
+    private static final int maxHeight = 30;
     @FXML
     private Button button;
 
@@ -18,7 +19,7 @@ public class EventButton extends Button {
 
     public Button getAppointmentButton() {
 
-        button.setMaxSize(100, 30.00);
+        button.setMaxSize(maxWidth, maxHeight);
         button.setStyle("-fx-font-size: 7pt; -fx-background-color: white; "
                 + "-fx-border-color: grey; -fx-border-radius: 5;");
         return button;

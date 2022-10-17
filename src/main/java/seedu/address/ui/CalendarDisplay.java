@@ -17,12 +17,20 @@ import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 
 /**
- * An UI component that displays information of a Calendar.
+ * A UI component that displays information of a Calendar.
  */
 public class CalendarDisplay extends UiPart<Region> {
 
     private static final String FXML = "CalendarDisplay.fxml";
 
+    private static final String[] monthNames = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    };
+    private static final String[] dayNames = {
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    };
+    private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
 
@@ -86,31 +94,10 @@ public class CalendarDisplay extends UiPart<Region> {
 
 
     private String getDayName(int n) {
-        switch (n) {
-        case 1:
-            return "Sunday";
-        case 2:
-            return "Monday";
-        case 3:
-            return "Tuesday";
-        case 4:
-            return "Wednesday";
-        case 5:
-            return "Thursday";
-        case 6:
-            return "Friday";
-        case 7:
-            return "Saturday";
-        default:
-            return "Invalid Input";
-        }
+        return dayNames[n + 1];
     }
 
     private String getMonthName(int n) {
-        String[] monthNames = {
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        };
         return monthNames[n];
     }
 
@@ -122,16 +109,17 @@ public class CalendarDisplay extends UiPart<Region> {
         header.setFill(Color.WHITE);
         return header;
     }
+
     public Button getButtonHeader(String text) {
         if (text.equals("Prev")) {
             Button prevButton = new Button(text);
             prevButton.setOnAction(e -> previous());
-            prevButton.setStyle("-fx-border-color: grey; -fx-border-radius: 5;");
+            prevButton.setStyle(switchButtonStyle);
             return prevButton;
         } else {
             Button nextButton = new Button(text);
             nextButton.setOnAction(e -> next());
-            nextButton.setStyle("-fx-border-color: grey; -fx-border-radius: 5;");
+            nextButton.setStyle(switchButtonStyle);
             return nextButton;
         }
     }

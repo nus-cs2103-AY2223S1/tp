@@ -2,7 +2,6 @@ package seedu.address.model.calendar;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.person.Appointment;
@@ -15,20 +14,17 @@ import seedu.address.model.person.Name;
  */
 public class CalendarEvent {
 
-    private Name name;
-    private Appointment appointment;
-    private LocalDateTime localDateTime;
+    private final Name name;
+    private final Appointment appointment;
 
     /**
      * Creates a CalendarEvent with the given name and appointment.
      */
     public CalendarEvent(Name name, Appointment appointment) {
-        requireAllNonNull(name);
-        requireAllNonNull(appointment);
+        requireAllNonNull(name, appointment);
 
         this.name = name;
         this.appointment = appointment;
-        this.localDateTime = this.appointment.getLocalDateTime();
     }
 
     public Name getName() {
@@ -36,16 +32,15 @@ public class CalendarEvent {
     }
 
     public int getDay() {
-        return localDateTime.getDayOfMonth();
+        return this.appointment.getDay();
     }
 
     public int getMonth() {
-        return localDateTime.getMonthValue();
+        return this.appointment.getMonth();
     }
 
-    public String getTime() {
-        return localDateTime.format(java.time.format
-                .DateTimeFormatter.ofPattern("hh:mm a"));
+    public String getTimeFormat() {
+        return this.appointment.getTimeFormat();
     }
 
     @Override
@@ -64,7 +59,7 @@ public class CalendarEvent {
 
     @Override
     public String toString() {
-        return String.format("%s, %s", getTime(), this.name);
+        return String.format("%s, %s", getTimeFormat(), this.name);
     }
 
     @Override

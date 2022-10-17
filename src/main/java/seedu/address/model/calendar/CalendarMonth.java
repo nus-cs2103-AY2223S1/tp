@@ -30,22 +30,21 @@ public class CalendarMonth {
     }
 
     /**
-     * Returns a mutable appointment set.
+     * Returns a mutable list of CalendarEvents.
      */
     public ObservableList<CalendarEvent> getCalendarEvents() {
         return calendarEvents;
     }
 
 
-    public void setAppointments(ObservableList<CalendarEvent> newCalendarEvents) {
-
+    public void setCalendarEvents(ObservableList<CalendarEvent> newCalendarEvents) {
         this.calendarEvents = newCalendarEvents;
     }
 
     public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(int day, int month) {
         List<CalendarEvent> calendarEventInDayOfMonth = new ArrayList<>();
         Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month;
-        calendarEvents.stream().filter(filter).forEach(x -> calendarEventInDayOfMonth.add(x));
+        calendarEvents.stream().filter(filter).forEach(calendarEventInDayOfMonth::add);
         return FXCollections.observableList(calendarEventInDayOfMonth);
     }
 

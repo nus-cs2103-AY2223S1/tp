@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.Person.MAXIMUM_APPOINTMENTS;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.logic.parser.DateTimeParser;
@@ -31,14 +30,6 @@ public class Appointment implements Comparable<Appointment> {
         this.dateTime = dateTime;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return this.dateTime.getLocalDateTime();
-    }
-
-    @Override
-    public String toString() {
-        return dateTime.toString();
-    }
 
     /**
      * Checks whether the input DateTime has the correct format
@@ -64,15 +55,33 @@ public class Appointment implements Comparable<Appointment> {
         return dateTime.getTime();
     }
 
+    public String getTimeFormat() {
+        return dateTime.getTimeFormat();
+    }
+
+    public int getDay() {
+        return dateTime.getDay();
+    }
+
+    public int getMonth() {
+        return dateTime.getMonth();
+    }
+
     @Override
     public int compareTo(Appointment other) {
         return this.dateTime.compareTo(other.dateTime);
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Appointment// instanceof handles nulls
                 && dateTime.equals(((Appointment) other).dateTime)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return dateTime.toString();
     }
 
     @Override

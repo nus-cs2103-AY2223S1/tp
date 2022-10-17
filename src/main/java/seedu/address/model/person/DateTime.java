@@ -28,8 +28,18 @@ public class DateTime implements Comparable<DateTime> {
         return new Time(localDateTime.toLocalTime());
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public String getTimeFormat() {
+        return localDateTime.format(java.time.format
+                .DateTimeFormatter.ofPattern("hh:mm a"));
+    }
+
+
+    public int getDay() {
+        return this.localDateTime.getDayOfMonth();
+    }
+
+    public int getMonth() {
+        return this.localDateTime.getMonthValue();
     }
 
     @Override

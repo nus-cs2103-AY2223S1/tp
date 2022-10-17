@@ -44,11 +44,11 @@ public class CalendarEventTest {
 
     @Test
     public void method_getTime_success() {
-        Assertions.assertEquals("01:00 PM", firstEvent.getTime());
-        Assertions.assertNotEquals("01:00 AM", firstEvent.getTime());
-        Assertions.assertNotEquals("1-Apr-2023 01:00 PM", firstEvent.getTime());
-        Assertions.assertNotEquals("1/Apr/2023 01:00 PM", firstEvent.getTime());
-        Assertions.assertNotEquals("13:00 PM", firstEvent.getTime());
+        Assertions.assertEquals("01:00 PM", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("01:00 AM", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("1-Apr-2023 01:00 PM", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("1/Apr/2023 01:00 PM", firstEvent.getTimeFormat());
+        Assertions.assertNotEquals("13:00 PM", firstEvent.getTimeFormat());
     }
 
     private class InvalidAppointmentStub extends Appointment {
