@@ -62,7 +62,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Comment comment = new Comment("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Tutor tutor = new Tutor(name, phone, email, module, year, studentId, comment, teachingNomination, rating, tagList);
+        Tutor tutor = new Tutor(name, phone, email, module, year, studentId, comment, teachingNomination, rating,
+                tagList);
 
         return new AddCommand(tutor);
     }
