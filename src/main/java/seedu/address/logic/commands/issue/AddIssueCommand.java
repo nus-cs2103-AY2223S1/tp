@@ -39,7 +39,7 @@ public class AddIssueCommand extends IssueCommand {
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
 
-    private final Issue toAdd;
+    //    private final Issue toAdd;
     private final Function<Model, Issue> toAddWithoutModel;
 
 //    /**
@@ -80,7 +80,8 @@ public class AddIssueCommand extends IssueCommand {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof AddIssueCommand
-                && toAdd.equals(((AddIssueCommand) other).toAdd));
+//                && toAdd.equals(((AddIssueCommand) other).toAdd) TODO: revisit
+        );
     }
 }
 

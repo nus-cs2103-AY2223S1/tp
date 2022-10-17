@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.interfaces.ComparableByName;
 import seedu.address.model.interfaces.HasIntegerIdentifier;
@@ -47,15 +48,6 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.clientId = clientId;
     }
 
-    /**
-     * Create a function that creates a Client when given a ClientId object
-     * @param name String representing name of the client
-     * @param phone String representing phone number of the client
-     * @param email String representing email address of the client
-     */
-    public static Function<ClientId, Client> clientWithoutIdSupplier(Name name, ClientPhone phone, ClientEmail email) {
-        return (id) -> new Client(name, phone, email, id);
-    }
 
     /**
      * Constructs a client with inputs given by the user.
@@ -82,8 +74,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * @param email email number of client
      * @return a function that returns a client when given a ClientID object.
      */
-    public static Function<ClientId, Client> makeClientWithoutID(Name name, ClientPhone phone, ClientEmail email) {
-        return (id) -> new Client(name, phone, email, id);
+    public static Function<Model, Client> makeClientWithoutModel(Name name, ClientPhone phone, ClientEmail email) {
+        return (model) -> new Client(name, phone, email, new ClientId(model.generateClientId()));
     }
 
     /**
