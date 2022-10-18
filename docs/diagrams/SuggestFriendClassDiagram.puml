@@ -1,0 +1,27 @@
+@startuml
+interface Predicate
+abstract class Command
+
+Predicate <|- PersonSuggestionPredicate
+Command <|- SuggestCommand
+SuggestCommand o-- "1" PersonSuggestionPredicate
+PersonSuggestionPredicate o-- "0..*" DayTimeInWeek
+PersonSuggestionPredicate o-- "0..*" Keyword
+
+abstract class Command {
+    CommandResult execute(Model model)
+}
+
+interface Predicate {
+    boolean test()
+}
+
+class SuggestCommand {
+    CommandResult execute(Model model)
+}
+
+class PersonSuggestionPredicate {
+    boolean test(Person person)
+}
+
+@enduml

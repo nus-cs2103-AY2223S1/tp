@@ -7,7 +7,8 @@
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* App Icon - Minecraft Book & Quill icon https://minecraft.fandom.com/wiki/Book_and_Quill
+* Font - Minecraft font https://fontmeme.com/fonts/minecraft-font/
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -151,6 +152,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Suggest a Friend
+
+#### Description
+
+The "suggest" feature suggests a friend for the user to play Minecraft with based on a given
+set of constraints.
+
+#### Implementation
+
+The suggest feature is facilitated through the `SuggestCommand`, `SuggestCommandParser`
+and `PersonSuggestionPredicate` classes. Once parsed, every `SuggestCommand` will contain
+a `PersonSuggestionPredicate` such that the predicate can be used to filter
+through the list of all friends to get a list of suggested friends.
+
+The `PersonSuggestionPredicate` is made up of two parts, a collection of `DayTimeInWeek` and a collection of `Keyword`. 
+Minefriends will find all persons that is available for *any* of the `DayTimeInWeek` and contains *all* the keywords in 
+the collection of `Keyword`.
+
+The following class diagram shows the organization of the classes for "suggest".
+
+<img src="images/SuggestFriendClassDiagram.png" width="550" />
+
+The following sequence diagram shows the flow of the execution of the suggest command.
+Some details related to the general parsing and execution of commands are omitted
+as they have been explained under [logic](#logic-component).
+
+<img src="images/SuggestFriendSequenceDiagram.png" width="550" />
 
 ### \[Proposed\] Undo/redo feature
 
