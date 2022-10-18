@@ -61,7 +61,13 @@ public class Assignment {
      * Returns if a given string is a valid grade.
      */
     public static boolean isValidGrade(String test) {
-        return test.matches(GRADE_VALIDATION_REGEX);
+
+        if (!test.matches(GRADE_VALIDATION_REGEX)) {
+            return false;
+        } else {
+            String[] split = test.split("/");
+            return Integer.parseInt(split[0]) <= Integer.parseInt(split[1]);
+        }
     }
 
     /**
