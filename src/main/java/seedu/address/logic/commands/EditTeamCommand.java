@@ -60,6 +60,7 @@ public class EditTeamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EditTeamCommand // instanceof handles nulls
-                && targetIndex.equals(((EditTeamCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((EditTeamCommand) other).targetIndex)
+                && newTeamName.equals(((EditTeamCommand) other).newTeamName)); // state check
     }
 }
