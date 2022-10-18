@@ -1,6 +1,6 @@
 package seedu.address.commons.util;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -86,6 +86,11 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    /**
+     * Opens PDF file in given file path
+     * @param filePath relative or absolute file path to PDF file
+     * @throws IOException if pdf does not exist or desktop does not support pdf opening
+     */
     public static void openPdfFile(String filePath) throws IOException {
         File pdfFile = new File(filePath);
         if (pdfFile.exists()) {
@@ -99,6 +104,11 @@ public class FileUtil {
         }
     }
 
+    /**
+     * Checks if PDF file exists in file path
+     * @param filePath relative or absolute file path to PDF file
+     * @return whether the PDF file exists in the file path
+     */
     public static boolean checkPdfFilePath(String filePath) {
         File pdfFile = new File(filePath);
         return pdfFile.exists();

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -30,7 +29,8 @@ class OpenPersonFileCommandTest {
         Person personFileToOpen = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         OpenPersonFileCommand openPersonFileCommand = new OpenPersonFileCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(OpenPersonFileCommand.MESSAGE_OPEN_PERSON_FILE_SUCCESS, personFileToOpen);
+        String expectedMessage = String.format(
+                OpenPersonFileCommand.MESSAGE_OPEN_PERSON_FILE_SUCCESS, personFileToOpen);
         CommandResult expectedResult = new CommandResult(expectedMessage);
 
         try {
@@ -55,7 +55,8 @@ class OpenPersonFileCommandTest {
         Person personFileToOpen = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         OpenPersonFileCommand openPersonFileCommand = new OpenPersonFileCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(OpenPersonFileCommand.MESSAGE_OPEN_PERSON_FILE_SUCCESS, personFileToOpen);
+        String expectedMessage = String.format(
+                OpenPersonFileCommand.MESSAGE_OPEN_PERSON_FILE_SUCCESS, personFileToOpen);
         CommandResult commandResult = new CommandResult(expectedMessage);
 
         try {

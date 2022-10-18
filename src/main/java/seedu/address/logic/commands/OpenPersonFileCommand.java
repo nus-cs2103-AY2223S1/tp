@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * Opens the PDF file of an existing person in the address book.
+ */
 public class OpenPersonFileCommand extends Command {
     public static final String COMMAND_WORD = "file";
 

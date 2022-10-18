@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.OpenPersonFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new OpenPersonFileCommand object
+ */
 public class OpenPersonFileCommandParser implements Parser<OpenPersonFileCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the OpenPersonFileCommand

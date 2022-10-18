@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -114,7 +113,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code NetWorth}.
+     * Parses a {@code String netWorth} into a {@code NetWorth}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code NetWorth} is invalid.
@@ -128,6 +127,12 @@ public class ParserUtil {
         return new NetWorth(trimmedNetWorth);
     }
 
+    /**
+     * Parses a {@code String filePath} into a {@code FilePath}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code FilePath} is invalid.
+     */
     public static FilePath parseFilePath(String filePath) throws ParseException {
         requireNonNull(filePath);
         String trimmedFilePath = filePath.trim();

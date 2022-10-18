@@ -11,7 +11,7 @@ import seedu.address.commons.util.FileUtil;
  */
 public class FilePath {
 
-    public static String DEFAULT_FILE_PATH = "src/main/resources/misc/Test_PDF.pdf";
+    public static final String DEFAULT_FILE_PATH = "src/main/resources/misc/Test_PDF.pdf";
 
     public static final String MESSAGE_CONSTRAINTS =
             "File Path should be a valid absolute file path to a pdf in your directory\n"
@@ -39,7 +39,7 @@ public class FilePath {
      * Returns true if a given string is a valid PDF file Path.
      */
     public static boolean isValidPdfFilePath(String test) {
-        return  FileUtil.isValidPath(test) && test.contains(".pdf") && FileUtil.checkPdfFilePath(test);
+        return FileUtil.isValidPath(test) && test.contains(".pdf") && FileUtil.checkPdfFilePath(test);
     }
 
 

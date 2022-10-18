@@ -10,6 +10,9 @@ import seedu.address.logic.commands.SetPersonFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.FilePath;
 
+/**
+ * Parses input arguments and creates a new {@code SetPersonFileCommand} object
+ */
 public class SetPersonFileCommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code SetPersonFileCommand}
@@ -24,7 +27,8 @@ public class SetPersonFileCommandParser {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetPersonFileCommand.MESSAGE_USAGE), ive);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetPersonFileCommand.MESSAGE_USAGE), ive);
         }
 
         String filePath = argMultimap.getValue(PREFIX_FILEPATH).orElse("");

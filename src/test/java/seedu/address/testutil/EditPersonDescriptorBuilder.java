@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.FilePath;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
