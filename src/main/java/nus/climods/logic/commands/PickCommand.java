@@ -4,6 +4,8 @@ import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -42,7 +44,8 @@ public class PickCommand extends Command {
         }
 
         model.getFilteredModuleList();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toPick, lessonType, classNo));
+        String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()));
     }
 
     @Override
