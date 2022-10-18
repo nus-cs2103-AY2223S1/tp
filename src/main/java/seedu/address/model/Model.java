@@ -165,11 +165,17 @@ public interface Model {
      */
     boolean hasConsultationClashingWith(Consultation consultation);
 
+    /**
+     * Deletes the given consultation.
+     * The person must exist in the ModQuik.
+     */
+    void deleteConsultation(Consultation target);
 
     /**
      * Adds the given tutorial.
      * {@code tutorial} must not already exist in the ModQuik.
      */
+
 
     void addTeachingAssistant(TeachingAssistant ta);
 
