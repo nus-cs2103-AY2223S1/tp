@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
+            + PREFIX_PHONE + "67089005 "
             + PREFIX_PRICE + "$1.10 "
             + PREFIX_ITEM + "Ginger";
 
