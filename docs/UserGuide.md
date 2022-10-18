@@ -93,8 +93,8 @@ Format: `edit appts INDEX [r/REASON] [d/DATE] [pe/TIMEPERIOD]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-Examples: 
-* `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30` 
+Examples:
+* `edit appts 1 r/Cough d/2022-12-10 16:30` Edits the reason and date of the first appointment to be `Cough` and `2022-12-10 16:30`
 respectively. Existing time period will not be edited.
 * `edit appts 1 pe/1Y2M` Edits the time period of the first appointment to be recurring every 1 year 2 months. Existing reason and date will not be edited.
 
