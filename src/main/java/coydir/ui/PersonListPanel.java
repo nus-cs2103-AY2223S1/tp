@@ -30,6 +30,14 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
+     * get the current {@PersonListView} of employee list
+     * @return a {@code PersonListView} that represents the current employee list
+     */
+    public ListView<Person> getPersonListView() {
+        return personListView;
+    }
+
+    /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {

@@ -196,6 +196,18 @@
     -fx-text-fill: #010504;
 }
 
+.info_big_label {
+    -fx-font-family: "SF Mono Semibold";
+    -fx-font-size: 24px;
+    -fx-text-fill: #010504;
+}
+
+.info_small_label {
+    -fx-font-family: "SF Mono";
+    -fx-font-size: 17px;
+    -fx-text-fill: #010504;
+}
+
 .stack-pane {
     -fx-background-color: derive(#ffffff, 20%);
 }

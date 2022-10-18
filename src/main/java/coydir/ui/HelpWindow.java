@@ -40,10 +40,10 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private TableView basicTableView;
+    private TableView<CommandFormat> basicTableView;
 
     @FXML
-    private TableView advancedTableView;
+    private TableView<CommandFormat> advancedTableView;
 
     /**
      * Creates a new HelpWindow.
