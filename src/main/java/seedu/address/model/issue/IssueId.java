@@ -55,8 +55,8 @@ public class IssueId {
      */
     public static boolean isValidIssueId(String issueId) {
         try {
-            Integer.parseInt(issueId);
-            return true;
+            int pid = Integer.parseInt(issueId);
+            return pid > 0;
         } catch (NumberFormatException e) {
             return false;
         }

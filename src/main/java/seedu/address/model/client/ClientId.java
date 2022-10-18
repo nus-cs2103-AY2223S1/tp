@@ -65,8 +65,8 @@ public class ClientId {
      */
     public static boolean isValidClientId(String clientId) {
         try {
-            Integer.parseInt(clientId);
-            return true;
+            int pid = Integer.parseInt(clientId);
+            return pid > 0;
         } catch (NumberFormatException e) {
             return false;
         }

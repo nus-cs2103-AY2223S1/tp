@@ -7,7 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ProjectId {
 
-    public static final String MESSAGE_CONSTRAINTS = "Project ID must be an integer";
+    public static final String MESSAGE_CONSTRAINTS = "Project ID must be a positive integer";
     public static final String MESSAGE_INVALID = "No existing project with this project ID";
     private int projectId;
 
@@ -62,8 +62,8 @@ public class ProjectId {
      */
     public static boolean isValidProjectId(String projectId) {
         try {
-            Integer.parseInt(projectId);
-            return true;
+            Integer pid = Integer.parseInt(projectId);
+            return pid > 0;
         } catch (NumberFormatException e) {
             return false;
         }
