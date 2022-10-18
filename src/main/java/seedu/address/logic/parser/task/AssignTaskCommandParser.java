@@ -59,5 +59,4 @@ public class AssignTaskCommandParser implements Parser<AssignTaskCommand> {
         return new AssignTaskCommand(taskIndex, personsAddIndexes, personsAddNames,
                 personsDeleteIndexes, personsDeleteNames);
     }
-
 }

@@ -3,7 +3,7 @@ package seedu.address.logic.parser.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,9 +30,9 @@ public class ListTasksCommandParser implements Parser<ListTasksCommand> {
     public ListTasksCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CONTACT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_CONTACT);
 
-        Optional<String> keywordFilter = argMultimap.getValue(PREFIX_NAME);
+        Optional<String> keywordFilter = argMultimap.getValue(PREFIX_TITLE);
         List<String> contactFilters = argMultimap.getAllValues(PREFIX_CONTACT);
 
         if (keywordFilter.isEmpty() && contactFilters.isEmpty() && !args.trim().isEmpty()) {

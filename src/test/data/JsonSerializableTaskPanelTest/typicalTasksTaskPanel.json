@@ -3,10 +3,12 @@
   "tasks": [{
     "title": "Add tasks to list",
     "isCompleted": "false",
+    "deadline": "UNSPECIFIED",
     "assigned": [ "Alice Pauline" ]
   }, {
     "title": "Assign contacts to task",
     "isCompleted": "false",
+    "deadline": "19-09-2022",
     "assigned": [ "George Best" ]
   } ]
 }

@@ -2,7 +2,6 @@ package seedu.address.logic.commands.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -50,10 +49,14 @@ public class MarkTaskCommand extends TaskCommand {
         }
 
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
-        Task editedTask = new Task(taskToMark.getTitle(), true, taskToMark.getAssignedContacts());
+        Task editedTask = new Task(
+                taskToMark.getTitle(),
+                true,
+                taskToMark.getDeadline(),
+                taskToMark.getAssignedContacts()
+        );
 
         model.setTask(taskToMark, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
     }
