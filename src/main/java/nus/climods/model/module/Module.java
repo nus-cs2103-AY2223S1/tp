@@ -16,9 +16,22 @@ public class Module {
 
     private final org.openapitools.client.model.ModuleInformation apiModuleInfo;
 
+    //private final org.openapitools.client.model.Module detailedModule;
+
+    private boolean isActive = false;
     public Module(org.openapitools.client.model.ModuleInformation apiModuleInfo) {
         this.apiModuleInfo = apiModuleInfo;
     }
+
+//    private getDetailedModule() {
+//        // check its null: call the api, set reference
+//        // if not null do nothing
+//    }
+//
+//    private getPrereqs
+//    public List<String> getLessonTypes() {
+//        detailedModule.getSemesterData().stream().
+//    }
 
     /**
      * Returns the number of modular credits.
@@ -75,6 +88,10 @@ public class Module {
                 .map(BigDecimal::intValue).collect(Collectors.toList());
     }
 
+    public List<String> getUniqueLessonTypes(BigDecimal semester) {
+        return List.of();
+    }
+
     /**
      * Check if module contains keyword
      * <p>
@@ -88,6 +105,14 @@ public class Module {
         List<String> searchRange = Arrays.asList(getCode(), getTitle());
 
         return searchRange.stream().anyMatch(range -> keywordPattern.asPredicate().test(range));
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
 

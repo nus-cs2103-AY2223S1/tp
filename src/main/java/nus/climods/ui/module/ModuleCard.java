@@ -52,15 +52,18 @@ public class ModuleCard extends UiPart<Region> {
     private VBox expandedModuleInfo;
     @FXML
     private Label moduleDescription;
+    @FXML
+    private Label prereqs;
 
     private ListView<Module> listView;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public ModuleCard(Module module, ListView<Module> lv) {
+    public ModuleCard(Module module, ListView<Module> listView) {
         super(FXML);
         this.module = module;
+        this.listView = listView;
 
         moduleCode.setText(module.getCode());
         title.setText(module.getTitle());
@@ -69,20 +72,28 @@ public class ModuleCard extends UiPart<Region> {
             .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
 
+        // managed controls whether it interrupts the flow i.e display in CSS vs visibility
+        // bind allows for managed to follow the visible property's changes
+        expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
+        // by default expanded is not visible
+        expandedModuleInfo.setVisible(false);
+
+
+        if (module.isActive()) {
+            showDetailedModuleInformation();
+
+        }
+    }
+
+    private void showDetailedModuleInformation() {
+        prereqs.setText("Prerequisites: ");
+        expandedModuleInfo.setVisible(true);
         moduleDescription.setText(module.getDescription());
         moduleDescription.setWrapText(true);
-        moduleDescription.minWidthProperty().bind(lv.minWidthProperty());
-        expandedModuleInfo.managedProperty().bind(expandedModuleInfo.visibleProperty());
-
-        expandedModuleInfo.setVisible(true);
-
-
-//        expandedModuleInfo.prefWidthProperty().bind(lv.prefWidthProperty());
-//        expandedModuleInfo.maxWidthProperty().bind(lv.maxWidthProperty());
-//        expandedModuleInfo.minWidthProperty().bind(lv.minWidthProperty());
-
+        moduleDescription.minWidthProperty().bind(listView.minWidthProperty());
 
     }
+
     private Pill createSemesterPill(int semesterNum) {
         String semesterText;
         switch (semesterNum) {
