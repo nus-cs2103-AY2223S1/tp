@@ -10,15 +10,15 @@ public class ColorPatternTest {
     @Test
     public void constructor_null() {
         ColorPattern nullColorPattern = new ColorPattern(null);
-        assertEquals(nullColorPattern.getColorPattern(), "");
+        assertEquals(nullColorPattern.getValue(), "");
     }
 
     @Test
     public void getColorPattern() {
         ColorPattern blueAndWhite = new ColorPattern("blue and white");
         ColorPattern brownAndWhite = new ColorPattern("brown and white");
-        assertEquals(blueAndWhite.getColorPattern(), "blue and white");
-        assertEquals(brownAndWhite.getColorPattern(), "brown and white");
+        assertEquals(blueAndWhite.getValue(), "blue and white");
+        assertEquals(brownAndWhite.getValue(), "brown and white");
     }
 
     @Test

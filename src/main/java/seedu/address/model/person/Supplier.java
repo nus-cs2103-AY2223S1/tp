@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.index.UniqueId;
+import seedu.address.model.pet.Pet;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -76,6 +80,14 @@ public class Supplier extends Person {
         if (pets != null) {
             this.pets.addAll(pets);
         }
+
+     * Converts the supplier's pets from a {@code List} to a {@code ObservableList} and returns the result.
+     *
+     * @return An {@code ObservableList} instance containing all the supplier's pets on sale.
+     */
+    public ObservableList<Pet> getPetsAsObservableList() {
+        // TODO: this should be FXCollections.observableList(getPetsOnSale()) but it will cause exception
+        return FXCollections.observableList(getPetsOnSale() == null ? new ArrayList<>() : getPetsOnSale());
     }
 
     public void deletePet(int index) {

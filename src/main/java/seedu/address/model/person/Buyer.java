@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
@@ -68,9 +71,15 @@ public class Buyer extends Person {
         return orders;
     }
 
-    public void addOrder(UniqueId order) {
-        orders.add(order);
+    /**
+     * Converts the buyer's orders from a {@code List} to a {@code ObservableList} and returns the result.
+     *
+     * @return An {@code ObservableList} instance containing all the buyer's orders.
+     */
+    public ObservableList<Order> getOrdersAsObservableList() {
+        return FXCollections.observableList(getOrders());
     }
+
 
     /**
      * Adds all orders in a Collection.
