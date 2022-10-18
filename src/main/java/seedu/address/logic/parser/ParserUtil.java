@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -174,7 +175,12 @@ public class ParserUtil {
     public static DeadlineTag parseDeadlineTag(String deadline) throws ParseException {
         requireNonNull(deadline);
         final LocalDate date;
-        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/32823368/
+        //with minor modifications.
+        final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
+        //@@author
         try {
             date = LocalDate.parse(deadline, dtf);
         } catch (DateTimeParseException dtp) {

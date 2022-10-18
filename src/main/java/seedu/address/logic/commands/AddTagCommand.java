@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNullElse;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
 import java.util.List;
@@ -20,7 +21,8 @@ import seedu.address.model.task.Task;
 public class AddTagCommand extends Command {
     public static final String COMMAND_WORD = "addtag";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": tags a task in the task list.\n"
-            + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS";
+            + "parameters: INDEX " + PREFIX_PRIORITY_STATUS + "PRIORITY_STATUS "
+            + PREFIX_DEADLINE + "DEADLINE";
 
     public static final String TAG_ADDED_SUCCESS = "The tag(s) has/have been added successfully";
 

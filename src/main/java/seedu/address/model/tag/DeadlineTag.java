@@ -1,7 +1,6 @@
 package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +10,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class DeadlineTag {
     public static final String DEADLINE_TAG_CONSTRAINTS =
-            "Deadline of the tag should be in the format dd-mm-yyyy and";
+            "Deadline of the tag should be in the format dd-mm-yyyy"
+            + " and should be a valid date entry";
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public final LocalDate deadline;
@@ -24,7 +24,6 @@ public class DeadlineTag {
      */
     public DeadlineTag(LocalDate deadline) {
         requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), DEADLINE_TAG_CONSTRAINTS);
         this.deadline = deadline;
     }
 

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -80,15 +81,17 @@ public class JsonAdaptedTask {
         final LocalDate date;
         try {
             if (deadline != null) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                //@@author dlimyy-reused
+                //Reused from https://stackoverflow.com/questions/32823368/
+                //with minor modifications.
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                        .withResolverStyle(ResolverStyle.STRICT);
+                //@@author
                 date = LocalDate.parse(deadline, dtf);
             } else {
                 date = null;
             }
         } catch (DateTimeParseException dtp) {
-            throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
-        }
-        if (!DeadlineTag.isValidDeadline(date)) {
             throw new IllegalValueException(DeadlineTag.DEADLINE_TAG_CONSTRAINTS);
         }
         final DeadlineTag deadlineTag = date == null ? null : new DeadlineTag(date);
