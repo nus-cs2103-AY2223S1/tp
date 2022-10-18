@@ -271,4 +271,37 @@ public class ParserUtilTest {
 
         assertEquals(expectedModSet, actualModSet);
     }
+
+    /**
+     * Tests the behaviour of the {@code parseModsToCategory} method
+     */
+    @Test
+    public void parseMods_correctAssigmentOfCategory() {
+        // CS Mods
+        assertEquals(Mod.ModCategory.COMP, ParserUtil.parseModsToCategory("CS2100"));
+        assertEquals(Mod.ModCategory.COMP, ParserUtil.parseModsToCategory("CS2103T"));
+        assertEquals(Mod.ModCategory.COMP, ParserUtil.parseModsToCategory("CP2106"));
+        assertEquals(Mod.ModCategory.COMP, ParserUtil.parseModsToCategory("IS1108"));
+
+        // Math Mods
+        assertEquals(Mod.ModCategory.MATH, ParserUtil.parseModsToCategory("ST2334"));
+        assertEquals(Mod.ModCategory.MATH, ParserUtil.parseModsToCategory("MA1521"));
+        assertEquals(Mod.ModCategory.MATH, ParserUtil.parseModsToCategory("MA2001"));
+
+        // Sci Mods
+        assertEquals(Mod.ModCategory.SCI, ParserUtil.parseModsToCategory("LSM1301"));
+        assertEquals(Mod.ModCategory.SCI, ParserUtil.parseModsToCategory("CM1102"));
+        assertEquals(Mod.ModCategory.SCI, ParserUtil.parseModsToCategory("PC1202"));
+
+        // GE Mods
+        assertEquals(Mod.ModCategory.GE, ParserUtil.parseModsToCategory("GEA1000"));
+        assertEquals(Mod.ModCategory.GE, ParserUtil.parseModsToCategory("UTC1102B"));
+        assertEquals(Mod.ModCategory.GE, ParserUtil.parseModsToCategory("GESS1025"));
+
+        // COMMS Mods
+        assertEquals(Mod.ModCategory.COMMS, ParserUtil.parseModsToCategory("ES2660"));
+
+        // UE Mods
+        assertEquals(Mod.ModCategory.UE, ParserUtil.parseModsToCategory("CFG1002"));
+    }
 }
