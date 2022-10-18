@@ -30,7 +30,6 @@ public class TaskPanelParserTest {
     @Test
     public void parse_listTasks() throws Exception {
         assertTrue(parser.parse(ListTasksCommand.COMMAND_WORD_FULL) instanceof ListTasksCommand);
-        assertTrue(parser.parse(ListTasksCommand.COMMAND_WORD_FULL + " 3") instanceof ListTasksCommand);
     }
 
     @Test

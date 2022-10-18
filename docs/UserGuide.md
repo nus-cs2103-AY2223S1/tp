@@ -116,16 +116,25 @@ Examples:
 * `find Betsy` followed by `tasks 1` shows the tasks assigned to the 1st person in the result of the `find` command.
 
 
-### Marking tasks of a person: `mark`
+### Marking tasks of a person: `task mark`
 
-Marks a task of a person as complete or incomplete.
+Marks a task of a person as complete
 
-Format: `mark TASK_INDEX p/PERSON_INDEX`
-* Marks the task at the specified TASK_INDEX of the person specified at CONTACT_INDEX.
+Format: `task mark TASK_INDEX`
+* Marks the task at the specified TASK_INDEX in `task list`.
 
 Examples:
-* `list` followed by `mark 1 p/2` marks the 1st task from the 2nd person in the address book as complete.
+* `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
+### Unmarking tasks of a person: `task unmark`
+
+Marks a task of a person as incomplete
+
+Format: `task unmark TASK_INDEX`
+* Unmarks the task at the specified TASK_INDEX in `task list`.
+
+Examples:
+* `task list` followed by `task unmark 1` marks the 1st task in the task list as incomplete.
 
 ### Deleting tasks from Task Panel: `task delete`
 
@@ -182,6 +191,18 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Editing a task: `task edit`
+
+Edits an existing task in the task list.
+
+Format: `task edit INDEX [ti/TITLE]`
+
+* Edits the task at the specified `INDEX`.  The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* Replacement for previous title should be inputted.
+
+Examples:
+* `task edit 1 ti/go back home` Edits the title to `go back home`
 
 ### Locating persons by name: `find`
 
@@ -259,8 +280,9 @@ _Details coming soon ..._
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Task add**    | `task add DESC`<br> e.g., `task add Title of task`                                                                                                                    |
 | **Tasks**       | `tasks INDEX`<br> e.g., `tasks 2`                                                                                                                                     |
-| **Mark**        | `mark TASK_INDEX p/PERSON_INDEX`<br> e.g., `mark 2 p/3`                                                                                                               |
-| **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                     |
+| **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
+| **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
+| **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
 | **Task assign** | `task assign TASK_INDEX [c/PERSON_INDEX]…​`<br> e.g., `task assign 3 c/1 c/2`                                                                                         |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |

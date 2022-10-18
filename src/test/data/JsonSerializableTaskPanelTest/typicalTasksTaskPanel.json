@@ -4,11 +4,11 @@
     "title": "Add tasks to list",
     "isCompleted": "false",
     "deadline": "UNSPECIFIED",
-    "contacts": [ "Alex Yeoh" ]
+    "assigned": [ "Alice Pauline" ]
   }, {
     "title": "Assign contacts to task",
     "isCompleted": "false",
     "deadline": "19-09-2022",
-    "contacts": [ "Bernice Yu" ]
+    "assigned": [ "George Best" ]
   } ]
 }
