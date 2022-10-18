@@ -146,7 +146,6 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedTutorList(Comparator<Tutor> comparator) {
-        requireNonNull(comparator);
         sortedFilteredTutors.setComparator(comparator);
     }
 

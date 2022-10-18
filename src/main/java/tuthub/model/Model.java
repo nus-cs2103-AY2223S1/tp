@@ -98,8 +98,8 @@ public interface Model {
     void updateFilteredTutorList(Predicate<Tutor> predicate);
 
     /**
-     * Updates the sorting comparator of the filtered tutor list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Updates the comparator of the filtered tutor list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedTutorList(Comparator<Tutor> comparator);
 
