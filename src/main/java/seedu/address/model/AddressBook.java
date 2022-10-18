@@ -173,7 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Deletes the message template from the address book.
-     * @param message
+     * @param message message to be deleted.
      */
     public void deleteMessage(Message message) {
         requireNonNull(message);

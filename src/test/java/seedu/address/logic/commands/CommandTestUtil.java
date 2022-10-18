@@ -272,17 +272,17 @@ public class CommandTestUtil {
         }
 
         @Override
+        public void addMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasMessage(Message message) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteMessage(Message messag) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addMessage(Message messag) {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -41,7 +41,6 @@ public class DeleteMessageCommand extends MessageCommandGroup {
         requireNonNull(model);
 
         List<Message> messages = model.getMessages();
-        System.out.println(index.getZeroBased());
         if (index.getZeroBased() >= messages.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MESSAGE_INDEX);
         }

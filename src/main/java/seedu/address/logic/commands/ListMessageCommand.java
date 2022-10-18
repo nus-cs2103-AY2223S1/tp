@@ -10,7 +10,7 @@ import seedu.address.model.message.Message;
 
 
 /**
- *
+ * Lists all messages in the message list.
  */
 public class ListMessageCommand extends MessageCommandGroup {
 
@@ -33,7 +33,7 @@ public class ListMessageCommand extends MessageCommandGroup {
 
         StringBuilder sb = new StringBuilder("\n");
         for (int i = 0; i < messages.size(); ++i) {
-            sb.append(i + ". " + messages.get(i) + "\n");
+            sb.append(i + 1 + ". " + messages.get(i) + "\n");
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sb));
     }

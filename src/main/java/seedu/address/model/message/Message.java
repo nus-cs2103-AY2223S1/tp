@@ -1,5 +1,8 @@
 package seedu.address.model.message;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import seedu.address.model.person.Person;
 
 /**
@@ -8,7 +11,15 @@ import seedu.address.model.person.Person;
  * Guarantees: immutable
  */
 public class Message {
+
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+
+    /*
+     * A message should not be an empty string.
+     */
+    public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
     private static final String NAME_PLACEHOLDER = "{name}";
+
     private String message;
 
     /**
@@ -16,7 +27,16 @@ public class Message {
      * @param message
      */
     public Message(String message) {
+        requireNonNull(message);
+        checkArgument(isValidMessage(message), MESSAGE_CONSTRAINTS);
         this.message = message;
+    }
+
+    /**
+     * Returns true if a given string is a valid message.
+     */
+    public static boolean isValidMessage(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
