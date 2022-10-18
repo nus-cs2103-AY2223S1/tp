@@ -93,7 +93,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Application expectedApplication = new ApplicationBuilder(FACEBOOK).build();
+        Application expectedApplication = new ApplicationBuilder(FACEBOOK).withTags().build();
         assertParseSuccess(parser, COMPANY_DESC_FACEBOOK + CONTACT_DESC_FACEBOOK + DATE_DESC_FACEBOOK
                 + EMAIL_DESC_FACEBOOK + POSITION_DESC_FACEBOOK, new AddCommand(expectedApplication));
     }
