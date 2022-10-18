@@ -31,6 +31,8 @@ public class ModCard extends UiPart<Region> {
     private Label modName;
     @FXML
     private Label modCategory;
+    @FXML
+    private Label completedStatus;
 
     /**
      * Creates a {@code ModCode} with the given {@code Mod} and index to display.
@@ -57,6 +59,13 @@ public class ModCard extends UiPart<Region> {
             modCategory.setStyle("-fx-background-color: #9373c7;");
         } else if (modCat.equals(Mod.ModCategory.UE)) {
             modCategory.setStyle("-fx-background-color: #5077ba;");
+        }
+
+        boolean isCompleted = module.getModStatus();
+        if (isCompleted) {
+            completedStatus.setStyle("-fx-background-color: #418a43;");
+        } else {
+            completedStatus.setStyle("-fx-background-color: #919191;");
         }
     }
 

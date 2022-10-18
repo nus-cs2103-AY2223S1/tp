@@ -359,6 +359,7 @@
     -fx-alignment: center;
 }
 
-#modCategory {
+#modCategory, #completedStatus {
     -fx-background-radius: 16, 16, 0, 0;
+    -fx-alignment: center;
 }
