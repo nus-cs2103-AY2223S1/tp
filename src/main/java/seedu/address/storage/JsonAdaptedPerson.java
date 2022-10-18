@@ -117,6 +117,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Reminder modelReminder = new Reminder(reminders);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags, modelReminder);
     }
 

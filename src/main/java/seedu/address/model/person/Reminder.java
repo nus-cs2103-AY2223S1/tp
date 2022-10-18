@@ -16,7 +16,6 @@ public class Reminder {
      * @param date A valid date to associated to the reminder.
      */
     public Reminder(String reminder, String date) {
-        requireNonNull(reminder, date);
         this.task = reminder;
         this.date = date;
     }
@@ -27,7 +26,6 @@ public class Reminder {
      * @param reminder A valid reminder.
      */
     public Reminder(String reminder) {
-        requireNonNull(reminder);
         this.task = reminder;
         this.date = "";
     }
