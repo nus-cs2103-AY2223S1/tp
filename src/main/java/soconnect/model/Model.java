@@ -95,15 +95,15 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
-     * Returns true if all the tags in the contact exist in the Tag list
+     * Returns true if all the tags in the contact exist in the Tag list.
      *
-     * @param person The person to be added
-     * @return True if all the tags exists in the tagList. False if otherwise
+     * @param person The person to be added.
+     * @return True if all the tags exist in the tagList. False if otherwise.
      */
     boolean areTagsAvailable(Person person);
 
     /**
-     * Returns true if all the tags in the todo exist in the Tag list
+     * Returns true if all the tags in the todo exist in the Tag list.
      *
      * @param todo The todo to be added.
      * @return True if all the tags exists in the tagList. False if otherwise.
@@ -256,7 +256,7 @@ public interface Model {
      * Returns the right tag from the Tag list.
      *
      * @param tag The reference tag.
-     * @return the tag that has the same name as the reference tag.
+     * @return The tag that has the same name as the reference tag.
      */
     Tag getTagFromList(Tag tag);
 

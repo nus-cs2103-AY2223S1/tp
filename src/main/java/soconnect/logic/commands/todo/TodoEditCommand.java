@@ -53,7 +53,7 @@ public class TodoEditCommand extends TodoCommand {
     private final EditTodoDescriptor editTodoDescriptor;
 
     /**
-     * Constructs an {@code TodoEditCommand} to edit the details of an existing {@code Todo} in SoConnect.
+     * Constructs a {@code TodoEditCommand} to edit the details of an existing {@code Todo} in SoConnect.
      *
      * @param index Index of the {@code Todo} in the {@code TodoList}.
      * @param editTodoDescriptor Details to edit the {@code Todo} with.

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import soconnect.commons.exceptions.IllegalValueException;
-import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.TodoList;
 import soconnect.model.tag.Tag;
@@ -50,9 +49,8 @@ class JsonSerializableTodoList {
      *
      * @throws IllegalValueException If there were any data constraints violated.
      */
-    public TodoList toModelType(ReadOnlySoConnect soConnect) throws IllegalValueException {
+    public TodoList toModelType(List<Tag> tagList) throws IllegalValueException {
         TodoList todoList = new TodoList();
-        List<Tag> tagList = soConnect.getTagList();
 
         for (JsonAdaptedTodo jsonAdaptedTodo : todos) {
             Todo todo = jsonAdaptedTodo.toModelType();
@@ -64,10 +62,10 @@ class JsonSerializableTodoList {
             for (int i = 0; i < todoTags.size(); i++) {
                 if (!tagList.contains(todoTags.get(i))) {
                     throw new IllegalValueException(MESSAGE_TAG_NOT_FOUND);
-                } else {
-                    int index = tagList.indexOf(todoTags.get(i));
-                    todoTags.set(i, tagList.get(index));
                 }
+                int index = tagList.indexOf(todoTags.get(i));
+                todoTags.set(i, tagList.get(index));
+
             }
             Set<Tag> updatedTags = new HashSet<>(todoTags);
             Todo newTodo = new Todo(todo.getDescription(),

@@ -50,7 +50,7 @@ public class UniqueTodoList implements Iterable<Todo> {
     /**
      * Replaces a {@code Todo} in the list with {@code editedTodo}.
      * {@code target} must exist in the list.
-     * {@code editedTodo} must not be the same as an existing {@code Todo} in the list.
+     * The {@code editedTodo} must not be the same as an existing {@code Todo} in the list.
      */
     public void setTodo(Todo target, Todo editedTodo) {
         requireAllNonNull(target, editedTodo);

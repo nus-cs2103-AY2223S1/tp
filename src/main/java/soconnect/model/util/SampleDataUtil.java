@@ -1,6 +1,7 @@
 package soconnect.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -48,11 +49,13 @@ public class SampleDataUtil {
     public static Todo[] getSampleTodos() {
         return new Todo[] {
             new Todo(new Description("Watch recorded lecture videos"), new Priority("high"),
-                getTagSet("friends")),
+                getTagSet("math")),
             new Todo(new Description("Revise content"), new Priority("medium"),
-                getTagSet("family")),
+                getTagSet("english")),
             new Todo(new Description("Prepare for tutorials"), new Priority("low"),
-                getTagSet("friends", "family"))
+                getTagSet("math", "chinese")),
+            new Todo(new Description("Prepare presentation slides"), new Priority("high"),
+                new HashSet<>())
         };
     }
 

@@ -3,6 +3,7 @@ package soconnect.logic.parser.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
+import static soconnect.logic.parser.ArgumentTokenizer.PrefixArgument;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_ALL;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_PRIORITY;
 import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
@@ -44,22 +45,24 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }
 
-        List<ArgumentTokenizer.PrefixArgument> argList = tokenizeToList(args, PREFIX_ALL, PREFIX_PRIORITY,
+        List<PrefixArgument> argList = tokenizeToList(args, PREFIX_ALL, PREFIX_PRIORITY,
             PREFIX_TAG);
+
+        // We only expect 2 arguments from the user: First is the preamble, Second is the filter condition
         int expectedNumberOfArguments = 2;
         if (argList.size() != expectedNumberOfArguments) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }
 
-        ArgumentTokenizer.PrefixArgument condition = argList.get(1);
+        PrefixArgument condition = argList.get(1);
         return parseShowCondition(condition);
     }
 
     /**
      * Parses the filter condition in {@code prefixArg} into a {@code TodoShowCommand}.
      */
-    private TodoShowCommand parseShowCondition(ArgumentTokenizer.PrefixArgument prefixArg) throws ParseException {
+    private TodoShowCommand parseShowCondition(PrefixArgument prefixArg) throws ParseException {
         Prefix prefix = prefixArg.getPrefix();
         String arg = prefixArg.getArgument();
 
