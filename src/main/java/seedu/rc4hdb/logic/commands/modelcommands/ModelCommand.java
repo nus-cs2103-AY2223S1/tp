@@ -8,7 +8,7 @@ import seedu.rc4hdb.model.Model;
 /**
  * Represents a command that interacts with a {@code Model}.
  */
-public abstract class ModelCommand extends Command {
+public interface ModelCommand extends Command {
 
     /**
      * Executes the command and returns the result message.
@@ -17,6 +17,6 @@ public abstract class ModelCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model) throws CommandException;
+    CommandResult execute(Model model) throws CommandException;
 
 }

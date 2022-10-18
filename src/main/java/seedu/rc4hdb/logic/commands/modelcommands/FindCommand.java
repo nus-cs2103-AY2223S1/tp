@@ -11,7 +11,7 @@ import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindCommand extends ModelCommand {
+public class FindCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "find";
 

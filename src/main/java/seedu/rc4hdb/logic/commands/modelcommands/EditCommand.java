@@ -33,7 +33,7 @@ import seedu.rc4hdb.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class EditCommand extends ModelCommand {
+public class EditCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "edit";
 

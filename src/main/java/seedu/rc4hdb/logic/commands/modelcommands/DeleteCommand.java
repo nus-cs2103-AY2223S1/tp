@@ -14,7 +14,7 @@ import seedu.rc4hdb.model.resident.Resident;
 /**
  * Deletes a resident identified using it's displayed index from the resident book.
  */
-public class DeleteCommand extends ModelCommand {
+public class DeleteCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "delete";
 

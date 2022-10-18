@@ -8,7 +8,7 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Represents a command that interacts with a {@code Storage}.
  */
-public abstract class StorageCommand extends Command {
+public interface StorageCommand extends Command {
 
     /**
      * Executes the command and returns the result message.
@@ -17,6 +17,6 @@ public abstract class StorageCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Storage storage) throws CommandException;
+    CommandResult execute(Storage storage) throws CommandException;
 
 }
