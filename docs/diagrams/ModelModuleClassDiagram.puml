@@ -17,6 +17,7 @@ Class Module
 Class ModuleCode
 Class ModuleTitle
 Class Link
+Class TaskList
 Class Task
 }
 
@@ -27,11 +28,13 @@ UniqueModuleList -right-> "all ~*" Module
 Module *--> "1" ModuleCode
 Module *--> "0..1" ModuleTitle
 Module *--> "*" Link
-Module *--> "*" Task
+Module *--> "1" TaskList
 
 ModuleCode -[hidden]right-> ModuleTitle
 ModuleTitle -[hidden]right-> Link
-Link -[hidden]right-> Task
+Link -[hidden]right-> TaskList
+
+TaskList -down-> "*" Task
 
 ModelManager --> "filtered ~*" Module
 @enduml
