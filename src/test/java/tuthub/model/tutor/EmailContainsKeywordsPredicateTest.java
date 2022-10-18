@@ -52,7 +52,7 @@ public class EmailContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_moduleDoesNotContainKeywords_returnFalse() {
+    public void test_emailDoesNotContainKeywords_returnFalse() {
         // Zero keywords
         EmailContainsKeywordsPredicate predicate =
                 new EmailContainsKeywordsPredicate(Collections.emptyList());

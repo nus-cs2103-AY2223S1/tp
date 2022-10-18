@@ -42,7 +42,7 @@ public class TeachingNominationContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void studentId_phoneContainsKeywords_returnsTrue() {
+    public void test_teachingNominationContainsKeywords_returnsTrue() {
         // One keyword
         TeachingNominationContainKeywordsPredicate predicate =
                 new TeachingNominationContainKeywordsPredicate(Collections.singletonList("1"));
@@ -50,7 +50,7 @@ public class TeachingNominationContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_studentIdDoesNotContainKeywords_returnsFalse() {
+    public void test_teachingNominationDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TeachingNominationContainKeywordsPredicate predicate =
                 new TeachingNominationContainKeywordsPredicate(Collections.emptyList());

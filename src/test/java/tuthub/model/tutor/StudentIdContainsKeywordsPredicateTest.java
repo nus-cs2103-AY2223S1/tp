@@ -42,7 +42,7 @@ public class StudentIdContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void studentId_phoneContainsKeywords_returnsTrue() {
+    public void test_studentIdContainsKeywords_returnsTrue() {
         // One keyword
         StudentIdContainsKeywordsPredicate predicate =
                 new StudentIdContainsKeywordsPredicate(Collections.singletonList("A0000000X"));
