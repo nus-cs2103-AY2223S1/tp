@@ -41,7 +41,7 @@ public class SwapTaskNumbersCommandParser implements Parser<SwapTaskNumbersComma
         ModuleCode moduleCodeOfModuleToDeleteTaskFrom =
                 ParserUtil.parseModuleCode(moduleCodeOfModuleToSwapTasksAsString);
         swapTaskNumbersDescriptor.setModuleCodeOfModuleToSwapTasks(moduleCodeOfModuleToDeleteTaskFrom);
-        swapTaskNumbersDescriptor.setIndexesOfTaskToDelete(taskIndexesToSwap);
+        swapTaskNumbersDescriptor.setIndexesOfTaskToSwap(taskIndexesToSwap);
         return new SwapTaskNumbersCommand(swapTaskNumbersDescriptor);
     }
 
