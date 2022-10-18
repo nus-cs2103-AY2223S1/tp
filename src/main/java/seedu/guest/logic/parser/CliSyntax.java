@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_NUMBER_OF_GUESTS = new Prefix("ng/");
     public static final Prefix PREFIX_IS_ROOM_CLEAN = new Prefix("rc/");
     public static final Prefix PREFIX_BILL = new Prefix("b/");
+    public static final Prefix PREFIX_REQUEST = new Prefix("rq/");
 }
