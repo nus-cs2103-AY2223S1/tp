@@ -125,20 +125,63 @@ Examples:
 
 ---
 
-### Deleting a person : `delete`
+### Deleting a client : `delete`
+
+Four formats of deleting a client.
+1. `delete INDEX`
+2. `delete INDEX1, INDEX2, …`
+3. `delete STARTINDEX - ENDINDEX`
+4. `delete all`
+
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+#### Deleting a single client
 
 Deletes the specified client from the FinBook.
 
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd client in the FinBook.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+#### Deleting multiple clients
+Deletes multiple specified clients from the FinBook.
+
+Format: `delete INDEX1, INDEX2, …`
+
+* Deletes the client at the specified `INDEX1`, `INDEX2`, and so on.
+* Value of `INDEX1`, `INDEX2`, … cannot contain any repeated values.
+
+Examples:
+
+* `list` followed by `delete 1, 2, 5` deletes the 1st, 2nd and 5th client in the FinBook.
+
+Deletes a range of clients from the FinBook.
+
+Format: `delete STARTINDEDX - ENDINDEX`
+
+* Deletes the client from `STARTINDEX` to `ENDINDEX` inclusive.
+* Value of`STARTINDEX` must be smaller than `ENDINDEX`.
+
+Examples:
+
+* `list` followed by `delete 1-3` deletes the 1st, 2nd and 3rd client in the FinBook.
+
+Deletes all clients from the FinBook.
+
+Format: `delete all`
+
+* Deletes all clients in FinBook.
+
+Examples:
+
+* `list` followed by `delete all` deletes the all clients in the FinBook.
+
 
 ---
 
@@ -219,7 +262,7 @@ the data of your previous FinBook home folder. Alternatively, you may use the `i
 | Action               | Format, Examples                                                                                                                                                                                             |
 |----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022` |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                          |
+| **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                    |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                  |
 | **List**             | `list`                                                                                                                                                                                                       |
 | **Exit application** | `exit`                                                                                                                                                                                                       |
