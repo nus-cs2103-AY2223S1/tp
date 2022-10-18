@@ -118,7 +118,13 @@ public class EditCommand extends Command {
         Description updatedDescription = editEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         Amount updatedAmount = editEntryDescriptor.getAmount().orElse(entryToEdit.getAmount());
         Date updatedDate = editEntryDescriptor.getDate().orElse(entryToEdit.getDate());
-        Tag updatedTag = editEntryDescriptor.getTag().orElse(entryToEdit.getTag());
+
+        Set<Tag> updatedTags;
+        if (editEntryDescriptor.getTags().isPresent() && editEntryDescriptor.getTags().get().size() == 0) {
+            updatedTags = entryToEdit.getTags();
+        } else {
+            updatedTags = editEntryDescriptor.getTags().orElse(entryToEdit.getTags());
+        }
 
         return new Entry(updatedDescription, updatedDate, updatedAmount, updatedTag);
     }
@@ -246,4 +252,5 @@ public class EditCommand extends Command {
                     && getTag().equals(e.getTag());
         }
     }
+
 }
