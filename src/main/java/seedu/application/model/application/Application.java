@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.exceptions.InvalidInterviewException;
 
 /**
  * Represents an Application in the Application book.
@@ -23,6 +24,12 @@ public class Application {
 
     /**
      * Instantiate Application with empty Interview.
+     *
+     * @param company name that represents the company
+     * @param contact number of the company.
+     * @param email of the company.
+     * @param position that the user applies to.
+     * @param date of the user applies to this position.
      */
     public Application(Company company, Contact contact, Email email, Position position, Date date) {
         requireAllNonNull(company, contact, email, position, date);
@@ -35,15 +42,34 @@ public class Application {
     }
 
     /**
-     * Instantiate Application with non-empty Interview.
+     * Instantiate Application with empty Interview.
+     *
+     * @param application that either contains empty interview or non-empty interview.
      */
-    public Application(Application application, Interview interview) {
+    public Application(Application application) {
+        requireAllNonNull(application);
+        this.company = application.getCompany();
+        this.contact = application.getContact();
+        this.email = application.getEmail();
+        this.position = application.getPosition();
+        this.date = application.getDate();
+        this.interview = Optional.empty();
+    }
+
+    /**
+     * Instantiate Application with non-empty Interview.
+     *
+     * @param application that either contains empty interview or non-empty interview.
+     * @param interview to be added into the application.
+     */
+    public Application(Application application, Interview interview) throws InvalidInterviewException {
         requireAllNonNull(application, interview);
         this.company = application.getCompany();
         this.contact = application.getContact();
         this.email = application.getEmail();
         this.position = application.getPosition();
         this.date = application.getDate();
+        interviewIsAfterApplication(interview, application);
         this.interview = Optional.of(interview);
     }
 
@@ -81,6 +107,12 @@ public class Application {
         return otherApplication != null
                 && otherApplication.getCompany().equals(getCompany())
                 && otherApplication.getPosition().equals(getPosition());
+    }
+
+    private void interviewIsAfterApplication(Interview interview, Application application) {
+        if (interview.getInterviewDate().value.isBefore(application.getDate().value)) {
+            throw new InvalidInterviewException();
+        }
     }
 
     /**
@@ -123,9 +155,12 @@ public class Application {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Apply on: ")
-                .append(getDate())
-                .append("; Interview: ")
-                .append(getInterview());
+                .append(getDate());
+
+        if (getInterview().isPresent()) {
+            builder.append("; \nInterview: ")
+                    .append(getInterview().get());
+        }
 
         return builder.toString();
     }

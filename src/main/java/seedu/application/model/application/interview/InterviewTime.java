@@ -15,10 +15,9 @@ public class InterviewTime {
 
 
     public static final String MESSAGE_CONSTRAINTS = "Time should be in the format of HHMM";
-    //Only valid if time in HHMM format
-    public static final String VALIDATION_REGEX = "^([0-1]?[0-9]|2[0-3])[0-5][0-9]$";
     public static final DateTimeFormatter COMMAND_TIME_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
     public static final DateTimeFormatter DISPLAY_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
+    private static final long DURATION = 1;
     public final LocalTime value;
 
     /**
@@ -45,12 +44,21 @@ public class InterviewTime {
     }
 
     private LocalTime parseLocalTime(String timeString) {
-        /*
-        //desired date format HHMM e.g."2359"
-        String validatedTimeString = timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + ":" + "00";
-        return LocalTime.parse(validatedTimeString);
-         */
         return LocalTime.parse(timeString, COMMAND_TIME_FORMATTER);
+    }
+
+    /**
+     * Returns true if the one's interview time falls within the range of one hour of another interview's time.
+     *
+     * @param otherTime another interviewTime to be checked.
+     * @return true if the one's interview time falls within the range of one hour of another interview's time.
+     */
+    public boolean isWithin(InterviewTime otherTime) {
+        return otherTime.value.equals(this.value)
+                || ((otherTime.value.isAfter(this.value)
+                && otherTime.value.isBefore(this.value.plusHours(DURATION)))
+                || (this.value.isAfter(otherTime.value)
+                && this.value.isBefore(otherTime.value.plusHours(DURATION))));
     }
 
     /**
@@ -64,7 +72,7 @@ public class InterviewTime {
 
     @Override
     public String toString() {
-        return this.value.format(DISPLAY_TIME_FORMATTER);
+        return this.value.format(DISPLAY_TIME_FORMATTER).substring(0, 5);
     }
 
     @Override

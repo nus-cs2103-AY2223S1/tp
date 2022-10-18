@@ -45,7 +45,7 @@ public class Interview {
     }
 
     /**
-     * Returns true if both interviews have the same date and time.
+     * Returns true if both interviews have the same date and time is within one hour of one another.
      * This defines a weaker notion of equality between two applications.
      */
     public boolean isOnSameTime(Interview otherInterview) {
@@ -55,7 +55,7 @@ public class Interview {
 
         return otherInterview != null
                 && otherInterview.getInterviewDate().equals(getInterviewDate())
-                && otherInterview.getInterviewTime().equals(getInterviewTime());
+                && otherInterview.getInterviewTime().isWithin(getInterviewTime());
     }
 
     /**
