@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_IMPORT_ERROR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.util.SampleDataUtil.getSamplePersons;
 import static seedu.address.testutil.TestUtil.getFilePathInSandboxFolder;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -34,6 +35,9 @@ public class ImportCommandTest {
     private Path dummyPath = getFilePathInSandboxFolder("foobar.json");
     private Path dummyPath2 = Paths.get("foobar2.json");
     private File dummyFile = new File(dummyPath.toUri());
+
+    private Path validCsv = Paths.get("src/test/data/ImportCsvTest/validCsv.csv");
+    private Path invalidCsv = Paths.get("src/test/data/ImportCsvTest/invalidCsv.csv");
 
     @Test
     public void execute_validJson_success() {
@@ -77,12 +81,24 @@ public class ImportCommandTest {
 
     @Test
     public void execute_validCsv_success() {
-        // to be implemented
+        ImportCommand importCommand = new ImportCommand(validCsv);
+
+        String expectedMessage = String.format(ImportCommand.MESSAGE_IMPORT_DATA_SUCCESS, validCsv.getFileName());
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        for (Person person : getSamplePersons()) {
+            expectedModel.addPerson(person);
+        }
+
+        assertCommandSuccess(importCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidCsv_throwsCommandException() {
-        // to be implemented
+        ImportCommand importCommand = new ImportCommand(invalidCsv);
+
+        assertCommandFailure(importCommand, model,
+                String.format(MESSAGE_IMPORT_ERROR, "Error capturing CSV header!"));
     }
 
     @Test
