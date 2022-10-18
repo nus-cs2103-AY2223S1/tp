@@ -15,7 +15,7 @@ import seedu.address.model.record.Record;
  */
 public class AddRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "addR";
+    public static final String COMMAND_WORD = "radd";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new record to the list of records.\n"
             + "Parameters: "

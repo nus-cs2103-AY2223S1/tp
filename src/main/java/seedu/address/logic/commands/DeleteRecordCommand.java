@@ -15,14 +15,14 @@ import seedu.address.model.record.Record;
  */
 public class DeleteRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteR";
+    public static final String COMMAND_WORD = "rdelete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the record identified by the index number used in the displayed record list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_RECORD_SUCCESS = "Deleted Record: %1$s";
+    public static final String MESSAGE_DELETE_RECORD_SUCCESS = "Deleted record: %1$s";
 
     private final Index targetIndex;
 
