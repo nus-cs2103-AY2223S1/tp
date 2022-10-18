@@ -11,9 +11,9 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
 
-    public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm";
+    public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HHmm";
     public static final String MESSAGE_CONSTRAINTS = "Date and time should be in the format of: "
-            + DATE_TIME_PATTERN + " i.e 16-10-2022 10:15";
+            + DATE_TIME_PATTERN + " i.e 16-10-2022 1015";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
     public final LocalDateTime dateTime;
