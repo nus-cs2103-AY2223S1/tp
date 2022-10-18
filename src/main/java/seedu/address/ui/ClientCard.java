@@ -33,6 +33,10 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
     private Label address;
     @FXML
     private Label companies;
@@ -49,7 +53,9 @@ public class ClientCard extends UiPart<Region> {
         this.client = client;
         id.setText(displayedIndex + ". ");
         name.setText(client.getName().fullName);
-        address.setText(client.getAddress().value);
+        address.setText("Address: " + client.getAddress().value);
+        phone.setText("Phone: " + client.getPhone().value);
+        email.setText("Email: " + client.getEmail().value);
         companies.setText(client.getCompanies().toString());
         transactions.setText("Total: " + String.valueOf(client.getTotalTransacted()));
         client.getTags().stream()

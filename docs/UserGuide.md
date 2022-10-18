@@ -12,7 +12,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Features](#features)
   * [Adding a client: `add`](#adding-a-client-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a company: `create`](#creating-a-person-create)
+  * [Creating a company: `create`](#creating-a-company-create)
   * [Deleting a client: `delete`](#deleting-a-client--delete)
   * [Editing a client: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -115,9 +115,9 @@ Example:
 
 * `clear` followed by `confirm`
 
-### Creating a Person: `create`
+### Creating a Company: `create`
 
-Creates a new person (company) for a specific client.
+Creates a new company (company) for a specific client.
 
 Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`
 
