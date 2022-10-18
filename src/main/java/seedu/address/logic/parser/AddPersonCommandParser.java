@@ -20,7 +20,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -30,30 +30,30 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
     private final JCommander parser;
-    private final AddCommandArguments arguments = new AddCommandArguments();
+    private final AddPersonCommandArguments arguments = new AddPersonCommandArguments();
 
     /**
-     * Creates an AddCommandParser with default options
+     * Creates an AddPersonCommandParser with default options
      */
-    public AddCommandParser() {
+    public AddPersonCommandParser() {
         this.parser = JCommander.newBuilder().addObject(arguments).build();
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPersonCommand
+     * and returns an AddPersonCommand object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddPersonCommand parse(String args) throws ParseException {
         try {
             List<String> argsList = new ArrayList<>(List.of(ArgumentTokenizer.tokenize(args)));
             if (argsList.size() == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
             }
 
             parser.parse(argsList.toArray(String[]::new));
@@ -67,13 +67,13 @@ public class AddCommandParser implements Parser<AddCommand> {
                 : Set.of();
 
             Person person = new Person(name, phone, email, address, tagList);
-            return new AddCommand(person);
+            return new AddPersonCommand(person);
         } catch (ParameterException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE), e);
         }
     }
 
-    private static class AddCommandArguments {
+    private static class AddPersonCommandArguments {
         @Parameter(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, description = "Name of person")
         private String name;
 
