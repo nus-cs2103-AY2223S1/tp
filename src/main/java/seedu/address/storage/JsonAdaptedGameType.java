@@ -46,5 +46,4 @@ class JsonAdaptedGameType {
         }
         return ParserUtil.parseGameType(gameTypes);
     }
-
 }
