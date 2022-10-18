@@ -81,7 +81,7 @@ public class AddCommandParserTest {
                 + TELEGRAM_DESC_BOB + GITHUB_DESC_BOB + INTEREST_DESC_TENNIS + MOD_DESC_CS2100,
                 new AddCommand(expectedPerson));
 
-        // multiple tags - all accepted
+        // multiple interests - all accepted
         Person expectedPersonMultipleInterests = new PersonBuilder(BOB)
                 .withInterests(VALID_INTEREST_TENNIS, VALID_INTEREST_NETFLIX)
                 .build();
@@ -131,7 +131,7 @@ public class AddCommandParserTest {
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_BOB + INTEREST_DESC_NETFLIX + INTEREST_DESC_TENNIS, Email.MESSAGE_CONSTRAINTS);
-        // invalid tag
+        // invalid interest
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                 + GITHUB_DESC_BOB + INVALID_INTEREST_DESC + VALID_INTEREST_TENNIS, Interest.MESSAGE_CONSTRAINTS);
 

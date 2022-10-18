@@ -36,7 +36,7 @@ class JsonAdaptedInterest {
     /**
      * Converts this Jackson-friendly adapted interest object into the model's {@code Interest} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted interest.
      */
     public Interest toModelType() throws IllegalValueException {
         if (!Interest.isValidInterest(interestName)) {
