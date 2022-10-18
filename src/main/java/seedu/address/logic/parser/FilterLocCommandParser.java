@@ -6,6 +6,8 @@ import seedu.address.logic.commands.FilterLocCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.LocationContainsKeywordsPredicate;
 
+import java.util.Arrays;
+
 /**
  * Parses input arguments and creates a new DeleteCommand object.
  */
@@ -22,10 +24,10 @@ public class FilterLocCommandParser implements Parser<FilterLocCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterLocCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+", 2);
+        String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FilterLocCommand(new LocationContainsKeywordsPredicate<>(nameKeywords[0]),
-                new LocationContainsKeywordsPredicate<>(nameKeywords[0]),
-                new LocationContainsKeywordsPredicate<>(nameKeywords[0]));
+        return new FilterLocCommand(new LocationContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)),
+                new LocationContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));
     }
 }
