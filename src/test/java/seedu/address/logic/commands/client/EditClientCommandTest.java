@@ -45,7 +45,7 @@
 //
 //        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+//        Model expectedModel = new ModelManager(AddressBook.getNew(model.getAddressBook()), new UserPrefs());
 //        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 //        Ui stubUi = new StubUiManager();
 //
@@ -67,7 +67,7 @@
 //
 //        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+//        Model expectedModel = new ModelManager(AddressBook.getNew(model.getAddressBook()), new UserPrefs());
 //        expectedModel.setPerson(lastPerson, editedPerson);
 //        Ui stubUi = new StubUiManager();
 //
@@ -81,7 +81,7 @@
 //
 //        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+//        Model expectedModel = new ModelManager(AddressBook.getNew(model.getAddressBook()), new UserPrefs());
 //        Ui stubUi = new StubUiManager();
 //
 //        assertCommandSuccess(editClientCommand, model, expectedMessage, expectedModel, stubUi);
@@ -98,7 +98,7 @@
 //
 //        String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 //
-//        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+//        Model expectedModel = new ModelManager(AddressBook.getNew(model.getAddressBook()), new UserPrefs());
 //        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 //
 //        Ui stubUi = new StubUiManager();

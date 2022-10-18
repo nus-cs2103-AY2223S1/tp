@@ -7,12 +7,14 @@ import java.util.List;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
 import seedu.address.model.client.Client;
+import seedu.address.model.interfaces.ComparableByName;
+import seedu.address.model.interfaces.HasIntegerIdentifier;
 import seedu.address.model.issue.Issue;
 
 /**
  * Represents a Project.
  */
-public class Project {
+public class Project implements ComparableByName<Project>, HasIntegerIdentifier<Project> {
 
     // Components of a project
     private Name name;
@@ -49,17 +51,24 @@ public class Project {
         this.client = toAddClient;
     }
 
+    @Override
+    public int getID() {
+        return this.projectId.getIdInt();
+    }
+
     /**
      * Represents an Empty Project.
      */
     public static class EmptyProject extends Project {
         public static final Project EMPTY_PROJECT = new EmptyProject();
+
         private EmptyProject() {
             super(Name.EmptyName.EMPTY_NAME);
         }
 
         /**
          * Checks if this Project is empty.
+         *
          * @return true if the Project is empty.
          */
         @Override
@@ -93,20 +102,29 @@ public class Project {
         return issueList;
     }
 
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public void setRepository(Repository repository) {
+        this.repository = repository;
+    }
+
+    public void setDeadline(Deadline deadline) {
+        this.deadline = deadline;
+    }
+
     public void removeClient() {
         this.client = Client.EmptyClient.EMPTY_CLIENT;
     }
 
     /**
      * Checks if this Project is empty.
+     *
      * @return true if the Project is empty.
      */
     public boolean isEmpty() {
         return false;
-    }
-
-    public boolean hasValidClientId() {
-        return !this.getClient().getClientId().isEmpty();
     }
 
     /**
@@ -136,7 +154,8 @@ public class Project {
      * Returns true if both projects have the same name.
      * This defines a weaker notion of equality between two projects.
      */
-    public boolean isSameProject(Project otherProject) {
+    @Override
+    public boolean hasSameName(Project otherProject) {
         if (otherProject == this) {
             return true;
         }

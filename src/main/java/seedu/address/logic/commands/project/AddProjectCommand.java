@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.ui.Ui;
 
 /**
@@ -21,7 +22,7 @@ public class AddProjectCommand extends ProjectCommand {
 
     public static final String COMMAND_FLAG = "-a";
 
-    public static final String MESSAGE_ADD_PROJECT_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_ID + "CLIENT_ID "
@@ -35,23 +36,24 @@ public class AddProjectCommand extends ProjectCommand {
             + PREFIX_DEADLINE + "2022-03-05 ";
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book";
-    public static final String MESSAGE_ADD_PROJECT_SUCCESS = "New project added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New project added: %1$s";
 
-    private final Project toAddProject;
-    private final Client projectClient;
+    private final ProjectWithoutModel toAddProjectWithoutModel;
 
     /**
      * Creates an AddProjectCommand to add the specified {@code Project}
      */
-    public AddProjectCommand(Project project) {
-        requireNonNull(project);
-        toAddProject = project;
-        projectClient = project.getClient();
+    public AddProjectCommand(ProjectWithoutModel projectWithoutModel) {
+        requireNonNull(projectWithoutModel);
+        toAddProjectWithoutModel = projectWithoutModel;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+
+        Project toAddProject = toAddProjectWithoutModel.apply(model);
+        Client projectClient = toAddProject.getClient();
 
         if (model.hasProject(toAddProject)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
@@ -65,13 +67,19 @@ public class AddProjectCommand extends ProjectCommand {
         model.addProject(toAddProject);
         ui.showProjects();
         model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_ADD_PROJECT_SUCCESS, toAddProject));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAddProject));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddProjectCommand // instanceof handles nulls
-                && toAddProject.equals(((AddProjectCommand) other).toAddProject));
+        if (this == other) {
+            return true;
+        }
+
+        if (!(other instanceof AddProjectCommand)) {
+            return false;
+        }
+
+        return this.toAddProjectWithoutModel.equals(((AddProjectCommand) other).toAddProjectWithoutModel);
     }
 }

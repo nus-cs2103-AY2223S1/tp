@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
@@ -10,8 +11,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
+
 
 /**
  * Adds a client to the address book.
@@ -37,30 +41,35 @@ public class AddClientCommand extends ClientCommand {
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book";
     private static final String MESSAGE_EXISTING_CLIENT = "This project already has a client";
 
-    private final Client toAddClient;
-    private final Project toModifyProject;
+    private final ClientWithoutModel toAddClientWithoutModel;
+    private final ProjectId toModifyProjectId;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
+     * @param clientWithoutModel
      */
-    public AddClientCommand(Client client, Project project) {
-        requireNonNull(client);
-        toAddClient = client;
-        toModifyProject = project;
+    public AddClientCommand(ClientWithoutModel clientWithoutModel, ProjectId projectID) {
+        requireAllNonNull(clientWithoutModel);
+
+        toAddClientWithoutModel = clientWithoutModel;
+        toModifyProjectId = projectID;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasClient(toAddClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
-        }
+        Client toAddClient = toAddClientWithoutModel.apply(model);
+
+        Project toModifyProject = model.getProjectById(toModifyProjectId.getIdInt());
+
         if (!toModifyProject.getClient().isEmpty()) {
             throw new CommandException(MESSAGE_EXISTING_CLIENT);
         }
+
         toModifyProject.setClient(toAddClient);
-        model.setProject(toModifyProject, toModifyProject);
+        toAddClient.addProjects(toModifyProject);
+
         model.addClient(toAddClient);
 
         ui.showClients();
@@ -71,8 +80,14 @@ public class AddClientCommand extends ClientCommand {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddClientCommand // instanceof handles nulls
-                && toAddClient.equals(((AddClientCommand) other).toAddClient));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddClientCommand)) {
+            return false;
+        }
+
+        return this.toAddClientWithoutModel.equals(((AddClientCommand) other).toAddClientWithoutModel);
     }
 }
