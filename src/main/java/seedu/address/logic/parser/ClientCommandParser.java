@@ -16,6 +16,7 @@ import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.logic.commands.client.DeleteClientCommand;
 import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.client.ListClientCommand;
+import seedu.address.logic.commands.client.SetClientDefaultViewCommand;
 import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
 import seedu.address.logic.commands.client.find.FindClientByNameCommand;
 import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
@@ -54,13 +55,16 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             return parseDeleteClientCommand(arguments);
         case ListClientCommand.COMMAND_FLAG:
             return parseListClientCommand(arguments);
+        case SetClientDefaultViewCommand.COMMAND_FLAG:
+            return parseSetClientDefaultViewCommand(arguments);
         case FindClientCommand.COMMAND_FLAG:
             return parseFindClientCommand(arguments);
-
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
+
+
 
     // TODO: revise syntax
 
@@ -140,6 +144,11 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return new ListClientCommand();
     }
 
+
+    private ClientCommand parseSetClientDefaultViewCommand(String arguments) {
+        return new SetClientDefaultViewCommand();
+    }
+    
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
         try {
 
