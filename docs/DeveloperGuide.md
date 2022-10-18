@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TutorListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Tutor` object residing in the `Model`.
 
 ### Logic component
 
@@ -276,16 +276,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                               | I can …​                              | So that I can…​                                   |
-|----------| --------------------------------------|---------------------------------------|---------------------------------------------------|
-| `* * *`  | user                                  | list all tutor profiles               | get a quick view of all available tutors          |
-| `* * *`  | user                                  | add a new tutor                       | track their profiles                              |
-| `* * *`  | user                                  | find a specific tutor by name easily  | filter tutor names                                |
-| `* * *`  | user                                  | delete a tutor profile                | remove tutors that are no longer available for work |
-| `* * *`  | user                                  | save data                             | there is a local backup on the computer           |
-| `* * *`  | user                                  | exit the program                      |                                                   |
+| Priority | As a …​                               | I can …​                             | So that I can…​                                                                   |
+|--------| --------------------------------------|--------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *` | user                                  | list all tutor profiles              | get a quick view of all available tutors                                                  |
+| `* * *` | user                                  | add a new tutor                      | track their profiles                                                                      |
+| `* * *` | user                                  | find a specific tutor by name easily | filter tutor names                                                                        |
+| `* * *` | user                                  | delete a tutor profile               | remove tutors that are no longer available for work                                       |
+| `* * *` | user                                  | save data                            | there is a local backup on the computer                                                   |
+| `* * *` | user                                  | exit the program                     |                                                                                           |
+| `* *`  | user                                  | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
 
-*{More to be added}*
 
 ### Use cases
 

@@ -22,6 +22,7 @@ import tuthub.logic.commands.ExitCommand;
 import tuthub.logic.commands.FindCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
+import tuthub.logic.commands.ViewCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.Tutor;
@@ -86,6 +87,13 @@ public class TuthubParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_TUTOR.getOneBased());
+        assertEquals(new ViewCommand(INDEX_FIRST_TUTOR), command);
     }
 
     @Test

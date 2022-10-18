@@ -64,7 +64,7 @@ public class ModuleContainsKeywordsPredicateTest {
         predicate = new ModuleContainsKeywordPredicate(Arrays.asList("cs2100"));
         assertFalse(predicate.test(new TutorBuilder().withName("Alice").withModule("cs2105").build()));
 
-        // Keywords match phone, email and address, but does not match module
+        // Keywords match phone and email, but does not match module
         predicate = new ModuleContainsKeywordPredicate(Arrays.asList("99999999", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new TutorBuilder().withName("Alice").withPhone("99999999")
                 .withEmail("alice@email.com").withModule("cs2105").build()));
