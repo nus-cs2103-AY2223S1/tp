@@ -4,9 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.List;
-
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,22 +16,19 @@ import seedu.address.model.person.Person;
  */
 public class CancelCommand extends SelectAppointmentCommand {
     public static final String COMMAND_WORD = "cancel";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Cancels an appointment for the patient. "
-            + "Parameters: patientIndex (must be a positive integer)\n"
-            + "apptIndex (must be a valid appointment index)"
-            + "Example: " + COMMAND_WORD + " 3"
-            + " 2";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Cancels an appointment in the appointment list."
+            + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_CANCEL_APPOINTMENT_SUCCESS = "Cancelled appointment for: ";
 
 
     /**
      * Creates a cancel command that specifies the patient and appointment index.
-     * @param patientIndex The index of the patient that we want to cancel the appointment.
-     * @param apptIndex The index of the appointment we want to cancel for that particular patient.
+     * @param apptIndex The index of the appointment we want to cancel for in the appointment list.
      */
-    public CancelCommand(Index patientIndex, Index apptIndex) {
-        super(patientIndex, apptIndex);
+    public CancelCommand(Index apptIndex) {
+        super(apptIndex);
     }
 
     /**
@@ -46,21 +40,12 @@ public class CancelCommand extends SelectAppointmentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
         Person patientToCancelAppt = getTargetPerson(model);
         Appointment toBeCancelledAppt = getTargetAppointment(model);
-        Index patientIndex = super.indexOfPerson;
-        Index apptIndex = super.indexOfAppointment;
 
-        if (patientIndex.getOneBased() > lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        if (patientToCancelAppt.getAppointments().size() < apptIndex.getOneBased()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-        }
-        patientToCancelAppt.cancelAppointment(super.indexOfAppointment.getZeroBased());
+        patientToCancelAppt.cancelAppointment(toBeCancelledAppt);
         model.deleteAppointment(toBeCancelledAppt);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
@@ -78,6 +63,6 @@ public class CancelCommand extends SelectAppointmentCommand {
         }
 
         CancelCommand otherCommand = (CancelCommand) other;
-        return hasSameIndexOfPerson(otherCommand) && hasSameIndexOfAppointment(otherCommand);
+        return hasSameIndexOfAppointment(otherCommand);
     }
 }

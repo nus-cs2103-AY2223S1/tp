@@ -31,7 +31,7 @@ public class EditAppointmentCommand extends Command {
             + ": Edits the appointment details of the person identified "
             + "by the appointmentIndex number used in the displayed appointment list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: APPOINTMENT INDEX (must be a positive integer) "
+            + "Parameters: APPOINTMENT_INDEX (must be a positive integer) "
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_RECURRING_PERIOD + "TIME PERIOD] "
