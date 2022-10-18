@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -110,5 +111,15 @@ public class LogicManager implements Logic {
     @Override
     public void setUi(Ui ui) {
         this.ui = ui;
+    }
+
+    @Override
+    public DefaultView getDefaultView() {
+        return model.getDefaultView();
+    }
+
+    @Override
+    public void setDefaultView(DefaultView defaultView) {
+        model.setDefaultView(defaultView);
     }
 }

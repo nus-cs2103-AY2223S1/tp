@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -109,18 +110,32 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    void setDefaultView() {
+        switch (logic.getDefaultView()) {
+        case PROJECT:
+            projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
+            listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
+            break;
+        case CLIENT:
+            clientListPanel = new ClientListPanel(logic.getFilteredClientList());
+            listPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
+            break;
+        case ISSUE:
+            issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+            listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
+            break;
+        default:
+            assert false : "Code should not reach here";
+            break;
+        }
+    }
+
     /**
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
-        issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
-        clientListPanel = new ClientListPanel(logic.getFilteredClientList());
 
-        // TODO: Add different panel root to listPanelPlaceholder depending on what entity is to be displayed
-        listPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
-
+        setDefaultView();
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -195,10 +210,14 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getDefaultView());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    private void handleDefaultView(DefaultView defaultView) {
+        logic.setDefaultView(defaultView);
     }
 
     public PersonListPanel getPersonListPanel() {

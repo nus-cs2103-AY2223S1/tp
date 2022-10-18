@@ -34,11 +34,11 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Creates an empty addressbook
      */
     public AddressBook() {
-        clients = new UniqueEntityList<Client>();
-        projects = new UniqueEntityList<Project>();
-        persons = new UniqueEntityList<Person>();
-        issues = new UniqueEntityList<Issue>();
-        sortedProjects = new UniqueEntityList<Project>();
+        clients = new UniqueEntityList<>();
+        projects = new UniqueEntityList<>();
+        persons = new UniqueEntityList<>();
+        issues = new UniqueEntityList<>();
+        sortedProjects = new UniqueEntityList<>();
     }
 
     /**
@@ -101,6 +101,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// client-level operations
+
+    /**
+     * Sorts client list by <code>ClientId</code>
+     *
+     */
+    public void sortClientListById() {
+        clients.sortById();
+    }
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
@@ -353,4 +361,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: Check for appropriate hashcode
         return clients.hashCode();
     }
+
+
 }

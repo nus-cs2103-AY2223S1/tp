@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Person;
@@ -50,6 +51,8 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    DefaultView getDefaultView();
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -159,4 +162,5 @@ public interface Model {
     void sortProjectsByDeadline();
 
     ObservableList<Project> getFilteredSortedProjectList();
+    void setDefaultView(DefaultView defaultView);
 }

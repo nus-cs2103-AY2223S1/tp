@@ -30,6 +30,11 @@ public class Deadline {
         public String uiRepresentation() {
             return "No Deadline Set";
         }
+
+        @Override
+        public String toString() {
+            return "";
+        }
     }
 
     public static final String MESSAGE_CONSTRAINTS =
