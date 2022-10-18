@@ -17,8 +17,12 @@ import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.IssueCommand;
 import seedu.address.logic.commands.issue.ListIssueCommand;
+<<<<<<< HEAD
 import seedu.address.logic.commands.issue.MarkIssueCommand;
 import seedu.address.logic.commands.issue.UnmarkIssueCommand;
+=======
+import seedu.address.logic.commands.issue.SetIssueDefaultViewCommand;
+>>>>>>> 3e47cc5f79ceb7a840ca75fd56ca227182434641
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
@@ -55,10 +59,14 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             return parseMarkIssueCommand(arguments);
         case UnmarkIssueCommand.COMMAND_FLAG:
             return parseUnmarkIssueCommand(arguments);
+        case SetIssueDefaultViewCommand.COMMAND_FLAG:
+            return parseSetIssueDefaultViewCommand(arguments);
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
     }
+
+
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
@@ -154,6 +162,7 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new ListIssueCommand();
     }
 
+<<<<<<< HEAD
     private MarkIssueCommand parseMarkIssueCommand(String arguments) throws ParseException {
         try {
             Status newStatus = new Status(true);
@@ -174,5 +183,9 @@ public class IssueCommandParser implements Parser<IssueCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkIssueCommand.MESSAGE_USAGE), pe);
         }
+=======
+    private IssueCommand parseSetIssueDefaultViewCommand(String arguments) {
+        return new SetIssueDefaultViewCommand();
+>>>>>>> 3e47cc5f79ceb7a840ca75fd56ca227182434641
     }
 }
