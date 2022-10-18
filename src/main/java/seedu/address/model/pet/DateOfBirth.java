@@ -66,4 +66,8 @@ public class DateOfBirth {
     public LocalDate getDate() {
         return date;
     }
+
+    public String getPreferredDateInString() {
+        return date.format(PREFERRED_FORMATTER);
+    }
 }
