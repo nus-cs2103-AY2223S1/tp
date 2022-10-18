@@ -78,7 +78,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
             moduleCodes.add(moduleCode.toModelType());
         }
         final List<ModuleCode> moduleTeachingCodes = new ArrayList<>();
-        for (JsonAdaptedModuleCode moduleTeachingCode : info) {
+        for (JsonAdaptedModuleCode moduleTeachingCode : teaching) {
             moduleTeachingCodes.add(moduleTeachingCode.toModelType());
         }
 

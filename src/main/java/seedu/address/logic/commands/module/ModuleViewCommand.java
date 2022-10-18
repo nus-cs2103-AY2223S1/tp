@@ -14,6 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.person.StudentContainsModulePredicate;
+import seedu.address.model.person.TutorContainsModulePredicate;
 
 /**
  * Shows module details in profNUS to the user.
@@ -61,6 +62,7 @@ public class ModuleViewCommand extends Command {
         Index targetIndex = Index.fromZeroBased(positionInList);
         moduleToView = moduleList.get(targetIndex.getZeroBased());
         model.updateFilteredStudentList(new StudentContainsModulePredicate(moduleToView.getCode()));
+        model.updateFilteredTutorList(new TutorContainsModulePredicate(moduleToView.getCode()));
         return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView), false, false,
                 false, false, true, false);
     }
