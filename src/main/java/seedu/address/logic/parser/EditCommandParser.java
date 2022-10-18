@@ -24,9 +24,9 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GithubUsername;
+import seedu.address.model.person.Rating;
 import seedu.address.model.person.Specialisation;
 import seedu.address.model.person.Year;
-import seedu.address.model.person.Rating;
 import seedu.address.model.tag.Tag;
 
 /**

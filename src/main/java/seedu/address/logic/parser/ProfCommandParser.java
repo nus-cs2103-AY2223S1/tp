@@ -65,7 +65,7 @@ public class ProfCommandParser implements Parser<ProfCommand> {
         Specialisation field = ParserUtil.parseSpecialisation(argMultimap
                 .getValue(PREFIX_SPECIALISATION)
                 .orElse(Specialisation.EMPTY_SPECIALISATION), argMultimap.getValue(PREFIX_SPECIALISATION).isPresent());
-        
+
         Rating rating = ParserUtil.parseRating(argMultimap
                 .getValue(PREFIX_RATING)
                 .orElse(Rating.EMPTY_RATING), argMultimap.getValue(PREFIX_RATING).isPresent());
