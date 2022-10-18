@@ -24,6 +24,7 @@ public class SetIssueDefaultViewCommand extends IssueCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS, false, false, DefaultView.ISSUE);
+        model.setDefaultView(DefaultView.ISSUE);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

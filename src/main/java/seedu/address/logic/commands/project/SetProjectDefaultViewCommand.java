@@ -24,6 +24,7 @@ public class SetProjectDefaultViewCommand extends ProjectCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS, false, false, DefaultView.PROJECT);
+        model.setDefaultView(DefaultView.PROJECT);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

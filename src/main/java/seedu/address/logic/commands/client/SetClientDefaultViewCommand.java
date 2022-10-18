@@ -25,6 +25,7 @@ public class SetClientDefaultViewCommand extends ClientCommand {
      */
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS, false, false, DefaultView.CLIENT);
+        model.setDefaultView(DefaultView.CLIENT);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

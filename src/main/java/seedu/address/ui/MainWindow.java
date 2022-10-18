@@ -125,6 +125,7 @@ public class MainWindow extends UiPart<Stage> {
             listPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
             break;
         default:
+            assert false : "Code should not reach here";
             break;
         }
     }
@@ -246,10 +247,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
-            }
-
-            if (commandResult.isSetDefaultView()) {
-                handleDefaultView(commandResult.getDefaultView());
             }
 
             return commandResult;
