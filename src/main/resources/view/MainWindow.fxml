@@ -48,7 +48,6 @@
         </StackPane>
             <HBox maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-      
               <VBox fx:id="applicationList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
