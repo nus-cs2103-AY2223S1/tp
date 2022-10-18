@@ -4,9 +4,7 @@ import static tuthub.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
 
-import tuthub.commons.core.index.Index;
 import tuthub.logic.commands.SortCommand;
-import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.SortByRatingComparator;
 import tuthub.model.tutor.SortByTeachingNominationComparator;
@@ -26,14 +24,19 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
-        String[] strArr = args.split(SPACE);
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
+        String[] strArr = trimmedArgs.split("\\s+");
 
         if (strArr.length > MAX_ARGS) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 
-        String order = ParserUtil.parseOrder(strArr[1]);
-        Prefix prefix = ParserUtil.parseSortPrefix(new Prefix(strArr[2]));
+        String order = ParserUtil.parseOrder(strArr[0]);
+        Prefix prefix = ParserUtil.parseSortPrefix(new Prefix(strArr[1]));
 
         if (isRating(prefix)) {
             return new SortCommand(order, prefix, new SortByRatingComparator(order));
