@@ -9,7 +9,7 @@ import javafx.scene.text.Font;
 public class Pill extends Button {
 
     private static final String DEFAULT_STYLE = "-fx-border-width:0;-fx-background-radius: 7px;-fx-padding: 3;"
-        + "-fx-font-size: 10;-fx-font-weight:bold";
+        + "-fx-font-size: 10;-fx-font-weight: bold";
 
     /**
      * Constructor for Pill class.
@@ -33,6 +33,6 @@ public class Pill extends Button {
      */
     public Pill(String text, String bgColor, String textColor, int fontSize) {
         this(text, bgColor, textColor);
-        setFont(new Font(getFont().getName(), fontSize));
+        setStyle(getStyle() + String.format("-fx-font-size: %s", fontSize));
     }
 }
