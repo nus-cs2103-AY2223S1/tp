@@ -8,9 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
-import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
 import seedu.address.model.team.UniqueTeamList;
 
@@ -97,6 +97,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
         persons.setPerson(target, editedPerson);
+        for (Team t : teams) {
+            if (t.containMember(target)) {
+                t.setMember(target, editedPerson);
+            }
+        }
     }
 
     /**
@@ -141,7 +146,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         team.removeMember(person);
     }
 
-    public void setTeamName(Index targetIndex, Name newTeamName) {
+    public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
         requireNonNull(newTeamName);
         teams.setTeamName(targetIndex.getZeroBased(), newTeamName);
     }
@@ -168,6 +173,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void deleteTask(Index teamIndex, Index taskIndex) {
         teams.deleteTask(teamIndex.getZeroBased(), taskIndex.getZeroBased());
+    }
+
+    public void editTask(Index teamIndex, Index taskIndex, Name newName) {
+        teams.editTask(teamIndex.getZeroBased(), taskIndex.getZeroBased(), newName);
     }
 
     //// util methods

@@ -11,7 +11,6 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
-
 /**
  * Represents a Team in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -57,6 +56,11 @@ public class Team {
         return tasks;
     }
 
+    public ObservableList<Task> getTasksList() {
+        return tasks.asUnmodifiableObservableList();
+    }
+
+
     public Task getTask(int n) {
         return tasks.get(n);
     }
@@ -66,8 +70,9 @@ public class Team {
     }
 
     /**
-     * Remove the person from the team if said person is in the team
-     * @param p person to be removed
+     * Remove the person from the team if said person is in the team.
+     *
+     * @param p person to be removed.
      */
     public void removeMember(Person p) {
         if (members.contains(p)) {
@@ -76,9 +81,26 @@ public class Team {
     }
 
     /**
-     * Returns list of members in the team
-     * @return members
+     * Edit the information of a member.
+     *
+     * @param target person to be edited.
+     * @param editedPerson person after edit.
      */
+    public void setMember(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+        members.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Check if a person is a member of this team.
+     *
+     * @param p person to check.
+     * @return true if person is a member, else false.
+     */
+    public boolean containMember(Person p) {
+        return members.contains(p);
+    }
+
 
     public UniquePersonList getMembers() {
         return members;
@@ -90,7 +112,7 @@ public class Team {
 
     /**
      * Adds a task to this team.
-     * @param t
+     * @param t task to add
      */
     public void addTask(Task t) {
         tasks.add(t);
@@ -120,6 +142,23 @@ public class Team {
         tasks.delete(index);
     }
 
+    /**
+     * Edits a task of the team.
+     * @param index The index of the {@code task} to be deleted.
+     * @param newName The new name of the task.
+     */
+    public void editTask(int index, seedu.address.model.task.Name newName) {
+        tasks.edit(index, newName);
+    }
+
+    /**
+     * get number of tasks that is done.
+     *
+     * @return number of tasks that is done.
+     */
+    public int getNoOfCompletedTasK() {
+        return tasks.getNoOfCompletedTasks();
+    }
     /**
      * Returns true if both team have the same name.
      * This defines a weaker notion of equality between two team.

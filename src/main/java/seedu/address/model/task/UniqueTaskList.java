@@ -51,8 +51,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public Task getTask(Name taskName) {
         requireNonNull(taskName);
         System.out.println(internalList.size());
-        for (int i = 0; i < internalList.size(); i++) {
-            Task task = internalList.get(i);
+        for (Task task : internalList) {
             if (task.getName().equals(taskName)) {
                 return task;
             }
@@ -146,6 +145,16 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Edit a task from this {@code TaskList}.
+     *
+     * @param index The {@code task} of the task to be edited.
+     * @param newName The new name of the task.
+     */
+    public void edit(int index, Name newName) {
+        internalList.get(index).editName(newName);
+    }
+
+    /**
      * Deletes a task from this {@code TaskList}.
      *
      * @param index The index of the {@code task} to be deleted.
@@ -180,5 +189,21 @@ public class UniqueTaskList implements Iterable<Task> {
      */
     public int getSize() {
         return internalList.size();
+    }
+
+    /**
+     * Returns the number of tasks that is done.
+     *
+     * @return number of tasks that is done.
+     */
+    public int getNoOfCompletedTasks() {
+        int count = 0;
+
+        for (Task t : internalList) {
+            if (t.getIsDone()) {
+                count++;
+            }
+        }
+        return count;
     }
 }

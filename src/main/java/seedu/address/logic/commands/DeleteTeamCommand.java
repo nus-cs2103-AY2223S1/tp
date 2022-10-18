@@ -37,7 +37,7 @@ public class DeleteTeamCommand extends Command {
         List<Team> lastShownList = model.getFilteredTeamList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
         Team teamToDelete = lastShownList.get(targetIndex.getZeroBased());
