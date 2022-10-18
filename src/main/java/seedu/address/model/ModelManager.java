@@ -262,6 +262,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
+
         return filteredSchedule;
     }
 
@@ -274,9 +275,10 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-        filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        // filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
         requireNonNull(predicate);
-        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
+        filteredSchedule.setPredicate(predicate);
+        // filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
     }
 
     @Override

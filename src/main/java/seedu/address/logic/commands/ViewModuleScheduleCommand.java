@@ -39,6 +39,7 @@ public class ViewModuleScheduleCommand extends Command {
         if (this.predicate == null) {
             model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         } else {
+
             model.updateFilteredScheduleList(predicate);
         }
         return new CommandResult(String.format(
