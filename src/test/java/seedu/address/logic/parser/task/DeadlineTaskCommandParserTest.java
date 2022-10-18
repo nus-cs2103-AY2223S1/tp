@@ -17,10 +17,10 @@ public class DeadlineTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsAssignTaskCommand() {
-        LocalDate date = LocalDate.of(2022, 9, 19);
+        LocalDate date = LocalDate.of(2023, 9, 19);
         assertParseSuccess(
                 parser,
-                "1 by/ 19-09-2022",
+                "1 by/ 19 September 2023",
                 new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.of(date))
         );
 

@@ -20,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Task;
 
 public class DeadlineTaskCommandTest {
 
@@ -35,11 +36,15 @@ public class DeadlineTaskCommandTest {
 
     @Test
     public void execute_validTask_commandSuccessful() throws Exception {
-        DeadlineTaskCommand command = new DeadlineTaskCommand(INDEX_FIRST_TASK, Deadline.of(LocalDate.now()));
+        Index taskIndex = INDEX_FIRST_TASK;
+        DeadlineTaskCommand command = new DeadlineTaskCommand(taskIndex, Deadline.of(LocalDate.now()));
 
         CommandResult commandResult = command.execute(model);
 
-        assertEquals(String.format(DeadlineTaskCommand.MESSAGE_SUCCESS, INDEX_FIRST_TASK.getOneBased()),
+        Task updatedTask = model.getFilteredTaskList().get(taskIndex.getZeroBased());
+
+        assertEquals(
+                String.format(DeadlineTaskCommand.MESSAGE_SUCCESS, updatedTask.getDeadline(), updatedTask.getTitle()),
                 commandResult.getFeedbackToUser());
     }
 
