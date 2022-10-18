@@ -12,5 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_END_DATE = new Prefix("ed/");
     public static final Prefix PREFIX_PEOPLE = new Prefix("p/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
 
 }
