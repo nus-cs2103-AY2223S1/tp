@@ -77,8 +77,17 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                        && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeleteCommand)) {
+            return false;
+        }
+
+        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
+
+        return targetIndex.equals(otherDeleteCommand.targetIndex) && race.equals(otherDeleteCommand.race)
+                && religion.equals(otherDeleteCommand.religion) && survey.equals(otherDeleteCommand.survey);
     }
 }
