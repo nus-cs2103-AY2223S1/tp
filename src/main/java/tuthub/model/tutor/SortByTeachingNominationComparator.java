@@ -1,11 +1,14 @@
 package tuthub.model.tutor;
 
-import tuthub.logic.commands.SortCommand;
+import static tuthub.logic.commands.SortCommand.NEGATIVE_MULTIPLIER;
 
 import java.util.Comparator;
 
-import static tuthub.logic.commands.SortCommand.NEGATIVE_MULTIPLIER;
+import tuthub.logic.commands.SortCommand;
 
+/**
+ * Contains the comparator that sorts a {@code Tutor}'s {@code TeachingNomination} in ascending or descending order.
+ */
 public class SortByTeachingNominationComparator implements Comparator<Tutor> {
     private final String order;
 

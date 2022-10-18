@@ -1,11 +1,14 @@
 package tuthub.model.tutor;
 
-import tuthub.logic.commands.SortCommand;
+import static tuthub.logic.commands.SortCommand.NEGATIVE_MULTIPLIER;
 
 import java.util.Comparator;
 
-import static tuthub.logic.commands.SortCommand.NEGATIVE_MULTIPLIER;
+import tuthub.logic.commands.SortCommand;
 
+/**
+ * Contains the comparator that sorts a {@code Tutor}'s {@code Rating} in ascending or descending order.
+ */
 public class SortByRatingComparator implements Comparator<Tutor> {
     private final String order;
 
@@ -20,24 +23,6 @@ public class SortByRatingComparator implements Comparator<Tutor> {
         return (order.equals(SortCommand.ASCENDING_SHORT))
             ? ratingTutor1.compareTo(ratingTutor2)
             : NEGATIVE_MULTIPLIER * ratingTutor1.compareTo(ratingTutor2);
-    }
-
-    public int compareAscend(double val1, double val2) {
-        if (val1 > val2) {
-            return 1;
-        } else if (val1 < val2) {
-            return -1;
-        }
-        return 0;
-    }
-
-    public int compareDescend(double val1, double val2) {
-        if (val1 > val2) {
-            return -1;
-        } else if (val1 < val2) {
-            return 1;
-        }
-        return 0;
     }
 
     @Override

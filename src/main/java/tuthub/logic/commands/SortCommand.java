@@ -1,15 +1,15 @@
 package tuthub.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
+
+import java.util.Comparator;
+
 import tuthub.logic.commands.exceptions.CommandException;
 import tuthub.logic.parser.Prefix;
 import tuthub.model.Model;
 import tuthub.model.tutor.Tutor;
-
-import java.util.Comparator;
-
-import static java.util.Objects.requireNonNull;
-import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
-import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
 
 public class SortCommand extends Command {
 
