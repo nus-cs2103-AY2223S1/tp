@@ -98,13 +98,12 @@ public class EditCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        boolean isEditingClass = !editPersonDescriptor.getAClass().get()
-                .classDateTime.equals("");
+        boolean isEditingClass = !editPersonDescriptor.hasEmptyClass();
 
         if (isEditingClass) {
             ClassStorage.saveClass(editedPerson, index.getOneBased());
             ClassStorage.removeExistingClass(personToEdit);
-        } else if (!personToEdit.getAClass().classDateTime.equals("")) {
+        } else if (!personToEdit.hasEmptyClass()) {
             editedPerson.setClass(personToEdit.getAClass());
         }
 
@@ -254,6 +253,7 @@ public class EditCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
+         *
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
@@ -271,6 +271,7 @@ public class EditCommand extends Command {
         public Optional<Class> getAClass() {
             return Optional.ofNullable(aClass);
         }
+
         public void setMoneyOwed(Money moneyOwed) {
             this.moneyOwed = moneyOwed;
         }
@@ -301,6 +302,15 @@ public class EditCommand extends Command {
 
         public Optional<AdditionalNotes> getAdditionalNotes() {
             return Optional.ofNullable(additionalNotes);
+        }
+
+        /**
+         * Checks if class is empty.
+         *
+         * @return true if class is empty.
+         */
+        public boolean hasEmptyClass() {
+            return getAClass().get().isEmpty();
         }
 
         @Override

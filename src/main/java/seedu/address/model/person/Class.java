@@ -55,6 +55,10 @@ public class Class {
         this.classDateTime = classDateTime;
     }
 
+    public boolean isEmpty() {
+        return this.classDateTime.equals("");
+    }
+
     /**
      * Returns a formatted date and time.
      *
