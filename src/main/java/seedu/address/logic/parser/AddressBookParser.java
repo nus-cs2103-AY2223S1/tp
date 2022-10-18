@@ -66,7 +66,7 @@ public class AddressBookParser {
         } else if (DeletePatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeletePatientCommandParser().parse(arguments);
         } else if (DeleteBillCommand.COMMAND_WORD.matches(commandWord)) {
-                return new DeleteBillCommandParser().parse(arguments);
+            return new DeleteBillCommandParser().parse(arguments);
         } else if (ClearCommand.COMMAND_WORD.matches(commandWord)) {
             return new ClearCommand();
         } else if (FilterNameCommand.COMMAND_WORD.matches(commandWord)) {
