@@ -4,8 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +23,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -28,11 +31,35 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    // "" is intentionally added in front such that the index matches with the string content.
+    public static final String[] DAYS_OF_WEEK = {"", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"};
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static int targetDayOfWeek;
+
+    /**
+     * TemporalAdjuster to adjust the current date to the target date.
+     */
+    public static final TemporalAdjuster DATE_ADJUSTER = TemporalAdjusters.ofDateAdjuster(currentDate -> {
+        int currentDayOfWeek = currentDate.getDayOfWeek().getValue();
+        if (currentDayOfWeek < targetDayOfWeek) {
+            return currentDate.plusDays(targetDayOfWeek - currentDayOfWeek);
+        } else {
+            return currentDate.plusDays(7 - currentDayOfWeek + targetDayOfWeek);
+        }
+    });
+    /**
+     * Sets targetDayOfWeek.
+     *
+     * @param target Represents the day of the week.
+     */
+    public static void setTargetDayOfWeek(int target) {
+        targetDayOfWeek = target;
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -74,21 +101,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String nokPhone} into a {@code NokPhone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code NokPhone} is invalid.
-     */
-    public static NokPhone parseNokPhone(String nokPhone) throws ParseException {
-        requireNonNull(nokPhone);
-        String trimmedNokPhone = nokPhone.trim();
-        if (!NokPhone.isValidNokPhone(trimmedNokPhone)) {
-            throw new ParseException(NokPhone.MESSAGE_CONSTRAINTS);
-        }
-        return new NokPhone(trimmedNokPhone);
-    }
-
-    /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -122,28 +134,64 @@ public class ParserUtil {
      * Parses a {@code String classDatetime} into a {@code Class}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTime} is invalid.
+     * @throws ParseException if the given {@code classDateTime} is invalid.
      */
     public static Class parseClass(String classDatetime) throws ParseException {
         requireNonNull(classDatetime);
         String trimmedClassDatetime = classDatetime.trim();
-        if (!Class.isValidClassString(trimmedClassDatetime)) {
+
+        // todo: invalid date will result the else block in following code -- leading to wrong error message displayed.
+        // todo: to be fixed in future PR
+        if (Class.isValidClassString(trimmedClassDatetime)) {
+            // the format has been validated in isValidClassString method
+            // ie yyyy-MM-dd 0000-2359
+            LocalDate date = parseDate(trimmedClassDatetime.substring(0, 10));
+            LocalTime startTime = parseTime(trimmedClassDatetime.substring(11, 15));
+            LocalTime endTime = parseTime(trimmedClassDatetime.substring(16));
+            if (!Class.isValidDuration(startTime, endTime)) {
+                throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+            }
+            return new Class(date, startTime, endTime, classDatetime);
+        } else if (Class.isValidFlexibleClassString(trimmedClassDatetime)) {
+            // the format has been validated in isValidFlexibleClassString method
+            // ie Mon 0000-2359
+            String dateStr = trimmedClassDatetime.substring(0, 3);
+            LocalTime startTime = parseTime(trimmedClassDatetime.substring(4, 8));
+            LocalTime endTime = parseTime(trimmedClassDatetime.substring(9));
+            if (!Class.isValidDuration(startTime, endTime)) {
+                throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+            }
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(dateStr.toUpperCase());
+            LocalDate targetDate = getTargetClassDate(LocalDateTime.now(), startTime);
+            return new Class(targetDate, startTime, endTime,
+                    targetDate.toString() + trimmedClassDatetime.substring(3));
+        } else {
+            // unrecognized format has been input
             throw new ParseException(Class.MESSAGE_CONSTRAINTS);
         }
+    }
 
-        // the format has been validated in isValidClassString method
-        // ie yyyy-MM-dd 0000-2359
-        String datetimeStr = trimmedClassDatetime.substring(0, 10);
-        String startTimeStr = trimmedClassDatetime.substring(11, 15);
-        String endTimeStr = trimmedClassDatetime.substring(16);
-
-        LocalDate date = parseDate(datetimeStr);
-        LocalTime startTime = parseTime(startTimeStr);
-        LocalTime endTime = parseTime(endTimeStr);
-        if (endTime.isBefore(startTime) || endTime.equals(startTime)) {
-            throw new ParseException(Class.INVALID_DURATION_ERROR_MESSAGE);
+    /**
+     * Returns the target class date.
+     *
+     * @param currentDateTime LocalDateTime object that stores the current date and time.
+     * @param startTime LocalTime object that stores the start time of the class.
+     * @return LocalDate object.
+     */
+    public static LocalDate getTargetClassDate(LocalDateTime currentDateTime, LocalTime startTime) {
+        LocalDate currentDate = currentDateTime.toLocalDate();
+        if (currentDate.getDayOfWeek().getValue() == targetDayOfWeek) {
+            // target day is of the same day in the week as today
+            if (startTime.isAfter(currentDateTime.toLocalTime())) {
+                // if specified time is after current time, return today
+                return currentDate;
+            } else {
+                // else return the date after next 7 days
+                return currentDate.plusDays(7);
+            }
+        } else {
+            return currentDate.with(DATE_ADJUSTER);
         }
-        return new Class(date, startTime, endTime, classDatetime);
     }
 
     /**

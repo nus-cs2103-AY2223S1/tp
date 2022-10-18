@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,7 +22,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -35,16 +35,21 @@ public class ParserUtilTest {
     private static final Integer INVALID_MONEY_PAID = -1;
     private static final String INVALID_CLASS_DATE_TIME = "2022 05 10 1500-1600";
     private static final String INVALID_EMPTY_CLASS_DATE_TIME = "";
+    private static final String INVALID_CLASS_DATE_TIME_DURATION = "2022-10-10 1500-1200";
+    private static final String INVALID_FLEXIBLE_CLASS_DAY_OF_WEEK = "Tues 1500-1600";
+    private static final String INVALID_FLEXIBLE_CLASS_TIME = "Tue 1500 1600";
+    private static final String INVALID_FLEXIBLE_CLASS_DATE_TIME_DURATION = "Tue 1500-1200";
     private static final String INVALID_TAG = "#python";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_NOK_PHONE = "999999";
+    private static final String VALID_PHONE = "82345678";
+    private static final String VALID_NOK_PHONE = "99999999";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final Integer VALID_MONEY_OWED = 10;
     private static final Integer VALID_MONEY_PAID = 100;
     private static final String VALID_CLASS_DATE_TIME = "2022-05-10 1500-1600";
+    private static final String VALID_FLEXIBLE_CLASS_DATE_TIME = "Sun 1500-1600";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -118,25 +123,25 @@ public class ParserUtilTest {
 
     @Test
     public void parseNokPhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseNokPhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
     }
 
     @Test
     public void parseNokPhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseNokPhone(INVALID_NOK_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_NOK_PHONE));
     }
 
     @Test
     public void parseNokPhone_validValueWithoutWhitespace_returnsNokPhone() throws Exception {
-        NokPhone expectedNokPhone = new NokPhone(VALID_NOK_PHONE);
-        assertEquals(expectedNokPhone, ParserUtil.parseNokPhone(VALID_NOK_PHONE));
+        Phone expectedNokPhone = new Phone(VALID_NOK_PHONE);
+        assertEquals(expectedNokPhone, ParserUtil.parsePhone(VALID_NOK_PHONE));
     }
 
     @Test
     public void parseNokPhone_validValueWithWhitespace_returnsTrimmedNokPhone() throws Exception {
         String nokPhoneWithWhitespace = WHITESPACE + VALID_NOK_PHONE + WHITESPACE;
-        NokPhone expectedNokPhone = new NokPhone(VALID_NOK_PHONE);
-        assertEquals(expectedNokPhone, ParserUtil.parseNokPhone(nokPhoneWithWhitespace));
+        Phone expectedNokPhone = new Phone(VALID_NOK_PHONE);
+        assertEquals(expectedNokPhone, ParserUtil.parsePhone(nokPhoneWithWhitespace));
     }
 
     @Test
@@ -225,9 +230,61 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseClassDateTime_invalidDateTime_throwsParseException() throws Exception {
+    public void parseClassDateTime_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_EMPTY_CLASS_DATE_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_CLASS_DATE_TIME_DURATION));
+    }
+
+    @Test
+    public void parseClassDateTime_invalidFlexibleDateTime_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DAY_OF_WEEK));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_FLEXIBLE_CLASS_DATE_TIME_DURATION));
+    }
+
+    @Test
+    public void getTargetClassDate_nextWeekSuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(6);
+        LocalTime startTime = LocalTime.of(14, 0);
+        // 7 days later since the start time is after 3pm
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 22));
+    }
+
+    @Test
+    public void getTargetClassDate_nextTwoDaysSuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(1);
+        LocalTime startTime = LocalTime.of(14, 0);
+        // monday -> 2 more days
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 17));
+    }
+
+    @Test
+    public void getTargetClassDate_tomorrowSuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(7);
+        LocalTime startTime = LocalTime.of(14, 0);
+        // tomorrow
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 16));
+    }
+
+    @Test
+    public void getTargetClassDate_todaySuccessful() {
+        // This date falls on a saturday
+        LocalDateTime dateTime = LocalDateTime.of(2022, 10, 15, 15, 0);
+        ParserUtil.setTargetDayOfWeek(6);
+        LocalTime startTime = LocalTime.of(16, 0);
+        // tomorrow
+        LocalDate date = ParserUtil.getTargetClassDate(dateTime, startTime);
+        assertEquals(date, LocalDate.of(2022, 10, 15));
     }
 
     @Test
@@ -274,5 +331,22 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void adjustDateToTomorrowSuccessful() {
+        // This date falls on a saturday
+        LocalDate date = LocalDate.of(2022, 10, 15);
+        ParserUtil.setTargetDayOfWeek(7);
+        LocalDate expectedDate = LocalDate.of(2022, 10, 16);
+        assertEquals(date.with(ParserUtil.DATE_ADJUSTER), expectedDate);
+    }
+
+    @Test
+    public void adjustDateToNextMondaySuccessful() {
+        LocalDate date = LocalDate.of(2022, 10, 15);
+        ParserUtil.setTargetDayOfWeek(1);
+        LocalDate expectedDate = LocalDate.of(2022, 10, 17);
+        assertEquals(date.with(ParserUtil.DATE_ADJUSTER), expectedDate);
     }
 }

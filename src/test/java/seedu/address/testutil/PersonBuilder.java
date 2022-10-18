@@ -11,7 +11,6 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Money;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -24,7 +23,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_NOK_PHONE = "000";
+    public static final String DEFAULT_NOK_PHONE = "87654321";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final Integer DEFAULT_MONEY_OWED = 0;
@@ -34,7 +33,7 @@ public class PersonBuilder {
 
     private Name name;
     private Phone phone;
-    private NokPhone nokPhone;
+    private Phone nokPhone;
     private Email email;
     private Address address;
     private Money moneyOwed;
@@ -50,7 +49,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        nokPhone = new NokPhone(DEFAULT_NOK_PHONE);
+        nokPhone = new Phone(DEFAULT_NOK_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         aClass = new Class();
@@ -87,14 +86,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
-        return this;
-    }
-
-    /**
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
@@ -107,14 +98,6 @@ public class PersonBuilder {
      */
     public PersonBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code NokPhone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withNokPhone(String nokPhone) {
-        this.nokPhone = new NokPhone(nokPhone);
         return this;
     }
 
@@ -163,6 +146,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withAdditionalNotes(String additionalNotes) {
         this.additionalNotes = new AdditionalNotes(additionalNotes);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
