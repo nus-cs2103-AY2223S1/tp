@@ -28,28 +28,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueEntityList<Person> persons;
     private final UniqueEntityList<Issue> issues;
 
-    /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
-    //    {
-    //        clients = new UniqueEntityList<Client>();
-    //        projects = new UniqueEntityList<Project>();
-    //        persons = new UniqueEntityList<Person>();
-    //        issues = new UniqueEntityList<Issue>();
-    //    }
-
     /**
      * Creates an empty addressbook
      */
     public AddressBook() {
-        clients = new UniqueEntityList<Client>();
-        projects = new UniqueEntityList<Project>();
-        persons = new UniqueEntityList<Person>();
-        issues = new UniqueEntityList<Issue>();
+        clients = new UniqueEntityList<>();
+        projects = new UniqueEntityList<>();
+        persons = new UniqueEntityList<>();
+        issues = new UniqueEntityList<>();
     }
 
     /**
@@ -107,6 +93,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// client-level operations
+
+    /**
+     * Sorts client list by <code>ClientId</code>
+     *
+     */
+    public void sortClientListById() {
+        clients.sortById();
+    }
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.
@@ -344,4 +338,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         // TODO: Check for appropriate hashcode
         return clients.hashCode();
     }
+
+
 }

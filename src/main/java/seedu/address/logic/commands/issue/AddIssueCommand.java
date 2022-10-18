@@ -12,6 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueWithoutModel;
+import seedu.address.model.project.ProjectId;
 import seedu.address.ui.Ui;
 
 /**
@@ -37,21 +38,28 @@ public class AddIssueCommand extends IssueCommand {
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the address book";
 
     //    private final Issue toAdd;
     private final IssueWithoutModel toAddWithoutModel;
+    private final ProjectId projectId;
 
     /**
      * Creates an AddCommand to add the specified {@code Issue}
      */
-    public AddIssueCommand(IssueWithoutModel issueWithoutModel) {
+    public AddIssueCommand(IssueWithoutModel issueWithoutModel, ProjectId pid) {
         requireNonNull(issueWithoutModel);
         toAddWithoutModel = issueWithoutModel;
+        projectId = pid;
     }
 
     @Override
     public CommandResult execute(Model model, Ui ui) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasProjectId(projectId.getIdInt())) {
+            throw new CommandException(MESSAGE_PROJECT_NOT_FOUND);
+        }
 
         Issue toAdd = toAddWithoutModel.apply(model);
 

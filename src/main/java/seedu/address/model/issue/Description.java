@@ -15,12 +15,17 @@ public class Description {
         public static final Description EMPTY_DESCRIPTION = new EmptyDescription();
 
         private EmptyDescription() {
-            super("there's nothing");
+            super("empty");
         }
 
         @Override
         public boolean isEmpty() {
             return true;
+        }
+
+        @Override
+        public String toString() {
+            return "";
         }
     }
     public static final String MESSAGE_CONSTRAINTS =
