@@ -42,7 +42,7 @@ public class Contact {
      * Returns person's name (with proper capitalisation) if a given string is a name that belongs to one of the persons
      * in the list of persons. Otherwise returns an empty string.
      */
-    public static String isInPersonsList(List<Person> personList, String test) {
+    public static String corrNameInPersonsList(List<Person> personList, String test) {
         for (Person person : personList) {
             if (person.getName().fullName.toLowerCase(Locale.ROOT).equals(test.toLowerCase(Locale.ROOT))) {
                 return person.getName().fullName;
