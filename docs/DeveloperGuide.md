@@ -156,27 +156,19 @@ This section describes some details on how certain features are implemented.
 
 ### List feature
 
-The list mechanism is facilitated by `MainWindow`. It contains a `CommandBox` which listens for user command input and 
-a JavaFX `StackPane` which holds the current entity list to be displayed. Upon the execution of either a 
-`ListProjectCommand`, `ListClientCommand` or `ListIssueCommand`, the following operations are carried out:
-
+The list mechanism is facilitated by `MainWindow`. It contains a `CommandBox` which listens for user command input and a JavaFX `StackPane` which holds the current entity list to be displayed. Upon the execution of either a `ListProjectCommand`, `ListClientCommand` or `ListIssueCommand`, the following operations are carried out:
 * `MainWindow#swapProjectListDisplay()` — Changes the current display to a list of projects.
 * `MainWindow#swapClientListDisplay()` — Changes the current display to a list of clients.
 * `MainWindow#swapIssueListDisplay()` — Changes the current display to a list of issues.
 
 Given below is an example usage scenario and how the list mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `StackPane` will be initialized by default with a list 
-of projects.
+Step 1. The user launches the application for the first time. The `StackPane` will be initialized by default with a list of projects.
 
-Step 2. The user executes `client -l` to view a list of clients. The `ListClientCommand` is executed and calls 
-`MainWindow#swapClientListDisplay()`, clearing the current collection of child nodes of the `StackPane` and adds the 
-root of a `ClientListPanel` to the emptied child nodes. The list of clients is now shown in the UI.
+Step 2. The user executes `client -l` to view a list of clients. The `ListClientCommand` is executed and calls `MainWindow#swapClientListDisplay()`, clearing the current collection of child nodes of the `StackPane` and adds the root of a `ClientListPanel` to the emptied child nodes. The list of clients is now shown in the UI.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** If the current display is already the same 
-as that requested by the user, it will still call the respective setter methods, although the actual UI display will 
-not change.
+:information_source: **Note:** If the current display is already the same as that requested by the user, it will still call the respective setter methods, although the actual UI display will not change.
 </div>
 
 The following sequence diagram shows how the list operation works:
@@ -196,16 +188,13 @@ The following activity diagram summarizes what happens when a user executes a li
 
 **Aspect: How list executes:**
 
-* **Alternative 1 (current choice):** The children nodes of the `StackPane` are cleared and the root of the desired list 
-type is added every time a list `Command` is executed.
+* **Alternative 1 (current choice):** The children nodes of the `StackPane` are cleared and the root of the desired list type is added every time a list `Command` is executed.
   * Pros: Easier to implement.
   * Cons: The same `StackPane` is being reused for different entities. Misses out on potential polymorphism benefits.
 
-* **Alternative 2:** The children nodes of the `StackPane` are never cleared and holds a single list of entities
-  (`Project`, `Client`, `Issue`) and the list is filtered for the desired instance type for each list `Command`. 
+* **Alternative 2:** The children nodes of the `StackPane` are never cleared and holds a single list of entities (`Project`, `Client`, `Issue`) and the list is filtered for the desired instance type for each list `Command`.
   * Pros: Less duplication of code.
-  * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via 
-polymorphism.
+  * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
 
 _{more aspects and alternatives to be added}_
 
@@ -306,7 +295,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The list is empty.
   * 1a1. DevEnable displays a default message.
-  
+
     Use case ends.
 
 **Use case: UC2 - Add project**
@@ -322,11 +311,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The user makes an error in writing the request.
     * 1a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 1.
 * 1b. DevEnable detects that the project already exists in the list.
     * 1b1. DevEnable displays an error message that the project already exists.
-  
+
       Use case ends.
 
 **Use case: UC3 - Delete project**
@@ -343,11 +332,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 
 **Use case: UC4 - Edit project**
@@ -364,11 +353,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 
 **Use case: UC5 - Tag client to project**
@@ -385,11 +374,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 
 **Use case: UC6 - Delete client from project**
@@ -406,15 +395,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 * 2c. DevEnable detects that the client is not assigned to the project.
     * 2c1. DevEnable displays an error message that the client does not exist.
-  
+
       Use case ends.
 
 **Use case: UC7 - Edit client of project**
@@ -431,15 +420,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 * 2c. DevEnable detects that the client is not assigned to the project.
     * 2c1. DevEnable displays an error message that the client does not exist.
-  
+
       Use case ends.
 
 **Use case: UC8 - Add deadline to project**
@@ -456,15 +445,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 * 2c. DevEnable detects that the deadline is not in the correct format.
     * 2c1. DevEnable displays an error message with the required format.
-  
+
       Use case ends.
 
 **Use case: UC9 - Delete deadline from project**
@@ -481,15 +470,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 * 2c. DevEnable detects that the project does not have a deadline.
     * 2c1. DevEnable displays an error message that there is no deadline.
-  
+
       Use case ends.
 
 **Use case: UC10 - Edit deadline of project**
@@ -506,19 +495,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The user makes an error in writing the request.
     * 2a1. DevEnable displays an error message with the correct usage.
-  
+
       Use case resumes at Step 2.
 * 2b. DevEnable detects that the project does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
-  
+
       Use case ends.
 * 2c. DevEnable detects that the project does not have a deadline.
     * 2c1. DevEnable displays an error message that there is no deadline.
-  
+
       Use case ends.
 * 2d. DevEnable detects that the deadline is not in the correct format.
     * 2d1. DevEnable displays an error message with the required format.
-  
+
       Use case ends.
 
 **Use case: UC11 - View list of commands**
@@ -536,18 +525,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The product should be able to hold up to 200 projects without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
-4.  The product should work only for a single user. 
-5.  The data should be stored locally and should be in a human editable text file. 
-6.  The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
-7.  The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%. 
-8.  The product file size should not exceed 100MB. 
-9.  The document file size should not exceed 15MB. 
-10.  The DG and UG should be PDF-friendly. 
-11.  The product needs to be developed in a breadth-first incremental manner. 
-12.  The product should not use a DBMS to store data. 
-13.  The data should be saved every time a command alters the data. 
-14.  The testing strategy should cover over 90% of the code. 
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The product should work only for a single user.
+5.  The data should be stored locally and should be in a human editable text file.
+6.  The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%.
+7.  The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
+8.  The product file size should not exceed 100MB.
+9.  The document file size should not exceed 15MB.
+10.  The DG and UG should be PDF-friendly.
+11.  The product needs to be developed in a breadth-first incremental manner.
+12.  The product should not use a DBMS to store data.
+13.  The data should be saved every time a command alters the data.
+14.  The testing strategy should cover over 90% of the code.
 15.  The data should be encrypted and secured for the user.
 
 
