@@ -27,6 +27,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private final String lightTheme = getClass().getResource("/view/LightTheme.css").toExternalForm();
     private final String darkTheme = getClass().getResource("/view/DarkTheme.css").toExternalForm();
+    private final String extensionsLight = getClass().getResource("/view/ExtensionsLight.css").toExternalForm();
+    private final String extensionsDark = getClass().getResource("/view/ExtensionsDark.css").toExternalForm();
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -176,6 +178,8 @@ public class MainWindow extends UiPart<Stage> {
         if (!hasLightTheme && hasDarkTheme) {
             primaryStage.getScene().getStylesheets().remove(darkTheme);
             primaryStage.getScene().getStylesheets().add(lightTheme);
+            primaryStage.getScene().getStylesheets().remove(extensionsDark);
+            primaryStage.getScene().getStylesheets().add(extensionsLight);
         }
         helpWindow.setLightTheme();
     }
@@ -191,6 +195,8 @@ public class MainWindow extends UiPart<Stage> {
         if (!hasDarkTheme && hasLightTheme) {
             primaryStage.getScene().getStylesheets().remove(lightTheme);
             primaryStage.getScene().getStylesheets().add(darkTheme);
+            primaryStage.getScene().getStylesheets().remove(extensionsLight);
+            primaryStage.getScene().getStylesheets().add(extensionsDark);
         }
         helpWindow.setDarkTheme();
     }
