@@ -6,6 +6,8 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -34,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
 
     private ResidentTableView residentTableView;
+    private VenueTableView venueTableView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,7 +47,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private TabPane tableViewPane;
+
+    @FXML
+    private Tab residentTab;
+
+    @FXML
+    private Tab venueTab;
+
+    @FXML
     private StackPane residentTableViewPlaceholder;
+
+    @FXML
+    private StackPane venueTableViewPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -65,7 +80,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        setTabLabels();
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -115,6 +130,14 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
+
+        venueTableView = new VenueTableView(logic.getObservableVenues());
+        venueTableViewPlaceholder.getChildren().add(venueTableView.getRoot());
+
+        residentTab.setContent(residentTableViewPlaceholder);
+        venueTab.setContent(venueTableViewPlaceholder);
+
+        tableViewPane.getTabs().addAll(residentTab, venueTab);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -200,5 +223,10 @@ public class MainWindow extends UiPart<Stage> {
     private ListChangeListener<String> getListChangeListener() {
         // Update the observable field list within the logic attribute
         return c -> residentTableView.setObservableFields(logic.getObservableFields());
+    }
+
+    private void setTabLabels() {
+        this.residentTab.setText("Residents");
+        this.venueTab.setText("Venues");
     }
 }

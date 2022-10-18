@@ -322,6 +322,11 @@
     -fx-padding: 8 1 8 1;
 }
 
+.tab {
+    -fx-font-size: 15px;
+    -fx-padding: 6 9 6 9;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

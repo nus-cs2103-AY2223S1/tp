@@ -23,6 +23,7 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 
 public class AddCommandTest {
@@ -158,6 +159,16 @@ public class AddCommandTest {
 
         @Override
         public void setObservableFields(List<String> observableFields) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Venue> getObservableVenues() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setObservableVenues(List<Venue> modifiableVenues) {
             throw new AssertionError("This method should not be called.");
         }
     }
