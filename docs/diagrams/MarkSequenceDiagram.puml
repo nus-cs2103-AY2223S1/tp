@@ -5,18 +5,26 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":MarkCommandParser" as MarkCommandParser LOGIC_COLOR
-participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+participant "mc:MarkCommand" as MarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant "target:Appointment" as Appointment MODEL_COLOR
 end box
 [-> LogicManager : execute("mark 1")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("mark 1")
 activate AddressBookParser
+
+create MarkCommandParser
+AddressBookParser -> MarkCommandParser
+activate MarkCommandParser
+
+MarkCommandParser --> AddressBookParser
+deactivate MarkCommandParser
 
 AddressBookParser -> MarkCommandParser : parse("mark 1")
 activate MarkCommandParser
@@ -25,35 +33,49 @@ create MarkCommand
 MarkCommandParser -> MarkCommand
 activate MarkCommand
 
-MarkCommand --> MarkCommandParser
+MarkCommand --> MarkCommandParser : mc
 deactivate MarkCommand
 
-MarkCommandParser --> AddressBookParser
+MarkCommandParser --> AddressBookParser : mc
 deactivate MarkCommandParser
 
-AddressBookParser --> LogicManager : MarkCommand
+AddressBookParser --> LogicManager : mc
 deactivate AddressBookParser
 
-LogicManager -> MarkCommand : execute()
+LogicManager -> MarkCommand : execute(model)
 activate MarkCommand
 
-UndoCommand -> Model : undoAddressBook()
+MarkCommand -> Model : getTargetAppointment(model)
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
-
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
-
-Model --> UndoCommand
+Model --> MarkCommand : appointmentToMark
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+MarkCommand --> Appointment : mark()
+activate Appointment
+
+Appointment --> MarkCommand
+deactivate Appointment
+
+opt appointment is recurring
+
+MarkCommand --> MarkCommand : addRecurringAppointment
+activate MarkCommand
+
+MarkCommand --> MarkCommand
+deactivate MarkCommand
+
+end
+
+create CommandResult
+MarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MarkCommand : result
+deactivate CommandResult
+
+MarkCommand --> LogicManager : result
+deactivate MarkCommand
 
 [<--LogicManager
 deactivate LogicManager
