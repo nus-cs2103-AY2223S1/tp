@@ -21,6 +21,7 @@ done faster and more securely than traditional GUI apps.
     * [Exiting the application: `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
     * [Importing data: `import`](#importing-data--import)
+    * [Exporting data: `export`](#exporting-data--export)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -203,6 +204,23 @@ Examples:
 
 * `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook executable
 * `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the FinBook executable
+
+---
+
+### Exporting data : `export`
+
+Exports data to a `CSV` file
+
+Format: `export PATH`
+
+* Exports data to the file at the specified `PATH`
+* `PATH` can be a relative or full path
+* `PATH` must end in `.csv`
+
+Examples:
+
+* `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook executable
+* `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the FinBook executable
 
 --------------------------------------------------------------------------------------------------------------------
 
