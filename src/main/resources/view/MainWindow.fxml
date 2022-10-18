@@ -7,14 +7,15 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.RowConstraints?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="SoCompiler" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="SoCompiler" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png"/>
     </icons>
@@ -35,19 +36,20 @@
                     </Menu>
                 </MenuBar>
 
-                <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+                <StackPane fx:id="commandBoxPlaceholder" styleClass="borderless-pane" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets top="5" right="10" bottom="5" left="10"/>
+                        <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
 
-                <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="100" prefHeight="100" maxHeight="100">
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="130" minHeight="130" styleClass="borderless-pane"
+                           VBox.vgrow="NEVER">
                     <padding>
-                        <Insets top="5" right="10" bottom="5" left="10"/>
+                        <Insets bottom="5" left="10" right="10" top="5"/>
                     </padding>
                 </StackPane>
-                <!--hgap here is used to separate the two class/module panels, set to 0 temporarily-->
+
+
                 <GridPane hgap="0.0" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
                     <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" prefWidth="100.0"/>
@@ -58,23 +60,21 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
 
-                    <VBox fx:id="moduleList" styleClass="pane-with-border" prefWidth="340"
-                          VBox.vgrow="ALWAYS" GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <VBox fx:id="moduleList" prefWidth="340" styleClass="borderless-pane" GridPane.columnIndex="1"
+                          GridPane.rowIndex="1" VBox.vgrow="ALWAYS">
                         <StackPane fx:id="moduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         <padding>
-                            <Insets top="10" right="10" bottom="10" left="10"/>
+                            <Insets bottom="10" left="10" right="10" top="10"/>
                         </padding>
                     </VBox>
-                    <VBox fx:id="personList" styleClass="pane-with-border" prefWidth="340"
-                          VBox.vgrow="ALWAYS" GridPane.rowIndex="1">
+                    <VBox fx:id="personList" prefWidth="340" styleClass="borderless-pane" GridPane.rowIndex="1"
+                          VBox.vgrow="ALWAYS">
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         <padding>
-                            <Insets top="10" right="10" bottom="10" left="10"/>
+                            <Insets bottom="10" left="10" right="10" top="10"/>
                         </padding>
                     </VBox>
-
                 </GridPane>
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
             </VBox>
         </Scene>
     </scene>
