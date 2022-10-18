@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.workbook.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.workbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.COMPANY_DESC_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.DATETIME_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.ROLE_DESC_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.STAGE_DESC_AMY;
@@ -80,7 +81,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + COMPANY_DESC_AMY + ROLE_DESC_AMY
-                + EMAIL_DESC_AMY + STAGE_DESC_AMY;
+                + EMAIL_DESC_AMY + STAGE_DESC_AMY + DATETIME_DESC_AMY;
 
         Internship expectedInternship = new InternshipBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

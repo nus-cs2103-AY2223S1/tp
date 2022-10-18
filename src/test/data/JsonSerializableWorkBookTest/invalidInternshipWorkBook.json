@@ -3,6 +3,7 @@
     "company": "Hans Muster",
     "role": "Software Engineer",
     "email": "invalid@email!3e",
-    "stage": "HR interview"
+    "stage": "HR interview",
+    "dateTime": ""
   } ]
 }

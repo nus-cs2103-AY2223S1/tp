@@ -2,6 +2,8 @@ package seedu.workbook.testutil;
 
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_DATETIME_AMY;
+import static seedu.workbook.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_ROLE_AMY;
@@ -29,12 +31,14 @@ public class TypicalInternships {
         .withRole("Software Engineer")
         .withEmail("alice@example.com")
         .withStage("Technical Interview")
+        .withDateTime("12-Oct-2022 12:00")
         .withTags("friends").build();
     public static final Internship BENSON = new InternshipBuilder()
         .withCompany("Benson Meier")
         .withRole("Software Engineer")
         .withEmail("johnd@example.com")
         .withStage("HR Interview")
+        .withDateTime("12-Dec-2022 14:00")
         .withTags("owesMoney", "friends").build();
     public static final Internship CARL = new InternshipBuilder()
         .withCompany("Carl Kurz")
@@ -82,12 +86,14 @@ public class TypicalInternships {
         .withRole(VALID_ROLE_AMY)
         .withEmail(VALID_EMAIL_AMY)
         .withStage(VALID_STAGE_AMY)
+        .withDateTime(VALID_DATETIME_AMY)
         .withTags(VALID_TAG_FRIEND).build();
     public static final Internship BOB = new InternshipBuilder()
         .withCompany(VALID_COMPANY_BOB)
         .withRole(VALID_ROLE_BOB)
         .withEmail(VALID_EMAIL_BOB)
         .withStage(VALID_STAGE_BOB)
+        .withDateTime(VALID_DATETIME_BOB)
         .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

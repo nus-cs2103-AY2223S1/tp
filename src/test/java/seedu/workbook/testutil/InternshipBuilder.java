@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Role;
@@ -20,12 +21,14 @@ public class InternshipBuilder {
     public static final String DEFAULT_ROLE = "God Developer";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STAGE = "HR Interview";
+    public static final String DEFAULT_DATETIME = "";
 
 
     private Company company;
     private Role role;
     private Email email;
     private Stage stage;
+    private DateTime dateTime;
     private Set<Tag> tags;
 
     /**
@@ -36,6 +39,7 @@ public class InternshipBuilder {
         role = new Role(DEFAULT_ROLE);
         email = new Email(DEFAULT_EMAIL);
         stage = new Stage(DEFAULT_STAGE);
+        dateTime = new DateTime(DEFAULT_DATETIME);
         tags = new HashSet<>();
     }
 
@@ -47,6 +51,7 @@ public class InternshipBuilder {
         role = internshipToCopy.getRole();
         email = internshipToCopy.getEmail();
         stage = internshipToCopy.getStage();
+        dateTime = internshipToCopy.getDateTime();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -91,8 +96,16 @@ public class InternshipBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code DateTime} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withDateTime(String dateTime) {
+        this.dateTime = new DateTime(dateTime);
+        return this;
+    }
+
     public Internship build() {
-        return new Internship(company, role, email, stage, tags);
+        return new Internship(company, role, email, stage, dateTime, tags);
     }
 
 }

@@ -2,6 +2,7 @@ package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
@@ -24,12 +25,14 @@ public class AddCommand extends Command {
             + PREFIX_ROLE + "ROLE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_STAGE + "STAGE "
+            + "[" + PREFIX_DATETIME + "DATE AND TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "Meta "
             + PREFIX_ROLE + "Software Engineer "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_STAGE + "Interview "
+            + PREFIX_DATETIME + "10-Dec-2022 12:10 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

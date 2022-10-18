@@ -20,6 +20,7 @@ public class Internship {
     private final Role role;
     private final Email email;
     private final Stage stage;
+    private final DateTime dateTime;
 
     // Data fields
 
@@ -28,12 +29,14 @@ public class Internship {
     /**
      * Every field must be present and not null.
      */
-    public Internship(Company company, Role role, Email email, Stage stage, Set<Tag> tags) {
-        requireAllNonNull(company, role, email, stage, tags);
+    public Internship(
+            Company company, Role role, Email email, Stage stage, DateTime dateTime, Set<Tag> tags) {
+        requireAllNonNull(company, role, email, stage, dateTime, tags);
         this.company = company;
         this.role = role;
         this.email = email;
         this.stage = stage;
+        this.dateTime = dateTime;
         this.tags.addAll(tags);
     }
 
@@ -51,6 +54,9 @@ public class Internship {
     }
     public Stage getStage() {
         return stage;
+    }
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
 
@@ -95,13 +101,14 @@ public class Internship {
                 && otherInternship.getRole().equals(getRole())
                 && otherInternship.getEmail().equals(getEmail())
                 && otherInternship.getStage().equals(getStage())
+                && otherInternship.getDateTime().equals(getDateTime())
                 && otherInternship.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, role, email, stage, tags);
+        return Objects.hash(company, role, email, stage, dateTime, tags);
     }
 
     @Override
@@ -115,6 +122,10 @@ public class Internship {
                 .append("; Stage: ")
                 .append(getStage());
 
+        if (!getDateTime().value.isEmpty()) {
+            builder.append("; Date: ")
+                    .append(getDateTime());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

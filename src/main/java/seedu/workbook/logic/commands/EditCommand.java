@@ -2,6 +2,7 @@ package seedu.workbook.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.workbook.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
@@ -20,6 +21,7 @@ import seedu.workbook.commons.util.CollectionUtil;
 import seedu.workbook.logic.commands.exceptions.CommandException;
 import seedu.workbook.model.Model;
 import seedu.workbook.model.internship.Company;
+import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
 import seedu.workbook.model.internship.Internship;
 import seedu.workbook.model.internship.Role;
@@ -41,6 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STAGE + "STAGE] "
+            + "[" + PREFIX_DATETIME + "DATE AND TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -98,9 +101,11 @@ public class EditCommand extends Command {
         Role updatedRole = editInternshipDescriptor.getRole().orElse(internshipToEdit.getRole());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
         Stage updatedStage = editInternshipDescriptor.getStage().orElse(internshipToEdit.getStage());
+        DateTime updatedDateTime = editInternshipDescriptor.getDate().orElse(internshipToEdit.getDateTime());
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
 
-        return new Internship(updatedCompany, updatedRole, updatedEmail, updatedStage, updatedTags);
+        return new Internship(updatedCompany, updatedRole,
+                updatedEmail, updatedStage, updatedDateTime, updatedTags);
     }
 
     @Override
@@ -130,6 +135,7 @@ public class EditCommand extends Command {
         private Role role;
         private Email email;
         private Stage stage;
+        private DateTime dateTime;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {
@@ -144,6 +150,7 @@ public class EditCommand extends Command {
             setRole(toCopy.role);
             setEmail(toCopy.email);
             setStage(toCopy.stage);
+            setDate(toCopy.dateTime);
             setTags(toCopy.tags);
         }
 
@@ -151,7 +158,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, role, email, stage, tags);
+            return CollectionUtil.isAnyNonNull(company, role, email, stage, dateTime, tags);
         }
 
         public void setCompany(Company company) {
@@ -183,6 +190,13 @@ public class EditCommand extends Command {
 
         public Optional<Stage> getStage() {
             return Optional.ofNullable(stage);
+        }
+        public void setDate(DateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
+        public Optional<DateTime> getDate() {
+            return Optional.ofNullable(dateTime);
         }
 
 
@@ -222,6 +236,7 @@ public class EditCommand extends Command {
                     && getRole().equals(e.getRole())
                     && getEmail().equals(e.getEmail())
                     && getStage().equals(e.getStage())
+                    && getDate().equals(e.getDate())
                     && getTags().equals(e.getTags());
         }
     }
