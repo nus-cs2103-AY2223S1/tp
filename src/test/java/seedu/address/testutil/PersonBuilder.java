@@ -95,7 +95,7 @@ public class PersonBuilder {
      */
     public Person build() {
         // Todo: add contact to person builder
-        return new Person(name, address, tags, new HashMap<>());
+        return new Person(name, address, tags, new HashMap<>(), role);
     }
 
 }

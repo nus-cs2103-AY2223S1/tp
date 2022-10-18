@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
@@ -67,9 +68,10 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Role updatedRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
 
         // Todo: Integrate contact into cli. ex: stack, telegram argument
-        return new Person(updatedName, updatedAddress, updatedTags, new HashMap<>());
+        return new Person(updatedName, updatedAddress, updatedTags, new HashMap<>(), updatedRole);
     }
 
     @Override
@@ -123,6 +125,7 @@ public class EditCommand extends Command {
         private Name name;
         private Address address;
         private Set<Tag> tags;
+        private Role role;
 
         public EditPersonDescriptor() {}
 
@@ -166,6 +169,15 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable Role, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code role} is null.
+         */
+        public Optional<Role> getRole() {
+            return (tags != null) ? Optional.of(role) : Optional.empty();
         }
 
         /**

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Role;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
 import seedu.address.model.person.github.User;
@@ -35,14 +36,14 @@ public class Person {
      * TODO: Add contacts map into constructor
      */
     public Person(Name name, Address address, Set<Tag> tags,
-                  Map<ContactType, Contact> contacts) {
+                  Map<ContactType, Contact> contacts, Role role) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
         // mock user
         // Todo: Add githubUser to constructor
         this.gitHubUser = new User("");
-        this.role = new Role("");
+        this.role = role;
         this.tags.addAll(tags);
         this.contacts.putAll(contacts);
     }

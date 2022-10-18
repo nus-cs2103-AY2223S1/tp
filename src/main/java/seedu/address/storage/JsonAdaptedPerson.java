@@ -107,7 +107,9 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
 
-        return new Person(modelName, modelAddress, modelTags, modelContacts);
+        final Role modelRole = new Role(role);
+
+        return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole);
     }
 
 }
