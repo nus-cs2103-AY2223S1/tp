@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-import io.swagger.annotations.ApiModelProperty;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.module.UserModule;
 
@@ -25,21 +24,23 @@ class JsonAdaptedUserModule {
     public static final String JSON_PROPERTY_TUTORIAL = "tutorial";
     public static final String JSON_PROPERTY_LECTURE = "lecture";
     public static final String JSON_PROPERTY_SELECTED_SEMESTERS = "selectedSemesters";
-    private final UserModule source;
-    private final String moduleCode;
-    private final String tutorial;
-    private final String lecture;
-    private final String selectedSemesters;
+    private String moduleCode;
+    private String tutorial;
+    private String lecture;
+    private String selectedSemesters;
 
     /**
      * Converts a given {@code UserModule} into this class for Jackson use.
      */
     public JsonAdaptedUserModule(UserModule source) {
-        this.source = source;
         this.moduleCode = source.getUserModuleCode();
         this.selectedSemesters = source.getSelectedSemester();
         this.tutorial = source.getTutorial();
         this.lecture = source.getLecture();
+    }
+
+    public JsonAdaptedUserModule() {
+
     }
 
     /**
@@ -61,6 +62,11 @@ class JsonAdaptedUserModule {
     public String getModuleCode() {
         return moduleCode;
     }
+    @JsonProperty(JSON_PROPERTY_MODULE_CODE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
+    }
 
     /**
      * Get selectedSemesters
@@ -73,6 +79,14 @@ class JsonAdaptedUserModule {
     public String getSelectedSemesters() {
         return selectedSemesters;
     }
+
+    @javax.annotation.Nonnull
+    @JsonProperty(JSON_PROPERTY_SELECTED_SEMESTERS)
+
+    public void setSelectedSemesters(String selectedSemesters) {
+        this.selectedSemesters = selectedSemesters;
+    }
+
     /**
      * Get lecture slot
      *
@@ -84,6 +98,13 @@ class JsonAdaptedUserModule {
     public String getLecture() {
         return lecture;
     }
+
+    @javax.annotation.Nonnull
+    @JsonProperty(JSON_PROPERTY_LECTURE)
+    public void setLecture(String lecture) {
+        this.lecture = lecture;
+    }
+
     /**
      * Get tutorial slot
      *
@@ -94,6 +115,13 @@ class JsonAdaptedUserModule {
 
     public String getTutorial() {
         return tutorial;
+    }
+
+    @javax.annotation.Nonnull
+    @JsonProperty(JSON_PROPERTY_TUTORIAL)
+
+    public void setTutorial(String tutorial) {
+        this.tutorial = tutorial;
     }
     /**
      * Return true if this JsonAdaptedUserModule object is equal to o.

@@ -3,6 +3,7 @@ package nus.climods.storage.module;
 import nus.climods.commons.exceptions.DataConversionException;
 import nus.climods.model.module.ReadOnlyModuleSummaryList;
 import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.model.module.UserModule;
 import nus.climods.storage.module.summary.JsonModuleSummaryListStorage;
 import nus.climods.storage.module.user.JsonUserModuleListStorage;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.openapitools.client.model.ModuleCondensed;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,16 +48,11 @@ class JsonUserModuleListStorageTest {
         assertFalse(readUserModuleList("NonExistentFile.json").isPresent());
     }
 
-//    @Test
-//    public void read_notJsonFormat_exceptionThrown() {
-//        assertThrows(DataConversionException.class, () -> readUserModuleList(
-//            "notJsonFormatModuleSummaryList.json"));
-//    }
-
-//    @Test
-//    public void readInvalidJsonFormat_fail() throws Exception {
-//        assertTrue(readUserModuleList("validJsonFormatModuleSummaryList.json").isEmpty());
-//    }
+    @Test
+    public void read_notJsonFormat_exceptionThrown() {
+        assertThrows(DataConversionException.class, () -> readUserModuleList(
+            "notJsonFormatModuleSummaryList.json"));
+    }
 
     @Test
     public void readValidJsonFormat_success() throws Exception {
@@ -70,18 +67,21 @@ class JsonUserModuleListStorageTest {
      */
     @Test
     public void saveAndReadUserModuleList_success() throws Exception {
-        Path filePath = testFolder.resolve("TempModuleSummaryList.json");
-        ModulesApi modulesApi = new ModulesApi();
-        List<ModuleCondensed> data = modulesApi.acadYearModuleListJsonGet("2022-2023");
-        JsonModuleSummaryListStorage jsonAcadYearModuleListStorage = new JsonModuleSummaryListStorage(filePath);
+        Path filePath = testFolder.resolve("TempUserModuleList.json");
+        UniqueUserModuleList data = new UniqueUserModuleList();
+        data.add(new UserModule("CS2103", "Friday 1400-1500", "Friday 1600-1700", "Semester 1"));
+        data.add(new UserModule("CS2030S", "Friday 1400-1500", "Monday 1600-1700", "Semester 2"));
+        data.add(new UserModule("CS2040S", "Tuesday 1400-1500", "Monday 1600-1700", "Special Term II"));
 
-        jsonAcadYearModuleListStorage.saveModuleSummaryList(data);
+        JsonUserModuleListStorage jsonUserModuleListStorage = new JsonUserModuleListStorage(filePath);
 
-        Optional<ReadOnlyModuleSummaryList> optionalReadBack = jsonAcadYearModuleListStorage
-            .readModuleSummaryList(filePath);
+        // Saving from UniqueUserList
+        jsonUserModuleListStorage.saveUserModuleList(data);
+
+        Optional<UniqueUserModuleList> optionalReadBack = jsonUserModuleListStorage
+            .readUserModuleList(filePath);
         assertTrue(optionalReadBack.isPresent());
-        ReadOnlyModuleSummaryList readBack = optionalReadBack.get();
-        List<ModuleCondensed> readBackData = readBack.getModuleList();
-        assertEquals(data, readBackData);
+        UniqueUserModuleList readBack = optionalReadBack.get();
+        assertEquals(data, readBack);
     }
 }
