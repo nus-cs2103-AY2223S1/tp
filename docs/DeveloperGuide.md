@@ -181,7 +181,7 @@ Step 1. The user enters the `markTask 1` command.
 
 Step 2. The `MarkTaskCommandParser` parses the index and ensures that the index given is valid. In this process, a `MarkTaskCommand` object with the argument containing the target index is created.
 
-Step 3. The `MarkTaskCommand` is executed. Task of index 1 is retrieved by calling the `ObservableList#get()` method. If the task exists at index 1, then the marked `Task` will be created by calling 
+Step 3. The `MarkTaskCommand` is executed. Task of index 1 is retrieved by calling the `ObservableList#get()` method. If the task exists at index 1, then the marked `Task` will be created by calling
 `MarkTaskCommand#createMarkedTask(taskToMark, configureMarkedTask)`. Then, `Model#setTask(taskToMark, targetIndex)` will be called which sets the `Task` at index 1 to be a marked `Task`.
 
 Step 4. `CommandResult` is then returned, notifying the user that the `Task` has been marked as completed successfully.
