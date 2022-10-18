@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_IMPORT_ERROR;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Path;
 import java.util.List;
@@ -12,8 +11,6 @@ import java.util.stream.Collectors;
 
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -55,7 +52,7 @@ public class ExportCommand extends Command {
             StatefulBeanToCsv beanToCsv = new StatefulBeanToCsvBuilder(writer).build();
             beanToCsv.write(beans);
             writer.close();
-        } catch (IOException | CsvRequiredFieldEmptyException | CsvDataTypeMismatchException e) {
+        } catch (Exception e) {
             throw new CommandException(String.format(MESSAGE_IMPORT_ERROR, e.getMessage()));
         }
         return new CommandResult(String.format(MESSAGE_IMPORT_DATA_SUCCESS, targetPath.getFileName()));
