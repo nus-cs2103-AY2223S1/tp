@@ -16,8 +16,6 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          <ColumnConstraints />
     </columnConstraints>
     <VBox minHeight="50.0" style="-fx-spacing: 5;" GridPane.rowSpan="2">
@@ -51,7 +49,7 @@
             <Label fx:id="masteryCheck" styleClass="cell_small_label" text="\$masteryCheck" />
          </children>
       </VBox>
-      <VBox prefHeight="100.0" prefWidth="354.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="2">
+      <VBox prefHeight="100.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowSpan="2">
          <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
