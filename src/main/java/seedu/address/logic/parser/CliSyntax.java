@@ -13,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_CRITERIA = new Prefix("c/");
+    public static final Prefix PREFIX_ORDER = new Prefix("o/");
 
 
     /* Prefix definitions for Appointment*/

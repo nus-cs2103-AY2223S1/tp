@@ -244,7 +244,15 @@ public class AddressBook implements ReadOnlyAddressBook {
         return patients.hashCode();
     }
 
-    void sortPatients(Comparator<Patient> comparator) {
-        patients.sort(comparator);
+    void sortPatients(Comparator<Patient> comparator, boolean isAscending) {
+        patients.sort(comparator, isAscending);
+    }
+
+    void sortBills(Comparator<Bill> comparator, boolean isAscending) {
+        bills.sort(comparator, isAscending);
+    }
+
+    void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
+        appointments.sort(comparator, isAscending);
     }
 }
