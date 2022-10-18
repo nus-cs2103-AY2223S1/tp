@@ -160,21 +160,37 @@ This section describes some noteworthy details on how certain features are imple
 
 **Implementation**
 
+**NOTE**: `markTask` and `unmarkTask` has it's implementation done in a similar fashion and hence the below guide will be for
+`markTask` only.
+
 This feature allows tasks to be marked as completed or not completed, using the `mark` or `unmark` command. This is facilitated
 via the `MarkTaskCommand` and `MarkTaskCommandParser` classes.
 
 The `MarkTaskCommandParser` parses the input given by the user and ensures the validity of the index. Tasks at the target index
 will then be marked as completed with the help of the following methods:
 
+* `Model#getFilteredTaskList()` Retrieves the `Task` indicated by its index from `ObservableList<Task>`.
 * `Model#setTask(markedTask, targetIndex)` which sets the `status` class variable of the `markedTask` to `true`.
 * `MarkTaskCommand#createMarkedTask(taskToMark, configureMarkedTask)` will create a marked task based on the configuration of `configureMarkedTask`.
 
 Given below is an example of how `MarkTaskCommand` is being executed.
 
 **Steps**
+
 Step 1. The user enters the `markTask 1` command.
+
 Step 2. The `MarkTaskCommandParser` parses the index and ensures that the index given is valid. In this process, a `MarkTaskCommand` object with the argument containing the target index is created.
-Step 3. The `MarkTaskCommand` is executed.
+
+Step 3. The `MarkTaskCommand` is executed. Task of index 1 is retrieved by calling the `ObservableList#get()` method. If the task exists at index 1, then the marked `Task` will be created by calling 
+`MarkTaskCommand#createMarkedTask(taskToMark, configureMarkedTask)`. Then, `Model#setTask(taskToMark, targetIndex)` will be called which sets the `Task` at index 1 to be a marked `Task`.
+
+Step 4. `CommandResult` is then returned, notifying the user that the `Task` has been marked as completed successfully.
+
+**Activity Diagram**
+
+The user flow is illustrated in the *Activity Diagram* as shown below.
+
+![MarkTaskActivityDiagram](images/MarkTaskActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
