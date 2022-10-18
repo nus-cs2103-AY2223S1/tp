@@ -5,10 +5,13 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.EntryType;
 
 /**
@@ -18,9 +21,10 @@ public class GraphPanel extends UiPart<Region> {
     private static final String FXML = "GraphPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(seedu.address.ui.GraphPanel.class);
     private EntryPieChart pieChart;
+    private EntryLineChart lineChart;
 
     @FXML
-    private Label pieChartTitle;
+    private Label ChartTitle;
 
     @FXML
     private StackPane graphPlaceholder;
@@ -36,16 +40,34 @@ public class GraphPanel extends UiPart<Region> {
 
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
-            pieChartTitle.setText("Expenses");
+            ChartTitle.setText("Expenses");
             break;
         case INCOME:
-            pieChartTitle.setText("Income");
+            ChartTitle.setText("Income");
             break;
         default:
             break;
         }
         graphPlaceholder.getChildren().add(pieChart.getRoot());
 
+    }
+
+    public GraphPanel(EntryType entryType, XYChart.Series<Date, Amount> lineGraphData) {
+        super(FXML);
+
+        this.lineChart = new EntryLineChart(lineGraphData);
+
+        switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                ChartTitle.setText("Expenses");
+                break;
+            case INCOME:
+                ChartTitle.setText("Income");
+                break;
+            default:
+                break;
+        }
+        graphPlaceholder.getChildren().add(lineChart.getRoot());
     }
 
 }

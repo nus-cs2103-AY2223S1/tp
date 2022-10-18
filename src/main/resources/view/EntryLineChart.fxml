@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<LineChart fx:id="lineChart" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <xAxis>
+        <CategoryAxis fx:id="xAxis" side="BOTTOM" visible="true"/>
+    </xAxis>
+    <yAxis>
+        <NumberAxis fx:id="yAxis" side="LEFT" visible="true"/>
+    </yAxis>
+</LineChart>

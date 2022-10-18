@@ -209,7 +209,20 @@ public class MainWindow extends UiPart<Stage> {
             break;
 
         case MONTH:
-            break;
+            switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                GraphPanel expenseGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+                        logic.getExpenseLineChartData());
+                graphPanelPlaceholder.getChildren().add(expenseGraphPanel.getRoot());
+                break;
+            case INCOME:
+                GraphPanel incomeGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
+                        logic.getIncomePieChartData());
+                graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
+                break;
+            default:
+                break;
+            }
         default:
             break;
 
