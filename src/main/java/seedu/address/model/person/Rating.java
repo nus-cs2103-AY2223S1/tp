@@ -2,11 +2,6 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RATING;
-
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Professor/Teaching Assistant's rating in the address book.
@@ -57,19 +52,6 @@ public class Rating {
      */
     public static boolean isValidRating(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    /**
-     * @return Rating based on the given {@code ArgumentMultimap}.
-     */
-    public static Rating getRatingFromMultimap(ArgumentMultimap argMultimap) throws ParseException {
-        Rating rating;
-        if (argMultimap.getValue(PREFIX_RATING).isEmpty()) {
-            rating = new Rating("", false);
-        } else {
-            rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
-        }
-        return rating;
     }
 
     @Override
