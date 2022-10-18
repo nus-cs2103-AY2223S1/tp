@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -57,4 +57,5 @@ public class EditTeamCommand extends Command {
                 || (other instanceof EditTeamCommand // instanceof handles nulls
                 && targetIndex.equals(((EditTeamCommand) other).targetIndex)); // state check
     }
+
 }

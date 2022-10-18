@@ -355,7 +355,7 @@ Step 1 and 2 is repeated until all members have been added
 * 1a. Team Lead enter wrong command
 
     * 1a1. EZLead display error message
-    * 
+
       Use case ends
 
 * 1b. Team does not exist in EZLead’s Database
@@ -363,7 +363,7 @@ Step 1 and 2 is repeated until all members have been added
     * 1b1. EZLead informs Team Lead that the team does not exist
 
       Use case ends
-    
+
 
 **Use case: UC4 - Renaming a team's name**
 
