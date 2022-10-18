@@ -7,8 +7,8 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_REQUEST;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
