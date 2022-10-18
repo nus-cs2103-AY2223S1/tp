@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
 
 import coydir.logic.commands.exceptions.CommandException;
 import coydir.model.Model;
+import coydir.model.person.EmployeeId;
 import coydir.model.person.Person;
 
 /**
@@ -53,8 +54,11 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        int currId = EmployeeId.getCount();
+
 
         if (model.hasPerson(toAdd)) {
+            EmployeeId.setCount(--currId);
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, toAdd.getName()));
         }
 
