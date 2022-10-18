@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import seedu.rc4hdb.model.venues.Venue;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -24,6 +23,7 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 
 public class AddCommandTest {

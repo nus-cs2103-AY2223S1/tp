@@ -9,12 +9,13 @@ import seedu.rc4hdb.model.resident.Resident;
  * Represents a booking for a venue. Bookings cannot span multiple days.
  */
 public abstract class Booking {
+    protected static int counter;
+
     protected Resident resident;
     protected LocalTime startTime;
     protected LocalTime endTime;
     protected DayOfWeek dayOfWeek;
 
-    protected static int counter;
     protected int id;
 
     /**
@@ -42,6 +43,7 @@ public abstract class Booking {
 
     /**
      * Checks if the booking period overlaps with another booking period.
+     * @param booking The booking to check overlap with.
      * @return True if both bookings overlap.
      */
     public abstract boolean clashesWith(Booking booking);

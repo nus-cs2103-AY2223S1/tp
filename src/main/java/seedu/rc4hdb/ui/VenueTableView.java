@@ -1,12 +1,13 @@
 package seedu.rc4hdb.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.model.venues.Venue;
 
 /**

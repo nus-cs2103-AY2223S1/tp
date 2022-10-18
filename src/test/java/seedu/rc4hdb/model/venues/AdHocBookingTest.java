@@ -2,14 +2,15 @@ package seedu.rc4hdb.model.venues;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 
+import org.junit.jupiter.api.Test;
+
 public class AdHocBookingTest {
-    private AdHocBooking SEPT_20_2022_8_TO_9_PM = new AdHocBooking(ALICE, "2022-09-20", "20:00", "21:00");
-    private AdHocBooking SEPT_20_2022_5_TO_10_PM = new AdHocBooking(ALICE, "2022-09-20", "17:00", "22:00");
-    private AdHocBooking SEPT_20_2099_7_TO_11_PM = new AdHocBooking(ALICE, "2099-09-20", "19:00", "23:00");
-    private RecurrentBooking TUESDAY_730_TO_9PM = new RecurrentBooking(ALICE, "TUESDAY", "19:30", "21:00");
+    private static final AdHocBooking SEPT_20_2022_8_TO_9_PM = new AdHocBooking(ALICE, "2022-09-20", "20:00", "21:00");
+    private static final AdHocBooking SEPT_20_2022_5_TO_10_PM = new AdHocBooking(ALICE, "2022-09-20", "17:00", "22:00");
+    private static final AdHocBooking SEPT_20_2099_7_TO_11_PM = new AdHocBooking(ALICE, "2099-09-20", "19:00", "23:00");
+    private static final RecurrentBooking TUESDAY_730_TO_9PM = new RecurrentBooking(ALICE, "TUESDAY", "19:30", "21:00");
 
     @Test
     public void adHocBooking1_hasExpired_afterEndTimeExceeded() {

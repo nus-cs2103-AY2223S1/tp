@@ -11,11 +11,19 @@ public class Venue {
     private String venueIndex;
     private String venueName;
 
+    /**
+     * Constructor for a Venue instance.
+     * @param venueIndex The index of the venue as specified by the storage file.
+     * @param venueName The name of the venue as specified by the storage file.
+     */
     public Venue(String venueIndex, String venueName) {
         this.venueIndex = venueIndex;
         this.venueName = venueName;
     }
 
+    /**
+     * Removes expired bookings from the list of bookings.
+     */
     public void clearExpiredBookings() {
         this.bookings = this.bookings.stream()
                 .filter(b -> !b.hasExpired())

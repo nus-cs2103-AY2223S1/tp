@@ -2,14 +2,15 @@ package seedu.rc4hdb.model.venues;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 
+import org.junit.jupiter.api.Test;
+
 public class RecurrentBookingTest {
-    private RecurrentBooking MONDAY_5_TO_6_PM = new RecurrentBooking(ALICE, "MONDAY", "17:00", "18:00");
-    private RecurrentBooking MONDAY_530_TO_630PM = new RecurrentBooking(ALICE, "MONDAY", "17:30", "18:30");
-    private RecurrentBooking TUESDAY_730_TO_9PM = new RecurrentBooking(ALICE, "TUESDAY", "19:30", "21:00");
-    private AdHocBooking OCT_17_2022_5_TO_6_PM = new AdHocBooking(ALICE, "2022-10-17", "17:00", "18:00");
+    private static final RecurrentBooking MONDAY_5_TO_6_PM = new RecurrentBooking(ALICE, "MONDAY", "17:00", "18:00");
+    private static final RecurrentBooking MONDAY_530_TO_630PM = new RecurrentBooking(ALICE, "MONDAY", "17:30", "18:30");
+    private static final RecurrentBooking TUESDAY_730_TO_9PM = new RecurrentBooking(ALICE, "TUESDAY", "19:30", "21:00");
+    private static final AdHocBooking OCT_17_2022_5_TO_6_PM = new AdHocBooking(ALICE, "2022-10-17", "17:00", "18:00");
 
     @Test
     public void recurrentBooking_clashesWith_overlappingRecurrentBooking() {
