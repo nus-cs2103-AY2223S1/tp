@@ -2,7 +2,6 @@ package seedu.address.logic.commands.client.find;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.client.ClientCommand;
 import seedu.address.model.Model;
 import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
@@ -11,15 +10,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 
 public class FindClientByPhoneCommand extends FindClientCommand {
-
-    public static final String MESSAGE_FIND_CLIENT_USAGE = COMMAND_WORD + ": Finds and filters clients by keyword " +
-            "from the " +
-            "address book. "
-            + "Parameters: "
-            + PREFIX_CLIENT_PHONE + "PHONE "
-            + "Example: " + COMMAND_WORD + " "
-            + COMMAND_FLAG + " "
-            + PREFIX_CLIENT_PHONE + "98765432 ";
 
     private final PhoneContainsKeywordsPredicate predicate;
 
