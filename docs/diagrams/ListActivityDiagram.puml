@@ -1,0 +1,11 @@
+@startuml
+start
+:User executes list command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Clear current display nodes;
+:Display list of requested entity type;
+stop
+@enduml
