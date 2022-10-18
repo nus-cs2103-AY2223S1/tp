@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.application.model.application.Application;
-import seedu.application.model.application.UniqueApplicationList;
 import seedu.application.model.application.exceptions.ApplicationNotFoundException;
 import seedu.application.model.application.exceptions.DuplicateApplicationException;
 
@@ -36,6 +35,24 @@ public class UniqueArchiveList implements Iterable<Application> {
             throw new DuplicateApplicationException();
         }
         internalArchiveList.add(toArchive);
+    }
+
+    /**
+     * Replaces the application {@code target} in the archive list with {@code editedApplication}.
+     * {@code target} must exist in the list.
+     * The application identity of {@code editedApplication} must not be the same as another application in the list.
+     */
+    public void setArchive(Application target, Application editedApplication) {
+        requireAllNonNull(target, editedApplication);
+
+        int index = internalArchiveList.indexOf(target);
+        if (index == -1) {
+            throw new ApplicationNotFoundException();
+        }
+        if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
+            throw new DuplicateApplicationException();
+        }
+        internalArchiveList.set(index, editedApplication);
     }
     /**
      * Removes the equivalent application from the list.

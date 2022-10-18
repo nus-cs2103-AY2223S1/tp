@@ -126,9 +126,9 @@ public class ModelManager implements Model {
     @Override
     public void retrieveApplication(Application target) {
         applicationBook.retrieveApplication(target);
-        HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate(getArchiveList());
-        updateFilteredApplicationList(hideArchiveFromListPredicate);
+        ShowArchiveOnlyPredicate showArchiveOnlyPredicate =
+                new ShowArchiveOnlyPredicate(getArchiveList());
+        updateFilteredApplicationList(showArchiveOnlyPredicate);
     }
 
     @Override

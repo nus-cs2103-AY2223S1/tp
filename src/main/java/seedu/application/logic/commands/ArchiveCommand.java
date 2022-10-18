@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.logic.commands.exceptions.CommandException;
-import seedu.application.model.HideArchiveFromListPredicate;
 import seedu.application.model.Model;
 import seedu.application.model.application.Application;
 
@@ -20,6 +19,11 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Archived Application: %1$s";
+
+    public static final String MESSAGE_APPLICATION_EXIST_IN_ARCHIVE = "Application is already archived.\n"
+            + "Please use <list> command to show the current application list\n"
+            + "Example: 1) " + ListCommand.COMMAND_WORD + "\n"
+            + "               2) " + COMMAND_WORD + " 1";
 
     private final Index targetIndex;
 
@@ -37,6 +41,10 @@ public class ArchiveCommand extends Command {
         }
 
         Application applicationToArchive = lastShownList.get(targetIndex.getZeroBased());
+
+        if (model.getArchiveList().contains(applicationToArchive)) {
+            throw new CommandException(MESSAGE_APPLICATION_EXIST_IN_ARCHIVE);
+        }
         model.archiveApplication(applicationToArchive);
         return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, applicationToArchive));
     }

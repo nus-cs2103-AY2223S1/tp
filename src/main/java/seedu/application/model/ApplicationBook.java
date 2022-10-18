@@ -115,6 +115,9 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
         requireNonNull(editedApplication);
 
         applications.setApplication(target, editedApplication);
+        if (archives.contains(target)) {
+            archives.setArchive(target, editedApplication);
+        }
     }
 
     /**
@@ -123,6 +126,9 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
      */
     public void removeApplication(Application key) {
         applications.remove(key);
+        if (archives.contains(key)) {
+            archives.removeArchive(key);
+        }
     }
 
     //// util methods

@@ -2,7 +2,6 @@ package seedu.application.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.application.model.HideArchiveFromListPredicate;
 import seedu.application.model.Model;
 import seedu.application.model.ShowArchiveOnlyPredicate;
 
