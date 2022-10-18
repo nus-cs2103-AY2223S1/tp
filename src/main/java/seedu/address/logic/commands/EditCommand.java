@@ -42,7 +42,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TIMEZONE + "TIMEZONE]"
             + "[" + PREFIX_GAME_TYPE + "GAME TYPE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_MINECRAFT_NAME + "newMinecraftName "
             + PREFIX_ADDRESS + " 38 Oxley Road "
