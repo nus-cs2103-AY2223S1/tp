@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.UniqueOrderList;
 import seedu.address.model.person.Buyer;
@@ -218,7 +219,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         orders.remove(key);
     }
 
-    //// util methods
+    public List<Order> getOrderFromId(List<UniqueId> ids) {
+        return orders.getOrdersFromId(ids);
+    }
+
+    public List<Pet> getPetFromId(List<UniqueId> ids) {
+        return pets.getPetsFromId(ids);
+    }
 
     @Override
     public String toString() {

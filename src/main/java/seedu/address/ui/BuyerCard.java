@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 
@@ -23,6 +24,7 @@ public class BuyerCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
+    private final Logic logic;
     private final Buyer buyer;
     private final int displayedIndex;
 
@@ -50,10 +52,11 @@ public class BuyerCard extends UiPart<Region> {
     /**
      * Creates a {@code BuyerCode} with the given {@code Buyer} and index to display.
      */
-    public BuyerCard(Buyer buyer, int displayedIndex) {
+    public BuyerCard(Buyer buyer, int displayedIndex, Logic logic) {
         super(FXML);
         this.buyer = buyer;
         this.displayedIndex = displayedIndex;
+        this.logic = logic;
         fillBuyerCard();
     }
 
@@ -70,13 +73,13 @@ public class BuyerCard extends UiPart<Region> {
         email.setText(buyer.getEmail().value);
 
         // Set the buyer's orders in the list view
-        orderListView.setItems(buyer.getOrdersAsObservableList());
+        orderListView.setItems(logic.getOrderAsObservableListFromBuyer(buyer));
         orderListView.setCellFactory(listView -> new BuyerOrdersListViewCell());
 
-        /*buyer.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        orders.setText(buyer.getOrderIds().toString());
+//        buyer.getTags().stream()
+//                .sorted(Comparator.comparing(tag -> tag.tagName))
+//                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+//        orders.setText(buyer.getOrderIds().toString());
     }
 
     /**

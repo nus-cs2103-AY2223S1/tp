@@ -120,12 +120,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         // Initialise the list panels
-        buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList());
-        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList());
-        delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList());
+        buyerListPanel = new BuyerListPanel(logic.getFilteredBuyerList(), logic);
+        supplierListPanel = new SupplierListPanel(logic.getFilteredSupplierList(), logic);
+        delivererListPanel = new DelivererListPanel(logic.getFilteredDelivererList(), logic);
         orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
         petListPanel = new PetListPanel(logic.getFilteredPetList());
-        mainListPanel = new MainListPanel(logic.getFilteredMainList());
+        mainListPanel = new MainListPanel(logic.getFilteredMainList(), logic);
 
         // Set the display window
         personListPanelPlaceholder.getChildren().clear();

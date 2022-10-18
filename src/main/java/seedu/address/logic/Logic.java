@@ -54,7 +54,23 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Converts the buyer's orders from a {@code List} to a {@code ObservableList} and returns the result.
+     * @return An {@code ObservableList} instance containing all the buyer's orders.
+     */
+    ObservableList<Order> getOrderAsObservableListFromBuyer(Buyer buyer);
+    /**
+     * Converts the delverer's orders from a {@code List} to a {@code ObservableList} and returns the result.
+     * @return An {@code ObservableList} instance containing all the deliverer's orders.
+     */
+    ObservableList<Order> getOrderAsObservableListFromDeliverer(Deliverer deliverer);
+    /**
+     * Converts the supplier's pets from a {@code List} to a {@code ObservableList} and returns the result.
+     * @return An {@code ObservableList} instance containing all the supplier's pets.
+     */
+    ObservableList<Pet> getPetAsObservableListFromSupplier(Supplier supplier);
 }

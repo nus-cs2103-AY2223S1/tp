@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -118,5 +119,24 @@ public interface Model {
     void updateFilteredDelivererList(Predicate<Deliverer> predicate);
     void updateFilteredPetList(Predicate<Pet> predicate);
     void updateFilteredOrderList(Predicate<Order> predicate);
+
+    /**
+     * Gets orders from a given buyer.
+     * @param buyer The given buyer.
+     * @return The list of orders.
+     */
+    List<Order> getOrdersFromBuyer(Buyer buyer);
+    /**
+     * Gets orders from a given deliverer.
+     * @param deliverer The given deliverer.
+     * @return The list of orders.
+     */
+    List<Order> getOrdersFromDeliverer(Deliverer deliverer);
+    /**
+     * Gets pets from a given supplier.
+     * @param supplier The given supplier.
+     * @return The list of pets.
+     */
+    List<Pet> getPetsFromSupplier(Supplier supplier);
 
 }

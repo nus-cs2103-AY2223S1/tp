@@ -2,8 +2,10 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -104,5 +106,23 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public ObservableList<Order> getOrderAsObservableListFromBuyer(Buyer buyer) {
+        List<Order> ordersFromBuyer = model.getOrdersFromBuyer(buyer);
+        return FXCollections.observableList(ordersFromBuyer);
+    }
+
+    @Override
+    public ObservableList<Order> getOrderAsObservableListFromDeliverer(Deliverer deliverer) {
+        List<Order> ordersFromDeliverer = model.getOrdersFromDeliverer(deliverer);
+        return FXCollections.observableList(ordersFromDeliverer);
+    }
+
+    @Override
+    public ObservableList<Pet> getPetAsObservableListFromSupplier(Supplier supplier) {
+        List<Pet> petsFromSupplier = model.getPetsFromSupplier(supplier);
+        return FXCollections.observableList(petsFromSupplier);
     }
 }

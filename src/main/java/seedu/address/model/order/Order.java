@@ -169,6 +169,13 @@ public class Order {
         return this.byDate.compareTo(order.byDate);
     }
 
+    /**
+     * Returns true if the two uniqueId matches.
+     */
+    public boolean hasId(UniqueId id) {
+        return this.id.equals(id);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

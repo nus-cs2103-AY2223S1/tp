@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Deliverer;
 
 
@@ -26,16 +27,23 @@ public class DelivererListPanel extends UiPart<Region> {
     /**
      * Creates a {@code DelivererListPanel} with the given {@code ObservableList}.
      */
-    public DelivererListPanel(ObservableList<Deliverer> delivererList) {
+    public DelivererListPanel(ObservableList<Deliverer> delivererList, Logic logic) {
         super(FXML);
         delivererListView.setItems(delivererList);
-        delivererListView.setCellFactory(listView -> new DelivererListViewCell());
+        delivererListView.setCellFactory(listView -> new DelivererListViewCell(logic));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Deliverer} using a {@code DelivererCard}.
      */
     private static class DelivererListViewCell extends ListCell<Deliverer> {
+
+        private final Logic logic;
+
+        public DelivererListViewCell(Logic logic) {
+            this.logic = logic;
+        }
+
         @Override
         protected void updateItem(Deliverer deliverer, boolean empty) {
             super.updateItem(deliverer, empty);
@@ -44,7 +52,7 @@ public class DelivererListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new DelivererCard(deliverer, getIndex() + 1).getRoot());
+                setGraphic(new DelivererCard(deliverer, getIndex() + 1, logic).getRoot());
             }
         }
     }

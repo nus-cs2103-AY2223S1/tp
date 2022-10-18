@@ -10,8 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.order.Price;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Color;
 import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.DateOfBirth;
@@ -30,7 +32,7 @@ public class JsonAdaptedPet {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Pet's %s field is missing!";
 
     private final String name;
-    private final JsonAdaptedBuyer owner;
+    private final JsonAdaptedSupplier supplier;
     private final String color;
     private final String colorPattern;
     private final String dateOfBirth;
@@ -38,6 +40,7 @@ public class JsonAdaptedPet {
     private final Double weight;
     private final Double height;
     private final boolean vaccinationStatus;
+    private final Double price;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<String> certificates = new ArrayList<>();
 
@@ -46,7 +49,7 @@ public class JsonAdaptedPet {
      */
     @JsonCreator
     public JsonAdaptedPet(@JsonProperty("name") String name,
-                          @JsonProperty("owner") JsonAdaptedBuyer owner,
+                          @JsonProperty("supplier") JsonAdaptedSupplier supplier,
                           @JsonProperty("color") String color,
                           @JsonProperty("colorPattern") String colorPattern,
                           @JsonProperty("dateOfBirth") String dateOfBirth,
@@ -54,10 +57,11 @@ public class JsonAdaptedPet {
                           @JsonProperty("weight") Double weight,
                           @JsonProperty("height") Double height,
                           @JsonProperty("vaccinationStatus") boolean vaccinationStatus,
+                          @JsonProperty("price") Double price,
                           @JsonProperty("tags") List<JsonAdaptedTag> tagged,
                           @JsonProperty("certificates") List<String> certificates) {
         this.name = name;
-        this.owner = owner;
+        this.supplier = supplier;
         this.color = color;
         this.colorPattern = colorPattern;
         this.dateOfBirth = dateOfBirth;
@@ -65,6 +69,7 @@ public class JsonAdaptedPet {
         this.weight = weight;
         this.height = height;
         this.vaccinationStatus = vaccinationStatus;
+        this.price = price;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -78,7 +83,7 @@ public class JsonAdaptedPet {
      */
     public JsonAdaptedPet(Pet source) {
         name = source.getName().toString();
-        owner = new JsonAdaptedBuyer((Buyer) source.getOwner());
+        supplier = new JsonAdaptedSupplier(source.getSupplier());
         color = source.getColor().toString();
         colorPattern = source.getColorPattern().toString();
         dateOfBirth = source.getDateOfBirth().toString();
@@ -86,6 +91,7 @@ public class JsonAdaptedPet {
         weight = source.getWeight().getValue();
         height = source.getHeight().getValue();
         vaccinationStatus = source.getVaccinationStatus().getVaccinationStatus();
+        price = source.getPrice().getPrice();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -113,10 +119,10 @@ public class JsonAdaptedPet {
         }
         final Name modelName = new Name(name);
 
-        if (owner == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Buyer.class.getSimpleName()));
+        if (supplier == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Supplier.class.getSimpleName()));
         }
-        final Buyer modelBuyer = owner.toModelType();
+        final Supplier modelSupplier = supplier.toModelType();
 
         if (color == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Color.class.getSimpleName()));
@@ -151,7 +157,7 @@ public class JsonAdaptedPet {
         final Height modelHeight = new Height(height);
 
         final VaccinationStatus modelVax = new VaccinationStatus(vaccinationStatus);
-
+        final Price modelPrice = new Price(price);
         final Set<Tag> modelTags = new HashSet<>();
         if (tagged == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
@@ -169,7 +175,7 @@ public class JsonAdaptedPet {
             modelCerts.add(new PetCertificate(cert));
         }
 
-        return new Pet(modelName, modelBuyer, modelColor, modelColorPattern, modelDateOfBirth, modelSpecies,
-                modelWeight, modelHeight, modelVax, modelTags, modelCerts);
+        return new Pet(modelName, modelSupplier, modelColor, modelColorPattern, modelDateOfBirth, modelSpecies,
+                modelWeight, modelHeight, modelVax, modelPrice, modelTags, modelCerts);
     }
 }

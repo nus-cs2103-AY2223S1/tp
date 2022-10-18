@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.pet.exceptions.DuplicatePetException;
 import seedu.address.model.pet.exceptions.PetNotFoundException;
 
@@ -102,6 +104,16 @@ public class UniquePetList implements Iterable<Pet> {
      */
     public ObservableList<Pet> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Gets the list of pets from list of ids.
+     */
+    public List<Pet> getPetsFromId(List<UniqueId> ids) {
+        return internalList.stream()
+                .filter(pet -> ids.stream()
+                        .anyMatch(pet::hasId))
+                .collect(Collectors.toList());
     }
 
     @Override

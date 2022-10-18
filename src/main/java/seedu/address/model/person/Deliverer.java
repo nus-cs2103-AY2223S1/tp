@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.UniqueId;
 import seedu.address.model.order.Order;
 import seedu.address.model.tag.Tag;
 
@@ -15,7 +16,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Deliverer extends Person {
 
-    private final List<Order> orders;
+    private final List<UniqueId> orders;
 
     /**
      * Constructs a deliverer object.
@@ -33,7 +34,7 @@ public class Deliverer extends Person {
                      Phone phone,
                      Email email,
                      Address address,
-                     Set<Tag> tags, List<Order> orders) {
+                     Set<Tag> tags, List<UniqueId> orders) {
         super(PersonCategory.DELIVERER, name, phone, email, address, tags);
         this.orders = orders;
     }
@@ -53,12 +54,16 @@ public class Deliverer extends Person {
                      Phone phone,
                      Email email,
                      Address address,
-                     Set<Tag> tags, List<Order> orders) {
+                     Set<Tag> tags, List<UniqueId> orders) {
         super(PersonCategory.DELIVERER, name, phone, email, address, tags);
         this.orders = orders;
     }
 
-    public List<Order> getOrders() {
+    /**
+     * Gets the list of unique ids of the orders.
+     * @return The list of unique ids.
+     */
+    public List<UniqueId> getOrders() {
         return orders;
     }
 
@@ -71,15 +76,6 @@ public class Deliverer extends Person {
      */
     public int compareTo(Deliverer deliverer) {
         return this.orders.size() - deliverer.orders.size();
-    }
-
-    /**
-     * Converts the delverer's orders from a {@code List} to a {@code ObservableList} and returns the result.
-     * @return An {@code ObservableList} instance containing all the deliverer's orders.
-     */
-    public ObservableList<Order> getOrdersAsObservableList() {
-        // TODO: should be FXCollections.observableList(getOrders()) but it causes exception
-        return FXCollections.observableList(getOrders() == null ? new ArrayList<>() : getOrders());
     }
 
     @Override
@@ -101,21 +97,7 @@ public class Deliverer extends Person {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        int i = 1;
-        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
-                .append("Orders received").append(System.lineSeparator());
-
-        if (orders != null) {
-            for (Order order : orders) {
-                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-                        .append("Buyer: ").append(order.getBuyer().getName()).append(System.lineSeparator())
-                        .append(order.toString()).append(System.lineSeparator());
-                i++;
-            }
-        }
-
-        return builder.toString();
+        return super.toString();
     }
 
 }

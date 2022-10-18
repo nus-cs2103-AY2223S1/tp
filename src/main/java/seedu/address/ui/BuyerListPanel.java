@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 import seedu.address.model.person.Buyer;
 
 
@@ -26,16 +27,22 @@ public class BuyerListPanel extends UiPart<Region> {
     /**
      * Creates a {@code BuyerListPanel} with the given {@code ObservableList}.
      */
-    public BuyerListPanel(ObservableList<Buyer> buyerList) {
+    public BuyerListPanel(ObservableList<Buyer> buyerList, Logic logic) {
         super(FXML);
         buyerListView.setItems(buyerList);
-        buyerListView.setCellFactory(listView -> new BuyerListViewCell());
+        buyerListView.setCellFactory(listView -> new BuyerListViewCell(logic));
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Buyer} using a {@code BuyerCard}.
      */
     private static class BuyerListViewCell extends ListCell<Buyer> {
+        private final Logic logic;
+
+        private BuyerListViewCell(Logic logic) {
+            this.logic = logic;
+        }
+
         @Override
         protected void updateItem(Buyer buyer, boolean empty) {
             super.updateItem(buyer, empty);
@@ -44,7 +51,7 @@ public class BuyerListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new BuyerCard(buyer, getIndex() + 1).getRoot());
+                setGraphic(new BuyerCard(buyer, getIndex() + 1, logic).getRoot());
             }
         }
     }

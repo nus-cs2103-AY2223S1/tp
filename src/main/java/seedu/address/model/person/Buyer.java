@@ -72,16 +72,6 @@ public class Buyer extends Person {
     }
 
     /**
-     * Converts the buyer's orders from a {@code List} to a {@code ObservableList} and returns the result.
-     *
-     * @return An {@code ObservableList} instance containing all the buyer's orders.
-     */
-    public ObservableList<Order> getOrdersAsObservableList() {
-        return FXCollections.observableList(getOrders());
-    }
-
-
-    /**
      * Adds all orders in a Collection.
      *
      * @param orders The collection of orders to be added.
@@ -126,19 +116,6 @@ public class Buyer extends Person {
 
     @Override
     public String toString() {
-        //TODO change the string representation
-        //        StringBuilder builder = new StringBuilder();
-        //        int i = 1;
-        //        builder.append(super.toString()).append(System.lineSeparator()).append(System.lineSeparator())
-        //                .append("Order summary").append(System.lineSeparator());
-        //        if (orders != null) {
-        //            for (Order order : orders) {
-        //                builder.append("======== Order ").append(i).append(" ========").append(System.lineSeparator())
-        //                        .append(order.toString()).append(System.lineSeparator());
-        //                i++;
-        //            }
-        //        }
-        //        return builder.toString();
         return super.toString();
     }
 }
