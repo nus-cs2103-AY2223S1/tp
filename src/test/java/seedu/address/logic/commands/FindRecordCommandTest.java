@@ -15,7 +15,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.RecordContainsKeywordsPredicate;
+import seedu.address.model.record.RecordContainsKeywordsPredicate;
 import seedu.address.testutil.TestUtil;
 
 /**
@@ -66,7 +66,7 @@ public class FindRecordCommandTest {
     @Test
     public void execute_multipleKeywords_multipleRecordsFound() {
         String expectedMessage = String.format(MESSAGE_RECORDS_LISTED_OVERVIEW, 3);
-        RecordContainsKeywordsPredicate predicate = preparePredicate("covid-19 sars cold");
+        RecordContainsKeywordsPredicate predicate = preparePredicate("covid-19 rashes cold");
         FindRecordCommand command = new FindRecordCommand(predicate);
         expectedModel.updateFilteredRecordList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

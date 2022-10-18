@@ -18,7 +18,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Record;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -199,6 +198,8 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    /*
+
     @Test
     public void parseRecord_nullRecordDate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseRecord((String) null, VALID_RECORD_DATA));
@@ -232,4 +233,6 @@ public class ParserUtilTest {
         Record expectedRecord = new Record(VALID_RECORD_DATE, VALID_RECORD_DATA);
         assertEquals(expectedRecord, ParserUtil.parseRecord(recordDateWithWhitespace, recordDataWithWhitespace));
     }
+
+    */
 }

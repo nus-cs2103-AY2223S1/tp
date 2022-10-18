@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.RecordList;
 import seedu.address.model.tag.Tag;
 
 /**

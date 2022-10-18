@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.record.Record;
 
 /**
  * Represents person whose records are being displayed.

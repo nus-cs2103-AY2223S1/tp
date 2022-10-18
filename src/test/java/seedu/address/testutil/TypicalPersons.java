@@ -19,16 +19,22 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Record;
+import seedu.address.model.record.Record;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
 
-    public static final Record RECORD1 = new Record("10-10-2011 1400", "Covid-19");
-    public static final Record RECORD2 = new Record("10-10-2010 1400", "Cold");
-    public static final Record RECORD3 = new Record("10-10-2020 1400", "SARS");
+    public static final Record RECORD1 = new RecordBuilder().withRecordDate("10-10-2011 1400")
+            .withRecordData("Covid-19")
+            .withMedications("Paracetamol 500mg").build();
+    public static final Record RECORD2 = new RecordBuilder().withRecordDate("10-10-2010 1400")
+            .withRecordData("Cold").build();
+    public static final Record RECORD3 = new RecordBuilder().withRecordDate("10-11-2011 1410")
+            .withRecordData("Rashes (Allergic Reaction)")
+            .withMedications("Cetrizine 10 tabs", " Ketotifen 1 botl")
+            .build();
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withAge("78")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")

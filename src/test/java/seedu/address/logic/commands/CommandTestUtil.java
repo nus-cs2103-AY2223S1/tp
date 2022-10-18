@@ -22,8 +22,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Record;
-import seedu.address.model.person.RecordContainsKeywordsPredicate;
+import seedu.address.model.record.Record;
+import seedu.address.model.record.RecordContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -45,6 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_RECORD_DATE = "02-03-2024 1230";
     public static final String VALID_RECORD_DATA = "fever";
+    public static final String VALID_RECORD_MEDICATION = "Paracetamol 250mg";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
