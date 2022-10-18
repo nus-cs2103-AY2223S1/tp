@@ -1,6 +1,7 @@
 package tuthub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 
 import tuthub.commons.core.Messages;
 import tuthub.model.Model;
@@ -10,18 +11,16 @@ import tuthub.model.tutor.NameContainsKeywordsPredicate;
  * Finds and lists all tutors in tuthub whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
-
-    public static final String COMMAND_WORD = "find";
+public class FindByNameCommand extends FindByPrefixCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alex john";
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindByNameCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +35,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindByNameCommand // instanceof handles nulls
+                && predicate.equals(((FindByNameCommand) other).predicate)); // state check
     }
 }

@@ -19,7 +19,8 @@ import tuthub.logic.commands.DeleteCommand;
 import tuthub.logic.commands.EditCommand;
 import tuthub.logic.commands.EditCommand.EditTutorDescriptor;
 import tuthub.logic.commands.ExitCommand;
-import tuthub.logic.commands.FindCommand;
+import tuthub.logic.commands.FindByNameCommand;
+import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.commands.HelpCommand;
 import tuthub.logic.commands.ListCommand;
 import tuthub.logic.commands.ViewCommand;
@@ -70,11 +71,11 @@ public class TuthubParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findByName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindByPrefixCommand command = (FindByNameCommand) parser.parseCommand(
+                FindByPrefixCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindByNameCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
