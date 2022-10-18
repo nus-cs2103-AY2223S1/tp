@@ -11,17 +11,19 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
 - [Features](#features)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
+  - [Adding user](#adding-user)
+  - [Editing user](#editing-user)
+  - [Deleting user](#deleting-user)
+  - [Adding contacts](#adding-contacts)
+  - [Listing contacts](#listing-contacts)
+  - [Editing contacts](#editing-contacts)
+  - [Deleting contacts](#deleting-contacts)
   - [Adding current modules](#adding-current-modules)
   - [Adding previous modules](#adding-previous-modules)
   - [Adding future modules](#adding-future-modules)
   - [Listing modules](#listing-modules)
   - [Deleting modules](#deleting-modules)
   - [Deleting plans](#deleting-plans)
-  - [Adding user](#adding-user)
-  - [Deleting user](#deleting-user)
-  - [Adding contacts](#adding-contacts)
-  - [Listing contacts](#listing-contacts)
-  - [Deleting contacts](#deleting-contacts)
   - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
 
@@ -57,6 +59,126 @@ ConnectNUS data is saved as a JSON file `[JAR file location]/data/connectnus.jso
 
 
 **Caution:** If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+
+
+### Adding user
+
+Add your own user profile into the contact list.
+
+Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] curr/[current module] prev/[previous module] plan/[future module]`
+
+
+
+* Adds your own user profile with specified details into your contact list.
+* You are able to specify the modules you are taking currently, have taken in the past, and are planning to take in the future.
+* Each module list should consist of module codes separated by commas. (E.g. `CS2103T, CS2101`)
+* Each of these module codes must be registered modules in NUS.
+
+Examples:
+
+
+* `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
+
+### Editing user
+
+Edit the current user profile.
+
+Format: `edit user n/[your name] p/[your phone number] e/[your email] a/[your address]`
+
+
+
+* Edits the user profile with specified details.
+* You need to edit at least one field
+* You may edit multiple fields at once
+* You cannot edit modules with this command, you must do so with the module commands.
+
+Examples:
+
+
+* `edit user p/92323232 a/Kent Ridge Crescent`edits your own user profile with all the details specified.
+
+
+### Deleting user
+
+Deletes the current user profile from the contacts list
+
+Format: `delete user`
+
+
+
+* Deletes the current user profile stored in the contact list.
+
+
+### Adding contacts
+
+Add a contact to your contact list.
+
+Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]`
+
+
+
+* Adds contact with specified details into your contact list.
+* You can add as many tags to a contact as you want, you may also choose not add any tags
+* You are able to specify the modules the contact is taking currently, taken in the past, and is planning to take in the future.
+* Each module list should consist of module codes separated by commas. (E.g. `CS2103T, CS2101`)
+* Each of these module codes must be registered modules in NUS.
+
+Examples:
+
+
+
+* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
+
+
+### Listing contacts
+
+Shows a list of all persons in the address book.
+
+Format: `list`
+
+
+
+* The list of contacts is numbered based on the order that the contacts are added
+
+### Editing contacts
+
+Edit a specified contact from the user’s contacts list.
+
+Format: `edit INDEX n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag]`
+
+
+
+* Edits the contact at the specified `INDEX` with specified details.
+* The index refers to the index number shown in the displayed module list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* You need to edit at least one field
+* You may edit multiple fields at once
+* You can add as many tags to a contact as you want, you may also choose not add any tags
+* You cannot edit modules with this command, you must do so with the module commands.
+
+Examples:
+
+
+* `edit 2 n/Laura Lee e/laura@nus.sg t/Hall`edits the second contact in the list of all contacts with all the details specified.
+
+
+### Deleting contacts
+
+Deletes a specified contact from the user’s contacts list.
+
+Format: `delete INDEX`
+
+
+
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed module list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+
+
+* `list `followed by  `delete 1` deletes the first contact in the list of all contacts the user has added.
 
 
 ### Adding current modules
@@ -162,87 +284,6 @@ Examples:
 * `list mod plan `followed by  `delete plan 1` deletes the first plan in the list of all plans the user has added.
 
 
-
-### Adding user
-
-Add your own user profile into the contact list.
-
-Format: `user n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] curr/[current module] prev/[previous module] plan/[future module]`
-
-
-
-* Adds your own user profile with specified details into your contact list.
-* You are able to specify the modules you are taking currently, have taken in the past, and are planning to take in the future.
-* Each module list should consist of module codes separated by commas. (E.g. `CS2103T, CS2101`)
-* Each of these module codes must be registered modules in NUS.
-
-Examples:
-
-
-* `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
-
-
-### Deleting user
-
-Deletes the current user profile from the contacts list
-
-Format: `delete user`
-
-
-
-* Deletes the current user profile stored in the contact list.
-
-
-### Adding contacts
-
-Add a contact to your contact list.
-
-Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]`
-
-
-
-* Adds contact with specified details into your contact list.
-* You are able to specify the modules the contact is taking currently, taken in the past, and is planning to take in the future.
-* Each module list should consist of module codes separated by commas. (E.g. `CS2103T, CS2101`)
-* Each of these module codes must be registered modules in NUS.
-
-Examples:
-
-
-
-* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
-
-
-### Listing contacts
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-
-
-* The list of contacts is numbered based on the order that the contacts are added
-
-
-### Deleting contacts
-
-Deletes a specified contact from the user’s contacts list
-
-Format: `delete contact INDEX`
-
-
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed module list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-
-
-* `list `followed by  `delete contact 1` deletes the first contact in the list of all contacts the user has added.
-
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -264,6 +305,52 @@ Format: `exit`
    </td>
   </tr>
   <tr>
+   <td><strong>Adding User</strong>
+   </td>
+   <td><code>user n/[your name] p/[your phone number] e/[your email] a/[your address] curr/[current module] prev/[previous module] plan/[future module]</code>
+<p>
+<code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109</code>
+   </td>
+  </tr>
+<tr>
+   <td><strong>Editing User</strong>
+   </td>
+   <td><code>edit user n/[your name] p/[your phone number] e/[your email] a/[your address]</code>
+<p>
+<code>Eg. edit user p/92323232 a/Kent Ridge Crescent</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete User</strong>
+   </td>
+   <td><code>delete user </code>
+   </td>
+  </tr>
+<tr>
+   <td><strong>Adding Contact</strong>
+   </td>
+   <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]</code>
+<p>
+<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
+   </td>
+</tr>
+<tr>
+   <td><strong>Editing Contact</strong>
+   </td>
+   <td><code>edit INDEX n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag]</code>
+<p>
+<code>Eg. edit 2 n/Laura Lee e/laura@nus.sg t/Hall</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>Delete Contact</strong>
+   </td>
+   <td><code>delete contact INDEX </code>
+<p>
+<code>Eg. delete contact 2</code>
+   </td>
+  </tr>
+<tr>
    <td><strong>Add Current Module</strong>
    </td>
    <td><code>add curr mod [module code]</code>
@@ -309,36 +396,6 @@ Format: `exit`
    <td><code>delete plan INDEX</code>
 <p>
 <code>Eg. delete plan 2</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Adding User</strong>
-   </td>
-   <td><code>user n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] curr/[current module] prev/[previous module] plan/[future module]</code>
-<p>
-<code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete User</strong>
-   </td>
-   <td><code>delete user </code>
-   </td>
-  </tr>
-<tr>
-   <td><strong>Adding Contact</strong>
-   </td>
-   <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]</code>
-<p>
-<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>Delete Contact</strong>
-   </td>
-   <td><code>delete contact INDEX </code>
-<p>
-<code>Eg. delete contact 2</code>
    </td>
   </tr>
 </table>

@@ -109,6 +109,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setUser(User editedUser) {
+        requireNonNull(editedUser);
+
+        addressBook.setUser(editedUser);
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
