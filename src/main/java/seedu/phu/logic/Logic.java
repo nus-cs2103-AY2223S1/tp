@@ -33,6 +33,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of internships */
     ObservableList<Internship> getFilteredInternshipList();
 
+    /** Returns an unmodifiable view of the internship selected to be viewed */
+    ObservableList<Internship> getViewItem();
+
     /**
      * Returns the user prefs' internship book file path.
      */
