@@ -10,8 +10,8 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_FACEB
 import static seedu.application.logic.commands.CommandTestUtil.VALID_EMAIL_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
