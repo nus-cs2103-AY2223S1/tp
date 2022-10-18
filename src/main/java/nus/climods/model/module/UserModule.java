@@ -27,7 +27,7 @@ public class UserModule {
      * @throws ParseException if module code is not a valid module in current NUS curriculum
      */
     public UserModule(String moduleCode, Model model) throws CommandException {
-        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
+        Optional<Module> optionalModule = model.getListModule(moduleCode);
 
         if (optionalModule.isEmpty()) {
             throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
