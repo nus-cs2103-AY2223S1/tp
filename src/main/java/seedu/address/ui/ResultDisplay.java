@@ -16,8 +16,12 @@ public class ResultDisplay extends UiPart<Region> {
     @FXML
     private TextArea resultDisplay;
 
+    /**
+     * Constructor for ResultDisplay.
+     */
     public ResultDisplay() {
         super(FXML);
+        resultDisplay.setStyle("-fx-opacity: 1;");
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
