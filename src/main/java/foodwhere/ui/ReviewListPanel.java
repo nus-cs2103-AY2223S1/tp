@@ -6,8 +6,11 @@ import foodwhere.commons.core.LogsCenter;
 import foodwhere.model.review.Review;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.Clipboard;
 import javafx.scene.layout.Region;
 
 /**
@@ -26,8 +29,41 @@ public class ReviewListPanel extends UiPart<Region> {
      */
     public ReviewListPanel(ObservableList<Review> reviewList) {
         super(FXML);
+        logger.info("Populating reviews from storage...");
         reviewListView.setItems(reviewList);
         reviewListView.setCellFactory(listView -> new ReviewListViewCell());
+    }
+
+    /**
+     * Handles the activity when the user clicks on the review in the list.
+     *
+     * Adapted code from https://stackoverflow.com/questions/20635192/how-to-create-popup-menu.
+     */
+    @FXML
+    public void handleMouseClicked() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ContextMenu contextMenu = new ContextMenu();
+        final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
+        final Review selectedReview = reviewListView.getSelectionModel().getSelectedItem();
+
+        CopyMenuItem<Review> copyReviewName = new CopyMenuItem<>("Copy Name",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_NAME);
+        CopyMenuItem<Review> copyReviewDate = new CopyMenuItem<>("Copy Date",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_DATE);
+        CopyMenuItem<Review> copyReviewContent = new CopyMenuItem<>("Copy Content",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_CONTENT);
+        CopyMenuItem<Review> copyReviewRating = new CopyMenuItem<>("Copy Rating",
+                selectedReview, clipboard, CopyMenuItem.Action.FIELDS_RATING);
+
+        contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent, copyReviewRating);
+
+        if (!selectedReview.getTags().isEmpty()) {
+            CopyMenuItem<Review> copyReviewTag = new CopyMenuItem<>("Copy Tag",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_TAG);
+            contextMenuItems.add(copyReviewTag);
+        }
+
+        reviewListView.setContextMenu(contextMenu);
     }
 
     /**

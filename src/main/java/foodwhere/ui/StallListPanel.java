@@ -6,8 +6,11 @@ import foodwhere.commons.core.LogsCenter;
 import foodwhere.model.stall.Stall;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuItem;
+import javafx.scene.input.Clipboard;
 import javafx.scene.layout.Region;
 
 /**
@@ -25,8 +28,37 @@ public class StallListPanel extends UiPart<Region> {
      */
     public StallListPanel(ObservableList<Stall> stallList) {
         super(FXML);
+        logger.info("Populating stalls from storage...");
         stallListView.setItems(stallList);
         stallListView.setCellFactory(listView -> new StallListViewCell());
+    }
+
+    /**
+     * Handles the activity when the user clicks on the stall in the list.
+     *
+     * Adapted code from https://stackoverflow.com/questions/20635192/how-to-create-popup-menu.
+     */
+    @FXML
+    public void handleMouseClicked() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ContextMenu contextMenu = new ContextMenu();
+        final ObservableList<MenuItem> contextMenuItems = contextMenu.getItems();
+        final Stall selectedStall = stallListView.getSelectionModel().getSelectedItem();
+
+        CopyMenuItem<Stall> copyStallName = new CopyMenuItem<>("Copy Name",
+                selectedStall, clipboard, CopyMenuItem.Action.FIELDS_NAME);
+        CopyMenuItem<Stall> copyStallAddress = new CopyMenuItem<>("Copy Address",
+                selectedStall, clipboard, CopyMenuItem.Action.FIELDS_ADDRESS);
+
+        contextMenuItems.addAll(copyStallName, copyStallAddress);
+
+        if (!selectedStall.getTags().isEmpty()) {
+            CopyMenuItem<Stall> copyStallTag = new CopyMenuItem<>("Copy Tag",
+                    selectedStall, clipboard, CopyMenuItem.Action.FIELDS_TAG);
+            contextMenuItems.add(copyStallTag);
+        }
+
+        stallListView.setContextMenu(contextMenu);
     }
 
     /**
