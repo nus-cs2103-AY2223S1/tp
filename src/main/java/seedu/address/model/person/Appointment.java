@@ -67,6 +67,10 @@ public class Appointment implements Comparable<Appointment> {
         return dateTime.getMonth();
     }
 
+    public int getYear() {
+        return dateTime.getYear();
+    }
+
     @Override
     public int compareTo(Appointment other) {
         return this.dateTime.compareTo(other.dateTime);

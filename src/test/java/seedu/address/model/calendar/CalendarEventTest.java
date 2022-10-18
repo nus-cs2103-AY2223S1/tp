@@ -2,19 +2,15 @@ package seedu.address.model.calendar;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.DateTimeParser;
 import seedu.address.model.person.Appointment;
-import seedu.address.model.person.Date;
 import seedu.address.model.person.DateTime;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Time;
 
 
 public class CalendarEventTest {
@@ -22,7 +18,7 @@ public class CalendarEventTest {
     private static final Name BOB = new Name("BOB");
     private static final Appointment firstAppointment = new Appointment(new DateTime(
             DateTimeParser.parseLocalDateTimeFromString("1-Apr-2023 01:00 PM")));
-    private static final CalendarEvent firstEvent = new CalendarEvent(AMY, new AppointmentStub());
+    private static final CalendarEvent firstEvent = new CalendarEvent(AMY, firstAppointment);
 
     @Test
     public void method_getName_success() {
@@ -43,7 +39,7 @@ public class CalendarEventTest {
     }
 
     @Test
-    public void method_getTime_success() {
+    public void method_getTimeFormat_success() {
         Assertions.assertEquals("01:00 PM", firstEvent.getTimeFormat());
         Assertions.assertNotEquals("01:00 AM", firstEvent.getTimeFormat());
         Assertions.assertNotEquals("1-Apr-2023 01:00 PM", firstEvent.getTimeFormat());
@@ -51,15 +47,6 @@ public class CalendarEventTest {
         Assertions.assertNotEquals("13:00 PM", firstEvent.getTimeFormat());
     }
 
-    private class InvalidAppointmentStub extends Appointment {
-        InvalidAppointmentStub() {
-            super(new ValidDateTimeStub());
-        }
-        @Override
-        public String toString() {
-            return "20/Jan-2023 9:00 AM";
-        }
-    }
 
     private class ValidAppointmentStub extends Appointment {
         ValidAppointmentStub() {
@@ -70,15 +57,6 @@ public class CalendarEventTest {
             return "21-Jan-2023 09:00 AM";
         }
     }
-    private class InvalidDateTimeStub extends DateTime {
-        InvalidDateTimeStub() {
-            super(LocalDateTime.of(2023, 1, 21, 9, 00));
-        }
-        @Override
-        public String toString() {
-            return "20/Jan-2023 9:00 AM";
-        }
-    }
 
     private class ValidDateTimeStub extends DateTime {
         ValidDateTimeStub() {
@@ -87,26 +65,6 @@ public class CalendarEventTest {
         @Override
         public String toString() {
             return "21-Jan-2023 09:00 AM";
-        }
-    }
-
-    private class ValidTimeStub extends Time {
-        ValidTimeStub() {
-            super(LocalTime.of(9, 00));
-        }
-        @Override
-        public String toString() {
-            return "09:00 AM";
-        }
-    }
-
-    private class ValidDateStub extends Date {
-        ValidDateStub() {
-            super(LocalDate.of(2023, 1, 21));
-        }
-        @Override
-        public String toString() {
-            return "21-Jan-2023";
         }
     }
 
@@ -158,7 +116,5 @@ public class CalendarEventTest {
         Assertions.assertNotEquals(firstCalendarEvent, thirdCalendarEvent);
 
     }
-
-
 
 }

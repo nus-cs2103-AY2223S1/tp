@@ -39,6 +39,10 @@ public class CalendarEvent {
         return this.appointment.getMonth();
     }
 
+    public int getYear() {
+        return this.appointment.getYear();
+    }
+
     public String getTimeFormat() {
         return this.appointment.getTimeFormat();
     }

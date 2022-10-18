@@ -82,7 +82,8 @@ public class CalendarDisplay extends UiPart<Region> {
                 row++;
             }
             ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
-                    .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1);
+                    .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1,
+                            currentMonth.get(Calendar.YEAR));
 
             CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(calendarEventsInDayOfMonth);
             VBox calendarEventList = calendarEventListPanel.getCalendarEventList(currentDay);

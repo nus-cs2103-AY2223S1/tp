@@ -92,10 +92,6 @@ public class ModelManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
-    @Test
-    public void getFilteredCalendarEventList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCalendarEventList().remove(0));
-    }
 
     @Test
     public void equals() {

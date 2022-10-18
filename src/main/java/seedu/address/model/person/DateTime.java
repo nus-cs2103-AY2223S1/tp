@@ -42,6 +42,10 @@ public class DateTime implements Comparable<DateTime> {
         return this.localDateTime.getMonthValue();
     }
 
+    public int getYear() {
+        return this.localDateTime.getYear();
+    }
+
     @Override
     public String toString() {
         return localDateTime.format(java.time.format

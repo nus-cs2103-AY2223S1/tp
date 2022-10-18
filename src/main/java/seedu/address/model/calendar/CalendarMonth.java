@@ -37,13 +37,10 @@ public class CalendarMonth {
     }
 
 
-    public void setCalendarEvents(ObservableList<CalendarEvent> newCalendarEvents) {
-        this.calendarEvents = newCalendarEvents;
-    }
-
-    public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(int day, int month) {
+    public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(int day, int month, int year) {
+        requireAllNonNull(day, month, year);
         List<CalendarEvent> calendarEventInDayOfMonth = new ArrayList<>();
-        Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month;
+        Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month && e.getYear() == year;
         calendarEvents.stream().filter(filter).forEach(calendarEventInDayOfMonth::add);
         return FXCollections.observableList(calendarEventInDayOfMonth);
     }
