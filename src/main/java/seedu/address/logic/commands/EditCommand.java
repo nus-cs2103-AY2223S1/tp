@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         Birthdate updatedBirthdate = editPersonDescriptor.getBirthdate().orElse(personToEdit.getBirthdate());
         Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
         Religion updatedReligion = editPersonDescriptor.getReligion().orElse(personToEdit.getReligion());
-        Survey updatedSurvey = editPersonDescriptor.getSurvey().orElse(personToEdit.getSurvey());
+        Set<Survey> updatedSurvey = editPersonDescriptor.getSurveys().orElse(personToEdit.getSurveys());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -145,7 +145,8 @@ public class EditCommand extends Command {
         private Birthdate birthdate;
         private Race race;
         private Religion religion;
-        private Survey survey;
+
+        private Set<Survey> surveys;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -163,7 +164,8 @@ public class EditCommand extends Command {
             setBirthdate(toCopy.birthdate);
             setRace(toCopy.race);
             setReligion(toCopy.religion);
-            setSurvey(toCopy.survey);
+
+            setSurveys(toCopy.surveys);
             setTags(toCopy.tags);
         }
 
@@ -238,12 +240,21 @@ public class EditCommand extends Command {
             return Optional.ofNullable(religion);
         }
 
-        public void setSurvey(Survey survey) {
-            this.survey = survey;
+        /**
+         * Sets {@code surveys} to this object's {@code surveys}.
+         * A defensive copy of {@code surveys} is used internally.
+         */
+        public void setSurveys(Set<Survey> surveys) {
+            this.surveys = (surveys != null) ? new HashSet<>(surveys) : null;
         }
 
-        public Optional<Survey> getSurvey() {
-            return Optional.ofNullable(survey);
+        /**
+         * Returns an unmodifiable survey set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code surveys} is null.
+         */
+        public Optional<Set<Survey>> getSurveys() {
+            return (surveys != null) ? Optional.of(Collections.unmodifiableSet(surveys)) : Optional.empty();
         }
 
         /**

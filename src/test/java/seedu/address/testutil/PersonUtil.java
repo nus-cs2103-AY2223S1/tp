@@ -46,7 +46,9 @@ public class PersonUtil {
                 + person.getBirthdate().birthdate.format(DateTimeFormatter.ofPattern(DATE_FORMAT)) + " ");
         sb.append(PREFIX_RACE + person.getRace().race + " ");
         sb.append(PREFIX_RELIGION + person.getReligion().religion + " ");
-        sb.append(PREFIX_SURVEY + person.getSurvey().survey + " ");
+        person.getSurveys().stream().forEach(
+                s -> sb.append(PREFIX_SURVEY + s.survey + " ")
+        );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

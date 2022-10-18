@@ -176,6 +176,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> surveys} into a {@code Set<Survey>}.
+     */
+    public static Set<Survey> parseSurveys(Collection<String> surveys) throws ParseException {
+        requireNonNull(surveys);
+        final Set<Survey> surveySet = new HashSet<>();
+        for (String surveyName : surveys) {
+            surveySet.add(parseSurvey(surveyName));
+        }
+        return surveySet;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

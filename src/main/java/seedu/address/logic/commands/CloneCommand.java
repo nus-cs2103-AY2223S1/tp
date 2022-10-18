@@ -81,7 +81,8 @@ public class CloneCommand extends Command {
         Birthdate clonedBirthdate = personToClone.getBirthdate();
         Race clonedRace = personToClone.getRace();
         Religion clonedReligion = personToClone.getReligion();
-        Survey clonedSurvey = personToClone.getSurvey();
+
+        Set<Survey> clonedSurvey = (personToClone.getSurveys() != null) ? personToClone.getSurveys() : null;
         Set<Tag> clonedTags = (personToClone.getTags() != null) ? personToClone.getTags() : null;
 
         Person clonedPerson = new Person(updatedName, clonedPhone, clonedEmail, clonedAddress,

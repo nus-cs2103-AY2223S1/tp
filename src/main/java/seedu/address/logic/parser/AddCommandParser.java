@@ -58,10 +58,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Birthdate birthdate = ParserUtil.parseBirthdate(argMultimap.getValue(PREFIX_BIRTHDATE).get());
         Race race = ParserUtil.parseRace(argMultimap.getValue(PREFIX_RACE).get());
         Religion religion = ParserUtil.parseReligion(argMultimap.getValue(PREFIX_RELIGION).get());
-        Survey survey = ParserUtil.parseSurvey(argMultimap.getValue(PREFIX_SURVEY).get());
+        Set<Survey> surveyList = ParserUtil.parseSurveys(argMultimap.getAllValues(PREFIX_SURVEY));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, gender, birthdate, race, religion, survey, tagList);
+        Person person = new Person(name, phone, email, address, gender, birthdate, race, religion, surveyList, tagList);
 
         return new AddCommand(person);
     }

@@ -35,11 +35,6 @@ public class Survey {
     }
 
     @Override
-    public String toString() {
-        return survey;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Survey // instanceof handles nulls
@@ -49,5 +44,12 @@ public class Survey {
     @Override
     public int hashCode() {
         return survey.hashCode();
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    public String toString() {
+        return '[' + survey + ']';
     }
 }

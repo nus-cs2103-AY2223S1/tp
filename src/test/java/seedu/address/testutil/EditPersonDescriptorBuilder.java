@@ -40,7 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setBirthdate(person.getBirthdate());
         descriptor.setRace(person.getRace());
         descriptor.setReligion(person.getReligion());
-        descriptor.setSurvey(person.getSurvey());
+        descriptor.setSurveys(person.getSurveys());
         descriptor.setTags(person.getTags());
     }
 

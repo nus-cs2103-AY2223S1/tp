@@ -54,7 +54,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label religion;
     @FXML
-    private Label survey;
+    private FlowPane surveys;
     @FXML
     private FlowPane tags;
 
@@ -69,7 +69,9 @@ public class PersonCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        survey.setText(person.getSurvey().survey);
+        person.getSurveys().stream()
+                .sorted(Comparator.comparing(survey -> survey.survey))
+                .forEach(survey -> surveys.getChildren().add(new Label(survey.survey)));
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);

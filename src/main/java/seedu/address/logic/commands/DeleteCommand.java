@@ -70,7 +70,8 @@ public class DeleteCommand extends Command {
 
         Predicate<Person> predicate = x -> x.getRace().equals(race.orElse(x.getRace()))
                 && x.getReligion().equals(religion.orElse(x.getReligion()))
-                && x.getSurvey().equals(survey.orElse(x.getSurvey()));
+                && x.getSurveys().contains(survey.orElse(x.getSurveys().iterator().next()));
+
         String str = model.deletePersons(predicate);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, str));
     }
