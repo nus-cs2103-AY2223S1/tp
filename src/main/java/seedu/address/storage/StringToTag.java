@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import com.opencsv.bean.AbstractCsvConverter;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -11,12 +10,8 @@ import seedu.address.model.tag.Tag;
 public class StringToTag extends AbstractCsvConverter {
     @Override
     public Object convertToRead(String value) {
-        if (!Tag.isValidTagName(value)) {
-            try {
-                throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
-            } catch (IllegalValueException e) {
-                throw new RuntimeException(e);
-            }
+        if (value.equals("")) {
+            return new Tag("null");
         }
         return new Tag(value);
     }

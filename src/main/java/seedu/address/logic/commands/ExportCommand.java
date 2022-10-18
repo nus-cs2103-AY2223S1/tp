@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_IMPORT_ERROR;
+import static seedu.address.commons.core.Messages.MESSAGE_EXPORT_ERROR;
 
 import java.io.FileWriter;
 import java.io.Writer;
@@ -34,7 +34,7 @@ public class ExportCommand extends Command {
             + "- exports data to the file \"data.csv\""
             + " which is located one level outside the directory of the FinBook executable";
 
-    public static final String MESSAGE_IMPORT_DATA_SUCCESS = "Exported data: %1$s";
+    public static final String MESSAGE_EXPORT_DATA_SUCCESS = "Exported data: %1$s";
 
     private final Path targetPath;
 
@@ -53,9 +53,9 @@ public class ExportCommand extends Command {
             beanToCsv.write(beans);
             writer.close();
         } catch (Exception e) {
-            throw new CommandException(String.format(MESSAGE_IMPORT_ERROR, e.getMessage()));
+            throw new CommandException(String.format(MESSAGE_EXPORT_ERROR, e.getMessage()));
         }
-        return new CommandResult(String.format(MESSAGE_IMPORT_DATA_SUCCESS, targetPath.getFileName()));
+        return new CommandResult(String.format(MESSAGE_EXPORT_DATA_SUCCESS, targetPath.getFileName()));
     }
 
     @Override
