@@ -1,12 +1,12 @@
 package seedu.guest.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 
 import java.util.List;
 
 import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.Model;
-import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 import seedu.guest.model.guest.Bill;
 import seedu.guest.model.guest.DateRange;
 import seedu.guest.model.guest.Email;
