@@ -13,8 +13,10 @@ import hobbylist.commons.exceptions.IllegalValueException;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
+import javafx.scene.layout.Priority;
 
 /**
  * Jackson-friendly version of {@link Activity}.
@@ -27,6 +29,7 @@ class JsonAdaptedActivity {
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedDate> date = new ArrayList<>();
+    private final String status;
 
 
     /**
@@ -35,7 +38,8 @@ class JsonAdaptedActivity {
     @JsonCreator
     public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("description") String description,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("date") List<JsonAdaptedDate> date) {
+                               @JsonProperty("date") List<JsonAdaptedDate> date,
+                               @JsonProperty("status") String status){
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -44,6 +48,7 @@ class JsonAdaptedActivity {
         if (date != null) {
             this.date.addAll(date);
         }
+        this.status = status;
     }
 
     /**
@@ -60,6 +65,7 @@ class JsonAdaptedActivity {
         if (!source.getDate().isEmpty()) {
             date.add(new JsonAdaptedDate(source.getDate().get(0)));
         }
+        status = source.getStatus().toString();
     }
 
     /**
@@ -70,6 +76,7 @@ class JsonAdaptedActivity {
     public Activity toModelType() throws IllegalValueException {
         final List<Tag> activityTags = new ArrayList<>();
         final List<Date> activityDate = new ArrayList<>();
+        final Status modelStatus;
         for (JsonAdaptedDate date : date) {
             activityDate.add(date.toModelType());
         }
@@ -95,7 +102,15 @@ class JsonAdaptedActivity {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(activityTags);
-        return new Activity(modelName, modelDescription, modelTags, activityDate);
+
+        // Solution adapted from https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/124/files
+        if (status == null || status.equals("")) {
+            modelStatus = new Status();
+        } else {
+            modelStatus = new Status(status);
+        }
+
+        return new Activity(modelName, modelDescription, modelTags, activityDate, modelStatus);
     }
 
 }

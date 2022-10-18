@@ -18,6 +18,7 @@ import hobbylist.model.Model;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
@@ -91,7 +92,8 @@ public class EditCommand extends Command {
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
         List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
-        return new Activity(updatedName, updatedDescription, updatedTags, date);
+        Status updatedStatus = activityToEdit.getStatus();
+        return new Activity(updatedName, updatedDescription, updatedTags, date, updatedStatus);
     }
 
     @Override

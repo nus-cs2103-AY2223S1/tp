@@ -24,16 +24,18 @@ public class Activity {
     private final Description description;
     private final Set<Tag> tags = new HashSet<>();
     private final List<Date> listDate = new ArrayList<>();
+    private final Status status;
 
     /**
      * Every field must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate) {
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, Status status) {
         CollectionUtil.requireAllNonNull(name, description, tags, listDate);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
         this.listDate.addAll(listDate);
+        this.status = status;
     }
 
     public Name getName() {
@@ -55,7 +57,13 @@ public class Activity {
         return this.listDate;
     }
 
+    public Status getStatus() {
+        return status;
+    }
 
+    public boolean hasStatus() {
+        return status.hasStatus();
+    }
 
     /**
      * Returns true if both activities have the same name.

@@ -38,6 +38,8 @@ public class ActivityCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane date;
+    @FXML
+    private Label status;
 
     /**
      * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
@@ -58,6 +60,8 @@ public class ActivityCard extends UiPart<Region> {
             Label tagLabel = (Label) child;
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
+
+        status.setText("Status: " + activity.getStatus().toString());
     }
 
     private String intToHexColor(String tag) {
