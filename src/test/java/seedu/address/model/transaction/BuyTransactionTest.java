@@ -2,6 +2,7 @@ package seedu.address.model.transaction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -57,5 +58,22 @@ class BuyTransactionTest {
 
         Transaction transaction = new BuyTransaction(goods, price, quantity, date);
         assertEquals(transaction.getDate(), new BuyTransaction(goods, price, quantity, date).getDate());
+        assertEquals(transaction.getDate().toString(),
+                new BuyTransaction(goods, price, quantity, date).getDate().toString());
+    }
+
+    @Test
+    public void testDateNotEquals() {
+        Goods goods = new Goods("Apple");
+        Price price = new Price("0.8");
+        Quantity quantity = new Quantity("10");
+        Date date = new Date("17/05/2000");
+        Date date2 = new Date("18/05/2000");
+
+        Transaction transaction = new BuyTransaction(goods, price, quantity, date);
+        assertNotEquals(transaction.getDate(), new BuyTransaction(goods, price, quantity, date2).getDate());
+        assertNotEquals(transaction.getDate().toString(),
+                new BuyTransaction(goods, price, quantity, date2).getDate().toString());
+
     }
 }

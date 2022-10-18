@@ -73,13 +73,10 @@ public class BuyCommandParserTest {
         // only date
         assertParseFailure(parser, "1" + VALID_DATE_WITH_PREFIX,
                 MESSAGE_INVALID_FORMAT);
-        // date at wrong position
-        assertParseFailure(parser, "1" + VALID_DATE + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE,
-                MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_DATE + VALID_PRICE,
-                MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_DATE + VALID_GOODS_BUY_ORANGE + VALID_PRICE,
-                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + INVALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_GOODS_BUY_ORANGE + VALID_PRICE
+                + INVALID_DATE, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -106,6 +103,13 @@ public class BuyCommandParserTest {
                 MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_GOODS + VALID_GOODS_BUY_ORANGE + VALID_QUANTITY_BUY_ORANGE
                 + INVALID_DATE, MESSAGE_INVALID_FORMAT);
+        // date at wrong position
+        assertParseFailure(parser, "1" + VALID_DATE + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_PRICE,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_GOODS_BUY_ORANGE + VALID_DATE + VALID_PRICE,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + VALID_QUANTITY + VALID_DATE + VALID_GOODS_BUY_ORANGE + VALID_PRICE,
+                MESSAGE_INVALID_FORMAT);
     }
 
 }
